@@ -56,7 +56,7 @@ Allowed attributes in the Include-element
     <include src="test.xml"/>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 None.

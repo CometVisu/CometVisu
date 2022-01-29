@@ -76,7 +76,7 @@ Nach dem Erzeugen des Volumes wird über die Auswahl `Containers`...
 
 .. figure:: _static/portainer_select_add_container.png
 
-Unter `Advanced container settings` muss der Contianer nun noch konfiguriert
+Unter `Advanced container settings` muss der Container nun noch konfiguriert
 werden.
 
 Hinzufügen des CometVisu Containers

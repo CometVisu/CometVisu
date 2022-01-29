@@ -13,7 +13,9 @@ extensions = ['sphinx.ext.todo',
               'sphinx.ext.coverage',
               'sphinx.ext.ifconfig',
               'sphinxcontrib.plantuml',
-              'cometvisu']
+              'cometvisu',
+              'sphinxcontrib.spelling'
+              ]
 
 todo_include_todos = True
 templates_path = ['_templates']
@@ -29,6 +31,11 @@ locale_dirs = ["locale/"]
 
 project = 'CometVisu'
 copyright = '2010-%s Christian Mayer and the CometVisu contributers' % date.today().year
+
+spelling_lang = 'en_US'
+spelling_ignore_wiki_words = True
+spelling_ignore_acronyms = True
+spelling_filters = ["enchant.tokenize.URLFilter", "enchant.tokenize.EmailFilter"]
 
 with open(os.path.join(root_dir, "package.json")) as data_file:
     data = json.load(data_file)

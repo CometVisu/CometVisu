@@ -62,7 +62,7 @@ When successful the Home screen shows the App to access the CometVisu:
 App
 ---
 
-When the App was launched by this icon the choosen configuration and page is
+When the App was launched by this icon the chosen configuration and page is
 shown. Also the full screen is used as the address bar of the browser is not
 displayed anymore:
 
@@ -116,7 +116,7 @@ When successful the Home Screen shows the App to access the CometVisu:
 App
 ---
 
-When the App was launched by this icon the choosen configuration and page is
+When the App was launched by this icon the chosen configuration and page is
 shown. Also the full screen is used as the address bar of the browser is not
 displayed anymore:
 

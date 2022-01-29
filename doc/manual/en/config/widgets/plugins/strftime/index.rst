@@ -10,7 +10,7 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-This plugins integrates formated date and clock strings into based on strftime.
+This plugins integrates formatted date and clock strings into based on strftime.
 
 
 .. ###END-WIDGET-DESCRIPTION###
@@ -49,7 +49,7 @@ Allowed attributes in the strftime-element
     </strftime>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: strftime

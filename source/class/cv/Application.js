@@ -904,37 +904,41 @@ qx.Class.define('cv.Application',
     },
 
     _checkBackend: function () {
+      if (cv.Config.testMode === true) {
+        this.setManagerChecked(true);
+      } else {
       const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
       const xhr = new qx.io.request.Xhr(url);
-      xhr.set({
-        method: 'GET',
-        accept: 'application/json'
-      });
-      xhr.addListenerOnce('success', function (e) {
-        const req = e.getTarget();
-        const env = req.getResponse();
-        const serverVersionId = env.PHP_VERSION_ID;
-        const orParts = env.required_php_version.split('||').map(e => e.trim());
-        const passed = orParts.map(orConstraint => {
-          const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
-          // pass when no failed andPart has been found
-          return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
+        xhr.set({
+          method: 'GET',
+          accept: 'application/json'
         });
-        // one of the OR constraints need to pass
-        const enable = passed.some(res => res === true);
-        if (enable) {
-          this.info('Manager available for PHP version', env.phpversion);
-        } else {
-          this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-          this.setManagerDisabled(true);
-          this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-        }
-        this.setManagerChecked(true);
-      }, this);
-      xhr.addListener('statusError', e => {
-        this.setManagerChecked(true);
-      });
-      xhr.send();
+        xhr.addListenerOnce('success', function (e) {
+          const req = e.getTarget();
+          const env = req.getResponse();
+          const serverVersionId = env.PHP_VERSION_ID;
+          const orParts = env.required_php_version.split('||').map(e => e.trim());
+          const passed = orParts.map(orConstraint => {
+            const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
+            // pass when no failed andPart has been found
+            return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
+          });
+          // one of the OR constraints need to pass
+          const enable = passed.some(res => res === true);
+          if (enable) {
+            this.info('Manager available for PHP version', env.phpversion);
+          } else {
+            this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+            this.setManagerDisabled(true);
+            this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+          }
+          this.setManagerChecked(true);
+        }, this);
+        xhr.addListener('statusError', e => {
+          this.setManagerChecked(true);
+        });
+        xhr.send();
+      }
     },
 
     close: function () {

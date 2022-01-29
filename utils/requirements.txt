@@ -3,6 +3,7 @@ sh
 sphinx==3.4.3
 lxml
 sphinxcontrib-plantuml
+sphinxcontrib-spelling
 configparser
 PyYAML
 rjsmin
