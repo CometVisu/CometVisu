@@ -1,3 +1,22 @@
+/* FakeServer.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 
 qx.Class.define('cv.report.utils.FakeServer', {
   type: 'static',
@@ -13,22 +32,24 @@ qx.Class.define('cv.report.utils.FakeServer', {
     _index : 0,
 
     init: function (log, build) {
-      let prependResourcePath = null;
       qx.log.Logger.info(this, build+' log replaying in '+qx.core.Environment.get('cv.build'));
-      if (build !== qx.core.Environment.get('cv.build')) {
-        // the log has not been recorded in the same build as is is replayed, some paths must be adjusted
-        if (build === 'build') {
-          // map from build to source
-          prependResourcePath = '../source/';
-        }
-      }
+
+      const urlMapping = {
+        '/resource/': cv.Application.getRelativeResourcePath(true),
+        '/rest/manager/index.php': cv.io.rest.Client.getBaseUrl()
+      };
 
       // split by URI
       log.response.forEach(function (entry) {
         let url = entry.url;
-        if (prependResourcePath && url.startsWith('resource/')) {
-          url = prependResourcePath+url;
-        }
+        Object.keys(urlMapping).some(pattern => {
+          const index = url.indexOf(pattern);
+          if (index >= 0) {
+            url = urlMapping[pattern] + url.substr(index + pattern.length);
+            return true;
+          }
+          return false;
+        });
         if (!this._xhr[url]) {
           this._xhr[url] = [];
         }
@@ -48,8 +69,10 @@ qx.Class.define('cv.report.utils.FakeServer', {
       if (url.indexOf('nocache=') >= 0) {
         url = url.replace(/[\?|&]nocache=[0-9]+/, '');
       }
-      if (!xhrData[url] && !url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
-        url = '../source/' + url;
+      if (!xhrData[url]) {
+        if (!url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
+          url = '../source/' + url;
+        }
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
         qx.log.Logger.error(this, '404: no logged responses for URI '+url+' found');

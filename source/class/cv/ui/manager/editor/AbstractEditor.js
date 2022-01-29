@@ -1,3 +1,23 @@
+/* AbstractEditor.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+
 /**
  * Abstract base class for all editors.
  */
@@ -151,16 +171,18 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
-        const file = this.getFile();
         const message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
         cv.ui.manager.snackbar.Controller.info(message);
         this._onSaved();
-        qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
-          type: type,
-          file: file,
-          data: this.getCurrentContent(),
-          source: this
-        });
+        const file = this.getFile();
+        if (file) {
+          qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
+            type: type,
+            file: file,
+            data: this.getCurrentContent(),
+            source: this
+          });
+        }
       }
     },
 
@@ -184,8 +206,10 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     _onSaved: function () {
       const file = this.getFile();
-      file.resetModified();
-      file.resetTemporary();
+      if (file) {
+        file.resetModified();
+        file.resetTemporary();
+      }
     },
 
     showErrors: function (path, errorList) {},

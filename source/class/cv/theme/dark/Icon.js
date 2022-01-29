@@ -1,6 +1,6 @@
 /* Icon.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,6 +24,7 @@ qx.Theme.define('cv.theme.dark.Icon', {
     'qxl.dialog.icon.ok'     : '@MaterialIcons/check/18',
     'qxl.dialog.icon.info'   : '@MaterialIcons/info/18',
     'qxl.dialog.icon.error'  : '@MaterialIcons/error/18',
-    'qxl.dialog.icon.warning' : '@MaterialIcons/warning/18'
+    'qxl.dialog.icon.warning' : '@MaterialIcons/warning/18',
+    'qxl.dialog.icon.delete' : '@MaterialIcons/delete_forever/18'
   }
 });

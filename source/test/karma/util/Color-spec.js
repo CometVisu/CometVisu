@@ -1,7 +1,7 @@
-/* Color-spec.js
- *
- * copyright (c) 2021-2021, Christian Mayer and the CometVisu contributers.
- *
+/* Color-spec.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)

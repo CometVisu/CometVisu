@@ -1,7 +1,8 @@
-/* Break.js 
- * 
+<?php
+/* environment.php
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,34 +18,25 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
- * A break tag is used to start in new line for a grouped and thereby tidy display of
- * elements on one page.
- *
- * <pre class="sunlight-highlight-xml">
- * &lt;break/&gt;
- * </pre>
- *
- * @author Christian Mayer
- * @since 0.8.0 (2012)
+ * Return information about the running environment as JSON so that e.g. the
+ * manager can warn about a too old and unsupported environment.
  */
-qx.Class.define('cv.ui.structure.pure.Break', {
-  extend: cv.ui.structure.pure.AbstractBasicWidget,
 
-  /*
-   ******************************************************
-     MEMBERS
-   ******************************************************
-   */
-  members: {
-    // overridden
-    getDomString: function () {
-      return '<br/>';
-    }
-  },
+$retval = array();
+$retval['phpversion'] = phpversion();
+if (!defined('PHP_VERSION_ID')) {
+  $version = explode('.', PHP_VERSION);
+  define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+}
+$retval['PHP_VERSION_ID'] = PHP_VERSION_ID;
+$retval['SERVER_SIGNATURE'] = $_SERVER['SERVER_SIGNATURE'];
+$retval['SERVER_SOFTWARE'] = $_SERVER['SERVER_SOFTWARE'];
 
-  defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass('break', statics);
-  }
-});
+$composer_file = file_get_contents("composer.json");
+$composer = json_decode($composer_file, true);
+$retval['required_php_version'] = $composer['require']['php'];
+
+header('Content-Type: application/json; charset=utf-8');
+echo json_encode($retval);
+?>

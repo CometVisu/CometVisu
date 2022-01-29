@@ -1,6 +1,6 @@
 /* Mockup.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -97,6 +97,28 @@ qx.Class.define('cv.io.Mockup', {
 
     __applyTestData: function () {
       this.__xhr = cv.Config.initialDemoData.xhr;
+
+      // we need to adjust the timestamps of the chart data
+      const now = Date.now();
+      for (let url in this.__xhr) {
+        if (url.startsWith('rrd')) {
+          this.__xhr[url].forEach(d => {
+            const data = d.body;
+            const offset = now - data[data.length - 1][0];
+            data.forEach(entry => entry[0] += offset);
+          });
+        } else if (url.startsWith('resource/plugin/rsslog.php')) {
+          this.__xhr[url].forEach(d => {
+            const data = d.body.responseData.feed.entries;
+            let date = new Date();
+            date.setDate(date.getDate()-1);
+            data.forEach(entry => {
+              entry.publishedDate = date.toUTCString();
+              date.setTime(date.getTime() + 60*60*1000);
+            });
+          });
+        }
+      }
 
       const that = this;
 
@@ -414,6 +436,9 @@ qx.Class.define('cv.io.Mockup', {
     stop: function () {},
 
     getResourcePath: function (name) {
+      if (name === 'charts') {
+        return null;
+      }
       return name;
     },
 

@@ -1,6 +1,6 @@
-/* Transform.js 
+/* Record.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -157,12 +157,12 @@ qx.Class.define('cv.report.Record', {
 
     normalizeUrl: function(url) {
       try {
-        const parsed = qx.util.Uri.parseUri(url);
+        const parsed = qx.util.Uri.parseUri(qx.util.Uri.getAbsolute(url));
         url = parsed.path;
         const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== 'nocache' && name !== 'ts');
         if (filteredParams.length > 0) {
           url += '?';
-          filteredParams.forEach(param => url += `${param}=${parsed.queryKey[param]}`);
+          url += filteredParams.map(param => `${param}=${parsed.queryKey[param]}`).join('&');
         }
       } catch (e) {
         if (url.indexOf('nocache=') >= 0) {

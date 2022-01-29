@@ -1,6 +1,6 @@
 /* InfoTrigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -178,7 +178,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
 
       if (this.getIsAbsolute()) {
         let bvalue = parseFloat(this.getBasicValue());
-        if (isNaN(bvalue)) {
+        if (!Number.isFinite(bvalue)) {
           bvalue = 0; // anything is better than NaN...
         }
         value = bvalue + value;

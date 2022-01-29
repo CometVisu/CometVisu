@@ -1,6 +1,6 @@
 /* AbstractDiagram.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -188,9 +188,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           barWidth  : elem.getAttribute('barWidth') || 1
         };
         if (elem.tagName === 'influx') {
-          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter(elem, 'AND');
-          retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
-          retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
+          retVal.ts[retVal.tsnum].filter = this.getInfluxFilter(elem, 'AND');
+          retVal.ts[retVal.tsnum].field = elem.getAttribute('field');
+          retVal.ts[retVal.tsnum].authentication = elem.getAttribute('authentication');
         } else {
           let dsIndex = elem.getAttribute('datasourceIndex') || 0;
           if (dsIndex < 0) {
@@ -217,7 +217,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       for (; i < length; i++) {
         const child = children[i];
 
-        if (retval != '') {
+        if (retval !== '') {
           retval += ' ' + type + ' ';
         }
 
@@ -328,7 +328,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           tsdata = client.processChartsData(tsdata);
         } else {
           // calculate timestamp offset and scaling
-          const millisOffset = (ts.offset ? ts.offset * 1000 : 0);
+          const millisOffset = (Number.isFinite(ts.offset) ? ts.offset * 1000 : 0);
           const newRrd = new Array(tsdata.length);
           let j = 0;
           const l = tsdata.length;
@@ -557,8 +557,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       const parent = popupDiagram.parentNode;
       Object.entries({height: '100%', width: '95%', margin: 'auto'}).forEach(function(key_value) {
- parent.style[key_value[0]]=key_value[1]; 
-});// define parent as 100%!
+        parent.style[key_value[0]]=key_value[1];
+      });// define parent as 100%!
       popupDiagram.innerHTML = '';
       qx.event.Registration.addListener(popupDiagram, 'tap', function(event) {
         // don't let the popup know about the click, or it will close
@@ -708,12 +708,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
     getSeriesSettings: function(xAxis, isInteractive) {
       const series = {
-        hour: {res: '60', start: 'hour', end: 'now'},
-        day: {res: '300', start: 'day', end: 'now'},
-        fullday: {res: '300', start: 'day', end: 'midnight+24hour'},
-        week: {res: '1800', start: 'week', end: 'now'},
-        month: {res: '21600', start: 'month', end: 'now'},
-        year: {res: '432000', start: 'year', end: 'now'}
+        hour: {res: 60, start: 'hour', end: 'now'},
+        day: {res: 300, start: 'day', end: 'now'},
+        fullday: {res: 300, start: 'day', end: 'midnight+24hour'},
+        week: {res: 1800, start: 'week', end: 'now'},
+        month: {res: 21600, start: 'month', end: 'now'},
+        year: {res: 432000, start: 'year', end: 'now'}
       };
 
       const ret = {
@@ -759,7 +759,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       let tsSuccessful = 0;
       // get all time series data
       this.getContent().ts.forEach(function(ts, index) {
-        const res = isNaN(ts.resol) ? series.res : ts.resol;
+        const res = Number.isFinite(ts.resol) ? ts.resol : series.res;
         const forceNowDatapoint = this.getForceNowDatapoint();
         const refresh = this.getRefresh() ? this.getRefresh() : res;
 

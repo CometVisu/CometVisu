@@ -56,7 +56,7 @@
     "12/7/92": 250
   },
   "xhr": {
-    "rrd?rrd=13%2F0%2F14.rrd&ds=AVERAGE&start=end-1day&end=now&res=300": [{
+    "rrd?rrd=13%2F0%2F14.rrd&ds=AVERAGE&start=end-1day&end=now&res=300&fill=linear": [{
       "status": 200,
       "headers": {
         "Content-type": "application/json"

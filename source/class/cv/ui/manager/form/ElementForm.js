@@ -1,3 +1,23 @@
+/* ElementForm.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+
 /**
  *
  */
@@ -92,7 +112,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         this._form.setQxObjectId('form');
         this.addOwnedQxObject(this._form);
       }
-      this._formController = new qx.data.controller.Object(this.getModel());
+      this._formController = new qx.data.controller.Object(model);
       this._onFormReady(this._form);
       let i = 0;
       let atom;
@@ -100,6 +120,8 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         const mappedKey = this.__mappedKeys.inverse[key];
         let fieldData = formData[key];
         let formElement = null;
+        let elementModel = null;
+        let elementModelReady = null;
         switch (fieldData.type.toLowerCase()) {
           case 'groupheader':
             this._form.addGroupHeader(fieldData.value);
@@ -118,8 +140,8 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
           case 'textfield':
             formElement = new qx.ui.form.TextField();
             if (fieldData.maxLength) {
- formElement.setMaxLength(fieldData.maxLength); 
-}
+              formElement.setMaxLength(fieldData.maxLength);
+            }
             formElement.setLiveUpdate(true);
             break;
           case 'sourceeditor':
@@ -169,9 +191,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             };
             if (fieldData.options instanceof Promise) {
               formElement.setPlaceholder(this.tr('Loading...'));
-              fieldData.options.then(options => {
+              elementModelReady = fieldData.options.then(options => {
                 formElement.setPlaceholder(fieldData.placeholder);
                 parseComboOptions(options);
+                return true;
               }, this).catch(err => {
                 this.error(err);
                 formElement.setPlaceholder(this.tr('Possible values could no be retrieved, please check browser console for error details'));
@@ -199,19 +222,19 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 this.__hints = null;
               }
             }, this);
-            model = new qx.data.Array();
+            elementModel = new qx.data.Array();
             const parseVComboOptions = function (options) {
               if (Array.isArray(options)) {
                 options.forEach(item => {
-                  model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints));
+                  elementModel.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints));
                 });
               } else if (typeof options === 'object') {
                 Object.keys(options).forEach(groupName => {
                   const groupModel = new cv.ui.manager.form.Option(groupName);
                   groupModel.setType('group');
-                  model.push(groupModel);
+                  elementModel.push(groupModel);
                   options[groupName].forEach(function (item) {
-                    model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints));
+                    elementModel.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints));
                   });
                 });
               }
@@ -267,13 +290,13 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               atom = formElement.getChildControl('atom');
               atom.setLabel(this.tr('Loading...'));
               atom.addState('loading');
-              fieldData.options.then(options => {
+              elementModelReady = fieldData.options.then(options => {
                 const atom = formElement.getChildControl('atom');
                 atom.resetLabel();
                 atom.removeState('loading');
-                model = qx.data.marshal.Json.createModel(options);
                 // eslint-disable-next-line no-new
-                new qx.data.controller.List(model, formElement, 'label');
+                new qx.data.controller.List(qx.data.marshal.Json.createModel(options), formElement, 'label');
+                return true;
               }, this).catch(err => {
                 this.error(err);
                 const atom = formElement.getChildControl('atom');
@@ -282,28 +305,28 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 atom.addState('error');
               }, this);
             } else {
-              model = qx.data.marshal.Json.createModel(fieldData.options);
               // eslint-disable-next-line no-new
-              new qx.data.controller.List(model, formElement, 'label');
+              new qx.data.controller.List(qx.data.marshal.Json.createModel(fieldData.options), formElement, 'label');
             }
             break;
           }
 
           case 'virtualselectbox':
             formElement = new cv.ui.manager.form.VirtualSelectBox();
-            model = new qx.data.Array();
+            elementModel = new qx.data.Array();
             if (fieldData.options) {
               if (fieldData.options instanceof Promise) {
                 atom = formElement.getChildControl('atom');
                 atom.setLabel(this.tr('Loading...'));
                 atom.addState('loading');
-                fieldData.options.then(options => {
+                elementModelReady = fieldData.options.then(options => {
                   const atom = formElement.getChildControl('atom');
                   atom.resetLabel();
                   atom.removeState('loading');
                   options.forEach(item => {
-                    model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+                    elementModel.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
                   });
+                  return true;
                 }).catch(err => {
                   this.error(err);
                   const atom = formElement.getChildControl('atom');
@@ -313,7 +336,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 }, this);
               } else {
                 fieldData.options.forEach(item => {
-                  model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+                  elementModel.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
                 });
               }
             }
@@ -337,7 +360,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                   return value;
                 }
               },
-              model: model
+              model: elementModel
             });
             break;
           case 'radiogroup':
@@ -395,6 +418,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         }
         i++;
         if (typeof fieldData.type == 'string') {
+          let options = null;
+          let reverseOptions = null;
+          let bidirectional = true;
+          let handled = false;
           switch (fieldData.type.toLowerCase()) {
             case 'textarea':
             case 'textfield':
@@ -404,15 +431,16 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             case 'datefield':
             case 'spinner':
             case 'sourceeditor':
-              this._formController.addTarget(formElement, 'value', mappedKey, true, null, {
+              reverseOptions = {
                 converter: function (value) {
+                  // just validate when the value has changed
                   this.getValidationManager().validate();
                   return value;
                 }.bind(this._form)
-              });
+              };
               break;
             case 'virtualselectbox':
-              this._formController.addTarget(formElement, 'value', mappedKey, true, {
+              options = {
                 converter: function (value) {
                   if (typeof value === 'string') {
                     let option;
@@ -427,40 +455,44 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                   }
                   return value;
                 }.bind(formElement)
-              }, {
+              };
+              reverseOptions = {
                 converter: function (option) {
                   this.getValidationManager().validate();
                   return option ? option.getValue() : null;
                 }.bind(this._form)
-              });
+              };
               break;
             case 'checkbox':
-              this._formController.addTarget(formElement, 'value', mappedKey, true, null);
               break;
             case 'selectbox':
+              // for some strange timing reason this only works, when addTarget is called here
               this._formController.addTarget(formElement, 'selection', mappedKey, true, {
-                converter: qx.lang.Function.bind(function (value) {
+                converter: function (value) {
                   let selected = null;
                   let selectables = this.getSelectables();
-                  selectables.forEach(function (selectable) {
+                  selectables.some(function (selectable) {
                     if (selectable.getModel().getValue() === value) {
                       selected = selectable;
+                      return true;
                     }
+                    return false;
                   }, this);
                   if (!selected) {
                     return [selectables[0]];
                   }
                   return [selected];
-                }, formElement)
+                }.bind(formElement)
               }, {
-                converter: qx.lang.Function.bind(function (selection) {
+                converter: function (selection) {
                   return selection[0].getModel().getValue();
-                }, formElement)
+                }
               });
+              handled = true;
               break;
             case 'radiogroup':
-              this._formController.addTarget(formElement, 'selection', mappedKey, true, {
-                converter: qx.lang.Function.bind(function (value) {
+              options = {
+                converter: function (value) {
                   let selectables = this.getSelectables();
                   let selection = [];
                   if (value) {
@@ -472,13 +504,24 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                     }, this);
                   }
                   return selection;
-                }, formElement)
-              }, {
+                }.bind(formElement)
+              };
+              reverseOptions = {
                 converter: function (selection) {
                   return selection[0].getUserData('value');
                 }
-              });
+              };
               break;
+          }
+          if (!handled) {
+            if (elementModelReady) {
+              // do not add the binding before the model is there
+              elementModelReady.then(() => {
+                this._formController.addTarget(formElement, 'value', mappedKey, bidirectional, options, reverseOptions);
+              });
+            } else {
+              this._formController.addTarget(formElement, 'value', mappedKey, bidirectional, options, reverseOptions);
+            }
           }
         }
         /**

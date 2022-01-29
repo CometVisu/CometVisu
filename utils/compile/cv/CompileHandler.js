@@ -33,7 +33,6 @@ const filesToCopy = [
   'test',
   'replay.html',
   'resource/config/.htaccess',
-  'resource/config/.templates',
   'REV',
   'ServiceWorker.js'
 ];

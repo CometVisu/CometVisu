@@ -1,4 +1,4 @@
-/* Line.js 
+/* IPage.js 
  * 
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,19 +19,38 @@
 
 
 /**
- * A line tag is used to display a horizontal line in the browser to allow for a grouped and thereby tidy display of
- * elements on one page. To specify the width of the line an optional &lt;layout/&gt;-child can be added.
+ * IPage
  *
- * @widgetexample <settings selector="hr">
- *   <caption>A line tag which uses 50% of the screen size (6 of 12 available columns)</caption>
- * </settings>
- * <line><layout colspan="6"/></line>
- *
- * @author Christian Mayer
- * @since 0.8.0 (2012)
+ * @author tobiasb
+ * @since 2017
  */
-qx.Class.define('cv.ui.structure.pure.Line', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+
+/**
+ * Interface that all structure page widgets must implement
+ */
+qx.Interface.define('cv.ui.structure.IPage', {
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    /**
+     * The internal path to the widget
+     * @type {String}
+     */
+    path: {},
+
+    /**
+     * The page type (text, 2d, 3d)
+     * @type {String}
+     */
+    pageType: {},
+    backdropAlign: {},
+    backdropType: {}
+  },
+
 
   /*
   ******************************************************
@@ -39,9 +58,11 @@ qx.Class.define('cv.ui.structure.pure.Line', {
   ******************************************************
   */
   members: {
-    // overridden
-    getDomString: function () {
-      return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
-    }
+
+    /**
+     * Return the widgets DOM element
+     * @return {Element}
+     */
+    getDomElement: function() {}
   }
 });

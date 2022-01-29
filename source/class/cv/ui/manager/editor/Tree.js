@@ -1,3 +1,23 @@
+/* Tree.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+
 /**
  * New XML-Editor base on a node tree
  */
@@ -67,6 +87,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     // show expert level settings
     expert: {
       check: 'Boolean',
+      init: false
+    },
+
+    ready: {
+      refine: true,
       init: false
     },
 
@@ -184,8 +209,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const preview = this.getChildControl('preview');
         if (file.isWriteable()) {
           if (!preview.getFile()) {
-            const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
-            preview.setFile(previewConfig);
+            preview.setFile(this.__getPreviewFile());
           }
         } else {
           // this file is not writable, we can use the real one for preview
@@ -1961,7 +1985,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
-    __loadContent: async function (value, errors) {
+    __getPreviewFile: function () {
+      let file;
+      cv.ui.manager.model.FileItem.ROOT.getChildren().some(f => {
+        if (f.getName() === 'visu_config_previewtemp.xml') {
+          file = f;
+          return true;
+        }
+        return false;
+      });
+      if (!file) {
+        file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+        file.setTemporary(true);
+      }
+      return file;
+    },
+
+    __loadContent: function (value, errors) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
       if (file) {
@@ -1982,8 +2022,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           const preview = this.getChildControl('preview');
           if (file.isWriteable()) {
             if (!preview.getFile()) {
-              const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-              preview.setFile(previewConfig);
+              preview.setFile(this.__getPreviewFile());
             }
           } else {
             preview.setFile(file);
@@ -2055,19 +2094,36 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           return;
         }
         this.getChildControl('preview').show();
-        this._client.updateSync({
-          path: previewFile.getFullPath(),
-          hash: 'ignore'
-        }, content, () => {
-          qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-            type: 'contentChanged',
-            file: previewFile,
-            data: content,
-            source: this
-          });
-          this.__modifiedPreviewElements.removeAll();
-          this.resetPreviewState();
-        }, this);
+        if (previewFile.isTemporary()) {
+          this._client.createSync({
+            path: previewFile.getFullPath(),
+            hash: 'ignore'
+          }, content, () => {
+            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+              type: 'contentChanged',
+              file: previewFile,
+              data: content,
+              source: this
+            });
+            this.__modifiedPreviewElements.removeAll();
+            this.resetPreviewState();
+            previewFile.resetTemporary();
+          }, this);
+        } else {
+          this._client.updateSync({
+            path: previewFile.getFullPath(),
+            hash: 'ignore'
+          }, content, () => {
+            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+              type: 'contentChanged',
+              file: previewFile,
+              data: content,
+              source: this
+            });
+            this.__modifiedPreviewElements.removeAll();
+            this.resetPreviewState();
+          }, this);
+        }
       }
     },
 

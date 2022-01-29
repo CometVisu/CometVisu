@@ -40,13 +40,6 @@ different links:
     .. hint::
         The content of the footer can be customized by the config XML-File.
 
-Update the CometVisu
---------------------
-
-If a version 0.8 was already installed, the installation
-be updated directly on the :doc:`WireGate <install/update-wiregate>` or
-:doc:`other installations <install/update-other>`
-
 CometVisu-Designs
 -----------------
 
