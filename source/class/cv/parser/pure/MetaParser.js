@@ -283,10 +283,10 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                     break;
                   }
                 }
+		text = text.replace(match[0], replacement);
               }
-              text = text.replace(match[0], replacement);
+	      break;
             }
-            break;
           }
           code += text;
         }, this);

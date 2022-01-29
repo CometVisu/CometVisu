@@ -631,8 +631,6 @@ qx.Class.define('cv.TemplateEngine', {
       const addressesToSubscribe = cv.data.Model.getInstance().getAddresses('main');
       if (addressesToSubscribe.length !== 0) {
         client.subscribe(addressesToSubscribe);
-      } else {
-        this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
       }
     },
 
