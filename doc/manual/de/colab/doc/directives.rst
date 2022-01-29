@@ -154,7 +154,7 @@ verfeinert werden.
 |                   +-------------------+-------------------+----------------------------------------------------------------------------+
 |                   | sleep             | Zahl              | Wartezeit zwischen Senden der Daten und Screenshot                         |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
-| <settings>        | address           | Gruppenadresse   | Sende Daten an diese Adresse bevor der Screenshot gemacht wird             |
+| <settings>        | address           | Gruppenadresse    | Sende Daten an diese Adresse bevor der Screenshot gemacht wird             |
 |   <screenshot>    +-------------------+-------------------+----------------------------------------------------------------------------+
 |      <data>       | type              | *float* oder *int*| Falls echte Zahlenwerte gesendet werden müssen                             |
 +                   +-------------------+-------------------+----------------------------------------------------------------------------+

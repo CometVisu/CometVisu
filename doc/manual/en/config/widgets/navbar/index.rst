@@ -36,13 +36,13 @@ horizontal to the middle, to hide you must swipe to the left.
 +-------------+------------------------------------+------------------------------------+
 | ``dynamic`` | Mobile device                      | Big screen                         |
 +=============+====================================+====================================+
-| *empty*     | Navbar can be shown and hidden.    | Navbar is always shown.           |
+| *empty*     | Navbar can be shown and hidden.    | Navbar is always shown.            |
 |             | After start it is hidden.          |                                    |
 +-------------+------------------------------------+------------------------------------+
 | true        | Navbar can be shown and hidden.    | Navbar can be shown and hidden.    |
 |             | After start it is hidden.          | After start it is shown.           |
 +-------------+------------------------------------+------------------------------------+
-| false       | Navbar is always shown.           | Navbar is always shown.           |
+| false       | Navbar is always shown.            | Navbar is always shown.            |
 +-------------+------------------------------------+------------------------------------+
 
 Allowed attributes in the NavBar-element
