@@ -67,9 +67,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
     /**
      * Apply the given mapping to the value
      *
-     * @param value {var} value to be mapped
-     * @param mappingName {String} mapping name, if not set the <code>mapping</code> property value is used
-     * @return {var} the mapped value
+     * @param {*} value - value to be mapped
+     * @param {string} mappingName - mapping name, if not set the <code>mapping</code> property value is used
+     * @return {*} the mapped value
      */
     applyMapping: function (value, mappingName) {
       if (mappingName && cv.Config.hasMapping(mappingName)) {
@@ -196,9 +196,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * The default value handling for most of the widgets.
      * This method applies the transform, mapping, format and styling to the value.
      *
-     * @param address {String} KNX-GA or openHAB item name
-     * @param data {var} value to be processes
-     * @return {var} the processed value
+     * @param {string} address - KNX-GA or openHAB item name
+     * @param {*} data - value to be processes
+     * @return {*} the processed value
      */
     defaultValueHandling: function (address, data) {
       // #1: transform the raw value to a JavaScript type
@@ -241,62 +241,41 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
     },
 
     /**
+     * @typedef widgetValueTypes
+     * @type {(string|number|Uint8Array|Map|Function)}
+     */
+    /**
      * Method to handle all special cases for the value. The might come from
      * the mapping where it can be quite complex as it can contain icons.
-     * value: the value that will be inserted
-     * modifyFn: callback function that modifies the DOM
-     *
-     * @param value {var}
-     * @param modifyFn {Function}
+     * @param {(*|*[])} value - the value, or an array of values, that will be inserted
+     * @param {function} modifyFn - callback function that modifies the DOM
      */
     defaultValue2DOM: function (value, modifyFn) {
-      let element;
-      if (
-        (typeof value === 'string') ||
-        (typeof value === 'number') ||
-        (value instanceof Uint8Array) ||
-        (value instanceof Map)
-      ) {
-        modifyFn(value);
-      } else if (typeof value === 'function') {
-        // thisValue(valueElement);
-        this.error('typeof value === function - special case not handled anymore!');
-      } else if (!Array.isArray(value)) {
-        element = value.cloneNode();
+      if (Array.isArray(value)) {
+        value.forEach(v => this.defaultValue2DOM(v, modifyFn));
+        return;
+      }
+      if (!value) {
+        return;
+      }
+      if (value instanceof Node) {
+        let element = value.cloneNode(true);
         if (value.getContext) {
           cv.util.IconTools.fillRecoloredIcon(element);
         }
         modifyFn(element);
       } else {
-        for (let i = 0; i < value.length; i++) {
-          const thisValue = value[i];
-          if (!thisValue) {
- continue; 
-}
-
-          if ((typeof thisValue === 'string') || (typeof thisValue === 'number')) {
-            modifyFn(thisValue);
-          } else if (typeof thisValue === 'function') {
-            // thisValue(valueElement);
-            this.error('typeof value === function - special case not handled anymore!');
-          } else {
-            element = thisValue.cloneNode();
-            if (thisValue.getContext) {
-              cv.util.IconTools.fillRecoloredIcon(element);
-            }
-            modifyFn(element);
-          }
-        }
+        modifyFn(value);
       }
     },
 
     /**
-     * Default update function, processes the incoming value and applies it to the Dom value element.
+     * Default update function, processes the incoming value and applies it to the DOM value element.
      *
-     * @param ga {String} KNX-GA or openHAB item name
-     * @param data {var} the raw value from the bus
-     * @param passedElement {Element?} the element to update, if not given {@link getDomElement()} is used
-     * @return {var} value
+     * @param {string} ga - KNX-GA or openHAB item name
+     * @param {*} data - the raw value from the bus
+     * @param {HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used
+     * @return {*} - value
      */
     defaultUpdate: function (ga, data, passedElement) {
       const element = passedElement || this.getDomElement();
@@ -308,26 +287,29 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
         element.classList.add(this.getAlign());
       }
       const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
-      valueElement.innerHTML = '';
+      let valueElementNew = valueElement.cloneNode(false);
       if (undefined !== value) {
-        const self = this;
+        let self = this;
         this.defaultValue2DOM(value, function(e) {
- self._applyValueToDom(valueElement, e); 
-});
+          self._applyValueToDom(valueElementNew, e);
+        });
+        valueElement.parentElement.replaceChild(valueElementNew, valueElement);
       } else {
-        valueElement.appendChild(document.createTextNode('-'));
+        valueElement.textContent = '-';
       }
       return value;
     },
 
     /**
      * Internal function which updates the DOM element with the given value
-     * @param valueElement {Element} element to update
-     * @param e {var} value to add to the element
+     * @param {HTMLElement} valueElement - element to update
+     * @param {*} e - value to add to the element
      */
     _applyValueToDom: function(valueElement, e) {
-      if (typeof e === 'number') {
-        valueElement.innerText = e;
+      if (e instanceof Node) {
+        valueElement.appendChild(e);
+      } else if (typeof e === 'number' || typeof e === 'string') {
+        valueElement.appendChild(document.createTextNode(e));
       } else {
         valueElement.innerHTML += e;
       }
