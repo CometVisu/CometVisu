@@ -319,12 +319,14 @@ qx.Class.define('cv.parser.WidgetParser', {
 
       Array.prototype.forEach.call(label.childNodes, function(elem) {
         if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
-          ret_val += cv.IconHandler.getInstance().getIconText(
+          ret_val += cv.IconHandler.getInstance().getIconElement(
             elem.getAttribute('name'),
             elem.getAttribute('type'),
             elem.getAttribute('flavour') || flavour,
             elem.getAttribute('color'),
-            elem.getAttribute('styling'));
+            elem.getAttribute('styling'),
+            '',
+            true);
         } else if (elem.nodeType === Node.TEXT_NODE) {
           ret_val += elem.textContent;
         }

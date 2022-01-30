@@ -47,8 +47,22 @@ qx.Class.define('cv.IconHandler', {
    */
   members: {
     /**
+     * @typedef iconDBEntry
+     * @type {object}
+     * @property {string} uri
+     * @property {string} styling
+     * @property {(string|HTMLCanvasElement|SVGElement)} icon
+     */
+    /**
+     * @typedef iconDB
+     * Hierachy:      name,           type,                   flavour,                color,   URI
+     * @type {Object.<string, Object.<string, (string|Object.<string, (string|Object.<string, (iconDBEntry|recolorCallback)>)>)>>}
+     */
+
+    /**
      * Internal database of the known icons.
      * Initially filled with the default icons.
+     * @type {iconDB}
      */
     __db: null,
 
@@ -57,16 +71,15 @@ qx.Class.define('cv.IconHandler', {
      * might be a full hash of icon definitions or a single one consisting out of
      * a name and a URI path. Optional further parameters are a "type" and a
      * flavour.
+     * @param {string} name
+     * @param {string} uri
+     * @param {string?} type
+     * @param {string?} flavour
+     * @param {string?} color
+     * @param {string?} styling
+     * @param {string?} dynamic
      */
-    insert: function () {
-      const name = arguments[0];
-      const uri = arguments[1];
-      const type = arguments[2] || '*';
-      const flavour = arguments[3] || '*';
-      const color = arguments[4] || '*';
-      const styling = arguments[5];
-      const dynamic = arguments[6];
-
+    insert: function (name, uri, type= '*', flavour='*', color='*', styling=undefined, dynamic='') {
       if (!this.__db[name]) {
         this.__db[name] = {};
       }
@@ -90,13 +103,13 @@ qx.Class.define('cv.IconHandler', {
     /**
      * Get the icon information for a name.
      *
-     * @param name {String} Name
-     * @param type {String?} Type
-     * @param flavour {String?} Flavour
-     * @param color {String?} Color (only relevant for monochrome icons)
-     * @return {String} The URI for the icon - or "undefined" if not known
+     * @param {string} name
+     * @param {string?} type
+     * @param {string?} flavour
+     * @param {string?} color (only relevant for monochrome icons)
+     * @return {(string|recolorCallback|undefined)} The URI for the icon - or "undefined" if not known
      */
-    get: function (name, type, flavour, color) {
+    get: function (name, type = '*', flavour = '*', color = '*') {
       if (!this.__db[name]) {
         return undefined;
       }
@@ -149,13 +162,24 @@ qx.Class.define('cv.IconHandler', {
     },
 
     /**
-     * Return an icon DOM element.
+     * Get the icon - either as DOM element (`asText = false`) or as string
+     * (`asText = true`).
+     * When it is returned as string and it was added to the DOM, the
+     * fillIcons method must be called to fill missing content (e.g. the
+     * <canvas> icons.
+     *
+     * @param {string} name
+     * @param {string?} type
+     * @param {string?} flavour
+     * @param {string?} color (only relevant for monochrome icons)
+     * @param {string?} styling
+     * @param {string?} iconclass
+     * @param {boolean?} asText
      */
-    getIconElement: function () {
-      const i = this.get.apply(this, arguments);
+    getIconElement: function (name, type, flavour, color, styling = '', iconclass = '', asText = false) {
+      const i = this.get(name, type, flavour, color);
       if (i) {
-        let styling = arguments[4];
-        if (i.icon && !styling && typeof i !== 'function') {
+        if (i.icon && !styling && typeof i !== 'function' && !asText) {
           return i.icon;
         }
 
@@ -165,60 +189,28 @@ qx.Class.define('cv.IconHandler', {
         }
 
         let classes = 'icon';
-        const iconclass = arguments[5];
         if (iconclass) {
           classes = classes + ' custom_' + iconclass;
         }
 
         if (typeof i === 'function') {
-          i.icon = i(arguments[3], styling, classes, false);
+          if (asText) {
+            return i(color, styling, classes, true);
+          }
+          i.icon = i(color, styling, classes, false);
         } else {
           i.icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
         }
         return i.icon;
       }
-      return null;
-    },
-
-    /**
-     * Return a String for the icon, e.g. build a DOM tree in a string before
-     * passing it to ParseHTML. After the content was added to the DOM the
-     * fillIcons method must be called to fill missing content (e.g. the <canvas>
-     * icons.
-     * @param name {String} Name
-     * @param type {String?} Type
-     * @param flavour {String?} Flavour
-     * @param color {String?} Color (only relevant for monochrome icons)
-     * @param styling {String?} Styling
-     * @param iconclass {String?} icon class
-     */
-    getIconText: function (name, type, flavour, color, styling, iconclass) {
-      const i = this.get.apply(this, arguments);
-      if (i) {
-        if (!styling) {
-          styling = !i.styling ? '' : ' style="' + i.styling + '"';
-        } else {
-          styling = ' style="' + styling + '"';
-        }
-
-        let classes = 'icon';
-        if (iconclass) {
-          classes = classes + ' custom_' + iconclass;
-        }
-
-        if (typeof i === 'function') {
-          return i(color, styling, classes, true);
-        } 
-          return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
-      }
-      return '';
+      return asText ? '' : null;
     },
 
     /**
      * Provide a value that can be used by cv.ui.manager.basic.Image to display the icon on an qooxdoo widget.
-     * @param name {String} icon name
-     * @param classes {String?} optional css classes used in the svg icon code (default is 'icon')
-     * @returns {String|string|*}
+     * @param {string} name
+     * @param {string?} classes - optional css classes used in the svg icon code (default is 'icon')
+     * @returns {string}
      */
     getIconSource: function (name, classes) {
       const i = this.get.apply(this, arguments);
@@ -229,7 +221,7 @@ qx.Class.define('cv.IconHandler', {
         if (typeof i === 'function') {
           return i(undefined, undefined, classes, true);
         } 
-          return qx.util.ResourceManager.getInstance().toUri(i.uri);
+        return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
       return '';
     },
@@ -246,7 +238,7 @@ qx.Class.define('cv.IconHandler', {
      * List all known icons
      *
      *
-     * @return {Array} List of all known icon names
+     * @return {string[]} List of all known icon names
      */
     list: function () {
       return Object.keys(this.__db);
