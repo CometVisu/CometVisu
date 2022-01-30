@@ -319,7 +319,7 @@ qx.Class.define('cv.util.IconTools', {
         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('class', classes);
         let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-        use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', iconPath+'#kuf-' + iconID);
+        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', iconPath+'#kuf-' + iconID);
         svg.appendChild(use);
         return svg;
       };
