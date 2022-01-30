@@ -228,8 +228,8 @@ qx.Mixin.define('cv.ui.common.Refresh', {
           canvas.style = 'position:fixed';
           try {
             canvas.getContext('2d').drawImage(elem, 0, 0);
-          } catch(e) {
-            console.log('Refresh image: failed to show old image on temporary canvas', e);
+          } catch (e) {
+            window.console.log('Refresh image: failed to show old image on temporary canvas', e);
           }
           canvases.push(canvas);
           elem.parentNode.insertBefore(canvas, elem);
