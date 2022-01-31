@@ -313,7 +313,7 @@ qx.Class.define('cv.util.IconTools', {
               div.innerHTML = text;
               let svg = div.firstChild;
               svg.setAttribute('style', 'display:none');
-              document.querySelector('body').appendChild(svg);
+              document.body.appendChild(svg);
             }).catch(err => {
               qx.log.Logger.debug(cv.util.IconTools, err);
             });
