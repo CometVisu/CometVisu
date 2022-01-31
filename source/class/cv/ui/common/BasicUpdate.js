@@ -288,10 +288,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
         element.classList.add(this.getAlign());
       }
       const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
-      let valueElementNew = valueElement.cloneNode(false);
       if (undefined !== value) {
-        this.defaultValue2DOM(value, valueElementNew, this._applyValueToDom);
-        valueElement.parentElement.replaceChild(valueElementNew, valueElement);
+        valueElement.replaceChildren(); // delete anything inside
+        this.defaultValue2DOM(value, valueElement);
       } else {
         valueElement.textContent = '-';
       }

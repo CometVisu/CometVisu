@@ -324,8 +324,14 @@ qx.Class.define('cv.util.IconTools', {
        * @param {string} styling
        * @param {string} classes
        * @param {boolean?} asText
+       * @param {boolean?} forceRemote - force to load the icon remotely, e.g. as it could be that it's not inside the
+       *          DOM; this is relevant only for special cases when the normal DOM might not be ready
        */
-      return function (color, styling, classes, asText) {
+      return function (color, styling, classes, asText, forceRemote = false) {
+        // use relative path here, otherwise it won't work in replay mode
+        const iconPath = forceRemote ? (cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg') : '';
+        const iconLink = iconPath + '#kuf-' + iconID;
+
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
@@ -336,9 +342,9 @@ qx.Class.define('cv.util.IconTools', {
         }
         if (asText) {
           if (style) {
-            style = ' style="'+style+'"';
+            style = ' style="' + style + '"';
           }
-          return '<svg' + style + ' class="' + classes + '"><use xlink:href="#kuf-' + iconID + '"></use></svg>';
+          return '<svg' + style + ' class="' + classes + '"><use xlink:href="' + iconLink + '"></use></svg>';
         }
         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('class', classes);
@@ -346,7 +352,7 @@ qx.Class.define('cv.util.IconTools', {
           svg.setAttribute('style', style);
         }
         let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#kuf-' + iconID);
+        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', iconLink);
         svg.appendChild(use);
         return svg;
       };
