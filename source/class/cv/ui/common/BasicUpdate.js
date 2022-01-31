@@ -256,7 +256,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
         value.forEach(v => this.defaultValue2DOM(v, targetElement, modifyFn));
         return;
       }
-      if (!value) {
+      if (value === undefined) {
         return;
       }
       if (value instanceof Node) {
