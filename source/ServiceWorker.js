@@ -6,7 +6,7 @@
  */
 
 var CACHE = "cv-cache-v2";
-var CACHE_TEST = /.+\.(js|jpg|gif|webp|svg(#.*)?|ttf|woff|eot|css|png|html|json)?$/i;
+var CACHE_TEST = /.+\.(js|jpg|gif|webp|svg(#.*)?|ttf|woff|eot|css|png|html|json)$/i;
 var config = {};
 var updateQueue = [];
 var queueTid = null;
