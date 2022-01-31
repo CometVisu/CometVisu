@@ -56,17 +56,17 @@ qx.Class.define('cv.util.ScriptLoader', {
      * @param media {string?} Content of the media attribute
      */
     includeStylesheet(href, media) {
-      const el = document.createElement("link");
-      el.type = "text/css";
-      el.rel = "stylesheet";
+      const el = document.createElement('link');
+      el.type = 'text/css';
+      el.rel = 'stylesheet';
       el.href = href;
       if (media) {
         el.media = media;
       }
 
-      const head = document.getElementsByTagName("head")[0];
+      const head = document.getElementsByTagName('head')[0];
       head.appendChild(el);
-    },
+    }
   },
 
   /*
