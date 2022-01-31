@@ -85,6 +85,12 @@ qx.Class.define('cv.util.IconTools', {
 
     tmpCanvas: null,
     tmpCtx: null,
+    /**
+     * Were the KNX User Forum icons already preloaded?
+     * Only done when the config is using them
+     * @type {boolean}
+     */
+    preloadedKUFicons: false,
 
     /**
      *
@@ -293,6 +299,24 @@ qx.Class.define('cv.util.IconTools', {
      * @returns {recolorCallback}
      */
     svgKUF: function (iconID) {
+      if (!this.preloadedKUFicons) {
+        this.preloadedKUFicons = true;
+        qx.event.message.Bus.subscribe('setup.dom.finished', function() {
+          qx.log.Logger.debug(cv.util.IconTools, 'preloading KUF icons');
+
+          // use relative path here, otherwise it won't work in replay mode
+          const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
+          window.fetch(iconPath)
+            .then(r => r.text())
+            .then(text => {
+              let div = document.createElement('div');
+              div.innerHTML = text;
+              let svg = div.firstChild;
+              svg.setAttribute('style', 'display:none');
+              document.querySelector('body').appendChild(svg);
+            }).catch(console.error.bind(console));
+        });
+      }
       /**
        * @param {string} color - color in CSS style, i.e. #rrggbb
        * @param {string} styling
@@ -303,8 +327,6 @@ qx.Class.define('cv.util.IconTools', {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        // use relative path here, otherwise it won't work in replay mode
-        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
 
         let style = styling || '';
         if (color) {
@@ -314,12 +336,12 @@ qx.Class.define('cv.util.IconTools', {
           style = ' style="'+style+'"';
         }
         if (asText) {
-          return '<svg' + style + ' class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
+          return '<svg' + style + ' class="' + classes + '"><use xlink:href="#kuf-' + iconID + '"></use></svg>';
         }
         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('class', classes);
         let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', iconPath+'#kuf-' + iconID);
+        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#kuf-' + iconID);
         svg.appendChild(use);
         return svg;
       };
