@@ -162,7 +162,8 @@ qx.Class.define('cv.Application',
 
     inManager: {
       check: 'Boolean',
-      init: false
+      init: false,
+      apply: '_applyInManager'
     },
 
     managerDisabled: {
@@ -293,6 +294,16 @@ qx.Class.define('cv.Application',
       this.__init();
     },
 
+    hideManager: function () {
+      if (Object.prototype.hasOwnProperty.call(cv.ui, 'manager')) {
+        const ManagerMain = cv.ui['manager']['Main'];
+        // only do something when the singleton is already created
+        if (ManagerMain.constructor.$$instance) {
+          ManagerMain.getInstance().setVisible(false);
+        }
+      }
+    },
+
     /**
      * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
      * @param data {String|Map} path of file that action should executed on or a Map of options
@@ -334,6 +345,12 @@ qx.Class.define('cv.Application',
             }, this, 1000);
           }
         }, this);
+      }
+    },
+
+    _applyInManager: function (value) {
+      if (value) {
+        qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
       }
     },
 
@@ -608,6 +625,18 @@ qx.Class.define('cv.Application',
         }
         let configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);
+      }, this);
+
+      // reaction on browser back button
+      qx.bom.History.getInstance().addListener('request', function(e) {
+        const anchor = e.getData();
+        if (this.isInManager() && anchor !== 'manager') {
+          this.hideManager();
+        } else if (!this.isInManager() && anchor === 'manager') {
+          this.showManager();
+        } else if (anchor) {
+          cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+        }
       }, this);
     },
 
