@@ -92,7 +92,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       const left = document.querySelector('#navbarLeft');
       const leftRect = left.getBoundingClientRect();
       let widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none' ? Math.round(leftRect.right - leftRect.left) : 0;
-      if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice) {
+      if (widthNavbarLeft >= bodyWidth || qx.core.Init.getApplication().getMobile()) {
         // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
         // maybe there is a better solution to solve this problem
         // OR: we have a mobile device where the nav bar is floating above the other content
@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       const right = document.querySelector('#navbarRight');
       const rightRect = right.getBoundingClientRect();
       let widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none' ? Math.round(rightRect.right - rightRect.left) : 0;
-      if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
+      if (widthNavbarRight >= bodyWidth || qx.core.Init.getApplication().getMobile()) {
         // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
         // maybe there is a better solution to solve this problem
         // OR: we have a mobile device where the nav bar is floating above the other content

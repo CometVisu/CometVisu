@@ -110,7 +110,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
         if (pPH.navbars.left.dynamic === false ||
-          (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
+          (!qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true) ||
           (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
           return;
         }

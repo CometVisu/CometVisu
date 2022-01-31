@@ -54,7 +54,7 @@ qx.Class.define('cv.Config', {
      * Threshold where the mobile.css is loaded
      * @type {Number}
      */
-    maxMobileScreenWidth: 480,
+    maxMobileScreenWidth: 599,
     /**
      * Threshold where colspan-s is used
      * @type {Number}
@@ -342,11 +342,6 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    const uagent = navigator.userAgent.toLowerCase();
-    cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
-    if (/(nexus 7|tablet)/i.test(uagent)) {
-      cv.Config.mobileDevice = false; // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
-    }
     if (req.queryKey.forceDevice) { // overwrite detection when set by URL
       switch (req.queryKey.forceDevice) {
         case 'mobile':
