@@ -42,7 +42,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "cv.ui.manager.form.CheckBox": {},
       "qx.ui.form.Spinner": {},
       "qx.util.format.NumberFormat": {},
-      "qx.lang.Function": {},
       "qx.util.Validate": {},
       "qx.ui.form.validation.AsyncValidator": {},
       "qx.lang.Type": {},
@@ -198,7 +197,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.addOwnedQxObject(this._form);
         }
 
-        this._formController = new qx.data.controller.Object(this.getModel());
+        this._formController = new qx.data.controller.Object(model);
 
         this._onFormReady(this._form);
 
@@ -214,6 +213,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var mappedKey = _this.__P_36_0.inverse[key];
             var fieldData = formData[key];
             var formElement = null;
+            var elementModel = null;
+            var elementModelReady = null;
 
             switch (fieldData.type.toLowerCase()) {
               case 'groupheader':
@@ -302,9 +303,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
                   if (fieldData.options instanceof Promise) {
                     formElement.setPlaceholder(_this.tr('Loading...'));
-                    fieldData.options.then(function (options) {
+                    elementModelReady = fieldData.options.then(function (options) {
                       formElement.setPlaceholder(fieldData.placeholder);
                       parseComboOptions(options);
+                      return true;
                     }, _this)["catch"](function (err) {
                       _this.error(err);
 
@@ -339,20 +341,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       this.__P_36_1 = null;
                     }
                   }, _this);
-                  model = new qx.data.Array();
+                  elementModel = new qx.data.Array();
 
                   var parseVComboOptions = function parseVComboOptions(options) {
                     if (Array.isArray(options)) {
                       options.forEach(function (item) {
-                        model.push(new cv.ui.manager.form.Option(item.label + (item.value ? " (".concat(item.value, ")") : ''), item.icon, item.value, item.hints));
+                        elementModel.push(new cv.ui.manager.form.Option(item.label + (item.value ? " (".concat(item.value, ")") : ''), item.icon, item.value, item.hints));
                       });
                     } else if (_typeof(options) === 'object') {
                       Object.keys(options).forEach(function (groupName) {
                         var groupModel = new cv.ui.manager.form.Option(groupName);
                         groupModel.setType('group');
-                        model.push(groupModel);
+                        elementModel.push(groupModel);
                         options[groupName].forEach(function (item) {
-                          model.push(new cv.ui.manager.form.Option(item.label + (item.value ? " (".concat(item.value, ")") : ''), item.icon, item.value, item.hints));
+                          elementModel.push(new cv.ui.manager.form.Option(item.label + (item.value ? " (".concat(item.value, ")") : ''), item.icon, item.value, item.hints));
                         });
                       });
                     }
@@ -415,13 +417,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     atom = formElement.getChildControl('atom');
                     atom.setLabel(_this.tr('Loading...'));
                     atom.addState('loading');
-                    fieldData.options.then(function (options) {
+                    elementModelReady = fieldData.options.then(function (options) {
                       var atom = formElement.getChildControl('atom');
                       atom.resetLabel();
-                      atom.removeState('loading');
-                      model = qx.data.marshal.Json.createModel(options); // eslint-disable-next-line no-new
+                      atom.removeState('loading'); // eslint-disable-next-line no-new
 
-                      new qx.data.controller.List(model, formElement, 'label');
+                      new qx.data.controller.List(qx.data.marshal.Json.createModel(options), formElement, 'label');
+                      return true;
                     }, _this)["catch"](function (err) {
                       _this.error(err);
 
@@ -431,9 +433,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       atom.addState('error');
                     }, _this);
                   } else {
-                    model = qx.data.marshal.Json.createModel(fieldData.options); // eslint-disable-next-line no-new
-
-                    new qx.data.controller.List(model, formElement, 'label');
+                    // eslint-disable-next-line no-new
+                    new qx.data.controller.List(qx.data.marshal.Json.createModel(fieldData.options), formElement, 'label');
                   }
 
                   break;
@@ -441,20 +442,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
               case 'virtualselectbox':
                 formElement = new cv.ui.manager.form.VirtualSelectBox();
-                model = new qx.data.Array();
+                elementModel = new qx.data.Array();
 
                 if (fieldData.options) {
                   if (fieldData.options instanceof Promise) {
                     atom = formElement.getChildControl('atom');
                     atom.setLabel(_this.tr('Loading...'));
                     atom.addState('loading');
-                    fieldData.options.then(function (options) {
+                    elementModelReady = fieldData.options.then(function (options) {
                       var atom = formElement.getChildControl('atom');
                       atom.resetLabel();
                       atom.removeState('loading');
                       options.forEach(function (item) {
-                        model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+                        elementModel.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
                       });
+                      return true;
                     })["catch"](function (err) {
                       _this.error(err);
 
@@ -465,7 +467,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     }, _this);
                   } else {
                     fieldData.options.forEach(function (item) {
-                      model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+                      elementModel.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
                     });
                   }
                 }
@@ -491,7 +493,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       return value;
                     }
                   },
-                  model: model
+                  model: elementModel
                 });
                 break;
 
@@ -567,6 +569,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             i++;
 
             if (typeof fieldData.type == 'string') {
+              var options = null;
+              var reverseOptions = null;
+              var bidirectional = true;
+              var handled = false;
+
               switch (fieldData.type.toLowerCase()) {
                 case 'textarea':
                 case 'textfield':
@@ -576,17 +583,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 case 'datefield':
                 case 'spinner':
                 case 'sourceeditor':
-                  _this._formController.addTarget(formElement, 'value', mappedKey, true, null, {
+                  reverseOptions = {
                     converter: function (value) {
+                      // just validate when the value has changed
                       this.getValidationManager().validate();
                       return value;
                     }.bind(_this._form)
-                  });
-
+                  };
                   break;
 
                 case 'virtualselectbox':
-                  _this._formController.addTarget(formElement, 'value', mappedKey, true, {
+                  options = {
                     converter: function (value) {
                       if (typeof value === 'string') {
                         var option;
@@ -603,29 +610,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
                       return value;
                     }.bind(formElement)
-                  }, {
+                  };
+                  reverseOptions = {
                     converter: function (option) {
                       this.getValidationManager().validate();
                       return option ? option.getValue() : null;
                     }.bind(_this._form)
-                  });
-
+                  };
                   break;
 
                 case 'checkbox':
-                  _this._formController.addTarget(formElement, 'value', mappedKey, true, null);
-
                   break;
 
                 case 'selectbox':
+                  // for some strange timing reason this only works, when addTarget is called here
                   _this._formController.addTarget(formElement, 'selection', mappedKey, true, {
-                    converter: qx.lang.Function.bind(function (value) {
+                    converter: function (value) {
                       var selected = null;
                       var selectables = this.getSelectables();
-                      selectables.forEach(function (selectable) {
+                      selectables.some(function (selectable) {
                         if (selectable.getModel().getValue() === value) {
                           selected = selectable;
+                          return true;
                         }
+
+                        return false;
                       }, this);
 
                       if (!selected) {
@@ -633,18 +642,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       }
 
                       return [selected];
-                    }, formElement)
+                    }.bind(formElement)
                   }, {
-                    converter: qx.lang.Function.bind(function (selection) {
+                    converter: function converter(selection) {
                       return selection[0].getModel().getValue();
-                    }, formElement)
+                    }
                   });
 
+                  handled = true;
                   break;
 
                 case 'radiogroup':
-                  _this._formController.addTarget(formElement, 'selection', mappedKey, true, {
-                    converter: qx.lang.Function.bind(function (value) {
+                  options = {
+                    converter: function (value) {
                       var selectables = this.getSelectables();
                       var selection = [];
 
@@ -659,14 +669,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       }
 
                       return selection;
-                    }, formElement)
-                  }, {
+                    }.bind(formElement)
+                  };
+                  reverseOptions = {
                     converter: function converter(selection) {
                       return selection[0].getUserData('value');
                     }
-                  });
-
+                  };
                   break;
+              }
+
+              if (!handled) {
+                if (elementModelReady) {
+                  // do not add the binding before the model is there
+                  elementModelReady.then(function () {
+                    _this._formController.addTarget(formElement, 'value', mappedKey, bidirectional, options, reverseOptions);
+                  });
+                } else {
+                  _this._formController.addTarget(formElement, 'value', mappedKey, bidirectional, options, reverseOptions);
+                }
               }
             }
             /**
@@ -872,4 +893,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.form.ElementForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementForm.js.map?dt=1643139852604
+//# sourceMappingURL=ElementForm.js.map?dt=1643663935429

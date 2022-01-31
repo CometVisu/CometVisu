@@ -46,9 +46,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.log.appender.Native": {},
       "qx.bom.Stylesheet": {},
       "qx.util.ResourceManager": {},
+      "cv.core.notifications.Router": {},
       "qx.event.Timer": {},
       "qx.event.message.Bus": {},
-      "cv.core.notifications.Router": {},
+      "qx.bom.History": {},
       "cv.data.FileWorker": {},
       "qx.log.Logger": {},
       "qx.core.Init": {},
@@ -69,7 +70,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.Part": {},
       "qx.bom.client.Html": {
         "require": true
-      }
+      },
+      "cv.io.rest.Client": {},
+      "qx.io.request.Xhr": {}
     },
     "environment": {
       "provided": [],
@@ -252,7 +255,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       inManager: {
         check: 'Boolean',
-        init: false
+        init: false,
+        apply: '_applyInManager'
+      },
+      managerDisabled: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeManagerDisabled'
+      },
+      managerDisabledReason: {
+        check: 'String',
+        nullable: true
+      },
+      managerChecked: {
+        check: 'Boolean',
+        init: false,
+        apply: '_applyManagerChecked'
       }
     },
 
@@ -283,6 +301,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this._blocker.unblock();
         }
       },
+      _applyManagerChecked: function _applyManagerChecked(value) {
+        if (value && cv.Config.request.queryKey.manager) {
+          var action = cv.Config.request.queryKey.open ? 'open' : '';
+          var data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
+          this.showManager(action, data);
+        }
+      },
 
       /**
        * This method contains the initial application code and gets called
@@ -292,6 +317,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var _this = this;
 
         cv.ConfigCache.init();
+
+        this._checkBackend();
+
         qx.event.GlobalError.setErrorHandler(this.__P_2_1, this);
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributers.\n' + ' Version: ' + cv.Version.VERSION + '\n';
@@ -309,13 +337,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         manCommand.addListener('execute', function () {
           return _this.showManager();
         }, this);
-
-        if (cv.Config.request.queryKey.manager) {
-          var action = cv.Config.request.queryKey.open ? 'open' : '';
-          var data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-          this.showManager(action, data);
-        }
-
         this.registerServiceWorker();
         // Call super class
         cv.Application.prototype.main.base.call(this);
@@ -336,44 +357,70 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         this.__P_2_2();
       },
+      hideManager: function hideManager() {
+        if (Object.prototype.hasOwnProperty.call(cv.ui, 'manager')) {
+          var ManagerMain = cv.ui['manager']['Main']; // only do something when the singleton is already created
+
+          if (ManagerMain.constructor.$$instance) {
+            ManagerMain.getInstance().setVisible(false);
+          }
+        }
+      },
 
       /**
        * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
        * @param data {String|Map} path of file that action should executed on or a Map of options
        */
       showManager: function showManager(action, data) {
-        qx.io.PartLoader.require(['manager'], function (states) {
-          var _this2 = this;
+        if (this.isManagerDisabled()) {
+          var notification = {
+            topic: 'cv.manager.error',
+            target: 'popup',
+            title: qx.locale.Manager.tr('Manager is not available'),
+            message: this.getManagerDisabledReason(),
+            severity: 'high',
+            deletable: true
+          };
+          cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+        } else {
+          qx.io.PartLoader.require(['manager'], function (states) {
+            var _this2 = this;
 
-          // break dependency
-          var engine = cv.TemplateEngine.getInstance();
+            // break dependency
+            var engine = cv.TemplateEngine.getInstance();
 
-          if (!engine.isLoggedIn() && !action) {
-            // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-            engine.addListenerOnce('changeLoggedIn', function () {
-              return _this2.showManager();
-            });
-            return;
-          }
+            if (!engine.isLoggedIn() && !action) {
+              // never start the manager before we are logged in, as the login response might contain information about the REST API URL
+              engine.addListenerOnce('changeLoggedIn', function () {
+                return _this2.showManager();
+              });
+              return;
+            }
 
-          var ManagerMain = cv.ui['manager']['Main'];
-          var firstCall = !ManagerMain.constructor.$$instance;
-          var manager = ManagerMain.getInstance();
+            var ManagerMain = cv.ui['manager']['Main'];
+            var firstCall = !ManagerMain.constructor.$$instance;
+            var manager = ManagerMain.getInstance();
 
-          if (!action && !firstCall) {
-            manager.setVisible(!manager.getVisible());
-          } else if (firstCall) {
-            // initially bind manager visibility
-            manager.bind('visible', this, 'inManager');
-          }
+            if (!action && !firstCall) {
+              manager.setVisible(!manager.getVisible());
+            } else if (firstCall) {
+              // initially bind manager visibility
+              manager.bind('visible', this, 'inManager');
+            }
 
-          if (manager.getVisible() && action && data) {
-            // delay this a little bit, give the manager some time to settle
-            qx.event.Timer.once(function () {
-              qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
-            }, this, 1000);
-          }
-        }, this);
+            if (manager.getVisible() && action && data) {
+              // delay this a little bit, give the manager some time to settle
+              qx.event.Timer.once(function () {
+                qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
+              }, this, 1000);
+            }
+          }, this);
+        }
+      },
+      _applyInManager: function _applyInManager(value) {
+        if (value) {
+          qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+        }
       },
       showConfigErrors: function showConfigErrors(configName, options) {
         configName = configName ? 'visu_config_' + configName + '.xml' : 'visu_config.xml';
@@ -689,7 +736,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
             }
           }, _callee, this);
-        })), this);
+        })), this); // reaction on browser back button
+
+        qx.bom.History.getInstance().addListener('request', function (e) {
+          var anchor = e.getData();
+
+          if (this.isInManager() && anchor !== 'manager') {
+            this.hideManager();
+          } else if (!this.isInManager() && anchor === 'manager') {
+            this.showManager();
+          } else if (anchor) {
+            cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+          }
+        }, this);
       },
 
       /**
@@ -980,6 +1039,101 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
       },
+      _checkBackend: function _checkBackend() {
+        var _this4 = this;
+
+        if (cv.Config.testMode === true) {
+          this.setManagerChecked(true);
+        } else {
+          var url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+          var xhr = new qx.io.request.Xhr(url);
+          xhr.set({
+            method: 'GET',
+            accept: 'application/json'
+          });
+          xhr.addListenerOnce('success', function (e) {
+            var req = e.getTarget();
+            var env = req.getResponse();
+            var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
+
+            var parts = env.required_php_version.split(' ');
+            var disable = parts.some(function (constraint) {
+              var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+
+              if (match) {
+                var operator = match[1];
+                var majorConstraint = parseInt(match[2]);
+                var hasMinorVersion = match[3] !== undefined;
+                var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+                var hasPatchVersion = match[4] !== undefined;
+                var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+                var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+                var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+
+                switch (operator) {
+                  case '>=':
+                    if (serverVersionId < constraintId) {
+                      return true;
+                    }
+
+                    break;
+
+                  case '>':
+                    if (serverVersionId <= constraintId) {
+                      return true;
+                    }
+
+                    break;
+
+                  case '<=':
+                    if (serverVersionId > maxId) {
+                      return true;
+                    }
+
+                    break;
+
+                  case '<':
+                    if (serverVersionId >= maxId) {
+                      return true;
+                    }
+
+                    break;
+
+                  case '^':
+                    if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                      return true;
+                    }
+
+                    break;
+
+                  case '~':
+                    if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
+                      return true;
+                    }
+
+                    break;
+                }
+              }
+
+              return false;
+            });
+
+            if (disable) {
+              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+              this.setManagerDisabled(true);
+              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+            } else {
+              this.info('Manager available for PHP version', env.phpversion);
+            }
+
+            this.setManagerChecked(true);
+          }, this);
+          xhr.addListener('statusError', function (e) {
+            _this4.setManagerChecked(true);
+          });
+          xhr.send();
+        }
+      },
       close: function close() {
         var client = cv.TemplateEngine.getClient();
 
@@ -1029,4 +1183,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1643139847742
+//# sourceMappingURL=Application.js.map?dt=1643663928726

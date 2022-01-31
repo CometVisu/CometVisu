@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 870,
+        "line": 1009,
         "column": 3
       }
     },
@@ -322,12 +322,66 @@
           "column": 4
         },
         "end": {
-          "line": 166,
+          "line": 167,
           "column": 5
         }
       },
       "name": "inManager",
       "propertyType": "new",
+      "apply": "_applyInManager",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "managerDisabled": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "name": "managerDisabled",
+      "propertyType": "new",
+      "event": "changeManagerDisabled",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "managerDisabledReason": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "name": "managerDisabledReason",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "managerChecked": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
+          "column": 5
+        }
+      },
+      "name": "managerChecked",
+      "propertyType": "new",
+      "apply": "_applyManagerChecked",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -369,11 +423,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 195,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 195,
           "column": 18
         }
       },
@@ -383,11 +437,11 @@
     "block": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 212,
           "column": 5
         }
       },
@@ -408,14 +462,31 @@
       "type": "function",
       "access": "public"
     },
-    "main": {
+    "_applyManagerChecked": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 220,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "managerChecked"
+      ]
+    },
+    "main": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4
+        },
+        "end": {
+          "line": 295,
           "column": 5
         }
       },
@@ -435,14 +506,28 @@
         "qx.application.IApplication"
       ]
     },
-    "showManager": {
+    "hideManager": {
       "location": {
         "start": {
-          "line": 281,
+          "line": 297,
           "column": 4
         },
         "end": {
-          "line": 307,
+          "line": 305,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "showManager": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4
+        },
+        "end": {
+          "line": 349,
           "column": 5
         }
       },
@@ -476,14 +561,31 @@
       "type": "function",
       "access": "public"
     },
-    "showConfigErrors": {
+    "_applyInManager": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 351,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 355,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "inManager"
+      ]
+    },
+    "showConfigErrors": {
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 4
+        },
+        "end": {
+          "line": 377,
           "column": 5
         }
       },
@@ -493,11 +595,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 379,
           "column": 4
         },
         "end": {
-          "line": 394,
+          "line": 442,
           "column": 5
         }
       },
@@ -507,11 +609,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 396,
+          "line": 444,
           "column": 4
         },
         "end": {
-          "line": 539,
+          "line": 587,
           "column": 5
         }
       },
@@ -521,11 +623,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 541,
+          "line": 589,
           "column": 4
         },
         "end": {
-          "line": 546,
+          "line": 594,
           "column": 6
         }
       },
@@ -535,11 +637,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 551,
+          "line": 599,
           "column": 4
         },
         "end": {
-          "line": 581,
+          "line": 641,
           "column": 5
         }
       },
@@ -557,11 +659,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 587,
+          "line": 647,
           "column": 4
         },
         "end": {
-          "line": 685,
+          "line": 745,
           "column": 5
         }
       },
@@ -588,11 +690,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 690,
+          "line": 750,
           "column": 4
         },
         "end": {
-          "line": 694,
+          "line": 754,
           "column": 5
         }
       },
@@ -610,11 +712,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 700,
+          "line": 760,
           "column": 4
         },
         "end": {
-          "line": 707,
+          "line": 767,
           "column": 5
         }
       },
@@ -638,11 +740,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 713,
+          "line": 773,
           "column": 4
         },
         "end": {
-          "line": 720,
+          "line": 780,
           "column": 5
         }
       },
@@ -666,11 +768,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 725,
+          "line": 785,
           "column": 4
         },
         "end": {
-          "line": 790,
+          "line": 850,
           "column": 5
         }
       },
@@ -688,25 +790,39 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 792,
+          "line": 852,
           "column": 4
         },
         "end": {
-          "line": 823,
+          "line": 883,
           "column": 5
         }
       },
       "type": "function",
       "access": "private"
     },
-    "close": {
+    "_checkBackend": {
       "location": {
         "start": {
-          "line": 825,
+          "line": 885,
           "column": 4
         },
         "end": {
-          "line": 830,
+          "line": 962,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "close": {
+      "location": {
+        "start": {
+          "line": 964,
+          "column": 4
+        },
+        "end": {
+          "line": 969,
           "column": 5
         }
       },
@@ -721,11 +837,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 835,
+          "line": 974,
           "column": 4
         },
         "end": {
-          "line": 868,
+          "line": 1007,
           "column": 5
         }
       },
@@ -4347,6 +4463,252 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>inManager</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inManager}."
+          }
+        ]
+      }
+    },
+    "getManagerDisabled": {
+      "type": "function",
+      "name": "getManagerDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>managerDisabled</code>.\n\nFor further details take a look at the property definition: {@link #managerDisabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for managerDisabled"
+          }
+        ]
+      }
+    },
+    "isManagerDisabled": {
+      "type": "function",
+      "name": "isManagerDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>managerDisabled</code>.\n\nFor further details take a look at the property definition: {@link #managerDisabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for managerDisabled"
+          }
+        ]
+      }
+    },
+    "setManagerDisabled": {
+      "type": "function",
+      "name": "setManagerDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>managerDisabled</code>.\n\nFor further details take a look at the property definition: {@link #managerDisabled}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for managerDisabled"
+          }
+        ]
+      }
+    },
+    "resetManagerDisabled": {
+      "type": "function",
+      "name": "resetManagerDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>managerDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #managerDisabled}."
+          }
+        ]
+      }
+    },
+    "getManagerDisabledReason": {
+      "type": "function",
+      "name": "getManagerDisabledReason",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>managerDisabledReason</code>.\n\nFor further details take a look at the property definition: {@link #managerDisabledReason}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for managerDisabledReason"
+          }
+        ]
+      }
+    },
+    "setManagerDisabledReason": {
+      "type": "function",
+      "name": "setManagerDisabledReason",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>managerDisabledReason</code>.\n\nFor further details take a look at the property definition: {@link #managerDisabledReason}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for managerDisabledReason"
+          }
+        ]
+      }
+    },
+    "resetManagerDisabledReason": {
+      "type": "function",
+      "name": "resetManagerDisabledReason",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>managerDisabledReason</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #managerDisabledReason}."
+          }
+        ]
+      }
+    },
+    "getManagerChecked": {
+      "type": "function",
+      "name": "getManagerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>managerChecked</code>.\n\nFor further details take a look at the property definition: {@link #managerChecked}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for managerChecked"
+          }
+        ]
+      }
+    },
+    "isManagerChecked": {
+      "type": "function",
+      "name": "isManagerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>managerChecked</code>.\n\nFor further details take a look at the property definition: {@link #managerChecked}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for managerChecked"
+          }
+        ]
+      }
+    },
+    "setManagerChecked": {
+      "type": "function",
+      "name": "setManagerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>managerChecked</code>.\n\nFor further details take a look at the property definition: {@link #managerChecked}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for managerChecked"
+          }
+        ]
+      }
+    },
+    "resetManagerChecked": {
+      "type": "function",
+      "name": "resetManagerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>managerChecked</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #managerChecked}."
           }
         ]
       }

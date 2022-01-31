@@ -571,7 +571,6 @@
             <layout colspan="12" rowspan="8"/>
             <axis unit="°C"/>
             <rrd>13/0/14</rrd>
-            <!--address transform="OH:number">Temperature_SF_Bed</address-->
           </diagram>
         </group>
       </page>

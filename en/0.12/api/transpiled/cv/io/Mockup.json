@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 457,
+        "line": 482,
         "column": 3
       }
     },
@@ -246,7 +246,7 @@
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 204,
           "column": 5
         }
       },
@@ -256,11 +256,11 @@
     "defake": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 257,
           "column": 5
         }
       },
@@ -270,11 +270,11 @@
     "receive": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 269,
           "column": 5
         }
       },
@@ -300,11 +300,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 271,
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 292,
           "column": 5
         }
       },
@@ -350,11 +350,11 @@
     "_registerSimulations": {
       "location": {
         "start": {
-          "line": 272,
+          "line": 294,
           "column": 4
         },
         "end": {
-          "line": 283,
+          "line": 305,
           "column": 5
         }
       },
@@ -364,11 +364,11 @@
     "_startSequence": {
       "location": {
         "start": {
-          "line": 285,
+          "line": 307,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 320,
           "column": 5
         }
       },
@@ -378,11 +378,11 @@
     "_processSimulation": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 322,
           "column": 4
         },
         "end": {
-          "line": 370,
+          "line": 392,
           "column": 5
         }
       },
@@ -392,11 +392,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 398,
           "column": 4
         },
         "end": {
-          "line": 378,
+          "line": 400,
           "column": 5
         }
       },
@@ -426,11 +426,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 385,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 410,
+          "line": 432,
           "column": 5
         }
       },
@@ -466,11 +466,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 412,
+          "line": 434,
           "column": 4
         },
         "end": {
-          "line": 412,
+          "line": 434,
           "column": 26
         }
       },
@@ -494,11 +494,11 @@
     "stop": {
       "location": {
         "start": {
-          "line": 414,
+          "line": 436,
           "column": 4
         },
         "end": {
-          "line": 414,
+          "line": 436,
           "column": 24
         }
       },
@@ -508,11 +508,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 416,
+          "line": 438,
           "column": 4
         },
         "end": {
-          "line": 418,
+          "line": 443,
           "column": 5
         }
       },
@@ -553,11 +553,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 420,
+          "line": 445,
           "column": 4
         },
         "end": {
-          "line": 422,
+          "line": 447,
           "column": 5
         }
       },
@@ -581,11 +581,11 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 424,
+          "line": 449,
           "column": 4
         },
         "end": {
-          "line": 426,
+          "line": 451,
           "column": 5
         }
       },
@@ -609,11 +609,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 428,
+          "line": 453,
           "column": 4
         },
         "end": {
-          "line": 429,
+          "line": 454,
           "column": 5
         }
       },
@@ -635,11 +635,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 431,
+          "line": 456,
           "column": 4
         },
         "end": {
-          "line": 431,
+          "line": 456,
           "column": 29
         }
       },
@@ -653,11 +653,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 433,
+          "line": 458,
           "column": 4
         },
         "end": {
-          "line": 433,
+          "line": 458,
           "column": 29
         }
       },
@@ -681,11 +681,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 434,
+          "line": 459,
           "column": 4
         },
         "end": {
-          "line": 434,
+          "line": 459,
           "column": 35
         }
       },
@@ -717,11 +717,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 435,
+          "line": 460,
           "column": 4
         },
         "end": {
-          "line": 435,
+          "line": 460,
           "column": 47
         }
       },
@@ -759,11 +759,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 438,
+          "line": 463,
           "column": 4
         },
         "end": {
-          "line": 439,
+          "line": 464,
           "column": 5
         }
       },
@@ -778,11 +778,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 441,
+          "line": 466,
           "column": 4
         },
         "end": {
-          "line": 443,
+          "line": 468,
           "column": 5
         }
       },
@@ -806,11 +806,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 444,
+          "line": 469,
           "column": 4
         },
         "end": {
-          "line": 446,
+          "line": 471,
           "column": 5
         }
       },
@@ -832,11 +832,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 447,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 449,
+          "line": 474,
           "column": 5
         }
       },
@@ -866,11 +866,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 450,
+          "line": 475,
           "column": 4
         },
         "end": {
-          "line": 452,
+          "line": 477,
           "column": 5
         }
       },
@@ -902,11 +902,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 453,
+          "line": 478,
           "column": 4
         },
         "end": {
-          "line": 455,
+          "line": 480,
           "column": 5
         }
       },

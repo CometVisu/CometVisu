@@ -15,7 +15,7 @@
   "compilerVersion": "1.0.4",
   "classInfo": {
     "cv.Application": {
-      "mtime": "2022-01-25T19:40:23.775Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -59,9 +59,10 @@
         "cv.log.appender.Native": {},
         "qx.bom.Stylesheet": {},
         "qx.util.ResourceManager": {},
+        "cv.core.notifications.Router": {},
         "qx.event.Timer": {},
         "qx.event.message.Bus": {},
-        "cv.core.notifications.Router": {},
+        "qx.bom.History": {},
         "cv.data.FileWorker": {},
         "qx.log.Logger": {},
         "qx.core.Init": {},
@@ -82,7 +83,9 @@
         "qx.Part": {},
         "qx.bom.client.Html": {
           "load": true
-        }
+        },
+        "cv.io.rest.Client": {},
+        "qx.io.request.Xhr": {}
       },
       "extends": "qx.application.Native",
       "include": [],
@@ -106,49 +109,61 @@
       ],
       "translations": [
         {
+          "msgid": "Manager is not available",
+          "lineNo": 316
+        },
+        {
+          "msgid": "Manager",
+          "lineNo": 353
+        },
+        {
           "msgid": "Validating configuration file...",
-          "lineNo": 348
+          "lineNo": 396
         },
         {
           "msgid": "The %1 configuration has no errors!",
-          "lineNo": 369
+          "lineNo": 417
         },
         {
           "msgid": "The %1 configuration has %2 errors!",
-          "lineNo": 377
+          "lineNo": 425
         },
         {
           "msgid": "Show errors",
-          "lineNo": 381
+          "lineNo": 429
         },
         {
           "msgid": "An error occured",
-          "lineNo": 462
+          "lineNo": 510
         },
         {
           "msgid": "Enable on reload:",
-          "lineNo": 468
+          "lineNo": 516
         },
         {
           "msgid": "Reload",
-          "lineNo": 473
+          "lineNo": 521
         },
         {
           "msgid": "Action recording",
-          "lineNo": 507
+          "lineNo": 555
         },
         {
           "msgid": "Send error to sentry.io",
-          "lineNo": 517
+          "lineNo": 565
         },
         {
           "msgid": "Error reporting (on sentry.io)",
-          "lineNo": 531
+          "lineNo": 579
+        },
+        {
+          "msgid": "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2",
+          "lineNo": 951
         }
       ]
     },
     "cv.core.notifications.ActionRegistry": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -163,7 +178,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IActionHandler": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -177,7 +192,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IHandler": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -191,7 +206,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.Router": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -225,7 +240,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.SpeechHandler": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -250,7 +265,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.AbstractActionHandler": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -267,7 +282,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.Link": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -297,7 +312,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.Option": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -324,7 +339,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.OptionGroup": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -351,7 +366,7 @@
       "hasDefer": true
     },
     "cv.parser.MetaParser": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -388,7 +403,7 @@
       ]
     },
     "cv.parser.WidgetParser": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -413,7 +428,7 @@
       "hasDefer": null
     },
     "cv.parser.widgets.Audio": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -430,7 +445,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Break": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -447,7 +462,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.ColorChooser": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -465,7 +480,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.DesignToggle": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -482,7 +497,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Group": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -499,7 +514,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Image": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -516,7 +531,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.ImageTrigger": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -533,7 +548,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Info": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -550,7 +565,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.InfoAction": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -567,7 +582,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.InfoTrigger": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -584,7 +599,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Line": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -601,7 +616,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.MultiTrigger": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -618,7 +633,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.NavBar": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -636,7 +651,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.NotificationCenterBadge": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -653,7 +668,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Page": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -672,7 +687,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.PageJump": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -689,7 +704,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.PushButton": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -706,7 +721,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Refresh": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -723,7 +738,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Reload": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -740,7 +755,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Rgb": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -757,7 +772,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Roundbar": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -774,7 +789,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Slide": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -792,7 +807,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Switch": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -809,7 +824,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Text": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -826,7 +841,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Toggle": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -843,7 +858,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Trigger": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -860,7 +875,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Unknown": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -878,7 +893,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.UrlTrigger": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -895,7 +910,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Video": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -912,7 +927,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Web": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -931,7 +946,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.WgPluginInfo": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -948,7 +963,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.WidgetInfoAction": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -965,7 +980,7 @@
       "hasDefer": true
     },
     "cv.plugins.Clock": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1020,7 +1035,7 @@
       ]
     },
     "cv.plugins.Gauge": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1080,7 +1095,7 @@
       ]
     },
     "cv.plugins.Link": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1122,7 +1137,7 @@
       "hasDefer": true
     },
     "cv.plugins.MobileMenu": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1181,7 +1196,7 @@
       ]
     },
     "cv.plugins.OpenweatherMap": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1243,7 +1258,7 @@
       ]
     },
     "cv.plugins.PowerSpectrum": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1302,7 +1317,7 @@
       ]
     },
     "cv.plugins.Rss": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1357,7 +1372,7 @@
       ]
     },
     "cv.plugins.RssLog": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1428,7 +1443,7 @@
       ]
     },
     "cv.plugins.Speech": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1461,7 +1476,7 @@
       "hasDefer": true
     },
     "cv.plugins.Strftime": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1510,7 +1525,7 @@
       ]
     },
     "cv.plugins.Svg": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1562,7 +1577,7 @@
       ]
     },
     "cv.plugins.Timeout": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1593,7 +1608,7 @@
       "hasDefer": true
     },
     "cv.plugins.UpnpController": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1651,7 +1666,7 @@
       ]
     },
     "cv.plugins.diagram.AbstractDiagram": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1735,7 +1750,7 @@
       ]
     },
     "cv.plugins.diagram.Diagram": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1767,7 +1782,7 @@
       "hasDefer": true
     },
     "cv.plugins.diagram.Info": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1802,7 +1817,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Openhab": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.ui.root.Inline": {
@@ -1842,7 +1857,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Settings": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1898,7 +1913,7 @@
       ]
     },
     "cv.plugins.openhab.renderer.Single": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1929,7 +1944,7 @@
       "hasDefer": null
     },
     "cv.plugins.tr064.CallList": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2025,7 +2040,7 @@
       ]
     },
     "cv.transforms.Knx": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2042,7 +2057,7 @@
       "hasDefer": true
     },
     "cv.transforms.Mqtt": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2059,7 +2074,7 @@
       "hasDefer": true
     },
     "cv.transforms.OpenHab": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2079,7 +2094,7 @@
       "hasDefer": true
     },
     "cv.ui.manager.IActionHandler": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -2093,7 +2108,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.Main": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2306,7 +2321,7 @@
       ]
     },
     "cv.ui.manager.MenuBar": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2447,7 +2462,7 @@
       ]
     },
     "cv.ui.manager.Start": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2524,7 +2539,7 @@
       ]
     },
     "cv.ui.manager.ToolBar": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2575,7 +2590,7 @@
       ]
     },
     "cv.ui.manager.basic.Icon": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2595,7 +2610,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.basic.Image": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -2663,7 +2678,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.contextmenu.ConfigElement": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2726,7 +2741,7 @@
       ]
     },
     "cv.ui.manager.contextmenu.FileItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2847,7 +2862,7 @@
       ]
     },
     "cv.ui.manager.contextmenu.GlobalFileItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2876,7 +2891,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.ActionDispatcher": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2898,7 +2913,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.FileController": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3023,7 +3038,7 @@
       ]
     },
     "cv.ui.manager.control.FileHandlerRegistry": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3075,7 +3090,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.IFileEventHandler": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -3089,7 +3104,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.MFileEventHandler": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -3106,7 +3121,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.GlobalState": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3124,7 +3139,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.IconAtom": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3148,7 +3163,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.BigAlert": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3172,7 +3187,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.Prompt": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3189,7 +3204,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.ValidationError": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3259,7 +3274,7 @@
       ]
     },
     "cv.ui.manager.editor.AbstractEditor": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3303,7 +3318,7 @@
       ]
     },
     "cv.ui.manager.editor.Config": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3377,7 +3392,7 @@
       ]
     },
     "cv.ui.manager.editor.Diff": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3464,7 +3479,7 @@
       ]
     },
     "cv.ui.manager.editor.IEditor": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -3478,7 +3493,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.Source": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3558,7 +3573,7 @@
       ]
     },
     "cv.ui.manager.editor.Tree": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -3593,7 +3608,6 @@
           "usage": "dynamic"
         },
         "qx.bom.Viewport": {},
-        "cv.ui.manager.model.FileItem": {},
         "cv.ui.manager.model.ElementChange": {},
         "cv.ui.manager.editor.Worker": {},
         "qx.ui.container.Composite": {},
@@ -3603,7 +3617,7 @@
         "cv.ui.manager.viewer.Config": {},
         "qx.ui.basic.Atom": {},
         "qx.ui.toolbar.Button": {},
-        "qx.ui.toolbar.CheckBox": {},
+        "qx.ui.form.CheckBox": {},
         "qx.ui.toolbar.ToolBar": {},
         "qx.ui.form.TextField": {},
         "qx.util.Function": {},
@@ -3630,6 +3644,7 @@
         "cv.ui.manager.dialog.ValidationError": {},
         "cv.ui.manager.Main": {},
         "qx.event.message.Bus": {},
+        "cv.ui.manager.model.FileItem": {},
         "qx.xml.Document": {},
         "qx.xml.String": {},
         "qx.ui.core.FocusHandler": {},
@@ -3657,172 +3672,172 @@
         },
         {
           "msgid": "Undo: %1",
-          "lineNo": 258
+          "lineNo": 257
         },
         {
           "msgid": "Undo: %1",
-          "lineNo": 272
+          "lineNo": 271
         },
         {
           "msgid": "Preview shows the current state of the edited configuration.",
-          "lineNo": 443
+          "lineNo": 442
         },
         {
           "msgid": "Preview is out of sync. Click here to refresh.",
-          "lineNo": 444
+          "lineNo": 443
         },
         {
           "msgid": "Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.",
-          "lineNo": 445
+          "lineNo": 444
         },
         {
           "msgid": "Expertview",
-          "lineNo": 508
+          "lineNo": 507
         },
         {
           "msgid": "Reload preview",
-          "lineNo": 518
+          "lineNo": 516
         },
         {
           "msgid": "Search...",
-          "lineNo": 555
+          "lineNo": 553
         },
         {
           "msgid": "Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element.",
-          "lineNo": 639
+          "lineNo": 637
         },
         {
           "msgid": "\"%1\" has been moved after \"%2\"",
-          "lineNo": 1186
+          "lineNo": 1184
         },
         {
           "msgid": "\"%1\" has been copied after \"%2\"",
-          "lineNo": 1192
+          "lineNo": 1190
         },
         {
           "msgid": "\"%1\" has been moved before \"%2\"",
-          "lineNo": 1210
+          "lineNo": 1208
         },
         {
           "msgid": "\"%1\" has been copied before \"%2\"",
-          "lineNo": 1216
+          "lineNo": 1214
         },
         {
           "msgid": "\"%1\" has been moved into \"%2\" as first child",
-          "lineNo": 1235
+          "lineNo": 1233
         },
         {
           "msgid": "\"%1\" has been copied into \"%2\" as first child",
-          "lineNo": 1241
+          "lineNo": 1239
         },
         {
           "msgid": "\"%1\" has been moved into \"%2\"",
-          "lineNo": 1260
+          "lineNo": 1258
         },
         {
           "msgid": "\"%1\" has been copied into \"%2\"",
-          "lineNo": 1266
+          "lineNo": 1264
         },
         {
           "msgid": "<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>",
-          "lineNo": 1389
+          "lineNo": 1387
         },
         {
           "msgid": "Choose element",
-          "lineNo": 1393
+          "lineNo": 1391
         },
         {
           "msgid": "Please choose the element you want to add here.",
-          "lineNo": 1394
+          "lineNo": 1392
         },
         {
           "msgid": "not set",
-          "lineNo": 1559
+          "lineNo": 1557
         },
         {
           "msgid": "not set",
-          "lineNo": 1563
+          "lineNo": 1561
         },
         {
           "msgid": "not set",
-          "lineNo": 1574
+          "lineNo": 1572
         },
         {
           "msgid": "This is not a valid value.",
-          "lineNo": 1585
+          "lineNo": 1583
         },
         {
           "msgid": "not set",
-          "lineNo": 1608
+          "lineNo": 1606
         },
         {
           "msgid": "Create new %1 element",
-          "lineNo": 1640
+          "lineNo": 1638
         },
         {
           "msgid": "Please edit the attributes of the new %1 element, that will be added to the chosen position.",
-          "lineNo": 1641
+          "lineNo": 1639
         },
         {
           "msgid": "Edit element attributes",
-          "lineNo": 1643
+          "lineNo": 1641
         },
         {
           "msgid": "Edit %1",
-          "lineNo": 1644
+          "lineNo": 1642
         },
         {
           "msgid": "Show %1",
-          "lineNo": 1644
+          "lineNo": 1642
         },
         {
           "msgid": "Create new %1 element",
-          "lineNo": 1663
+          "lineNo": 1661
         },
         {
           "msgid": "Please edit the content of the new %1 element, that will be added to the chosen position.",
-          "lineNo": 1664
+          "lineNo": 1662
         },
         {
           "msgid": "Edit element and content",
-          "lineNo": 1666
+          "lineNo": 1664
         },
         {
           "msgid": "Edit element content",
-          "lineNo": 1666
+          "lineNo": 1664
         },
         {
           "msgid": "This is not a valid value.",
-          "lineNo": 1681
+          "lineNo": 1679
         },
         {
           "msgid": "Edit text content",
-          "lineNo": 1689
+          "lineNo": 1687
         },
         {
           "msgid": "not set",
-          "lineNo": 1700
+          "lineNo": 1698
         },
         {
           "msgid": "This is not a valid value.",
-          "lineNo": 1710
+          "lineNo": 1708
         },
         {
           "msgid": "Help",
-          "lineNo": 2148
+          "lineNo": 2177
         },
         {
           "msgid": "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here. All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the next found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element with the 'Up' key.</p>",
-          "lineNo": 2156
+          "lineNo": 2185
         },
         {
           "msgid": "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a click on the expand icon.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>",
-          "lineNo": 2165
+          "lineNo": 2194
         }
       ]
     },
     "cv.ui.manager.editor.Worker": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3845,7 +3860,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.CometVisu": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3865,7 +3880,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.Config": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3894,7 +3909,7 @@
       ]
     },
     "cv.ui.manager.editor.data.Provider": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3925,7 +3940,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.CheckBox": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3951,7 +3966,7 @@
       ]
     },
     "cv.ui.manager.form.ElementForm": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -3987,7 +4002,6 @@
         "cv.ui.manager.form.CheckBox": {},
         "qx.ui.form.Spinner": {},
         "qx.util.format.NumberFormat": {},
-        "qx.lang.Function": {},
         "qx.util.Validate": {},
         "qx.ui.form.validation.AsyncValidator": {},
         "qx.lang.Type": {},
@@ -4012,44 +4026,44 @@
       "translations": [
         {
           "msgid": "Loading...",
-          "lineNo": 191
+          "lineNo": 193
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 197
+          "lineNo": 200
         },
         {
           "msgid": "Loading...",
-          "lineNo": 240
+          "lineNo": 243
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 246
+          "lineNo": 249
         },
         {
           "msgid": "Loading...",
-          "lineNo": 288
+          "lineNo": 291
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 300
+          "lineNo": 303
         },
         {
           "msgid": "Loading...",
-          "lineNo": 318
+          "lineNo": 320
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 330
+          "lineNo": 333
         },
         {
           "msgid": "Value is invalid",
-          "lineNo": 560
+          "lineNo": 583
         }
       ]
     },
     "cv.ui.manager.form.ElementFormRenderer": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4069,7 +4083,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.FileListItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4146,7 +4160,7 @@
       ]
     },
     "cv.ui.manager.form.FileTabItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4183,7 +4197,7 @@
       ]
     },
     "cv.ui.manager.form.ListItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4204,7 +4218,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.Option": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4222,7 +4236,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.OptionListItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4268,7 +4282,7 @@
       ]
     },
     "cv.ui.manager.form.SectionListItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4310,7 +4324,7 @@
       ]
     },
     "cv.ui.manager.form.SourceCodeField": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4351,7 +4365,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.VirtualSelectBox": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4375,7 +4389,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.BackupFolder": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4405,7 +4419,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.CompareFiles": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4430,7 +4444,7 @@
       ]
     },
     "cv.ui.manager.model.ElementChange": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4448,7 +4462,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.FileItem": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4500,7 +4514,7 @@
       ]
     },
     "cv.ui.manager.model.Message": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4517,7 +4531,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.OpenFile": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4538,7 +4552,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Preferences": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4559,7 +4573,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Schema": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4581,7 +4595,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.XmlElement": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4671,7 +4685,7 @@
       ]
     },
     "cv.ui.manager.model.config.Option": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4689,7 +4703,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.config.Section": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4711,7 +4725,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Any": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4734,7 +4748,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Attribute": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4770,7 +4784,7 @@
       ]
     },
     "cv.ui.manager.model.schema.Base": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4788,7 +4802,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Choice": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4812,7 +4826,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.DocumentationMapping": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:18:42.182Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4826,7 +4840,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Element": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4861,7 +4875,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Group": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4884,7 +4898,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.MAnnotation": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -4902,7 +4916,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Sequence": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4927,7 +4941,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.SimpleType": {
-      "mtime": "2022-01-25T19:40:23.787Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4948,7 +4962,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Controller": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4984,7 +4998,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Message": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5012,7 +5026,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.FileSystem": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5053,7 +5067,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.VirtualElementItem": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -5103,7 +5117,7 @@
       ]
     },
     "cv.ui.manager.tree.VirtualFsItem": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5129,7 +5143,7 @@
       ]
     },
     "cv.ui.manager.upload.MDragUpload": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -5155,7 +5169,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.upload.UploadMgr": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5210,7 +5224,7 @@
       ]
     },
     "cv.ui.manager.viewer.AbstractViewer": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5245,7 +5259,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.viewer.Config": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5306,7 +5320,7 @@
       ]
     },
     "cv.ui.manager.viewer.Folder": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5414,7 +5428,7 @@
       ]
     },
     "cv.ui.manager.viewer.Icons": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5473,7 +5487,7 @@
       ]
     },
     "cv.ui.manager.viewer.Image": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5514,7 +5528,7 @@
       ]
     },
     "cv.ui.manager.viewer.SvgIcon": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5537,7 +5551,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Audio": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5581,7 +5595,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Break": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5604,7 +5618,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.ColorChooser": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5665,7 +5679,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.DesignToggle": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5722,7 +5736,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Group": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5769,7 +5783,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Image": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5822,7 +5836,7 @@
       ]
     },
     "cv.ui.structure.pure.ImageTrigger": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5881,7 +5895,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Info": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5924,7 +5938,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.InfoAction": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5971,7 +5985,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.InfoTrigger": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6028,7 +6042,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Line": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6066,7 +6080,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.MultiTrigger": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6119,7 +6133,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NavBar": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6167,7 +6181,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NotificationCenterBadge": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6208,7 +6222,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Page": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6270,7 +6284,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageJump": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6323,7 +6337,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageLink": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6363,7 +6377,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PushButton": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6411,7 +6425,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Refresh": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6462,7 +6476,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Reload": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6506,7 +6520,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Rgb": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6551,7 +6565,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Roundbar": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6597,7 +6611,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Slide": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6654,7 +6668,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Switch": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6701,7 +6715,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Text": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6739,7 +6753,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Toggle": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6790,7 +6804,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Trigger": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6845,7 +6859,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Unknown": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6872,7 +6886,7 @@
       ]
     },
     "cv.ui.structure.pure.UrlTrigger": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6926,7 +6940,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Video": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6964,7 +6978,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Web": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -7012,7 +7026,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.WgPluginInfo": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -7057,7 +7071,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.WidgetInfoAction": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -7104,7 +7118,7 @@
       "hasDefer": true
     },
     "cv.theme.Dark": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31998,7 +32012,7 @@
       }
     },
     "cv.io.Client": {
-      "mtime": "2022-01-25T19:40:23.595Z",
+      "mtime": "2022-01-31T21:13:53.656Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -32027,7 +32041,7 @@
       "hasDefer": null
     },
     "cv.Config": {
-      "mtime": "2022-01-25T19:40:23.775Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -32078,7 +32092,7 @@
       "hasDefer": true
     },
     "cv.io.Mockup": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32114,7 +32128,7 @@
       "hasDefer": null
     },
     "cv.io.openhab.Rest": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32139,7 +32153,7 @@
       "hasDefer": null
     },
     "cv.io.mqtt.Client": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32170,7 +32184,7 @@
       ]
     },
     "cv.ConfigCache": {
-      "mtime": "2022-01-25T19:40:23.775Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32190,7 +32204,7 @@
       "hasDefer": null
     },
     "cv.report.Record": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32220,7 +32234,7 @@
       "hasDefer": null
     },
     "cv.Version": {
-      "mtime": "2022-01-25T19:41:52.904Z",
+      "mtime": "2022-01-31T21:15:48.745Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32234,7 +32248,7 @@
       "hasDefer": null
     },
     "cv.TemplateEngine": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -32276,7 +32290,6 @@
         "cv.ui.structure.WidgetFactory": {},
         "cv.ui.PageHandler": {},
         "qx.util.DeferredCall": {},
-        "qx.bom.History": {},
         "cv.ui.TrickOMatic": {},
         "cv.util.IconTools": {},
         "qx.event.Registration": {},
@@ -32286,6 +32299,7 @@
         "qx.bom.client.Html": {
           "load": true
         },
+        "qx.bom.History": {},
         "qx.dom.Element": {},
         "qx.data.store.Json": {},
         "qx.util.ResourceManager": {}
@@ -32350,7 +32364,7 @@
       ]
     },
     "cv.log.appender.Native": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.log.appender.Util": {
@@ -32376,7 +32390,7 @@
       "hasDefer": true
     },
     "cv.data.FileWorker": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32397,7 +32411,7 @@
       "hasDefer": null
     },
     "cv.ui.PopupHandler": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32415,7 +32429,7 @@
       "hasDefer": true
     },
     "cv.util.Location": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32429,7 +32443,7 @@
       "hasDefer": null
     },
     "cv.ui.layout.ResizeHandler": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32455,7 +32469,7 @@
       "hasDefer": null
     },
     "cv.ui.NotificationCenter": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32521,7 +32535,7 @@
       ]
     },
     "cv.ui.ToastManager": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32564,7 +32578,7 @@
       "hasDefer": null
     },
     "cv.util.ConfigLoader": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32633,7 +32647,7 @@
       ]
     },
     "cv.util.ScriptLoader": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32678,7 +32692,7 @@
       ]
     },
     "cv.data.Model": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.916Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32695,7 +32709,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.WidgetFactory": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32712,7 +32726,7 @@
       "hasDefer": null
     },
     "cv.IconHandler": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32733,8 +32747,46 @@
       "implement": [],
       "hasDefer": null
     },
+    "cv.io.rest.Client": {
+      "mtime": "2022-01-31T21:13:53.916Z",
+      "libraryName": "cv",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "cv.TemplateEngine": {},
+        "qx.util.Uri": {},
+        "qx.io.rest.Resource": {},
+        "cv.ui.manager.tree.FileSystem": {},
+        "qx.lang.Array": {},
+        "qx.lang.Type": {},
+        "qx.log.Logger": {},
+        "qxl.dialog.Dialog": {},
+        "qx.locale.Manager": {},
+        "cv.ui.manager.snackbar.Controller": {}
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null,
+      "translations": [
+        {
+          "msgid": "Backend does not respond!",
+          "lineNo": 220
+        },
+        {
+          "msgid": "File has been saved",
+          "lineNo": 230
+        },
+        {
+          "msgid": "Error saving file",
+          "lineNo": 239
+        }
+      ]
+    },
     "cv.Transform": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32749,7 +32801,7 @@
       "hasDefer": null
     },
     "cv.ui.common.BasicUpdate": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32772,7 +32824,7 @@
       "hasDefer": null
     },
     "cv.ui.layout.Manager": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32790,7 +32842,7 @@
       "hasDefer": null
     },
     "cv.util.Color": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32807,7 +32859,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.AbstractWidget": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32855,7 +32907,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Update": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32878,7 +32930,7 @@
       "hasDefer": null
     },
     "cv.util.Function": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32892,7 +32944,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Operate": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32909,7 +32961,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasChildren": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32932,7 +32984,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Refresh": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32954,7 +33006,7 @@
       "hasDefer": null
     },
     "cv.util.String": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32969,7 +33021,7 @@
       "hasDefer": null
     },
     "cv.util.Tree": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32984,7 +33036,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.AbstractBasicWidget": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33007,7 +33059,7 @@
       "hasDefer": null
     },
     "cv.util.IconTools": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33040,44 +33092,6 @@
         "iconfont/material/MaterialIcons-Regular.ttf",
         "iconfont/material/MaterialIcons-Regular.woff",
         "iconfont/material/MaterialIcons-Regular.woff2"
-      ]
-    },
-    "cv.io.rest.Client": {
-      "mtime": "2022-01-25T19:40:23.779Z",
-      "libraryName": "cv",
-      "dependsOn": {
-        "qx.Class": {
-          "load": true,
-          "usage": "dynamic"
-        },
-        "cv.TemplateEngine": {},
-        "qx.util.Uri": {},
-        "qx.io.rest.Resource": {},
-        "cv.ui.manager.tree.FileSystem": {},
-        "qx.lang.Array": {},
-        "qx.lang.Type": {},
-        "qx.log.Logger": {},
-        "qxl.dialog.Dialog": {},
-        "qx.locale.Manager": {},
-        "cv.ui.manager.snackbar.Controller": {}
-      },
-      "extends": null,
-      "include": [],
-      "implement": [],
-      "hasDefer": null,
-      "translations": [
-        {
-          "msgid": "Backend does not respond!",
-          "lineNo": 220
-        },
-        {
-          "msgid": "File has been saved",
-          "lineNo": 230
-        },
-        {
-          "msgid": "Error saving file",
-          "lineNo": 239
-        }
       ]
     },
     "qxl.dialog.Confirm": {
@@ -33138,7 +33152,7 @@
       ]
     },
     "cv.theme.dark.Images": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33313,7 +33327,7 @@
       "hasDefer": null
     },
     "cv.util.ConfigUpgrader": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33339,7 +33353,7 @@
       ]
     },
     "cv.IconConfig": {
-      "mtime": "2022-01-25T19:40:23.779Z",
+      "mtime": "2022-01-31T21:13:53.912Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33521,7 +33535,7 @@
       "hasDefer": null
     },
     "cv.svg.Element": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33542,7 +33556,7 @@
       "hasDefer": null
     },
     "cv.util.LimitedRateUpdateAnimator": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33560,7 +33574,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAnimatedButton": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -33575,7 +33589,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HandleLongpress": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -33589,7 +33603,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.IPage": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.928Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -33603,7 +33617,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Color": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33620,7 +33634,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Decoration": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33637,7 +33651,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Font": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33654,7 +33668,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Icon": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33676,7 +33690,7 @@
       }
     },
     "cv.theme.dark.Appearance": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33951,7 +33965,7 @@
       "hasDefer": null
     },
     "cv.io.IClient": {
-      "mtime": "2022-01-25T19:40:23.595Z",
+      "mtime": "2022-01-31T21:13:53.656Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Interface": {
@@ -33965,7 +33979,7 @@
       "hasDefer": null
     },
     "cv.io.transport.LongPolling": {
-      "mtime": "2022-01-25T19:40:23.595Z",
+      "mtime": "2022-01-31T21:13:53.656Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -33987,7 +34001,7 @@
       "hasDefer": null
     },
     "cv.io.transport.Sse": {
-      "mtime": "2022-01-25T19:40:23.595Z",
+      "mtime": "2022-01-31T21:13:53.656Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -34005,7 +34019,7 @@
       "hasDefer": null
     },
     "cv.io.parser.Json": {
-      "mtime": "2022-01-25T19:40:23.595Z",
+      "mtime": "2022-01-31T21:13:53.656Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -34020,7 +34034,7 @@
       "hasDefer": null
     },
     "cv.report.utils.MXhrHook": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34036,7 +34050,7 @@
       "hasDefer": null
     },
     "cv.ui.PagePartsHandler": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34058,7 +34072,7 @@
       "hasDefer": null
     },
     "cv.ui.PageHandler": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -34099,7 +34113,7 @@
       "hasDefer": null
     },
     "cv.ui.TrickOMatic": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34115,7 +34129,7 @@
       "hasDefer": null
     },
     "cv.ui.Popup": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34147,7 +34161,7 @@
       ]
     },
     "cv.ui.layout.States": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.924Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34164,7 +34178,7 @@
       "hasDefer": null
     },
     "cv.ui.MHandleMessage": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34183,7 +34197,7 @@
       "hasDefer": null
     },
     "cv.ui.BodyBlocker": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34204,7 +34218,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAddress": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34218,7 +34232,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasStyling": {
-      "mtime": "2022-01-25T19:40:23.783Z",
+      "mtime": "2022-01-31T21:13:53.920Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34964,7 +34978,7 @@
       "hasDefer": null
     },
     "cv.io.Watchdog": {
-      "mtime": "2022-01-25T19:40:23.595Z",
+      "mtime": "2022-01-31T21:13:53.656Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -34981,7 +34995,7 @@
       "hasDefer": null
     },
     "cv.ui.util.ProgressBar": {
-      "mtime": "2022-01-25T19:40:23.791Z",
+      "mtime": "2022-01-31T21:13:53.932Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -36524,14 +36538,14 @@
       "cv.data.Model": "__P_497_",
       "cv.ui.structure.WidgetFactory": "__P_498_",
       "cv.IconHandler": "__P_499_",
-      "cv.ui.layout.Manager": "__P_500_",
-      "cv.util.Color": "__P_501_",
-      "cv.ui.structure.AbstractWidget": "__P_502_",
-      "cv.ui.common.Update": "__P_503_",
-      "cv.ui.common.Refresh": "__P_504_",
-      "cv.util.String": "__P_505_",
-      "cv.ui.structure.AbstractBasicWidget": "__P_506_",
-      "cv.io.rest.Client": "__P_507_",
+      "cv.io.rest.Client": "__P_500_",
+      "cv.ui.layout.Manager": "__P_501_",
+      "cv.util.Color": "__P_502_",
+      "cv.ui.structure.AbstractWidget": "__P_503_",
+      "cv.ui.common.Update": "__P_504_",
+      "cv.ui.common.Refresh": "__P_505_",
+      "cv.util.String": "__P_506_",
+      "cv.ui.structure.AbstractBasicWidget": "__P_507_",
       "qxl.dialog.Dialog": "__P_508_",
       "cv.util.ConfigUpgrader": "__P_509_",
       "com.zenesis.qx.upload.UploadMgr": "__P_510_",

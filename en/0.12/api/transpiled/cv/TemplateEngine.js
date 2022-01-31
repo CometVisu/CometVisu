@@ -40,7 +40,6 @@
       "cv.ui.structure.WidgetFactory": {},
       "cv.ui.PageHandler": {},
       "qx.util.DeferredCall": {},
-      "qx.bom.History": {},
       "cv.ui.TrickOMatic": {},
       "cv.util.IconTools": {},
       "qx.event.Registration": {},
@@ -50,6 +49,7 @@
       "qx.bom.client.Html": {
         "require": true
       },
+      "qx.bom.History": {},
       "qx.dom.Element": {},
       "qx.data.store.Json": {},
       "qx.util.ResourceManager": {}
@@ -663,15 +663,7 @@
 
           new qx.util.DeferredCall(function () {
             this.scrollToPage(cv.Config.initialPage, 0);
-          }, this).schedule(); // reaction on browser back button
-
-          qx.bom.History.getInstance().addListener('request', function (e) {
-            var lastPage = e.getData();
-
-            if (lastPage) {
-              this.scrollToPage(lastPage, 0, true);
-            }
-          }, this); // run the Trick-O-Matic scripts for great SVG backdrops
+          }, this).schedule(); // run the Trick-O-Matic scripts for great SVG backdrops
 
           document.querySelectorAll('embed').forEach(function (elem) {
             elem.onload = cv.ui.TrickOMatic.run;
@@ -1060,4 +1052,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1643139884975
+//# sourceMappingURL=TemplateEngine.js.map?dt=1643663982027
