@@ -301,7 +301,7 @@ qx.Class.define('cv.util.IconTools', {
     svgKUF: function (iconID) {
       if (!this.preloadedKUFicons) {
         this.preloadedKUFicons = true;
-        qx.event.message.Bus.subscribe('setup.dom.finished', function() {
+        qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
           qx.log.Logger.debug(cv.util.IconTools, 'preloading KUF icons');
 
           // use relative path here, otherwise it won't work in replay mode
@@ -314,7 +314,9 @@ qx.Class.define('cv.util.IconTools', {
               let svg = div.firstChild;
               svg.setAttribute('style', 'display:none');
               document.querySelector('body').appendChild(svg);
-            }).catch(console.error.bind(console));
+            }).catch(err => {
+              qx.log.Logger.debug(cv.util.IconTools, err);
+            });
         });
       }
       /**
@@ -332,14 +334,17 @@ qx.Class.define('cv.util.IconTools', {
         if (color) {
           style += 'color:' + color + ';';
         }
-        if (style) {
-          style = ' style="'+style+'"';
-        }
         if (asText) {
+          if (style) {
+            style = ' style="'+style+'"';
+          }
           return '<svg' + style + ' class="' + classes + '"><use xlink:href="#kuf-' + iconID + '"></use></svg>';
         }
         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('class', classes);
+        if (style) {
+          svg.setAttribute('style', style);
+        }
         let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
         use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#kuf-' + iconID);
         svg.appendChild(use);

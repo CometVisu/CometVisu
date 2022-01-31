@@ -248,11 +248,12 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * Method to handle all special cases for the value. The might come from
      * the mapping where it can be quite complex as it can contain icons.
      * @param {(*|*[])} value - the value, or an array of values, that will be inserted
-     * @param {function} modifyFn - callback function that modifies the DOM
+     * @param {HTMLElement} targetElement - the element where `value` will be added to
+     * @param {Function?} modifyFn - callback function that modifies the DOM
      */
-    defaultValue2DOM: function (value, modifyFn) {
+    defaultValue2DOM: function (value, targetElement, modifyFn = this._applyValueToDom) {
       if (Array.isArray(value)) {
-        value.forEach(v => this.defaultValue2DOM(v, modifyFn));
+        value.forEach(v => this.defaultValue2DOM(v, targetElement, modifyFn));
         return;
       }
       if (!value) {
@@ -263,9 +264,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
         if (value.getContext) {
           cv.util.IconTools.fillRecoloredIcon(element);
         }
-        modifyFn(element);
+        modifyFn(targetElement, element);
       } else {
-        modifyFn(value);
+        modifyFn(targetElement, value);
       }
     },
 
@@ -289,10 +290,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
       const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
       let valueElementNew = valueElement.cloneNode(false);
       if (undefined !== value) {
-        let self = this;
-        this.defaultValue2DOM(value, function(e) {
-          self._applyValueToDom(valueElementNew, e);
-        });
+        this.defaultValue2DOM(value, valueElementNew, this._applyValueToDom);
         valueElement.parentElement.replaceChild(valueElementNew, valueElement);
       } else {
         valueElement.textContent = '-';
