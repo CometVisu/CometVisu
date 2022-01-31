@@ -584,14 +584,6 @@ qx.Class.define('cv.TemplateEngine', {
           this.scrollToPage(cv.Config.initialPage, 0);
         }, this).schedule();
 
-        // reaction on browser back button
-        qx.bom.History.getInstance().addListener('request', function(e) {
-          const lastPage = e.getData();
-          if (lastPage) {
-            this.scrollToPage(lastPage, 0, true);
-          }
-        }, this);
-
         // run the Trick-O-Matic scripts for great SVG backdrops
         document.querySelectorAll('embed').forEach(function(elem) {
           elem.onload = cv.ui.TrickOMatic.run;
