@@ -46,6 +46,7 @@ qx.Class.define('cv.TemplateEngine', {
       manager.add(group);
       manager.setActive(group);
     }
+    qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
   },
 
   /*
@@ -495,6 +496,8 @@ qx.Class.define('cv.TemplateEngine', {
 
       if (pagesNode.getAttribute('max_mobile_screen_width') !== null) {
         settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width');
+        // override config setting
+        cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
       }
 
       const globalClass = pagesNode.getAttribute('class');
@@ -508,11 +511,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (design) {
         let baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
-        this.debug('cv.Config.mobileDevice: ' + cv.Config.mobileDevice);
-        if (cv.Config.mobileDevice) {
-          settings.stylesToLoad.push(baseUri + '/mobile.css');
-          document.querySelector('body').classList.add('mobile');
-        }
+        settings.stylesToLoad.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`});
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
@@ -522,9 +521,7 @@ qx.Class.define('cv.TemplateEngine', {
 
             baseUri = 'designs/pure';
             const alternativeStyles = [baseUri + '/basic.css'];
-            if (cv.Config.mobileDevice) {
-              alternativeStyles.push(baseUri+'/mobile.css');
-            }
+            alternativeStyles.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`});
             alternativeStyles.push(baseUri+'/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
             cv.util.ScriptLoader.getInstance().addScripts(baseUri+'/design_setup.js');
@@ -843,7 +840,11 @@ qx.Class.define('cv.TemplateEngine', {
       this.main_scroll.seekTo(page_id, speed); // scroll to it
 
       this.pagePartsHandler.initializeNavbars(page_id);
-      if (cv.Config.mobileDevice) {
+      this._maintainNavbars();
+    },
+
+    _maintainNavbars: function () {
+      if (qx.core.Init.getApplication().getMobile()) {
         switch (this.pagePartsHandler.navbars.left.dynamic) {
           case null:
           case true:
@@ -968,5 +969,6 @@ qx.Class.define('cv.TemplateEngine', {
   */
   destruct: function () {
     this._disposeObjects('__activeChangedTimer');
+    qx.core.Init.getApplication().removeListener('changeMobile', this._maintainNavbars, this);
   }
 });
