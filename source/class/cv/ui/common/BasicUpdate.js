@@ -256,9 +256,6 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
         value.forEach(v => this.defaultValue2DOM(v, targetElement, modifyFn));
         return;
       }
-      if (value === undefined) {
-        return;
-      }
       if (value instanceof Node) {
         let element = value.cloneNode(true);
         if (value.getContext) {
@@ -299,16 +296,19 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
 
     /**
      * Internal function which updates the DOM element with the given value
-     * @param {HTMLElement} valueElement - element to update
-     * @param {*} e - value to add to the element
+     * @param {HTMLElement} targetElement - element to update
+     * @param {*} value - value to add to the element
      */
-    _applyValueToDom: function(valueElement, e) {
-      if (e instanceof Node) {
-        valueElement.appendChild(e);
-      } else if (typeof e === 'number' || typeof e === 'string') {
-        valueElement.appendChild(document.createTextNode(e));
+    _applyValueToDom: function(targetElement, value) {
+      if (value === undefined || value === null) {
+        return;
+      }
+      if (value instanceof Node) {
+        targetElement.appendChild(value);
+      } else if (typeof value === 'number' || typeof value === 'string') {
+        targetElement.appendChild(document.createTextNode(value));
       } else {
-        valueElement.innerHTML += e;
+        targetElement.innerHTML += value;
       }
     }
   }
