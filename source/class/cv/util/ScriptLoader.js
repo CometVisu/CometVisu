@@ -47,6 +47,25 @@ qx.Class.define('cv.util.ScriptLoader', {
 
     isMarkedAsLoaded: function (path) {
       return this.getInstance().isMarkedAsLoaded(path);
+    },
+
+    /**
+     * Include a CSS file
+     *
+     * @param href {String} Href value
+     * @param media {string?} Content of the media attribute
+     */
+    includeStylesheet(href, media) {
+      const el = document.createElement('link');
+      el.type = 'text/css';
+      el.rel = 'stylesheet';
+      el.href = href;
+      if (media) {
+        el.media = media;
+      }
+
+      const head = document.getElementsByTagName('head')[0];
+      head.appendChild(el);
     }
   },
 
@@ -89,7 +108,13 @@ qx.Class.define('cv.util.ScriptLoader', {
       const queue = (typeof styleArr === 'string' ? [styleArr] : styleArr.concat());
       const suffix = (cv.Config.forceReload === true) ? '?' + Date.now() : '';
       queue.forEach(function(style) {
-        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+        if (typeof style === 'string') {
+          cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+        } else if (typeof style === 'object') {
+          cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style.uri) + suffix, style.media);
+        } else {
+          this.error('unknown style parameter type', typeof style);
+        }
       }, this);
     },
 

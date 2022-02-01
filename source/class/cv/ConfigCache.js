@@ -99,16 +99,6 @@ qx.Class.define('cv.ConfigCache', {
             }
           }, this);
         }
-        if (cv.Config.mobileDevice) {
-          document.querySelector('body').classList.add('mobile');
-          const hasMobile = cv.Config.configSettings.stylesToLoad.some(style => style.endsWith('mobile.css'));
-          if (!hasMobile) {
-            cv.Config.configSettings.stylesToLoad.push('designs/' + cv.Config.configSettings.clientDesign + '/mobile.css');
-          }
-        } else {
-          // do not load mobile css
-          cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(style => !style.endsWith('mobile.css'));
-        }
         model.setWidgetDataModel(cache.data);
         model.setAddressList(cache.addresses);
         const widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {

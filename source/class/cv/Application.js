@@ -41,6 +41,7 @@ qx.Class.define('cv.Application',
   */
   construct: function () {
     this.base(arguments);
+    this.__appReady = false;
     this.initCommandManager(new qx.ui.command.GroupManager());
     const lang = qx.locale.Manager.getInstance().getLanguage();
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
@@ -180,6 +181,15 @@ qx.Class.define('cv.Application',
       check: 'Boolean',
       init: false,
       apply: '_applyManagerChecked'
+    },
+    /**
+     * Mobile device detection (small screen)
+     */
+    mobile: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeMobile',
+      apply: '_applyMobile'
     }
   },
 
@@ -193,6 +203,7 @@ qx.Class.define('cv.Application',
   members :
   {
     _blocker: null,
+    __appReady: null,
 
     /**
      * Toggle the {@link qx.bom.Blocker} visibility
@@ -209,6 +220,16 @@ qx.Class.define('cv.Application',
       } else if (this._blocker) {
         this._blocker.unblock();
       }
+    },
+
+    _applyMobile: function (value) {
+      // maintain old value for compatibility
+      if (value && !document.body.classList.contains('mobile')) {
+        document.body.classList.add('mobile');
+      } else if (!value && document.body.classList.contains('mobile')) {
+        document.body.classList.remove('mobile');
+      }
+      cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
     _applyManagerChecked: function(value) {
@@ -292,6 +313,11 @@ qx.Class.define('cv.Application',
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
 
       this.__init();
+      if (typeof cv.Config.mobileDevice === 'boolean') {
+        this.setMobile(cv.Config.mobileDevice);
+      }
+      this._onResize(null, true);
+      qx.event.Registration.addListener(window, 'resize', this._onResize, this);
     },
 
     hideManager: function () {
@@ -593,11 +619,19 @@ qx.Class.define('cv.Application',
       'false': null
     }),
 
+    _onResize: function (ev, init) {
+      if (cv.Config.mobileDevice === undefined) {
+        this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
+      }
+      if (!init && this.__appReady) {
+        cv.ui.layout.ResizeHandler.invalidateScreensize();
+      }
+    },
+
     /**
      * Internal initialization method
      */
     __init: function() {
-      qx.event.Registration.addListener(window, 'resize', cv.ui.layout.ResizeHandler.invalidateScreensize, cv.ui.layout.ResizeHandler);
       qx.event.Registration.addListener(window, 'unload', function () {
         cv.io.Client.stopAll();
       }, this);
@@ -740,7 +774,10 @@ qx.Class.define('cv.Application',
               cv.ConfigCache.dump(xml, xmlHash);
             }, this);
           }
+          this.__appReady = true;
         }.bind(this));
+      } else {
+        this.__appReady = true;
       }
     },
 
