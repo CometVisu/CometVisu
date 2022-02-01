@@ -115,7 +115,7 @@ qx.Class.define('cv.IconHandler', {
      */
     get: function (name, type = '*', flavour = '*', color = '*') {
       if (!this.__db[name]) {
-        return undefined;
+        return (a,b,c,asText)=>asText?'[unknown]':document.createTextNode('[unknown]');
       }
       if (!this.__db[name][type]) {
         type = '*'; // undefined -> use default
