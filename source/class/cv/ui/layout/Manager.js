@@ -137,7 +137,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       const emptyRect = {
         top: 0,
         bottom: 0
-      }
+      };
       const navbarVisibility = this.getCurrentPageNavbarVisibility();
       const topNav = document.querySelector('#navbarTop');
       const top = document.querySelector('#top');
