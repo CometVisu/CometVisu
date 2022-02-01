@@ -41,6 +41,7 @@ qx.Class.define('cv.Application',
   */
   construct: function () {
     this.base(arguments);
+    this.__appReady = false;
     this.initCommandManager(new qx.ui.command.GroupManager());
     const lang = qx.locale.Manager.getInstance().getLanguage();
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
@@ -202,6 +203,7 @@ qx.Class.define('cv.Application',
   members :
   {
     _blocker: null,
+    __appReady: null,
 
     /**
      * Toggle the {@link qx.bom.Blocker} visibility
@@ -621,7 +623,7 @@ qx.Class.define('cv.Application',
       if (cv.Config.mobileDevice === undefined) {
         this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
       }
-      if (!init) {
+      if (!init && this.__appReady) {
         cv.ui.layout.ResizeHandler.invalidateScreensize();
       }
     },
@@ -772,7 +774,10 @@ qx.Class.define('cv.Application',
               cv.ConfigCache.dump(xml, xmlHash);
             }, this);
           }
+          this.__appReady = true;
         }.bind(this));
+      } else {
+        this.__appReady = true;
       }
     },
 
