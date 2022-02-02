@@ -230,6 +230,7 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     _onDomReady: function () {
+      this.base(arguments);
       let args = arguments;
       const self = this;
 
