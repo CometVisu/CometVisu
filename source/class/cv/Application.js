@@ -229,7 +229,9 @@ qx.Class.define('cv.Application',
       } else if (!value && document.body.classList.contains('mobile')) {
         document.body.classList.remove('mobile');
       }
-      cv.ui.layout.ResizeHandler.invalidateNavbar();
+      if (this.__appReady) {
+        cv.ui.layout.ResizeHandler.invalidateNavbar();
+      }
     },
 
     _applyManagerChecked: function(value) {
