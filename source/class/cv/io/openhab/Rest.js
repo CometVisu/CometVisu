@@ -113,8 +113,7 @@ qx.Class.define('cv.io.openhab.Rest', {
             }
             startTime.setTime(endTime.getTime() - (amount * interval));
           } else if (/^[\d]+$/.test(map.start)) {
-            const d = new Date();
-            d.setTime(parseInt(map.start) * 1000);
+            startTime.setTime(parseInt(map.start) * 1000);
           }
 
           params.push('starttime=' + startTime.toISOString());
