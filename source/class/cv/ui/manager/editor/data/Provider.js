@@ -88,7 +88,8 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       },
       'icon': {
         'name': {
-          cache: true,
+          cache: false,
+          live: true,
           userInputAllowed: false,
           method: 'getIcons'
         }
@@ -508,7 +509,14 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         return plugins;
     },
 
-    getIcons: function (format, config) {
+    /**
+     * 
+     * @param {String} format 
+     * @param {Map?} config 
+     * @param {Element?} element 
+     * @returns 
+     */
+    getIcons: function (format, config, element) {
       if (!format) {
         format = 'monaco';
       }
@@ -518,30 +526,48 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (cached) {
         return cached;
       } 
-        let icons;
-        const iconHandler = cv.IconHandler.getInstance();
-        if (format === 'monaco') {
-          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
-            return {
+      let icons;
+      const iconHandler = cv.IconHandler.getInstance();
+      if (format === 'monaco') {
+        icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+          return {
+            label: iconName,
+            insertText: iconName,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          };
+        });
+      } else if (format === 'dp') {
+        // dataprovider format
+        icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+          return {
+            label: iconName,
+            value: iconName,
+            icon: iconHandler.getIconSource(iconName)
+          };
+        });
+      }
+      if (element) {
+        element.ownerDocument.querySelectorAll('pages > meta > icons > icon-definition').forEach(icon => {
+          const iconName = icon.getAttribute('name');
+          if (format === 'monaco') {
+            icons.push({
               label: iconName,
               insertText: iconName,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
-            };
-          });
-        } else if (format === 'dp') {
-          // dataprovider format
-          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
-            return {
+            });
+          } else if (format === 'dp') {
+            icons.push({
               label: iconName,
               value: iconName,
               icon: iconHandler.getIconSource(iconName)
-            };
-          });
-        }
-        if (useCache) {
-          this._addToCache(cacheId, icons);
-        }
-        return icons;
+            })
+          }
+        });
+      }
+      if (useCache) {
+        this._addToCache(cacheId, icons);
+      }
+      return icons;
     }
   },
 
