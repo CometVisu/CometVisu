@@ -36,7 +36,11 @@ qx.Class.define('cv.ui.manager.form.ListItem', {
       switch (id) {
         case 'icon':
           control = new cv.ui.manager.basic.Image(this.getIcon());
-          control.setAnonymous(true);
+          control.set({
+            anonymous: true,
+            scale: true,
+            maxHeight: 64
+          });
           this._addAt(control, 0);
           if (this.getIcon() === null || this.getShow() === 'label') {
             control.exclude();

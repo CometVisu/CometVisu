@@ -355,30 +355,30 @@ qx.Class.define('cv.io.openhab.Rest', {
             let data;
             if (format === 'monaco') {
               return result.map(entry => ({
-                  label: entry.name,
-                  insertText: entry.name,
-                  detail: entry.type,
-                  kind: window.monaco.languages.CompletionItemKind.Value
-                }));
-            } 
-              data = {};
-              result.forEach(element => {
-                const type = element.type ? element.type.split(':')[0] : '';
-                if (!Object.prototype.hasOwnProperty.call(data, type)) {
-                  data[type] = [];
-                }
-                const entry = {
-                  value: element.name,
-                  label: element.label || ''
+                label: entry.name,
+                insertText: entry.name,
+                detail: entry.type,
+                kind: window.monaco.languages.CompletionItemKind.Value
+              }));
+            }
+            data = {};
+            result.forEach(element => {
+              const type = element.type ? element.type.split(':')[0] : '';
+              if (!Object.prototype.hasOwnProperty.call(data, type)) {
+                data[type] = [];
+              }
+              const entry = {
+                value: element.name,
+                label: element.label || ''
+              };
+              if (type) {
+                entry.hints = {
+                  transform: 'OH:' + type.toLowerCase()
                 };
-                if (type) {
-                  entry.hints = {
-                    transform: 'OH:' + type.toLowerCase()
-                  };
-                }
-                data[type].push(entry);
-              });
-              return data;
+              }
+              data[type].push(entry);
+            });
+            return data;
           };
         case 'rrd':
           return function (result) {
