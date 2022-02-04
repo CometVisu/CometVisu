@@ -151,7 +151,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
             }
           }
         }
-      });
+      }, false);
     }
   },
   
