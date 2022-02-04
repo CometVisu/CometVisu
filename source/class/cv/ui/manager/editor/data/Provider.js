@@ -514,7 +514,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * @param {String} format 
      * @param {Map?} config 
      * @param {Element?} element 
-     * @returns 
+     * @returns {Array} array with icon definitions
      */
     getIcons: function (format, config, element) {
       if (!format) {
@@ -567,7 +567,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
                 label: iconName,
                 value: iconName,
                 icon: icon.getAttribute('uri')
-              })
+              });
             }
           });
         } else if (typeof element === 'string') {
@@ -588,9 +588,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
                 label: iconName,
                 value: iconName,
                 icon: icon.getAttribute('uri')
-              })
+              });
             }
-          })
+          });
         }
       }
       if (useCache) {
