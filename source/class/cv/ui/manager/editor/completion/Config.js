@@ -376,7 +376,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
               return {suggestions: this._dataProvider.getPlugins()};
             } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
-              return {suggestions: this._dataProvider.getIcons()};
+              return {suggestions: this._dataProvider.getIcons('monaco', {cache: false}, completeText)};
             } else if (lastOpenedTag.tagName === 'influx') {
               if (lastOpenedTag.currentAttribute === 'measurement') {
                 return this._dataProvider.getInfluxDBs().then(function (suggestions) {
