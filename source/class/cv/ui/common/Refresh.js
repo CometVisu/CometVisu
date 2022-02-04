@@ -266,9 +266,9 @@ qx.Mixin.define('cv.ui.common.Refresh', {
         }
       };
       iframe.style.display = 'none';
-      window.parent.document.body.appendChild(iframe);
       iframe.addEventListener('load', loadCallback, false);
       iframe.addEventListener('error', loadCallback, false);
+      document.body.appendChild(iframe);
       doc = iframe.contentWindow.document;
       doc.body.innerHTML='<img src="' + src + '">';
       if (twostage) {
