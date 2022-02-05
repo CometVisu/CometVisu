@@ -66,9 +66,13 @@ qx.Class.define('cv.IconHandler', {
       const color = arguments[4] || '*';
       const styling = arguments[5];
       const dynamic = arguments[6];
+      const source = arguments[7];
 
       if (!this.__db[name]) {
         this.__db[name] = {};
+      }
+      if (source) {
+        this.__db[name].source = source;
       }
       if (!this.__db[name][type]) {
         this.__db[name][type] = {};

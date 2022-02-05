@@ -313,7 +313,8 @@ qx.Class.define('cv.parser.MetaParser', {
         color : elem.getAttribute('color'),
         styling : elem.getAttribute('styling'),
         dynamic : elem.getAttribute('dynamic'),
-        'class' : elem.getAttribute('class')
+        'class' : elem.getAttribute('class'),
+        source: 'config'
       };
     },
 

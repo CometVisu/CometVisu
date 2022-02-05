@@ -788,7 +788,7 @@ qx.Class.define('cv.Application',
      */
     loadIcons: function() {
       cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
-        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
+        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
       }, this);
     },
 

@@ -280,7 +280,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 }, item, index);
               }
             });
-            formElement.setModel(model);
+            formElement.setModel(elementModel);
             break;
           }
 
