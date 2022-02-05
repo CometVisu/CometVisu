@@ -57,11 +57,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _parseCacheData: null,
       _valid: null,
       replayCache: null,
-      __P_489_0: null,
+      __P_490_0: null,
       DB: null,
       init: function init() {
-        if (!this.__P_489_0) {
-          this.__P_489_0 = new Promise(function (resolve, reject) {
+        if (!this.__P_490_0) {
+          this.__P_490_0 = new Promise(function (resolve, reject) {
             if (!cv.ConfigCache.DB) {
               var request = indexedDB.open('cvCache', 1);
 
@@ -96,7 +96,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
 
-        return this.__P_489_0;
+        return this.__P_490_0;
       },
       dump: function dump(xml, hash) {
         var model = cv.data.Model.getInstance();
@@ -127,22 +127,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
               }
             }, _this);
-          }
-
-          if (cv.Config.mobileDevice) {
-            document.querySelector('body').classList.add('mobile');
-            var hasMobile = cv.Config.configSettings.stylesToLoad.some(function (style) {
-              return style.endsWith('mobile.css');
-            });
-
-            if (!hasMobile) {
-              cv.Config.configSettings.stylesToLoad.push('designs/' + cv.Config.configSettings.clientDesign + '/mobile.css');
-            }
-          } else {
-            // do not load mobile css
-            cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(function (style) {
-              return !style.endsWith('mobile.css');
-            });
           }
 
           model.setWidgetDataModel(cache.data);
@@ -357,4 +341,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1643663981733
+//# sourceMappingURL=ConfigCache.js.map?dt=1644052394897

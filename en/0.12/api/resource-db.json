@@ -64,87 +64,6 @@
       "designs/designglobals.css": {
         "resourcePath": "resourcePath"
       },
-      "libs/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/EventRecorder.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/Three.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/favico.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/inobounce.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.LICENSE.edl-v10": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.LICENSE.epl-v10": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.about.html": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/sprintf.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/strftime.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/svg4everybody.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/crc32.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/worker.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/xml.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/xmllint.js": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.min.js.map": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.tracing.min.js.map": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.tracing.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "test/l": {
-        "resourcePath": "resourcePath"
-      },
       "icons/COPYING": {
         "resourcePath": "resourcePath"
       },
@@ -163,13 +82,13 @@
         "width": 45,
         "height": 35
       },
+      "icons/LICENCE.knx-uf-iconset": {
+        "resourcePath": "resourcePath"
+      },
       "icons/comet_112_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 112,
         "height": 40
-      },
-      "icons/LICENCE.knx-uf-iconset": {
-        "resourcePath": "resourcePath"
       },
       "icons/comet_128_000000.png": {
         "resourcePath": "resourcePath",
@@ -351,12 +270,12 @@
         "width": 64,
         "height": 23
       },
-      "icons/comet_icon_128x128_ff8000.png": {
+      "icons/comet_chrome_app_icon_128x128.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "icons/comet_chrome_app_icon_128x128.png": {
+      "icons/comet_icon_128x128_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -415,11 +334,6 @@
         "resourcePath": "resourcePath",
         "width": 167,
         "height": 167
-      },
-      "icons/comet_webapp_icon_180.png": {
-        "resourcePath": "resourcePath",
-        "width": 180,
-        "height": 180
       },
       "icons/comet_webapp_icon_76.png": {
         "resourcePath": "resourcePath",
@@ -517,6 +431,89 @@
       "icons/knx-uf-iconset.svg": {
         "resourcePath": "resourcePath"
       },
+      "icons/comet_webapp_icon_180.png": {
+        "resourcePath": "resourcePath",
+        "width": 180,
+        "height": 180
+      },
+      "libs/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/EventRecorder.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/Three.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/favico.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.edl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.epl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.about.html": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/sprintf.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/strftime.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/svg4everybody.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/crc32.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/worker.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/xml.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/xmllint.js": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.min.js.map": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.tracing.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.tracing.min.js.map": {
+        "resourcePath": "resourcePath"
+      },
+      "test/l": {
+        "resourcePath": "resourcePath"
+      },
       "config/backup/.gitignore": {
         "resourcePath": "resourcePath"
       },
@@ -571,15 +568,15 @@
         "width": 905,
         "height": 506
       },
-      "demo/media/demo_flat_floorplan.png": {
-        "resourcePath": "resourcePath",
-        "width": 727,
-        "height": 1000
-      },
       "demo/media/demo_flat_floorplan.svg": {
         "resourcePath": "resourcePath",
         "width": 589,
         "height": 811
+      },
+      "demo/media/demo_flat_floorplan.png": {
+        "resourcePath": "resourcePath",
+        "width": 727,
+        "height": 1000
       },
       "demo/media/demo_testmode_data.json": {
         "resourcePath": "resourcePath"
@@ -601,21 +598,6 @@
       "demo/templates/visu_config.xml": {
         "resourcePath": "resourcePath"
       },
-      "designs/alaska/basic.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska/colors.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska/custom.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska/design_setup.js": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska/mobile.css": {
-        "resourcePath": "resourcePath"
-      },
       "designs/alaska_slim/basic.css": {
         "resourcePath": "resourcePath"
       },
@@ -629,6 +611,21 @@
         "resourcePath": "resourcePath"
       },
       "designs/alaska_slim/mobile.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska/basic.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska/colors.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska/custom.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska/design_setup.js": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska/mobile.css": {
         "resourcePath": "resourcePath"
       },
       "designs/discreet/basic.css": {
@@ -655,6 +652,18 @@
       "designs/discreet_sand/mobile.css": {
         "resourcePath": "resourcePath"
       },
+      "designs/discreet_slim/basic.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/custom.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/design_setup.js": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/mobile.css": {
+        "resourcePath": "resourcePath"
+      },
       "designs/metal/basic.css": {
         "resourcePath": "resourcePath"
       },
@@ -668,18 +677,6 @@
         "resourcePath": "resourcePath"
       },
       "designs/metal/version1.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/basic.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/custom.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/design_setup.js": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/mobile.css": {
         "resourcePath": "resourcePath"
       },
       "designs/pitchblack/README": {
@@ -748,15 +745,6 @@
       "plugins/mobilemenu/mobilemenu.css": {
         "resourcePath": "resourcePath"
       },
-      "plugins/openweathermap/owm_basic_style.css": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/openweathermap/owm_core.js": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/openweathermap/owm_weathericon.css": {
-        "resourcePath": "resourcePath"
-      },
       "plugins/rsslog/rsslog.css": {
         "resourcePath": "resourcePath"
       },
@@ -814,6 +802,15 @@
         "resourcePath": "resourcePath"
       },
       "plugins/upnpcontroller/volume.php": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/openweathermap/owm_basic_style.css": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/openweathermap/owm_core.js": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/openweathermap/owm_weathericon.css": {
         "resourcePath": "resourcePath"
       },
       "designs/alaska/fonts/LICENSE.txt": {
@@ -933,6 +930,60 @@
         "width": 64,
         "height": 6
       },
+      "designs/discreet_slim/fonts/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/ChangeLog": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/License.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/README": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/TODO": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/liberationsans-bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/liberationsans-regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/images/button_bg.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 36
+      },
+      "designs/discreet_slim/images/dot_green.png": {
+        "resourcePath": "resourcePath",
+        "width": 117,
+        "height": 40
+      },
+      "designs/discreet_slim/images/dot_red.png": {
+        "resourcePath": "resourcePath",
+        "width": 117,
+        "height": 40
+      },
+      "designs/discreet_slim/images/gradient.png": {
+        "resourcePath": "resourcePath",
+        "width": 147,
+        "height": 16
+      },
+      "designs/discreet_slim/images/head_bg.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 58
+      },
+      "designs/discreet_slim/images/hr_bg.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 8
+      },
       "designs/metal/fonts/Dosis-Medium.ttf": {
         "resourcePath": "resourcePath"
       },
@@ -1041,60 +1092,6 @@
         "width": 14,
         "height": 8
       },
-      "designs/discreet_slim/fonts/AUTHORS": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/ChangeLog": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/License.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/README": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/TODO": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/liberationsans-bold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/liberationsans-regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/images/button_bg.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 36
-      },
-      "designs/discreet_slim/images/dot_green.png": {
-        "resourcePath": "resourcePath",
-        "width": 117,
-        "height": 40
-      },
-      "designs/discreet_slim/images/dot_red.png": {
-        "resourcePath": "resourcePath",
-        "width": 117,
-        "height": 40
-      },
-      "designs/discreet_slim/images/gradient.png": {
-        "resourcePath": "resourcePath",
-        "width": 147,
-        "height": 16
-      },
-      "designs/discreet_slim/images/head_bg.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 58
-      },
-      "designs/discreet_slim/images/hr_bg.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 8
-      },
       "designs/pitchblack/images/fenster_einfach_auf.png": {
         "resourcePath": "resourcePath",
         "width": 40,
@@ -1174,6 +1171,18 @@
       "plugins/gauge/dep/tween.js": {
         "resourcePath": "resourcePath"
       },
+      "qxl/apiviewer/css/sunlight.default.css": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight.xml-min.js": {
+        "resourcePath": "resourcePath"
+      },
       "plugins/openweathermap/font/COPYING": {
         "resourcePath": "resourcePath"
       },
@@ -1187,18 +1196,6 @@
         "resourcePath": "resourcePath"
       },
       "plugins/openweathermap/font/weathericons-regular-webfont.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/css/sunlight.default.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.xml-min.js": {
         "resourcePath": "resourcePath"
       },
       "designs/planet/fonts/OSP/OSP-DIN.ttf": {
@@ -1415,246 +1412,6 @@
       },
       "qxl/apiviewer/css/apiviewer.css": {
         "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/image/blank.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qxl/apiviewer/image/childcontrol18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/close.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/constant18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/cross.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/event18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/includes.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/information18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 22
-      },
-      "qxl/apiviewer/image/interface18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/interface_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/loading66.gif": {
-        "resourcePath": "resourcePath",
-        "width": 66,
-        "height": 66
-      },
-      "qxl/apiviewer/image/method_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/nextlevel.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/open.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/overlay_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_error18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_overridden18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/search18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/vline.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
       },
       "qxl/apiviewer/imagesCombined/symbols.gif": {
         "resourcePath": "resourcePath",
@@ -1945,6 +1702,246 @@
             -396
           ]
         }
+      },
+      "qxl/apiviewer/image/blank.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qxl/apiviewer/image/childcontrol18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/close.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/constant18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/cross.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/event18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/includes.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/information18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 22
+      },
+      "qxl/apiviewer/image/interface18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/interface_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/loading66.gif": {
+        "resourcePath": "resourcePath",
+        "width": 66,
+        "height": 66
+      },
+      "qxl/apiviewer/image/method_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/nextlevel.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/open.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/overlay_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_error18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_overridden18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/search18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/vline.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
       }
     },
     "osparc.theme": {
@@ -2851,892 +2848,6 @@
         "resourcePath": "resourcePath",
         "width": 369,
         "height": 15
-      },
-      "qx/decoration/Classic/arrows-combined.gif": {
-        "resourcePath": "resourcePath",
-        "width": 124,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/arrows/down-invert.gif": [
-            7,
-            4,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -38,
-            0
-          ],
-          "qx/decoration/Classic/arrows/down-small-invert.gif": [
-            5,
-            3,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -87,
-            0
-          ],
-          "qx/decoration/Classic/arrows/down-small.gif": [
-            5,
-            3,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -53,
-            0
-          ],
-          "qx/decoration/Classic/arrows/down.gif": [
-            7,
-            4,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -113,
-            0
-          ],
-          "qx/decoration/Classic/arrows/forward-invert.gif": [
-            8,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -30,
-            0
-          ],
-          "qx/decoration/Classic/arrows/forward.gif": [
-            8,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -18,
-            0
-          ],
-          "qx/decoration/Classic/arrows/left-invert.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -92,
-            0
-          ],
-          "qx/decoration/Classic/arrows/left-small-invert.gif": [
-            3,
-            5,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -58,
-            0
-          ],
-          "qx/decoration/Classic/arrows/left-small.gif": [
-            3,
-            5,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -15,
-            0
-          ],
-          "qx/decoration/Classic/arrows/left.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -120,
-            0
-          ],
-          "qx/decoration/Classic/arrows/next-invert.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -80,
-            0
-          ],
-          "qx/decoration/Classic/arrows/next.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -109,
-            0
-          ],
-          "qx/decoration/Classic/arrows/previous-invert.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -69,
-            0
-          ],
-          "qx/decoration/Classic/arrows/previous.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -65,
-            0
-          ],
-          "qx/decoration/Classic/arrows/rewind-invert.gif": [
-            8,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -45,
-            0
-          ],
-          "qx/decoration/Classic/arrows/rewind.gif": [
-            8,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -101,
-            0
-          ],
-          "qx/decoration/Classic/arrows/right-invert.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -61,
-            0
-          ],
-          "qx/decoration/Classic/arrows/right-small-invert.gif": [
-            3,
-            5,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/arrows/right-small.gif": [
-            3,
-            5,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -84,
-            0
-          ],
-          "qx/decoration/Classic/arrows/right.gif": [
-            4,
-            7,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -26,
-            0
-          ],
-          "qx/decoration/Classic/arrows/up-invert.gif": [
-            7,
-            4,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -73,
-            0
-          ],
-          "qx/decoration/Classic/arrows/up-small-invert.gif": [
-            5,
-            3,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -96,
-            0
-          ],
-          "qx/decoration/Classic/arrows/up-small.gif": [
-            5,
-            3,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -3,
-            0
-          ],
-          "qx/decoration/Classic/arrows/up.gif": [
-            7,
-            4,
-            "gif",
-            "qx/decoration/Classic/arrows-combined.gif",
-            -8,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/checkbox-radiobutton-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/form/checkbox-checked-disabled.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -336,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-focused-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -28,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-focused.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -462,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-hovered-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -112,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-hovered.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -140,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -98,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-pressed-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -308,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked-pressed.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-checked.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -266,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-disabled.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -84,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-focused-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -476,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-focused.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -392,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-hovered-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -196,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-hovered.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -154,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -350,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-pressed-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -448,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox-pressed.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -70,
-            0
-          ],
-          "qx/decoration/Classic/form/checkbox.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -490,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-disabled.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -210,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-focused-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -406,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-focused.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -378,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-hovered-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -252,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-hovered.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -182,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -294,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-pressed-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -420,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked-pressed.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -56,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-checked.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -322,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-disabled.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -364,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-focused-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -434,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-focused.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -168,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-hovered-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -126,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-hovered.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -42,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -280,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-pressed-invalid.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -238,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton-pressed.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -14,
-            0
-          ],
-          "qx/decoration/Classic/form/radiobutton.png": [
-            14,
-            14,
-            "png",
-            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
-            -224,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/checkbox-radiobutton-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 504,
-        "height": 14
-      },
-      "qx/decoration/Classic/colorselector-combined.gif": {
-        "resourcePath": "resourcePath",
-        "width": 46,
-        "height": 11
-      },
-      "qx/decoration/Classic/colorselector-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/colorselector/brightness-handle.gif": [
-            35,
-            11,
-            "gif",
-            "qx/decoration/Classic/colorselector-combined.gif",
-            -11,
-            0
-          ],
-          "qx/decoration/Classic/colorselector/huesaturation-handle.gif": [
-            11,
-            11,
-            "gif",
-            "qx/decoration/Classic/colorselector-combined.gif",
-            0,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/cursors-combined.gif": {
-        "resourcePath": "resourcePath",
-        "width": 71,
-        "height": 20
-      },
-      "qx/decoration/Classic/cursors-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/cursors/alias.gif": [
-            19,
-            15,
-            "gif",
-            "qx/decoration/Classic/cursors-combined.gif",
-            -52,
-            0
-          ],
-          "qx/decoration/Classic/cursors/copy.gif": [
-            19,
-            15,
-            "gif",
-            "qx/decoration/Classic/cursors-combined.gif",
-            -20,
-            0
-          ],
-          "qx/decoration/Classic/cursors/move.gif": [
-            13,
-            9,
-            "gif",
-            "qx/decoration/Classic/cursors-combined.gif",
-            -39,
-            0
-          ],
-          "qx/decoration/Classic/cursors/nodrop.gif": [
-            20,
-            20,
-            "gif",
-            "qx/decoration/Classic/cursors-combined.gif",
-            0,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/menu-combined.gif": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 7
-      },
-      "qx/decoration/Classic/menu-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/menu/checkbox-invert.gif": [
-            16,
-            7,
-            "gif",
-            "qx/decoration/Classic/menu-combined.gif",
-            -16,
-            0
-          ],
-          "qx/decoration/Classic/menu/checkbox.gif": [
-            16,
-            7,
-            "gif",
-            "qx/decoration/Classic/menu-combined.gif",
-            -32,
-            0
-          ],
-          "qx/decoration/Classic/menu/radiobutton-invert.gif": [
-            16,
-            5,
-            "gif",
-            "qx/decoration/Classic/menu-combined.gif",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/menu/radiobutton.gif": [
-            16,
-            5,
-            "gif",
-            "qx/decoration/Classic/menu-combined.gif",
-            -48,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/shadow-lr-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/shadow/shadow-l.png": [
-            15,
-            382,
-            "png",
-            "qx/decoration/Classic/shadow-lr-combined.png",
-            -15,
-            0
-          ],
-          "qx/decoration/Classic/shadow/shadow-r.png": [
-            15,
-            382,
-            "png",
-            "qx/decoration/Classic/shadow-lr-combined.png",
-            0,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/shadow-lr-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 382
-      },
-      "qx/decoration/Classic/shadow-small-lr-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/shadow/shadow-small-l.png": [
-            5,
-            136,
-            "png",
-            "qx/decoration/Classic/shadow-small-lr-combined.png",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/shadow/shadow-small-r.png": [
-            5,
-            136,
-            "png",
-            "qx/decoration/Classic/shadow-small-lr-combined.png",
-            -5,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/shadow-small-lr-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 136
-      },
-      "qx/decoration/Classic/shadow-small-tb-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/shadow/shadow-small-b.png": [
-            5,
-            5,
-            "png",
-            "qx/decoration/Classic/shadow-small-tb-combined.png",
-            0,
-            -25
-          ],
-          "qx/decoration/Classic/shadow/shadow-small-bl.png": [
-            5,
-            5,
-            "png",
-            "qx/decoration/Classic/shadow-small-tb-combined.png",
-            0,
-            -20
-          ],
-          "qx/decoration/Classic/shadow/shadow-small-br.png": [
-            5,
-            5,
-            "png",
-            "qx/decoration/Classic/shadow-small-tb-combined.png",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/shadow/shadow-small-t.png": [
-            5,
-            5,
-            "png",
-            "qx/decoration/Classic/shadow-small-tb-combined.png",
-            0,
-            -5
-          ],
-          "qx/decoration/Classic/shadow/shadow-small-tl.png": [
-            5,
-            5,
-            "png",
-            "qx/decoration/Classic/shadow-small-tb-combined.png",
-            0,
-            -15
-          ],
-          "qx/decoration/Classic/shadow/shadow-small-tr.png": [
-            5,
-            5,
-            "png",
-            "qx/decoration/Classic/shadow-small-tb-combined.png",
-            0,
-            -10
-          ]
-        }
-      },
-      "qx/decoration/Classic/shadow-small-tb-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 30
-      },
-      "qx/decoration/Classic/shadow-tb-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/shadow/shadow-b.png": [
-            15,
-            15,
-            "png",
-            "qx/decoration/Classic/shadow-tb-combined.png",
-            0,
-            -30
-          ],
-          "qx/decoration/Classic/shadow/shadow-bl.png": [
-            15,
-            15,
-            "png",
-            "qx/decoration/Classic/shadow-tb-combined.png",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/shadow/shadow-br.png": [
-            15,
-            15,
-            "png",
-            "qx/decoration/Classic/shadow-tb-combined.png",
-            0,
-            -60
-          ],
-          "qx/decoration/Classic/shadow/shadow-t.png": [
-            15,
-            15,
-            "png",
-            "qx/decoration/Classic/shadow-tb-combined.png",
-            0,
-            -75
-          ],
-          "qx/decoration/Classic/shadow/shadow-tl.png": [
-            15,
-            15,
-            "png",
-            "qx/decoration/Classic/shadow-tb-combined.png",
-            0,
-            -45
-          ],
-          "qx/decoration/Classic/shadow/shadow-tr.png": [
-            15,
-            15,
-            "png",
-            "qx/decoration/Classic/shadow-tb-combined.png",
-            0,
-            -15
-          ]
-        }
-      },
-      "qx/decoration/Classic/shadow-tb-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 90
-      },
-      "qx/decoration/Classic/table-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/table/ascending-invert.png": [
-            10,
-            10,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            -62,
-            0
-          ],
-          "qx/decoration/Classic/table/ascending.png": [
-            10,
-            10,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            -52,
-            0
-          ],
-          "qx/decoration/Classic/table/boolean-false.png": [
-            11,
-            11,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            -31,
-            0
-          ],
-          "qx/decoration/Classic/table/boolean-true.png": [
-            11,
-            11,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            -10,
-            0
-          ],
-          "qx/decoration/Classic/table/descending-invert.png": [
-            10,
-            10,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            -42,
-            0
-          ],
-          "qx/decoration/Classic/table/descending.png": [
-            10,
-            10,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/table/select-column-order.png": [
-            10,
-            9,
-            "png",
-            "qx/decoration/Classic/table-combined.png",
-            -21,
-            0
-          ]
-        }
-      },
-      "qx/decoration/Classic/table-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 72,
-        "height": 11
-      },
-      "qx/decoration/Classic/window-captionbar-buttons-combined.gif": {
-        "resourcePath": "resourcePath",
-        "width": 36,
-        "height": 9
-      },
-      "qx/decoration/Classic/window-captionbar-buttons-combined.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qx/decoration/Classic/window/close.gif": [
-            10,
-            9,
-            "gif",
-            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
-            0,
-            0
-          ],
-          "qx/decoration/Classic/window/maximize.gif": [
-            9,
-            9,
-            "gif",
-            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
-            -10,
-            0
-          ],
-          "qx/decoration/Classic/window/minimize.gif": [
-            9,
-            9,
-            "gif",
-            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
-            -19,
-            0
-          ],
-          "qx/decoration/Classic/window/restore.gif": [
-            8,
-            9,
-            "gif",
-            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
-            -28,
-            0
-          ]
-        }
       },
       "qx/decoration/Modern/app-header.png": {
         "resourcePath": "resourcePath",
@@ -5241,6 +4352,11 @@
         "width": 5,
         "height": 30
       },
+      "qx/decoration/Modern/shadow-tb-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 90
+      },
       "qx/decoration/Modern/shadow-tb-combined.meta": {
         "resourcePath": "resourcePath",
         "meta": {
@@ -5293,11 +4409,6 @@
             0
           ]
         }
-      },
-      "qx/decoration/Modern/shadow-tb-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 90
       },
       "qx/decoration/Modern/splitpane-knobs-combined.meta": {
         "resourcePath": "resourcePath",
@@ -6887,6 +5998,892 @@
       "qx/mobile/js/iscroll.min.js": {
         "resourcePath": "resourcePath"
       },
+      "qx/decoration/Classic/arrows-combined.gif": {
+        "resourcePath": "resourcePath",
+        "width": 124,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/arrows/down-invert.gif": [
+            7,
+            4,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -38,
+            0
+          ],
+          "qx/decoration/Classic/arrows/down-small-invert.gif": [
+            5,
+            3,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -87,
+            0
+          ],
+          "qx/decoration/Classic/arrows/down-small.gif": [
+            5,
+            3,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -53,
+            0
+          ],
+          "qx/decoration/Classic/arrows/down.gif": [
+            7,
+            4,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -113,
+            0
+          ],
+          "qx/decoration/Classic/arrows/forward-invert.gif": [
+            8,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -30,
+            0
+          ],
+          "qx/decoration/Classic/arrows/forward.gif": [
+            8,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -18,
+            0
+          ],
+          "qx/decoration/Classic/arrows/left-invert.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -92,
+            0
+          ],
+          "qx/decoration/Classic/arrows/left-small-invert.gif": [
+            3,
+            5,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -58,
+            0
+          ],
+          "qx/decoration/Classic/arrows/left-small.gif": [
+            3,
+            5,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -15,
+            0
+          ],
+          "qx/decoration/Classic/arrows/left.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -120,
+            0
+          ],
+          "qx/decoration/Classic/arrows/next-invert.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -80,
+            0
+          ],
+          "qx/decoration/Classic/arrows/next.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -109,
+            0
+          ],
+          "qx/decoration/Classic/arrows/previous-invert.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -69,
+            0
+          ],
+          "qx/decoration/Classic/arrows/previous.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -65,
+            0
+          ],
+          "qx/decoration/Classic/arrows/rewind-invert.gif": [
+            8,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -45,
+            0
+          ],
+          "qx/decoration/Classic/arrows/rewind.gif": [
+            8,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -101,
+            0
+          ],
+          "qx/decoration/Classic/arrows/right-invert.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -61,
+            0
+          ],
+          "qx/decoration/Classic/arrows/right-small-invert.gif": [
+            3,
+            5,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/arrows/right-small.gif": [
+            3,
+            5,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -84,
+            0
+          ],
+          "qx/decoration/Classic/arrows/right.gif": [
+            4,
+            7,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -26,
+            0
+          ],
+          "qx/decoration/Classic/arrows/up-invert.gif": [
+            7,
+            4,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -73,
+            0
+          ],
+          "qx/decoration/Classic/arrows/up-small-invert.gif": [
+            5,
+            3,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -96,
+            0
+          ],
+          "qx/decoration/Classic/arrows/up-small.gif": [
+            5,
+            3,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -3,
+            0
+          ],
+          "qx/decoration/Classic/arrows/up.gif": [
+            7,
+            4,
+            "gif",
+            "qx/decoration/Classic/arrows-combined.gif",
+            -8,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/checkbox-radiobutton-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/form/checkbox-checked-disabled.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -336,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-focused-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -28,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-focused.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -462,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-hovered-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -112,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-hovered.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -140,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -98,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-pressed-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -308,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked-pressed.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-checked.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -266,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-disabled.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -84,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-focused-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -476,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-focused.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -392,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-hovered-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -196,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-hovered.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -154,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -350,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-pressed-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -448,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox-pressed.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -70,
+            0
+          ],
+          "qx/decoration/Classic/form/checkbox.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -490,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-disabled.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -210,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-focused-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -406,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-focused.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -378,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-hovered-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -252,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-hovered.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -182,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -294,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-pressed-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -420,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked-pressed.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -56,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-checked.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -322,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-disabled.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -364,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-focused-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -434,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-focused.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -168,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-hovered-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -126,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-hovered.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -42,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -280,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-pressed-invalid.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -238,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton-pressed.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -14,
+            0
+          ],
+          "qx/decoration/Classic/form/radiobutton.png": [
+            14,
+            14,
+            "png",
+            "qx/decoration/Classic/checkbox-radiobutton-combined.png",
+            -224,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/checkbox-radiobutton-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 504,
+        "height": 14
+      },
+      "qx/decoration/Classic/colorselector-combined.gif": {
+        "resourcePath": "resourcePath",
+        "width": 46,
+        "height": 11
+      },
+      "qx/decoration/Classic/colorselector-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/colorselector/brightness-handle.gif": [
+            35,
+            11,
+            "gif",
+            "qx/decoration/Classic/colorselector-combined.gif",
+            -11,
+            0
+          ],
+          "qx/decoration/Classic/colorselector/huesaturation-handle.gif": [
+            11,
+            11,
+            "gif",
+            "qx/decoration/Classic/colorselector-combined.gif",
+            0,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/cursors-combined.gif": {
+        "resourcePath": "resourcePath",
+        "width": 71,
+        "height": 20
+      },
+      "qx/decoration/Classic/cursors-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/cursors/alias.gif": [
+            19,
+            15,
+            "gif",
+            "qx/decoration/Classic/cursors-combined.gif",
+            -52,
+            0
+          ],
+          "qx/decoration/Classic/cursors/copy.gif": [
+            19,
+            15,
+            "gif",
+            "qx/decoration/Classic/cursors-combined.gif",
+            -20,
+            0
+          ],
+          "qx/decoration/Classic/cursors/move.gif": [
+            13,
+            9,
+            "gif",
+            "qx/decoration/Classic/cursors-combined.gif",
+            -39,
+            0
+          ],
+          "qx/decoration/Classic/cursors/nodrop.gif": [
+            20,
+            20,
+            "gif",
+            "qx/decoration/Classic/cursors-combined.gif",
+            0,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/menu-combined.gif": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 7
+      },
+      "qx/decoration/Classic/menu-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/menu/checkbox-invert.gif": [
+            16,
+            7,
+            "gif",
+            "qx/decoration/Classic/menu-combined.gif",
+            -16,
+            0
+          ],
+          "qx/decoration/Classic/menu/checkbox.gif": [
+            16,
+            7,
+            "gif",
+            "qx/decoration/Classic/menu-combined.gif",
+            -32,
+            0
+          ],
+          "qx/decoration/Classic/menu/radiobutton-invert.gif": [
+            16,
+            5,
+            "gif",
+            "qx/decoration/Classic/menu-combined.gif",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/menu/radiobutton.gif": [
+            16,
+            5,
+            "gif",
+            "qx/decoration/Classic/menu-combined.gif",
+            -48,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/shadow-lr-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/shadow/shadow-l.png": [
+            15,
+            382,
+            "png",
+            "qx/decoration/Classic/shadow-lr-combined.png",
+            -15,
+            0
+          ],
+          "qx/decoration/Classic/shadow/shadow-r.png": [
+            15,
+            382,
+            "png",
+            "qx/decoration/Classic/shadow-lr-combined.png",
+            0,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/shadow-lr-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 382
+      },
+      "qx/decoration/Classic/shadow-small-lr-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/shadow/shadow-small-l.png": [
+            5,
+            136,
+            "png",
+            "qx/decoration/Classic/shadow-small-lr-combined.png",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/shadow/shadow-small-r.png": [
+            5,
+            136,
+            "png",
+            "qx/decoration/Classic/shadow-small-lr-combined.png",
+            -5,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/shadow-small-lr-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 136
+      },
+      "qx/decoration/Classic/shadow-small-tb-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/shadow/shadow-small-b.png": [
+            5,
+            5,
+            "png",
+            "qx/decoration/Classic/shadow-small-tb-combined.png",
+            0,
+            -25
+          ],
+          "qx/decoration/Classic/shadow/shadow-small-bl.png": [
+            5,
+            5,
+            "png",
+            "qx/decoration/Classic/shadow-small-tb-combined.png",
+            0,
+            -20
+          ],
+          "qx/decoration/Classic/shadow/shadow-small-br.png": [
+            5,
+            5,
+            "png",
+            "qx/decoration/Classic/shadow-small-tb-combined.png",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/shadow/shadow-small-t.png": [
+            5,
+            5,
+            "png",
+            "qx/decoration/Classic/shadow-small-tb-combined.png",
+            0,
+            -5
+          ],
+          "qx/decoration/Classic/shadow/shadow-small-tl.png": [
+            5,
+            5,
+            "png",
+            "qx/decoration/Classic/shadow-small-tb-combined.png",
+            0,
+            -15
+          ],
+          "qx/decoration/Classic/shadow/shadow-small-tr.png": [
+            5,
+            5,
+            "png",
+            "qx/decoration/Classic/shadow-small-tb-combined.png",
+            0,
+            -10
+          ]
+        }
+      },
+      "qx/decoration/Classic/shadow-small-tb-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 30
+      },
+      "qx/decoration/Classic/shadow-tb-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/shadow/shadow-b.png": [
+            15,
+            15,
+            "png",
+            "qx/decoration/Classic/shadow-tb-combined.png",
+            0,
+            -30
+          ],
+          "qx/decoration/Classic/shadow/shadow-bl.png": [
+            15,
+            15,
+            "png",
+            "qx/decoration/Classic/shadow-tb-combined.png",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/shadow/shadow-br.png": [
+            15,
+            15,
+            "png",
+            "qx/decoration/Classic/shadow-tb-combined.png",
+            0,
+            -60
+          ],
+          "qx/decoration/Classic/shadow/shadow-t.png": [
+            15,
+            15,
+            "png",
+            "qx/decoration/Classic/shadow-tb-combined.png",
+            0,
+            -75
+          ],
+          "qx/decoration/Classic/shadow/shadow-tl.png": [
+            15,
+            15,
+            "png",
+            "qx/decoration/Classic/shadow-tb-combined.png",
+            0,
+            -45
+          ],
+          "qx/decoration/Classic/shadow/shadow-tr.png": [
+            15,
+            15,
+            "png",
+            "qx/decoration/Classic/shadow-tb-combined.png",
+            0,
+            -15
+          ]
+        }
+      },
+      "qx/decoration/Classic/shadow-tb-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 90
+      },
+      "qx/decoration/Classic/table-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/table/ascending-invert.png": [
+            10,
+            10,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            -62,
+            0
+          ],
+          "qx/decoration/Classic/table/ascending.png": [
+            10,
+            10,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            -52,
+            0
+          ],
+          "qx/decoration/Classic/table/boolean-false.png": [
+            11,
+            11,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            -31,
+            0
+          ],
+          "qx/decoration/Classic/table/boolean-true.png": [
+            11,
+            11,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            -10,
+            0
+          ],
+          "qx/decoration/Classic/table/descending-invert.png": [
+            10,
+            10,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            -42,
+            0
+          ],
+          "qx/decoration/Classic/table/descending.png": [
+            10,
+            10,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/table/select-column-order.png": [
+            10,
+            9,
+            "png",
+            "qx/decoration/Classic/table-combined.png",
+            -21,
+            0
+          ]
+        }
+      },
+      "qx/decoration/Classic/table-combined.png": {
+        "resourcePath": "resourcePath",
+        "width": 72,
+        "height": 11
+      },
+      "qx/decoration/Classic/window-captionbar-buttons-combined.gif": {
+        "resourcePath": "resourcePath",
+        "width": 36,
+        "height": 9
+      },
+      "qx/decoration/Classic/window-captionbar-buttons-combined.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qx/decoration/Classic/window/close.gif": [
+            10,
+            9,
+            "gif",
+            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
+            0,
+            0
+          ],
+          "qx/decoration/Classic/window/maximize.gif": [
+            9,
+            9,
+            "gif",
+            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
+            -10,
+            0
+          ],
+          "qx/decoration/Classic/window/minimize.gif": [
+            9,
+            9,
+            "gif",
+            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
+            -19,
+            0
+          ],
+          "qx/decoration/Classic/window/restore.gif": [
+            8,
+            9,
+            "gif",
+            "qx/decoration/Classic/window-captionbar-buttons-combined.gif",
+            -28,
+            0
+          ]
+        }
+      },
       "qx/test/dynamicscriptloader/first.js": {
         "resourcePath": "resourcePath"
       },
@@ -6989,10 +6986,10 @@
       "qx/test/xmlhttp/get_content.php": {
         "resourcePath": "resourcePath"
       },
-      "qx/test/xmlhttp/invalid.xml": {
+      "qx/test/xmlhttp/loading.php": {
         "resourcePath": "resourcePath"
       },
-      "qx/test/xmlhttp/loading.php": {
+      "qx/test/xmlhttp/invalid.xml": {
         "resourcePath": "resourcePath"
       },
       "qx/test/xmlhttp/long_poll.php": {
@@ -7033,676 +7030,6 @@
       },
       "qx/website/scss/indigo.scss": {
         "resourcePath": "resourcePath"
-      },
-      "qx/decoration/Classic/arrows/down-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 7,
-        "height": 4
-      },
-      "qx/decoration/Classic/arrows/down-small-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 3
-      },
-      "qx/decoration/Classic/arrows/down-small.gif": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 3
-      },
-      "qx/decoration/Classic/arrows/down.gif": {
-        "resourcePath": "resourcePath",
-        "width": 7,
-        "height": 4
-      },
-      "qx/decoration/Classic/arrows/forward-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/forward.gif": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/left-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/left-small-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 5
-      },
-      "qx/decoration/Classic/arrows/left-small.gif": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 5
-      },
-      "qx/decoration/Classic/arrows/left.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/next-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/next.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/previous-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/previous.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/rewind-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/rewind.gif": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/right-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/right-small-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 5
-      },
-      "qx/decoration/Classic/arrows/right-small.gif": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 5
-      },
-      "qx/decoration/Classic/arrows/right.gif": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Classic/arrows/up-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 7,
-        "height": 4
-      },
-      "qx/decoration/Classic/arrows/up-small-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 3
-      },
-      "qx/decoration/Classic/arrows/up-small.gif": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 3
-      },
-      "qx/decoration/Classic/arrows/up.gif": {
-        "resourcePath": "resourcePath",
-        "width": 7,
-        "height": 4
-      },
-      "qx/decoration/Classic/colorselector/brightness-field.png": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 256
-      },
-      "qx/decoration/Classic/colorselector/brightness-handle.gif": {
-        "resourcePath": "resourcePath",
-        "width": 35,
-        "height": 11
-      },
-      "qx/decoration/Classic/colorselector/huesaturation-field.jpg": {
-        "resourcePath": "resourcePath",
-        "width": 256,
-        "height": 256
-      },
-      "qx/decoration/Classic/colorselector/huesaturation-handle.gif": {
-        "resourcePath": "resourcePath",
-        "width": 11,
-        "height": 11
-      },
-      "qx/decoration/Classic/cursors/alias.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 15
-      },
-      "qx/decoration/Classic/cursors/copy.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 15
-      },
-      "qx/decoration/Classic/cursors/move.gif": {
-        "resourcePath": "resourcePath",
-        "width": 13,
-        "height": 9
-      },
-      "qx/decoration/Classic/cursors/nodrop.gif": {
-        "resourcePath": "resourcePath",
-        "width": 20,
-        "height": 20
-      },
-      "qx/decoration/Classic/datechooser/last-month-invert.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/last-month.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/last-year-invert.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/last-year.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/next-month-invert.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/next-month.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/next-year-invert.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/datechooser/next-year.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/decoration/Classic/form/checkbox-checked-disabled.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-focused.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-hovered-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-pressed-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked-pressed.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-checked.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-disabled.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-focused.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-hovered-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-pressed-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-pressed.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined-disabled.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined-focused.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined-hovered-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox-undetermined.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/checkbox.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-disabled.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-focused.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-hovered-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-pressed-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked-pressed.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-checked.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-disabled.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-focused.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-hovered-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-pressed-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton-pressed.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/form/radiobutton.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Classic/menu/checkbox-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 7
-      },
-      "qx/decoration/Classic/menu/checkbox.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 7
-      },
-      "qx/decoration/Classic/menu/radiobutton-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 5
-      },
-      "qx/decoration/Classic/menu/radiobutton.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Classic/shadow/shadow-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Classic/shadow/shadow-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Classic/shadow/shadow-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 382
-      },
-      "qx/decoration/Classic/shadow/shadow-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 382
-      },
-      "qx/decoration/Classic/shadow/shadow-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 382
-      },
-      "qx/decoration/Classic/shadow/shadow-small-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-small-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-small-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-small-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 136
-      },
-      "qx/decoration/Classic/shadow/shadow-small-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 136
-      },
-      "qx/decoration/Classic/shadow/shadow-small-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 136
-      },
-      "qx/decoration/Classic/shadow/shadow-small-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-small-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-small-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Classic/shadow/shadow-small.png": {
-        "resourcePath": "resourcePath",
-        "width": 114,
-        "height": 146
-      },
-      "qx/decoration/Classic/shadow/shadow-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Classic/shadow/shadow-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Classic/shadow/shadow-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Classic/shadow/shadow.png": {
-        "resourcePath": "resourcePath",
-        "width": 381,
-        "height": 412
-      },
-      "qx/decoration/Classic/splitpane/knob-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 15
-      },
-      "qx/decoration/Classic/splitpane/knob-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 4
-      },
-      "qx/decoration/Classic/table/ascending-invert.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 10
-      },
-      "qx/decoration/Classic/table/ascending.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 10
-      },
-      "qx/decoration/Classic/table/boolean-false.png": {
-        "resourcePath": "resourcePath",
-        "width": 11,
-        "height": 11
-      },
-      "qx/decoration/Classic/table/boolean-true.png": {
-        "resourcePath": "resourcePath",
-        "width": 11,
-        "height": 11
-      },
-      "qx/decoration/Classic/table/descending-invert.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 10
-      },
-      "qx/decoration/Classic/table/descending.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 10
-      },
-      "qx/decoration/Classic/table/select-column-order.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 9
-      },
-      "qx/decoration/Classic/tree/minus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/tree/plus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/cross.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/cross_minus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/cross_plus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/end.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/end_minus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/end_plus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/line.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/only_minus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/only_plus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/start.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/start_minus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/treevirtual/start_plus.gif": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 16
-      },
-      "qx/decoration/Classic/window/close.gif": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 9
-      },
-      "qx/decoration/Classic/window/maximize.gif": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Classic/window/minimize.gif": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Classic/window/restore.gif": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 9
       },
       "qx/decoration/Indigo/font/JosefinSlab-SemiBold.ttf": {
         "resourcePath": "resourcePath"
@@ -9991,6 +9318,676 @@
       "qx/mobile/scss/ui/_toolbar.scss": {
         "resourcePath": "resourcePath"
       },
+      "qx/decoration/Classic/arrows/down-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 7,
+        "height": 4
+      },
+      "qx/decoration/Classic/arrows/down-small-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 3
+      },
+      "qx/decoration/Classic/arrows/down-small.gif": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 3
+      },
+      "qx/decoration/Classic/arrows/down.gif": {
+        "resourcePath": "resourcePath",
+        "width": 7,
+        "height": 4
+      },
+      "qx/decoration/Classic/arrows/forward-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/forward.gif": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/left-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/left-small-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 5
+      },
+      "qx/decoration/Classic/arrows/left-small.gif": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 5
+      },
+      "qx/decoration/Classic/arrows/left.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/next-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/next.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/previous-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/previous.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/rewind-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/rewind.gif": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/right-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/right-small-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 5
+      },
+      "qx/decoration/Classic/arrows/right-small.gif": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 5
+      },
+      "qx/decoration/Classic/arrows/right.gif": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/up-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 7,
+        "height": 4
+      },
+      "qx/decoration/Classic/arrows/up-small-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 3
+      },
+      "qx/decoration/Classic/arrows/up-small.gif": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 3
+      },
+      "qx/decoration/Classic/arrows/up.gif": {
+        "resourcePath": "resourcePath",
+        "width": 7,
+        "height": 4
+      },
+      "qx/decoration/Classic/colorselector/brightness-field.png": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 256
+      },
+      "qx/decoration/Classic/colorselector/brightness-handle.gif": {
+        "resourcePath": "resourcePath",
+        "width": 35,
+        "height": 11
+      },
+      "qx/decoration/Classic/colorselector/huesaturation-field.jpg": {
+        "resourcePath": "resourcePath",
+        "width": 256,
+        "height": 256
+      },
+      "qx/decoration/Classic/colorselector/huesaturation-handle.gif": {
+        "resourcePath": "resourcePath",
+        "width": 11,
+        "height": 11
+      },
+      "qx/decoration/Classic/cursors/alias.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 15
+      },
+      "qx/decoration/Classic/cursors/copy.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 15
+      },
+      "qx/decoration/Classic/cursors/move.gif": {
+        "resourcePath": "resourcePath",
+        "width": 13,
+        "height": 9
+      },
+      "qx/decoration/Classic/cursors/nodrop.gif": {
+        "resourcePath": "resourcePath",
+        "width": 20,
+        "height": 20
+      },
+      "qx/decoration/Classic/datechooser/last-month-invert.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/last-month.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/last-year-invert.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/last-year.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/next-month-invert.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/next-month.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/next-year-invert.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/datechooser/next-year.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/decoration/Classic/form/checkbox-checked-disabled.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-focused-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-focused.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-hovered-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-pressed-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked-pressed.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-checked.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-disabled.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-focused-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-focused.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-hovered-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-pressed-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-pressed.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined-disabled.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined-focused-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined-focused.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined-hovered-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox-undetermined.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/checkbox.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-disabled.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-focused-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-focused.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-hovered-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-pressed-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked-pressed.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-checked.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-disabled.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-focused-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-focused.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-hovered-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-pressed-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton-pressed.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/form/radiobutton.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Classic/menu/checkbox-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 7
+      },
+      "qx/decoration/Classic/menu/checkbox.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 7
+      },
+      "qx/decoration/Classic/menu/radiobutton-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 5
+      },
+      "qx/decoration/Classic/menu/radiobutton.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Classic/shadow/shadow-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Classic/shadow/shadow-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Classic/shadow/shadow-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 382
+      },
+      "qx/decoration/Classic/shadow/shadow-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 382
+      },
+      "qx/decoration/Classic/shadow/shadow-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 382
+      },
+      "qx/decoration/Classic/shadow/shadow-small-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-small-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-small-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-small-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 136
+      },
+      "qx/decoration/Classic/shadow/shadow-small-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 136
+      },
+      "qx/decoration/Classic/shadow/shadow-small-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 136
+      },
+      "qx/decoration/Classic/shadow/shadow-small-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-small-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-small-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Classic/shadow/shadow-small.png": {
+        "resourcePath": "resourcePath",
+        "width": 114,
+        "height": 146
+      },
+      "qx/decoration/Classic/shadow/shadow-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Classic/shadow/shadow-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Classic/shadow/shadow-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Classic/shadow/shadow.png": {
+        "resourcePath": "resourcePath",
+        "width": 381,
+        "height": 412
+      },
+      "qx/decoration/Classic/splitpane/knob-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 15
+      },
+      "qx/decoration/Classic/splitpane/knob-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 4
+      },
+      "qx/decoration/Classic/table/ascending-invert.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 10
+      },
+      "qx/decoration/Classic/table/ascending.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 10
+      },
+      "qx/decoration/Classic/table/boolean-false.png": {
+        "resourcePath": "resourcePath",
+        "width": 11,
+        "height": 11
+      },
+      "qx/decoration/Classic/table/boolean-true.png": {
+        "resourcePath": "resourcePath",
+        "width": 11,
+        "height": 11
+      },
+      "qx/decoration/Classic/table/descending-invert.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 10
+      },
+      "qx/decoration/Classic/table/descending.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 10
+      },
+      "qx/decoration/Classic/table/select-column-order.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 9
+      },
+      "qx/decoration/Classic/tree/minus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/tree/plus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/cross.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/cross_minus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/cross_plus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/end.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/end_minus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/end_plus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/line.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/only_minus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/only_plus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/start.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/start_minus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/treevirtual/start_plus.gif": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 16
+      },
+      "qx/decoration/Classic/window/close.gif": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 9
+      },
+      "qx/decoration/Classic/window/maximize.gif": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Classic/window/minimize.gif": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Classic/window/restore.gif": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 9
+      },
       "qx/website/scss/common/_all.scss": {
         "resourcePath": "resourcePath"
       },
@@ -10032,6 +10029,496 @@
       },
       "qx/website/scss/ui/_widget.scss": {
         "resourcePath": "resourcePath"
+      },
+      "qx/icon/Oxygen/128/actions/address-book-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/application-exit.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/appointment-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/check-spelling.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/contact-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-apply.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-cancel.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-ok.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-open-recent.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-open.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-print-preview.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-print.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-properties.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-revert.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-save-as.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-save.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-clear.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-copy.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-cut.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-delete.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-find.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-paste.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-redo.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-select-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-undo.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/folder-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-center.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-fill.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-bold.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-direction-ltr.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-direction-rtl.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-italic.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-strikethrough.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-underline.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-bottom.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-down.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-first.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-home.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-last.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-next.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-previous.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-up.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-top.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/help-about.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/help-contents.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/help-faq.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/insert-image.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/insert-link.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/insert-text.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/list-add.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/list-remove.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-important.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-unread.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-receive.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-reply-sender.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-eject.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-playback-pause.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-record.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-seek-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-seek-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-skip-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-skip-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-flip-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-flip-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-rotate-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-rotate-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/process-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-log-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-run.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-search.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-shutdown.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-refresh.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-restore.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-sort-ascending.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-sort-descending.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/window-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/window-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-fit-best.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-in.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-original.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
       },
       "qx/icon/Oxygen/128/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
@@ -10623,17 +11110,17 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/status/dialog-warning.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/status/image-loading.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/status/image-missing.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/status/dialog-warning.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11028,12 +11515,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/media-playback-stop.png": {
+      "qx/icon/Oxygen/16/actions/media-record.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/media-record.png": {
+      "qx/icon/Oxygen/16/actions/media-playback-stop.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11143,12 +11630,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/zoom-in.png": {
+      "qx/icon/Oxygen/16/actions/zoom-original.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/zoom-original.png": {
+      "qx/icon/Oxygen/16/actions/zoom-in.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11483,12 +11970,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/computer.png": {
+      "qx/icon/Oxygen/16/devices/camera-web.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/camera-web.png": {
+      "qx/icon/Oxygen/16/devices/computer.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11503,12 +11990,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/input-keyboard.png": {
+      "qx/icon/Oxygen/16/devices/drive-optical.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/drive-optical.png": {
+      "qx/icon/Oxygen/16/devices/input-keyboard.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11533,12 +12020,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/network-wired.png": {
+      "qx/icon/Oxygen/16/devices/network-wireless.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/network-wireless.png": {
+      "qx/icon/Oxygen/16/devices/network-wired.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11718,12 +12205,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/places/user-trash-full.png": {
+      "qx/icon/Oxygen/16/places/user-home.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/places/user-home.png": {
+      "qx/icon/Oxygen/16/places/user-trash-full.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12313,12 +12800,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/internet-web-browser.png": {
+      "qx/icon/Oxygen/22/apps/internet-transfer.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/internet-transfer.png": {
+      "qx/icon/Oxygen/22/apps/internet-web-browser.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12598,12 +13085,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/battery.png": {
+      "qx/icon/Oxygen/22/devices/camera-photo.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/camera-photo.png": {
+      "qx/icon/Oxygen/22/devices/battery.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12653,12 +13140,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/multimedia-player.png": {
+      "qx/icon/Oxygen/22/devices/network-wired.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/network-wired.png": {
+      "qx/icon/Oxygen/22/devices/multimedia-player.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12988,12 +13475,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/actions/document-print.png": {
+      "qx/icon/Oxygen/32/actions/document-properties.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/actions/document-properties.png": {
+      "qx/icon/Oxygen/32/actions/document-print.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -13373,12 +13860,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/actions/view-sort-descending.png": {
+      "qx/icon/Oxygen/32/actions/window-close.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/actions/window-close.png": {
+      "qx/icon/Oxygen/32/actions/view-sort-descending.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14618,12 +15105,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/apps/office-layout.png": {
+      "qx/icon/Oxygen/48/apps/office-presentation.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/apps/office-presentation.png": {
+      "qx/icon/Oxygen/48/apps/office-layout.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15008,12 +15495,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/mimetypes/media-audio.png": {
+      "qx/icon/Oxygen/48/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/mimetypes/media-image.png": {
+      "qx/icon/Oxygen/48/mimetypes/media-audio.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15348,12 +15835,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/format-text-bold.png": {
+      "qx/icon/Oxygen/64/actions/format-text-direction-ltr.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/format-text-direction-ltr.png": {
+      "qx/icon/Oxygen/64/actions/format-text-bold.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -18543,11 +19030,6 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/application-exit.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Tango/22/actions/appointment-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
@@ -18779,6 +19261,11 @@
         "height": 22
       },
       "qx/icon/Tango/22/actions/go-previous.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -22028,12 +22515,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/edit-find.png": {
+      "qx/icon/Tango/64/actions/edit-delete.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/edit-delete.png": {
+      "qx/icon/Tango/64/actions/edit-find.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22078,12 +22565,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/format-justify-left.png": {
+      "qx/icon/Tango/64/actions/format-justify-fill.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/format-justify-fill.png": {
+      "qx/icon/Tango/64/actions/format-justify-left.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22218,12 +22705,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/mail-mark-read.png": {
+      "qx/icon/Tango/64/actions/mail-mark-junk.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/mail-mark-junk.png": {
+      "qx/icon/Tango/64/actions/mail-mark-read.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22288,12 +22775,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/media-skip-backward.png": {
+      "qx/icon/Tango/64/actions/media-seek-forward.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/actions/media-seek-forward.png": {
+      "qx/icon/Tango/64/actions/media-skip-backward.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22438,12 +22925,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/media-audio-player.png": {
+      "qx/icon/Tango/64/apps/internet-web-browser.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/internet-web-browser.png": {
+      "qx/icon/Tango/64/apps/media-audio-player.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22483,12 +22970,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/office-layout.png": {
+      "qx/icon/Tango/64/apps/office-graphics.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/office-graphics.png": {
+      "qx/icon/Tango/64/apps/office-layout.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22503,12 +22990,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/office-web.png": {
+      "qx/icon/Tango/64/apps/office-spreadsheet.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/office-spreadsheet.png": {
+      "qx/icon/Tango/64/apps/office-web.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22643,12 +23130,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/utilities-text-editor.png": {
+      "qx/icon/Tango/64/apps/utilities-terminal.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/utilities-terminal.png": {
+      "qx/icon/Tango/64/apps/utilities-text-editor.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22688,12 +23175,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/categories/science.png": {
+      "qx/icon/Tango/64/categories/office.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/categories/office.png": {
+      "qx/icon/Tango/64/categories/science.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22704,106 +23191,6 @@
         "height": 64
       },
       "qx/icon/Tango/64/categories/utilities.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/audio-card.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/audio-input-microphone.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/battery.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/camera-photo.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/camera-web.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/computer.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/display.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/drive-optical.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/drive-harddisk.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/input-keyboard.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/input-mouse.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/media-flash.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/media-optical.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/multimedia-player.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/network-wired.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/network-wireless.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/pda.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/phone.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/printer.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/devices/scanner.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22878,12 +23265,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/media-image.png": {
+      "qx/icon/Tango/64/mimetypes/media-audio.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/media-audio.png": {
+      "qx/icon/Tango/64/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22898,12 +23285,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/office-document.png": {
+      "qx/icon/Tango/64/mimetypes/office-contact.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/office-contact.png": {
+      "qx/icon/Tango/64/mimetypes/office-document.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22998,12 +23385,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/status/image-missing.png": {
+      "qx/icon/Tango/64/status/image-loading.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/status/image-loading.png": {
+      "qx/icon/Tango/64/status/image-missing.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23018,12 +23405,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/status/security-high.png": {
+      "qx/icon/Tango/64/status/mail-unread.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/status/mail-unread.png": {
+      "qx/icon/Tango/64/status/security-high.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23044,495 +23431,105 @@
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
       },
-      "qx/icon/Oxygen/128/actions/address-book-new.png": {
+      "qx/icon/Tango/64/devices/audio-card.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/application-exit.png": {
+      "qx/icon/Tango/64/devices/audio-input-microphone.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/appointment-new.png": {
+      "qx/icon/Tango/64/devices/battery.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
+      "qx/icon/Tango/64/devices/camera-photo.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/check-spelling.png": {
+      "qx/icon/Tango/64/devices/camera-web.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/contact-new.png": {
+      "qx/icon/Tango/64/devices/computer.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/dialog-apply.png": {
+      "qx/icon/Tango/64/devices/display.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/dialog-cancel.png": {
+      "qx/icon/Tango/64/devices/drive-harddisk.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/dialog-close.png": {
+      "qx/icon/Tango/64/devices/drive-optical.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/dialog-ok.png": {
+      "qx/icon/Tango/64/devices/input-keyboard.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-new.png": {
+      "qx/icon/Tango/64/devices/input-mouse.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-open-recent.png": {
+      "qx/icon/Tango/64/devices/media-flash.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-open.png": {
+      "qx/icon/Tango/64/devices/media-optical.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-print-preview.png": {
+      "qx/icon/Tango/64/devices/multimedia-player.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-print.png": {
+      "qx/icon/Tango/64/devices/network-wired.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-revert.png": {
+      "qx/icon/Tango/64/devices/network-wireless.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-properties.png": {
+      "qx/icon/Tango/64/devices/pda.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-save-as.png": {
+      "qx/icon/Tango/64/devices/phone.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/document-save.png": {
+      "qx/icon/Tango/64/devices/printer.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       },
-      "qx/icon/Oxygen/128/actions/edit-clear.png": {
+      "qx/icon/Tango/64/devices/scanner.png": {
         "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-cut.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-delete.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-copy.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-find.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-paste.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-redo.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-select-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-undo.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/folder-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-center.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-fill.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-bold.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-direction-ltr.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-italic.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-direction-rtl.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-strikethrough.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-underline.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-bottom.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-down.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-first.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-home.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-last.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-next.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-top.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-previous.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-up.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-about.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-contents.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-faq.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-image.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-link.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-text.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/list-add.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/list-remove.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-unread.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-receive.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-reply-sender.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-eject.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-pause.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-record.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-seek-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-seek-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-skip-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-skip-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-flip-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-rotate-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-flip-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-rotate-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/process-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-log-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-run.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-search.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-shutdown.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-refresh.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-restore.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-sort-ascending.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-sort-descending.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/window-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/window-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-fit-best.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-in.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-original.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
+        "width": 64,
+        "height": 64
       }
     }
   }

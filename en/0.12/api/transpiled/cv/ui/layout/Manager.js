@@ -7,6 +7,7 @@
       },
       "cv.TemplateEngine": {},
       "cv.Config": {},
+      "qx.core.Init": {},
       "cv.ui.structure.WidgetFactory": {},
       "cv.util.Tree": {}
     }
@@ -94,10 +95,14 @@
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
         var left = document.querySelector('#navbarLeft');
-        var leftRect = left.getBoundingClientRect();
-        var widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none' ? Math.round(leftRect.right - leftRect.left) : 0;
+        var widthNavbarLeft = 0;
 
-        if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice) {
+        if (left) {
+          var leftRect = left.getBoundingClientRect();
+          widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none' ? Math.round(leftRect.right - leftRect.left) : 0;
+        }
+
+        if (widthNavbarLeft >= bodyWidth || qx.core.Init.getApplication().getMobile()) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           // OR: we have a mobile device where the nav bar is floating above the other content
@@ -105,10 +110,14 @@
         }
 
         var right = document.querySelector('#navbarRight');
-        var rightRect = right.getBoundingClientRect();
-        var widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none' ? Math.round(rightRect.right - rightRect.left) : 0;
+        var widthNavbarRight = 0;
 
-        if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
+        if (right) {
+          var rightRect = right.getBoundingClientRect();
+          widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none' ? Math.round(rightRect.right - rightRect.left) : 0;
+        }
+
+        if (widthNavbarRight >= bodyWidth || qx.core.Init.getApplication().getMobile()) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           // OR: we have a mobile device where the nav bar is floating above the other content
@@ -136,22 +145,26 @@
       getAvailableHeight: function getAvailableHeight() {
         var windowHeight = document.documentElement.clientHeight;
         this.currentPageUnavailableHeight = 0;
+        var emptyRect = {
+          top: 0,
+          bottom: 0
+        };
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
         var topNav = document.querySelector('#navbarTop');
         var top = document.querySelector('#top');
         var bottomNav = document.querySelector('#navbarBottom');
         var bottom = document.querySelector('#bottom');
-        var topNavDisplay = window.getComputedStyle(topNav)['display'];
-        var topDisplay = window.getComputedStyle(top)['display'];
-        var bottomNavDisplay = window.getComputedStyle(bottomNav)['display'];
-        var bottomDisplay = window.getComputedStyle(bottom)['display'];
-        var topRect = top.getBoundingClientRect();
+        var topNavDisplay = topNav ? window.getComputedStyle(topNav)['display'] : 'none';
+        var topDisplay = top ? window.getComputedStyle(top)['display'] : 'none';
+        var bottomNavDisplay = bottomNav ? window.getComputedStyle(bottomNav)['display'] : 'none';
+        var bottomDisplay = bottom ? window.getComputedStyle(bottom)['display'] : 'none';
+        var topRect = top ? top.getBoundingClientRect() : emptyRect;
         var topHeight = Math.round(topRect.bottom - topRect.top);
-        var topNavRect = topNav.getBoundingClientRect();
+        var topNavRect = topNav ? topNav.getBoundingClientRect() : emptyRect;
         var topNavHeight = Math.round(topNavRect.bottom - topNavRect.top);
-        var bottomNavRect = bottomNav.getBoundingClientRect();
+        var bottomNavRect = bottomNav ? bottomNav.getBoundingClientRect() : emptyRect;
         var bottomNavHeight = Math.round(bottomNavRect.bottom - bottomNavRect.top);
-        var bottomRect = bottom.getBoundingClientRect();
+        var bottomRect = bottom ? bottom.getBoundingClientRect() : emptyRect;
         var bottomHeight = Math.round(bottomRect.bottom - bottomRect.top);
         var nav_pathRect = document.querySelector('.nav_path').getBoundingClientRect();
         var navPathHeight = Math.round(nav_pathRect.bottom - nav_pathRect.top);
@@ -306,4 +319,4 @@
   cv.ui.layout.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1643663982818
+//# sourceMappingURL=Manager.js.map?dt=1644052395747

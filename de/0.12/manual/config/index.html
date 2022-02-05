@@ -138,8 +138,8 @@ Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibba
 <p>Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:</p>
 <ul class="simple">
-<li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum „/var/www/visu…“ des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
-<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) „umlenken“.</li>
+<li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Verzeichnisbaum „/var/www/visu…“ des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
+<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den möglicherweise parallel laufenden Webserver (z.B. Apache oder Lighttpd) „umlenken“.</li>
 <li>Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in „/usr/share/openhab/webapps/visu…“ installiert.</li>
 <li>Wurde openHAB manuell z.B. in „/opt/openHAB“ installiert, wird die CometVisu manuell in „/opt/openhab/www/visu…“ installiert.</li>
 </ul>
@@ -165,7 +165,7 @@ sollte man die Seite neu laden und den Browser-Cache löschen.</p>
 <p>Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
 eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
 Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
-Darstellung) auch mit dem Link „Check Config“ in der Fusszeile oder
+Darstellung) auch mit dem Link „Check Config“ in der Fußzeile oder
 durch Anhängen von check_config.php an den URL erzwingen.</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -185,7 +185,7 @@ Funktionsweise des Widget detaillierter festgelegt werden.</p>
 <ul class="simple">
 <li>Bedienung (hier z.B. das switch-Widget zum Schalten),</li>
 <li>Darstellung (diese haben ausschließlich informative Funktion),</li>
-<li>Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiednen Seiten der Visualisierung (Sonstige Widgets)</li>
+<li>Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiedenen Seiten der Visualisierung (Sonstige Widgets)</li>
 </ul>
 <p>unterschieden.</p>
 <p>Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
@@ -217,10 +217,10 @@ Tags umschlossen aufgenommen werden:</p>
 <li>Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten
 zurück zu navigieren .</li>
 <li>Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)</li>
-<li>Das Navbar-Widget in Verbingung mit Pagejump-Widgets</li>
+<li>Das Navbar-Widget in Verbindung mit Pagejump-Widgets</li>
 <li>Das <a class="reference internal" href="widgets/pagejump/index.html#pagejump"><span class="std std-ref">Pagejump-Widget</span></a> erlaubt den Aufruf einer beliebigen Unterseite.</li>
 <li>Das <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group-Widget</span></a> kann mit der Option <code class="docutils literal notranslate"><span class="pre">target=</span></code> ebenfalls eine beliebige Unterseite aufrufen.</li>
-<li>Eine Besonderheit ist der <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden.</li>
+<li>Eine Besonderheit ist der <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> am unteren Bildschirmrand. Von dort können zB. externe URL aufgerufen werden.</li>
 </ul>
 <div class="figure align-default" id="id2">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
@@ -270,13 +270,13 @@ Damit kann ein „Responsive Design“ realisiert werden, dass sich an die Displ
 aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufes, sondern dynamisch
 zB. auch beim Drehen des Endgerätes vom Quer- ins Hochformat bzw. beim Ändern der Fenstergröße am PC.</p>
 <p>Innerhalb der Widgets stehen noch verschiedene Attribute wie <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, etc. zur Verfügung. Damit kann
-die Größe des Widgetinhaltes (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.</p>
+die Größe des Widgetinhalts (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.</p>
 <p>Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:</p>
 <div class="toctree-wrapper compound">
 </div>
 <ul class="simple">
 <li><a class="reference internal" href="layout.html"><span class="doc">Layout</span></a> legt die Größe und Anordnung der Widgets fest</li>
-<li><a class="reference internal" href="size-attributes.html"><span class="doc">Width und Height</span></a> beeinflusst die Größe des Widgetinhaltes</li>
+<li><a class="reference internal" href="size-attributes.html"><span class="doc">Width und Height</span></a> beeinflusst die Größe des Widgetinhalts</li>
 </ul>
 </div>
 <div class="section" id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
@@ -293,7 +293,7 @@ Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für
 Fensterkontakte)</li>
 <li><a class="reference internal" href="styling.html"><span class="doc">Styling</span></a> erlaubt das wertabhängige
 Färben von Werten (z.B. An in rot und Aus in Grün)</li>
-<li><a class="reference internal" href="flavour.html"><span class="doc">Flavour</span></a> ermöglich in einigen Designs
+<li><a class="reference internal" href="flavour.html"><span class="doc">Flavour</span></a> ermöglicht in einigen Designs
 für einige Widgets noch zusätzliche Optionen.</li>
 </ul>
 </div>
@@ -319,7 +319,7 @@ beschrieben werden.</p>
 </div>
 <div class="section" id="cometvisu-beispiele">
 <h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Hier befindes sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.</p>
+<p>Hier befindet sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/haegar80.html">CometVisu von haegar80 (Metal)</a></li>

@@ -109,7 +109,7 @@
 <h1>Hilf dem CometVisu Projekt<a class="headerlink" href="#hilf-dem-cometvisu-projekt" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die Mitarbeit am CometVisu Projekt ist problemlos möglich und auch höchst willkommen!
 Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bugfixes beitragen möchten, sondern
-auch Anwender, die ihre eigenen Erfahrungen in die Verbesserung der Dokumentation einfliessen lassen möchten.</p>
+auch Anwender, die ihre eigenen Erfahrungen in die Verbesserung der Dokumentation einfließen lassen möchten.</p>
 <div class="section" id="allgemeine-vorbereitungen">
 <h2>Allgemeine Vorbereitungen<a class="headerlink" href="#allgemeine-vorbereitungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Grundsätzlich gibt es keinen Unterschied in der Vorgehensweise, zwischen Änderungen am Sourcecode und Änderungen an
@@ -124,7 +124,7 @@ Schritte müssen einmalig gemacht werden.</p>
 <li>Auf diese Seite gehen <a class="reference external" href="https://github.com/CometVisu/CometVisu">https://github.com/CometVisu/CometVisu</a></li>
 <li>Auf den „Fork“-Button oben rechts klicken und den Anweisungen folgen</li>
 </ol>
-<p>Damit hat man eine private Kopie des CometVisu-Repositories erstellt in dem man nach belieben eigene Ändungen vornehmen kann.
+<p>Damit hat man eine private Kopie des CometVisu-Repositories erstellt in dem man nach belieben eigene Änderungen vornehmen kann.
 Natürlich ist es einfacher, wenn man die Dateien auf seinem lokalen Rechner hat um sie dort bearbeiten zu können.
 Dazu muss man seine private Kopie des CometVisu-Repositories <em>clonen</em>. Zum lokalen Arbeiten mit den Dateien braucht man einen
 <em>git client</em>. Diesen gibt es z.B. für die Kommandozeile aber auch in diversen grafischen Ausführungen. Da die Vorgehensweisen
@@ -168,7 +168,7 @@ Auf der folgenden Seite <em>Comparing changes</em> rechts neben dem Button <em>h
 sich der Button <em>compare: &lt;branch-name&gt;</em>. Drauf klicken und den Branch mit den Änderungen auswählen.
 Dann bekommt man nochmal eine Übersicht mit den Änderungen und kann auf den grünen Button namens
 <em>Create pull request</em> (grüner Button oben links) klicken.
-Dann kann man nochmal Beschreiben, welche Änderungen der Pull-Request beeinhaltet.
+Dann kann man nochmal Beschreiben, welche Änderungen der Pull-Request beinhaltet.
 In der Regel ist das aber bereits ausreichend vorausgefüllt und man kann durch klicken auf
 „Create pull request“ (grüner Button unten rechts). Damit ist der Pull-Request erstellt</li>
 </ol>
@@ -177,7 +177,7 @@ Außerdem werden einige automatisierte Checks auf dem Pull-Request ausgeführt u
 Sollte alles in Ordnung sein, wird der Pull-Request vom Maintainer <em>gemerged</em> und damit sind die Änderungen
 Teil des CometVisu-Projekts. Sollte der Maintainer Verbesserungsvorschläge haben, wird er dies durch Kommentare
 im Pull-Request tun. Ist dies der Fall, kommt nun der Vorteil des im Schritt 1. erstellen extra Branches zum Tragen.
-Man muss nähmlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
+Man muss nämlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
 Damit sind die Änderungen automatisch Teil des vorhandenen Pull-Requests.</p>
 <p>Sind alle Änderungen abgestimmt und übernommen worden, kann der Branch gelöscht werden.
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-D</span> <span class="pre">name-des-branches</span></code></p>
@@ -192,7 +192,7 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 <h3>Über github.com<a class="headerlink" href="#uber-github-com" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Um die von anderen Entwicklern <em>gemergeden</em> Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request
 vom privaten Repository aus gemacht werden. In der Zeile <em>This branch is … commits ahead of CometVisu:develop.</em> zeigt
-an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum <em>Pull Request</em>,
+an, wie viele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum <em>Pull Request</em>,
 welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository <em>gemerged</em> werden können.</p>
 <div class="figure align-default" id="id5">
 <img alt="../_images/pull_request_sync.png" src="../_images/pull_request_sync.png" />
@@ -263,7 +263,7 @@ git pull
 origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
-<p>Das bedeuted, dass git beim Aktualisieren (<em>fetch</em>, <em>pull</em>) und auch beim <em>pushen</em> den Fork des Users auf github benutzt.
+<p>Das bedeutet, dass git beim Aktualisieren (<em>fetch</em>, <em>pull</em>) und auch beim <em>pushen</em> den Fork des Users auf github benutzt.
 Man möchte nun aber möglichst einfach Änderungen auf dem Haupt-Repository in den lokalen Klon laden. Dazu ändert man die
 <em>fetch</em> URL des remotes mit folgendem Befehl: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span> <span class="pre">origin</span> <span class="pre">git&#64;github.com:CometVisu/CometVisu.git</span></code>.
 Danach sollte <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> folgende Ausgabe liefern:</p>
@@ -271,7 +271,7 @@ Danach sollte <code class="docutils literal notranslate"><span class="pre">git</
 origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
-<p>Damit sind die Vorraussetzungen erfüllt und man kann seinen lokalen <em>develop</em> Branch (dieser enthält die neuesten Weiterenwicklungen)
+<p>Damit sind die Voraussetzungen erfüllt und man kann seinen lokalen <em>develop</em> Branch (dieser enthält die neuesten Weiterentwicklungen)
 ganz einfach durch ein <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> aktualisieren.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
@@ -375,7 +375,7 @@ Extension empfohlen.</p>
 </div>
 <p>Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
 <p>Damit die Live Preview funktioniert muss Python installiert sein.
-Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
+Eine Anleitung um die nötigen Voraussetzungen zu schaffen findet man hier:
 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a>.
 Um die erforderlichen Tools zu installieren, den Befehl <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> im
 CometVisu Verzeichnis ausführen.</p>
@@ -408,7 +408,7 @@ korrekte Vorschau nicht angezeigt.</p>
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
 <li>Beschreibung der Grundstruktur, wo was zu finden ist.</li>
-<li>Einführung ins Build-Systemmit <em>grunt</em></li>
+<li>Einführung ins Build-System mit <em>grunt</em></li>
 <li>Style-Guide</li>
 <li>JSDoc inkl. widget-examples</li>
 <li></li>
@@ -454,7 +454,7 @@ Neben dem automatischen Download der Datei, wird der Inhalt ebenfalls auf der Ko
 ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.</p>
 </div>
 <p>Die Replay-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
-(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverstanden sein diese Daten zu veröffentlichen.
 Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
 sensiblen Daten enthält.
 Der große Vorteil dieser replay-Dateien ist aber, dass die Entwickler beim Abspielen eine originalgetreue

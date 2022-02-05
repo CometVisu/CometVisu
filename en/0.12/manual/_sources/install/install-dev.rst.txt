@@ -270,7 +270,7 @@ And the preview also:
     /var/www/visu_git/config/visu_config_previewtemp.xml
 
 Now the Demo-Visu is under ``http://wiregatexxx/visu_git/`` and the
-Visu-Editor is under ``http://wiregateXXX/visu_git/editor/`` availible.
+Visu-Editor is under ``http://wiregateXXX/visu_git/editor/`` available.
 
 .. IMPORTANT::
 

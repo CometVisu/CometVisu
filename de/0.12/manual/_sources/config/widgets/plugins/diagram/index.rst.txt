@@ -132,7 +132,7 @@ eine ``consolidationFunction`` gebildet. Möglich ist:
 ``DIFFERENCE_PERCENTILE_90`` [1]_  Differenz des 90% Percentils des jeweiligen Zeitbereichs
 ``DIFFERENCE_PERCENTILE_95`` [1]_  Differenz des 95% Percentils des jeweiligen Zeitbereichs
 ``DIFFERENCE_PERCENTILE_99`` [1]_  Differenz des 99% Percentils des jeweiligen Zeitbereichs
-``ELAPSED``                        Zeit seit dem letzen Messwert (ignoriert ``resolution`` Attribut)
+``ELAPSED``                        Zeit seit dem letzten Messwert (ignoriert ``resolution`` Attribut)
 ``INTEGRAL``                       Integral der Werte
 ``MAX``                            Maximum
 ``MEAN``                           Mittelwert

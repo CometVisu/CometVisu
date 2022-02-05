@@ -17,7 +17,7 @@ bei allen Geräten gegeben sein.
 Es muss angepasst werden:
 
 * SNMP community (im Beispiel GEHEIMECOMMUNITY)
-* IP-Addresse des Routers (im Beispiel 192.168.1.1)
+* IP-Adresse des Routers (im Beispiel 192.168.1.1)
 * evt. der Interface-Index (im Beispiel .1 in IF-MIB::ifHCInOctets.1, hier können andere Zahlen erforderlich sein - notfalls probieren)
 
 Dieses Script funktioniert so wenn es unter /var/www/rrd/xxx gespeichert (und ausführbar) ist.

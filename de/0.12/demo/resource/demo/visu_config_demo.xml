@@ -170,7 +170,7 @@
       <label>Herzlich willkommen bei dem CometVisu Widget Demo!</label>
     </text>
     <text>
-      <label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label>
+      <label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Adressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label>
     </text>
     <line>
       <layout colspan="12"/>

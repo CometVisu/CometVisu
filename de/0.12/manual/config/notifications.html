@@ -113,7 +113,7 @@
 ein neuer Wert für ein Widget vom Backend hochgemeldet wird. Diese Benachrichtigungen können als Popup oder
 als Eintrag in der Benachrichtigungszentrale angezeigt werden.</p>
 <p>Sobald Nachrichten in der Benachrichtigungszentrale vorhanden sind, wird die Anzahl der Nachrichten am oberen rechten
-Rand des Browserfensters und im Favicon (im Browser-Tab) anzeigt. Sollten Nachrichten mit höherer Priotität darunter
+Rand des Browserfensters und im Favicon (im Browser-Tab) anzeigt. Sollten Nachrichten mit höherer Priorität darunter
 sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
 <div class="literal-block-wrapper container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Einfaches Beispiel zeigt eine Nachricht in der Nachrichtenzentrale, wenn die Wohnzimmerlampe eingeschaltet ist.</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
@@ -136,12 +136,12 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
 <p class="last">Die <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> Einträge in den Notifications sind die gleichen, wie sich innerhalb der Widgets benutzt werden.
-In den Beispielen werden openHAB-Adressen benutzt. Ein entprechendes Beispiel für das Default-Backend wäre:
+In den Beispielen werden openHAB-Adressen benutzt. Ein entsprechendes Beispiel für das Default-Backend wäre:
 <code class="docutils literal notranslate"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
 </div>
 <p><strong>Erklärung:</strong></p>
 <p>Über dass <code class="docutils literal notranslate"><span class="pre">address</span></code> Element (mehrere sind möglich) wird festgelegt, dass bei eingehenden Status-Updates für diese
-Addresse eine Nachricht generiert wird. Eine Nachricht besteht aus einem Titel und dem Nachrichteninhalt.
+Adresse eine Nachricht generiert wird. Eine Nachricht besteht aus einem Titel und dem Nachrichteninhalt.
 Die beiden Elemente <code class="docutils literal notranslate"><span class="pre">title-template</span></code> und <code class="docutils literal notranslate"><span class="pre">message-template</span></code> bestimmen den Inhalt der beiden Nachrichtenteile.
 Bei den Templates handelt es sich um <a class="reference external" href="https://github.com/janl/mustache.js">Mustache</a>-Templates,
 bei denen bestimmte Platzhalter an eine beliebige Stelle in den Text eingefügt werden können.
@@ -180,7 +180,7 @@ eingeschaltet um 12:45 Uhr
 am linken Rand der Visu angezeigt wird. Ein weiterer möglicher Wert wäre hier <code class="docutils literal notranslate"><span class="pre">popup</span></code>, um die Nachricht
 als Popup anzuzeigen.</p>
 <p><code class="docutils literal notranslate"><span class="pre">unique=&quot;true&quot;</span></code> legt fest, dass die Nachricht nur einmal angezeigt wird, und zwar nur, wenn der Wert des
-Status-Updates gleich dem <code class="docutils literal notranslate"><span class="pre">&lt;condition&gt;</span></code> festgelegten Wert <code class="docutils literal notranslate"><span class="pre">ON</span></code> entsprich, d.h. die Nachricht wird angezeigt,
+Status-Updates gleich dem <code class="docutils literal notranslate"><span class="pre">&lt;condition&gt;</span></code> festgelegten Wert <code class="docutils literal notranslate"><span class="pre">ON</span></code> entspricht, d.h. die Nachricht wird angezeigt,
 wenn die Lampe eingeschaltet ist, wenn sie ausgeschaltet wird, wird die Nachricht automatisch gelöscht.</p>
 <div class="section" id="erklarung-zu-den-attributen-im-state-notification-element">
 <h3>Erklärung zu den Attributen im state-notification-Element<a class="headerlink" href="#erklarung-zu-den-attributen-im-state-notification-element" title="Link zu dieser Überschrift">¶</a></h3>
@@ -238,7 +238,7 @@ wenn die Lampe eingeschaltet ist, wenn sie ausgeschaltet wird, wird die Nachrich
 </tr>
 <tr class="row-even"><td>icon-classes</td>
 <td>Text</td>
-<td>Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasset werden kann.</td>
+<td>Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasst werden kann.</td>
 </tr>
 </tbody>
 </table>

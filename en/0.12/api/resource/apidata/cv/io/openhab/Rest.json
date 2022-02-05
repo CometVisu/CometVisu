@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 395,
+        "line": 394,
         "column": 3
       }
     },
@@ -251,7 +251,7 @@
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 127,
           "column": 5
         }
       },
@@ -292,11 +292,11 @@
     "__convertTimes": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 138,
           "column": 5
         }
       },
@@ -306,11 +306,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 143,
+          "line": 142,
           "column": 5
         }
       },
@@ -334,11 +334,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 151,
           "column": 5
         }
       },
@@ -360,11 +360,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 162,
           "column": 5
         }
       },
@@ -398,11 +398,11 @@
     "createAuthorizedRequest": {
       "location": {
         "start": {
-          "line": 171,
+          "line": 170,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 174,
           "column": 5
         }
       },
@@ -444,11 +444,11 @@
     "__isActive": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 176,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 197,
           "column": 5
         }
       },
@@ -458,11 +458,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 199,
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 256,
           "column": 5
         }
       },
@@ -496,11 +496,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 259,
+          "line": 258,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 263,
           "column": 5
         }
       },
@@ -514,11 +514,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 265,
           "column": 4
         },
         "end": {
-          "line": 296,
+          "line": 295,
           "column": 5
         }
       },
@@ -528,11 +528,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 297,
           "column": 4
         },
         "end": {
-          "line": 303,
+          "line": 302,
           "column": 5
         }
       },
@@ -571,11 +571,11 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 305,
+          "line": 304,
           "column": 4
         },
         "end": {
-          "line": 307,
+          "line": 306,
           "column": 5
         }
       },
@@ -585,11 +585,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 324,
           "column": 5
         }
       },
@@ -635,11 +635,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 328,
           "column": 5
         }
       },
@@ -663,11 +663,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 332,
+          "line": 331,
           "column": 5
         }
       },
@@ -691,11 +691,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 333,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 333,
           "column": 29
         }
       },
@@ -719,11 +719,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 334,
           "column": 35
         }
       },
@@ -738,11 +738,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 335,
           "column": 47
         }
       },
@@ -780,11 +780,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 337,
           "column": 4
         },
         "end": {
-          "line": 340,
+          "line": 339,
           "column": 5
         }
       },
@@ -814,11 +814,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 340,
           "column": 4
         },
         "end": {
-          "line": 350,
+          "line": 349,
           "column": 5
         }
       },
@@ -850,11 +850,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 351,
+          "line": 350,
           "column": 4
         },
         "end": {
-          "line": 393,
+          "line": 392,
           "column": 5
         }
       },

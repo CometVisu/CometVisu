@@ -190,4 +190,4 @@
   osparc.theme.osparcdark.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1643663986971
+//# sourceMappingURL=Color.js.map?dt=1644052398967

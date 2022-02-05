@@ -24,7 +24,7 @@ Tag ``latest`` das jeweils aktuellste Release.
 Die aktuellen Entwicklungsversionen können unter ``testing-<Datum>`` bezogen
 werden, so wie ``testing`` alleine, dass auf die jeweils aktuellste
 Entwicklungsversion zeigt. Wenn im Entwicklungsprozess ein neuer Pull-Request
-gemergt wird, so wird im Anschluss automatisch ein neuer Docker-Container
+gemerged wird, so wird im Anschluss automatisch ein neuer Docker-Container
 gebaut und unter dem aktuellen Datum abgelegt. Wenn ein Tag für dieses Datum
 noch nicht existiert, wird dieses angelegt, und wenn das Tag bereits existiert,
 so wird dieses mit dem neu erstellten Container überschrieben.
@@ -78,7 +78,7 @@ OpenHAB
 .......
 
 Beispiel-Konfiguration für das OpenHAB Backend (wenn es auf einem Server mit
-der Addresse ``192.168.0.10`` läuft):
+der Adresse ``192.168.0.10`` läuft):
 
 .. code-block:: bash
 

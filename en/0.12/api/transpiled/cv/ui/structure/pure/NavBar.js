@@ -12,7 +12,7 @@
         "require": true
       },
       "cv.TemplateEngine": {},
-      "cv.Config": {},
+      "qx.core.Init": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       },
@@ -129,11 +129,12 @@
         //   When during a valid swipe the direction is reversed the fading
         //   action is also reverted.
 
-        document.addEventListener('touchstart', function (evt) {
+        var content = document.body.querySelector('#centerContainer');
+        content.addEventListener('touchstart', function (evt) {
           var touches = evt.touches[0];
           var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
-          if (pPH.navbars.left.dynamic === false || !cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true || !pPH.navbars.left.fadeVisible && touches.clientX > 20) {
+          if (pPH.navbars.left.dynamic === false || !qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true || !pPH.navbars.left.fadeVisible && touches.clientX > 20) {
             // left navbar is not visible but the finger isn't on the left end -> not relevant
             return;
           }
@@ -141,11 +142,11 @@
           self._touchX = touches.clientX;
           self._touchY = touches.clientY;
         }, false);
-        document.addEventListener('touchend', function () {
+        content.addEventListener('touchend', function () {
           self._touchX = null;
           self._touchY = null;
         }, false);
-        document.addEventListener('touchmove', function (evt) {
+        content.addEventListener('touchmove', function (evt) {
           if (self._touchX === null) {
             return; // early exit as this touch isn't relevant for us
           }
@@ -235,4 +236,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1643663938534
+//# sourceMappingURL=NavBar.js.map?dt=1644052357753

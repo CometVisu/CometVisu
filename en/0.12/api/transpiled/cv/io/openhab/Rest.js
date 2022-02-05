@@ -136,8 +136,7 @@
 
               startTime.setTime(endTime.getTime() - amount * interval);
             } else if (/^[\d]+$/.test(map.start)) {
-              var d = new Date();
-              d.setTime(parseInt(map.start) * 1000);
+              startTime.setTime(parseInt(map.start) * 1000);
             }
 
             params.push('starttime=' + startTime.toISOString());
@@ -454,4 +453,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1643663981588
+//# sourceMappingURL=Rest.js.map?dt=1644052394701

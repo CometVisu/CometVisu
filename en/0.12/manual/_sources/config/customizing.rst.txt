@@ -8,7 +8,7 @@ needs. In the following, the different possibilities - sorted by
 degree of complexity - are described in detail.
 
 ===   ======================    ===========    ===================================================
-\     Adjustment                Changes        Descrition
+\     Adjustment                Changes        Description
 ===   ======================    ===========    ===================================================
 1.    Own CSS-Rules             Appearance     Override the existing CSS rules of a theme by loading additional CSS files.
 2.    Use own Icons             Appearance     In addition to the included icons, custom icons can be added via the configuration file.

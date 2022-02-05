@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 530,
+        "line": 531,
         "column": 3
       }
     },
@@ -526,7 +526,7 @@
           "column": 4
         },
         "end": {
-          "line": 324,
+          "line": 325,
           "column": 5
         }
       },
@@ -540,11 +540,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 328,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 328,
           "column": 33
         }
       },
@@ -559,11 +559,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 335,
           "column": 5
         }
       },
@@ -574,11 +574,11 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 337,
           "column": 4
         },
         "end": {
-          "line": 394,
+          "line": 395,
           "column": 5
         }
       },
@@ -588,11 +588,11 @@
     "dragHelper": {
       "location": {
         "start": {
-          "line": 396,
+          "line": 397,
           "column": 4
         },
         "end": {
-          "line": 474,
+          "line": 475,
           "column": 5
         }
       },
@@ -602,11 +602,11 @@
     "dragAction": {
       "location": {
         "start": {
-          "line": 476,
+          "line": 477,
           "column": 4
         },
         "end": {
-          "line": 484,
+          "line": 485,
           "column": 5
         }
       },
@@ -616,11 +616,11 @@
     "_updateHands": {
       "location": {
         "start": {
-          "line": 486,
+          "line": 487,
           "column": 4
         },
         "end": {
-          "line": 523,
+          "line": 524,
           "column": 5
         }
       },
@@ -6939,11 +6939,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 526,
+        "line": 527,
         "column": 9
       },
       "end": {
-        "line": 529,
+        "line": 530,
         "column": 3
       }
     },

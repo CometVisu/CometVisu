@@ -101,7 +101,7 @@
        * Threshold where the mobile.css is loaded
        * @type {Number}
        */
-      maxMobileScreenWidth: 480,
+      maxMobileScreenWidth: 599,
 
       /**
        * Threshold where colspan-s is used
@@ -391,12 +391,6 @@
 
 
       cv.Config.forceReload = true;
-      var uagent = navigator.userAgent.toLowerCase();
-      cv.Config.mobileDevice = /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent);
-
-      if (/(nexus 7|tablet)/i.test(uagent)) {
-        cv.Config.mobileDevice = false; // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
-      }
 
       if (req.queryKey.forceDevice) {
         // overwrite detection when set by URL
@@ -435,4 +429,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1643663981404
+//# sourceMappingURL=Config.js.map?dt=1644052394531

@@ -20,7 +20,7 @@ These are
 .. note::
 
     To be able to use the :ref:`Manager <manager>` or the :ref:`Editor <editor>`
-    the prequisite is PHP 7. The core of the CometVisu itself can be used
+    the prerequisite is PHP 7. The core of the CometVisu itself can be used
     without PHP though.
 
 Backend - knxd/eibd or OpenHAB
@@ -38,8 +38,8 @@ The installation of the backend is described under
 
     backends/install-eibd
 
-Graphentool - RRDtool
----------------------
+Graph tool - RRDtool
+--------------------
 
 An optional but much-recommended component is rrdtool to
 provide the data for creating graphs. There are many ways
@@ -58,7 +58,7 @@ external software, only PHP is required.
 Web server
 ----------
 
-The relevant files to connect via eibd/knxd are CGI programms, usually
+The relevant files to connect via eibd/knxd are CGI programs, usually
 located at ``/usr/lib/cgi-bin/``. They must be executable for the account
 of the web server. This could be enforced by:
 
@@ -170,7 +170,7 @@ https://github.com/CometVisu/CometVisu/releases.
 
 A documentation of an install procedure for the  `Raspberry
 Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ is
-avilable under :doc:`CometVisu auf Raspberry Pi <raspberry>`.
+available under :doc:`CometVisu auf Raspberry Pi <raspberry>`.
 
 Testing the installed CometVisu
 -------------------------------

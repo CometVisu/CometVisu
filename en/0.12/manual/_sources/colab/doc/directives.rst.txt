@@ -142,7 +142,7 @@ This area is defined by the `<settings>` element and this can be refined
 by attributes and subelements.
 
 +-------------------+--------------------------------------------------------------------------------------------------------------------+
-| Element           | Attribut                                                                                                           |
+| Element           | Attribute                                                                                                           |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 |                   | Name              | Content           | Description                                                                |
 +===================+===================+===================+============================================================================+
@@ -244,4 +244,3 @@ used to automatically create redirects.
         CometVisu/switch
         CometVisu/switch_(Deutsch)
 
-        

@@ -134,7 +134,7 @@ englisch <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/r
 oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patches</a>)</li>
 </ul>
 <p>(beides ist auf dem wiregate und auf dem Raspberry Pi image
-standardmässig verfügbar)</p>
+standardmäßig verfügbar)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
 <span class="c1"># /etc/crontab: system-wide crontab</span>
 <span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
@@ -166,26 +166,26 @@ realisierbar ist ist <code class="docutils literal notranslate"><span class="pre
 <p>Hierfür muss man sich beim Anlegen der Datenbank überlegen wie viele
 Datensätze gespeichert werden sollen. Die Datenbank wird dann erstellt
 und mit „NaN“ (Not A Number - kein Wert vorhanden) Werten gefüllt. Die
-Grösse der Datenbank ändert sich dann nicht mehr.</p>
+Größe der Datenbank ändert sich dann nicht mehr.</p>
 <p>Dies bedeutet das wenn die maximale Anzahl Datensätze in einer Tabelle
 erreicht sind wird mit dem Eintragen eines neues Wertes der älteste
-verworfen. Dies ist jedoch kein Problem da regelmässig Werte
+verworfen. Dies ist jedoch kein Problem da regelmäßig Werte
 zusammengefasst werden.</p>
-<p>In der Praxis heisst das das die Auflösung der Werte mit zunehmendem
+<p>In der Praxis heißt das das die Auflösung der Werte mit zunehmendem
 Zeitabstand zu „jetzt“ geringer wird. (z.B. minütliche Werte für die
 letzten 7 Tage, stündliche Werte für die letzten 4 Wochen, tägliche
 Werte für die letzten 2 Jahre etc…)</p>
 </div>
 <div class="section" id="befullen-der-rrd-datenbank">
 <h2>„Befüllen“ der RRD-Datenbank<a class="headerlink" href="#befullen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Die RRD Datei/Datenbank muss regelmässig mit Daten befüllt werden - wenn
+<p>Die RRD Datei/Datenbank muss regelmäßig mit Daten befüllt werden - wenn
 dies nicht geschieht erkennt RRD das und trägt automatische NaN ein -
 damit bleiben die Zusammenfassungen korrekt.</p>
 <p>Hierfür ruft man das das rrdtool auf mit dem Parameter „update“ und
 übergibt einen Zeitstempel (oder N für „Now“, also aktuelle Zeit) sowie
 die Werte die in die Datenbank aufgenommen werden sollen.</p>
 <p>Am, einfachsten lässt sich dieses über ein kurzes Shellscript erledigen,
-das man dann per cron regelmässig ausführen lässt.</p>
+das man dann per cron regelmäßig ausführen lässt.</p>
 </div>
 <div class="section" id="fehlersuche">
 <h2>Fehlersuche<a class="headerlink" href="#fehlersuche" title="Link zu dieser Überschrift">¶</a></h2>

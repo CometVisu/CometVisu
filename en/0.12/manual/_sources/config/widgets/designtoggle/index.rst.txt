@@ -31,7 +31,7 @@ Allowed attributes in the DesignToggle-element
 
 None
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: designtoggle

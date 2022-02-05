@@ -115,7 +115,7 @@ Unter *Containers* → *Add Container*
       :ref:`Docker Containers <dockerenvironment>` angegeben wurden.
 
       So kann es notwendig sein für ``KNX_PA`` einen anderen Wert als das
-      Default ``1.1.238`` zu setzen, wenn diese physikalische Addresse bereits
+      Default ``1.1.238`` zu setzen, wenn diese physikalische Adresse bereits
       belegt ist oder eine andere Linie als ``1.1`` verwendet werden soll.
 
       Es ist auch wichtig, dass der Port der KNX Schnittstelle korrekt ist. Im
@@ -173,8 +173,9 @@ InfluxDB Zugriff
 ^^^^^^^^^^^^^^^^
 
 .. HINT::
-  The InfluxDB access as well as the hidden config was introduced with
-  version 0.11.0 and isn't available in earlier versions.
+
+    Der Zugriff auf die InfluxDB und die versteckte Konfiguration wurden
+    erst mit Version 0.11.0 eingeführt und stehen in früheren Versionen nicht zur Verfügung.
 
 Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
 :ref:`Versteckten Konfiguration <hidden-config>` über den
@@ -197,7 +198,7 @@ ist nun ein Eintrag mit diesen Eigenschaften anzulegen:
 
   - ``uri``: ``https://172.17.0.1/proxy/ts/query`` (Sollte entgegen dieser
     Anleitung das Netzwerk des Containers angepasst worden sein, so muss
-    gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)
+    gegebenenfalls hier die IP-Adresse entsprechend angepasst werden)
   - ``user``: Benutzername aus den Credentials
   - ``pass``: Passwort aus den Credentials
   - ``selfsigned``: ``true``
@@ -260,13 +261,13 @@ Entwicklungsversion
 
 Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
 Schritte wie für das Release durchzuführen. Auch wenn theoretisch das gleiche
-Konfigutations-Volume wie für die Produktiv-Version verwendet werden kann, so
+Konfigurations-Volume wie für die Produktiv-Version verwendet werden kann, so
 sollte ein getrenntes Volume (z.B. ``CometVisuTestConfig``) angelegt werden, da
 sich durch zukünftige Updates das Format der Config-Dateien inkompatibel ändern
 kann.
 
 Wie unter :ref:`Docker <docker>` beschrieben hat die neueste
-Entwicklunglungsversion den Tag ``testing``. Somit ist unter *Anlegen des
+Entwicklungsversion den Tag ``testing``. Somit ist unter *Anlegen des
 Containers* als ``name`` ``cometvisu/cometvisu:testing`` bzw.
 ``cometvisu/cometvisu:testing-arm`` zu verwenden.
 

@@ -94,10 +94,10 @@
       // this.base(arguments);
       this.pagePartsHandler = new cv.ui.PagePartsHandler();
       this.lazyPlugins = ['plugin-openhab'];
-      this.__P_491_0 = new qx.data.Array();
+      this.__P_492_0 = new qx.data.Array();
       this._domFinishedQueue = [];
 
-      this.__P_491_0.addListener('changeLength', function (ev) {
+      this.__P_492_0.addListener('changeLength', function (ev) {
         this.setPartsLoaded(ev.getData() === 0);
       }, this);
 
@@ -115,6 +115,8 @@
         manager.add(group);
         manager.setActive(group);
       }
+
+      qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
     },
 
     /*
@@ -214,12 +216,12 @@
       visu: null,
       pluginsToLoadCount: 0,
       xml: null,
-      __P_491_0: null,
+      __P_492_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: null,
-      __P_491_1: null,
-      __P_491_2: false,
+      __P_492_1: null,
+      __P_492_2: false,
 
       /**
        * Load parts (e.g. plugins, structure)
@@ -241,12 +243,12 @@
           });
         }
 
-        this.__P_491_0.append(parts);
+        this.__P_492_0.append(parts);
 
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === 'complete') {
-              this.__P_491_0.remove(part);
+              this.__P_492_0.remove(part);
 
               this.debug('successfully loaded part ' + part);
 
@@ -390,25 +392,25 @@
         var app = qx.core.Init.getApplication();
 
         if (app.isActive()) {
-          if (!this.visu.isConnected() && this.__P_491_2) {
+          if (!this.visu.isConnected() && this.__P_492_2) {
             // reconnect
             this.visu.restart(true);
           } // wait for 3 seconds before checking the backend connection
 
 
-          if (!this.__P_491_1) {
-            this.__P_491_1 = new qx.event.Timer(3000);
+          if (!this.__P_492_1) {
+            this.__P_492_1 = new qx.event.Timer(3000);
 
-            this.__P_491_1.addListener('interval', function () {
+            this.__P_492_1.addListener('interval', function () {
               if (app.isActive()) {
                 this._checkBackendConnection();
               }
 
-              this.__P_491_1.stop();
+              this.__P_492_1.stop();
             }, this);
           }
 
-          this.__P_491_1.restart();
+          this.__P_492_1.restart();
         } else {
           this._checkBackendConnection();
         }
@@ -421,7 +423,7 @@
           severity: 'urgent',
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_491_2 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_492_2 && qx.core.Init.getApplication().isActive()
         };
         var lastError = this.visu.getLastError();
 
@@ -432,7 +434,7 @@
             message.message = qx.locale.Manager.tr('Connection to backend is lost.');
           }
         } else {
-          this.__P_491_2 = true;
+          this.__P_492_2 = true;
         }
 
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
@@ -571,7 +573,9 @@
         settings.screensave_page = pagesNode.getAttribute('screensave_page');
 
         if (pagesNode.getAttribute('max_mobile_screen_width') !== null) {
-          settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width');
+          settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width'); // override config setting
+
+          cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
         }
 
         var globalClass = pagesNode.getAttribute('class');
@@ -587,13 +591,10 @@
         if (design) {
           var baseUri = 'designs/' + design;
           settings.stylesToLoad.push(baseUri + '/basic.css');
-          this.debug('cv.Config.mobileDevice: ' + cv.Config.mobileDevice);
-
-          if (cv.Config.mobileDevice) {
-            settings.stylesToLoad.push(baseUri + '/mobile.css');
-            document.querySelector('body').classList.add('mobile');
-          }
-
+          settings.stylesToLoad.push({
+            uri: baseUri + '/mobile.css',
+            media: "screen and (max-width:".concat(cv.Config.maxMobileScreenWidth, "px)")
+          });
           settings.stylesToLoad.push(baseUri + '/custom.css');
           settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
           cv.util.ScriptLoader.getInstance().addListenerOnce('designError', function (ev) {
@@ -601,11 +602,10 @@
               this.error('Failed to load "' + design + '" design! Falling back to simplified "pure"');
               baseUri = 'designs/pure';
               var alternativeStyles = [baseUri + '/basic.css'];
-
-              if (cv.Config.mobileDevice) {
-                alternativeStyles.push(baseUri + '/mobile.css');
-              }
-
+              alternativeStyles.push({
+                uri: baseUri + '/mobile.css',
+                media: "screen and (max-width:".concat(cv.Config.maxMobileScreenWidthh, "px)")
+              });
               alternativeStyles.push(baseUri + '/custom.css');
               cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
               cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
@@ -932,7 +932,10 @@
 
         this.pagePartsHandler.initializeNavbars(page_id);
 
-        if (cv.Config.mobileDevice) {
+        this._maintainNavbars();
+      },
+      _maintainNavbars: function _maintainNavbars() {
+        if (qx.core.Init.getApplication().getMobile()) {
           switch (this.pagePartsHandler.navbars.left.dynamic) {
             case null:
             case true:
@@ -1046,10 +1049,12 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_491_1");
+      this._disposeObjects("__P_492_1");
+
+      qx.core.Init.getApplication().removeListener('changeMobile', this._maintainNavbars, this);
     }
   });
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1643663982027
+//# sourceMappingURL=TemplateEngine.js.map?dt=1644052395136

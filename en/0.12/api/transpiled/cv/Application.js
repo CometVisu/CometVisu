@@ -37,6 +37,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.io.openhab.Rest": {},
       "cv.io.mqtt.Client": {},
       "qx.bom.Blocker": {},
+      "cv.ui.layout.ResizeHandler": {},
       "cv.ConfigCache": {},
       "qx.event.GlobalError": {},
       "cv.report.Record": {},
@@ -46,6 +47,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.log.appender.Native": {},
       "qx.bom.Stylesheet": {},
       "qx.util.ResourceManager": {},
+      "qx.event.Registration": {},
       "cv.core.notifications.Router": {},
       "qx.event.Timer": {},
       "qx.event.message.Bus": {},
@@ -57,8 +59,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.dev.StackTrace": {},
       "cv.ui.PopupHandler": {},
       "cv.util.Location": {},
-      "qx.event.Registration": {},
-      "cv.ui.layout.ResizeHandler": {},
       "qx.bom.Lifecycle": {},
       "cv.ui.NotificationCenter": {},
       "cv.ui.ToastManager": {},
@@ -87,7 +87,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   /* Application.js 
    * 
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -126,6 +126,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     */
     construct: function construct() {
       qx.application.Native.constructor.call(this);
+      this.__P_2_0 = false;
       this.initCommandManager(new qx.ui.command.GroupManager());
       var lang = qx.locale.Manager.getInstance().getLanguage();
 
@@ -158,7 +159,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     statics: {
       HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
       consoleCommands: [],
-      __P_2_0: null,
+      __P_2_1: null,
       _relResourcePath: null,
       _fullResourcePath: null,
       getRelativeResourcePath: function getRelativeResourcePath(fullPath) {
@@ -271,6 +272,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         check: 'Boolean',
         init: false,
         apply: '_applyManagerChecked'
+      },
+
+      /**
+       * Mobile device detection (small screen)
+       */
+      mobile: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeMobile',
+        apply: '_applyMobile'
       }
     },
 
@@ -281,6 +292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     */
     members: {
       _blocker: null,
+      __P_2_0: null,
 
       /**
        * Toggle the {@link qx.bom.Blocker} visibility
@@ -299,6 +311,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this._blocker.block();
         } else if (this._blocker) {
           this._blocker.unblock();
+        }
+      },
+      _applyMobile: function _applyMobile(value) {
+        // maintain old value for compatibility
+        if (value && !document.body.classList.contains('mobile')) {
+          document.body.classList.add('mobile');
+        } else if (!value && document.body.classList.contains('mobile')) {
+          document.body.classList.remove('mobile');
+        }
+
+        if (this.__P_2_0) {
+          cv.ui.layout.ResizeHandler.invalidateNavbar();
         }
       },
       _applyManagerChecked: function _applyManagerChecked(value) {
@@ -320,7 +344,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         this._checkBackend();
 
-        qx.event.GlobalError.setErrorHandler(this.__P_2_1, this);
+        qx.event.GlobalError.setErrorHandler(this.__P_2_2, this);
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributers.\n' + ' Version: ' + cv.Version.VERSION + '\n';
 
@@ -355,7 +379,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // in debug mode load the uncompressed unobfuscated scripts
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?' + Date.now() : ''));
 
-        this.__P_2_2();
+        this.__P_2_3();
+
+        if (typeof cv.Config.mobileDevice === 'boolean') {
+          this.setMobile(cv.Config.mobileDevice);
+        }
+
+        this._onResize(null, true);
+
+        qx.event.Registration.addListener(window, 'resize', this._onResize, this);
       },
       hideManager: function hideManager() {
         if (Object.prototype.hasOwnProperty.call(cv.ui, 'manager')) {
@@ -516,7 +548,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this3.error(err);
         });
       },
-      __P_2_1: function __P_2_1(ex) {
+      __P_2_2: function __P_2_2(ex) {
         // connect client data for Bug-Report
         var exString = '';
         var maxTraceLength = 2000;
@@ -680,12 +712,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       throwError: function throwError() {
         window.onerror(new Error('test error'));
       },
+      _onResize: function _onResize(ev, init) {
+        if (cv.Config.mobileDevice === undefined) {
+          this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
+        }
+
+        if (!init && this.__P_2_0) {
+          cv.ui.layout.ResizeHandler.invalidateScreensize();
+        }
+      },
 
       /**
        * Internal initialization method
        */
-      __P_2_2: function __P_2_2() {
-        qx.event.Registration.addListener(window, 'resize', cv.ui.layout.ResizeHandler.invalidateScreensize, cv.ui.layout.ResizeHandler);
+      __P_2_3: function __P_2_3() {
         qx.event.Registration.addListener(window, 'unload', function () {
           cv.io.Client.stopAll();
         }, this);
@@ -813,7 +853,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cv.Config.lazyLoading = true;
                     engine.initBackendClient();
 
-                    this.__P_2_3(); // load part for structure
+                    this.__P_2_4(); // load part for structure
 
 
                     structure = cv.Config.getStructure();
@@ -860,7 +900,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (!cv.Config.cacheUsed) {
                     this.debug('starting');
 
-                    this.__P_2_3();
+                    this.__P_2_4();
 
                     engine.parseXML(xml, function () {
                       this.loadPlugins();
@@ -874,7 +914,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           cv.ConfigCache.dump(xml, xmlHash);
                         }, this);
                       }
+
+                      this.__P_2_0 = true;
                     }.bind(this));
+                  } else {
+                    this.__P_2_0 = true;
                   }
 
                 case 17:
@@ -1002,7 +1046,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
         }
       },
-      __P_2_3: function __P_2_3() {
+      __P_2_4: function __P_2_4() {
         var startpage = 'id_';
 
         if (cv.Config.startpage) {
@@ -1183,4 +1227,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1643663928726
+//# sourceMappingURL=Application.js.map?dt=1644052349670

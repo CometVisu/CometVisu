@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 283,
+        "line": 293,
         "column": 3
       }
     },
@@ -173,7 +173,7 @@
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 121,
           "column": 5
         }
       },
@@ -191,11 +191,11 @@
     "getAvailableHeight": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 134,
           "column": 4
         },
         "end": {
-          "line": 167,
+          "line": 177,
           "column": 5
         }
       },
@@ -213,11 +213,11 @@
     "rowspanClass": {
       "location": {
         "start": {
-          "line": 169,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 182,
           "column": 5
         }
       },
@@ -227,21 +227,7 @@
     "getWidgetColspan": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
-        },
-        "end": {
-          "line": 185,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getLayoutSuffix": {
-      "location": {
-        "start": {
-          "line": 187,
+          "line": 184,
           "column": 4
         },
         "end": {
@@ -252,14 +238,28 @@
       "type": "function",
       "access": "public"
     },
-    "applyColumnWidths": {
+    "getLayoutSuffix": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 197,
           "column": 4
         },
         "end": {
-          "line": 259,
+          "line": 205,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "applyColumnWidths": {
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4
+        },
+        "end": {
+          "line": 269,
           "column": 5
         }
       },
@@ -295,11 +295,11 @@
     "__applyWidthClass": {
       "location": {
         "start": {
-          "line": 261,
+          "line": 271,
           "column": 4
         },
         "end": {
-          "line": 281,
+          "line": 291,
           "column": 5
         }
       },

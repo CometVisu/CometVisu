@@ -253,75 +253,78 @@
         var initCss = {};
         var targetCss = {};
         var navbar = document.querySelector('#navbar' + position);
-        var key = position.toLowerCase();
-        var self = this;
 
-        var onAnimationEnd = function onAnimationEnd() {
-          self.navbars[key].fadeVisible = direction === 'in';
-          cv.ui.layout.ResizeHandler.invalidateNavbar();
-        };
+        if (navbar) {
+          var key = position.toLowerCase();
+          var self = this;
 
-        switch (direction) {
-          case 'in':
-            if (window.getComputedStyle(navbar).display === 'none') {
-              initCss.display = 'block';
-            }
+          var onAnimationEnd = function onAnimationEnd() {
+            self.navbars[key].fadeVisible = direction === 'in';
+            cv.ui.layout.ResizeHandler.invalidateNavbar();
+          };
 
-            targetCss[key] = 0;
+          switch (direction) {
+            case 'in':
+              if (window.getComputedStyle(navbar).display === 'none') {
+                initCss.display = 'block';
+              }
 
-            switch (position) {
-              case 'Top':
-              case 'Bottom':
-                initCss[key] = -navbar.getBoundingClientRect().height + 'px';
-                break;
+              targetCss[key] = 0;
 
-              case 'Left':
-              case 'Right':
-                initCss[key] = -navbar.getBoundingClientRect().width + 'px';
-                break;
-            }
+              switch (position) {
+                case 'Top':
+                case 'Bottom':
+                  initCss[key] = -navbar.getBoundingClientRect().height + 'px';
+                  break;
 
-            break;
+                case 'Left':
+                case 'Right':
+                  initCss[key] = -navbar.getBoundingClientRect().width + 'px';
+                  break;
+              }
 
-          case 'out':
-            initCss[key] = 0;
+              break;
 
-            switch (position) {
-              case 'Top':
-              case 'Bottom':
-                targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
-                break;
+            case 'out':
+              initCss[key] = 0;
 
-              case 'Left':
-              case 'Right':
-                targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
-                break;
-            }
+              switch (position) {
+                case 'Top':
+                case 'Bottom':
+                  targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
+                  break;
 
-            break;
-        }
+                case 'Left':
+                case 'Right':
+                  targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
+                  break;
+              }
 
-        Object.entries(initCss).forEach(function (key_value) {
-          navbar.style[key_value[0]] = key_value[1];
-        });
+              break;
+          }
 
-        if (speed === 0) {
-          Object.entries(targetCss).forEach(function (key_value) {
+          Object.entries(initCss).forEach(function (key_value) {
             navbar.style[key_value[0]] = key_value[1];
           });
-          onAnimationEnd();
-        } else {
-          var spec = {
-            duration: speed,
-            timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
-            keep: 100,
-            keyFrames: {
-              0: initCss,
-              100: targetCss
-            }
-          };
-          var anim = qx.bom.element.Animation.animate(navbar, spec);
-          anim.addListenerOnce('end', onAnimationEnd, this);
+
+          if (speed === 0) {
+            Object.entries(targetCss).forEach(function (key_value) {
+              navbar.style[key_value[0]] = key_value[1];
+            });
+            onAnimationEnd();
+          } else {
+            var spec = {
+              duration: speed,
+              timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
+              keep: 100,
+              keyFrames: {
+                0: initCss,
+                100: targetCss
+              }
+            };
+            var anim = qx.bom.element.Animation.animate(navbar, spec);
+            anim.addListenerOnce('end', onAnimationEnd, this);
+          }
         }
       },
 
@@ -421,4 +424,4 @@
   cv.ui.PagePartsHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PagePartsHandler.js.map?dt=1643663986171
+//# sourceMappingURL=PagePartsHandler.js.map?dt=1644052398357

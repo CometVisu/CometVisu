@@ -73,7 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#installation-on-mobile-devices">Installation on mobile devices</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Usage of the CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../config/index.html">Configuration of the CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Help the CometVisu project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Information for developers</a></li>
@@ -143,7 +143,7 @@ the CometVisu accessible via HTTPS.</p>
 <h4>Volume for Config Files<a class="headerlink" href="#volume-for-config-files" title="Permalink to this headline">¶</a></h4>
 <p>First, create a volume to store the configuration files and
 keep them while rebooting and updating the container.</p>
-<p>Nesseccary steps are: <em>Volumes</em> → <em>Add Volume</em> → Name:
+<p>Necessary steps are: <em>Volumes</em> → <em>Add Volume</em> → Name:
 <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
 <div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" /></a>
@@ -158,8 +158,8 @@ files or best by using the <a class="reference internal" href="../config/manager
 <a class="reference internal" href="../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram Plugin</span></a> with RRD files. When using the
 InfluxDB this step can be skipped.</p>
 <p>The steps for creating the <em>Volume for Config Files</em> must
-be repeated, but the name <code class="docutils literal notranslate"><span class="pre">CometVisuRRD</span></code> is hereby meaningfully chosen.</p>
-<p>The filling of this container must be external, e.g. by
+be repeated, but the name <code class="docutils literal notranslate"><span class="pre">CometVisuRRD</span></code> is hereby meaningfully chosen.
+The filling of this container must be external, e.g. by
 another container that simultaneously incorporates this RRD container.</p>
 <p><strong>Important:</strong> The internal format of the RRD files is architecture specific.
 Thus, the RRG files from WireGate (32 bit architecture) can not be
@@ -344,7 +344,7 @@ the testing version should be installed with these parameters:</p>
 <li><code class="docutils literal notranslate"><span class="pre">container</span></code>: <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal notranslate"><span class="pre">volume</span></code>: <code class="docutils literal notranslate"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
 </ul>
 </li>
-<li>Env: Environment variables <code class="docutils literal notranslate"><span class="pre">name</span></code>: <code class="docutils literal notranslate"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal notranslate"><span class="pre">value</span></code>: <code class="docutils literal notranslate"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
+<li>Env: Environment variables <code class="docutils literal notranslate"><span class="pre">name</span></code>: <code class="docutils literal notranslate"><span class="pre">CGI_URL_PATH</span></code> with <code class="docutils literal notranslate"><span class="pre">value</span></code>: <code class="docutils literal notranslate"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
 </ul>
 </li>
 </ul>
@@ -369,7 +369,7 @@ is then the command</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool restore -f RRD_Name.xml RRD_Name.rrd
 </pre></div>
 </div>
-<p>executed to greate a new RRD-File.</p>
+<p>executed to create a new RRD-File.</p>
 <p>If you work with a localization on the source system that
 uses numbers with a comma as the decimal separator
 (as usual in German), then it may be that the RRD export is

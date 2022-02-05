@@ -95,7 +95,7 @@
 Bei Unittest geht es darum einzelne Funktionen innerhalb des Sourcecodes zu testen.
 Wenn man z.B. eine <cite>add</cite>-Funktion hat, die zwei Zahlen addiert, dann ruft ein Unittest diese
 Funktion auf, übergibt ihr zwei Zahlen und prüft ob das Ergebnis korrekt ist.</p>
-<p>End-to-End Tests prüfen eher das „Große Ganze“ und simulieren das Benutzervehalten.
+<p>End-to-End Tests prüfen eher das „Große Ganze“ und simulieren das Benutzerverhalten.
 Hierbei wird also die CometVisu voll-automatisiert in einem Browser geöffnet und die Tests
 bedienen die Visu wie ein Benutzer und prüfen ob eine Aktion die gewünschten Veränderungen bewirkt.
 Zu kann man z.B. prüfen ob das Klicken auf einen Switch den passenden Wert an das Backend liefert und
@@ -114,7 +114,7 @@ sudo npm -g install grunt-cli
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grunt karma:ci
 </pre></div>
 </div>
-<p>Dies führt die Tests inkl. eine Code-Coverage Analyse aus. Die Code-Coverage zeigt als Ergebnis an wieviel
+<p>Dies führt die Tests inkl. eine Code-Coverage Analyse aus. Die Code-Coverage zeigt als Ergebnis an wie viel
 Prozent des Sourcecodes durch Tests abgedeckt wurde, die Ausgabe sieht so aus:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">===============================</span> Coverage <span class="nv">summary</span> <span class="o">===============================</span>
 Statements   : <span class="m">42</span>.14% <span class="o">(</span> <span class="m">1308</span>/3104 <span class="o">)</span>
@@ -125,11 +125,11 @@ Lines        : <span class="m">41</span>.8% <span class="o">(</span> <span class
 </pre></div>
 </div>
 <p>Einen ausführlicheren Coverage Report findet man unter <code class="docutils literal notranslate"><span class="pre">./coverage/&lt;browser-name&gt;/index.html</span></code>. Wobei
-der Browser Name dem des den ausführenden Browsers entspeist. Zur Zeit ist dies der für Headless-Testing
+der Browser Name dem des ausführenden Browsers entspricht. Zur Zeit ist dies der für Headless-Testing
 entwickelte (auf Chrome basierende) PhantomJS. Theoretisch sind hier aber alle auf dem lokalen System
 installierten Browser möglich. In dem ausführlichen Coverage Report, kann man bis hinunter in einzelne
 Sourcecode Dateien navigieren und dort sehen, welche Zeilen noch nicht getestet wurde. Das ist sehr
-nützlich, um zu sehen an welchen Stellen die Tests noch verfollständigt werden müssen</p>
+nützlich, um zu sehen an welchen Stellen die Tests noch vervollständigt werden müssen</p>
 </div>
 <div class="section" id="eigene-tests-schreiben">
 <h2>Eigene Tests schreiben<a class="headerlink" href="#eigene-tests-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
@@ -144,7 +144,7 @@ Tests sieht so aus:</p>
 </pre></div>
 </div>
 <p>Dieser Code testet eine <code class="docutils literal notranslate"><span class="pre">add</span></code>-Funktion die einfach zwei Zahlen addiert.</p>
-<p>Zu finden sind die vorhandenen Tests im <code class="docutils literal notranslate"><span class="pre">source/test/karma</span></code> Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
+<p>Zu finden sind die vorhandenen Tests im <code class="docutils literal notranslate"><span class="pre">source/test/karma</span></code> Unterverzeichnis. Möchte man nun einen neuen Test für eine (fiktive)
 Sourcecode Datei unter <code class="docutils literal notranslate"><span class="pre">source/ui/structure/pure/NewWidget.js</span></code> schreiben, legt man die neue Datei
 <code class="docutils literal notranslate"><span class="pre">source/test/karma/ui/structure/pure/NewWidget-spec.js</span></code> an.
 Wichtig ist hier, dass der Name der Testdatei auf <code class="docutils literal notranslate"><span class="pre">-spec</span></code> endet, sonst wird sie vom Testrunner nicht gefunden.</p>

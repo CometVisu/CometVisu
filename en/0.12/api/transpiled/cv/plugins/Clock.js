@@ -266,6 +266,8 @@
       _onDomReady: function _onDomReady() {
         var _this = this;
 
+        cv.plugins.Clock.prototype._onDomReady.base.call(this);
+
         var args = arguments;
         var self = this;
         this.__P_8_3 = cv.util.Function.throttle(this.dragAction, 250, {
@@ -347,19 +349,19 @@
 
           svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
 
-          var HotSpotHour = svg.getElementById('HotSpotHour');
+          var HotSpotHour = svg.querySelector('#HotSpotHour');
 
           if (HotSpotHour) {
             HotSpotHour.addEventListener('pointerdown', _this);
           }
 
-          var HotSpotMinute = svg.getElementById('HotSpotMinute');
+          var HotSpotMinute = svg.querySelector('#HotSpotMinute');
 
           if (HotSpotMinute) {
             HotSpotMinute.addEventListener('pointerdown', _this);
           }
 
-          var HotSpotSecond = svg.getElementById('HotSpotSecond');
+          var HotSpotSecond = svg.querySelector('#HotSpotSecond');
 
           if (HotSpotSecond) {
             HotSpotSecond.addEventListener('pointerdown', _this);
@@ -603,4 +605,4 @@
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1643663930979
+//# sourceMappingURL=Clock.js.map?dt=1644052351664

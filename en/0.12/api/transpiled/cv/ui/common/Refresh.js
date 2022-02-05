@@ -271,18 +271,19 @@
 
             canvases.push(canvas);
             elem.parentNode.insertBefore(canvas, elem);
-            elem.removeAttribute('src');
             elem.width = canvas.width;
             elem.height = canvas.height;
+            elem.removeAttribute('src');
           });
         };
 
         var imgReloadRestore = function imgReloadRestore() {
-          elements.forEach(function (elem) {
+          elements.forEach(function (elem, i) {
+            elem.onload = function () {
+              canvases[i].parentNode.removeChild(canvases[i]);
+            };
+
             elem.setAttribute('src', src);
-          });
-          canvases.forEach(function (elem) {
-            elem.parentNode.removeChild(elem);
           });
         };
 
@@ -314,13 +315,11 @@
         };
 
         iframe.style.display = 'none';
-        window.parent.document.body.appendChild(iframe);
         iframe.addEventListener('load', loadCallback, false);
         iframe.addEventListener('error', loadCallback, false);
+        document.body.appendChild(iframe);
         doc = iframe.contentWindow.document;
-        doc.open();
-        doc.write('<html><head><title></title></head><body><img src="' + src + '"></body></html>');
-        doc.close();
+        doc.body.innerHTML = '<img src="' + src + '">';
 
         if (twostage) {
           return function (proceed) {
@@ -357,4 +356,4 @@
   cv.ui.common.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1643663983512
+//# sourceMappingURL=Refresh.js.map?dt=1644052396168
