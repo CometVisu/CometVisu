@@ -233,9 +233,10 @@ qx.Class.define('cv.Application',
       } else if (!value && document.body.classList.contains('mobile')) {
         document.body.classList.remove('mobile');
       }
-      if (this.__appReady) {
-        cv.ui.layout.ResizeHandler.invalidateNavbar();
-      }
+    },
+
+    isReady() {
+      return this.__appReady;
     },
 
     _applyManagerChecked: function(value) {
@@ -615,6 +616,12 @@ qx.Class.define('cv.Application',
       },
       'false': null
     }),
+
+    _onResize: function () {
+      if (cv.Config.mobileDevice === undefined) {
+        this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
+      }
+    },
 
     _applyStructureLoaded () {
       if (!cv.Config.cacheUsed) {

@@ -114,23 +114,23 @@ qx.Class.define('cv.util.ScriptLoader', {
           src = style;
           cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
         } else if (typeof style === 'object') {
-	  src = style.uri;
+          src = style.uri;
           media = style.media;
         } else {
           this.error('unknown style parameter type', typeof style);
         }
         if (src) {
-	  let resPath = qx.util.ResourceManager.getInstance().toUri(src);
+          let resPath = qx.util.ResourceManager.getInstance().toUri(src);
           if (resPath === src) {
             // this file is unknown to the resource manager, might be an scss source
-            const scssStyle = style.replace(/\.css$/, '.scss');
+            const scssStyle = src.replace(/\.css$/, '.scss');
             const scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
             if (scssStyle !== scssPath) {
               resPath = scssPath.replace(/\.scss$/, '.css');
             }
           }
           cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media);
-	}
+        }
       }, this);
     },
 

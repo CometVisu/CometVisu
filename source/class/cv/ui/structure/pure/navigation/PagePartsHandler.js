@@ -272,7 +272,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
         } else {
           const spec = {
             duration: speed,
-            timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
+            timing:  cv.Application.structureController.main_scroll.getEasing(),
             keep: 100,
             keyFrames: {
               0: initCss,

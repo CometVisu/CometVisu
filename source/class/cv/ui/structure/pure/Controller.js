@@ -241,7 +241,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         elem.classList.remove('loading');
       }, this);
 
-      qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
+      qx.core.Init.getApplication().addListener('changeMobile', this._onMobileChanged, this);
     },
 
     doScreenSave() {
@@ -286,7 +286,15 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       this._maintainNavbars();
     },
 
-    _maintainNavbars: function () {
+    _onMobileChanged(ev) {
+      const app = qx.core.Init.getApplication();
+      if (app.isReady()) {
+        cv.ui.structure.pure.layout.ResizeHandler.invalidateNavbar();
+        this._maintainNavbars();
+      }
+    },
+
+    _maintainNavbars() {
       if (qx.core.Init.getApplication().getMobile()) {
         switch (this.pagePartsHandler.navbars.left.dynamic) {
           case null:
@@ -489,7 +497,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
   ***********************************************
   */
   destruct: function () {
-    qx.core.Init.getApplication().removeListener('changeMobile', this._maintainNavbars, this);
+    qx.core.Init.getApplication().removeListener('changeMobile', this._onMobileChanged, this);
   },
 
   defer: function (statics) {

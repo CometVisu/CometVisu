@@ -2001,7 +2001,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       return file;
     },
 
-    __loadContent: function (value, errors) {
+    __loadContent: async function (value, errors) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
       if (file) {
