@@ -674,13 +674,6 @@ qx.Class.define('cv.Application',
       loader.addListenerOnce('finished', function() {
         engine.setScriptsLoaded(true);
       }, this);
-      let isCached = false;
-      let xmlHash;
-      if (cv.Config.enableCache) {
-        isCached = await cv.ConfigCache.isCached();
-        xmlHash = cv.ConfigCache.toHash(xml);
-        engine.xmlHash = xmlHash;
-      }
 
       if (this._isCached) {
         // check if cache is still valid
@@ -713,7 +706,6 @@ qx.Class.define('cv.Application',
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           });
           // check if the current design settings overrides the cache one
-          this.loadPlugins();
           if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
             const styles = [];

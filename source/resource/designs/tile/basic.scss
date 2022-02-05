@@ -36,7 +36,7 @@ $tileColumns: 3;
 }
 
 @import url("fonts/remixicon.css");
-@import url("../../icons/KnxUFIcons.css");
+@import url("../../icons/knx-uf-iconset.css");
 
 body {
     background-color: $appBackground;
@@ -223,6 +223,15 @@ body {
         }
         cv-icon[size='large'] {
             font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) / 2);
+        }
+        cv-icon[size='x-large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) - var(--spacing)*2);
+        }
+        cv-icon[size='xx-large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) - var(--spacing));
+        }
+        cv-icon[size='xxx-large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))));
         }
     }
     cv-tile[size="1x0.5"] {
