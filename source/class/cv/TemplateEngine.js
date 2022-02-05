@@ -46,8 +46,6 @@ qx.Class.define('cv.TemplateEngine', {
       manager.add(group);
       manager.setActive(group);
     }
-    // TODO: move to controller
-    // qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
   },
 
   /*

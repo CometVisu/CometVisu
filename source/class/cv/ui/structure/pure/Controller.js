@@ -240,6 +240,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       document.querySelectorAll('.loading').forEach(function(elem) {
         elem.classList.remove('loading');
       }, this);
+
+      qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
     },
 
     doScreenSave() {
@@ -281,7 +283,11 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       this.main_scroll.seekTo(page_id, speed); // scroll to it
 
       this.pagePartsHandler.initializeNavbars(page_id);
-      if (cv.Config.mobileDevice) {
+      this._maintainNavbars();
+    },
+
+    _maintainNavbars: function () {
+      if (qx.core.Init.getApplication().getMobile()) {
         switch (this.pagePartsHandler.navbars.left.dynamic) {
           case null:
           case true:
@@ -475,6 +481,15 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       // not found
       return null;
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    qx.core.Init.getApplication().removeListener('changeMobile', this._maintainNavbars, this);
   },
 
   defer: function (statics) {
