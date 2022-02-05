@@ -25,7 +25,6 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     expect(inst).toBeInstanceOf(cv.ui.structure.tile.elements.Icon);
     expect(inst.getConnected()).toBeTruthy();
     expect(inst.getId()).toEqual('ri-test-icon');
-    expect(inst.getIconSet()).toBeNull();
     expect(icon.classList.contains('ri-test-icon')).toBeTruthy();
     expect(icon.textContent).toBeFalsy();
 
@@ -48,7 +47,6 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     expect(inst).toBeInstanceOf(cv.ui.structure.tile.elements.Icon);
     expect(inst.getConnected()).toBeTruthy();
     expect(inst.getId()).toEqual('ri-test-icon');
-    expect(inst.getIconSet()).toBeNull();
     expect(icon.classList.contains('ri-test-icon')).toBeTruthy();
     expect(icon.textContent).toBeFalsy();
 
@@ -62,7 +60,7 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     expect(inst.getConnected()).toBeFalsy();
   });
 
-  it('should handle an knx-uf icon', function() {
+/*  it('should handle an knx-uf icon', function() {
     const icon = document.createElement('cv-icon');
     icon.setAttribute('set', 'knx-uf');
     icon.textContent = 'svg-icon';
@@ -73,7 +71,6 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     expect(inst).toBeInstanceOf(cv.ui.structure.tile.elements.Icon);
     expect(inst.getConnected()).toBeTruthy();
     expect(inst.getId()).toEqual('svg-icon');
-    expect(inst.getIconSet()).toEqual('knx-uf');
     expect(icon.textContent).toBeFalsy();
     expect(icon.children.length).toEqual(1);
     expect(svg.tagName.toLowerCase()).toEqual('svg');
@@ -88,5 +85,5 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     icon.remove();
 
     expect(inst.getConnected()).toBeFalsy();
-  });
+  });*/
 });

@@ -352,7 +352,7 @@ afterEach(function () {
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
     delete subs[topic];
   });
-  cv.ui.layout.ResizeHandler.reset();
+  cv.ui.structure.pure.layout.ResizeHandler.reset();
 
   if (this.container) {
     try {

@@ -86,7 +86,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             source: this
           }
         });
-        //this.debug(ev.detail);
+        console.log(ev.detail);
         this._element.dispatchEvent(ev);
         this.__lastValue = state;
       }

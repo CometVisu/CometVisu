@@ -49,11 +49,11 @@ describe('checking openhab transforms', function() {
     expect(cv.Transform.encode('OH:rollershutter', 0)).toEqual('UP');
     expect(cv.Transform.encode('OH:rollershutter', 1)).toEqual('DOWN');
     expect(cv.Transform.encode('OH:rollershutter', 'UP')).toEqual('UP');
-    expect(cv.Transform.decode('OH:rollershutter', 'DOWN')).toEqual(1);
+    expect(cv.Transform.decode('OH:rollershutter', 'DOWN')).toEqual(100);
     expect(cv.Transform.decode('OH:rollershutter', 'UP')).toEqual(0);
     expect(cv.Transform.decode('OH:rollershutter', 0)).toEqual(0);
-    expect(cv.Transform.decode('OH:rollershutter', 'Uninitialized')).toEqual(0);
-    expect(cv.Transform.decode('OH:rollershutter', 'NaN')).toEqual(0);
+    expect(cv.Transform.decode('OH:rollershutter', 'Uninitialized')).toEqual(undefined);
+    expect(cv.Transform.decode('OH:rollershutter', 'NaN')).toEqual(undefined);
   });
 
   it('should transform dimmer values', function() {

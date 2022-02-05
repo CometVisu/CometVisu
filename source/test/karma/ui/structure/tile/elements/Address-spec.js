@@ -119,7 +119,10 @@ describe('testing the <cv-address> component of the tile structure', () => {
     expect(ev.detail).toEqual({
       address: 'Test',
       state: 1,
-      raw: 'ON'
+      raw: 'ON',
+      mapping: '',
+      target: '',
+      source: addr
     });
 
     address.remove();
@@ -231,14 +234,17 @@ describe('testing the <cv-address> component of the tile structure', () => {
 
     expect(model.getState).toHaveBeenCalledOnceWith('Test', 'test-backend');
 
-    // as this is a read address if must NOT have add as listener to the stateEvent
+    // as this is a read address it must NOT have been added as listener to the stateEvent
     expect(address.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
     const ev = address.dispatchEvent.calls.mostRecent().args[0];
 
     expect(ev.detail).toEqual({
       address: 'Test',
       state: 'ON',
-      raw: 'ON'
+      raw: 'ON',
+      mapping: '',
+      target: '',
+      source: addr
     });
 
     address.remove();
