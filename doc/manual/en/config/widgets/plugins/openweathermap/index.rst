@@ -42,7 +42,7 @@ a key that can be obtained free of charge at the homepage and which must be
 inserted at the `appid` attribute.
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 None.

@@ -233,17 +233,17 @@ qx.Mixin.define('cv.ui.common.Refresh', {
           }
           canvases.push(canvas);
           elem.parentNode.insertBefore(canvas, elem);
-          elem.removeAttribute('src');
           elem.width = canvas.width;
           elem.height = canvas.height;
+          elem.removeAttribute('src');
         });
       };
       const imgReloadRestore = function () {
-        elements.forEach(function (elem) {
+        elements.forEach(function (elem, i) {
+          elem.onload = () => {
+            canvases[i].parentNode.removeChild(canvases[i]);
+          };
           elem.setAttribute('src', src);
-        });
-        canvases.forEach(function (elem) {
-          elem.parentNode.removeChild(elem);
         });
       };
       const iframe = window.document.createElement('iframe'); // Hidden iframe, in which to perform the load+reload.
@@ -266,13 +266,11 @@ qx.Mixin.define('cv.ui.common.Refresh', {
         }
       };
       iframe.style.display = 'none';
-      window.parent.document.body.appendChild(iframe);
       iframe.addEventListener('load', loadCallback, false);
       iframe.addEventListener('error', loadCallback, false);
+      document.body.appendChild(iframe);
       doc = iframe.contentWindow.document;
-      doc.open();
-      doc.write('<html><head><title></title></head><body><img src="' + src + '"></body></html>');
-      doc.close();
+      doc.body.innerHTML='<img src="' + src + '">';
       if (twostage) {
         return function(proceed) {
           if (!twostage) {

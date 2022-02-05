@@ -17,7 +17,7 @@ Beschreibung
 Das Video Widget nutzt intern den neuen HTML5 Tag ``<video>``.
 Diese Funktion, die im Browser des Clients ausgeführt wird, wird noch nicht von
 allen Browsern gleich gut verarbeitet. Zur Zeit werden nur die beiden Videoformate
-OGG und MP4 (H.264) unterstützt. Um eine Übersicht über die Kompatiblität zwischen Browser
+OGG und MP4 (H.264) unterstützt. Um eine Übersicht über die Kompatibilität zwischen Browser
 und Videoformat zu bekommen, nutzen Sie bitte die untenstehende Tabelle:
 
 +-------------------------------+-------+-------------+

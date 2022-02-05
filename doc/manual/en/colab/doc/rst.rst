@@ -58,7 +58,7 @@ For non-numbered lists, each line is started with ``*``, and in the case
 of numbered files with ``#.``. With appropriate Indentation of the
 lines, even nested lists are possible.
 
-Links und Referenzen
+Links and References
 ^^^^^^^^^^^^^^^^^^^^
 
 The basic syntax of links contains a title and the link itself

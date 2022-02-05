@@ -43,7 +43,7 @@ Allowed attributes in the Group-element
     </group>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All widgets and plugins are allowed in a group.

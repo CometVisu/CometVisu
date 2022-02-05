@@ -5,7 +5,7 @@
   <xsd:simpleType name="addr">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</xsd:documentation>
-      <xsd:documentation xml:lang="de">Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+|.*" />
@@ -34,19 +34,19 @@
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Amount of coloumns this widget sould be wide.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Amount of columns this widget should be wide.</xsd:documentation>
         <xsd:documentation xml:lang="de">Spaltenanzahl für dieses Widget.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Overrules the amount of columns on a medium screen.</xsd:documentation>
         <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Overrules the amount of columns on a small screen.</xsd:documentation>
         <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -145,7 +145,7 @@
         <xsd:attribute name="format-pos" type="xsd:decimal" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Position for format string when multiple addresses are used.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="qos" type="xsd:decimal" use="optional">
@@ -214,7 +214,7 @@
   </xsd:attribute>
   <xsd:attribute name="format" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Formataion of the value (printf syntax).</xsd:documentation>
+      <xsd:documentation xml:lang="en">Formatting of the value (printf syntax).</xsd:documentation>
       <xsd:documentation xml:lang="de">Formatierung des Wertes (printf-Syntax).</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
@@ -261,7 +261,7 @@
 
   <xsd:attribute name="styling" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Change the color of the dispayed value depending on its value. See also :ref:`styling`</xsd:documentation>
+      <xsd:documentation xml:lang="en">Change the color of the displayed value depending on its value. See also :ref:`styling`</xsd:documentation>
       <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
     </xsd:annotation> 
   </xsd:attribute>
@@ -285,7 +285,7 @@
   <xsd:attribute name="mode">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">"disable" deactivates the communication, "read" will only fetch data from the backend, "write" will only write to it and an address with "readwrite" will be both, read from and written to.</xsd:documentation>
-      <xsd:documentation xml:lang="de">"disable" daktiviert die Kommunikation, bei "read" wird nur vom Backend gelesen, bei "write" wird nur geschrieben und "readwrite" wird die Addresse zum Lesen und zum Schreiben verwendet.</xsd:documentation>
+      <xsd:documentation xml:lang="de">"disable" deaktiviert die Kommunikation, bei "read" wird nur vom Backend gelesen, bei "write" wird nur geschrieben und "readwrite" wird die Adresse zum Lesen und zum Schreiben verwendet.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
@@ -299,7 +299,7 @@
 
   <xsd:attribute name="class" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formated by a user provided style sheet.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
       <xsd:documentation xml:lang="de">Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</xsd:documentation>
       <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
@@ -512,7 +512,7 @@
       <xsd:attribute name="password" use="optional" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erfolderlich). </xsd:documentation>
+          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erforderlich). </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>
@@ -796,7 +796,7 @@
     </xsd:attribute>
     <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Ignore inital state update</xsd:documentation>
+        <xsd:documentation xml:lang="en">Ignore initial state update</xsd:documentation>
         <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -823,7 +823,7 @@
     <xsd:attribute name="icon-classes" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Additional CSS-classes to customize the icon.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasset werden kann.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasst werden kann.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -1260,7 +1260,7 @@
     <xsd:attribute name="hide-when-empty" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hide this widget when the NotificationCenter is empty.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Dieses Widget nicht anzeigen, wenn die Benachritigungszentrale leer ist.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dieses Widget nicht anzeigen, wenn die Benachrichtigungszentrale leer ist.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -2188,19 +2188,19 @@
     <xsd:attribute name="controls" type="xsd:string" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">List of controls to show (separated by semicolons)</xsd:documentation>
-        <xsd:documentation xml:lang="de">Liste the darzugstellenden Kontrollelemente (durch Strichpunkte getrennt)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Liste the darzustellenden Kontrollelemente (durch Strichpunkte getrennt)</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="r_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the red channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="r_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the red channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="r_wavelength" type="xsd:decimal" use="optional" >
@@ -2230,13 +2230,13 @@
     <xsd:attribute name="g_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the green channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="g_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the green channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="g_wavelength" type="xsd:decimal" use="optional" >
@@ -2266,13 +2266,13 @@
     <xsd:attribute name="b_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="b_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="b_wavelength" type="xsd:decimal" use="optional" >
@@ -2302,13 +2302,13 @@
     <xsd:attribute name="w_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the white channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="w_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the white channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="w_strength" type="xsd:decimal" use="optional" >
@@ -2385,7 +2385,7 @@
     </xsd:attribute>
     <xsd:attribute ref="legend" use="optional" >
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines whether legend is shown in combination with popup attribute. "none" => no legend, "both" => legend is shown in small inline diagram and popup, "inline" => legend in inline diagram only, "popup" => legend is only dispayed in popup diagram</xsd:documentation>
+        <xsd:documentation xml:lang="en">Defines whether legend is shown in combination with popup attribute. "none" => no legend, "both" => legend is shown in small inline diagram and popup, "inline" => legend in inline diagram only, "popup" => legend is only displayed in popup diagram</xsd:documentation>
         <xsd:documentation xml:lang="de">Definiert ob eine Legende angezeigt werden soll (in Verbindung mit popup Parameter). "None" => keine Legende, "both" => Legende im kleinen Inline Diagramm und Popup, "inline" => Legende nur im Inline Diagramm, "popup" => Legende nur im Popup Diagramm</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -2539,7 +2539,7 @@
     <xsd:attribute name="singlephase" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Boolean value to select the view of only a single phase.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Boolscher Wert um auszuwhälen, dass nur eine Phase angezeigt wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Boolscher Wert um auszuwählen, dass nur eine Phase angezeigt wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="spectrumonly" type="xsd:boolean" use="optional">
@@ -2681,7 +2681,7 @@
     </xsd:attribute>
     <xsd:attribute name="max" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Maximum numer of entries to fetch from the router.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Maximum number of entries to fetch from the router.</xsd:documentation>
         <xsd:documentation xml:lang="de">Maximale Anzahl der vom Router zu ladenden Einträge.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -2863,7 +2863,7 @@
         <xsd:attribute name="label" type="xsd:string" >
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Defines the label of the data-series in the legend</xsd:documentation>
-            <xsd:documentation xml:lang="de">Defininiert den Namen der Datenreihe in der Legende</xsd:documentation>
+            <xsd:documentation xml:lang="de">Definiert den Namen der Datenreihe in der Legende</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="scaling" type="xsd:decimal" />
@@ -2980,7 +2980,7 @@
     <xsd:attribute name="label" type="xsd:string" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the label of the data-series in the legend</xsd:documentation>
-        <xsd:documentation xml:lang="de">Defininiert den Namen der Datenreihe in der Legende</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert den Namen der Datenreihe in der Legende</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="scaling" type="xsd:decimal" />
@@ -3232,7 +3232,7 @@
           Describing text, displays the place name when left empty. "false" disables the display
         </xsd:documentation>
         <xsd:documentation xml:lang="de">
-          Beschreibungstext, zeigt den Ortsname an, wenn leergelassen. "false" deaktiviert Anzeige
+          Beschreibungstext, zeigt den Ortsname an, wenn leer gelassen. "false" deaktiviert Anzeige
         </xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>

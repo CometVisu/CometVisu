@@ -27,7 +27,7 @@ oder als Alternative über den Wert einer Gruppenadresse.
 Das Bild muss als URL angegeben werden. Wenn man Dateien anzeigen möchte müssen diese über
 http erreichbar auf dem CV-System oder einem anderen Server liegen.
 
-Als Dateiformate können alle Formate verwendet werden, die vom für die CV genutzen
+Als Dateiformate können alle Formate verwendet werden, die vom für die CV genutzten
 Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
 
 .. widget-example::
@@ -154,7 +154,7 @@ Eigenschaften einfügt:
 
 .. code-block:: xml
 
-Beispiel für die Übermittlung eines Bildes per Gruppenaddresse. Da der KNX-Bus die Übermittlung
+Beispiel für die Übermittlung eines Bildes per Gruppenadresse. Da der KNX-Bus die Übermittlung
 von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
 Dieses Beispiel nutzt ein openHAB-Item.
 

@@ -214,7 +214,7 @@ Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte e
 seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
 Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
 und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
-die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+die benutzen Adresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
 jedem Raum wiederverwenden.
 
 In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
@@ -401,7 +401,7 @@ Als nächstes wird auf der Hauptseite der Colorchooser mit dem Namen
 **RGB Küche** eingefügt.
 
 Mit dieser Struktur können beliebig komplexe Seitenstrukturen angelegt
-werden. Eine Beschreibung der einzelen Widgets mit den zugehörigen XML
+werden. Eine Beschreibung der einzelnen Widgets mit den zugehörigen XML
 Codes finden Sie in der :doc:`Widgetübersicht <widgets/index>`
 
 In der letzten Zeile der Config muss noch der Tag geschlossen werden.

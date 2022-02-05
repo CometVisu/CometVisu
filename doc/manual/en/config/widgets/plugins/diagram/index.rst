@@ -49,7 +49,7 @@ Allowed attributes in the diagram-element
     </diagram>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: diagram

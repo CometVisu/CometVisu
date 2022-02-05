@@ -40,7 +40,6 @@
     "script": [
       "libs/EventRecorder.js",
       "libs/favico.js",
-      "libs/inobounce.min.js",
       "libs/jquery.js",
       "libs/paho-mqtt.min.js",
       "libs/sprintf.js",

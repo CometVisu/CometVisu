@@ -40,7 +40,7 @@ The switch widget shows two states (e.g. ON and OFF) and can toggle between them
 
 With a :ref:`mapping <mapping>` it is possible to replace the 0/1 in the
 switch with custom texts or icons (e.g. On/Off instead of 0/1 or icons
-for window contacs, alarms, lights, etc.).
+for window contacts, alarms, lights, etc.).
 The CometVisu comes with an extensive collecton of icons for many different
 usecases. Further information can be found at the :ref:`mapping documentation <mapping>`.
 
@@ -150,7 +150,7 @@ Allowed attributes in the Switch-element
     </switch>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: switch

@@ -4,7 +4,7 @@ Hilf dem CometVisu Projekt
 
 Die Mitarbeit am CometVisu Projekt ist problemlos möglich und auch höchst willkommen!
 Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bugfixes beitragen möchten, sondern
-auch Anwender, die ihre eigenen Erfahrungen in die Verbesserung der Dokumentation einfliessen lassen möchten.
+auch Anwender, die ihre eigenen Erfahrungen in die Verbesserung der Dokumentation einfließen lassen möchten.
 
 Allgemeine Vorbereitungen
 -------------------------
@@ -23,7 +23,7 @@ Um Mitzuarbeiten braucht man also einen kostenlosen Account bei Github. Ist dies
 #. Auf diese Seite gehen `<https://github.com/CometVisu/CometVisu>`__
 #. Auf den "Fork"-Button oben rechts klicken und den Anweisungen folgen
 
-Damit hat man eine private Kopie des CometVisu-Repositories erstellt in dem man nach belieben eigene Ändungen vornehmen kann.
+Damit hat man eine private Kopie des CometVisu-Repositories erstellt in dem man nach belieben eigene Änderungen vornehmen kann.
 Natürlich ist es einfacher, wenn man die Dateien auf seinem lokalen Rechner hat um sie dort bearbeiten zu können.
 Dazu muss man seine private Kopie des CometVisu-Repositories *clonen*. Zum lokalen Arbeiten mit den Dateien braucht man einen
 *git client*. Diesen gibt es z.B. für die Kommandozeile aber auch in diversen grafischen Ausführungen. Da die Vorgehensweisen
@@ -68,7 +68,7 @@ Und nun noch einmal dieselben Schritte im Detail:
    sich der Button *compare: <branch-name>*. Drauf klicken und den Branch mit den Änderungen auswählen.
    Dann bekommt man nochmal eine Übersicht mit den Änderungen und kann auf den grünen Button namens
    *Create pull request* (grüner Button oben links) klicken.
-   Dann kann man nochmal Beschreiben, welche Änderungen der Pull-Request beeinhaltet.
+   Dann kann man nochmal Beschreiben, welche Änderungen der Pull-Request beinhaltet.
    In der Regel ist das aber bereits ausreichend vorausgefüllt und man kann durch klicken auf
    "Create pull request" (grüner Button unten rechts). Damit ist der Pull-Request erstellt
 
@@ -77,7 +77,7 @@ Außerdem werden einige automatisierte Checks auf dem Pull-Request ausgeführt u
 Sollte alles in Ordnung sein, wird der Pull-Request vom Maintainer *gemerged* und damit sind die Änderungen
 Teil des CometVisu-Projekts. Sollte der Maintainer Verbesserungsvorschläge haben, wird er dies durch Kommentare
 im Pull-Request tun. Ist dies der Fall, kommt nun der Vorteil des im Schritt 1. erstellen extra Branches zum Tragen.
-Man muss nähmlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
+Man muss nämlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
 Damit sind die Änderungen automatisch Teil des vorhandenen Pull-Requests.
 
 Sind alle Änderungen abgestimmt und übernommen worden, kann der Branch gelöscht werden.
@@ -96,7 +96,7 @@ Repositories synchron halten
 
 Um die von anderen Entwicklern *gemergeden* Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request  
 vom privaten Repository aus gemacht werden. In der Zeile *This branch is ... commits ahead of CometVisu:develop.* zeigt 
-an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum *Pull Request*, 
+an, wie viele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum *Pull Request*,
 welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository *gemerged* werden können. 
 
 .. figure:: doc/_static/pull_request_sync.png
@@ -175,7 +175,7 @@ Die aktuellen Einstellungen kann man mit dem Befehl ``git remote -v`` abfragen.
     origin	git@github.com:gh-user/CometVisu.git (fetch)
     origin	git@github.com:gh-user/CometVisu.git (push)
 
-Das bedeuted, dass git beim Aktualisieren (*fetch*, *pull*) und auch beim *pushen* den Fork des Users auf github benutzt.
+Das bedeutet, dass git beim Aktualisieren (*fetch*, *pull*) und auch beim *pushen* den Fork des Users auf github benutzt.
 Man möchte nun aber möglichst einfach Änderungen auf dem Haupt-Repository in den lokalen Klon laden. Dazu ändert man die
 *fetch* URL des remotes mit folgendem Befehl: ``git remote set-url origin git@github.com:CometVisu/CometVisu.git``.
 Danach sollte ``git remote -v`` folgende Ausgabe liefern:
@@ -185,7 +185,7 @@ Danach sollte ``git remote -v`` folgende Ausgabe liefern:
     origin	git@github.com:CometVisu/CometVisu.git (fetch)
     origin	git@github.com:gh-user/CometVisu.git (push)
 
-Damit sind die Vorraussetzungen erfüllt und man kann seinen lokalen *develop* Branch (dieser enthält die neuesten Weiterenwicklungen)
+Damit sind die Voraussetzungen erfüllt und man kann seinen lokalen *develop* Branch (dieser enthält die neuesten Weiterentwicklungen)
 ganz einfach durch ein ``git pull`` aktualisieren.
 
 .. HINT::
@@ -282,7 +282,7 @@ Extension empfohlen.
 Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 Damit die Live Preview funktioniert muss Python installiert sein.
-Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
+Eine Anleitung um die nötigen Voraussetzungen zu schaffen findet man hier:
 `Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__. 
 Um die erforderlichen Tools zu installieren, den Befehl ``sudo -H pip install -r utils/requirements.txt`` im 
 CometVisu Verzeichnis ausführen. 
@@ -321,7 +321,7 @@ Mithilfe bei der Entwicklung
 .. TODO::
 
     * Beschreibung der Grundstruktur, wo was zu finden ist.
-    * Einführung ins Build-Systemmit *grunt*
+    * Einführung ins Build-System mit *grunt*
     * Style-Guide
     * JSDoc inkl. widget-examples
     * ..
@@ -366,7 +366,7 @@ Replay-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
     ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.
 
 Die Replay-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
-(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverstanden sein diese Daten zu veröffentlichen.
 Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
 sensiblen Daten enthält.
 Der große Vorteil dieser replay-Dateien ist aber, dass die Entwickler beim Abspielen eine originalgetreue

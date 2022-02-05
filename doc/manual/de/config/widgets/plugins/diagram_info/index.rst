@@ -19,7 +19,7 @@ ein Popup-Diagramm öffnet, dass den zeitlichen Verlauf des Wertes visualisiert.
 muss im rrd-Format oder in einer Influx-Datenbank vorliegen. Genaueres dazu im
 Abschnitt :ref:`RRD-Einführung & Beispiele <rrd_introduction>`.
 
-Soll das Diagramm selbst als Widget angezeigt werdeb, muss das ``diagram``-Plugin verwendet werden.
+Soll das Diagramm selbst als Widget angezeigt werden, muss das ``diagram``-Plugin verwendet werden.
 Genauere Informationen dazu unter :ref:`diagram`.
 
 

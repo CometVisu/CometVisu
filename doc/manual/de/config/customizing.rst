@@ -24,7 +24,7 @@ Vorhandenes Design verändern
 ----------------------------
 
 Die vorhandenen Designs können durch eigene CSS-Regeln angepasst werden. Im Meta-Bereich der Konfigurationsdatei
-können dazu Pfade zu CSS-Dateien angegben werden, die zusätzlich zu den CSS-Dateien des CometVisu-Designs geladen werden.
+können dazu Pfade zu CSS-Dateien angegeben werden, die zusätzlich zu den CSS-Dateien des CometVisu-Designs geladen werden.
 
 Die entsprechende CSS-Dateien können über den :ref:`Manager <manager>` hochgeladen werden,
 sofern man keinen Zugriff auf den Server hat auf dem die CometVisu liegt.
@@ -48,7 +48,7 @@ sofern man keinen Zugriff auf den Server hat auf dem die CometVisu liegt.
 .. HINT::
     In früheren CometVisu-Versionen (<= 0.10.x) mussten die CSS-Regeln in die ``custom.css`` Datei des jeweiligen
     Designs eingetragen werden. Auch wenn dies weiterhin funktioniert, wird empfohlen diese Regeln in eine neue Datei zu kopieren
-    und über den hier beschriebenen Weg einzubinden. Der alte Weg wird nur aus kompabilitätsgründen aufrecht erhalten und
+    und über den hier beschriebenen Weg einzubinden. Der alte Weg wird nur aus Gründen der Kompatibilität aufrecht erhalten und
     in zukünftigen Versionen entfernt werden.
 
 
@@ -126,7 +126,7 @@ Ein CometVisu Design besteht mindestens aus folgenden Dateien:
 * *design_setup.js*: Optionale Javascript Datei, die Anpassungen vornehmen kann die über CSS nicht möglich sind (kann leer sein)
 
 .. HINT::
-    Um ein neues Design entwickeln und testen zu können, ist die Source-Version der CometVisu erfolderlich.
+    Um ein neues Design entwickeln und testen zu können, ist die Source-Version der CometVisu erforderlich.
     Diese erhält man in dem man das Git-Repository klont, `./generate source` ausführt (einmalig nach klonen und jedesmal,
     wenn eine neue Datei für das Design hinzugefügt wird).
 
@@ -147,7 +147,7 @@ Hier wird zwischen zwei Wegen unterschieden, wie Plugins in die CometVisu eingeb
 
     *Vorteile:*
 
-    * Sind Teil der CometVisu und stehen somit allen Benutzern zur Verfügung. Kompabilität mit zukünftigen CometVisu-Versionen ist in der Regel gewährleistet.
+    * Sind Teil der CometVisu und stehen somit allen Benutzern zur Verfügung. Kompatibilität mit zukünftigen CometVisu-Versionen ist in der Regel gewährleistet.
     * Der Code wird beim Erstellen des CometVisu-Releases optimiert und minifiziert, was die Ladezeit verkürzt
     * Die Benutzung weiterer Hilfsklassen aus dem Qooxdoo-Framework ist problemlos möglich.
     * Teil der Versionsverwaltung Git: alle Änderungen am Code werden erfasst und können bei Fehler wieder rückgängig gemacht werden.
@@ -167,7 +167,7 @@ Hier wird zwischen zwei Wegen unterschieden, wie Plugins in die CometVisu eingeb
 
     *Nachteile:*
 
-    * Sind nicht Teil der CometVisu, der Benutzer muss sich selbst um Kompabilität mit zukünftigen CometVisu-Versionen kümmern.
+    * Sind nicht Teil der CometVisu, der Benutzer muss sich selbst um Kompatibilität mit zukünftigen CometVisu-Versionen kümmern.
     * Keine Code-Optimierungen möglich
     * Zusätzliche Abhängigkeiten zu Qooxdoo-Klassen nicht möglich (was nicht Teil der CometVisu ist, kann nicht benutzt werden)
 

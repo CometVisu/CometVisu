@@ -40,7 +40,7 @@ Allowed attributes in the Break-element
 
 None.
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 None

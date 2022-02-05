@@ -1,6 +1,6 @@
 /* Application.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -229,7 +229,9 @@ qx.Class.define('cv.Application',
       } else if (!value && document.body.classList.contains('mobile')) {
         document.body.classList.remove('mobile');
       }
-      cv.ui.layout.ResizeHandler.invalidateNavbar();
+      if (this.__appReady) {
+        cv.ui.layout.ResizeHandler.invalidateNavbar();
+      }
     },
 
     _applyManagerChecked: function(value) {

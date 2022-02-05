@@ -13,7 +13,7 @@ ein neuer Wert für ein Widget vom Backend hochgemeldet wird. Diese Benachrichti
 als Eintrag in der Benachrichtigungszentrale angezeigt werden.
 
 Sobald Nachrichten in der Benachrichtigungszentrale vorhanden sind, wird die Anzahl der Nachrichten am oberen rechten
-Rand des Browserfensters und im Favicon (im Browser-Tab) anzeigt. Sollten Nachrichten mit höherer Priotität darunter
+Rand des Browserfensters und im Favicon (im Browser-Tab) anzeigt. Sollten Nachrichten mit höherer Priorität darunter
 sein, wird dies durch farbigen Hintergrund gekennzeichnet.
 
 .. code-block:: xml
@@ -36,13 +36,13 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.
 .. HINT::
 
     Die ``<address>`` Einträge in den Notifications sind die gleichen, wie sich innerhalb der Widgets benutzt werden.
-    In den Beispielen werden openHAB-Adressen benutzt. Ein entprechendes Beispiel für das Default-Backend wäre:
+    In den Beispielen werden openHAB-Adressen benutzt. Ein entsprechendes Beispiel für das Default-Backend wäre:
     ``<address transform="DPT:1.001">12/0/3</address>``
 
 **Erklärung:**
 
 Über dass ``address`` Element (mehrere sind möglich) wird festgelegt, dass bei eingehenden Status-Updates für diese
-Addresse eine Nachricht generiert wird. Eine Nachricht besteht aus einem Titel und dem Nachrichteninhalt.
+Adresse eine Nachricht generiert wird. Eine Nachricht besteht aus einem Titel und dem Nachrichteninhalt.
 Die beiden Elemente ``title-template`` und ``message-template`` bestimmen den Inhalt der beiden Nachrichtenteile.
 Bei den Templates handelt es sich um `Mustache <https://github.com/janl/mustache.js>`__-Templates,
 bei denen bestimmte Platzhalter an eine beliebige Stelle in den Text eingefügt werden können.
@@ -70,7 +70,7 @@ am linken Rand der Visu angezeigt wird. Ein weiterer möglicher Wert wäre hier 
 als Popup anzuzeigen.
 
 ``unique="true"`` legt fest, dass die Nachricht nur einmal angezeigt wird, und zwar nur, wenn der Wert des
-Status-Updates gleich dem ``<condition>`` festgelegten Wert ``ON`` entsprich, d.h. die Nachricht wird angezeigt,
+Status-Updates gleich dem ``<condition>`` festgelegten Wert ``ON`` entspricht, d.h. die Nachricht wird angezeigt,
 wenn die Lampe eingeschaltet ist, wenn sie ausgeschaltet wird, wird die Nachricht automatisch gelöscht.
 
 

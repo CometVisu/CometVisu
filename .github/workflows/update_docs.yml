@@ -1,4 +1,4 @@
-name: Update docs
+name: "[doc] Generate"
 on:
   workflow_dispatch:
     inputs:
