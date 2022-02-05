@@ -20,6 +20,7 @@
 
 /**
  * Wrapper class for all data providers.
+ * @ignore(Element)
  */
 qx.Class.define('cv.ui.manager.editor.data.Provider', {
   extend: qx.core.Object,
