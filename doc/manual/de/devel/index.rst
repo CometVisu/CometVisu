@@ -10,7 +10,7 @@ Grundlagen der Software
 
 Die CometVisu ist seit Version 0.11 auf dem `Qooxdoo-Framework <http://www.qooxdoo.org>`__ aufgebaut.
 Das Qooxdoo Framework bietet ein eigenes Objekt-Orientiertes Klassensystem (inkl. erweiterten Features wie: Interfaces
-Mixins, Abstakte Klasse, Singletons, einfache Type-Checks für Properties, usw.) mit dem sich ein komplexes und
+Mixins, Abstrakte Klasse, Singletons, einfache Type-Checks für Properties, usw.) mit dem sich ein komplexes und
 dennoch strukturiertes Software-System aufbauen lässt.
 
 Ebenso liefert es eine vollständige Toolchain (Qooxdoo-Generator) mit, die Klassenabhängigkeiten automatisch auflöst und daraus
@@ -54,7 +54,7 @@ Der Ablauf des Ladens der Visu läuft nach dem CometVisu-Protokoll in folgenden 
 
     * ``X-CometVisu-Backend-LoginUrl``: Pfad unter der der Client das Login ausführen kann.
     * ``X-CometVisu-Backend-Name``: Der Name des zu verwendenden Backends.
-#. Die CometVisu authentifiziert sich beim Backend (zur Zeit implementiert kein Backend eine echte Authenfizierung)
+#. Die CometVisu authentifiziert sich beim Backend (zur Zeit implementiert kein Backend eine echte Authentifizierung)
 #. Das Backend bestätigt die Authentifizierung und liefert Informationen als JSON zurück:
 
     ``v``: Ist die Protokollversion

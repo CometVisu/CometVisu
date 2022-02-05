@@ -46,6 +46,8 @@ qx.Class.define('cv.TemplateEngine', {
       manager.add(group);
       manager.setActive(group);
     }
+    // TODO: move to controller
+    // qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
   },
 
   /*
@@ -539,6 +541,8 @@ qx.Class.define('cv.TemplateEngine', {
 
       if (rootNode.getAttribute('max_mobile_screen_width') !== null) {
         settings.maxMobileScreenWidth = rootNode.getAttribute('max_mobile_screen_width');
+        // override config setting
+        cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
       }
 
       const globalClass = rootNode.getAttribute('class');
@@ -552,11 +556,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (design) {
         let baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
-        this.debug('cv.Config.mobileDevice: ' + cv.Config.mobileDevice);
-        if (cv.Config.mobileDevice) {
-          settings.stylesToLoad.push(baseUri + '/mobile.css');
-          document.querySelector('body').classList.add('mobile');
-        }
+        settings.stylesToLoad.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`});
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
@@ -566,10 +566,8 @@ qx.Class.define('cv.TemplateEngine', {
 
             baseUri = 'designs/' + cv.Config.loadedStructure;
             const alternativeStyles = [baseUri + '/basic.css'];
-            if (cv.Config.mobileDevice) {
-              alternativeStyles.push(baseUri + '/mobile.css');
-            }
-            alternativeStyles.push(baseUri + '/custom.css');
+            alternativeStyles.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`});
+            alternativeStyles.push(baseUri+'/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
             cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
           }

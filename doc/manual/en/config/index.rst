@@ -138,7 +138,7 @@ For navigation inside the visualization, the Cometvisu offers numerous
 options for the user:
 
 -  The :ref:`Page widget <page>` calls the associated subpage.
--  The Top Navigation Display showes the current path and allows you to
+-  The Top Navigation Display shows the current path and allows you to
    navigate back to parent pages.
 -  The back button of the browser or the operating system (e.g. iOS, Android)
 -  The Navbar widget in conjunction with page jump widgets.

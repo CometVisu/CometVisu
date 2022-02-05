@@ -22,7 +22,7 @@ Transform
 ---------
 
 The "namespace" for the backend specific value for ``transform`` is separated
-by a colon written infront of the data type. The valid values for the different
+by a colon written in front of the data type. The valid values for the different
 backends are:
 
 KNX

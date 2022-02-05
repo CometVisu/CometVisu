@@ -53,8 +53,8 @@ Mittels Rechtsklick kann das Terminal mit "Lock to Launcher" am linken Toolbar f
 
 3. Visual Studio Code installieren. Dazu Firefox vom linken Toolbar aus öffnen und auf 
    `<https://code.visualstudio.com/download>`__ wechseln. Mit der Schaltfläche .deb das Paket auswählen und im 
-   Dialogfester die Option "Open with Software install (default)" wählen. Nach dem Download erscheint das Ubuntu Software
-   Center, wo noch die Schaltfläche "Install" gedrückt weden muss.   
+   Dialogfenster die Option "Open with Software install (default)" wählen. Nach dem Download erscheint das Ubuntu Software
+   Center, wo noch die Schaltfläche "Install" gedrückt werden muss.
 
    .. hint ::
 

@@ -50,8 +50,8 @@ Widget-Komponenten: Slider
 """"""""""""""""""""""""""
 
 Der ColorChooser bietet verschiedene Möglichkeiten und Kombinationen um eine
-Farbe auzuwählen und anzuzeigen. So gibt es Slider für eine direkte Auswahl, aber
-aber solche für eine der menschlischen Wahrnehmung besser entsprechenden
+Farbe auszuwählen und anzuzeigen. So gibt es Slider für eine direkte Auswahl, aber
+aber solche für eine der menschlichen Wahrnehmung besser entsprechenden
 Darstellung:
 
 ========== =====================================================================
@@ -74,7 +74,7 @@ Darstellung:
 
 Der Slider für die Farbtemperatur nimmt eine Sonderrolle ein, da dieser
 gleichzeitig den Farbton als auch die Sättigung so einstellt, dass diese
-Farbtemperatur mit der Beleuchtung erricht wird. Soll die Farbtemperatur noch
+Farbtemperatur mit der Beleuchtung erreicht wird. Soll die Farbtemperatur noch
 um einen Slider für die Helligkeit ergänzt werden, so ist hierfür ``Y`` am
 besten geeignet.
 
@@ -304,7 +304,7 @@ Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
     komplette Farbe als ``HSV``, oder im optimalen Fall, als ``xyY``-Farbe übertragen,
     so ist die Angabe einer Dim-Kurve nicht notwendig.
 
-Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
+Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtungssystems
 entnehmen, wobei hier sowohl die Lampen, die Treiber als auch das Bus-Gateway
 zu berücksichtigen sind, da hier an jeder Stelle ein nicht lineares Verhalten
 möglich sein kann.
@@ -317,7 +317,7 @@ einem satten Orange entsprechen.
 
 Sollte die Farbe nicht passen, so ist real eingestellte Farbe (ohne dass eine
 Dim-Kurve konfiguriert wurde) mit dieser Tabelle zu vergleichen und der
-Wert aus der letzen Spalte als Dim-Kurve zu verwenden:
+Wert aus der letzten Spalte als Dim-Kurve zu verwenden:
 
 .. raw:: html
 
@@ -352,7 +352,7 @@ Abschnitt für den professionellen Modus beschrieben.
 Professioneller Modus
 ^^^^^^^^^^^^^^^^^^^^^
 
-Für professionelle Anwendungen wie in der Architektur, Kunstgallerien oder
+Für professionelle Anwendungen wie in der Architektur, Kunstgalerien oder
 Yachten lässt sich der einfache Modus leicht auf eine farbverbindliche Nutzung
 erweitern.
 
@@ -386,7 +386,7 @@ alternativ verwendet werden. Dies führt nur bei einer monochromatischen Lichtqu
 wie einem Laser zu einem korrektem Ergebnis, jedoch besitzen auch RGB-LEDs ein
 annähernd monochromatische Verhalten. Bei dem weißen Kanal kann statt der
 xy-Koordinaten auch die Farbtemperatur verwendet werden. Sollte eine Abweichung
-von der Black-Body-Kurve berücksichtig werden müssen, so muss dies jedoch über eine
+von der Black-Body-Kurve berücksichtigt werden müssen, so muss dies jedoch über eine
 Angabe in xy-Koordinaten erfolgen.
 
 Die Helligkeitsangabe muss keine spezifische physikalische Einheit (wie Lumen
@@ -404,7 +404,7 @@ korrekt eingestellte Dim-Kurve unabdingbar.
 
 .. note::
 
-    Der ColorChooser verwendet intern den CIE xyY Farbraum. Für die Umrechung
+    Der ColorChooser verwendet intern den CIE xyY Farbraum. Für die Umrechnung
     in den L*a*b* bzw. den L*C*h° Farbraum wird die Normlichtart D65 und ein
     Beobachterwinkel von 10° verwendet.
 
@@ -445,7 +445,7 @@ Ansteuerung über DALI:
 .. note::
 
     Wenn mehrere ColorChooser für die gleiche Farbe verwendet werden (z.B. in
-    einer Konfiguration, oder bei zwei offnen Instanzen der CometVisu), so ist es
+    einer Konfiguration, oder bei zwei offenen Instanzen der CometVisu), so ist es
     möglich, dass beide eine leicht unterschiedliche Anzeige haben. Dies passiert,
     wenn eine Farbe ausgewählt wurde, die in dieser Form nicht über den Bus
     übertragen werden kann, da sie mit den vorhandenen Farbkanälen nicht

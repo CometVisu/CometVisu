@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2022-01-10 19:39+CET\n"
-"PO-Revision-Date: 2022-01-10 22:24+0100\n"
+"PO-Revision-Date: 2022-01-28 20:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: utils/docutils/directives/api_doc.py:54
@@ -73,7 +73,7 @@ msgstr "number > 0"
 
 #: utils/docutils/directives/common.py:49
 msgid "dimension"
-msgstr "dimenstion (number+unit)"
+msgstr "dimension (number+unit)"
 
 #: utils/docutils/directives/common.py:120
 #: utils/docutils/directives/common.py:126

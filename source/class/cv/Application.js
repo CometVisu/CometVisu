@@ -41,6 +41,7 @@ qx.Class.define('cv.Application',
   */
   construct: function () {
     this.base(arguments);
+    this.__appReady = false;
     this.initCommandManager(new qx.ui.command.GroupManager());
     const lang = qx.locale.Manager.getInstance().getLanguage();
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
@@ -165,7 +166,33 @@ qx.Class.define('cv.Application',
 
     inManager: {
       check: 'Boolean',
-      init: false
+      init: false,
+      apply: '_applyInManager'
+    },
+
+    managerDisabled: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeManagerDisabled'
+    },
+
+    managerDisabledReason: {
+      check: 'String',
+      nullable: true
+    },
+    managerChecked: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyManagerChecked'
+    },
+    /**
+     * Mobile device detection (small screen)
+     */
+    mobile: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeMobile',
+      apply: '_applyMobile'
     }
   },
 
@@ -179,6 +206,7 @@ qx.Class.define('cv.Application',
   members :
   {
     _blocker: null,
+    __appReady: null,
     _isCached: null,
 
     /**
@@ -198,12 +226,33 @@ qx.Class.define('cv.Application',
       }
     },
 
+    _applyMobile: function (value) {
+      // maintain old value for compatibility
+      if (value && !document.body.classList.contains('mobile')) {
+        document.body.classList.add('mobile');
+      } else if (!value && document.body.classList.contains('mobile')) {
+        document.body.classList.remove('mobile');
+      }
+      if (this.__appReady) {
+        cv.ui.layout.ResizeHandler.invalidateNavbar();
+      }
+    },
+
+    _applyManagerChecked: function(value) {
+      if (value && cv.Config.request.queryKey.manager) {
+        const action = cv.Config.request.queryKey.open ? 'open' : '';
+        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
+        this.showManager(action, data);
+      }
+    },
+
     /**
      * This method contains the initial application code and gets called
      * during startup of the application
      */
     main : function() {
       cv.ConfigCache.init();
+      this._checkBackend();
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get('qx.debug')) {
         if (typeof replayLog !== 'undefined' && replayLog) {
@@ -237,12 +286,6 @@ qx.Class.define('cv.Application',
       const manCommand = new qx.ui.command.Command('Ctrl+M');
       cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
       manCommand.addListener('execute', () => this.showManager(), this);
-      if (cv.Config.request.queryKey.manager) {
-        const action = cv.Config.request.queryKey.open ? 'open' : '';
-        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-        this.showManager(action, data);
-      }
-
       this.registerServiceWorker();
 
       if (qx.core.Environment.get('qx.aspects')) {
@@ -267,6 +310,21 @@ qx.Class.define('cv.Application',
         qx.log.appender.Console;
       }
       this.__init();
+      if (typeof cv.Config.mobileDevice === 'boolean') {
+        this.setMobile(cv.Config.mobileDevice);
+      }
+      this._onResize(null, true);
+      qx.event.Registration.addListener(window, 'resize', this._onResize, this);
+    },
+
+    hideManager: function () {
+      if (Object.prototype.hasOwnProperty.call(cv.ui, 'manager')) {
+        const ManagerMain = cv.ui['manager']['Main'];
+        // only do something when the singleton is already created
+        if (ManagerMain.constructor.$$instance) {
+          ManagerMain.getInstance().setVisible(false);
+        }
+      }
     },
 
     /**
@@ -310,6 +368,12 @@ qx.Class.define('cv.Application',
             }, this, 1000);
           }
         }, this);
+      }
+    },
+
+    _applyInManager: function (value) {
+      if (value) {
+        qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
       }
     },
 
@@ -679,6 +743,7 @@ qx.Class.define('cv.Application',
           }, this);
         }
       }
+      this.__appReady = true;
     },
 
     /**
@@ -789,6 +854,81 @@ qx.Class.define('cv.Application',
         this.debug('no plugins to load => all scripts queued');
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
       }
+    },
+
+    _checkBackend: function () {
+      const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+      const xhr = new qx.io.request.Xhr(url);
+      xhr.set({
+        method: 'GET',
+        accept: 'application/json'
+      });
+      xhr.addListenerOnce('success', function (e) {
+        const req = e.getTarget();
+        const env = req.getResponse();
+        const serverVersionId = env.PHP_VERSION_ID;
+        //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
+        const parts = env.required_php_version.split(' ');
+        const disable = parts.some(constraint => {
+          const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+          if (match) {
+            const operator = match[1];
+            const majorConstraint = parseInt(match[2]);
+            const hasMinorVersion = match[3] !== undefined;
+            const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+            const hasPatchVersion = match[4] !== undefined;
+            const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+            const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+            const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
+            // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+            switch (operator) {
+              case '>=':
+                if (serverVersionId < constraintId) {
+                  return true;
+                }
+                break;
+              case '>':
+                if (serverVersionId <= constraintId) {
+                  return true;
+                }
+                break;
+              case '<=':
+                if (serverVersionId > maxId) {
+                  return true;
+                }
+                break;
+              case '<':
+                if (serverVersionId >= maxId) {
+                  return true;
+                }
+                break;
+              case '^':
+                if (serverVersionId < constraintId || serverVersionId > 10000 *(majorConstraint+1)) {
+                  return true;
+                }
+                break;
+              case '~':
+                if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint+1) : serverVersionId > (10000 *(majorConstraint) + 100 * (patchConstraint+1))) {
+                  return true;
+                }
+                break;
+            }
+          }
+          return false;
+        });
+        if (disable) {
+          this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+          this.setManagerDisabled(true);
+          this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+        } else {
+          this.info('Manager available for PHP version', env.phpversion);
+        }
+        this.setManagerChecked(true);
+      }, this);
+      xhr.addListener('statusError', e => {
+        this.setManagerChecked(true);
+      });
+      xhr.send();
     },
 
     close: function () {

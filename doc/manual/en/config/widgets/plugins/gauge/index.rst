@@ -51,7 +51,7 @@ Allowed attributes in the gauge-element
     </gauge>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: gauge

@@ -64,7 +64,7 @@ Allowed attributes in the ImageTrigger-element
     </imagetrigger>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: imagetrigger

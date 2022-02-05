@@ -24,9 +24,9 @@ Am einfachsten greift man auf die verschiedenen Konfigurationsdateien über den
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
-- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
+- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Verzeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 
-- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
+- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den möglicherweise parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
 
 - Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
 
@@ -58,7 +58,7 @@ sollte man die Seite neu laden und den Browser-Cache löschen.
 Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
 eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
 Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
-Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
+Darstellung) auch mit dem Link "Check Config" in der Fußzeile oder
 durch Anhängen von check_config.php an den URL erzwingen.
 
 .. toctree::
@@ -91,7 +91,7 @@ Es wird zwischen Widgets zur
 
 - Darstellung (diese haben ausschließlich informative Funktion),
 
-- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiednen Seiten der Visualisierung (Sonstige Widgets)
+- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiedenen Seiten der Visualisierung (Sonstige Widgets)
 
 unterschieden.
 
@@ -128,10 +128,10 @@ Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Naviga
 -  Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten
    zurück zu navigieren .
 -  Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)  
--  Das Navbar-Widget in Verbingung mit Pagejump-Widgets
+-  Das Navbar-Widget in Verbindung mit Pagejump-Widgets
 -  Das :ref:`Pagejump-Widget <pagejump>` erlaubt den Aufruf einer beliebigen Unterseite.
 -  Das :ref:`Group-Widget <group>` kann mit der Option ``target=`` ebenfalls eine beliebige Unterseite aufrufen.
--  Eine Besonderheit ist der :ref:`Statusbar <xml-format_statusbar>` am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden.  
+-  Eine Besonderheit ist der :ref:`Statusbar <xml-format_statusbar>` am unteren Bildschirmrand. Von dort können zB. externe URL aufgerufen werden.
 
 .. figure:: _static/Navigation_withDescription.png
     
@@ -187,7 +187,7 @@ aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-
 zB. auch beim Drehen des Endgerätes vom Quer- ins Hochformat bzw. beim Ändern der Fenstergröße am PC.   
 
 Innerhalb der Widgets stehen noch verschiedene Attribute wie ``width``, ``height``, etc. zur Verfügung. Damit kann
-die Größe des Widgetinhaltes (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.
+die Größe des Widgetinhalts (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.
 
 Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:
 
@@ -198,7 +198,7 @@ Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:
     size-attributes
  
 -  :doc:`Layout <layout>` legt die Größe und Anordnung der Widgets fest 
--  :doc:`Width und Height <size-attributes>` beeinflusst die Größe des Widgetinhaltes
+-  :doc:`Width und Height <size-attributes>` beeinflusst die Größe des Widgetinhalts
 
 
 
@@ -223,7 +223,7 @@ dargestellt werden. Hierfür können genutzt werden:
    Fensterkontakte)
 -  :doc:`Styling <styling>` erlaubt das wertabhängige
    Färben von Werten (z.B. An in rot und Aus in Grün)
--  :doc:`Flavour <flavour>` ermöglich in einigen Designs
+-  :doc:`Flavour <flavour>` ermöglicht in einigen Designs
    für einige Widgets noch zusätzliche Optionen.
 
 Widgets in der CometVisu
@@ -259,7 +259,7 @@ Tile-Struktur
 CometVisu - Beispiele
 ---------------------
 
-Hier befindes sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.
+Hier befindet sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.
 
 .. toctree::
     :maxdepth: 1

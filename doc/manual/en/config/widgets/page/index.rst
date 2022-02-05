@@ -44,7 +44,7 @@ Allowed attributes in the Page-element
     </page>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All widgets are allowed in the page widget.

@@ -218,7 +218,7 @@ before presentation, e.g. to use other units.
 to match the value "y".
 
 More complex functions and calculations with multiple values
-can not be performed here, an external logic engine (linkknx or
+can not be performed here, an external logic engine (linknx or
 similar) must be used for this. However, it is quite possible
 to use the given JavaScript functions. More below.
 

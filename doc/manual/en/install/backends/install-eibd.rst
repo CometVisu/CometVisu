@@ -6,7 +6,7 @@ interfaces such as USB, TPUART or EIBnet/IP Routing and Tunneling. eibd
 was developed by TU Wien is not developed any further. Nevertheless eibd is
 still often used and known as stable service.
 
-Link to official install packeges: 
+Link to official install packages:
 
     - `deb Pakete <https://www.auto.tuwien.ac.at/~mkoegler/index.php/eibdeb>`__
     - `rpm Pakete <https://www.auto.tuwien.ac.at/~mkoegler/index.php/eibrpm>`__ 
@@ -21,7 +21,3 @@ communicate with all known KNX interfaces.
 The knxd must be compiled from the source code. A
 configuration and compilation manual for debian Server can
 be found on the `knxd github page <https://github.com/knxd/knxd>` __.
- 
-.. TODO::
-
-    Inhalte übertragen

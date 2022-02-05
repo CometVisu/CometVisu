@@ -230,6 +230,7 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     _onDomReady: function () {
+      this.base(arguments);
       let args = arguments;
       const self = this;
 
@@ -301,15 +302,15 @@ qx.Class.define('cv.plugins.Clock', {
 
           svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
 
-          let HotSpotHour = svg.getElementById('HotSpotHour');
+          let HotSpotHour = svg.querySelector('#HotSpotHour');
           if (HotSpotHour) {
  HotSpotHour.addEventListener('pointerdown', this); 
 }
-          let HotSpotMinute = svg.getElementById('HotSpotMinute');
+          let HotSpotMinute = svg.querySelector('#HotSpotMinute');
           if (HotSpotMinute) {
  HotSpotMinute.addEventListener('pointerdown', this); 
 }
-          let HotSpotSecond = svg.getElementById('HotSpotSecond');
+          let HotSpotSecond = svg.querySelector('#HotSpotSecond');
           if (HotSpotSecond) {
  HotSpotSecond.addEventListener('pointerdown', this); 
 }
@@ -340,7 +341,7 @@ qx.Class.define('cv.plugins.Clock', {
         minute: 2,
         second: 3
       };
-
+      
       switch (event.type) {
         case 'pointerdown':
           switch (event.target.id) {

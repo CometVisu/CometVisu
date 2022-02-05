@@ -40,7 +40,7 @@ Zum Anzeigen eines Diagramms in der CometVisu ist nötig:
    oder ein `RRDtool mit Patches <CometVisu/rrdtool>`__)
 
 (beides ist auf dem wiregate und auf dem Raspberry Pi image
-standardmässig verfügbar)
+standardmäßig verfügbar)
 
 .. code-block:: bash
 
@@ -77,14 +77,14 @@ Die RRD Datei/Datenbank muss zunächst angelegt werden.
 Hierfür muss man sich beim Anlegen der Datenbank überlegen wie viele
 Datensätze gespeichert werden sollen. Die Datenbank wird dann erstellt
 und mit "NaN" (Not A Number - kein Wert vorhanden) Werten gefüllt. Die
-Grösse der Datenbank ändert sich dann nicht mehr.
+Größe der Datenbank ändert sich dann nicht mehr.
 
 Dies bedeutet das wenn die maximale Anzahl Datensätze in einer Tabelle
 erreicht sind wird mit dem Eintragen eines neues Wertes der älteste
-verworfen. Dies ist jedoch kein Problem da regelmässig Werte
+verworfen. Dies ist jedoch kein Problem da regelmäßig Werte
 zusammengefasst werden.
 
-In der Praxis heisst das das die Auflösung der Werte mit zunehmendem
+In der Praxis heißt das das die Auflösung der Werte mit zunehmendem
 Zeitabstand zu "jetzt" geringer wird. (z.B. minütliche Werte für die
 letzten 7 Tage, stündliche Werte für die letzten 4 Wochen, tägliche
 Werte für die letzten 2 Jahre etc...)
@@ -92,7 +92,7 @@ Werte für die letzten 2 Jahre etc...)
 "Befüllen" der RRD-Datenbank
 ----------------------------
 
-Die RRD Datei/Datenbank muss regelmässig mit Daten befüllt werden - wenn
+Die RRD Datei/Datenbank muss regelmäßig mit Daten befüllt werden - wenn
 dies nicht geschieht erkennt RRD das und trägt automatische NaN ein -
 damit bleiben die Zusammenfassungen korrekt.
 
@@ -101,7 +101,7 @@ Hierfür ruft man das das rrdtool auf mit dem Parameter "update" und
 die Werte die in die Datenbank aufgenommen werden sollen.
 
 Am, einfachsten lässt sich dieses über ein kurzes Shellscript erledigen,
-das man dann per cron regelmässig ausführen lässt.
+das man dann per cron regelmäßig ausführen lässt.
 
 Fehlersuche
 -----------

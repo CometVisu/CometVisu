@@ -47,6 +47,25 @@ qx.Class.define('cv.util.ScriptLoader', {
 
     isMarkedAsLoaded: function (path) {
       return this.getInstance().isMarkedAsLoaded(path);
+    },
+
+    /**
+     * Include a CSS file
+     *
+     * @param href {String} Href value
+     * @param media {string?} Content of the media attribute
+     */
+    includeStylesheet(href, media) {
+      const el = document.createElement('link');
+      el.type = 'text/css';
+      el.rel = 'stylesheet';
+      el.href = href;
+      if (media) {
+        el.media = media;
+      }
+
+      const head = document.getElementsByTagName('head')[0];
+      head.appendChild(el);
     }
   },
 
@@ -89,16 +108,29 @@ qx.Class.define('cv.util.ScriptLoader', {
       const queue = (typeof styleArr === 'string' ? [styleArr] : styleArr.concat());
       const suffix = (cv.Config.forceReload === true) ? '?' + Date.now() : '';
       queue.forEach(function(style) {
-        let resPath = qx.util.ResourceManager.getInstance().toUri(style);
-        if (resPath === style) {
-          // this file is unknown to the resource manager, might be an scss source
-          const scssStyle = style.replace(/\.css$/, '.scss');
-          const scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
-          if (scssStyle !== scssPath) {
-            resPath = scssPath.replace(/\.scss$/, '.css');
-          }
+        let media;
+        let src;
+        if (typeof style === 'string') {
+          src = style;
+          cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+        } else if (typeof style === 'object') {
+	  src = style.uri;
+          media = style.media;
+        } else {
+          this.error('unknown style parameter type', typeof style);
         }
-        qx.bom.Stylesheet.includeFile(resPath + suffix);
+        if (src) {
+	  let resPath = qx.util.ResourceManager.getInstance().toUri(src);
+          if (resPath === src) {
+            // this file is unknown to the resource manager, might be an scss source
+            const scssStyle = style.replace(/\.css$/, '.scss');
+            const scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
+            if (scssStyle !== scssPath) {
+              resPath = scssPath.replace(/\.scss$/, '.css');
+            }
+          }
+          cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media);
+	}
       }, this);
     },
 

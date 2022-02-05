@@ -41,7 +41,7 @@ Für jedes Widget kann mit ``colspan-m`` bzw. ``colspan-s`` auch eine Widgetbrei
 Dies ist notwendig, da in der Praxis die Schriftgröße und die Größe der Bedienflächen (zB. Buttongröße) anders skalieren
 als die tatsächliche Displaygröße.
 Des weiteren kann mit ``colspan-m`` und ``colspan-s`` auch das Layout im Hochformat beeinflusst werden, wenn die gleiche config 
-auf meherer Devices verwendet wird oder auf einem Gerät beim Drehen des Bildschirms die Anzeige anders angeordnet werden 
+auf mehreren Devices verwendet wird oder auf einem Gerät beim Drehen des Bildschirms die Anzeige anders angeordnet werden
 soll.
 
 .. IMPORTANT::
