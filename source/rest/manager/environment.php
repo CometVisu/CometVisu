@@ -41,39 +41,42 @@ $retval['required_php_version'] = $composer['require']['php'];
 // We use a caching mechanism here, so that non-timberwolf systems aren't
 // affected by that test too often. For that /dev/shm/ must exist, so that
 // it is ensured that the cache is cleaned during reboot
-$environmentInfoFile = '/dev/shm/CometVisuEnvironmentInfo.json';
-if (!is_dir('/dev/shm') || !file_exists($environmentInfoFile) || $_GET['force']) {
-  $context = stream_context_create([
-    'http' => [
-      'method' => "GET",
-    ],
-    'ssl' => [
-      'verify_peer' => false,
-      'allow_self_signed' => true,
-      'verify_peer_name' => false
-    ]
-  ]);
-  $environmentInfoJSON = file_get_contents('https://172.17.0.1/version.json', false, $context);
-  if ($environmentInfoJSON === false) {
-    // we are not running on a Timberwolf - or the environment isn't as usual
-    $environmentInfoJSON = '{}';
+$SERVER_ADDR = explode('.', $_SERVER['SERVER_ADDR']);
+if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses subnet 172.17.0.0/16
+  $environmentInfoFile = '/dev/shm/CometVisuEnvironmentInfo.json';
+  if (!is_dir('/dev/shm') || !file_exists($environmentInfoFile) || $_GET['force']) {
+    $context = stream_context_create([
+      'http' => [
+        'method' => "GET",
+      ],
+      'ssl' => [
+        'verify_peer' => false,
+        'allow_self_signed' => true,
+        'verify_peer_name' => false
+      ]
+    ]);
+    $environmentInfoJSON = file_get_contents('https://172.17.0.1/version.json', false, $context);
+    if ($environmentInfoJSON === false) {
+      // we are not running on a Timberwolf - or the environment isn't as usual
+      $environmentInfoJSON = '{}';
+    }
+    if (is_dir('/dev/shm')) {
+      file_put_contents($environmentInfoFile, $environmentInfoJSON);
+    }
+  } else {
+    // note: `is_dir('/dev/shm') === true` when we get here
+    $environmentInfoJSON = file_get_contents($environmentInfoFile);
   }
-  if (is_dir('/dev/shm')) {
-    file_put_contents($environmentInfoFile, $environmentInfoJSON);
+  $environmentInfo = json_decode($environmentInfoJSON, true);
+  if(array_key_exists('release', $environmentInfo)) {
+    $retval['host_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
   }
-} else {
-  // note: `is_dir('/dev/shm') === true` when we get here
-  $environmentInfoJSON = file_get_contents($environmentInfoFile);
-}
-$environmentInfo = json_decode($environmentInfoJSON, true);
-if(array_key_exists('release', $environmentInfo)) {
-  $retval['host_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
-}
-if(array_key_exists('branch', $environmentInfo)) {
-  $retval['host_branch'] = $environmentInfo['branch'];
-}
-if(array_key_exists('id', $environmentInfo)) {
-  $retval['host_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
+  if(array_key_exists('branch', $environmentInfo)) {
+    $retval['host_branch'] = $environmentInfo['branch'];
+  }
+  if(array_key_exists('id', $environmentInfo)) {
+    $retval['host_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
+  }
 }
 
 header('Content-Type: application/json; charset=utf-8');
