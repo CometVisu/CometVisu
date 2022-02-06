@@ -96,6 +96,8 @@ qx.Class.define('cv.IconHandler', {
 
       if (dynamic && window[dynamic]) {
         this.__db[name][type][flavour][color] = window[dynamic](uri);
+      } else if (dynamic && cv.util.IconTools[dynamic]) {
+          this.__db[name][type][flavour][color] = cv.util.IconTools[dynamic](uri);
       } else {
         this.__db[name][type][flavour][color] = {
           uri: uri,

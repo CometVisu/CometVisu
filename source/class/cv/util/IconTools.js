@@ -122,11 +122,11 @@ qx.Class.define('cv.util.IconTools', {
     /**
      * Create the HTML for the canvas element and return it.
      * @param {string} iconId
-     * @param {string} styling
-     * @param {string} classes
+     * @param {string?} styling
+     * @param {string?} classes
      * @returns {string}
      */
-    createCanvas: function (iconId, styling, classes) {
+    createCanvas: function (iconId, styling= '', classes = '') {
       return '<canvas class="' + iconId + ' ' + classes + '" ' + styling + '/>';
     },
     /**
@@ -248,7 +248,7 @@ qx.Class.define('cv.util.IconTools', {
           cv.util.IconTools.iconCacheMap.push(url);
         }
 
-        if (color === undefined) {
+        if (!color) {
           color = '#ffffff';
         }
         if (color in cv.util.IconTools.colorMapping) {
@@ -265,7 +265,9 @@ qx.Class.define('cv.util.IconTools', {
         if (asText) {
           return newCanvas;
         }
-        const newElement = document.querySelector(newCanvas);
+        let template = document.createElement('template');
+        template.innerHTML = newCanvas;
+        const newElement = template.content.firstChild;
         if (cv.util.IconTools.iconCache[url].icon.complete) {
           cv.util.IconTools.fillCanvas(newElement, cv.util.IconTools.iconCache[url].colors[color]);
         } else {
