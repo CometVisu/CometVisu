@@ -69,13 +69,13 @@ if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses su
   }
   $environmentInfo = json_decode($environmentInfoJSON, true);
   if(array_key_exists('release', $environmentInfo)) {
-    $retval['host_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
+    $retval['server_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
   }
   if(array_key_exists('branch', $environmentInfo)) {
-    $retval['host_branch'] = $environmentInfo['branch'];
+    $retval['server_branch'] = $environmentInfo['branch'];
   }
   if(array_key_exists('id', $environmentInfo)) {
-    $retval['host_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
+    $retval['server_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
   }
 }
 

@@ -995,14 +995,14 @@ qx.Class.define('cv.Application',
 
           if (window.Sentry) {
             Sentry.configureScope(function (scope) {
-              if ('host_release' in env) {
-                scope.setTag('host_release', env.host_release);
+              if ('server_release' in env) {
+                scope.setTag('server.release', env.server_release);
               }
-              if ('host_branch' in env) {
-                scope.setTag('host_branch', env.host_branch);
+              if ('server_branch' in env) {
+                scope.setTag('server.branch', env.server_branch);
               }
-              if ('host_id' in env) {
-                scope.setTag('host_id', env.host_id);
+              if ('server_id' in env) {
+                scope.setTag('server.id', env.server_id);
               }
             });
           }
