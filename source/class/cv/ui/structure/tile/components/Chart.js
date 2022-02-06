@@ -2,6 +2,7 @@
 /**
  * Shows an chart.
  * @asset(libs/d3.min.js)
+ * @ignore(d3)
  */
 qx.Class.define('cv.ui.structure.tile.components.Chart', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -65,24 +66,26 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
-      // localize
-      d3.formatDefaultLocale({
-        'decimal': ',',
-        'thousands': '.',
-        'grouping': [3],
-        'currency': ['€', '']
-      });
+      if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
+        // localize
+        d3.formatDefaultLocale({
+          'decimal': ',',
+          'thousands': '.',
+          'grouping': [3],
+          'currency': ['€', '']
+        });
 
-      d3.timeFormatDefaultLocale({
-        'dateTime': '%A, der %e. %B %Y, %X',
-        'date': '%d.%m.%Y',
-        'time': '%H:%M:%S',
-        'periods': ['AM', 'PM'],
-        'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-        'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-        'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-        'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
-      });
+        d3.timeFormatDefaultLocale({
+          'dateTime': '%A, der %e. %B %Y, %X',
+          'date': '%d.%m.%Y',
+          'time': '%H:%M:%S',
+          'periods': ['AM', 'PM'],
+          'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+          'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+          'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+          'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+        });
+      }
 
       this._loadData();
     },
@@ -126,17 +129,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
         const width = this._width;
         const height = this._height;
-        const data = tsdata.map(tuple => {
-          return {
-            date: new Date(tuple[0]),
-            value: tuple[1]
-          };
-        });
         // Add X axis --> it is a date format
         const x = d3.scaleTime()
-          .domain(d3.extent(data, function(d) {
-            return d.date;
-          }))
+          .domain(d3.extent(tsdata, d => d[0]))
           .range([ 0, width ]);
 
         this._chart.append('g')
@@ -145,26 +140,32 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         // Add Y axis
         const y = d3.scaleLinear()
-          .domain([0, d3.max(data, function(d) {
-            return +d.value;
-          })])
+          .domain([d3.min(tsdata, d =>  +d[1]) - 1, d3.max(tsdata, d =>  +d[1]) + 1])
           .range([ height, 0 ]);
-        this._chart.append('g')
-          .call(d3.axisLeft(y));
 
-        // Add the line
+        this._chart.append('g')
+          .call(d3.axisLeft(y).ticks(5));
+
+        // Add the area
         this._chart.append('path')
-          .datum(data)
-          .attr('fill', 'none')
-          .attr('stroke', 'steelblue')
+          .datum(tsdata)
+          .attr('fill', 'rgba(105,179,162,0.2)')
           .attr('stroke-width', 1.5)
+          .attr('d', d3.area()
+            .x(d => x(d[0]))
+            .y0(() => this._height)
+            .y1(d => y(d[1]))
+          );
+
+        // draw the line
+        this._chart.append('path')
+          .datum(tsdata)
+          .attr('fill', 'none')
+          .attr('stroke', 'rgb(105,179,162)')
+          .attr('class', 'line')
           .attr('d', d3.line()
-            .x(function(d) {
-              return x(d.date);
-            })
-            .y(function(d) {
-              return y(d.value);
-            })
+            .x(d => x(d[0]))
+            .y(d => y(d[1]))
           );
       }
     },
