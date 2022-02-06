@@ -205,7 +205,13 @@ qx.Class.define('cv.IconHandler', {
           }
           i.icon = i(color, styling, classes, false);
         } else {
-          i.icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+          let icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+          if (asText) {
+            return icon;
+          }
+          let template = document.createElement('template');
+          template.innerHTML = icon;
+          i.icon = template.content.firstChild;
         }
         return i.icon;
       }
