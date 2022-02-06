@@ -577,7 +577,7 @@ qx.Class.define('cv.Application',
       let link = '';
       if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-          link = ' <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+          link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr('Action recording') + link,
@@ -992,6 +992,20 @@ qx.Class.define('cv.Application',
             this.info('Manager available for PHP version', env.phpversion);
           }
           this.setManagerChecked(true);
+
+          if (window.Sentry) {
+            Sentry.configureScope(function (scope) {
+              if ('server_release' in env) {
+                scope.setTag('server.release', env.server_release);
+              }
+              if ('server_branch' in env) {
+                scope.setTag('server.branch', env.server_branch);
+              }
+              if ('server_id' in env) {
+                scope.setTag('server.id', env.server_id);
+              }
+            });
+          }
         }, this);
         xhr.addListener('statusError', e => {
           this.setManagerChecked(true);
