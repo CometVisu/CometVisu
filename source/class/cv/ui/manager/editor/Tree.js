@@ -2125,7 +2125,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _prettify: function (node, level, singleton) {
-      let tabs = Array(level + 1).fill('  ').join('');
+      let tabs = Array(level).fill('  ').join('');
       let newLine = '\n';
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.textContent.trim()) {
