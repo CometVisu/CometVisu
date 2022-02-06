@@ -305,15 +305,17 @@ qx.Class.define('cv.parser.MetaParser', {
     },
 
     __parseIconDefinition: function(elem) {
+      const nullIsUndefined = x => x === null ? undefined : x;
+
       return {
-        name : elem.getAttribute('name'),
-        uri : elem.getAttribute('uri'),
-        type : elem.getAttribute('type'),
-        flavour : elem.getAttribute('flavour'),
-        color : elem.getAttribute('color'),
-        styling : elem.getAttribute('styling'),
-        dynamic : elem.getAttribute('dynamic'),
-        'class' : elem.getAttribute('class'),
+        name : nullIsUndefined(elem.getAttribute('name')),
+        uri : nullIsUndefined(elem.getAttribute('uri')),
+        type : nullIsUndefined(elem.getAttribute('type')),
+        flavour : nullIsUndefined(elem.getAttribute('flavour')),
+        color : nullIsUndefined(elem.getAttribute('color')),
+        styling : nullIsUndefined(elem.getAttribute('styling')),
+        dynamic : nullIsUndefined(elem.getAttribute('dynamic')),
+        'class' : nullIsUndefined(elem.getAttribute('class')),
         source: 'config'
       };
     },
