@@ -66,6 +66,30 @@ qx.Class.define('cv.util.ScriptLoader', {
 
       const head = document.getElementsByTagName('head')[0];
       head.appendChild(el);
+    },
+
+    /**
+     * Include a JS file with module support
+     *
+     * @param src {String} Href value
+     * @param type {string?} Content of the type attribute
+     */
+    includeScript(src, type) {
+      return new Promise((res, rej) => {
+        const head = document.getElementsByTagName('head')[0];
+        if (!head.querySelector(`:scope > script[src='${src}']`)) {
+          const el = document.createElement('script');
+          if (type) {
+            el.type = type;
+          }
+          el.onload = res;
+          el.onerror = rej;
+          el.src = src;
+          head.appendChild(el);
+        } else {
+          res();
+        }
+      });
     }
   },
 

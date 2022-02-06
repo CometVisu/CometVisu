@@ -143,9 +143,15 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     processChartsData : function (response) {
       const data = response.data;
-      const newRrd = new Array(data.length);
+      const newRrd = [];
+      let lastValue;
+      let value;
       for (let j = 0, l = data.length; j < l; j++) {
-        newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+        value = parseFloat(data[j].state);
+        if (value !== lastValue) {
+          newRrd.push([data[j].time, value]);
+        }
+        lastValue = value;
       }
       return newRrd;
     },

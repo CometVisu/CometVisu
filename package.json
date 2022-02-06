@@ -253,7 +253,8 @@
       "sinon": "readonly",
       "customElements": "readonly",
       "HTMLElement": "readonly",
-      "QxConnector": "readonly"
+      "QxConnector": "readonly",
+      "d3": "readonly"
     }
   }
 }
