@@ -85,7 +85,9 @@ qx.Class.define('cv.parser.MetaParser', {
 
     parseIcons: function(elem) {
       cv.Config.configSettings.iconsFromConfig.push(this.__parseIconDefinition(elem));
-      qx.core.Init.getApplication().loadIcons();
+      cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
+        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+      }, this);
     },
 
     parseMappings: function(elem) {
@@ -103,8 +105,10 @@ qx.Class.define('cv.parser.MetaParser', {
         for (let i = 0; i < origin.length; i++) {
           const v = origin[i];
           if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
-            const icon = this.__parseIconDefinition(v);
-            value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon['class']));
+            const iconDefinition = this.__parseIconDefinition(v);
+            let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+            icon.definition = iconDefinition;
+            value.push(icon);
           } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
             value.push(v.textContent.trim());
           }

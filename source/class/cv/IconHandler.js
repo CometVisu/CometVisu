@@ -147,7 +147,12 @@ qx.Class.define('cv.IconHandler', {
         }
       }
       if (!this.__db[name][type][flavour][color]) {
-        color = '*'; // undefined -> use default
+        if (/\.svg(#.+)?$/.test(this.__db[name][type][flavour]['*'].uri)) {
+          // SVGs can be dynamically recolored, so create new entry for this color
+          this.__db[name][type][flavour][color] = Object.assign({}, this.__db[name][type][flavour]['*']);
+        } else {
+          color = '*'; // undefined -> use default
+        }
       }
       // handle a generic mapping function
       if (typeof this.__db[name][type][flavour]['*'] === 'function') {
@@ -205,7 +210,12 @@ qx.Class.define('cv.IconHandler', {
           }
           i.icon = i(color, styling, classes, false);
         } else {
-          let icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+          if (color) {
+            styling += ';color:' + color;
+          }
+          let icon = /\.svg#.*?$/.test(i.uri) // SVG with fragment identifier?
+            ? '<svg class="' + classes + '" style="' + (styling ? styling : '') + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'"></use></svg>'
+            : '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
           if (asText) {
             return icon;
           }

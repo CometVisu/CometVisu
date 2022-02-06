@@ -304,8 +304,6 @@ qx.Class.define('cv.util.IconTools', {
       if (!this.preloadedKUFicons) {
         this.preloadedKUFicons = true;
         qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
-          qx.log.Logger.debug(cv.util.IconTools, 'preloading KUF icons');
-
           // use relative path here, otherwise it won't work in replay mode
           const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
           window.fetch(iconPath)
