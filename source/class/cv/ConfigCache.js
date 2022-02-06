@@ -103,7 +103,7 @@ qx.Class.define('cv.ConfigCache', {
             if (mapping && mapping.formulaSource) {
               mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
             } else {
-              Object.keys(mapping).forEach( key => {
+              Object.keys(mapping).forEach(key => {
                 const iconDefinition = mapping[key].definition;
                 if (iconDefinition) {
                   let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
