@@ -104,11 +104,23 @@ qx.Class.define('cv.ConfigCache', {
               mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
             } else {
               Object.keys(mapping).forEach(key => {
-                const iconDefinition = mapping[key].definition;
-                if (iconDefinition) {
-                  let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
-                  icon.defintion = iconDefinition;
-                  mapping[key] = icon;
+                if (Array.isArray(mapping[key])) {
+                  const contents = mapping[key];
+                  for (let i = 0; i < contents.length; i++) {
+                    const iconDefinition = contents[i].definition;
+                    if (iconDefinition) {
+                      let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                      icon.definition = iconDefinition;
+                      contents[i] = icon;
+                    }
+                  }
+                } else {
+                  const iconDefinition = mapping[key].definition;
+                  if (iconDefinition) {
+                    let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                    icon.definition = iconDefinition;
+                    mapping[key] = icon;
+                  }
                 }
               });
             }
