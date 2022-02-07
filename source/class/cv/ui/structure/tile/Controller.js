@@ -248,30 +248,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
-    },
-
-    /**
-     * @param name {String} styling name
-     * @param styling {cv.ui.structure.tile.elements.Styling}
-     */
-    addStyling(name, styling) {
-      if (!this.__stylings) {
-        this.__stylings = {};
-      }
-      this.__stylings[name] = styling;
-    },
-
-    removeStyling(name) {
-      if (this.__stylings) {
-        delete this.__stylings[name];
-      }
-    },
-
-    styleValue(stylingName, value) {
-      if (Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
-        return this.__stylings[stylingName].mapValue(value);
-      }
-      return value;
     }
   },
   defer: function (statics) {
@@ -292,9 +268,29 @@ class TemplatedElement extends HTMLElement {
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
         const slotContents = this.querySelectorAll(`[slot='${slotName}']`);
+        const attrs = {};
+        for (let i = 0, l = slot.attributes.length; i < l; i++) {
+          if (slot.attributes[i].name !== 'name') {
+            attrs[slot.attributes[i].name] = slot.attributes[i].value;
+          }
+        }
         if (slotContents.length > 0) {
           Array.from(slotContents).forEach(slotContent => {
-            slot.parentNode.insertBefore(slotContent, slot);
+            const newNode = slotContent.cloneNode(true);
+            Object.keys(attrs).forEach(attrName => {
+              if (newNode.hasAttribute(attrName)) {
+                if (attrName === 'class') {
+                  // append it
+                  newNode.classList.add(attrs[attrName]);
+                } else {
+                  // eslint-disable-next-line no-console
+                  console.log('attribute', attrName, 'already set, skipping');
+                }
+              } else {
+                newNode.setAttribute(attrName, attrs[attrName]);
+              }
+            });
+            slot.parentNode.insertBefore(newNode, slot);
           });
           slot.remove();
         } else {
@@ -328,6 +324,8 @@ class TemplatedElement extends HTMLElement {
           this.removeAttribute(name);
         }
       });
+      // clear content
+      this.innerHTML = '';
       this.appendChild(content);
     }
   }
