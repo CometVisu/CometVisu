@@ -2146,7 +2146,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         output += ` ${node.attributes[i].name}="${node.attributes[i].value}"`;
       }
       if (node.childNodes.length === 0) {
-        return output + ' />' + (!singleton ? newLine : '');
+        return output + ' />' + (!noFormat ? newLine : '');
       } 
       output += '>';
       
