@@ -35,6 +35,7 @@ qx.Class.define('cv.IconConfig', {
     /**
      * Internal database of the known icons.
      * Initially filled with the default icons.
+     * @type {iconDB}
      */
     DB: {
       'CometVisu': {
