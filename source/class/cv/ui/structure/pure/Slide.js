@@ -185,9 +185,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         this.applyStyling(realValue);
 
         let button = this.getDomElement().querySelector('button');
-        this.defaultValue2DOM(displayValue, e => {
-          button.innerHTML = e;
-        });
+        button.replaceChildren(); // delete anything inside
+        this.defaultValue2DOM(displayValue, button);
       }
 
       this.__animator.setTo(ratio, instant);

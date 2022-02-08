@@ -72,10 +72,9 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         if (mapping) {
           const mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
           if (mappedValue !== buttonConfig.value || !label) {
-            label = '';
-            this.defaultValue2DOM(mappedValue, function (e) {
-              label += e;
-            });
+            const div = document.createElement('div');
+            this.defaultValue2DOM(mappedValue, div);
+            label = div.innerHTML;
           }
         }
 

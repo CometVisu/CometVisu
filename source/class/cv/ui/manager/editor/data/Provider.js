@@ -20,6 +20,7 @@
 
 /**
  * Wrapper class for all data providers.
+ * @ignore(Element)
  */
 qx.Class.define('cv.ui.manager.editor.data.Provider', {
   extend: qx.core.Object,
@@ -88,7 +89,8 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       },
       'icon': {
         'name': {
-          cache: true,
+          cache: false,
+          live: true,
           userInputAllowed: false,
           method: 'getIcons'
         }
@@ -509,7 +511,14 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         return plugins;
     },
 
-    getIcons: function (format, config) {
+    /**
+     * 
+     * @param {String} format 
+     * @param {Map?} config 
+     * @param {Element?} element 
+     * @returns {Array} array with icon definitions
+     */
+    getIcons: function (format, config, element) {
       if (!format) {
         format = 'monaco';
       }
@@ -519,30 +528,77 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (cached) {
         return cached;
       } 
-        let icons;
-        const iconHandler = cv.IconHandler.getInstance();
-        if (format === 'monaco') {
-          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+      let icons;
+      const iconHandler = cv.IconHandler.getInstance();
+      if (format === 'monaco') {
+        // do not use icons from config when we can query them ourselves
+        icons = Object.keys(cv.IconConfig.DB)
+          .filter(name => !element || cv.IconConfig.DB[name].source !== 'config')
+          .map(function (iconName) {
             return {
               label: iconName,
               insertText: iconName,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           });
-        } else if (format === 'dp') {
-          // dataprovider format
-          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+      } else if (format === 'dp') {
+        // dataprovider format
+        // do not use icons from config when we can query them ourselves
+        icons = Object.keys(cv.IconConfig.DB)
+          .filter(name => !element || cv.IconConfig.DB[name].source !== 'config')
+          .map(function (iconName) {
             return {
               label: iconName,
               value: iconName,
               icon: iconHandler.getIconSource(iconName)
             };
           });
+      }
+      if (element) {
+        if (element instanceof Element) {
+          element.ownerDocument.querySelectorAll('pages > meta > icons > icon-definition').forEach(icon => {
+            const iconName = icon.getAttribute('name');
+            if (format === 'monaco') {
+              icons.push({
+                label: iconName,
+                insertText: iconName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              });
+            } else if (format === 'dp') {
+              icons.push({
+                label: iconName,
+                value: iconName,
+                icon: icon.getAttribute('uri')
+              });
+            }
+          });
+        } else if (typeof element === 'string') {
+          const matches = element.match(/<icon-definition.+>/gm);
+          const template = document.createElement('template');
+          matches.forEach(match => {
+            template.innerHTML = match;
+            const icon = template.content.firstElementChild;
+            const iconName = icon.getAttribute('name');
+            if (format === 'monaco') {
+              icons.push({
+                label: iconName,
+                insertText: iconName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              });
+            } else if (format === 'dp') {
+              icons.push({
+                label: iconName,
+                value: iconName,
+                icon: icon.getAttribute('uri')
+              });
+            }
+          });
         }
-        if (useCache) {
-          this._addToCache(cacheId, icons);
-        }
-        return icons;
+      }
+      if (useCache) {
+        this._addToCache(cacheId, icons);
+      }
+      return icons;
     }
   },
 

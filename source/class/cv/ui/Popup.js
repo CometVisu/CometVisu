@@ -153,7 +153,7 @@ qx.Class.define('cv.ui.Popup', {
         if (attributes.icon) {
           if (!this.__elementMap.icon) {
             const iconClasses = attributes.iconClasses ? ' ' + attributes.iconClasses : '';
-            this.__elementMap.icon = qx.dom.Element.create('div', {'html': cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses)});
+            this.__elementMap.icon = qx.dom.Element.create('div', {'html': cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses, true, true)});
             qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
           } else {
             const use = this.__elementMap.icon.querySelector('use');

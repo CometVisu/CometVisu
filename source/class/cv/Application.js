@@ -310,6 +310,15 @@ qx.Class.define('cv.Application',
         //noinspection BadExpressionStatementJS,JSHint
         qx.log.appender.Console;
       }
+
+      /*
+       -------------------------------------------------------------------------
+       Below is your actual application code...
+       -------------------------------------------------------------------------
+       */
+      // in debug mode load the uncompressed unobfuscated scripts
+      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
+
       this.__init();
       if (typeof cv.Config.mobileDevice === 'boolean') {
         this.setMobile(cv.Config.mobileDevice);
@@ -659,6 +668,18 @@ qx.Class.define('cv.Application',
           configLoader.load(this.bootstrap, this);
         }
       });
+
+      // reaction on browser back button
+      qx.bom.History.getInstance().addListener('request', function(e) {
+        const anchor = e.getData();
+        if (this.isInManager() && anchor !== 'manager') {
+          this.hideManager();
+        } else if (!this.isInManager() && anchor === 'manager') {
+          this.showManager();
+        } else if (anchor) {
+          cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+        }
+      }, this);
     },
 
     /**
@@ -704,7 +725,7 @@ qx.Class.define('cv.Application',
             cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
             const data = cv.data.Model.getInstance().getWidgetData('id_');
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-          });
+          }, this);
           // check if the current design settings overrides the cache one
           if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
@@ -723,7 +744,6 @@ qx.Class.define('cv.Application',
             this.loadStyles();
             this.loadScripts();
           }
-          this.loadIcons();
         }
       }
       if (!cv.Config.cacheUsed) {
@@ -743,15 +763,6 @@ qx.Class.define('cv.Application',
         }
       }
       this.__appReady = true;
-    },
-
-    /**
-     * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
-     */
-    loadIcons: function() {
-      cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
-        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
-      }, this);
     },
 
     /**
@@ -923,6 +934,20 @@ qx.Class.define('cv.Application',
           this.info('Manager available for PHP version', env.phpversion);
         }
         this.setManagerChecked(true);
+
+        if (window.Sentry) {
+          Sentry.configureScope(function (scope) {
+            if ('server_release' in env) {
+              scope.setTag('server.release', env.server_release);
+            }
+            if ('server_branch' in env) {
+              scope.setTag('server.branch', env.server_branch);
+            }
+            if ('server_id' in env) {
+              scope.setTag('server.id', env.server_id);
+            }
+          });
+        }
       }, this);
       xhr.addListener('statusError', e => {
         this.setManagerChecked(true);
