@@ -214,8 +214,8 @@ qx.Class.define('cv.plugins.RssLog', {
       const popup = cv.ui.PopupHandler.showPopup('rsslog', {title: title, content: brss});
       const parent = cv.util.Tree.getParent(brss, 'div', null, 1)[0];
       Object.entries({height: '90%', width: '90%', margin: 'auto'}).forEach(function(key_value) {
- parent.style[key_value[0]]=key_value[1]; 
-}); // define parent as 100%!
+        parent.style[key_value[0]]=key_value[1];
+      }); // define parent as 100%!
       if (this._timer) {
         this._timer.stop();
       }
@@ -235,8 +235,8 @@ qx.Class.define('cv.plugins.RssLog', {
           }, this, 100);
           for (let addr in this.getAddress()) {
             if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
- continue; 
-}// skip when write flag not set
+              continue;
+            }// skip when write flag not set
             cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr].transform, 0));
           }
         }
@@ -301,7 +301,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     __prepareContentElement: function(ul, c) {
-      c.innerHTML = '';
+      c.replaceChildren(); // delete anything inside
 
       c.appendChild(ul);
 
@@ -390,10 +390,7 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.mapping && item.mapping !== '') {
           const mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
           const span = rowElem.querySelector('.mappedValue');
-          const self = this;
-          this.defaultValue2DOM(mappedValue, function(e) {
- self._applyValueToDom(span, e); 
-});
+          this.defaultValue2DOM(mappedValue, span);
         }
         if (this.__separatoradd && idx !== 0) {
           rowElem.classList.add('rsslog_separator');
@@ -471,12 +468,9 @@ qx.Class.define('cv.plugins.RssLog', {
       const state = +item.classList.contains('rsslog_ack'); // the new state is the same as hasClass
       if (mapping && mapping !== '') {
         const mappedValue = this.applyMapping(state, mapping);
-        const span = item.querySelector('.mappedValue');
-        span.innerHTML = '';
-        const self = this;
-        this.defaultValue2DOM(mappedValue, function(e) {
- self._applyValueToDom(span, e); 
-});
+        let span = item.querySelector('.mappedValue');
+        span.replaceChildren(); // delete anything inside
+        this.defaultValue2DOM(mappedValue, span);
       }
       const req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({

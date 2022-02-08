@@ -90,12 +90,39 @@ qx.Class.define('cv.ConfigCache', {
       const model = cv.data.Model.getInstance();
       this.getData().then(cache => {
         cv.Config.configSettings = cache.configSettings;
-        // restore formulas
+
+        // restore icons
+        cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
+          cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+        }, this);
+
+        // restore mappings
         if (cv.Config.configSettings.mappings) {
           Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
             const mapping = cv.Config.configSettings.mappings[name];
             if (mapping && mapping.formulaSource) {
               mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+            } else {
+              Object.keys(mapping).forEach(key => {
+                if (Array.isArray(mapping[key])) {
+                  const contents = mapping[key];
+                  for (let i = 0; i < contents.length; i++) {
+                    const iconDefinition = contents[i].definition;
+                    if (iconDefinition) {
+                      let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                      icon.definition = iconDefinition;
+                      contents[i] = icon;
+                    }
+                  }
+                } else {
+                  const iconDefinition = mapping[key].definition;
+                  if (iconDefinition) {
+                    let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                    icon.definition = iconDefinition;
+                    mapping[key] = icon;
+                  }
+                }
+              });
             }
           }, this);
         }
