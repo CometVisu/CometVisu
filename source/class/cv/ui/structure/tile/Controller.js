@@ -106,6 +106,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     initLayout() {
     },
 
+    onHistoryRequest(anchor) {
+    },
+
     /**
      * Parses structure specific settings
      * @param config {XMLDocument} loaded config

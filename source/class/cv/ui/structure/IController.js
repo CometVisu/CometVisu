@@ -88,6 +88,13 @@ qx.Interface.define('cv.ui.structure.IController', {
      * @param subfeature {String?} optional name of a sub feature to check
      */
     supports(feature, subfeature) {
+    },
+
+    /**
+     * handle browser history events that are used to navigate inside the visu
+     * @param anchor {String}
+     */
+    onHistoryRequest(anchor) {
     }
   }
 });

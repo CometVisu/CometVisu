@@ -676,8 +676,8 @@ qx.Class.define('cv.Application',
           this.hideManager();
         } else if (!this.isInManager() && anchor === 'manager') {
           this.showManager();
-        } else if (anchor) {
-          cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+        } else {
+          cv.Application.structureController.onHistoryRequest(anchor);
         }
       }, this);
     },

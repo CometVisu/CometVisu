@@ -157,12 +157,14 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
       Array.prototype.forEach.call(label.childNodes, function (elem) {
         if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
-          ret_val += cv.IconHandler.getInstance().getIconText(
+          ret_val += cv.IconHandler.getInstance().getIconElement(
             elem.getAttribute('name'),
             elem.getAttribute('type'),
             elem.getAttribute('flavour') || flavour,
             elem.getAttribute('color'),
-            elem.getAttribute('styling'));
+            elem.getAttribute('styling'),
+            '',
+            true);
         } else if (elem.nodeType === Node.TEXT_NODE) {
           ret_val += elem.textContent;
         }
@@ -223,14 +225,6 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         this.scrollToPage(cv.Config.initialPage, 0);
       }, this).schedule();
 
-      // reaction on browser back button
-      qx.bom.History.getInstance().addListener('request', function(e) {
-        const lastPage = e.getData();
-        if (lastPage) {
-          this.scrollToPage(lastPage, 0, true);
-        }
-      }, this);
-
       // run the Trick-O-Matic scripts for great SVG backdrops
       document.querySelectorAll('embed').forEach(function(elem) {
         elem.onload = cv.ui.TrickOMatic.run;
@@ -246,6 +240,12 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
     doScreenSave() {
       this.scrollToPage();
+    },
+
+    onHistoryRequest(anchor) {
+      if (anchor) {
+        cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+      }
     },
 
     scrollToPage (target, speed, skipHistory) {
