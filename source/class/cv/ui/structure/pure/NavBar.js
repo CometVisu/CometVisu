@@ -105,7 +105,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       //   horizontal (up to +/-45° tolerance is allowed)
       //   When during a valid swipe the direction is reversed the fading
       //   action is also reverted.
-      document.addEventListener('touchstart', function (evt) {
+      const content = document.body.querySelector('#centerContainer');
+      content.addEventListener('touchstart', function (evt) {
         const touches = evt.touches[0];
         const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
@@ -118,11 +119,11 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         self._touchX = touches.clientX;
         self._touchY = touches.clientY;
       }, false);
-      document.addEventListener('touchend', function () {
+      content.addEventListener('touchend', function () {
         self._touchX = null;
         self._touchY = null;
       }, false);
-      document.addEventListener('touchmove', function (evt) {
+      content.addEventListener('touchmove', function (evt) {
         if (self._touchX === null) {
           return; // early exit as this touch isn't relevant for us
         }

@@ -88,7 +88,7 @@ qx.Class.define('cv.ui.NotificationCenter', {
         // resolve icon if there is one
         if (message.icon) {
           const iconClasses = message.iconClasses ? ' ' + message.iconClasses : '';
-          message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, 'icon' + iconClasses);
+          message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, 'icon' + iconClasses, true);
         }
       }
     });

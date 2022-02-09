@@ -229,7 +229,9 @@ qx.Class.define('cv.Application',
       } else if (!value && document.body.classList.contains('mobile')) {
         document.body.classList.remove('mobile');
       }
-      cv.ui.layout.ResizeHandler.invalidateNavbar();
+      if (this.__appReady) {
+        cv.ui.layout.ResizeHandler.invalidateNavbar();
+      }
     },
 
     _applyManagerChecked: function(value) {
@@ -575,7 +577,7 @@ qx.Class.define('cv.Application',
       let link = '';
       if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-          link = ' <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+          link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr('Action recording') + link,
@@ -704,8 +706,7 @@ qx.Class.define('cv.Application',
           cv.ConfigCache.clear();
 
           // load empty HTML structure
-          const body = document.querySelector('body');
-          body.innerHTML = cv.Application.HTML_STRUCT;
+          document.body.innerHTML = cv.Application.HTML_STRUCT;
 
           //empty model
           cv.data.Model.getInstance().resetWidgetDataModel();
@@ -756,7 +757,6 @@ qx.Class.define('cv.Application',
             this.loadStyles();
             this.loadScripts();
           }
-          this.loadIcons();
         }
       }
       if (!cv.Config.cacheUsed) {
@@ -779,15 +779,6 @@ qx.Class.define('cv.Application',
       } else {
         this.__appReady = true;
       }
-    },
-
-    /**
-     * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
-     */
-    loadIcons: function() {
-      cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
-        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
-      }, this);
     },
 
     /**
@@ -990,6 +981,20 @@ qx.Class.define('cv.Application',
             this.info('Manager available for PHP version', env.phpversion);
           }
           this.setManagerChecked(true);
+
+          if (window.Sentry) {
+            Sentry.configureScope(function (scope) {
+              if ('server_release' in env) {
+                scope.setTag('server.release', env.server_release);
+              }
+              if ('server_branch' in env) {
+                scope.setTag('server.branch', env.server_branch);
+              }
+              if ('server_id' in env) {
+                scope.setTag('server.id', env.server_id);
+              }
+            });
+          }
         }, this);
         xhr.addListener('statusError', e => {
           this.setManagerChecked(true);

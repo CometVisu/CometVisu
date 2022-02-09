@@ -33,8 +33,16 @@ qx.Class.define('cv.util.IconTools', {
   statics: {
 
     // "global" functions (=> state less)
+    /**
+     * RegEx to determine a valid CSS style color like #rrggbb
+     * @type {RegExp}
+     */
     hexColorRegEx: /#[0-9a-fA-F]{6}/,
-    colorMapping: { // as a convenience, definition of a few colors
+    /**
+     * as a convenience, definition of a few colors
+     * @type {Object<string, string>}
+     */
+    colorMapping: {
       white: '#ffffff',
       orange: '#ff8000',
       red: '#ff4444',
@@ -45,14 +53,51 @@ qx.Class.define('cv.util.IconTools', {
       grey: '#777777',
       black: '#000000'
     },
-    iconCache: {}, // the Image() of all knows (i.e. used) icons
-    iconCacheMap: [], // mapping of ID to Cache entry (URL)
-    iconDelay: [], // array of all icons to fill where the Image is not ready yet
-    iconDelayFn: null, // handler for delay function
+
+    /**
+     * @typedef iconCacheEntryHash
+     * @type {Object}
+     * @property {HTMLImageElement} icon - the original Image() of the icon
+     * @property {number} id - the unique ID for this icon
+     * @property {Object.<string, ImageData>} colors - cache all the transformed ImageDatas
+     * @property {string[]} toFill - all the icon colors to fill once the image was loaded
+     */
+
+    /**
+     * the Image() of all knows (i.e. used) icons
+     * @type {Object.<string, iconCacheEntryHash>}
+     */
+    iconCache: {},
+    /**
+     * mapping of ID to Cache entry (URL)
+     */
+    iconCacheMap: [],
+    /**
+     * array of all icons to fill where the Image is not ready yet
+     * @type {Array.<Array<(HTMLCanvasElement|SVGElement), Object.<string, ImageData>, string>>}
+     */
+    iconDelay: [],
+    /**
+     * handler for delay function
+     * @type {Function}
+     */
+    iconDelayFn: null,
 
     tmpCanvas: null,
     tmpCtx: null,
+    /**
+     * Were the KNX User Forum icons already preloaded?
+     * Only done when the config is using them
+     * @type {boolean}
+     */
+    preloadedKUFicons: false,
 
+    /**
+     *
+     * @param {(HTMLCanvasElement|SVGElement)} icon
+     * @param {Object.<string, ImageData>} colors
+     * @param {string} color
+     */
     iconDelayed: function (icon, colors, color) {
       cv.util.IconTools.iconDelay.push([icon, colors, color]);
       if (!cv.util.IconTools.iconDelayFn) {
@@ -76,18 +121,19 @@ qx.Class.define('cv.util.IconTools', {
     },
     /**
      * Create the HTML for the canvas element and return it.
-     * @param iconId
-     * @param styling
-     * @param classes
+     * @param {string} iconId
+     * @param {string?} styling
+     * @param {string?} classes
+     * @returns {string}
      */
-    createCanvas: function (iconId, styling, classes) {
+    createCanvas: function (iconId, styling= '', classes = '') {
       return '<canvas class="' + iconId + ' ' + classes + '" ' + styling + '/>';
     },
     /**
      * Fill the canvas with the ImageData. Also resize the
      * canvas at the same time.
-     * @param canvas
-     * @param imageData
+     * @param {HTMLCanvasElement} canvas
+     * @param {ImageData} imageData
      */
     fillCanvas: function (canvas, imageData) {
       canvas.width = imageData.width;
@@ -95,14 +141,14 @@ qx.Class.define('cv.util.IconTools', {
       canvas.getContext('2d').putImageData(imageData, 0, 0);
     },
     /**
-       * Two versions of a recoloring funtion to work around an Android bug:
+       * Two versions of a recoloring function to work around an Android bug:
        * http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph
        * https://code.google.com/p/android/issues/detail?id=17565
-       * @param r
-       * @param g
-       * @param b
-       * @param data
-       * @param length
+       * @param {number} r
+       * @param {number} g
+       * @param {number} b
+       * @param {number[]} data
+       * @param {number} length
        */
     innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android') + 8)) < 4.4
       ? function (r, g, b, data, length) { // for Android version < 4.4
@@ -131,11 +177,11 @@ qx.Class.define('cv.util.IconTools', {
         }
       },
     /**
-     * Do the recoloring based on @param thisIcon and store it in the
-     * hash @param thisIconColors.
-     * @param color
-     * @param thisIcon
-     * @param thisIconColors
+     * Do the recoloring based on `thisIcon` and store it in the
+     * hash `thisIconColors`.
+     * @param {string} color - color in the CSS style #rrggbb
+     * @param {HTMLImageElement} thisIcon
+     * @param {Object.<string, iconCacheEntryHash>} thisIconColors
      */
     doRecolorNonTransparent: function (color, thisIcon, thisIconColors) {
       if (thisIconColors[color]) {
@@ -148,7 +194,7 @@ qx.Class.define('cv.util.IconTools', {
       const imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
       if (color !== undefined) {
         if (!cv.util.IconTools.hexColorRegEx.test(color)) {
-          qx.log.Logger.error(this, 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
+          qx.log.Logger.error(this, 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#rrggbb".');
         }
         const r = parseInt(color.substr(1, 2), 16);
         const g = parseInt(color.substr(3, 2), 16);
@@ -159,10 +205,12 @@ qx.Class.define('cv.util.IconTools', {
     },
 
     /**
-     * Funtion to call for each icon that should be dynamically recolored.
+     * Function to call for each icon that should be dynamically recolored.
      * This will be called for each known URL, so only remember the string but
      * don't load the image yet as it might not be needed.
-     * @param url
+     * @param {string} url
+     * @returns {recolorCallback} a function that will append the recolored image to
+     * the jQuery element passed to that function
      */
     recolorNonTransparent: function (url) {
       const loadHandler = function () {
@@ -176,15 +224,14 @@ qx.Class.define('cv.util.IconTools', {
       };
 
       /**
+       * @callback recolorCallback
        * will be called for each color that is actually used
        * => load image for all colors
        * => transform image
-       * @param color
-       * @param styling
-       * @param classes
-       * @param asText
-       * @return {Function} a function that will append the recolored image to
-       * the jQuery element passed to that function
+       * @param {string} color - color in CSS style, i.e. #rrggbb
+       * @param {string} styling
+       * @param {string} classes
+       * @param {boolean?} asText
        */
       return function (color, styling, classes, asText) {
         if (undefined === cv.util.IconTools.iconCache[url]) {
@@ -201,7 +248,7 @@ qx.Class.define('cv.util.IconTools', {
           cv.util.IconTools.iconCacheMap.push(url);
         }
 
-        if (color === undefined) {
+        if (!color) {
           color = '#ffffff';
         }
         if (color in cv.util.IconTools.colorMapping) {
@@ -218,7 +265,9 @@ qx.Class.define('cv.util.IconTools', {
         if (asText) {
           return newCanvas;
         }
-        const newElement = document.querySelector(newCanvas);
+        let template = document.createElement('template');
+        template.innerHTML = newCanvas;
+        const newElement = template.content.firstChild;
         if (cv.util.IconTools.iconCache[url].icon.complete) {
           cv.util.IconTools.fillCanvas(newElement, cv.util.IconTools.iconCache[url].colors[color]);
         } else {
@@ -229,8 +278,9 @@ qx.Class.define('cv.util.IconTools', {
     },
 
     /**
-     * This function must be called to fill a specific icon that was created
-     * @param icon
+     * This function must be called to fill a specific icon that was created.
+     * Is will be colored based on it's class name.
+     * @param {(HTMLCanvasElement|SVGElement)} icon
      */
     fillRecoloredIcon: function (icon) {
       const parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
@@ -246,22 +296,65 @@ qx.Class.define('cv.util.IconTools', {
       }
     },
 
+    /**
+     * @param {string} iconID
+     * @returns {recolorCallback}
+     */
     svgKUF: function (iconID) {
-      return function (color, styling, classes) {
+      if (!this.preloadedKUFicons) {
+        this.preloadedKUFicons = true;
+        qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
+          // use relative path here, otherwise it won't work in replay mode
+          const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
+          window.fetch(iconPath)
+            .then(r => r.text())
+            .then(text => {
+              let div = document.createElement('div');
+              div.innerHTML = text;
+              let svg = div.firstChild;
+              svg.setAttribute('style', 'display:none');
+              document.body.appendChild(svg);
+            }).catch(err => {
+              qx.log.Logger.debug(cv.util.IconTools, err);
+            });
+        });
+      }
+      /**
+       * @param {string} color - color in CSS style, i.e. #rrggbb
+       * @param {string} styling
+       * @param {string} classes
+       * @param {boolean?} asText
+       * @param {boolean?} forceRemote - force to load the icon remotely, e.g. as it could be that it's not inside the
+       *          DOM; this is relevant only for special cases when the normal DOM might not be ready
+       */
+      return function (color, styling, classes, asText, forceRemote = false) {
+        // use relative path here, otherwise it won't work in replay mode
+        const iconPath = forceRemote ? (cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg') : '';
+        const iconLink = iconPath + '#kuf-' + iconID;
+
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        // use relative path here, otherwise it won't work in replay mode
-        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
 
         let style = styling || '';
         if (color) {
           style += 'color:' + color + ';';
         }
-        if (style) {
-          style = ' style="'+style+'"';
+        if (asText) {
+          if (style) {
+            style = ' style="' + style + '"';
+          }
+          return '<svg' + style + ' class="' + classes + '"><use xlink:href="' + iconLink + '"></use></svg>';
         }
-        return '<svg' + style + ' class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
+        let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', classes);
+        if (style) {
+          svg.setAttribute('style', style);
+        }
+        let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', iconLink);
+        svg.appendChild(use);
+        return svg;
       };
     }
   },
