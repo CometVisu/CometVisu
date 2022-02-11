@@ -313,7 +313,7 @@ qx.Class.define('cv.ui.manager.basic.Image',
               top: this.getPaddingTop() || 0,
               left: this.getPaddingLeft() || 0
             });
-          } else {
+          } else if (element instanceof qx.html.Image) {
             element.setPadding(
               this.getPaddingLeft() || 0, this.getPaddingTop() || 0
             );
