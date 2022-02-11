@@ -189,6 +189,9 @@ qx.Class.define('cv.util.IconTools', {
       }
       const width = cv.util.IconTools.tmpCanvas.width = thisIcon.width;
       const height = cv.util.IconTools.tmpCanvas.height = thisIcon.height;
+      if (width === 0 || height === 0) {
+        return; // most likely: the image didn't exist - anyway nothing to do here
+      }
       cv.util.IconTools.tmpCtx.drawImage(thisIcon, 0, 0);
 
       const imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
