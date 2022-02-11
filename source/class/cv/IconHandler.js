@@ -235,14 +235,22 @@ qx.Class.define('cv.IconHandler', {
      * @returns {string}
      */
     getIconSource: function (name, classes) {
-      const i = this.get.apply(this, arguments);
+      const i = this.get(name);
       if (i) {
         if (!classes) {
           classes = 'icon';
         }
         if (typeof i === 'function') {
-          return i(undefined, undefined, classes, true);
-        } 
+          const res = i(undefined, undefined, classes, true);
+          if (res.startsWith('<canvas')) {
+            // no support for canvas as icon preview
+            return '';
+          }
+          return res;
+        }
+        if (/\.svg#.*?$/.test(i.uri)) {
+          return '<svg class="' + classes + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'"></use></svg>';
+        }
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
       return '';

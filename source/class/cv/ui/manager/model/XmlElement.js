@@ -256,8 +256,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           const source = cv.IconHandler.getInstance().getIconSource(this.getAttribute('name'), 'tree-icon');
           if (source) {
             this.setIcon(source);
-            return;
+          } else {
+            this.setIcon(cv.theme.dark.Images.getIcon('image', 18));
           }
+          return;
         }
       }
       if (this.isOpen()) {
