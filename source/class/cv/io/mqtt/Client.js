@@ -74,8 +74,8 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @return {Map}
      */
     getBackend: function() {
- return {}; 
-},
+      return {};
+    },
 
     /**
      * Returns true, when the backend provides a special data provider for this kins of data
@@ -83,8 +83,8 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @return {Boolean}
      */
     hasProvider: function (name) {
- return false; 
-},
+      return false;
+    },
 
     /**
      * URL to the provided data
@@ -92,16 +92,16 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @return {String}
      */
     getProviderUrl: function (name) {
- return null; 
-},
+      return null;
+    },
 
     /**
      * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
      * @param name {String}
      */
     getProviderConvertFunction : function (name) {
- return null; 
-},
+      return null;
+    },
 
     /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
@@ -185,7 +185,7 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        self.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
+        self.info('Connection Lost: ' + responseObject.errorMessage, responseObject);
         self.setConnected(false);
       };
 
