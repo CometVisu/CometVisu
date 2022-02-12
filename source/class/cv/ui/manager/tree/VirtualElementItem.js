@@ -188,6 +188,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       switch (id) {
          case 'icon':
            control = new cv.ui.manager.basic.Image().set({
+             forceScale: true,
              alignY: 'middle',
              anonymous: true,
              source: this.getIcon(),
