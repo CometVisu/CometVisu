@@ -1,6 +1,6 @@
-***************************
+*************
 Tile-Struktur
-***************************
+*************
 
 Die CometVisu bot seit jeher die Möglichkeit weitere Strukturen neben der vorhandenen pure-Struktur einzubinden.
 Die Strukturen sind dafür verantwortlich eine Config-Datei im Browser darzustellen. Normalerweise geschieht dies
@@ -24,12 +24,63 @@ Neue Features:
     * Wie benutzt man eigene Templates in der Config (oder extern laden)
 * Alternativer Ansatz für die Implementierung von Plugins
 
+Grundsätzlicher Aufbau
+======================
+
+Wie der Name schon suggeriert setzt sich eine Visualisierung in der Tile-Struktur aus einzelnen Kacheln (engl. Tile)
+zusammen. Die Inhalte in den Kacheln sind in maximal 3 Zeilen mit jeweils 3 Spalten angeordnet, wobei hier ähnlich
+wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kann.
+
++---+---+---+
+|   |   |   |
++---+---+---+
+|   |   |   |
++---+---+---+
+|   |   |   |
++---+---+---+
+
+Innerhalb den Zellen einer Kachel können nun die von der Tile-Struktur vordefiniertem Komponenten frei platziert werden.
+Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Charts.
+
+Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit. So enthält das
+Switch-Widget z.B. eine Button in der mittleren Zelle und einen zentrierte Text in der Zeile darunter.
+
+
+Widgets
+-------
+
+* Switch
+* Info
+* Shutter
+* Status
+* MediaPlayer
+
 .. toctree::
 
     widgets/switch
 
 
-TODO:
+Navigation / Seitenstruktur
+---------------------------
 
-* Unterschiede Kacheln (Switch, Shutter), Komponenten (Label, Button) und erlaubten HTML-Elemente (details)
+* Pages
+* Navbar / MainNav / SideNav
+* Details-Element
 
+Komponenten
+-----------
+
+* Button
+* Value
+* Image
+* RoundProgress
+* Select
+* Spinner
+* Slider
+* Chart
+
+
+Eigene Widgets definieren
+-------------------------
+
+Wie definiert man ein Template für ein Custom-Widget
