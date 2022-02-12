@@ -1,0 +1,22 @@
+nav {
+  a:not(:first-child) {
+    display: none;
+  }
+  a.menu {
+    float: right;
+    display: block;
+  }
+}
+nav.responsive {
+  position: relative;
+  .menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}

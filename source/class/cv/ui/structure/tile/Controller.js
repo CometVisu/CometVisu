@@ -104,9 +104,41 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     initLayout() {
+      // open first page
+      if (!document.location.hash) {
+        this.scrollToPage(this.getInitialPageId());
+      } else {
+        this.scrollToPage(document.location.hash.substring(1));
+      }
     },
 
     onHistoryRequest(anchor) {
+      if (anchor) {
+        this.scrollToPage(anchor);
+      }
+    },
+
+    scrollToPage(pageId, skipHistory) {
+      const page = document.querySelector('#' + pageId);
+      if (page) {
+        if (!page.classList.contains('active')) {
+          for (let oldPage of document.querySelectorAll('cv-page.active')) {
+            oldPage.classList.remove('active');
+          }
+          page.classList.add('active');
+          if (skipHistory === undefined) {
+            const headline = page.getAttribute('name');
+            let pageTitle = 'CometVisu';
+            if (headline) {
+              pageTitle = headline + ' - '+pageTitle;
+            }
+            qx.bom.History.getInstance().addToHistory(pageId, pageTitle);
+          }
+          qx.event.message.Bus.dispatchByName('cv.ui.structure.tile.currentPage', page);
+        }
+      } else {
+        this.warn('no page with id', pageId, 'found');
+      }
     },
 
     /**
@@ -187,6 +219,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @return {Array<string>} Array with addresses
      */
     doScreenSave() {
+      if (cv.Config.configSettings.screensave_page) {
+        this.scrollToPage(cv.Config.configSettings.screensave_page);
+      }
     },
 
     /**
@@ -200,8 +235,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * Returns the widget id of the page item initially loaded
      * @returns {String} widget path like 'id_'...
      */
-    async getInitialPageId() {
-      return 'id_';
+    getInitialPageId() {
+      const firstPage = document.querySelector('cv-page');
+      return firstPage ? firstPage.id : '';
     },
 
     /**
@@ -251,6 +287,15 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
+    },
+
+    /**
+     * @param nav {HTMLElement} <nav> element
+     */
+    onNavbarMenu(nav) {
+      if (nav) {
+        nav.classList.toggle('responsive');
+      }
     }
   },
   defer: function (statics) {

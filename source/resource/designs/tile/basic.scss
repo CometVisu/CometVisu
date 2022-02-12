@@ -44,6 +44,13 @@ body {
     color: $primaryText;
     margin: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    main {
+        flex: 1
+    }
 
     svg.defs-only {
         display:block; position: absolute;
@@ -64,19 +71,44 @@ body {
         border-radius: inherit;
     }
 
+    nav {
+        background-color: $buttonBackground;
+        overflow: hidden;
+        z-index: 10;
+
+        a {
+            float: left;
+            display: block;
+            color: $primaryText;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        a:hover {
+            background-color: $secondaryColor;
+        }
+        a.active {
+            color: $primaryColor;
+        }
+
+        .menu {
+            display: none;
+        }
+    }
+
     cv-page.screenshots {
         /* white background for screenshots of widgets with border radius */
         background-color: white;
     }
 
-    cv-page {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: var(--spacing);
+    cv-page.active {
         display: flex;
+    }
+
+    cv-page {
+        padding: var(--spacing);
+        display: none;
         flex-flow: row wrap;
         align-items: center;
         align-content: flex-start;
