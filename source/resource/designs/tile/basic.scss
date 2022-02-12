@@ -80,9 +80,14 @@ body {
         flex-flow: row wrap;
         align-items: center;
         align-content: flex-start;
-        gap: var(--spacing);
+        column-gap: var(--spacing);
         overflow-y: auto;
         overflow-x: hidden;
+
+        > :not(details) {
+            /* Row gap for everything that is no detail element */
+            margin-bottom: var(--spacing);
+        }
 
         details {
             flex: 0 0 100%;
