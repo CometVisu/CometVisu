@@ -108,7 +108,8 @@ qx.Class.define('cv.ui.manager.basic.Image',
             nullable : true,
             event : 'changeSource',
             apply : '_applySource',
-            themeable : true
+            themeable : true,
+            transform: '_transformSource'
           },
 
 
@@ -126,6 +127,11 @@ qx.Class.define('cv.ui.manager.basic.Image',
             themeable : true,
             apply : '_applyScale'
           },
+
+        forceScale: {
+          check: 'Boolean',
+          init: false
+        },
 
         /**
          * Whether to preserve the image ratio (ie prevent distortion), and which dimension
@@ -235,6 +241,22 @@ qx.Class.define('cv.ui.manager.basic.Image',
         __wrapper : null,
         __requestId : 0,
 
+        /**
+         * Remove the "resource/" prefix when the ResourceManager knows the image
+         * @param value
+         * @return {*}
+         * @private
+         */
+        _transformSource: function (value) {
+          if (value && value.startsWith('resource/')) {
+            const ResourceManager = qx.util.ResourceManager.getInstance();
+            if (ResourceManager.has(value.substring('resource/'.length))) {
+              return value.substring('resource/'.length);
+            }
+          }
+          return value;
+        },
+
 
         // overridden
         _onChangeTheme : function() {
@@ -313,7 +335,7 @@ qx.Class.define('cv.ui.manager.basic.Image',
               top: this.getPaddingTop() || 0,
               left: this.getPaddingLeft() || 0
             });
-          } else {
+          } else if (element instanceof qx.html.Image) {
             element.setPadding(
               this.getPaddingLeft() || 0, this.getPaddingTop() || 0
             );
@@ -393,7 +415,7 @@ qx.Class.define('cv.ui.manager.basic.Image',
 
             if (source && qx.lang.String.startsWith(source, '@')) {
               this.__mode = 'font';
-            } else if (source && qx.lang.String.startsWith(source, '<svg')) {
+            } else if (source && source.startsWith('<svg')) {
               this.__mode = 'svg';
             } else {
               let isPng = false;
@@ -403,7 +425,7 @@ qx.Class.define('cv.ui.manager.basic.Image',
 
               if (this.getScale() && isPng && qx.core.Environment.get('css.alphaimageloaderneeded')) {
                 this.__mode = 'alphaScaled';
-              } else if (this.getScale()) {
+              } else if (this.getScale() || this.getForceScale()) {
                 this.__mode = 'scaled';
               } else {
                 this.__mode = 'nonScaled';
@@ -615,20 +637,21 @@ qx.Class.define('cv.ui.manager.basic.Image',
               const isPng = source.endsWith('.png');
               const isFont = source.startsWith('@');
               const isSvg = source.startsWith('<svg');
+              const scale = this.getScale() || this.getForceScale();
 
               if (isFont) {
                 this.__setMode('font');
               } else if (isSvg) {
                 this.__setMode('svg');
               } else if (alphaImageLoader && isPng) {
-                if (this.getScale() && this.__getMode() != 'alphaScaled') {
+                if (scale && this.__getMode() !== 'alphaScaled') {
                   this.__setMode('alphaScaled');
-                } else if (!this.getScale() && this.__getMode() != 'nonScaled') {
+                } else if (!scale && this.__getMode() !== 'nonScaled') {
                   this.__setMode('nonScaled');
                 }
-              } else if (this.getScale() && this.__getMode() != 'scaled') {
+              } else if (scale && this.__getMode() !== 'scaled') {
                   this.__setMode('scaled');
-                } else if (!this.getScale() && this.__getMode() != 'nonScaled') {
+                } else if (!scale && this.__getMode() !== 'nonScaled') {
                   this.__setMode('nonScaled');
                 }
 
@@ -638,14 +661,15 @@ qx.Class.define('cv.ui.manager.basic.Image',
             'default' : function(source) {
               const isFont = source && qx.lang.String.startsWith(source, '@');
               const isSvg = source.startsWith('<svg');
+              const scale = this.getScale() || this.getForceScale();
 
               if (isFont) {
                 this.__setMode('font');
               } else if (isSvg) {
                 this.__setMode('svg');
-              } else if (this.getScale() && this.__getMode() != 'scaled') {
+              } else if (scale && this.__getMode() !== 'scaled') {
                 this.__setMode('scaled');
-              } else if (!this.getScale() && this.__getMode() != 'nonScaled') {
+              } else if (!scale && this.__getMode() !== 'nonScaled') {
                 this.__setMode('nonScaled');
               }
 
@@ -972,7 +996,7 @@ qx.Class.define('cv.ui.manager.basic.Image',
             }
 
             return;
-          } else if (el.getNodeName() == 'div') {
+          } else if (el.getNodeName() === 'div') {
             // checks if a decorator already set.
             // In this case we have to merge background styles
             const decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());

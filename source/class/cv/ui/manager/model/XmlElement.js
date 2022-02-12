@@ -256,8 +256,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           const source = cv.IconHandler.getInstance().getIconSource(this.getAttribute('name'), 'tree-icon');
           if (source) {
             this.setIcon(source);
-            return;
+          } else {
+            this.setIcon(cv.theme.dark.Images.getIcon('image', 18));
           }
+          return;
         }
       }
       if (this.isOpen()) {
@@ -659,7 +661,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           success = true;
         } else if (index === 0) {
           // add before first child
-          this._node.insertBefore(xmlElement.getNode(), this._node.children[0]);
+          this._node.insertBefore(xmlElement.getNode(), this._node.childNodes[0]);
           children.unshift(xmlElement);
           success = true;
         } else {
