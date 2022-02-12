@@ -244,7 +244,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
     onHistoryRequest(anchor) {
       if (anchor) {
-        cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+        this.scrollToPage(anchor, 0, true);
       }
     },
 
