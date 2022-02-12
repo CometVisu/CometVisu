@@ -373,6 +373,98 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
+    getScrollY: function () {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getScrollY();
+      }
+      return 0;
+    },
+
+    getScrollX: function () {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getScrollX();
+      }
+      return 0;
+    },
+
+    scrollByX: function (x) {
+      if (this.hasChildControl('scroll')) {
+        this.getChildControl('scroll').scrollByX(x);
+      }
+    },
+
+    scrollByY: function (y) {
+      if (this.hasChildControl('scroll')) {
+        this.getChildControl('scroll').scrollByY(y);
+      }
+    },
+
+    scrollToX: function (x) {
+      if (this.hasChildControl('scroll')) {
+        this.getChildControl('scroll').scrollToX(x);
+      }
+    },
+
+    scrollToY: function (y) {
+      if (this.hasChildControl('scroll')) {
+        this.getChildControl('scroll').scrollToY(y);
+      }
+    },
+
+    stopScrollAnimationX: function () {
+      if (this.hasChildControl('scroll')) {
+        this.getChildControl('scroll').stopScrollAnimationX();
+      }
+    },
+
+    stopScrollAnimationY: function () {
+      if (this.hasChildControl('scroll')) {
+        this.getChildControl('scroll').stopScrollAnimationY();
+      }
+    },
+
+    getItemTop: function (item) {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getItemTop(item);
+      }
+      return 0;
+    },
+
+    getItemBottom: function (item) {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getItemBottom(item);
+      }
+      return 0;
+    },
+
+    getItemLeft: function (item) {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getItemLeft(item);
+      }
+      return 0;
+    },
+
+    getItemRight: function (item) {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getItemRight(item);
+      }
+      return 0;
+    },
+
+    getPaneSize: function () {
+      if (this.hasChildControl('scroll')) {
+        return this.getChildControl('scroll').getPaneSize();
+      }
+      return {
+        width: 0,
+        height: 0
+      };
+    },
+
+    getOrientation: function () {
+      return 'vertical';
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
       let control;
