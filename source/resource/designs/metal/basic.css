@@ -207,12 +207,17 @@ body br
 .navbar .switchPressed, .navbar .switchUnpressed {
   width: 100% !important;
 }
-.navbar .switchPressed .value, .navbar .switchUnpressed .value {
+.navbar .switchPressed:not(:first-child) .value, .navbar .switchUnpressed:not(:first-child) .value {
 	padding-left: 2.2em;
 }
 #navbarTop .navbar .switchPressed .value, #navbarTop .navbar .switchUnpressed .value, #navbarBottom .navbar .switchPressed .value, #navbarBottom .navbar .switchUnpressed .value {
 	padding-left: 2.5em;
 }
+
+.center > .value {
+  text-align: center;
+}
+
 .green.switchPressed div, .green.switchUnpressed div {
     background-image: radial-gradient(rgba(88, 181, 0, 0.45), transparent 80%);
 	color: white !important;
@@ -326,7 +331,7 @@ body br
 	margin-right: 0;
 	float: left;
 }
-.group .pagejump .switchUnpressed div, .group .pagejump  .switchPressed div {
+.group .pagejump .switchUnpressed:not(.center) div, .group .pagejump .switchPressed:not(.center) div {
 	width: auto;
 	text-align: left;
 	margin-left: 0.3em;
