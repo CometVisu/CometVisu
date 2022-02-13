@@ -3,6 +3,38 @@
 0.12.0
 ======
 
+### v0.12.0-RC6 (2022/02/13)
+
+- [#1212](https://github.com/CometVisu/CometVisu/pull/1212) Change tag mechanism (@ChristianMayer)
+- [#1211](https://github.com/CometVisu/CometVisu/pull/1211) Docker2multiarch (@ChristianMayer)
+- [#1210](https://github.com/CometVisu/CometVisu/pull/1210) Switch to Docker buildx and multiarch (@ChristianMayer)
+- [#1209](https://github.com/CometVisu/CometVisu/pull/1209) fix PageJump align in navbars (@peuter)
+- [#1207](https://github.com/CometVisu/CometVisu/pull/1207) Fix folder key navigation (@peuter)
+- [#1205](https://github.com/CometVisu/CometVisu/pull/1205) Bump follow-redirects from 1.14.7 to 1.14.8 in /.github/actions/github (@dependabot[bot])
+- [#1204](https://github.com/CometVisu/CometVisu/pull/1204) Bump follow-redirects from 1.13.2 to 1.14.8 (@dependabot[bot])
+- [#1201](https://github.com/CometVisu/CometVisu/pull/1201) make sure that images are scaled in (@peuter)
+- [#1195](https://github.com/CometVisu/CometVisu/pull/1195) Xml code formatting (@peuter)
+- [#1203](https://github.com/CometVisu/CometVisu/pull/1203) Handle non existing icon image paths gacefully. (@ChristianMayer)
+- [#1202](https://github.com/CometVisu/CometVisu/pull/1202) Fix MQTT client (@ChristianMayer)
+- [#1199](https://github.com/CometVisu/CometVisu/pull/1199) Bump karma from 6.3.4 to 6.3.14 (@dependabot[bot])
+- [#1183](https://github.com/CometVisu/CometVisu/pull/1183) Fix icon flicker (@ChristianMayer)
+- [#1194](https://github.com/CometVisu/CometVisu/pull/1194) Expose Timberwolf server info to Sentry (@ChristianMayer)
+- [#1190](https://github.com/CometVisu/CometVisu/pull/1190) Fix dataproviders for icons and addresses (@peuter)
+- [#1192](https://github.com/CometVisu/CometVisu/pull/1192) Clean image reload (@ChristianMayer)
+- [#1191](https://github.com/CometVisu/CometVisu/pull/1191) fix mobile safari scrolling in top navbar (@peuter)
+- [#1188](https://github.com/CometVisu/CometVisu/pull/1188) fix custom start date conversion, enables (@peuter)
+- [#1187](https://github.com/CometVisu/CometVisu/pull/1187) Fix cache problems (@peuter)
+- [#1182](https://github.com/CometVisu/CometVisu/pull/1182) detect mobile value from screen size not from user agent, but (@peuter)
+- [#1185](https://github.com/CometVisu/CometVisu/pull/1185) do not use getElementById, for some reason it does not work when the l… (@peuter)
+- [#1179](https://github.com/CometVisu/CometVisu/pull/1179) Fix image updates (@ChristianMayer)
+- [#1181](https://github.com/CometVisu/CometVisu/pull/1181) use browser history to close/show manager (@peuter)
+- [#1178](https://github.com/CometVisu/CometVisu/pull/1178) disable backend environment check in demo mode (@peuter)
+- [#1172](https://github.com/CometVisu/CometVisu/pull/1172) Add spellchecker for documentation (@peuter)
+- [#1177](https://github.com/CometVisu/CometVisu/pull/1177) Bump path-parse from 1.0.6 to 1.0.7 (@dependabot[bot])
+- [#1176](https://github.com/CometVisu/CometVisu/pull/1176) Bump axios from 0.21.1 to 0.21.4 (@dependabot[bot])
+- [#1175](https://github.com/CometVisu/CometVisu/pull/1175) Bump node-fetch from 2.6.1 to 2.6.7 (@dependabot[bot])
+- [#1173](https://github.com/CometVisu/CometVisu/pull/1173) update documentation mapping for development version (@peuter)
+
 ### v0.12.0-RC5 (2022/01/28)
 
 - [#1171](https://github.com/CometVisu/CometVisu/pull/1171) fix styling and fake data in testmode demo (@peuter)
