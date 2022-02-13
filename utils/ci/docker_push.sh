@@ -64,7 +64,22 @@ echo "building docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},$
 BUILD_DATE=`date --iso-8601=seconds`
 VCS_REF=`git rev-parse --short HEAD`
 
+TAGS=""
+if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
+  TAGS="${TAGS} -t ${IMAGE_NAME}:${MASTER_TAG}"
+fi
+
+if [[ "$SUB_TAG" != "" ]]; then
+  TAGS="${TAGS} -t ${IMAGE_NAME}:${SUB_TAG}"
+fi
+
+if [[ "$TAG" != "" ]]; then
+  TAGS="${TAGS} -t ${IMAGE_NAME}:${TAG}"
+fi
+echo "TAGS: '${TAGS}'"
+
 docker buildx build -t $IMAGE_NAME:$VERSION_TAG \
+  ${TAGS} \
   --platform linux/amd64,linux/arm/v7,linux/arm64 \
   --build-arg BUILD_DATE="$BUILD_DATE" \
   --build-arg VCS_REF="$VCS_REF" \
@@ -72,23 +87,3 @@ docker buildx build -t $IMAGE_NAME:$VERSION_TAG \
   --build-arg GITHUB_RUN_NUMBER \
   --build-arg GITHUB_RUN_ID \
   --push .
-
-echo "Pushing ${IMAGE_NAME}:${MASTER_TAG}"
-docker push "${IMAGE_NAME}:${MASTER_TAG}"
-if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
-  echo "Pushing ${IMAGE_NAME}:${VERSION_TAG}"
-  docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
-  docker push "${IMAGE_NAME}:${VERSION_TAG}"
-fi
-
-if [[ "$SUB_TAG" != "" ]]; then
-  echo "Pushing ${IMAGE_NAME}:${SUB_TAG}"
-    docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
-    docker push "${IMAGE_NAME}:${SUB_TAG}"
-fi
-
-if [[ "$TAG" != "" ]]; then
-  echo "Pushing ${IMAGE_NAME}:${TAG}"
-    docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${TAG}"
-    docker push "${IMAGE_NAME}:${TAG}"
-fi
