@@ -71,18 +71,22 @@ docker buildx build -t $IMAGE_NAME:$VERSION_TAG \
   --build-arg VERSION_TAG="$VERSION_TAG" \
   --build-arg GITHUB_RUN_NUMBER \
   --build-arg GITHUB_RUN_ID .
+echo "Pushing ${IMAGE_NAME}:${MASTER_TAG}"
 docker push "${IMAGE_NAME}:${MASTER_TAG}"
 if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
+  echo "Pushing ${IMAGE_NAME}:${VERSION_TAG}"
   docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
   docker push "${IMAGE_NAME}:${VERSION_TAG}"
 fi
 
 if [[ "$SUB_TAG" != "" ]]; then
+  echo "Pushing ${IMAGE_NAME}:${SUB_TAG}"
     docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
     docker push "${IMAGE_NAME}:${SUB_TAG}"
 fi
 
 if [[ "$TAG" != "" ]]; then
+  echo "Pushing ${IMAGE_NAME}:${TAG}"
     docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${TAG}"
     docker push "${IMAGE_NAME}:${TAG}"
 fi
