@@ -64,7 +64,13 @@ echo "building docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},$
 BUILD_DATE=`date --iso-8601=seconds`
 VCS_REF=`git rev-parse --short HEAD`
 
-docker build -t $IMAGE_NAME:$VERSION_TAG --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg GITHUB_RUN_NUMBER --build-arg GITHUB_RUN_ID .
+docker buildx build -t $IMAGE_NAME:$VERSION_TAG \
+  --platform linux/amd64,linux/arm/v7,linux/arm64 \
+  --build-arg BUILD_DATE="$BUILD_DATE" \
+  --build-arg VCS_REF="$VCS_REF" \
+  --build-arg VERSION_TAG="$VERSION_TAG" \
+  --build-arg GITHUB_RUN_NUMBER \
+  --build-arg GITHUB_RUN_ID .
 docker push "${IMAGE_NAME}:${MASTER_TAG}"
 if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
   docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
@@ -79,22 +85,4 @@ fi
 if [[ "$TAG" != "" ]]; then
     docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${TAG}"
     docker push "${IMAGE_NAME}:${TAG}"
-fi
-
-echo "building ARM docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG},${TAG} ..."
-docker build -f Dockerfile -t "${IMAGE_NAME}:${VERSION_TAG}-arm" --build-arg CONTAINER_FROM="cometvisu/cometvisuabstractbase:arm32v7-latest" --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg GITHUB_RUN_NUMBER --build-arg GITHUB_RUN_ID .
-docker push "${IMAGE_NAME}:${MASTER_TAG}-arm"
-if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
-  docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${MASTER_TAG}-arm"
-  docker push "${IMAGE_NAME}:${VERSION_TAG}-arm"
-fi
-
-if [[ "$SUB_TAG" != "" ]]; then
-    docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${SUB_TAG}-arm"
-    docker push "${IMAGE_NAME}:${SUB_TAG}-arm"
-fi
-
-if [[ "$TAG" != "" ]]; then
-    docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${TAG}-arm"
-    docker push "${IMAGE_NAME}:${TAG}-arm"
 fi
