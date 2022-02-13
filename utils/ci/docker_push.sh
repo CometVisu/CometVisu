@@ -70,7 +70,8 @@ docker buildx build -t $IMAGE_NAME:$VERSION_TAG \
   --build-arg VCS_REF="$VCS_REF" \
   --build-arg VERSION_TAG="$VERSION_TAG" \
   --build-arg GITHUB_RUN_NUMBER \
-  --build-arg GITHUB_RUN_ID .
+  --build-arg GITHUB_RUN_ID \
+  --push .
 docker push "${IMAGE_NAME}:${MASTER_TAG}"
 if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
   docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
