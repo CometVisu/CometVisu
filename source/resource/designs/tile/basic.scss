@@ -146,6 +146,11 @@ body {
                         color: $primaryColor;
                     }
                 }
+                &.sub-active {
+                    > details > summary:after {
+                        color: $primaryColor;
+                    }
+                }
             }
         }
         a {

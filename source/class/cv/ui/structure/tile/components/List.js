@@ -46,7 +46,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
     _onPointerDown(ev) {
       if (ev.getTarget().tagName.toLowerCase() !== 'summary') {
-        this._closeAll();
+        // defer closing because it would prevent the link clicks and page selection
+        qx.event.Timer.once(this._closeAll, this, 100);
       }
     },
 
@@ -95,16 +96,20 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _onPageChange(ev) {
       const pageElement = ev.getData();
       // unset all currently active
-      for (let link of this._target.querySelectorAll('li.active')) {
+      for (let link of this._target.querySelectorAll('li.active, li.sub-active')) {
         link.classList.remove('active');
+        link.classList.remove('sub-active');
       }
       // find link to current page
       for (let link of this._target.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
         // activate all parents
         let parent = link.parentElement;
+        let activeName = 'active';
         while (parent && parent.tagName.toLowerCase() !== 'nav') {
           if (parent.tagName.toLowerCase() === 'li') {
-            parent.classList.add('active');
+            parent.classList.add(activeName);
+            // all other parents have a sub-menu active
+            activeName = 'sub-active';
           }
           parent = parent.parentElement;
         }
@@ -118,8 +123,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
   ***********************************************
   */
   destruct: function () {
-    qx.event.Registration.removeListener(window, 'pointerdown', this._onPointerDown, this);
-    qx.event.message.Bus.unbscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+    qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+    qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
 
   defer(QxClass) {
