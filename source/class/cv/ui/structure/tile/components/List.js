@@ -36,6 +36,17 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         const rootList = document.createElement('ul');
         this.__generatePagesModel(rootList, parentElement, currentPage);
         target.replaceChild(rootList, element);
+
+        // add hamburger menu
+        const ham = document.createElement('a');
+        ham.href = '#';
+        ham.classList.add('menu');
+        ham.onclick = () => this._onHamburgerMenu();
+        const icon = document.createElement('i');
+        icon.classList.add('ri-menu-line');
+        ham.appendChild(icon);
+        target.appendChild(ham);
+
         qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
         // add some general listeners to close
         qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
@@ -44,16 +55,45 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       }
     },
 
-    _onPointerDown(ev) {
-      if (ev.getTarget().tagName.toLowerCase() !== 'summary') {
-        // defer closing because it would prevent the link clicks and page selection
-        qx.event.Timer.once(this._closeAll, this, 100);
+    _onHamburgerMenu() {
+      console.log('hamburger');
+      this._target.classList.toggle('responsive');
+      for (let detail of this._target.querySelectorAll('details')) {
+        detail.setAttribute('open', '');
       }
     },
 
-    _closeAll() {
-      for (let detail of this._target.querySelectorAll('details[open]')) {
-        detail.removeAttribute('open');
+    /**
+     * @param ev {qx.event.type.Event}
+     * @private
+     */
+    _onPointerDown(ev) {
+      const target = ev.getTarget();
+      if (target.classList.contains('menu') || target.parentElement.classList.contains('menu')) {
+        // clicked in hamburger menu, do nothing
+      } else if (target.tagName.toLowerCase() !== 'summary') {
+        // defer closing because it would prevent the link clicks and page selection
+        qx.event.Timer.once(this._closeAll, this, 100);
+      } else {
+        // close others
+        this._closeAll(ev.getTarget().parentElement);
+      }
+    },
+
+    /**
+     * Close all open sub-menus
+     * @param except {Element?} do not close this one
+     * @private
+     */
+    _closeAll(except) {
+      if (this._target.classList.contains('responsive')) {
+        this._target.classList.remove('responsive');
+      } else {
+        for (let detail of this._target.querySelectorAll('details[open]')) {
+          if (!except || detail !== except) {
+            detail.removeAttribute('open');
+          }
+        }
       }
     },
 

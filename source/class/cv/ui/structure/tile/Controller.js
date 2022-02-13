@@ -287,15 +287,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
-    },
-
-    /**
-     * @param nav {HTMLElement} <nav> element
-     */
-    onNavbarMenu(nav) {
-      if (nav) {
-        nav.classList.toggle('responsive');
-      }
     }
   },
   defer: function (statics) {

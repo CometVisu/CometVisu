@@ -72,6 +72,7 @@ body {
     }
 
     nav {
+        position: relative;
         background-color: $buttonBackground;
         z-index: 10;
 
@@ -102,7 +103,6 @@ body {
                         content: "";
                     }
                     z-index: 100;
-                    min-width: 190px;
 
                     summary {
                         display: inline-block;
@@ -130,7 +130,8 @@ body {
                         z-index: 100;
                         position: absolute;
                         li {
-                            padding: 0
+                            padding: 0;
+                            width: 100%;
                         }
                     }
                 }
