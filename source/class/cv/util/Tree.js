@@ -26,7 +26,7 @@
  */
 
 /**
- * Helper methods for the widget tree
+ * Helper methods for the widget/dom tree
  */
 qx.Class.define('cv.util.Tree', {
   type: 'static',
@@ -37,6 +37,19 @@ qx.Class.define('cv.util.Tree', {
   ******************************************************
   */
   statics: {
+
+    /**
+     * Checks if child is a child of parent
+     * @param child {Node}
+     * @param parent {Node}
+     * @return {boolean}
+     */
+    isChildOf(child, parent) {
+      while (child && child !== parent) {
+        child = child.parentNode;
+      }
+      return !!child;
+    },
 
     /*
      * *********************************************************

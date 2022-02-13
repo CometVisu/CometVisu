@@ -1,13 +1,9 @@
 /**
  * Generates a list of elements based on the content and a model.
- * Currently implemented models are:
+ * There are predefined visual-models that to no need a template for the list elements.
+ * Currently implemented visual-models are:
  * - pages: a list of all <cv-page> elements, can be used to render a navbar
  *
- * The pages model requires the content to have a <a> element as first child that uses anchor links. It modifies
- * this elements classList to add the "active" class when the corresponding page is currently visible.
- *
- * Example:
- * <a href="#${id}">${text}</a>
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -23,55 +19,95 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _init() {
       const element = this._element;
       const target = this._target = element.parentElement;
-      const content = element.innerHTML.trim();
-      if (!content) {
-        this.error('no template defined, cannot create list');
-        return;
-      }
-      element.innerHTML = '';
-      const model = element.getAttribute('model');
+      const model = element.getAttribute('visual-model');
       if (!model) {
         this.error('no model defined, list will be empty');
         return;
       }
       if (model === 'pages') {
         const currentPage = window.location.hash.substring(1);
-        const pages = document.querySelectorAll('cv-page');
-        const textAttribute = element.hasAttribute('text-attribute') ? element.getAttribute('text-attribute') : 'name';
-        const idAttribute = element.hasAttribute('id-attribute') ? element.getAttribute('id-attribute') : 'id';
-        const tmp = document.createElement('template');
-        for (let page of pages.values()) {
-          const pageId = page.getAttribute(idAttribute);
-          if (!pageId) {
-            this.error('page has no id, skipping');
-            continue;
+        let parentElement = document.querySelector('main');
+        if (parentElement) {
+          const firstPage = document.querySelector('cv-page');
+          if (firstPage) {
+            parentElement = firstPage.parentElement;
           }
-          const pageName = page.getAttribute(textAttribute) || '';
-          // eslint-disable-next-line no-template-curly-in-string
-          tmp.innerHTML = content.replaceAll('${id}', pageId).replaceAll('${text}', pageName);
-          const listItem = document.importNode(tmp.content, true);
-          if (currentPage === pageId) {
-            listItem.firstElementChild.classList.add('active');
-          }
-          target.insertBefore(listItem, element);
         }
+        const rootList = document.createElement('ul');
+        this.__generatePagesModel(rootList, parentElement, currentPage);
+        target.replaceChild(rootList, element);
         qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
-        // remove ourselves
-        target.removeChild(element);
+        // add some general listeners to close
+        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
       } else {
-        this.error('model of type', model, 'is not implemented');
+        this.error('visual-model of type', model, 'is not implemented');
+      }
+    },
+
+    _onPointerDown(ev) {
+      if (ev.getTarget().tagName.toLowerCase() !== 'summary') {
+        this._closeAll();
+      }
+    },
+
+    _closeAll() {
+      for (let detail of this._target.querySelectorAll('details[open]')) {
+        detail.removeAttribute('open');
+      }
+    },
+
+
+    __generatePagesModel(parentList, parentElement, currentPage) {
+      if (!parentElement) {
+        return;
+      }
+      let pages = parentElement.querySelectorAll(':scope > cv-page');
+      for (let page of pages.values()) {
+        const pageId = page.getAttribute('id');
+        if (!pageId) {
+          this.error('page has no id, skipping');
+          continue;
+        }
+        const pageName = page.getAttribute('name') || '';
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.setAttribute('href', '#' + pageId);
+        a.textContent = pageName;
+        if (currentPage === pageId) {
+          li.classList.add('active');
+        }
+        parentList.appendChild(li);
+        if (page.querySelectorAll(':scope > cv-page').length > 0) {
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.appendChild(a);
+          details.appendChild(summary);
+          const subList = document.createElement('ul');
+          details.appendChild(subList);
+          this.__generatePagesModel(subList, page, currentPage);
+          li.appendChild(details);
+        } else {
+          li.appendChild(a);
+        }
       }
     },
 
     _onPageChange(ev) {
       const pageElement = ev.getData();
       // unset all currently active
-      for (let link of this._target.querySelectorAll(':scope > .active')) {
+      for (let link of this._target.querySelectorAll('li.active')) {
         link.classList.remove('active');
       }
-      // activate link to current page
-      for (let link of this._target.querySelectorAll(`:scope > [href="#${pageElement.id}"]`)) {
-        link.classList.add('active');
+      // find link to current page
+      for (let link of this._target.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
+        // activate all parents
+        let parent = link.parentElement;
+        while (parent && parent.tagName.toLowerCase() !== 'nav') {
+          if (parent.tagName.toLowerCase() === 'li') {
+            parent.classList.add('active');
+          }
+          parent = parent.parentElement;
+        }
       }
     }
   },
@@ -82,6 +118,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
   ***********************************************
   */
   destruct: function () {
+    qx.event.Registration.removeListener(window, 'pointerdown', this._onPointerDown, this);
     qx.event.message.Bus.unbscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
 

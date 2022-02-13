@@ -73,23 +73,86 @@ body {
 
     nav {
         background-color: $buttonBackground;
-        overflow: hidden;
         z-index: 10;
 
+        /* expand icons in sub levels */
+        > ul > li > details > ul details > summary:after {
+            content: "\ea54";
+        }
+
+        > ul ul ul {
+            margin-left: calc(100% - 1.2em);
+            margin-top: -40px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+
+            li {
+                display: inline-block;
+                background-color: $buttonBackground;
+                position: relative;
+                height: 40px;
+
+                details {
+                    summary::-webkit-details-marker, summary::marker {
+                        display: none;
+                        content: "";
+                    }
+                    z-index: 100;
+                    min-width: 190px;
+
+                    summary {
+                        display: inline-block;
+                        white-space: nowrap;
+                    }
+
+                    summary:after {
+                        display: inline-block;
+                        margin-left: calc(var(--spacing)*-1);
+                        content: "\ea50";
+                        font-family: 'remixicon' !important;
+                        font-style: normal;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        vertical-align: text-bottom;
+                        font-size: 28px;
+                        line-height: 20px;
+                    }
+
+                    &[open] > summary:after {
+                        transform:rotate(180deg);
+                    }
+
+                    ul {
+                        z-index: 100;
+                        position: absolute;
+                        li {
+                            padding: 0
+                        }
+                    }
+                }
+                a {
+                    display: inline-block;
+                    padding: var(--spacing) calc(var(--spacing)*2);
+                }
+                /*&:hover {
+                    background-color: $secondaryColor;
+                }*/
+                &.active {
+                    > a, > details > summary, > details > summary > a {
+                        color: $primaryColor;
+                    }
+                }
+            }
+        }
         a {
-            float: left;
-            display: block;
             color: $primaryText;
             text-align: center;
-            padding: 14px 16px;
             text-decoration: none;
-            font-size: 17px;
-        }
-        a:hover {
-            background-color: $secondaryColor;
-        }
-        a.active {
-            color: $primaryColor;
+            font-size: 20px;
         }
 
         .menu {
