@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd" design="tile" lib_version="9" username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig">
+    <cv-meta>
+        <cv-backend name="si" default="true" type="simulated"/>
+        <cv-backend name="mqtt" type="mqtt" uri="ws://mqtt:9001/"/>
+        <cv-mapping name="light">
+            <entry value="1">ri-lightbulb-fill</entry>
+            <entry value="0">ri-lightbulb-line</entry>
+        </cv-mapping>
+        <cv-mapping name="percent">
+            <formula>y = x + "%"</formula>
+        </cv-mapping>
+        <cv-mapping name="PlayStop">
+            <entry value="0">ri-play-fill</entry>
+            <entry value="1">ri-stop-fill</entry>
+        </cv-mapping>
+        <cv-mapping name="WindowOpen">
+            <entry value="0">knxuf-fts_window_1w</entry>
+            <entry range-min="1">knxuf-fts_window_1w_open</entry>
+        </cv-mapping>
+        <cv-mapping name="PlayProgress">
+            <formula>y = Math.round(100/store.get('duration')*x)</formula>
+        </cv-mapping>
+        <cv-styling name="button">
+            <entry value="1">active</entry>
+            <entry value="0">inactive</entry>
+        </cv-styling>
+        <cv-mapping name="kWh">
+            <formula>y = Math.round(x/1000)</formula>
+        </cv-mapping>
+        <cv-mapping name="RtcOn" type="boolean">
+            <entry value="Comfort">true</entry>
+            <entry value="Economy">false</entry>
+            <entry value="Building Protection">false</entry>
+            <entry value="Stondby">false</entry>
+        </cv-mapping>
+    </cv-meta>
+    <header>
+        <nav>
+            <cv-list visual-model="pages"/>
+        </nav>
+    </header>
+    <main>
+        <cv-page id="main" name="Start">
+        <cv-status format="%d an">
+            <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
+            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
+            <span slot="label">Lichter</span>
+        </cv-status>
+        <cv-status format="%d offen">
+            <cv-icon slot="icon" size="x-large">knxuf-fts_shutter_10</cv-icon>
+            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Shutters</cv-address>
+            <span slot="label">Rollladen</span>
+        </cv-status>
+        <cv-status format="%d offen">
+            <cv-value slot="icon" mapping="WindowOpen">
+                <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
+                <cv-address transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
+            </cv-value>
+            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
+            <span slot="label">Fenster</span>
+        </cv-status>
+        <cv-status format="%d an">
+            <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
+            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Speakers</cv-address>
+            <span slot="label">Lautsprecher</span>
+        </cv-status>
+        <details>
+            <summary>Switches</summary>
+            <cv-switch mapping="light" styling="button">
+                <cv-address slot="address" transform="OH:switch" backend="main">Light_SF_Office</cv-address>
+                <span slot="primaryLabel">Default</span>
+                <span slot="secondaryLabel">Switch with state</span>
+            </cv-switch>
+            <cv-switch mapping="light" styling="button">
+                <cv-address slot="address" transform="OH:switch" backend="main">Light_SF_Bath</cv-address>
+                <span slot="primaryLabel">Bad</span>
+            </cv-switch>
+            <cv-switch mapping="light" styling="button">
+                <cv-address slot="address" transform="OH:switch" backend="main" mode="write" value="1">Light_SF_Office</cv-address>
+                <span slot="primaryLabel">Trigger</span>
+                <span slot="secondaryLabel">no state, fixed value</span>
+            </cv-switch>
+            <cv-switch mapping="light" styling="button">
+                <cv-address slot="address" transform="OH:switch" backend="si" mode="write" value="1" on="down">Light_SF_Office</cv-address>
+                <cv-address slot="address" transform="OH:switch" backend="si" mode="write" value="0" on="up">Light_SF_Office</cv-address>
+                <cv-address slot="address" transform="OH:switch" backend="si" mode="read">Light_SF_Office</cv-address>
+                <span slot="primaryLabel">Push-button</span>
+            </cv-switch>
+            <cv-switch mapping="light" styling="button">
+                <cv-address slot="address" transform="OH:switch" backend="main">Light_SF_Office</cv-address>
+                <cv-address slot="address" transform="OH:number" mode="read" backend="si" target="progress">Test_Value</cv-address>
+                <span slot="primaryLabel">Button</span>
+                <span slot="secondaryLabel">with progress</span>
+            </cv-switch>
+        </details>
+        <details open="true">
+            <summary>Other actors</summary>
+            <cv-shutter styling="button" position-mapping="percent">
+                <cv-address slot="downAddress" transform="OH:rollershutter" mode="write" value="100" backend="main">Shutter_FF_Living</cv-address>
+                <cv-address slot="stopAddress" transform="OH:rollershutter" mode="write" value="STOP" backend="main">Shutter_FF_Living</cv-address>
+                <cv-address slot="upAddress" transform="OH:rollershutter" mode="write" value="0" backend="main">Shutter_FF_Living</cv-address>
+                <cv-address slot="positionAddress" transform="OH:number" mode="read" backend="main">Shutter_FF_Living</cv-address>
+                <span slot="primaryLabel">Default</span>
+            </cv-shutter>
+            <cv-tile>
+                <cv-row colspan="3" row="first">
+                    <cv-value>
+                        <cv-address transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Album</cv-address>
+                        <label class="value secondary"/>
+                    </cv-value>
+                    <cv-value>
+                        <cv-address transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Title</cv-address>
+                        <label class="value primary medium"/>
+                    </cv-value>
+                </cv-row>
+                <cv-button class="round-button" row="2" column="1" size="small">
+                    <cv-address transform="OH:raw" backend="main" value="PREVIOUS" mode="write">Sink_Tuxedo_Control</cv-address>
+                    <cv-icon>ri-skip-back-mini-fill</cv-icon>
+                </cv-button>
+                <cv-button class="round-button" row="2" column="2" mapping="PlayStop" progress-mapping="PlayProgress">
+                    <cv-address transform="OH:playPause" backend="main">Sink_Tuxedo_Control</cv-address>
+                    <cv-address transform="OH:number" backend="main" mode="read" target="progress">Sink_Tuxedo_PlayTime</cv-address>
+                    <cv-address transform="OH:number" backend="main" mode="read" target="store:duration">Sink_Tuxedo_Duration</cv-address>
+                    <cv-icon class="value">ri-stop-fill</cv-icon>
+                </cv-button>
+                <cv-button class="round-button" row="2" column="3" size="small">
+                    <cv-address transform="OH:raw" backend="main" value="NEXT" mode="write">Sink_Tuxedo_Control</cv-address>
+                    <cv-icon>ri-skip-forward-mini-fill</cv-icon>
+                </cv-button>
+                <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="0">
+                    <cv-address transform="OH:number" backend="main">Sink_Tuxedo_Volume</cv-address>
+                    <cv-icon class="decrease">ri-volume-down-line</cv-icon>
+                    <cv-icon class="increase">ri-volume-up-line</cv-icon>
+                </cv-slider>
+                <cv-address transform="OH:string" backend="main" mode="read" target="background-image">Sink_Tuxedo_CoverArt</cv-address>
+                <cv-address transform="OH:thing:status" backend="main" mode="read" target="show-exclude">squeezebox:squeezeboxplayer:lms:Tuxedo</cv-address>
+            </cv-tile>
+            <cv-tile>
+                <cv-spinner format="%.1f °C" min="15" max="25" step-width="0.5" colspan="3">
+                    <cv-address transform="OH:number" backend="main">Temperature_SF_Office_Target</cv-address>
+                    <cv-address transform="OH:string" backend="main" mode="read" target="show-hide" mapping="RtcOn">HVAC_SF_Office</cv-address>
+                    <label class="value primary"/>
+                </cv-spinner>
+                <cv-select row="2" colspan="3">
+                    <cv-address transform="OH:string" backend="main">HVAC_SF_Office</cv-address>
+                    <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto</cv-option>
+                    <cv-option key="stondby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
+                    <cv-option key="economy"><cv-icon>ri-leaf-line</cv-icon>Eco</cv-option>
+                    <cv-option key="comfort"><cv-icon>ri-temp-cold-line</cv-icon>Komfort</cv-option>
+                    <cv-option key="building protection"><cv-icon>ri-shield-line</cv-icon>Frostschutz</cv-option>
+                </cv-select>
+                <cv-row colspan="3" row="3">
+                    <label class="primary">RTC</label>
+                </cv-row>
+            </cv-tile>
+            <cv-info mapping="kWh">
+                <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn0/raw</cv-address>
+                <span slot="label">Zählerstand</span>
+                <span slot="unit">kWh</span>
+            </cv-info>
+        </details>
+        <details>
+            <summary>Show values</summary>
+            <cv-info mapping="kWh">
+                <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn0/raw</cv-address>
+                <span slot="label">Zählerstand</span>
+                <span slot="unit">kWh</span>
+            </cv-info>
+            <cv-tile>
+                <cv-row colspan="3" row="last">
+                    <label class="secondary">Meter</label>
+                </cv-row>
+                <cv-row colspan="3" row="2">
+                    <cv-value>
+                        <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
+                        <meter class="value" min="0" max="100"/>
+                    </cv-value>
+                </cv-row>
+            </cv-tile>
+            <cv-tile size="2x4">
+                <cv-image src="http://192.168.178.24/Streaming/channels/1/picture?snapShotImageType=JPEG" refresh="60" authorization="basic" username="viewer" password="viewer" proxy="true"/>
+            </cv-tile>
+        </details>
+        <cv-tile size="2x1">
+            <cv-chart format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3">
+                <dataset type="line" src="Temperature_FF_Living" src-type="rrd"/>
+            </cv-chart>
+        </cv-tile>
+    </cv-page>
+        <cv-page id="rooms" name="Räume">
+            <cv-status format="%d an">
+                <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
+                <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
+                <span slot="label">Lichter</span>
+            </cv-status>
+            <cv-page id="livingFF" name="Wohnzimmer">Test</cv-page>
+            <cv-page id="diningFF" name="Esszimmer">Test</cv-page>
+        </cv-page>
+        <cv-page id="functions" name="Funktionen">
+            <cv-page id="light" name="Licht">Test</cv-page>
+            <cv-page id="blinds" name="Rollladen">Test</cv-page>
+            <cv-page id="audio" name="Musik">Test</cv-page>
+        </cv-page>
+        <cv-page id="comm" name="Kommunikation">
+            <cv-page id="visitors" name="Besucher">Test</cv-page>
+            <cv-page id="calls" name="Anrufe">Test</cv-page>
+        </cv-page>
+    </main>
+</config>
