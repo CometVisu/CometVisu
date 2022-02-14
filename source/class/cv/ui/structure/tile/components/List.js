@@ -24,17 +24,10 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         this.error('no model defined, list will be empty');
         return;
       }
+      this.error('initializing nav');
       if (model === 'pages') {
-        const currentPage = window.location.hash.substring(1);
-        let parentElement = document.querySelector('main');
-        if (parentElement) {
-          const firstPage = document.querySelector('cv-page');
-          if (firstPage) {
-            parentElement = firstPage.parentElement;
-          }
-        }
+        qx.event.message.Bus.subscribe('setup.dom.append', this._generateMenu, this);
         const rootList = document.createElement('ul');
-        this.__generatePagesModel(rootList, parentElement, currentPage);
         target.replaceChild(rootList, element);
 
         // add hamburger menu
@@ -55,8 +48,21 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       }
     },
 
+    _generateMenu() {
+      qx.event.message.Bus.unsubscribe('setup.dom.append', this._generateMenu, this);
+      const currentPage = window.location.hash.substring(1);
+      let parentElement = document.querySelector('main');
+      if (parentElement) {
+        const firstPage = document.querySelector('cv-page');
+        if (firstPage) {
+          parentElement = firstPage.parentElement;
+        }
+      }
+      const rootList = this._target.querySelector(':scope > ul');
+      this.__generatePagesModel(rootList, parentElement, currentPage);
+    },
+
     _onHamburgerMenu() {
-      console.log('hamburger');
       this._target.classList.toggle('responsive');
       for (let detail of this._target.querySelectorAll('details')) {
         detail.setAttribute('open', '');
@@ -103,6 +109,9 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         return;
       }
       let pages = parentElement.querySelectorAll(':scope > cv-page');
+      if (pages.length === 0) {
+        debugger;
+      }
       for (let page of pages.values()) {
         const pageId = page.getAttribute('id');
         if (!pageId) {

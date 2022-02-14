@@ -158,13 +158,26 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           cache: !cv.Config.forceReload
         });
         ajaxRequest.addListenerOnce('success', e => {
-          const content = e.getTarget().getResponse();
+          let content = e.getTarget().getResponse();
           const target = this.getRenderTarget();
           this.debug('creating pages');
           // register custom elements for templates in this document
           this.registerTemplates(content);
-          // for some reason this is the only way the the web components are initialized correctly
-          target.innerHTML = content.documentElement.innerHTML + configElement.innerHTML;
+          let child;
+          // we need the documents to be in HTML namespace
+          if (!content.documentElement.xmlns) {
+            let text = e.getTarget().getResponseText();
+            text = text.replace('<templates', '<templates xmlns="http://www.w3.org/1999/xhtml"');
+            const parser = new DOMParser();
+            content = parser.parseFromString(text, 'text/xml');
+          }
+          while ((child = content.documentElement.firstElementChild)) {
+            target.appendChild(child);
+          }
+
+          while ((child = configElement.firstElementChild)) {
+            target.appendChild(child);
+          }
           this.debug('finalizing');
           qx.event.message.Bus.dispatchByName('setup.dom.append');
           this.debug('pages created');
