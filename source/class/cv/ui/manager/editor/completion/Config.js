@@ -251,7 +251,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     getProvider: function () {
-      const parser = new DOMParser();
       return {
         triggerCharacters: ['<', '"'],
         provideCompletionItems: function (model, position) {
