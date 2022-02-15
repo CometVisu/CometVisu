@@ -16,8 +16,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-$address = $_GET['player_ip_addr'];
-$port = $_GET['port'];
+$address = $_GET['player_ip_addr'] ?? '';
+$port = $_GET['port'] ?? '';
 $port = 1400;
 $error_msg;
 
