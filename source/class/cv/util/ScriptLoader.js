@@ -56,16 +56,23 @@ qx.Class.define('cv.util.ScriptLoader', {
      * @param media {string?} Content of the media attribute
      */
     includeStylesheet(href, media) {
-      const el = document.createElement('link');
-      el.type = 'text/css';
-      el.rel = 'stylesheet';
-      el.href = href;
-      if (media) {
-        el.media = media;
-      }
-
-      const head = document.getElementsByTagName('head')[0];
-      head.appendChild(el);
+      return new Promise((res, rej) => {
+        const el = document.createElement('link');
+        el.type = 'text/css';
+        el.rel = 'stylesheet';
+        el.href = href;
+        if (media) {
+          el.media = media;
+        }
+        el.onload = res;
+        el.onerror = () => {
+          qx.log.Logger.error(this, 'error loading ' + href);
+          // always resolve
+          res();
+        };
+        const head = document.getElementsByTagName('head')[0];
+        head.appendChild(el);
+      });
     },
 
     /**
@@ -114,6 +121,7 @@ qx.Class.define('cv.util.ScriptLoader', {
   */
   events: {
     'finished': 'qx.event.type.Event',
+    'stylesLoaded': 'qx.event.type.Event',
     'designError': 'qx.event.type.Data'
   },
 
@@ -131,12 +139,13 @@ qx.Class.define('cv.util.ScriptLoader', {
     addStyles: function(styleArr) {
       const queue = (typeof styleArr === 'string' ? [styleArr] : styleArr.concat());
       const suffix = (cv.Config.forceReload === true) ? '?' + Date.now() : '';
+      let promises = [];
       queue.forEach(function(style) {
         let media;
         let src;
         if (typeof style === 'string') {
           src = style;
-          cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+          promises.push(cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix));
         } else if (typeof style === 'object') {
           src = style.uri;
           media = style.media;
@@ -153,9 +162,18 @@ qx.Class.define('cv.util.ScriptLoader', {
               resPath = scssPath.replace(/\.scss$/, '.css');
             }
           }
-          cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media);
+          promises.push(cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media));
         }
       }, this);
+      Promise.all(promises)
+        .then(() => {
+          this.debug('styles have been loaded');
+          this.fireEvent('stylesLoaded');
+        }).catch(reason => {
+            this.error('error loading styles', reason);
+            // fire this event anyways, because a non loaded CSS file is no blocker
+            this.fireEvent('stylesLoaded');
+        });
     },
 
     markAsLoaded: function (path) {

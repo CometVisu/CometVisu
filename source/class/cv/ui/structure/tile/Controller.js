@@ -152,6 +152,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param config {XMLDocument} loaded config
      */
     parseSettings(config) {
+      document.body.classList.add('loading-structure');
       const settings = cv.Config.configSettings;
       const configElement = config.documentElement;
       settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
@@ -184,6 +185,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           while ((child = configElement.firstElementChild)) {
             target.appendChild(child);
           }
+          document.body.classList.remove('loading-structure');
           this.debug('finalizing');
           qx.event.message.Bus.dispatchByName('setup.dom.append');
           this.debug('pages created');
@@ -197,6 +199,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           if (!qx.util.Request.isSuccessful(status)) {
             this.error('filenotfound', templates);
           }
+          document.body.classList.remove('loading-structure');
         }, this);
 
         ajaxRequest.send();

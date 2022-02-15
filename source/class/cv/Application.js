@@ -774,7 +774,10 @@ qx.Class.define('cv.Application',
         styles = cv.Config.configSettings.stylesToLoad;
       }
       if (styles.length) {
-        cv.util.ScriptLoader.getInstance().addStyles(styles);
+        document.body.classList.add('loading-styles');
+        const loader = cv.util.ScriptLoader.getInstance();
+        loader.addListenerOnce('stylesLoaded', () => document.body.classList.remove('loading-styles'));
+        loader.addStyles(styles);
       }
     },
 

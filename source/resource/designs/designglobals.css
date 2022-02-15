@@ -20,6 +20,10 @@ body
   overflow: hidden;
 }
 
+body.loading-styles, .loading-structure {
+  display: none !important;
+}
+
 a, img {
   -webkit-user-drag: none;
   /* not a standard yet, but probably in the future. Also no way known to help firefox at the moment. */
