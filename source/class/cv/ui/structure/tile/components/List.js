@@ -24,7 +24,6 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         this.error('no model defined, list will be empty');
         return;
       }
-      this.error('initializing nav');
       if (model === 'pages') {
         qx.event.message.Bus.subscribe('setup.dom.append', this._generateMenu, this);
         const rootList = document.createElement('ul');

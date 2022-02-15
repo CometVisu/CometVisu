@@ -104,6 +104,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     initLayout() {
+    },
+
+    __gotoStartPage() {
       // open first page
       if (!document.location.hash) {
         this.scrollToPage(this.getInitialPageId());
@@ -119,6 +122,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     scrollToPage(pageId, skipHistory) {
+      if (!pageId) {
+        return;
+      }
       const page = document.querySelector('#' + pageId);
       if (page) {
         if (!page.classList.contains('active')) {
@@ -181,6 +187,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           this.debug('finalizing');
           qx.event.message.Bus.dispatchByName('setup.dom.append');
           this.debug('pages created');
+          this.__gotoStartPage();
+          this.debug('setup.dom.finished');
+          qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+          cv.TemplateEngine.getInstance().setDomFinished(true);
         });
         ajaxRequest.addListener('statusError', function (e) {
           const status = e.getTarget().getTransport().status;
@@ -220,11 +230,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
     createUI(config) {
-      this.debug('setup.dom.finished');
-      qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
-      cv.TemplateEngine.getInstance().setDomFinished(true);
-
-      this.initLayout();
     },
 
     /**

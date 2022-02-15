@@ -91,7 +91,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     _loadData() {
-      const client = cv.TemplateEngine.getInstance().visu;
+      const client = cv.TemplateEngine.getClient();
       let key;
       let url;
       let ts = {
@@ -104,6 +104,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         start: 'end-1day',
         end: 'now'
       });
+      if (!url) {
+        return;
+      }
       key = url;
       //url = client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd';
       const xhr = new qx.io.request.Xhr(url);
