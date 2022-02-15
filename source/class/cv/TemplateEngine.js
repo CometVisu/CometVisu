@@ -571,6 +571,7 @@ qx.Class.define('cv.TemplateEngine', {
         }
         cv.ui.layout.Manager.adjustColumns();
         cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
+        cv.ui.layout.ResizeHandler.invalidateScreensize();
 
         this.main_scroll = new cv.ui.PageHandler();
         if (this.scrollSpeed !== undefined) {
