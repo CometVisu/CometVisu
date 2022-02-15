@@ -20,7 +20,7 @@ require 'upnpctrl_util.php';
 
 header("content-type: text/html");
 //header("content-type: text/json");
-$mute = $_GET['mute'];
+$mute = $_GET['mute'] ?? '';
 
 $cmd_setmute='POST /MediaRenderer/RenderingControl/Control HTTP/1.1
 CONNECTION: close

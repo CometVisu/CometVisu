@@ -44,7 +44,7 @@ $retval['required_php_version'] = $composer['require']['php'];
 $SERVER_ADDR = explode('.', $_SERVER['SERVER_ADDR']);
 if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses subnet 172.17.0.0/16
   $environmentInfoFile = '/dev/shm/CometVisuEnvironmentInfo.json';
-  if (!is_dir('/dev/shm') || !file_exists($environmentInfoFile) || $_GET['force']) {
+  if (!is_dir('/dev/shm') || !file_exists($environmentInfoFile) || isset($_GET['force'])) {
     $context = stream_context_create([
       'http' => [
         'method' => "GET",

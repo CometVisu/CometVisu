@@ -20,7 +20,7 @@ require 'upnpctrl_util.php';
 
 //header("content-type: text/html");
 header("content-type: text/json");
-$volume = $_GET['volume'];
+$volume = $_GET['volume'] ?? '';
 
 $cmd_setvolume='POST /MediaRenderer/RenderingControl/Control HTTP/1.1
 CONNECTION: close

@@ -70,7 +70,7 @@ if (false === file_exists($strConfigFQFilename)) {
   if (false === file_exists($strSrcConfigFQFilename)) {
     $strSrcConfigFQFilename = realpath(sprintf(DEMO_CONFIG_FILENAME, $strConfigCleaned));
     if (true === file_exists($strSrcConfigFQFilename)) {
-      exitWithResponse(false, 'demo config should not be upgraded: \'' . $_GET['config'] . '\'.');
+      exitWithResponse(false, 'demo config should not be upgraded: \'' . ($_GET['config'] ?? '') . '\'.');
     }
     exitWithResponse(false, 'config-file does not exist \'' . $strConfigFilename. '\'.');
   }
