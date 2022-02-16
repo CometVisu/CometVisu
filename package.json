@@ -88,7 +88,7 @@
     "@sentry/browser": "^6.16.1",
     "@sentry/tracing": "^6.16.1",
     "crc-32": "^1.2.0",
-    "monaco-editor": "^0.31.1",
+    "monaco-editor": "^0.32.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
   },

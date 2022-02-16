@@ -547,6 +547,7 @@ qx.Class.define('cv.Application',
           link: [
             {
               title: qx.locale.Manager.tr('Reload'),
+              type: 'reload',
               action: function (ev) {
                 let parent = ev.getTarget().parentNode;
                 while (parent) {
@@ -591,6 +592,7 @@ qx.Class.define('cv.Application',
           notification.actions.link.push(
             {
               title: qx.locale.Manager.tr('Send error to sentry.io'),
+              type: 'sentry',
               action: function () {
                 Sentry.captureException(ex);
               },
@@ -608,7 +610,6 @@ qx.Class.define('cv.Application',
             name: 'reportErrors',
             style: 'margin-left: 18px'
           });
-          // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
         }
       }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);

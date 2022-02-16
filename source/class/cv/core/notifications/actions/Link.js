@@ -52,6 +52,10 @@ qx.Class.define('cv.core.notifications.actions.Link', {
       check: 'String',
       nullable: true
     },
+    type: {
+      check: 'String',
+      init: ''
+    },
     action: {
       check: 'Function',
       nullable: true,
@@ -109,7 +113,7 @@ qx.Class.define('cv.core.notifications.actions.Link', {
 
     getDomElement: function() {
       const actionButton = qx.dom.Element.create('button', {
-        'class': 'action ' + this.getAction(),
+        'class': 'action ' + this.getType(),
         'text': this.getTitle(),
         'style': this.getStyle()
       });
