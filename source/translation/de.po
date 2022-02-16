@@ -1,6 +1,17 @@
-#. NO LONGER USED
 msgid ""
-msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2017-04-26 18:57+0100\nPO-Revision-Date: 2019-04-15 18:49+0200\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nLanguage: de\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: Poedit 2.2.1\n"
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: you@your.org\n"
+"POT-Creation-Date: 2017-04-26 18:57+0100\n"
+"PO-Revision-Date: 2022-02-17 00:28+0100\n"
+"Last-Translator: you <you@your.org>\n"
+"Language-Team: Team <yourteam@your.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. NO LONGER USED
 msgid "Please describe what you have done until the error occured?"
@@ -128,7 +139,7 @@ msgstr "media Ordner ist nicht beschreibbar"
 
 #: cv/ui/manager/editor/Config.js
 msgid "Hidden configuration file (hidden.php) not writeable"
-msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar."
+msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar"
 
 #: cv/ui/manager/Main.js
 msgid "Cannot load config template"
@@ -504,9 +515,9 @@ msgstr "Variable aus Template %1"
 msgid "Drop the file here to replace the content."
 msgstr "Lassen Sie die Datei hier fallen um den Inhalt zu ersetzen."
 
-#. NO LONGER USED
-msgid "Do you really want to replace the \'%1\' with the uploaded files content?"
-msgstr "Möchten Sie \'%1\' wirklich mit dem Inhalt der hochgeladenen Datei ersetzen?"
+#: cv/ui/manager/form/FileListItem.js
+msgid "Do you really want to replace the '%1' with the uploaded files content?"
+msgstr "Möchten Sie wirklich '%1' mit der hochgeladenen Datei ersetzen?"
 
 #: cv/ui/manager/form/FileListItem.js
 msgid "Double click to open \"%1\""
@@ -622,7 +633,7 @@ msgstr "Bitte prüfen!"
 
 #: cv/util/ConfigLoader.js
 msgid "Config file has wrong library version!"
-msgstr "Konfigurations-Datei hat die falsche 'library' Version"
+msgstr "Konfigurations-Datei hat die falsche 'library' Version!"
 
 #: cv/util/ConfigLoader.js
 msgid "This can cause problems with your configuration"
@@ -650,7 +661,7 @@ msgstr "Plugin \"%1\" konnte nicht geladen werden"
 
 #: cv/util/ScriptLoader.js
 msgid "File %1 could not be loaded."
-msgstr "Date %1 konnte nicht geladen werden"
+msgstr "Date %1 konnte nicht geladen werden."
 
 #: cv/util/ScriptLoader.js
 msgid "File loading error"
@@ -711,10 +722,6 @@ msgstr "Speichen trotz Warnungen bestätigen"
 #. NO LONGER USED
 msgid "The XML-Editor does not support files that are not writeable!"
 msgstr "Der XML-Editor unterstützt keine Dateien, die nicht gespeichert werden können!"
-
-#: cv/ui/manager/form/FileListItem.js
-msgid "Do you really want to replace the '%1' with the uploaded files content?"
-msgstr "Möchten Sie wirklich '%1' mit der hochgeladenen Datei ersetzen?"
 
 #: cv/TemplateEngine.js
 msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
@@ -786,7 +793,7 @@ msgstr "nicht angegeben"
 
 #: cv/ui/manager/editor/Tree.js
 msgid "This is not a valid value."
-msgstr "Dies ist kein gültiger Wert"
+msgstr "Dies ist kein gültiger Wert."
 
 #: cv/ui/manager/editor/Tree.js
 msgid "Edit %1"
@@ -910,7 +917,7 @@ msgstr "Fehlender Textinhalt"
 
 #: cv/ui/manager/form/ElementForm.js
 msgid "Possible values could no be retrieved, please check browser console for error details"
-msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden."
+msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden"
 
 #: cv/ui/manager/editor/Tree.js
 msgid "\"%1\" has been moved after \"%2\""
@@ -1063,3 +1070,27 @@ msgstr "Der Manager steht nicht zu Verfügung"
 #: cv/Application.js
 msgid "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2"
 msgstr "Die auf Ihrem System installierte PHP Version wird vom Manager nicht unterstützt. Installiert: %1, erforderlich: %2"
+
+#: cv/Application.js
+msgid "Manager"
+msgstr "Manager"
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr "Sub-Selektor \"%1\" passt nicht zum Wert %2"
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr "Sub-Selektor \"%1\" hat fehlerhaften ersten Teil \"%2\""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr "Sub-Selektor Fehler: \"%1\""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr "Dekodieren: JSON.parse Fehler: %1; Selektor: \"%2\"; Wert: %3"
+
+#: cv/Transform.js
+msgid "Transform decode error"
+msgstr "Transform Dekodier-Fehler"

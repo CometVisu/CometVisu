@@ -132,9 +132,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      */
     applyTransform: function (address, data) {
       if (address) {
-        let transform = this.getAddress()[address].transform;
         // transform the raw value to a JavaScript type
-        return cv.Transform.decode(transform, data);
+        const {transform, selector, ignoreError} = this.getAddress()[address];
+        return cv.Transform.decode(transform, data, selector, ignoreError);
       }
       return data;
     },

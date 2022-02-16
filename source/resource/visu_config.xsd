@@ -148,6 +148,12 @@
             <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="selector" type="xsd:string" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: JSON selector</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: JSON Selektor</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute name="qos" type="xsd:decimal" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: QoS</xsd:documentation>
@@ -158,6 +164,12 @@
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: retain flag</xsd:documentation>
             <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="ignore-error" type="xsd:boolean" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: ignore decode errors.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: ignoriere Dekodier-Fehler.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>

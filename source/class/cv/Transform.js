@@ -167,23 +167,84 @@ qx.Class.define('cv.Transform', {
 
     /**
      * transform bus to JavaScript value
-     * @param transformation {String} type of the transformation
-     * @param value {var} value to transform
-     * @return {var} the decoded value
+     * @param {string} transform- type of the transformation
+     * @param {*} value - value to transform
+     * @param {string|null} selector - sub path to access data in a JSON value
+     * @param {boolean} ignoreError - silently ignore decode errors
+     * @return {*} the decoded value
      */
-    decode: function (transformation, value) {
+    decode: function (transform, value, selector, ignoreError) {
       if (cv.Config.testMode === true) {
         return value;
       }
-      let
-        transformParts = transformation.split(':');
-        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
-        let parameter = transformParts[2];
-        let basetrans = transform.split('.')[0];
+      const basetrans = transform.split('.')[0];
+
+      if (typeof value === 'string' && selector !== null) {
+        // decode JSON
+        const selectorOriginal = selector;
+
+        try {
+          let v = JSON.parse(value);
+          const consumeFront = function () {
+            if (selector[0] === '[') {
+              const [, part, selectorNew] = selector.match(/^\[([^\]]*)]\.?(.*)/);
+              if ((part[0] === '"' || part[0] === "'") && part[0] === part.substr(-1)) {
+                const key = part.substr(1,part.length-2);
+                if (typeof v === 'object' && key in v) {
+                  v = v[key];
+                } else {
+                  throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
+                }
+              } else if (isFinite(part)) {
+                if (Array.isArray(v)) {
+                  v = v[part]; // use implicit cast from "number in string" to number
+                } else {
+                  throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
+                }
+              } else {
+                throw qx.locale.Manager.tr('Sub-selector "%1" has bad first part "%2"', selector, part);
+              }
+
+              selector = selectorNew;
+            } else {
+              const [, part, selectorNew] = selector.match(/^([^.[]*)\.?(.*)/);
+              if (part.length > 0) {
+                if (typeof v === 'object' && part in v) {
+                  v = v[part];
+                } else {
+                  throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
+                }
+              } else {
+                if (selectorNew.length > 0 && selectorNew[0] !== '[') {
+                  throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
+                }
+              }
+              selector = selectorNew;
+            }
+          };
+          while (selector !== '') {
+            consumeFront();
+          }
+          value = v;
+        } catch (e) {
+          if (!ignoreError) {
+            const message = {
+              topic: 'cv.transform.decode',
+              title: qx.locale.Manager.tr('Transform decode error'),
+              severity: 'urgent',
+              unique: false,
+              deletable: true,
+              message: qx.locale.Manager.tr('decode: JSON.parse error: %1; selector: "%2"; value: %3', e, selectorOriginal, JSON.stringify(value))
+            };
+            cv.core.notifications.Router.dispatchMessage(message.topic, message);
+          }
+          return '-';
+        }
+      }
       return transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].decode(value, parameter)
+        ? cv.Transform.registry[transform].decode(value)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].decode(value, parameter)
+          ? cv.Transform.registry[basetrans].decode(value)
           : value);
     }
   }

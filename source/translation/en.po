@@ -198,7 +198,7 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Delete"
 msgstr ""
 
@@ -1134,4 +1134,28 @@ msgstr ""
 
 #: cv/Application.js
 msgid "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2"
+msgstr ""
+
+#: cv/Application.js
+msgid "Manager"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Transform decode error"
 msgstr ""
