@@ -1140,6 +1140,30 @@ msgstr ""
 msgid "Manager"
 msgstr ""
 
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Transform decode error"
+msgstr ""
+
+#: cv/Application.js
+msgid "Manager"
+msgstr ""
+
 #: cv/util/ConfigLoader.js
 msgid "You can open the manager to create or upload a config file."
 msgstr ""
