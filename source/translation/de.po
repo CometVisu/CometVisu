@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: you@your.org\n"
 "POT-Creation-Date: 2017-04-26 18:57+0100\n"
-"PO-Revision-Date: 2022-02-17 00:28+0100\n"
+"PO-Revision-Date: 2022-02-17 22:42+0100\n"
 "Last-Translator: you <you@your.org>\n"
 "Language-Team: Team <yourteam@your.org>\n"
 "MIME-Version: 1.0\n"
@@ -1094,3 +1094,11 @@ msgstr "Dekodieren: JSON.parse Fehler: %1; Selektor: \"%2\"; Wert: %3"
 #: cv/Transform.js
 msgid "Transform decode error"
 msgstr "Transform Dekodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr "Transform Enkodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr "Enkodier-Fehler: %1; Selektor: \"%2\"; Wert: %3"
