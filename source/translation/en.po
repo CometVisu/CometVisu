@@ -1160,6 +1160,14 @@ msgstr ""
 msgid "Transform decode error"
 msgstr ""
 
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr ""
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
 #: cv/Application.js
 msgid "Manager"
 msgstr ""

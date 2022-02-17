@@ -132,42 +132,59 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param transformation {String} type of the transformation
-     * @param value {var} value to transform
-     * @return {Object} object with both encoded values
+     * @param {string} transform - type of the transformation
+     * @param {*} value - value to transform
+     * @param {string|null} selector - sub path to access data in a JSON value
+     * @return {*} object with both encoded values
      */
-    encodeBusAndRaw: function (transformation, value) {
+    encodeBusAndRaw: function (transform, value, selector) {
       if (cv.Config.testMode === true) {
         return {bus: value, raw: value};
       }
-      let
-        transformParts = transformation.split(':');
-        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
-        let parameter = transformParts[2];
-        let basetrans = transform.split('.')[0];
+      let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].encode(value, parameter)
+        ? cv.Transform.registry[transform].encode(value)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].encode(value, parameter)
+          ? cv.Transform.registry[basetrans].encode(value)
           : value);
 
+      if (typeof selector === 'string') {
+        let result = {};
+        let lastPart = 'start';
+        let v = result; // use the fact that `v` is now a reference and not a copy
+        while (selector !== '') {
+          const {firstPart, remainingPart} = this.__getFirstElement(selector);
+          if (isFinite(firstPart)) {
+            v[lastPart] = [];
+          } else {
+            v[lastPart] = {};
+          }
+          v = v[lastPart];
+          lastPart = firstPart;
+          selector = remainingPart;
+        }
+        v[lastPart] = encoding;
+        const retval = JSON.stringify(result.start);
+        return {bus: retval, raw: retval};
+      }
       return encoding.constructor === Object ? encoding : {bus: encoding, raw: encoding};
     },
 
     /**
      * transform JavaScript to bus value
      *
-     * @param transformation {String} type of the transformation
-     * @param value {var} value to transform
-     * @return {var} the encoded value
+     * @param {string} transformation - type of the transformation
+     * @param {*} value - value to transform
+     * @param {string|null} selector - sub path to access data in a JSON value
+     * @return {*} the encoded value
      */
-    encode: function (transformation, value) {
-      return this.encodeBusAndRaw(transformation, value).bus;
+    encode: function (transformation, value, selector) {
+      return this.encodeBusAndRaw(transformation, value, selector).bus;
     },
 
     /**
      * transform bus to JavaScript value
-     * @param {string} transform- type of the transformation
+     * @param {string} transform - type of the transformation
      * @param {*} value - value to transform
      * @param {string|null} selector - sub path to access data in a JSON value
      * @param {boolean} ignoreError - silently ignore decode errors
@@ -185,45 +202,17 @@ qx.Class.define('cv.Transform', {
 
         try {
           let v = JSON.parse(value);
-          const consumeFront = function () {
-            if (selector[0] === '[') {
-              const [, part, selectorNew] = selector.match(/^\[([^\]]*)]\.?(.*)/);
-              if ((part[0] === '"' || part[0] === "'") && part[0] === part.substr(-1)) {
-                const key = part.substr(1,part.length-2);
-                if (typeof v === 'object' && key in v) {
-                  v = v[key];
-                } else {
-                  throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
-                }
-              } else if (isFinite(part)) {
-                if (Array.isArray(v)) {
-                  v = v[part]; // use implicit cast from "number in string" to number
-                } else {
-                  throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
-                }
-              } else {
-                throw qx.locale.Manager.tr('Sub-selector "%1" has bad first part "%2"', selector, part);
-              }
-
-              selector = selectorNew;
-            } else {
-              const [, part, selectorNew] = selector.match(/^([^.[]*)\.?(.*)/);
-              if (part.length > 0) {
-                if (typeof v === 'object' && part in v) {
-                  v = v[part];
-                } else {
-                  throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
-                }
-              } else {
-                if (selectorNew.length > 0 && selectorNew[0] !== '[') {
-                  throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
-                }
-              }
-              selector = selectorNew;
-            }
-          };
           while (selector !== '') {
-            consumeFront();
+            const {firstPart, remainingPart} = this.__getFirstElement(selector);
+            if (typeof v === 'object' && firstPart in v) {
+              v = v[firstPart];
+            } else {
+              throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
+            }
+            if (selector === remainingPart) {
+              throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
+            }
+            selector = remainingPart;
           }
           value = v;
         } catch (e) {
@@ -246,6 +235,29 @@ qx.Class.define('cv.Transform', {
         : (basetrans in cv.Transform.registry
           ? cv.Transform.registry[basetrans].decode(value)
           : value);
+    },
+
+    /**
+     * Get the first element of the (JSON) selector
+     * @param {string} selector - the JSON (sub-)selector
+     * @returns {{firstPart: string, remainingPart: string}}
+     */
+    __getFirstElement: function (selector) {
+      if (selector[0] === '[') {
+        const [, firstPart, remainingPart] = selector.match(/^\[([^\]]*)]\.?(.*)/);
+        if ((firstPart[0] === '"' || firstPart[0] === '\'') && firstPart[0] === firstPart.substr(-1)) {
+          return {firstPart: firstPart.substr(1, firstPart.length-2), remainingPart};
+        } else if (isFinite(firstPart)) {
+          return {firstPart, remainingPart};
+        }
+        throw qx.locale.Manager.tr('Sub-selector "%1" has bad first part "%2"', selector, firstPart);
+      } else {
+        const [, firstPart, remainingPart] = selector.match(/^([^.[]*)\.?(.*)/);
+        if (firstPart.length > 0) {
+          return {firstPart, remainingPart};
+        }
+        throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
+      }
     }
   }
 });

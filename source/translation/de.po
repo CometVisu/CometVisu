@@ -128,7 +128,7 @@ msgstr "media Ordner ist nicht beschreibbar"
 
 #: cv/ui/manager/editor/Config.js
 msgid "Hidden configuration file (hidden.php) not writeable"
-msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar."
+msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar"
 
 #: cv/ui/manager/Main.js
 msgid "Cannot load config template"
@@ -1083,6 +1083,14 @@ msgstr "Dekodieren: JSON.parse Fehler: %1; Selektor: \"%2\"; Wert: %3"
 #: cv/Transform.js
 msgid "Transform decode error"
 msgstr "Transform Dekodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr "Transform Enkodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr "Enkodier-Fehler: %1; Selektor: \"%2\"; Wert: %3"
 
 #: cv/Application.js
 msgid "Manager"
