@@ -1,5 +1,6 @@
 /**
  * Detects dom elements visibility
+ * @ignore(IntersectionObserver)
  */
 qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
 
