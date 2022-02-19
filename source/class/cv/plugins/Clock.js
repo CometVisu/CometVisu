@@ -23,7 +23,7 @@
  */
 qx.Class.define('cv.plugins.Clock', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.ui.common.Update],
+  include: [cv.ui.common.Update, cv.ui.common.Operate],
   /*
   ***********************************************
     CONSTRUCTOR
@@ -332,7 +332,7 @@ qx.Class.define('cv.plugins.Clock', {
     // overridden
     _update: function (address, data, isDataAlreadyHandled) {
       let value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
-      this.__timeToShow = value.split(':');
+      this.__timeToShow = value instanceof Date ? [value.getHours(), value.getMinutes(), value.getSeconds()] : value.split(':');
       this._updateHands();
     },
 
@@ -478,13 +478,7 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     dragAction: function () {
-      const address = this.getAddress();
-      for (let addr in address) {
-        if (address[addr].mode === true) {
-          continue;
-        } // skip read only
-        cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
-      }
+      this.__lastBusValue = this.sendToBackend(this.getValue(), false, this.__lastBusValue);
     },
 
     _updateHands: function () {
