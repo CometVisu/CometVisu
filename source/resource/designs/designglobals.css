@@ -21,7 +21,7 @@ body
 }
 
 body.loading-styles, .loading-structure {
-  display: none !important;
+  visibility: hidden;
 }
 
 a, img {

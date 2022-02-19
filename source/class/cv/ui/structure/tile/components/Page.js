@@ -32,7 +32,13 @@ qx.Class.define('cv.ui.structure.tile.components.Page', {
    ******************************************************
    */
   members: {
-    _init() {}
+    _init() {
+      if (typeof InstallTrigger !== 'undefined') {
+        // firefox does not support content-visibility CSS property
+        // see: https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
+        this._element.classList.add('no-content-visibility');
+      }
+    }
   },
 
   defer: function(QxClass) {

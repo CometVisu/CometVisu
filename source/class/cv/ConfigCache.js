@@ -140,7 +140,7 @@ qx.Class.define('cv.ConfigCache', {
           }, this);
         }
         // hide body to prevent flickering
-        body.style.display = 'none';
+        body.style.visibility = 'hidden';
         body.innerHTML = cache.body;
         qx.log.Logger.debug(this, 'content restored from cache');
       });
