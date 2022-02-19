@@ -3,6 +3,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: [cv.ui.structure.tile.MVisibility],
 
   /*
   ***********************************************
@@ -14,13 +15,14 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _timer: null,
     _model: null,
     _getModel: null,
+    __lastTimerExecution: null,
 
     _init() {
       const element = this._element;
       const script = element.querySelector('script');
       this._model = [];
       if (script) {
-        this._getModel = Function('"use strict";const model = new qx.data.Array(); ' + script.innerText.trim()+ '; return model');
+        this._getModel = Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
         this._model = this._getModel();
       }
       this.refresh();
@@ -33,6 +35,21 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         } else {
           this.error('invalid refresh value', interval);
         }
+      }
+    },
+
+    _applyVisible(isVisible) {
+      this.debug('list visibility changed to', isVisible);
+      if (isVisible) {
+        if (this._timer) {
+          this._timer.start();
+          if (!this.__lastTimerExecution || (Date.now() - this.__lastTimerExecution) >= this._timer.getInterval()) {
+            // last execution time too old, refresh now
+            this.refresh();
+          }
+        }
+      } else if (this._timer) {
+        this._timer.stop();
       }
     },
 
@@ -76,6 +93,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       } else {
         this.error('model must be an array', newModel);
       }
+      this.__lastTimerExecution = Date.now();
     }
   },
 
@@ -85,6 +103,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
   ***********************************************
   */
   destruct: function () {
+    this._disposeObjects('_timer');
   },
 
   defer(QxClass) {
