@@ -1,9 +1,5 @@
 /**
- * Generates a list of elements based on the content and a model.
- * There are predefined visual-models that to no need a template for the list elements.
- * Currently implemented visual-models are:
- * - pages: a list of all <cv-page> elements, can be used to render a navbar
- *
+ * Generates a list of a model based on a template
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -15,152 +11,70 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
   */
   members: {
     _target: null,
+    _timer: null,
+    _model: null,
+    _getModel: null,
 
     _init() {
       const element = this._element;
-      const target = this._target = element.parentElement;
-      const model = element.getAttribute('visual-model');
-      if (!model) {
-        this.error('no model defined, list will be empty');
-        return;
+      const script = element.querySelector('script');
+      this._model = [];
+      if (script) {
+        this._getModel = Function('"use strict";const model = new qx.data.Array(); ' + script.innerText.trim()+ '; return model');
+        this._model = this._getModel();
       }
-      if (model === 'pages') {
-        qx.event.message.Bus.subscribe('setup.dom.append', this._generateMenu, this);
-        const rootList = document.createElement('ul');
-        target.replaceChild(rootList, element);
-
-        // add hamburger menu
-        const ham = document.createElement('a');
-        ham.href = '#';
-        ham.classList.add('menu');
-        ham.onclick = () => this._onHamburgerMenu();
-        const icon = document.createElement('i');
-        icon.classList.add('ri-menu-line');
-        ham.appendChild(icon);
-        target.appendChild(ham);
-
-        qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
-        // add some general listeners to close
-        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
-      } else {
-        this.error('visual-model of type', model, 'is not implemented');
-      }
-    },
-
-    _generateMenu() {
-      qx.event.message.Bus.unsubscribe('setup.dom.append', this._generateMenu, this);
-      const currentPage = window.location.hash.substring(1);
-      let parentElement = document.querySelector('main');
-      if (parentElement) {
-        const firstPage = document.querySelector('cv-page');
-        if (firstPage) {
-          parentElement = firstPage.parentElement;
-        }
-      }
-      const rootList = this._target.querySelector(':scope > ul');
-      this.__generatePagesModel(rootList, parentElement, currentPage);
-    },
-
-    _onHamburgerMenu() {
-      this._target.classList.toggle('responsive');
-      for (let detail of this._target.querySelectorAll('details')) {
-        detail.setAttribute('open', '');
-      }
-    },
-
-    /**
-     * @param ev {qx.event.type.Event}
-     * @private
-     */
-    _onPointerDown(ev) {
-      const target = ev.getTarget();
-      if (target.classList.contains('menu') || target.parentElement.classList.contains('menu')) {
-        // clicked in hamburger menu, do nothing
-      } else if (target.tagName.toLowerCase() !== 'summary') {
-        // defer closing because it would prevent the link clicks and page selection
-        qx.event.Timer.once(this._closeAll, this, 100);
-      } else {
-        // close others
-        this._closeAll(ev.getTarget().parentElement);
-      }
-    },
-
-    /**
-     * Close all open sub-menus
-     * @param except {Element?} do not close this one
-     * @private
-     */
-    _closeAll(except) {
-      if (this._target.classList.contains('responsive')) {
-        this._target.classList.remove('responsive');
-      } else {
-        for (let detail of this._target.querySelectorAll('details[open]')) {
-          if (!except || detail !== except) {
-            detail.removeAttribute('open');
-          }
-        }
-      }
-    },
-
-
-    __generatePagesModel(parentList, parentElement, currentPage) {
-      if (!parentElement) {
-        return;
-      }
-      let pages = parentElement.querySelectorAll(':scope > cv-page');
-      if (pages.length === 0) {
-        debugger;
-      }
-      for (let page of pages.values()) {
-        const pageId = page.getAttribute('id');
-        if (!pageId) {
-          this.error('page has no id, skipping');
-          continue;
-        }
-        const pageName = page.getAttribute('name') || '';
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.setAttribute('href', '#' + pageId);
-        a.textContent = pageName;
-        if (currentPage === pageId) {
-          li.classList.add('active');
-        }
-        parentList.appendChild(li);
-        if (page.querySelectorAll(':scope > cv-page').length > 0) {
-          const details = document.createElement('details');
-          const summary = document.createElement('summary');
-          summary.appendChild(a);
-          details.appendChild(summary);
-          const subList = document.createElement('ul');
-          details.appendChild(subList);
-          this.__generatePagesModel(subList, page, currentPage);
-          li.appendChild(details);
+      this.refresh();
+      if (element.hasAttribute('refresh')) {
+        const interval = parseInt(element.getAttribute('refresh'));
+        if (!isNaN(interval) && interval > 0) {
+          this._timer = new qx.event.Timer(interval * 1000);
+          this._timer.addListener('interval', this.refresh, this);
+          this._timer.start();
         } else {
-          li.appendChild(a);
+          this.error('invalid refresh value', interval);
         }
       }
     },
 
-    _onPageChange(ev) {
-      const pageElement = ev.getData();
-      // unset all currently active
-      for (let link of this._target.querySelectorAll('li.active, li.sub-active')) {
-        link.classList.remove('active');
-        link.classList.remove('sub-active');
+    refresh() {
+      const element = this._element;
+      const template = element.querySelector(':scope > template');
+      let newModel = [];
+      if (typeof this._getModel === 'function') {
+        newModel = this._getModel();
       }
-      // find link to current page
-      for (let link of this._target.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
-        // activate all parents
-        let parent = link.parentElement;
-        let activeName = 'active';
-        while (parent && parent.tagName.toLowerCase() !== 'nav') {
-          if (parent.tagName.toLowerCase() === 'li') {
-            parent.classList.add(activeName);
-            // all other parents have a sub-menu active
-            activeName = 'sub-active';
+      this.debug('refreshing with new model length', newModel.length);
+      if (Array.isArray(newModel) || newModel instanceof qx.data.Array) {
+        const itemTemplate = document.createElement('template');
+        // remove entries we do not need anymore
+        for (let i = newModel.length; i < this._model.length; i++) {
+          const elem = element.querySelector(`:scope > [data-row="${i}"]`);
+          if (elem) {
+            elem.remove();
           }
-          parent = parent.parentElement;
         }
+
+        newModel.forEach((entry, i) => {
+          const elem = element.querySelector(`:scope > [data-row="${i}"]`);
+          itemTemplate.innerHTML = template.innerHTML.replaceAll(/\${(.+)}/g, (match, p1) => {
+            if (Object.prototype.hasOwnProperty.call(entry, p1)) {
+              return entry[p1];
+            }
+            return '';
+          });
+          if (elem) {
+            // update existing
+            elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
+            elem.setAttribute('data-row', ''+i);
+          } else {
+            // append new child
+            itemTemplate.content.firstElementChild.setAttribute('data-row', ''+i);
+            element.appendChild(itemTemplate.content.cloneNode(true));
+          }
+        });
+        this._model = newModel;
+      } else {
+        this.error('model must be an array', newModel);
       }
     }
   },
@@ -171,8 +85,6 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
   ***********************************************
   */
   destruct: function () {
-    qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
-    qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
 
   defer(QxClass) {

@@ -37,7 +37,7 @@
     </cv-meta>
     <header>
         <nav>
-            <cv-list visual-model="pages"/>
+            <cv-menu model="pages"/>
         </nav>
     </header>
     <main>
@@ -194,6 +194,23 @@
                 <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
                 <span slot="label">Lichter</span>
             </cv-status>
+            <cv-list refresh="10">
+                <script><![CDATA[
+                for (let i = 0; i < Math.round(Math.random()*10); i++) {
+                    model.push({
+                        label: 'This is list item no ' + i,
+                        subLabel: 'Sublabel number ' + i
+                    })
+                }
+               ]]>
+                </script>
+                <template>
+                    <li>
+                        <label class="primary">${label}</label>
+                        <label class="secondary">${subLabel}</label>
+                    </li>
+                </template>
+            </cv-list>
             <cv-page id="livingFF" name="Wohnzimmer"/>
             <cv-page id="diningFF" name="Esszimmer"/>
         </cv-page>

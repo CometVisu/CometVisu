@@ -166,14 +166,6 @@ body {
         }
     }
 
-    cv-page.screenshots {
-        /* white background for screenshots of widgets with border radius */
-        background-color: white;
-    }
-
-    cv-page.active {
-        display: flex;
-    }
 
     cv-page {
         padding: var(--spacing);
@@ -184,6 +176,15 @@ body {
         column-gap: var(--spacing);
         overflow-y: auto;
         overflow-x: hidden;
+
+        &.screenshots {
+            /* white background for screenshots of widgets with border radius */
+            background-color: white;
+        }
+
+        &.active {
+            display: flex;
+        }
 
         > :not(details) {
             /* Row gap for everything that is no detail element */
@@ -339,56 +340,59 @@ body {
         cv-icon[size='xxx-large'] {
             font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))));
         }
+
+        &[size="1x0.5"] {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
+        }
+        &[size="2x1"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+        }
+        &[size="2x2"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+        }
+        &[size="1x2"] {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+        }
+        &[size="2x4"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
+        }
+        &.has-bg-image {
+            label {
+                mix-blend-mode: difference;
+                filter: drop-shadow(.05em .05em white);
+            }
+
+        }
+        &.has-bg-image {
+            > * {
+                z-index: 2;
+            }
+
+            > .overlay {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                opacity: 0.75;
+                background-color: black;
+                border-radius: $borderRadius;
+            }
+        }
+
+        &[disabled="true"] {
+            opacity: 0.5;
+        }
     }
-    cv-tile[size="1x0.5"] {
-        height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
-    }
-    cv-tile[size="2x1"] {
-        width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
-    }
-    cv-tile[size="2x2"] {
-        width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
-        height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
-    }
-    cv-tile[size="1x2"] {
-        height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
-    }
-    cv-tile[size="2x4"] {
-        width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
-        height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
-    }
+
     .clickable {
         cursor: pointer;
     }
-    cv-tile.has-bg-image {
-        label {
-            mix-blend-mode: difference;
-            filter: drop-shadow(.05em .05em white);
-        }
 
-    }
-    cv-tile.has-bg-image {
-        > * {
-            z-index: 2;
-        }
-
-        > .overlay {
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.75;
-            background-color: black;
-            border-radius: $borderRadius;
-        }
-    }
-
-    cv-tile[disabled="true"] {
-        opacity: 0.5;
-    }
     label, label.primary {
         font-style: normal;
         font-weight: normal;
@@ -457,28 +461,28 @@ body {
             }
 
         }
-    }
 
-    cv-button.round-button {
-        border-radius: calc(max(var(--tileCellWidth), var(--tileCellHeight)) / 2);
-    }
+        &.round-button {
+            border-radius: calc(max(var(--tileCellWidth), var(--tileCellHeight)) / 2);
+        }
 
-    cv-button[size="small"] {
-        width: calc(var(--defaultButtonSize) - var(--spacing));
-        height: calc(var(--defaultButtonSize) - var(--spacing));
-    }
+        &[size="small"] {
+            width: calc(var(--defaultButtonSize) - var(--spacing));
+            height: calc(var(--defaultButtonSize) - var(--spacing));
+        }
 
-    cv-button[size="large"] {
-        width: min(var(--tileCellWidth), var(--tileCellHeight));
-        height: min(var(--tileCellWidth), var(--tileCellHeight));
-    }
+        &[size="large"] {
+            width: min(var(--tileCellWidth), var(--tileCellHeight));
+            height: min(var(--tileCellWidth), var(--tileCellHeight));
+        }
 
-    cv-button.active {
-        color: $primaryColor;
-    }
-    cv-button.active:not(.progress) {
-        border: 1px solid $primaryColor;
-        box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+        &.active {
+            color: $primaryColor;
+        }
+        &.active:not(.progress) {
+            border: 1px solid $primaryColor;
+            box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+        }
     }
 
     cv-value {
@@ -566,11 +570,12 @@ body {
             font-size: 28px;
             color: $primaryText;
         }
-    }
-    cv-round-progress[type='semiCircle'] {
-        label {
-            top: 100%;
-            transform: translate(-50%, -100%);
+
+        &[type='semiCircle'] {
+            label {
+                top: 100%;
+                transform: translate(-50%, -100%);
+            }
         }
     }
 
@@ -725,5 +730,21 @@ body {
     cv-chart {
         width: 100%;
         height: 100%;
+    }
+
+    cv-list {
+        li {
+            display: block;
+            padding: var(--spacing) calc(var(--spacing)*2);
+            border-bottom: 1px solid $borderColor;
+
+            label.secondary, label.primary {
+                text-align: left;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
     }
 }
