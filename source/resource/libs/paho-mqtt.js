@@ -1245,7 +1245,7 @@ var PahoMQTT = (function (global) {
 		    	this.receiveBuffer = byteArray.subarray(offset);
 		    }
 		} catch (error) {
-			var errorStack = ((error.hasOwnProperty('stack') == 'undefined') ? error.stack.toString() : "No Error Stack Available");
+			var errorStack = (error.hasOwnProperty('stack') ? error.stack.toString() : "No Error Stack Available");
 			this._disconnected(ERROR.INTERNAL_ERROR.code , format(ERROR.INTERNAL_ERROR, [error.message,errorStack]));
 			return;
 		}
