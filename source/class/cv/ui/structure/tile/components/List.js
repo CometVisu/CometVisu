@@ -1,7 +1,7 @@
 /**
- * Generates a list of items. A <template> defines the content of the list-items and a model is used to
+ * Generates a list of items. A &lt;template&gt;-element defines the content of the list-items and a model is used to
  * generate those items and apply the models content to the list-items.
- * It allows custom Javascript code in a <script>-Element to fill the model.
+ * It allows custom Javascript code in a &lt;script&gt;-Element to fill the model.
  * The model can be refreshed in a time defined interval, which is set by the 'refresh' attribute.
  *
  * @widgetexample <settings>
@@ -11,11 +11,11 @@
     <cv-list refresh="10">
       <script><![CDATA[
        for (let i = 0; i < Math.round(Math.random()*10); i++) {
-                          model.push({
-                              label: 'This is list item no ' + i,
-                              subLabel: 'Sublabel number ' + i
-                          })
-                      }
+         model.push({
+           label: 'This is list item no ' + i,
+           subLabel: 'Sublabel number ' + i
+         })
+       }
        ]]>
        </script>
        <template>
