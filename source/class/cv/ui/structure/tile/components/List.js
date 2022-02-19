@@ -15,7 +15,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _timer: null,
     _model: null,
     _getModel: null,
-    __lastTimerExecution: null,
+    __lastRefresh: null,
 
     _init() {
       const element = this._element;
@@ -25,13 +25,19 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         this._getModel = Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
         this._model = this._getModel();
       }
-      this.refresh();
+      if (this.isVisible()) {
+        // only load when visible
+        this.refresh();
+      }
       if (element.hasAttribute('refresh')) {
         const interval = parseInt(element.getAttribute('refresh'));
         if (!isNaN(interval) && interval > 0) {
           this._timer = new qx.event.Timer(interval * 1000);
           this._timer.addListener('interval', this.refresh, this);
-          this._timer.start();
+          if (this.isVisible()) {
+            // when there is no offsetParent this item is not visible
+            this._timer.start();
+          }
         } else {
           this.error('invalid refresh value', interval);
         }
@@ -43,10 +49,13 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       if (isVisible) {
         if (this._timer) {
           this._timer.start();
-          if (!this.__lastTimerExecution || (Date.now() - this.__lastTimerExecution) >= this._timer.getInterval()) {
+          if (!this.__lastRefresh || (Date.now() - this.__lastRefresh) >= this._timer.getInterval()) {
             // last execution time too old, refresh now
             this.refresh();
           }
+        } else if (!this.__lastRefresh) {
+          // refresh once when the item becomes visible
+          this.refresh();
         }
       } else if (this._timer) {
         this._timer.stop();
@@ -93,7 +102,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       } else {
         this.error('model must be an array', newModel);
       }
-      this.__lastTimerExecution = Date.now();
+      this.__lastRefresh = Date.now();
     }
   },
 
