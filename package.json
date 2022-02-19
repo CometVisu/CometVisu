@@ -32,7 +32,8 @@
     }
   ],
   "org_cometvisu": {
-    "libraryVersion": 9
+    "libraryVersionPure": 9,
+    "libraryVersionTile": 1
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",

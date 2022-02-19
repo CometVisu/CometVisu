@@ -8,34 +8,16 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element name="cv-meta" type="cv-meta" minOccurs="0"/>
-        <xsd:element name="cv-page" type="cv-page"/>
+        <xsd:element name="header" type="header"/>
+        <xsd:element name="main" type="main"/>
       </xsd:sequence>
-      <xsd:attribute name="design" type="xsd:string" use="required" >
+      <xsd:attribute name="design" type="xsd:string" use="required" default="tile">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
           <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
-      <xsd:attribute ref="backend" />
-      <xsd:attribute name="backend-url" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">URL to connect to the backend.</xsd:documentation>
-          <xsd:documentation xml:lang="de">URL für die Backend-Verbindung. </xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="username" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Backend username used to authorize requests (can also be an access token).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="password" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erfolderlich). </xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="lib_version" type="xsd:integer" use="required">
+      <xsd:attribute name="version" type="xsd:integer" use="required">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
           <xsd:documentation xml:lang="de">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
@@ -118,6 +100,59 @@
     <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute name="default" type="xsd:boolean" />
     <xsd:attribute name="uri" type="xsd:anyURI" />
+    <xsd:attribute name="username" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Backend username used to authorize requests (can also be an access token).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="password" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erfolderlich). </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <!-- basic structure -->
+  <xsd:complexType name="header">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="nav" type="nav" />
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="nav">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-menu" type="cv-menu" />
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-menu">
+    <xsd:attribute name="model">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Data-model this menu is generated from.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Datenmodell aus dem dieses Menü generiert wird.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="pages" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="main">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-page" type="cv-page" />
+        <xsd:group ref="Widgets"/>
+        <xsd:element name="details" type="details"/>
+      </xsd:choice>
+    </xsd:sequence>
   </xsd:complexType>
 
   <!-- define a page -->

@@ -46,25 +46,28 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       }
       // read version from config
       const pagesNode = source.documentElement;
-      let version = parseInt(pagesNode.getAttribute('lib_version'));
-      if (version === cv.Version.LIBRARY_VERSION) {
+      const isTileStructure = pagesNode.tagName.toLowerCase() === 'config';
+      const systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE;
+      let version = isTileStructure ? parseInt(pagesNode.getAttribute('version')) : parseInt(pagesNode.getAttribute('lib_version'));
+      if (version === cv.Version.LIBRARY_VERSION_PURE) {
         // nothing to do
         return [null, source, this.__log];
-      } 
-        while (version < cv.Version.LIBRARY_VERSION) {
-          // upgrade step by step
-          const method = this['from' + version + 'to' + (version + 1)];
-          if (method) {
-            version = method.call(this, source);
-          } else {
-            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__log];
-          }
+      }
+      const suffix = isTileStructure ? 'Tile' : 'Pure';
+      while (version < systemLibVersion) {
+        // upgrade step by step
+        const method = this['from' + version + 'to' + (version + 1) + suffix];
+        if (method) {
+          version = method.call(this, source);
+        } else {
+          return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__log];
         }
-        this.info('  - ' + this.__log.join('\n  - '));
-        return [null, source, this.__log];
+      }
+      this.info('  - ' + this.__log.join('\n  - '));
+      return [null, source, this.__log];
     },
 
-    from7to8 (source) {
+    from7to8Pure (source) {
       let c = 0;
       source.querySelectorAll('plugins > plugin[name=\'gweather\']').forEach(node => {
         const parent = node.parentNode;
@@ -82,7 +85,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       return 8;
     },
 
-    from8to9 (source) {
+    from8to9Pure (source) {
       let c = 0;
       const singleIndent = ''.padEnd(this.__indentation, ' ');
       source.querySelectorAll('multitrigger').forEach(node => {
@@ -140,8 +143,12 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       return level;
     },
 
-    __setVersion (xml, version) {
-      xml.documentElement.getAttributeNode('lib_version').value = version;
+    __setVersion (xml, version, isTile) {
+      if (isTile === true) {
+        xml.documentElement.setAttribute('version', version);
+      } else {
+        xml.documentElement.setAttribute('lib_version', version);
+      }
     }
   }
 });

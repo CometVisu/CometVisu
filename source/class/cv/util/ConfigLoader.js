@@ -103,17 +103,18 @@ qx.Class.define('cv.util.ConfigLoader', {
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
           this.__loadQueue.remove(ajaxRequest.getUrl());
 
+          const systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE;
           // check the library version
-          let xmlLibVersion = xml.documentElement.getAttribute('lib_version');
+          let xmlLibVersion = isTileStructure ? xml.documentElement.getAttribute('version') : xml.documentElement.getAttribute('lib_version');
           if (xmlLibVersion === undefined || xmlLibVersion === null) {
             xmlLibVersion = -1;
           } else if (xmlLibVersion === '0') {
             // special wildcard mode used in screenshot generation fixtures
-            xmlLibVersion = cv.Version.LIBRARY_VERSION;
+            xmlLibVersion = systemLibVersion;
           } else {
             xmlLibVersion = parseInt(xmlLibVersion);
           }
-          if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
+          if (cv.Config.libraryCheck && xmlLibVersion < systemLibVersion) {
             this.configError('libraryerror');
           } else {
             let backendName = '';
