@@ -135,7 +135,7 @@ body {
                         }
                     }
                 }
-                a {
+                a, p {
                     display: inline-block;
                     padding: var(--spacing) calc(var(--spacing)*2);
                 }
@@ -154,11 +154,12 @@ body {
                 }
             }
         }
-        a {
+        a, p {
             color: $primaryText;
             text-align: center;
             text-decoration: none;
             font-size: 20px;
+            margin: 0;
         }
 
         .menu {
@@ -171,7 +172,7 @@ body {
         padding: var(--spacing);
         display: none;
         flex-flow: row wrap;
-        align-items: center;
+        align-items: flex-start;
         align-content: flex-start;
         column-gap: var(--spacing);
         overflow-y: auto;

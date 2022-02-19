@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       const target = ev.getTarget();
       if (target.classList.contains('menu') || target.parentElement.classList.contains('menu')) {
         // clicked in hamburger menu, do nothing
-      } else if (target.tagName.toLowerCase() !== 'summary') {
+      } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection
         qx.event.Timer.once(this._closeAll, this, 100);
       } else {
@@ -122,7 +122,14 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         if (page.querySelectorAll(':scope > cv-page').length > 0) {
           const details = document.createElement('details');
           const summary = document.createElement('summary');
-          summary.appendChild(a);
+          if (page.querySelector(':scope > *:not(cv-page)')) {
+            // only add this as link, when this page has real content
+            summary.appendChild(a);
+          } else {
+            const p = document.createElement('p');
+            p.textContent = pageName;
+            summary.appendChild(p);
+          }
           details.appendChild(summary);
           const subList = document.createElement('ul');
           details.appendChild(subList);
