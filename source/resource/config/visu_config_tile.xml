@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd" design="tile" version="1">
     <cv-meta>
-        <cv-backend type="openhab" username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig"/>
+        <cv-backend name="main" type="openhab" username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig"/>
         <cv-backend name="si" default="true" type="simulated"/>
         <cv-backend name="mqtt" type="mqtt" uri="ws://mqtt:9001/"/>
         <cv-mapping name="light">
@@ -195,23 +195,25 @@
                 <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
                 <span slot="label">Lichter</span>
             </cv-status>
-            <cv-list refresh="10">
-                <script><![CDATA[
-                for (let i = 0; i < Math.round(Math.random()*10); i++) {
-                    model.push({
-                        label: 'This is list item no ' + i,
-                        subLabel: 'Sublabel number ' + i
-                    })
-                }
-               ]]>
-                </script>
-                <template>
-                    <li>
-                        <label class="primary">${label}</label>
-                        <label class="secondary">${subLabel}</label>
-                    </li>
-                </template>
-            </cv-list>
+            <cv-tile size="1x2">
+                <cv-list refresh="10" rowspan="3" colspan="3">
+                    <script><![CDATA[
+                    for (let i = 0; i < Math.round(Math.random()*10); i++) {
+                        model.push({
+                            label: 'This is list item no ' + i,
+                            subLabel: 'Sublabel number ' + i
+                        })
+                    }
+                   ]]>
+                    </script>
+                    <template>
+                        <li>
+                            <label class="primary">${label}</label>
+                            <label class="secondary">${subLabel}</label>
+                        </li>
+                    </template>
+                </cv-list>
+            </cv-tile>
             <cv-page id="livingFF" name="Wohnzimmer"/>
             <cv-page id="diningFF" name="Esszimmer"/>
         </cv-page>

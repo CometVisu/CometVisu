@@ -82,6 +82,16 @@
         <xsd:attribute name="name" type="xsd:string" />
         <xsd:attribute name="set" type="xsd:string" />
         <xsd:attribute ref="class"/>
+        <xsd:attribute name="size">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="large" />
+              <xsd:enumeration value="x-large" />
+              <xsd:enumeration value="xx-large" />
+              <xsd:enumeration value="xxx-large" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -224,6 +234,7 @@
       <xsd:element name="cv-shutter" type="cv-shutter" />
       <xsd:element name="cv-tile" type="cv-tile"/>
       <xsd:element name="cv-info" type="cv-info"/>
+      <xsd:element name="cv-status" type="cv-status"/>
     </xsd:choice>
   </xsd:group>
 
@@ -232,6 +243,11 @@
       <xsd:element name="cv-button" type="cv-button" />
       <xsd:element name="cv-value" type="cv-value" />
       <xsd:element name="cv-select" type="cv-select" />
+      <xsd:element name="cv-slider" type="cv-slider" />
+      <xsd:element name="cv-spinner" type="cv-spinner" />
+      <xsd:element name="cv-image" type="cv-image" />
+      <xsd:element name="cv-chart" type="cv-chart" />
+      <xsd:element name="cv-list" type="cv-list" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
     </xsd:choice>
@@ -245,6 +261,7 @@
         <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
         <xsd:element name="label" type="label" minOccurs="0" />
         <xsd:element name="meter" type="meter" minOccurs="0" />
+        <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="styling" />
@@ -286,6 +303,104 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-slider">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
+    <xsd:attribute ref="min"/>
+    <xsd:attribute ref="max"/>
+    <xsd:attribute name="step-width" type="xsd:decimal"/>
+    <xsd:attribute name="throttle-interval" type="xsd:decimal" />
+    <xsd:attribute name="hide-value" type="xsd:boolean" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-spinner">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
+        <xsd:element name="label" type="label" minOccurs="0" />
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
+    <xsd:attribute ref="min"/>
+    <xsd:attribute ref="max"/>
+    <xsd:attribute name="step-width" type="xsd:decimal"/>
+    <xsd:attribute name="throttle-interval" type="xsd:decimal" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-image">
+    <xsd:attribute ref="class" />
+    <xsd:attribute name="src" type="xsd:string"/>
+    <xsd:attribute name="refresh" type="xsd:decimal"/>
+    <xsd:attribute name="proxy" type="xsd:boolean"/>
+    <xsd:attribute name="authorization">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="basic" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="username" type="xsd:string"/>
+    <xsd:attribute name="password" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-chart">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="dataset" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:attribute name="src" type="xsd:string"/>
+            <xsd:attribute name="src-type" type="xsd:string"/>
+            <xsd:attribute name="type">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="line" />
+                  <xsd:enumeration value="bar" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
+    <xsd:attribute name="series" type="xsd:string"/>
+    <xsd:attribute name="refresh" type="xsd:decimal"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-list">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="script" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="template" type="template" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="class" />
+    <xsd:attribute name="refresh" type="xsd:decimal"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-select">
@@ -434,6 +549,79 @@
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
   </xsd:complexType>
+
+  <xsd:complexType name="cv-status">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="cv-icon" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="cv-icon">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="icon" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-value" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="cv-value">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="icon" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="address" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="label" />
+                    <xsd:enumeration value="unit" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+  </xsd:complexType>
+
 
   <!--
   #####################################################################################################################
@@ -756,6 +944,12 @@
     <xsd:attribute name="min" type="xsd:integer"/>
     <xsd:attribute name="max" type="xsd:integer"/>
     <xsd:attribute name="value" type="xsd:integer"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="template">
+    <xsd:sequence>
+      <xsd:any processContents="lax"/>
+    </xsd:sequence>
   </xsd:complexType>
 
   <!--
