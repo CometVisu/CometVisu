@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd" design="tile" version="1">
+<config
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd"
+        design="tile"
+        version="1"
+        backend="openhab"
+        username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig"
+>
     <cv-meta>
-        <cv-backend name="main" type="openhab" username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig"/>
         <cv-backend name="si" default="true" type="simulated"/>
         <cv-backend name="mqtt" type="mqtt" uri="ws://mqtt:9001/"/>
         <cv-mapping name="light">
