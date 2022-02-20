@@ -132,15 +132,16 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param {string} transform - type of the transformation
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
-     * @param {string|null} selector - sub path to access data in a JSON value
      * @return {*} object with both encoded values
      */
-    encodeBusAndRaw: function (transform, value, selector) {
+    encodeBusAndRaw: function (address, value) {
       if (cv.Config.testMode === true) {
         return {bus: value, raw: value};
       }
+      const {transform} = address;
+      let {selector} = address;
       let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
         ? cv.Transform.registry[transform].encode(value)
@@ -167,36 +168,38 @@ qx.Class.define('cv.Transform', {
         const retval = JSON.stringify(result.start);
         return {bus: retval, raw: retval};
       }
-      return encoding.constructor === Object ? encoding : {bus: encoding, raw: encoding};
+      return (encoding.constructor === Object && 'bus' in encoding && 'raw' in encoding)
+        ? encoding
+        : {bus: encoding, raw: encoding};
     },
 
     /**
      * transform JavaScript to bus value
      *
-     * @param {string} transformation - type of the transformation
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
-     * @param {string|null} selector - sub path to access data in a JSON value
      * @return {*} the encoded value
      */
-    encode: function (transformation, value, selector) {
-      return this.encodeBusAndRaw(transformation, value, selector).bus;
+    encode: function (address, value) {
+      return this.encodeBusAndRaw(address, value).bus;
     },
 
     /**
      * transform bus to JavaScript value
-     * @param {string} transform - type of the transformation
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
-     * @param {string|null} selector - sub path to access data in a JSON value
-     * @param {boolean} ignoreError - silently ignore decode errors
      * @return {*} the decoded value
      */
-    decode: function (transform, value, selector, ignoreError) {
+    decode: function (address, value) {
       if (cv.Config.testMode === true) {
         return value;
       }
+
+      const {transform, ignoreError} = address;
+      let {selector} = address;
       const basetrans = transform.split('.')[0];
 
-      if (typeof value === 'string' && selector !== null) {
+      if (typeof value === 'string' && selector !== undefined && selector !== null) {
         // decode JSON
         const selectorOriginal = selector;
 
@@ -207,10 +210,10 @@ qx.Class.define('cv.Transform', {
             if (typeof v === 'object' && firstPart in v) {
               v = v[firstPart];
             } else {
-              throw qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v));
+              throw new Error(qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v)));
             }
             if (selector === remainingPart) {
-              throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
+              throw new Error(qx.locale.Manager.tr('Sub-selector error: "%1"', selector));
             }
             selector = remainingPart;
           }

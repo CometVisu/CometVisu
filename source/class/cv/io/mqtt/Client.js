@@ -234,7 +234,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      */
     write : function (address, value, options) {
       if (this.isConnected()) {
-        let message = new Paho.MQTT.Message(value);
+        let message = new Paho.MQTT.Message(value.toString());
         message.destinationName = address;
         if (options.qos !== undefined) {
           message.qos = options.qos;

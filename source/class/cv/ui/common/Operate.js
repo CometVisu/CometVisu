@@ -86,7 +86,7 @@ qx.Mixin.define('cv.ui.common.Operate', {
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               try {
                 const encoding = address.transform;
-                const encodedValue = cv.Transform.encodeBusAndRaw(encoding, value, address.selector);
+                const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
                 if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
                   cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
                 }
