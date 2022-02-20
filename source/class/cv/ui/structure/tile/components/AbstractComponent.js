@@ -12,7 +12,8 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   properties: {
     value: {
-      apply: '_applyValue'
+      apply: '_applyValue',
+      init: null
     },
     styleClass: {
       check: 'String',

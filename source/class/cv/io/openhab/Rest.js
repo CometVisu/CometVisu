@@ -207,7 +207,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     subscribe : function (addresses, filters) {
       // send first request to get all states once
-      const req = this.createAuthorizedRequest('items?fields=name,state,members,type&recursive=true');
+      const req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
       req.addListener('success', function(e) {
         const req = e.getTarget();
 
@@ -219,9 +219,10 @@ qx.Class.define('cv.io.openhab.Rest', {
             let active = 0;
             const map = {};
             entry.members.forEach(obj => {
-              map[obj.name] = {type: obj.type, state: obj.state};
+              map[obj.name] = {type: obj.type, state: obj.state, label: obj.label, name: obj.name, active: false};
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
+                map[obj.name].active = true;
               }
               if (!Object.prototype.hasOwnProperty.call(this.__memberLookup, obj.name)) {
                 this.__memberLookup[obj.name] = [entry.name];
@@ -235,6 +236,7 @@ qx.Class.define('cv.io.openhab.Rest', {
               active: active
             };
             update['number:' + entry.name] = active;
+            update['members:' + entry.name] = Object.values(map);
           }
           update[entry.name] = entry.state;
         }, this);
@@ -311,10 +313,14 @@ qx.Class.define('cv.io.openhab.Rest', {
                 const member = group.members[memberName];
                 if (this.__isActive(member.type, member.state)) {
                   active++;
+                  member.active = true;
+                } else {
+                  member.active = false;
                 }
               });
               group.active = active;
               update['number:' + groupName] = active;
+              update['members:' + groupName] = Object.values(group.members);
             });
           }
           this.update(update);

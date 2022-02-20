@@ -32,6 +32,18 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    value: {
+      refine: true,
+      init: []
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -41,20 +53,71 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _model: null,
     _getModel: null,
     __lastRefresh: null,
+    _filterModel: null,
+    _sortModel: null,
 
     _init() {
       const element = this._element;
       const script = element.querySelector('script');
       this._model = [];
+      let refreshOnUpdate = false;
       if (script) {
-        this._getModel = Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
+        this._getModel = new Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
         this._model = this._getModel();
+      } else if (element.querySelector('model')) {
+        const model = element.querySelector('model');
+        if (model.hasAttribute('filter')) {
+          this._filterModel = new Function('item', '"use strict"; return ' + model.getAttribute('filter'));
+        }
+        if (model.hasAttribute('sort-by')) {
+          const sortBy = model.getAttribute('sort-by');
+          this._sortModel = (left, right) => {
+            const leftVal = left[sortBy];
+            const rightVal = right[sortBy];
+            if (leftVal === rightVal) {
+              return 0;
+            } else if (typeof leftVal === typeof rightVal) {
+              switch (typeof leftVal) {
+                case 'number':
+                  return leftVal - rightVal;
+
+                case 'boolean':
+                  return leftVal ? -1 : 1;
+
+                case 'string':
+                  return leftVal.localeCompare(rightVal);
+
+                default:
+                  return JSON.stringify(leftVal).localeCompare(JSON.stringify(rightVal));
+              }
+            } else if (leftVal === undefined || leftVal === null) {
+              return 1;
+            } else if (rightVal === undefined || rightVal === null) {
+              return -1;
+            }
+            return 0;
+          };
+        }
+        // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
+        this._getModel = this.getValue;
+        refreshOnUpdate = Array.prototype.some.call(model.querySelectorAll(':scope > cv-address'),
+            address => !address.hasAttribute('mode') || address.getAttribute('mode').includes('read'));
+
+        if (refreshOnUpdate) {
+          element.addEventListener('stateUpdate', ev => {
+            this.onStateUpdate(ev);
+            // cancel event here
+            ev.stopPropagation();
+          });
+        } else {
+          this.error('cv-list > model must have one read address.');
+        }
       }
-      if (this.isVisible()) {
+      if (this.isVisible() && !refreshOnUpdate) {
         // only load when visible
         this.refresh();
       }
-      if (element.hasAttribute('refresh')) {
+      if (!refreshOnUpdate && element.hasAttribute('refresh')) {
         const interval = parseInt(element.getAttribute('refresh'));
         if (!isNaN(interval) && interval > 0) {
           this._timer = new qx.event.Timer(interval * 1000);
@@ -67,6 +130,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           this.error('invalid refresh value', interval);
         }
       }
+    },
+
+    _applyValue() {
+      // reset last refresh, because with new data its obsolete
+      this.__lastRefresh = 0;
+      this.refresh();
     },
 
     _applyVisible(isVisible) {
@@ -96,6 +165,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       }
       this.debug('refreshing with new model length', newModel.length);
       if (Array.isArray(newModel) || newModel instanceof qx.data.Array) {
+        if (typeof this._filterModel === 'function') {
+          newModel = newModel.filter(this._filterModel);
+        }
+        if (typeof this._sortModel === 'function') {
+          newModel.sort(this._sortModel);
+        }
         const itemTemplate = document.createElement('template');
         // remove entries we do not need anymore
         for (let i = newModel.length; i < this._model.length; i++) {

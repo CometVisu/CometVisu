@@ -38,6 +38,26 @@ $tileColumns: 3;
 @import url("fonts/remixicon.css");
 @import url("../../icons/knx-uf-iconset.css");
 
+/* width */
+::-webkit-scrollbar {
+    width: var(--spacing);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $secondaryText;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $primaryText;
+}
+
 body {
     background-color: $appBackground;
     font-family: Roboto Arial sans-serif;
@@ -252,6 +272,7 @@ body {
         grid-template-rows: repeat($tileRows, 1fr);
         justify-items: center;
         position: relative;
+        overflow-y: auto;
 
         .row {
             height: var(--tileCellHeight);
@@ -734,6 +755,7 @@ body {
     }
 
     cv-list {
+        width: 100%;
         li {
             display: block;
             padding: var(--spacing) calc(var(--spacing)*2);
@@ -746,6 +768,14 @@ body {
             &:last-child {
                 border-bottom: none;
             }
+        }
+    }
+
+    cv-popup {
+        display: none;
+
+        &.open {
+            display: block;
         }
     }
 }

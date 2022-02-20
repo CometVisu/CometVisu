@@ -202,7 +202,7 @@
                 <span slot="label">Lichter</span>
             </cv-status>
             <cv-tile size="1x2">
-                <cv-list refresh="10" rowspan="3" colspan="3">
+                <cv-list refresh="120" rowspan="3" colspan="3">
                     <script><![CDATA[
                     for (let i = 0; i < Math.round(Math.random()*10); i++) {
                         model.push({
@@ -216,6 +216,20 @@
                         <li>
                             <label class="primary">${label}</label>
                             <label class="secondary">${subLabel}</label>
+                        </li>
+                    </template>
+                </cv-list>
+            </cv-tile>
+
+            <cv-tile size="1x2">
+                <cv-list rowspan="3" colspan="3">
+                    <model filter="item.active===true" sort-by="label">
+                        <cv-address transform="raw" mode="read" backend="main">members:Lights</cv-address>
+                    </model>
+                    <template>
+                        <li>
+                            <label class="primary">${label}</label>
+                            <label class="secondary">${type}</label>
                         </li>
                     </template>
                 </cv-list>

@@ -1,5 +1,10 @@
 /**
+ * Address element that connect a widget/component to the backend.
  *
+ * TODO: describe
+ *  - Backend-Selection
+ *  - Target
+ *  - Mapping
  */
 qx.Class.define('cv.ui.structure.tile.elements.Address', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
