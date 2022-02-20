@@ -164,7 +164,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
     refresh() {
       const element = this._element;
-      const template = element.querySelector(':scope > template');
+      const template = element.querySelector(':scope > template:not([when])');
       let newModel = [];
       if (typeof this._getModel === 'function') {
         newModel = this._getModel();
@@ -182,6 +182,23 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         }
         if (typeof this._sortModel === 'function') {
           newModel.sort(this._sortModel);
+        }
+        if (newModel.length === 0) {
+          const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
+          if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
+            while (target.firstChild) {
+              target.removeChild(target.lastChild);
+            }
+            const emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
+            emptyModel.classList.add('empty-model');
+            target.appendChild(emptyModel);
+            return;
+          }
+        } else {
+          const emptyElem = target.querySelector(':scope > .empty-model');
+          if (emptyElem) {
+            emptyElem.remove();
+          }
         }
         const itemTemplate = document.createElement('template');
         // remove entries we do not need anymore

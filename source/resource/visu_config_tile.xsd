@@ -413,7 +413,21 @@
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="header" minOccurs="0" type="custom"/>
-        <xsd:element name="template" type="template" maxOccurs="2"/>
+        <xsd:element name="template" maxOccurs="2">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="template">
+                <xsd:attribute name="when">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="empty" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
         <xsd:element name="model">
           <xsd:complexType>
             <xsd:choice maxOccurs="unbounded">
