@@ -272,7 +272,6 @@ body {
         grid-template-rows: repeat($tileRows, 1fr);
         justify-items: center;
         position: relative;
-        overflow-y: auto;
 
         .row {
             height: var(--tileCellHeight);
@@ -756,17 +755,36 @@ body {
 
     cv-list {
         width: 100%;
-        li {
-            display: block;
-            padding: var(--spacing) calc(var(--spacing)*2);
+        display: flex;
+        flex-flow: column;
+
+        header {
+            padding: calc(var(--spacing)*2);
             border-bottom: 1px solid $borderColor;
-
-            label.secondary, label.primary {
-                text-align: left;
+            > * {
+                margin: 0;
             }
+        }
+        .content {
+            width: 100%;
+            overflow-y: auto;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex: 1;
 
-            &:last-child {
-                border-bottom: none;
+            li {
+                display: block;
+                padding: var(--spacing) calc(var(--spacing)*2);
+                border-bottom: 1px solid $borderColor;
+
+                label.secondary, label.primary {
+                    text-align: left;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
             }
         }
     }

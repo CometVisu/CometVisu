@@ -412,6 +412,7 @@
   <xsd:complexType name="cv-list">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="header" minOccurs="0" type="custom"/>
         <xsd:element name="template" type="template" maxOccurs="2"/>
         <xsd:element name="model">
           <xsd:complexType>

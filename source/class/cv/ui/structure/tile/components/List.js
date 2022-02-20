@@ -169,6 +169,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       if (typeof this._getModel === 'function') {
         newModel = this._getModel();
       }
+      let target = element.querySelector(':scope > ul');
+      if (!target) {
+        target = document.createElement('ul');
+        target.classList.add('content');
+        element.appendChild(target);
+      }
       this.debug('refreshing with new model length', newModel.length);
       if (Array.isArray(newModel) || newModel instanceof qx.data.Array) {
         if (typeof this._filterModel === 'function') {
@@ -180,14 +186,14 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         const itemTemplate = document.createElement('template');
         // remove entries we do not need anymore
         for (let i = newModel.length; i < this._model.length; i++) {
-          const elem = element.querySelector(`:scope > [data-row="${i}"]`);
+          const elem = target.querySelector(`:scope > [data-row="${i}"]`);
           if (elem) {
             elem.remove();
           }
         }
 
         newModel.forEach((entry, i) => {
-          const elem = element.querySelector(`:scope > [data-row="${i}"]`);
+          const elem = target.querySelector(`:scope > [data-row="${i}"]`);
           itemTemplate.innerHTML = template.innerHTML.replaceAll(/\${(.+)}/g, (match, p1) => {
             if (Object.prototype.hasOwnProperty.call(entry, p1)) {
               return entry[p1];
@@ -201,7 +207,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           } else {
             // append new child
             itemTemplate.content.firstElementChild.setAttribute('data-row', ''+i);
-            element.appendChild(itemTemplate.content.cloneNode(true));
+            target.appendChild(itemTemplate.content.cloneNode(true));
           }
         });
         this._model = newModel;

@@ -225,9 +225,12 @@
 
             <cv-tile size="1x2">
                 <cv-list rowspan="3" colspan="3">
-                    <model filter="item.active===true" sort-by="label">
+                    <model filter="item.active===false" sort-by="label">
                         <cv-address transform="raw" mode="read" backend="main">members:Lights</cv-address>
                     </model>
+                    <header>
+                        <h4>Eingeschaltete Lichter</h4>
+                    </header>
                     <template>
                         <li>
                             <label class="primary">${label}</label>
