@@ -1,7 +1,7 @@
 /**
  * Generates a list of items. A &lt;template&gt;-element defines the content of the list-items and a model is used to
  * generate those items and apply the models content to the list-items.
- * It allows custom Javascript code in a &lt;script&gt;-Element to fill the model.
+ * It allows custom Javascript code in a &lt;script&gt;-Element to fill the model or address-Elements as model source.
  * The model can be refreshed in a time defined interval, which is set by the 'refresh' attribute.
  *
  * @widgetexample <settings>
@@ -9,19 +9,26 @@
  *    <screenshot name="list_simple"/>
  *  </settings>
     <cv-list refresh="10">
-      <script><![CDATA[
-       for (let i = 0; i < Math.round(Math.random()*10); i++) {
-         model.push({
-           label: 'This is list item no ' + i,
-           subLabel: 'Sublabel number ' + i
-         })
-       }
-       ]]>
-       </script>
+      <model>
+        <script><![CDATA[
+         for (let i = 0; i < Math.round(Math.random()*10); i++) {
+           model.push({
+             label: 'This is list item no ' + i,
+             subLabel: 'Sublabel number ' + i
+           })
+         }
+         ]]>
+         </script>
+       </model>
        <template>
          <li>
            <label class="primary">${label}</label>
            <label class="secondary">${subLabel}</label>
+         </li>
+       </template>
+       <template when="empty">
+         <li>
+           <label class="primary">Model is empty!</label>
          </li>
        </template>
    </cv-list>
@@ -214,6 +221,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           itemTemplate.innerHTML = template.innerHTML.replaceAll(/\${(.+)}/g, (match, p1) => {
             if (Object.prototype.hasOwnProperty.call(entry, p1)) {
               return entry[p1];
+            } else if (p1 === 'index') {
+              return '' + i;
             }
             return '';
           });

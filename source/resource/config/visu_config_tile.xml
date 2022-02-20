@@ -234,7 +234,7 @@
                     <template>
                         <li>
                             <label class="primary">${label}</label>
-                            <label class="secondary">${type}</label>
+                            <label class="secondary">${name}</label>
                         </li>
                     </template>
                     <template when="empty">
