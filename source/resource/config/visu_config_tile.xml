@@ -202,8 +202,9 @@
                 <span slot="label">Lichter</span>
             </cv-status>
             <cv-tile size="1x2">
-                <cv-list refresh="120" rowspan="3" colspan="3">
-                    <script><![CDATA[
+                <cv-list refresh="20" rowspan="3" colspan="3">
+                    <model sort-by="label" sort-mode="desc">
+                        <script><![CDATA[
                     for (let i = 0; i < Math.round(Math.random()*10); i++) {
                         model.push({
                             label: 'This is list item no ' + i,
@@ -211,7 +212,8 @@
                         })
                     }
                    ]]>
-                    </script>
+                        </script>
+                    </model>
                     <template>
                         <li>
                             <label class="primary">${label}</label>

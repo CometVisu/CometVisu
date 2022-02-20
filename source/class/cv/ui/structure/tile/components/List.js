@@ -58,76 +58,82 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
     _init() {
       const element = this._element;
-      const script = element.querySelector('script');
       this._model = [];
       let refreshOnUpdate = false;
+      const model = element.querySelector('model');
+      if (!model) {
+        this.error('cv-list needs a model');
+        return;
+      }
+      if (model.hasAttribute('filter')) {
+        this._filterModel = new Function('item', 'index', '"use strict"; return ' + model.getAttribute('filter'));
+      }
+      if (model.hasAttribute('sort-by')) {
+        const sortBy = model.getAttribute('sort-by');
+        // reverse order in 'desc' sort mode
+        const sortModifier = model.getAttribute('sort-mode') === 'desc' ? -1 : 1;
+        this._sortModel = (left, right) => {
+          const leftVal = left[sortBy];
+          const rightVal = right[sortBy];
+          if (leftVal === rightVal) {
+            return 0;
+          } else if (typeof leftVal === typeof rightVal) {
+            switch (typeof leftVal) {
+              case 'number':
+                return (leftVal - rightVal) * sortModifier;
+
+              case 'boolean':
+                return (leftVal ? -1 : 1) * sortModifier;
+
+              case 'string':
+                return leftVal.localeCompare(rightVal) * sortModifier;
+
+              default:
+                return JSON.stringify(leftVal).localeCompare(JSON.stringify(rightVal)) * sortModifier;
+            }
+          } else if (leftVal === undefined || leftVal === null) {
+            return 1 * sortModifier;
+          } else if (rightVal === undefined || rightVal === null) {
+            return -1 * sortModifier;
+          }
+          return 0;
+        };
+      }
+      const script = model.querySelector(':scope > script');
+      const readAddresses = model.querySelectorAll('cv-address:not([mode="write"])');
       if (script) {
         this._getModel = new Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
         this._model = this._getModel();
-      } else if (element.querySelector('model')) {
-        const model = element.querySelector('model');
-        if (model.hasAttribute('filter')) {
-          this._filterModel = new Function('item', '"use strict"; return ' + model.getAttribute('filter'));
-        }
-        if (model.hasAttribute('sort-by')) {
-          const sortBy = model.getAttribute('sort-by');
-          this._sortModel = (left, right) => {
-            const leftVal = left[sortBy];
-            const rightVal = right[sortBy];
-            if (leftVal === rightVal) {
-              return 0;
-            } else if (typeof leftVal === typeof rightVal) {
-              switch (typeof leftVal) {
-                case 'number':
-                  return leftVal - rightVal;
-
-                case 'boolean':
-                  return leftVal ? -1 : 1;
-
-                case 'string':
-                  return leftVal.localeCompare(rightVal);
-
-                default:
-                  return JSON.stringify(leftVal).localeCompare(JSON.stringify(rightVal));
-              }
-            } else if (leftVal === undefined || leftVal === null) {
-              return 1;
-            } else if (rightVal === undefined || rightVal === null) {
-              return -1;
-            }
-            return 0;
-          };
-        }
+      } else if (readAddresses.length > 0) {
         // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
         this._getModel = this.getValue;
-        refreshOnUpdate = Array.prototype.some.call(model.querySelectorAll(':scope > cv-address'),
-            address => !address.hasAttribute('mode') || address.getAttribute('mode').includes('read'));
-
-        if (refreshOnUpdate) {
-          element.addEventListener('stateUpdate', ev => {
-            this.onStateUpdate(ev);
-            // cancel event here
-            ev.stopPropagation();
-          });
-        } else {
-          this.error('cv-list > model must have one read address.');
+        element.addEventListener('stateUpdate', ev => {
+          this.onStateUpdate(ev);
+          // cancel event here
+          ev.stopPropagation();
+        });
+        refreshOnUpdate = true;
+      } else {
+        this.error('cv-list > model must have at least one read address or a script that fills the model.');
+        return;
+      }
+      if (!refreshOnUpdate) {
+        if (this.isVisible()) {
+          // only load when visible
+          this.refresh();
         }
-      }
-      if (this.isVisible() && !refreshOnUpdate) {
-        // only load when visible
-        this.refresh();
-      }
-      if (!refreshOnUpdate && element.hasAttribute('refresh')) {
-        const interval = parseInt(element.getAttribute('refresh'));
-        if (!isNaN(interval) && interval > 0) {
-          this._timer = new qx.event.Timer(interval * 1000);
-          this._timer.addListener('interval', this.refresh, this);
-          if (this.isVisible()) {
-            // when there is no offsetParent this item is not visible
-            this._timer.start();
+        if (element.hasAttribute('refresh')) {
+          const interval = parseInt(element.getAttribute('refresh'));
+          if (!isNaN(interval) && interval > 0) {
+            this._timer = new qx.event.Timer(interval * 1000);
+            this._timer.addListener('interval', this.refresh, this);
+            if (this.isVisible()) {
+              // when there is no offsetParent this item is not visible
+              this._timer.start();
+            }
+          } else {
+            this.error('invalid refresh value', interval);
           }
-        } else {
-          this.error('invalid refresh value', interval);
         }
       }
     },

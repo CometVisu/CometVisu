@@ -412,14 +412,22 @@
   <xsd:complexType name="cv-list">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
-        <xsd:element name="script" minOccurs="0" maxOccurs="unbounded"/>
-        <xsd:element name="template" type="template" maxOccurs="unbounded"/>
+        <xsd:element name="template" type="template" maxOccurs="2"/>
         <xsd:element name="model">
           <xsd:complexType>
-            <xsd:choice>
-              <xsd:element name="cv-address" type="address"/>
+            <xsd:choice maxOccurs="unbounded">
+              <xsd:element name="script" minOccurs="0"/>
+              <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:choice>
             <xsd:attribute name="sort-by" type="xsd:string"/>
+            <xsd:attribute name="sort-mode" default="asc">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="asc"/>
+                  <xsd:enumeration value="desc"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
             <xsd:attribute name="filter" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
