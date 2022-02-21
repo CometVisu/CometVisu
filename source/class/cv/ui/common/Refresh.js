@@ -214,88 +214,10 @@ qx.Mixin.define('cv.ui.common.Refresh', {
    */
   statics: {
     // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
-    __forceImgReload: function(src, twostage) {
-      let step = 0; // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
-      const elements = document.querySelectorAll('img[src="' + src + '"]');
-      const canvases = [];
-      const imgReloadBlank = function () {
-        elements.forEach(function (elem) {
-          // place a canvas above the image to prevent a flicker on the
-          // screen when the image src is reset
-          const canvas = window.document.createElement('canvas');
-          canvas.width = elem.width;
-          canvas.height = elem.height;
-          canvas.style = 'position:fixed';
-          try {
-            canvas.getContext('2d').drawImage(elem, 0, 0);
-          } catch (e) {
-            window.console.log('Refresh image: failed to show old image on temporary canvas', e);
-          }
-          canvases.push(canvas);
-          elem.parentNode.insertBefore(canvas, elem);
-          elem.width = canvas.width;
-          elem.height = canvas.height;
-          elem.removeAttribute('src');
-        });
-      };
-      const imgReloadRestore = function () {
-        elements.forEach(function (elem, i) {
-          elem.onload = () => {
-            canvases[i].parentNode.removeChild(canvases[i]);
-          };
-          elem.setAttribute('src', src);
-        });
-      };
-      const iframe = window.document.createElement('iframe'); // Hidden iframe, in which to perform the load+reload.
-      let doc;
-      const loadCallback = function (e) { // Callback function, called after iframe load+reload completes (or fails).
-        // Will be called TWICE unless twostage-mode process is cancelled. (Once after load, once after reload).
-        if (!step) { // initial load just completed.  Note that it doesn't actually matter if this load succeeded or not!
-          if (twostage) {
-            step = 1; // wait for twostage-mode proceed or cancel; don't do anything else just yet
-          } else {
-            step = 2; // initiate forced-reload
-            imgReloadBlank();
-            iframe.contentWindow.location.reload(true);
-          }
-        } else if (step === 2) { // forced re-load is done
-          imgReloadRestore((e || window.event).type === 'error'); // last parameter checks whether loadCallback was called from the "load" or the "error" event.
-          if (iframe.parentNode) {
-            iframe.parentNode.removeChild(iframe);
-          }
-        }
-      };
-      iframe.style.display = 'none';
-      iframe.addEventListener('load', loadCallback, false);
-      iframe.addEventListener('error', loadCallback, false);
-      document.body.appendChild(iframe);
-      doc = iframe.contentWindow.document;
-      doc.body.innerHTML='<img src="' + src + '">';
-      if (twostage) {
-        return function(proceed) {
-          if (!twostage) {
-            return;
-          }
-          
-          twostage = false;
-          if (proceed) {
-            if (step === 1) { 
-              step = 2; 
-              imgReloadBlank(); 
-              iframe.contentWindow.location.reload(true); 
-            }
-          } else {
-            step = 3;
-            if (iframe.contentWindow.stop) {
-              iframe.contentWindow.stop();
-            }
-            if (iframe.parentNode) {
-              iframe.parentNode.removeChild(iframe);
-            }
-          }
-        };
-      }
-      return null;
+    __forceImgReload: function(src) {
+      fetch(src, { cache: 'reload', mode: 'no-cors' })
+        .then(() => document.body.querySelectorAll(`img[src='${src}']`)
+        .forEach(img => img.src = src));
     }
   }
 });
