@@ -180,24 +180,24 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     __isActive: function (type, state) {
-      switch (type) {
-        case 'Decimal':
-        case 'Percent':
-        case 'Number':
-        case 'Dimmer':
+      switch (type.toLowerCase()) {
+        case 'decimal':
+        case 'percent':
+        case 'number':
+        case 'dimmer':
           return parseInt(state) > 0;
 
-        case 'Color':
+        case 'color':
           return state !== '0,0,0';
 
-        case 'Rollershutter':
+        case 'rollershutter':
           return state === '0';
 
-        case 'Contact':
+        case 'contact':
           return state === 'OPENED';
 
-        case 'OnOff':
-        case 'Switch':
+        case 'onoff':
+        case 'switch':
           return state === 'ON';
 
         default:
@@ -219,7 +219,7 @@ qx.Class.define('cv.io.openhab.Rest', {
             let active = 0;
             const map = {};
             entry.members.forEach(obj => {
-              map[obj.name] = {type: obj.type, state: obj.state, label: obj.label, name: obj.name, active: false};
+              map[obj.name] = {type: obj.type.toLowerCase(), state: obj.state, label: obj.label, name: obj.name, active: false};
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
                 map[obj.name].active = true;

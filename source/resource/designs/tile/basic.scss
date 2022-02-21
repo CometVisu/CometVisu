@@ -773,7 +773,7 @@ body {
             padding: 0;
             flex: 1;
 
-            li {
+            li, cv-listitem {
                 display: block;
                 padding: var(--spacing) calc(var(--spacing)*2);
                 border-bottom: 1px solid $borderColor;
@@ -794,6 +794,16 @@ body {
 
         &.open {
             display: block;
+        }
+    }
+
+    cv-listitem {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing);
+        > label, > .content {
+            flex: 1;
         }
     }
 }

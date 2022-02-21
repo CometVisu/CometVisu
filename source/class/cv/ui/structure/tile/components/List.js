@@ -218,7 +218,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
         newModel.forEach((entry, i) => {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
-          itemTemplate.innerHTML = template.innerHTML.replaceAll(/\${(.+)}/g, (match, p1) => {
+          const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, p1) => {
             if (Object.prototype.hasOwnProperty.call(entry, p1)) {
               return entry[p1];
             } else if (p1 === 'index') {
@@ -226,6 +226,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             }
             return '';
           });
+          itemTemplate.innerHTML = html;
           if (elem) {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;

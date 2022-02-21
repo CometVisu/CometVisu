@@ -214,7 +214,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
         const target = this._element.querySelector('.value');
         if (target && target.tagName.toLowerCase() === 'cv-icon') {
-          target._instance.setId(mappedValue);
+          if (target._instance) {
+            target._instance.setId(mappedValue);
+          } else {
+            target.textContent = mappedValue;
+          }
         } else {
           this.updateValue(mappedValue);
         }

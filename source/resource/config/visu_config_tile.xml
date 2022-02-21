@@ -11,8 +11,8 @@
         <cv-backend name="si" default="true" type="simulated"/>
         <cv-backend name="mqtt" type="mqtt" uri="ws://mqtt:9001/"/>
         <cv-mapping name="light">
-            <entry value="1">ri-lightbulb-fill</entry>
             <entry value="0">ri-lightbulb-line</entry>
+            <entry value="1">ri-lightbulb-fill</entry>
         </cv-mapping>
         <cv-mapping name="percent">
             <formula>y = x + "%"</formula>
@@ -29,8 +29,8 @@
             <formula>y = Math.round(100/store.get('duration')*x)</formula>
         </cv-mapping>
         <cv-styling name="button">
-            <entry value="1">active</entry>
             <entry value="0">inactive</entry>
+            <entry range-min="1">active</entry>
         </cv-styling>
         <cv-mapping name="kWh">
             <formula>y = Math.round(x/1000)</formula>
@@ -202,7 +202,7 @@
                 <span slot="label">Lichter</span>
             </cv-status>
             <cv-tile size="1x2">
-                <cv-list refresh="20" rowspan="3" colspan="3">
+                <cv-list rowspan="3" colspan="3">
                     <model sort-by="label" sort-mode="desc">
                         <script><![CDATA[
                     for (let i = 0; i < Math.round(Math.random()*10); i++) {
@@ -232,10 +232,15 @@
                         <h4>Eingeschaltete Lichter</h4>
                     </header>
                     <template>
-                        <li>
-                            <label class="primary">${label}</label>
-                            <label class="secondary">${name}</label>
-                        </li>
+                        <cv-listitem>
+                            <cv-button class="round-button" mapping="light" size="small">
+                                <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
+                                <cv-icon class="value" />
+                            </cv-button>
+                            <div class="content">
+                                <label class="primary">${label}</label>
+                            </div>
+                        </cv-listitem>
                     </template>
                     <template when="empty">
                         <li><label class="primary">Zur Zeit sind keine Lampen eingeschaltet</label></li>
