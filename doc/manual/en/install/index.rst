@@ -22,6 +22,7 @@ normal Installation:
     raspberry
     install-dev
     openhab
+    docker_openhab
     docker
     timberwolf
 
