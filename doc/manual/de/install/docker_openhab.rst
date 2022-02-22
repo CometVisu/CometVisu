@@ -1,3 +1,5 @@
+.. _Docker_OpenHAB_Installation:
+
 Installation auf einem Ubuntu System mit openHAB und Docker
 ===========================================================
 
@@ -32,7 +34,7 @@ Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:
     # Hinzufügen vom Docker GPG-Key
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    # Hinzufügen vom Docker Repositoty
+    # Hinzufügen vom Docker Repository
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
     # Nochmal ein Update
@@ -44,11 +46,6 @@ Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:
 
 3. Systemvorbereitungen
 -----------------------
-
-Damit openHAB mit der CometVisu kommunizieren kann, ist die entsprechende Erweiterung über die PaperUI (http://openhab_adresse:8080)
--> Add-ons -> User Interfaces -> CometVisu oder über die addons.cfg zu installieren. Die Erweiterung *PHP support for CometVisu* 
-wird in diesem Fall nicht benötigt.
-
 
 .. code-block:: console
 
@@ -100,7 +97,7 @@ Nach dem Aufnehmen des Benutzers nochmal neu Anmelden
     sudo mkdir -p resource/config/backup
 
     # Rechte für den Webserver setzen
-    sudo chown -hR www-data:www-data resource/config 
+    sudo chown -hR www-data:www-data resource/config
 
 4. CometVisu per Docker installieren
 ------------------------------------

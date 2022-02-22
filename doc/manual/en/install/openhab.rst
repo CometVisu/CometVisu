@@ -1,5 +1,5 @@
-Installation on a Debian System with openHAB2
-=============================================
+Installation on a Debian System with openHAB
+============================================
 
 Overview
 --------
@@ -10,20 +10,51 @@ For the operation of CometVisu with openHAB the following things are needed:
     an openHAB installation on a Debian based system via the supplied
     package manager ``apt``, with other distributions the paths used
     in this manual may have to be adapted.
-2.  An unpacked release of CometVisu on the server
-3.  The openHAB extension *CometVisu*
-4.  The openHAB extension *PHP support for CometVisu*, if the editor
-    of the CometVisu is to be used
-5.  The configuration option ``webFolder`` with the path to CometVisu
+2.  A webserver with PHP-support installed.
+3.  An unpacked release of CometVisu on the server
+4.  An API-Token for openHAB
 
 .. HINT::
 
-    There is no additional web server, such as Apache or similar needed
-    with PHP support installed. The above points are all that is necessary
-    for successful startup.
+    Since version 0.12.0 no special openHAB bindings are required, the CometVisu communicates directly with
+    openHABs build-in REST API.
 
 It is assumed that point 1 has already been met and only the following
 points are discussed below.
+
+2. Webserver installieren
+-------------------------
+
+.. code-block:: console
+
+    # Install web server with PHP
+    sudo apt install apache2 php libapache2-mod-php php-soap
+
+Replace the content of the file ``/etc/apache2/sites-enabled/000-default.conf`` with the following
+(please replace ``<openhab>`` with the IP address or the hostname of the openHAB server,
+if everything runs on one server, you can use ``localhost``).
+
+.. code-block:: apacheconf
+
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        Header set X-CometVisu-Backend-LoginUrl "/rest/cv/l"
+        Header set X-CometVisu-Backend-Name "openhab"
+
+        ProxyPass /rest http://<openhab>:8080/rest
+        ProxyPassReverse http://<openhab>:8080/rest /rest
+
+        <Directory /var/www/html>
+            Require all granted
+            AllowOverride all
+        </Directory>
+    </VirtualHost>
+
 
 2. CometVisu Installation on the Server
 ---------------------------------------
@@ -31,7 +62,7 @@ points are discussed below.
 The CometVisu can be downloaded here:
 https://github.com/CometVisu/CometVisu/releases. The unpacked package
 contains the folder *cometvisu/release*, which must be copied to
-the server in the following path */var/www/cometvisu*. In
+the server in the following path */var/www/html*. In
 addition, appropriate rights must still be set for the openHAB user
 and some configuration directories must be created.
 

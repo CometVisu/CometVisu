@@ -16,7 +16,7 @@ Für den Betrieb der CometVisu mit openHAB werden folgende Dinge benötigt:
 .. HINT::
 
     Seit Version 0.12.0 werden keinerlei openHAB-Erweiterungen mehr benötigt, um die CometVisu nutzen zu können.
-    Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zu Kommunikation.
+    Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zur Kommunikation.
 
 Es wird davon ausgegangen, dass Punkt 1 bereits erfüllt ist und im folgenden nur auf die weiteren Punkte eingegangen.
 
