@@ -178,7 +178,7 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Link <plugins/link/index>`                         | Fügt der Visu einen einfachen anklickbaren Link hinzu               |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`openHAB <plugins/openhab/index>`                   | Verbesserte Integration mit dem openHAB2 Backend                    |
+| :doc:`openHAB <plugins/openhab/index>`                   | Verbesserte Integration mit dem openHAB Backend                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`OpenweatherMap <plugins/openweathermap/index>`     | Wettervorhersage                                                    |
 +----------------------------------------------------------+---------------------------------------------------------------------+

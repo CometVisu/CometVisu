@@ -22,8 +22,8 @@ For the operation of CometVisu with openHAB the following things are needed:
 It is assumed that point 1 has already been met and only the following
 points are discussed below.
 
-2. Webserver installieren
--------------------------
+2. Install webserver
+--------------------
 
 .. code-block:: console
 
@@ -56,66 +56,42 @@ if everything runs on one server, you can use ``localhost``).
     </VirtualHost>
 
 
-2. CometVisu Installation on the Server
----------------------------------------
+3. Installing the CometVisu on the server
+-----------------------------------------
 
-The CometVisu can be downloaded here:
-https://github.com/CometVisu/CometVisu/releases. The unpacked package
-contains the folder *cometvisu/release*, which must be copied to
-the server in the following path */var/www/html*. In
-addition, appropriate rights must still be set for the openHAB user
-and some configuration directories must be created.
-
-All this can be done by the following console commands:
+The CometVisu can be downloaded here: https://github.com/CometVisu/CometVisu/releases.
+The unpacked package contains the folder *cometvisu/release*, which must be copied to the server in the following path
+*/var/www/html*.
+Furthermore you have to set appropriate permissions for the webserver user and some
+configuration directories must be created.
+All this can be done with the following console commands:
 
 .. code-block:: console
 
     # Copy the release directory to the right place
-    cp -r cometvisu/release /var/www/cometvisu
+    cp -r cometvisu/release /var/www/html
 
-    # Customize user rights for openHAB
-    chown -R openhab:openhab /var/www/cometvisu
-
-    # Customize configuration directories
-    mkdir -p /etc/openhab2/cometvisu/resource/config
-    mkdir -p /etc/openhab2/cometvisu/resource/designs
-
-    # Customize user rights for openHAB
-    chown -R openhab:openhab /etc/openhab2/cometvisu
-
-The two directories */etc/openhab2/cometvisu/resource/config* and
-*/etc/openhab2/cometvisu/resource/designs* will contain the CometVisu
-configurations and are protected from upgrades by the separate
-location. Only if these directories are not present, CometVisu
-will search the configuration in */var/www/cometvisu/resource/config*.
-
-3.-5. openHAB Configuration
----------------------------
-
-So that openHAB can communicate with the CometVisu, the
-corresponding extension is to be installed via the PaperUI
-(http: // openhab_address: 8080) -> Add-ons -> User
-Interfaces -> CometVisu. If you also want to use the CometVisu
-editor, install the extension *PHP support for CometVisu*.
-
-.. figure:: _static/openhab_paperui_user_interfaces.png
-
-   PaperUI - Add-ons - User Interfaces
-
-The openHAB configuration file cometvisu.cfg, like all other
-configurations of the openHAB extensions, is located under
-*/etc/openhab2/services/* and should contain the following entries:
-
-.. code-block:: ini
-
-    # Path on the server where the CometVisu is located
-    webFolder=/var/www/cometvisu/
-
-    # Relative path in the browser under which the CometVisu should be accessible
-    webAlias=/cometvisu
+    # Adjust user rights for the web server
+    chown -R www-data:www-data /var/www/html
 
 
-The CometVisu can then be reached directly under the URL
-``http://openhab_address:8080/cometvisu/?Config = <name>`` in
-the browser, where ``<name>`` is the name of
-the ``visu_config_ <name> Derives .xml``.
+4. Create API token in openHAB
+---------------------------------
+
+For some requests to openHAB the CometVisu needs to be authenticated. You can create credentials in the profile view of the openHAB UI
+(accessible by clicking on the username in the lower left corner) to generate an API token. To do this click on
+"Create new API token" and enter your credentials (username + password) and a name for the token.
+(please leave the field "Token (optional)" empty). This will generate and display a new token. This token must
+now be copied (it will only be displayed once at this moment and can't be viewed later) and be entered as
+username`` in the ``pages`` element of the CometVisu config file.
+
+.. code-block:: xml
+
+    <pages
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        username="oh.CometVisu.NxR3..."
+        design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0" lib_version="9">
+
+
+Now, the CometVisu is directly accessible in the browser with the URL ``http://<server>/?config=<name>``,
+where ``<name>`` is derived from the name of the ``visu_config_<name>.xml``.

@@ -44,41 +44,100 @@ This can all be done by running the following console commands:
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose
 
 
-3. Installing the CometVisu on the server
------------------------------------------
-
-The CometVisu can be downloaded here: https://github.com/CometVisu/CometVisu/releases.
-The unpacked package contains the folder *cometvisu/release*, which must be copied to the server in the following path
-*/var/www/html*.
-Furthermore you have to set appropriate permissions for the webserver user and some
-configuration directories must be created.
-All this can be done with the following console commands:
+3. System preparations
+----------------------
 
 .. code-block:: console
 
-    # Copy the release directory to the right place
-    cp -r cometvisu/release /var/www/html
+    # Add current user to group *Docker*
+    sudo usermod -aG docker $USER
 
-    # Adjust user rights for the web server
-    chown -R www-data:www-data /var/www/html
+After that re-login with that user.
 
-4. Create API token in openHAB
----------------------------------
+.. code-block:: console
 
-For some requests to openHAB the CometVisu needs to be authenticated. You can create credentials in the profile view of the openHAB UI
-(accessible by clicking on the username in the lower left corner) to generate an API token. To do this click on
-"Create new API token" and enter your credentials (username + password) and a name for the token.
-(please leave the field "Token (optional)" empty). This will generate and display a new token. This token must
-now be copied (it will only be displayed once at this moment and can't be viewed later) and be entered as
-username`` in the ``pages`` element of the CometVisu config file.
+    # create folder resource/config for the current user
+    sudo mkdir -p resource/config
 
-.. code-block: xml
+    # create an example XML-file in resource/config
+    sudo nano resource/config/visu_config.xml
 
-    <pages
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        username="oh.CometVisu.NxR3..."
-        design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0" lib_version="9">
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" lib_version="8">
+    <meta>
+        <statusbar>
+        <status type="html"><![CDATA[
+                <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+                -<a href=".?forceReload=true">Reload</a>
+                -<a href="?config=demo">Widget Demo</a>
+                ]]></status>
+        <status type="html" condition="!edit" hrefextend="config"><![CDATA[
+                - <a href="edit_config.html">Edit</a>
+                ]]></status>
+        <status type="html" condition="edit" hrefextend="all"><![CDATA[
+                - <a href=".">normal Mode</a>
+            ]]></status>
+        <status type="html"><![CDATA[
+            - <a href="check_config.php">Check Config</a>
+            <div style="float:right;padding-right:0.5em">Version: SVN</div>
+            ]]></status>
+        </statusbar>
+    </meta>
+    <page name="Start page">
+    </page>
+    </pages>
 
 
-Now, the CometVisu is directly accessible in the browser with the URL ``http://<server>/?config=<name>``,
-where ``<name>`` is derived from the name of the ``visu_config_<name>.xml``.
+.. code-block:: console
+
+    # create backup and media folders
+    sudo mkdir -p resource/config/media
+    sudo mkdir -p resource/config/backup
+
+    # set access rights for the web server
+    sudo chown -hR www-data:www-data resource/config
+
+
+4. Install CometVisu via Docker
+-------------------------------
+Install the docker container now
+
+.. code-block:: docker
+
+    # create yaml file
+    sudo nano docker-compose.yaml
+
+    # example content to configure the docker container to use openHAB as backend
+
+    version: '3.4'
+    services:
+        cometvisu:
+            image: "cometvisu/cometvisu:latest"
+            restart: always
+            ports:
+            - 80:80
+            volumes:
+                - ./resource/config:/var/www/html/resource/config
+            environment:
+                KNX_INTERFACE: ""
+                CGI_URL_PATH: "/rest/cv/"
+                BACKEND_PROXY_SOURCE: "/rest"
+                BACKEND_PROXY_TARGET: "http://<IP-Openhab2>:8080/rest"
+
+.. HINT::
+    Please make sure that you use 2 spaces for indentation when you edit the YAML-file.
+
+.. code-block:: console
+
+    # start the docker container
+    docker-compose up -d
+
+    # find out the name if the running container
+    docker-compose ps
+
+    # find out the IP address of the docker container, <name> must be replaced with the correct container name
+    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <name>
+
+You can access the CometVisu in your browser with the URL ``http://<container-IP>:``.

@@ -133,4 +133,10 @@ Jetzt den Container installieren
     # docker starten
     docker-compose up -d
 
-Die CometVisu ist dann direkt unter der URL ``http://<IP-Openhab>:`` im Browser erreichbar.
+    # Name des laufenden containers herausfinden
+    docker-compose ps
+
+    # IP Adresse des Docker Container herausfinden <name> bitte mit dem passenden Namen ersetzen
+    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <name>
+
+Die CometVisu ist dann direkt unter der URL ``http://<container-IP>:`` im Browser erreichbar.
