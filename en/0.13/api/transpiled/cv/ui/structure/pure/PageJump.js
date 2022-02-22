@@ -163,7 +163,7 @@
         var actor = '<div class="actor switchUnpressed';
 
         if (this.getAlign()) {
-          actor += this.getAlign();
+          actor += ' ' + this.getAlign();
         }
 
         actor += '">';
@@ -194,4 +194,4 @@
   cv.ui.structure.pure.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1643473459130
+//# sourceMappingURL=PageJump.js.map?dt=1645561964115

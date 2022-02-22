@@ -1,3 +1,15 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -60,6 +72,7 @@
     */
     construct: function construct(props) {
       props.value = new Date();
+      this.__P_8_0 = [];
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
     },
 
@@ -254,21 +267,23 @@
     ******************************************************
     */
     members: {
-      __P_8_0: null,
-      // cached access to the SVG in the DOM
       __P_8_1: null,
+      // cached access to the SVG in the DOM
+      __P_8_0: null,
       // cached access to the individual clock parts
       __P_8_2: 0,
       // is the handle currently dragged?
+      __P_8_3: null,
+      // time to show on the clock
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor" style="width:100%;height:100%"></div>';
       },
       _onDomReady: function _onDomReady() {
         var _this = this;
 
-        var args = arguments;
-        var self = this;
-        this.__P_8_3 = cv.util.Function.throttle(this.dragAction, 250, {
+        cv.plugins.Clock.prototype._onDomReady.base.call(this);
+
+        this.__P_8_4 = cv.util.Function.throttle(this.dragAction, 250, {
           trailing: true
         }, this);
         var uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
@@ -313,7 +328,7 @@
 
           svg.setAttribute('width', '100%');
           svg.setAttribute('height', '100%');
-          _this.__P_8_1 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
+          _this.__P_8_0 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
 
           if (texts.length > 1) {
             var popup = document.createElement('div');
@@ -342,34 +357,37 @@
             svg.setAttribute('width', '100%');
             svg.setAttribute('height', '100%');
 
-            _this.__P_8_1.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
+            _this.__P_8_0.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
           }
 
           svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
 
-          var HotSpotHour = svg.getElementById('HotSpotHour');
+          var HotSpotHour = svg.querySelector('#HotSpotHour');
 
           if (HotSpotHour) {
             HotSpotHour.addEventListener('pointerdown', _this);
           }
 
-          var HotSpotMinute = svg.getElementById('HotSpotMinute');
+          var HotSpotMinute = svg.querySelector('#HotSpotMinute');
 
           if (HotSpotMinute) {
             HotSpotMinute.addEventListener('pointerdown', _this);
           }
 
-          var HotSpotSecond = svg.getElementById('HotSpotSecond');
+          var HotSpotSecond = svg.querySelector('#HotSpotSecond');
 
           if (HotSpotSecond) {
             HotSpotSecond.addEventListener('pointerdown', _this);
           }
 
-          _this.__P_8_0 = svg; // call parents _onDomReady method
+          _this.__P_8_1 = svg;
 
-          cv.plugins.Clock.prototype._onDomReady.base.call(_this);
+          if (_this.__P_8_3 !== null) {
+            // did we receive a time earlier than the SVG? => Show it now
+            _this._updateHands();
+          }
         })["catch"](function (error) {
-          self.error('There has been a problem with the reading of the clock SVG:', error);
+          _this.error('There has been a problem with the reading of the clock SVG:', error);
         });
       },
       // overridden
@@ -377,9 +395,9 @@
       // overridden
       _update: function _update(address, data, isDataAlreadyHandled) {
         var value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
-        var time = value.split(':');
+        this.__P_8_3 = value.split(':');
 
-        this._updateHands(time[0], time[1], time[2]);
+        this._updateHands();
       },
       handleEvent: function handleEvent(event) {
         var dragMode = {
@@ -443,7 +461,7 @@
         }
 
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_8_3.call();
+          this.__P_8_4.call();
         }
       },
       dragHelper: function dragHelper(event) {
@@ -454,7 +472,7 @@
           second: 3
         };
 
-        var CTM = this.__P_8_0.getScreenCTM(); // get the Current Transformation Matrix
+        var CTM = this.__P_8_1.getScreenCTM(); // get the Current Transformation Matrix
 
 
         var x = (event.clientX - CTM.e) / CTM.a - 60;
@@ -533,7 +551,9 @@
           time.setSeconds(0);
         }
 
-        this._updateHands(time.getHours(), time.getMinutes(), time.getSeconds());
+        this.__P_8_3 = [time.getHours(), time.getMinutes(), time.getSeconds()];
+
+        this._updateHands();
       },
       dragAction: function dragAction() {
         var address = this.getAddress();
@@ -547,10 +567,15 @@
           cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
         }
       },
-      _updateHands: function _updateHands(hour, minute, second) {
+      _updateHands: function _updateHands() {
         var _this2 = this;
 
-        this.__P_8_1.forEach(function (e) {
+        var _this$__P_8_ = _slicedToArray(this.__P_8_3, 3),
+            hour = _this$__P_8_[0],
+            minute = _this$__P_8_[1],
+            second = _this$__P_8_[2];
+
+        this.__P_8_0.forEach(function (e) {
           var showSeconds = true;
 
           if (e.hour !== null) {
@@ -603,4 +628,4 @@
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1643473452672
+//# sourceMappingURL=Clock.js.map?dt=1645561955939

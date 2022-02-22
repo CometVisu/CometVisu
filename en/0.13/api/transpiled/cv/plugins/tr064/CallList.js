@@ -351,14 +351,14 @@
           var type = cl.Type in types ? types[cl.Type] : types[0];
 
           if (cl.Path) {
-            audio = "<audio preload=\"none\"><source src=\"resource/plugins/tr064/proxy.php?device=" + self.getDevice() + '&uri=' + cl.Path + '%26sid=' + sid + '">' + '</audio>' + '<div class="tam clickable">' + cv.IconHandler.getInstance().getIconText(self.getTAM(), '*', '*', self.getTAMColor()) + '</div>';
+            audio = "<audio preload=\"none\"><source src=\"resource/plugins/tr064/proxy.php?device=" + self.getDevice() + '&uri=' + cl.Path + '%26sid=' + sid + '">' + '</audio>' + '<div class="tam clickable">' + cv.IconHandler.getInstance().getIconElement(self.getTAM(), '*', '*', self.getTAMColor(), '', '', true) + '</div>';
           }
 
           html += '<tr>';
           self.getColumns().split(';').forEach(function (col) {
             switch (col) {
               case 'type':
-                html += '<td>' + cv.IconHandler.getInstance().getIconText(type.name, '*', '*', type.color) + '</td>';
+                html += '<td>' + cv.IconHandler.getInstance().getIconElement(type.name, '*', '*', type.color, '', '', true) + '</td>';
                 break;
 
               case 'date':
@@ -531,13 +531,13 @@
         }
       },
       __P_22_6: function __P_22_6(element) {
-        element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMwait(), '*', '*', this.getTAMwaitColor());
+        element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMwait(), '*', '*', this.getTAMwaitColor(), '', '', true);
       },
       __P_22_7: function __P_22_7(element) {
-        element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMplay(), '*', '*', this.getTAMplayColor());
+        element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMplay(), '*', '*', this.getTAMplayColor(), '', '', true);
       },
       __P_22_5: function __P_22_5(element) {
-        element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMstop(), '*', '*', this.getTAMstopColor());
+        element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMstop(), '*', '*', this.getTAMstopColor(), '', '', true);
       }
     },
     defer: function defer(statics) {
@@ -550,4 +550,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1643473453789
+//# sourceMappingURL=CallList.js.map?dt=1645561957265

@@ -47,7 +47,7 @@ describe('testing the widget parser', function() {
     const useChild = iconChild.childNodes[0];
     expect(useChild.nodeType).toBe(Node.ELEMENT_NODE);
     expect(useChild.tagName.toLowerCase()).toBe('use');
-    expect(useChild.getAttribute('xlink:href')).toContain('knx-uf-iconset.svg#kuf-fts_door_open');
+    expect(useChild.getAttribute('xlink:href')).toContain('#kuf-fts_door_open');
     expect(useChild.childNodes.length).toBe(0);
   });
 });

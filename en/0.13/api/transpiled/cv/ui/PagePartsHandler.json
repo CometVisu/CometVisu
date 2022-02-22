@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 344,
+        "line": 346,
         "column": 3
       }
     },
@@ -176,7 +176,7 @@
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 272,
           "column": 5
         }
       },
@@ -217,11 +217,11 @@
     "initializeNavbars": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 280,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 331,
           "column": 5
         }
       },
@@ -245,11 +245,11 @@
     "removeInactiveNavbars": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 333,
           "column": 4
         },
         "end": {
-          "line": 342,
+          "line": 344,
           "column": 5
         }
       },

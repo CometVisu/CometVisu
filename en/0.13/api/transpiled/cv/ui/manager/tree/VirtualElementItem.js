@@ -222,6 +222,7 @@
         switch (id) {
           case 'icon':
             control = new cv.ui.manager.basic.Image().set({
+              forceScale: true,
               alignY: 'middle',
               anonymous: true,
               source: this.getIcon(),
@@ -285,4 +286,4 @@
   cv.ui.manager.tree.VirtualElementItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualElementItem.js.map?dt=1643473458067
+//# sourceMappingURL=VirtualElementItem.js.map?dt=1645561962836

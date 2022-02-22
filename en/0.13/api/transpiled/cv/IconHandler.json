@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 267,
+        "line": 289,
         "column": 3
       }
     },
@@ -59,11 +59,11 @@
     "__db": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 67,
           "column": 14
         }
       },
@@ -71,7 +71,53 @@
         "@description": [
           {
             "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
             "body": "<p>Internal database of the known icons.\n Initially filled with the default icons.</p>"
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "iconDBEntry"
+          },
+          {
+            "name": "@typedef",
+            "body": "iconDB\n Hierachy:      name,           type,                   flavour,                color,   URI"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{object}"
+          },
+          {
+            "name": "@type",
+            "body": "{Object.<string, Object.<string, (string|Object.<string, (string|Object.<string, (iconDBEntry|recolorCallback)>)>)>>}"
+          },
+          {
+            "name": "@type",
+            "body": "{iconDB}"
+          }
+        ],
+        "@property": [
+          {
+            "name": "@property",
+            "body": "{string} uri"
+          },
+          {
+            "name": "@property",
+            "body": "{string} styling"
+          },
+          {
+            "name": "@property",
+            "body": "{(string|HTMLCanvasElement|SVGElement)} icon"
           }
         ]
       },
@@ -81,11 +127,11 @@
     "insert": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 107,
           "column": 5
         }
       },
@@ -95,6 +141,40 @@
             "name": "@description",
             "body": "<p>Insert or overwrite one or many icons into the database. The parameter\n might be a full hash of icon definitions or a single one consisting out of\n a name and a URI path. Optional further parameters are a \"type\" and a\n flavour.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} name"
+          },
+          {
+            "name": "@param",
+            "body": "{string} uri"
+          },
+          {
+            "name": "@param",
+            "body": "{string?} type"
+          },
+          {
+            "name": "@param",
+            "body": "{string?} flavour"
+          },
+          {
+            "name": "@param",
+            "body": "{string?} color"
+          },
+          {
+            "name": "@param",
+            "body": "{string?} styling"
+          },
+          {
+            "name": "@param",
+            "body": "{string?} dynamic"
+          },
+          {
+            "name": "@param",
+            "body": "{string?} source"
+          }
         ]
       },
       "type": "function",
@@ -103,11 +183,11 @@
     "get": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 118,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 165,
           "column": 5
         }
       },
@@ -121,41 +201,30 @@
         "@param": [
           {
             "name": "@param",
-            "body": "name {String} Name",
-            "paramName": "name",
-            "description": " Name",
-            "type": "String"
+            "body": "{string} name"
           },
           {
             "name": "@param",
-            "body": "type {String?} Type",
-            "paramName": "type",
-            "description": " Type",
-            "optional": true,
-            "type": "String"
+            "body": "{string?} type"
           },
           {
             "name": "@param",
-            "body": "flavour {String?} Flavour",
-            "paramName": "flavour",
-            "description": " Flavour",
-            "optional": true,
-            "type": "String"
+            "body": "{string?} flavour"
           },
           {
             "name": "@param",
-            "body": "color {String?} Color (only relevant for monochrome icons)",
+            "body": "{string?} color (only relevant for monochrome icons)",
             "paramName": "color",
-            "description": " Color (only relevant for monochrome icons)",
+            "description": "(only relevant for monochrome icons)",
             "optional": true,
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{String} The URI for the icon - or \"undefined\" if not known",
-            "type": "String",
+            "body": "{(string|recolorCallback|undefined)} The URI for the icon - or \"undefined\" if not known",
+            "type": "(string|recolorCallback|undefined)",
             "description": " The URI for the icon - or \"undefined\" if not known"
           }
         ]
@@ -171,11 +240,11 @@
     "getURI": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 173,
           "column": 5
         }
       },
@@ -185,11 +254,11 @@
     "getIconElement": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 229,
           "column": 5
         }
       },
@@ -197,78 +266,41 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Return an icon DOM element.</p>"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getIconText": {
-      "location": {
-        "start": {
-          "line": 195,
-          "column": 4
-        },
-        "end": {
-          "line": 215,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Return a String for the icon, e.g. build a DOM tree in a string before\n passing it to ParseHTML. After the content was added to the DOM the\n fillIcons method must be called to fill missing content (e.g. the <canvas>\n icons.</p>"
+            "body": "<p>Get the icon - either as DOM element (<code>asText = false</code>) or as string\n (<code>asText = true</code>).\n When it is returned as string and it was added to the DOM, the\n fillIcons method must be called to fill missing content (e.g. the\n <canvas> icons.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "name {String} Name",
-            "paramName": "name",
-            "description": " Name",
-            "type": "String"
+            "body": "{string} name"
           },
           {
             "name": "@param",
-            "body": "type {String?} Type",
-            "paramName": "type",
-            "description": " Type",
-            "optional": true,
-            "type": "String"
+            "body": "{string?} type"
           },
           {
             "name": "@param",
-            "body": "flavour {String?} Flavour",
-            "paramName": "flavour",
-            "description": " Flavour",
-            "optional": true,
-            "type": "String"
+            "body": "{string?} flavour"
           },
           {
             "name": "@param",
-            "body": "color {String?} Color (only relevant for monochrome icons)",
+            "body": "{string?} color (only relevant for monochrome icons)",
             "paramName": "color",
-            "description": " Color (only relevant for monochrome icons)",
+            "description": "(only relevant for monochrome icons)",
             "optional": true,
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "styling {String?} Styling",
-            "paramName": "styling",
-            "description": " Styling",
-            "optional": true,
-            "type": "String"
+            "body": "{string?} styling"
           },
           {
             "name": "@param",
-            "body": "iconclass {String?} icon class",
-            "paramName": "iconclass",
-            "description": " icon class",
-            "optional": true,
-            "type": "String"
+            "body": "{string?} iconclass"
+          },
+          {
+            "name": "@param",
+            "body": "{boolean?} asText"
           }
         ]
       },
@@ -278,11 +310,11 @@
     "getIconSource": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 257,
           "column": 5
         }
       },
@@ -296,25 +328,22 @@
         "@param": [
           {
             "name": "@param",
-            "body": "name {String} icon name",
-            "paramName": "name",
-            "description": " icon name",
-            "type": "String"
+            "body": "{string} name"
           },
           {
             "name": "@param",
-            "body": "classes {String?} optional css classes used in the svg icon code (default is 'icon')",
+            "body": "{string?} classes - optional css classes used in the svg icon code (default is 'icon')",
             "paramName": "classes",
-            "description": " optional css classes used in the svg icon code (default is 'icon')",
+            "description": "- optional css classes used in the svg icon code (default is 'icon')",
             "optional": true,
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{String|string|*}",
-            "type": "String|string|*",
+            "body": "{string}",
+            "type": "string",
             "description": ""
           }
         ]
@@ -325,11 +354,11 @@
     "fillIcons": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 265,
           "column": 5
         }
       },
@@ -355,11 +384,11 @@
     "list": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 273,
           "column": 4
         },
         "end": {
-          "line": 253,
+          "line": 275,
           "column": 5
         }
       },
@@ -373,8 +402,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Array} List of all known icon names",
-            "type": "Array",
+            "body": "{string[]} List of all known icon names",
+            "type": "string[]",
             "description": " List of all known icon names"
           }
         ]
@@ -385,11 +414,11 @@
     "debug": {
       "location": {
         "start": {
-          "line": 263,
+          "line": 285,
           "column": 4
         },
         "end": {
-          "line": 265,
+          "line": 287,
           "column": 5
         }
       },

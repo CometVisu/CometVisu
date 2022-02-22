@@ -1,3 +1,5 @@
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -13,7 +15,6 @@
         "construct": true
       },
       "cv.Config": {},
-      "qx.bom.Stylesheet": {},
       "qx.util.ResourceManager": {},
       "qx.util.DynamicScriptLoader": {},
       "cv.core.notifications.Router": {},
@@ -68,6 +69,26 @@
       },
       isMarkedAsLoaded: function isMarkedAsLoaded(path) {
         return this.getInstance().isMarkedAsLoaded(path);
+      },
+
+      /**
+       * Include a CSS file
+       *
+       * @param href {String} Href value
+       * @param media {string?} Content of the media attribute
+       */
+      includeStylesheet: function includeStylesheet(href, media) {
+        var el = document.createElement('link');
+        el.type = 'text/css';
+        el.rel = 'stylesheet';
+        el.href = href;
+
+        if (media) {
+          el.media = media;
+        }
+
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(el);
       }
     },
 
@@ -109,7 +130,13 @@
         var queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
         queue.forEach(function (style) {
-          qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+          if (typeof style === 'string') {
+            cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+          } else if (_typeof(style) === 'object') {
+            cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style.uri) + suffix, style.media);
+          } else {
+            this.error('unknown style parameter type', _typeof(style));
+          }
         }, this);
       },
       markAsLoaded: function markAsLoaded(path) {
@@ -256,4 +283,4 @@
   cv.util.ScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScriptLoader.js.map?dt=1643473494261
+//# sourceMappingURL=ScriptLoader.js.map?dt=1645562010497

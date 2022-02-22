@@ -10,8 +10,9 @@ normal Installation:
 -  :doc:`Generic <generic>`
 -  :doc:`Raspberry Pi <raspberry>`
 -  Debian System with openHAB1 installed(`OpenHAB-WIKI <https://github.com/openhab/openhab1-addons/wiki/CometVisu>`__)
--  :doc:`on a Debian System with openHAB2 installed <openhab2>`
+-  :doc:`on a Debian System with openHAB installed <openhab>`
 -  :doc:`Docker <docker>`
+-  :doc:`Docker with openHAB as backend <docker_openhab>`
 -  :doc:`At Timberwolf Server with Portainer <timberwolf>`
 
 .. toctree::
@@ -20,7 +21,8 @@ normal Installation:
     generic
     raspberry
     install-dev
-    openhab2
+    openhab
+    docker_openhab
     docker
     timberwolf
 

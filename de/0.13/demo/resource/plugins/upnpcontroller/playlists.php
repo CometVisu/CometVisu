@@ -18,7 +18,7 @@
 
 require 'upnpctrl_util.php';
 
-$format = $_GET['format'];
+$format = $_GET['format'] ?? '';
 
 if($format == 'html'){
 	header("content-type: text/html");

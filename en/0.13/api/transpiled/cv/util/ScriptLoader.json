@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 222,
+        "line": 247,
         "column": 3
       }
     },
@@ -64,17 +64,56 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "includeStylesheet": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Include a CSS file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "href {String} Href value",
+            "paramName": "href",
+            "description": " Href value",
+            "type": "cv.util.String"
+          },
+          {
+            "name": "@param",
+            "body": "media {string?} Content of the media attribute",
+            "paramName": "media",
+            "description": " Content of the media attribute",
+            "optional": true,
+            "type": "string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     }
   },
   "properties": {
     "allQueued": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 83,
           "column": 5
         }
       },
@@ -123,11 +162,11 @@
     "finished": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 92,
           "column": 37
         }
       },
@@ -137,11 +176,11 @@
     "designError": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 93,
           "column": 39
         }
       },
@@ -153,11 +192,11 @@
     "__scriptQueue": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 102,
           "column": 23
         }
       },
@@ -167,11 +206,11 @@
     "__loaders": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 103,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 103,
           "column": 19
         }
       },
@@ -181,11 +220,11 @@
     "__listener": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 104,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 104,
           "column": 21
         }
       },
@@ -195,11 +234,11 @@
     "__markedAsLoaded": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 105,
           "column": 26
         }
       },
@@ -209,11 +248,11 @@
     "addStyles": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 119,
           "column": 5
         }
       },
@@ -223,11 +262,11 @@
     "markAsLoaded": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 121,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 126,
           "column": 5
         }
       },
@@ -237,11 +276,11 @@
     "isMarkedAsLoaded": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 130,
           "column": 5
         }
       },
@@ -251,11 +290,11 @@
     "addScripts": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 167,
           "column": 5
         }
       },
@@ -265,11 +304,11 @@
     "__loadSingleScript": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 174,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 186,
           "column": 5
         }
       },
@@ -296,11 +335,11 @@
     "_onLoaded": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 168,
+          "line": 193,
           "column": 5
         }
       },
@@ -310,11 +349,11 @@
     "_onFailed": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 195,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 220,
           "column": 5
         }
       },
@@ -324,11 +363,11 @@
     "_checkQueue": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 245,
           "column": 5
         }
       },

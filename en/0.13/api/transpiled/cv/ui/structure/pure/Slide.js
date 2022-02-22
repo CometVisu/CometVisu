@@ -217,9 +217,9 @@
           this.setValue(displayValue);
           this.applyStyling(realValue);
           var button = this.getDomElement().querySelector('button');
-          this.defaultValue2DOM(displayValue, function (e) {
-            button.innerHTML = e;
-          });
+          button.replaceChildren(); // delete anything inside
+
+          this.defaultValue2DOM(displayValue, button);
         }
 
         this.__P_61_0.setTo(ratio, instant);
@@ -312,4 +312,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1643473459426
+//# sourceMappingURL=Slide.js.map?dt=1645561964467

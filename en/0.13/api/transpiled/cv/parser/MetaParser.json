@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 450,
+        "line": 456,
         "column": 3
       }
     },
@@ -56,7 +56,7 @@
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 90,
           "column": 5
         }
       },
@@ -66,11 +66,11 @@
     "parseMappings": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 142,
           "column": 5
         }
       },
@@ -80,11 +80,11 @@
     "parseStylings": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 175,
           "column": 5
         }
       },
@@ -94,11 +94,11 @@
     "parseStatusBar": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 297,
           "column": 5
         }
       },
@@ -108,11 +108,11 @@
     "parsePlugins": {
       "location": {
         "start": {
-          "line": 296,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 305,
+          "line": 308,
           "column": 5
         }
       },
@@ -122,11 +122,11 @@
     "__parseIconDefinition": {
       "location": {
         "start": {
-          "line": 307,
+          "line": 310,
           "column": 4
         },
         "end": {
-          "line": 318,
+          "line": 324,
           "column": 5
         }
       },
@@ -136,11 +136,11 @@
     "parseStateNotifications": {
       "location": {
         "start": {
-          "line": 320,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 382,
+          "line": 388,
           "column": 5
         }
       },
@@ -150,11 +150,11 @@
     "parseTemplates": {
       "location": {
         "start": {
-          "line": 389,
+          "line": 395,
           "column": 4
         },
         "end": {
-          "line": 448,
+          "line": 454,
           "column": 5
         }
       },

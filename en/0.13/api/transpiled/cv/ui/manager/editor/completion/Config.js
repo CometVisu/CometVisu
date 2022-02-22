@@ -342,7 +342,7 @@
             var lastOpenedTag = this.getLastOpenedTag(textUntilPosition); // console.log(lastOpenedTag);
             // get opened tags to see what tag we should look for in the XSD schema
 
-            var openedTags = []; // attrobutes of the ancestors
+            var openedTags = []; // attributes of the ancestors
 
             var openedAttributes = []; // get the elements/attributes that are already mentioned in the element we're in
 
@@ -369,7 +369,7 @@
               var i;
               var lastFound = false;
 
-              while (lastChild) {
+              while (lastChild && lastChild.tagName.toLowerCase() !== 'parsererror') {
                 openedTags.push(lastChild.tagName);
                 openedAttributes.push(lastChild.attributes); // if we found our last opened tag
 
@@ -439,7 +439,9 @@
                 };
               } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
                 return {
-                  suggestions: this._dataProvider.getIcons()
+                  suggestions: this._dataProvider.getIcons('monaco', {
+                    cache: false
+                  }, completeText)
                 };
               } else if (lastOpenedTag.tagName === 'influx') {
                 if (lastOpenedTag.currentAttribute === 'measurement') {
@@ -620,4 +622,4 @@
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1643473456091
+//# sourceMappingURL=Config.js.map?dt=1645561960121

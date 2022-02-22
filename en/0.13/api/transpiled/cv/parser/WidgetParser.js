@@ -357,7 +357,7 @@
         var ret_val = '<div class="' + (labelClass !== undefined ? labelClass : 'label') + '"' + (style ? ' style="' + style + '"' : '') + '>';
         Array.prototype.forEach.call(label.childNodes, function (elem) {
           if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
-            ret_val += cv.IconHandler.getInstance().getIconText(elem.getAttribute('name'), elem.getAttribute('type'), elem.getAttribute('flavour') || flavour, elem.getAttribute('color'), elem.getAttribute('styling'));
+            ret_val += cv.IconHandler.getInstance().getIconElement(elem.getAttribute('name'), elem.getAttribute('type'), elem.getAttribute('flavour') || flavour, elem.getAttribute('color'), elem.getAttribute('styling'), '', true);
           } else if (elem.nodeType === Node.TEXT_NODE) {
             ret_val += elem.textContent;
           }
@@ -585,4 +585,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1643473451702
+//# sourceMappingURL=WidgetParser.js.map?dt=1645561954700

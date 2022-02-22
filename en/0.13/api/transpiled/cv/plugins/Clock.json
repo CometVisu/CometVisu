@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 530,
+        "line": 535,
         "column": 3
       }
     },
@@ -42,7 +42,7 @@
         "column": 13
       },
       "end": {
-        "line": 35,
+        "line": 36,
         "column": 3
       }
     },
@@ -52,11 +52,11 @@
     "src": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 45,
+          "line": 46,
           "column": 5
         }
       },
@@ -67,11 +67,11 @@
     "srcPopup": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 49,
           "column": 5
         }
       },
@@ -82,11 +82,11 @@
     "titlePopup": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 5
         }
       },
@@ -97,11 +97,11 @@
     "hide24h": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 56,
           "column": 5
         }
       },
@@ -114,11 +114,11 @@
     "hide24hPopup": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 60,
           "column": 5
         }
       },
@@ -131,11 +131,11 @@
     "hideAMPM": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 64,
           "column": 5
         }
       },
@@ -148,11 +148,11 @@
     "hideAMPMPopup": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 68,
           "column": 5
         }
       },
@@ -165,11 +165,11 @@
     "hideDigits": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 71,
+          "line": 72,
           "column": 5
         }
       },
@@ -182,11 +182,11 @@
     "hideDigitsPopup": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 76,
           "column": 5
         }
       },
@@ -199,11 +199,11 @@
     "hideSeconds": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 80,
           "column": 5
         }
       },
@@ -216,11 +216,11 @@
     "hideSecondsPopup": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 84,
           "column": 5
         }
       },
@@ -233,11 +233,11 @@
     "sendOnFinish": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 88,
           "column": 5
         }
       },
@@ -369,11 +369,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 112,
           "column": 5
         }
       },
@@ -429,11 +429,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 177,
           "column": 5
         }
       },
@@ -443,11 +443,11 @@
     "getElements": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 215,
+          "line": 216,
           "column": 5
         }
       },
@@ -459,11 +459,11 @@
     "__svg": {
       "location": {
         "start": {
-          "line": 224,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 225,
           "column": 15
         }
       },
@@ -473,11 +473,11 @@
     "__Elements": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 226,
           "column": 20
         }
       },
@@ -488,12 +488,27 @@
     "__inDrag": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 227,
           "column": 15
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__timeToShow": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
+          "column": 22
         }
       },
       "jsdoc": {},
@@ -503,11 +518,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 232,
           "column": 5
         }
       },
@@ -522,11 +537,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 324,
+          "line": 327,
           "column": 5
         }
       },
@@ -540,11 +555,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 330,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 330,
           "column": 33
         }
       },
@@ -559,11 +574,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 333,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 337,
           "column": 5
         }
       },
@@ -574,11 +589,11 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 339,
           "column": 4
         },
         "end": {
-          "line": 394,
+          "line": 397,
           "column": 5
         }
       },
@@ -588,11 +603,11 @@
     "dragHelper": {
       "location": {
         "start": {
-          "line": 396,
+          "line": 399,
           "column": 4
         },
         "end": {
-          "line": 474,
+          "line": 478,
           "column": 5
         }
       },
@@ -602,11 +617,11 @@
     "dragAction": {
       "location": {
         "start": {
-          "line": 476,
+          "line": 480,
           "column": 4
         },
         "end": {
-          "line": 484,
+          "line": 488,
           "column": 5
         }
       },
@@ -616,11 +631,11 @@
     "_updateHands": {
       "location": {
         "start": {
-          "line": 486,
+          "line": 490,
           "column": 4
         },
         "end": {
-          "line": 523,
+          "line": 528,
           "column": 5
         }
       },
@@ -888,24 +903,24 @@
         "@param": [
           {
             "name": "@param",
-            "body": "address {String} KNX-GA or openHAB item name",
+            "body": "{string} address - KNX-GA or openHAB item name",
             "paramName": "address",
-            "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "description": "- KNX-GA or openHAB item name",
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "data {var} value to be processes",
+            "body": "{*} data - value to be processes",
             "paramName": "data",
-            "description": " value to be processes",
-            "type": "var"
+            "description": "- value to be processes",
+            "type": "*"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var} the processed value",
-            "type": "var",
+            "body": "{*} the processed value",
+            "type": "*",
             "description": " the processed value"
           }
         ]
@@ -923,17 +938,53 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.\n value: the value that will be inserted\n modifyFn: callback function that modifies the DOM</p>"
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.</p>"
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "widgetValueTypes"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{(string|number|Uint8Array|Map|Function)}"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "value {var}"
+            "body": "{(*|*[])} value - the value, or an array of values, that will be inserted",
+            "paramName": "value",
+            "description": "- the value, or an array of values, that will be inserted",
+            "type": [
+              "(*",
+              {
+                "type": "*",
+                "dimensions": 2
+              }
+            ]
           },
           {
             "name": "@param",
-            "body": "modifyFn {Function}"
+            "body": "{HTMLElement} targetElement - the element where <code>value</code> will be added to",
+            "paramName": "targetElement",
+            "description": "- the element where <code>value</code> will be added to",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "@param",
+            "body": "{Function?} modifyFn - callback function that modifies the DOM",
+            "paramName": "modifyFn",
+            "description": "- callback function that modifies the DOM",
+            "optional": true,
+            "type": "Function"
           }
         ]
       }
@@ -950,39 +1001,39 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Default update function, processes the incoming value and applies it to the Dom value element.</p>"
+            "body": "<p>Default update function, processes the incoming value and applies it to the DOM value element.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "ga {String} KNX-GA or openHAB item name",
+            "body": "{string} ga - KNX-GA or openHAB item name",
             "paramName": "ga",
-            "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "description": "- KNX-GA or openHAB item name",
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "data {var} the raw value from the bus",
+            "body": "{*} data - the raw value from the bus",
             "paramName": "data",
-            "description": " the raw value from the bus",
-            "type": "var"
+            "description": "- the raw value from the bus",
+            "type": "*"
           },
           {
             "name": "@param",
-            "body": "passedElement {Element?} the element to update, if not given {@link getDomElement()} is used",
+            "body": "{HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used",
             "paramName": "passedElement",
-            "description": " the element to update, if not given {@link getDomElement()} is used",
+            "description": "- the element to update, if not given {@link getDomElement()} is used",
             "optional": true,
-            "type": "Element"
+            "type": "HTMLElement"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var} value",
-            "type": "var",
-            "description": " value"
+            "body": "{*} - value",
+            "type": "*",
+            "description": " - value"
           }
         ]
       }
@@ -1005,17 +1056,17 @@
         "@param": [
           {
             "name": "@param",
-            "body": "valueElement {Element} element to update",
-            "paramName": "valueElement",
-            "description": " element to update",
-            "type": "Element"
+            "body": "{HTMLElement} targetElement - element to update",
+            "paramName": "targetElement",
+            "description": "- element to update",
+            "type": "HTMLElement"
           },
           {
             "name": "@param",
-            "body": "e {var} value to add to the element",
-            "paramName": "e",
-            "description": " value to add to the element",
-            "type": "var"
+            "body": "{*} value - value to add to the element",
+            "paramName": "value",
+            "description": "- value to add to the element",
+            "type": "*"
           }
         ]
       }
@@ -6939,11 +6990,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 526,
+        "line": 531,
         "column": 9
       },
       "end": {
-        "line": 529,
+        "line": 534,
         "column": 3
       }
     },

@@ -2508,50 +2508,52 @@
 
         return null;
       },
-      _prettify: function _prettify(node, level, singleton) {
-        var tabs = Array(level + 1).fill('').join('\t');
+      _prettify: function _prettify(node, level, noFormat) {
+        var tabs = Array(level).fill('  ').join('');
         var newLine = '\n';
 
         if (node.nodeType === Node.TEXT_NODE) {
           if (node.textContent.trim()) {
-            return (singleton ? '' : tabs) + qx.xml.String.escape(node.textContent.trim()) + (singleton ? '' : newLine);
+            return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
           }
 
           return '';
         }
 
         if (node.nodeType === Node.COMMENT_NODE) {
-          return (singleton ? '' : tabs) + "<!--".concat(node.textContent, "--> ").concat(singleton ? '' : newLine);
+          return (noFormat ? '' : tabs) + "<!--".concat(node.textContent, "--> ").concat(noFormat ? '' : newLine);
         } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-          return (singleton ? '' : tabs) + "<![CDATA[".concat(node.textContent, "]]> ").concat(singleton ? '' : newLine);
+          return (noFormat ? '' : tabs) + "<![CDATA[".concat(node.textContent, "]]> ").concat(noFormat ? '' : newLine);
         }
 
         if (!node.tagName) {
           return this._prettify(node.firstChild, level);
         }
 
-        var output = tabs + "<".concat(node.tagName); // >\n
+        var output = (noFormat ? '' : tabs) + "<".concat(node.tagName); // >\n
 
         for (var i = 0; i < node.attributes.length; i++) {
           output += " ".concat(node.attributes[i].name, "=\"").concat(node.attributes[i].value, "\"");
         }
 
         if (node.childNodes.length === 0) {
-          return output + ' />' + newLine;
+          return output + ' />' + (!noFormat ? newLine : '');
         }
 
         output += '>';
-        var onlyOneTextChild = node.childNodes.length === 1 && node.childNodes[0].nodeType === 3;
+        var hasTextChild = Array.prototype.some.call(node.childNodes, function (child) {
+          return child.nodeType === Node.TEXT_NODE && child.textContent.trim();
+        });
 
-        if (!onlyOneTextChild) {
+        if (!noFormat && !hasTextChild) {
           output += newLine;
         }
 
         for (var _i2 = 0; _i2 < node.childNodes.length; _i2++) {
-          output += this._prettify(node.childNodes[_i2], level + 1, onlyOneTextChild);
+          output += this._prettify(node.childNodes[_i2], level + 1, hasTextChild);
         }
 
-        return output + (onlyOneTextChild ? '' : tabs) + "</".concat(node.tagName, ">") + newLine;
+        return output + (hasTextChild || noFormat ? '' : tabs) + "</".concat(node.tagName, ">") + (!noFormat ? newLine : '');
       },
       _onSaved: function _onSaved() {
         cv.ui.manager.editor.Tree.prototype._onSaved.base.call(this);
@@ -2630,4 +2632,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1643473455915
+//# sourceMappingURL=Tree.js.map?dt=1645561959893

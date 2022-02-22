@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
+        "line": 25,
         "column": 0
       },
       "end": {
-        "line": 556,
+        "line": 612,
         "column": 3
       }
     },
@@ -22,6 +22,12 @@
         {
           "name": "@description",
           "body": "<p>Wrapper class for all data providers.</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "Element"
         }
       ]
     }
@@ -33,11 +39,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 33,
+        "line": 34,
         "column": 13
       },
       "end": {
-        "line": 37,
+        "line": 38,
         "column": 3
       }
     },
@@ -47,11 +53,11 @@
     "Config": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 131,
           "column": 5
         }
       },
@@ -61,11 +67,11 @@
     "get": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 155,
           "column": 5
         }
       },
@@ -77,11 +83,11 @@
     "__cache": {
       "location": {
         "start": {
-          "line": 162,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 164,
           "column": 17
         }
       },
@@ -91,11 +97,11 @@
     "_getFromCache": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 166,
+          "line": 168,
           "column": 5
         }
       },
@@ -105,11 +111,11 @@
     "__clearFromCache": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 170,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 176,
           "column": 5
         }
       },
@@ -119,11 +125,11 @@
     "_addToCache": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 180,
           "column": 5
         }
       },
@@ -133,11 +139,11 @@
     "getDesigns": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 208,
           "column": 5
         }
       },
@@ -177,11 +183,11 @@
     "__getData": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 251,
+          "line": 253,
           "column": 5
         }
       },
@@ -263,11 +269,11 @@
     "__getFromUrl": {
       "location": {
         "start": {
-          "line": 253,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 280,
+          "line": 282,
           "column": 5
         }
       },
@@ -277,11 +283,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 282,
+          "line": 284,
           "column": 4
         },
         "end": {
-          "line": 291,
+          "line": 293,
           "column": 5
         }
       },
@@ -291,11 +297,11 @@
     "getRrds": {
       "location": {
         "start": {
-          "line": 293,
+          "line": 295,
           "column": 4
         },
         "end": {
-          "line": 302,
+          "line": 304,
           "column": 5
         }
       },
@@ -305,11 +311,11 @@
     "getInfluxDBs": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 306,
           "column": 4
         },
         "end": {
-          "line": 307,
+          "line": 309,
           "column": 5
         }
       },
@@ -319,11 +325,11 @@
     "__getInfluxArgs": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 311,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 329,
           "column": 5
         }
       },
@@ -333,11 +339,11 @@
     "getInfluxDBFields": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 338,
           "column": 5
         }
       },
@@ -347,11 +353,11 @@
     "__getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 340,
           "column": 4
         },
         "end": {
-          "line": 345,
+          "line": 347,
           "column": 5
         }
       },
@@ -361,11 +367,11 @@
     "getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 347,
+          "line": 349,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 364,
           "column": 5
         }
       },
@@ -375,11 +381,11 @@
     "getInfluxDBValues": {
       "location": {
         "start": {
-          "line": 364,
+          "line": 366,
           "column": 4
         },
         "end": {
-          "line": 385,
+          "line": 387,
           "column": 5
         }
       },
@@ -389,11 +395,11 @@
     "_parseDpResponseForMonaco": {
       "location": {
         "start": {
-          "line": 387,
+          "line": 389,
           "column": 4
         },
         "end": {
-          "line": 389,
+          "line": 391,
           "column": 5
         }
       },
@@ -403,11 +409,11 @@
     "_parseDpResponseForEditor": {
       "location": {
         "start": {
-          "line": 391,
+          "line": 393,
           "column": 4
         },
         "end": {
-          "line": 393,
+          "line": 395,
           "column": 5
         }
       },
@@ -417,11 +423,11 @@
     "__parseDpResponse": {
       "location": {
         "start": {
-          "line": 395,
+          "line": 397,
           "column": 4
         },
         "end": {
-          "line": 409,
+          "line": 411,
           "column": 5
         }
       },
@@ -431,11 +437,11 @@
     "getMediaFiles": {
       "location": {
         "start": {
-          "line": 411,
+          "line": 413,
           "column": 4
         },
         "end": {
-          "line": 425,
+          "line": 427,
           "column": 5
         }
       },
@@ -445,11 +451,11 @@
     "getTransforms": {
       "location": {
         "start": {
-          "line": 433,
+          "line": 435,
           "column": 4
         },
         "end": {
-          "line": 468,
+          "line": 470,
           "column": 5
         }
       },
@@ -489,11 +495,11 @@
     "getPlugins": {
       "location": {
         "start": {
-          "line": 476,
+          "line": 478,
           "column": 4
         },
         "end": {
-          "line": 509,
+          "line": 511,
           "column": 5
         }
       },
@@ -533,13 +539,43 @@
     "getIcons": {
       "location": {
         "start": {
-          "line": 511,
+          "line": 520,
           "column": 4
         },
         "end": {
-          "line": 545,
+          "line": 601,
           "column": 5
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} format"
+          },
+          {
+            "name": "@param",
+            "body": "{Map?} config"
+          },
+          {
+            "name": "@param",
+            "body": "{Element?} element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array with icon definitions",
+            "type": "Array",
+            "description": " array with icon definitions"
+          }
+        ]
       },
       "type": "function",
       "access": "public"
@@ -3757,11 +3793,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 553,
+        "line": 609,
         "column": 12
       },
       "end": {
-        "line": 555,
+        "line": 611,
         "column": 3
       }
     },

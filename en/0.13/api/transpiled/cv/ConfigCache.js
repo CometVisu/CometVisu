@@ -13,6 +13,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.data.Model": {},
       "cv.Version": {},
       "cv.Config": {},
+      "cv.IconHandler": {},
       "cv.TemplateEngine": {},
       "cv.ui.structure.WidgetFactory": {}
     }
@@ -57,11 +58,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _parseCacheData: null,
       _valid: null,
       replayCache: null,
-      __P_489_0: null,
+      __P_490_0: null,
       DB: null,
       init: function init() {
-        if (!this.__P_489_0) {
-          this.__P_489_0 = new Promise(function (resolve, reject) {
+        if (!this.__P_490_0) {
+          this.__P_490_0 = new Promise(function (resolve, reject) {
             if (!cv.ConfigCache.DB) {
               var request = indexedDB.open('cvCache', 1);
 
@@ -96,7 +97,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
 
-        return this.__P_489_0;
+        return this.__P_490_0;
       },
       dump: function dump(xml, hash) {
         var model = cv.data.Model.getInstance();
@@ -117,7 +118,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var body = document.querySelector('body');
         var model = cv.data.Model.getInstance();
         this.getData().then(function (cache) {
-          cv.Config.configSettings = cache.configSettings; // restore formulas
+          cv.Config.configSettings = cache.configSettings; // restore icons
+
+          cv.Config.configSettings.iconsFromConfig.forEach(function (icon) {
+            cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+          }, _this); // restore mappings
 
           if (cv.Config.configSettings.mappings) {
             Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
@@ -125,24 +130,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               if (mapping && mapping.formulaSource) {
                 mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+              } else {
+                Object.keys(mapping).forEach(function (key) {
+                  if (Array.isArray(mapping[key])) {
+                    var contents = mapping[key];
+
+                    for (var i = 0; i < contents.length; i++) {
+                      var iconDefinition = contents[i].definition;
+
+                      if (iconDefinition) {
+                        var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                        icon.definition = iconDefinition;
+                        contents[i] = icon;
+                      }
+                    }
+                  } else {
+                    var _iconDefinition = mapping[key].definition;
+
+                    if (_iconDefinition) {
+                      var _icon = cv.IconHandler.getInstance().getIconElement(_iconDefinition.name, _iconDefinition.type, _iconDefinition.flavour, _iconDefinition.color, _iconDefinition.styling, _iconDefinition['class']);
+
+                      _icon.definition = _iconDefinition;
+                      mapping[key] = _icon;
+                    }
+                  }
+                });
               }
             }, _this);
-          }
-
-          if (cv.Config.mobileDevice) {
-            document.querySelector('body').classList.add('mobile');
-            var hasMobile = cv.Config.configSettings.stylesToLoad.some(function (style) {
-              return style.endsWith('mobile.css');
-            });
-
-            if (!hasMobile) {
-              cv.Config.configSettings.stylesToLoad.push('designs/' + cv.Config.configSettings.clientDesign + '/mobile.css');
-            }
-          } else {
-            // do not load mobile css
-            cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(function (style) {
-              return !style.endsWith('mobile.css');
-            });
           }
 
           model.setWidgetDataModel(cache.data);
@@ -357,4 +371,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1643473493586
+//# sourceMappingURL=ConfigCache.js.map?dt=1645562009800

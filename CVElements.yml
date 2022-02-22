@@ -49,6 +49,7 @@
     "de": "/de/develop/manual/config/widgets/plugins/powerspectrum/index.html"
     "en": "/en/develop/manual/config/widgets/plugins/powerspectrum/index.html"
   "name": "PowerSpectrum"
+  "screenshot": "/de/develop/manual/_images/powerspectrum.png"
 - "description":
     "en": "Display of RSS feed."
   "manual":
@@ -77,7 +78,7 @@
     "en": "/en/develop/manual/config/widgets/plugins/timeout/index.html"
   "name": "Timeout"
 - "description":
-    "de": "Verbesserte Integration mit dem openHAB2 Backend"
+    "de": "Verbesserte Integration mit dem openHAB Backend"
   "manual":
     "de": "/de/develop/manual/config/widgets/plugins/openhab/index.html"
   "name": "openHAB"
@@ -120,6 +121,9 @@
     "de": "/de/develop/manual/config/widgets/colorchooser/index.html"
     "en": "/en/develop/manual/config/widgets/colorchooser/index.html"
   "name": "ColorChooser"
+  "screenshot":
+    "de": "/de/develop/manual/_images/colorchooser_complex_box.png"
+    "en": "/en/develop/manual/_images/colorchooser_complex_box.png"
 - "description":
     "de": "Fügt der Visu eine Schaltfläche hinzu, mit der das Design gewechselt werden kann."
     "en": "Adds a button to the visu that allows you to change the design."

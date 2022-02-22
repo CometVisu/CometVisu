@@ -9,13 +9,13 @@
         "construct": true,
         "require": true
       },
-      "qx.ui.core.IMultiSelection": {
+      "qx.ui.core.ISingleSelection": {
         "require": true
       },
       "qx.ui.form.IModelSelection": {
         "require": true
       },
-      "qx.ui.core.MMultiSelectionHandling": {
+      "qx.ui.core.MSingleSelectionHandling": {
         "require": true
       },
       "qx.ui.core.MRemoteChildrenHandling": {
@@ -51,9 +51,6 @@
         "construct": true
       },
       "qx.locale.Manager": {
-        "require": true
-      },
-      "qx.ui.core.selection.ScrollArea": {
         "require": true
       },
       "cv.ui.manager.form.FileListItem": {},
@@ -93,8 +90,8 @@
    */
   qx.Class.define('cv.ui.manager.viewer.Folder', {
     extend: cv.ui.manager.viewer.AbstractViewer,
-    implement: [qx.ui.core.IMultiSelection, qx.ui.form.IModelSelection],
-    include: [qx.ui.core.MMultiSelectionHandling, qx.ui.core.MRemoteChildrenHandling, qx.ui.form.MModelSelection, cv.ui.manager.control.MFileEventHandler],
+    implement: [qx.ui.core.ISingleSelection, qx.ui.form.IModelSelection],
+    include: [qx.ui.core.MSingleSelectionHandling, qx.ui.core.MRemoteChildrenHandling, qx.ui.form.MModelSelection, cv.ui.manager.control.MFileEventHandler],
 
     /*
     ***********************************************
@@ -206,9 +203,12 @@
       _controller: null,
       _isImageRegex: null,
       _newItem: null,
-
-      /** @type {Class} Pointer to the selection manager to use */
-      SELECTION_MANAGER: qx.ui.core.selection.ScrollArea,
+      _getItems: function _getItems() {
+        return this.getChildControl('list').getChildren();
+      },
+      _isAllowEmptySelection: function _isAllowEmptySelection() {
+        return true;
+      },
       _defaultLabelConverter: function _defaultLabelConverter(name) {
         if (this.getViewMode() === 'list') {
           // do not remove file type in list mode
@@ -530,4 +530,4 @@
   cv.ui.manager.viewer.Folder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Folder.js.map?dt=1643473458393
+//# sourceMappingURL=Folder.js.map?dt=1645561963192

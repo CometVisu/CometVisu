@@ -187,7 +187,7 @@
             if (!this.__P_523_1.icon) {
               var iconClasses = attributes.iconClasses ? ' ' + attributes.iconClasses : '';
               this.__P_523_1.icon = qx.dom.Element.create('div', {
-                'html': cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses)
+                'html': cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses, true, true)
               });
               qx.dom.Element.insertBegin(this.__P_523_1.icon, this.__P_523_1.content);
             } else {
@@ -388,4 +388,4 @@
   cv.ui.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1643473497683
+//# sourceMappingURL=Popup.js.map?dt=1645562014502

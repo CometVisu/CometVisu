@@ -57,7 +57,7 @@
       </mapping>
       <mapping name="audio_mute">
         <entry value="0">
-          <icon name="audio_mute"/> Aus</entry>
+          <icon name="audio_volume_mute"/> Aus</entry>
         <entry value="1">
           <icon name="audio_audio"/>
         </entry>

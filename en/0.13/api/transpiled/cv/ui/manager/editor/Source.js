@@ -131,13 +131,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // monaco has already been loaded, we can use its languages configuration to check if this file is supported
             var extensions = [];
             monaco.languages.getLanguages().forEach(function (lang) {
-              lang.extensions.forEach(function (ext) {
-                ext = ext.replace(/\./g, '\\.');
+              if (lang.extensions) {
+                lang.extensions.forEach(function (ext) {
+                  ext = ext.replace(/\./g, '\\.');
 
-                if (extensions.indexOf(ext) === -1) {
-                  extensions.push(ext);
-                }
-              });
+                  if (extensions.indexOf(ext) === -1) {
+                    extensions.push(ext);
+                  }
+                });
+              }
             });
             cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
           }
@@ -499,7 +501,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var fileType = parts.length > 1 ? parts.pop() : 'txt';
         var typeExt = '.' + fileType;
         return monaco.languages.getLanguages().some(function (lang) {
-          return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
+          return lang.id === fileType || lang.extensions && lang.extensions.indexOf(typeExt) >= 0;
         });
       },
       showErrors: function showErrors(path, errorList) {
@@ -583,7 +585,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               var typeExt = '.' + type;
               var found = monaco.languages.getLanguages().some(function (lang) {
-                return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
+                return lang.id === type || lang.extensions && lang.extensions.indexOf(typeExt) >= 0;
               });
 
               if (!found) {
@@ -617,4 +619,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1643473455482
+//# sourceMappingURL=Source.js.map?dt=1645561959358

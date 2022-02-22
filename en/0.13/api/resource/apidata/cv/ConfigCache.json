@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 232,
+        "line": 249,
         "column": 3
       }
     },
@@ -162,7 +162,7 @@
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 145,
           "column": 5
         }
       },
@@ -172,11 +172,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 150,
           "column": 5
         }
       },
@@ -186,11 +186,11 @@
     "getData": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 178,
           "column": 5
         }
       },
@@ -200,11 +200,11 @@
     "isCached": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 193,
           "column": 5
         }
       },
@@ -222,11 +222,11 @@
     "isValid": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 195,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 210,
           "column": 5
         }
       },
@@ -236,11 +236,11 @@
     "toHash": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 214,
           "column": 5
         }
       },
@@ -250,11 +250,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 223,
           "column": 5
         }
       },
@@ -264,11 +264,11 @@
     "hashCode": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 247,
           "column": 5
         }
       },

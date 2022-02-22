@@ -58,6 +58,7 @@
         'diagram-influx': '/0.13/manual/config/widgets/plugins/diagram/index.html#diagram-influx',
         'diagram-info': '/0.13/manual/config/widgets/plugins/diagram_info/index.html#diagram-info',
         'docker': '/0.13/manual/install/docker.html#docker',
+        'docker-openhab-installation': '/0.13/manual/install/docker_openhab.html#docker-openhab-installation',
         'dockerenvironment': '/0.13/manual/install/docker.html#dockerenvironment',
         'editor': '/0.13/manual/config/editor.html#editor',
         'enablecache': '/0.13/manual/config/url-params.html#enablecache',
@@ -138,4 +139,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1643473457638
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1645561962292

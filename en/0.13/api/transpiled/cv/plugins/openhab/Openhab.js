@@ -113,7 +113,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         qx.dom.Element.insertAfter(settingsRoot, document.querySelector('#' + cv.ui.NotificationCenter.getInstance().getRootElementId() + ' section.messages')); // add a settings button to trigger opening the settings
 
         var button = qx.dom.Element.create('div', {
-          html: cv.util.IconTools.svgKUF('edit_settings')(null, 'width: 22px; height: 22px;'),
+          html: cv.util.IconTools.svgKUF('edit_settings')(null, 'width: 22px; height: 22px;', '', true),
           style: 'float: left;'
         });
         this._openSettings = new qx.ui.command.Command('Ctrl+S');
@@ -181,4 +181,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.plugins.openhab.Openhab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Openhab.js.map?dt=1643473453610
+//# sourceMappingURL=Openhab.js.map?dt=1645561957035

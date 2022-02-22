@@ -209,7 +209,7 @@
         }
 
         this._client.onConnectionLost = function (responseObject) {
-          self.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
+          self.info('Connection Lost: ' + responseObject.errorMessage, responseObject);
           self.setConnected(false);
         };
 
@@ -329,4 +329,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1643473493498
+//# sourceMappingURL=Client.js.map?dt=1645562009621

@@ -37,6 +37,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.io.openhab.Rest": {},
       "cv.io.mqtt.Client": {},
       "qx.bom.Blocker": {},
+      "cv.ui.layout.ResizeHandler": {},
       "cv.ConfigCache": {},
       "qx.event.GlobalError": {},
       "cv.report.Record": {},
@@ -46,9 +47,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.log.appender.Native": {},
       "qx.bom.Stylesheet": {},
       "qx.util.ResourceManager": {},
+      "qx.event.Registration": {},
       "cv.core.notifications.Router": {},
       "qx.event.Timer": {},
       "qx.event.message.Bus": {},
+      "qx.bom.History": {},
       "cv.data.FileWorker": {},
       "qx.log.Logger": {},
       "qx.core.Init": {},
@@ -56,8 +59,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.dev.StackTrace": {},
       "cv.ui.PopupHandler": {},
       "cv.util.Location": {},
-      "qx.event.Registration": {},
-      "cv.ui.layout.ResizeHandler": {},
       "qx.bom.Lifecycle": {},
       "cv.ui.NotificationCenter": {},
       "cv.ui.ToastManager": {},
@@ -65,7 +66,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.util.ScriptLoader": {},
       "cv.data.Model": {},
       "cv.ui.structure.WidgetFactory": {},
-      "cv.IconHandler": {},
       "qx.Part": {},
       "qx.bom.client.Html": {
         "require": true
@@ -125,6 +125,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     */
     construct: function construct() {
       qx.application.Native.constructor.call(this);
+      this.__P_2_0 = false;
       this.initCommandManager(new qx.ui.command.GroupManager());
       var lang = qx.locale.Manager.getInstance().getLanguage();
 
@@ -157,7 +158,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     statics: {
       HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
       consoleCommands: [],
-      __P_2_0: null,
+      __P_2_1: null,
       _relResourcePath: null,
       _fullResourcePath: null,
       getRelativeResourcePath: function getRelativeResourcePath(fullPath) {
@@ -254,7 +255,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       inManager: {
         check: 'Boolean',
-        init: false
+        init: false,
+        apply: '_applyInManager'
       },
       managerDisabled: {
         check: 'Boolean',
@@ -269,6 +271,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         check: 'Boolean',
         init: false,
         apply: '_applyManagerChecked'
+      },
+
+      /**
+       * Mobile device detection (small screen)
+       */
+      mobile: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeMobile',
+        apply: '_applyMobile'
       }
     },
 
@@ -279,6 +291,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     */
     members: {
       _blocker: null,
+      __P_2_0: null,
 
       /**
        * Toggle the {@link qx.bom.Blocker} visibility
@@ -297,6 +310,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this._blocker.block();
         } else if (this._blocker) {
           this._blocker.unblock();
+        }
+      },
+      _applyMobile: function _applyMobile(value) {
+        // maintain old value for compatibility
+        if (value && !document.body.classList.contains('mobile')) {
+          document.body.classList.add('mobile');
+        } else if (!value && document.body.classList.contains('mobile')) {
+          document.body.classList.remove('mobile');
+        }
+
+        if (this.__P_2_0) {
+          cv.ui.layout.ResizeHandler.invalidateNavbar();
         }
       },
       _applyManagerChecked: function _applyManagerChecked(value) {
@@ -318,7 +343,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         this._checkBackend();
 
-        qx.event.GlobalError.setErrorHandler(this.__P_2_1, this);
+        qx.event.GlobalError.setErrorHandler(this.__P_2_2, this);
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributers.\n' + ' Version: ' + cv.Version.VERSION + '\n';
 
@@ -353,7 +378,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // in debug mode load the uncompressed unobfuscated scripts
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?' + Date.now() : ''));
 
-        this.__P_2_2();
+        this.__P_2_3();
+
+        if (typeof cv.Config.mobileDevice === 'boolean') {
+          this.setMobile(cv.Config.mobileDevice);
+        }
+
+        this._onResize(null, true);
+
+        qx.event.Registration.addListener(window, 'resize', this._onResize, this);
+      },
+      hideManager: function hideManager() {
+        if (Object.prototype.hasOwnProperty.call(cv.ui, 'manager')) {
+          var ManagerMain = cv.ui['manager']['Main']; // only do something when the singleton is already created
+
+          if (ManagerMain.constructor.$$instance) {
+            ManagerMain.getInstance().setVisible(false);
+          }
+        }
       },
 
       /**
@@ -404,6 +446,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }, this, 1000);
             }
           }, this);
+        }
+      },
+      _applyInManager: function _applyInManager(value) {
+        if (value) {
+          qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
         }
       },
       showConfigErrors: function showConfigErrors(configName, options) {
@@ -500,7 +547,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this3.error(err);
         });
       },
-      __P_2_1: function __P_2_1(ex) {
+      __P_2_2: function __P_2_2(ex) {
         // connect client data for Bug-Report
         var exString = '';
         var maxTraceLength = 2000;
@@ -588,6 +635,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             },
             link: [{
               title: qx.locale.Manager.tr('Reload'),
+              type: 'reload',
               action: function action(ev) {
                 var parent = ev.getTarget().parentNode;
 
@@ -625,7 +673,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         if (!cv.Config.reporting) {
           if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-            link = ' <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+            link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
           }
 
           notification.actions.optionGroup.options.push({
@@ -639,6 +687,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             // Sentry has been loaded -> add option to send the error
             notification.actions.link.push({
               title: qx.locale.Manager.tr('Send error to sentry.io'),
+              type: 'sentry',
               action: function action() {
                 Sentry.captureException(ex);
               },
@@ -656,7 +705,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
               name: 'reportErrors',
               style: 'margin-left: 18px'
-            }); // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
+            });
           }
         }
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
@@ -664,12 +713,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       throwError: function throwError() {
         window.onerror(new Error('test error'));
       },
+      _onResize: function _onResize(ev, init) {
+        if (cv.Config.mobileDevice === undefined) {
+          this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
+        }
+
+        if (!init && this.__P_2_0) {
+          cv.ui.layout.ResizeHandler.invalidateScreensize();
+        }
+      },
 
       /**
        * Internal initialization method
        */
-      __P_2_2: function __P_2_2() {
-        qx.event.Registration.addListener(window, 'resize', cv.ui.layout.ResizeHandler.invalidateScreensize, cv.ui.layout.ResizeHandler);
+      __P_2_3: function __P_2_3() {
         qx.event.Registration.addListener(window, 'unload', function () {
           cv.io.Client.stopAll();
         }, this);
@@ -720,7 +777,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
             }
           }, _callee, this);
-        })), this);
+        })), this); // reaction on browser back button
+
+        qx.bom.History.getInstance().addListener('request', function (e) {
+          var anchor = e.getData();
+
+          if (this.isInManager() && anchor !== 'manager') {
+            this.hideManager();
+          } else if (!this.isInManager() && anchor === 'manager') {
+            this.showManager();
+          } else if (anchor) {
+            cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+          }
+        }, this);
       },
 
       /**
@@ -729,7 +798,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       bootstrap: function () {
         var _bootstrap = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(xml) {
-          var engine, loader, isCached, xmlHash, cacheValid, body, structure, styles, scripts;
+          var engine, loader, isCached, xmlHash, cacheValid, structure, styles, scripts;
           return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
@@ -773,8 +842,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cv.Config.cacheUsed = false;
                     cv.ConfigCache.clear(); // load empty HTML structure
 
-                    body = document.querySelector('body');
-                    body.innerHTML = cv.Application.HTML_STRUCT; //empty model
+                    document.body.innerHTML = cv.Application.HTML_STRUCT; //empty model
 
                     cv.data.Model.getInstance().resetWidgetDataModel();
                     cv.data.Model.getInstance().resetAddressList();
@@ -785,7 +853,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cv.Config.lazyLoading = true;
                     engine.initBackendClient();
 
-                    this.__P_2_3(); // load part for structure
+                    this.__P_2_4(); // load part for structure
 
 
                     structure = cv.Config.getStructure();
@@ -824,15 +892,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       this.loadStyles();
                       this.loadScripts();
                     }
-
-                    this.loadIcons();
                   }
 
                 case 16:
                   if (!cv.Config.cacheUsed) {
                     this.debug('starting');
 
-                    this.__P_2_3();
+                    this.__P_2_4();
 
                     engine.parseXML(xml, function () {
                       this.loadPlugins();
@@ -846,7 +912,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           cv.ConfigCache.dump(xml, xmlHash);
                         }, this);
                       }
+
+                      this.__P_2_0 = true;
                     }.bind(this));
+                  } else {
+                    this.__P_2_0 = true;
                   }
 
                 case 17:
@@ -863,15 +933,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         return bootstrap;
       }(),
-
-      /**
-       * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
-       */
-      loadIcons: function loadIcons() {
-        cv.Config.configSettings.iconsFromConfig.forEach(function (icon) {
-          cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
-        }, this);
-      },
 
       /**
        * Load CSS styles
@@ -974,7 +1035,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
         }
       },
-      __P_2_3: function __P_2_3() {
+      __P_2_4: function __P_2_4() {
         var startpage = 'id_';
 
         if (cv.Config.startpage) {
@@ -1028,77 +1089,97 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             var env = req.getResponse();
             var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
 
-            var parts = env.required_php_version.split(' ');
-            var disable = parts.some(function (constraint) {
-              var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+            var disable = false;
 
-              if (match) {
-                var operator = match[1];
-                var majorConstraint = parseInt(match[2]);
-                var hasMinorVersion = match[3] !== undefined;
-                var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-                var hasPatchVersion = match[4] !== undefined;
-                var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-                var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-                var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+            if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
+              var parts = env.required_php_version.split(' ');
+              disable = parts.some(function (constraint) {
+                var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
 
-                switch (operator) {
-                  case '>=':
-                    if (serverVersionId < constraintId) {
-                      return true;
-                    }
+                if (match) {
+                  var operator = match[1];
+                  var majorConstraint = parseInt(match[2]);
+                  var hasMinorVersion = match[3] !== undefined;
+                  var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+                  var hasPatchVersion = match[4] !== undefined;
+                  var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+                  var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+                  var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
 
-                    break;
+                  switch (operator) {
+                    case '>=':
+                      if (serverVersionId < constraintId) {
+                        return true;
+                      }
 
-                  case '>':
-                    if (serverVersionId <= constraintId) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '>':
+                      if (serverVersionId <= constraintId) {
+                        return true;
+                      }
 
-                  case '<=':
-                    if (serverVersionId > maxId) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '<=':
+                      if (serverVersionId > maxId) {
+                        return true;
+                      }
 
-                  case '<':
-                    if (serverVersionId >= maxId) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '<':
+                      if (serverVersionId >= maxId) {
+                        return true;
+                      }
 
-                  case '^':
-                    if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '^':
+                      if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                        return true;
+                      }
 
-                  case '~':
-                    if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '~':
+                      if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
+                        return true;
+                      }
+
+                      break;
+                  }
                 }
+
+                return false;
+              });
+
+              if (disable) {
+                this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+                this.setManagerDisabled(true);
+                this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+              } else {
+                this.info('Manager available for PHP version', env.phpversion);
               }
-
-              return false;
-            });
-
-            if (disable) {
-              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-              this.setManagerDisabled(true);
-              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-            } else {
-              this.info('Manager available for PHP version', env.phpversion);
             }
 
             this.setManagerChecked(true);
+
+            if (window.Sentry) {
+              Sentry.configureScope(function (scope) {
+                if ('server_release' in env) {
+                  scope.setTag('server.release', env.server_release);
+                }
+
+                if ('server_branch' in env) {
+                  scope.setTag('server.branch', env.server_branch);
+                }
+
+                if ('server_id' in env) {
+                  scope.setTag('server.id', env.server_id);
+                }
+              });
+            }
           }, this);
           xhr.addListener('statusError', function (e) {
             _this4.setManagerChecked(true);
@@ -1155,4 +1236,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1643473450654
+//# sourceMappingURL=Application.js.map?dt=1645561953426

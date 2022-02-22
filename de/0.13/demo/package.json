@@ -67,7 +67,7 @@
     "ini": "^2.0.0",
     "jasmine-core": "^3.4.0",
     "jshint-stylish": "^2.1.0",
-    "karma": "^6.3.4",
+    "karma": "^6.3.14",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-firefox-launcher": "^2.1.1",
@@ -88,7 +88,7 @@
     "@sentry/browser": "^6.16.1",
     "@sentry/tracing": "^6.16.1",
     "crc-32": "^1.2.0",
-    "monaco-editor": "^0.31.1",
+    "monaco-editor": "^0.32.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
   },

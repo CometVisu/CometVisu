@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 980,
+        "line": 1055,
         "column": 3
       }
     },
@@ -66,7 +66,7 @@
         "column": 13
       },
       "end": {
-        "line": 65,
+        "line": 66,
         "column": 3
       }
     },
@@ -76,11 +76,11 @@
     "HTML_STRUCT": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 74,
           "column": 553
         }
       },
@@ -90,11 +90,11 @@
     "consoleCommands": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 75,
           "column": 23
         }
       },
@@ -104,11 +104,11 @@
     "__commandManager": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 76,
           "column": 26
         }
       },
@@ -118,11 +118,11 @@
     "_relResourcePath": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 77,
           "column": 26
         }
       },
@@ -132,11 +132,11 @@
     "_fullResourcePath": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 27
         }
       },
@@ -146,11 +146,11 @@
     "getRelativeResourcePath": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 92,
           "column": 5
         }
       },
@@ -160,11 +160,11 @@
     "createClient": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 116,
+          "line": 117,
           "column": 5
         }
       },
@@ -196,11 +196,11 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 131,
           "column": 5
         }
       },
@@ -243,11 +243,11 @@
     "root": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 142,
           "column": 5
         }
       },
@@ -259,11 +259,11 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 151,
           "column": 5
         }
       },
@@ -285,11 +285,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 156,
           "column": 5
         }
       },
@@ -300,11 +300,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 157,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 162,
           "column": 5
         }
       },
@@ -318,16 +318,17 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 166,
+          "line": 168,
           "column": 5
         }
       },
       "name": "inManager",
       "propertyType": "new",
+      "apply": "_applyInManager",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -335,11 +336,11 @@
     "managerDisabled": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 170,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 174,
           "column": 5
         }
       },
@@ -353,11 +354,11 @@
     "managerDisabledReason": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 176,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 179,
           "column": 5
         }
       },
@@ -370,17 +371,44 @@
     "managerChecked": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 184,
           "column": 5
         }
       },
       "name": "managerChecked",
       "propertyType": "new",
       "apply": "_applyManagerChecked",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "mobile": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 193,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mobile device detection (small screen)</p>"
+          }
+        ]
+      },
+      "name": "mobile",
+      "propertyType": "new",
+      "event": "changeMobile",
+      "apply": "_applyMobile",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -422,25 +450,39 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 205,
           "column": 18
         }
       },
       "type": "variable",
       "access": "protected"
     },
-    "block": {
+    "__appReady": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 211,
+          "line": 206,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "block": {
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4
+        },
+        "end": {
+          "line": 223,
           "column": 5
         }
       },
@@ -461,14 +503,31 @@
       "type": "function",
       "access": "public"
     },
-    "_applyManagerChecked": {
+    "_applyMobile": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 235,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "mobile"
+      ]
+    },
+    "_applyManagerChecked": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 243,
           "column": 5
         }
       },
@@ -481,11 +540,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 323,
           "column": 5
         }
       },
@@ -505,14 +564,28 @@
         "qx.application.IApplication"
       ]
     },
-    "showManager": {
+    "hideManager": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 325,
           "column": 4
         },
         "end": {
-          "line": 338,
+          "line": 333,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "showManager": {
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4
+        },
+        "end": {
+          "line": 377,
           "column": 5
         }
       },
@@ -546,14 +619,31 @@
       "type": "function",
       "access": "public"
     },
-    "showConfigErrors": {
+    "_applyInManager": {
       "location": {
         "start": {
-          "line": 340,
+          "line": 379,
           "column": 4
         },
         "end": {
-          "line": 360,
+          "line": 383,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "inManager"
+      ]
+    },
+    "showConfigErrors": {
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 4
+        },
+        "end": {
+          "line": 405,
           "column": 5
         }
       },
@@ -563,11 +653,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 362,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 425,
+          "line": 470,
           "column": 5
         }
       },
@@ -577,11 +667,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 427,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 570,
+          "line": 616,
           "column": 5
         }
       },
@@ -591,25 +681,39 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 572,
+          "line": 618,
           "column": 4
         },
         "end": {
-          "line": 577,
+          "line": 623,
           "column": 6
         }
       },
       "type": "function",
       "access": "public"
     },
-    "__init": {
+    "_onResize": {
       "location": {
         "start": {
-          "line": 582,
+          "line": 625,
           "column": 4
         },
         "end": {
-          "line": 612,
+          "line": 632,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__init": {
+      "location": {
+        "start": {
+          "line": 637,
+          "column": 4
+        },
+        "end": {
+          "line": 678,
           "column": 5
         }
       },
@@ -627,11 +731,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 618,
+          "line": 684,
           "column": 4
         },
         "end": {
-          "line": 716,
+          "line": 783,
           "column": 5
         }
       },
@@ -655,36 +759,14 @@
       "type": "function",
       "access": "public"
     },
-    "loadIcons": {
-      "location": {
-        "start": {
-          "line": 721,
-          "column": 4
-        },
-        "end": {
-          "line": 725,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Adds icons which were defined in the current configuration to the {@link cv.IconHandler}</p>"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "public"
-    },
     "loadStyles": {
       "location": {
         "start": {
-          "line": 731,
+          "line": 789,
           "column": 4
         },
         "end": {
-          "line": 738,
+          "line": 796,
           "column": 5
         }
       },
@@ -708,11 +790,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 744,
+          "line": 802,
           "column": 4
         },
         "end": {
-          "line": 751,
+          "line": 809,
           "column": 5
         }
       },
@@ -736,11 +818,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 756,
+          "line": 814,
           "column": 4
         },
         "end": {
-          "line": 821,
+          "line": 879,
           "column": 5
         }
       },
@@ -758,11 +840,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 823,
+          "line": 881,
           "column": 4
         },
         "end": {
-          "line": 854,
+          "line": 912,
           "column": 5
         }
       },
@@ -772,11 +854,11 @@
     "_checkBackend": {
       "location": {
         "start": {
-          "line": 856,
+          "line": 914,
           "column": 4
         },
         "end": {
-          "line": 933,
+          "line": 1008,
           "column": 5
         }
       },
@@ -786,11 +868,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 935,
+          "line": 1010,
           "column": 4
         },
         "end": {
-          "line": 940,
+          "line": 1015,
           "column": 5
         }
       },
@@ -805,11 +887,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 945,
+          "line": 1020,
           "column": 4
         },
         "end": {
-          "line": 978,
+          "line": 1053,
           "column": 5
         }
       },
@@ -4677,6 +4759,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>managerChecked</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #managerChecked}."
+          }
+        ]
+      }
+    },
+    "getMobile": {
+      "type": "function",
+      "name": "getMobile",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>mobile</code>.\n\nFor further details take a look at the property definition: {@link #mobile}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for mobile"
+          }
+        ]
+      }
+    },
+    "isMobile": {
+      "type": "function",
+      "name": "isMobile",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>mobile</code>.\n\nFor further details take a look at the property definition: {@link #mobile}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for mobile"
+          }
+        ]
+      }
+    },
+    "setMobile": {
+      "type": "function",
+      "name": "setMobile",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>mobile</code>.\n\nFor further details take a look at the property definition: {@link #mobile}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for mobile"
+          }
+        ]
+      }
+    },
+    "resetMobile": {
+      "type": "function",
+      "name": "resetMobile",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>mobile</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #mobile}."
           }
         ]
       }
