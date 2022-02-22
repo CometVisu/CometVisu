@@ -17,7 +17,7 @@ For the operation of CometVisu with openHAB the following things are needed:
 .. HINT::
 
     Since version 0.12.0 no special openHAB bindings are required, the CometVisu communicates directly with
-    openHABs build-in REST API.
+    openHAB's build-in REST API.
 
 It is assumed that point 1 has already been met and only the following
 points are discussed below.
@@ -31,7 +31,7 @@ points are discussed below.
     sudo apt install apache2 php libapache2-mod-php php-soap
 
 Replace the content of the file ``/etc/apache2/sites-enabled/000-default.conf`` with the following
-(please replace ``<openhab>`` with the IP address or the hostname of the openHAB server,
+(please replace ``<openhab>`` with the IP address or the host name of the openHAB server,
 if everything runs on one server, you can use ``localhost``).
 
 .. code-block:: apacheconf
