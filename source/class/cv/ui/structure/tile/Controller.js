@@ -191,6 +191,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           this.debug('pages created');
           this.__gotoStartPage();
           this.debug('setup.dom.finished');
+          // disable loading the huge icon sprite
+          cv.util.IconTools.disableSvgKUFIcons = true;
           qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
           cv.TemplateEngine.getInstance().setDomFinished(true);
         });

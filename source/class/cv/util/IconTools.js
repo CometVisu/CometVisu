@@ -93,6 +93,11 @@ qx.Class.define('cv.util.IconTools', {
     preloadedKUFicons: false,
 
     /**
+     * Disable loading the SVG-Sprite, because we use en icon font instead
+     */
+    disableSvgKUFIcons: false,
+
+    /**
      *
      * @param {(HTMLCanvasElement|SVGElement)} icon
      * @param {Object.<string, ImageData>} colors
@@ -307,6 +312,9 @@ qx.Class.define('cv.util.IconTools', {
       if (!this.preloadedKUFicons) {
         this.preloadedKUFicons = true;
         qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
+          if (this.disableSvgKUFIcons) {
+            return;
+          }
           // use relative path here, otherwise it won't work in replay mode
           const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
           window.fetch(iconPath)
@@ -320,7 +328,7 @@ qx.Class.define('cv.util.IconTools', {
             }).catch(err => {
               qx.log.Logger.debug(cv.util.IconTools, err);
             });
-        });
+        }, this);
       }
       /**
        * @param {string} color - color in CSS style, i.e. #rrggbb

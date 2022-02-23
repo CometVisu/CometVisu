@@ -67,14 +67,20 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
 
+    header {
+        border-bottom: 1px solid $borderColor;
+        box-shadow: 0 6px 8px 4px $shadowColor;
+    }
+
     main {
         flex: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     svg.defs-only {
@@ -98,7 +104,6 @@ body {
 
     nav {
         position: relative;
-        background-color: $buttonBackground;
         z-index: 10;
 
         /* expand icons in sub levels */
@@ -118,7 +123,7 @@ body {
 
             li {
                 display: inline-block;
-                background-color: $buttonBackground;
+                /*background-color: $buttonBackground;*/
                 position: relative;
                 height: 40px;
 

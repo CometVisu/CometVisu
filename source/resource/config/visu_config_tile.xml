@@ -47,55 +47,50 @@
         </cv-mapping>
     </cv-meta>
     <header>
-        <nav>
-            <cv-menu model="pages"/>
-        </nav>
-    </header>
-    <main>
-        <cv-page id="main" name="Start">
-        <cv-status format="%d an">
-            <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
-            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
-            <span slot="label">Lichter</span>
-            <cv-popup slot="popup" modal="true">
-                <cv-list rowspan="3" colspan="3">
-                    <model filter="item.active===true" sort-by="label">
-                        <cv-address transform="raw" mode="read" backend="main">members:Lights</cv-address>
-                    </model>
-                    <header>
-                        <h4>Eingeschaltete Lichter</h4>
-                    </header>
-                    <template>
-                        <cv-listitem>
-                            <cv-button class="round-button" mapping="light" size="small">
-                                <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
-                                <cv-icon class="value" />
-                            </cv-button>
-                            <div class="content">
-                                <label class="primary">${label}</label>
-                            </div>
-                        </cv-listitem>
-                    </template>
-                    <template when="empty">
-                        <li><label class="primary">Zur Zeit sind keine Lampen eingeschaltet</label></li>
-                    </template>
-                </cv-list>
-            </cv-popup>
-        </cv-status>
-        <cv-status format="%d offen">
-            <cv-icon slot="icon" size="x-large">knxuf-fts_shutter_10</cv-icon>
-            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Shutters</cv-address>
-            <span slot="label">Rollladen</span>
-        </cv-status>
-        <cv-status format="%d offen">
-            <cv-value slot="icon" mapping="WindowOpen">
-                <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                <cv-address transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
-            </cv-value>
-            <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
-            <span slot="label">Fenster</span>
-        </cv-status>
-        <cv-status format="%d an">
+        <div style="display: flex; padding: calc(var(--spacing)*2); gap: var(--spacing)">
+            <cv-status format="%d an">
+                <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
+                <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
+                <span slot="label">Lichter</span>
+                <cv-popup slot="popup" modal="true">
+                    <cv-list rowspan="3" colspan="3">
+                        <model filter="item.active===true" sort-by="label">
+                            <cv-address transform="raw" mode="read" backend="main">members:Lights</cv-address>
+                        </model>
+                        <header>
+                            <h4>Eingeschaltete Lichter</h4>
+                        </header>
+                        <template>
+                            <cv-listitem>
+                                <cv-button class="round-button" mapping="light" size="small">
+                                    <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
+                                    <cv-icon class="value" />
+                                </cv-button>
+                                <div class="content">
+                                    <label class="primary">${label}</label>
+                                </div>
+                            </cv-listitem>
+                        </template>
+                        <template when="empty">
+                            <li><label class="primary">Zur Zeit sind keine Lampen eingeschaltet</label></li>
+                        </template>
+                    </cv-list>
+                </cv-popup>
+            </cv-status>
+            <cv-status format="%d offen">
+                <cv-icon slot="icon" size="x-large">knxuf-fts_shutter_10</cv-icon>
+                <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Shutters</cv-address>
+                <span slot="label">Rollladen</span>
+            </cv-status>
+            <cv-status format="%d offen">
+                <cv-value slot="icon" mapping="WindowOpen">
+                    <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
+                    <cv-address transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
+                </cv-value>
+                <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
+                <span slot="label">Fenster</span>
+            </cv-status>
+            <cv-status format="%d an">
             <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
             <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Speakers</cv-address>
             <span slot="label">Lautsprecher</span>
@@ -124,6 +119,13 @@
                 </cv-list>
             </cv-popup>
         </cv-status>
+        </div>
+        <nav>
+            <cv-menu model="pages"/>
+        </nav>
+    </header>
+    <main>
+        <cv-page id="main" name="Start">
         <details>
             <summary>Switches</summary>
             <cv-switch mapping="light" styling="button">
