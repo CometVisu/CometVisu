@@ -62,14 +62,17 @@ body {
     background-color: $appBackground;
     font-family: Roboto Arial sans-serif;
     color: $primaryText;
-    margin: 0;
     position: relative;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 
     main {
-        flex: 1
+        flex: auto;
     }
 
     svg.defs-only {
@@ -189,8 +192,8 @@ body {
 
 
     cv-page {
-        padding: var(--spacing);
-        display: none;
+        display: flex;
+        content-visibility: hidden;
         flex-flow: row wrap;
         align-items: flex-start;
         align-content: flex-start;
@@ -198,13 +201,21 @@ body {
         overflow-y: auto;
         overflow-x: hidden;
 
+        &.no-content-visibility {
+            display: none; 
+        }
+
         &.screenshots {
             /* white background for screenshots of widgets with border radius */
             background-color: white;
         }
 
         &.active {
-            display: flex;
+            padding: var(--spacing);
+            content-visibility: visible;
+            &.no-content-visibility {
+                display: flex; 
+            }
         }
 
         > :not(details) {
