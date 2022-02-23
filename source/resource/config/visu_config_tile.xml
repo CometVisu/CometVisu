@@ -14,6 +14,10 @@
             <entry value="0">ri-lightbulb-line</entry>
             <entry value="1">ri-lightbulb-fill</entry>
         </cv-mapping>
+        <cv-mapping name="speaker">
+            <entry value="0">ri-speaker-line</entry>
+            <entry value="1">ri-speaker-fill</entry>
+        </cv-mapping>
         <cv-mapping name="percent">
             <formula>y = x + "%"</formula>
         </cv-mapping>
@@ -95,6 +99,30 @@
             <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
             <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Speakers</cv-address>
             <span slot="label">Lautsprecher</span>
+            <cv-popup slot="popup" modal="true">
+                <cv-list rowspan="3" colspan="3">
+                    <model filter="item.active===true" sort-by="label">
+                        <cv-address transform="raw" mode="read" backend="main">members:Speakers</cv-address>
+                    </model>
+                    <header>
+                        <h4>Eingeschaltete Lautsprecher</h4>
+                    </header>
+                    <template>
+                        <cv-listitem>
+                            <cv-button class="round-button" mapping="speaker" size="small">
+                                <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
+                                <cv-icon class="value" />
+                            </cv-button>
+                            <div class="content">
+                                <label class="primary">${label}</label>
+                            </div>
+                        </cv-listitem>
+                    </template>
+                    <template when="empty">
+                        <li><label class="primary">Zur Zeit sind keine Lautsprecher eingeschaltet</label></li>
+                    </template>
+                </cv-list>
+            </cv-popup>
         </cv-status>
         <details>
             <summary>Switches</summary>
