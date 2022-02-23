@@ -207,6 +207,24 @@
     <xsd:attribute ref="class" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-popup">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:group ref="Widgets"/>
+        <xsd:group ref="Components"/>
+        <xsd:element name="details" type="details"/>
+        <xsd:element name="custom" type="custom"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="modal" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Disables the background while the popup is open.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Deaktiviert den Hintergrund solange das Popup geöffnet ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
+
   <xsd:complexType name="cv-tile">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="9">
@@ -659,6 +677,21 @@
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="label" />
                     <xsd:enumeration value="unit" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cv-popup" minOccurs="0">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="cv-popup">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="popup" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
