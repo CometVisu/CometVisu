@@ -327,7 +327,7 @@ class TemplatedElement extends HTMLElement {
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
-        const slotContents = this.querySelectorAll(`[slot='${slotName}']`);
+        let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
           if (slot.attributes[i].name !== 'name') {

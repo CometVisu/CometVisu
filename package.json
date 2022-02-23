@@ -255,7 +255,8 @@
       "customElements": "readonly",
       "HTMLElement": "readonly",
       "QxConnector": "readonly",
-      "d3": "readonly"
+      "d3": "readonly",
+      "InstallTrigger": "readonly"
     }
   }
 }

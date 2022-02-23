@@ -64,6 +64,7 @@
                 </cv-value>
                 <label class="secondary"><slot name="label">LABEL</slot></label>
             </cv-row>
+            <slot name="popup"/>
         </cv-tile>
     </template>
 </templates>

@@ -1,8 +1,9 @@
 /**
  * Shows a tile
  */
-qx.Class.define('cv.ui.structure.tile.components.Tile', {
+qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.ui.structure.tile.MPopup,
 
   /*
   ***********************************************
@@ -10,6 +11,11 @@ qx.Class.define('cv.ui.structure.tile.components.Tile', {
   ***********************************************
   */
   members: {
+
+    _init() {
+      this.base(arguments);
+      this.initPopup();
+    },
 
     /**
      * Handles the incoming data from the backend for this widget
