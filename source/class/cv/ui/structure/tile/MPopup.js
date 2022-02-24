@@ -17,9 +17,21 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
   ***********************************************
   */
   members: {
+    _closeButton: null,
+
     initPopup() {
       const popup = this._element.querySelector(':scope > cv-popup');
       if (popup) {
+        const closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
+        if (closeable) {
+          this._closeButton = document.createElement('button');
+          this._closeButton.classList.add('close');
+          const icon = document.createElement('i');
+          icon.classList.add('ri-close-line');
+          this._closeButton.appendChild(icon);
+          popup.insertBefore(this._closeButton, popup.firstChild);
+          this._closeButton.addEventListener('click', () => this._closePopup());
+        }
         qx.event.Registration.addListener(this._element, 'tap', this._openPopup, this);
       }
     },

@@ -72,7 +72,7 @@ body {
     padding: 0;
     margin: 0;
 
-    header {
+    > header {
         border-bottom: 1px solid $borderColor;
         box-shadow: 0 6px 8px 4px $shadowColor;
     }
@@ -822,6 +822,19 @@ body {
 
         &[open] {
             display: block;
+        }
+
+        button.close {
+            position: absolute;
+            padding: var(--spacing);
+            right: 0;
+            top: 0;
+            font-size: 28px;
+            line-height: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: $primaryText;
         }
     }
 
