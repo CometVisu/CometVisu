@@ -1044,7 +1044,7 @@ msgstr ""
 msgid "Child element '%1' not allowed."
 msgstr ""
 
-#: cv/ui/manager/editor/Diff.js
+#: cv/ui/manager/editor/Source.js
 msgid "\"%1\" is not writable. Upgrading not possible."
 msgstr ""
 
@@ -1166,4 +1166,8 @@ msgstr ""
 
 #: cv/ui/common/Operate.js
 msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
 msgstr ""

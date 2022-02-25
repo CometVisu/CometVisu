@@ -274,8 +274,9 @@ qx.Class.define('cv.TemplateEngine', {
      * Initialize the {@link cv.io.Client} for backend communication
      */
     initBackendClient: function () {
-      let backendName = cv.Config.configSettings.backend || cv.Config.backend;
-      let backendUrl = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
+      const backendName = cv.Config.backend || cv.Config.configSettings.backend || 'default';
+      const backendUrl = cv.Config.backendUrl || cv.Config.configSettings.backendUrl;
+      const backendLoginUrl = cv.Config.backendLoginUrl || cv.Config.configSettings.backendLoginUrl;
       const mapping = {
         oh: 'openhab',
         oh2: 'openhab2'
@@ -283,7 +284,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
         backendName = mapping[backendName];
       }
-      this.visu = cv.Application.createClient(backendName, backendUrl);
+      this.visu = cv.Application.createClient(backendName, backendLoginUrl, backendUrl);
 
       const model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
