@@ -2,18 +2,23 @@
 # Copyright (C) YEAR ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-01-10 19:39+CET\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-02-24 23:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: messages.pot\n"
+"X-Poedit-SearchPath-1: de\n"
+"X-Poedit-SearchPath-2: en\n"
 
 #: utils/docutils/directives/api_doc.py:54
 msgid "Available since version"
@@ -23,23 +28,32 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+msgid "example"
+msgstr ""
+
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "description"
 msgstr ""
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "max"
 msgstr ""
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "min"
 msgstr ""
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "name"
 msgstr ""
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "unit"
 msgstr ""
 
@@ -116,4 +130,3 @@ msgstr ""
 #: utils/docutils/directives/common.py:282
 msgid "Structure"
 msgstr ""
-

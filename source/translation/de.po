@@ -1092,6 +1092,10 @@ msgstr "Transform Enkodier-Fehler"
 msgid "Encode error: %1; selector: \"%2\"; value: %3"
 msgstr "Enkodier-Fehler: %1; Selektor: \"%2\"; Wert: %3"
 
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
+msgstr "Versuchtes ColorChooser Update mit ungültigen Daten.<br/>address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
+
 #: cv/Application.js
 msgid "Manager"
 msgstr "Manager"

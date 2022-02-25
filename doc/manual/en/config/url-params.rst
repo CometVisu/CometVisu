@@ -104,7 +104,7 @@ also a ``backend`` parameter in the config to fix this.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2)
+    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2), mqtt
 
 The default value "cgi-bin" (attention, inconsistent with xml
 element, default = "cgi"!) is usually correct and does not need to be

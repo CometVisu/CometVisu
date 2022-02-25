@@ -1168,6 +1168,10 @@ msgstr ""
 msgid "Encode error: %1; selector: \"%2\"; value: %3"
 msgstr ""
 
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
+msgstr ""
+
 #: cv/Application.js
 msgid "Manager"
 msgstr ""

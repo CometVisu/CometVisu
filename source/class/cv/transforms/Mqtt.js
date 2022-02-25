@@ -93,9 +93,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_xy': {
         name: 'MQTT_color_xy',
         lname: {
-          'de': 'xy-Farbe, z.B. {"x":0.123,"y":0.123}',
-          'en': 'xy color, e.g. {"x":0.123,"y":0.123}'
+          'de': 'xy-Farbe',
+          'en': 'xy color'
         },
+        example: '{"x":0.123,"y":0.123}',
         unit: '-',
         encode: function (phy) {
           return {
@@ -116,9 +117,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_xyY': {
         name: 'MQTT_color_xyY',
         lname: {
-          'de': 'xyY-Farbe, z.B. {"x":0.123,"y":0.123,"Y":100}',
-          'en': 'xyY color, e.g. {"x":0.123,"y":0.123,"Y":100}'
+          'de': 'xyY-Farbe',
+          'en': 'xyY color',
         },
+        example: '{"x":0.123,"y":0.123,"Y":100}',
         unit: '-',
         encode: function (phy) {
           return {
@@ -142,9 +144,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_hsv': {
         name: 'MQTT_color_hsv',
         lname: {
-          'de': 'HSV-Farbe als Zeichenkette, z.B. "360,100,100"}',
-          'en': 'HSV color as string, e.g. "360,100,100"}'
+          'de': 'HSV-Farbe als Zeichenkette',
+          'en': 'HSV color as string',
         },
+        example: '360,100,100',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -165,9 +168,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_h_s_v': {
         name: 'MQTT_color_h_s_v',
         lname: {
-          'de': 'HSV-Farbe, z.B. {"h":360,"s":100,"v":100}',
-          'en': 'HSV color, e.g. {"h":360,"s":100,"v":100}'
+          'de': 'HSV-Farbe',
+          'en': 'HSV color',
         },
+        example: '{"h":360,"s":100,"v":100}',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -192,9 +196,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_hsl': {
         name: 'MQTT_color_hsl',
         lname: {
-          'de': 'HSL-Farbe als Zeichenkette, z.B. "360,100,100"}',
-          'en': 'HSL color as string, e.g. "360,100,100"}'
+          'de': 'HSL-Farbe als Zeichenkette',
+          'en': 'HSL color as string',
         },
+        example: '360,100,100',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -215,9 +220,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_h_s_l': {
         name: 'MQTT_color_h_s_l',
         lname: {
-          'de': 'HSL-Farbe, z.B. {"h":360,"s":100,"l":100}',
-          'en': 'HSL color, e.g. {"h":360,"s":100,"l":100}'
+          'de': 'HSL-Farbe',
+          'en': 'HSL color',
         },
+        example: '{"h":360,"s":100,"l":100}',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -242,9 +248,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_rgb': {
         name: 'MQTT_color_rgb',
         lname: {
-          'de': 'RGB-Farbe als Zeichenkette, z.B. "100,100,100"}',
-          'en': 'RGB color as string, e.g. "100,100,100"}'
+          'de': 'RGB-Farbe als Zeichenkette',
+          'en': 'RGB color as string',
         },
+        example: '100,100,100',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -265,9 +272,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_r_g_b': {
         name: 'MQTT_color_r_g_b',
         lname: {
-          'de': 'RGB-Farbe, z.B. {"r":100,"g":100,"b":100}',
-          'en': 'RGB color, e.g. {"r":100,"g":100,"b":100}'
+          'de': 'RGB-Farbe',
+          'en': 'RGB color',
         },
+        example: '{"r":100,"g":100,"b":100}',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -292,9 +300,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_rgbw': {
         name: 'MQTT_color_rgbw',
         lname: {
-          'de': 'RGBW-Farbe als Zeichenkette, z.B. "100,100,100,100"}',
-          'en': 'RGBW color as string, e.g. "100,100,100,100"}'
+          'de': 'RGBW-Farbe als Zeichenkette',
+          'en': 'RGBW color as string',
         },
+        example: '100,100,100,100',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -316,9 +325,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_r_g_b_w': {
         name: 'MQTT_color_r_g_b_w',
         lname: {
-          'de': 'RGBW-Farbe, z.B. {"r":100,"g":100,"b":100,"w":100}',
-          'en': 'RGBW color, e.g. {"r":100,"g":100,"b":100,"w":100}'
+          'de': 'RGBW-Farbe',
+          'en': 'RGBW color',
         },
+        example: '{"r":100,"g":100,"b":100,"w":100}',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -345,9 +355,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_rgb_hex': {
         name: 'MQTT_color_rgb_hex',
         lname: {
-          'de': 'RGB-Farbe, z.B. #11FF88',
-          'en': 'RGB color, e.g. #11FF88'
+          'de': 'RGB-Farbe',
+          'en': 'RGB color',
         },
+        example: '#11FF88',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -372,9 +383,10 @@ qx.Class.define('cv.transforms.Mqtt', {
       'color_rgbw_hex': {
         name: 'MQTT_color_rgbw_hex',
         lname: {
-          'de': 'RGBW-Farbe, z.B. #11FF88AA',
-          'en': 'RGBW color, e.g. #11FF88AA'
+          'de': 'RGBW-Farbe',
+          'en': 'RGBW color',
         },
+        example: '#11FF88AA',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {

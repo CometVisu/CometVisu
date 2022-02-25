@@ -109,7 +109,7 @@ um dies fest einzustellen.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2)
+    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2), mqtt
 
 Der Default-Wert "cgi-bin" (Achtung, inkonsistent mit xml Element,
 default="cgi"!) ist normalerweise richtig und braucht nicht geändert

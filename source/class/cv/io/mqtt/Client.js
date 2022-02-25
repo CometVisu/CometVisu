@@ -30,7 +30,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (backendName, backendUrl) {
+  construct: function (backendName, backendLoginUrl, backendUrl) {
     this.base(arguments);
     this.initialAddresses = [];
     this._backendName = backendName;

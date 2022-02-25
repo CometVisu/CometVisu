@@ -93,12 +93,12 @@ qx.Class.define('cv.Config', {
      * Type of the used backend (*default*, *openhab* or *openhab2*)
      * @type {String}
      */
-    backend : 'default',
+    backend : null,
     /**
      * Initial URL to the backend
      * @type {String}
      */
-    backendUrl : null,
+    backendLoginUrl : null,
     /**
      * @type {String}
      */
@@ -280,6 +280,7 @@ qx.Class.define('cv.Config', {
     if (req.queryKey.libraryCheck) {
       cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
     }
+
     if (req.queryKey.backend) {
       cv.Config.backend = req.queryKey.backend;
     }

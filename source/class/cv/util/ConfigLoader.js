@@ -109,16 +109,25 @@ qx.Class.define('cv.util.ConfigLoader', {
               backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
             }
             if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
-              cv.Config.backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
-              if (!cv.Config.backendUrl.endsWith('/')) {
-                cv.Config.backendUrl += '/';
+              cv.Config.backendLoginUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
+              if (!cv.Config.backendLoginUrl.endsWith('/') && !cv.Config.backendLoginUrl.endsWith('/l')) {
+                cv.Config.backendLoginUrl += '/';
               }
-              if (!backendName && cv.Config.backendUrl.startsWith('/rest/')) {
+              if (!backendName && cv.Config.backendLoginUrl.startsWith('/rest/')) {
                 backendName = 'openhab';
               }
             }
             if (backendName) {
-              cv.Config.backend = backendName;
+              cv.Config.configSettings.backend = backendName;
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-Url')) {
+              cv.Config.configSettings.backendUrl = req.getResponseHeader('X-CometVisu-Backend-Url');
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-User')) {
+              cv.Config.configSettings.credentials.username = req.getResponseHeader('X-CometVisu-Backend-User');
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-Pass')) {
+              cv.Config.configSettings.credentials.password = req.getResponseHeader('X-CometVisu-Backend-Pass');
             }
             this._checkQueue();
           }
