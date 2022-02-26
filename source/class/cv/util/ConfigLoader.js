@@ -229,7 +229,7 @@ qx.Class.define('cv.util.ConfigLoader', {
                 needsConfirmation: false
               }
             ]
-          }
+          };
           break;
         default:
           message = qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus).translate().toString();
