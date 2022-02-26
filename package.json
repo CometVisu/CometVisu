@@ -218,7 +218,8 @@
       "Node": "readonly",
       "indexedDB": "readonly",
       "URL": "readonly",
-      "sinon": "readonly"
+      "sinon": "readonly",
+      "RSSParser": "readonly"
     }
   }
 }

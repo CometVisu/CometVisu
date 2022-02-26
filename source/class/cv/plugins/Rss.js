@@ -29,6 +29,7 @@
  *
  * @author Michael Markstaller
  * @since 2011
+ * @ignore(RSSParser)
  * @asset(plugins/rss/rss-parser.min.js)
  */
 qx.Class.define('cv.plugins.Rss', {
@@ -128,9 +129,15 @@ qx.Class.define('cv.plugins.Rss', {
 
     refreshRSS: function () {
       this._parser.parseURL(this.getSrc(), (err, feed) => {
-        if (err) throw err;
         const actor = this.getActor();
         let target = actor.querySelector('.rss_inline');
+        if (err) {
+          this.error(err);
+          if (this.getShowerror()) {
+            target.textContent = 'ERROR: ' +err;
+          }
+          return;
+        }
         if (this.getHeader()) {
           let headline = actor.querySelector(':scope > h3');
           if (!headline) {
@@ -150,7 +157,7 @@ qx.Class.define('cv.plugins.Rss', {
         const showDate = this.getDate();
 
         feed.items.some((entry, i) => {
-          let elem = target.querySelector(':scope > li[data-row="'+i+'"]')
+          let elem = target.querySelector(':scope > li[data-row="'+i+'"]');
           let a;
           let content;
           let date;
@@ -181,7 +188,7 @@ qx.Class.define('cv.plugins.Rss', {
               content = elem.querySelector(':scope > p.content');
             }
             if (showDate) {
-              date = elem.querySelector(':scope > p.date')
+              date = elem.querySelector(':scope > p.date');
             }
           }
           if (useLink) {
