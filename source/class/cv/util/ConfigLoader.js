@@ -230,8 +230,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         title: title,
         message: message,
         severity: 'urgent',
-        unique: true,
-        deletable: false
+        unique: true
       };
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       this.error(this, message.toString());

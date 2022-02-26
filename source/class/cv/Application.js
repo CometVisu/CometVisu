@@ -235,10 +235,8 @@ qx.Class.define('cv.Application',
     },
 
     _applyManagerChecked: function(value) {
-      if (value && cv.Config.request.queryKey.manager) {
-        const action = cv.Config.request.queryKey.open ? 'open' : '';
-        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-        this.showManager(action, data);
+      if (value && cv.Config.loadManager) {
+        this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
       }
     },
 
@@ -348,20 +346,14 @@ qx.Class.define('cv.Application',
         };
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       } else {
-        qx.io.PartLoader.require(['manager'], function (states) {
+        qx.io.PartLoader.require(['manager'], function () {
           // break dependency
-          const engine = cv.TemplateEngine.getInstance();
-          if (!engine.isLoggedIn() && !action) {
-            // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-            engine.addListenerOnce('changeLoggedIn', () => this.showManager());
-            return;
-          }
           const ManagerMain = cv.ui['manager']['Main'];
           const firstCall = !ManagerMain.constructor.$$instance;
           const manager = ManagerMain.getInstance();
-          if (!action && !firstCall) {
+          if (!firstCall) {
             manager.setVisible(!manager.getVisible());
-          } else if (firstCall) {
+          } else {
             // initially bind manager visibility
             manager.bind('visible', this, 'inManager');
           }
@@ -379,6 +371,8 @@ qx.Class.define('cv.Application',
     _applyInManager: function (value) {
       if (value) {
         qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+      } else {
+        qx.bom.History.getInstance().addToHistory('', 'CometVisu');
       }
     },
 
@@ -660,8 +654,10 @@ qx.Class.define('cv.Application',
           cv.ui.NotificationCenter.getInstance();
           cv.ui.ToastManager.getInstance();
         }
-        let configLoader = new cv.util.ConfigLoader();
-        configLoader.load(this.bootstrap, this);
+        if (!cv.Config.loadManager) {
+          let configLoader = new cv.util.ConfigLoader();
+          configLoader.load(this.bootstrap, this);
+        }
       }, this);
 
       // reaction on browser back button
