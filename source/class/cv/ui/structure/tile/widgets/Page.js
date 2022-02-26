@@ -1,6 +1,7 @@
 /**
  * Creates a new sub page and adds a corresponding link to the current page.
  *
+ * @ignore(InstallTrigger)
  * @author Tobias Bräutigam
  * @since 2021
  */

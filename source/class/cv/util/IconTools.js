@@ -93,11 +93,6 @@ qx.Class.define('cv.util.IconTools', {
     preloadedKUFicons: false,
 
     /**
-     * Disable loading the SVG-Sprite, because we use en icon font instead
-     */
-    disableSvgKUFIcons: false,
-
-    /**
      *
      * @param {(HTMLCanvasElement|SVGElement)} icon
      * @param {Object.<string, ImageData>} colors
@@ -309,27 +304,6 @@ qx.Class.define('cv.util.IconTools', {
      * @returns {recolorCallback}
      */
     svgKUF: function (iconID) {
-      if (!this.preloadedKUFicons) {
-        this.preloadedKUFicons = true;
-        qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
-          if (this.disableSvgKUFIcons) {
-            return;
-          }
-          // use relative path here, otherwise it won't work in replay mode
-          const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
-          window.fetch(iconPath)
-            .then(r => r.text())
-            .then(text => {
-              let div = document.createElement('div');
-              div.innerHTML = text;
-              let svg = div.firstChild;
-              svg.setAttribute('style', 'display:none');
-              document.body.appendChild(svg);
-            }).catch(err => {
-              qx.log.Logger.debug(cv.util.IconTools, err);
-            });
-        }, this);
-      }
       /**
        * @param {string} color - color in CSS style, i.e. #rrggbb
        * @param {string} styling
@@ -340,8 +314,6 @@ qx.Class.define('cv.util.IconTools', {
        */
       return function (color, styling, classes, asText, forceRemote = false) {
         // use relative path here, otherwise it won't work in replay mode
-        const iconPath = forceRemote ? (cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg') : '';
-        const iconLink = iconPath + '#kuf-' + iconID;
 
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
@@ -355,17 +327,15 @@ qx.Class.define('cv.util.IconTools', {
           if (style) {
             style = ' style="' + style + '"';
           }
-          return '<svg' + style + ' class="' + classes + '"><use xlink:href="' + iconLink + '"></use></svg>';
+          return '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"/>';
         }
-        let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('class', classes);
+        let icon = document.createElement('i');
+        icon.setAttribute('class', classes);
+        icon.classList.add('knxuf-' + iconID);
         if (style) {
-          svg.setAttribute('style', style);
+          icon.setAttribute('style', style);
         }
-        let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', iconLink);
-        svg.appendChild(use);
-        return svg;
+        return icon;
       };
     }
   },

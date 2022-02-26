@@ -1,8 +1,7 @@
 @font-face {
   font-family: 'knx-uf-iconset';
   src:  url('fonts/knx-uf-iconset.ttf?q00mzu') format('truetype'),
-    url('fonts/knx-uf-iconset.woff?q00mzu') format('woff'),
-    url('fonts/knx-uf-iconset.svg?q00mzu#icomoon') format('svg');
+    url('fonts/knx-uf-iconset.woff?q00mzu') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
