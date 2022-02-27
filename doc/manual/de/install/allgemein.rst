@@ -24,16 +24,102 @@ Diese sind
     ab Version 7 benötigt. Der Kern der CometVisu selbst kann jedoch auch
     ohne PHP genutzt werden.
 
-Backend - knxd/eibd oder OpenHAB
---------------------------------
+Backend
+-------
 
-Die Installation des Backends wird unter
+Damit die CometVisu auf die Geräte zugreifen kann wird ein "Backend" benötigt.
+Hierzu gibt es verschiedene Möglichkeiten:
+
+knxd / eibd
+~~~~~~~~~~~
+
+Um direkt auf den KNX Bus zuzugreifen wird der knxd verwendet.
+Die Installation dieses Backends wird unter
 :doc:`backends/install-eibd` beschrieben.
 
 .. toctree::
     :hidden:
 
     backends/install-eibd
+
+openHAB
+~~~~~~~
+
+Für die Verwendung von openHAB als Backend gibt es die Anleitungen
+:doc:`openhab`
+und
+:doc:`docker_openhab`.
+
+MQTT
+~~~~
+
+Damit die CometVisu ein MQTT-Teilnehmer ist, wird ein MQTT Broker benötigt
+der über WebSocket ansprechbar ist.
+
+Backend konfigurieren
+~~~~~~~~~~~~~~~~~~~~~
+
+Um die CometVisu für die Verwendung von einem spezifischen Backend zu
+konfigurieren gibt es mehrere Möglichkeiten, die im folgenden Aufgeführt sind.
+Hierbei überschreibt eine Methode die darüber aufgeführten Werte, d.h.
+beispielsweise überschreiben die Werte in der Konfiguartionsdatei die Einstellungen
+aus den Umgebungsvariablen.
+
+HTTP-Header / Docker-Umgebungsvariablen
+.......................................
+
+Der Web-Server kann in den HTTP-Headern der Konfigurationsdatei die
+Backend-Parameter mit übergeben. Dies ist bei Verwendung des offiziellen
+Docker-Image der CometVisu leicht durch das Setzen entsprechender
+``ENVIRONMENT`` Parameter erreichbar
+
+============================ ================ ===========
+HTTP Header                  ``ENVIRONMENT``  Bedeutung
+---------------------------- ---------------- -----------
+X-CometVisu-Backend-Name     BACKEND_NAME     Name wie ``knxd``, ``oh`` oder ``mqtt``
+X-CometVisu-Backend-Url      BACKEND_URL      URL für den MQTT WebSocket
+X-CometVisu-Backend-LoginUrl CGI_URL_PATH     URL für die knxd oder openHAB Login-Ressource
+X-CometVisu-Backend-User     BACKEND_USERNAME Benutzername, wenn für den MQTT Broker benötigt
+X-CometVisu-Backend-Pass     BACKEND_PASSWORD Passwort, wenn für den MQTT Broker benötigt
+============================ ================ ===========
+
+.. warning::
+
+    Der Benutzername und das Passwort für den MQTT Broker liegen hier direkt
+    lesbar vor und werden auch so über das Netzwerk übertragen!
+
+Konfigurationsdatei
+...................
+
+Im alles umschließenden ``<pages>``-Element können die entsprechenden Parameter
+als Attribut gesetzt werden:
+
+=========== ===========
+Attribut    Bedeutung
+----------- -----------
+backend     Name wie ``knxd``, ``oh`` oder ``mqtt``
+backend-url URL für den MQTT WebSocket
+username    Benutzername, wenn für den MQTT Broker benötigt
+password    Passwort, wenn für den MQTT Broker benötigt
+=========== ===========
+
+Beispiel:
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <pages backend="mqtt" backend-url="wss://web.server:443/mqtt/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+      <meta>
+        <plugins>
+    ...
+
+URL
+...
+
+Durch den URL Parameter ``backend`` kann auch durch den Seitenaufruf das Backend
+ausgewählt werden. Dies ist jedoch nur in Spezialfällen wie Entwicklungs- und
+Testbetrieb sinnvoll und bedingt, dass die Zugriffs-URLs bereits über eine der
+weiter oben stehenden Methoden gesetzt wurden.
 
 Graphentool - RRDtool
 ---------------------
