@@ -749,6 +749,10 @@ pre.inline { display: inline-block; }
   text-align: center;
 }
 
+#manager {
+  color: rgb(192, 192, 192);
+}
+
 #manager div.touch-tree-open-icon {
   line-height: 32px !important;
   text-align: right !important;

@@ -1063,3 +1063,15 @@ msgstr "Der Manager steht nicht zu Verfügung"
 #: cv/Application.js
 msgid "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2"
 msgstr "Die auf Ihrem System installierte PHP Version wird vom Manager nicht unterstützt. Installiert: %1, erforderlich: %2"
+
+#: cv/Application.js
+msgid "Manager"
+msgstr "Manager"
+
+#: cv/util/ConfigLoader.js
+msgid "You can open the manager to create or upload a config file."
+msgstr "Sie können den Manager öffnen, um eine neue Konfigurations-Datei zu erstellen oder eine bestehende hochzuladen."
+
+#: cv/util/ConfigLoader.js
+msgid "Open manager"
+msgstr "Manager öffnen"

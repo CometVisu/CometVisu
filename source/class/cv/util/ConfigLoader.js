@@ -198,6 +198,7 @@ qx.Class.define('cv.util.ConfigLoader', {
       const configSuffix = (cv.Config.configSuffix ? cv.Config.configSuffix : '');
       const title = qx.locale.Manager.tr('Config-File Error!').translate().toString();
       let message = '';
+      let actions;
       switch (textStatus) {
         case 'parsererror':
           message = qx.locale.Manager.tr('Invalid config file!')+'<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">'+qx.locale.Manager.tr('Please check!')+'</a>';
@@ -216,6 +217,19 @@ qx.Class.define('cv.util.ConfigLoader', {
         }
         case 'filenotfound':
           message = qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]).translate().toString();
+          message += '<br/>'  + qx.locale.Manager.tr('You can open the manager to create or upload a config file.').translate().toString();
+          actions = {
+            link: [
+              {
+                title: qx.locale.Manager.tr('Open manager'),
+                type: 'manager',
+                action: () => {
+                  qx.core.Init.getApplication().showManager();
+                },
+                needsConfirmation: false
+              }
+            ]
+          };
           break;
         default:
           message = qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus).translate().toString();
@@ -230,9 +244,11 @@ qx.Class.define('cv.util.ConfigLoader', {
         title: title,
         message: message,
         severity: 'urgent',
-        unique: true,
-        deletable: false
+        unique: true
       };
+      if (actions) {
+        notification.actions = actions;
+      }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       this.error(this, message.toString());
       qx.core.Init.getApplication().block(false);
