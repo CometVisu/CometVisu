@@ -468,11 +468,11 @@ msgstr ""
 msgid "Option key duplicate: \"%1\" in section \"%2\"."
 msgstr ""
 
-#: cv/ui/manager/editor/Source.js
+#: cv/ui/manager/editor/Config.js
 msgid "Saving hidden config failed with error %1 (%2)"
 msgstr ""
 
-#: cv/ui/manager/editor/Source.js
+#: cv/ui/manager/editor/Config.js
 msgid "Hidden config has been saved"
 msgstr ""
 
@@ -1170,10 +1170,6 @@ msgstr ""
 
 #: cv/ui/structure/pure/ColorChooser.js
 msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
-msgstr ""
-
-#: cv/Application.js
-msgid "Manager"
 msgstr ""
 
 #: cv/util/ConfigLoader.js
