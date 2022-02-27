@@ -286,7 +286,7 @@ qx.Class.define('cv.util.IconTools', {
      * @param {(HTMLCanvasElement|SVGElement)} icon
      */
     fillRecoloredIcon: function (icon) {
-      const parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
+      const parameters = Array.prototype.filter.call(icon.classList, name => name !== 'icon');
       if (parameters.length === 2) {
         const cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
         const coloredIcon = cacheEntry.colors['#' + parameters[1]];
@@ -304,6 +304,11 @@ qx.Class.define('cv.util.IconTools', {
      * @returns {recolorCallback}
      */
     svgKUF: function (iconID) {
+      if (!this.preloadedKUFicons) {
+        this.preloadedKUFicons = true;
+        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.css';
+        cv.util.ScriptLoader.includeStylesheet(iconPath);
+      }
       /**
        * @param {string} color - color in CSS style, i.e. #rrggbb
        * @param {string} styling
@@ -327,7 +332,7 @@ qx.Class.define('cv.util.IconTools', {
           if (style) {
             style = ' style="' + style + '"';
           }
-          return '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"/>';
+          return '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"></i>';
         }
         let icon = document.createElement('i');
         icon.setAttribute('class', classes);
