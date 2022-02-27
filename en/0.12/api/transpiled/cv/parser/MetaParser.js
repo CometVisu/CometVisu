@@ -9,7 +9,6 @@
         "require": true
       },
       "cv.Config": {},
-      "qx.core.Init": {},
       "cv.IconHandler": {},
       "cv.core.notifications.Router": {},
       "cv.ui.NotificationCenter": {},
@@ -101,8 +100,10 @@
         }
       },
       parseIcons: function parseIcons(elem) {
-        cv.Config.configSettings.iconsFromConfig.push(this.__P_6_0(elem));
-        qx.core.Init.getApplication().loadIcons();
+        var icon = this.__P_6_0(elem);
+
+        cv.Config.configSettings.iconsFromConfig.push(icon);
+        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
       },
       parseMappings: function parseMappings(elem) {
         var name = elem.getAttribute('name');
@@ -123,9 +124,11 @@
             var v = origin[i];
 
             if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
-              var icon = this.__P_6_0(v);
+              var iconDefinition = this.__P_6_0(v);
 
-              value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon['class']));
+              var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+              icon.definition = iconDefinition;
+              value.push(icon);
             } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
               value.push(v.textContent.trim());
             }
@@ -350,15 +353,20 @@
         return pluginsToLoad;
       },
       __P_6_0: function __P_6_0(elem) {
+        var nullIsUndefined = function nullIsUndefined(x) {
+          return x === null ? undefined : x;
+        };
+
         return {
-          name: elem.getAttribute('name'),
-          uri: elem.getAttribute('uri'),
-          type: elem.getAttribute('type'),
-          flavour: elem.getAttribute('flavour'),
-          color: elem.getAttribute('color'),
-          styling: elem.getAttribute('styling'),
-          dynamic: elem.getAttribute('dynamic'),
-          'class': elem.getAttribute('class')
+          name: nullIsUndefined(elem.getAttribute('name')),
+          uri: nullIsUndefined(elem.getAttribute('uri')),
+          type: nullIsUndefined(elem.getAttribute('type')),
+          flavour: nullIsUndefined(elem.getAttribute('flavour')),
+          color: nullIsUndefined(elem.getAttribute('color')),
+          styling: nullIsUndefined(elem.getAttribute('styling')),
+          dynamic: nullIsUndefined(elem.getAttribute('dynamic')),
+          'class': nullIsUndefined(elem.getAttribute('class')),
+          source: 'config'
         };
       },
       parseStateNotifications: function parseStateNotifications(xml) {
@@ -501,4 +509,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1644052350552
+//# sourceMappingURL=MetaParser.js.map?dt=1645980643955

@@ -38,6 +38,7 @@
       "cv.util.ScriptLoader": {},
       "cv.parser.MetaParser": {},
       "cv.ui.structure.WidgetFactory": {},
+      "cv.ui.layout.ResizeHandler": {},
       "cv.ui.PageHandler": {},
       "qx.util.DeferredCall": {},
       "cv.ui.TrickOMatic": {},
@@ -655,6 +656,7 @@
 
           cv.ui.layout.Manager.adjustColumns();
           cv.ui.layout.Manager.applyColumnWidths('#' + cv.Config.initialPage, true);
+          cv.ui.layout.ResizeHandler.invalidateScreensize();
           this.main_scroll = new cv.ui.PageHandler();
 
           if (this.scrollSpeed !== undefined) {
@@ -1057,4 +1059,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1644052395136
+//# sourceMappingURL=TemplateEngine.js.map?dt=1645980681171

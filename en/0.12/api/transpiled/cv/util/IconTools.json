@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 274,
+        "line": 370,
         "column": 3
       }
     },
@@ -46,28 +46,55 @@
     "hexColorRegEx": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 36,
+          "line": 40,
           "column": 36
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>RegEx to determine a valid CSS style color like #rrggbb</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{RegExp}"
+          }
+        ]
+      },
       "type": "variable",
       "access": "public"
     },
     "colorMapping": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 47,
+          "line": 55,
           "column": 5
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>as a convenience, definition of a few colors</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object<string, string>}"
+          }
+        ]
       },
       "type": "variable",
       "access": "public"
@@ -75,13 +102,59 @@
     "iconCache": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 70,
           "column": 17
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "<p>the Image() of all knows (i.e. used) icons</p>"
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "iconCacheEntryHash"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object}"
+          },
+          {
+            "name": "@type",
+            "body": "{Object.<string, iconCacheEntryHash>}"
+          }
+        ],
+        "@property": [
+          {
+            "name": "@property",
+            "body": "{HTMLImageElement} icon - the original Image() of the icon"
+          },
+          {
+            "name": "@property",
+            "body": "{number} id - the unique ID for this icon"
+          },
+          {
+            "name": "@property",
+            "body": "{Object.<string, ImageData>} colors - cache all the transformed ImageDatas"
+          },
+          {
+            "name": "@property",
+            "body": "{string[]} toFill - all the icon colors to fill once the image was loaded"
+          }
+        ]
       },
       "type": "variable",
       "access": "public"
@@ -89,73 +162,133 @@
     "iconCacheMap": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 49,
+          "line": 74,
           "column": 20
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>mapping of ID to Cache entry (URL)</p>"
+          }
+        ]
+      },
       "type": "variable",
       "access": "public"
     },
     "iconDelay": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 79,
           "column": 17
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>array of all icons to fill where the Image is not ready yet</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array.<Array<(HTMLCanvasElement|SVGElement), Object.<string, ImageData>, string>>}"
+          }
+        ]
+      },
       "type": "variable",
       "access": "public"
     },
     "iconDelayFn": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 84,
           "column": 21
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>handler for delay function</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function}"
+          }
+        ]
+      },
       "type": "variable",
       "access": "public"
     },
     "tmpCanvas": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 86,
           "column": 19
         }
       },
-      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
     "tmpCtx": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 87,
           "column": 16
         }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "preloadedKUFicons": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 93,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Were the KNX User Forum icons already preloaded?\n Only done when the config is using them</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{boolean}"
+          }
+        ]
       },
       "type": "variable",
       "access": "public"
@@ -163,13 +296,35 @@
     "iconDelayed": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 101,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 121,
           "column": 5
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{(HTMLCanvasElement|SVGElement)} icon"
+          },
+          {
+            "name": "@param",
+            "body": "{Object.<string, ImageData>} colors"
+          },
+          {
+            "name": "@param",
+            "body": "{string} color"
+          }
+        ]
       },
       "type": "function",
       "access": "public"
@@ -177,11 +332,11 @@
     "createCanvas": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 131,
           "column": 5
         }
       },
@@ -195,21 +350,23 @@
         "@param": [
           {
             "name": "@param",
-            "body": "iconId",
-            "paramName": "iconId",
-            "type": ""
+            "body": "{string} iconId"
           },
           {
             "name": "@param",
-            "body": "styling",
-            "paramName": "styling",
-            "type": ""
+            "body": "{string?} styling"
           },
           {
             "name": "@param",
-            "body": "classes",
-            "paramName": "classes",
-            "type": ""
+            "body": "{string?} classes"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string}",
+            "type": "string",
+            "description": ""
           }
         ]
       },
@@ -219,11 +376,11 @@
     "fillCanvas": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 142,
           "column": 5
         }
       },
@@ -237,15 +394,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "canvas",
-            "paramName": "canvas",
-            "type": ""
+            "body": "{HTMLCanvasElement} canvas"
           },
           {
             "name": "@param",
-            "body": "imageData",
-            "paramName": "imageData",
-            "type": ""
+            "body": "{ImageData} imageData"
           }
         ]
       },
@@ -255,11 +408,11 @@
     "innerRecolorLoop": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 178,
           "column": 7
         }
       },
@@ -267,39 +420,29 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Two versions of a recoloring funtion to work around an Android bug:\n http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph\n https://code.google.com/p/android/issues/detail?id=17565</p>"
+            "body": "<p>Two versions of a recoloring function to work around an Android bug:\n http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph\n https://code.google.com/p/android/issues/detail?id=17565</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "r",
-            "paramName": "r",
-            "type": ""
+            "body": "{number} r"
           },
           {
             "name": "@param",
-            "body": "g",
-            "paramName": "g",
-            "type": ""
+            "body": "{number} g"
           },
           {
             "name": "@param",
-            "body": "b",
-            "paramName": "b",
-            "type": ""
+            "body": "{number} b"
           },
           {
             "name": "@param",
-            "body": "data",
-            "paramName": "data",
-            "type": ""
+            "body": "{number[]} data"
           },
           {
             "name": "@param",
-            "body": "length",
-            "paramName": "length",
-            "type": ""
+            "body": "{number} length"
           }
         ]
       },
@@ -309,11 +452,11 @@
     "doRecolorNonTransparent": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 159,
+          "line": 208,
           "column": 5
         }
       },
@@ -321,27 +464,24 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Do the recoloring based on @param thisIcon and store it in the\n hash @param thisIconColors.</p>"
+            "body": "<p>Do the recoloring based on <code>thisIcon</code> and store it in the\n hash <code>thisIconColors</code>.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "color",
+            "body": "{string} color - color in the CSS style #rrggbb",
             "paramName": "color",
-            "type": ""
+            "description": "- color in the CSS style #rrggbb",
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "thisIcon",
-            "paramName": "thisIcon",
-            "type": ""
+            "body": "{HTMLImageElement} thisIcon"
           },
           {
             "name": "@param",
-            "body": "thisIconColors",
-            "paramName": "thisIconColors",
-            "type": ""
+            "body": "{Object.<string, iconCacheEntryHash>} thisIconColors"
           }
         ]
       },
@@ -351,11 +491,11 @@
     "recolorNonTransparent": {
       "location": {
         "start": {
-          "line": 167,
+          "line": 218,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 281,
           "column": 5
         }
       },
@@ -363,15 +503,21 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Funtion to call for each icon that should be dynamically recolored.\n This will be called for each known URL, so only remember the string but\n don't load the image yet as it might not be needed.</p>"
+            "body": "<p>Function to call for each icon that should be dynamically recolored.\n This will be called for each known URL, so only remember the string but\n don't load the image yet as it might not be needed.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "url",
-            "paramName": "url",
-            "type": ""
+            "body": "{string} url"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{recolorCallback} a function that will append the recolored image to\n the jQuery element passed to that function",
+            "type": "recolorCallback",
+            "description": " a function that will append the recolored image to\n the jQuery element passed to that function"
           }
         ]
       },
@@ -381,11 +527,11 @@
     "fillRecoloredIcon": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 288,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 300,
           "column": 5
         }
       },
@@ -393,15 +539,13 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>This function must be called to fill a specific icon that was created</p>"
+            "body": "<p>This function must be called to fill a specific icon that was created.\n Is will be colored based on it's class name.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "icon",
-            "paramName": "icon",
-            "type": ""
+            "body": "{(HTMLCanvasElement|SVGElement)} icon"
           }
         ]
       },
@@ -411,13 +555,35 @@
     "svgKUF": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 306,
           "column": 4
         },
         "end": {
-          "line": 266,
+          "line": 362,
           "column": 5
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} iconID"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{recolorCallback}",
+            "type": "recolorCallback",
+            "description": ""
+          }
+        ]
       },
       "type": "function",
       "access": "public"
@@ -426,11 +592,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 269,
+        "line": 365,
         "column": 9
       },
       "end": {
-        "line": 273,
+        "line": 369,
         "column": 3
       }
     },

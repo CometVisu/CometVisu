@@ -293,8 +293,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
             if (source) {
               this.setIcon(source);
-              return;
+            } else {
+              this.setIcon(cv.theme.dark.Images.getIcon('image', 18));
             }
+
+            return;
           }
         }
 
@@ -756,7 +759,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             success = true;
           } else if (index === 0) {
             // add before first child
-            this._node.insertBefore(xmlElement.getNode(), this._node.children[0]);
+            this._node.insertBefore(xmlElement.getNode(), this._node.childNodes[0]);
 
             children.unshift(xmlElement);
             success = true;
@@ -1473,4 +1476,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1644052356285
+//# sourceMappingURL=XmlElement.js.map?dt=1645980648980

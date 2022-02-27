@@ -13,6 +13,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.data.Model": {},
       "cv.Version": {},
       "cv.Config": {},
+      "cv.IconHandler": {},
       "cv.TemplateEngine": {},
       "cv.ui.structure.WidgetFactory": {}
     }
@@ -117,7 +118,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var body = document.querySelector('body');
         var model = cv.data.Model.getInstance();
         this.getData().then(function (cache) {
-          cv.Config.configSettings = cache.configSettings; // restore formulas
+          cv.Config.configSettings = cache.configSettings; // restore icons
+
+          cv.Config.configSettings.iconsFromConfig.forEach(function (icon) {
+            cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+          }, _this); // restore mappings
 
           if (cv.Config.configSettings.mappings) {
             Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
@@ -125,6 +130,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               if (mapping && mapping.formulaSource) {
                 mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+              } else {
+                Object.keys(mapping).forEach(function (key) {
+                  if (Array.isArray(mapping[key])) {
+                    var contents = mapping[key];
+
+                    for (var i = 0; i < contents.length; i++) {
+                      var iconDefinition = contents[i].definition;
+
+                      if (iconDefinition) {
+                        var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                        icon.definition = iconDefinition;
+                        contents[i] = icon;
+                      }
+                    }
+                  } else {
+                    var _iconDefinition = mapping[key].definition;
+
+                    if (_iconDefinition) {
+                      var _icon = cv.IconHandler.getInstance().getIconElement(_iconDefinition.name, _iconDefinition.type, _iconDefinition.flavour, _iconDefinition.color, _iconDefinition.styling, _iconDefinition['class']);
+
+                      _icon.definition = _iconDefinition;
+                      mapping[key] = _icon;
+                    }
+                  }
+                });
               }
             }, _this);
           }
@@ -341,4 +371,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1644052394897
+//# sourceMappingURL=ConfigCache.js.map?dt=1645980680958

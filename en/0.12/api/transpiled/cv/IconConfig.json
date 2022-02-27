@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 1054,
+        "line": 1055,
         "column": 3
       }
     },
@@ -34,11 +34,11 @@
     "DB": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 1052,
+          "line": 1053,
           "column": 5
         }
       },
@@ -47,6 +47,12 @@
           {
             "name": "@description",
             "body": "<p>Internal database of the known icons.\n Initially filled with the default icons.</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{iconDB}"
           }
         ]
       },

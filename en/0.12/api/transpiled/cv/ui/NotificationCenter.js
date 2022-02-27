@@ -128,7 +128,7 @@
           // resolve icon if there is one
           if (message.icon) {
             var iconClasses = message.iconClasses ? ' ' + message.iconClasses : '';
-            message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, 'icon' + iconClasses);
+            message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, 'icon' + iconClasses, true);
           }
         }
       });
@@ -429,4 +429,4 @@
   cv.ui.NotificationCenter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenter.js.map?dt=1644052395316
+//# sourceMappingURL=NotificationCenter.js.map?dt=1645980681301

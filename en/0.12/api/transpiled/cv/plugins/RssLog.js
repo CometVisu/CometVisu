@@ -377,7 +377,8 @@
         }, this);
       },
       __P_13_11: function __P_13_11(ul, c) {
-        c.innerHTML = '';
+        c.replaceChildren(); // delete anything inside
+
         c.appendChild(ul); // get height of one entry, calc max num of display items in widget
 
         var displayrows = parseInt(c.dataset['last_rowcount'], 10) || 0;
@@ -418,8 +419,6 @@
         this.__P_13_12(result.responseData.feed.entries);
       },
       __P_13_12: function __P_13_12(items) {
-        var _this = this;
-
         var isBig = this.__P_13_0.getUserData('big');
 
         var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
@@ -473,16 +472,9 @@
           rowElem.innerHTML = itemHtml;
 
           if (item.mapping && item.mapping !== '') {
-            (function () {
-              var mappedValue = _this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
-
-              var span = rowElem.querySelector('.mappedValue');
-              var self = _this;
-
-              _this.defaultValue2DOM(mappedValue, function (e) {
-                self._applyValueToDom(span, e);
-              });
-            })();
+            var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
+            var span = rowElem.querySelector('.mappedValue');
+            this.defaultValue2DOM(mappedValue, span);
           }
 
           if (this.__P_13_6 && idx !== 0) {
@@ -563,11 +555,9 @@
         if (mapping && mapping !== '') {
           var mappedValue = this.applyMapping(state, mapping);
           var span = item.querySelector('.mappedValue');
-          span.innerHTML = '';
-          var self = this;
-          this.defaultValue2DOM(mappedValue, function (e) {
-            self._applyValueToDom(span, e);
-          });
+          span.replaceChildren(); // delete anything inside
+
+          this.defaultValue2DOM(mappedValue, span);
         }
 
         var req = new qx.io.request.Xhr(this.__P_13_0.getUrl());
@@ -592,4 +582,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1644052352079
+//# sourceMappingURL=RssLog.js.map?dt=1645980645236

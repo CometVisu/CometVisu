@@ -592,24 +592,24 @@
         "@param": [
           {
             "name": "@param",
-            "body": "address {String} KNX-GA or openHAB item name",
+            "body": "{string} address - KNX-GA or openHAB item name",
             "paramName": "address",
-            "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "description": "- KNX-GA or openHAB item name",
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "data {var} value to be processes",
+            "body": "{*} data - value to be processes",
             "paramName": "data",
-            "description": " value to be processes",
-            "type": "var"
+            "description": "- value to be processes",
+            "type": "*"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var} the processed value",
-            "type": "var",
+            "body": "{*} the processed value",
+            "type": "*",
             "description": " the processed value"
           }
         ]
@@ -627,17 +627,53 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.\n value: the value that will be inserted\n modifyFn: callback function that modifies the DOM</p>"
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.</p>"
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "widgetValueTypes"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{(string|number|Uint8Array|Map|Function)}"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "value {var}"
+            "body": "{(*|*[])} value - the value, or an array of values, that will be inserted",
+            "paramName": "value",
+            "description": "- the value, or an array of values, that will be inserted",
+            "type": [
+              "(*",
+              {
+                "type": "*",
+                "dimensions": 2
+              }
+            ]
           },
           {
             "name": "@param",
-            "body": "modifyFn {Function}"
+            "body": "{HTMLElement} targetElement - the element where <code>value</code> will be added to",
+            "paramName": "targetElement",
+            "description": "- the element where <code>value</code> will be added to",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "@param",
+            "body": "{Function?} modifyFn - callback function that modifies the DOM",
+            "paramName": "modifyFn",
+            "description": "- callback function that modifies the DOM",
+            "optional": true,
+            "type": "Function"
           }
         ]
       }
@@ -654,39 +690,39 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Default update function, processes the incoming value and applies it to the Dom value element.</p>"
+            "body": "<p>Default update function, processes the incoming value and applies it to the DOM value element.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "ga {String} KNX-GA or openHAB item name",
+            "body": "{string} ga - KNX-GA or openHAB item name",
             "paramName": "ga",
-            "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "description": "- KNX-GA or openHAB item name",
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "data {var} the raw value from the bus",
+            "body": "{*} data - the raw value from the bus",
             "paramName": "data",
-            "description": " the raw value from the bus",
-            "type": "var"
+            "description": "- the raw value from the bus",
+            "type": "*"
           },
           {
             "name": "@param",
-            "body": "passedElement {Element?} the element to update, if not given {@link getDomElement()} is used",
+            "body": "{HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used",
             "paramName": "passedElement",
-            "description": " the element to update, if not given {@link getDomElement()} is used",
+            "description": "- the element to update, if not given {@link getDomElement()} is used",
             "optional": true,
-            "type": "Element"
+            "type": "HTMLElement"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var} value",
-            "type": "var",
-            "description": " value"
+            "body": "{*} - value",
+            "type": "*",
+            "description": " - value"
           }
         ]
       }
@@ -709,17 +745,17 @@
         "@param": [
           {
             "name": "@param",
-            "body": "valueElement {Element} element to update",
-            "paramName": "valueElement",
-            "description": " element to update",
-            "type": "Element"
+            "body": "{HTMLElement} targetElement - element to update",
+            "paramName": "targetElement",
+            "description": "- element to update",
+            "type": "HTMLElement"
           },
           {
             "name": "@param",
-            "body": "e {var} value to add to the element",
-            "paramName": "e",
-            "description": " value to add to the element",
-            "type": "var"
+            "body": "{*} value - value to add to the element",
+            "paramName": "value",
+            "description": "- value to add to the element",
+            "type": "*"
           }
         ]
       }

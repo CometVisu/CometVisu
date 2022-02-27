@@ -319,9 +319,9 @@
         if (height === 0) {
           // not ready try again
           var self = this;
-          qx.bom.AnimationFrame.request(function () {
+          window.requestAnimationFrame(function () {
             self.__P_489_7(elem);
-          }, this);
+          });
           return;
         }
 
@@ -376,4 +376,4 @@
   cv.ui.layout.ResizeHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResizeHandler.js.map?dt=1644052394818
+//# sourceMappingURL=ResizeHandler.js.map?dt=1645980680883

@@ -14,17 +14,17 @@
         "construct": true,
         "require": true
       },
+      "qx.util.ResourceManager": {},
       "qx.util.AliasManager": {},
       "qx.theme.manager.Color": {},
+      "qx.html.Image": {},
       "qx.io.ImageLoader": {},
       "qx.lang.String": {},
       "qx.bom.client.Css": {
         "require": true
       },
-      "qx.html.Image": {},
       "qx.html.Element": {},
       "qx.html.Label": {},
-      "qx.util.ResourceManager": {},
       "qx.bom.client.Engine": {
         "require": true
       },
@@ -159,7 +159,8 @@
         nullable: true,
         event: 'changeSource',
         apply: '_applySource',
-        themeable: true
+        themeable: true,
+        transform: '_transformSource'
       },
 
       /**
@@ -174,6 +175,10 @@
         event: 'changeScale',
         themeable: true,
         apply: '_applyScale'
+      },
+      forceScale: {
+        check: 'Boolean',
+        init: false
       },
 
       /**
@@ -259,6 +264,24 @@
       __P_27_4: null,
       __P_27_5: null,
       __P_27_6: 0,
+
+      /**
+       * Remove the "resource/" prefix when the ResourceManager knows the image
+       * @param value
+       * @return {*}
+       * @private
+       */
+      _transformSource: function _transformSource(value) {
+        if (value && value.startsWith('resource/')) {
+          var ResourceManager = qx.util.ResourceManager.getInstance();
+
+          if (ResourceManager.has(value.substring('resource/'.length))) {
+            return value.substring('resource/'.length);
+          }
+        }
+
+        return value;
+      },
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         cv.ui.manager.basic.Image.prototype._onChangeTheme.base.call(this); // restyle source (theme change might have changed the resolved url)
@@ -333,7 +356,7 @@
             top: this.getPaddingTop() || 0,
             left: this.getPaddingLeft() || 0
           });
-        } else {
+        } else if (element instanceof qx.html.Image) {
           element.setPadding(this.getPaddingLeft() || 0, this.getPaddingTop() || 0);
         }
       },
@@ -400,7 +423,7 @@
 
           if (source && qx.lang.String.startsWith(source, '@')) {
             this.__P_27_3 = 'font';
-          } else if (source && qx.lang.String.startsWith(source, '<svg')) {
+          } else if (source && source.startsWith('<svg')) {
             this.__P_27_3 = 'svg';
           } else {
             var isPng = false;
@@ -411,7 +434,7 @@
 
             if (this.getScale() && isPng && qx.core.Environment.get('css.alphaimageloaderneeded')) {
               this.__P_27_3 = 'alphaScaled';
-            } else if (this.getScale()) {
+            } else if (this.getScale() || this.getForceScale()) {
               this.__P_27_3 = 'scaled';
             } else {
               this.__P_27_3 = 'nonScaled';
@@ -625,20 +648,21 @@
           var isPng = source.endsWith('.png');
           var isFont = source.startsWith('@');
           var isSvg = source.startsWith('<svg');
+          var scale = this.getScale() || this.getForceScale();
 
           if (isFont) {
             this.__P_27_10('font');
           } else if (isSvg) {
             this.__P_27_10('svg');
           } else if (alphaImageLoader && isPng) {
-            if (this.getScale() && this.__P_27_9() != 'alphaScaled') {
+            if (scale && this.__P_27_9() !== 'alphaScaled') {
               this.__P_27_10('alphaScaled');
-            } else if (!this.getScale() && this.__P_27_9() != 'nonScaled') {
+            } else if (!scale && this.__P_27_9() !== 'nonScaled') {
               this.__P_27_10('nonScaled');
             }
-          } else if (this.getScale() && this.__P_27_9() != 'scaled') {
+          } else if (scale && this.__P_27_9() !== 'scaled') {
             this.__P_27_10('scaled');
-          } else if (!this.getScale() && this.__P_27_9() != 'nonScaled') {
+          } else if (!scale && this.__P_27_9() !== 'nonScaled') {
             this.__P_27_10('nonScaled');
           }
 
@@ -647,14 +671,15 @@
         'default': function _default(source) {
           var isFont = source && qx.lang.String.startsWith(source, '@');
           var isSvg = source.startsWith('<svg');
+          var scale = this.getScale() || this.getForceScale();
 
           if (isFont) {
             this.__P_27_10('font');
           } else if (isSvg) {
             this.__P_27_10('svg');
-          } else if (this.getScale() && this.__P_27_9() != 'scaled') {
+          } else if (scale && this.__P_27_9() !== 'scaled') {
             this.__P_27_10('scaled');
-          } else if (!this.getScale() && this.__P_27_9() != 'nonScaled') {
+          } else if (!scale && this.__P_27_9() !== 'nonScaled') {
             this.__P_27_10('nonScaled');
           }
 
@@ -955,7 +980,7 @@
           }
 
           return;
-        } else if (el.getNodeName() == 'div') {
+        } else if (el.getNodeName() === 'div') {
           // checks if a decorator already set.
           // In this case we have to merge background styles
           var decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());
@@ -1162,4 +1187,4 @@
   cv.ui.manager.basic.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1644052353560
+//# sourceMappingURL=Image.js.map?dt=1645980646552

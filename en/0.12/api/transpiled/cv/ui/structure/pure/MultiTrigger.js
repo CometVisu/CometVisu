@@ -99,10 +99,9 @@
             var mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
 
             if (mappedValue !== buttonConfig.value || !label) {
-              label = '';
-              this.defaultValue2DOM(mappedValue, function (e) {
-                label += e;
-              });
+              var div = document.createElement('div');
+              this.defaultValue2DOM(mappedValue, div);
+              label = div.innerHTML;
             }
           }
 
@@ -173,4 +172,4 @@
   cv.ui.structure.pure.MultiTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MultiTrigger.js.map?dt=1644052357718
+//# sourceMappingURL=MultiTrigger.js.map?dt=1645980650237

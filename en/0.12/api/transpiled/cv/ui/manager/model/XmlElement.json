@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 1269,
+        "line": 1271,
         "column": 3
       }
     },
@@ -630,7 +630,7 @@
           "column": 4
         },
         "end": {
-          "line": 268,
+          "line": 270,
           "column": 5
         }
       },
@@ -640,11 +640,11 @@
     "_applyEditable": {
       "location": {
         "start": {
-          "line": 270,
+          "line": 272,
           "column": 4
         },
         "end": {
-          "line": 273,
+          "line": 275,
           "column": 5
         }
       },
@@ -657,11 +657,11 @@
     "_updateShowEditButton": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 277,
           "column": 4
         },
         "end": {
-          "line": 282,
+          "line": 284,
           "column": 5
         }
       },
@@ -671,11 +671,11 @@
     "updateDeletable": {
       "location": {
         "start": {
-          "line": 284,
+          "line": 286,
           "column": 4
         },
         "end": {
-          "line": 319,
+          "line": 321,
           "column": 5
         }
       },
@@ -685,11 +685,11 @@
     "getNode": {
       "location": {
         "start": {
-          "line": 321,
+          "line": 323,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 325,
           "column": 5
         }
       },
@@ -699,11 +699,11 @@
     "remove": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 351,
           "column": 5
         }
       },
@@ -713,11 +713,11 @@
     "isAncestor": {
       "location": {
         "start": {
-          "line": 356,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 365,
+          "line": 367,
           "column": 5
         }
       },
@@ -752,11 +752,11 @@
     "_move": {
       "location": {
         "start": {
-          "line": 374,
+          "line": 376,
           "column": 4
         },
         "end": {
-          "line": 412,
+          "line": 414,
           "column": 5
         }
       },
@@ -803,11 +803,11 @@
     "moveTo": {
       "location": {
         "start": {
-          "line": 414,
+          "line": 416,
           "column": 4
         },
         "end": {
-          "line": 449,
+          "line": 451,
           "column": 5
         }
       },
@@ -817,11 +817,11 @@
     "moveAfter": {
       "location": {
         "start": {
-          "line": 451,
+          "line": 453,
           "column": 4
         },
         "end": {
-          "line": 453,
+          "line": 455,
           "column": 5
         }
       },
@@ -831,11 +831,11 @@
     "moveBefore": {
       "location": {
         "start": {
-          "line": 455,
+          "line": 457,
           "column": 4
         },
         "end": {
-          "line": 457,
+          "line": 459,
           "column": 5
         }
       },
@@ -845,11 +845,11 @@
     "moveInside": {
       "location": {
         "start": {
-          "line": 459,
+          "line": 461,
           "column": 4
         },
         "end": {
-          "line": 461,
+          "line": 463,
           "column": 5
         }
       },
@@ -859,11 +859,11 @@
     "insertAfter": {
       "location": {
         "start": {
-          "line": 463,
+          "line": 465,
           "column": 4
         },
         "end": {
-          "line": 467,
+          "line": 469,
           "column": 5
         }
       },
@@ -873,11 +873,11 @@
     "insertBefore": {
       "location": {
         "start": {
-          "line": 469,
+          "line": 471,
           "column": 4
         },
         "end": {
-          "line": 473,
+          "line": 475,
           "column": 5
         }
       },
@@ -887,11 +887,11 @@
     "getAddableChildren": {
       "location": {
         "start": {
-          "line": 481,
+          "line": 483,
           "column": 4
         },
         "end": {
-          "line": 537,
+          "line": 539,
           "column": 5
         }
       },
@@ -918,11 +918,11 @@
     "isChildAllowedAtPosition": {
       "location": {
         "start": {
-          "line": 545,
+          "line": 547,
           "column": 4
         },
         "end": {
-          "line": 598,
+          "line": 600,
           "column": 5
         }
       },
@@ -967,11 +967,11 @@
     "findPositionForChild": {
       "location": {
         "start": {
-          "line": 600,
+          "line": 602,
           "column": 4
         },
         "end": {
-          "line": 631,
+          "line": 633,
           "column": 5
         }
       },
@@ -981,11 +981,11 @@
     "insertChild": {
       "location": {
         "start": {
-          "line": 641,
+          "line": 643,
           "column": 4
         },
         "end": {
-          "line": 705,
+          "line": 707,
           "column": 5
         }
       },
@@ -1040,11 +1040,11 @@
     "_validateTextContent": {
       "location": {
         "start": {
-          "line": 707,
+          "line": 709,
           "column": 4
         },
         "end": {
-          "line": 718,
+          "line": 720,
           "column": 5
         }
       },
@@ -1054,11 +1054,11 @@
     "validate": {
       "location": {
         "start": {
-          "line": 724,
+          "line": 726,
           "column": 4
         },
         "end": {
-          "line": 782,
+          "line": 784,
           "column": 5
         }
       },
@@ -1085,11 +1085,11 @@
     "isTextNode": {
       "location": {
         "start": {
-          "line": 784,
+          "line": 786,
           "column": 4
         },
         "end": {
-          "line": 786,
+          "line": 788,
           "column": 5
         }
       },
@@ -1099,11 +1099,11 @@
     "_applyTextContent": {
       "location": {
         "start": {
-          "line": 788,
+          "line": 790,
           "column": 4
         },
         "end": {
-          "line": 799,
+          "line": 801,
           "column": 5
         }
       },
@@ -1116,11 +1116,11 @@
     "getText": {
       "location": {
         "start": {
-          "line": 801,
+          "line": 803,
           "column": 4
         },
         "end": {
-          "line": 803,
+          "line": 805,
           "column": 5
         }
       },
@@ -1130,11 +1130,11 @@
     "setText": {
       "location": {
         "start": {
-          "line": 805,
+          "line": 807,
           "column": 4
         },
         "end": {
-          "line": 828,
+          "line": 830,
           "column": 5
         }
       },
@@ -1144,11 +1144,11 @@
     "getAttribute": {
       "location": {
         "start": {
-          "line": 830,
+          "line": 832,
           "column": 4
         },
         "end": {
-          "line": 832,
+          "line": 834,
           "column": 5
         }
       },
@@ -1158,11 +1158,11 @@
     "setAttribute": {
       "location": {
         "start": {
-          "line": 834,
+          "line": 836,
           "column": 4
         },
         "end": {
-          "line": 889,
+          "line": 891,
           "column": 5
         }
       },
@@ -1172,11 +1172,11 @@
     "isRequired": {
       "location": {
         "start": {
-          "line": 894,
+          "line": 896,
           "column": 4
         },
         "end": {
-          "line": 902,
+          "line": 904,
           "column": 5
         }
       },
@@ -1202,11 +1202,11 @@
     "setAttributes": {
       "location": {
         "start": {
-          "line": 904,
+          "line": 906,
           "column": 4
         },
         "end": {
-          "line": 968,
+          "line": 970,
           "column": 5
         }
       },
@@ -1216,11 +1216,11 @@
     "_applySchemaElement": {
       "location": {
         "start": {
-          "line": 970,
+          "line": 972,
           "column": 4
         },
         "end": {
-          "line": 977,
+          "line": 979,
           "column": 5
         }
       },
@@ -1233,11 +1233,11 @@
     "_onOpen": {
       "location": {
         "start": {
-          "line": 979,
+          "line": 981,
           "column": 4
         },
         "end": {
-          "line": 984,
+          "line": 986,
           "column": 5
         }
       },
@@ -1250,11 +1250,11 @@
     "_applyModified": {
       "location": {
         "start": {
-          "line": 986,
+          "line": 988,
           "column": 4
         },
         "end": {
-          "line": 988,
+          "line": 990,
           "column": 5
         }
       },
@@ -1267,11 +1267,11 @@
     "_updateDisplayName": {
       "location": {
         "start": {
-          "line": 990,
+          "line": 992,
           "column": 4
         },
         "end": {
-          "line": 1013,
+          "line": 1015,
           "column": 5
         }
       },
@@ -1284,11 +1284,11 @@
     "hasChildren": {
       "location": {
         "start": {
-          "line": 1014,
+          "line": 1016,
           "column": 4
         },
         "end": {
-          "line": 1027,
+          "line": 1029,
           "column": 5
         }
       },
@@ -1298,11 +1298,11 @@
     "load": {
       "location": {
         "start": {
-          "line": 1029,
+          "line": 1031,
           "column": 4
         },
         "end": {
-          "line": 1114,
+          "line": 1116,
           "column": 5
         }
       },
@@ -1312,11 +1312,11 @@
     "appendInvalidMessage": {
       "location": {
         "start": {
-          "line": 1116,
+          "line": 1118,
           "column": 4
         },
         "end": {
-          "line": 1121,
+          "line": 1123,
           "column": 5
         }
       },
@@ -1326,11 +1326,11 @@
     "updateModified": {
       "location": {
         "start": {
-          "line": 1123,
+          "line": 1125,
           "column": 4
         },
         "end": {
-          "line": 1150,
+          "line": 1152,
           "column": 5
         }
       },
@@ -1340,11 +1340,11 @@
     "hasChildrenModified": {
       "location": {
         "start": {
-          "line": 1157,
+          "line": 1159,
           "column": 4
         },
         "end": {
-          "line": 1163,
+          "line": 1165,
           "column": 5
         }
       },
@@ -1370,11 +1370,11 @@
     "onSaved": {
       "location": {
         "start": {
-          "line": 1165,
+          "line": 1167,
           "column": 4
         },
         "end": {
-          "line": 1181,
+          "line": 1183,
           "column": 5
         }
       },
@@ -1384,11 +1384,11 @@
     "isElement": {
       "location": {
         "start": {
-          "line": 1183,
+          "line": 1185,
           "column": 4
         },
         "end": {
-          "line": 1185,
+          "line": 1187,
           "column": 5
         }
       },
@@ -1398,11 +1398,11 @@
     "_currentChildNames": {
       "location": {
         "start": {
-          "line": 1187,
+          "line": 1189,
           "column": 4
         },
         "end": {
-          "line": 1198,
+          "line": 1200,
           "column": 5
         }
       },
@@ -1412,11 +1412,11 @@
     "_syncChildNodes": {
       "location": {
         "start": {
-          "line": 1200,
+          "line": 1202,
           "column": 4
         },
         "end": {
-          "line": 1205,
+          "line": 1207,
           "column": 5
         }
       },
@@ -1426,11 +1426,11 @@
     "_updateChildrenDeletableFlags": {
       "location": {
         "start": {
-          "line": 1207,
+          "line": 1209,
           "column": 4
         },
         "end": {
-          "line": 1215,
+          "line": 1217,
           "column": 5
         }
       },
@@ -1440,11 +1440,11 @@
     "getWidgetPath": {
       "location": {
         "start": {
-          "line": 1217,
+          "line": 1219,
           "column": 4
         },
         "end": {
-          "line": 1250,
+          "line": 1252,
           "column": 5
         }
       },
@@ -1454,11 +1454,11 @@
     "clone": {
       "location": {
         "start": {
-          "line": 1253,
+          "line": 1255,
           "column": 4
         },
         "end": {
-          "line": 1255,
+          "line": 1257,
           "column": 5
         }
       },
@@ -6356,11 +6356,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1262,
+        "line": 1264,
         "column": 12
       },
       "end": {
-        "line": 1268,
+        "line": 1270,
         "column": 3
       }
     },

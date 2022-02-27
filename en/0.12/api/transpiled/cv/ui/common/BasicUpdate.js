@@ -84,9 +84,9 @@
       /**
        * Apply the given mapping to the value
        *
-       * @param value {var} value to be mapped
-       * @param mappingName {String} mapping name, if not set the <code>mapping</code> property value is used
-       * @return {var} the mapped value
+       * @param {*} value - value to be mapped
+       * @param {string} mappingName - mapping name, if not set the <code>mapping</code> property value is used
+       * @return {*} the mapped value
        */
       applyMapping: function applyMapping(value, mappingName) {
         if (mappingName && cv.Config.hasMapping(mappingName)) {
@@ -224,9 +224,9 @@
        * The default value handling for most of the widgets.
        * This method applies the transform, mapping, format and styling to the value.
        *
-       * @param address {String} KNX-GA or openHAB item name
-       * @param data {var} value to be processes
-       * @return {var} the processed value
+       * @param {string} address - KNX-GA or openHAB item name
+       * @param {*} data - value to be processes
+       * @return {*} the processed value
        */
       defaultValueHandling: function defaultValueHandling(address, data) {
         // #1: transform the raw value to a JavaScript type
@@ -271,63 +271,49 @@
       },
 
       /**
+       * @typedef widgetValueTypes
+       * @type {(string|number|Uint8Array|Map|Function)}
+       */
+
+      /**
        * Method to handle all special cases for the value. The might come from
        * the mapping where it can be quite complex as it can contain icons.
-       * value: the value that will be inserted
-       * modifyFn: callback function that modifies the DOM
-       *
-       * @param value {var}
-       * @param modifyFn {Function}
+       * @param {(*|*[])} value - the value, or an array of values, that will be inserted
+       * @param {HTMLElement} targetElement - the element where `value` will be added to
+       * @param {Function?} modifyFn - callback function that modifies the DOM
        */
-      defaultValue2DOM: function defaultValue2DOM(value, modifyFn) {
-        var element;
+      defaultValue2DOM: function defaultValue2DOM(value, targetElement) {
+        var _this = this;
 
-        if (typeof value === 'string' || typeof value === 'number' || value instanceof Uint8Array || value instanceof Map) {
-          modifyFn(value);
-        } else if (typeof value === 'function') {
-          // thisValue(valueElement);
-          this.error('typeof value === function - special case not handled anymore!');
-        } else if (!Array.isArray(value)) {
-          element = value.cloneNode();
+        var modifyFn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this._applyValueToDom;
+
+        if (Array.isArray(value)) {
+          value.forEach(function (v) {
+            return _this.defaultValue2DOM(v, targetElement, modifyFn);
+          });
+          return;
+        }
+
+        if (value instanceof Node) {
+          var element = value.cloneNode(true);
 
           if (value.getContext) {
             cv.util.IconTools.fillRecoloredIcon(element);
           }
 
-          modifyFn(element);
+          modifyFn(targetElement, element);
         } else {
-          for (var i = 0; i < value.length; i++) {
-            var thisValue = value[i];
-
-            if (!thisValue) {
-              continue;
-            }
-
-            if (typeof thisValue === 'string' || typeof thisValue === 'number') {
-              modifyFn(thisValue);
-            } else if (typeof thisValue === 'function') {
-              // thisValue(valueElement);
-              this.error('typeof value === function - special case not handled anymore!');
-            } else {
-              element = thisValue.cloneNode();
-
-              if (thisValue.getContext) {
-                cv.util.IconTools.fillRecoloredIcon(element);
-              }
-
-              modifyFn(element);
-            }
-          }
+          modifyFn(targetElement, value);
         }
       },
 
       /**
-       * Default update function, processes the incoming value and applies it to the Dom value element.
+       * Default update function, processes the incoming value and applies it to the DOM value element.
        *
-       * @param ga {String} KNX-GA or openHAB item name
-       * @param data {var} the raw value from the bus
-       * @param passedElement {Element?} the element to update, if not given {@link getDomElement()} is used
-       * @return {var} value
+       * @param {string} ga - KNX-GA or openHAB item name
+       * @param {*} data - the raw value from the bus
+       * @param {HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used
+       * @return {*} - value
        */
       defaultUpdate: function defaultUpdate(ga, data, passedElement) {
         var element = passedElement || this.getDomElement();
@@ -339,15 +325,13 @@
         }
 
         var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
-        valueElement.innerHTML = '';
 
         if (undefined !== value) {
-          var self = this;
-          this.defaultValue2DOM(value, function (e) {
-            self._applyValueToDom(valueElement, e);
-          });
+          valueElement.replaceChildren(); // delete anything inside
+
+          this.defaultValue2DOM(value, valueElement);
         } else {
-          valueElement.appendChild(document.createTextNode('-'));
+          valueElement.textContent = '-';
         }
 
         return value;
@@ -355,14 +339,20 @@
 
       /**
        * Internal function which updates the DOM element with the given value
-       * @param valueElement {Element} element to update
-       * @param e {var} value to add to the element
+       * @param {HTMLElement} targetElement - element to update
+       * @param {*} value - value to add to the element
        */
-      _applyValueToDom: function _applyValueToDom(valueElement, e) {
-        if (typeof e === 'number') {
-          valueElement.innerText = e;
+      _applyValueToDom: function _applyValueToDom(targetElement, value) {
+        if (value === undefined || value === null) {
+          return;
+        }
+
+        if (value instanceof Node) {
+          targetElement.appendChild(value);
+        } else if (typeof value === 'number' || typeof value === 'string') {
+          targetElement.appendChild(document.createTextNode(value));
         } else {
-          valueElement.innerHTML += e;
+          targetElement.innerHTML += value;
         }
       }
     }
@@ -370,4 +360,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1644052395695
+//# sourceMappingURL=BasicUpdate.js.map?dt=1645980681589

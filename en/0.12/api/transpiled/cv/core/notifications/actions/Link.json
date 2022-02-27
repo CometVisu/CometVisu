@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 126,
+        "line": 130,
         "column": 3
       }
     },
@@ -89,14 +89,31 @@
       "allowNull": true,
       "check": "String"
     },
-    "action": {
+    "type": {
       "location": {
         "start": {
           "line": 55,
           "column": 4
         },
         "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "name": "type",
+      "propertyType": "new",
+      "init": "",
+      "check": "String",
+      "defaultValue": ""
+    },
+    "action": {
+      "location": {
+        "start": {
           "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
           "column": 5
         }
       },
@@ -110,11 +127,11 @@
     "hidden": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 67,
           "column": 5
         }
       },
@@ -129,11 +146,11 @@
     "_transformAction": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 90,
           "column": 5
         }
       },
@@ -143,11 +160,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 112,
           "column": 5
         }
       },
@@ -169,11 +186,11 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 120,
+          "line": 124,
           "column": 5
         }
       },
@@ -709,6 +726,72 @@
         ]
       }
     },
+    "getType": {
+      "type": "function",
+      "name": "getType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for type"
+          }
+        ]
+      }
+    },
+    "setType": {
+      "type": "function",
+      "name": "setType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for type"
+          }
+        ]
+      }
+    },
+    "resetType": {
+      "type": "function",
+      "name": "resetType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>type</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #type}."
+          }
+        ]
+      }
+    },
     "getAction": {
       "type": "function",
       "name": "getAction",
@@ -869,11 +952,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 123,
+        "line": 127,
         "column": 9
       },
       "end": {
-        "line": 125,
+        "line": 129,
         "column": 3
       }
     },

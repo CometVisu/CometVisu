@@ -66,7 +66,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.util.ScriptLoader": {},
       "cv.data.Model": {},
       "cv.ui.structure.WidgetFactory": {},
-      "cv.IconHandler": {},
       "qx.Part": {},
       "qx.bom.client.Html": {
         "require": true
@@ -87,7 +86,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   /* Application.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -636,6 +635,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             },
             link: [{
               title: qx.locale.Manager.tr('Reload'),
+              type: 'reload',
               action: function action(ev) {
                 var parent = ev.getTarget().parentNode;
 
@@ -673,7 +673,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         if (!cv.Config.reporting) {
           if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-            link = ' <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+            link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
           }
 
           notification.actions.optionGroup.options.push({
@@ -687,6 +687,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             // Sentry has been loaded -> add option to send the error
             notification.actions.link.push({
               title: qx.locale.Manager.tr('Send error to sentry.io'),
+              type: 'sentry',
               action: function action() {
                 Sentry.captureException(ex);
               },
@@ -704,7 +705,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
               name: 'reportErrors',
               style: 'margin-left: 18px'
-            }); // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
+            });
           }
         }
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
@@ -797,7 +798,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       bootstrap: function () {
         var _bootstrap = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(xml) {
-          var engine, loader, isCached, xmlHash, cacheValid, body, structure, styles, scripts;
+          var engine, loader, isCached, xmlHash, cacheValid, structure, styles, scripts;
           return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
@@ -841,8 +842,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cv.Config.cacheUsed = false;
                     cv.ConfigCache.clear(); // load empty HTML structure
 
-                    body = document.querySelector('body');
-                    body.innerHTML = cv.Application.HTML_STRUCT; //empty model
+                    document.body.innerHTML = cv.Application.HTML_STRUCT; //empty model
 
                     cv.data.Model.getInstance().resetWidgetDataModel();
                     cv.data.Model.getInstance().resetAddressList();
@@ -892,8 +892,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       this.loadStyles();
                       this.loadScripts();
                     }
-
-                    this.loadIcons();
                   }
 
                 case 16:
@@ -935,15 +933,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         return bootstrap;
       }(),
-
-      /**
-       * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
-       */
-      loadIcons: function loadIcons() {
-        cv.Config.configSettings.iconsFromConfig.forEach(function (icon) {
-          cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
-        }, this);
-      },
 
       /**
        * Load CSS styles
@@ -1100,77 +1089,97 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             var env = req.getResponse();
             var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
 
-            var parts = env.required_php_version.split(' ');
-            var disable = parts.some(function (constraint) {
-              var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+            var disable = false;
 
-              if (match) {
-                var operator = match[1];
-                var majorConstraint = parseInt(match[2]);
-                var hasMinorVersion = match[3] !== undefined;
-                var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-                var hasPatchVersion = match[4] !== undefined;
-                var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-                var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-                var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+            if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
+              var parts = env.required_php_version.split(' ');
+              disable = parts.some(function (constraint) {
+                var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
 
-                switch (operator) {
-                  case '>=':
-                    if (serverVersionId < constraintId) {
-                      return true;
-                    }
+                if (match) {
+                  var operator = match[1];
+                  var majorConstraint = parseInt(match[2]);
+                  var hasMinorVersion = match[3] !== undefined;
+                  var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+                  var hasPatchVersion = match[4] !== undefined;
+                  var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+                  var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+                  var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
 
-                    break;
+                  switch (operator) {
+                    case '>=':
+                      if (serverVersionId < constraintId) {
+                        return true;
+                      }
 
-                  case '>':
-                    if (serverVersionId <= constraintId) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '>':
+                      if (serverVersionId <= constraintId) {
+                        return true;
+                      }
 
-                  case '<=':
-                    if (serverVersionId > maxId) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '<=':
+                      if (serverVersionId > maxId) {
+                        return true;
+                      }
 
-                  case '<':
-                    if (serverVersionId >= maxId) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '<':
+                      if (serverVersionId >= maxId) {
+                        return true;
+                      }
 
-                  case '^':
-                    if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '^':
+                      if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                        return true;
+                      }
 
-                  case '~':
-                    if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
-                      return true;
-                    }
+                      break;
 
-                    break;
+                    case '~':
+                      if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
+                        return true;
+                      }
+
+                      break;
+                  }
                 }
+
+                return false;
+              });
+
+              if (disable) {
+                this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+                this.setManagerDisabled(true);
+                this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+              } else {
+                this.info('Manager available for PHP version', env.phpversion);
               }
-
-              return false;
-            });
-
-            if (disable) {
-              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-              this.setManagerDisabled(true);
-              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-            } else {
-              this.info('Manager available for PHP version', env.phpversion);
             }
 
             this.setManagerChecked(true);
+
+            if (window.Sentry) {
+              Sentry.configureScope(function (scope) {
+                if ('server_release' in env) {
+                  scope.setTag('server.release', env.server_release);
+                }
+
+                if ('server_branch' in env) {
+                  scope.setTag('server.branch', env.server_branch);
+                }
+
+                if ('server_id' in env) {
+                  scope.setTag('server.id', env.server_id);
+                }
+              });
+            }
           }, this);
           xhr.addListener('statusError', function (e) {
             _this4.setManagerChecked(true);
@@ -1227,4 +1236,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1644052349670
+//# sourceMappingURL=Application.js.map?dt=1645980643223

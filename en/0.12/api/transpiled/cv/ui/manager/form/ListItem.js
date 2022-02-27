@@ -51,7 +51,11 @@
         switch (id) {
           case 'icon':
             control = new cv.ui.manager.basic.Image(this.getIcon());
-            control.setAnonymous(true);
+            control.set({
+              anonymous: true,
+              scale: true,
+              maxHeight: 64
+            });
 
             this._addAt(control, 0);
 
@@ -69,4 +73,4 @@
   cv.ui.manager.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1644052355485
+//# sourceMappingURL=ListItem.js.map?dt=1645980648242

@@ -47,6 +47,7 @@
       /**
        * Internal database of the known icons.
        * Initially filled with the default icons.
+       * @type {iconDB}
        */
       DB: {
         'CometVisu': {
@@ -13184,4 +13185,4 @@
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1644052397459
+//# sourceMappingURL=IconConfig.js.map?dt=1645980683254

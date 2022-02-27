@@ -78,7 +78,7 @@
     "en": "/en/develop/manual/config/widgets/plugins/timeout/index.html"
   "name": "Timeout"
 - "description":
-    "de": "Verbesserte Integration mit dem openHAB Backend"
+    "de": "Verbesserte Integration mit dem openHAB2 Backend"
   "manual":
     "de": "/de/develop/manual/config/widgets/plugins/openhab/index.html"
   "name": "openHAB"

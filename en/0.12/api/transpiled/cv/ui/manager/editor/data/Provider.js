@@ -59,6 +59,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
   /**
    * Wrapper class for all data providers.
+   * @ignore(Element)
    */
   qx.Class.define('cv.ui.manager.editor.data.Provider', {
     extend: qx.core.Object,
@@ -127,7 +128,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         },
         'icon': {
           'name': {
-            cache: true,
+            cache: false,
+            live: true,
             userInputAllowed: false,
             method: 'getIcons'
           }
@@ -606,7 +608,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         return plugins;
       },
-      getIcons: function getIcons(format, config) {
+
+      /**
+       * 
+       * @param {String} format 
+       * @param {Map?} config 
+       * @param {Element?} element 
+       * @returns {Array} array with icon definitions
+       */
+      getIcons: function getIcons(format, config, element) {
         if (!format) {
           format = 'monaco';
         }
@@ -623,7 +633,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var iconHandler = cv.IconHandler.getInstance();
 
         if (format === 'monaco') {
-          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+          // do not use icons from config when we can query them ourselves
+          icons = Object.keys(cv.IconConfig.DB).filter(function (name) {
+            return !element || cv.IconConfig.DB[name].source !== 'config';
+          }).map(function (iconName) {
             return {
               label: iconName,
               insertText: iconName,
@@ -632,13 +645,60 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           });
         } else if (format === 'dp') {
           // dataprovider format
-          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+          // do not use icons from config when we can query them ourselves
+          icons = Object.keys(cv.IconConfig.DB).filter(function (name) {
+            return !element || cv.IconConfig.DB[name].source !== 'config';
+          }).map(function (iconName) {
             return {
               label: iconName,
               value: iconName,
               icon: iconHandler.getIconSource(iconName)
             };
           });
+        }
+
+        if (element) {
+          if (element instanceof Element) {
+            element.ownerDocument.querySelectorAll('pages > meta > icons > icon-definition').forEach(function (icon) {
+              var iconName = icon.getAttribute('name');
+
+              if (format === 'monaco') {
+                icons.push({
+                  label: iconName,
+                  insertText: iconName,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
+                });
+              } else if (format === 'dp') {
+                icons.push({
+                  label: iconName,
+                  value: iconName,
+                  icon: icon.getAttribute('uri')
+                });
+              }
+            });
+          } else if (typeof element === 'string') {
+            var matches = element.match(/<icon-definition.+>/gm);
+            var template = document.createElement('template');
+            matches.forEach(function (match) {
+              template.innerHTML = match;
+              var icon = template.content.firstElementChild;
+              var iconName = icon.getAttribute('name');
+
+              if (format === 'monaco') {
+                icons.push({
+                  label: iconName,
+                  insertText: iconName,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
+                });
+              } else if (format === 'dp') {
+                icons.push({
+                  label: iconName,
+                  value: iconName,
+                  icon: icon.getAttribute('uri')
+                });
+              }
+            });
+          }
         }
 
         if (useCache) {
@@ -661,4 +721,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1644052355047
+//# sourceMappingURL=Provider.js.map?dt=1645980647823
