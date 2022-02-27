@@ -1107,3 +1107,39 @@ msgstr "Sie können den Manager öffnen, um eine neue Konfigurations-Datei zu er
 #: cv/util/ConfigLoader.js
 msgid "Open manager"
 msgstr "Manager öffnen"
+
+#: cv/Application.js
+msgid "Manager"
+msgstr "Manager"
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr "Sub-Selektor \"%1\" passt nicht zum Wert %2"
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr "Sub-Selektor \"%1\" hat fehlerhaften ersten Teil \"%2\""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr "Sub-Selektor Fehler: \"%1\""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr "Dekodieren: JSON.parse Fehler: %1; Selektor: \"%2\"; Wert: %3"
+
+#: cv/Transform.js
+msgid "Transform decode error"
+msgstr "Transform Dekodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr "Transform Enkodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr "Enkodier-Fehler: %1; Selektor: \"%2\"; Wert: %3"
+
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
+msgstr "Versuchtes ColorChooser Update mit ungültigen Daten.<br/>address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
