@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 612,
+        "line": 615,
         "column": 3
       }
     },
@@ -273,7 +273,7 @@
           "column": 4
         },
         "end": {
-          "line": 282,
+          "line": 285,
           "column": 5
         }
       },
@@ -283,11 +283,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 284,
+          "line": 287,
           "column": 4
         },
         "end": {
-          "line": 293,
+          "line": 296,
           "column": 5
         }
       },
@@ -297,11 +297,11 @@
     "getRrds": {
       "location": {
         "start": {
-          "line": 295,
+          "line": 298,
           "column": 4
         },
         "end": {
-          "line": 304,
+          "line": 307,
           "column": 5
         }
       },
@@ -311,11 +311,11 @@
     "getInfluxDBs": {
       "location": {
         "start": {
-          "line": 306,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 309,
+          "line": 312,
           "column": 5
         }
       },
@@ -325,11 +325,11 @@
     "__getInfluxArgs": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 314,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 332,
           "column": 5
         }
       },
@@ -339,11 +339,11 @@
     "getInfluxDBFields": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 338,
+          "line": 341,
           "column": 5
         }
       },
@@ -353,11 +353,11 @@
     "__getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 340,
+          "line": 343,
           "column": 4
         },
         "end": {
-          "line": 347,
+          "line": 350,
           "column": 5
         }
       },
@@ -367,11 +367,11 @@
     "getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 349,
+          "line": 352,
           "column": 4
         },
         "end": {
-          "line": 364,
+          "line": 367,
           "column": 5
         }
       },
@@ -381,11 +381,11 @@
     "getInfluxDBValues": {
       "location": {
         "start": {
-          "line": 366,
+          "line": 369,
           "column": 4
         },
         "end": {
-          "line": 387,
+          "line": 390,
           "column": 5
         }
       },
@@ -395,11 +395,11 @@
     "_parseDpResponseForMonaco": {
       "location": {
         "start": {
-          "line": 389,
+          "line": 392,
           "column": 4
         },
         "end": {
-          "line": 391,
+          "line": 394,
           "column": 5
         }
       },
@@ -409,11 +409,11 @@
     "_parseDpResponseForEditor": {
       "location": {
         "start": {
-          "line": 393,
+          "line": 396,
           "column": 4
         },
         "end": {
-          "line": 395,
+          "line": 398,
           "column": 5
         }
       },
@@ -423,11 +423,11 @@
     "__parseDpResponse": {
       "location": {
         "start": {
-          "line": 397,
+          "line": 400,
           "column": 4
         },
         "end": {
-          "line": 411,
+          "line": 414,
           "column": 5
         }
       },
@@ -437,11 +437,11 @@
     "getMediaFiles": {
       "location": {
         "start": {
-          "line": 413,
+          "line": 416,
           "column": 4
         },
         "end": {
-          "line": 427,
+          "line": 430,
           "column": 5
         }
       },
@@ -451,11 +451,11 @@
     "getTransforms": {
       "location": {
         "start": {
-          "line": 435,
+          "line": 438,
           "column": 4
         },
         "end": {
-          "line": 470,
+          "line": 473,
           "column": 5
         }
       },
@@ -495,11 +495,11 @@
     "getPlugins": {
       "location": {
         "start": {
-          "line": 478,
+          "line": 481,
           "column": 4
         },
         "end": {
-          "line": 511,
+          "line": 514,
           "column": 5
         }
       },
@@ -539,11 +539,11 @@
     "getIcons": {
       "location": {
         "start": {
-          "line": 520,
+          "line": 523,
           "column": 4
         },
         "end": {
-          "line": 601,
+          "line": 604,
           "column": 5
         }
       },
@@ -3793,11 +3793,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 609,
+        "line": 612,
         "column": 12
       },
       "end": {
-        "line": 611,
+        "line": 614,
         "column": 3
       }
     },

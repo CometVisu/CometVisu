@@ -464,7 +464,7 @@ Allowed attributes in the colorchooser-element
     :scale: 75
     :align: center
 
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
+    <caption>Attributes in the editor (simple view) [1]_</caption>
     <colorchooser>
         <label>RGB floor</label>
         <address transform="DPT:232.600" mode="readwrite" variant="rgb">1/2/59</address>
@@ -555,3 +555,5 @@ for the Info widget.
 .. ###END-WIDGET-EXAMPLES###
 
 .. rubric:: Footnotes
+
+.. [1] The simple view might not show everything. To see all elements/attributes use the expert view.

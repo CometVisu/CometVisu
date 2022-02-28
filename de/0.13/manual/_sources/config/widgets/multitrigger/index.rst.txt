@@ -112,8 +112,3 @@ Hier der minimale Beispielcode der das MultiTrigger Widget aus dem folgenden Scr
               <button label="-"></button>
             </buttons>
         </multitrigger>
-
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.
