@@ -261,6 +261,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var configSuffix = cv.Config.configSuffix ? cv.Config.configSuffix : '';
         var title = qx.locale.Manager.tr('Config-File Error!').translate().toString();
         var message = '';
+        var actions;
 
         switch (textStatus) {
           case 'parsererror':
@@ -282,6 +283,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           case 'filenotfound':
             message = qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]).translate().toString();
+            message += '<br/>' + qx.locale.Manager.tr('You can open the manager to create or upload a config file.').translate().toString();
+            actions = {
+              link: [{
+                title: qx.locale.Manager.tr('Open manager'),
+                type: 'manager',
+                action: function action() {
+                  qx.core.Init.getApplication().showManager();
+                },
+                needsConfirmation: false
+              }]
+            };
             break;
 
           default:
@@ -300,9 +312,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           title: title,
           message: message,
           severity: 'urgent',
-          unique: true,
-          deletable: false
+          unique: true
         };
+
+        if (actions) {
+          notification.actions = actions;
+        }
+
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
         this.error(this, message.toString());
         qx.core.Init.getApplication().block(false);
@@ -324,4 +340,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1645562010437
+//# sourceMappingURL=ConfigLoader.js.map?dt=1646029399402

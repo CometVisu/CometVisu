@@ -85,8 +85,8 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@sentry/browser": "^6.16.1",
-    "@sentry/tracing": "^6.16.1",
+    "@sentry/browser": "^6.17.9",
+    "@sentry/tracing": "^6.17.9",
     "crc-32": "^1.2.0",
     "monaco-editor": "^0.32.1",
     "to": "^0.2.9",
@@ -218,7 +218,8 @@
       "Node": "readonly",
       "indexedDB": "readonly",
       "URL": "readonly",
-      "sinon": "readonly"
+      "sinon": "readonly",
+      "RSSParser": "readonly"
     }
   }
 }

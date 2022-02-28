@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 383,
+        "line": 401,
         "column": 3
       }
     },
@@ -495,14 +495,70 @@
       "type": "variable",
       "access": "public"
     },
-    "configSettings": {
+    "loadManager": {
       "location": {
         "start": {
           "line": 126,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 126,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load the manager directly, no config</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{boolean}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "managerOptions": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Optional settings for manager loading</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "configSettings": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
           "column": 5
         }
       },
@@ -520,11 +576,11 @@
     "rememberLastPage": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 165,
           "column": 27
         }
       },
@@ -542,11 +598,11 @@
     "lazyLoading": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 172,
           "column": 22
         }
       },
@@ -570,11 +626,11 @@
     "designStructureMap": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 167,
+          "line": 179,
           "column": 5
         }
       },
@@ -592,11 +648,11 @@
     "sentryEnabled": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 184,
           "column": 24
         }
       },
@@ -614,11 +670,11 @@
     "reporting": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 189,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 189,
           "column": 20
         }
       },
@@ -636,11 +692,11 @@
     "enableLogging": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 194,
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 194,
           "column": 23
         }
       },
@@ -658,11 +714,11 @@
     "configServer": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 199,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 199,
           "column": 22
         }
       },
@@ -680,11 +736,11 @@
     "useServiceWorker": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 204,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 204,
           "column": 27
         }
       },
@@ -702,11 +758,11 @@
     "enableServiceWorkerCache": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 206,
           "column": 35
         }
       },
@@ -716,11 +772,11 @@
     "getStructure": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 226,
           "column": 5
         }
       },
@@ -756,11 +812,11 @@
     "guessIfProxied": {
       "location": {
         "start": {
-          "line": 221,
+          "line": 233,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 238,
           "column": 5
         }
       },
@@ -778,48 +834,6 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
-        },
-        "end": {
-          "line": 230,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getMapping": {
-      "location": {
-        "start": {
-          "line": 232,
-          "column": 4
-        },
-        "end": {
-          "line": 234,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "hasMapping": {
-      "location": {
-        "start": {
-          "line": 236,
-          "column": 4
-        },
-        "end": {
-          "line": 238,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "clearMappings": {
-      "location": {
-        "start": {
           "line": 240,
           "column": 4
         },
@@ -831,7 +845,7 @@
       "type": "function",
       "access": "public"
     },
-    "addStyling": {
+    "getMapping": {
       "location": {
         "start": {
           "line": 244,
@@ -845,7 +859,7 @@
       "type": "function",
       "access": "public"
     },
-    "getStyling": {
+    "hasMapping": {
       "location": {
         "start": {
           "line": 248,
@@ -859,7 +873,7 @@
       "type": "function",
       "access": "public"
     },
-    "hasStyling": {
+    "clearMappings": {
       "location": {
         "start": {
           "line": 252,
@@ -873,7 +887,7 @@
       "type": "function",
       "access": "public"
     },
-    "getDesign": {
+    "addStyling": {
       "location": {
         "start": {
           "line": 256,
@@ -886,16 +900,58 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "getStyling": {
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4
+        },
+        "end": {
+          "line": 262,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasStyling": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 266,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDesign": {
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4
+        },
+        "end": {
+          "line": 270,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 261,
+        "line": 273,
         "column": 9
       },
       "end": {
-        "line": 382,
+        "line": 400,
         "column": 3
       }
     },

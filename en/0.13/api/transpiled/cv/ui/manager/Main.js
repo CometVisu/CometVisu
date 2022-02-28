@@ -42,6 +42,7 @@
       "cv.ui.manager.snackbar.Controller": {},
       "qx.locale.Manager": {},
       "cv.ui.manager.model.FileItem": {},
+      "cv.util.ConfigLoader": {},
       "qxl.dialog.Confirm": {},
       "cv.ui.manager.model.Preferences": {},
       "cv.ui.manager.control.FileHandlerRegistry": {},
@@ -312,6 +313,16 @@
 
         return actions.includes(actionName);
       },
+      _doClose: function _doClose() {
+        if (document.querySelector('#main.loading')) {
+          // there is no config file loaded, load the default one
+          var configLoader = new cv.util.ConfigLoader();
+          var app = qx.core.Init.getApplication();
+          configLoader.load(app.bootstrap, app);
+        }
+
+        this.setVisible(false);
+      },
       handleAction: function handleAction(actionName, data) {
         var unsavedFiles;
 
@@ -341,7 +352,8 @@
                   }
 
                   dialog.dispose();
-                  this.setVisible(false);
+
+                  this._doClose();
                 },
                 context: this,
                 caption: qx.locale.Manager.tr('Unsaved changes'),
@@ -351,7 +363,7 @@
               });
               dialog.show();
             } else {
-              this.setVisible(false);
+              this._doClose();
             }
 
             break;
@@ -1246,4 +1258,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1645561957861
+//# sourceMappingURL=Main.js.map?dt=1646029363850

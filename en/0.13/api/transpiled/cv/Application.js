@@ -325,10 +325,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       },
       _applyManagerChecked: function _applyManagerChecked(value) {
-        if (value && cv.Config.request.queryKey.manager) {
-          var action = cv.Config.request.queryKey.open ? 'open' : '';
-          var data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-          this.showManager(action, data);
+        if (value && cv.Config.loadManager) {
+          this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
         }
       },
 
@@ -414,27 +412,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           };
           cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
         } else {
-          qx.io.PartLoader.require(['manager'], function (states) {
-            var _this2 = this;
-
+          qx.io.PartLoader.require(['manager'], function () {
             // break dependency
-            var engine = cv.TemplateEngine.getInstance();
-
-            if (!engine.isLoggedIn() && !action) {
-              // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-              engine.addListenerOnce('changeLoggedIn', function () {
-                return _this2.showManager();
-              });
-              return;
-            }
-
             var ManagerMain = cv.ui['manager']['Main'];
             var firstCall = !ManagerMain.constructor.$$instance;
             var manager = ManagerMain.getInstance();
 
-            if (!action && !firstCall) {
+            if (!firstCall) {
               manager.setVisible(!manager.getVisible());
-            } else if (firstCall) {
+            } else {
               // initially bind manager visibility
               manager.bind('visible', this, 'inManager');
             }
@@ -451,6 +437,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _applyInManager: function _applyInManager(value) {
         if (value) {
           qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+        } else {
+          qx.bom.History.getInstance().addToHistory('', 'CometVisu');
         }
       },
       showConfigErrors: function showConfigErrors(configName, options) {
@@ -477,7 +465,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
       },
       validateConfig: function validateConfig(configName) {
-        var _this3 = this;
+        var _this2 = this;
 
         var worker = cv.data.FileWorker.getInstance();
         var displayConfigName = configName;
@@ -527,7 +515,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }));
           } else {
             // show result message as dialog
-            qx.log.Logger.error(_this3, res);
+            qx.log.Logger.error(_this2, res);
             cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
               target: 'popup',
               message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
@@ -544,7 +532,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }));
           }
         })["catch"](function (err) {
-          _this3.error(err);
+          _this2.error(err);
         });
       },
       __P_2_2: function __P_2_2(ex) {
@@ -768,10 +756,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cv.ui.ToastManager.getInstance();
                   }
 
-                  configLoader = new cv.util.ConfigLoader();
-                  configLoader.load(this.bootstrap, this);
+                  if (!cv.Config.loadManager) {
+                    configLoader = new cv.util.ConfigLoader();
+                    configLoader.load(this.bootstrap, this);
+                  }
 
-                case 10:
+                case 9:
                 case "end":
                   return _context.stop();
               }
@@ -1073,7 +1063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       },
       _checkBackend: function _checkBackend() {
-        var _this4 = this;
+        var _this3 = this;
 
         if (cv.Config.testMode === true) {
           this.setManagerChecked(true);
@@ -1182,7 +1172,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }, this);
           xhr.addListener('statusError', function (e) {
-            _this4.setManagerChecked(true);
+            _this3.setManagerChecked(true);
           });
           xhr.send();
         }
@@ -1236,4 +1226,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1645561953426
+//# sourceMappingURL=Application.js.map?dt=1646029360842

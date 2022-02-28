@@ -15,7 +15,6 @@
         "defer": "runtime"
       },
       "qx.event.Timer": {},
-      "cv.data.Model": {},
       "cv.util.ScriptLoader": {
         "defer": "runtime"
       },
@@ -46,10 +45,7 @@
    */
 
   /**
-   * This plugins integrates zrssfeed to display RSS-Feeds via Google-API 
-   * and a parser for local feeds using jQuery 1.5+ into CometVisu.
-   * rssfeedlocal is derived from simplerss and zrssfeed
-   * rssfeedlocal is mainly meant to be used with rsslog.php and plugins
+   * This plugins displays RSS-Feeds in the CometVisu.
    *
    * <pre class="sunlight-highlight-xml">
    *   &lt;rss src=&quot;/visu/plugins/rss/rsslog.php&quot; refresh=&quot;300&quot; link=&quot;false&quot; title=&quot;false&quot;&gt;&lt;/rss&gt;
@@ -59,7 +55,8 @@
    *
    * @author Michael Markstaller
    * @since 2011
-   * @asset(plugins/rss/dep/zrssfeed/jquery.zrssfeed.js)
+   * @ignore(RSSParser)
+   * @asset(plugins/rss/rss-parser.min.js)
    */
   qx.Class.define('cv.plugins.Rss', {
     extend: cv.ui.structure.AbstractWidget,
@@ -183,13 +180,15 @@
     ******************************************************
     */
     members: {
+      _parser: null,
       _getInnerDomString: function _getInnerDomString() {
         var rssstyle = '' + this.getWidth() ? 'width:' + this.getWidth() : '' + this.getHeight() ? 'height:' + this.getHeight() : '';
-        return '<div class="actor"><div class="rss_inline" id="rss_' + this.getPath() + '" style="' + rssstyle + '"></div>';
+        return '<div class="actor"><ul class="rss_inline" style="' + rssstyle + '"></ul>';
       },
       _onDomReady: function _onDomReady() {
         cv.plugins.Rss.prototype._onDomReady.base.call(this);
 
+        this._parser = new RSSParser();
         this.refreshRSS();
       },
       _setupRefreshAction: function _setupRefreshAction() {
@@ -202,13 +201,115 @@
         this._timer.start();
       },
       refreshRSS: function refreshRSS() {
-        var data = cv.data.Model.getInstance().getWidgetData(this.getPath());
-        $('#' + this.getPath() + ' .rss_inline').rssfeed(this.getSrc(), data);
+        var _this = this;
+
+        this._parser.parseURL(this.getSrc(), function (err, feed) {
+          var actor = _this.getActor();
+
+          var target = actor.querySelector('.rss_inline');
+
+          if (err) {
+            _this.error(err);
+
+            if (_this.getShowerror()) {
+              target.textContent = 'ERROR: ' + err;
+            }
+
+            return;
+          }
+
+          if (_this.getHeader()) {
+            var headline = actor.querySelector(':scope > h3');
+
+            if (!headline) {
+              headline = document.createElement('h3');
+              actor.insertBefore(headline, actor.firstElementChild);
+            }
+
+            headline.textContent = feed.title;
+          }
+
+          var elements = target.querySelectorAll(':scope > li');
+
+          for (var i = elements.length; i >= feed.items.length; i--) {
+            elements[i].remove();
+          }
+
+          var useLink = _this.getLink();
+
+          var showContent = _this.getContent();
+
+          var showDate = _this.getDate();
+
+          feed.items.some(function (entry, i) {
+            var elem = target.querySelector(':scope > li[data-row="' + i + '"]');
+            var a;
+            var content;
+            var date;
+
+            if (!elem) {
+              elem = document.createElement('li');
+
+              if (useLink) {
+                a = document.createElement('a');
+                a.setAttribute('target', _this.getLinktarget());
+                elem.appendChild(a);
+              }
+
+              if (showContent) {
+                content = document.createElement('p');
+                content.classList.add('content');
+                elem.appendChild(content);
+              }
+
+              if (showDate) {
+                date = document.createElement('p');
+                date.classList.add('date');
+                elem.appendChild(date);
+              }
+
+              elem.setAttribute('data-row', '' + i);
+              target.appendChild(elem);
+            } else {
+              if (useLink) {
+                a = elem.querySelector(':scope > a');
+              }
+
+              if (showContent) {
+                content = elem.querySelector(':scope > p.content');
+              }
+
+              if (showDate) {
+                date = elem.querySelector(':scope > p.date');
+              }
+            }
+
+            if (useLink) {
+              a.textContent = entry.title;
+              a.setAttribute('href', entry.link);
+            } else {
+              elem.textContent = entry.title;
+            }
+
+            if (showContent) {
+              content.innerHTML = _this.getSnippet() ? entry.contentSnippet : entry.content;
+            }
+
+            if (showDate) {
+              date.innerText = new Date(entry.isoDate).toLocaleString();
+            }
+
+            return i >= _this.getLimit();
+          });
+        });
       }
+    },
+    destruct: function destruct() {
+      this._parser = null;
     },
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
-      loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
+      loader.addScripts('plugins/rss/rss-parser.min.js');
       cv.parser.WidgetParser.addHandler('rss', cv.plugins.Rss);
       cv.ui.structure.WidgetFactory.registerClass('rss', statics);
     }
@@ -216,4 +317,4 @@
   cv.plugins.Rss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rss.js.map?dt=1645561956322
+//# sourceMappingURL=Rss.js.map?dt=1646029362795
