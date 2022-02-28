@@ -87,8 +87,3 @@ Hier der minimale Beispielcode der das RGB Widget aus dem folgenden Screenshot e
       <address transform="DPT:5.004" mode="read" variant="g">0/3/21</address>
       <address transform="DPT:5.004" mode="read" variant="b">0/3/22</address>
     </rgb>
-
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

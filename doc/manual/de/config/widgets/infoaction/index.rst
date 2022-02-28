@@ -128,8 +128,3 @@ Button, mit dem diese geschaltet werden können.
      </switch>
     </widgetaction>
    </infoaction>
-
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

@@ -168,9 +168,3 @@ PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewende
         </navbar>
     
   </page>
-
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.
-
