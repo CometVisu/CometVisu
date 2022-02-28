@@ -51,7 +51,7 @@ Minimale Ausstattung
 * microSD Karte
 
 .. figure:: _static/rpi_minimum.jpg
-   :scale: 50 %
+   :width: 100 %
 
 Empfohlene Ausstattung
 ----------------------
@@ -78,7 +78,7 @@ empfohlen, dass auch die CPU kühlen kann.
 * Gehäuse
 
 .. figure:: _static/rpi_recomended.jpg
-   :scale: 50 %
+   :width: 100 %
 
 Ausstattungsbeispiel
 --------------------
@@ -94,7 +94,7 @@ Dieses Tutorial wurde anhand dieser Ausstattung erstellt:
 Anschaffungspreis (2021) waren keine 150 Euro.
 
 .. figure:: _static/rpi_housing.jpg
-   :scale: 50 %
+   :width: 100 %
 
 Setup der Hardware
 ==================
