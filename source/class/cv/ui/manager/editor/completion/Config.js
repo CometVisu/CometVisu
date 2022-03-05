@@ -390,7 +390,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         let lastChild = xmlDoc.lastElementChild;
         let i;
         let lastFound = false;
-        while (lastChild) {
+        while (lastChild && lastChild.tagName.toLowerCase() !== 'parsererror') {
           openedTags.push(lastChild.tagName);
           openedAttributes.push(lastChild.attributes);
           // if we found our last opened tag
@@ -812,6 +812,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   */
   destruct: function () {
     this.__elementCache = null;
+    this._schema = null;
     this._dataProvider = null;
   }
 });

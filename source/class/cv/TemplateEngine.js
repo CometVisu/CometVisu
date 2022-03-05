@@ -46,6 +46,7 @@ qx.Class.define('cv.TemplateEngine', {
       manager.add(group);
       manager.setActive(group);
     }
+    qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
   },
 
   /*
@@ -93,6 +94,12 @@ qx.Class.define('cv.TemplateEngine', {
       init: false,
       event: 'changeReady',
       apply: '_applyReady'
+    },
+
+    currentPage: {
+      check: 'cv.ui.structure.IPage',
+      nullable: true,
+      event: 'changeCurrentPage'
     },
 
     domFinished: {
@@ -740,5 +747,6 @@ qx.Class.define('cv.TemplateEngine', {
   */
   destruct: function () {
     this._disposeObjects('__activeChangedTimer');
+    qx.core.Init.getApplication().removeListener('changeMobile', this._maintainNavbars, this);
   }
 });

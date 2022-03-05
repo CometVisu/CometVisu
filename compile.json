@@ -221,6 +221,7 @@
     "XMLDocument",
     "HTMLElement",
     "customElements",
-    "QxConnector"
+    "QxConnector",
+    "RSSParser"
   ]
 }

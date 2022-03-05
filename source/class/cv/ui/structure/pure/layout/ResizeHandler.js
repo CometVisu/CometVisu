@@ -296,9 +296,9 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
       if (height === 0) {
         // not ready try again
         const self = this;
-        qx.bom.AnimationFrame.request(function() {
+        window.requestAnimationFrame(() => {
           self.__updateRowHeight(elem);
-        }, this);
+        });
         return;
       }
       let styles = '';

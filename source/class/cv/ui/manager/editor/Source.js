@@ -73,12 +73,14 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           // monaco has already been loaded, we can use its languages configuration to check if this file is supported
           const extensions = [];
           monaco.languages.getLanguages().forEach(function (lang) {
-            lang.extensions.forEach(function (ext) {
-              ext = ext.replace(/\./g, '\\.');
-              if (extensions.indexOf(ext) ===-1) {
-                extensions.push(ext);
-              }
-            });
+            if (lang.extensions) {
+              lang.extensions.forEach(function (ext) {
+                ext = ext.replace(/\./g, '\\.');
+                if (extensions.indexOf(ext) === -1) {
+                  extensions.push(ext);
+                }
+              });
+            }
           });
           cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
         }
@@ -409,7 +411,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       const fileType = parts.length > 1 ? parts.pop() : 'txt';
       const typeExt = '.' + fileType;
       return monaco.languages.getLanguages().some(function (lang) {
-        return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
+        return lang.id === fileType || (lang.extensions && lang.extensions.indexOf(typeExt) >= 0);
       });
     },
 
@@ -482,7 +484,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           // check if monaco knows this ending, otherwise fallback to plaintext
           const typeExt = '.' + type;
           const found = monaco.languages.getLanguages().some(function (lang) {
-            return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
+            return lang.id === type || (lang.extensions && lang.extensions.indexOf(typeExt) >= 0);
           });
           if (!found) {
             type = 'txt';

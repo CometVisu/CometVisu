@@ -120,6 +120,18 @@ qx.Class.define('cv.Config', {
     pluginsToLoad: [],
 
     /**
+     * Load the manager directly, no config
+     * @type {boolean}
+     */
+    loadManager: false,
+
+    /**
+     * Optional settings for manager loading
+     * @type {Map}
+     */
+    managerOptions: {},
+
+    /**
      * All configuration and settings from the current configuration
      * (Note: all settings that need to be cached must be put in here)
      */
@@ -341,6 +353,12 @@ qx.Class.define('cv.Config', {
     } else if (req.queryKey.log === 'true') {
       cv.Config.enableLogging = true;
     }
+
+    cv.Config.loadManager = cv.Config.request.queryKey.manager || window.location.hash === '#manager';
+    cv.Config.managerOptions = {
+      action: cv.Config.request.queryKey.open ? 'open' : '',
+      data: cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined
+    };
 
     // "Bug"-Fix for ID: 3204682 "Caching on web server"
     // Config isn't a real fix for the problem as that's part of the web browser,

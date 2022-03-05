@@ -263,7 +263,10 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       } 
         return new Promise(function (resolve, reject) {
           const xhr = new qx.io.request.Xhr(url);
-          cv.TemplateEngine.getClient().authorize(xhr);
+          const client = cv.TemplateEngine.getClient();
+          if (client) {
+            client.authorize(xhr);
+          }
           xhr.set({
             accept: 'application/json'
           });
@@ -287,7 +290,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (!config) {
         config = {cache: true};
       }
-      if (client.hasProvider('addresses')) {
+      if (client && client.hasProvider('addresses')) {
         return this.__getFromUrl(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses', format), client, config.cache);
       } 
         return this.__getData('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
@@ -298,7 +301,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (!config) {
         config = {cache: true};
       }
-      if (client.hasProvider('rrd')) {
+      if (client && client.hasProvider('rrd')) {
         return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
       } 
         return this.__getData('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);

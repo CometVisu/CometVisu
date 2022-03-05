@@ -141,7 +141,7 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
     _getInnerDomString: function() {
       let actor = '<div class="actor switchUnpressed';
       if (this.getAlign()) {
-        actor += this.getAlign();
+        actor += ' ' + this.getAlign();
       }
       actor += '">';
       if (this.getName()) {

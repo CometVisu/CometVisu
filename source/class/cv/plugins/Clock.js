@@ -31,6 +31,7 @@ qx.Class.define('cv.plugins.Clock', {
   */
   construct: function (props) {
     props.value = new Date();
+    this.__Elements = [];
     this.base(arguments, props);
   },
 
@@ -224,6 +225,7 @@ qx.Class.define('cv.plugins.Clock', {
     __svg: null, // cached access to the SVG in the DOM
     __Elements: null, // cached access to the individual clock parts
     __inDrag: 0, // is the handle currently dragged?
+    __timeToShow: null, // time to show on the clock
 
     _getInnerDomString: function () {
       return '<div class="actor" style="width:100%;height:100%"></div>';
@@ -231,8 +233,6 @@ qx.Class.define('cv.plugins.Clock', {
 
     _onDomReady: function () {
       this.base(arguments);
-      let args = arguments;
-      const self = this;
 
       this.__throttled = cv.util.Function.throttle(this.dragAction, 250, {trailing: true}, this);
 
@@ -304,23 +304,25 @@ qx.Class.define('cv.plugins.Clock', {
 
           let HotSpotHour = svg.querySelector('#HotSpotHour');
           if (HotSpotHour) {
- HotSpotHour.addEventListener('pointerdown', this); 
-}
+            HotSpotHour.addEventListener('pointerdown', this);
+          }
           let HotSpotMinute = svg.querySelector('#HotSpotMinute');
           if (HotSpotMinute) {
- HotSpotMinute.addEventListener('pointerdown', this); 
-}
+            HotSpotMinute.addEventListener('pointerdown', this);
+          }
           let HotSpotSecond = svg.querySelector('#HotSpotSecond');
           if (HotSpotSecond) {
- HotSpotSecond.addEventListener('pointerdown', this); 
-}
+            HotSpotSecond.addEventListener('pointerdown', this);
+          }
           this.__svg = svg;
 
-          // call parents _onDomReady method
-          this.base(args);
+          if (this.__timeToShow !== null) {
+            // did we receive a time earlier than the SVG? => Show it now
+            this._updateHands();
+          }
         })
         .catch(error => {
-          self.error('There has been a problem with the reading of the clock SVG:', error);
+          this.error('There has been a problem with the reading of the clock SVG:', error);
         });
     },
 
@@ -330,8 +332,8 @@ qx.Class.define('cv.plugins.Clock', {
     // overridden
     _update: function (address, data, isDataAlreadyHandled) {
       let value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
-      let time = value.split(':');
-      this._updateHands(time[0], time[1], time[2]);
+      this.__timeToShow = value.split(':');
+      this._updateHands();
     },
 
     handleEvent: function (event) {
@@ -471,20 +473,22 @@ qx.Class.define('cv.plugins.Clock', {
       if (this.getHideSeconds()) {
         time.setSeconds(0);
       }
-      this._updateHands(time.getHours(), time.getMinutes(), time.getSeconds());
+      this.__timeToShow = [time.getHours(), time.getMinutes(), time.getSeconds()];
+      this._updateHands();
     },
 
     dragAction: function () {
       const address = this.getAddress();
       for (let addr in address) {
         if (address[addr].mode === true) {
- continue; 
-} // skip read only
+          continue;
+        } // skip read only
         cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
       }
     },
 
-    _updateHands: function (hour, minute, second) {
+    _updateHands: function () {
+      const [hour, minute, second] = this.__timeToShow;
       this.__Elements.forEach(e => {
         let showSeconds = true;
         if (e.hour !== null) {

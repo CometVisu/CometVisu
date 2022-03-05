@@ -233,17 +233,14 @@ qx.Class.define('cv.Application',
       } else if (!value && document.body.classList.contains('mobile')) {
         document.body.classList.remove('mobile');
       }
-    },
-
-    isReady() {
-      return this.__appReady;
+      if (this.__appReady) {
+        cv.ui.layout.ResizeHandler.invalidateNavbar();
+      }
     },
 
     _applyManagerChecked: function(value) {
-      if (value && cv.Config.request.queryKey.manager) {
-        const action = cv.Config.request.queryKey.open ? 'open' : '';
-        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-        this.showManager(action, data);
+      if (value && cv.Config.loadManager) {
+        this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
       }
     },
 
@@ -364,9 +361,9 @@ qx.Class.define('cv.Application',
           const ManagerMain = cv.ui['manager']['Main'];
           const firstCall = !ManagerMain.constructor.$$instance;
           const manager = ManagerMain.getInstance();
-          if (!action && !firstCall) {
+          if (!firstCall) {
             manager.setVisible(!manager.getVisible());
-          } else if (firstCall) {
+          } else {
             // initially bind manager visibility
             manager.bind('visible', this, 'inManager');
           }
@@ -384,6 +381,8 @@ qx.Class.define('cv.Application',
     _applyInManager: function (value) {
       if (value) {
         qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+      } else {
+        qx.bom.History.getInstance().addToHistory('', 'CometVisu');
       }
     },
 
@@ -582,7 +581,7 @@ qx.Class.define('cv.Application',
       let link = '';
       if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-          link = ' <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+          link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr('Action recording') + link,
@@ -596,6 +595,7 @@ qx.Class.define('cv.Application',
           notification.actions.link.push(
             {
               title: qx.locale.Manager.tr('Send error to sentry.io'),
+              type: 'sentry',
               action: function () {
                 Sentry.captureException(ex);
               },
@@ -613,7 +613,6 @@ qx.Class.define('cv.Application',
             name: 'reportErrors',
             style: 'margin-left: 18px'
           });
-          // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
         }
       }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
@@ -663,7 +662,7 @@ qx.Class.define('cv.Application',
         // initialize NotificationCenter
         cv.ui.NotificationCenter.getInstance();
         cv.ui.ToastManager.getInstance();
-        if (!window.cvTestMode) {
+        if (!window.cvTestMode && !cv.Config.loadManager) {
           let configLoader = new cv.util.ConfigLoader();
           configLoader.load(this.bootstrap, this);
         }

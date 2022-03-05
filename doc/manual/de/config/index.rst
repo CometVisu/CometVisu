@@ -24,17 +24,13 @@ Am einfachsten greift man auf die verschiedenen Konfigurationsdateien über den
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
-- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Verzeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
+- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden
+  (KNX ist dann das Backend), wird die CometVisu manuell in den Verzeichnisbaum "/var/www/visu…" des Webservers
+  (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 
-- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den möglicherweise parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
-
-- Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
-
-- Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu manuell in "/opt/openhab/www/visu..." installiert.
-
-.. TODO::
-
-    Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
+- Da ab Version 0.12 kein spezielles Binding mehr benötigt wird, um die CometVisu mit openHAB als Backend zu benutzen,
+  gelten hier die selben Regeln wir bei anderen Backends. Es wird empfohlen den Docker-Container zu benutzen,
+  wie man diesen installiert und openHAB als Backend konfiguriert wird :ref:`hier <Docker_OpenHAB_Installation>` beschrieben.
 
 Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
 (fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
