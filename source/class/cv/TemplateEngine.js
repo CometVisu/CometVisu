@@ -274,7 +274,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Initialize the {@link cv.io.Client} for backend communication
      */
     initBackendClient: function () {
-      const backendName = cv.Config.backend || cv.Config.configSettings.backend || 'default';
+      let backendName = cv.Config.backend || cv.Config.configSettings.backend || 'default';
       const backendUrl = cv.Config.backendUrl || cv.Config.configSettings.backendUrl;
       const backendLoginUrl = cv.Config.backendLoginUrl || cv.Config.configSettings.backendLoginUrl;
       const mapping = {

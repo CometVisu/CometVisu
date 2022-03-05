@@ -118,7 +118,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_xyY',
         lname: {
           'de': 'xyY-Farbe',
-          'en': 'xyY color',
+          'en': 'xyY color'
         },
         example: '{"x":0.123,"y":0.123,"Y":100}',
         unit: '-',
@@ -145,7 +145,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_hsv',
         lname: {
           'de': 'HSV-Farbe als Zeichenkette',
-          'en': 'HSV color as string',
+          'en': 'HSV color as string'
         },
         example: '360,100,100',
         unit: '-',
@@ -169,7 +169,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_h_s_v',
         lname: {
           'de': 'HSV-Farbe',
-          'en': 'HSV color',
+          'en': 'HSV color'
         },
         example: '{"h":360,"s":100,"v":100}',
         unit: '-',
@@ -197,7 +197,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_hsl',
         lname: {
           'de': 'HSL-Farbe als Zeichenkette',
-          'en': 'HSL color as string',
+          'en': 'HSL color as string'
         },
         example: '360,100,100',
         unit: '-',
@@ -221,7 +221,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_h_s_l',
         lname: {
           'de': 'HSL-Farbe',
-          'en': 'HSL color',
+          'en': 'HSL color'
         },
         example: '{"h":360,"s":100,"l":100}',
         unit: '-',
@@ -249,7 +249,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_rgb',
         lname: {
           'de': 'RGB-Farbe als Zeichenkette',
-          'en': 'RGB color as string',
+          'en': 'RGB color as string'
         },
         example: '100,100,100',
         unit: '-',
@@ -273,7 +273,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_r_g_b',
         lname: {
           'de': 'RGB-Farbe',
-          'en': 'RGB color',
+          'en': 'RGB color'
         },
         example: '{"r":100,"g":100,"b":100}',
         unit: '-',
@@ -301,7 +301,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_rgbw',
         lname: {
           'de': 'RGBW-Farbe als Zeichenkette',
-          'en': 'RGBW color as string',
+          'en': 'RGBW color as string'
         },
         example: '100,100,100,100',
         unit: '-',
@@ -326,7 +326,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_r_g_b_w',
         lname: {
           'de': 'RGBW-Farbe',
-          'en': 'RGBW color',
+          'en': 'RGBW color'
         },
         example: '{"r":100,"g":100,"b":100,"w":100}',
         unit: '-',
@@ -356,7 +356,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_rgb_hex',
         lname: {
           'de': 'RGB-Farbe',
-          'en': 'RGB color',
+          'en': 'RGB color'
         },
         example: '#11FF88',
         unit: '-',
@@ -384,7 +384,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_color_rgbw_hex',
         lname: {
           'de': 'RGBW-Farbe',
-          'en': 'RGBW color',
+          'en': 'RGBW color'
         },
         example: '#11FF88AA',
         unit: '-',
