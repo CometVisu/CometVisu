@@ -46,7 +46,6 @@ qx.Class.define('cv.TemplateEngine', {
       manager.add(group);
       manager.setActive(group);
     }
-    qx.core.Init.getApplication().addListener('changeMobile', this._maintainNavbars, this);
   },
 
   /*
@@ -712,8 +711,8 @@ qx.Class.define('cv.TemplateEngine', {
             left: pos.left + 'px',
             top: pos.top + 'px'
           }).forEach(function(key_value) {
-	     tDiv.style[key_value[0]]=key_value[1]; 
-	  });
+            tDiv.style[key_value[0]]=key_value[1];
+          });
           myDiv.appendChild(tDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {
@@ -747,6 +746,5 @@ qx.Class.define('cv.TemplateEngine', {
   */
   destruct: function () {
     this._disposeObjects('__activeChangedTimer');
-    qx.core.Init.getApplication().removeListener('changeMobile', this._maintainNavbars, this);
   }
 });

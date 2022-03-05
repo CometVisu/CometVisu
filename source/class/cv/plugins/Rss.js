@@ -216,7 +216,7 @@ qx.Class.define('cv.plugins.Rss', {
   defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts('plugins/rss/rss-parser.min.js');
-    cv.parser.WidgetParser.addHandler('rss', cv.plugins.Rss);
+    cv.parser.pure.WidgetParser.addHandler('rss', cv.plugins.Rss);
     cv.ui.structure.WidgetFactory.registerClass('rss', statics);
   }
 });
