@@ -10,7 +10,8 @@ function resizeTiles() {
   if (lastWindowWidth !== window.innerWidth) {
     const style = document.querySelector(':root').style;
     let spacing = parseInt(style.getPropertyValue('--spacing')) || 8;
-    let availableWidth = window.innerWidth - spacing * 2;
+    // paddingLeft + paddingRight + scrollbarWidth (3*spacing)
+    let availableWidth = window.innerWidth - spacing * 3;
     if (availableWidth >= 1000) {
       // reset to defaults
       style.setProperty('--spacing', '8px');
@@ -19,7 +20,7 @@ function resizeTiles() {
       const minWidth = 168;
       const columns = Math.floor(availableWidth / minWidth);
       if (columns === 1) {
-        // only one column, we cann afford some more space around the tiles
+        // only one column, we can afford some more space around the tiles
         spacing *= 2;
         availableWidth -= spacing;
         style.setProperty('--spacing', spacing + 'px');
