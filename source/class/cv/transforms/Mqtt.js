@@ -70,6 +70,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         },
         decode: function (str) {
           const date = new Date(); // assume today
+          str += '00000000'; // make sure string is long enough
           date.setHours(
             parseInt(str.substr(0, 2)),
             parseInt(str.substr(3, 2)),
@@ -372,6 +373,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           ].join('');
         },
         decode: function (str) {
+          str += '00000000'; // make sure string is long enough
           return new Map([
             ['r', parseInt(str.substr(1, 2), 16) * 100 / 255.0],
             ['g', parseInt(str.substr(3, 2), 16) * 100 / 255.0],
@@ -401,6 +403,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           ].join('');
         },
         decode: function (str) {
+          str += '00000000000'; // make sure string is long enough
           return new Map([
             ['r', parseInt(str.substr(1, 2), 16) * 100 / 255.0],
             ['g', parseInt(str.substr(3, 2), 16) * 100 / 255.0],
