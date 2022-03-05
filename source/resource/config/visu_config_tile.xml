@@ -126,7 +126,7 @@
     </header>
     <main>
         <cv-page id="main" name="Start">
-        <details>
+        <cv-group>
             <summary>Switches</summary>
             <cv-switch mapping="light" styling="button">
                 <cv-address slot="address" transform="OH:switch" backend="main">Light_SF_Office</cv-address>
@@ -154,8 +154,8 @@
                 <span slot="primaryLabel">Button</span>
                 <span slot="secondaryLabel">with progress</span>
             </cv-switch>
-        </details>
-        <details open="true">
+        </cv-group>
+        <cv-group open="true">
             <summary>Other actors</summary>
             <cv-shutter styling="button" position-mapping="percent">
                 <cv-address slot="downAddress" transform="OH:rollershutter" mode="write" value="100" backend="main">Shutter_FF_Living</cv-address>
@@ -220,8 +220,8 @@
                 <span slot="label">Zählerstand</span>
                 <span slot="unit">kWh</span>
             </cv-info>
-        </details>
-        <details>
+        </cv-group>
+        <cv-group>
             <summary>Show values</summary>
             <cv-info mapping="kWh">
                 <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn0/raw</cv-address>
@@ -242,7 +242,7 @@
             <cv-tile size="2x4">
                 <cv-image src="http://192.168.178.24/Streaming/channels/1/picture?snapShotImageType=JPEG" refresh="60" authorization="basic" username="viewer" password="viewer" proxy="true"/>
             </cv-tile>
-        </details>
+        </cv-group>
         <cv-tile size="2x1">
             <cv-chart format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3">
                 <dataset type="line" src="Temperature_FF_Living" src-type="rrd"/>

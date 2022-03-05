@@ -176,7 +176,7 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
-        <xsd:element name="details" type="details"/>
+        <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
@@ -188,7 +188,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
-        <xsd:element name="details" type="details"/>
+        <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
@@ -212,7 +212,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:group ref="Widgets"/>
         <xsd:group ref="Components"/>
-        <xsd:element name="details" type="details"/>
+        <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
@@ -223,6 +223,16 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-group">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="summary" />
+        <xsd:group ref="Widgets"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="open" type="xsd:boolean"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-tile">
@@ -1000,16 +1010,6 @@
   # START: allowed HTML elements
   #####################################################################################################################
   # -->
-
-  <xsd:complexType name="details">
-    <xsd:sequence>
-      <xsd:choice minOccurs="0" maxOccurs="unbounded">
-        <xsd:element name="summary" />
-        <xsd:group ref="Widgets"/>
-      </xsd:choice>
-    </xsd:sequence>
-    <xsd:attribute name="open" type="xsd:boolean"/>
-  </xsd:complexType>
 
   <xsd:complexType name="label" mixed="true">
     <xsd:attribute ref="class"/>

@@ -225,50 +225,52 @@ body {
             }
         }
 
-        > :not(details) {
+        > :not(cv-group) {
             /* Row gap for everything that is no detail element */
             margin-bottom: var(--spacing);
         }
 
-        details {
-            flex: 0 0 100%;
-            border-top: 1px solid $borderColor;
-            summary::-webkit-details-marker, summary::marker {
-                display: none;
-                content: "";
-            }
-            summary {
-                padding: calc(var(--spacing) * 2) var(--spacing);
-                float: none !important;
-                margin-left: 0 !important;
-            }
-            > *:not(summary) {
-                float: left;
-                margin-bottom: var(--spacing);
-                margin-right: var(--spacing);
-            }
-        }
-        details:first-child {
-            border-top: none;
-            margin-top: 0;
+        > cv-group[open] {
+            margin-bottom: var(--spacing);
         }
 
-        details > summary:before {
-            font-family: 'remixicon' !important;
-            font-style: normal;
-            -webkit-font-smoothing: antialiased;
-            content: "\EA6E";
-            vertical-align: text-bottom;
-            padding-right: $defaultSpace;
-        }
-        details[open] > summary:before {
-            content: "\EA4E";
-        }
-        details > summary:after {
-            content: "..."
-        }
-        details[open] > summary:after {
-            content: "";
+        cv-group {
+            flex: 0 0 100%;
+            display: flex;
+            flex-flow: row wrap;
+            gap: var(--spacing);
+            border-top: 1px solid $borderColor;
+
+            summary {
+                flex-basis: 100%;
+                padding: calc(var(--spacing) * 2) var(--spacing);
+            }
+            &:not([open]) > *:not(summary) {
+                display: none;
+            }
+
+            &:first-child {
+                border-top: none;
+                margin-top: 0;
+            }
+            > summary:before {
+                font-family: 'remixicon' !important;
+                font-style: normal;
+                -webkit-font-smoothing: antialiased;
+                content: "\EA6E";
+                vertical-align: text-bottom;
+                padding-right: $defaultSpace;
+            }
+
+            &[open] > summary:before {
+                content: "\EA4E";
+            }
+            > summary:after {
+                content: "..."
+            }
+            &[open] > summary:after {
+                content: "";
+            }
         }
     }
     cv-switch, cv-shutter {

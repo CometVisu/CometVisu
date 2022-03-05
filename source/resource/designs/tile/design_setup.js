@@ -10,8 +10,8 @@ function resizeTiles() {
   if (lastWindowWidth !== window.innerWidth) {
     const style = document.querySelector(':root').style;
     let spacing = parseInt(style.getPropertyValue('--spacing')) || 8;
-    // paddingLeft + paddingRight + scrollbarWidth (3*spacing)
-    let availableWidth = window.innerWidth - spacing * 3;
+    // paddingLeft + paddingRight (2*spacing)
+    let availableWidth = window.innerWidth - spacing * 2;
     if (availableWidth >= 1000) {
       // reset to defaults
       style.setProperty('--spacing', '8px');
