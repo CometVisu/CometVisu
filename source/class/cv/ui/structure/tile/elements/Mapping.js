@@ -79,9 +79,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
           if (isDefaultValue) {
             defaultValue = this._convert(value, type);
           }
-        } else if (entry.hasAttribute('range_min') && entry.hasAttribute('range_max')) {
-          const rangeMin = parseFloat(entry.getAttribute('range_min'));
-          const rangeMax = parseFloat(entry.getAttribute('range_max'));
+        } else if (entry.hasAttribute('range-min')) {
+          const rangeMin = parseFloat(entry.getAttribute('range-min'));
+          const rangeMax = entry.hasAttribute('range-max') ? parseFloat(entry.getAttribute('range-max')) : Number.POSITIVE_INFINITY;
           const floatValue = parseFloat(val);
           if (rangeMin <= floatValue && floatValue <= rangeMax) {
             mappedValue = this._convert(entry.innerHTML.trim(), type);
