@@ -164,6 +164,7 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       let options = {
+        reconnect: true,
         timeout: 10,
         onSuccess: onConnect,
         onFailure: onFailure
@@ -185,7 +186,7 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        self.info('Connection Lost: ' + responseObject.errorMessage, responseObject);
+        self.warn('Connection Lost: ' + responseObject.errorMessage, responseObject);
         self.setConnected(false);
       };
 

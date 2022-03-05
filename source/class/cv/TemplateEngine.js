@@ -342,7 +342,8 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _checkBackendConnection: function () {
-      const connected = this.visu.isConnected();
+      const client = this.visu;
+      const connected = client.isConnected();
       const message = {
         topic: 'cv.client.connection',
         title: qx.locale.Manager.tr('Connection error'),
@@ -351,13 +352,23 @@ qx.Class.define('cv.TemplateEngine', {
         deletable: false,
         condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
       };
-      const lastError = this.visu.getLastError();
+      const lastError = client.getLastError();
       if (!connected) {
         if (lastError && (Date.now() - lastError.time) < 100) {
           message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
         } else {
           message.message = qx.locale.Manager.tr('Connection to backend is lost.');
         }
+        message.actions = {
+          link: [
+            {
+              title: qx.locale.Manager.tr('Restart connection'),
+              action: function () {
+                client.restart();
+              }
+            }
+          ]
+        };
       } else {
         this.__hasBeenConnected = true;
       }
@@ -542,6 +553,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Main setup to get everything running and show the initial page.
      */
     setupPage: function () {
+      let setupDone = false;
       // and now setup the pages
       this.debug('setup');
 
@@ -549,6 +561,12 @@ qx.Class.define('cv.TemplateEngine', {
       this.visu.login(true, cv.Config.configSettings.credentials, function () {
         this.debug('logged in');
         this.setLoggedIn(true);
+
+        if (setupDone) {
+          // prevent double setup when the backend gets an automatic restart
+          this.startInitialRequest();
+          return;
+        }
 
         // as we are sure that the default CSS were loaded now:
         document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
@@ -562,6 +580,7 @@ qx.Class.define('cv.TemplateEngine', {
           qx.event.message.Bus.dispatchByName('setup.dom.append');
           this.debug('pages created');
         }
+        setupDone = true;
         this.debug('setup.dom.finished');
         qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
         this.setDomFinished(true);
