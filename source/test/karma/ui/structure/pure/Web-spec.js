@@ -23,6 +23,7 @@
  */
 describe('testing a web widget', function() {
   it('should test the web creator', function() {
+    cv.Config.backend = 'knxd';
     const [widget, element] = this.createTestWidgetString('web', {ga: 'Test'}, '<label>Test</label>');
 
     expect(widget.getPath()).toBe('id_0');
