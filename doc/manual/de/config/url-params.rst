@@ -109,7 +109,7 @@ um dies fest einzustellen.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), oh2 (backend=oh2), mqtt
+    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), mqtt
 
 Der Default-Wert "cgi-bin" (Achtung, inkonsistent mit xml Element,
 default="cgi"!) ist normalerweise richtig und braucht nicht geändert
