@@ -341,7 +341,7 @@ qx.Class.define('cv.plugins.Clock', {
         this.__timeToShow = [value.getHours(), value.getMinutes(), value.getSeconds()];
       } else {
         this.__valueIsString = true;
-        this.__timeToShow = typeof value === 'string' ? value.split(':') : [0,0,0];
+        this.__timeToShow = typeof value === 'string' ? value.split(':') : [0, 0, 0];
         this.__timeToShow[0] = (this.__timeToShow[0]>=0 && this.__timeToShow[0]<=23) ? this.__timeToShow[0] : 0;
         this.__timeToShow[1] = (this.__timeToShow[1]>=0 && this.__timeToShow[1]<=59) ? this.__timeToShow[1] : 0;
         this.__timeToShow[2] = (this.__timeToShow[2]>=0 && this.__timeToShow[2]<=59) ? this.__timeToShow[2] : 0;
