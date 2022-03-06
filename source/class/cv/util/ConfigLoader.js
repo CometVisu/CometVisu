@@ -104,30 +104,35 @@ qx.Class.define('cv.util.ConfigLoader', {
           if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
             this.configError('libraryerror');
           } else {
+            cv.Config.server = {};
             let backendName = '';
             if (req.getResponseHeader('X-CometVisu-Backend-Name')) {
               backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
             }
-            if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
-              cv.Config.backendLoginUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
-              if (!cv.Config.backendLoginUrl.endsWith('/') && !cv.Config.backendLoginUrl.endsWith('/l')) {
-                cv.Config.backendLoginUrl += '/';
+            if (req.getResponseHeader('X-CometVisu-Backend-KNXD-Url')) {
+              cv.Config.server.backendKnxdUrl = req.getResponseHeader('X-CometVisu-Backend-KNXD-Url');
+              if (backendName === '') {
+                backendName = 'knxd';
               }
-              if (!backendName && cv.Config.backendLoginUrl.startsWith('/rest/')) {
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-MQTT-Url')) {
+              cv.Config.server.backendMQTTUrl = req.getResponseHeader('X-CometVisu-Backend-MQTT-Url');
+              if (backendName === '') {
+                backendName = 'mqtt';
+              }
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url')) {
+              cv.Config.server.backendOpenHABUrl = req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url');
+              if (backendName === '') {
                 backendName = 'openhab';
               }
             }
+            // legacy support, reproduce old behaviour
+            if (!req.getResponseHeader('X-CometVisu-Backend-Name') && cv.Config.backendOpenHABUrl.startsWith('/rest/')) {
+              backendName = 'openhab';
+            }
             if (backendName) {
-              cv.Config.configSettings.backend = backendName;
-            }
-            if (req.getResponseHeader('X-CometVisu-Backend-Url')) {
-              cv.Config.configSettings.backendUrl = req.getResponseHeader('X-CometVisu-Backend-Url');
-            }
-            if (req.getResponseHeader('X-CometVisu-Backend-User')) {
-              cv.Config.configSettings.credentials.username = req.getResponseHeader('X-CometVisu-Backend-User');
-            }
-            if (req.getResponseHeader('X-CometVisu-Backend-Pass')) {
-              cv.Config.configSettings.credentials.password = req.getResponseHeader('X-CometVisu-Backend-Pass');
+              cv.Config.server.backend = backendName;
             }
             this._checkQueue();
           }

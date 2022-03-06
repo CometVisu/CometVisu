@@ -282,7 +282,9 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.backend) {
-      cv.Config.backend = req.queryKey.backend;
+      cv.Config.URL = {backend: req.queryKey.backend};
+    } else {
+      cv.Config.URL = {backend: undefined};
     }
 
     if (req.queryKey.design) {

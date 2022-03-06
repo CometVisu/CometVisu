@@ -30,11 +30,11 @@ qx.Class.define('cv.io.mqtt.Client', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (backendName, backendLoginUrl, backendUrl) {
+  construct: function (backendName, backendUrl) {
     this.base(arguments);
     this.initialAddresses = [];
     this._backendName = backendName;
-    this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/');
+    this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
     this.__groups = {};
     this.__memberLookup = {};
   },
@@ -170,15 +170,15 @@ qx.Class.define('cv.io.mqtt.Client', {
         onFailure: onFailure
       };
 
-      if (credentials !== null && 'username' in credentials && credentials.username !== null) {
-        options.userName = credentials.username;
+      if (this._backendUrl.username !== '') {
+        options.userName = this._backendUrl.username;
       }
-      if (credentials !== null && 'password' in credentials && credentials.password !== null) {
-        options.password = credentials.password;
+      if (this._backendUrl.password !== '') {
+        options.password = this._backendUrl.password;
       }
 
       try {
-        this._client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
+        this._client = new Paho.MQTT.Client(this._backendUrl.toString(), 'CometVisu_' + Math.random().toString(16).substr(2, 8));
       } catch (e) {
         self.error('MQTT Client error:', e);
         self.setConnected(false);
@@ -196,7 +196,14 @@ qx.Class.define('cv.io.mqtt.Client', {
         self.update(update);
       };
 
-      this._client.connect(options);
+      try {
+        this._client.connect(options);
+      } catch (e) {
+        onFailure({
+          errorMessage: e.toString(),
+          errorCode: 'login -> _client.connect(' + this._backendUrl + ')'
+        });
+      }
     },
 
     /**

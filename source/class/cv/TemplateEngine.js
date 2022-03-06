@@ -274,17 +274,29 @@ qx.Class.define('cv.TemplateEngine', {
      * Initialize the {@link cv.io.Client} for backend communication
      */
     initBackendClient: function () {
-      let backendName = cv.Config.backend || cv.Config.configSettings.backend || 'default';
-      const backendUrl = cv.Config.backendUrl || cv.Config.configSettings.backendUrl;
-      const backendLoginUrl = cv.Config.backendLoginUrl || cv.Config.configSettings.backendLoginUrl;
-      const mapping = {
-        oh: 'openhab',
-        oh2: 'openhab2'
-      };
-      if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
-        backendName = mapping[backendName];
+      let backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
+      const backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
+      const backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
+      const backendOpenHABUrl = cv.Config.URL.backendOpenHABUrl || cv.Config.configSettings.backendOpenHABUrl || cv.Config.server.backendOpenHABUrl;
+
+      switch (backendName) {
+        case 'knxd':
+        case 'default':
+        default:
+          this.visu = cv.Application.createClient('knxd', backendKnxdUrl);
+          break;
+
+        case 'mqtt':
+          this.visu = cv.Application.createClient('mqtt', backendMQTTUrl);
+          break;
+
+        case 'openhab':
+        case 'openhab2':
+        case 'oh':
+        case 'oh2':
+          this.visu = cv.Application.createClient('openhab', backendOpenHABUrl);
+          break;
       }
-      this.visu = cv.Application.createClient(backendName, backendLoginUrl, backendUrl);
 
       const model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
@@ -470,18 +482,18 @@ qx.Class.define('cv.TemplateEngine', {
       if (pagesNode.getAttribute('backend') !== null) {
         settings.backend = pagesNode.getAttribute('backend');
       }
-      if (pagesNode.getAttribute('backend-url') !== null) {
-        settings.backendUrl = pagesNode.getAttribute('backend-url');
+      if (pagesNode.getAttribute('backend-knxd-url') !== null) {
+        settings.backendKnxdUrl = pagesNode.getAttribute('backend-knxd-url');
+      }
+      if (pagesNode.getAttribute('backend-mqtt-url') !== null) {
+        settings.backendMQTTUrl = pagesNode.getAttribute('backend-mqtt-url');
+      }
+      if (pagesNode.getAttribute('backend-openhab-url') !== null) {
+        settings.backendOpenHABUrl = pagesNode.getAttribute('backend-openhab-url');
       }
 
       if (pagesNode.getAttribute('token') !== null) {
         settings.credentials.token = pagesNode.getAttribute('token');
-      }
-      if (pagesNode.getAttribute('username') !== null) {
-        settings.credentials.username = pagesNode.getAttribute('username');
-      }
-      if (pagesNode.getAttribute('password') !== null) {
-        settings.credentials.password = pagesNode.getAttribute('password');
       }
       this.initBackendClient();
 
