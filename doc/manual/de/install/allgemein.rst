@@ -60,9 +60,9 @@ Backend konfigurieren
 ~~~~~~~~~~~~~~~~~~~~~
 
 Um die CometVisu für die Verwendung von einem spezifischen Backend zu
-konfigurieren gibt es mehrere Möglichkeiten, die im folgenden Aufgeführt sind.
+konfigurieren gibt es mehrere Möglichkeiten, die im Folgenden Aufgeführt sind.
 Hierbei überschreibt eine Methode die darüber aufgeführten Werte, d.h.
-beispielsweise überschreiben die Werte in der Konfiguartionsdatei die Einstellungen
+beispielsweise überschreiben die Werte in der Konfigurationsdatei die Einstellungen
 aus den Umgebungsvariablen.
 
 HTTP-Header / Docker-Umgebungsvariablen
@@ -70,17 +70,17 @@ HTTP-Header / Docker-Umgebungsvariablen
 
 Der Web-Server kann in den HTTP-Headern der Konfigurationsdatei die
 Backend-Parameter mit übergeben. Dies ist bei Verwendung des offiziellen
-Docker-Image der CometVisu leicht durch das Setzen entsprechender
+Docker-Images der CometVisu leicht durch das Setzen entsprechender
 ``ENVIRONMENT`` Parameter erreichbar
 
 ============================ ================ ===========
 HTTP Header                  ``ENVIRONMENT``  Bedeutung
 ---------------------------- ---------------- -----------
-X-CometVisu-Backend-Name     BACKEND_NAME     Name wie ``knxd``, ``oh`` oder ``mqtt``
+X-CometVisu-Backend-Name     BACKEND_NAME     Name wie ``knxd``, ``openhab`` oder ``mqtt``
 X-CometVisu-Backend-Url      BACKEND_URL      URL für den MQTT WebSocket
 X-CometVisu-Backend-LoginUrl CGI_URL_PATH     URL für die knxd oder openHAB Login-Ressource
-X-CometVisu-Backend-User     BACKEND_USERNAME Benutzername, wenn für den MQTT Broker benötigt
-X-CometVisu-Backend-Pass     BACKEND_PASSWORD Passwort, wenn für den MQTT Broker benötigt
+X-CometVisu-Backend-User     BACKEND_USERNAME Benutzername, wenn für den MQTT Broker oder openHAB benötigt
+X-CometVisu-Backend-Pass     BACKEND_PASSWORD Passwort, wenn für den MQTT Broker oder openHAB benötigt
 ============================ ================ ===========
 
 .. warning::
@@ -97,10 +97,10 @@ als Attribut gesetzt werden:
 =========== ===========
 Attribut    Bedeutung
 ----------- -----------
-backend     Name wie ``knxd``, ``oh`` oder ``mqtt``
+backend     Name wie ``knxd``, ``openhab`` oder ``mqtt``
 backend-url URL für den MQTT WebSocket
-username    Benutzername, wenn für den MQTT Broker benötigt
-password    Passwort, wenn für den MQTT Broker benötigt
+username    Benutzername, wenn für den MQTT Broker oder openHAB benötigt
+password    Passwort, wenn für den MQTT Broker oder openHAB benötigt
 =========== ===========
 
 Beispiel:

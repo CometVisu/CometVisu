@@ -74,11 +74,11 @@ be achieved by setting the corresponding ``ENVIRONMENT`` parameters.
 ============================ ================ ===========
 HTTP header                  ``ENVIRONMENT``  use
 ---------------------------- ---------------- -----------
-X-CometVisu-Backend-Name     BACKEND_NAME     Name like ``knxd``, ``oh`` or ``mqtt``
+X-CometVisu-Backend-Name     BACKEND_NAME     Name like ``knxd``, ``openhab`` or ``mqtt``
 X-CometVisu-Backend-Url      BACKEND_URL      URL of the MQTT WebSocket
 X-CometVisu-Backend-LoginUrl CGI_URL_PATH     URL of the knxd or openHAB login ressource
-X-CometVisu-Backend-User     BACKEND_USERNAME User name, when needed for the MQTT broker
-X-CometVisu-Backend-Pass     BACKEND_PASSWORD Password, when needed for the MQTT broker
+X-CometVisu-Backend-User     BACKEND_USERNAME User name, when needed for the MQTT broker or openHAB
+X-CometVisu-Backend-Pass     BACKEND_PASSWORD Password, when needed for the MQTT broker or openHAB
 ============================ ================ ===========
 
 .. warning::
@@ -95,10 +95,10 @@ as attributes:
 =========== ===========
 attribute   use
 ----------- -----------
-backend     Name like ``knxd``, ``oh`` or ``mqtt``
+backend     Name like ``knxd``, ``openhab`` or ``mqtt``
 backend-url URL of the MQTT WebSocket
-username    User name, when needed for the MQTT broker
-password    Password, when needed for the MQTT broker
+username    User name, when needed for the MQTT broker or openHAB
+password    Password, when needed for the MQTT broker or openHAB
 =========== ===========
 
 Example:

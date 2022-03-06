@@ -650,7 +650,7 @@ msgstr "Plugin \"%1\" konnte nicht geladen werden"
 
 #: cv/util/ScriptLoader.js
 msgid "File %1 could not be loaded."
-msgstr "Date %1 konnte nicht geladen werden."
+msgstr "Datei %1 konnte nicht geladen werden."
 
 #: cv/util/ScriptLoader.js
 msgid "File loading error"

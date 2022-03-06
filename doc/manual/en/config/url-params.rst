@@ -104,13 +104,13 @@ also a ``backend`` parameter in the config to fix this.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2), mqtt
+    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), oh2 (backend=oh2), mqtt
 
 The default value "cgi-bin" (attention, inconsistent with xml
 element, default = "cgi"!) is usually correct and does not need to be
 changed. "r", "w" and "l" are in /cgi-bin/.
 
-The option "oh" uses the path necessary for OpenHAB.
+The option "openhab" uses the path necessary for OpenHAB.
 
 *enableQueue* - Queue
 ~~~~~~~~~~~~~~~~~~~~~
