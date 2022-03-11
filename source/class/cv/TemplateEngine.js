@@ -482,6 +482,10 @@ qx.Class.define('cv.TemplateEngine', {
       if (pagesNode.getAttribute('backend') !== null) {
         settings.backend = pagesNode.getAttribute('backend');
       }
+      if (pagesNode.getAttribute('backend-url') !== null) {
+        settings.backendUrl = pagesNode.getAttribute('backend-url');
+        window.console.error('The useage of "backend-url" is depreciated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
+      }
       if (pagesNode.getAttribute('backend-knxd-url') !== null) {
         settings.backendKnxdUrl = pagesNode.getAttribute('backend-knxd-url');
       }
@@ -494,6 +498,12 @@ qx.Class.define('cv.TemplateEngine', {
 
       if (pagesNode.getAttribute('token') !== null) {
         settings.credentials.token = pagesNode.getAttribute('token');
+      }
+      if (pagesNode.getAttribute('username') !== null) {
+        settings.credentials.username = pagesNode.getAttribute('username');
+      }
+      if (pagesNode.getAttribute('password') !== null) {
+        settings.credentials.password = pagesNode.getAttribute('password');
       }
       this.initBackendClient();
 

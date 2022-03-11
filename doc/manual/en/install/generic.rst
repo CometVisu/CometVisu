@@ -71,15 +71,17 @@ The web server can pass setup information in the HTTP header of the
 config file. By using the official docker image of the CometVisu this can
 be achieved by setting the corresponding ``ENVIRONMENT`` parameters.
 
-============================ ================ ===========
-HTTP header                  ``ENVIRONMENT``  use
----------------------------- ---------------- -----------
-X-CometVisu-Backend-Name     BACKEND_NAME     Name like ``knxd``, ``openhab`` or ``mqtt``
-X-CometVisu-Backend-Url      BACKEND_URL      URL of the MQTT WebSocket
-X-CometVisu-Backend-LoginUrl CGI_URL_PATH     URL of the knxd or openHAB login ressource
-X-CometVisu-Backend-User     BACKEND_USERNAME User name, when needed for the MQTT broker or openHAB
-X-CometVisu-Backend-Pass     BACKEND_PASSWORD Password, when needed for the MQTT broker or openHAB
-============================ ================ ===========
+=============================== ================ ===========
+HTTP header                     ``ENVIRONMENT``  use
+------------------------------- ---------------- -----------
+X-CometVisu-Backend-Name        BACKEND_NAME     Name like ``knxd``, ``openhab`` or ``mqtt``
+X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL of the knxd login Ressource
+X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL of the MQTT login Ressource
+X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  URL of the openHAB login Ressource
+X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     URL of the knxd or openHAB login ressource
+X-CometVisu-Backend-User        BACKEND_USERNAME User name, when needed for the MQTT broker or openHAB
+X-CometVisu-Backend-Pass        BACKEND_PASSWORD Password, when needed for the MQTT broker or openHAB
+=============================== ================ ===========
 
 .. warning::
 
@@ -92,14 +94,17 @@ Config file
 In the all containing ``<pages>`` element the different parameters can be set
 as attributes:
 
-=========== ===========
-attribute   use
------------ -----------
-backend     Name like ``knxd``, ``openhab`` or ``mqtt``
-backend-url URL of the MQTT WebSocket
-username    User name, when needed for the MQTT broker or openHAB
-password    Password, when needed for the MQTT broker or openHAB
-=========== ===========
+=================== ===========
+attribute           use
+------------------- -----------
+backend             Name like ``knxd``, ``openhab`` or ``mqtt``
+backend-knxd-url    URL of the knxd login ressource
+backend-mqtt-url    URL of the MQTT login ressource
+backend-openhab-url URL of the openHAB login ressource
+backend-url         Depreciated: URL of the MQTT WebSocket
+username            Depreciated: User name, when needed for openHAB
+password            Depreciated: Password, when needed for openHAB
+=================== ===========
 
 Example:
 

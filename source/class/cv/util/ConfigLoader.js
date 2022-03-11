@@ -109,6 +109,18 @@ qx.Class.define('cv.util.ConfigLoader', {
             if (req.getResponseHeader('X-CometVisu-Backend-Name')) {
               backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
             }
+            if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
+              window.console.error('The usage of "X-CometVisu-Backend-LoginUrl" is depreciated. Please update the server setup.');
+              let backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
+              if (!backendUrl.endsWith('/')) {
+                backendUrl += '/';
+              }
+              cv.Config.server.backendKnxdUrl = backendUrl;
+              cv.Config.server.backendOpenHABUrl = backendUrl;
+              if (!backendName && backendUrl.startsWith('/rest/')) {
+                backendName = 'openhab';
+              }
+            }
             if (req.getResponseHeader('X-CometVisu-Backend-KNXD-Url')) {
               cv.Config.server.backendKnxdUrl = req.getResponseHeader('X-CometVisu-Backend-KNXD-Url');
               if (backendName === '') {
