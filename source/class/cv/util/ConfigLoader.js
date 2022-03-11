@@ -139,10 +139,6 @@ qx.Class.define('cv.util.ConfigLoader', {
                 backendName = 'openhab';
               }
             }
-            // legacy support, reproduce old behaviour
-            if (!req.getResponseHeader('X-CometVisu-Backend-Name') && cv.Config.backendOpenHABUrl.startsWith('/rest/')) {
-              backendName = 'openhab';
-            }
             if (backendName) {
               cv.Config.server.backend = backendName;
             }
