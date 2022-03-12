@@ -128,7 +128,7 @@ msgstr "media Ordner ist nicht beschreibbar"
 
 #: cv/ui/manager/editor/Config.js
 msgid "Hidden configuration file (hidden.php) not writeable"
-msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar."
+msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar"
 
 #: cv/ui/manager/Main.js
 msgid "Cannot load config template"
@@ -504,9 +504,9 @@ msgstr "Variable aus Template %1"
 msgid "Drop the file here to replace the content."
 msgstr "Lassen Sie die Datei hier fallen um den Inhalt zu ersetzen."
 
-#. NO LONGER USED
-msgid "Do you really want to replace the \'%1\' with the uploaded files content?"
-msgstr "Möchten Sie \'%1\' wirklich mit dem Inhalt der hochgeladenen Datei ersetzen?"
+#: cv/ui/manager/form/FileListItem.js
+msgid "Do you really want to replace the '%1' with the uploaded files content?"
+msgstr "Möchten Sie wirklich '%1' mit der hochgeladenen Datei ersetzen?"
 
 #: cv/ui/manager/form/FileListItem.js
 msgid "Double click to open \"%1\""
@@ -622,7 +622,7 @@ msgstr "Bitte prüfen!"
 
 #: cv/util/ConfigLoader.js
 msgid "Config file has wrong library version!"
-msgstr "Konfigurations-Datei hat die falsche 'library' Version"
+msgstr "Konfigurations-Datei hat die falsche 'library' Version!"
 
 #: cv/util/ConfigLoader.js
 msgid "This can cause problems with your configuration"
@@ -650,7 +650,7 @@ msgstr "Plugin \"%1\" konnte nicht geladen werden"
 
 #: cv/util/ScriptLoader.js
 msgid "File %1 could not be loaded."
-msgstr "Date %1 konnte nicht geladen werden"
+msgstr "Datei %1 konnte nicht geladen werden."
 
 #: cv/util/ScriptLoader.js
 msgid "File loading error"
@@ -711,10 +711,6 @@ msgstr "Speichen trotz Warnungen bestätigen"
 #. NO LONGER USED
 msgid "The XML-Editor does not support files that are not writeable!"
 msgstr "Der XML-Editor unterstützt keine Dateien, die nicht gespeichert werden können!"
-
-#: cv/ui/manager/form/FileListItem.js
-msgid "Do you really want to replace the '%1' with the uploaded files content?"
-msgstr "Möchten Sie wirklich '%1' mit der hochgeladenen Datei ersetzen?"
 
 #: cv/TemplateEngine.js
 msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
@@ -786,7 +782,7 @@ msgstr "nicht angegeben"
 
 #: cv/ui/manager/editor/Tree.js
 msgid "This is not a valid value."
-msgstr "Dies ist kein gültiger Wert"
+msgstr "Dies ist kein gültiger Wert."
 
 #: cv/ui/manager/editor/Tree.js
 msgid "Edit %1"
@@ -910,7 +906,7 @@ msgstr "Fehlender Textinhalt"
 
 #: cv/ui/manager/form/ElementForm.js
 msgid "Possible values could no be retrieved, please check browser console for error details"
-msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden."
+msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden"
 
 #: cv/ui/manager/editor/Tree.js
 msgid "\"%1\" has been moved after \"%2\""
@@ -1067,6 +1063,38 @@ msgstr "Die auf Ihrem System installierte PHP Version wird vom Manager nicht unt
 #: cv/Application.js
 msgid "Manager"
 msgstr "Manager"
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr "Sub-Selektor \"%1\" passt nicht zum Wert %2"
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr "Sub-Selektor \"%1\" hat fehlerhaften ersten Teil \"%2\""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr "Sub-Selektor Fehler: \"%1\""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr "Dekodieren: JSON.parse Fehler: %1; Selektor: \"%2\"; Wert: %3"
+
+#: cv/Transform.js
+msgid "Transform decode error"
+msgstr "Transform Dekodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr "Transform Enkodier-Fehler"
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr "Enkodier-Fehler: %1; Selektor: \"%2\"; Wert: %3"
+
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
+msgstr "Versuchtes ColorChooser Update mit ungültigen Daten.<br/>address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
 
 #: cv/util/ConfigLoader.js
 msgid "You can open the manager to create or upload a config file."

@@ -215,8 +215,7 @@ qx.Class.define('cv.core.notifications.Router', {
         }
 
         // process value
-        const transform = config.addressConfig.transform;
-        state = cv.Transform.decode(transform, state);
+        state = cv.Transform.decode(config.addressConfig, state);
 
         const templateData = {
           address: address,
@@ -226,7 +225,7 @@ qx.Class.define('cv.core.notifications.Router', {
         };
 
         // transform the raw value to a JavaScript type
-        templateData.value = cv.Transform.decode(transform, templateData.value);
+        templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
         if (config.valueMapping) {
           // apply mapping
           templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);

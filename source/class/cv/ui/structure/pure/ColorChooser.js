@@ -234,25 +234,28 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     },
 
     _update: function (address, data) {
-      /**
-       * @param transform
-       * @param variant
-       */
-      function showInvalidDataErrorMessage(transform, variant) {
+      const addressObj = this.getAddress()[address];
+      const showInvalidDataErrorMessage = function () {
+        const message = qx.locale.Manager.tr(
+          'Updating ColorChooser with invalid data<br/>Address: "%1"<br/>transform: "%2"<br/>selector: "%3"<br/>variant: "%4"<br/>data: "%5"',
+          address,
+          addressObj.transform,
+          addressObj.selector,
+          addressObj.variant,
+          data
+        );
         if (cv.Config.testMode === true) {
           // eslint-disable-next-line no-console
-          console.error('Updating ColorChooser with invalid data<br/>Address: '+address+', data: '+data+', transform: '+transform+', variant: '+variant);
+          console.error(message.toString());
         }
-        cv.core.notifications.Router.dispatchMessage('cv.config.error', {
-          message: 'Updating ColorChooser with invalid data<br/>Address: '+address+', data: '+data+', transform: '+transform+', variant: '+variant
-        });
-      }
+        cv.core.notifications.Router.dispatchMessage('cv.config.error', {message});
+      };
 
-      const transform = this.getAddress()[address].transform;
-      let variant = this.getAddress()[address].variantInfo;
+      const transform = addressObj.transform;
+      let variant = addressObj.variantInfo;
 
       let variantType;
-      let value = cv.Transform.decode(transform, data);
+      let value = cv.Transform.decode(addressObj, data);
       let base;
 
       switch (variant) {
@@ -260,7 +263,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 's':
         case 'v':
           if (!Number.isFinite(value)) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return;
           }
           value /= 100;
@@ -269,7 +272,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
         case 'hsv':
           if (value.get === undefined) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return;
           }
           value = { h: value.get('h')/360, s: value.get('s')/100, v: value.get('v')/100 };
@@ -280,7 +283,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'RGB-g':
         case 'RGB-b':
           if (!Number.isFinite(value)) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return;
           }
           base = this.getBaseColors()[variant.split('-')[1]];
@@ -291,7 +294,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'rgb':
           base = this.getBaseColors();
           if (value.get === undefined) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return;
           }
           value = {
@@ -307,7 +310,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'RGBW-b':
         case 'RGBW-w':
           if (!Number.isFinite(value)) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return;
           }
           base = this.getBaseColors()[variant.split('-')[1]];
@@ -318,7 +321,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'rgbw':
           base = this.getBaseColors();
           if (value.get === undefined) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return;
           }
           value = {
@@ -339,7 +342,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           if (value instanceof Map && value.get('YValid') !== false) {
             value = value.get('Y');
           } else if (!Number.isFinite(value)) {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
           variantType = 'xyY';
@@ -348,8 +351,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'xy':
           if (value instanceof Map && value.get('cValid') !== false) {
             value = { x: value.get('x'), y: value.get('y') };
-          } else if (!('x' in value && 'y' in value)) {
-            showInvalidDataErrorMessage(transform, variant);
+          } else if (!(typeof value === 'object' && 'x' in value && 'y' in value)) {
+            showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
           variantType = 'xyY';
@@ -367,7 +370,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               return; // no valid data in the value
             }
           } else {
-            showInvalidDataErrorMessage(transform, variant);
+            showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
           variantType = 'xyY';

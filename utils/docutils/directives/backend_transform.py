@@ -52,7 +52,7 @@ class BackendTransformDirective(BaseDirective):
         for name in files:
             print("Load transforms at " + name)
             this_transforms=json.loads(subprocess.check_output(["utils/docutils/directives/helper/backend_transform_parse.js", name]))
-            self.transforms[this_transforms[0]] = this_transforms[1]
+            self.transforms[this_transforms[0]] = [this_transforms[1], this_transforms[2]]
 
     def run(self):
         self.init_locale()
@@ -80,18 +80,40 @@ class BackendTransformDirective(BaseDirective):
 
         rst = ViewList()
         rst.append(".. csv-table::", "fakefile4transform.rst", self.lineno)
-        rst.append("   :header: \"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" % (
-            "``transform``", _("name"), _("description"), _("unit"), _("min"), _("max")
-        ), "fakefile4transform.rst", self.lineno)
+        rst.append("   :escape: \\", "fakefile4transform.rst", self.lineno)
+        if self.transforms[element_name][1]:
+            rst.append("   :header: \"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" % (
+                "``transform``", _("name"), _("description"), _("example"), _("unit"), _("min"), _("max")
+            ), "fakefile4transform.rst", self.lineno)
+        else:
+            rst.append("   :header: \"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" % (
+                "``transform``", _("name"), _("description"), _("unit"), _("min"), _("max")
+            ), "fakefile4transform.rst", self.lineno)
         rst.append("", "fakefile4transform.rst", self.lineno)
-        for transform, t_content in sorted(self.transforms[element_name][self.locale].items(), key=leadingzeros):
+        for transform, t_content in sorted(self.transforms[element_name][0][self.locale].items(), key=leadingzeros):
             unit = t_content.get("unit", "")
             if unit == "-":
-                unit = "\\-"
+                unit = "\\\\-"
             range = t_content.get("range", {})
-            rst.append("   \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"" % (
-                transform, t_content.get("name", ""), t_content.get("lname", ""), unit, range.get("min", ""), range.get("max", "")
-            ), "fakefile4transform.rst", self.lineno)
+            if self.transforms[element_name][1]:
+                rst.append("   \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"" % (
+                    transform.replace("\"", "\\\""),
+                    t_content.get("name", "").replace("\"", "\\\""),
+                    t_content.get("lname", "").replace("\"", "\\\""),
+                    ('``' + t_content.get("example", "").replace("\"", "\\\"") + '``') if len(t_content.get("example", ""))>0 else "",
+                    unit.replace("\"", "\\\""),
+                    range.get("min", ""),
+                    range.get("max", "")
+                ), "fakefile4transform.rst", self.lineno)
+            else:
+                rst.append("   \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"" % (
+                    transform.replace("\"", "\\\""),
+                    t_content.get("name", "").replace("\"", "\\\""),
+                    t_content.get("lname", "").replace("\"", "\\\""),
+                    unit.replace("\"", "\\\""),
+                    range.get("min", ""),
+                    range.get("max", "")
+                ), "fakefile4transform.rst", self.lineno)
 
         paragraph_node = nodes.paragraph()
         self.state.nested_parse(rst, 0, paragraph_node)
