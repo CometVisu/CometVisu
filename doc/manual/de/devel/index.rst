@@ -55,7 +55,7 @@ Der Ablauf des Ladens der Visu läuft nach dem CometVisu-Protokoll in folgenden 
     * ``X-CometVisu-Backend-Name``: Der Name des zu verwendenden Backends.
     * ``X-CometVisu-Backend-KNXD-Url``: URL für die knxd Login-Ressource
     * ``X-CometVisu-Backend-MQTT-Url``: URL für die MQTT Login-Ressource
-    * ``X-CometVisu-Backend-OpenHAB-Url``: URL für die openHAB Login-Ressource
+    * ``X-CometVisu-Backend-OpenHAB-Url``: Nur openHAB: Pfad zur REST-API
     * ``X-CometVisu-Backend-LoginUrl``: Veraltet: Pfad unter der der Client das Login ausführen kann.
 #. Die CometVisu authentifiziert sich beim Backend (zur Zeit implementiert kein Backend eine echte Authentifizierung)
 #. Das Backend bestätigt die Authentifizierung und liefert Informationen als JSON zurück:

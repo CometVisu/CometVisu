@@ -110,7 +110,7 @@ qx.Class.define('cv.util.ConfigLoader', {
               backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
             }
             if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
-              window.console.error('The usage of "X-CometVisu-Backend-LoginUrl" is depreciated. Please update the server setup.');
+              this.error('The usage of "X-CometVisu-Backend-LoginUrl" is deprecated. Please update the server setup.');
               let backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
               if (!backendUrl.endsWith('/')) {
                 backendUrl += '/';

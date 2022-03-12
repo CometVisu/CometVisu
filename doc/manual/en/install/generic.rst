@@ -77,10 +77,10 @@ HTTP header                     ``ENVIRONMENT``  use
 X-CometVisu-Backend-Name        BACKEND_NAME     Name like ``knxd``, ``openhab`` or ``mqtt``
 X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL of the knxd login Ressource
 X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL of the MQTT login Ressource
-X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  URL of the openHAB login Ressource
-X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     URL of the knxd or openHAB login ressource
-X-CometVisu-Backend-User        BACKEND_USERNAME User name, when needed for the MQTT broker or openHAB
-X-CometVisu-Backend-Pass        BACKEND_PASSWORD Password, when needed for the MQTT broker or openHAB
+X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  Only openHAB: path to the REST-API
+X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     Deprecated: UURL of the knxd or openHAB login ressource
+X-CometVisu-Backend-User        BACKEND_USERNAME Deprecated: UUser name, when needed for the MQTT broker or openHAB
+X-CometVisu-Backend-Pass        BACKEND_PASSWORD Deprecated: UPassword, when needed for the MQTT broker or openHAB
 =============================== ================ ===========
 
 .. warning::
@@ -100,10 +100,10 @@ attribute           use
 backend             Name like ``knxd``, ``openhab`` or ``mqtt``
 backend-knxd-url    URL of the knxd login ressource
 backend-mqtt-url    URL of the MQTT login ressource
-backend-openhab-url URL of the openHAB login ressource
-backend-url         Depreciated: URL of the MQTT WebSocket
-username            Depreciated: User name, when needed for openHAB
-password            Depreciated: Password, when needed for openHAB
+backend-openhab-url Only openHAB: path to the REST-API
+backend-url         Deprecated: URL of the MQTT WebSocket
+username            Deprecated: User name, when needed for openHAB
+password            Deprecated: Password, when needed for openHAB
 =================== ===========
 
 Example:

@@ -79,7 +79,7 @@ HTTP Header                     ``ENVIRONMENT``  Bedeutung
 X-CometVisu-Backend-Name        BACKEND_NAME     Name wie ``knxd``, ``openhab`` oder ``mqtt``
 X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL für die knxd Login-Ressource
 X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL für die MQTT Login-Ressource
-X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  URL für die openHAB Login-Ressource
+X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  openHAB: Pfad zur REST-API
 X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     Veraltet: URL für die knxd oder openHAB Login-Ressource
 X-CometVisu-Backend-User        BACKEND_USERNAME Veraltet: Benutzername, wenn für openHAB benötigt
 X-CometVisu-Backend-Pass        BACKEND_PASSWORD Veraltet: Passwort, wenn für openHAB benötigt
@@ -102,7 +102,7 @@ Attribut            Bedeutung
 backend             Name wie ``knxd``, ``openhab`` oder ``mqtt``
 backend-knxd-url    URL für die knxd Login-Ressource
 backend-mqtt-url    URL für die MQTT Login-Ressource
-backend-openhab-url URL für die openHAB Login-Ressource
+backend-openhab-url openHAB: Pfad zur REST-API
 backend-url         Veraltet: URL für die openHAB Verbindung
 username            Veraltet: Benutzername, wenn für openHAB benötigt
 password            Veraltet: Passwort, wenn für openHAB benötigt

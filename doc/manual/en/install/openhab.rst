@@ -43,7 +43,7 @@ if everything runs on one server, you can use ``localhost``).
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-        Header set X-CometVisu-Backend-OpenHAB-Url "/rest/cv/l"
+        Header set X-CometVisu-Backend-OpenHAB-Url "/rest/"
         Header set X-CometVisu-Backend-Name "openhab"
 
         ProxyPass /rest http://<openhab>:8080/rest

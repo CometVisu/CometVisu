@@ -484,7 +484,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
       if (pagesNode.getAttribute('backend-url') !== null) {
         settings.backendUrl = pagesNode.getAttribute('backend-url');
-        window.console.error('The useage of "backend-url" is depreciated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
+        this.error('The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
       }
       if (pagesNode.getAttribute('backend-knxd-url') !== null) {
         settings.backendKnxdUrl = pagesNode.getAttribute('backend-knxd-url');

@@ -534,13 +534,13 @@
       </xsd:attribute>
       <xsd:attribute name="username" use="optional" type="xsd:string">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Only openHAB and depreciated: Backend username used to authorize requests (can also be an access token).</xsd:documentation>
+          <xsd:documentation xml:lang="en">Only openHAB and deprecated: Backend username used to authorize requests (can also be an access token).</xsd:documentation>
           <xsd:documentation xml:lang="de">Nur openHAB und veraltet: Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="password" use="optional" type="xsd:string">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Only openHAB and depreciated: Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
+          <xsd:documentation xml:lang="en">Only openHAB and deprecated: Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
           <xsd:documentation xml:lang="de">Nur openHAB und veraltet: Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erforderlich). </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
