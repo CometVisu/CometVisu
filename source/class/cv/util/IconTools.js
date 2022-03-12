@@ -306,7 +306,7 @@ qx.Class.define('cv.util.IconTools', {
     svgKUF: function (iconID) {
       if (!this.preloadedKUFicons) {
         this.preloadedKUFicons = true;
-        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.css';
+        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/fonts/knx-uf-iconset.css';
         cv.util.ScriptLoader.includeStylesheet(iconPath);
       }
       /**

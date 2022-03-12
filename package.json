@@ -70,9 +70,6 @@
     "grunt-protractor-runner": "^5.0.0",
     "grunt-scaffold": "^0.7.0",
     "grunt-shell": "^3.0.1",
-    "grunt-svgmin": "^6.0.0",
-    "grunt-svgstore": "latest",
-    "grunt-webfonts": "^4.0.2",
     "ini": "^2.0.0",
     "jasmine-core": "^3.4.0",
     "jshint-stylish": "^2.1.0",
@@ -89,7 +86,6 @@
     "mustache": "^4.0.1",
     "protractor": "^7.0.0",
     "request": "^2.88.2",
-    "svgmin": "^0.1.0",
     "uglify-es": "^3.3.9",
     "xml-js": "^1.6.11"
   },

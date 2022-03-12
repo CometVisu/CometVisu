@@ -209,52 +209,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // minify svg icons
-    svgmin: {
-      options: {
-        plugins: [
-          {
-            convertTransform: false
-          }, {
-            removeViewBox: false
-          }, {
-            removeDimensions: true
-          }, {
-            removeUselessStrokeAndFill: false
-          }, {
-            mergePaths: {
-              force: true
-            }
-          }
-        ]
-      },
-      dist: {
-        files: [
-          {
-            expand: true,
-            cwd: 'external/knx-uf-iconset/raw_svg/',
-            src: '*.svg',
-            dest: 'cache/icons/'
-          }
-        ]
-      }
-    },
-
-    // build icons
-    svgstore: {
-      options: {
-        prefix : 'kuf-', // This will prefix each <g> ID
-        includeTitleElement: false
-      },
-      default : {
-        files: {
-          'source/resource/icons/knx-uf-iconset.svg': [
-            'cache/icons/*.svg'
-          ]
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       qxClient: {
@@ -468,6 +422,13 @@ module.exports = function(grunt) {
           //'git commit -m "icons updated"'
         ].join('&&')
       },
+      buildicons: {
+        command: [
+          './bin/svg-to-ttf --target css --css-namespace knxuf --font-name knx-uf-iconset --view-box="30 30 301 301" external/knx-uf-iconset/raw_svg/',
+          'cp knx-uf-iconset.* source/resource/icons/fonts/',
+          'rm knx-uf-iconset.*'
+        ].join('&&')
+      },
       buildClient: {
         command: 'npm run make-client'
       },
@@ -509,24 +470,6 @@ module.exports = function(grunt) {
           cwd: 'source/rest/manager'
         }
       }
-    },
-
-    webfont: {
-      icons: {
-        src: 'cache/icons/*.svg',
-        dest: 'source/resource/icons',
-        options: {
-          syntax: 'bootstrap',
-          types: ['eot','woff','ttf'],
-          font: 'KnxUFIcons',
-          normalize: true,
-          autoHint: false,
-          templateOptions: {
-            baseClass: 'knxuf-icon',
-            classPrefix: 'knxuf_'
-          }
-        }
-      }
     }
   };
   grunt.initConfig(config);
@@ -548,53 +491,6 @@ module.exports = function(grunt) {
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
-  // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
-  // - replace #FFFFFF with the currentColor
-  // - fix viewBox to follow the png icon version
-  grunt.registerTask('handle-kuf-svg', function() {
-    var filename   = 'source/resource/icons/knx-uf-iconset.svg';
-    var iconconfig = 'source/class/cv/IconConfig.js';
-    var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, svg
-      .replace( /#FFFFFF|#fff/g, 'currentColor' )
-      .replace( /viewBox="0 0 361 361"/g, 'viewBox="30 30 301 301"' ) // emulate a shave 40 on a 480px image
-    );
-
-    var symbolRegEx = /<symbol.*?id="kuf-(.*?)".*?>/g;
-    var kufIcons = '';
-    var icon;
-    while( (icon = symbolRegEx.exec( svg )) !== null )
-    {
-      // icon id = icon[1]
-
-      if( kufIcons !== '' ) {
-        kufIcons += ",\n";
-      }
-      kufIcons += "      '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('" + icon[1] + "') } } }";
-    }
-    var start = '// Do not remove this line: Dynamic Icons Start';
-    var end   = '// Do not remove this line: Dynamic Icons End';
-    var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
-    grunt.file.write(iconconfig, iconconfigFile
-      .replace( new RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
-    );
-  });
-
-  grunt.registerTask('prepare-knxuf-webfont', function() {
-    const targetFolder = 'cache/icons/';
-    const sourceFolder = targetFolder;
-    fs.readdirSync(sourceFolder).forEach(function (iconFile) {
-      if (iconFile.endsWith('.svg')) {
-        const filePath = path.join(sourceFolder, iconFile);
-        let iconSrc = grunt.file.read(filePath, { encoding: "utf8" }).toString();
-        grunt.file.write(path.join(targetFolder, iconFile), iconSrc
-          .replace( /#FFFFFF|#fff/g, 'currentColor' )
-          .replace( /viewBox="0 0 361 361"/g, 'viewBox="60 60 241 241"' )
-        );
-      }
-    });
-  });
-
     // Load the plugin tasks
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
@@ -607,18 +503,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-karma-coveralls');
-  grunt.loadNpmTasks('grunt-svgstore');
-  grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
   grunt.loadNpmTasks('grunt-composer');
-  grunt.loadNpmTasks('grunt-webfonts');
 
   // Default task runs all code checks, updates the banner and builds the release
-  grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
+    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'composer:rest:install', 'shell:build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
@@ -628,8 +520,6 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
-
-  grunt.registerTask('knxuf-webfont', ['clean:iconcache', 'svgmin', 'prepare-knxuf-webfont', 'webfont']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
