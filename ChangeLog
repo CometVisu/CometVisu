@@ -3,6 +3,28 @@
 0.12.0
 ======
 
+### v0.12.0-RC7 (2022/03/12)
+
+- [#1240](https://github.com/CometVisu/CometVisu/pull/1240) Cherry pick for 0.12.0-RC7 (@ChristianMayer)
+- [#1239](https://github.com/CometVisu/CometVisu/pull/1239) Make clock plugin more robust during startup. (@ChristianMayer)
+- [#1237](https://github.com/CometVisu/CometVisu/pull/1237) handle cases when indexedb cannot be opened (@peuter)
+- [#1233](https://github.com/CometVisu/CometVisu/pull/1233) MQTT refinement (@ChristianMayer)
+- [#1236](https://github.com/CometVisu/CometVisu/pull/1236) Fix icon display of cached config when mapping ranges are used. (@ChristianMayer)
+- [#1232](https://github.com/CometVisu/CometVisu/pull/1232) Bump karma from 6.3.14 to 6.3.16 (@dependabot[bot])
+- [#1230](https://github.com/CometVisu/CometVisu/pull/1230) Doc + Data-provider fixes (@peuter)
+- [#1228](https://github.com/CometVisu/CometVisu/pull/1228) replace jquery rssparser that used the google api that is not availabl… (@peuter)
+- [#1227](https://github.com/CometVisu/CometVisu/pull/1227) Handle 404 config-error state better: (@peuter)
+- [#1225](https://github.com/CometVisu/CometVisu/pull/1225) update sentry libraries (@peuter)
+- [#1224](https://github.com/CometVisu/CometVisu/pull/1224) Doc + mobile.css fixes (@peuter)
+- [#1222](https://github.com/CometVisu/CometVisu/pull/1222) Reimplement forced image reload. (@ChristianMayer)
+- [#1221](https://github.com/CometVisu/CometVisu/pull/1221) do not apply a function as css class, introduce a new type property fo… (@peuter)
+- [#1218](https://github.com/CometVisu/CometVisu/pull/1218) Bump path-parse from 1.0.6 to 1.0.7 (@dependabot[bot])
+- [#1220](https://github.com/CometVisu/CometVisu/pull/1220) Bump node-fetch from 2.6.1 to 2.6.7 (@dependabot[bot])
+- [#1219](https://github.com/CometVisu/CometVisu/pull/1219) Bump axios from 0.21.1 to 0.21.4 (@dependabot[bot])
+- [#1215](https://github.com/CometVisu/CometVisu/pull/1215) update monaco editor to current (@peuter)
+- [#1217](https://github.com/CometVisu/CometVisu/pull/1217) Fix warnings from PHP (@ChristianMayer)
+- [#1216](https://github.com/CometVisu/CometVisu/pull/1216) Fix clock plugin. (@ChristianMayer)
+
 ### v0.12.0-RC6 (2022/02/13)
 
 - [#1212](https://github.com/CometVisu/CometVisu/pull/1212) Change tag mechanism (@ChristianMayer)
