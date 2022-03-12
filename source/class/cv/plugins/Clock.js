@@ -489,7 +489,7 @@ qx.Class.define('cv.plugins.Clock', {
 
     _updateHands: function () {
       const [hour, minute, second] = this.__timeToShow;
-      this.__Elements.forEach(e => {
+      Array.isArray(this.__Elements) && this.__Elements.forEach(e => {
         let showSeconds = true;
         if (e.hour !== null) {
           if (showSeconds) {
