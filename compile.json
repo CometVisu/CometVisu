@@ -209,6 +209,7 @@
     "indexedDB",
     "URL",
     "sinon",
-    "XMLDocument"
+    "XMLDocument",
+    "RSSParser"
   ]
 }

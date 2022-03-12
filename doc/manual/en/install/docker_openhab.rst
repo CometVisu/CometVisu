@@ -1,69 +1,69 @@
 .. _Docker_OpenHAB_Installation:
 
-Installation auf einem Ubuntu System mit openHAB und Docker
-===========================================================
+Installing on an Ubuntu system with openHAB and Docker
+======================================================
 
-1. Voraussetzungen
-------------------
+1. Prerequisites
+----------------
 
-Für den Betrieb der CometVisu mit openHAB und Docker werden folgende Dinge benötigt:
+To run CometVisu with openHAB and Docker the following things are needed:
 
-1. Server mit funktionierender openHAB Installation.
-2. Docker-CE und Docker Compose
+1. server with working openHAB installation.
+2. Docker CE and Docker Compose.
 
 .. HINT::
 
-    Es wird kein zusätzlicher Webserver, wie z.B. Apache o.ä. mit installiertem PHP Support benötigt, da dies
-    alles Bestandteil des Containers ist.
-    Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich ist.
+    No additional web server, such as Apache or similar with PHP support installed is needed, as this is
+    is all part of the container.
+    The above items are all that is required to get up and running successfully.
 
 
-2. Installation von Docker-CE und Compose auf dem Server
---------------------------------------------------------
+2. Installing Docker-CE and Compose on the server
+-------------------------------------------------
 
-Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:
+This can all be done by running the following console commands:
 
 .. code-block:: console
 
     # Update
     sudo apt-get update
 
-    # Vorausetzungen installieren
+    # Install prerequisites
     sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
-    # Hinzufügen vom Docker GPG-Key
+    # add the Docker GPG key
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    # Hinzufügen vom Docker Repository
+    # add Docker repository key
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-    # Nochmal ein Update
+    # Update again
     sudo apt-get update
 
-    # Installation docker-ce und Compose
+    # Install docker-ce and compose
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose
-	
 
-3. Systemvorbereitungen
------------------------
+
+3. System preparations
+----------------------
 
 .. code-block:: console
 
-    # Aktuellen Benutzer zur Gruppe *Docker* hinzufügen
+    # Add current user to group *Docker*
     sudo usermod -aG docker $USER
-    
-Nach dem Aufnehmen des Benutzers nochmal neu Anmelden
+
+After that re-login with that user.
 
 .. code-block:: console
 
-    # Anlegen vom Verzeichnis resource/config unter dem aktuellen Benutzer
+    # create folder resource/config for the current user
     sudo mkdir -p resource/config
 
-    # Anlegen einer Beispiel XML-Datei unter resource/config
+    # create an example XML-file in resource/config
     sudo nano resource/config/visu_config.xml
-                                                                
+
 .. code-block:: xml
-    
+
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" lib_version="8">
     <meta>
@@ -85,31 +85,32 @@ Nach dem Aufnehmen des Benutzers nochmal neu Anmelden
             ]]></status>
         </statusbar>
     </meta>
-    <page name="Startseite">
+    <page name="Start page">
     </page>
     </pages>
 
 
 .. code-block:: console
 
-    # Anlegen der Verzeichnisse Backup und media unter resource/config
+    # create backup and media folders
     sudo mkdir -p resource/config/media
     sudo mkdir -p resource/config/backup
 
-    # Rechte für den Webserver setzen
+    # set access rights for the web server
     sudo chown -hR www-data:www-data resource/config
 
-4. CometVisu per Docker installieren
-------------------------------------
-Jetzt den Container installieren
+
+4. Install CometVisu via Docker
+-------------------------------
+Install the docker container now
 
 .. code-block:: docker
 
-    # yaml datei Anlegen
+    # create yaml file
     sudo nano docker-compose.yaml
 
-    # Beispielinhalt für openhab
-    
+    # example content to configure the docker container to use openHAB as backend
+
     version: '3.4'
     services:
         cometvisu:
@@ -126,17 +127,17 @@ Jetzt den Container installieren
                 BACKEND_PROXY_TARGET: "http://<IP-Openhab2>:8080/rest"
 
 .. HINT::
-    Bei der YAML-Datei ist darauf zu achten, dass die Einrückungen jeweils mit 2 Leerzeichen erstellt werden.
+    Please make sure that you use 2 spaces for indentation when you edit the YAML-file.
 
 .. code-block:: console
 
-    # docker starten
+    # start the docker container
     docker-compose up -d
 
-    # Name des laufenden containers herausfinden
+    # find out the name if the running container
     docker-compose ps
 
-    # IP Adresse des Docker Container herausfinden <name> bitte mit dem passenden Namen ersetzen
+    # find out the IP address of the docker container, <name> must be replaced with the correct container name
     docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <name>
 
-Die CometVisu ist dann direkt unter der URL ``http://<container-IP>:`` im Browser erreichbar.
+You can access the CometVisu in your browser with the URL ``http://<container-IP>:``.

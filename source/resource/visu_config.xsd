@@ -148,6 +148,12 @@
             <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="selector" type="xsd:string" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: JSON selector</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: JSON Selektor</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute name="qos" type="xsd:decimal" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: QoS</xsd:documentation>
@@ -158,6 +164,12 @@
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: retain flag</xsd:documentation>
             <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="ignore-error" type="xsd:boolean" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: ignore decode errors.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: ignoriere Dekodier-Fehler.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>
@@ -496,23 +508,40 @@
           <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
-      <xsd:attribute ref="backend" use="optional" />
-      <xsd:attribute name="backend-url" use="optional" type="xsd:string">
+      <xsd:attribute ref="backend" use="optional">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">URL to connect to the backend.</xsd:documentation>
-          <xsd:documentation xml:lang="de">URL für die Backend-Verbindung. </xsd:documentation>
+          <xsd:documentation xml:lang="en">Backend to use. Overrules the server set value.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Auswahl des Backends. Übersteuert einen eventuell vom Server gesendeten Wert.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="backend-knxd-url" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">URL to connect to the knxd backend.</xsd:documentation>
+          <xsd:documentation xml:lang="de">URL für die knxd Backend-Verbindung. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="backend-mqtt-url" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">URL to connect to the MQTT backend.</xsd:documentation>
+          <xsd:documentation xml:lang="de">URL für die MQTT Backend-Verbindung. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="backend-openhab-url" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">URL to connect to the openHAB backend.</xsd:documentation>
+          <xsd:documentation xml:lang="de">URL für die openHAB Backend-Verbindung. </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="username" use="optional" type="xsd:string">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Backend username used to authorize requests (can also be an access token).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
+          <xsd:documentation xml:lang="en">Only openHAB and deprecated: Backend username used to authorize requests (can also be an access token).</xsd:documentation>
+          <xsd:documentation xml:lang="de">Nur openHAB und veraltet: Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="password" use="optional" type="xsd:string">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erforderlich). </xsd:documentation>
+          <xsd:documentation xml:lang="en">Only openHAB and deprecated: Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
+          <xsd:documentation xml:lang="de">Nur openHAB und veraltet: Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erforderlich). </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>

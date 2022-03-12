@@ -126,7 +126,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       this.__lastBusValue = {}; // forget all other transforms as they might not be valid anymore
       this.__lastBusValue[transform] = data;
 
-      let value = cv.Transform.decode(transform, data);
+      let value = cv.Transform.decode(this.getAddress()[address], data);
 
       // animate when visible, otherwise jump to the target value
       this.__setSliderTo(value, !this.isVisible());

@@ -408,13 +408,14 @@ qx.Class.define('cv.parser.WidgetParser', {
     makeAddressList: function (element, id, makeAddressListFn, skipAdding) {
       let address = {};
       element.querySelectorAll('address').forEach(function (elem) {
-        let
-          src = elem.textContent;
-          let transform = elem.getAttribute('transform');
-          let addressInfo = {};
-          let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
-          let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+        let src = elem.textContent;
+        let transform = elem.getAttribute('transform');
+        let addressInfo = {};
+        let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
+        let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
+        addressInfo.selector = elem.getAttribute('selector');
+        addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
         if (cv.Config.backend === 'mqtt') {
           addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
           addressInfo.retain = elem.getAttribute('retain') === 'true';

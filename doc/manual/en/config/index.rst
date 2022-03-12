@@ -29,18 +29,10 @@ the CometVisu tree is located in different places:
     "/var/www/visu..." of the web server (e.g. Apache or Lighttpd)
     The web server usually listens on port 80 in the default setting.
 
--   If openHAB is used as the backend for the CometVisu, the CometVisu
-    files must be in the openHAB directory tree. The openHAB own web
-    server is addressed in the default setting via port 8080 and is
-    not php-capable. In this case you have to be satisfied with a text-based
-    editor or "divert" the probably parallel running web server
-    (for example Apache or Lighttpd).
+-   Since version 0.12 the special binding is no longer needed to use openHAB as a backend for the CometVisu.
+    It is recommended to use the CometVisu docker container.
+    Information on how to install and configure the container to use openHAB as backend can be found :ref:`here <Docker_OpenHAB_Installation>`
 
--   If openHAB was automatically installed via apt-get, the CometVisu
-    will be installed manually in "/usr/share/openhab/webapps/visu...".
-
--   If openHAB was manually installed in e.g. "/opt/openHAB",
-    the CometVisu is installed manually in "/opt/openhab/www/visu...".
 
 .. hint::
 

@@ -688,11 +688,11 @@ div#demo_3 {
 /* END: alignment of widgets */
 
 /* fixes for plugin line-heights */
-.widget .actor.rsslogBody, .widget .actor .diagram_inline {
+.widget .actor.rsslogBody, .widget .actor .diagram_inline, .widget .actor .rss_inline {
     line-height: normal;
 }
 
-.rsslog_popup ul li a { color: inherit; }
+.rsslog_popup ul li a, ul.rss_inline li a { color: inherit; }
 
  
  /*****************************************************************************/

@@ -37,7 +37,7 @@ Allowed attributes in the Audio-element
     :scale: 75
     :align: center
 
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
+    <caption>Attributes in the editor (simple view) [1]_</caption>
     <audio src="sound.mp3" id="example">
         <layout colspan="4" />
         <label>Audio</label>
@@ -88,4 +88,4 @@ for the Audio widget.
 
 .. rubric:: Footnotes
 
-.. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.
+.. [1] The simple view might not show everything. To see all elements/attributes use the expert view.

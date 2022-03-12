@@ -132,59 +132,135 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param transformation {String} type of the transformation
-     * @param value {var} value to transform
-     * @return {Object} object with both encoded values
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {*} value - value to transform
+     * @return {*} object with both encoded values
      */
-    encodeBusAndRaw: function (transformation, value) {
+    encodeBusAndRaw: function (address, value) {
       if (cv.Config.testMode === true) {
         return {bus: value, raw: value};
       }
-      let
-        transformParts = transformation.split(':');
-        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
-        let parameter = transformParts[2];
-        let basetrans = transform.split('.')[0];
+      const {transform} = address;
+      let {selector} = address;
+      let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].encode(value, parameter)
+        ? cv.Transform.registry[transform].encode(value)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].encode(value, parameter)
+          ? cv.Transform.registry[basetrans].encode(value)
           : value);
 
-      return encoding.constructor === Object ? encoding : {bus: encoding, raw: encoding};
+      if (typeof selector === 'string') {
+        let result = {};
+        let lastPart = 'start';
+        let v = result; // use the fact that `v` is now a reference and not a copy
+        while (selector !== '') {
+          const {firstPart, remainingPart} = this.__getFirstElement(selector);
+          if (isFinite(firstPart)) {
+            v[lastPart] = [];
+          } else {
+            v[lastPart] = {};
+          }
+          v = v[lastPart];
+          lastPart = firstPart;
+          selector = remainingPart;
+        }
+        v[lastPart] = encoding;
+        const retval = JSON.stringify(result.start);
+        return {bus: retval, raw: retval};
+      }
+      return (encoding.constructor === Object && 'bus' in encoding && 'raw' in encoding)
+        ? encoding
+        : {bus: encoding, raw: encoding};
     },
 
     /**
      * transform JavaScript to bus value
      *
-     * @param transformation {String} type of the transformation
-     * @param value {var} value to transform
-     * @return {var} the encoded value
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {*} value - value to transform
+     * @return {*} the encoded value
      */
-    encode: function (transformation, value) {
-      return this.encodeBusAndRaw(transformation, value).bus;
+    encode: function (address, value) {
+      return this.encodeBusAndRaw(address, value).bus;
     },
 
     /**
      * transform bus to JavaScript value
-     * @param transformation {String} type of the transformation
-     * @param value {var} value to transform
-     * @return {var} the decoded value
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {*} value - value to transform
+     * @return {*} the decoded value
      */
-    decode: function (transformation, value) {
+    decode: function (address, value) {
       if (cv.Config.testMode === true) {
         return value;
       }
-      let
-        transformParts = transformation.split(':');
-        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
-        let parameter = transformParts[2];
-        let basetrans = transform.split('.')[0];
+
+      const {transform, ignoreError} = address;
+      let {selector} = address;
+      const basetrans = transform.split('.')[0];
+
+      if (typeof value === 'string' && selector !== undefined && selector !== null) {
+        // decode JSON
+        const selectorOriginal = selector;
+
+        try {
+          let v = JSON.parse(value);
+          while (selector !== '') {
+            const {firstPart, remainingPart} = this.__getFirstElement(selector);
+            if (typeof v === 'object' && firstPart in v) {
+              v = v[firstPart];
+            } else {
+              throw new Error(qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v)));
+            }
+            if (selector === remainingPart) {
+              throw new Error(qx.locale.Manager.tr('Sub-selector error: "%1"', selector));
+            }
+            selector = remainingPart;
+          }
+          value = v;
+        } catch (e) {
+          if (!ignoreError) {
+            const message = {
+              topic: 'cv.transform.decode',
+              title: qx.locale.Manager.tr('Transform decode error'),
+              severity: 'urgent',
+              unique: false,
+              deletable: true,
+              message: qx.locale.Manager.tr('decode: JSON.parse error: %1; selector: "%2"; value: %3', e, selectorOriginal, JSON.stringify(value))
+            };
+            cv.core.notifications.Router.dispatchMessage(message.topic, message);
+          }
+          return '-';
+        }
+      }
       return transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].decode(value, parameter)
+        ? cv.Transform.registry[transform].decode(value)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].decode(value, parameter)
+          ? cv.Transform.registry[basetrans].decode(value)
           : value);
+    },
+
+    /**
+     * Get the first element of the (JSON) selector
+     * @param {string} selector - the JSON (sub-)selector
+     * @returns {{firstPart: string, remainingPart: string}}
+     */
+    __getFirstElement: function (selector) {
+      if (selector[0] === '[') {
+        const [, firstPart, remainingPart] = selector.match(/^\[([^\]]*)]\.?(.*)/);
+        if ((firstPart[0] === '"' || firstPart[0] === '\'') && firstPart[0] === firstPart.substr(-1)) {
+          return {firstPart: firstPart.substr(1, firstPart.length-2), remainingPart};
+        } else if (isFinite(firstPart)) {
+          return {firstPart, remainingPart};
+        }
+        throw qx.locale.Manager.tr('Sub-selector "%1" has bad first part "%2"', selector, firstPart);
+      } else {
+        const [, firstPart, remainingPart] = selector.match(/^([^.[]*)\.?(.*)/);
+        if (firstPart.length > 0) {
+          return {firstPart, remainingPart};
+        }
+        throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
+      }
     }
   }
 });

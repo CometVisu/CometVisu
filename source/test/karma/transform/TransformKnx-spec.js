@@ -392,24 +392,24 @@ describe('checking knx transforms', function() {
       switch (testcase.type) {
         case 'encode':
           // test direct
-          expect(cv.Transform.encode(testcase.transform, testcase.source)).toEqual(testcase.target);
+          expect(cv.Transform.encode(testcase, testcase.source)).toEqual(testcase.target);
           if (!testcase.noNumber) {
             // test integer
             if (!testcase.noInt) {
-              expect(cv.Transform.encode(testcase.transform, testcase.source|0)).toEqual(testcase.target);
+              expect(cv.Transform.encode(testcase, testcase.source|0)).toEqual(testcase.target);
             }
             // test float
-            expect(cv.Transform.encode(testcase.transform, +testcase.source)).toEqual(testcase.target);
+            expect(cv.Transform.encode(testcase, +testcase.source)).toEqual(testcase.target);
             // test string
-            expect(cv.Transform.encode(testcase.transform, testcase.source+'')).toEqual(testcase.target);
+            expect(cv.Transform.encode(testcase, testcase.source+'')).toEqual(testcase.target);
           }
           break;
 
         case 'decode':
           if (testcase.isDate) {
-            expect(cv.Transform.decode(testcase.transform, testcase.source)+'').toEqual(testcase.target+'');
+            expect(cv.Transform.decode(testcase, testcase.source)+'').toEqual(testcase.target+'');
           } else {
-            expect(cv.Transform.decode(testcase.transform, testcase.source)).toEqual(testcase.target);
+            expect(cv.Transform.decode(testcase, testcase.source)).toEqual(testcase.target);
           }
           break;
       }

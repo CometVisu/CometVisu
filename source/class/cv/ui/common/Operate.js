@@ -84,12 +84,26 @@ qx.Mixin.define('cv.ui.common.Operate', {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              const encoding = address.transform;
-              const encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
-              if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
+              try {
+                const encoding = address.transform;
+                const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
+                if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
+                  cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
+                }
+                encodedValues[encoding] = encodedValue.raw;
+              } catch (e) {
+                if (!address.ignoreError) {
+                  const message = {
+                    topic: 'cv.transform.encode',
+                    title: qx.locale.Manager.tr('Transform encode error'),
+                    severity: 'urgent',
+                    unique: false,
+                    deletable: true,
+                    message: qx.locale.Manager.tr('Encode error: %1; selector: "%2"; value: %3', e, address.selector, JSON.stringify(value))
+                  };
+                  cv.core.notifications.Router.dispatchMessage(message.topic, message);
+                }
               }
-              encodedValues[encoding] = encodedValue.raw;
             }
           }
         }

@@ -42,9 +42,9 @@ qx.Class.define('cv.io.Client', {
    */
   /**
    * @param backendName {String} name of the backend
-   * @param backendUrl {String} URL of the login resource
+   * @param backendLoginUrl {String} URL of the login resource
    */
-  construct: function(backendName, backendUrl) {
+  construct: function(backendName, backendLoginUrl) {
     this.base(arguments);
     cv.io.Client.CLIENTS.push(this);
     this.backend = {};
@@ -74,7 +74,7 @@ qx.Class.define('cv.io.Client', {
       this.setBackend(cv.io.Client.backends['default']);
     }
 
-    this.backendUrl = backendUrl;
+    this.backendLoginUrl = backendLoginUrl;
 
     this.addresses = [];
     this.initialAddresses = [];
@@ -227,7 +227,7 @@ qx.Class.define('cv.io.Client', {
   members: {
     backend: null,
     backendName: null,
-    backendUrl: null,
+    backendLoginUrl: null,
     addresses: null, // the subscribed addresses
     initialAddresses: null, // the addresses which should be loaded before the subscribed addresses
     filters: null, // the subscribed filters
@@ -379,7 +379,7 @@ qx.Class.define('cv.io.Client', {
         if (this.device !== '') {
           request.d = this.device;
         }
-        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath('login'),
+        this.doRequest(this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'),
           request, this.handleLogin, this);
       } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         // call callback immediately
