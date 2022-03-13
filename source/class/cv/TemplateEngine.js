@@ -259,26 +259,6 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * Please use {cv.data.Model.getInstance().addAddress()} instead
-     * @param address
-     * @param id
-     * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().addAddress()} instead
-     */
-    addAddress: function (address, id) {
-      this.warn('addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead');
-      cv.data.Model.getInstance().addAddress(address, id);
-    },
-
-    /**
-     * Please use {cv.data.Model.getInstance().getAddresses()} instead
-     * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().getAddresses()} instead
-     */
-    getAddresses: function () {
-      this.warn('getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead');
-      return cv.data.Model.getInstance().getAddresses();
-    },
-
-    /**
      * Read basic settings and detect and load the structure for this config to do the rest.
      */
     async parse() {

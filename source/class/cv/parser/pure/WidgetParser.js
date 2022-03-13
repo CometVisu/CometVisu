@@ -419,9 +419,13 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
             mode = 1 | 2;
             break;
         }
+        let backendName;
+        if (elem.hasAttribute('backend')) {
+          backendName = elem.getAttribute('backend');
+        }
         let variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, elem.getAttribute('variant')) : [true, undefined];
         if (!skipAdding && (mode & 1) && variantInfo[0]) { // add only addresses when reading from them
-          this.model.addAddress(src, id);
+          this.model.addAddress(src, id, backendName);
         }
         if (address[src]) {
           // we already have an entry for this address, merge the modes if the other attribute values are equal

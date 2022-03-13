@@ -31,10 +31,10 @@ qx.Class.define('cv.io.openhab.Rest', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (backendName, backendUrl) {
+  construct: function (type, backendUrl) {
     this.base(arguments);
     this.initialAddresses = [];
-    this._backendName = backendName;
+    this._type = type;
     this._backendUrl = backendUrl || '/rest/';
     this.__groups = {};
     this.__memberLookup = {};
@@ -66,7 +66,7 @@ qx.Class.define('cv.io.openhab.Rest', {
   */
   members: {
     __lastError: null,
-    _backendName: null,
+    _type: null,
     _backendUrl: null,
     __token: null,
     __groups: null,
@@ -74,6 +74,10 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     getBackend: function () {
       return {};
+    },
+
+    getType() {
+      return this._type;
     },
 
     // not used / needed in this client

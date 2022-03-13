@@ -48,10 +48,21 @@ qx.Class.define('cv.parser.pure.widgets.Web', {
       const ga = xml.getAttribute('ga');
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) === 'oh') {
-          data.address['_' + ga] = {transform:'OH:switch', mode: 'OFF'};
-        } else {
-          data.address['_' + ga] = {transform:'DPT:1.001', mode: 0};
+        const defaultClient = cv.io.BackendConnections.getClient();
+        if (defaultClient) {
+          switch (defaultClient.getType()) {
+            case 'knxd':
+              data.address['_' + ga] = {transform: 'DPT:1.001', mode: 0};
+              break;
+
+            case 'openhab':
+              data.address['_' + ga] = {transform: 'OH:switch', mode: 'OFF'};
+              break;
+
+            default:
+              qx.log.Logger.error(this, 'web-widget address does not support backends of type', defaultClient.getType());
+              break;
+          }
         }
       }
       return data;

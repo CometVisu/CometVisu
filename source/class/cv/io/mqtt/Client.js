@@ -30,10 +30,10 @@ qx.Class.define('cv.io.mqtt.Client', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (backendName, backendUrl) {
+  construct: function (type, backendUrl) {
     this.base(arguments);
     this.initialAddresses = [];
-    this._backendName = backendName;
+    this._type = type;
     this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
     this.__groups = {};
     this.__memberLookup = {};
@@ -68,6 +68,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @var {Paho.MQTT.Client}
      */
     _client: null,
+    _type: null,
 
     /**
      * Returns the current backend configuration
@@ -75,6 +76,10 @@ qx.Class.define('cv.io.mqtt.Client', {
      */
     getBackend: function() {
       return {};
+    },
+
+    getType() {
+      return this._type;
     },
 
     /**

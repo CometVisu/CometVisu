@@ -37,6 +37,12 @@ qx.Interface.define('cv.io.IClient', {
     getBackend: function() { },
 
     /**
+     * Returns the backend type
+     * @return {string} e.g. openhab, mqtt or knxd
+     */
+    getType: function () {},
+
+    /**
      * Returns true, when the backend provides a special data provider for this kins of data
      * @param name {String}
      * @return {Boolean}
