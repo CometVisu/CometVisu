@@ -54,8 +54,8 @@ qx.Class.define('cv.io.Reflection', {
             thisEntry = thisEntry[thisNumber];
           }
           Array.from(elem.getElementsByTagName('*')).filter(function(m) {
- return m.matches('div.widget_container'); 
-}).forEach(function(widget, i) {
+            return m.matches('div.widget_container');
+          }).forEach(function(widget, i) {
             if (undefined === thisEntry[i]) {
               thisEntry[i] = {};
             }
@@ -122,7 +122,7 @@ qx.Class.define('cv.io.Reflection', {
       switch (event.data.command) {
         case 'create':
           if (typeof parameters === 'object' && this.pathRegEx.test(parameters.path) &&
-              typeof parameters.element === 'string') {
+            typeof parameters.element === 'string') {
             answer = this.create(parameters.path, parameters.element);
           } else {
             answer = 'bad path or element';
@@ -165,7 +165,7 @@ qx.Class.define('cv.io.Reflection', {
 
         case 'write':
           if (typeof parameters === 'object' && this.pathRegEx.test(parameters.path) &&
-              typeof parameters.attributes === 'object') {
+            typeof parameters.attributes === 'object') {
             answer = this.write(parameters.path, parameters.attributes);
           }
           break;
@@ -185,8 +185,8 @@ qx.Class.define('cv.io.Reflection', {
 
     getParentPage: function (page) {
       if (page.length === 0) {
- return null; 
-}
+        return null;
+      }
 
       return this.getParentPageById(page.getAttribute('id'), true);
     },
@@ -195,8 +195,8 @@ qx.Class.define('cv.io.Reflection', {
       if (path.length > 0) {
         const pathParts = path.split('_');
         if (isPageId) {
- pathParts.pop(); 
-}
+          pathParts.pop();
+        }
         while (pathParts.length > 1) {
           pathParts.pop();
           path = pathParts.join('_') + '_';
