@@ -258,8 +258,7 @@
           } // process value
 
 
-          var transform = config.addressConfig.transform;
-          state = cv.Transform.decode(transform, state);
+          state = cv.Transform.decode(config.addressConfig, state);
           var templateData = {
             address: address,
             value: state,
@@ -267,7 +266,7 @@
             time: formattedTime
           }; // transform the raw value to a JavaScript type
 
-          templateData.value = cv.Transform.decode(transform, templateData.value);
+          templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
 
           if (config.valueMapping) {
             // apply mapping
@@ -382,4 +381,4 @@
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1645980643628
+//# sourceMappingURL=Router.js.map?dt=1647153211629

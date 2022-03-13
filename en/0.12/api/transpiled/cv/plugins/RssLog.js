@@ -303,7 +303,7 @@
               } // skip when write flag not set
 
 
-              cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr].transform, 0));
+              cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
             }
           }
         }, this);
@@ -582,4 +582,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1645980645236
+//# sourceMappingURL=RssLog.js.map?dt=1647153213736

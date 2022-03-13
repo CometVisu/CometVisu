@@ -43,9 +43,11 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation of the CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Prerequisites for the installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#backend-knxd-eibd-or-openhab">Backend - knxd/eibd or OpenHAB</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="backends/install-eibd.html">Install eibd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="backends/install-eibd.html#install-knxd">Install knxd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend">Backend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openhab">openHAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mqtt">MQTT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backend-configuration">Backend configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#graph-tool-rrdtool">Graph tool - RRDtool</a><ul>
@@ -62,7 +64,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation on Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Developer version on the Wiregate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation on a Debian System with openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation on a Debian System with openHAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installing on an Ubuntu system with openHAB and Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation of the Docker container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation on the Timberwolf server with the app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-on-the-timberwolf-with-portainer">Installation on the Timberwolf with Portainer</a></li>
@@ -121,14 +124,140 @@ fulfill a few prerequisites.</p>
 the prerequisite is PHP 7. The core of the CometVisu itself can be used
 without PHP though.</p>
 </div>
-<div class="section" id="backend-knxd-eibd-or-openhab">
-<h2>Backend - knxd/eibd or OpenHAB<a class="headerlink" href="#backend-knxd-eibd-or-openhab" title="Permalink to this headline">¶</a></h2>
-<p>As a backend an instance of <em>eibd</em> or its successor
-<a class="reference external" href="https://github.com/knxd/knxd">knxd</a> can be used as well an
-<a class="reference external" href="https://www.openhab.org/">OpenHAB</a> installation.</p>
-<p>The installation of the backend is described under
-<a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a> .</p>
+<div class="section" id="backend">
+<h2>Backend<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h2>
+<p>To be able to connect the devices with the CometVisu you need a “backend”.
+There are different possibilities:</p>
+<div class="section" id="knxd-eibd">
+<h3>knxd / eibd<a class="headerlink" href="#knxd-eibd" title="Permalink to this headline">¶</a></h3>
+<p>For a direct connection to the KNX bus the knxd is used.
+The installation of the backend is described under
+<a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a>.</p>
 <div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="openhab">
+<h3>openHAB<a class="headerlink" href="#openhab" title="Permalink to this headline">¶</a></h3>
+<p>To use openHAB as backend you can refer to
+<a class="reference internal" href="openhab.html"><span class="doc">Installation on a Debian System with openHAB</span></a>
+and
+<a class="reference internal" href="docker_openhab.html"><span class="doc">Installing on an Ubuntu system with openHAB and Docker</span></a>.</p>
+</div>
+<div class="section" id="mqtt">
+<h3>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h3>
+<p>To use the CometVisu as one of the MQTT participant you need a MQTT broker
+that can be contaced with WebSockets.</p>
+</div>
+<div class="section" id="backend-configuration">
+<h3>Backend configuration<a class="headerlink" href="#backend-configuration" title="Permalink to this headline">¶</a></h3>
+<p>To configure the CometVisu to use a given backend different possibilities are
+available, listed below.
+There a later listed method overrules those above it, e.g. the values from the
+config file will be used even when those are set differently with docker
+environment variables.</p>
+<div class="section" id="http-header-docker-environment-variable">
+<h4>HTTP header / Docker environment variable<a class="headerlink" href="#http-header-docker-environment-variable" title="Permalink to this headline">¶</a></h4>
+<p>The web server can pass setup information in the HTTP header of the
+config file. By using the official docker image of the CometVisu this can
+be achieved by setting the corresponding <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> parameters.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="14%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>HTTP header</td>
+<td><code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code></td>
+<td>use</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-Name</td>
+<td>BACKEND_NAME</td>
+<td>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+</tr>
+<tr class="row-odd"><td>X-CometVisu-Backend-KNXD-Url</td>
+<td>BACKEND_KNXD</td>
+<td>URL of the knxd login Ressource</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-MQTT-Url</td>
+<td>BACKEND_MQTT</td>
+<td>URL of the MQTT login Ressource</td>
+</tr>
+<tr class="row-odd"><td>X-CometVisu-Backend-OpenHAB-Url</td>
+<td>BACKEND_OPENHAB</td>
+<td>Only openHAB: path to the REST-API</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-LoginUrl</td>
+<td>CGI_URL_PATH</td>
+<td>Deprecated: UURL of the knxd or openHAB login ressource</td>
+</tr>
+<tr class="row-odd"><td>X-CometVisu-Backend-User</td>
+<td>BACKEND_USERNAME</td>
+<td>Deprecated: UUser name, when needed for the MQTT broker or openHAB</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-Pass</td>
+<td>BACKEND_PASSWORD</td>
+<td>Deprecated: UPassword, when needed for the MQTT broker or openHAB</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The user name and password for the MQTT broker are stored in pain text
+and are transported like that over the network!</p>
+</div>
+</div>
+<div class="section" id="config-file">
+<h4>Config file<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h4>
+<p>In the all containing <code class="docutils literal notranslate"><span class="pre">&lt;pages&gt;</span></code> element the different parameters can be set
+as attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>attribute</td>
+<td>use</td>
+</tr>
+<tr class="row-even"><td>backend</td>
+<td>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+</tr>
+<tr class="row-odd"><td>backend-knxd-url</td>
+<td>URL of the knxd login ressource</td>
+</tr>
+<tr class="row-even"><td>backend-mqtt-url</td>
+<td>URL of the MQTT login ressource</td>
+</tr>
+<tr class="row-odd"><td>backend-openhab-url</td>
+<td>Only openHAB: path to the REST-API</td>
+</tr>
+<tr class="row-even"><td>backend-url</td>
+<td>Deprecated: URL of the MQTT WebSocket</td>
+</tr>
+<tr class="row-odd"><td>username</td>
+<td>Deprecated: User name, when needed for openHAB</td>
+</tr>
+<tr class="row-even"><td>password</td>
+<td>Deprecated: Password, when needed for openHAB</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;pages</span> <span class="na">backend=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">backend-url=</span><span class="s">&quot;wss://web.server:443/mqtt/ws&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">lib_version=</span><span class="s">&quot;9&quot;</span> <span class="na">design=</span><span class="s">&quot;pure&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="url">
+<h4>URL<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h4>
+<p>By the URL parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> the backend can also be selected. This is
+only relevant for special cases like development or testing. It also requires
+that the access URLs are set by one of the other methods.</p>
+</div>
 </div>
 </div>
 <div class="section" id="graph-tool-rrdtool">

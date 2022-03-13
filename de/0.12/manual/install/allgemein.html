@@ -44,9 +44,11 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Voraussetzungen für die Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#backend-knxd-eibd-oder-openhab">Backend - knxd/eibd oder OpenHAB</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="backends/install-eibd.html">Installation von eibd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="backends/install-eibd.html#installation-von-knxd">Installation von knxd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend">Backend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openhab">openHAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mqtt">MQTT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backend-konfigurieren">Backend konfigurieren</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#graphentool-rrdtool">Graphentool - RRDtool</a><ul>
@@ -121,11 +123,142 @@ Voraussetzungen erfüllen.</p>
 ab Version 7 benötigt. Der Kern der CometVisu selbst kann jedoch auch
 ohne PHP genutzt werden.</p>
 </div>
-<div class="section" id="backend-knxd-eibd-oder-openhab">
-<h2>Backend - knxd/eibd oder OpenHAB<a class="headerlink" href="#backend-knxd-eibd-oder-openhab" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Die Installation des Backends wird unter
+<div class="section" id="backend">
+<h2>Backend<a class="headerlink" href="#backend" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Damit die CometVisu auf die Geräte zugreifen kann wird ein „Backend“ benötigt.
+Hierzu gibt es verschiedene Möglichkeiten:</p>
+<div class="section" id="knxd-eibd">
+<h3>knxd / eibd<a class="headerlink" href="#knxd-eibd" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um direkt auf den KNX Bus zuzugreifen wird der knxd verwendet.
+Die Installation dieses Backends wird unter
 <a class="reference internal" href="backends/install-eibd.html"><span class="doc">Installation von eibd</span></a> beschrieben.</p>
 <div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="openhab">
+<h3>openHAB<a class="headerlink" href="#openhab" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für die Verwendung von openHAB als Backend gibt es die Anleitungen
+<a class="reference internal" href="openhab.html"><span class="doc">Installation auf einem Debian System mit openHAB</span></a>
+und
+<a class="reference internal" href="docker_openhab.html"><span class="doc">Installation auf einem Ubuntu System mit openHAB und Docker</span></a>.</p>
+</div>
+<div class="section" id="mqtt">
+<h3>MQTT<a class="headerlink" href="#mqtt" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Damit die CometVisu ein MQTT-Teilnehmer ist, wird ein MQTT Broker benötigt
+der über WebSocket ansprechbar ist.</p>
+</div>
+<div class="section" id="backend-konfigurieren">
+<h3>Backend konfigurieren<a class="headerlink" href="#backend-konfigurieren" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um die CometVisu für die Verwendung von einem spezifischen Backend zu
+konfigurieren gibt es mehrere Möglichkeiten, die im Folgenden Aufgeführt sind.
+Hierbei überschreibt eine Methode die darüber aufgeführten Werte, d.h.
+beispielsweise überschreiben die Werte in der Konfigurationsdatei die Einstellungen
+aus den Umgebungsvariablen.</p>
+<div class="section" id="http-header-docker-umgebungsvariablen">
+<h4>HTTP-Header / Docker-Umgebungsvariablen<a class="headerlink" href="#http-header-docker-umgebungsvariablen" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Der Web-Server kann in den HTTP-Headern der Konfigurationsdatei die
+Backend-Parameter mit übergeben. Dies ist bei Verwendung des offiziellen
+Docker-Images der CometVisu leicht durch das Setzen entsprechender
+<code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> Parameter erreichbar</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="16%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>HTTP Header</td>
+<td><code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code></td>
+<td>Bedeutung</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-Name</td>
+<td>BACKEND_NAME</td>
+<td>Name wie <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> oder <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+</tr>
+<tr class="row-odd"><td>X-CometVisu-Backend-KNXD-Url</td>
+<td>BACKEND_KNXD</td>
+<td>URL für die knxd Login-Ressource</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-MQTT-Url</td>
+<td>BACKEND_MQTT</td>
+<td>URL für die MQTT Login-Ressource</td>
+</tr>
+<tr class="row-odd"><td>X-CometVisu-Backend-OpenHAB-Url</td>
+<td>BACKEND_OPENHAB</td>
+<td>openHAB: Pfad zur REST-API</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-LoginUrl</td>
+<td>CGI_URL_PATH</td>
+<td>Veraltet: URL für die knxd oder openHAB Login-Ressource</td>
+</tr>
+<tr class="row-odd"><td>X-CometVisu-Backend-User</td>
+<td>BACKEND_USERNAME</td>
+<td>Veraltet: Benutzername, wenn für openHAB benötigt</td>
+</tr>
+<tr class="row-even"><td>X-CometVisu-Backend-Pass</td>
+<td>BACKEND_PASSWORD</td>
+<td>Veraltet: Passwort, wenn für openHAB benötigt</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warnung</p>
+<p class="last">Der Benutzername und das Passwort für den MQTT Broker liegen hier direkt
+lesbar vor und werden auch so über das Netzwerk übertragen!</p>
+</div>
+</div>
+<div class="section" id="konfigurationsdatei">
+<h4>Konfigurationsdatei<a class="headerlink" href="#konfigurationsdatei" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Im alles umschließenden <code class="docutils literal notranslate"><span class="pre">&lt;pages&gt;</span></code>-Element können die entsprechenden Parameter
+als Attribut gesetzt werden:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Attribut</td>
+<td>Bedeutung</td>
+</tr>
+<tr class="row-even"><td>backend</td>
+<td>Name wie <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> oder <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+</tr>
+<tr class="row-odd"><td>backend-knxd-url</td>
+<td>URL für die knxd Login-Ressource</td>
+</tr>
+<tr class="row-even"><td>backend-mqtt-url</td>
+<td>URL für die MQTT Login-Ressource</td>
+</tr>
+<tr class="row-odd"><td>backend-openhab-url</td>
+<td>openHAB: Pfad zur REST-API</td>
+</tr>
+<tr class="row-even"><td>backend-url</td>
+<td>Veraltet: URL für die openHAB Verbindung</td>
+</tr>
+<tr class="row-odd"><td>username</td>
+<td>Veraltet: Benutzername, wenn für openHAB benötigt</td>
+</tr>
+<tr class="row-even"><td>password</td>
+<td>Veraltet: Passwort, wenn für openHAB benötigt</td>
+</tr>
+</tbody>
+</table>
+<p>Beispiel:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;pages</span> <span class="na">backend=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">backend-url=</span><span class="s">&quot;wss://web.server:443/mqtt/ws&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">lib_version=</span><span class="s">&quot;9&quot;</span> <span class="na">design=</span><span class="s">&quot;pure&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="url">
+<h4>URL<a class="headerlink" href="#url" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Durch den URL Parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> kann auch durch den Seitenaufruf das Backend
+ausgewählt werden. Dies ist jedoch nur in Spezialfällen wie Entwicklungs- und
+Testbetrieb sinnvoll und bedingt, dass die Zugriffs-URLs bereits über eine der
+weiter oben stehenden Methoden gesetzt wurden.</p>
+</div>
 </div>
 </div>
 <div class="section" id="graphentool-rrdtool">

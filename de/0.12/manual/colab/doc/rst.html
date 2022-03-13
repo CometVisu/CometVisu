@@ -682,7 +682,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">
 <li><abbr title="Pflichtangabe">address</abbr></li>
 </ul>
@@ -705,13 +705,21 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <td>Zahl</td>
 <td>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</td>
 </tr>
-<tr class="row-odd"><td>qos</td>
+<tr class="row-odd"><td>selector</td>
+<td>Text</td>
+<td>Nur MQTT: JSON Selektor</td>
+</tr>
+<tr class="row-even"><td>qos</td>
 <td>Zahl</td>
 <td>Nur MQTT: QoS</td>
 </tr>
-<tr class="row-even"><td>retain</td>
+<tr class="row-odd"><td>retain</td>
 <td><em>true</em> oder <em>false</em></td>
 <td>Nur MQTT: retain Flag</td>
+</tr>
+<tr class="row-even"><td>ignore-error</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Nur MQTT: ignoriere Dekodier-Fehler.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">

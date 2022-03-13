@@ -11,11 +11,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 37,
+        "line": 35,
         "column": 0
       },
       "end": {
-        "line": 141,
+        "line": 222,
         "column": 3
       }
     },
@@ -23,7 +23,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<p>This plugins integrates zrssfeed to display RSS-Feeds via Google-API\n and a parser for local feeds using jQuery 1.5+ into CometVisu.\n rssfeedlocal is derived from simplerss and zrssfeed\n rssfeedlocal is mainly meant to be used with rsslog.php and plugins\n </p>\n<pre class=\"sunlight-highlight-xml\">\n   &lt;rss src=&quot;/visu/plugins/rss/rsslog.php&quot; refresh=&quot;300&quot; link=&quot;false&quot; title=&quot;false&quot;&gt;&lt;/rss&gt;\n   &lt;rss src=&quot;http://www.tagesschau.de/xml/rss2&quot; refresh=&quot;300&quot;&gt;Test API&lt;/rss&gt;\n   &lt;rss src=&quot;/visu/plugins/rss/tagesschau-rss2.xml&quot; refresh=&quot;300&quot; header=&quot;true&quot; date=&quot;true&quot;&gt;&lt;/rss&gt;\n </pre><div class=\"authors\"><label>Author:</label> Michael Markstaller</div><div class=\"since\"><label>Since:</label> 2011</div>"
+          "body": "<p>This plugins displays RSS-Feeds in the CometVisu.\n </p>\n<pre class=\"sunlight-highlight-xml\">\n   &lt;rss src=&quot;/visu/plugins/rss/rsslog.php&quot; refresh=&quot;300&quot; link=&quot;false&quot; title=&quot;false&quot;&gt;&lt;/rss&gt;\n   &lt;rss src=&quot;http://www.tagesschau.de/xml/rss2&quot; refresh=&quot;300&quot;&gt;Test API&lt;/rss&gt;\n   &lt;rss src=&quot;/visu/plugins/rss/tagesschau-rss2.xml&quot; refresh=&quot;300&quot; header=&quot;true&quot; date=&quot;true&quot;&gt;&lt;/rss&gt;\n </pre><div class=\"authors\"><label>Author:</label> Michael Markstaller</div><div class=\"since\"><label>Since:</label> 2011</div>"
         }
       ],
       "@author": [
@@ -38,10 +38,16 @@
           "body": "2011"
         }
       ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "RSSParser"
+        }
+      ],
       "@asset": [
         {
           "name": "@asset",
-          "body": "plugins/rss/dep/zrssfeed/jquery.zrssfeed.js"
+          "body": "plugins/rss/rss-parser.min.js"
         }
       ]
     }
@@ -51,11 +57,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 59,
           "column": 5
         }
       },
@@ -111,11 +117,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 77,
           "column": 5
         }
       },
@@ -127,11 +133,11 @@
     "src": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 86,
           "column": 38
         }
       },
@@ -144,11 +150,11 @@
     "width": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 87,
           "column": 25
         }
       },
@@ -160,11 +166,11 @@
     "height": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 88,
           "column": 26
         }
       },
@@ -176,11 +182,11 @@
     "limit": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 89,
           "column": 25
         }
       },
@@ -192,11 +198,11 @@
     "header": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 90,
           "column": 28
         }
       },
@@ -208,11 +214,11 @@
     "date": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 91,
           "column": 26
         }
       },
@@ -224,11 +230,11 @@
     "content": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 92,
           "column": 29
         }
       },
@@ -240,11 +246,11 @@
     "snippet": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 93,
           "column": 29
         }
       },
@@ -256,11 +262,11 @@
     "showerror": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 94,
           "column": 31
         }
       },
@@ -272,11 +278,11 @@
     "ssl": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 95,
           "column": 4
         },
         "end": {
-          "line": 97,
+          "line": 95,
           "column": 26
         }
       },
@@ -288,11 +294,11 @@
     "linktarget": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 98,
+          "line": 96,
           "column": 34
         }
       },
@@ -304,11 +310,11 @@
     "link": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 97,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 97,
           "column": 26
         }
       },
@@ -320,11 +326,11 @@
     "title": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 98,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 98,
           "column": 27
         }
       },
@@ -399,6 +405,20 @@
     }
   },
   "members": {
+    "_parser": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
     "_getInnerDomString": {
       "location": {
         "start": {
@@ -434,7 +454,7 @@
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 120,
           "column": 5
         }
       },
@@ -448,11 +468,11 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 128,
           "column": 5
         }
       },
@@ -462,11 +482,11 @@
     "refreshRSS": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 209,
           "column": 5
         }
       },
@@ -6241,14 +6261,27 @@
       }
     }
   },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 212,
+        "column": 12
+      },
+      "end": {
+        "line": 214,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
   "defer": {
     "location": {
       "start": {
-        "line": 135,
+        "line": 216,
         "column": 9
       },
       "end": {
-        "line": 140,
+        "line": 221,
         "column": 3
       }
     },

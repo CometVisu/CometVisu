@@ -141,7 +141,7 @@
           var iframe = this.getDomElement().querySelector('iframe');
           this.refreshAction(iframe, iframe.getAttribute('src')); // reset the value
 
-          cv.TemplateEngine.getInstance().visu.write(address, cv.Transform.encode(addr.transform, 0));
+          cv.TemplateEngine.getInstance().visu.write(address, cv.Transform.encode(addr, 0));
         }
       }
     }
@@ -149,4 +149,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1645980650763
+//# sourceMappingURL=Web.js.map?dt=1647153220591

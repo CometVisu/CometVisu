@@ -373,4 +373,4 @@
   qx.ui.mobile.layout.Card.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Card.js.map?dt=1645980673141
+//# sourceMappingURL=Card.js.map?dt=1647153247479

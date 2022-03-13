@@ -340,18 +340,30 @@
        * Initialize the {@link cv.io.Client} for backend communication
        */
       initBackendClient: function initBackendClient() {
-        var backendName = cv.Config.configSettings.backend || cv.Config.backend;
-        var backendUrl = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
-        var mapping = {
-          oh: 'openhab',
-          oh2: 'openhab2'
-        };
+        var backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
+        var backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
+        var backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
+        var backendOpenHABUrl = cv.Config.URL.backendOpenHABUrl || cv.Config.configSettings.backendOpenHABUrl || cv.Config.server.backendOpenHABUrl;
 
-        if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
-          backendName = mapping[backendName];
+        switch (backendName) {
+          case 'knxd':
+          case 'default':
+          default:
+            this.visu = cv.Application.createClient('knxd', backendKnxdUrl);
+            break;
+
+          case 'mqtt':
+            this.visu = cv.Application.createClient('mqtt', backendMQTTUrl);
+            break;
+
+          case 'openhab':
+          case 'openhab2':
+          case 'oh':
+          case 'oh2':
+            this.visu = cv.Application.createClient('openhab', backendOpenHABUrl);
+            break;
         }
 
-        this.visu = cv.Application.createClient(backendName, backendUrl);
         var model = cv.data.Model.getInstance();
         this.visu.update = model.update.bind(model); // override clients update function
 
@@ -417,7 +429,8 @@
         }
       },
       _checkBackendConnection: function _checkBackendConnection() {
-        var connected = this.visu.isConnected();
+        var client = this.visu;
+        var connected = client.isConnected();
         var message = {
           topic: 'cv.client.connection',
           title: qx.locale.Manager.tr('Connection error'),
@@ -426,7 +439,7 @@
           deletable: false,
           condition: !connected && this.__P_492_2 && qx.core.Init.getApplication().isActive()
         };
-        var lastError = this.visu.getLastError();
+        var lastError = client.getLastError();
 
         if (!connected) {
           if (lastError && Date.now() - lastError.time < 100) {
@@ -434,6 +447,15 @@
           } else {
             message.message = qx.locale.Manager.tr('Connection to backend is lost.');
           }
+
+          message.actions = {
+            link: [{
+              title: qx.locale.Manager.tr('Restart connection'),
+              action: function action() {
+                client.restart();
+              }
+            }]
+          };
         } else {
           this.__P_492_2 = true;
         }
@@ -531,6 +553,19 @@
 
         if (pagesNode.getAttribute('backend-url') !== null) {
           settings.backendUrl = pagesNode.getAttribute('backend-url');
+          this.error('The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
+        }
+
+        if (pagesNode.getAttribute('backend-knxd-url') !== null) {
+          settings.backendKnxdUrl = pagesNode.getAttribute('backend-knxd-url');
+        }
+
+        if (pagesNode.getAttribute('backend-mqtt-url') !== null) {
+          settings.backendMQTTUrl = pagesNode.getAttribute('backend-mqtt-url');
+        }
+
+        if (pagesNode.getAttribute('backend-openhab-url') !== null) {
+          settings.backendOpenHABUrl = pagesNode.getAttribute('backend-openhab-url');
         }
 
         if (pagesNode.getAttribute('token') !== null) {
@@ -626,12 +661,20 @@
        * Main setup to get everything running and show the initial page.
        */
       setupPage: function setupPage() {
-        // and now setup the pages
+        var setupDone = false; // and now setup the pages
+
         this.debug('setup'); // login to backend as it might change some settings needed for further processing
 
         this.visu.login(true, cv.Config.configSettings.credentials, function () {
           this.debug('logged in');
-          this.setLoggedIn(true); // as we are sure that the default CSS were loaded now:
+          this.setLoggedIn(true);
+
+          if (setupDone) {
+            // prevent double setup when the backend gets an automatic restart
+            this.startInitialRequest();
+            return;
+          } // as we are sure that the default CSS were loaded now:
+
 
           document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {});
 
@@ -645,6 +688,7 @@
             this.debug('pages created');
           }
 
+          setupDone = true;
           this.debug('setup.dom.finished');
           qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
           this.setDomFinished(true);
@@ -1059,4 +1103,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1645980681171
+//# sourceMappingURL=TemplateEngine.js.map?dt=1647153257522

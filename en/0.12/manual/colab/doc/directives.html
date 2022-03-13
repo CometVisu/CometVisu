@@ -212,6 +212,85 @@ screenshot (Default: <em>left</em>)</li>
 <h3>The <em>&lt;settings&gt;</em><a class="headerlink" href="#the-settings" title="Permalink to this headline">¶</a></h3>
 <p>This area is defined by the <cite>&lt;settings&gt;</cite> element and this can be refined
 by attributes and subelements.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="3">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3">&lt;settings&gt;</td>
+<td>design</td>
+<td colspan="2">Name of a design| In which design the screenshot should be taken (default: metal)</td>
+</tr>
+<tr class="row-even"><td>selector</td>
+<td>Css-Selector</td>
+<td>Defines the area of the screenshot</td>
+</tr>
+<tr class="row-odd"><td>sleep</td>
+<td>number</td>
+<td>Initial wait time in ms before the screenshot is taken</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>#text</td>
+<td>Subtitles of the example code</td>
+</tr>
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
+</dl>
+</td>
+<td>name</td>
+<td>text</td>
+<td>File name of the screenshot</td>
+</tr>
+<tr class="row-even"><td>clickpath</td>
+<td>CSS-Selector</td>
+<td>CSS path to an item to be clicked before the screenshot</td>
+</tr>
+<tr class="row-odd"><td>waitfor</td>
+<td>CSS-Selector</td>
+<td>CSS path to an item that should be visible before the screenshot</td>
+</tr>
+<tr class="row-even"><td>sleep</td>
+<td>number</td>
+<td>Waiting time between sending the data and screenshot</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
+<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
+</dl>
+</dd>
+</dl>
+</td>
+<td>address</td>
+<td>group address</td>
+<td>Send data to this address before taking the screenshot</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td><em>float</em> or <em>int</em></td>
+<td>If real numbers need to be sent</td>
+</tr>
+<tr class="row-odd"><td>#text</td>
+<td>text</td>
+<td>Content of the data to be sent</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="the-parameter-information-directive">
@@ -471,7 +550,7 @@ one parameter that contains the widget name.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">
 <li><abbr title="mandatory">address</abbr></li>
 </ul>
@@ -494,13 +573,21 @@ one parameter that contains the widget name.</p>
 <td>decimal</td>
 <td>Position for format string when multiple addresses are used.</td>
 </tr>
-<tr class="row-odd"><td>qos</td>
+<tr class="row-odd"><td>selector</td>
+<td>string</td>
+<td>Only MQTT: JSON selector</td>
+</tr>
+<tr class="row-even"><td>qos</td>
 <td>decimal</td>
 <td>Only MQTT: QoS</td>
 </tr>
-<tr class="row-even"><td>retain</td>
+<tr class="row-odd"><td>retain</td>
 <td><em>true</em> or <em>false</em></td>
 <td>Only MQTT: retain flag</td>
+</tr>
+<tr class="row-even"><td>ignore-error</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Only MQTT: ignore decode errors.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">

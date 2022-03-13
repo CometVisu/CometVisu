@@ -158,9 +158,8 @@
        */
       applyTransform: function applyTransform(address, data) {
         if (address) {
-          var transform = this.getAddress()[address].transform; // transform the raw value to a JavaScript type
-
-          return cv.Transform.decode(transform, data);
+          // transform the raw value to a JavaScript type
+          return cv.Transform.decode(this.getAddress()[address], data);
         }
 
         return data;
@@ -360,4 +359,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1645980681589
+//# sourceMappingURL=BasicUpdate.js.map?dt=1647153258038

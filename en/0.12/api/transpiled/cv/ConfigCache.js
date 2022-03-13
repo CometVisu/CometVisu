@@ -59,12 +59,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _valid: null,
       replayCache: null,
       __P_490_0: null,
+      failed: null,
       DB: null,
       init: function init() {
         if (!this.__P_490_0) {
           this.__P_490_0 = new Promise(function (resolve, reject) {
-            if (!cv.ConfigCache.DB) {
+            if (!cv.ConfigCache.DB && !cv.ConfigCache.failed) {
               var request = indexedDB.open('cvCache', 1);
+
+              request.onerror = function () {
+                cv.ConfigCache.failed = true;
+                qx.log.Logger.error(cv.ConfigCache, 'error opening cache database');
+                cv.ConfigCache.DB = null;
+                resolve(cv.ConfigCache.DB);
+              };
 
               request.onsuccess = function (ev) {
                 qx.log.Logger.debug(cv.ConfigCache, 'Success creating/accessing IndexedDB database');
@@ -132,7 +140,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
               } else {
                 Object.keys(mapping).forEach(function (key) {
-                  if (Array.isArray(mapping[key])) {
+                  if (key === 'range') {
+                    Object.keys(mapping.range).forEach(function (rangeMin) {
+                      mapping.range[rangeMin][1].forEach(function (valueElement, i) {
+                        var iconDefinition = valueElement.definition;
+
+                        if (iconDefinition) {
+                          var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                          icon.definition = iconDefinition;
+                          mapping.range[rangeMin][1][i] = icon;
+                        }
+                      });
+                    });
+                  } else if (Array.isArray(mapping[key])) {
                     var contents = mapping[key];
 
                     for (var i = 0; i < contents.length; i++) {
@@ -179,8 +199,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
       },
       save: function save(data) {
-        var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
-        objectStore.put(data);
+        if (cv.ConfigCache.DB) {
+          var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
+          objectStore.put(data);
+        }
       },
       getData: function () {
         var _getData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(key) {
@@ -191,6 +213,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               switch (_context.prev = _context.next) {
                 case 0:
                   return _context.abrupt("return", new Promise(function (resolve, reject) {
+                    if (!cv.ConfigCache.DB) {
+                      resolve(null);
+                      return;
+                    }
+
                     if (!_this2._parseCacheData) {
                       var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readonly').objectStore('data');
                       var dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
@@ -330,13 +357,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return this.hashCode(new XMLSerializer().serializeToString(xml));
       },
       clear: function clear(configSuffix) {
-        configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
-        var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
-        var dataRequest = objectStore["delete"](configSuffix);
+        if (cv.ConfigCache.DB) {
+          configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
+          var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
+          var dataRequest = objectStore["delete"](configSuffix);
 
-        dataRequest.onsuccess = function () {
-          qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
-        };
+          dataRequest.onsuccess = function () {
+            qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
+          };
+        }
       },
 
       /**
@@ -371,4 +400,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1645980680958
+//# sourceMappingURL=ConfigCache.js.map?dt=1647153257266

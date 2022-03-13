@@ -55,7 +55,7 @@
      ******************************************************
      */
     construct: function construct() {
-      this.__P_500_0 = cv.IconConfig.DB;
+      this.__P_501_0 = cv.IconConfig.DB;
     },
 
     /*
@@ -83,7 +83,7 @@
        * Initially filled with the default icons.
        * @type {iconDB}
        */
-      __P_500_0: null,
+      __P_501_0: null,
 
       /**
        * Insert or overwrite one or many icons into the database. The parameter
@@ -107,28 +107,28 @@
         var dynamic = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '';
         var source = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : undefined;
 
-        if (!this.__P_500_0[name]) {
-          this.__P_500_0[name] = {};
+        if (!this.__P_501_0[name]) {
+          this.__P_501_0[name] = {};
         }
 
         if (source) {
-          this.__P_500_0[name].source = source;
+          this.__P_501_0[name].source = source;
         }
 
-        if (!this.__P_500_0[name][type]) {
-          this.__P_500_0[name][type] = {};
+        if (!this.__P_501_0[name][type]) {
+          this.__P_501_0[name][type] = {};
         }
 
-        if (!this.__P_500_0[name][type][flavour]) {
-          this.__P_500_0[name][type][flavour] = {};
+        if (!this.__P_501_0[name][type][flavour]) {
+          this.__P_501_0[name][type][flavour] = {};
         }
 
         if (dynamic && window[dynamic]) {
-          this.__P_500_0[name][type][flavour][color] = window[dynamic](uri);
+          this.__P_501_0[name][type][flavour][color] = window[dynamic](uri);
         } else if (dynamic && cv.util.IconTools[dynamic]) {
-          this.__P_500_0[name][type][flavour][color] = cv.util.IconTools[dynamic](uri);
+          this.__P_501_0[name][type][flavour][color] = cv.util.IconTools[dynamic](uri);
         } else {
-          this.__P_500_0[name][type][flavour][color] = {
+          this.__P_501_0[name][type][flavour][color] = {
             uri: uri,
             styling: styling
           };
@@ -149,20 +149,20 @@
         var flavour = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '*';
         var color = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '*';
 
-        if (!this.__P_500_0[name]) {
+        if (!this.__P_501_0[name]) {
           return function (a, b, c, asText) {
             return asText ? '[unknown]' : document.createTextNode('[unknown]');
           };
         }
 
-        if (!this.__P_500_0[name][type]) {
+        if (!this.__P_501_0[name][type]) {
           type = '*'; // undefined -> use default
         }
 
         var all;
 
-        if (typeof this.__P_500_0[name][type] === 'string') {
-          type = this.__P_500_0[name][type]; // redirect link
+        if (typeof this.__P_501_0[name][type] === 'string') {
+          type = this.__P_501_0[name][type]; // redirect link
 
           if (type.split('/').length > 1) {
             all = type.split('/');
@@ -174,12 +174,12 @@
           }
         }
 
-        if (!this.__P_500_0[name][type][flavour]) {
+        if (!this.__P_501_0[name][type][flavour]) {
           flavour = '*'; // undefined -> use default
         }
 
-        if (typeof this.__P_500_0[name][type][flavour] === 'string') {
-          flavour = this.__P_500_0[name][type][flavour]; // redirect link
+        if (typeof this.__P_501_0[name][type][flavour] === 'string') {
+          flavour = this.__P_501_0[name][type][flavour]; // redirect link
 
           if (flavour.split('/').length > 1) {
             all = flavour.split('/');
@@ -191,26 +191,26 @@
           }
         }
 
-        if (!this.__P_500_0[name][type][flavour][color]) {
-          if (/\.svg(#.+)?$/.test(this.__P_500_0[name][type][flavour]['*'].uri)) {
+        if (!this.__P_501_0[name][type][flavour][color]) {
+          if (/\.svg(#.+)?$/.test(this.__P_501_0[name][type][flavour]['*'].uri)) {
             // SVGs can be dynamically recolored, so create new entry for this color
-            this.__P_500_0[name][type][flavour][color] = Object.assign({}, this.__P_500_0[name][type][flavour]['*']);
+            this.__P_501_0[name][type][flavour][color] = Object.assign({}, this.__P_501_0[name][type][flavour]['*']);
           } else {
             color = '*'; // undefined -> use default
           }
         } // handle a generic mapping function
 
 
-        if (typeof this.__P_500_0[name][type][flavour]['*'] === 'function') {
-          return this.__P_500_0[name][type][flavour]['*'];
+        if (typeof this.__P_501_0[name][type][flavour]['*'] === 'function') {
+          return this.__P_501_0[name][type][flavour]['*'];
         }
 
-        if (typeof this.__P_500_0[name][type][flavour][color] === 'string') {
-          color = this.__P_500_0[name][type][flavour][color];
+        if (typeof this.__P_501_0[name][type][flavour][color] === 'string') {
+          color = this.__P_501_0[name][type][flavour][color];
         } // redirect link
 
 
-        return this.__P_500_0[name][type][flavour][color];
+        return this.__P_501_0[name][type][flavour][color];
       },
       getURI: function getURI() {
         var i = this.get.apply(this, arguments);
@@ -338,7 +338,7 @@
        * @return {string[]} List of all known icon names
        */
       list: function list() {
-        return Object.keys(this.__P_500_0);
+        return Object.keys(this.__P_501_0);
       },
 
       /**
@@ -350,11 +350,11 @@
        * @return {Object} The icon database
        */
       debug: function debug() {
-        return this.__P_500_0;
+        return this.__P_501_0;
       }
     }
   });
   cv.IconHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconHandler.js.map?dt=1645980681635
+//# sourceMappingURL=IconHandler.js.map?dt=1647153258090

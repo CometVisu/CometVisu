@@ -144,13 +144,13 @@
        * Type of the used backend (*default*, *openhab* or *openhab2*)
        * @type {String}
        */
-      backend: 'default',
+      backend: null,
 
       /**
        * Initial URL to the backend
        * @type {String}
        */
-      backendUrl: null,
+      backendLoginUrl: null,
 
       /**
        * @type {String}
@@ -173,6 +173,18 @@
        * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)
        */
       pluginsToLoad: [],
+
+      /**
+       * Load the manager directly, no config
+       * @type {boolean}
+       */
+      loadManager: false,
+
+      /**
+       * Optional settings for manager loading
+       * @type {Map}
+       */
+      managerOptions: {},
 
       /**
        * All configuration and settings from the current configuration
@@ -320,7 +332,13 @@
       }
 
       if (req.queryKey.backend) {
-        cv.Config.backend = req.queryKey.backend;
+        cv.Config.URL = {
+          backend: req.queryKey.backend
+        };
+      } else {
+        cv.Config.URL = {
+          backend: undefined
+        };
       }
 
       if (req.queryKey.design) {
@@ -383,12 +401,17 @@
         cv.Config.enableLogging = false;
       } else if (req.queryKey.log === 'true') {
         cv.Config.enableLogging = true;
-      } // "Bug"-Fix for ID: 3204682 "Caching on web server"
+      }
+
+      cv.Config.loadManager = cv.Config.request.queryKey.manager || window.location.hash === '#manager';
+      cv.Config.managerOptions = {
+        action: cv.Config.request.queryKey.open ? 'open' : '',
+        data: cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined
+      }; // "Bug"-Fix for ID: 3204682 "Caching on web server"
       // Config isn't a real fix for the problem as that's part of the web browser,
       // but
       // it helps to avoid the problems on the client, e.g. when the config file
       // has changed but the browser doesn't even ask the server about it...
-
 
       cv.Config.forceReload = true;
 
@@ -429,4 +452,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1645980680671
+//# sourceMappingURL=Config.js.map?dt=1647153256920

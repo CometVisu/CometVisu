@@ -334,7 +334,7 @@
 
         if (addressInfo.variantInfo[0] === 'I') {
           phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
-          var value = cv.Transform.encode(addressInfo.transform, data);
+          var value = cv.Transform.encode(addressInfo, data);
           this.getCurrent()[phase - 1] = value / 1000; // transform mA to A
         } else if (addressInfo.variantInfo.substr(0, 8) === 'spectrum' && data.length === 28) {
           // sanity check for 14 bytes
@@ -516,4 +516,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1645980645115
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1647153213560

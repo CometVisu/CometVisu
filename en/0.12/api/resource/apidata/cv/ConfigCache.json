@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 249,
+        "line": 275,
         "column": 3
       }
     },
@@ -113,7 +113,7 @@
       "type": "variable",
       "access": "private"
     },
-    "DB": {
+    "failed": {
       "location": {
         "start": {
           "line": 41,
@@ -121,6 +121,20 @@
         },
         "end": {
           "line": 41,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DB": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
           "column": 12
         }
       },
@@ -130,11 +144,11 @@
     "init": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 79,
           "column": 5
         }
       },
@@ -144,11 +158,11 @@
     "dump": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 93,
           "column": 5
         }
       },
@@ -158,11 +172,11 @@
     "restore": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 95,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 163,
           "column": 5
         }
       },
@@ -172,11 +186,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 170,
           "column": 5
         }
       },
@@ -186,11 +200,11 @@
     "getData": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 202,
           "column": 5
         }
       },
@@ -200,11 +214,11 @@
     "isCached": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 217,
           "column": 5
         }
       },
@@ -222,11 +236,11 @@
     "isValid": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 210,
+          "line": 234,
           "column": 5
         }
       },
@@ -236,11 +250,11 @@
     "toHash": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 236,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 238,
           "column": 5
         }
       },
@@ -250,11 +264,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 240,
           "column": 4
         },
         "end": {
-          "line": 223,
+          "line": 249,
           "column": 5
         }
       },
@@ -264,11 +278,11 @@
     "hashCode": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 256,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 273,
           "column": 5
         }
       },

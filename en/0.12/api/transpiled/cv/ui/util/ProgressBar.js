@@ -72,23 +72,23 @@
     ******************************************************
     */
     members: {
-      __P_538_0: null,
-      __P_538_1: null,
+      __P_539_0: null,
+      __P_539_1: null,
       _applyValue: function _applyValue(value) {
-        var rect = this.__P_538_0.getBoundingClientRect();
+        var rect = this.__P_539_0.getBoundingClientRect();
 
         var totalWidth = Math.round(rect.right - rect.left);
-        this.__P_538_1.style.width = Math.round(totalWidth * value / 100) + 'px';
+        this.__P_539_1.style.width = Math.round(totalWidth * value / 100) + 'px';
       },
       getDomElement: function getDomElement() {
-        return this.__P_538_0;
+        return this.__P_539_0;
       },
       _createDomElement: function _createDomElement() {
-        var container = this.__P_538_0 = qx.dom.Element.create('div', {
+        var container = this.__P_539_0 = qx.dom.Element.create('div', {
           'class': 'progressbar'
         });
-        this.__P_538_0.$$widget = this;
-        var progress = this.__P_538_1 = qx.dom.Element.create('div', {
+        this.__P_539_0.$$widget = this;
+        var progress = this.__P_539_1 = qx.dom.Element.create('div', {
           'class': 'completed'
         });
         container.appendChild(progress);
@@ -99,4 +99,4 @@
   cv.ui.util.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1645980685271
+//# sourceMappingURL=ProgressBar.js.map?dt=1647153262399

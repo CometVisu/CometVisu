@@ -449,6 +449,9 @@
 
           var mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
+          addressInfo.selector = elem.getAttribute('selector');
+          addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
+
           if (cv.Config.backend === 'mqtt') {
             addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
 
@@ -585,4 +588,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1645980644067
+//# sourceMappingURL=WidgetParser.js.map?dt=1647153212178

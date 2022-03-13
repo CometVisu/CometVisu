@@ -93,7 +93,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="installation-auf-einem-ubuntu-system-mit-openhab-und-docker">
-<h1>Installation auf einem Ubuntu System mit openHAB und Docker<a class="headerlink" href="#installation-auf-einem-ubuntu-system-mit-openhab-und-docker" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="docker-openhab-installation"></span><h1>Installation auf einem Ubuntu System mit openHAB und Docker<a class="headerlink" href="#installation-auf-einem-ubuntu-system-mit-openhab-und-docker" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="voraussetzungen">
 <h2>1. Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für den Betrieb der CometVisu mit openHAB und Docker werden folgende Dinge benötigt:</p>
@@ -120,7 +120,7 @@ Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich is
 <span class="gp"># </span>Hinzufügen vom Docker GPG-Key
 <span class="go">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span>
 
-<span class="gp"># </span>Hinzufügen vom Docker Repositoty
+<span class="gp"># </span>Hinzufügen vom Docker Repository
 <span class="go">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</span>
 
 <span class="gp"># </span>Nochmal ein Update
@@ -133,9 +133,6 @@ Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich is
 </div>
 <div class="section" id="systemvorbereitungen">
 <h2>3. Systemvorbereitungen<a class="headerlink" href="#systemvorbereitungen" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Damit openHAB mit der CometVisu kommunizieren kann, ist die entsprechende Erweiterung über die PaperUI (<a class="reference external" href="http://openhab_adresse:8080">http://openhab_adresse:8080</a>)
--&gt; Add-ons -&gt; User Interfaces -&gt; CometVisu oder über die addons.cfg zu installieren. Die Erweiterung <em>PHP support for CometVisu</em>
-wird in diesem Fall nicht benötigt.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Aktuellen Benutzer zur Gruppe *Docker* hinzufügen
 <span class="go">sudo usermod -aG docker $USER</span>
 </pre></div>
@@ -213,9 +210,15 @@ services:
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>docker starten
 <span class="go">docker-compose up -d</span>
+
+<span class="gp"># </span>Name des laufenden containers herausfinden
+<span class="go">docker-compose ps</span>
+
+<span class="gp"># </span>IP Adresse des Docker Container herausfinden &lt;name&gt; bitte mit dem passenden Namen ersetzen
+<span class="go">docker inspect -f &#39;{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39; &lt;name&gt;</span>
 </pre></div>
 </div>
-<p>Die CometVisu ist dann direkt unter der URL <code class="docutils literal notranslate"><span class="pre">http://&lt;IP-Openhab&gt;:</span></code> im Browser erreichbar.</p>
+<p>Die CometVisu ist dann direkt unter der URL <code class="docutils literal notranslate"><span class="pre">http://&lt;container-IP&gt;:</span></code> im Browser erreichbar.</p>
 </div>
 </div>
 

@@ -323,7 +323,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var _this = this;
 
           var xhr = new qx.io.request.Xhr(url);
-          cv.TemplateEngine.getClient().authorize(xhr);
+          var client = cv.TemplateEngine.getClient();
+
+          if (client) {
+            client.authorize(xhr);
+          }
+
           xhr.set({
             accept: 'application/json'
           });
@@ -353,7 +358,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           };
         }
 
-        if (client.hasProvider('addresses')) {
+        if (client && client.hasProvider('addresses')) {
           return this.__P_35_3(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses', format), client, config.cache);
         }
 
@@ -368,7 +373,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           };
         }
 
-        if (client.hasProvider('rrd')) {
+        if (client && client.hasProvider('rrd')) {
           return this.__P_35_3(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
         }
 
@@ -721,4 +726,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1645980647823
+//# sourceMappingURL=Provider.js.map?dt=1647153217049
