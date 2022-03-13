@@ -468,11 +468,11 @@ msgstr ""
 msgid "Option key duplicate: \"%1\" in section \"%2\"."
 msgstr ""
 
-#: cv/ui/manager/editor/Source.js
+#: cv/ui/manager/editor/Config.js
 msgid "Saving hidden config failed with error %1 (%2)"
 msgstr ""
 
-#: cv/ui/manager/editor/Source.js
+#: cv/ui/manager/editor/Config.js
 msgid "Hidden config has been saved"
 msgstr ""
 
@@ -1138,6 +1138,38 @@ msgstr ""
 
 #: cv/Application.js
 msgid "Manager"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Transform decode error"
+msgstr ""
+
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr ""
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
 msgstr ""
 
 #: cv/util/ConfigLoader.js

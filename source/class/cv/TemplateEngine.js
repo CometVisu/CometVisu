@@ -313,20 +313,34 @@ qx.Class.define('cv.TemplateEngine', {
      * Initialize the {@link cv.io.Client} for backend communication
      */
     initBackendClient: function () {
-      let backendName = cv.Config.configSettings.backend || cv.Config.backend;
-      let backendUrl = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
-      const mapping = {
-        oh: 'openhab',
-        oh2: 'openhab2'
-      };
-      if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
-        backendName = mapping[backendName];
-      }
-      const client = cv.Application.createClient(backendName, backendUrl);
-      this.__clients.main = client;
+      let backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
+      const backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
+      const backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
+      const backendOpenHABUrl = cv.Config.URL.backendOpenHABUrl || cv.Config.configSettings.backendOpenHABUrl || cv.Config.server.backendOpenHABUrl;
 
+      let client;
+      switch (backendName) {
+        case 'knxd':
+        case 'default':
+        default:
+          client = cv.Application.createClient('knxd', backendKnxdUrl);
+          break;
+
+        case 'mqtt':
+          client = cv.Application.createClient('mqtt', backendMQTTUrl);
+          break;
+
+        case 'openhab':
+        case 'openhab2':
+        case 'oh':
+        case 'oh2':
+          client = cv.Application.createClient('openhab', backendOpenHABUrl);
+          break;
+      }
       // deprecated, just for compatibility
       this.visu = client;
+
+      this.__clients.main = client;
 
       const model = cv.data.Model.getInstance();
       client.update = data => model.updateFrom('main', data); // override clients update function
@@ -432,6 +446,16 @@ qx.Class.define('cv.TemplateEngine', {
         } else {
           message.message = qx.locale.Manager.tr('Connection to backend is lost.');
         }
+        message.actions = {
+          link: [
+            {
+              title: qx.locale.Manager.tr('Restart connection'),
+              action: function () {
+                client.restart();
+              }
+            }
+          ]
+        };
       } else {
         this.__hasBeenConnected = true;
       }
@@ -524,7 +548,16 @@ qx.Class.define('cv.TemplateEngine', {
       }
       if (rootNode.getAttribute('backend-url') !== null) {
         settings.backendUrl = rootNode.getAttribute('backend-url');
+        this.error('The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
       }
+      if (rootNode.getAttribute('backend-knxd-url') !== null) {
+        settings.backendKnxdUrl = rootNode.getAttribute('backend-knxd-url');
+      }
+      if (rootNode.getAttribute('backend-mqtt-url') !== null) {
+        settings.backendMQTTUrl = rootNode.getAttribute('backend-mqtt-url');
+      }
+      if (rootNode.getAttribute('backend-openhab-url') !== null) {
+        settings.backendOpenHABUrl = rootNode.getAttribute('backend-openhab-url');
 
       if (rootNode.getAttribute('token') !== null) {
         settings.credentials.token = rootNode.getAttribute('token');
@@ -587,6 +620,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Main setup to get everything running and show the initial UI page.
      */
     setupUI: function () {
+      let setupDone = false;
       // and now setup the UI
       this.debug('setup');
 
@@ -595,6 +629,13 @@ qx.Class.define('cv.TemplateEngine', {
       client.login(true, cv.Config.configSettings.credentials, function () {
         this.debug('logged in');
         this.setLoggedIn(true);
+
+        if (setupDone) {
+          // prevent double setup when the backend gets an automatic restart
+          this.startInitialRequest();
+          return;
+        }
+
         cv.Application.structureController.createUI(this.getConfigSource());
         this.resetConfigSource(); // not needed anymore - free the space
         this.startInitialRequest();

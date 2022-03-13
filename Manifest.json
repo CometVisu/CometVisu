@@ -41,7 +41,7 @@
       "libs/EventRecorder.js",
       "libs/favico.js",
       "libs/jquery.js",
-      "libs/paho-mqtt.min.js",
+      "libs/paho-mqtt.js",
       "libs/sprintf.js",
       "libs/strftime.js",
       "libs/svg4everybody.js"

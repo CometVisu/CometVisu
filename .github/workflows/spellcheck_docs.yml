@@ -1,6 +1,9 @@
 name: "[doc] Spellcheck"
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'doc/**'
   push:
     branches:
       - develop

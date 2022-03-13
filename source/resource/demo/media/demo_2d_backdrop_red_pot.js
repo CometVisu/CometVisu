@@ -6,7 +6,7 @@ var backendName = cv.Config.configSettings.backend || cv.Config.backend;
 var
   thisGA = '12/7/52',
   thisTransform = 'DPT:5.001',
-  client = cv.Application.createClient(backendName, cv.Config.backendUrl);
+  client = cv.Application.createClient(backendName, cv.Config.backendLoginUrl);
 
 client.update = function(json ) // overload the handler
 {

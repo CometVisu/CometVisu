@@ -1,10 +1,10 @@
 .. _Docker_OpenHAB_Installation:
 
-Installing on an Ubuntu system with openHAB and Docker.
-=======================================================
+Installing on an Ubuntu system with openHAB and Docker
+======================================================
 
 1. Prerequisites
-------------------
+----------------
 
 To run CometVisu with openHAB and Docker the following things are needed:
 
@@ -18,8 +18,8 @@ To run CometVisu with openHAB and Docker the following things are needed:
     The above items are all that is required to get up and running successfully.
 
 
-2. Installing Docker-CE and Compose on the server.
---------------------------------------------------
+2. Installing Docker-CE and Compose on the server
+-------------------------------------------------
 
 This can all be done by running the following console commands:
 

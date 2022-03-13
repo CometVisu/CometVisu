@@ -23,7 +23,7 @@
  */
 qx.Class.define('cv.plugins.Clock', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [cv.ui.common.Update],
+  include: [cv.ui.common.Update, cv.ui.common.Operate],
   /*
   ***********************************************
     CONSTRUCTOR
@@ -226,6 +226,10 @@ qx.Class.define('cv.plugins.Clock', {
     __Elements: null, // cached access to the individual clock parts
     __inDrag: 0, // is the handle currently dragged?
     __timeToShow: null, // time to show on the clock
+    /**
+     *  to handle legacy mode, when a time string is used and not a `Date` object
+     */
+    __valueIsString: false,
 
     _getInnerDomString: function () {
       return '<div class="actor" style="width:100%;height:100%"></div>';
@@ -332,7 +336,19 @@ qx.Class.define('cv.plugins.Clock', {
     // overridden
     _update: function (address, data, isDataAlreadyHandled) {
       let value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
-      this.__timeToShow = value.split(':');
+      if (value instanceof Date) {
+        this.__valueIsString = false;
+        this.__timeToShow = [value.getHours(), value.getMinutes(), value.getSeconds()];
+      } else {
+        this.__valueIsString = true;
+        this.__timeToShow = typeof value === 'string' ? value.split(':') : [0, 0, 0];
+        this.__timeToShow[0] = (this.__timeToShow[0]>=0 && this.__timeToShow[0]<=23) ? this.__timeToShow[0] : 0;
+        this.__timeToShow[1] = (this.__timeToShow[1]>=0 && this.__timeToShow[1]<=59) ? this.__timeToShow[1] : 0;
+        this.__timeToShow[2] = (this.__timeToShow[2]>=0 && this.__timeToShow[2]<=59) ? this.__timeToShow[2] : 0;
+        let date = new Date(); // assume today
+        date.setHours(this.__timeToShow[0], this.__timeToShow[1], this.__timeToShow[2], 0);
+        this.setValue(date);
+      }
       this._updateHands();
     },
 
@@ -478,18 +494,15 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     dragAction: function () {
-      const address = this.getAddress();
-      for (let addr in address) {
-        if (address[addr].mode === true) {
-          continue;
-        } // skip read only
-        cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
-      }
+      const value = this.__valueIsString
+        ? this.getValue().toTimeString().split(' ')[0]
+        : this.getValue();
+      this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
     },
 
     _updateHands: function () {
       const [hour, minute, second] = this.__timeToShow;
-      this.__Elements.forEach(e => {
+      Array.isArray(this.__Elements) && this.__Elements.forEach(e => {
         let showSeconds = true;
         if (e.hour !== null) {
           if (showSeconds) {

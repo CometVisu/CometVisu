@@ -58,8 +58,11 @@ protocol in the following steps:
 #.  The server can deliver this file with 2 optional headers
     that provide the CometVisu with more information about the backend:
 
-    * ``X-CometVisu-Backend-LoginUrl``: Path under which the client can log in.
     * ``X-CometVisu-Backend-Name``: The name of the backend to use.
+    * ``X-CometVisu-Backend-KNXD-Url``: URL of the knxd login ressource
+    * ``X-CometVisu-Backend-MQTT-Url``: URL of the MQTT login ressource
+    * ``X-CometVisu-Backend-OpenHAB-Url``: Only openHAB: path to the REST-API      
+    * ``X-CometVisu-Backend-LoginUrl``: Deprecated: Path under which the client can log in.
 
 #.  The CometVisu authenticates itself at the backend (at present
     no backend implements a real authentication)

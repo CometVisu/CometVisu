@@ -542,7 +542,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
  return; 
 }
       const self = this;
-      const value = cv.Transform.decode(this.getAddress()[address].transform, data);
+      const value = cv.Transform.decode(this.getAddress()[address], data);
       const target = this.getTargetRatioValue();
       const tspan = Array.from(this.getDomElement().getElementsByTagName('tspan'));
       const valueFormat = this.applyFormat(address, value);
