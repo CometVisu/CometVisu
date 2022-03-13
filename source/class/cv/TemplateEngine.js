@@ -558,7 +558,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
       if (rootNode.getAttribute('backend-openhab-url') !== null) {
         settings.backendOpenHABUrl = rootNode.getAttribute('backend-openhab-url');
-
+      }
       if (rootNode.getAttribute('token') !== null) {
         settings.credentials.token = rootNode.getAttribute('token');
       }
