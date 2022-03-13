@@ -27,14 +27,14 @@
 describe('testing a trigger', function() {
   var realClient;
   beforeEach(function() {
-    realClient = cv.TemplateEngine.getInstance().visu;
+    realClient = cv.io.BackendConnections.getClient();
     var client = new cv.io.Mockup();
-    cv.TemplateEngine.getInstance().visu = client;
+    cv.io.BackendConnections.getClient() = client;
     spyOn(client, 'write');
   });
 
   afterEach(function () {
-    cv.TemplateEngine.getInstance().visu = realClient;
+    cv.io.BackendConnections.getClient() = realClient;
   });
 
   it('should test the trigger creator', function() {
@@ -93,7 +93,7 @@ describe('testing a trigger', function() {
 
     this.initWidget(res);
 
-    var client = cv.TemplateEngine.getInstance().visu;
+    var client = cv.io.BackendConnections.getClient();
     var actor = res.getInteractionElement();
 
     expect(actor).not.toBe(null);
@@ -163,7 +163,7 @@ describe('testing a trigger', function() {
     ]);
 
     this.initWidget(res);
-    var client = cv.TemplateEngine.getInstance().visu;
+    var client = cv.io.BackendConnections.getClient();
     var actor = res.getInteractionElement();
 
     expect(actor).not.toBe(null);
@@ -236,7 +236,7 @@ describe('testing a trigger', function() {
     ]);
 
     this.initWidget(res);
-    var client = cv.TemplateEngine.getInstance().visu;
+    var client = cv.io.BackendConnections.getClient();
     var actor = res.getInteractionElement();
 
     expect(actor).not.toBe(null);

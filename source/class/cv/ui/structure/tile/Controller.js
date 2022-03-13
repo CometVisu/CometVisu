@@ -147,6 +147,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       }
     },
 
+    // not needed, backend parse/init themselves
+    parseBackendSettings(xml) {
+    },
+
     /**
      * Parses structure specific settings
      * @param config {XMLDocument} loaded config

@@ -349,12 +349,6 @@ qx.Class.define('cv.Application',
       } else {
         qx.io.PartLoader.require(['manager'], function (states) {
           // break dependency
-          const engine = cv.TemplateEngine.getInstance();
-          if (!engine.isLoggedIn() && !action) {
-            // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-            engine.addListenerOnce('changeLoggedIn', () => this.showManager());
-            return;
-          }
           const ManagerMain = cv.ui['manager']['Main'];
           const firstCall = !ManagerMain.constructor.$$instance;
           const manager = ManagerMain.getInstance();
@@ -708,7 +702,7 @@ qx.Class.define('cv.Application',
           cv.report.Record.logCache();
           cv.Config.cacheUsed = true;
           cv.Config.lazyLoading = true;
-          engine.initBackendClient();
+          cv.io.BackendConnections.initBackendClient();
 
           // load part for structure
           const structure = cv.Config.getStructure();
@@ -963,7 +957,7 @@ qx.Class.define('cv.Application',
 
     close: function () {
       this.setActive(false);
-      const client = cv.TemplateEngine.getClient();
+      const client = cv.io.BackendConnections.getClient();
       if (client) {
         client.terminate();
       }

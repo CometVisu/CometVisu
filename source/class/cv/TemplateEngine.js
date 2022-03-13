@@ -48,21 +48,6 @@ qx.Class.define('cv.TemplateEngine', {
     }
   },
 
-  /*
-  ***********************************************
-    STATICS
-  ***********************************************
-  */
-  statics: {
-    /**
-     * Shortcut access to client
-     * @param backendName {String?} optional backend name
-     */
-    getClient: function (backendName) {
-      return this.getInstance().getClient(backendName);
-    }
-  },
-
   properties: {
 
     /**
@@ -112,13 +97,6 @@ qx.Class.define('cv.TemplateEngine', {
       check: 'qx.ui.command.Group',
       nullable: true
     },
-    
-    // sent after the client is logged in to the backend
-    loggedIn: {
-      check: 'Boolean',
-      init: false,
-      event: 'changeLoggedIn'
-    },
 
     // highlight a widget
     highlightedWidget: {
@@ -155,13 +133,6 @@ qx.Class.define('cv.TemplateEngine', {
      */
     defaults : null,
 
-    /**
-     * @deprecated use 'getClient()' instead
-     */
-    visu : null,
-
-    __clients: null,
-
     pluginsToLoadCount : 0,
 
     __partQueue: null,
@@ -169,8 +140,6 @@ qx.Class.define('cv.TemplateEngine', {
 
     // plugins that do not need to be loaded to proceed with the initial setup
     lazyPlugins: null,
-    __activeChangedTimer: null,
-    __hasBeenConnected: false,
 
     _applyConfigSource(xml) {
       if (cv.Config.enableCache && xml) {
@@ -310,213 +279,6 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * Initialize the {@link cv.io.Client} for backend communication
-     */
-    initBackendClient: function () {
-      let backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
-      const backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
-      const backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
-      const backendOpenHABUrl = cv.Config.URL.backendOpenHABUrl || cv.Config.configSettings.backendOpenHABUrl || cv.Config.server.backendOpenHABUrl;
-
-      let client;
-      switch (backendName) {
-        case 'knxd':
-        case 'default':
-        default:
-          client = cv.Application.createClient('knxd', backendKnxdUrl);
-          break;
-
-        case 'mqtt':
-          client = cv.Application.createClient('mqtt', backendMQTTUrl);
-          break;
-
-        case 'openhab':
-        case 'openhab2':
-        case 'oh':
-        case 'oh2':
-          client = cv.Application.createClient('openhab', backendOpenHABUrl);
-          break;
-      }
-      // deprecated, just for compatibility
-      this.visu = client;
-
-      this.__clients.main = client;
-
-      const model = cv.data.Model.getInstance();
-      client.update = data => model.updateFrom('main', data); // override clients update function
-      if (cv.Config.reporting) {
-        const recordInstance = cv.report.Record.getInstance();
-        client.record = function(p, d) {
-         recordInstance.record(cv.report.Record.BACKEND, p, d);
-        };
-      }
-      client.showError = this._handleClientError.bind(this);
-      client.user = 'demo_user'; // example for setting a user
-
-      if (cv.Config.sentryEnabled && window.Sentry) {
-        Sentry.configureScope(function (scope) {
-          scope.setTag('backend', client.backendName);
-          const webServer = client.getServer();
-          if (webServer) {
-            scope.setTag('server.backend', webServer);
-          }
-          if (cv.Config.configServer) {
-            scope.setTag('server.web', cv.Config.configServer);
-          }
-        });
-        client.addListener('changedServer', this._updateClientScope, this);
-      }
-      const app = qx.core.Init.getApplication();
-      app.addListener('changeActive', this._onActiveChanged, this);
-
-      // show connection state in NotificationCenter
-      client.addListener('changeConnected', this._checkBackendConnection, this);
-    },
-
-    addBackendClient(name, type, backendUrl) {
-      const client = cv.Application.createClient(type, backendUrl);
-      this.__clients[name] = client;
-      return client;
-    },
-
-    /**
-     * Checks if a backend by that name is already registered
-     * @param name {String} name of the backend
-     * @return {boolean}
-     */
-    hasBackend(name) {
-      return Object.prototype.hasOwnProperty.call(this.__clients, name);
-    },
-
-    /**
-     * Get the backend client by name, if the name is not set the default backend is used.
-     * Usually that is the backend client created by initBackendClient().
-     * @param backendName {String?} name of the backend
-     */
-    getClient(backendName) {
-      if (!backendName) {
-        backendName = cv.data.Model.getInstance().getDefaultBackendName();
-      }
-      return this.__clients[backendName];
-    },
-
-    _onActiveChanged: function () {
-      const app = qx.core.Init.getApplication();
-      if (app.isActive()) {
-        Object.getOwnPropertyNames(this.__clients).forEach(backendName => {
-          const client = this.__clients[backendName];
-          if (!client.isConnected() && this.__hasBeenConnected) {
-            // reconnect
-            this.debug(`restarting ${backendName} backend connection`);
-            client.restart(true);
-          }
-        });
-
-        // wait for 3 seconds before checking the backend connection
-        if (!this.__activeChangedTimer) {
-          this.__activeChangedTimer = new qx.event.Timer(3000);
-          this.__activeChangedTimer.addListener('interval', function () {
-            if (app.isActive()) {
-              this._checkBackendConnection();
-            }
-            this.__activeChangedTimer.stop();
-          }, this);
-        }
-        this.__activeChangedTimer.restart();
-      } else {
-        this._checkBackendConnection();
-      }
-    },
-
-    _checkBackendConnection: function () {
-      const client = this.getClient('main');
-      const connected = client.isConnected();
-      const message = {
-        topic: 'cv.client.connection',
-        title: qx.locale.Manager.tr('Connection error'),
-        severity: 'urgent',
-        unique: true,
-        deletable: false,
-        condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
-      };
-      const lastError = client.getLastError();
-      if (!connected) {
-        if (lastError && (Date.now() - lastError.time) < 100) {
-          message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
-        } else {
-          message.message = qx.locale.Manager.tr('Connection to backend is lost.');
-        }
-        message.actions = {
-          link: [
-            {
-              title: qx.locale.Manager.tr('Restart connection'),
-              action: function () {
-                client.restart();
-              }
-            }
-          ]
-        };
-      } else {
-        this.__hasBeenConnected = true;
-      }
-      cv.core.notifications.Router.dispatchMessage(message.topic, message);
-    },
-
-    _updateClientScope: function () {
-      const client = this.getClient('main');
-      Sentry.configureScope(function (scope) {
-        const webServer = client.getServer();
-        if (webServer) {
-          scope.setTag('server.backend', webServer);
-        }
-      });
-    },
-
-    _handleClientError: function (errorCode, varargs) {
-      varargs = Array.prototype.slice.call(arguments, 1);
-      varargs = JSON.stringify(varargs[0], null, 2);
-      // escape HTML:
-      let div = document.createElement('div');
-      div.innerText = varargs;
-      varargs = div.innerHTML;
-      let notification;
-      switch (errorCode) {
-        case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
-          notification = {
-            topic: 'cv.error',
-            title: qx.locale.Manager.tr('CometVisu protocol error'),
-            message:  qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
-              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
-              '</a>') + '<br/>' +
-              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
-            severity: 'urgent',
-            unique: true,
-            deletable: false
-          };
-          break;
-
-        case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
-          notification = {
-            topic: 'cv.error',
-            title: qx.locale.Manager.tr('CometVisu protocol error'),
-            message:  qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
-              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
-              '</a>') + '<br/>' +
-              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs +'</pre></div>',
-            severity: 'urgent',
-            unique: true,
-            deletable: false
-          };
-          break;
-      }
-      if (notification) {
-        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
-      }
-    },
-
-    /**
      * Read basic settings and detect and load the structure for this config to do the rest.
      */
     async parse() {
@@ -541,50 +303,6 @@ qx.Class.define('cv.TemplateEngine', {
           // selection dialog
           this.selectDesign();
         }
-      }
-
-      if (rootNode.getAttribute('backend') !== null) {
-        settings.backend = rootNode.getAttribute('backend');
-      }
-      if (rootNode.getAttribute('backend-url') !== null) {
-        settings.backendUrl = rootNode.getAttribute('backend-url');
-        this.error('The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
-      }
-      if (rootNode.getAttribute('backend-knxd-url') !== null) {
-        settings.backendKnxdUrl = rootNode.getAttribute('backend-knxd-url');
-      }
-      if (rootNode.getAttribute('backend-mqtt-url') !== null) {
-        settings.backendMQTTUrl = rootNode.getAttribute('backend-mqtt-url');
-      }
-      if (rootNode.getAttribute('backend-openhab-url') !== null) {
-        settings.backendOpenHABUrl = rootNode.getAttribute('backend-openhab-url');
-      }
-      if (rootNode.getAttribute('token') !== null) {
-        settings.credentials.token = rootNode.getAttribute('token');
-      }
-      if (rootNode.getAttribute('username') !== null) {
-        settings.credentials.username = rootNode.getAttribute('username');
-      }
-      if (rootNode.getAttribute('password') !== null) {
-        settings.credentials.password = rootNode.getAttribute('password');
-      }
-      this.initBackendClient();
-
-      settings.screensave_time = rootNode.getAttribute('screensave_time');
-      if (settings.screensave_time) {
-        settings.screensave_time = parseInt(settings.screensave_time, 10);
-      }
-      settings.screensave_page = rootNode.getAttribute('screensave_page');
-
-      if (rootNode.getAttribute('max_mobile_screen_width') !== null) {
-        settings.maxMobileScreenWidth = rootNode.getAttribute('max_mobile_screen_width');
-        // override config setting
-        cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
-      }
-
-      const globalClass = rootNode.getAttribute('class');
-      if (globalClass !== null) {
-        document.querySelector('body').classList.add(globalClass);
       }
 
       settings.scriptsToLoad = [];
@@ -612,6 +330,9 @@ qx.Class.define('cv.TemplateEngine', {
       }
       // load structure-part
       await this.loadParts([cv.Config.getStructure()]);
+      if (cv.Application.structureController.parseBackendSettings(xml)) {
+        cv.io.BackendConnections.initBackendClient();
+      }
       cv.Application.structureController.parseSettings(xml);
       await cv.Application.structureController.preParse(xml);
     },
@@ -620,31 +341,15 @@ qx.Class.define('cv.TemplateEngine', {
      * Main setup to get everything running and show the initial UI page.
      */
     setupUI: function () {
-      let setupDone = false;
       // and now setup the UI
       this.debug('setup');
-
-      // login to backend as it might change some settings needed for further processing
-      const client = this.getClient('main');
-      client.login(true, cv.Config.configSettings.credentials, function () {
-        this.debug('logged in');
-        this.setLoggedIn(true);
-
-        if (setupDone) {
-          // prevent double setup when the backend gets an automatic restart
-          this.startInitialRequest();
-          return;
-        }
-
-        cv.Application.structureController.createUI(this.getConfigSource());
-        this.resetConfigSource(); // not needed anymore - free the space
-        this.startInitialRequest();
-        this.startScreensaver();
-        if (qx.core.Environment.get('qx.aspects')) {
-          qx.dev.Profile.stop();
-          qx.dev.Profile.showResults(50);
-        }
-      }, this);
+      cv.Application.structureController.createUI(this.getConfigSource());
+      this.resetConfigSource(); // not needed anymore - free the space
+      this.startScreensaver();
+      if (qx.core.Environment.get('qx.aspects')) {
+        qx.dev.Profile.stop();
+        qx.dev.Profile.showResults(50);
+      }
     },
 
     /**
@@ -656,24 +361,6 @@ qx.Class.define('cv.TemplateEngine', {
         this.screensave.addListener('interval', cv.Application.structureController.doScreenSave, cv.Application.structureController);
         this.screensave.start();
         qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
-      }
-    },
-
-    /**
-     * Start retrieving data from backend
-     */
-    startInitialRequest: function() {
-      if (qx.core.Environment.get('qx.debug')) {
-        cv.report.Replay.start();
-      }
-      const client = this.getClient('main');
-      if (cv.Config.enableAddressQueue) {
-        // identify addresses on startpage
-        client.setInitialAddresses(cv.Application.structureController.getInitialAddresses());
-      }
-      const addressesToSubscribe = cv.data.Model.getInstance().getAddresses('main');
-      if (addressesToSubscribe.length !== 0) {
-        client.subscribe(addressesToSubscribe);
       }
     },
 

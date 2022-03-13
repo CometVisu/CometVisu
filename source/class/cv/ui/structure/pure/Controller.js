@@ -66,9 +66,65 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return this.__HTML_STRUCT;
     },
 
+    parseBackendSettings(xml) {
+      const settings = cv.Config.configSettings;
+      const pagesElement = xml.documentElement;
+      if (pagesElement.getAttribute('backend') !== null) {
+        settings.backend = pagesElement.getAttribute('backend');
+      }
+      if (pagesElement.getAttribute('backend-url') !== null) {
+        settings.backendUrl = pagesElement.getAttribute('backend-url');
+        this.error('The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
+      }
+      if (pagesElement.getAttribute('backend-knxd-url') !== null) {
+        settings.backendKnxdUrl = pagesElement.getAttribute('backend-knxd-url');
+      }
+      if (pagesElement.getAttribute('backend-mqtt-url') !== null) {
+        settings.backendMQTTUrl = pagesElement.getAttribute('backend-mqtt-url');
+      }
+      if (pagesElement.getAttribute('backend-openhab-url') !== null) {
+        settings.backendOpenHABUrl = pagesElement.getAttribute('backend-openhab-url');
+      }
+      if (pagesElement.getAttribute('token') !== null) {
+        settings.credentials.token = pagesElement.getAttribute('token');
+      }
+      if (pagesElement.getAttribute('username') !== null) {
+        settings.credentials.username = pagesElement.getAttribute('username');
+      }
+      if (pagesElement.getAttribute('password') !== null) {
+        settings.credentials.password = pagesElement.getAttribute('password');
+      }
+      cv.io.BackendConnections.initBackendClient();
+      this.login();
+    },
+
+    login() {
+      const client = cv.io.BackendConnections.getClient('main');
+      client.login(true, cv.Config.configSettings.credentials, () => {
+        this.debug('logged in');
+        cv.io.BackendConnections.startInitialRequest();
+      });
+    },
+
     parseSettings(xml, done) {
       const settings = cv.Config.configSettings;
       const pagesElement = xml.documentElement;
+      settings.screensave_time = pagesElement.getAttribute('screensave_time');
+      if (settings.screensave_time) {
+        settings.screensave_time = parseInt(settings.screensave_time, 10);
+      }
+      settings.screensave_page = pagesElement.getAttribute('screensave_page');
+
+      if (pagesElement.getAttribute('max_mobile_screen_width') !== null) {
+        settings.maxMobileScreenWidth = pagesElement.getAttribute('max_mobile_screen_width');
+        // override config setting
+        cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
+      }
+
+      const globalClass = pagesElement.getAttribute('class');
+      if (globalClass !== null) {
+        document.querySelector('body').classList.add(globalClass);
+      }
       if (pagesElement.getAttribute('scroll_speed') === null) {
         settings.scrollSpeed = 400;
       } else {

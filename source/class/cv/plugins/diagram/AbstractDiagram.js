@@ -259,7 +259,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param callbackParameter
      */
     lookupTsCache: function(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
-      const client = cv.TemplateEngine.getInstance().visu;
+      const client = cv.io.BackendConnections.getClient();
       let key;
       let url;
       const chartsResource = client.getResourcePath('charts', {
@@ -323,7 +323,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     _onSuccess: function(ts, key, ev, forceNowDatapoint) {
       let tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
-        const client = cv.TemplateEngine.getInstance().visu;
+        const client = cv.io.BackendConnections.getClient();
         if (client.hasCustomChartsDataProcessor(tsdata)) {
           tsdata = client.processChartsData(tsdata);
         } else {

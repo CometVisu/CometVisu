@@ -41,6 +41,13 @@ qx.Interface.define('cv.ui.structure.IController', {
     },
 
     /**
+     * Extract backend specific settings from the config
+     * @param xml {XMLDocument} loaded config
+     */
+    parseBackendSettings(xml) {
+    },
+
+    /**
      * Parses structure specific settings
      * @param xml {XMLDocument} loaded config
      */
@@ -71,8 +78,10 @@ qx.Interface.define('cv.ui.structure.IController', {
 
     /**
      * Return the addresses needed to update all states on the initially loaded page
+     * @param backendName {string} name of the backend
+     * @return {Array<string>} list of addresses
      */
-    getInitialAddresses() {
+    getInitialAddresses(backendName) {
     },
 
     /**

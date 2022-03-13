@@ -34,12 +34,12 @@ describe('testing a refresh widget', function() {
 
   it('should test the refresh actor', function() {
     var res = this.createTestElement('refresh');
-    cv.TemplateEngine.getInstance().visu = jasmine.createSpyObj('visu', ['restart']);
+    cv.io.BackendConnections.getClient() = jasmine.createSpyObj('visu', ['restart']);
 
     spyOn(res, 'defaultUpdate');
     this.initWidget(res);
     qx.event.Registration.fireEvent(res.getActor(), 'tap');
 
-    expect(cv.TemplateEngine.getInstance().visu.restart).toHaveBeenCalled();
+    expect(cv.io.BackendConnections.getClient().restart).toHaveBeenCalled();
   });
 });

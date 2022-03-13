@@ -25,14 +25,14 @@
 describe('testing a pushbutton widget', function() {
   var realClient;
   beforeEach(function() {
-    realClient = cv.TemplateEngine.getInstance().visu;
+    realClient = cv.io.BackendConnections.getClient();
     var client = new cv.io.Mockup();
-    cv.TemplateEngine.getInstance().visu = client;
+    cv.io.BackendConnections.getClient() = client;
     spyOn(client, 'write');
   });
 
   afterEach(function () {
-    cv.TemplateEngine.getInstance().visu = realClient;
+    cv.io.BackendConnections.getClient() = realClient;
   });
 
   it('should test the pushbutton creator', function() {
@@ -83,7 +83,7 @@ describe('testing a pushbutton widget', function() {
     var actor = button.getActor();
 
     this.initWidget(button);
-    const client = cv.TemplateEngine.getInstance().visu;
+    const client = cv.io.BackendConnections.getClient();
     var Reg = qx.event.Registration;
 
     Reg.fireEvent(actor, 'pointerdown');

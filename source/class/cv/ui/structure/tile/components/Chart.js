@@ -91,7 +91,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     _loadData() {
-      const client = cv.TemplateEngine.getClient();
+      const client = cv.io.BackendConnections.getClient();
       let key;
       let url;
       let ts = {
@@ -126,7 +126,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _onSuccess: function(ts, key, ev) {
       let tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
-        const client = cv.TemplateEngine.getClient('main');
+        const client = cv.io.BackendConnections.getClient('main');
         if (client.hasCustomChartsDataProcessor(tsdata)) {
           tsdata = client.processChartsData(tsdata);
         }

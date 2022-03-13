@@ -138,7 +138,7 @@ qx.Class.define('cv.plugins.Speech', {
     },
 
     handleUpdate: function(text, address) {
-      if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
+      if (!cv.io.BackendConnections.getClient().getDataReceived()) {
         // first call -> skipping
         this.__lastSpeech[address] = {
           text: text,

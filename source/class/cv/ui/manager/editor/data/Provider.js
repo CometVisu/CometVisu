@@ -263,7 +263,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       } 
         return new Promise(function (resolve, reject) {
           const xhr = new qx.io.request.Xhr(url);
-          const client = cv.TemplateEngine.getClient();
+          const client = cv.io.BackendConnections.getClient();
           if (client) {
             client.authorize(xhr);
           }
@@ -286,7 +286,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     },
 
     getAddresses: function (format, config) {
-      const client = cv.TemplateEngine.getClient();
+      const client = cv.io.BackendConnections.getClient();
       if (!config) {
         config = {cache: true};
       }
@@ -297,7 +297,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     },
 
     getRrds: function (format, config) {
-      const client = cv.TemplateEngine.getClient();
+      const client = cv.io.BackendConnections.getClient();
       if (!config) {
         config = {cache: true};
       }

@@ -137,7 +137,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
     document.body.appendChild(address);
     const addr = address._instance;
 
-    const client = cv.TemplateEngine.getClient('main');
+    const client = cv.io.BackendConnections.getClient('main');
     spyOn(client, 'write');
 
     // make sure that nothing is sent when there is no value
@@ -185,7 +185,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
     document.body.appendChild(address);
     const addr = address._instance;
 
-    const client = cv.TemplateEngine.getClient('main');
+    const client = cv.io.BackendConnections.getClient('main');
     spyOn(client, 'write');
 
     expect(client.write).not.toHaveBeenCalled();

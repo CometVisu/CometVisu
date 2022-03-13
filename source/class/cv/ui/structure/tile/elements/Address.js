@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               const encodedValue = cv.Transform.encodeBusAndRaw({transform: encoding}, value);
               // noinspection EqualityComparisonWithCoercionJS
               if (allowDuplicates || !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') || encodedValue.raw !== element.lastSentValue) {
-                cv.TemplateEngine.getClient(backendName).write(element.textContent, encodedValue.bus, element);
+                cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
                 if (!allowDuplicates) {
                   element.lastSentValue = encodedValue.raw;
                 }

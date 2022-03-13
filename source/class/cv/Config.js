@@ -238,10 +238,10 @@ qx.Class.define('cv.Config', {
      * loging response). As this is just an assumption, you should not treat this result as reliable.
      */
     guessIfProxied: function() {
-      if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
+      if (this.configServer === null || cv.io.BackendConnections.getClient().getServer() === null) {
         throw new Error('not ready yet');
       }
-      return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
+      return this.configServer !== cv.io.BackendConnections.getClient().getServer();
     },
 
     addMapping: function (name, mapping) {

@@ -55,7 +55,7 @@ qx.Class.define('cv.ui.structure.pure.Refresh', {
     },
 
     _action: function() {
-      cv.TemplateEngine.getInstance().visu.restart(true);
+      cv.io.BackendConnections.getClient().restart(true);
     }
   }
 });

@@ -24,8 +24,26 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         }
         const model = cv.data.Model.getInstance();
         let backendUrl = uri ? uri.toString() : null;
-        const name = element.hasAttribute('name') ? element.getAttribute('name') : type;
-        const client = cv.TemplateEngine.getInstance().addBackendClient(name, type, backendUrl);
+        let name = type;
+        if (element.hasAttribute('name')) {
+          name = element.getAttribute('name');
+        } else if (!cv.io.BackendConnections.hasBackend('main')) {
+          // we need one main backend
+          name = 'main';
+        }
+        if (cv.io.BackendConnections.hasBackend(name)) {
+          const notification = {
+            topic: 'cv.config.error',
+            title: qx.locale.Manager.tr('CometVisu config error'),
+            message:  qx.locale.Manager.tr('The already has a backend named: "%1"', name),
+            severity: 'urgent',
+            unique: true,
+            deletable: true
+          };
+          cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+          return;
+        }
+        const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl);
         client.update = data => model.updateFrom(name, data); // override clients update function
         client.login(true, credentials, () => {
           this.debug(name, 'connected');
