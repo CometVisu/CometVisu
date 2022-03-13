@@ -85,6 +85,10 @@ qx.Class.define('cv.io.Mockup', {
     __sequenceIndex: 0,
     __simulations: null,
 
+    getType() {
+      return this.backendName;
+    },
+
     __loadTestData: function () {
       // load the demo data to fill the visu with some values
       const r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
