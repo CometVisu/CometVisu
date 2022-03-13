@@ -1,5 +1,7 @@
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -27,6 +29,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "construct": true
       },
       "cv.util.Function": {},
+      "qx.locale.Manager": {},
       "cv.Config": {},
       "cv.core.notifications.Router": {},
       "cv.Transform": {},
@@ -297,25 +300,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       },
       _update: function _update(address, data) {
-        /**
-         * @param transform
-         * @param variant
-         */
-        function showInvalidDataErrorMessage(transform, variant) {
+        var addressObj = this.getAddress()[address];
+
+        var showInvalidDataErrorMessage = function showInvalidDataErrorMessage() {
+          var message = qx.locale.Manager.tr('Updating ColorChooser with invalid data<br/>Address: "%1"<br/>transform: "%2"<br/>selector: "%3"<br/>variant: "%4"<br/>data: "%5"', address, addressObj.transform, addressObj.selector, addressObj.variant, data);
+
           if (cv.Config.testMode === true) {
             // eslint-disable-next-line no-console
-            console.error('Updating ColorChooser with invalid data<br/>Address: ' + address + ', data: ' + data + ', transform: ' + transform + ', variant: ' + variant);
+            console.error(message.toString());
           }
 
           cv.core.notifications.Router.dispatchMessage('cv.config.error', {
-            message: 'Updating ColorChooser with invalid data<br/>Address: ' + address + ', data: ' + data + ', transform: ' + transform + ', variant: ' + variant
+            message: message
           });
-        }
+        };
 
-        var transform = this.getAddress()[address].transform;
-        var variant = this.getAddress()[address].variantInfo;
+        var transform = addressObj.transform;
+        var variant = addressObj.variantInfo;
         var variantType;
-        var value = cv.Transform.decode(transform, data);
+        var value = cv.Transform.decode(addressObj, data);
         var base;
 
         switch (variant) {
@@ -323,7 +326,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           case 's':
           case 'v':
             if (!Number.isFinite(value)) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return;
             }
 
@@ -333,7 +336,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           case 'hsv':
             if (value.get === undefined) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return;
             }
 
@@ -349,7 +352,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           case 'RGB-g':
           case 'RGB-b':
             if (!Number.isFinite(value)) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return;
             }
 
@@ -362,7 +365,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             base = this.getBaseColors();
 
             if (value.get === undefined) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return;
             }
 
@@ -379,7 +382,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           case 'RGBW-b':
           case 'RGBW-w':
             if (!Number.isFinite(value)) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return;
             }
 
@@ -392,7 +395,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             base = this.getBaseColors();
 
             if (value.get === undefined) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return;
             }
 
@@ -414,7 +417,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (value instanceof Map && value.get('YValid') !== false) {
               value = value.get('Y');
             } else if (!Number.isFinite(value)) {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return; // nothing that can be done with this data
             }
 
@@ -427,8 +430,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 x: value.get('x'),
                 y: value.get('y')
               };
-            } else if (!('x' in value && 'y' in value)) {
-              showInvalidDataErrorMessage(transform, variant);
+            } else if (!(_typeof(value) === 'object' && 'x' in value && 'y' in value)) {
+              showInvalidDataErrorMessage();
               return; // nothing that can be done with this data
             }
 
@@ -448,7 +451,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return; // no valid data in the value
               }
             } else {
-              showInvalidDataErrorMessage(transform, variant);
+              showInvalidDataErrorMessage();
               return; // nothing that can be done with this data
             }
 
@@ -913,4 +916,4 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   cv.ui.structure.pure.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1646073028554
+//# sourceMappingURL=ColorChooser.js.map?dt=1647161215876

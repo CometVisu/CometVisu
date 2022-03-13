@@ -109,13 +109,13 @@ um dies fest einzustellen.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2)
+    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), mqtt
 
 Der Default-Wert "cgi-bin" (Achtung, inkonsistent mit xml Element,
 default="cgi"!) ist normalerweise richtig und braucht nicht geändert
 werden. "r", "w" und "l" liegen dabei in /cgi-bin/.
 
-Bei der Option "oh" wird der für OpenHAB notwendige Pfad verwendet.
+Bei der Option "openhab" wird der für OpenHAB notwendige Pfad verwendet.
 
 *enableQueue* - Queue
 ~~~~~~~~~~~~~~~~~~~~~

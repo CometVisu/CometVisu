@@ -146,6 +146,41 @@ Attribute müssen zwingend vergeben werden.</p>
 <td>Angabe der Seite-ID zB. „id_1“ bzw. Seitenname zB. „Main“</td>
 <td>NEIN</td>
 </tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">backend=&quot;mqtt&quot;</span></code></td>
+<td>Mit dieser Option kann das Backend festgelegt werden und die vom Server gesendete Information übersteuern</td>
+<td><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+<td>NEIN</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">backend-knxd-url=&quot;&quot;</span></code></td>
+<td>URL für die knxd Login-Ressource</td>
+<td>&#160;</td>
+<td>NEIN</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">backend-mqtt-url=&quot;&quot;</span></code></td>
+<td>URL für die MQTT Login-Ressource</td>
+<td>&#160;</td>
+<td>NEIN</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">backend-openhab-url=&quot;&quot;</span></code></td>
+<td>Pfad zur REST-API für openHAB</td>
+<td>Üblicher Weise <code class="docutils literal notranslate"><span class="pre">/rest/</span></code></td>
+<td>NEIN</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></td>
+<td>Veraltet: URL für die openHAB Verbindung</td>
+<td>&#160;</td>
+<td>NEIN</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></td>
+<td>Veraltet, nur für openHAB: Benutzername</td>
+<td>&#160;</td>
+<td>NEIN</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></td>
+<td>Veraltet, nur für openHAB: Passwort</td>
+<td>&#160;</td>
+<td>NEIN</td>
+</tr>
 </tbody>
 </table>
 <p>Als nächstes kommen in der visu_config.xml innerhalb des meta-tags alle Definitionen für

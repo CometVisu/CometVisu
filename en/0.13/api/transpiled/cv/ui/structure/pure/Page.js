@@ -367,7 +367,7 @@
               var address = list[id];
 
               if (cv.data.Model.isWriteAddress(address)) {
-                cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address.transform, value));
+                cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address, value));
               }
             }
           }
@@ -381,4 +381,4 @@
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1646073028953
+//# sourceMappingURL=Page.js.map?dt=1647161216191

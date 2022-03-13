@@ -68,9 +68,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     /**
      * @param backendName {String} name of the backend
-     * @param backendUrl {String} URL of the login resource
+     * @param backendLoginUrl {String} URL of the login resource
      */
-    construct: function construct(backendName, backendUrl) {
+    construct: function construct(backendName, backendLoginUrl) {
       qx.core.Object.constructor.call(this);
       cv.io.Client.CLIENTS.push(this);
       this.backend = {};
@@ -100,7 +100,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this.setBackend(cv.io.Client.backends['default']);
       }
 
-      this.backendUrl = backendUrl;
+      this.backendLoginUrl = backendLoginUrl;
       this.addresses = [];
       this.initialAddresses = [];
       this.filters = [];
@@ -256,7 +256,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     members: {
       backend: null,
       backendName: null,
-      backendUrl: null,
+      backendLoginUrl: null,
       addresses: null,
       // the subscribed addresses
       initialAddresses: null,
@@ -424,7 +424,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             request.d = this.device;
           }
 
-          this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath('login'), request, this.handleLogin, this);
+          this.doRequest(this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'), request, this.handleLogin, this);
         } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           // call callback immediately
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
@@ -733,4 +733,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1646073069654
+//# sourceMappingURL=Client.js.map?dt=1647161247633

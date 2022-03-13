@@ -231,7 +231,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     statics: {
-      __P_528_0: false,
+      __P_529_0: false,
 
       /**
        * Detects whether this handler is support on the current browser
@@ -250,7 +250,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * cookies)
        */
       setWithCredentials: function setWithCredentials(value) {
-        this.__P_528_0 = true;
+        this.__P_529_0 = true;
       },
 
       /**
@@ -258,11 +258,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * cookies)
        */
       isWithCredentials: function isWithCredentials() {
-        return this.__P_528_0;
+        return this.__P_529_0;
       }
     }
   });
   com.zenesis.qx.upload.XhrHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XhrHandler.js.map?dt=1646073074620
+//# sourceMappingURL=XhrHandler.js.map?dt=1647161251712

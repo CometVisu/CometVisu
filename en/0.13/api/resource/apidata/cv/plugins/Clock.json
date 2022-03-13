@@ -5,7 +5,8 @@
   "superClass": "cv.ui.structure.AbstractWidget",
   "interfaces": [],
   "mixins": [
-    "cv.ui.common.Update"
+    "cv.ui.common.Update",
+    "cv.ui.common.Operate"
   ],
   "functionName": null,
   "clazz": {
@@ -15,7 +16,7 @@
         "column": 0
       },
       "end": {
-        "line": 535,
+        "line": 548,
         "column": 3
       }
     },
@@ -515,33 +516,64 @@
       "type": "variable",
       "access": "private"
     },
-    "_getInnerDomString": {
+    "__valueIsString": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 232,
           "column": 4
         },
         "end": {
           "line": 232,
-          "column": 5
+          "column": 26
         }
       },
-      "jsdoc": {},
-      "type": "function",
-      "access": "protected",
-      "overriddenFrom": "cv.ui.structure.AbstractWidget",
-      "appearsIn": [
-        "cv.ui.structure.AbstractWidget"
-      ]
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>to handle legacy mode, when a time string is used and not a <code>Date</code> object</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
     },
-    "_onDomReady": {
+    "_getInnerDomString": {
       "location": {
         "start": {
           "line": 234,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 236,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.AbstractWidget"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML code as string",
+            "type": "String",
+            "description": " HTML code as string"
+          }
+        ]
+      }
+    },
+    "_onDomReady": {
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4
+        },
+        "end": {
+          "line": 331,
           "column": 5
         }
       },
@@ -555,11 +587,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 330,
+          "line": 334,
           "column": 33
         }
       },
@@ -574,11 +606,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 333,
+          "line": 337,
           "column": 4
         },
         "end": {
-          "line": 337,
+          "line": 353,
           "column": 5
         }
       },
@@ -589,11 +621,11 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 355,
           "column": 4
         },
         "end": {
-          "line": 397,
+          "line": 413,
           "column": 5
         }
       },
@@ -603,11 +635,11 @@
     "dragHelper": {
       "location": {
         "start": {
-          "line": 399,
+          "line": 415,
           "column": 4
         },
         "end": {
-          "line": 478,
+          "line": 494,
           "column": 5
         }
       },
@@ -617,11 +649,11 @@
     "dragAction": {
       "location": {
         "start": {
-          "line": 480,
+          "line": 496,
           "column": 4
         },
         "end": {
-          "line": 488,
+          "line": 501,
           "column": 5
         }
       },
@@ -631,11 +663,11 @@
     "_updateHands": {
       "location": {
         "start": {
-          "line": 490,
+          "line": 503,
           "column": 4
         },
         "end": {
-          "line": 528,
+          "line": 541,
           "column": 5
         }
       },
@@ -1331,6 +1363,104 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>format</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ]
+      }
+    },
+    "action": {
+      "type": "function",
+      "name": "action",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.Operate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Action performed when the widget got clicked, sends data to the backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} tap event",
+            "paramName": "event",
+            "description": " tap event",
+            "type": "Event"
+          }
+        ]
+      }
+    },
+    "downaction": {
+      "type": "function",
+      "name": "downaction",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.Operate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles pointerdown events</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event",
+            "paramName": "event",
+            "description": " pointerdown event",
+            "type": "Event"
+          }
+        ]
+      }
+    },
+    "sendToBackend": {
+      "type": "function",
+      "name": "sendToBackend",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.Operate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send the given value to all writeable addresses known to this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to send",
+            "paramName": "value",
+            "description": " value to send",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "filter {Function} optional filter function for addresses",
+            "paramName": "filter",
+            "description": " optional filter function for addresses",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "currentBusValues {Object} optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value",
+            "paramName": "currentBusValues",
+            "description": " optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "the object/hash of encoded values that were sent last time"
           }
         ]
       }
@@ -6990,11 +7120,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 531,
+        "line": 544,
         "column": 9
       },
       "end": {
-        "line": 534,
+        "line": 547,
         "column": 3
       }
     },

@@ -18,7 +18,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installing on an Ubuntu system with openHAB and Docker." href="docker_openhab.html" />
+    <link rel="next" title="Installing on an Ubuntu system with openHAB and Docker" href="docker_openhab.html" />
     <link rel="prev" title="Developer version on the Wiregate" href="install-dev.html" /> 
 </head>
 
@@ -52,7 +52,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#create-api-token-in-openhab">4. Create API token in openHAB</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installing on an Ubuntu system with openHAB and Docker.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installing on an Ubuntu system with openHAB and Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation of the Docker container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation on the Timberwolf server with the app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-on-the-timberwolf-with-portainer">Installation on the Timberwolf with Portainer</a></li>
@@ -138,7 +138,7 @@ if everything runs on one server, you can use <code class="docutils literal notr
 <span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log<span class="w"></span>
 <span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined<span class="w"></span>
 
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-LoginUrl<span class="w"> </span><span class="s2">&quot;/rest/cv/l&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span><span class="w"></span>
 <span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span><span class="w"></span>
 
 <span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"></span>
@@ -192,7 +192,7 @@ where <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;<
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="install-dev.html" class="btn btn-neutral float-left" title="Developer version on the Wiregate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="docker_openhab.html" class="btn btn-neutral float-right" title="Installing on an Ubuntu system with openHAB and Docker." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="docker_openhab.html" class="btn btn-neutral float-right" title="Installing on an Ubuntu system with openHAB and Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

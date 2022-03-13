@@ -71,7 +71,7 @@
         }
 
         var valElem = this.getValueElement();
-        var value = cv.Transform.decode(this.getAddress()[address].transform, data);
+        var value = cv.Transform.decode(this.getAddress()[address], data);
         var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
 
         if (bg.length !== 3) {
@@ -102,4 +102,4 @@
   cv.ui.structure.pure.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1646073029121
+//# sourceMappingURL=Rgb.js.map?dt=1647161216316

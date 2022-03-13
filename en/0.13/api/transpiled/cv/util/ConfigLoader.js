@@ -151,6 +151,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
               this.configError('libraryerror');
             } else {
+              cv.Config.server = {};
               var backendName = '';
 
               if (req.getResponseHeader('X-CometVisu-Backend-Name')) {
@@ -158,19 +159,47 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
 
               if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
-                cv.Config.backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
+                this.error('The usage of "X-CometVisu-Backend-LoginUrl" is deprecated. Please update the server setup.');
+                var backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
 
-                if (!cv.Config.backendUrl.endsWith('/')) {
-                  cv.Config.backendUrl += '/';
+                if (!backendUrl.endsWith('/')) {
+                  backendUrl += '/';
                 }
 
-                if (!backendName && cv.Config.backendUrl.startsWith('/rest/')) {
+                cv.Config.server.backendKnxdUrl = backendUrl;
+                cv.Config.server.backendOpenHABUrl = backendUrl;
+
+                if (!backendName && backendUrl.startsWith('/rest/')) {
+                  backendName = 'openhab';
+                }
+              }
+
+              if (req.getResponseHeader('X-CometVisu-Backend-KNXD-Url')) {
+                cv.Config.server.backendKnxdUrl = req.getResponseHeader('X-CometVisu-Backend-KNXD-Url');
+
+                if (backendName === '') {
+                  backendName = 'knxd';
+                }
+              }
+
+              if (req.getResponseHeader('X-CometVisu-Backend-MQTT-Url')) {
+                cv.Config.server.backendMQTTUrl = req.getResponseHeader('X-CometVisu-Backend-MQTT-Url');
+
+                if (backendName === '') {
+                  backendName = 'mqtt';
+                }
+              }
+
+              if (req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url')) {
+                cv.Config.server.backendOpenHABUrl = req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url');
+
+                if (backendName === '') {
                   backendName = 'openhab';
                 }
               }
 
               if (backendName) {
-                cv.Config.backend = backendName;
+                cv.Config.server.backend = backendName;
               }
 
               this._checkQueue();
@@ -340,4 +369,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1646073070625
+//# sourceMappingURL=ConfigLoader.js.map?dt=1647161248420

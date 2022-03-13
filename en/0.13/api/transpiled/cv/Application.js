@@ -1178,6 +1178,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       },
       close: function close() {
+        this.setActive(false);
         var client = cv.TemplateEngine.getClient();
 
         if (client) {
@@ -1226,4 +1227,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1646073019240
+//# sourceMappingURL=Application.js.map?dt=1647161208275

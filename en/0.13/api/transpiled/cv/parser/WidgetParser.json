@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 536,
+        "line": 537,
         "column": 3
       }
     },
@@ -704,7 +704,7 @@
           "column": 4
         },
         "end": {
-          "line": 460,
+          "line": 461,
           "column": 5
         }
       },
@@ -762,11 +762,11 @@
     "parseRefresh": {
       "location": {
         "start": {
-          "line": 462,
+          "line": 463,
           "column": 4
         },
         "end": {
-          "line": 483,
+          "line": 484,
           "column": 5
         }
       },
@@ -776,11 +776,11 @@
     "parseStyling": {
       "location": {
         "start": {
-          "line": 485,
+          "line": 486,
           "column": 4
         },
         "end": {
-          "line": 488,
+          "line": 489,
           "column": 5
         }
       },
@@ -790,11 +790,11 @@
     "parseChildren": {
       "location": {
         "start": {
-          "line": 491,
+          "line": 492,
           "column": 4
         },
         "end": {
-          "line": 515,
+          "line": 516,
           "column": 5
         }
       },
@@ -805,11 +805,11 @@
     "getStoragePath": {
       "location": {
         "start": {
-          "line": 524,
+          "line": 525,
           "column": 4
         },
         "end": {
-          "line": 534,
+          "line": 535,
           "column": 5
         }
       },

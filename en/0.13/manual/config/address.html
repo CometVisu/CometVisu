@@ -661,25 +661,124 @@ backends are:</p>
 <h3>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h3>
 <p><table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">transform</span></code></th>
 <th class="head">name</th>
 <th class="head">description</th>
+<th class="head">example</th>
 <th class="head">unit</th>
 <th class="head">min</th>
 <th class="head">max</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>MQTT:json</td>
-<td>MQTT_JSON</td>
+<tr class="row-even"><td>MQTT:color_h_s_l</td>
+<td>MQTT_color_h_s_l</td>
+<td>HSL color</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;h&quot;:360,&quot;s&quot;:100,&quot;l&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_h_s_v</td>
+<td>MQTT_color_h_s_v</td>
+<td>HSV color</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;h&quot;:360,&quot;s&quot;:100,&quot;v&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_hsl</td>
+<td>MQTT_color_hsl</td>
+<td>HSL color as string</td>
+<td><code class="docutils literal notranslate"><span class="pre">360,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_hsv</td>
+<td>MQTT_color_hsv</td>
+<td>HSV color as string</td>
+<td><code class="docutils literal notranslate"><span class="pre">360,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_r_g_b</td>
+<td>MQTT_color_r_g_b</td>
+<td>RGB color</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;r&quot;:100,&quot;g&quot;:100,&quot;b&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_r_g_b_w</td>
+<td>MQTT_color_r_g_b_w</td>
+<td>RGBW color</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;r&quot;:100,&quot;g&quot;:100,&quot;b&quot;:100,&quot;w&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_rgb</td>
+<td>MQTT_color_rgb</td>
+<td>RGB color as string</td>
+<td><code class="docutils literal notranslate"><span class="pre">100,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_rgb_hex</td>
+<td>MQTT_color_rgb_hex</td>
+<td>RGB color</td>
+<td><code class="docutils literal notranslate"><span class="pre">#11FF88</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_rgbw</td>
+<td>MQTT_color_rgbw</td>
+<td>RGBW color as string</td>
+<td><code class="docutils literal notranslate"><span class="pre">100,100,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_rgbw_hex</td>
+<td>MQTT_color_rgbw_hex</td>
+<td>RGBW color</td>
+<td><code class="docutils literal notranslate"><span class="pre">#11FF88AA</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_xy</td>
+<td>MQTT_color_xy</td>
+<td>xy color</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:0.123,&quot;y&quot;:0.123}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_xyY</td>
+<td>MQTT_color_xyY</td>
+<td>xyY color</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:0.123,&quot;y&quot;:0.123,&quot;Y&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:datetime</td>
+<td>MQTT_datetime</td>
+<td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
@@ -691,9 +790,27 @@ backends are:</p>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>MQTT:string</td>
 <td>MQTT_String</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:timestring</td>
+<td>MQTT_timestring</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:unixtime</td>
+<td>MQTT_unixtime</td>
+<td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>

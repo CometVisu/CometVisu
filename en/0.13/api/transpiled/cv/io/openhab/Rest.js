@@ -54,7 +54,7 @@
       qx.core.Object.constructor.call(this);
       this.initialAddresses = [];
       this._backendName = backendName;
-      this._backendUrl = backendUrl || '/rest';
+      this._backendUrl = backendUrl || '/rest/';
       this.__P_487_0 = {};
       this.__P_487_1 = {};
     },
@@ -453,4 +453,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1646073069886
+//# sourceMappingURL=Rest.js.map?dt=1647161247812

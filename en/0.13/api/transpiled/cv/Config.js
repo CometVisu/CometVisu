@@ -144,13 +144,13 @@
        * Type of the used backend (*default*, *openhab* or *openhab2*)
        * @type {String}
        */
-      backend: 'default',
+      backend: null,
 
       /**
        * Initial URL to the backend
        * @type {String}
        */
-      backendUrl: null,
+      backendLoginUrl: null,
 
       /**
        * @type {String}
@@ -332,7 +332,13 @@
       }
 
       if (req.queryKey.backend) {
-        cv.Config.backend = req.queryKey.backend;
+        cv.Config.URL = {
+          backend: req.queryKey.backend
+        };
+      } else {
+        cv.Config.URL = {
+          backend: undefined
+        };
       }
 
       if (req.queryKey.design) {
@@ -446,4 +452,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1646073069714
+//# sourceMappingURL=Config.js.map?dt=1647161247682

@@ -150,9 +150,9 @@ if( false === is_readable( $conffile ) )
   if( true === is_readable( $old_conffile ) )
   {
     $conffile = $old_conffile;
-    echo '<font color="#f00"><b>WARNING:</b> Depreciated position of config file!</font><hr/>';
+    echo '<font color="#f00"><b>WARNING:</b> Deprecated position of config file!</font><hr/>';
   } else {
-    echo "File <b>$conffile</b> (nor the depreciated <b>$old_conffile</b>) does not exist!";
+    echo "File <b>$conffile</b> (nor the deprecated <b>$old_conffile</b>) does not exist!";
     echo '</body></html>';
     exit;
   }

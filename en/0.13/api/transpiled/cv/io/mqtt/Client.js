@@ -53,7 +53,7 @@
       qx.core.Object.constructor.call(this);
       this.initialAddresses = [];
       this._backendName = backendName;
-      this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/');
+      this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
       this.__P_488_0 = {};
       this.__P_488_1 = {};
     },
@@ -187,21 +187,22 @@
         }
 
         var options = {
+          reconnect: true,
           timeout: 10,
           onSuccess: onConnect,
           onFailure: onFailure
         };
 
-        if (credentials !== null && 'username' in credentials && credentials.username !== null) {
-          options.userName = credentials.username;
+        if (this._backendUrl.username !== '') {
+          options.userName = this._backendUrl.username;
         }
 
-        if (credentials !== null && 'password' in credentials && credentials.password !== null) {
-          options.password = credentials.password;
+        if (this._backendUrl.password !== '') {
+          options.password = this._backendUrl.password;
         }
 
         try {
-          this._client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
+          this._client = new Paho.MQTT.Client(this._backendUrl.toString(), 'CometVisu_' + Math.random().toString(16).substr(2, 8));
         } catch (e) {
           self.error('MQTT Client error:', e);
           self.setConnected(false);
@@ -209,7 +210,7 @@
         }
 
         this._client.onConnectionLost = function (responseObject) {
-          self.info('Connection Lost: ' + responseObject.errorMessage, responseObject);
+          self.warn('Connection Lost: ' + responseObject.errorMessage, responseObject);
           self.setConnected(false);
         };
 
@@ -219,7 +220,14 @@
           self.update(update);
         };
 
-        this._client.connect(options);
+        try {
+          this._client.connect(options);
+        } catch (e) {
+          onFailure({
+            errorMessage: e.toString(),
+            errorCode: 'login -> _client.connect(' + this._backendUrl + ')'
+          });
+        }
       },
 
       /**
@@ -258,7 +266,7 @@
        */
       write: function write(address, value, options) {
         if (this.isConnected()) {
-          var message = new Paho.MQTT.Message(value);
+          var message = new Paho.MQTT.Message(value.toString());
           message.destinationName = address;
 
           if (options.qos !== undefined) {
@@ -329,4 +337,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1646073069936
+//# sourceMappingURL=Client.js.map?dt=1647161247849

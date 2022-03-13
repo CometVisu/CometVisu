@@ -662,25 +662,124 @@ Datentyp geschrieben. Die für das jeweilige Backend gültigen Werte sind:</p>
 <h3>MQTT<a class="headerlink" href="#mqtt" title="Link zu dieser Überschrift">¶</a></h3>
 <p><table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">transform</span></code></th>
 <th class="head">Name</th>
 <th class="head">Beschreibung</th>
+<th class="head">Beispiel</th>
 <th class="head">Einheit</th>
 <th class="head">Min</th>
 <th class="head">Max</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>MQTT:json</td>
-<td>MQTT_JSON</td>
+<tr class="row-even"><td>MQTT:color_h_s_l</td>
+<td>MQTT_color_h_s_l</td>
+<td>HSL-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;h&quot;:360,&quot;s&quot;:100,&quot;l&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_h_s_v</td>
+<td>MQTT_color_h_s_v</td>
+<td>HSV-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;h&quot;:360,&quot;s&quot;:100,&quot;v&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_hsl</td>
+<td>MQTT_color_hsl</td>
+<td>HSL-Farbe als Zeichenkette</td>
+<td><code class="docutils literal notranslate"><span class="pre">360,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_hsv</td>
+<td>MQTT_color_hsv</td>
+<td>HSV-Farbe als Zeichenkette</td>
+<td><code class="docutils literal notranslate"><span class="pre">360,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_r_g_b</td>
+<td>MQTT_color_r_g_b</td>
+<td>RGB-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;r&quot;:100,&quot;g&quot;:100,&quot;b&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_r_g_b_w</td>
+<td>MQTT_color_r_g_b_w</td>
+<td>RGBW-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;r&quot;:100,&quot;g&quot;:100,&quot;b&quot;:100,&quot;w&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_rgb</td>
+<td>MQTT_color_rgb</td>
+<td>RGB-Farbe als Zeichenkette</td>
+<td><code class="docutils literal notranslate"><span class="pre">100,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_rgb_hex</td>
+<td>MQTT_color_rgb_hex</td>
+<td>RGB-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">#11FF88</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_rgbw</td>
+<td>MQTT_color_rgbw</td>
+<td>RGBW-Farbe als Zeichenkette</td>
+<td><code class="docutils literal notranslate"><span class="pre">100,100,100,100</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_rgbw_hex</td>
+<td>MQTT_color_rgbw_hex</td>
+<td>RGBW-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">#11FF88AA</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:color_xy</td>
+<td>MQTT_color_xy</td>
+<td>xy-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:0.123,&quot;y&quot;:0.123}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:color_xyY</td>
+<td>MQTT_color_xyY</td>
+<td>xyY-Farbe</td>
+<td><code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:0.123,&quot;y&quot;:0.123,&quot;Y&quot;:100}</span></code></td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:datetime</td>
+<td>MQTT_datetime</td>
+<td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
@@ -692,9 +791,27 @@ Datentyp geschrieben. Die für das jeweilige Backend gültigen Werte sind:</p>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>MQTT:string</td>
 <td>MQTT_String</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:timestring</td>
+<td>MQTT_timestring</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:unixtime</td>
+<td>MQTT_unixtime</td>
+<td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
@@ -703,6 +820,49 @@ Datentyp geschrieben. Die für das jeweilige Backend gültigen Werte sind:</p>
 </tbody>
 </table>
 </p>
+<p>Über weitere Attribute im <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code>-Element kann die Kommunikation mit MQTT
+weiter spezifiziert werden:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">selector</span></code></td>
+<td>Der JSON-Pfad, wenn das Kommunikationsobjekt als JSON
+übertragen wird.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">retain</span></code></td>
+<td>Setzt bei <code class="docutils literal notranslate"><span class="pre">true</span></code> das Retain-Flag, so dass die Daten auch
+neuen Kommunikationsteilnehmern am MQTT sofort bereit gestellt
+werden.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">qos</span></code></td>
+<td>Setzt den QOS-Wert.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ignore-error</span></code></td>
+<td>Ignoriert Konvertierungsfehler, wenn auf dem MQTT Daten
+gesendet werden, die z.B. nicht zum <code class="docutils literal notranslate"><span class="pre">selector</span></code> passen.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="beispiel">
+<h4>Beispiel:<a class="headerlink" href="#beispiel" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Um einen numerischen Wert am Topic <code class="docutils literal notranslate"><span class="pre">/topic/baz</span></code> zu adressieren, der in einem
+JSON wie</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>übertragen wird, müsste das <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code>-Element aussehen wie:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span> <span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span> <span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;address&gt;</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="roh-werte-test">
 <h3>Roh-Werte / Test:<a class="headerlink" href="#roh-werte-test" title="Link zu dieser Überschrift">¶</a></h3>

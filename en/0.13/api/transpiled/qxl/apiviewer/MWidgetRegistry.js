@@ -54,7 +54,7 @@
       }
     },
     statics: {
-      __P_516_0: {},
+      __P_517_0: {},
 
       /**
        * Returns the widget registered under the given id by {@link #register}
@@ -63,7 +63,7 @@
        * @return {qx.ui.core.Widget} the widget.
        */
       getWidgetById: function getWidgetById(id) {
-        return this.__P_516_0[id];
+        return this.__P_517_0[id];
       },
 
       /**
@@ -73,22 +73,22 @@
        * @param id {String} the id of the widget.
        */
       register: function register(object, id) {
-        if (this.__P_516_0[id]) {
+        if (this.__P_517_0[id]) {
           throw new Error("An object with the id '" + id + "' already exists.");
         }
 
-        this.__P_516_0[id] = object;
+        this.__P_517_0[id] = object;
       },
       unregister: function unregister(object, id) {
-        if (this.__P_516_0[id] !== object) {
+        if (this.__P_517_0[id] !== object) {
           throw new Error("The object is not registered with the id '" + id + "'.");
         }
 
-        delete this.__P_516_0[id];
+        delete this.__P_517_0[id];
       }
     }
   });
   qxl.apiviewer.MWidgetRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MWidgetRegistry.js.map?dt=1646073073579
+//# sourceMappingURL=MWidgetRegistry.js.map?dt=1647161250763

@@ -24,14 +24,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       "cv.ui.common.Update": {
         "require": true
       },
+      "cv.ui.common.Operate": {
+        "require": true
+      },
       "cv.parser.WidgetParser": {
         "defer": "runtime"
       },
       "cv.util.Function": {},
       "qx.util.ResourceManager": {},
       "cv.ui.PopupHandler": {},
-      "cv.TemplateEngine": {},
-      "cv.Transform": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       }
@@ -63,7 +64,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
    */
   qx.Class.define('cv.plugins.Clock', {
     extend: cv.ui.structure.AbstractWidget,
-    include: [cv.ui.common.Update],
+    include: [cv.ui.common.Update, cv.ui.common.Operate],
 
     /*
     ***********************************************
@@ -275,6 +276,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // is the handle currently dragged?
       __P_8_3: null,
       // time to show on the clock
+
+      /**
+       *  to handle legacy mode, when a time string is used and not a `Date` object
+       */
+      __P_8_4: false,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor" style="width:100%;height:100%"></div>';
       },
@@ -283,7 +289,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         cv.plugins.Clock.prototype._onDomReady.base.call(this);
 
-        this.__P_8_4 = cv.util.Function.throttle(this.dragAction, 250, {
+        this.__P_8_5 = cv.util.Function.throttle(this.dragAction, 250, {
           trailing: true
         }, this);
         var uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
@@ -395,7 +401,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // overridden
       _update: function _update(address, data, isDataAlreadyHandled) {
         var value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
-        this.__P_8_3 = value.split(':');
+
+        if (value instanceof Date) {
+          this.__P_8_4 = false;
+          this.__P_8_3 = [value.getHours(), value.getMinutes(), value.getSeconds()];
+        } else {
+          this.__P_8_4 = true;
+          this.__P_8_3 = typeof value === 'string' ? value.split(':') : [0, 0, 0];
+          this.__P_8_3[0] = this.__P_8_3[0] >= 0 && this.__P_8_3[0] <= 23 ? this.__P_8_3[0] : 0;
+          this.__P_8_3[1] = this.__P_8_3[1] >= 0 && this.__P_8_3[1] <= 59 ? this.__P_8_3[1] : 0;
+          this.__P_8_3[2] = this.__P_8_3[2] >= 0 && this.__P_8_3[2] <= 59 ? this.__P_8_3[2] : 0;
+          var date = new Date(); // assume today
+
+          date.setHours(this.__P_8_3[0], this.__P_8_3[1], this.__P_8_3[2], 0);
+          this.setValue(date);
+        }
 
         this._updateHands();
       },
@@ -461,7 +481,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
 
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_8_4.call();
+          this.__P_8_5.call();
         }
       },
       dragHelper: function dragHelper(event) {
@@ -556,16 +576,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         this._updateHands();
       },
       dragAction: function dragAction() {
-        var address = this.getAddress();
-
-        for (var addr in address) {
-          if (address[addr].mode === true) {
-            continue;
-          } // skip read only
-
-
-          cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
-        }
+        var value = this.__P_8_4 ? this.getValue().toTimeString().split(' ')[0] : this.getValue();
+        this.__P_8_6 = this.sendToBackend(value, false, this.__P_8_6);
       },
       _updateHands: function _updateHands() {
         var _this2 = this;
@@ -575,7 +587,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             minute = _this$__P_8_[1],
             second = _this$__P_8_[2];
 
-        this.__P_8_0.forEach(function (e) {
+        Array.isArray(this.__P_8_0) && this.__P_8_0.forEach(function (e) {
           var showSeconds = true;
 
           if (e.hour !== null) {
@@ -628,4 +640,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1646073021558
+//# sourceMappingURL=Clock.js.map?dt=1647161210087

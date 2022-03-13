@@ -80,13 +80,13 @@
       _mixins: null,
       _loadingPromise: null,
       _loaded: false,
-      __P_534_0: null,
+      __P_535_0: null,
 
       /**
        * retrieves the meta file name + path
        */
       getMetaFile: function getMetaFile() {
-        return this.__P_534_0;
+        return this.__P_535_0;
       },
 
       /**
@@ -101,7 +101,7 @@
           return this._loadingPromise;
         }
 
-        var url = this.__P_534_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
+        var url = this.__P_535_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
         return this._loadingPromise = qxl.apiviewer.RequestUtil.get(url).then(function (content) {
           /* eslint-disable-next-line no-eval */
           var meta = eval("(" + content + ")");
@@ -883,4 +883,4 @@
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1646073075358
+//# sourceMappingURL=Class.js.map?dt=1647161252304

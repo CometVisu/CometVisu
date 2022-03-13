@@ -159,7 +159,7 @@
         this.__P_61_4 = {}; // forget all other transforms as they might not be valid anymore
 
         this.__P_61_4[transform] = data;
-        var value = cv.Transform.decode(transform, data); // animate when visible, otherwise jump to the target value
+        var value = cv.Transform.decode(this.getAddress()[address], data); // animate when visible, otherwise jump to the target value
 
         this.__P_61_13(value, !this.isVisible());
       },
@@ -312,4 +312,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1646073029337
+//# sourceMappingURL=Slide.js.map?dt=1647161216484

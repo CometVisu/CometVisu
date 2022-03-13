@@ -391,7 +391,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
 <dt>audio</dt><dd><ul class="simple">
 <li>address</li>
 </ul>
@@ -414,13 +414,21 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <td>decimal</td>
 <td>Position for format string when multiple addresses are used.</td>
 </tr>
-<tr class="row-odd"><td>qos</td>
+<tr class="row-odd"><td>selector</td>
+<td>string</td>
+<td>Only MQTT: JSON selector</td>
+</tr>
+<tr class="row-even"><td>qos</td>
 <td>decimal</td>
 <td>Only MQTT: QoS</td>
 </tr>
-<tr class="row-even"><td>retain</td>
+<tr class="row-odd"><td>retain</td>
 <td><em>true</em> or <em>false</em></td>
 <td>Only MQTT: retain flag</td>
+</tr>
+<tr class="row-even"><td>ignore-error</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Only MQTT: ignore decode errors.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>audio</dt><dd><ul class="simple">

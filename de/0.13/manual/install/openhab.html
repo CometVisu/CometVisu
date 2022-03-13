@@ -134,7 +134,7 @@ eingetragen werden).</p>
 <span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log<span class="w"></span>
 <span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined<span class="w"></span>
 
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-LoginUrl<span class="w"> </span><span class="s2">&quot;/rest/cv/l&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span><span class="w"></span>
 <span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span><span class="w"></span>
 
 <span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"></span>

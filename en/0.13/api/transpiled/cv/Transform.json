@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 190,
+        "line": 266,
         "column": 3
       }
     },
@@ -222,7 +222,7 @@
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 174,
           "column": 5
         }
       },
@@ -236,24 +236,21 @@
         "@param": [
           {
             "name": "@param",
-            "body": "transformation {String} type of the transformation",
-            "paramName": "transformation",
-            "description": " type of the transformation",
-            "type": "String"
+            "body": "{{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
-            "body": "value {var} value to transform",
+            "body": "{*} value - value to transform",
             "paramName": "value",
-            "description": " value to transform",
-            "type": "var"
+            "description": "- value to transform",
+            "type": "*"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Object} object with both encoded values",
-            "type": "Object",
+            "body": "{*} object with both encoded values",
+            "type": "*",
             "description": " object with both encoded values"
           }
         ]
@@ -264,11 +261,11 @@
     "encode": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 166,
+          "line": 185,
           "column": 5
         }
       },
@@ -282,24 +279,21 @@
         "@param": [
           {
             "name": "@param",
-            "body": "transformation {String} type of the transformation",
-            "paramName": "transformation",
-            "description": " type of the transformation",
-            "type": "String"
+            "body": "{{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
-            "body": "value {var} value to transform",
+            "body": "{*} value - value to transform",
             "paramName": "value",
-            "description": " value to transform",
-            "type": "var"
+            "description": "- value to transform",
+            "type": "*"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var} the encoded value",
-            "type": "var",
+            "body": "{*} the encoded value",
+            "type": "*",
             "description": " the encoded value"
           }
         ]
@@ -310,11 +304,11 @@
     "decode": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 241,
           "column": 5
         }
       },
@@ -328,30 +322,66 @@
         "@param": [
           {
             "name": "@param",
-            "body": "transformation {String} type of the transformation",
-            "paramName": "transformation",
-            "description": " type of the transformation",
-            "type": "String"
+            "body": "{{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
-            "body": "value {var} value to transform",
+            "body": "{*} value - value to transform",
             "paramName": "value",
-            "description": " value to transform",
-            "type": "var"
+            "description": "- value to transform",
+            "type": "*"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var} the decoded value",
-            "type": "var",
+            "body": "{*} the decoded value",
+            "type": "*",
             "description": " the decoded value"
           }
         ]
       },
       "type": "function",
       "access": "public"
+    },
+    "__getFirstElement": {
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4
+        },
+        "end": {
+          "line": 264,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the first element of the (JSON) selector</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} selector - the JSON (sub-)selector",
+            "paramName": "selector",
+            "description": "- the JSON (sub-)selector",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{firstPart: string, remainingPart: string}}",
+            "type": "{firstPart: string, remainingPart: string",
+            "description": "}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
     }
   },
   "descendants": []

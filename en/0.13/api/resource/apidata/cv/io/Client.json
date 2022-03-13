@@ -79,8 +79,8 @@
         },
         {
           "name": "@param",
-          "body": "backendUrl {String} URL of the login resource",
-          "paramName": "backendUrl",
+          "body": "backendLoginUrl {String} URL of the login resource",
+          "paramName": "backendLoginUrl",
           "description": " URL of the login resource",
           "type": "String"
         }
@@ -372,7 +372,7 @@
       "type": "variable",
       "access": "public"
     },
-    "backendUrl": {
+    "backendLoginUrl": {
       "location": {
         "start": {
           "line": 230,
@@ -380,7 +380,7 @@
         },
         "end": {
           "line": 230,
-          "column": 20
+          "column": 25
         }
       },
       "type": "variable",
