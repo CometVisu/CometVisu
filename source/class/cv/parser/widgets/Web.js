@@ -48,7 +48,7 @@ qx.Class.define('cv.parser.widgets.Web', {
       const ga = xml.getAttribute('ga');
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) === 'oh') {
+        if (cv.Config.backend === 'openhab') {
           data.address['_' + ga] = {transform:'OH:switch', mode: 'OFF'};
         } else {
           data.address['_' + ga] = {transform:'DPT:1.001', mode: 0};

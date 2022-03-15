@@ -35,7 +35,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     this.base(arguments);
     this.initialAddresses = [];
     this._backendName = backendName;
-    this._backendUrl = backendUrl || '/rest';
+    this._backendUrl = backendUrl || '/rest/';
     this.__groups = {};
     this.__memberLookup = {};
   },
