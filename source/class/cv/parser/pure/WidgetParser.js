@@ -396,10 +396,8 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
 
         addressInfo.selector = elem.getAttribute('selector');
         addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
-        if (cv.Config.backend === 'mqtt') {
-          addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
-          addressInfo.retain = elem.getAttribute('retain') === 'true';
-        }
+        addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
+        addressInfo.retain = elem.getAttribute('retain') === 'true';
 
         if ((!src) || (!transform)) { // fix broken address-entries in config
           qx.log.Logger.error(this, 'Either address or transform is missing in address element %1', element.outerHTML);

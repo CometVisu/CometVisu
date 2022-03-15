@@ -335,7 +335,7 @@ qx.Class.define('cv.plugins.Clock', {
 
     // overridden
     _update: function (address, data, isDataAlreadyHandled) {
-      let value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
+      let value = isDataAlreadyHandled ? data : this.applyTransform(address, data);
       if (value instanceof Date) {
         this.__valueIsString = false;
         this.__timeToShow = [value.getHours(), value.getMinutes(), value.getSeconds()];
