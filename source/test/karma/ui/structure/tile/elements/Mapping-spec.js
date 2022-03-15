@@ -68,11 +68,11 @@ describe('testing the <cv-mapping> component of the tile structure', () => {
     mapping.setAttribute('name', 'test');
 
     mapping.innerHTML = `
-        <entry range_min="-30" range_max="0">freezing</entry>
+        <entry range-min="-30" range-max="0">freezing</entry>
         <entry value="0">zero</entry>
-        <entry range_min="0" range_max="10">cold</entry>
-        <entry range_min="11" range_max="25" default="true">warm</entry>
-        <entry range_min="25" range_max="50">hot</entry>
+        <entry range-min="0" range-max="10">cold</entry>
+        <entry range-min="11" range-max="25" default="true">warm</entry>
+        <entry range-min="25" range-max="50">hot</entry>
     `;
     document.body.appendChild(mapping);
     const map = mapping._instance;

@@ -58,16 +58,10 @@ describe('testing a infotrigger widget', function() {
     qx.event.Registration.fireEvent(actor, type, qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
   };
 
-  var realClient;
   beforeEach(function() {
-    realClient = cv.io.BackendConnections.getClient();
-    var client = new cv.io.Mockup();
-    cv.io.BackendConnections.getClient() = client;
+    const client = new cv.io.Mockup();
+    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => client);
     spyOn(client, 'write');
-  });
-
-  afterEach(function () {
-    cv.io.BackendConnections.getClient() = realClient;
   });
 
   it('should test the infotrigger creator', function() {
@@ -82,8 +76,8 @@ describe('testing a infotrigger widget', function() {
     // check infoposition
     var info = obj.getInfoActor();
     var actors = Array.from(widget.getElementsByTagName('*')).filter(function(m) {
- return m.matches('.actor'); 
-});
+      return m.matches('.actor');
+    });
 
     expect(actors.indexOf(info)).toBe(0);
   });

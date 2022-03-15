@@ -15,8 +15,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     clientMock = jasmine.createSpyObj('client', ['login', 'subscribe'], {update: null});
 
-    const engine = cv.TemplateEngine.getInstance();
-    spyOn(engine, 'addBackendClient').and.returnValue(clientMock);
+    spyOn(cv.io.BackendConnections, 'addBackendClient').and.returnValue(clientMock);
     const model = cv.data.Model.getInstance();
     spyOn(model, 'getAddresses').and.returnValue(['addr1']);
     spyOn(model, 'setDefaultBackendName');
@@ -27,7 +26,6 @@ describe('testing the <cv-backend> component of the tile structure', () => {
   });
 
   it('should create a client and login', function() {
-    const engine = cv.TemplateEngine.getInstance();
     const model = cv.data.Model.getInstance();
     const backend = document.createElement('cv-backend');
     backend.setAttribute('name', mockBackendName);
@@ -38,7 +36,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     expect(b).toBeInstanceOf(cv.ui.structure.tile.elements.Backend);
     expect(b.getConnected()).toBeTruthy();
-    expect(engine.addBackendClient).toHaveBeenCalledOnceWith('test', 'simulated', jasmine.falsy());
+    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('test', 'simulated', jasmine.falsy());
     expect(clientMock.login).toHaveBeenCalledOnceWith(true, jasmine.falsy(), jasmine.any(Function));
 
     const callback = clientMock.login.calls.mostRecent().args[2];
@@ -53,7 +51,6 @@ describe('testing the <cv-backend> component of the tile structure', () => {
   });
 
   it('should create a default client and login with credentials', function() {
-    const engine = cv.TemplateEngine.getInstance();
     const model = cv.data.Model.getInstance();
 
     const backend = document.createElement('cv-backend');
@@ -67,7 +64,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     expect(b).toBeInstanceOf(cv.ui.structure.tile.elements.Backend);
     expect(b.getConnected()).toBeTruthy();
-    expect(engine.addBackendClient).toHaveBeenCalledOnceWith('test', 'mqtt', 'ws://user:passwd@localhost:1883/');
+    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('test', 'mqtt', 'ws://user:passwd@localhost:1883/');
     expect(clientMock.login).toHaveBeenCalledOnceWith(true, jasmine.objectContaining({
       username: 'user',
       password: 'passwd'
@@ -85,7 +82,6 @@ describe('testing the <cv-backend> component of the tile structure', () => {
   });
 
   it('should do nothing when no type is given', function() {
-    const engine = cv.TemplateEngine.getInstance();
     const backend = document.createElement('cv-backend');
 
     document.body.appendChild(backend);
@@ -93,7 +89,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     expect(b).toBeInstanceOf(cv.ui.structure.tile.elements.Backend);
     expect(b.getConnected()).toBeTruthy();
-    expect(engine.addBackendClient).not.toHaveBeenCalled();
+    expect(cv.io.BackendConnections.addBackendClient).not.toHaveBeenCalled();
     backend.remove();
 
     expect(b.getConnected()).toBeFalsy();

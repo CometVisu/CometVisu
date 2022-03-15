@@ -25,16 +25,10 @@
  * @since 2016
  */
 describe('testing a trigger', function() {
-  var realClient;
   beforeEach(function() {
-    realClient = cv.io.BackendConnections.getClient();
-    var client = new cv.io.Mockup();
-    cv.io.BackendConnections.getClient() = client;
+    const client = new cv.io.Mockup();
+    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => client);
     spyOn(client, 'write');
-  });
-
-  afterEach(function () {
-    cv.io.BackendConnections.getClient() = realClient;
   });
 
   it('should test the trigger creator', function() {

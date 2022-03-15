@@ -132,6 +132,11 @@ qx.Class.define('cv.Config', {
     managerOptions: {},
 
     /**
+     * Optional settings for backend defined by server
+     */
+    server: {},
+
+    /**
      * All configuration and settings from the current configuration
      * (Note: all settings that need to be cached must be put in here)
      */
