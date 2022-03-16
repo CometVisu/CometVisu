@@ -716,7 +716,7 @@ div#demo_3 {
 	background-color: #000000;
 }
 .flavour_black.group > div > h2 {
-  background-image: linear-gradient(top , #000000 , #333 );
+  background-image: linear-gradient(to top , #000000 , #333 );
 }
 
 .flavour_white hr
@@ -735,7 +735,7 @@ div#demo_3 {
 	background-color: #ffffff;
 }
 .flavour_white.group > div > h2 {
-  background-image: linear-gradient(top , #ffffff , #333 );
+  background-image: linear-gradient(to top , #ffffff , #333 );
 }
 
 .flavour_antimony hr
@@ -754,7 +754,7 @@ div#demo_3 {
 	background-color: #00ddff;
 }
 .flavour_antimony.group > div > h2 {
- background-image: linear-gradient(top , #00ddff , #333 );
+ background-image: linear-gradient(to top , #00ddff , #333 );
 }
 
 .flavour_boron hr
@@ -773,7 +773,7 @@ div#demo_3 {
 	background-color: #00ff11;
 }
 .flavour_boron.group > div > h2 {
-    background-image: linear-gradient(top, #00ff11, #333);
+    background-image: linear-gradient(to top, #00ff11, #333);
 }
 
 .flavour_lithium hr
@@ -792,7 +792,7 @@ div#demo_3 {
 	background-color: #ff0000;
 }
 .flavour_lithium.group > div > h2 {
-    background-image: linear-gradient(top, #ff0000, #333);
+    background-image: linear-gradient(to top, #ff0000, #333);
 }
 
 .flavour_potassium hr
@@ -811,7 +811,7 @@ div#demo_3 {
 	background-color: #d00055;
 }
 .flavour_potassium.group > div > h2 {
-   background-image: linear-gradient(top, #d00055, #333);
+   background-image: linear-gradient(to top, #d00055, #333);
 }
 
 .flavour_sodium hr
@@ -827,7 +827,7 @@ div#demo_3 {
   border: #ff8000 1px solid;
 }
 .flavour_sodium.group > div > h2 {
-    background-image: linear-gradient(top, #ff8000, #333);
+    background-image: linear-gradient(to top, #ff8000, #333);
 }
 .flavour_sodium:not(.group) .ui-slider .ui-slider-range {
 	background-color: #ff8000;
