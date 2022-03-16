@@ -31,6 +31,8 @@ qx.Class.define('cv.plugins.Clock', {
   */
   construct: function (props) {
     props.value = new Date();
+    props.value.setHours(0, 0, 0, 0);
+    this.__timeToShow = [0, 0, 0];
     this.__Elements = [];
     this.base(arguments, props);
   },
@@ -319,11 +321,7 @@ qx.Class.define('cv.plugins.Clock', {
             HotSpotSecond.addEventListener('pointerdown', this);
           }
           this.__svg = svg;
-
-          if (this.__timeToShow !== null) {
-            // did we receive a time earlier than the SVG? => Show it now
-            this._updateHands();
-          }
+          this._updateHands();
         })
         .catch(error => {
           this.error('There has been a problem with the reading of the clock SVG:', error);
@@ -339,6 +337,7 @@ qx.Class.define('cv.plugins.Clock', {
       if (value instanceof Date) {
         this.__valueIsString = false;
         this.__timeToShow = [value.getHours(), value.getMinutes(), value.getSeconds()];
+        this.setValue(value);
       } else {
         this.__valueIsString = true;
         this.__timeToShow = typeof value === 'string' ? value.split(':') : [0, 0, 0];
