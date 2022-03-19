@@ -36,14 +36,14 @@ qx.Class.define('cv.ui.TrickOMatic', {
     run: function () {
       const svg = this.getSVGDocument();
       if (!svg) {
- return; 
-}
+        return;
+      }
 
       // Pipe-O-Matic:
       let pipes = svg.querySelectorAll('.pipe_group');
       pipes.forEach(function (pipe_group) {
         pipe_group.querySelectorAll('path').forEach(function(path) {
-          const halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
+          const halfsize = Math.floor(parseFloat(path.style.strokeWidth) / 2);
           let opacity = 0.15;
           for (let width = halfsize - 1; width > 0; width--) {
             opacity -= 0.1 / halfsize;
@@ -52,8 +52,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
             n.style.strokeWidth = width * 2;
             n.style.stroke = '#ffffff';
             n.style.strokeOpacity = opacity;
-            pipe_group.insertBefore(n,
-              path.nextElementSibling);
+            pipe_group.insertBefore(n, path.nextElementSibling);
           }
         });
       });
@@ -149,9 +148,9 @@ qx.Class.define('cv.ui.TrickOMatic', {
        */
       function createCSSRules(style, value) {
         return `${style}: ${value};
--moz-${style}: ${value};
--webkit-${style}: ${value};
-`;
+          -moz-${style}: ${value};
+          -webkit-${style}: ${value};
+        `;
     }
 
       keyframes += '.flow_active path {\n' +
@@ -164,11 +163,13 @@ qx.Class.define('cv.ui.TrickOMatic', {
         'style');
       s.setAttribute('type', 'text/css');
       s.textContent = keyframes;
-      qx.dom.Element.insertBegin(s, svg.querySelector('svg'));
+      const svgElement = svg.querySelector('svg');
+      svgElement.insertBefore(s, svgElement.firstChild);
+
     },
 
     updateActive: function (pipe_group, data) {
-      if (parseInt(data) === 1 || data === 'ON') {
+      if (parseInt(data) === 1 || data === 'ON' || data === true) {
         pipe_group.classList.toggle('flow_active', true);
       } else {
         pipe_group.classList.toggle('flow_active', false);
