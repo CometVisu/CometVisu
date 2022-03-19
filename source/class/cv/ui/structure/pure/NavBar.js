@@ -118,7 +118,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
         self._touchX = touches.clientX;
         self._touchY = touches.clientY;
-      }, false);
+      }, {passive: true});
       content.addEventListener('touchend', function () {
         self._touchX = null;
         self._touchY = null;
@@ -151,7 +151,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
             }
           }
         }
-      }, false);
+      }, {passive: true});
     }
   },
   
