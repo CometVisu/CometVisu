@@ -165,7 +165,6 @@ qx.Class.define('cv.ui.TrickOMatic', {
       s.textContent = keyframes;
       const svgElement = svg.querySelector('svg');
       svgElement.insertBefore(s, svgElement.firstChild);
-
     },
 
     updateActive: function (pipe_group, data) {
