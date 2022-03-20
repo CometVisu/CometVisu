@@ -112,6 +112,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
         if (pPH.navbars.left.dynamic === false ||
           (!qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true) ||
+          (pPH.navbars.left.fadeVisible && !evt.path.some(i => i.id==='navbarLeft')) || // left navbar is visible, but the touch is somewhere else
           (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
           return;
         }
