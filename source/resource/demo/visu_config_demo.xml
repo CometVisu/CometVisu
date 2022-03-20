@@ -352,7 +352,7 @@
       <image src="https://picsum.photos/200/300" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
-      <image src="icons/cometvisu_icon_raw.svg" width="378px" height="378px">
+      <image src="icons/cometvisu_icon_raw.svg" width="300px" height="300px">
         <label>Image: mit Größenangabe</label>
       </image>
     </page>
@@ -1600,7 +1600,7 @@
           <layout colspan="5"/>
           <label>Ohne Flavour</label>
         </text>
-        <info styling="Blue_Purple_Red">
+        <info styling="Blue_Purple_Red" format="%.2f">
           <layout colspan="5"/>
           <label>Info</label>
           <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -1608,7 +1608,7 @@
       </group>
       <!-- <line /> -->
       <group name="Slider Gruppe mit Flavour" flavour="lithium" align="center">
-        <info styling="Blue_Purple_Red">
+        <info styling="Blue_Purple_Red" format="%.2f">
           <label>Info: Slider</label>
           <address transform="DPT:9" mode="readwrite">12/7/9</address>
         </info>
