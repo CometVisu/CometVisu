@@ -69,7 +69,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
     getAttributeToPropertyMappings: function() {
       return {
         width: { transform: function(value) {
-          return value ? parseInt(value)+'px' : null;
+          return value ? parseInt(value)+'px' : '100%';
         }},
         height: { transform: function(value) {
           return value ? parseInt(value)+'px' : null;

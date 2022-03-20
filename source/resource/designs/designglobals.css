@@ -454,6 +454,12 @@ button.ui-slider-handle {
   background: linear-gradient(90deg, rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
 }
 
+.diagram > .actor {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
 #notification-center {
   position: absolute;
   width: 300px;
