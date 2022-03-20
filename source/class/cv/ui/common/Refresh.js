@@ -217,7 +217,7 @@ qx.Mixin.define('cv.ui.common.Refresh', {
   statics: {
     // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
     __forceImgReload: function(src) {
-      fetch(src, { cache: 'reload', mode: 'no-cors' })
+      window.fetch(src, { cache: 'reload', mode: 'no-cors' })
         .then(() => document.body.querySelectorAll(`img[src='${src}']`)
         .forEach(img => img.src = src));
     }

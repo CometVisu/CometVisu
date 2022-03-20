@@ -283,7 +283,13 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
       // run the Trick-O-Matic scripts for great SVG backdrops
       document.querySelectorAll('embed').forEach(function(elem) {
-        elem.onload = cv.ui.TrickOMatic.run;
+        if (typeof elem.getSVGDocument === 'function') {
+          if (elem.getSVGDocument().readyState !== 'complete') {
+            elem.onload = cv.ui.TrickOMatic.run;
+          } else {
+            cv.ui.TrickOMatic.run.call(elem);
+          }
+        }
       });
 
       document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
