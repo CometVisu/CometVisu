@@ -5,19 +5,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Image', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-
-  /*
-  ***********************************************
-    PROPERTIES
-  ***********************************************
-  */
-  properties: {
-    refresh: {
-      check: 'Number',
-      init: 0,
-      apply: '_applyRefresh'
-    }
-  },
+  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
 
   /*
   ***********************************************
@@ -25,7 +13,6 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
   ***********************************************
   */
   members: {
-    _refreshTimer: null,
     _downloadedImage: null,
     _url: null,
     _headers: null,
@@ -85,21 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
       }
     },
 
-    _applyRefresh(value) {
-      if (value === 0) {
-        if (this._refreshTimer) {
-          this._refreshTimer.stop();
-        }
-      } else if (!this._refreshTimer) {
-        this._refreshTimer = new qx.event.Timer(value * 1000);
-        this._refreshTimer.addListener('interval', this._onRefresh, this);
-        this._refreshTimer.start();
-      } else {
-        this._refreshTimer.restartWith(value * 1000);
-      }
-    },
-
-    _onRefresh() {
+    refresh() {
       let img = this._element.querySelector(':scope > img');
       if (img) {
         this._url.searchParams.set('r', '' + Math.random());
@@ -108,14 +81,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
     }
   },
 
-  /*
-  ***********************************************
-    DESTRUCTOR
-  ***********************************************
-  */
-  destruct: function () {
-    this._disposeObjects('_refreshTimer');
-  },
+
 
   defer(QxClass) {
     customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'image', class extends QxConnector {

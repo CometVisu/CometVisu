@@ -10,6 +10,7 @@ $borderColor: #7a7a7a;
 $blockerColor: #000000;
 $shadowColor: rgb(0 0 0 / 20%);
 $blockerColor: rgb(0 0 0 / 70%);
+$greenBackground: #175927;
 
 $primaryText: #b6b6b6;
 $secondaryText: #7e7d7d;
@@ -40,9 +41,10 @@ $tileColumns: 3;
 @import url("fonts/remixicon.css");
 @import url("../../icons/fonts/knx-uf-iconset.css");
 
-/* width */
+/* width(for vertical scrollbars), height(for horizontal scrollbars) */
 ::-webkit-scrollbar {
     width: var(--spacing);
+    height: var(--spacing);
 }
 
 /* Track */
@@ -75,6 +77,10 @@ body {
     > header {
         border-bottom: 1px solid $borderColor;
         box-shadow: 0 6px 8px 4px $shadowColor;
+
+        > cv-group {
+            padding: var(--spacing);
+        }
     }
 
     main {
@@ -116,6 +122,13 @@ body {
             margin-top: -40px;
         }
 
+        > ul ul {
+            /* popup sub-menus */
+            background-color: $appBackground;
+            box-shadow: 0 6px 8px 4px $shadowColor;
+            border-radius: var(--spacing);
+        }
+
         ul {
             margin: 0;
             padding: 0;
@@ -123,7 +136,6 @@ body {
 
             li {
                 display: inline-block;
-                /*background-color: $buttonBackground;*/
                 position: relative;
                 height: 40px;
 
@@ -233,46 +245,52 @@ body {
         > cv-group[open] {
             margin-bottom: var(--spacing);
         }
+    }
 
-        cv-group {
-            flex: 0 0 100%;
-            display: flex;
-            flex-flow: row wrap;
-            gap: var(--spacing);
-            border-top: 1px solid $borderColor;
+    cv-group {
+        flex: 0 0 100%;
+        display: flex;
+        flex-flow: row wrap;
+        gap: var(--spacing);
+        border-top: 1px solid $borderColor;
 
-            summary {
-                flex-basis: 100%;
-                padding: calc(var(--spacing) * 2) var(--spacing);
-            }
-            &:not([open]) > *:not(summary) {
-                display: none;
-            }
+        &[wrap="false"] {
+            flex-flow: row nowrap;
+            overflow-x: auto;
+        }
 
-            &:first-child {
-                border-top: none;
-                margin-top: 0;
-            }
-            > summary:before {
-                font-family: 'remixicon' !important;
-                font-style: normal;
-                -webkit-font-smoothing: antialiased;
-                content: "\EA6E";
-                vertical-align: text-bottom;
-                padding-right: $defaultSpace;
-            }
+        summary {
+            flex-basis: 100%;
+            padding: calc(var(--spacing) * 2) var(--spacing);
+        }
+        &:not([open]) > *:not(summary) {
+            display: none;
+        }
 
-            &[open] > summary:before {
-                content: "\EA4E";
-            }
-            > summary:after {
-                content: "..."
-            }
-            &[open] > summary:after {
-                content: "";
-            }
+        &:first-child {
+            border-top: none;
+            margin-top: 0;
+        }
+        > summary:before {
+            font-family: 'remixicon' !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            content: "\EA6E";
+            vertical-align: text-bottom;
+            padding-right: $defaultSpace;
+        }
+
+        &[open] > summary:before {
+            content: "\EA4E";
+        }
+        > summary:after {
+            content: "..."
+        }
+        &[open] > summary:after {
+            content: "";
         }
     }
+
     cv-switch, cv-shutter {
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
@@ -427,6 +445,29 @@ body {
 
         &[disabled="true"] {
             opacity: 0.5;
+        }
+
+        cv-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    cv-image {
+        display: inline-block;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
     }
 
@@ -754,20 +795,6 @@ body {
         }
     }
 
-    cv-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    }
-
     cv-chart {
         width: 100%;
         height: 100%;
@@ -821,9 +848,20 @@ body {
         transform: translate(-50%, -50%);
         z-index: 1000000;
         box-shadow: 6px 6px 18px 4px $shadowColor;
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow: hidden;
+
+        header {
+            flex: 0 1 auto;
+        }
 
         &[open] {
-            display: block;
+            display: flex;
+        }
+
+        > :not(header) {
+            flex: 1 1 auto;
         }
 
         button.close {
@@ -837,6 +875,24 @@ body {
             background: none;
             border: none;
             color: $primaryText;
+        }
+
+        cv-button.bottom {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            text-align: center;
+            color: $primaryText;
+            cursor: pointer;
+            width: auto;
+
+            &.green.overlay {
+                background-color: rgba( $greenBackground, .7 );
+
+                border-radius: 0;
+                border: none;
+            }
         }
     }
 

@@ -35,7 +35,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.MVisibility],
+  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
 
   /*
   ***********************************************
@@ -59,7 +59,6 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _timer: null,
     _model: null,
     _getModel: null,
-    __lastRefresh: null,
     _filterModel: null,
     _sortModel: null,
 
@@ -130,43 +129,15 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           this.refresh();
         }
         if (element.hasAttribute('refresh')) {
-          const interval = parseInt(element.getAttribute('refresh'));
-          if (!isNaN(interval) && interval > 0) {
-            this._timer = new qx.event.Timer(interval * 1000);
-            this._timer.addListener('interval', this.refresh, this);
-            if (this.isVisible()) {
-              // when there is no offsetParent this item is not visible
-              this._timer.start();
-            }
-          } else {
-            this.error('invalid refresh value', interval);
-          }
+          this.setRefresh(parseInt(element.getAttribute('refresh')));
         }
       }
     },
 
     _applyValue() {
       // reset last refresh, because with new data its obsolete
-      this.__lastRefresh = 0;
+      this._lastRefresh = 0;
       this.refresh();
-    },
-
-    _applyVisible(isVisible) {
-      this.debug('list visibility changed to', isVisible);
-      if (isVisible) {
-        if (this._timer) {
-          this._timer.start();
-          if (!this.__lastRefresh || (Date.now() - this.__lastRefresh) >= this._timer.getInterval()) {
-            // last execution time too old, refresh now
-            this.refresh();
-          }
-        } else if (!this.__lastRefresh) {
-          // refresh once when the item becomes visible
-          this.refresh();
-        }
-      } else if (this._timer) {
-        this._timer.stop();
-      }
     },
 
     refresh() {
@@ -241,17 +212,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       } else {
         this.error('model must be an array', newModel);
       }
-      this.__lastRefresh = Date.now();
     }
-  },
-
-  /*
-  ***********************************************
-    DESTRUCTOR
-  ***********************************************
-  */
-  destruct: function () {
-    this._disposeObjects('_timer');
   },
 
   defer(QxClass) {

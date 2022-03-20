@@ -144,6 +144,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
+        <xsd:element name="cv-group" type="cv-group"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -177,6 +178,7 @@
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
+        <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
@@ -189,6 +191,7 @@
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
+        <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
@@ -205,6 +208,7 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-popup">
@@ -214,6 +218,7 @@
         <xsd:group ref="Components"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
+        <xsd:element name="cv-address" type="address" minOccurs="0"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="modal" type="xsd:boolean">
@@ -223,6 +228,13 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+    <xsd:attribute name="auto-close-timeout" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time in seconds when the popup is automatically closed.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Sekunden in der das Popup automatisch geschlossen wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-group">
@@ -232,7 +244,20 @@
         <xsd:group ref="Widgets"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="open" type="xsd:boolean"/>
+    <xsd:attribute name="open" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Makes the groups content visible, otherwise only the content of "summary" is visible.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Macht den Inhalt der Gruppe sichtbar. Ansonsten ist nur der Inhalt von "summary" sichtbar.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="wrap" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Prevents line wraps when the content is wider that the screen size. The content will be horizontally scrollable instead.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verhindert Zeilenumbrüche, wenn der Inhalt zu breit wür die Bildschirmgröße ist. Stattdessen wird der Inhalt scrollbar.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-tile">
@@ -259,6 +284,8 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-row">
@@ -314,6 +341,7 @@
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
   </xsd:complexType>
 
@@ -336,6 +364,7 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="row"/>
     <xsd:attribute ref="column"/>
@@ -360,6 +389,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="row"/>
     <xsd:attribute ref="column"/>
@@ -381,6 +411,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="row"/>
     <xsd:attribute ref="column"/>
@@ -394,6 +425,7 @@
 
   <xsd:complexType name="cv-image">
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute name="src" type="xsd:string"/>
     <xsd:attribute name="refresh" type="xsd:decimal"/>
     <xsd:attribute name="proxy" type="xsd:boolean"/>
@@ -428,6 +460,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="row"/>
     <xsd:attribute ref="column"/>
@@ -499,6 +532,7 @@
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="row"/>
     <xsd:attribute ref="column"/>
@@ -542,6 +576,7 @@
     </xsd:attribute>
     <xsd:attribute ref="bind_click_to_widget" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-shutter">
@@ -588,6 +623,7 @@
     </xsd:attribute>
     <xsd:attribute ref="bind_click_to_widget" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-info">
@@ -627,6 +663,7 @@
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-status">
@@ -713,6 +750,7 @@
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
   </xsd:complexType>
 
@@ -906,6 +944,14 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
       <xsd:documentation xml:lang="de">Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</xsd:documentation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="style" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Custom CSS style rules for this widget.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Individuelle CSS style Regeln für dieses Widget.</xsd:documentation>
       <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>

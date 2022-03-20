@@ -83,6 +83,10 @@ class QxConnector extends HTMLElement {
     }
   }
 
+  getInstance() {
+    return this._instance;
+  }
+
   connectedCallback() {
     if (this._instance) {
       this._instance.setConnected(true);

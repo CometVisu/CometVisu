@@ -25,8 +25,6 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
           entry.target._instance.setVisible(entry.intersectionRatio > 0);
         }
       });
-    }, {
-      root: document.documentElement
     })
   },
 

@@ -16,7 +16,12 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
       const uri = element.hasAttribute('uri') ? new URL(element.getAttribute('uri')) : null;
       if (type) {
         let credentials = null;
-        if (uri && uri.username) {
+        if (element.hasAttribute('username')) {
+          credentials = {
+            username: element.getAttribute('username'),
+            password: element.getAttribute('password') || ''
+          };
+        } else if (uri && uri.username) {
           credentials = {
             username: uri.username,
             password: uri.password

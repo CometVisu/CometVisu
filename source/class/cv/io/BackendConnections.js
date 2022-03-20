@@ -126,7 +126,7 @@ qx.Class.define('cv.io.BackendConnections', {
           const client = this.__clients[backendName];
           if (!client.isConnected() && this.__hasBeenConnected) {
             // reconnect
-            this.debug(`restarting ${backendName} backend connection`);
+            qx.log.Logger.debug(this, `restarting ${backendName} backend connection`);
             client.restart(true);
           }
         });

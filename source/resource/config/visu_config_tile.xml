@@ -46,7 +46,8 @@
         </cv-mapping>
     </cv-meta>
     <header>
-        <div style="display: flex; padding: calc(var(--spacing)*2); gap: var(--spacing)">
+        <!--<div style="display: flex; padding: calc(var(&#45;&#45;spacing)*2); gap: var(&#45;&#45;spacing)">-->
+        <cv-group open="true" wrap="false">
             <cv-status format="%d an">
                 <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
                 <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Lights</cv-address>
@@ -118,7 +119,7 @@
                 </cv-list>
             </cv-popup>
         </cv-status>
-        </div>
+        </cv-group>
         <nav>
             <cv-menu model="pages"/>
         </nav>
@@ -287,5 +288,14 @@
             <cv-page id="visitors" name="Besucher"/>
             <cv-page id="calls" name="Anrufe"/>
         </cv-page>
+        <cv-popup modal="true" style="padding: 0" auto-close-timeout="120">
+            <cv-image style="width: 470px" src="http://192.168.178.24/ISAPI/streaming/channels/1/picture" refresh="2" authorization="basic" username="viewer" password="viewer" proxy="true"/>
+            <cv-button class="bottom green overlay">
+                <cv-address backend="main" mode="readwrite" transform="OH:switch" on="down" value="1">Switch_GF_FrontDoor</cv-address>
+                <cv-address backend="main" mode="write" transform="OH:switch" on="up" value="0">Switch_GF_FrontDoor</cv-address>
+                <label class="primary value">Öffnen</label>
+            </cv-button>
+            <cv-address backend="main" mode="read" transform="OH:switch" target="open">Bell_FF</cv-address>
+        </cv-popup>
     </main>
 </config>
