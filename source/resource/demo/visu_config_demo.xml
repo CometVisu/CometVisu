@@ -362,8 +362,8 @@
         <label>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</label>
       </text>
       <break/>
-      <video src="https://upload.wikimedia.org/wikipedia/commons/c/c5/I-15bis.ogv" autoplay="false">
-        <label>Polikarpov I-15bis - Ogg Theora</label>
+      <video src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c5/I-15bis.ogv/I-15bis.ogv.240p.webm" autoplay="false">
+        <label>Polikarpov I-15bis - WebM</label>
       </video>
     </page>
     <trigger value="1">
