@@ -627,7 +627,8 @@ qx.Class.define('cv.TemplateEngine', {
         // run the Trick-O-Matic scripts for great SVG backdrops
         document.querySelectorAll('embed').forEach(function(elem) {
           if (typeof elem.getSVGDocument === 'function') {
-            if (elem.getSVGDocument().readyState !== 'complete') {
+            const svg = elem.getSVGDocument();
+            if (svg === null || svg.readyState !== 'complete') {
               elem.onload = cv.ui.TrickOMatic.run;
             } else {
               cv.ui.TrickOMatic.run.call(elem);

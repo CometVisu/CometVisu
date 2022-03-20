@@ -349,10 +349,10 @@
       <label>Image</label>
     </image>
     <page name="Image: Erweitert..." align="center">
-      <image src="https://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
+      <image src="https://picsum.photos/200/300" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
-      <image src="icons/comet_128_ff8000.png" width="500px" height="46px">
+      <image src="icons/cometvisu_icon_raw.svg" width="378px" height="378px">
         <label>Image: mit Größenangabe</label>
       </image>
     </page>
