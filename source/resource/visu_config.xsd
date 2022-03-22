@@ -414,8 +414,8 @@
         <xsd:enumeration value="oh" />
         <xsd:enumeration value="oh2" />
         <xsd:enumeration value="openhab2" />
-        <!-- New values, should be used now -->
         <xsd:enumeration value="default" />
+        <!-- New values, should be used now -->
         <xsd:enumeration value="knxd" />
         <xsd:enumeration value="openhab" />
         <xsd:enumeration value="mqtt" />
