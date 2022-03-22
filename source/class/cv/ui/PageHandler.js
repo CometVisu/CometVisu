@@ -76,11 +76,7 @@ qx.Class.define('cv.ui.PageHandler', {
       let pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
 
       if (!pageWidget || !pageWidget.getDomElement()) { // check if page does exist
-        if (currentPath !== '') {
-          return; // don't change away from current page
-        }
-        // no page set yet => start with main page
-        pageWidget = cv.ui.structure.WidgetFactory.getInstanceById('id_');
+        return;
       }
       qx.event.message.Bus.dispatchByName('path.'+target+'.beforePageChange', target);
 
