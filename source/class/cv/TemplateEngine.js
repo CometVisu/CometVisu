@@ -607,9 +607,13 @@ qx.Class.define('cv.TemplateEngine', {
         qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
         this.setDomFinished(true);
 
-        const currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        let currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         if (currentPage) {
           this.setCurrentPage(currentPage);
+        } else {
+          // this page does not exist, fallback to start page
+          cv.Config.initialPage = 'id_';
+          currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         }
         cv.ui.layout.Manager.adjustColumns();
         cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
@@ -627,7 +631,8 @@ qx.Class.define('cv.TemplateEngine', {
         // run the Trick-O-Matic scripts for great SVG backdrops
         document.querySelectorAll('embed').forEach(function(elem) {
           if (typeof elem.getSVGDocument === 'function') {
-            if (elem.getSVGDocument().readyState !== 'complete') {
+            const svg = elem.getSVGDocument();
+            if (svg === null || svg.readyState !== 'complete') {
               elem.onload = cv.ui.TrickOMatic.run;
             } else {
               cv.ui.TrickOMatic.run.call(elem);
