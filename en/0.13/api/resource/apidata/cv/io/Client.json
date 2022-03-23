@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 702,
+        "line": 675,
         "column": 3
       }
     },
@@ -58,7 +58,7 @@
         "column": 13
       },
       "end": {
-        "line": 86,
+        "line": 85,
         "column": 3
       }
     },
@@ -91,11 +91,11 @@
     "CLIENTS": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 93,
           "column": 15
         }
       },
@@ -105,11 +105,11 @@
     "TEST_MODE": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 94,
           "column": 20
         }
       },
@@ -119,11 +119,11 @@
     "ERROR_CODES": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 95,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 100,
           "column": 5
         }
       },
@@ -133,11 +133,11 @@
     "stopAll": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 109,
           "column": 5
         }
       },
@@ -155,7 +155,7 @@
     "backendNameAliases": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 112,
           "column": 4
         },
         "end": {
@@ -174,7 +174,7 @@
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 143,
           "column": 5
         }
       },
@@ -187,11 +187,11 @@
     "running": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 159,
           "column": 5
         }
       },
@@ -213,11 +213,11 @@
     "connected": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 169,
           "column": 5
         }
       },
@@ -240,11 +240,11 @@
     "dataReceived": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 174,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 177,
           "column": 5
         }
       },
@@ -265,11 +265,11 @@
     "currentTransport": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 181,
           "column": 4
         },
         "end": {
-          "line": 210,
+          "line": 183,
           "column": 5
         }
       },
@@ -287,11 +287,11 @@
     "server": {
       "location": {
         "start": {
-          "line": 215,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 192,
           "column": 5
         }
       },
@@ -347,11 +347,11 @@
     "backend": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 201,
           "column": 17
         }
       },
@@ -361,11 +361,11 @@
     "backendName": {
       "location": {
         "start": {
-          "line": 229,
+          "line": 202,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 202,
           "column": 21
         }
       },
@@ -375,11 +375,11 @@
     "backendLoginUrl": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 203,
           "column": 25
         }
       },
@@ -389,11 +389,11 @@
     "addresses": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 204,
           "column": 4
         },
         "end": {
-          "line": 231,
+          "line": 204,
           "column": 19
         }
       },
@@ -403,11 +403,11 @@
     "initialAddresses": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 232,
+          "line": 205,
           "column": 26
         }
       },
@@ -418,11 +418,11 @@
     "filters": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 233,
+          "line": 206,
           "column": 17
         }
       },
@@ -433,11 +433,11 @@
     "user": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 234,
+          "line": 207,
           "column": 15
         }
       },
@@ -448,11 +448,11 @@
     "pass": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 208,
           "column": 15
         }
       },
@@ -463,11 +463,11 @@
     "device": {
       "location": {
         "start": {
-          "line": 236,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 236,
+          "line": 209,
           "column": 17
         }
       },
@@ -478,11 +478,11 @@
     "session": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 237,
+          "line": 210,
           "column": 17
         }
       },
@@ -493,11 +493,11 @@
     "loginSettings": {
       "location": {
         "start": {
-          "line": 239,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 212,
           "column": 24
         }
       },
@@ -508,11 +508,11 @@
     "headers": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 213,
           "column": 17
         }
       },
@@ -522,11 +522,11 @@
     "__lastError": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 241,
+          "line": 214,
           "column": 21
         }
       },
@@ -536,11 +536,11 @@
     "_applyConnected": {
       "location": {
         "start": {
-          "line": 244,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 221,
           "column": 5
         }
       },
@@ -554,11 +554,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 252,
+          "line": 225,
           "column": 5
         }
       },
@@ -580,11 +580,11 @@
     "setBackend": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 267,
           "column": 5
         }
       },
@@ -594,11 +594,11 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 296,
+          "line": 269,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 271,
           "column": 5
         }
       },
@@ -622,11 +622,11 @@
     "beforeSend": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 277,
           "column": 4
         },
         "end": {
-          "line": 315,
+          "line": 288,
           "column": 5
         }
       },
@@ -652,11 +652,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 317,
+          "line": 290,
           "column": 4
         },
         "end": {
-          "line": 319,
+          "line": 292,
           "column": 5
         }
       },
@@ -697,11 +697,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 321,
+          "line": 294,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 296,
           "column": 5
         }
       },
@@ -725,11 +725,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 324,
+          "line": 297,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 299,
           "column": 5
         }
       },
@@ -751,11 +751,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 354,
+          "line": 327,
           "column": 5
         }
       },
@@ -795,11 +795,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 367,
+          "line": 340,
           "column": 4
         },
         "end": {
-          "line": 390,
+          "line": 363,
           "column": 5
         }
       },
@@ -852,11 +852,11 @@
     "getResponse": {
       "location": {
         "start": {
-          "line": 395,
+          "line": 368,
           "column": 4
         },
         "end": {
-          "line": 418,
+          "line": 391,
           "column": 6
         }
       },
@@ -874,11 +874,11 @@
     "getResponseHeader": {
       "location": {
         "start": {
-          "line": 420,
+          "line": 393,
           "column": 4
         },
         "end": {
-          "line": 430,
+          "line": 403,
           "column": 6
         }
       },
@@ -888,11 +888,11 @@
     "getQueryString": {
       "location": {
         "start": {
-          "line": 432,
+          "line": 405,
           "column": 4
         },
         "end": {
-          "line": 452,
+          "line": 425,
           "column": 5
         }
       },
@@ -902,11 +902,11 @@
     "doRequest": {
       "location": {
         "start": {
-          "line": 463,
+          "line": 436,
           "column": 4
         },
         "end": {
-          "line": 518,
+          "line": 491,
           "column": 6
         }
       },
@@ -962,11 +962,11 @@
     "_onError": {
       "location": {
         "start": {
-          "line": 524,
+          "line": 497,
           "column": 4
         },
         "end": {
-          "line": 538,
+          "line": 511,
           "column": 5
         }
       },
@@ -990,11 +990,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 545,
+          "line": 518,
           "column": 4
         },
         "end": {
-          "line": 547,
+          "line": 520,
           "column": 5
         }
       },
@@ -1024,11 +1024,11 @@
     "handleLogin": {
       "location": {
         "start": {
-          "line": 563,
+          "line": 536,
           "column": 4
         },
         "end": {
-          "line": 585,
+          "line": 558,
           "column": 5
         }
       },
@@ -1046,11 +1046,11 @@
     "stop": {
       "location": {
         "start": {
-          "line": 591,
+          "line": 564,
           "column": 4
         },
         "end": {
-          "line": 597,
+          "line": 570,
           "column": 5
         }
       },
@@ -1068,11 +1068,11 @@
     "buildRequest": {
       "location": {
         "start": {
-          "line": 605,
+          "line": 578,
           "column": 4
         },
         "end": {
-          "line": 627,
+          "line": 600,
           "column": 5
         }
       },
@@ -1110,11 +1110,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 635,
+          "line": 608,
           "column": 4
         },
         "end": {
-          "line": 649,
+          "line": 622,
           "column": 5
         }
       },
@@ -1152,11 +1152,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 652,
+          "line": 625,
           "column": 4
         },
         "end": {
-          "line": 652,
+          "line": 625,
           "column": 32
         }
       },
@@ -1171,11 +1171,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 658,
+          "line": 631,
           "column": 4
         },
         "end": {
-          "line": 660,
+          "line": 633,
           "column": 5
         }
       },
@@ -1205,11 +1205,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 662,
+          "line": 635,
           "column": 4
         },
         "end": {
-          "line": 664,
+          "line": 637,
           "column": 5
         }
       },
@@ -1223,11 +1223,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 666,
+          "line": 639,
           "column": 4
         },
         "end": {
-          "line": 666,
+          "line": 639,
           "column": 29
         }
       },
@@ -1251,11 +1251,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 673,
+          "line": 646,
           "column": 4
         },
         "end": {
-          "line": 673,
+          "line": 646,
           "column": 35
         }
       },
@@ -1293,11 +1293,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 681,
+          "line": 654,
           "column": 4
         },
         "end": {
-          "line": 681,
+          "line": 654,
           "column": 47
         }
       },
@@ -1341,11 +1341,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 683,
+          "line": 656,
           "column": 4
         },
         "end": {
-          "line": 685,
+          "line": 658,
           "column": 5
         }
       },
@@ -1360,11 +1360,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 686,
+          "line": 659,
           "column": 4
         },
         "end": {
-          "line": 688,
+          "line": 661,
           "column": 5
         }
       },
@@ -1396,11 +1396,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 689,
+          "line": 662,
           "column": 4
         },
         "end": {
-          "line": 691,
+          "line": 664,
           "column": 5
         }
       },
@@ -1968,11 +1968,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 699,
+        "line": 672,
         "column": 12
       },
       "end": {
-        "line": 701,
+        "line": 674,
         "column": 3
       }
     },

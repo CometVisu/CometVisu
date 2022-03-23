@@ -183,7 +183,8 @@ Mögliche Operatoren sind:
 
 .. code-block:: xml
 
-    <diagram width="600" height="300" series="fullday" period="8">
+    <diagram series="fullday" period="8">
+      <layout colspan="12" rowspan="4"/>
       <influx field="Val" fillMissing="linear" style="lines" fill="true" measurement="timeseries_db/KNX_LINE1" authentication="influx">
         <and>
           <tag key="PA" operator="=" value="1.2.3"/>

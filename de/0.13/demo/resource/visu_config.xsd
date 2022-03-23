@@ -169,7 +169,7 @@
         <xsd:attribute name="ignore-error" type="xsd:boolean" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: ignore decode errors.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Nur MQTT: ignoriere Dekodier-Fehler.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: ignoriere Dekodierfehler.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>
@@ -413,10 +413,11 @@
         <xsd:enumeration value="cgi-bin" />
         <xsd:enumeration value="oh" />
         <xsd:enumeration value="oh2" />
-        <!-- New values, should be used now -->
-        <xsd:enumeration value="default" />
-        <xsd:enumeration value="openhab" />
         <xsd:enumeration value="openhab2" />
+        <xsd:enumeration value="default" />
+        <!-- New values, should be used now -->
+        <xsd:enumeration value="knxd" />
+        <xsd:enumeration value="openhab" />
         <xsd:enumeration value="mqtt" />
       </xsd:restriction>
     </xsd:simpleType>
@@ -567,8 +568,8 @@
       </xsd:attribute>
       <xsd:attribute name="lib_version" type="xsd:integer" use="required">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
-          <xsd:documentation xml:lang="de">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
+          <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is only required for the upgrade script.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Version der CometVisu-library. Dieser Wert ist nur für die korrekte Funktion des Upgrade-Scripts notwendig.</xsd:documentation>
           <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
@@ -2374,8 +2375,18 @@
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="influx" type="influx" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute name="height" type="dimension" use="optional" />
+    <xsd:attribute name="width" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Deprecated: please remove attribute and use layout with colspan instead for best results.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Veraltet: bitte statt diesem Attribut ein layout mit colspan verwenden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="height" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Deprecated: please remove attribute and use layout with rowspan instead for best results.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Veraltet: bitte statt diesem Attribut ein layout mit rowspan verwenden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="popup" type="xsd:boolean" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Makes diagram clickable and opens fullscreen view of diagram when clicked</xsd:documentation>

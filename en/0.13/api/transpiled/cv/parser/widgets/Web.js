@@ -64,7 +64,7 @@
         if (ga) {
           cv.data.Model.getInstance().addAddress(ga);
 
-          if (cv.Config.backend.substr(0, 2) === 'oh') {
+          if (cv.Config.backend === 'openhab') {
             data.address['_' + ga] = {
               transform: 'OH:switch',
               mode: 'OFF'
@@ -108,4 +108,4 @@
   cv.parser.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1647161209900
+//# sourceMappingURL=Web.js.map?dt=1648068858457

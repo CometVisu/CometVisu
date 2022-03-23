@@ -634,7 +634,7 @@
     </page>
     <page name="Heizung" type="2d" backdrop="demo/media/demo_2d_backdrop_red_pot.svg" visible="false">
       <slide format="%.0f" class="noborder">
-        <layout x="150px" y="270px" width="500px"/>
+        <layout x="10%" y="70%" width="20%"/>
         <label>Level</label>
         <address transform="DPT:5.001">12/7/52</address>
       </slide>

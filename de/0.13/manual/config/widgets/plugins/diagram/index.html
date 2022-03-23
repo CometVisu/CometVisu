@@ -175,11 +175,11 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 <tr class="row-odd"><td rowspan="18">diagram</td>
 <td>width</td>
 <td>Dimension (Zahl+Einheit)</td>
-<td>&#160;</td>
+<td>Veraltet: bitte statt diesem Attribut ein layout mit colspan verwenden.</td>
 </tr>
 <tr class="row-even"><td>height</td>
 <td>Dimension (Zahl+Einheit)</td>
-<td>&#160;</td>
+<td>Veraltet: bitte statt diesem Attribut ein layout mit rowspan verwenden.</td>
 </tr>
 <tr class="row-odd"><td>popup</td>
 <td><em>true</em> oder <em>false</em></td>
@@ -1004,7 +1004,8 @@ Mögliche Operatoren sind:</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span> <span class="na">width=</span><span class="s">&quot;600&quot;</span> <span class="na">height=</span><span class="s">&quot;300&quot;</span> <span class="na">series=</span><span class="s">&quot;fullday&quot;</span> <span class="na">period=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span> <span class="na">series=</span><span class="s">&quot;fullday&quot;</span> <span class="na">period=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;influx</span> <span class="na">field=</span><span class="s">&quot;Val&quot;</span> <span class="na">fillMissing=</span><span class="s">&quot;linear&quot;</span> <span class="na">style=</span><span class="s">&quot;lines&quot;</span> <span class="na">fill=</span><span class="s">&quot;true&quot;</span> <span class="na">measurement=</span><span class="s">&quot;timeseries_db/KNX_LINE1&quot;</span> <span class="na">authentication=</span><span class="s">&quot;influx&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;and&gt;</span>
       <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;PA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;1.2.3&quot;</span><span class="nt">/&gt;</span>

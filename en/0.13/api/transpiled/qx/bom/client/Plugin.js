@@ -432,4 +432,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.client.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1647161220555
+//# sourceMappingURL=Plugin.js.map?dt=1648068867946

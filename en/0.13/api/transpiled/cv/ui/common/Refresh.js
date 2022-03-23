@@ -249,7 +249,7 @@
     statics: {
       // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
       __P_506_5: function __P_506_5(src) {
-        fetch(src, {
+        window.fetch(src, {
           cache: 'reload',
           mode: 'no-cors'
         }).then(function () {
@@ -263,4 +263,4 @@
   cv.ui.common.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1647161249109
+//# sourceMappingURL=Refresh.js.map?dt=1648068894519

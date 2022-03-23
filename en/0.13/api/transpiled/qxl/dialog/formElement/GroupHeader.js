@@ -46,4 +46,4 @@
   qxl.dialog.formElement.GroupHeader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GroupHeader.js.map?dt=1647161252445
+//# sourceMappingURL=GroupHeader.js.map?dt=1648068897590

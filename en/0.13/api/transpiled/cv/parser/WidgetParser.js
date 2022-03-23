@@ -14,8 +14,7 @@
       "cv.TemplateEngine": {},
       "cv.IconHandler": {},
       "qx.xml.Element": {},
-      "cv.ui.layout.Manager": {},
-      "cv.Config": {}
+      "cv.ui.layout.Manager": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -451,12 +450,9 @@
 
           addressInfo.selector = elem.getAttribute('selector');
           addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
+          addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
 
-          if (cv.Config.backend === 'mqtt') {
-            addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
-
-            addressInfo.retain = elem.getAttribute('retain') === 'true';
-          }
+          addressInfo.retain = elem.getAttribute('retain') === 'true';
 
           if (!src || !transform) {
             // fix broken address-entries in config
@@ -588,4 +584,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1647161209172
+//# sourceMappingURL=WidgetParser.js.map?dt=1648068857792

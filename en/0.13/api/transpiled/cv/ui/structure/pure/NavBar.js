@@ -134,14 +134,19 @@
           var touches = evt.touches[0];
           var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
-          if (pPH.navbars.left.dynamic === false || !qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true || !pPH.navbars.left.fadeVisible && touches.clientX > 20) {
+          if (pPH.navbars.left.dynamic === false || !qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true || pPH.navbars.left.fadeVisible && !evt.path.some(function (i) {
+            return i.id === 'navbarLeft';
+          }) || // left navbar is visible, but the touch is somewhere else
+          !pPH.navbars.left.fadeVisible && touches.clientX > 20) {
             // left navbar is not visible but the finger isn't on the left end -> not relevant
             return;
           }
 
           self._touchX = touches.clientX;
           self._touchY = touches.clientY;
-        }, false);
+        }, {
+          passive: true
+        });
         content.addEventListener('touchend', function () {
           self._touchX = null;
           self._touchY = null;
@@ -160,6 +165,7 @@
           var toRight = x > 0;
 
           if (horizontal && enoughDistance) {
+            evt.preventDefault();
             var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
             if (toRight) {
@@ -179,7 +185,9 @@
               }
             }
           }
-        }, false);
+        }, {
+          passive: false
+        });
       }
     },
 
@@ -236,4 +244,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1647161216122
+//# sourceMappingURL=NavBar.js.map?dt=1648068863822
