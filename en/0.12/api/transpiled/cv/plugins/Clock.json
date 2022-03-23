@@ -16,7 +16,7 @@
         "column": 0
       },
       "end": {
-        "line": 548,
+        "line": 547,
         "column": 3
       }
     },
@@ -43,7 +43,7 @@
         "column": 13
       },
       "end": {
-        "line": 36,
+        "line": 38,
         "column": 3
       }
     },
@@ -53,11 +53,11 @@
     "src": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 48,
           "column": 5
         }
       },
@@ -68,11 +68,11 @@
     "srcPopup": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 49,
+          "line": 51,
           "column": 5
         }
       },
@@ -83,11 +83,11 @@
     "titlePopup": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 54,
           "column": 5
         }
       },
@@ -98,11 +98,11 @@
     "hide24h": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 58,
           "column": 5
         }
       },
@@ -115,11 +115,11 @@
     "hide24hPopup": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 60,
+          "line": 62,
           "column": 5
         }
       },
@@ -132,11 +132,11 @@
     "hideAMPM": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 66,
           "column": 5
         }
       },
@@ -149,11 +149,11 @@
     "hideAMPMPopup": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 70,
           "column": 5
         }
       },
@@ -166,11 +166,11 @@
     "hideDigits": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 74,
           "column": 5
         }
       },
@@ -183,11 +183,11 @@
     "hideDigitsPopup": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 78,
           "column": 5
         }
       },
@@ -200,11 +200,11 @@
     "hideSeconds": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 82,
           "column": 5
         }
       },
@@ -217,11 +217,11 @@
     "hideSecondsPopup": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 86,
           "column": 5
         }
       },
@@ -234,11 +234,11 @@
     "sendOnFinish": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 90,
           "column": 5
         }
       },
@@ -370,11 +370,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 109,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 114,
           "column": 5
         }
       },
@@ -430,11 +430,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 179,
           "column": 5
         }
       },
@@ -444,11 +444,11 @@
     "getElements": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 181,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 218,
           "column": 5
         }
       },
@@ -460,11 +460,11 @@
     "__svg": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 227,
           "column": 15
         }
       },
@@ -474,11 +474,11 @@
     "__Elements": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 228,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 228,
           "column": 20
         }
       },
@@ -489,11 +489,11 @@
     "__inDrag": {
       "location": {
         "start": {
-          "line": 227,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 227,
+          "line": 229,
           "column": 15
         }
       },
@@ -504,11 +504,11 @@
     "__timeToShow": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 230,
           "column": 22
         }
       },
@@ -519,11 +519,11 @@
     "__valueIsString": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 232,
+          "line": 234,
           "column": 26
         }
       },
@@ -541,11 +541,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 236,
           "column": 4
         },
         "end": {
-          "line": 236,
+          "line": 238,
           "column": 5
         }
       },
@@ -569,11 +569,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 240,
           "column": 4
         },
         "end": {
-          "line": 331,
+          "line": 329,
           "column": 5
         }
       },
@@ -587,11 +587,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 332,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 332,
           "column": 33
         }
       },
@@ -606,11 +606,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 353,
+          "line": 352,
           "column": 5
         }
       },
@@ -621,11 +621,11 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 355,
+          "line": 354,
           "column": 4
         },
         "end": {
-          "line": 413,
+          "line": 412,
           "column": 5
         }
       },
@@ -635,11 +635,11 @@
     "dragHelper": {
       "location": {
         "start": {
-          "line": 415,
+          "line": 414,
           "column": 4
         },
         "end": {
-          "line": 494,
+          "line": 493,
           "column": 5
         }
       },
@@ -649,11 +649,11 @@
     "dragAction": {
       "location": {
         "start": {
-          "line": 496,
+          "line": 495,
           "column": 4
         },
         "end": {
-          "line": 501,
+          "line": 500,
           "column": 5
         }
       },
@@ -663,11 +663,11 @@
     "_updateHands": {
       "location": {
         "start": {
-          "line": 503,
+          "line": 502,
           "column": 4
         },
         "end": {
-          "line": 541,
+          "line": 540,
           "column": 5
         }
       },
@@ -7120,11 +7120,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 544,
+        "line": 543,
         "column": 9
       },
       "end": {
-        "line": 547,
+        "line": 546,
         "column": 3
       }
     },

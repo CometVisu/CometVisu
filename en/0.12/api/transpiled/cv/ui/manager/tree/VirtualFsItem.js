@@ -201,4 +201,4 @@
   cv.ui.manager.tree.VirtualFsItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualFsItem.js.map?dt=1647153219139
+//# sourceMappingURL=VirtualFsItem.js.map?dt=1648073849108

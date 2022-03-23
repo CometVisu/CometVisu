@@ -90,7 +90,7 @@
         return {
           width: {
             transform: function transform(value) {
-              return value ? parseInt(value) + 'px' : null;
+              return value ? parseInt(value) + 'px' : '100%';
             }
           },
           height: {
@@ -170,4 +170,4 @@
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1647153214155
+//# sourceMappingURL=Diagram.js.map?dt=1648073844779

@@ -349,10 +349,10 @@
       <label>Image</label>
     </image>
     <page name="Image: Erweitert..." align="center">
-      <image src="https://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
+      <image src="https://picsum.photos/200/300" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
-      <image src="icons/comet_128_ff8000.png" width="500px" height="46px">
+      <image src="icons/cometvisu_icon_raw.svg" width="300px" height="300px">
         <label>Image: mit Größenangabe</label>
       </image>
     </page>
@@ -362,8 +362,8 @@
         <label>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</label>
       </text>
       <break/>
-      <video src="https://upload.wikimedia.org/wikipedia/commons/c/c5/I-15bis.ogv" autoplay="false">
-        <label>Polikarpov I-15bis - Ogg Theora</label>
+      <video src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c5/I-15bis.ogv/I-15bis.ogv.240p.webm" autoplay="false">
+        <label>Polikarpov I-15bis - WebM</label>
       </video>
     </page>
     <trigger value="1">
@@ -1578,8 +1578,7 @@
       <address transform="DPT:9.021" mode="readwrite">12/7/9</address>
     </diagram_info>
     <break/>
-    <diagram width="600" height="400" popup="false" previewlabels="true">
-      <label/>
+    <diagram height="400" popup="false" previewlabels="true">
       <rrd>eib_traffic</rrd>
     </diagram>
     <line>
@@ -1600,7 +1599,7 @@
           <layout colspan="5"/>
           <label>Ohne Flavour</label>
         </text>
-        <info styling="Blue_Purple_Red">
+        <info styling="Blue_Purple_Red" format="%.2f">
           <layout colspan="5"/>
           <label>Info</label>
           <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -1608,7 +1607,7 @@
       </group>
       <!-- <line /> -->
       <group name="Slider Gruppe mit Flavour" flavour="lithium" align="center">
-        <info styling="Blue_Purple_Red">
+        <info styling="Blue_Purple_Red" format="%.2f">
           <label>Info: Slider</label>
           <address transform="DPT:9" mode="readwrite">12/7/9</address>
         </info>

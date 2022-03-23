@@ -75,7 +75,10 @@
 
         if (!widget && !skipCreation && cv.Config.lazyLoading === true) {
           var data = cv.data.Model.getInstance().getWidgetData(id);
-          widget = this.createInstance(data.$$type, data);
+
+          if (data.$$type) {
+            widget = this.createInstance(data.$$type, data);
+          }
         }
 
         return widget;
@@ -101,4 +104,4 @@
   cv.ui.structure.WidgetFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetFactory.js.map?dt=1647153257885
+//# sourceMappingURL=WidgetFactory.js.map?dt=1648073883091

@@ -696,6 +696,10 @@
 
           if (currentPage) {
             this.setCurrentPage(currentPage);
+          } else {
+            // this page does not exist, fallback to start page
+            cv.Config.initialPage = 'id_';
+            currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
           }
 
           cv.ui.layout.Manager.adjustColumns();
@@ -712,7 +716,15 @@
           }, this).schedule(); // run the Trick-O-Matic scripts for great SVG backdrops
 
           document.querySelectorAll('embed').forEach(function (elem) {
-            elem.onload = cv.ui.TrickOMatic.run;
+            if (typeof elem.getSVGDocument === 'function') {
+              var svg = elem.getSVGDocument();
+
+              if (svg === null || svg.readyState !== 'complete') {
+                elem.onload = cv.ui.TrickOMatic.run;
+              } else {
+                cv.ui.TrickOMatic.run.call(elem);
+              }
+            }
           });
           this.startInitialRequest();
           this.xml = null; // not needed anymore - free the space
@@ -1103,4 +1115,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1647153257522
+//# sourceMappingURL=TemplateEngine.js.map?dt=1648073882755

@@ -5,8 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.data.Model": {},
-      "qx.dom.Element": {}
+      "cv.data.Model": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -55,7 +54,7 @@
         var pipes = svg.querySelectorAll('.pipe_group');
         pipes.forEach(function (pipe_group) {
           pipe_group.querySelectorAll('path').forEach(function (path) {
-            var halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
+            var halfsize = Math.floor(parseFloat(path.style.strokeWidth) / 2);
             var opacity = 0.15;
 
             for (var width = halfsize - 1; width > 0; width--) {
@@ -162,17 +161,18 @@
          */
 
         function createCSSRules(style, value) {
-          return "".concat(style, ": ").concat(value, ";\n-moz-").concat(style, ": ").concat(value, ";\n-webkit-").concat(style, ": ").concat(value, ";\n");
+          return "".concat(style, ": ").concat(value, ";\n          -moz-").concat(style, ": ").concat(value, ";\n          -webkit-").concat(style, ": ").concat(value, ";\n        ");
         }
 
         keyframes += '.flow_active path {\n' + createCSSRules('animation-duration', '3s') + createCSSRules('animation-name', 'move') + createCSSRules('animation-timing-function', 'linear') + createCSSRules('animation-iteration-count', 'infinite') + '}\n';
         var s = svg.createElementNS('http://www.w3.org/2000/svg', 'style');
         s.setAttribute('type', 'text/css');
         s.textContent = keyframes;
-        qx.dom.Element.insertBegin(s, svg.querySelector('svg'));
+        var svgElement = svg.querySelector('svg');
+        svgElement.insertBefore(s, svgElement.firstChild);
       },
       updateActive: function updateActive(pipe_group, data) {
-        if (parseInt(data) === 1 || data === 'ON') {
+        if (parseInt(data) === 1 || data === 'ON' || data === true) {
           pipe_group.classList.toggle('flow_active', true);
         } else {
           pipe_group.classList.toggle('flow_active', false);
@@ -183,4 +183,4 @@
   cv.ui.TrickOMatic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TrickOMatic.js.map?dt=1647153261120
+//# sourceMappingURL=TrickOMatic.js.map?dt=1648073886051

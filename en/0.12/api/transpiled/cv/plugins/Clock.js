@@ -73,7 +73,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     */
     construct: function construct(props) {
       props.value = new Date();
-      this.__P_8_0 = [];
+      props.value.setHours(0, 0, 0, 0);
+      this.__P_8_0 = [0, 0, 0];
+      this.__P_8_1 = [];
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
     },
 
@@ -268,13 +270,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ******************************************************
     */
     members: {
-      __P_8_1: null,
+      __P_8_2: null,
       // cached access to the SVG in the DOM
-      __P_8_0: null,
+      __P_8_1: null,
       // cached access to the individual clock parts
-      __P_8_2: 0,
+      __P_8_3: 0,
       // is the handle currently dragged?
-      __P_8_3: null,
+      __P_8_0: null,
       // time to show on the clock
 
       /**
@@ -334,7 +336,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           svg.setAttribute('width', '100%');
           svg.setAttribute('height', '100%');
-          _this.__P_8_0 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
+          _this.__P_8_1 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
 
           if (texts.length > 1) {
             var popup = document.createElement('div');
@@ -363,7 +365,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             svg.setAttribute('width', '100%');
             svg.setAttribute('height', '100%');
 
-            _this.__P_8_0.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
+            _this.__P_8_1.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
           }
 
           svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
@@ -386,12 +388,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             HotSpotSecond.addEventListener('pointerdown', _this);
           }
 
-          _this.__P_8_1 = svg;
+          _this.__P_8_2 = svg;
 
-          if (_this.__P_8_3 !== null) {
-            // did we receive a time earlier than the SVG? => Show it now
-            _this._updateHands();
-          }
+          _this._updateHands();
         })["catch"](function (error) {
           _this.error('There has been a problem with the reading of the clock SVG:', error);
         });
@@ -400,20 +399,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       initListeners: function initListeners() {},
       // overridden
       _update: function _update(address, data, isDataAlreadyHandled) {
-        var value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
+        var value = isDataAlreadyHandled ? data : this.applyTransform(address, data);
 
         if (value instanceof Date) {
           this.__P_8_4 = false;
-          this.__P_8_3 = [value.getHours(), value.getMinutes(), value.getSeconds()];
+          this.__P_8_0 = [value.getHours(), value.getMinutes(), value.getSeconds()];
+          this.setValue(value);
         } else {
           this.__P_8_4 = true;
-          this.__P_8_3 = typeof value === 'string' ? value.split(':') : [0, 0, 0];
-          this.__P_8_3[0] = this.__P_8_3[0] >= 0 && this.__P_8_3[0] <= 23 ? this.__P_8_3[0] : 0;
-          this.__P_8_3[1] = this.__P_8_3[1] >= 0 && this.__P_8_3[1] <= 59 ? this.__P_8_3[1] : 0;
-          this.__P_8_3[2] = this.__P_8_3[2] >= 0 && this.__P_8_3[2] <= 59 ? this.__P_8_3[2] : 0;
+          this.__P_8_0 = typeof value === 'string' ? value.split(':') : [0, 0, 0];
+          this.__P_8_0[0] = this.__P_8_0[0] >= 0 && this.__P_8_0[0] <= 23 ? this.__P_8_0[0] : 0;
+          this.__P_8_0[1] = this.__P_8_0[1] >= 0 && this.__P_8_0[1] <= 59 ? this.__P_8_0[1] : 0;
+          this.__P_8_0[2] = this.__P_8_0[2] >= 0 && this.__P_8_0[2] <= 59 ? this.__P_8_0[2] : 0;
           var date = new Date(); // assume today
 
-          date.setHours(this.__P_8_3[0], this.__P_8_3[1], this.__P_8_3[2], 0);
+          date.setHours(this.__P_8_0[0], this.__P_8_0[1], this.__P_8_0[2], 0);
           this.setValue(date);
         }
 
@@ -431,19 +431,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           case 'pointerdown':
             switch (event.target.id) {
               case 'HotSpotHour':
-                this.__P_8_2 = dragMode.hour;
+                this.__P_8_3 = dragMode.hour;
                 break;
 
               case 'HotSpotMinute':
-                this.__P_8_2 = dragMode.minute;
+                this.__P_8_3 = dragMode.minute;
                 break;
 
               case 'HotSpotSecond':
-                this.__P_8_2 = dragMode.second;
+                this.__P_8_3 = dragMode.second;
                 break;
 
               default:
-                this.__P_8_2 = dragMode.none;
+                this.__P_8_3 = dragMode.none;
                 return;
               // early exit
             }
@@ -455,7 +455,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             break;
 
           case 'pointermove':
-            if (this.__P_8_2 === dragMode.none) {
+            if (this.__P_8_3 === dragMode.none) {
               return;
             }
 
@@ -474,7 +474,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           case 'pointerup':
           case 'pointercancel':
             this.dragHelper(event);
-            this.__P_8_2 = dragMode.none;
+            this.__P_8_3 = dragMode.none;
             document.removeEventListener('pointermove', this);
             document.removeEventListener('pointerup', this);
             break;
@@ -492,7 +492,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           second: 3
         };
 
-        var CTM = this.__P_8_1.getScreenCTM(); // get the Current Transformation Matrix
+        var CTM = this.__P_8_2.getScreenCTM(); // get the Current Transformation Matrix
 
 
         var x = (event.clientX - CTM.e) / CTM.a - 60;
@@ -501,7 +501,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var time = this.getValue();
         var minutes;
 
-        switch (this.__P_8_2) {
+        switch (this.__P_8_3) {
           case dragMode.hour:
             {
               var oldHours = time.getHours();
@@ -571,7 +571,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           time.setSeconds(0);
         }
 
-        this.__P_8_3 = [time.getHours(), time.getMinutes(), time.getSeconds()];
+        this.__P_8_0 = [time.getHours(), time.getMinutes(), time.getSeconds()];
 
         this._updateHands();
       },
@@ -582,12 +582,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       _updateHands: function _updateHands() {
         var _this2 = this;
 
-        var _this$__P_8_ = _slicedToArray(this.__P_8_3, 3),
+        var _this$__P_8_ = _slicedToArray(this.__P_8_0, 3),
             hour = _this$__P_8_[0],
             minute = _this$__P_8_[1],
             second = _this$__P_8_[2];
 
-        Array.isArray(this.__P_8_0) && this.__P_8_0.forEach(function (e) {
+        Array.isArray(this.__P_8_1) && this.__P_8_1.forEach(function (e) {
           var showSeconds = true;
 
           if (e.hour !== null) {
@@ -640,4 +640,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1647153213264
+//# sourceMappingURL=Clock.js.map?dt=1648073844042

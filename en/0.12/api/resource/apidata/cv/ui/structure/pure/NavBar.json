@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 211,
+        "line": 213,
         "column": 3
       }
     },
@@ -339,7 +339,7 @@
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 157,
           "column": 5
         }
       },
@@ -359,11 +359,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 166,
+          "line": 168,
           "column": 5
         }
       },
@@ -378,11 +378,11 @@
     "getGlobalPath": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 170,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 174,
           "column": 5
         }
       },
@@ -392,11 +392,11 @@
     "getDomString": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 206,
           "column": 5
         }
       },
@@ -5576,11 +5576,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 207,
+        "line": 209,
         "column": 9
       },
       "end": {
-        "line": 210,
+        "line": 212,
         "column": 3
       }
     },

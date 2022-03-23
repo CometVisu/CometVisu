@@ -83,10 +83,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }; // init default settings
 
       if (cv.io.Client.backendNameAliases[backendName]) {
-        this.backendName = cv.io.Client.backendNameAliases[backendName];
-      } else {
-        this.backendName = backendName;
+        backendName = cv.io.Client.backendNameAliases[backendName];
       }
+
+      this.backendName = backendName;
 
       if (backendName && backendName !== 'default') {
         if (_typeof(backendName) === 'object') {
@@ -135,9 +135,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // used for backwards compability
       backendNameAliases: {
+        'knxd': 'default',
         'cgi-bin': 'default',
         'oh': 'openhab',
-        'oh2': 'openhab2'
+        'oh2': 'openhab'
       },
       // setup of the different known backends (openhab2 configures itself by sending the config
       // with the login response so no defaults are defined here
@@ -164,34 +165,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         'openhab': {
           name: 'openHAB',
-          baseURL: '/services/cv/',
-          // keep the e.g. atmosphere tracking-id if there is one
-          resendHeaders: {
-            'X-Atmosphere-tracking-id': undefined
-          },
-          // fixed headers that are send everytime
-          headers: {
-            'X-Atmosphere-Transport': 'long-polling'
-          },
-          hooks: {
-            onClose: function onClose() {
-              // send an close request to the openHAB server
-              var oldValue = this.headers['X-Atmosphere-Transport'];
-              this.headers['X-Atmosphere-Transport'] = 'close';
-              this.doRequest(this.getResourcePath('read'), null, null, null, {
-                beforeSend: this.beforeSend
-              });
-
-              if (oldValue !== undefined) {
-                this.headers['X-Atmosphere-Transport'] = oldValue;
-              } else {
-                delete this.headers['X-Atmosphere-Transport'];
-              }
-            }
-          }
-        },
-        'openhab2': {
-          name: 'openHAB2',
           baseURL: '/rest/cv/',
           transport: 'sse'
         }
@@ -733,4 +706,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1647153256864
+//# sourceMappingURL=Client.js.map?dt=1648073882007
