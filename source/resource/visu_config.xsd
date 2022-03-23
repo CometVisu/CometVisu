@@ -2375,8 +2375,18 @@
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="influx" type="influx" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute name="height" type="dimension" use="optional" />
+    <xsd:attribute name="width" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Deprecated: please remove attribute and use layout with colspan instead for best results.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Veraltet: bitte statt diesem Attribut ein layout mit colspan verwenden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="height" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Deprecated: please remove attribute and use layout with rowspan instead for best results.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Veraltet: bitte statt diesem Attribut ein layout mit rowspan verwenden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="popup" type="xsd:boolean" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Makes diagram clickable and opens fullscreen view of diagram when clicked</xsd:documentation>
