@@ -112,13 +112,14 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
         if (pPH.navbars.left.dynamic === false ||
           (!qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true) ||
+          (pPH.navbars.left.fadeVisible && !evt.path.some(i => i.id==='navbarLeft')) || // left navbar is visible, but the touch is somewhere else
           (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
           return;
         }
 
         self._touchX = touches.clientX;
         self._touchY = touches.clientY;
-      }, false);
+      }, {passive: true});
       content.addEventListener('touchend', function () {
         self._touchX = null;
         self._touchY = null;
@@ -136,6 +137,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         const horizontal = Math.abs(x) > Math.abs(y);
         const toRight = x > 0;
         if (horizontal && enoughDistance) {
+          evt.preventDefault();
           const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
           if (toRight) {
             self._touchX = touches.clientX - necessaryDistance;
@@ -151,7 +153,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
             }
           }
         }
-      }, false);
+      }, {passive: false});
     }
   },
   
