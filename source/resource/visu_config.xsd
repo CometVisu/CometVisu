@@ -169,7 +169,7 @@
         <xsd:attribute name="ignore-error" type="xsd:boolean" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: ignore decode errors.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Nur MQTT: ignoriere Dekodier-Fehler.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: ignoriere Dekodierfehler.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>

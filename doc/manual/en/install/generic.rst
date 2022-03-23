@@ -53,7 +53,7 @@ MQTT
 ~~~~
 
 To use the CometVisu as one of the MQTT participant you need a MQTT broker
-that can be contaced with WebSockets.
+that can be contacted with WebSockets.
 
 Backend configuration
 ~~~~~~~~~~~~~~~~~~~~~
@@ -67,6 +67,16 @@ environment variables.
 HTTP header / Docker environment variable
 .........................................
 
+.. spelling::
+
+    OpenHAB
+    Url
+    url
+    LoginUrl
+    mqtt
+    username
+    password
+
 The web server can pass setup information in the HTTP header of the
 config file. By using the official docker image of the CometVisu this can
 be achieved by setting the corresponding ``ENVIRONMENT`` parameters.
@@ -75,12 +85,12 @@ be achieved by setting the corresponding ``ENVIRONMENT`` parameters.
 HTTP header                     ``ENVIRONMENT``  use
 ------------------------------- ---------------- -----------
 X-CometVisu-Backend-Name        BACKEND_NAME     Name like ``knxd``, ``openhab`` or ``mqtt``
-X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL of the knxd login Ressource
-X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL of the MQTT login Ressource
+X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL of the knxd login resource
+X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL of the MQTT login resource
 X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  Only openHAB: path to the REST-API
-X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     Deprecated: UURL of the knxd or openHAB login ressource
-X-CometVisu-Backend-User        BACKEND_USERNAME Deprecated: UUser name, when needed for the MQTT broker or openHAB
-X-CometVisu-Backend-Pass        BACKEND_PASSWORD Deprecated: UPassword, when needed for the MQTT broker or openHAB
+X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     Deprecated: URL of the knxd or openHAB login resource
+X-CometVisu-Backend-User        BACKEND_USERNAME Deprecated: user name, when needed for the MQTT broker or openHAB
+X-CometVisu-Backend-Pass        BACKEND_PASSWORD Deprecated: password, when needed for the MQTT broker or openHAB
 =============================== ================ ===========
 
 .. warning::
@@ -98,8 +108,8 @@ as attributes:
 attribute           use
 ------------------- -----------
 backend             Name like ``knxd``, ``openhab`` or ``mqtt``
-backend-knxd-url    URL of the knxd login ressource
-backend-mqtt-url    URL of the MQTT login ressource
+backend-knxd-url    URL of the knxd login resource
+backend-mqtt-url    URL of the MQTT login resource
 backend-openhab-url Only openHAB: path to the REST-API
 backend-url         Deprecated: URL of the MQTT WebSocket
 username            Deprecated: User name, when needed for openHAB
