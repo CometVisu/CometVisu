@@ -3,6 +3,21 @@
 0.12.0
 ======
 
+### v0.12.0-RC9 (2022/03/23)
+
+- [#1252](https://github.com/CometVisu/CometVisu/pull/1252) Optimize diagram (@ChristianMayer)
+- [#1258](https://github.com/CometVisu/CometVisu/pull/1258) Fix documentation according to review. (@ChristianMayer)
+- [#1256](https://github.com/CometVisu/CometVisu/pull/1256) remove android blue background highlight on tap (@peuter)
+- [#1254](https://github.com/CometVisu/CometVisu/pull/1254) Make 2d3d demo work again (see also #1208) (@ChristianMayer)
+- [#1253](https://github.com/CometVisu/CometVisu/pull/1253) Optimize navbar handling. (@ChristianMayer)
+- [#1251](https://github.com/CometVisu/CometVisu/pull/1251) Fix touch passive warnings (@ChristianMayer)
+- [#1249](https://github.com/CometVisu/CometVisu/pull/1249) Handle when SVG for TrickOMatic is loading too quickly (@ChristianMayer)
+- [#1248](https://github.com/CometVisu/CometVisu/pull/1248) Bump simple-git from 2.35.1 to 3.3.0 in /.github/actions/github (@dependabot[bot])
+- [#1247](https://github.com/CometVisu/CometVisu/pull/1247) Clock plugin: Fix initialisation problems. (@ChristianMayer)
+- [#1246](https://github.com/CometVisu/CometVisu/pull/1246) fix gradient background definition (@peuter)
+- [#1245](https://github.com/CometVisu/CometVisu/pull/1245) Fix clients (@peuter)
+- [#1243](https://github.com/CometVisu/CometVisu/pull/1243) Fix MQTT retain and QoS (@ChristianMayer)
+
 ### v0.12.0-RC8 (2022/03/13)
 
 - [#1241](https://github.com/CometVisu/CometVisu/pull/1241) Fix clock plugin transform error (@ChristianMayer)
