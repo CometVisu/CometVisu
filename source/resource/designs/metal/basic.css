@@ -183,6 +183,7 @@ body br
   float:left;
   text-align:left;
   line-height: 2em;
+  -webkit-tap-highlight-color: transparent;
 }
 .widget .switchPressed, .widget .switchUnpressed, .widget .ui-slider {
 	 line-height: normal; 
