@@ -542,6 +542,7 @@ qx.Class.define('cv.Application',
           link: [
             {
               title: qx.locale.Manager.tr('Reload'),
+              type: 'reload',
               action: function (ev) {
                 let parent = ev.getTarget().parentNode;
                 while (parent) {

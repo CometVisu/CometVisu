@@ -68,6 +68,16 @@ aus den Umgebungsvariablen.
 HTTP-Header / Docker-Umgebungsvariablen
 .......................................
 
+.. spelling::
+
+    OpenHAB
+    LoginUrl
+    mqtt
+    Url
+    url
+    username
+    password
+
 Der Web-Server kann in den HTTP-Headern der Konfigurationsdatei die
 Backend-Parameter mit übergeben. Dies ist bei Verwendung des offiziellen
 Docker-Images der CometVisu leicht durch das Setzen entsprechender
@@ -122,7 +132,7 @@ URL
 ...
 
 Durch den URL Parameter ``backend`` kann auch durch den Seitenaufruf das Backend
-ausgewählt werden. Dies ist jedoch nur in Spezialfällen wie Entwicklungs- und
+ausgewählt werden. Dies ist jedoch nur in Spezialfällen wie Entwicklung- und
 Testbetrieb sinnvoll und bedingt, dass die Zugriffs-URLs bereits über eine der
 weiter oben stehenden Methoden gesetzt wurden.
 

@@ -10,7 +10,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
   */
   construct: function () {
     this.base(arguments);
-    this.__HTML_STRUCT = '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
+    this.__HTML_STRUCT = '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
     this.__supportedFeatures = {
       navbar: {
         top: true,
@@ -264,9 +264,13 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (!cv.Config.initialPage) {
         this.__detectInitialPage();
       }
-      const currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+      let currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
       if (currentPage) {
         this.setCurrentPage(currentPage);
+      } else {
+        // this page does not exist, fallback to start page
+        cv.Config.initialPage = 'id_';
+        currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
       }
 
       cv.ui.structure.pure.layout.Manager.adjustColumns();
@@ -284,7 +288,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       // run the Trick-O-Matic scripts for great SVG backdrops
       document.querySelectorAll('embed').forEach(function(elem) {
         if (typeof elem.getSVGDocument === 'function') {
-          if (elem.getSVGDocument().readyState !== 'complete') {
+          const svg = elem.getSVGDocument();
+          if (svg === null || svg.readyState !== 'complete') {
             elem.onload = cv.ui.TrickOMatic.run;
           } else {
             cv.ui.TrickOMatic.run.call(elem);
