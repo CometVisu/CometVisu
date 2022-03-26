@@ -277,7 +277,8 @@ qx.Class.define('cv.ui.Popup', {
         qx.event.Registration.addListener(ret_val, 'tap', function () {
           // note: this will call two events - one for the popup itself and
           //       one for the popup_background.
-          this.fireEvent('close');
+          // needs to be delayed to allow links inside the popup
+          new qx.util.DeferredCall(() => this.fireEvent('close')).schedule();
         }, this);
         const close = ret_val.querySelector('.popup_close');
         qx.event.Registration.addListener(close, 'tap', function () {

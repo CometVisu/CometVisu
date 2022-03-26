@@ -178,6 +178,8 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
                 const d = qxl.dialog.Dialog.confirm(msg, function (ok) {
                   if (ok) {
                     this.save(function () {
+                      // remove #manager to avoid reloading into manager
+                      window.location.hash = '';
                       window.location.reload();
                     });
                   }
