@@ -125,6 +125,9 @@
         </nav>
     </header>
     <main>
+        <aside mobile="false">
+            <p>This is my left side content</p>
+        </aside>
         <cv-page id="main" name="Start">
         <cv-group>
             <summary>Switches</summary>
@@ -220,14 +223,19 @@
                 <span slot="label">Zählerstand</span>
                 <span slot="unit">kWh</span>
             </cv-info>
+            <cv-info mapping="kWh">
+                <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn1/raw</cv-address>
+                <span slot="label">Einspeisung</span>
+                <span slot="unit">kWh</span>
+            </cv-info>
+            <cv-info format="%.2f">
+                <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn2/raw</cv-address>
+                <span slot="label">Gasverbrauch</span>
+                <span slot="unit">m³/h</span>
+            </cv-info>
         </cv-group>
         <cv-group>
             <summary>Show values</summary>
-            <cv-info mapping="kWh">
-                <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn0/raw</cv-address>
-                <span slot="label">Zählerstand</span>
-                <span slot="unit">kWh</span>
-            </cv-info>
             <cv-tile>
                 <cv-row colspan="3" row="last">
                     <label class="secondary">Meter</label>
@@ -285,7 +293,10 @@
             <cv-page id="audio" name="Musik"/>
         </cv-page>
         <cv-page id="comm" name="Kommunikation">
-            <cv-page id="visitors" name="Besucher"/>
+            <h1>Headline of parent</h1>
+            <cv-page id="visitors" name="Besucher">
+                <p>Hello World!</p>
+            </cv-page>
             <cv-page id="calls" name="Anrufe"/>
         </cv-page>
         <cv-popup modal="true" style="padding: 0" auto-close-timeout="120">
@@ -297,5 +308,12 @@
             </cv-button>
             <cv-address backend="main" mode="read" transform="OH:switch" target="open">Bell_FF</cv-address>
         </cv-popup>
+        <aside>
+            <p>This is my right side content</p>
+        </aside>
     </main>
+
+    <footer>
+        <p>This is my footer</p>
+    </footer>
 </config>

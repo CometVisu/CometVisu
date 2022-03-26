@@ -74,19 +74,58 @@ body {
     padding: 0;
     margin: 0;
 
-    > header {
-        border-bottom: 1px solid $borderColor;
-        box-shadow: 0 6px 8px 4px $shadowColor;
+    > header, > footer {
+        max-width: 100vw;
+        background-color: $appBackground;
 
         > cv-group {
             padding: var(--spacing);
         }
     }
 
+    &.mobile main aside[mobile="false"] {
+        display: none;
+    }
+
     main {
-        flex: auto;
+        flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
+        display: flex;
+        flex-wrap: wrap;
+
+        border-bottom: 1px solid $borderColor;
+        border-top: 1px solid $borderColor;
+
+        > cv-page {
+            &.active, &.sub-active {
+                flex-basis: 0;
+                flex-grow: 999;
+                min-inline-size: 50%;
+                box-shadow: inset 0 0 8px 8px rgb(0 0 0 / 20%);
+            }
+            &.sub-active {
+                content-visibility: visible;
+
+                > :not(cv-page) {
+                    content-visibility: hidden;
+                }
+            }
+        }
+
+        aside {
+            flex-grow: 1;
+            align-self: stretch;
+            padding: 0 var(--spacing);
+            background-color: $appBackground;
+        }
+
+        aside:first-child {
+            border-right: 1px solid $borderColor;
+        }
+        aside:last-child {
+            border-left: 1px solid $borderColor;
+        }
     }
 
     svg.defs-only {

@@ -10,6 +10,7 @@
         <xsd:element name="cv-meta" type="cv-meta" minOccurs="0"/>
         <xsd:element name="header" type="header"/>
         <xsd:element name="main" type="main"/>
+        <xsd:element name="footer" type="footer"/>
       </xsd:sequence>
       <xsd:attribute name="design" type="xsd:string" use="required" default="tile">
         <xsd:annotation>
@@ -149,6 +150,16 @@
     </xsd:sequence>
   </xsd:complexType>
 
+  <xsd:complexType name="footer">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="nav" type="nav" />
+        <xsd:element name="custom" type="custom"/>
+        <xsd:element name="cv-group" type="cv-group"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
   <xsd:complexType name="nav">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
@@ -180,8 +191,27 @@
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
+        <xsd:element name="aside" type="aside" minOccurs="0" maxOccurs="2"/>
       </xsd:choice>
     </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="aside">
+
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="nav" type="nav" />
+        <xsd:element name="custom" type="custom"/>
+        <xsd:element name="cv-group" type="cv-group"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="class"/>
+    <xsd:attribute name="mobile" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Controls the visibility on small screens.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit auf kleinen Bildschirmen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <!-- define a page -->
@@ -664,6 +694,7 @@
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
+    <xsd:attribute ref="format" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-status">

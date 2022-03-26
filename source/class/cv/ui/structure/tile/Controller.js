@@ -131,7 +131,19 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           for (let oldPage of document.querySelectorAll('cv-page.active')) {
             oldPage.classList.remove('active');
           }
+          for (let oldPage of document.querySelectorAll('cv-page.sub-active')) {
+            oldPage.classList.remove('sub-active');
+          }
           page.classList.add('active');
+          // mark parent pages that there is a active subpage
+          let parentElement = page.parentElement;
+          while (parentElement && parentElement.nodeName.toLowerCase() !== 'main') {
+            if (parentElement.nodeName.toLowerCase() === 'cv-page') {
+              parentElement.classList.add('sub-active');
+            }
+            parentElement = parentElement.parentElement;
+          }
+
           if (skipHistory === undefined) {
             const headline = page.getAttribute('name');
             let pageTitle = 'CometVisu';

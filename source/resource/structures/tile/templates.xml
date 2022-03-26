@@ -46,7 +46,7 @@
                 <label class="secondary"><slot name="label">LABEL</slot></label>
             </cv-row>
             <cv-row colspan="3" row="2">
-                <cv-value slot-mapping="">
+                <cv-value slot-mapping="" slot-format="">
                     <slot name="address">NEEDS ADDRESS</slot>
                     <p><label class="value large"/></p>
                     <p><label class="unit"><slot name="unit">UNIT</slot></label></p>
