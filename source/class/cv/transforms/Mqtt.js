@@ -35,6 +35,12 @@ qx.Class.define('cv.transforms.Mqtt', {
     cv.Transform.addTransform('MQTT', {
       'number': {
         name: 'MQTT_Number',
+        lname: {
+          'de': 'Zahl',
+          'en': 'number'
+        },
+        example: '42',
+        unit: '-',
         encode: function (phy) {
           return parseFloat(phy);
         },
@@ -45,6 +51,12 @@ qx.Class.define('cv.transforms.Mqtt', {
 
       'string': {
         name: 'MQTT_String',
+        lname: {
+          'de': 'Zeichenkette',
+          'en': 'string'
+        },
+        example: '"abc"',
+        unit: '-',
         encode: function (phy) {
           return phy.toString();
         },
@@ -55,6 +67,12 @@ qx.Class.define('cv.transforms.Mqtt', {
 
       'unixtime': {
         name: 'MQTT_unixtime',
+        lname: {
+          'de': 'UNIX Zeitstempel',
+          'en': 'unix timestamp'
+        },
+        example: '1641054600',
+        unit: '-',
         encode: function (phy) {
           return Math.round(phy.getTime()/1000);
         },
@@ -65,6 +83,12 @@ qx.Class.define('cv.transforms.Mqtt', {
 
       'timestring': {
         name: 'MQTT_timestring',
+        lname: {
+          'de': 'Uhrzeit-String',
+          'en': 'time string'
+        },
+        example: '"16:30:00"',
+        unit: '-',
         encode: function (phy) {
           return phy.toTimeString().split(' ')[0];
         },
@@ -83,6 +107,12 @@ qx.Class.define('cv.transforms.Mqtt', {
 
       'datetime': {
         name: 'MQTT_datetime',
+        lname: {
+          'de': 'ISO 8601 Zeit-String',
+          'en': 'ISO 8601 time string'
+        },
+        example: '"2022-01-01T16:30:00.000Z"',
+        unit: '-',
         encode: function (phy) {
           return phy.toISOString();
         },
@@ -148,7 +178,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           'de': 'HSV-Farbe als Zeichenkette',
           'en': 'HSV color as string'
         },
-        example: '360,100,100',
+        example: '"360,100,100"',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -200,7 +230,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           'de': 'HSL-Farbe als Zeichenkette',
           'en': 'HSL color as string'
         },
-        example: '360,100,100',
+        example: '"360,100,100"',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -252,7 +282,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           'de': 'RGB-Farbe als Zeichenkette',
           'en': 'RGB color as string'
         },
-        example: '100,100,100',
+        example: '"100,100,100"',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -304,7 +334,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           'de': 'RGBW-Farbe als Zeichenkette',
           'en': 'RGBW color as string'
         },
-        example: '100,100,100,100',
+        example: '"100,100,100,100"',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -359,7 +389,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           'de': 'RGB-Farbe',
           'en': 'RGB color'
         },
-        example: '#11FF88',
+        example: '"#11FF88"',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
@@ -388,7 +418,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           'de': 'RGBW-Farbe',
           'en': 'RGBW color'
         },
-        example: '#11FF88AA',
+        example: '"#11FF88AA"',
         unit: '-',
         encode: function (phy) {
           if (!(phy instanceof Map)) {
