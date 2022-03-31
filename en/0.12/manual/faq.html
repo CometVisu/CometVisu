@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FAQ &mdash; CometVisu</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>FAQ &mdash; CometVisu</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/faq.html"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -26,7 +29,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> CometVisu<img src="_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> CometVisu
+            <img src="_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -80,10 +84,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="faq">
+  <section id="faq">
 <h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
 <p>Frequently asked questions are answered here:</p>
-<div class="section" id="does-cometvisu-work-with-internet-explorer">
+<section id="does-cometvisu-work-with-internet-explorer">
 <h2>Does CometVisu work with Internet Explorer?<a class="headerlink" href="#does-cometvisu-work-with-internet-explorer" title="Permalink to this headline">¶</a></h2>
 <p>NO. Unfortunately at the moment Internet Explorer is not supported.
 This is due to the many peculiarities that need to be programmed and
@@ -93,8 +97,8 @@ welcome to work on it as well as to make it compatible with Internet
 Explorer. At the moment, the user only has access to one of the many,
 free ones Browsers such as Firefox, Google Chrome or Safari. A list of
 compatible browsers can be found here: <a class="reference internal" href="index.html#system-requirements"><span class="std std-ref">System Requirements</span></a></p>
-</div>
-<div class="section" id="can-the-cometvisu-also-be-operated-on-any-server-or-hardware">
+</section>
+<section id="can-the-cometvisu-also-be-operated-on-any-server-or-hardware">
 <h2>Can the CometVisu also be operated on any server or hardware?<a class="headerlink" href="#can-the-cometvisu-also-be-operated-on-any-server-or-hardware" title="Permalink to this headline">¶</a></h2>
 <p>YES. But this requires a lot of Linux knowledge. Basically,
 the CometVisu runs on any Linux based hardware for which there is a
@@ -103,12 +107,12 @@ Basically, the CometVisu protocol can also be implemented on systems
 where no eibd is running, or which are not connected to KNX at all.
 Finished solutions are not known to us at the moment.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The easiest way to install the CometVisu and to keep it updated is to
+<p class="admonition-title">Note</p>
+<p>The easiest way to install the CometVisu and to keep it updated is to
 use the <a class="reference internal" href="install/docker.html#docker"><span class="std std-ref">Docker container</span></a>.</p>
 </div>
-</div>
-<div class="section" id="is-there-password-protection-for-the-built-in-editor-or-visualization">
+</section>
+<section id="is-there-password-protection-for-the-built-in-editor-or-visualization">
 <h2>Is there password protection for the built-in editor or visualization?<a class="headerlink" href="#is-there-password-protection-for-the-built-in-editor-or-visualization" title="Permalink to this headline">¶</a></h2>
 <p>NO. At the moment, neither user administration nor password protection
 is integrated in the CometVisu. However, there is the possibility
@@ -119,29 +123,29 @@ change by group address. It is also possible to hide pages so that
 they can only be accessed via a group address (for example, external
 login for special pages). This feature is currently under
 development and therefore not released!</p>
-</div>
-<div class="section" id="can-multiple-designs-be-used-simultaneously-on-different-devices">
+</section>
+<section id="can-multiple-designs-be-used-simultaneously-on-different-devices">
 <h2>Can multiple designs be used simultaneously on different devices?<a class="headerlink" href="#can-multiple-designs-be-used-simultaneously-on-different-devices" title="Permalink to this headline">¶</a></h2>
 <p>YES. This is easily possible because the display of the
 visualization is taken over by the client browser. Therefore, there
 may be slight differences in the appearance of the same theme in
 different browsers. It is only necessary to create a separate config
 file for each design, since the design to be used is stored there.</p>
-</div>
-<div class="section" id="can-i-design-my-own-design-for-the-cometvisu">
+</section>
+<section id="can-i-design-my-own-design-for-the-cometvisu">
 <h2>Can I design my own design for the CometVisu?<a class="headerlink" href="#can-i-design-my-own-design-for-the-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>YES. That is easily possible. However, knowledge in website
 creation (HTML and especially CSS) is necessary. This allows the
 design to adapt to your own wishes.</p>
-</div>
-<div class="section" id="can-i-develop-my-own-widgets-for-cometvisu">
+</section>
+<section id="can-i-develop-my-own-widgets-for-cometvisu">
 <h2>Can I develop my own widgets for CometVisu?<a class="headerlink" href="#can-i-develop-my-own-widgets-for-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>YES. The CometVisu was specially designed so that everyone can
 develop their own widgets. The file <em>structure_custom.js</em>
 is available for this purpose. This file will not be overwritten
 by future updates. The widgets are programmed in JavaScript.</p>
-</div>
-<div class="section" id="can-i-participate-in-the-development-of-cometvisu">
+</section>
+<section id="can-i-participate-in-the-development-of-cometvisu">
 <h2>Can I participate in the development of CometVisu?<a class="headerlink" href="#can-i-participate-in-the-development-of-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>YES. We can use every helping hand. At the moment we are still
 urgently looking for programmers to help fix bugs and further develop
@@ -153,8 +157,8 @@ are welcome.</p>
 you are interested in joining CometVisu, please contact us at
 <a class="reference external" href="http://knx-user-forum.de">knx-user-forum</a> in subforum CometVisu.</p>
 <p>Information on the possibilities of cooperation can be found here: <a class="reference internal" href="colab/index.html"><span class="doc">Help the CometVisu project</span></a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

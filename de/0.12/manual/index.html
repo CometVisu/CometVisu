@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Willkommen bei der CometVisu! &mdash; CometVisu</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Willkommen bei der CometVisu! &mdash; CometVisu</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/index.html"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> CometVisu<img src="_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="#" class="icon icon-home"> CometVisu
+            <img src="_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -72,14 +76,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="willkommen-bei-der-cometvisu">
+  <section id="willkommen-bei-der-cometvisu">
 <h1>Willkommen bei der CometVisu!<a class="headerlink" href="#willkommen-bei-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p>CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der
 Hausautomation. Sie kann direkt auf den KNX-Bus zugreifen (über
 den eibd, bzw. knxd) oder auf alles aus der
 <a class="reference external" href="http://www.openhab.org/">OpenHAB</a>-Welt. Die aktuelle Version wird
 auf <a class="reference external" href="http://github.com/CometVisu/CometVisu">Github</a> veröffentlicht.</p>
-<div class="section" id="systemvoraussetzungen">
+<section id="systemvoraussetzungen">
 <span id="system-voraussetzungen"></span><h2>Systemvoraussetzungen<a class="headerlink" href="#systemvoraussetzungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Bedienung durch die Anwender erfolgt über einen Webbrowser. Die
 meisten aktuellen Browser werden unterstützt.</p>
@@ -87,43 +91,43 @@ meisten aktuellen Browser werden unterstützt.</p>
 man zusätzlich die CometVisu beeinflussen, zum Bespiel andere Configs
 oder Design laden, ebenso aber die Darstellung für Mobilgeräte wie z.B.
 Smartphones erzwingen.</p>
-</div>
-<div class="section" id="bedienung-der-cometvisu">
+</section>
+<section id="bedienung-der-cometvisu">
 <h2>Bedienung der CometVisu<a class="headerlink" href="#bedienung-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Hauptmenü befindet sich in der Fußzeile und besteht normalerweise
 aus verschiedenen Links:</p>
 <ul class="simple">
-<li>„<strong>CometVisu.org</strong>“ Link auf die Homepage des Projekts CometVisu</li>
-<li>„<strong>Reload</strong>“ um die aktuelle Seite neu aufzurufen.</li>
-<li>„<strong>Widget Demo</strong>“: Zeigt die verschiedenen Bedienelemente und ihre
-Verwendungsmöglichkeiten auf.</li>
-<li>„<strong>Edit</strong>:“ Wechselt in den Editor.</li>
-<li>„<strong>Check Config</strong>“: Tool, um die Konfigurationsdatei auf syntaktische
+<li><p>„<strong>CometVisu.org</strong>“ Link auf die Homepage des Projekts CometVisu</p></li>
+<li><p>„<strong>Reload</strong>“ um die aktuelle Seite neu aufzurufen.</p></li>
+<li><p>„<strong>Widget Demo</strong>“: Zeigt die verschiedenen Bedienelemente und ihre
+Verwendungsmöglichkeiten auf.</p></li>
+<li><p>„<strong>Edit</strong>:“ Wechselt in den Editor.</p></li>
+<li><p>„<strong>Check Config</strong>“: Tool, um die Konfigurationsdatei auf syntaktische
 Fehler zu überprüfen. „config visu_config is valid XML“ bedeutet,
 dass die Konfigurationsdatei formal in Ordnung ist, darunter wird dir
 aktuelle Konfigurationsdatei angezeigt. Sollten Fehler in der Datei
-vorliegen, so werden diese in der Darstellung hervorgehoben.</li>
+vorliegen, so werden diese in der Darstellung hervorgehoben.</p></li>
 </ul>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Über die Config-Datei kann man den Inhalt der Fußzeile den eigenen
+<p class="admonition-title">Hinweis</p>
+<p>Über die Config-Datei kann man den Inhalt der Fußzeile den eigenen
 Bedürfnissen anpassen</p>
 </div>
-</div>
-<div class="section" id="cometvisu-designs">
+</section>
+<section id="cometvisu-designs">
 <h2>CometVisu-Designs<a class="headerlink" href="#cometvisu-designs" title="Link zu dieser Überschrift">¶</a></h2>
 <ul class="simple">
-<li>Metal -&gt; das wohl beliebteste Design</li>
-<li>Pure</li>
-<li>Diskreet</li>
-<li>Discreet Sand</li>
-<li>Discreet Slim</li>
-<li>Alaska</li>
-<li>Alaska Slim</li>
+<li><p>Metal -&gt; das wohl beliebteste Design</p></li>
+<li><p>Pure</p></li>
+<li><p>Diskreet</p></li>
+<li><p>Discreet Sand</p></li>
+<li><p>Discreet Slim</p></li>
+<li><p>Alaska</p></li>
+<li><p>Alaska Slim</p></li>
 </ul>
 <p>Es ist auch möglich eigene Design zu implementieren.</p>
-</div>
-<div class="section" id="farben-in-der-cometvisu">
+</section>
+<section id="farben-in-der-cometvisu">
 <h2>Farben in der CometVisu<a class="headerlink" href="#farben-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>werden grundsätzlich hexadezimal im <a class="reference external" href="http://de.wikipedia.org/wiki/Hexadezimale_Farbdefinition">0xRGB
 Format</a>
@@ -133,8 +137,8 @@ angegeben.</p>
 oder <a class="reference external" href="http://de.selfhtml.org/helferlein/farben.htm">hier</a></p>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

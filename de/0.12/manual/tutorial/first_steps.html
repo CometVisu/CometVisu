@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial: Erste Schritte - eine Visu in einer halben Minute &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Tutorial: Erste Schritte - eine Visu in einer halben Minute &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/tutorial/first_steps.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -89,257 +93,257 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="tutorial-erste-schritte-eine-visu-in-einer-halben-minute">
+  <section id="tutorial-erste-schritte-eine-visu-in-einer-halben-minute">
 <h1>Tutorial: Erste Schritte - eine Visu in einer halben Minute<a class="headerlink" href="#tutorial-erste-schritte-eine-visu-in-einer-halben-minute" title="Link zu dieser Überschrift">¶</a></h1>
 <p>In diesem Tutorial wird gezeigt wie innerhalb einer halben Minute bereits die
 erste (natürlich rudimentäre) Visu erstellt werden kann.</p>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Dieses Tutorial wurde mit der Version 0.11 erstellt. Der Manager und Editor
+<p class="admonition-title">Wichtig</p>
+<p>Dieses Tutorial wurde mit der Version 0.11 erstellt. Der Manager und Editor
 wurde für neuere Versionen grundlegend überarbeitet. Das hier gezeigte
 Vorgehen ist jedoch leicht übertragbar.</p>
 </div>
-<div class="section" id="video">
+<section id="video">
 <h2>Video<a class="headerlink" href="#video" title="Link zu dieser Überschrift">¶</a></h2>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 24px;">
   <iframe src="https://www.youtube-nocookie.com/embed/ONFb_gxTaPk" style="position:absolute;width:100%;height:100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div></div>
-<div class="section" id="einzelschritte">
+</div></section>
+<section id="einzelschritte">
 <h2>Einzelschritte<a class="headerlink" href="#einzelschritte" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die im Video gezeigten Schritte werden hier noch einmal Stück für Stück
 aufgeführt.
 Es soll eine Beispiel-Visu für einen Heizungsregler im Wohnzimmer erstellt
 werden, für den gilt:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="38%" />
-<col width="25%" />
-<col width="38%" />
+<col style="width: 38%" />
+<col style="width: 25%" />
+<col style="width: 38%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Wert</th>
-<th class="head">GA</th>
-<th class="head">Datentyp</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Wert</p></th>
+<th class="head"><p>GA</p></th>
+<th class="head"><p>Datentyp</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Ist</td>
-<td>4/0/30</td>
-<td>DPT:9.001</td>
+<tbody>
+<tr class="row-even"><td><p>Ist</p></td>
+<td><p>4/0/30</p></td>
+<td><p>DPT:9.001</p></td>
 </tr>
-<tr class="row-odd"><td>Soll</td>
-<td>3/3/30</td>
-<td>DPT:9.001</td>
+<tr class="row-odd"><td><p>Soll</p></td>
+<td><p>3/3/30</p></td>
+<td><p>DPT:9.001</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Es ist ziemlich unwahrscheinlich, dass die eigene Installation
+<p class="admonition-title">Wichtig</p>
+<p>Es ist ziemlich unwahrscheinlich, dass die eigene Installation
 die gleichen Adressen für diese Werte verwendet. Daher bitte prüfen und die
 Werte beim Nachstellen dieses Tutorials entsprechend anpassen!</p>
 </div>
-<div class="section" id="erste-visu-in-unter-einer-halben-minute">
+<section id="erste-visu-in-unter-einer-halben-minute">
 <h3>Erste Visu - in unter einer halben Minute<a class="headerlink" href="#erste-visu-in-unter-einer-halben-minute" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Im <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> wird von der Default-Konfig „Editieren“ ausgewählt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps01.png"><img alt="../_images/first_steps01.png" src="../_images/first_steps01.png" style="width: 720.0px; height: 241.0px;" /></a>
-</div>
+</figure>
 <p>Über einen Links-Klick auf das „+“ vor <code class="docutils literal notranslate"><span class="pre">pages</span></code> werden die Kinder-Elemente
 eingeblendet:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps02.png"><img alt="../_images/first_steps02.png" src="../_images/first_steps02.png" style="width: 402.0px; height: 166.0px;" /></a>
-</div>
+</figure>
 <p>Über einen Rechts-Klick auf <code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">&quot;Start&quot;</span></code>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps03.png"><img alt="../_images/first_steps03.png" src="../_images/first_steps03.png" style="width: 316.0px; height: 274.0px;" /></a>
-</div>
+</figure>
 <p>… wird dort das Kontext-Menü angezeigt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps04.png"><img alt="../_images/first_steps04.png" src="../_images/first_steps04.png" style="width: 306.0px; height: 261.0px;" /></a>
-</div>
+</figure>
 <p>Dort wird über Links-Klick auf <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">child</span></code> das Menü zum Einfügen eines
 Kind-Elementes aufgerufen.</p>
 <p>In diesem Menü wird das <a class="reference internal" href="../config/widgets/info/index.html#info"><span class="std std-ref">info-Widget</span></a> ausgewählt…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps05.png"><img alt="../_images/first_steps05.png" src="../_images/first_steps05.png" style="width: 428.0px; height: 520.0px;" /></a>
-</div>
+</figure>
 <p>… und über „+“ wird das Info-Widget als Kind-Element der Seite
 (<a class="reference internal" href="../config/widgets/page/index.html#page"><span class="std std-ref">page</span></a>) „Start“ hinzugefügt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps06.png"><img alt="../_images/first_steps06.png" src="../_images/first_steps06.png" style="width: 441.0px; height: 280.0px;" /></a>
-</div>
+</figure>
 <p>Über Links-Klick auf das „+“ vor <code class="docutils literal notranslate"><span class="pre">info</span></code>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps07.png"><img alt="../_images/first_steps07.png" src="../_images/first_steps07.png" style="width: 443.0px; height: 353.0px;" /></a>
-</div>
+</figure>
 <p>… wird das Vor-Erzeugte <code class="docutils literal notranslate"><span class="pre">address</span></code>-Element angezeigt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps08.png"><img alt="../_images/first_steps08.png" src="../_images/first_steps08.png" style="width: 612.0px; height: 379.0px;" /></a>
-</div>
+</figure>
 <p>Dort wird die Adresse (GA) für die Ist-Temperatur (4/0/30) eingetragen…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps09.png"><img alt="../_images/first_steps09.png" src="../_images/first_steps09.png" style="width: 604.0px; height: 279.0px;" /></a>
-</div>
+</figure>
 <p>… und mit Return bestätigt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps10.png"><img alt="../_images/first_steps10.png" src="../_images/first_steps10.png" style="width: 605.0px; height: 276.0px;" /></a>
-</div>
+</figure>
 <p>Wird nun mit links auf <code class="docutils literal notranslate"><span class="pre">address</span></code> geklickt…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps11.png"><img alt="../_images/first_steps11.png" src="../_images/first_steps11.png" style="width: 604.0px; height: 275.0px;" /></a>
-</div>
+</figure>
 <p>… so erscheint rechts neben dem
 Elementen-Baum das Menü mit den Attributen für das <code class="docutils literal notranslate"><span class="pre">address</span></code>-Element:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps12.png"><img alt="../_images/first_steps12.png" src="../_images/first_steps12.png" style="width: 1264.0px; height: 280.0px;" /></a>
-</div>
+</figure>
 <p>Unter <code class="docutils literal notranslate"><span class="pre">transform</span></code> wird nun der Datentyp <code class="docutils literal notranslate"><span class="pre">DPT:9.001</span></code> eingetragen:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps13.png"><img alt="../_images/first_steps13.png" src="../_images/first_steps13.png" style="width: 618.0px; height: 184.0px;" /></a>
-</div>
+</figure>
 <p>Über „preview“ wird eine Vorschau des aktuellen Zustands der Konfig angezeigt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps14.png"><img alt="../_images/first_steps14.png" src="../_images/first_steps14.png" style="width: 1266.0px; height: 334.0px;" /></a>
-</div>
+</figure>
 <p>Wie im Video gezeigt ist nun nach gerade einmal 23 Sekunden die erste
 (allerdings noch sehr rudimentäre) Visu entstanden.</p>
 <p>Wenn die eigene Installation
 zu den oben angegebenen Beispiel-Adressen passen sollte, so wir bei dem
 Nachstellen dieses Tutorials auch eine Temperatur erscheinen:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps15.png"><img alt="../_images/first_steps15.png" src="../_images/first_steps15.png" style="width: 590.0px; height: 286.0px;" /></a>
-</div>
+</figure>
 <p>Über einen weiteren Klick auf „preview“ kommt man wieder zurück zum Editor:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps16.png"><img alt="../_images/first_steps16.png" src="../_images/first_steps16.png" style="width: 316.0px; height: 238.0px;" /></a>
-</div>
-</div>
-<div class="section" id="verfeinerung">
+</figure>
+</section>
+<section id="verfeinerung">
 <h3>Verfeinerung<a class="headerlink" href="#verfeinerung" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Um von einer blanken, nichtssagenden Zahl zu einer nutzbaren Visualisierung
 zu kommen, sollte diese noch etwas erweitert werden. Im ersten Schritt wird
 der Ausgabe-Wert so modifiziert, dass eine Nachkommastelle und die Einheit °C
 angezeigt wird.</p>
 <p>Über Links-Klick auf <code class="docutils literal notranslate"><span class="pre">info</span></code>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps17.png"><img alt="../_images/first_steps17.png" src="../_images/first_steps17.png" style="width: 1262.0px; height: 337.0px;" /></a>
-</div>
+</figure>
 <p>… wird in das Attribut <a class="reference internal" href="../config/format.html#format"><span class="std std-ref">format</span></a>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps18.png"><img alt="../_images/first_steps18.png" src="../_images/first_steps18.png" style="width: 1259.0px; height: 283.0px;" /></a>
-</div>
+</figure>
 <p>… der Wert <code class="docutils literal notranslate"><span class="pre">%.1f</span> <span class="pre">°C</span></code> eingetragen:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps19.png"><img alt="../_images/first_steps19.png" src="../_images/first_steps19.png" style="width: 617.0px; height: 213.0px;" /></a>
-</div>
+</figure>
 <p>Für eine Beschreibung wird nun noch ein <code class="docutils literal notranslate"><span class="pre">label</span></code> hinzugefügt.</p>
 <p>Rechts-Klick auf <code class="docutils literal notranslate"><span class="pre">info</span></code> und Links-Klick auf <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">child</span></code>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps20.png"><img alt="../_images/first_steps20.png" src="../_images/first_steps20.png" style="width: 602.0px; height: 328.0px;" /></a>
-</div>
+</figure>
 <p>… lässt ein <code class="docutils literal notranslate"><span class="pre">label</span></code>-Element hinzufügen:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps21.png"><img alt="../_images/first_steps21.png" src="../_images/first_steps21.png" style="width: 607.0px; height: 288.0px;" /></a>
-</div>
+</figure>
 <p>Im Elemente-Baum unter dem <code class="docutils literal notranslate"><span class="pre">label</span></code> wird noch ein <code class="docutils literal notranslate"><span class="pre">#text</span></code> Element benötigt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps22.png"><img alt="../_images/first_steps22.png" src="../_images/first_steps22.png" style="width: 606.0px; height: 313.0px;" /></a>
-</div>
+</figure>
 <p>Dieses wird mit dem Label für das Info-Widget befüllt, in diesem Tutorial
 folglich mit „Wohnzimmertemperatur“:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps23.png"><img alt="../_images/first_steps23.png" src="../_images/first_steps23.png" style="width: 602.0px; height: 358.0px;" /></a>
-</div>
+</figure>
 <p>Dem <code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">&quot;Start&quot;</span></code> wird nun für die Modifikation der Solltemperatur ein
 <a class="reference internal" href="../config/widgets/infotrigger/index.html#infotrigger"><span class="std std-ref">infotrigger-Widget</span></a> hinzugefügt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps24.png"><img alt="../_images/first_steps24.png" src="../_images/first_steps24.png" style="width: 603.0px; height: 445.0px;" /></a>
-</div>
+</figure>
 <p>Dies bekommt die <code class="docutils literal notranslate"><span class="pre">address</span></code> mit dem Wert aus diesem Tutorial, der <code class="docutils literal notranslate"><span class="pre">3/3/30</span></code>:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps25.png"><img alt="../_images/first_steps25.png" src="../_images/first_steps25.png" style="width: 605.0px; height: 450.0px;" /></a>
-</div>
+</figure>
 <p>Dazu gehört das <code class="docutils literal notranslate"><span class="pre">transform</span></code>-Attribut <code class="docutils literal notranslate"><span class="pre">DPT:9.001</span></code>:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps26.png"><img alt="../_images/first_steps26.png" src="../_images/first_steps26.png" style="width: 1257.0px; height: 441.0px;" /></a>
-</div>
+</figure>
 <p>Die Attribute des <code class="docutils literal notranslate"><span class="pre">infotrigger</span></code> selbst werden befüllt mit:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="19%" />
-<col width="18%" />
-<col width="63%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+<col style="width: 63%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Attribut</th>
-<th class="head">Wert</th>
-<th class="head">Bedeutung</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribut</p></th>
+<th class="head"><p>Wert</p></th>
+<th class="head"><p>Bedeutung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">upvalue</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">0.5</span></code></td>
-<td>Temperaturänderung für Auf bzw. „wärmer“</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">upvalue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
+<td><p>Temperaturänderung für Auf bzw. „wärmer“</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">downvalue</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">-0.5</span></code></td>
-<td>Temperaturänderung für Ab bzw. „kälter“</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">downvalue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-0.5</span></code></p></td>
+<td><p>Temperaturänderung für Ab bzw. „kälter“</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">uplabel</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">wärmer</span></code></td>
-<td>Button-Beschriftung für Auf</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uplabel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wärmer</span></code></p></td>
+<td><p>Button-Beschriftung für Auf</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">downlabel</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">kälter</span></code></td>
-<td>Button-Beschriftung für Ab</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">downlabel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kälter</span></code></p></td>
+<td><p>Button-Beschriftung für Ab</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">change</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">absolute</span></code></td>
-<td>Direkte („absolute“) Änderung des Wertes</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">change</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">absolute</span></code></p></td>
+<td><p>Direkte („absolute“) Änderung des Wertes</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">format</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">%.1f</span> <span class="pre">°C</span></code></td>
-<td>Eine Nachkommastelle mit angehängtem “ °C“</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">format</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%.1f</span> <span class="pre">°C</span></code></p></td>
+<td><p>Eine Nachkommastelle mit angehängtem “ °C“</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps27.png"><img alt="../_images/first_steps27.png" src="../_images/first_steps27.png" style="width: 1261.0px; height: 754.0px;" /></a>
-</div>
+</figure>
 <p>Nun nur noch die Beschriftung bzw. das Label für das Widget:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps28.png"><img alt="../_images/first_steps28.png" src="../_images/first_steps28.png" style="width: 603.0px; height: 541.0px;" /></a>
-</div>
+</figure>
 <p>Über <code class="docutils literal notranslate"><span class="pre">save</span></code>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps29.png"><img alt="../_images/first_steps29.png" src="../_images/first_steps29.png" style="width: 305.0px; height: 71.0px;" /></a>
-</div>
+</figure>
 <p>… wird die Konfiguration gespeichert:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps30.png"><img alt="../_images/first_steps30.png" src="../_images/first_steps30.png" style="width: 456.0px; height: 171.0px;" /></a>
-</div>
+</figure>
 <p>Zurück zum <code class="docutils literal notranslate"><span class="pre">manager</span></code>…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps31.png"><img alt="../_images/first_steps31.png" src="../_images/first_steps31.png" style="width: 595.0px; height: 75.0px;" /></a>
-</div>
+</figure>
 <p>… mit der Warnung, dass dadurch die letzten Änderungen verloren gehen. Dies
 ist jedoch hier nicht relevant, da die Änderungen ja gerade eben noch von uns
 gespeichert wurden:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps32.png"><img alt="../_images/first_steps32.png" src="../_images/first_steps32.png" style="width: 459.0px; height: 199.0px;" /></a>
-</div>
+</figure>
 <p>Im Manager wird über „Öffnen“…</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps33.png"><img alt="../_images/first_steps33.png" src="../_images/first_steps33.png" style="width: 721.0px; height: 235.0px;" /></a>
-</div>
+</figure>
 <p>… nun die fertige Visualisierung im Browser geöffnet:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../_images/first_steps34.png"><img alt="../_images/first_steps34.png" src="../_images/first_steps34.png" style="width: 1550.0px; height: 223.0px;" /></a>
-</div>
-</div>
-</div>
-</div>
+</figure>
+</section>
+</section>
+</section>
 
 
            </div>

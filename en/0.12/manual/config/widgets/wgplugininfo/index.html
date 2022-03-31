@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The WgPluginInfo widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>The WgPluginInfo widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/wgplugininfo/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -107,7 +111,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="the-wgplugininfo-widget">
+  <section id="the-wgplugininfo-widget">
 <span id="wgplugininfo"></span><h1>The WgPluginInfo widget<a class="headerlink" href="#the-wgplugininfo-widget" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
@@ -115,14 +119,14 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>Adds an dynamic field to the visu that shows live information from a WireGate plugin.</p>
 <p>Note: The service helper from
 <a class="reference external" href="https://raw.githubusercontent.com/OpenAutomationProject/Wiregate/master/tools/wg-plugindb/wg-plugindb.php">https://raw.githubusercontent.com/OpenAutomationProject/Wiregate/master/tools/wg-plugindb/wg-plugindb.php</a>
 must be “installed” in the directory /var/www/ (i.e. the web root)</p>
-</div>
-<div class="section" id="settings">
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -130,39 +134,44 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-wgplugininfo-element">
+<section id="allowed-attributes-in-the-wgplugininfo-element">
 <h3>Allowed attributes in the WgPluginInfo-element<a class="headerlink" href="#allowed-attributes-in-the-wgplugininfo-element" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <img alt="../../../_images/en_config_widgets_wgplugininfo_index_editor_attributes.png" src="../../../_images/en_config_widgets_wgplugininfo_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <img alt="../../../_images/en_config_widgets_wgplugininfo_index_editor_elements.png" src="../../../_images/en_config_widgets_wgplugininfo_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="examples">
+<figcaption>
+<p><span class="caption-text"><p>Elements in the editor</p>
+</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the WgPluginInfo widget.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

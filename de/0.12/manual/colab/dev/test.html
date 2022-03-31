@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Automatisierte Tests &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Automatisierte Tests &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/colab/dev/test.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -89,7 +93,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="automatisierte-tests">
+  <section id="automatisierte-tests">
 <h1>Automatisierte Tests<a class="headerlink" href="#automatisierte-tests" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die CometVisu nutzt zwei Arten von automatisierten Softwaretests: Unittests und End-to-End Tests.
 Bei Unittest geht es darum einzelne Funktionen innerhalb des Sourcecodes zu testen.
@@ -100,7 +104,7 @@ Hierbei wird also die CometVisu voll-automatisiert in einem Browser geöffnet un
 bedienen die Visu wie ein Benutzer und prüfen ob eine Aktion die gewünschten Veränderungen bewirkt.
 Zu kann man z.B. prüfen ob das Klicken auf einen Switch den passenden Wert an das Backend liefert und
 wenn das Backend ein Update für den Switch liefert, dieser diesen entsprechend anzeigt.</p>
-<div class="section" id="unittests">
+<section id="unittests">
 <h2>Unittests<a class="headerlink" href="#unittests" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Als Testrunner für die Unittests kommt <a class="reference external" href="https://karma-runner.github.io">Karma</a> zum Einsatz.
 Ausgeführt werden die Tests über das Kommandozeilen-Tool Grunt.
@@ -130,8 +134,8 @@ entwickelte (auf Chrome basierende) PhantomJS. Theoretisch sind hier aber alle a
 installierten Browser möglich. In dem ausführlichen Coverage Report, kann man bis hinunter in einzelne
 Sourcecode Dateien navigieren und dort sehen, welche Zeilen noch nicht getestet wurde. Das ist sehr
 nützlich, um zu sehen an welchen Stellen die Tests noch vervollständigt werden müssen</p>
-</div>
-<div class="section" id="eigene-tests-schreiben">
+</section>
+<section id="eigene-tests-schreiben">
 <h2>Eigene Tests schreiben<a class="headerlink" href="#eigene-tests-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Unittests werden mit Hilfe des <a class="reference external" href="http://jasmine.github.io/2.4/introduction.html">Jasmine Frameworks</a>
 geschrieben. Dadurch ist es möglich, die Tests fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
@@ -178,8 +182,8 @@ Wichtig ist hier, dass der Name der Testdatei auf <code class="docutils literal 
 </pre></div>
 </div>
 <p>Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

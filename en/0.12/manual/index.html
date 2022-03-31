@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the CometVisu! &mdash; CometVisu</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Welcome to the CometVisu! &mdash; CometVisu</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/index.html"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -26,7 +29,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> CometVisu<img src="_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="#" class="icon icon-home"> CometVisu
+            <img src="_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -71,13 +75,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="welcome-to-the-cometvisu">
+  <section id="welcome-to-the-cometvisu">
 <h1>Welcome to the CometVisu!<a class="headerlink" href="#welcome-to-the-cometvisu" title="Permalink to this headline">¶</a></h1>
 <p>CometVisu is a web based visualization for home automation.
 It can access the KNX-Bus directly (via eibd/knxd) or use
 <a class="reference external" href="http://www.openhab.org/">OpenHAB</a> as a backend. The current version
 can be found on <a class="reference external" href="http://github.com/CometVisu/CometVisu">Github</a>.</p>
-<div class="section" id="system-requirements">
+<section id="system-requirements">
 <span id="id1"></span><h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
 <p>Operation by the user takes place via a web browser. The
 Most of the current browsers are supported.</p>
@@ -85,45 +89,41 @@ Most of the current browsers are supported.</p>
 you additionally affect the CometVisu, for example by loading other configs
 or designs, as well forcing rendering for mobile devices such as mobile
 devices (e.g. smartphones).</p>
-</div>
-<div class="section" id="operating-cometvisu">
+</section>
+<section id="operating-cometvisu">
 <h2>Operating CometVisu<a class="headerlink" href="#operating-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>The main menu is in the footer and normally contains
 different links:</p>
 <ul>
-<li><p class="first">“<strong>CometVisu.org</strong>” link to the projects homepage</p>
-</li>
-<li><p class="first">“<strong>Reload</strong>” to reload the current page</p>
-</li>
-<li><p class="first">“<strong>Widget Demo</strong>” shows different widgets and there usage</p>
-</li>
-<li><p class="first">“<strong>Edit</strong>” opens up the editor.</p>
-</li>
-<li><p class="first">“<strong>Check Config</strong>” This tool will check the config file against
+<li><p>“<strong>CometVisu.org</strong>” link to the projects homepage</p></li>
+<li><p>“<strong>Reload</strong>” to reload the current page</p></li>
+<li><p>“<strong>Widget Demo</strong>” shows different widgets and there usage</p></li>
+<li><p>“<strong>Edit</strong>” opens up the editor.</p></li>
+<li><p>“<strong>Check Config</strong>” This tool will check the config file against
 syntax errors. <em>config visu_config is valid XML</em> signals
 a valid config file. The File will be display beneath. In
 case of errors, they will be highlighted.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">The content of the footer can be customized by the config XML-File.</p>
+<p class="admonition-title">Hint</p>
+<p>The content of the footer can be customized by the config XML-File.</p>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="cometvisu-designs">
+</section>
+<section id="cometvisu-designs">
 <h2>CometVisu-Designs<a class="headerlink" href="#cometvisu-designs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Metal -&gt; the most popular design</li>
-<li>Pure</li>
-<li>Diskreet</li>
-<li>Discreet Sand</li>
-<li>Discreet Slim</li>
-<li>Alaska</li>
-<li>Alaska Slim</li>
+<li><p>Metal -&gt; the most popular design</p></li>
+<li><p>Pure</p></li>
+<li><p>Diskreet</p></li>
+<li><p>Discreet Sand</p></li>
+<li><p>Discreet Slim</p></li>
+<li><p>Alaska</p></li>
+<li><p>Alaska Slim</p></li>
 </ul>
 <p>It is also possible to implement customized designs.</p>
-</div>
-<div class="section" id="colors-inside-cometvisu">
+</section>
+<section id="colors-inside-cometvisu">
 <h2>Colors inside CometVisu<a class="headerlink" href="#colors-inside-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>Colors will always be used in hexadezimal format <a class="reference external" href="http://de.wikipedia.org/wiki/Hexadezimale_Farbdefinition">0xRGB
 format</a></p>
@@ -131,8 +131,8 @@ format</a></p>
 or <a class="reference external" href="http://de.selfhtml.org/helferlein/farben.htm">here</a></p>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

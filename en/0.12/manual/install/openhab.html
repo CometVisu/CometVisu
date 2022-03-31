@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation on a Debian System with openHAB &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Installation on a Debian System with openHAB &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/install/openhab.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -93,29 +97,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="installation-on-a-debian-system-with-openhab">
+  <section id="installation-on-a-debian-system-with-openhab">
 <h1>Installation on a Debian System with openHAB<a class="headerlink" href="#installation-on-a-debian-system-with-openhab" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>For the operation of CometVisu with openHAB the following things are needed:</p>
 <ol class="arabic simple">
-<li>Server with working openHAB installation (all examples refer to
+<li><p>Server with working openHAB installation (all examples refer to
 an openHAB installation on a Debian based system via the supplied
 package manager <code class="docutils literal notranslate"><span class="pre">apt</span></code>, with other distributions the paths used
-in this manual may have to be adapted.</li>
-<li>A webserver with PHP-support installed.</li>
-<li>An unpacked release of CometVisu on the server</li>
-<li>An API-Token for openHAB</li>
+in this manual may have to be adapted.</p></li>
+<li><p>A webserver with PHP-support installed.</p></li>
+<li><p>An unpacked release of CometVisu on the server</p></li>
+<li><p>An API-Token for openHAB</p></li>
 </ol>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">Since version 0.12.0 no special openHAB bindings are required, the CometVisu communicates directly with
+<p class="admonition-title">Hint</p>
+<p>Since version 0.12.0 no special openHAB bindings are required, the CometVisu communicates directly with
 openHAB’s build-in REST API.</p>
 </div>
 <p>It is assumed that point 1 has already been met and only the following
 points are discussed below.</p>
-</div>
-<div class="section" id="install-webserver">
+</section>
+<section id="install-webserver">
 <h2>2. Install webserver<a class="headerlink" href="#install-webserver" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Install web server with PHP
 <span class="go">sudo apt install apache2 php libapache2-mod-php php-soap</span>
@@ -144,8 +148,8 @@ if everything runs on one server, you can use <code class="docutils literal notr
 <span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installing-the-cometvisu-on-the-server">
+</section>
+<section id="installing-the-cometvisu-on-the-server">
 <h2>3. Installing the CometVisu on the server<a class="headerlink" href="#installing-the-cometvisu-on-the-server" title="Permalink to this headline">¶</a></h2>
 <p>The CometVisu can be downloaded here: <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.
 The unpacked package contains the folder <em>cometvisu/release</em>, which must be copied to the server in the following path
@@ -160,8 +164,8 @@ All this can be done with the following console commands:</p>
 <span class="go">chown -R www-data:www-data /var/www/html</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-api-token-in-openhab">
+</section>
+<section id="create-api-token-in-openhab">
 <h2>4. Create API token in openHAB<a class="headerlink" href="#create-api-token-in-openhab" title="Permalink to this headline">¶</a></h2>
 <p>For some requests to openHAB the CometVisu needs to be authenticated. You can create credentials in the profile view of the openHAB UI
 (accessible by clicking on the username in the lower left corner) to generate an API token. To do this click on
@@ -177,8 +181,8 @@ username`` in the <code class="docutils literal notranslate"><span class="pre">p
 </div>
 <p>Now, the CometVisu is directly accessible in the browser with the URL <code class="docutils literal notranslate"><span class="pre">http://&lt;server&gt;/?config=&lt;name&gt;</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> is derived from the name of the <code class="docutils literal notranslate"><span class="pre">visu_config_&lt;name&gt;.xml</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

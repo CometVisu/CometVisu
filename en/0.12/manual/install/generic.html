@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prerequisites for the installation &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Prerequisites for the installation &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/install/generic.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -106,140 +110,140 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="prerequisites-for-the-installation">
+  <section id="prerequisites-for-the-installation">
 <span id="generic"></span><h1>Prerequisites for the installation<a class="headerlink" href="#prerequisites-for-the-installation" title="Permalink to this headline">¶</a></h1>
 <p>To be able to use the CometVisu the system needs to
 fulfill a few prerequisites.</p>
 <p>These are</p>
 <ul class="simple">
-<li>a backend to connect the KNX bus</li>
-<li>[optional] rrdtool for diagrams</li>
-<li>[optional] InfluxDB for diagrams</li>
-<li>a web server with (optional but recommended) PHP support</li>
-<li>the CometVisu software package</li>
+<li><p>a backend to connect the KNX bus</p></li>
+<li><p>[optional] rrdtool for diagrams</p></li>
+<li><p>[optional] InfluxDB for diagrams</p></li>
+<li><p>a web server with (optional but recommended) PHP support</p></li>
+<li><p>the CometVisu software package</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To be able to use the <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> or the <a class="reference internal" href="../config/editor.html#editor"><span class="std std-ref">Editor</span></a>
+<p class="admonition-title">Note</p>
+<p>To be able to use the <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> or the <a class="reference internal" href="../config/editor.html#editor"><span class="std std-ref">Editor</span></a>
 the prerequisite is PHP 7. The core of the CometVisu itself can be used
 without PHP though.</p>
 </div>
-<div class="section" id="backend">
+<section id="backend">
 <h2>Backend<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h2>
 <p>To be able to connect the devices with the CometVisu you need a “backend”.
 There are different possibilities:</p>
-<div class="section" id="knxd-eibd">
+<section id="knxd-eibd">
 <h3>knxd / eibd<a class="headerlink" href="#knxd-eibd" title="Permalink to this headline">¶</a></h3>
 <p>For a direct connection to the KNX bus the knxd is used.
 The installation of the backend is described under
 <a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="openhab">
+</section>
+<section id="openhab">
 <h3>openHAB<a class="headerlink" href="#openhab" title="Permalink to this headline">¶</a></h3>
 <p>To use openHAB as backend you can refer to
 <a class="reference internal" href="openhab.html"><span class="doc">Installation on a Debian System with openHAB</span></a>
 and
 <a class="reference internal" href="docker_openhab.html"><span class="doc">Installing on an Ubuntu system with openHAB and Docker</span></a>.</p>
-</div>
-<div class="section" id="mqtt">
+</section>
+<section id="mqtt">
 <h3>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h3>
 <p>To use the CometVisu as one of the MQTT participant you need a MQTT broker
 that can be contacted with WebSockets.</p>
-</div>
-<div class="section" id="backend-configuration">
+</section>
+<section id="backend-configuration">
 <h3>Backend configuration<a class="headerlink" href="#backend-configuration" title="Permalink to this headline">¶</a></h3>
 <p>To configure the CometVisu to use a given backend different possibilities are
 available, listed below.
 There a later listed method overrules those above it, e.g. the values from the
 config file will be used even when those are set differently with docker
 environment variables.</p>
-<div class="section" id="http-header-docker-environment-variable">
+<section id="http-header-docker-environment-variable">
 <h4>HTTP header / Docker environment variable<a class="headerlink" href="#http-header-docker-environment-variable" title="Permalink to this headline">¶</a></h4>
 <p>The web server can pass setup information in the HTTP header of the
 config file. By using the official docker image of the CometVisu this can
 be achieved by setting the corresponding <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> parameters.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="28%" />
-<col width="14%" />
-<col width="58%" />
+<col style="width: 28%" />
+<col style="width: 14%" />
+<col style="width: 58%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>HTTP header</td>
-<td><code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code></td>
-<td>use</td>
+<tbody>
+<tr class="row-odd"><td><p>HTTP header</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code></p></td>
+<td><p>use</p></td>
 </tr>
-<tr class="row-even"><td>X-CometVisu-Backend-Name</td>
-<td>BACKEND_NAME</td>
-<td>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+<tr class="row-even"><td><p>X-CometVisu-Backend-Name</p></td>
+<td><p>BACKEND_NAME</p></td>
+<td><p>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
 </tr>
-<tr class="row-odd"><td>X-CometVisu-Backend-KNXD-Url</td>
-<td>BACKEND_KNXD</td>
-<td>URL of the knxd login resource</td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-KNXD-Url</p></td>
+<td><p>BACKEND_KNXD</p></td>
+<td><p>URL of the knxd login resource</p></td>
 </tr>
-<tr class="row-even"><td>X-CometVisu-Backend-MQTT-Url</td>
-<td>BACKEND_MQTT</td>
-<td>URL of the MQTT login resource</td>
+<tr class="row-even"><td><p>X-CometVisu-Backend-MQTT-Url</p></td>
+<td><p>BACKEND_MQTT</p></td>
+<td><p>URL of the MQTT login resource</p></td>
 </tr>
-<tr class="row-odd"><td>X-CometVisu-Backend-OpenHAB-Url</td>
-<td>BACKEND_OPENHAB</td>
-<td>Only openHAB: path to the REST-API</td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-OpenHAB-Url</p></td>
+<td><p>BACKEND_OPENHAB</p></td>
+<td><p>Only openHAB: path to the REST-API</p></td>
 </tr>
-<tr class="row-even"><td>X-CometVisu-Backend-LoginUrl</td>
-<td>CGI_URL_PATH</td>
-<td>Deprecated: URL of the knxd or openHAB login resource</td>
+<tr class="row-even"><td><p>X-CometVisu-Backend-LoginUrl</p></td>
+<td><p>CGI_URL_PATH</p></td>
+<td><p>Deprecated: URL of the knxd or openHAB login resource</p></td>
 </tr>
-<tr class="row-odd"><td>X-CometVisu-Backend-User</td>
-<td>BACKEND_USERNAME</td>
-<td>Deprecated: user name, when needed for the MQTT broker or openHAB</td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-User</p></td>
+<td><p>BACKEND_USERNAME</p></td>
+<td><p>Deprecated: user name, when needed for the MQTT broker or openHAB</p></td>
 </tr>
-<tr class="row-even"><td>X-CometVisu-Backend-Pass</td>
-<td>BACKEND_PASSWORD</td>
-<td>Deprecated: password, when needed for the MQTT broker or openHAB</td>
+<tr class="row-even"><td><p>X-CometVisu-Backend-Pass</p></td>
+<td><p>BACKEND_PASSWORD</p></td>
+<td><p>Deprecated: password, when needed for the MQTT broker or openHAB</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The user name and password for the MQTT broker are stored in pain text
+<p class="admonition-title">Warning</p>
+<p>The user name and password for the MQTT broker are stored in pain text
 and are transported like that over the network!</p>
 </div>
-</div>
-<div class="section" id="config-file">
+</section>
+<section id="config-file">
 <h4>Config file<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h4>
 <p>In the all containing <code class="docutils literal notranslate"><span class="pre">&lt;pages&gt;</span></code> element the different parameters can be set
 as attributes:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="29%" />
-<col width="71%" />
+<col style="width: 29%" />
+<col style="width: 71%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>attribute</td>
-<td>use</td>
+<tbody>
+<tr class="row-odd"><td><p>attribute</p></td>
+<td><p>use</p></td>
 </tr>
-<tr class="row-even"><td>backend</td>
-<td>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
+<tr class="row-even"><td><p>backend</p></td>
+<td><p>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
 </tr>
-<tr class="row-odd"><td>backend-knxd-url</td>
-<td>URL of the knxd login resource</td>
+<tr class="row-odd"><td><p>backend-knxd-url</p></td>
+<td><p>URL of the knxd login resource</p></td>
 </tr>
-<tr class="row-even"><td>backend-mqtt-url</td>
-<td>URL of the MQTT login resource</td>
+<tr class="row-even"><td><p>backend-mqtt-url</p></td>
+<td><p>URL of the MQTT login resource</p></td>
 </tr>
-<tr class="row-odd"><td>backend-openhab-url</td>
-<td>Only openHAB: path to the REST-API</td>
+<tr class="row-odd"><td><p>backend-openhab-url</p></td>
+<td><p>Only openHAB: path to the REST-API</p></td>
 </tr>
-<tr class="row-even"><td>backend-url</td>
-<td>Deprecated: URL of the MQTT WebSocket</td>
+<tr class="row-even"><td><p>backend-url</p></td>
+<td><p>Deprecated: URL of the MQTT WebSocket</p></td>
 </tr>
-<tr class="row-odd"><td>username</td>
-<td>Deprecated: User name, when needed for openHAB</td>
+<tr class="row-odd"><td><p>username</p></td>
+<td><p>Deprecated: User name, when needed for openHAB</p></td>
 </tr>
-<tr class="row-even"><td>password</td>
-<td>Deprecated: Password, when needed for openHAB</td>
+<tr class="row-even"><td><p>password</p></td>
+<td><p>Deprecated: Password, when needed for openHAB</p></td>
 </tr>
 </tbody>
 </table>
@@ -251,16 +255,16 @@ as attributes:</p>
 ...
 </pre></div>
 </div>
-</div>
-<div class="section" id="url">
+</section>
+<section id="url">
 <h4>URL<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h4>
 <p>By the URL parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> the backend can also be selected. This is
 only relevant for special cases like development or testing. It also requires
 that the access URLs are set by one of the other methods.</p>
-</div>
-</div>
-</div>
-<div class="section" id="graph-tool-rrdtool">
+</section>
+</section>
+</section>
+<section id="graph-tool-rrdtool">
 <h2>Graph tool - RRDtool<a class="headerlink" href="#graph-tool-rrdtool" title="Permalink to this headline">¶</a></h2>
 <p>An optional but much-recommended component is rrdtool to
 provide the data for creating graphs. There are many ways
@@ -271,8 +275,8 @@ described under <a class="reference internal" href="install-rrd.html"><span clas
 </div>
 <p>Time series from an InfluxDB database are supported without any additional
 external software, only PHP is required.</p>
-</div>
-<div class="section" id="web-server">
+</section>
+<section id="web-server">
 <h2>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h2>
 <p>The relevant files to connect via eibd/knxd are CGI programs, usually
 located at <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code>. They must be executable for the account
@@ -288,7 +292,7 @@ chmod +x /usr/lib/cgi-bin/rrdfetch
 as well.</p>
 <p>To be able to use additional components like the editor the web server must
 support PHP.</p>
-<div class="section" id="lighttpd">
+<section id="lighttpd">
 <h3>lighttpd<a class="headerlink" href="#lighttpd" title="Permalink to this headline">¶</a></h3>
 <p>For the lighttpd web server an example configuration is given. (Other web
 servers are also possible, of course). Please make sure that you are
@@ -359,9 +363,9 @@ changing the example parameters to fit your need.</p>
 <span class="k">compress.filetype</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="installing-cometvisu">
+</section>
+</section>
+<section id="installing-cometvisu">
 <h2>Installing CometVisu<a class="headerlink" href="#installing-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>The CometVisu can be downloaded at <a class="reference external" href="https://github.com/CometVisu/CometVisu">https://github.com/CometVisu/CometVisu</a> and
 unpacked at the web root, most likely in it’s own directory (e.g.
@@ -371,13 +375,13 @@ unpacked at the web root, most likely in it’s own directory (e.g.
 <p>A documentation of an install procedure for the  <a class="reference external" href="http://de.wikipedia.org/wiki/Raspberry_Pi">Raspberry
 Pi</a> is
 available under <a class="reference internal" href="raspberry.html"><span class="doc">CometVisu auf Raspberry Pi</span></a>.</p>
-</div>
-<div class="section" id="testing-the-installed-cometvisu">
+</section>
+<section id="testing-the-installed-cometvisu">
 <h2>Testing the installed CometVisu<a class="headerlink" href="#testing-the-installed-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>Just open <a class="reference external" href="http://MyServer/visu/">http://MyServer/visu/</a> in the browser.</p>
 <p>Have fun!</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

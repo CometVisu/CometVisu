@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The gauge plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>The gauge plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/plugins/gauge/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -109,7 +113,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="the-gauge-plugin">
+  <section id="the-gauge-plugin">
 <span id="gauge"></span><h1>The gauge plugin<a class="headerlink" href="#the-gauge-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: NetFritz [NetFritz at gmx dot de]</div>
@@ -117,11 +121,11 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>This plugins integrates Gauge (in canvas) into the visualization</p>
-</div>
-<div class="section" id="settings">
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -129,386 +133,393 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-gauge-element">
+<section id="allowed-attributes-in-the-gauge-element">
 <h3>Allowed attributes in the gauge-element<a class="headerlink" href="#allowed-attributes-in-the-gauge-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="23">gauge</td>
-<td>type</td>
-<td><em>Radial</em>, <em>RadialBargraph</em>, <em>RadialVertical</em>, <em>Linear</em>, <em>LinearBargraph</em>, <em>DisplaySingle</em>, <em>DisplayMulti</em>, <em>Level</em>, <em>Compass</em>, <em>WindDirection</em>, <em>Horizon</em>, <em>Led</em>, <em>Clock</em>, <em>Battery</em>, <em>StopWatch</em>, <em>Altimeter</em>, <em>TrafficLight</em>, <em>LightBulb</em> or <em>Odometer</em></td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-odd"><td rowspan="23"><p>gauge</p></td>
+<td><p>type</p></td>
+<td><p><em>Radial</em>, <em>RadialBargraph</em>, <em>RadialVertical</em>, <em>Linear</em>, <em>LinearBargraph</em>, <em>DisplaySingle</em>, <em>DisplayMulti</em>, <em>Level</em>, <em>Compass</em>, <em>WindDirection</em>, <em>Horizon</em>, <em>Led</em>, <em>Clock</em>, <em>Battery</em>, <em>StopWatch</em>, <em>Altimeter</em>, <em>TrafficLight</em>, <em>LightBulb</em> or <em>Odometer</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>subtype</td>
-<td><em>type1</em>, <em>type2</em>, <em>type3</em>, <em>type4</em> or <em>type5</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>subtype</p></td>
+<td><p><em>type1</em>, <em>type2</em>, <em>type3</em>, <em>type4</em> or <em>type5</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>titleString</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>titleString</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>unitString</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>unitString</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>unitStringVisible</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>unitStringVisible</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>minValue</td>
-<td>decimal</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>minValue</p></td>
+<td><p>decimal</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>maxValue</td>
-<td>decimal</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>maxValue</p></td>
+<td><p>decimal</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>size</td>
-<td>decimal</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>size</p></td>
+<td><p>decimal</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>threshold</td>
-<td>decimal</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>threshold</p></td>
+<td><p>decimal</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>thresholdRising</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>thresholdRising</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>ledVisible</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>ledVisible</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>lcdVisible</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>lcdVisible</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>trendVisible</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>trendVisible</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>autoScroll</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>autoScroll</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>valuesNumeric</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>valuesNumeric</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>lcdDecimals</td>
-<td>number &gt; 0</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>lcdDecimals</p></td>
+<td><p>number &gt; 0</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>background</td>
-<td><em>DARK_GRAY</em>, <em>SATIN_GRAY</em>, <em>LIGHT_GRAY</em>, <em>WHITE</em>, <em>BLACK</em>, <em>BEIGE</em>, <em>BROWN</em>, <em>RED</em>, <em>GREEN</em>, <em>BLUE</em>, <em>ANTHRACITE</em>, <em>MUD</em>, <em>PUNCHED_SHEET</em>, <em>CARBON</em>, <em>STAINLESS</em>, <em>BRUSHED_METAL</em>, <em>BRUSHED_STAINLESS</em> or <em>TURNED</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p><em>DARK_GRAY</em>, <em>SATIN_GRAY</em>, <em>LIGHT_GRAY</em>, <em>WHITE</em>, <em>BLACK</em>, <em>BEIGE</em>, <em>BROWN</em>, <em>RED</em>, <em>GREEN</em>, <em>BLUE</em>, <em>ANTHRACITE</em>, <em>MUD</em>, <em>PUNCHED_SHEET</em>, <em>CARBON</em>, <em>STAINLESS</em>, <em>BRUSHED_METAL</em>, <em>BRUSHED_STAINLESS</em> or <em>TURNED</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>framedesign</td>
-<td><em>BLACK_METAL</em>, <em>METAL</em>, <em>SHINY_METAL</em>, <em>BRASS</em>, <em>STEEL</em>, <em>CHROME</em>, <em>GOLD</em>, <em>ANTHRACITE</em>, <em>TILTED_GRAY</em>, <em>TILTED_BLACK</em> or <em>GLOSSY_METAL</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>framedesign</p></td>
+<td><p><em>BLACK_METAL</em>, <em>METAL</em>, <em>SHINY_METAL</em>, <em>BRASS</em>, <em>STEEL</em>, <em>CHROME</em>, <em>GOLD</em>, <em>ANTHRACITE</em>, <em>TILTED_GRAY</em>, <em>TILTED_BLACK</em> or <em>GLOSSY_METAL</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>width</td>
-<td>dimension (number+unit)</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>width</p></td>
+<td><p>dimension (number+unit)</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>height</td>
-<td>dimension (number+unit)</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>dimension (number+unit)</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>valueColor</td>
-<td><em>RED</em>, <em>GREEN</em>, <em>BLUE</em>, <em>ORANGE</em>, <em>YELLOW</em>, <em>CYAN</em>, <em>MAGENTA</em>, <em>WHITE</em>, <em>GRAY</em>, <em>BLACK</em>, <em>RAITH</em>, <em>GREEN_LCD</em> or <em>JUG_GREEN</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>valueColor</p></td>
+<td><p><em>RED</em>, <em>GREEN</em>, <em>BLUE</em>, <em>ORANGE</em>, <em>YELLOW</em>, <em>CYAN</em>, <em>MAGENTA</em>, <em>WHITE</em>, <em>GRAY</em>, <em>BLACK</em>, <em>RAITH</em>, <em>GREEN_LCD</em> or <em>JUG_GREEN</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>mapping</td>
-<td>string</td>
-<td>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>string</p></td>
+<td><p>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td>target</td>
-<td>string</td>
-<td>The name of the page, that should be called.</td>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>string</p></td>
+<td><p>The name of the page, that should be called.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <img alt="../../../../_images/en_config_widgets_plugins_gauge_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_gauge_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>gauge</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>decimal</td>
-<td>Amount of columns this widget should be wide.</td>
+<td><p>colspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of columns this widget should be wide.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a medium screen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a small screen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>decimal</td>
-<td>Amount of rows this widget should be high.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of rows this widget should be high.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>string</td>
-<td>Reserved for future use.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>string</p></td>
+<td><p>Reserved for future use.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>string</td>
-<td>Width for the widget for 2D pages.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>gauge</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">name</abbr></td>
-<td>string</td>
-<td>Name of the icon registration.</td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Name of the icon registration.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>string</td>
-<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the icon in CSS notation (e.g. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>string</td>
-<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>gauge</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>Text to display a label for the widget.</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>Text to display a label for the widget.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>gauge</dt><dd><ul class="simple">
-<li><abbr title="mandatory">address</abbr></li>
+<li><p><abbr title="mandatory">address</abbr></p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">transform</abbr></td>
-<td>string</td>
-<td>Transformation of the bus system value to be shown.</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
-<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>decimal</td>
-<td>Position for format string when multiple addresses are used.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>string</td>
-<td>Only MQTT: JSON selector</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>decimal</td>
-<td>Only MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: retain flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: ignore decode errors.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>gauge</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <img alt="../../../../_images/en_config_widgets_plugins_gauge_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_gauge_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="examples">
+<figcaption>
+<p><span class="caption-text"><p>Elements in the editor</p>
+</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the gauge plugin.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

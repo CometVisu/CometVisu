@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Slide Widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>Das Slide Widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/slide/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -116,7 +120,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="das-slide-widget">
+  <section id="das-slide-widget">
 <span id="slide"></span><h1>Das Slide Widget<a class="headerlink" href="#das-slide-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
@@ -124,11 +128,11 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Der Slider (Schieberegler) wird oft für das Ansteuern von Rollos, Heizung und Dimmer benutzt.</p>
-</div>
-<div class="section" id="einstellungen">
+</section>
+<section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
@@ -137,326 +141,337 @@ Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Scree
 beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<div class="section" id="erlaubte-attribute-im-slide-element">
+<section id="erlaubte-attribute-im-slide-element">
 <h3>Erlaubte Attribute im Slide-Element<a class="headerlink" href="#erlaubte-attribute-im-slide-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="9">slide</td>
-<td>min</td>
-<td>Zahl</td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-odd"><td rowspan="9"><p>slide</p></td>
+<td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>max</td>
-<td>Zahl</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>step</td>
-<td>Zahl</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>step</p></td>
+<td><p>Zahl</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>mapping</td>
-<td>Text</td>
-<td>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>Text</td>
-<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>format</td>
-<td>Text</td>
-<td>Formatierung des Wertes (printf-Syntax).</td>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>send_on_finish</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Sende nur beim Loslassen des Sliders.</td>
+<tr class="row-even"><td><p>send_on_finish</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Sende nur beim Loslassen des Sliders.</p></td>
 </tr>
-<tr class="row-odd"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <img alt="../../../_images/de_config_widgets_slide_index_editor_attributes.png" src="../../../_images/de_config_widgets_slide_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+<figcaption>
+<p><span class="caption-text"><p>Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>slide</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>Zahl</td>
-<td>Spaltenanzahl für dieses Widget.</td>
+<td><p>colspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Spaltenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>Zahl</td>
-<td>Zeilenanzahl für dieses Widget.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeilenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>Text</td>
-<td>Für zukünftige Anwendungen reserviert.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>Text</p></td>
+<td><p>Für zukünftige Anwendungen reserviert.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>slide</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="Pflichtangabe">name</abbr></td>
-<td>Text</td>
-<td>Name unter dem das Icon registriert ist.</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>Text</td>
-<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>Text</td>
-<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>slide</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>slide</dt><dd><ul class="simple">
-<li><abbr title="Pflichtangabe">address</abbr></li>
+<li><p><abbr title="Pflichtangabe">address</abbr></p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="Pflichtangabe">transform</abbr></td>
-<td>Text</td>
-<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
-<td>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>Zahl</td>
-<td>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>Text</td>
-<td>Nur MQTT: JSON Selektor</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>Zahl</td>
-<td>Nur MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Nur MQTT: retain Flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Nur MQTT: ignoriere Dekodierfehler.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>slide</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <img alt="../../../_images/de_config_widgets_slide_index_editor_elements.png" src="../../../_images/de_config_widgets_slide_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+<figcaption>
+<p><span class="caption-text"><p>Elemente im Editor</p>
+</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das Slide Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das Slide Widget aus dem folgenden Screenshot erzeugt:</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <img alt="Slider, einfaches Beispiel" src="../../../_images/slide_simple.png" />
-<p class="caption"><span class="caption-text">Slider, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Slider, einfaches Beispiel</p>
+</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">step=</span><span class="s">&quot;1&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span> <span class="na">flavour=</span><span class="s">&quot;lithium&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;label&gt;</span>Spot Sofa<span class="nt">&lt;/label&gt;</span>
     <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>11/1/6<span class="nt">&lt;/address&gt;</span>
@@ -465,14 +480,13 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </pre></div>
 </div>
 <p class="rubric">Fußnoten</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

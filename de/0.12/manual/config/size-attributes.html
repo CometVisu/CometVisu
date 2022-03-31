@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ändern der Größe von Widget-Inhalten &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Ändern der Größe von Widget-Inhalten &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/size-attributes.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -98,46 +102,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="andern-der-grosze-von-widget-inhalten">
+  <section id="andern-der-grosze-von-widget-inhalten">
 <span id="size-attributes"></span><h1>Ändern der Größe von Widget-Inhalten<a class="headerlink" href="#andern-der-grosze-von-widget-inhalten" title="Link zu dieser Überschrift">¶</a></h1>
 <p>In folgenden Widgets stehen neben dem Kind-Element <code class="docutils literal notranslate"><span class="pre">layout</span></code> (legt die äußeren Widget-Abmessungen fest) weitere
 Attribute wie zB. <code class="docutils literal notranslate"><span class="pre">width</span></code> und <code class="docutils literal notranslate"><span class="pre">height</span></code> zur Beeinflussung des Inhaltes zur Verfügung:</p>
 <ul class="simple">
-<li><a class="reference internal" href="widgets/image/index.html"><span class="doc">Image</span></a></li>
-<li><a class="reference internal" href="widgets/video/index.html"><span class="doc">Video</span></a></li>
-<li><a class="reference internal" href="widgets/web/index.html"><span class="doc">Web</span></a></li>
-<li><a class="reference internal" href="widgets/plugins/diagram/index.html"><span class="doc">Diagram</span></a></li>
-<li>RSSlog</li>
-<li>RSS</li>
-<li><a class="reference internal" href="widgets/plugins/gauge/index.html"><span class="doc">Gauge</span></a></li>
+<li><p><a class="reference internal" href="widgets/image/index.html"><span class="doc">Image</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/video/index.html"><span class="doc">Video</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/web/index.html"><span class="doc">Web</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/plugins/diagram/index.html"><span class="doc">Diagram</span></a></p></li>
+<li><p>RSSlog</p></li>
+<li><p>RSS</p></li>
+<li><p><a class="reference internal" href="widgets/plugins/gauge/index.html"><span class="doc">Gauge</span></a></p></li>
 </ul>
 <p>Grundsätzlich wird empfohlen, zu Beginn ohne diese Attribute zu beginnen, da in den meisten Fällen die Größe des
 Inhaltes automatisch an die Widgetgröße angepasst wird.  Trotzdem kann es in einigen Fällen sinnvoll sein, zusätzlich
 das <code class="docutils literal notranslate"><span class="pre">width</span></code> oder <code class="docutils literal notranslate"><span class="pre">height</span></code> Attribut zu verwenden.</p>
 <p>Die Angabe erfolgt im CSS-Format und kann dabei in Pixel, Prozent oder relativ zur Schriftgröße erfolgen.</p>
-<div class="section" id="groszenangaben-in-pixel">
+<section id="groszenangaben-in-pixel">
 <h2>Größenangaben in Pixel<a class="headerlink" href="#groszenangaben-in-pixel" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Angabe in Pixel erfolgt im Format <code class="docutils literal notranslate"><span class="pre">width=&quot;300px&quot;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">height=&quot;200px&quot;</span></code>.</p>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Mit der Angabe in Pixel wird im Verhältnis zur Viewportgröße skaliert und nicht bezogen auf die physikalische
+<p class="admonition-title">Wichtig</p>
+<p>Mit der Angabe in Pixel wird im Verhältnis zur Viewportgröße skaliert und nicht bezogen auf die physikalische
 Auflösung des Displays. Die Viewport Größe ist für jedes Gerät auf Basis der Displaygröße (Bildschirmdiagonale)
 definiert. Eine Übersicht liefert zB. <a class="reference external" href="viewportsizes.com">viewportsizes.com</a></p>
 </div>
-</div>
-<div class="section" id="groszenangaben-in-prozent">
+</section>
+<section id="groszenangaben-in-prozent">
 <h2>Größenangaben in Prozent<a class="headerlink" href="#groszenangaben-in-prozent" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Angabe in Prozent erfolgt im Format <code class="docutils literal notranslate"><span class="pre">width=&quot;100%&quot;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">height=&quot;100%&quot;</span></code>.</p>
 <p>Die Prozentzahl bezieht sich dabei auf den sichtbaren Bereich der Widget-Größe. D.h. mit <code class="docutils literal notranslate"><span class="pre">width=100%</span></code> wird der Inhalt
 auf die gesamte Widgetbreite skaliert (sowohl vergrößert als auch verkleinert), mit <code class="docutils literal notranslate"><span class="pre">width=50%</span></code> wird das Widget zur
 Hälfte ausgefüllt.</p>
-</div>
-<div class="section" id="groszenangaben-relativ-zur-schriftgrosze">
+</section>
+<section id="groszenangaben-relativ-zur-schriftgrosze">
 <h2>Größenangaben relativ zur Schriftgröße<a class="headerlink" href="#groszenangaben-relativ-zur-schriftgrosze" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Angabe erfolgt im Format <code class="docutils literal notranslate"><span class="pre">width=&quot;50em&quot;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">height=&quot;30em&quot;</span></code>. Die Einheit „em“ ist dabei die Standardschriftgröße
 des Textes in der  Cometvisu.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

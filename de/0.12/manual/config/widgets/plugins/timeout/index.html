@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Timeout Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>Das Timeout Plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/plugins/timeout/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -111,7 +115,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="das-timeout-plugin">
+  <section id="das-timeout-plugin">
 <span id="timeout"></span><h1>Das Timeout Plugin<a class="headerlink" href="#das-timeout-plugin" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Carsten Tschach (<a class="reference external" href="mailto:Carsten&#37;&#52;&#48;Tschach&#46;com">Carsten<span>&#64;</span>Tschach<span>&#46;</span>com</a>)</div>
@@ -119,52 +123,52 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit dem Timeout-Plugin wird erreicht, dass die CometVisu nach Ablauf einer bestimmten Zeit wieder eine definierte Seite
 angezeigt wird. Das Timeout-Plugin aktiviert bei jedem Seitenwechsel (inkl. Page-Aufruf per GA) einen Timer, der
 durch jegliche Benutzerinteraktion (zB. Mauszeigerbewegung oder -klick) zurückgesetzt wird. Nach Ablauf eines
 festgelegten Timeouts ohne Aktivität wird die angegebene Seite der Visualisierung aktiviert.</p>
 <p>Das Timeout-Plugin hat kein sichtbares Widget.</p>
-<div class="section" id="erlaubte-attribute-im-diagramm-element">
+<section id="erlaubte-attribute-im-diagramm-element">
 <h3>Erlaubte Attribute im Diagramm-Element<a class="headerlink" href="#erlaubte-attribute-im-diagramm-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="3">timeout</td>
-<td>time</td>
-<td>Text</td>
-<td>Definiert die Zeit, bis die festgelegte Seite aufgerufen wird.</td>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><p>timeout</p></td>
+<td><p>time</p></td>
+<td><p>Text</p></td>
+<td><p>Definiert die Zeit, bis die festgelegte Seite aufgerufen wird.</p></td>
 </tr>
-<tr class="row-even"><td><abbr title="Pflichtangabe">target</abbr></td>
-<td>Text</td>
-<td>Der Name der Seite, die aufgerufen werden soll.</td>
+<tr class="row-even"><td><p><abbr title="Pflichtangabe">target</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Der Name der Seite, die aufgerufen werden soll.</p></td>
 </tr>
-<tr class="row-odd"><td>debug</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>debug</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p>Das timeout-Plugin hat keine Kind-Elemente.</p>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Plugin muss im &lt;meta&gt;-tag unter den Plugins aufgelistet sein. Im einem page-widget ist der
 Code <code class="docutils literal notranslate"><span class="pre">&lt;timeout</span> <span class="pre">time=&quot;60&quot;</span> <span class="pre">target=&quot;Main1&quot;/&gt;</span></code> einzutragen.</p>
@@ -193,8 +197,8 @@ Code <code class="docutils literal notranslate"><span class="pre">&lt;timeout</s
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

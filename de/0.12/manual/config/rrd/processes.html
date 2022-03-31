@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anzahl der Prozess auf Linux System &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Anzahl der Prozess auf Linux System &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/rrd/processes.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -104,7 +108,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="anzahl-der-prozess-auf-linux-system">
+  <section id="anzahl-der-prozess-auf-linux-system">
 <h1>Anzahl der Prozess auf Linux System<a class="headerlink" href="#anzahl-der-prozess-auf-linux-system" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die Anzahl der aktiven Prozesse auf einem Linux-System kann man mit diesem Script in eine RRD Datenbank füllen:</p>
 <p>Dieses Script funktioniert so wenn es unter /var/www/rrd/processes gespeichert (und ausführbar) ist</p>
@@ -138,7 +142,7 @@ RRA:AVERAGE:0.5:525600:3200
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/processes
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

@@ -154,4 +154,4 @@
   qx.ui.mobile.core.MResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResize.js.map?dt=1648073873039
+//# sourceMappingURL=MResize.js.map?dt=1648713983925

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Group Widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>Das Group Widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/group/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -104,7 +108,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="das-group-widget">
+  <section id="das-group-widget">
 <span id="group"></span><h1>Das Group Widget<a class="headerlink" href="#das-group-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
@@ -112,95 +116,98 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit dem Group-Widget können mehrere Widgets mit einem Rahmen gruppiert werden. Dies dient einerseits der Übersichtlichkeit,
 andererseits kann damit die automatische Anordnung der widgets (zB beim Drehen des Anzeigegerätes vom Hoch-
 ins Querformat) beeinflusst werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../_images/group_simple.png" src="../../../_images/group_simple.png" />
-</div>
+</figure>
 <p>Mit dem nowidget Attribut werden die Widget-Rahmen innerhalb der Gruppe unterdrückt. Damit können einzelne Widgets zu einem
 Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../_images/group_nowidget.png" src="../../../_images/group_nowidget.png" />
-</div>
-</div>
-<div class="section" id="einstellungen">
+</figure>
+</section>
+<section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Verhalten und Aussehen des Group-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<div class="section" id="erlaubte-attribute-im-group-element">
+<section id="erlaubte-attribute-im-group-element">
 <h3>Erlaubte Attribute im Group-Element<a class="headerlink" href="#erlaubte-attribute-im-group-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6">group</td>
-<td>name</td>
-<td>Text</td>
-<td>Name/Überschrift der Gruppe</td>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p>group</p></td>
+<td><p>name</p></td>
+<td><p>Text</p></td>
+<td><p>Name/Überschrift der Gruppe</p></td>
 </tr>
-<tr class="row-even"><td>nowidget</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Unterdrückt die Rahmen innerhalb der Gruppe (nur im Design Metal)</td>
+<tr class="row-even"><td><p>nowidget</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Unterdrückt die Rahmen innerhalb der Gruppe (nur im Design Metal)</p></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>target</td>
-<td>Text</td>
-<td>Der Name der Seite, die aufgerufen werden soll.</td>
+<tr class="row-even"><td><p>target</p></td>
+<td><p>Text</p></td>
+<td><p>Der Name der Seite, die aufgerufen werden soll.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> oder <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Mit dem Kind-Element layout kann für jede Gruppe die Größe festgelegt werden.
 Des weiteren können im Group-Widget alle vorhandenen Widgets verwendet werden.</p>
-</div>
-</div>
-<div class="section" id="xml-syntax-minimal">
+</section>
+</section>
+<section id="xml-syntax-minimal">
 <h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das Group Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das Group Widget aus dem folgenden Screenshot erzeugt:</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <img alt="Beispiel Group Widget" src="../../../_images/group_simple.png" />
-<p class="caption"><span class="caption-text">Beispiel Group Widget</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Beispiel Group Widget</p>
+</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Gruppenname&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;text</span> <span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
@@ -213,15 +220,18 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="beispiele">
+</section>
+<section id="beispiele">
 <h2>Beispiele<a class="headerlink" href="#beispiele" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="gruppe-mit-switch-und-info-widget">
+<section id="gruppe-mit-switch-und-info-widget">
 <h3>Gruppe mit Switch- und Info-Widget<a class="headerlink" href="#gruppe-mit-switch-und-info-widget" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <img alt="Beispiel Group- mit Info-Widget" src="../../../_images/group_info.png" />
-<p class="caption"><span class="caption-text">Beispiel Group- mit Info-Widget</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Beispiel Group- mit Info-Widget</p>
+</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
@@ -253,13 +263,16 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="zwei-gruppen-inkl-anwendung-von-nowidget">
+</section>
+<section id="zwei-gruppen-inkl-anwendung-von-nowidget">
 <h3>Zwei Gruppen inkl. Anwendung von nowidget<a class="headerlink" href="#zwei-gruppen-inkl-anwendung-von-nowidget" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <img alt="Beispiel Group Widget mit nowidget=&quot;true&quot;" src="../../../_images/group_nowidget.png" />
-<p class="caption"><span class="caption-text">Beispiel Group Widget mit nowidget=“true“</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Beispiel Group Widget mit nowidget=“true“</p>
+</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
@@ -302,9 +315,9 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

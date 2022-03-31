@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das InfoAction Widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>Das InfoAction Widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/infoaction/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -116,7 +120,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="das-infoaction-widget">
+  <section id="das-infoaction-widget">
 <span id="infoaction"></span><h1>Das InfoAction Widget<a class="headerlink" href="#das-infoaction-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
@@ -124,17 +128,17 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das InfoAction Widget kombiniert ein darstellendes <a class="reference internal" href="../info/index.html#info"><span class="std std-ref">Info</span></a>/<a class="reference internal" href="../text/index.html#text"><span class="std std-ref">Text</span></a> Widget mit
 einem bedienbaren Widget (z.B. <a class="reference internal" href="../switch/index.html#switch"><span class="std std-ref">Switch</span></a> oder <a class="reference internal" href="../trigger/index.html#trigger"><span class="std std-ref">Trigger</span></a>).</p>
 <p>Anwendungsfall: Wenn man eine Gruppe von Lichtern hat, kann man mit diesem Widget diese Gruppe schalten
 und gleichzeitig die Anzahl der eingeschalteten Lampen anzeigen.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../_images/infoaction_lights.png" src="../../../_images/infoaction_lights.png" />
-</div>
-</div>
-<div class="section" id="einstellungen">
+</figure>
+</section>
+<section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
@@ -143,229 +147,233 @@ Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Scree
 beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<div class="section" id="erlaubte-attribute-im-infoaction-element">
+<section id="erlaubte-attribute-im-infoaction-element">
 <h3>Erlaubte Attribute im InfoAction-Element<a class="headerlink" href="#erlaubte-attribute-im-infoaction-element" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Keine.</p>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>infoaction</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>Zahl</td>
-<td>Spaltenanzahl für dieses Widget.</td>
+<td><p>colspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Spaltenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>Zahl</td>
-<td>Zeilenanzahl für dieses Widget.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeilenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>Text</td>
-<td>Für zukünftige Anwendungen reserviert.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>Text</p></td>
+<td><p>Für zukünftige Anwendungen reserviert.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>infoaction</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="Pflichtangabe">name</abbr></td>
-<td>Text</td>
-<td>Name unter dem das Icon registriert ist.</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>Text</td>
-<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>Text</td>
-<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>infoaction</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="26%" />
-<col width="74%" />
+<col style="width: 26%" />
+<col style="width: 74%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Struktur</th>
-<th class="head">Erlaubte Kind-Elemente</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Erlaubte Kind-Elemente</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><dl class="first last docutils">
+<tbody>
+<tr class="row-even"><td><dl class="simple">
 <dt>infoaction</dt><dd><ul class="simple">
-<li>widgetinfo</li>
+<li><p>widgetinfo</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><a class="reference internal" href="../info/index.html#info"><span class="std std-ref">Info</span></a> oder <a class="reference internal" href="../text/index.html#text"><span class="std std-ref">Text</span></a></td>
+<td><p><a class="reference internal" href="../info/index.html#info"><span class="std std-ref">Info</span></a> oder <a class="reference internal" href="../text/index.html#text"><span class="std std-ref">Text</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>infoaction</dt><dd><ul class="simple">
-<li>widgetaction</li>
+<li><p>widgetaction</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><a class="reference internal" href="../switch/index.html#switch"><span class="std std-ref">Switch</span></a>, <a class="reference internal" href="../toggle/index.html#toggle"><span class="std std-ref">Toggle</span></a>, <a class="reference internal" href="../trigger/index.html#trigger"><span class="std std-ref">Trigger</span></a>,
+<td><p><a class="reference internal" href="../switch/index.html#switch"><span class="std std-ref">Switch</span></a>, <a class="reference internal" href="../toggle/index.html#toggle"><span class="std std-ref">Toggle</span></a>, <a class="reference internal" href="../trigger/index.html#trigger"><span class="std std-ref">Trigger</span></a>,
 <a class="reference internal" href="../pushbutton/index.html#pushbutton"><span class="std std-ref">Pushbutton</span></a>, <a class="reference internal" href="../urltrigger/index.html#urltrigger"><span class="std std-ref">URL-Trigger</span></a>,
 <a class="reference internal" href="../multitrigger/index.html#multitrigger"><span class="std std-ref">Multitrigger</span></a>, <a class="reference internal" href="../image/index.html#image"><span class="std std-ref">Image</span></a>,
 <a class="reference internal" href="../imagetrigger/index.html#imagetrigger"><span class="std std-ref">Imagetrigger</span></a>, <a class="reference internal" href="../pagejump/index.html#pagejump"><span class="std std-ref">Pagejump</span></a>,
-oder <a class="reference internal" href="../info/index.html#info"><span class="std std-ref">Info</span></a></td>
+oder <a class="reference internal" href="../info/index.html#info"><span class="std std-ref">Info</span></a></p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <img alt="../../../_images/de_config_widgets_infoaction_index_editor_elements.png" src="../../../_images/de_config_widgets_infoaction_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+<figcaption>
+<p><span class="caption-text"><p>Elemente im Editor</p>
+</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das InfoAction Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Dieses Beispiel zeigt die Anzahl der eingeschalteten Lampen zusammen mit einem
 Button, mit dem diese geschaltet werden können.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../_images/infoaction_lights.png" src="../../../_images/infoaction_lights.png" />
-</div>
-<div class="literal-block-wrapper container" id="infoaction-beispiel">
+</figure>
+<div class="literal-block-wrapper docutils container" id="infoaction-beispiel">
 <div class="code-block-caption"><span class="caption-text">InfoAction Beispiel</span><a class="headerlink" href="#infoaction-beispiel" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
@@ -401,8 +409,8 @@ Button, mit dem diese geschaltet werden können.</p>
 </pre></div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

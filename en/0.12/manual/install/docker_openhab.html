@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installing on an Ubuntu system with openHAB and Docker &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Installing on an Ubuntu system with openHAB and Docker &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/install/docker_openhab.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -93,23 +97,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="installing-on-an-ubuntu-system-with-openhab-and-docker">
+  <section id="installing-on-an-ubuntu-system-with-openhab-and-docker">
 <span id="docker-openhab-installation"></span><h1>Installing on an Ubuntu system with openHAB and Docker<a class="headerlink" href="#installing-on-an-ubuntu-system-with-openhab-and-docker" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="prerequisites">
+<section id="prerequisites">
 <h2>1. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>To run CometVisu with openHAB and Docker the following things are needed:</p>
 <ol class="arabic simple">
-<li>server with working openHAB installation.</li>
-<li>Docker CE and Docker Compose.</li>
+<li><p>server with working openHAB installation.</p></li>
+<li><p>Docker CE and Docker Compose.</p></li>
 </ol>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">No additional web server, such as Apache or similar with PHP support installed is needed, as this is
+<p class="admonition-title">Hint</p>
+<p>No additional web server, such as Apache or similar with PHP support installed is needed, as this is
 is all part of the container.
 The above items are all that is required to get up and running successfully.</p>
 </div>
-</div>
-<div class="section" id="installing-docker-ce-and-compose-on-the-server">
+</section>
+<section id="installing-docker-ce-and-compose-on-the-server">
 <h2>2. Installing Docker-CE and Compose on the server<a class="headerlink" href="#installing-docker-ce-and-compose-on-the-server" title="Permalink to this headline">¶</a></h2>
 <p>This can all be done by running the following console commands:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Update
@@ -131,8 +135,8 @@ The above items are all that is required to get up and running successfully.</p>
 <span class="go">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="system-preparations">
+</section>
+<section id="system-preparations">
 <h2>3. System preparations<a class="headerlink" href="#system-preparations" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Add current user to group *Docker*
 <span class="go">sudo usermod -aG docker $USER</span>
@@ -180,8 +184,8 @@ The above items are all that is required to get up and running successfully.</p>
 <span class="go">sudo chown -hR www-data:www-data resource/config</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-cometvisu-via-docker">
+</section>
+<section id="install-cometvisu-via-docker">
 <h2>4. Install CometVisu via Docker<a class="headerlink" href="#install-cometvisu-via-docker" title="Permalink to this headline">¶</a></h2>
 <p>Install the docker container now</p>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># create yaml file</span>
@@ -206,8 +210,8 @@ services:
 </pre></div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">Please make sure that you use 2 spaces for indentation when you edit the YAML-file.</p>
+<p class="admonition-title">Hint</p>
+<p>Please make sure that you use 2 spaces for indentation when you edit the YAML-file.</p>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>start the docker container
 <span class="go">docker-compose up -d</span>
@@ -220,8 +224,8 @@ services:
 </pre></div>
 </div>
 <p>You can access the CometVisu in your browser with the URL <code class="docutils literal notranslate"><span class="pre">http://&lt;container-IP&gt;:</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

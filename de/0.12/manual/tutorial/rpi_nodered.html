@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raspberry Pi: Node-RED in Docker installieren &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Raspberry Pi: Node-RED in Docker installieren &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/tutorial/rpi_nodered.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -94,7 +98,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="raspberry-pi-node-red-in-docker-installieren">
+  <section id="raspberry-pi-node-red-in-docker-installieren">
 <h1>Raspberry Pi: Node-RED in Docker installieren<a class="headerlink" href="#raspberry-pi-node-red-in-docker-installieren" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Ein Heimautomatisierungsserver braucht neben einer Visualisierung auch die
 Möglichkeit Logiken auszuführen. Hierfür gibt es verschiedene Möglichkeiten
@@ -110,47 +114,47 @@ durchgeführt wurde, so dürften die Schritte in diesem Tutorial bekannt
 vorkommen. Daher werden hier die Schritte ohne Screenshots beschrieben. Sollten
 folglich Fragen aufkommen wo welcher Punkt zu finden ist, so kann das Tutorial
 für die CometVisu Installation als Referenz verwendet werden.</p>
-<div class="section" id="installation-mit-portainer">
+<section id="installation-mit-portainer">
 <h2>Installation mit Portainer<a class="headerlink" href="#installation-mit-portainer" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Installation besteht auch für Node-RED aus zwei Teilen. Zu erst muss ein
 <cite>Volume</cite> für die persistenten Daten erzeugt werden bevor der <cite>Container</cite> selbst
 aus dem <cite>Image</cite> erzeugt werden kann.</p>
-<div class="section" id="ein-volume-erzeugen">
+<section id="ein-volume-erzeugen">
 <h3>Ein <cite>Volume</cite> erzeugen<a class="headerlink" href="#ein-volume-erzeugen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Als erstes muss ein neues Volume mit dem Namen <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> angelegt werden.</p>
-</div>
-<div class="section" id="einen-neuen-container-hinzufugen">
+</section>
+<section id="einen-neuen-container-hinzufugen">
 <h3>Einen neuen Container hinzufügen<a class="headerlink" href="#einen-neuen-container-hinzufugen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Nun muss ein neuer Container mit dem Namen <code class="docutils literal notranslate"><span class="pre">Node-RED</span></code> angelegt werden. Das
 Image ist <code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code>. Bei den Netzwerk-Ports muss am
 <cite>host</cite> und am <cite>container</cite> jeweils der Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> eingetragen werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/portainer_add_nodered.png" src="../_images/portainer_add_nodered.png" />
-</div>
+</figure>
 <p>Bei den <cite>Volumes</cite> muss im Container der Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> auf das vorhin angelegte
 Volume <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> gemappt werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/portainer_add_nodered_volume.png" src="../_images/portainer_add_nodered_volume.png" />
-</div>
+</figure>
 <p>Über die <cite>Restart Policy</cite> kann nun noch mit <code class="docutils literal notranslate"><span class="pre">Unless</span> <span class="pre">stopped</span></code> festgelegt
 werden, dass der Container auch nach einem Neustart oder bei einem Fehler neu
 gestartet werden soll.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/portainer_add_nodered_restart.png" src="../_images/portainer_add_nodered_restart.png" />
-</div>
+</figure>
 <p>Je nach Zeitzone an der der Server laufen soll, muss diese ggf. noch über
 das <cite>Environment</cite> eingestellt werden. Für einen Betrieb in Deutschland muss
 <code class="docutils literal notranslate"><span class="pre">TZ</span></code> mit dem Wert <code class="docutils literal notranslate"><span class="pre">Europe/Berlin</span></code> eingestellt werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/portainer_add_nodered_timezone.png" src="../_images/portainer_add_nodered_timezone.png" />
-</div>
+</figure>
 <p>Über <cite>Deploy the container</cite> ist die Installation abgeschlossen. Node-RED kann
 nun auf dem Raspberry Pi auf dem Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> mit dem Browser geöffnet werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/portainer_nodered.png" src="../_images/portainer_nodered.png" />
-</div>
+</figure>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
+<p class="admonition-title">Bemerkung</p>
 <p>Als erstes wird Node-RED eine Warnung mit dem Inhalt <cite>WARNING: please check
 you have started this container with a volume that is mounted to /data
 otherwise any flow changes are lost when you redeploy or upgrade the
@@ -158,21 +162,21 @@ container (e.g. upgrade to a more recent node-red docker image).
 If you are using named volumes you can ignore this warning. Double click
 or see info side panel to learn how to start Node-RED in Docker to save
 your work</cite> anzeigen.</p>
-<p class="last">Da wir das <cite>Named-Volume</cite> <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> gemappt
+<p>Da wir das <cite>Named-Volume</cite> <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> gemappt
 haben, ist diese Warnung für uns nicht relevant.</p>
 </div>
-</div>
-</div>
-<div class="section" id="installation-uber-die-kommandozeile">
+</section>
+</section>
+<section id="installation-uber-die-kommandozeile">
 <span id="nodered-installation-in-terminal"></span><h2>Installation über die Kommandozeile<a class="headerlink" href="#installation-uber-die-kommandozeile" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Ein <cite>Volume</cite> erzeugen<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Das Volume wird einfach erzeugt mit:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">volume</span> <span class="n">create</span> <span class="n">node_red_data</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="hinzufugen-des-cometvisu-containers">
+</section>
+<section id="hinzufugen-des-cometvisu-containers">
 <h3>Hinzufügen des CometVisu Containers<a class="headerlink" href="#hinzufugen-des-cometvisu-containers" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Node-RED lässt sich über das offizielle Image aus dem <cite>Docker Hub</cite> installieren
 mit:</p>
@@ -180,26 +184,33 @@ mit:</p>
 </pre></div>
 </div>
 <p>Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:</p>
-<dl class="glossary docutils">
-<dt id="term-d"><code class="docutils literal notranslate"><span class="pre">-d</span></code></dt><dd>Hierdurch wird der Container im Hintergrund gestartet.</dd>
-<dt id="term-name"><code class="docutils literal notranslate"><span class="pre">--name</span></code></dt><dd>Der Name unter dem der Container gemanagt wird.</dd>
-<dt id="term-p"><code class="docutils literal notranslate"><span class="pre">-p</span></code></dt><dd>Durch <code class="docutils literal notranslate"><span class="pre">1880:1880</span></code> wird der Port 1880 im Container auf den Port 1880 des
+<dl class="glossary simple">
+<dt id="term-d"><code class="docutils literal notranslate"><span class="pre">-d</span></code><a class="headerlink" href="#term-d" title="Permalink to this term">¶</a></dt><dd><p>Hierdurch wird der Container im Hintergrund gestartet.</p>
+</dd>
+<dt id="term-name"><code class="docutils literal notranslate"><span class="pre">--name</span></code><a class="headerlink" href="#term-name" title="Permalink to this term">¶</a></dt><dd><p>Der Name unter dem der Container gemanagt wird.</p>
+</dd>
+<dt id="term-p"><code class="docutils literal notranslate"><span class="pre">-p</span></code><a class="headerlink" href="#term-p" title="Permalink to this term">¶</a></dt><dd><p>Durch <code class="docutils literal notranslate"><span class="pre">1880:1880</span></code> wird der Port 1880 im Container auf den Port 1880 des
 Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
-Web-Server im Container von außen (über den Port 1880) zugegriffen werden.</dd>
-<dt id="term-v"><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd>Mit <code class="docutils literal notranslate"><span class="pre">node_red_data:/data</span></code> wird das vorhin angelegte Volume
-<code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> im Container gemappt.</dd>
-<dt id="term-e"><code class="docutils literal notranslate"><span class="pre">-e</span></code></dt><dd>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
+Web-Server im Container von außen (über den Port 1880) zugegriffen werden.</p>
+</dd>
+<dt id="term-v"><code class="docutils literal notranslate"><span class="pre">-v</span></code><a class="headerlink" href="#term-v" title="Permalink to this term">¶</a></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">node_red_data:/data</span></code> wird das vorhin angelegte Volume
+<code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> im Container gemappt.</p>
+</dd>
+<dt id="term-e"><code class="docutils literal notranslate"><span class="pre">-e</span></code><a class="headerlink" href="#term-e" title="Permalink to this term">¶</a></dt><dd><p>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
 <code class="docutils literal notranslate"><span class="pre">TZ=Europe/Berlin</span></code> wird die Zeitzone für Node-RED auf <cite>Berlin</cite>
-festgelegt.</dd>
-<dt id="term-restart"><code class="docutils literal notranslate"><span class="pre">--restart</span></code></dt><dd>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
+festgelegt.</p>
+</dd>
+<dt id="term-restart"><code class="docutils literal notranslate"><span class="pre">--restart</span></code><a class="headerlink" href="#term-restart" title="Permalink to this term">¶</a></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
 automatisch gestartet - so lange er nicht per Befehl explizit beendet
-wurde.</dd>
-<dt id="term-nodered-node-red-latest"><code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code></dt><dd>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</dd>
+wurde.</p>
+</dd>
+<dt id="term-nodered-node-red-latest"><code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code><a class="headerlink" href="#term-nodered-node-red-latest" title="Permalink to this term">¶</a></dt><dd><p>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</p>
+</dd>
 </dl>
 <p>Node-RED kann nun auf dem Raspberry Pi auf dem Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> mit dem Browser
 geöffnet werden.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
+<p class="admonition-title">Bemerkung</p>
 <p>Als erstes wird Node-RED eine Warnung mit dem Inhalt <cite>WARNING: please check
 you have started this container with a volume that is mounted to /data
 otherwise any flow changes are lost when you redeploy or upgrade the
@@ -207,12 +218,12 @@ container (e.g. upgrade to a more recent node-red docker image).
 If you are using named volumes you can ignore this warning. Double click
 or see info side panel to learn how to start Node-RED in Docker to save
 your work</cite> anzeigen.</p>
-<p class="last">Da wir das <cite>Named-Volume</cite> <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> gemappt
+<p>Da wir das <cite>Named-Volume</cite> <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> gemappt
 haben, ist diese Warnung für uns nicht relevant.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

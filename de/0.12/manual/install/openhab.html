@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation auf einem Debian System mit openHAB &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Installation auf einem Debian System mit openHAB &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/install/openhab.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -92,27 +96,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="installation-auf-einem-debian-system-mit-openhab">
+  <section id="installation-auf-einem-debian-system-mit-openhab">
 <h1>Installation auf einem Debian System mit openHAB<a class="headerlink" href="#installation-auf-einem-debian-system-mit-openhab" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="kurzubersicht">
+<section id="kurzubersicht">
 <h2>Kurzübersicht<a class="headerlink" href="#kurzubersicht" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für den Betrieb der CometVisu mit openHAB werden folgende Dinge benötigt:</p>
 <ol class="arabic simple">
-<li>Server mit funktionierender openHAB Installation (alle Beispiele beziehen sich auf eine openHAB Installation
+<li><p>Server mit funktionierender openHAB Installation (alle Beispiele beziehen sich auf eine openHAB Installation
 auf einem Debian basierten System über den mitgelieferten Paketmanager <code class="docutils literal notranslate"><span class="pre">apt</span></code>, bei anderen Distributionen
-müssen ggf. die in dieser Anleitung benutzten Pfade angepasst werden.</li>
-<li>Webserver mit PHP-Unterstützung installieren</li>
-<li>Ein entpacktes Release der CometVisu auf dem Server</li>
-<li>API-Token in openHAB erstellen</li>
+müssen ggf. die in dieser Anleitung benutzten Pfade angepasst werden.</p></li>
+<li><p>Webserver mit PHP-Unterstützung installieren</p></li>
+<li><p>Ein entpacktes Release der CometVisu auf dem Server</p></li>
+<li><p>API-Token in openHAB erstellen</p></li>
 </ol>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Seit Version 0.12.0 werden keinerlei openHAB-Erweiterungen mehr benötigt, um die CometVisu nutzen zu können.
+<p class="admonition-title">Hinweis</p>
+<p>Seit Version 0.12.0 werden keinerlei openHAB-Erweiterungen mehr benötigt, um die CometVisu nutzen zu können.
 Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zur Kommunikation.</p>
 </div>
 <p>Es wird davon ausgegangen, dass Punkt 1 bereits erfüllt ist und im folgenden nur auf die weiteren Punkte eingegangen.</p>
-</div>
-<div class="section" id="webserver-installieren">
+</section>
+<section id="webserver-installieren">
 <h2>2. Webserver installieren<a class="headerlink" href="#webserver-installieren" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Webserver mit PHP installieren
 <span class="go">sudo apt install apache2 php libapache2-mod-php php-soap</span>
@@ -141,8 +145,8 @@ eingetragen werden).</p>
 <span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installation-der-cometvisu-auf-dem-server">
+</section>
+<section id="installation-der-cometvisu-auf-dem-server">
 <h2>3. Installation der CometVisu auf dem Server<a class="headerlink" href="#installation-der-cometvisu-auf-dem-server" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die CometVisu kann hier herunter geladen werden: <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.
 Das entpackte Paket enthält den Ordner <em>cometvisu/release</em>, welcher auf den Server in folgenden Pfad
@@ -157,8 +161,8 @@ Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:</p>
 <span class="go">chown -R www-data:www-data /var/www/html</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="api-token-in-openhab-erstellen">
+</section>
+<section id="api-token-in-openhab-erstellen">
 <h2>4. API-Token in openHAB erstellen<a class="headerlink" href="#api-token-in-openhab-erstellen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für einige Anfragen an openHAB benötigt die CometVisu Zugangsdaten. Man kann in der Profilansicht der openHAB UI
 (erreichbar durch einen Klick auf den Usernamen unten links) ein API-Token generieren. Dazu klickt man auf
@@ -168,8 +172,8 @@ jetzt kopiert werden (es wird nur in diesem Moment einmalig angezeigt und kann s
 <code class="docutils literal notranslate"><span class="pre">username</span></code> in das <code class="docutils literal notranslate"><span class="pre">pages</span></code> Element der CometVisu-Config-Datei eingetragen werden.</p>
 <p>Die CometVisu ist dann direkt unter der URL <code class="docutils literal notranslate"><span class="pre">http://&lt;server&gt;/?config=&lt;name&gt;</span></code> im Browser erreichbar,
 wobei sich <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> vom Namen der <code class="docutils literal notranslate"><span class="pre">visu_config_&lt;name&gt;.xml</span></code> ableitet.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

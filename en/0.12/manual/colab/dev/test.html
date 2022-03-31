@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Automated tests &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Automated tests &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/colab/dev/test.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -88,7 +92,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="automated-tests">
+  <section id="automated-tests">
 <h1>Automated tests<a class="headerlink" href="#automated-tests" title="Permalink to this headline">¶</a></h1>
 <p>The CometVisu uses two types of automated software tests: unittests and
 end-to-end tests. Unittest is about testing individual functions within the
@@ -101,7 +105,7 @@ browser and the tests operate the Visu as a user and check whether an action
 causes the desired changes. For example, one can Check if clicking on a
 switch returns the appropriate value to the backend and if the backend
 provides an update for the switch, it displays this accordingly.</p>
-<div class="section" id="unittests">
+<section id="unittests">
 <h2>Unittests<a class="headerlink" href="#unittests" title="Permalink to this headline">¶</a></h2>
 <p>The test runner for the tests is <a class="reference external" href="https://karma-runner.github.io">Karma</a>.
 The tests are executed via the command line tool Grunt. If you have not
@@ -133,8 +137,8 @@ PhantomJS. Theoretically, all browsers installed on the local system are
 possible here. In the detailed coverage report, you can navigate down to
 individual source code files and see which lines have not yet been tested.
 This is very useful to see where the tests still need to be completed.</p>
-</div>
-<div class="section" id="write-own-tests">
+</section>
+<section id="write-own-tests">
 <h2>Write own tests<a class="headerlink" href="#write-own-tests" title="Permalink to this headline">¶</a></h2>
 <p>The unit tests are written using the Jasmine Framework
 <a class="reference external" href="http://jasmine.github.io/2.4/introduction.html">http://jasmine.github.io/2.4/introduction.html</a>. This makes it
@@ -186,8 +190,8 @@ otherwise it will not be found by the testrunner.</p>
 </div>
 <p>As examples of how to write tests and what things to test like,
 the existing tests should serve.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

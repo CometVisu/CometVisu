@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Der CometVisu Manager &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Der CometVisu Manager &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/manager.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -95,32 +99,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="der-cometvisu-manager">
+  <section id="der-cometvisu-manager">
 <span id="manager"></span><h1>Der CometVisu Manager<a class="headerlink" href="#der-cometvisu-manager" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Der Manager lässt über eine einfache grafische Oberfläche die verschiedensten
 Konfigurationsdateien verwalten (anlegen, bearbeiten, ersetzen, löschen).
 Außerdem können die die <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfigurationen</span></a> so wie
 Medien-Dateien (z.B. Hintergrundbilder) verwaltet werden.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Der Manager kann geöffnet werden, indem man die Tasten-Kombination „Strg+M“ in einer laufenden CometVisu Instanz drückt
+<p class="admonition-title">Hinweis</p>
+<p>Der Manager kann geöffnet werden, indem man die Tasten-Kombination „Strg+M“ in einer laufenden CometVisu Instanz drückt
 oder beim Laden der CometVisu den URL-Parameter <cite>manager=1</cite> hinzufügt.</p>
 </div>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/manager.png" src="../_images/manager.png" />
-</div>
+</figure>
 <p>Die jeweiligen Funktionen sind über Menüs, Toolbars oder Buttons erreichbar. Die Startseite des Managers setzt sich aus
 folgenden Komponenten zusammen (von oben nach unten):</p>
 <ul class="simple">
-<li>Menüleiste ganz oben für generelle Funktionen</li>
-<li>Tab-Leiste zur Anzeige der gerade geöffneten Dateien.</li>
-<li>Tab-Bar zum Wechsel zwischen einer tabellarischen und einer Vorschau-Ansicht.</li>
-<li>Der Liste der Konfigurationsdateien mit eigener Tab-Bar für spezifische Funktionen.</li>
-<li>Der Liste der Demo-Konfigurationsdateien (muss ausgeklappt werden durch Klick auf den Titel)</li>
-<li>Der Liste der Mediendateien (sofern vorhanden)</li>
-<li>Speziellen Funktionen, wie die Versteckte Konfiguration oder eine Ansicht aller Icons.</li>
+<li><p>Menüleiste ganz oben für generelle Funktionen</p></li>
+<li><p>Tab-Leiste zur Anzeige der gerade geöffneten Dateien.</p></li>
+<li><p>Tab-Bar zum Wechsel zwischen einer tabellarischen und einer Vorschau-Ansicht.</p></li>
+<li><p>Der Liste der Konfigurationsdateien mit eigener Tab-Bar für spezifische Funktionen.</p></li>
+<li><p>Der Liste der Demo-Konfigurationsdateien (muss ausgeklappt werden durch Klick auf den Titel)</p></li>
+<li><p>Der Liste der Mediendateien (sofern vorhanden)</p></li>
+<li><p>Speziellen Funktionen, wie die Versteckte Konfiguration oder eine Ansicht aller Icons.</p></li>
 </ul>
-<div class="section" id="verfugbare-cometvisu-konfigurationen">
+<section id="verfugbare-cometvisu-konfigurationen">
 <h2>Verfügbare CometVisu Konfigurationen<a class="headerlink" href="#verfugbare-cometvisu-konfigurationen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>In der Liste werden alle verfügbaren Konfigurationen aufgelistet, aufgeteilt in „normale“, editierbare
 Konfigurationsdateien und nicht-editierbare Demo-Konfigurationen. Unter jeder Konfigurationsdatei
@@ -128,53 +132,62 @@ befindet sich eine Listen mit Buttons, die den Schnellzugriff auf die wichtigste
 Damit kann die Datei heruntergeladen, angesehen oder bearbeitet werden. Weitere Funktionen sind über ein
 Kontextmenü, welches über einen Klick mit der rechten Maustaste auf das Datei-Symbol oder einem Klick mit der
 linken Maustaste auf den 2. Button unter dem Dateisymbol geöffnet werden kann.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/manager_context.png" src="../_images/manager_context.png" />
-</div>
-<dl class="docutils">
-<dt>Duplizieren</dt><dd>Legt eine Kopie der Konfiguration unter anderem Namen an.</dd>
-<dt>Öffnen</dt><dd>Öffnet die Konfiguration mit dem voreingestellen Standard-Editor (Diese Einstellung kann über die oberste Menüleiste
-unter Einstellungen angepasst werden).</dd>
-<dt>Öffnen mit</dt><dd>Konfigurationsdateien können normal geöffnet oder in 2 verschiedenen Editoren bearbeitet werden.</dd>
-<dt>Vergleichen mit</dt><dd>Steht nur zur Verfügung, wenn die Konfigurationsdatei bereits geändert worden ist. Dann kann die aktuelle Version
-mit älteren Versionen verglichen werden, um ein genaueres Bild von den Änderungen zu bekommen.</dd>
-<dt>Umbenennen</dt><dd>Ändern des Dateinamens.</dd>
-<dt>Löschen</dt><dd>Löscht die Konfiguration.</dd>
-<dt>Herunterladen</dt><dd>Lädt die Konfiguration herunter, so dass diese lokal gesichert oder bearbeitet
-werden kann.</dd>
-<dt>Ersetzen</dt><dd>Lädt eine Konfiguration hoch und ersetzt die bestehende.</dd>
-<dt>Prüfen</dt><dd>Überprüft die Validität der Konfiguration, also ob die Syntax der
-<a class="reference internal" href="xml-format.html#xml-format"><span class="std std-ref">XML-Datei</span></a> gültig ist.</dd>
+</figure>
+<dl class="simple">
+<dt>Duplizieren</dt><dd><p>Legt eine Kopie der Konfiguration unter anderem Namen an.</p>
+</dd>
+<dt>Öffnen</dt><dd><p>Öffnet die Konfiguration mit dem voreingestellen Standard-Editor (Diese Einstellung kann über die oberste Menüleiste
+unter Einstellungen angepasst werden).</p>
+</dd>
+<dt>Öffnen mit</dt><dd><p>Konfigurationsdateien können normal geöffnet oder in 2 verschiedenen Editoren bearbeitet werden.</p>
+</dd>
+<dt>Vergleichen mit</dt><dd><p>Steht nur zur Verfügung, wenn die Konfigurationsdatei bereits geändert worden ist. Dann kann die aktuelle Version
+mit älteren Versionen verglichen werden, um ein genaueres Bild von den Änderungen zu bekommen.</p>
+</dd>
+<dt>Umbenennen</dt><dd><p>Ändern des Dateinamens.</p>
+</dd>
+<dt>Löschen</dt><dd><p>Löscht die Konfiguration.</p>
+</dd>
+<dt>Herunterladen</dt><dd><p>Lädt die Konfiguration herunter, so dass diese lokal gesichert oder bearbeitet
+werden kann.</p>
+</dd>
+<dt>Ersetzen</dt><dd><p>Lädt eine Konfiguration hoch und ersetzt die bestehende.</p>
+</dd>
+<dt>Prüfen</dt><dd><p>Überprüft die Validität der Konfiguration, also ob die Syntax der
+<a class="reference internal" href="xml-format.html#xml-format"><span class="std std-ref">XML-Datei</span></a> gültig ist.</p>
+</dd>
 </dl>
-</div>
-<div class="section" id="verfugbare-mediendateien">
+</section>
+<section id="verfugbare-mediendateien">
 <h2>Verfügbare Mediendateien<a class="headerlink" href="#verfugbare-mediendateien" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die eigene Konfiguration lässt sich durch Dateien erweitern. Typische Beispiele
 sind Hintergrundbilder oder eigene CSS Regeln um ein Design nach persönlichen
 Vorlieben abzuändern. Textdateien wie z.B. CSS- oder Javascript-Dateien können
 mit dem eingebauten Texteditor direkt bearbeitet werden, anderen Dateien wie z.B. Bilder
 können hochgeladen, ersetzt oder gelöscht werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/manager_media.png" src="../_images/manager_media.png" />
-</div>
+</figure>
 <p>Je nach Art der Mediendatei stehen unterschiedliche Möglichkeiten zur Verfügung.
 Bilder werden direkt als kleine Vorschau dargestellt, können herunter geladen oder geöffnet werden.
 Bei speziellen Text-basierten Bildformaten wie SVG besteht auch die Möglichkeit diese direkt im Texteditor zu bearbeiten.</p>
-</div>
-<div class="section" id="versteckte-konfigurationen">
+</section>
+<section id="versteckte-konfigurationen">
 <h2>Versteckte Konfigurationen<a class="headerlink" href="#versteckte-konfigurationen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Manche Plugins benötigen Konfigurationseinstellungen die nicht an den Browser
 übertragen werden sollen. Dies wird im Handbuch unter
 <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">Versteckte Konfigurationen</span></a> genauer beschrieben.</p>
-</div>
-<div class="section" id="cometvisu-icons">
+</section>
+<section id="cometvisu-icons">
 <h2>CometVisu-Icons<a class="headerlink" href="#cometvisu-icons" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Zeigt eine filterbare Liste mit allen in der CometVisu zur Verfügung stehenden Icons.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/manager_icons.png" src="../_images/manager_icons.png" />
-</div>
-</div>
-</div>
+</figure>
+</section>
+</section>
 
 
            </div>

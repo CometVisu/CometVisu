@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Informationen für Entwickler &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Informationen für Entwickler &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/devel/index.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -85,11 +89,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="informationen-fur-entwickler">
+  <section id="informationen-fur-entwickler">
 <h1>Informationen für Entwickler<a class="headerlink" href="#informationen-fur-entwickler" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Diese Seite liefert eine Einführung in die internen Zusammenhänge und Hintergründe der CometVisu und richtet sich in
 erster Linie an Entwickler.</p>
-<div class="section" id="grundlagen-der-software">
+<section id="grundlagen-der-software">
 <h2>Grundlagen der Software<a class="headerlink" href="#grundlagen-der-software" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die CometVisu ist seit Version 0.11 auf dem <a class="reference external" href="http://www.qooxdoo.org">Qooxdoo-Framework</a> aufgebaut.
 Das Qooxdoo Framework bietet ein eigenes Objekt-Orientiertes Klassensystem (inkl. erweiterten Features wie: Interfaces
@@ -100,8 +104,8 @@ entweder Entwickler Versionen (source-Version) oder Releases (build-Versionen) b
 <p>Unterschiede in der Javascript-Unterstützung der verschiedenen Browser werden automatisch ausgeglichen und der
 Generator erstellt für die Releases unterschiedliche Build-Versionen für die 4 wichtigsten Browser-Engines.</p>
 <p>Weitere Qooxdoo-Features die die CometVisu nutzt:</p>
-<ul>
-<li><dl class="first docutils">
+<ul class="simple">
+<li><dl class="simple">
 <dt><a class="reference external" href="http://www.qooxdoo.org/current/pages/development/parts_using.html">Parts</a>:</dt><dd><p>Teile des Codes, die nicht immer benötigt werden, werden in <em>Parts</em> ausgelagert, die bei Bedarf nachgeladen werden.
 Die CometVisu nutzt dies für Plugins und die Widget-Pakete (Es gibt zwar momentan nur das <em>Pure</em>-Widgetpaket,
 weitere sind jedoch möglich).</p>
@@ -112,31 +116,31 @@ weitere sind jedoch möglich).</p>
 <p>Da die CometVisu eigene Widgets liefert inkl. Layout und CSS-basiertem Design, wird der komplette UI Teil von
 Qooxdoo nicht benutzt. Dieser liefert eigene Layoutmanager und Widgets mit nicht CSS-basiertem Design.
 Es wäre jedoch möglich ein neues auf Qooxdoo-UI basierendes Widgetpaket zu implementieren, welches parallel nutzbar ist.</p>
-</div>
-<div class="section" id="startverhalten">
+</section>
+<section id="startverhalten">
 <h2>Startverhalten<a class="headerlink" href="#startverhalten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Der Ablauf des Ladens der Visu läuft nach dem CometVisu-Protokoll in folgenden Schritten:</p>
-<div class="figure align-center" id="id1">
-<p class="caption"><span class="caption-text">Start-Kommunikation zwischen CometVisu und Backend</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figure class="align-center" id="id1">
+<figcaption>
+<p><span class="caption-text">Start-Kommunikation zwischen CometVisu und Backend</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic">
-<li><p class="first">Laden der Konfigurationsdatei <code class="docutils literal notranslate"><span class="pre">visu_config*.xml</span></code></p>
-</li>
-<li><p class="first">Der Server kann diese Datei mit 2 optionalen Headern ausliefern, die der CometVisu weitere Informationen
+<li><p>Laden der Konfigurationsdatei <code class="docutils literal notranslate"><span class="pre">visu_config*.xml</span></code></p></li>
+<li><p>Der Server kann diese Datei mit 2 optionalen Headern ausliefern, die der CometVisu weitere Informationen
 über das Backend zu liefern:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: Der Name des zu verwendenden Backends.</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-KNXD-Url</span></code>: URL für die knxd Login-Ressource</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-MQTT-Url</span></code>: URL für die MQTT Login-Ressource</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-OpenHAB-Url</span></code>: Nur openHAB: Pfad zur REST-API</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Veraltet: Pfad unter der der Client das Login ausführen kann.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: Der Name des zu verwendenden Backends.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-KNXD-Url</span></code>: URL für die knxd Login-Ressource</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-MQTT-Url</span></code>: URL für die MQTT Login-Ressource</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-OpenHAB-Url</span></code>: Nur openHAB: Pfad zur REST-API</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Veraltet: Pfad unter der der Client das Login ausführen kann.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Die CometVisu authentifiziert sich beim Backend (zur Zeit implementiert kein Backend eine echte Authentifizierung)</p>
-</li>
-<li><p class="first">Das Backend bestätigt die Authentifizierung und liefert Informationen als JSON zurück:</p>
+<li><p>Die CometVisu authentifiziert sich beim Backend (zur Zeit implementiert kein Backend eine echte Authentifizierung)</p></li>
+<li><p>Das Backend bestätigt die Authentifizierung und liefert Informationen als JSON zurück:</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">v</span></code>: Ist die Protokollversion</p>
 <p><code class="docutils literal notranslate"><span class="pre">s</span></code>: Die Session ID</p>
@@ -159,20 +163,19 @@ Es wäre jedoch möglich ein neues auf Qooxdoo-UI basierendes Widgetpaket zu imp
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Die CometVisu fängt an die Werte vom Backend abzufragen, zunächst initial alle benötigten Werten und im
-zweiten Schritt wird nur noch auf Änderungen der Werte gelauscht.</p>
-</li>
+<li><p>Die CometVisu fängt an die Werte vom Backend abzufragen, zunächst initial alle benötigten Werten und im
+zweiten Schritt wird nur noch auf Änderungen der Werte gelauscht.</p></li>
 </ol>
-</div>
-<div class="section" id="transportschichten">
+</section>
+<section id="transportschichten">
 <h2>Transportschichten<a class="headerlink" href="#transportschichten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Transportschichten sind für die Kommunikation zwischen CometVisu und Backend ab dem Moment des erfolgreichen
 Logins verantwortlich. Die wesentliche Aufgabe besteht also darin, Werte vom Backend abzufragen (lesende Anfrage)
 und Wertänderungen zum Backend zu schicken (schreibende Anfrage).</p>
 <p>Zur Zeit unterstützt die CometVisu zwei unterschiedliche Transportschichten:</p>
 <ul class="simple">
-<li><a class="reference internal" href="transport/long-polling.html#long-polling"><span class="std std-ref">Long polling</span></a>: wird vom Default-Backend benutzt</li>
-<li><a class="reference internal" href="transport/sse.html#sse"><span class="std std-ref">Server sent events</span></a>: wird vom openHAB-Backend benutzt</li>
+<li><p><a class="reference internal" href="transport/long-polling.html#long-polling"><span class="std std-ref">Long polling</span></a>: wird vom Default-Backend benutzt</p></li>
+<li><p><a class="reference internal" href="transport/sse.html#sse"><span class="std std-ref">Server sent events</span></a>: wird vom openHAB-Backend benutzt</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
@@ -188,8 +191,8 @@ und Wertänderungen zum Backend zu schicken (schreibende Anfrage).</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="caching">
+</section>
+<section id="caching">
 <h2>Caching<a class="headerlink" href="#caching" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die CometVisu nutzt eigene Caching Mechanismen um das initiale Laden zu beschleunigen.
 Die meiste Zeit wird benötigt um die XML-Konfigurationsdatei vom Server zu laden, dann zu parsen und daraus
@@ -201,8 +204,8 @@ Erst danach fragt die Visu die Konfigurationsdatei vom Server ab und vergleicht 
 Sofern dies nicht der Fall ist wird die gerade geladenen Datei verworfen, andernfalls der Parse und Speicher-Vorgang erneut
 durchgeführt und die Daten aus dem Cache werden verworfen.</p>
 <p>Das Caching kann durch den URL-Parameter <a class="reference internal" href="../config/url-params.html#enablecache"><span class="std std-ref">enableCache - Caching aktivieren</span></a> beeinflusst werden.</p>
-</div>
-<div class="section" id="der-notificationrouter">
+</section>
+<section id="der-notificationrouter">
 <h2>Der NotificationRouter<a class="headerlink" href="#der-notificationrouter" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Es gibt einen internen <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> der für verschiedene Zwecke benutzt wird.
 Hauptfunktion dieses Routers ist es Nachrichten entgegenzunehmen und an den richtigen
@@ -213,9 +216,9 @@ rechten Rand eingeblendet wird und eine Liste von Nachrichten anzeigt) oder als 
 Konfigurations-Optionen.</p>
 <p>Folgenden <em>Topics</em> werden zur Zeit genutzt:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: Allgemeine Fehler</li>
-<li><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Fehler die beim Einlesen der Config-Datei aufgetreten sind</li>
-<li><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: Allgemeine Fehler</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Fehler die beim Einlesen der Config-Datei aufgetreten sind</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</p></li>
 </ul>
 <p>Ein Nachrichtenempfänger (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) kann sich nun für eines oder mehrere solcher Topics registrieren:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
@@ -236,8 +239,8 @@ Konfigurations-Optionen.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="fehlerbehandlung">
+</section>
+<section id="fehlerbehandlung">
 <h2>Fehlerbehandlung<a class="headerlink" href="#fehlerbehandlung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Der NotificationRouter wird auch dazu genutzt alle nicht abgefangenen Fehler zur Laufzeit der Visu anzuzeigen.
 Diese Fehler werden als Popup angezeigt und ermöglichen es dem Nutzer direkt ein Issue auf Github mit vorausgefüllten
@@ -247,17 +250,21 @@ auf der Javascript-Konsole des Browsers angezeigt.</p>
 <p>Weitere Fehler werden, je nach Art, entweder als Popup oder als Nachricht in der Nachrichtenzentrale angezeigt.
 Als ein wichtiges Beispiel wären hier noch Verbindungsprobleme mit dem Backend zu nennen. Diese werden angezeigt,
 solange das Problem besteht und verschwinden automatisch, sobald das Problem behoben wurde.</p>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/noticenter_hidden.png"><img alt="../_images/noticenter_hidden.png" src="../_images/noticenter_hidden.png" style="width: 795.9px; height: 556.5px;" /></a>
-<p class="caption"><span class="caption-text">Geschlossene Nachrichtenzentrale mit einer kritischen Fehlermeldung</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
-<div class="figure align-center" id="id3">
+<figcaption>
+<p><span class="caption-text">Geschlossene Nachrichtenzentrale mit einer kritischen Fehlermeldung</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/NotificationCenter.png"><img alt="../_images/NotificationCenter.png" src="../_images/NotificationCenter.png" style="width: 798.6999999999999px; height: 557.9px;" /></a>
-<p class="caption"><span class="caption-text">Geöffnete Nachrichtenzentrale mit einer kritischen Fehlermeldung</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Geöffnete Nachrichtenzentrale mit einer kritischen Fehlermeldung</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Der <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> wird ebenfalls für die <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> genutzt.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

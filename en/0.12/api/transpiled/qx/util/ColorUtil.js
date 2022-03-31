@@ -894,4 +894,4 @@
   qx.util.ColorUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorUtil.js.map?dt=1648073880620
+//# sourceMappingURL=ColorUtil.js.map?dt=1648713991215

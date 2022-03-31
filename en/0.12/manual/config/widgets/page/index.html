@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Page widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>The Page widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/page/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -103,7 +107,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="the-page-widget">
+  <section id="the-page-widget">
 <span id="page"></span><h1>The Page widget<a class="headerlink" href="#the-page-widget" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
@@ -111,11 +115,11 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>Creates a new sub page and adds a corresponding link to the current page.</p>
-</div>
-<div class="section" id="settings">
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -123,121 +127,123 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-page-element">
+<section id="allowed-attributes-in-the-page-element">
 <h3>Allowed attributes in the Page-element<a class="headerlink" href="#allowed-attributes-in-the-page-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="16">page</td>
-<td><abbr title="mandatory">name</abbr></td>
-<td>string</td>
-<td>title of this page</td>
+<tbody>
+<tr class="row-odd"><td rowspan="16"><p>page</p></td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>title of this page</p></td>
 </tr>
-<tr class="row-even"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-even"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> or <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> or <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>ga</td>
-<td>address</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>ga</p></td>
+<td><p>address</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>visible</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Displays a widget with the page name being a link to the page</td>
+<tr class="row-odd"><td><p>visible</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Displays a widget with the page name being a link to the page</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td><em>text</em>, <em>2d</em> or <em>3d</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p><em>text</em>, <em>2d</em> or <em>3d</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>size</td>
-<td><em>fixed</em>, <em>scaled</em> or <em>contained</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p><em>fixed</em>, <em>scaled</em> or <em>contained</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>backdropalign</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>backdropalign</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>backdrop</td>
-<td>URI</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>backdrop</p></td>
+<td><p>URI</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>showtopnavigation</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Display the top navigation that shows the currently displayed page with all parent pages.</td>
+<tr class="row-even"><td><p>showtopnavigation</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Display the top navigation that shows the currently displayed page with all parent pages.</p></td>
 </tr>
-<tr class="row-odd"><td>showfooter</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Shows a footer at the bottom of the page. The footer content is defined in the config file.</td>
+<tr class="row-odd"><td><p>showfooter</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Shows a footer at the bottom of the page. The footer content is defined in the config file.</p></td>
 </tr>
-<tr class="row-even"><td>shownavbar-top</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Shows the defined navigation bar on top of the page</td>
+<tr class="row-even"><td><p>shownavbar-top</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Shows the defined navigation bar on top of the page</p></td>
 </tr>
-<tr class="row-odd"><td>shownavbar-bottom</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Shows the defined navigation bar at the bottom of the page</td>
+<tr class="row-odd"><td><p>shownavbar-bottom</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Shows the defined navigation bar at the bottom of the page</p></td>
 </tr>
-<tr class="row-even"><td>shownavbar-left</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Shows the defined navigation bar at the left side of the page</td>
+<tr class="row-even"><td><p>shownavbar-left</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Shows the defined navigation bar at the left side of the page</p></td>
 </tr>
-<tr class="row-odd"><td>shownavbar-right</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Shows the defined navigation bar at the right side of the page</td>
+<tr class="row-odd"><td><p>shownavbar-right</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Shows the defined navigation bar at the right side of the page</p></td>
 </tr>
-<tr class="row-even"><td>bind_click_to_widget</td>
-<td><em>true</em> or <em>false</em></td>
-<td>use the whole widget area to react on click events</td>
+<tr class="row-even"><td><p>bind_click_to_widget</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>use the whole widget area to react on click events</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <img alt="../../../_images/en_config_widgets_page_index_editor_attributes.png" src="../../../_images/en_config_widgets_page_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
 <p>All widgets are allowed in the page widget.</p>
-</div>
-</div>
-<div class="section" id="examples">
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the Page widget.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

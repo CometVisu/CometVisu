@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Information for developers &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Information for developers &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/devel/index.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -84,10 +88,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="information-for-developers">
+  <section id="information-for-developers">
 <h1>Information for developers<a class="headerlink" href="#information-for-developers" title="Permalink to this headline">¶</a></h1>
 <p>This page provides an introduction to the internal context and background of CometVisu and is aimed primarily at developers.</p>
-<div class="section" id="basics-of-the-software">
+<section id="basics-of-the-software">
 <h2>Basics of the software<a class="headerlink" href="#basics-of-the-software" title="Permalink to this headline">¶</a></h2>
 <p>CometVisu has been built on the <a class="reference external" href="http://www.qooxdoo.org">Qooxdoo framework</a>
 since version 0.11. The Qooxdoo Framework offers its own object-oriented class
@@ -102,23 +106,23 @@ automatically compensated and the generator creates different build
 versions for the 4 most important browser engines for the releases.</p>
 <p>Other Qooxdoo features that CometVisu uses:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.qooxdoo.org/current/pages/development/parts_using.html">Parts</a>:
+<li><p><a class="reference external" href="http://www.qooxdoo.org/current/pages/development/parts_using.html">Parts</a>:
 Parts of the code that are not always needed are offloaded to <em>Parts</em>,
 which are reloaded when needed. The CometVisu uses this for plugins
 and widget packages (although there is currently only the <em>Pure</em> widget
-package, others are possible).</li>
+package, others are possible).</p></li>
 </ul>
 <p>Since the CometVisu provides its own widgets including layout and
 CSS-based design, the complete UI part of Qooxdoo is not used.
 This provides its own layout manager and widgets with non-CSS-based
 design. However, it would be possible to implement a new Qooxdoo-UI
 based widget package, which can be used in parallel.</p>
-</div>
-<div class="section" id="start-behavior">
+</section>
+<section id="start-behavior">
 <h2>Start Behavior<a class="headerlink" href="#start-behavior" title="Permalink to this headline">¶</a></h2>
 <p>The process of loading the Visu runs according to the CometVisu
 protocol in the following steps:</p>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <p class="plantuml">
 <img src="../_images/plantuml-4de84c2614a2561d50b2d3aab8072342b094d553.png" alt="autonumber
 
@@ -128,25 +132,25 @@ CometVisu -&gt; Backend: Login
 Backend -&gt; CometVisu: Confirmation of the login with optional backend configuration
 CometVisu -&gt; Backend: Read values from the backend"/>
 </p>
-<p class="caption"><span class="caption-text">Start communication between CometVisu and backend</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Start communication between CometVisu and backend</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic">
-<li><p class="first">Loading the configuration file <code class="docutils literal notranslate"><span class="pre">visu_config*.xml</span></code></p>
-</li>
-<li><p class="first">The server can deliver this file with 2 optional headers
+<li><p>Loading the configuration file <code class="docutils literal notranslate"><span class="pre">visu_config*.xml</span></code></p></li>
+<li><p>The server can deliver this file with 2 optional headers
 that provide the CometVisu with more information about the backend:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: The name of the backend to use.</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-KNXD-Url</span></code>: URL of the knxd login resource</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-MQTT-Url</span></code>: URL of the MQTT login resource</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-OpenHAB-Url</span></code>: Only openHAB: path to the REST-API</li>
-<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Deprecated: Path under which the client can log in.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: The name of the backend to use.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-KNXD-Url</span></code>: URL of the knxd login resource</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-MQTT-Url</span></code>: URL of the MQTT login resource</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-OpenHAB-Url</span></code>: Only openHAB: path to the REST-API</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Deprecated: Path under which the client can log in.</p></li>
 </ul>
 </li>
-<li><p class="first">The CometVisu authenticates itself at the backend (at present
-no backend implements a real authentication)</p>
-</li>
-<li><p class="first">The backend confirms the authentication and returns information
+<li><p>The CometVisu authenticates itself at the backend (at present
+no backend implements a real authentication)</p></li>
+<li><p>The backend confirms the authentication and returns information
 as JSON:</p>
 <p><code class="docutils literal notranslate"><span class="pre">v</span></code>: Is the protocol version</p>
 <p><code class="docutils literal notranslate"><span class="pre">s</span></code>: Session ID</p>
@@ -168,13 +172,12 @@ as JSON:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">The CometVisu starts to query the values from the backend,
+<li><p>The CometVisu starts to query the values from the backend,
 initially all necessary values and in the second step only
-changes of the values are listened to.</p>
-</li>
+changes of the values are listened to.</p></li>
 </ol>
-</div>
-<div class="section" id="transport-layers">
+</section>
+<section id="transport-layers">
 <h2>Transport layers<a class="headerlink" href="#transport-layers" title="Permalink to this headline">¶</a></h2>
 <p>The transport layers are responsible for communication between CometVisu
 and the backend from the moment of the successful login. The main task
@@ -182,8 +185,8 @@ is to retrieve values from the backend (read request) and send value
 changes to the backend (write request).</p>
 <p>Currently CometVisu supports two different transport layers:</p>
 <ul class="simple">
-<li><a class="reference internal" href="transport/long-polling.html#long-polling"><span class="std std-ref">Long polling</span></a>: is used by the default backend</li>
-<li><a class="reference internal" href="transport/sse.html#sse"><span class="std std-ref">Server sent events</span></a>: is used by the openHAB backend</li>
+<li><p><a class="reference internal" href="transport/long-polling.html#long-polling"><span class="std std-ref">Long polling</span></a>: is used by the default backend</p></li>
+<li><p><a class="reference internal" href="transport/sse.html#sse"><span class="std std-ref">Server sent events</span></a>: is used by the openHAB backend</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
@@ -199,8 +202,8 @@ changes to the backend (write request).</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="caching">
+</section>
+<section id="caching">
 <h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
 <p>The CometVisu uses its own caching mechanisms to accelerate the
 initial loading. Most of the time is needed to load the XML
@@ -217,8 +220,8 @@ there has been changes. If this is not the case, the currently
 loaded file is discarded, otherwise the parse and save process
 is performed again and the data from the cache is discarded.</p>
 <p>Caching can be influenced by the URL parameter <a class="reference internal" href="../config/url-params.html#enablecache"><span class="std std-ref">enableCache - Activate Caching</span></a>.</p>
-</div>
-<div class="section" id="the-notification-router">
+</section>
+<section id="the-notification-router">
 <h2>The Notification Router<a class="headerlink" href="#the-notification-router" title="Permalink to this headline">¶</a></h2>
 <p>There is an internal <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> which is used for
 different purposes. The main function of this router is to receive
@@ -231,9 +234,9 @@ displays a list of messages) or as a pop-up.</p>
 assignment, a title, text and various configuration options.</p>
 <p>The following <em>Topics</em> are currently used:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: generic errors</li>
-<li><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Errors that occurred while reading in the config file</li>
-<li><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace for all in the <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">notifications</span></a> messages used</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: generic errors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Errors that occurred while reading in the config file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace for all in the <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">notifications</span></a> messages used</p></li>
 </ul>
 <p>A message receiver (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) can now register for one or more such topics:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
@@ -254,8 +257,8 @@ assignment, a title, text and various configuration options.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="error-handling">
+</section>
+<section id="error-handling">
 <h2>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
 <p>The NotificationRouter is also used to display all uncaught errors during the
 runtime of the Visu. These errors appear as a pop-up and allow the user to
@@ -267,18 +270,22 @@ be displayed on the Javascript console of the browser.</p>
 as a message in the message center. An important example would be connection
 problems with the backend. These are displayed as long as the problem
 persists and disappear automatically once the problem is resolved.</p>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/noticenter_hidden.png"><img alt="../_images/noticenter_hidden.png" src="../_images/noticenter_hidden.png" style="width: 795.9px; height: 556.5px;" /></a>
-<p class="caption"><span class="caption-text">Closed messaging center with a critical error message</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-center" id="id3">
+<figcaption>
+<p><span class="caption-text">Closed messaging center with a critical error message</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/NotificationCenter.png"><img alt="../_images/NotificationCenter.png" src="../_images/NotificationCenter.png" style="width: 798.6999999999999px; height: 557.9px;" /></a>
-<p class="caption"><span class="caption-text">Open news center with a critical error message</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Open news center with a critical error message</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> is also used for the
 <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">notifications</span></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Die RST-Syntax &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Die RST-Syntax &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/colab/doc/rst.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -101,9 +105,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="die-rst-syntax">
+  <section id="die-rst-syntax">
 <h1>Die RST-Syntax<a class="headerlink" href="#die-rst-syntax" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="uberschriften">
+<section id="uberschriften">
 <h2>Überschriften<a class="headerlink" href="#uberschriften" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Überschriften werden in RST durch „unterstreichen“ des Textes mit bestimmten Sonderzeichen definiert.
 Zu beachten ist hier, das die Sonderzeichen mindestens genauso lang sind wie der Text selbst.
@@ -132,24 +136,24 @@ folgende Definition festgelegt.</p>
 </div>
 <p>Die kompletten Teilbereiche, sind den Teilen Api, Benutzerhandbuch und Tutorials vorbehalten und dürfen ansonsten
 innerhalb der Dokumentation nicht vorkommen, alle anderen können mit bedacht verwendet werden.</p>
-</div>
-<div class="section" id="inline-markup">
+</section>
+<section id="inline-markup">
 <h2>Inline Markup<a class="headerlink" href="#inline-markup" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Soll der Text in der Dokumentation besonders formatiert (z.B. fett, kursiv, usw.) oder
 Referenzen / Links eingebaut werden benötigt man eine spezielle Syntax innerhalb des Textes.</p>
 <p>Zur Formatierung eines Textes, wird der Text ebenfalls von Sonderzeichen umrahmt, so kann man ein Wort z.B. fett
 formatieren indem man in mit zwei Sternchen umfasst (<cite>**fetter Text**</cite>), weitere Möglichkeiten sind.</p>
 <ul class="simple">
-<li><strong>Fett</strong>: <code class="docutils literal notranslate"><span class="pre">**fetter</span> <span class="pre">Text**</span></code> =&gt; <strong>fetter Text</strong></li>
-<li><strong>Kursiv</strong>: <code class="docutils literal notranslate"><span class="pre">*kursiver</span> <span class="pre">Text*</span></code> =&gt; <em>kursiver Text</em></li>
-<li><strong>Code-Beispiele</strong>: <code class="docutils literal notranslate"><span class="pre">``Code</span> <span class="pre">im</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">im</span> <span class="pre">Text</span></code></li>
+<li><p><strong>Fett</strong>: <code class="docutils literal notranslate"><span class="pre">**fetter</span> <span class="pre">Text**</span></code> =&gt; <strong>fetter Text</strong></p></li>
+<li><p><strong>Kursiv</strong>: <code class="docutils literal notranslate"><span class="pre">*kursiver</span> <span class="pre">Text*</span></code> =&gt; <em>kursiver Text</em></p></li>
+<li><p><strong>Code-Beispiele</strong>: <code class="docutils literal notranslate"><span class="pre">``Code</span> <span class="pre">im</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">im</span> <span class="pre">Text</span></code></p></li>
 </ul>
-<div class="section" id="listen">
+<section id="listen">
 <h3>Listen<a class="headerlink" href="#listen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Für unnummerierte Listen wird jede Zeile mit <code class="docutils literal notranslate"><span class="pre">*</span></code> gestartet, bei nummerierten mit <code class="docutils literal notranslate"><span class="pre">#.</span></code>. Mit entsprechender
 Einrückung der Zeilen sind auch verschachtelte Listen möglich.</p>
-</div>
-<div class="section" id="links-und-referenzen">
+</section>
+<section id="links-und-referenzen">
 <h3>Links und Referenzen<a class="headerlink" href="#links-und-referenzen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Die Grundsätzliche Syntax von Links enthält einen Title und den Link selbst in folgender Struktur:
 <code class="docutils literal notranslate"><span class="pre">`Titel</span> <span class="pre">des</span> <span class="pre">Links</span> <span class="pre">&lt;URL</span> <span class="pre">des</span> <span class="pre">Links&gt;`__</span></code>. Natürlich kann man auch auf andere Dokumente innerhalb der Dokumentation verweisen:
@@ -157,9 +161,9 @@ Einrückung der Zeilen sind auch verschachtelte Listen möglich.</p>
 Möchte man also ein Dokument namens <em>dok.rst</em> im Unterverzeichnis <em>test</em> verlinkten, sieht das so aus:
 <code class="docutils literal notranslate"><span class="pre">:doc:`test/dok`</span></code>. Der Titel des Links ist optional, wird er weggelassen, wird der Seitentitel des verlinkten Dokuments
 als Titel benutzt (also die Überschrift auf der höchsten Ebene innerhalb des Dokuments).</p>
-</div>
-</div>
-<div class="section" id="direktiven">
+</section>
+</section>
+<section id="direktiven">
 <h2>Direktiven<a class="headerlink" href="#direktiven" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für Dinge die über reinen Text hinaus gehen (z.B. Bilder, Hinweise, Warnungen, usw.) werden Direktiven verwendet.
 Diese dürfen im Gegensatz zum bereits behandelten <em>inline Markup</em> nicht in der selben Zeile wie der „normale“ Text
@@ -178,7 +182,7 @@ Leerzeichen 2 Doppelpunkte. Weiterhin zu beachten ist, dass die Optionen durch D
 vom Inhalt getrennt sind, außerdem sind Optionen und Inhalt eingerückt.</p>
 <p>Das einzige, was zwingend erforderlich ist, ist der Name. Parameter, Optionen und Inhalt sind optional und unterscheiden
 sich in Menge und vorhandensein von Direktive zu Direktive. Im folgenden werden nun die wichtigsten Direktiven vorgestellt.</p>
-<div class="section" id="text-blocke">
+<section id="text-blocke">
 <h3>Text-Blöcke<a class="headerlink" href="#text-blocke" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Einfache Direktiven, mit denen ein farblich hervorgehobener Textblock mit vorgegebenem Titel erstellt werden können,
 um damit Hinweise, Informationen, Warnungen usw. zu definieren. Diese Direktiven haben keine Parameter und Optionen,
@@ -192,11 +196,11 @@ Möchte man den Leser also z.B. auf etwas wichtiges Hinweisen, kann man folgende
 </div>
 <p>Was dann so formatiert wird:</p>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Dies ist ein wichtiger Hinweis.</p>
+<p class="admonition-title">Wichtig</p>
+<p>Dies ist ein wichtiger Hinweis.</p>
 </div>
-</div>
-<div class="section" id="bilder">
+</section>
+<section id="bilder">
 <h3>Bilder<a class="headerlink" href="#bilder" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Bilder werden mit der <em>figure</em>-Direktive eingebunden. Es gibt zwar auch eine <em>image</em>-Direktive,
 aber die <em>figure</em>-Direktive erlaubt komplexe Bildunterschriften.</p>
@@ -208,43 +212,43 @@ aber die <em>figure</em>-Direktive erlaubt komplexe Bildunterschriften.</p>
 <p>Die komplette Syntax dieser Direktive kann in der
 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure">offiziellen Dokumentation</a>
 nachgelesen werden.</p>
-</div>
-</div>
-</div>
-<div class="section" id="eigene-direktiven">
+</section>
+</section>
+</section>
+<section id="eigene-direktiven">
 <h1>Eigene Direktiven<a class="headerlink" href="#eigene-direktiven" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Neben den vorhandenen Sphinx/Docutils Direktiven werden in der CometVisu Dokumentation auch einige
 Direktiven genutzt, die dabei helfen, die Dokumentation einfacher auf einem aktuellen Stand zu halten.
 Folgende Direktiven werden zur Zeit unterstützt:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="19%" />
-<col width="81%" />
+<col style="width: 19%" />
+<col style="width: 81%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Beschreibung</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>widget-example</td>
-<td>Ermöglicht Beispielcode für Widgets aus dem automatisch Screenshots erstellt werden kann.</td>
+<tbody>
+<tr class="row-even"><td><p>widget-example</p></td>
+<td><p>Ermöglicht Beispielcode für Widgets aus dem automatisch Screenshots erstellt werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td>parameter-information</td>
-<td>Zeigt alle Attribute eines Widgets mit erlaubten Werten und kurzer Erklärung als Tabelle an.</td>
+<tr class="row-odd"><td><p>parameter-information</p></td>
+<td><p>Zeigt alle Attribute eines Widgets mit erlaubten Werten und kurzer Erklärung als Tabelle an.</p></td>
 </tr>
-<tr class="row-even"><td>elements-information</td>
-<td>Zeigt alle erlaubten Unter-Elemente eines Widgets inkl. deren Attributen als Tabelle an.</td>
+<tr class="row-even"><td><p>elements-information</p></td>
+<td><p>Zeigt alle erlaubten Unter-Elemente eines Widgets inkl. deren Attributen als Tabelle an.</p></td>
 </tr>
-<tr class="row-odd"><td>api-doc</td>
-<td>Bindet Informationen aus der Source-Code Dokumentation ein (&#64;author und &#64;since)</td>
+<tr class="row-odd"><td><p>api-doc</p></td>
+<td><p>Bindet Informationen aus der Source-Code Dokumentation ein (&#64;author und &#64;since)</p></td>
 </tr>
-<tr class="row-even"><td>replaces</td>
-<td>Hiermit lässt sich festlegen, welche Seiten des alten Wikis diese Seite ersetzt</td>
+<tr class="row-even"><td><p>replaces</p></td>
+<td><p>Hiermit lässt sich festlegen, welche Seiten des alten Wikis diese Seite ersetzt</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="die-widget-example-direktive">
+<section id="die-widget-example-direktive">
 <h2>Die <em>widget-example</em> Direktive<a class="headerlink" href="#die-widget-example-direktive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die <em>widget-example</em> Direktive erlaubt Beispiel-Code einer CometVisu config aus der später vollautomatisch
 einer oder mehrere Screenshots generiert werden und zusammen mit dem Beispiel-Code in die Dokumentation eingebunden
@@ -280,10 +284,13 @@ werden.</p>
 </pre></div>
 </div>
 <p>erzeugt diesen Eintrag in der Dokumentation:</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <img alt="Switch mit mapping + styling" src="../../_images/switch_complete.png" />
-<p class="caption"><span class="caption-text">Switch mit mapping + styling</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Switch mit mapping + styling</p>
+</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
@@ -310,24 +317,24 @@ werden.</p>
 <p>Der Inhalt der Direktive orientiert sich am Aufbau der normalen CometVisu Konfigurationsdatei und ist ebenfalls
 ein XML-Dokument. Er besteht im Wesentlichen aus 3 Bereichen:</p>
 <ol class="arabic simple">
-<li><strong>&lt;settings&gt;</strong> Hier werden die Screenshots und Untertitel definiert.</li>
-<li><strong>&lt;meta&gt;</strong> Hier ist alles erlaubt, was auch innerhalb des <em>&lt;meta&gt;</em>-Elements der Konfigurationsdatei erlaubt ist
-(z.B. Laden von Plugins, Definition von Mappings, Stylings usw.)</li>
-<li><strong>Alles andere</strong> Alles was nicht innerhalb eines <em>&lt;settings&gt;</em> oder <em>&lt;meta&gt;</em>-Elements ist, wird als Beispielcode
+<li><p><strong>&lt;settings&gt;</strong> Hier werden die Screenshots und Untertitel definiert.</p></li>
+<li><p><strong>&lt;meta&gt;</strong> Hier ist alles erlaubt, was auch innerhalb des <em>&lt;meta&gt;</em>-Elements der Konfigurationsdatei erlaubt ist
+(z.B. Laden von Plugins, Definition von Mappings, Stylings usw.)</p></li>
+<li><p><strong>Alles andere</strong> Alles was nicht innerhalb eines <em>&lt;settings&gt;</em> oder <em>&lt;meta&gt;</em>-Elements ist, wird als Beispielcode
 interpretiert. Hier ist also alles erlaubt, was innerhalb eines <em>&lt;page&gt;</em>-Elements der Konfigurationsdatei
-erlaubt ist (z.B. Widgets, Groups, usw.)</li>
+erlaubt ist (z.B. Widgets, Groups, usw.)</p></li>
 </ol>
 <p>Die Bereiche 1. und 2. sind optional und können auch weggelassen werden, wenn man also z.B. nur 1 Screenshot
 vom Beispielcode ohne Untertitel benötigt kann der <em>&lt;settings&gt;</em>-Teil auch weggelassen werden.</p>
 <p>Darüber hinaus gibt es noch diverse Optionen mit denen das Aussehen des Beispiel-Codes und des zu gehörigen
 Screenshots beeinflusst werden können</p>
 <ol class="arabic simple">
-<li><cite>linenos</cite>: Wenn angegeben, wird der Beispielcode mit Zeilennummern angegeben</li>
-<li><cite>lineno-start</cite>: Zahl bei der die Zeilennummern starten sollen (Default: 1)</li>
-<li><cite>scale</cite>: Prozentangabe mit der der Screenshot verkleinert werden kann (Default: 100)</li>
-<li><cite>hide-source</cite>: <em>true</em> oder <em>false</em>. (Default: <em>false</em>), zeigt den Beispielcode nicht an wenn <em>true</em></li>
-<li><cite>editor</cite>: <em>attributes</em> oder <em>elements</em>. Macht einen Screenshot vom Beispielcode im Editor und nicht vom Widget selbst</li>
-<li><cite>align</cite>: <em>left</em>, <em>center</em> oder <em>right</em>. Definiert die Position des Screenshots (Default: <em>left</em>)</li>
+<li><p><cite>linenos</cite>: Wenn angegeben, wird der Beispielcode mit Zeilennummern angegeben</p></li>
+<li><p><cite>lineno-start</cite>: Zahl bei der die Zeilennummern starten sollen (Default: 1)</p></li>
+<li><p><cite>scale</cite>: Prozentangabe mit der der Screenshot verkleinert werden kann (Default: 100)</p></li>
+<li><p><cite>hide-source</cite>: <em>true</em> oder <em>false</em>. (Default: <em>false</em>), zeigt den Beispielcode nicht an wenn <em>true</em></p></li>
+<li><p><cite>editor</cite>: <em>attributes</em> oder <em>elements</em>. Macht einen Screenshot vom Beispielcode im Editor und nicht vom Widget selbst</p></li>
+<li><p><cite>align</cite>: <em>left</em>, <em>center</em> oder <em>right</em>. Definiert die Position des Screenshots (Default: <em>left</em>)</p></li>
 </ol>
 <p>Ein vollständiges Beispiel mit allen Optionen:</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
@@ -341,93 +348,96 @@ Screenshots beeinflusst werden können</p>
 <span class="cp">    ....</span>
 </pre></div>
 </div>
-<div class="section" id="der-settings-bereich">
+<section id="der-settings-bereich">
 <h3>Der <em>&lt;settings&gt;</em>-Bereich<a class="headerlink" href="#der-settings-bereich" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Dieser Bereich wird definiert durch das <cite>&lt;settings&gt;</cite>-Element und dieses kann durch Attribute und Unterelemente
 verfeinert werden.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="57%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 57%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="3">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="3"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="3">&lt;settings&gt;</td>
-<td>design</td>
-<td>Name eines Designs</td>
-<td>In welchem Design der Screenshot aufgenommen werden soll (Default: metal)</td>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><p>&lt;settings&gt;</p></td>
+<td><p>design</p></td>
+<td><p>Name eines Designs</p></td>
+<td><p>In welchem Design der Screenshot aufgenommen werden soll (Default: metal)</p></td>
 </tr>
-<tr class="row-even"><td>selector</td>
-<td>Css-Selector</td>
-<td>Definiert den Bereich des Screenshots</td>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Css-Selector</p></td>
+<td><p>Definiert den Bereich des Screenshots</p></td>
 </tr>
-<tr class="row-odd"><td>sleep</td>
-<td>Zahl</td>
-<td>Initiale Wartezeit in ms bevor der Screenshot aufgenommen wird</td>
+<tr class="row-odd"><td><p>sleep</p></td>
+<td><p>Zahl</p></td>
+<td><p>Initiale Wartezeit in ms bevor der Screenshot aufgenommen wird</p></td>
 </tr>
-<tr class="row-even"><td><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
+<tr class="row-even"><td><dl class="simple">
+<dt>&lt;settings&gt;</dt><dd><p>&lt;caption&gt;</p>
+</dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>#text</td>
-<td>Untertitel des Beispielcodes</td>
+<td></td>
+<td><p>#text</p></td>
+<td><p>Untertitel des Beispielcodes</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
+<tr class="row-odd"><td rowspan="4"><dl class="simple">
+<dt>&lt;settings&gt;</dt><dd><p>&lt;screenshot&gt;</p>
+</dd>
 </dl>
 </td>
-<td>name</td>
-<td>Text</td>
-<td>Dateiname des Screenshots</td>
+<td><p>name</p></td>
+<td><p>Text</p></td>
+<td><p>Dateiname des Screenshots</p></td>
 </tr>
-<tr class="row-even"><td>clickpath</td>
-<td>CSS-Selector</td>
-<td>CSS-Pfad zu einem Element, das angeklickt werden soll vor dem Screenshot</td>
+<tr class="row-even"><td><p>clickpath</p></td>
+<td><p>CSS-Selector</p></td>
+<td><p>CSS-Pfad zu einem Element, das angeklickt werden soll vor dem Screenshot</p></td>
 </tr>
-<tr class="row-odd"><td>waitfor</td>
-<td>CSS-Selector</td>
-<td>CSS-Pfad zu einem Element, das sichtbar sein soll vor dem Screenshot</td>
+<tr class="row-odd"><td><p>waitfor</p></td>
+<td><p>CSS-Selector</p></td>
+<td><p>CSS-Pfad zu einem Element, das sichtbar sein soll vor dem Screenshot</p></td>
 </tr>
-<tr class="row-even"><td>sleep</td>
-<td>Zahl</td>
-<td>Wartezeit zwischen Senden der Daten und Screenshot</td>
+<tr class="row-even"><td><p>sleep</p></td>
+<td><p>Zahl</p></td>
+<td><p>Wartezeit zwischen Senden der Daten und Screenshot</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
-<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>&lt;settings&gt;</dt><dd><dl class="simple">
+<dt>&lt;screenshot&gt;</dt><dd><p>&lt;data&gt;</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </td>
-<td>address</td>
-<td>Gruppenadresse</td>
-<td>Sende Daten an diese Adresse bevor der Screenshot gemacht wird</td>
+<td><p>address</p></td>
+<td><p>Gruppenadresse</p></td>
+<td><p>Sende Daten an diese Adresse bevor der Screenshot gemacht wird</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td><em>float</em> oder <em>int</em></td>
-<td>Falls echte Zahlenwerte gesendet werden müssen</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p><em>float</em> oder <em>int</em></p></td>
+<td><p>Falls echte Zahlenwerte gesendet werden müssen</p></td>
 </tr>
-<tr class="row-odd"><td>#text</td>
-<td>Text</td>
-<td>Inhalt der Daten die gesendet werden sollen</td>
+<tr class="row-odd"><td><p>#text</p></td>
+<td><p>Text</p></td>
+<td><p>Inhalt der Daten die gesendet werden sollen</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="die-parameter-information-direktive">
+</section>
+</section>
+<section id="die-parameter-information-direktive">
 <h2>Die <em>parameter-information</em> Direktive<a class="headerlink" href="#die-parameter-information-direktive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Direktive erzeugt automatisch eine Tabellenübersicht mit den Attributen des Widgets. Diese Daten werden
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
@@ -436,65 +446,65 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="9">switch</td>
-<td>styling</td>
-<td>Text</td>
-<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tbody>
+<tr class="row-odd"><td rowspan="9"><p>switch</p></td>
+<td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>mapping</td>
-<td>Text</td>
-<td>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../config/mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../config/mapping.html#mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td>on_value</td>
-<td>Text</td>
-<td>Wert für den An-Zustand. Default ist „1“.</td>
+<tr class="row-odd"><td><p>on_value</p></td>
+<td><p>Text</p></td>
+<td><p>Wert für den An-Zustand. Default ist „1“.</p></td>
 </tr>
-<tr class="row-even"><td>off_value</td>
-<td>Text</td>
-<td>Wert für den Aus-Zustand. Default ist „0“.</td>
+<tr class="row-even"><td><p>off_value</p></td>
+<td><p>Text</p></td>
+<td><p>Wert für den Aus-Zustand. Default ist „0“.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> oder <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-even"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-odd"><td>bind_click_to_widget</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</td>
+<tr class="row-odd"><td><p>bind_click_to_widget</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td>format</td>
-<td>Text</td>
-<td>Formatierung des Wertes (printf-Syntax).</td>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="die-elements-information-direktive">
+</section>
+<section id="die-elements-information-direktive">
 <h2>Die <em>elements-information</em> Direktive<a class="headerlink" href="#die-elements-information-direktive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Direktive erzeugt automatisch eine Tabellenübersicht mit den erlaubten Unter-Elementen eines Widgets. Diese Daten werden
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
@@ -503,248 +513,250 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>Zahl</td>
-<td>Spaltenanzahl für dieses Widget.</td>
+<td><p>colspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Spaltenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>Zahl</td>
-<td>Zeilenanzahl für dieses Widget.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeilenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>Text</td>
-<td>Für zukünftige Anwendungen reserviert.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>Text</p></td>
+<td><p>Für zukünftige Anwendungen reserviert.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="Pflichtangabe">name</abbr></td>
-<td>Text</td>
-<td>Name unter dem das Icon registriert ist.</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>Text</td>
-<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>Text</td>
-<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li><abbr title="Pflichtangabe">address</abbr></li>
+<li><p><abbr title="Pflichtangabe">address</abbr></p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="Pflichtangabe">transform</abbr></td>
-<td>Text</td>
-<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
-<td>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>Zahl</td>
-<td>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>Text</td>
-<td>Nur MQTT: JSON Selektor</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>Zahl</td>
-<td>Nur MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Nur MQTT: retain Flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Nur MQTT: ignoriere Dekodierfehler.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="die-api-doc-direktive">
+</section>
+<section id="die-api-doc-direktive">
 <h2>Die <em>api-doc</em> Direktive<a class="headerlink" href="#die-api-doc-direktive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Direktive liest wichtige Informationen aus der Source-Code Dokumentation eines Widgets oder Plugins.
 Momentan sind das die Werte der <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> und <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> Angaben.</p>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
+<p class="admonition-title">Wichtig</p>
+<p>Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
 entspricht, also z.B. für <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> nimmt man <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">Switch</span></code>
 (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
 z.B. für <code class="docutils literal notranslate"><span class="pre">plugins/clock/</span></code> nimmt man <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">clock</span></code></p>
@@ -760,8 +772,8 @@ z.B. für <code class="docutils literal notranslate"><span class="pre">plugins/c
 <div class="line"><br /></div>
 </div>
 </div>
-</div>
-<div class="section" id="die-replaces-directive">
+</section>
+<section id="die-replaces-directive">
 <h2>Die <em>replaces</em> Directive<a class="headerlink" href="#die-replaces-directive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Durch diese Direktive lasst sich definieren, welche Seiten des alten Wikis durch diese Handbuch-Seite ersetzt werden.
 Es können mehrere Wiki-Seiten angegeben werden. Diese Direktive fügt der Dokumentation keinen Inhalt hinzu,
@@ -773,8 +785,8 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
     CometVisu/switch_(Deutsch)
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

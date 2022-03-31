@@ -221,6 +221,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                   var d = qxl.dialog.Dialog.confirm(msg, function (ok) {
                     if (ok) {
                       this.save(function () {
+                        // remove #manager to avoid reloading into manager
+                        window.location.hash = '';
                         window.location.reload();
                       });
                     }
@@ -267,4 +269,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Diff.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diff.js.map?dt=1648073846496
+//# sourceMappingURL=Diff.js.map?dt=1648713958393

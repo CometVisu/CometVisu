@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Server sent events (SSE) &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Server sent events (SSE) &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/devel/transport/sse.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -90,28 +94,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="server-sent-events-sse">
+  <section id="server-sent-events-sse">
 <span id="sse"></span><h1>Server sent events (SSE)<a class="headerlink" href="#server-sent-events-sse" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="lesende-anfragen">
+<section id="lesende-anfragen">
 <h2>Lesende Anfragen<a class="headerlink" href="#lesende-anfragen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Bei <em>Server sent events</em> wird eine einmalige lesende Verbindung aufgebaut. Über diese schickt das Backend
 initial einmalig alle angefragten Werte, danach nur noch geänderte Werte.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Der Browser kümmert sich automatisch um die Wiederherstellung der Verbindung bei Abbrüchen.
+<p class="admonition-title">Hinweis</p>
+<p>Der Browser kümmert sich automatisch um die Wiederherstellung der Verbindung bei Abbrüchen.
 Daher kommt der interne <em>Watchdog</em> bei SSE in der Regel nicht zum Einsatz.</p>
 </div>
 <p>Der Browser muss diese Technologie jedoch überstützen.
 Eine Übersicht der unterstützen Browser liefert <a class="reference external" href="http://caniuse.com/eventsource/embed/">Caniuse</a>.</p>
-</div>
-<div class="section" id="schreibende-anfragen">
+</section>
+<section id="schreibende-anfragen">
 <h2>Schreibende Anfragen<a class="headerlink" href="#schreibende-anfragen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Wenn ein neuer Wert an das Backend gesendet werden soll (weil z.B. der Benutzer ein Widget bedient hat), wird
 eine neue Anfrage, die vollkommen unabhängig von den lesenden Anfragen ist an das Backend gesendet.
 Hier bestätigt das Backend auch lediglich das erfolgreiche Empfangen der Anfrage, neue Werte werden immer nur über
 die lesenden Anfragen gesendet.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

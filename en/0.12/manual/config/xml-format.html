@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XML-Structure &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>XML-Structure &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/xml-format.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -95,12 +99,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="xml-structure">
+  <section id="xml-structure">
 <span id="xml-format"></span><h1>XML-Structure<a class="headerlink" href="#xml-structure" title="Permalink to this headline">¶</a></h1>
 <p>An XML file consists of various “elements” that together represent
 a tree. An element can include other elements. Via “Attributes” an
 element can accept values. Some of these attributes must be assigned.</p>
-<div class="section" id="the-header-of-visu-config-xml">
+<section id="the-header-of-visu-config-xml">
 <span id="xml-format-header"></span><h2>The Header of visu_config.xml<a class="headerlink" href="#the-header-of-visu-config-xml" title="Permalink to this headline">¶</a></h2>
 <p>The configuration file always starts with the following two lines:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
@@ -108,75 +112,75 @@ element can accept values. Some of these attributes must be assigned.</p>
 </pre></div>
 </div>
 <p>The following settings are relevant in the second line:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="12%" />
-<col width="49%" />
-<col width="34%" />
-<col width="5%" />
+<col style="width: 12%" />
+<col style="width: 49%" />
+<col style="width: 34%" />
+<col style="width: 5%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Option</th>
-<th class="head">Description</th>
-<th class="head">Values</th>
-<th class="head">Necessary</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Values</p></th>
+<th class="head"><p>Necessary</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">design=&quot;pure&quot;</span></code></td>
-<td>This option sets the default design to apply to the visualization</td>
-<td>pure, metal, discreet, discreet_sand, discreet_slim, alaska, alaska_slim</td>
-<td>YES</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">design=&quot;pure&quot;</span></code></p></td>
+<td><p>This option sets the default design to apply to the visualization</p></td>
+<td><p>pure, metal, discreet, discreet_sand, discreet_slim, alaska, alaska_slim</p></td>
+<td><p>YES</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">screensave_time=&quot;60&quot;</span></code></td>
-<td>This option can be used to set the time after which a particular page is returned</td>
-<td>any value in seconds</td>
-<td>NO</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">screensave_time=&quot;60&quot;</span></code></p></td>
+<td><p>This option can be used to set the time after which a particular page is returned</p></td>
+<td><p>any value in seconds</p></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">screensave_page=&quot;main&quot;</span></code></td>
-<td>This option allows you to specify which page will be displayed after <code class="docutils literal notranslate"><span class="pre">sceensave_time</span></code> has expired</td>
-<td>Specification of the page ID eg. “id_1” or page name e.g. “Main”</td>
-<td>NO</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">screensave_page=&quot;main&quot;</span></code></p></td>
+<td><p>This option allows you to specify which page will be displayed after <code class="docutils literal notranslate"><span class="pre">sceensave_time</span></code> has expired</p></td>
+<td><p>Specification of the page ID eg. “id_1” or page name e.g. “Main”</p></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">backend=&quot;mqtt&quot;</span></code></td>
-<td>This option sets the backend to use - overriding the information sent from the server</td>
-<td><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></td>
-<td>NO</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend=&quot;mqtt&quot;</span></code></p></td>
+<td><p>This option sets the backend to use - overriding the information sent from the server</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">backend-knxd-url=&quot;&quot;</span></code></td>
-<td>URL of the knxd login resource</td>
-<td>&#160;</td>
-<td>NO</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-knxd-url=&quot;&quot;</span></code></p></td>
+<td><p>URL of the knxd login resource</p></td>
+<td></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">backend-mqtt-url=&quot;&quot;</span></code></td>
-<td>URL of the MQTT login resource</td>
-<td>&#160;</td>
-<td>NO</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend-mqtt-url=&quot;&quot;</span></code></p></td>
+<td><p>URL of the MQTT login resource</p></td>
+<td></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">backend-openhab-url=&quot;&quot;</span></code></td>
-<td>Path to the openHAB REST-API</td>
-<td>Usually <code class="docutils literal notranslate"><span class="pre">/rest/</span></code></td>
-<td>NO</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-openhab-url=&quot;&quot;</span></code></p></td>
+<td><p>Path to the openHAB REST-API</p></td>
+<td><p>Usually <code class="docutils literal notranslate"><span class="pre">/rest/</span></code></p></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></td>
-<td>Deprecated, only for openHAB: URL of the connection to the MQTT broker web sockets</td>
-<td>&#160;</td>
-<td>NO</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></p></td>
+<td><p>Deprecated, only for openHAB: URL of the connection to the MQTT broker web sockets</p></td>
+<td></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></td>
-<td>Deprecated, only for openHAB: user name</td>
-<td>&#160;</td>
-<td>NO</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></p></td>
+<td><p>Deprecated, only for openHAB: user name</p></td>
+<td></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></td>
-<td>Deprecated, only for openHAB: password</td>
-<td>&#160;</td>
-<td>NO</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></p></td>
+<td><p>Deprecated, only for openHAB: password</p></td>
+<td></td>
+<td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">lib_version=&quot;9&quot;</span></code></td>
-<td>Version of the CometVisu-library. This value is only required for the upgrade script.</td>
-<td>The CometVisu version 0.12.0 uses the value <code class="docutils literal notranslate"><span class="pre">9</span></code></td>
-<td>YES</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lib_version=&quot;9&quot;</span></code></p></td>
+<td><p>Version of the CometVisu-library. This value is only required for the upgrade script.</p></td>
+<td><p>The CometVisu version 0.12.0 uses the value <code class="docutils literal notranslate"><span class="pre">9</span></code></p></td>
+<td><p>YES</p></td>
 </tr>
 </tbody>
 </table>
@@ -184,33 +188,33 @@ element can accept values. Some of these attributes must be assigned.</p>
 plugins, mappings, stylings, icons and the status bar. The correct
 order must be adhered to!</p>
 <p>The following is an overview of the options in the meta-tag.</p>
-</div>
-<div class="section" id="include-additional-files">
+</section>
+<section id="include-additional-files">
 <span id="xml-format-files"></span><h2>Include additional files<a class="headerlink" href="#include-additional-files" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line"><strong>Available since version</strong>: 0.11.0</div>
 <div class="line"><br /></div>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="23%" />
-<col width="37%" />
-<col width="28%" />
-<col width="13%" />
+<col style="width: 23%" />
+<col style="width: 37%" />
+<col style="width: 28%" />
+<col style="width: 13%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Option</th>
-<th class="head">Description</th>
-<th class="head">Values</th>
-<th class="head">Necessary</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Values</p></th>
+<th class="head"><p>Necessary</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;file</span> <span class="pre">type=&quot;</span> <span class="pre">&quot;&gt;&lt;/file&gt;</span></code></td>
-<td>With this option additional files (CSS or
-Javascript) can be loaded</td>
-<td>Path to the file</td>
-<td>NO</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;file</span> <span class="pre">type=&quot;</span> <span class="pre">&quot;&gt;&lt;/file&gt;</span></code></p></td>
+<td><p>With this option additional files (CSS or
+Javascript) can be loaded</p></td>
+<td><p>Path to the file</p></td>
+<td><p>NO</p></td>
 </tr>
 </tbody>
 </table>
@@ -224,28 +228,28 @@ Javascript) can be loaded</td>
 </pre></div>
 </div>
 <p>see also <a class="reference internal" href="customizing.html#custom-css"><span class="std std-ref">Change individual widgets through CSS classes</span></a> and <a class="reference internal" href="customizing.html#custom-plugins"><span class="std std-ref">Write your own widgets via plugins</span></a>.</p>
-</div>
-<div class="section" id="plugins">
+</section>
+<section id="plugins">
 <span id="xml-format-plugins"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="13%" />
-<col width="66%" />
-<col width="16%" />
-<col width="6%" />
+<col style="width: 13%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
+<col style="width: 6%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Option</th>
-<th class="head">Description</th>
-<th class="head">Values</th>
-<th class="head">Necessary</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Values</p></th>
+<th class="head"><p>Necessary</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;plugin</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;/&gt;</span></code></td>
-<td>With this option the plugins are included. Here the name of the plugin is entered. For each plugin such an entry must be created.</td>
-<td>z.B. clock or diagram</td>
-<td>NO</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;plugin</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;/&gt;</span></code></p></td>
+<td><p>With this option the plugins are included. Here the name of the plugin is entered. For each plugin such an entry must be created.</p></td>
+<td><p>z.B. clock or diagram</p></td>
+<td><p>NO</p></td>
 </tr>
 </tbody>
 </table>
@@ -257,33 +261,33 @@ Javascript) can be loaded</td>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="mappings">
+</section>
+<section id="mappings">
 <span id="xml-format-mappings"></span><h2>Mappings<a class="headerlink" href="#mappings" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="24%" />
-<col width="63%" />
-<col width="7%" />
-<col width="6%" />
+<col style="width: 24%" />
+<col style="width: 63%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Option</th>
-<th class="head">Description</th>
-<th class="head">Values</th>
-<th class="head">Necessary</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Values</p></th>
+<th class="head"><p>Necessary</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;mapping</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></td>
-<td>This option defines the name of the mapping. This is also displayed in the web editor with corresponding widgets.</td>
-<td>e.g. Name</td>
-<td>YES</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;mapping</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></p></td>
+<td><p>This option defines the name of the mapping. This is also displayed in the web editor with corresponding widgets.</p></td>
+<td><p>e.g. Name</p></td>
+<td><p>YES</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;NAME&lt;/entry&gt;</span></code></td>
-<td>This option assigns a name to a value. For every possible value, such an entry must be created.</td>
-<td>e.g. Stop</td>
-<td>YES</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;NAME&lt;/entry&gt;</span></code></p></td>
+<td><p>This option assigns a name to a value. For every possible value, such an entry must be created.</p></td>
+<td><p>e.g. Stop</p></td>
+<td><p>YES</p></td>
 </tr>
 </tbody>
 </table>
@@ -299,33 +303,33 @@ Javascript) can be loaded</td>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="stylings">
+</section>
+<section id="stylings">
 <span id="xml-format-stylings"></span><h2>Stylings<a class="headerlink" href="#stylings" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="24%" />
-<col width="63%" />
-<col width="6%" />
-<col width="6%" />
+<col style="width: 24%" />
+<col style="width: 63%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Option</th>
-<th class="head">Description</th>
-<th class="head">Values</th>
-<th class="head">Necessary</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Values</p></th>
+<th class="head"><p>Necessary</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;styling</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></td>
-<td>This option defines the name of the styling. This is also displayed in the web editor with corresponding widgets.</td>
-<td>e.g. name</td>
-<td>YES</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;styling</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></p></td>
+<td><p>This option defines the name of the styling. This is also displayed in the web editor with corresponding widgets.</p></td>
+<td><p>e.g. name</p></td>
+<td><p>YES</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;FARBE&lt;/entry&gt;</span></code></td>
-<td>This option assigns a color to a value.</td>
-<td>e.g. red</td>
-<td>YES</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;FARBE&lt;/entry&gt;</span></code></p></td>
+<td><p>This option assigns a color to a value.</p></td>
+<td><p>e.g. red</p></td>
+<td><p>YES</p></td>
 </tr>
 </tbody>
 </table>
@@ -341,28 +345,28 @@ Javascript) can be loaded</td>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="icons">
+</section>
+<section id="icons">
 <span id="xml-format-icons"></span><h2>Icons<a class="headerlink" href="#icons" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="12%" />
-<col width="83%" />
-<col width="2%" />
-<col width="3%" />
+<col style="width: 12%" />
+<col style="width: 83%" />
+<col style="width: 2%" />
+<col style="width: 3%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Option</th>
-<th class="head">Description</th>
-<th class="head">Values</th>
-<th class="head">Necessary</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Values</p></th>
+<th class="head"><p>Necessary</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;</span> <span class="pre">uri=&quot;WERT&quot;&gt;</span></code></td>
-<td>This option defines the name of the icon, which is located under the directory specified in uri. The icons defined in this way can then be accessed via the name that is easier to remember. The directory specification in the example is relative to the CV installation. Here, the icons were previously stored in a separate subdirectory.</td>
-<td>e.g.</td>
-<td>NO</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;</span> <span class="pre">uri=&quot;WERT&quot;&gt;</span></code></p></td>
+<td><p>This option defines the name of the icon, which is located under the directory specified in uri. The icons defined in this way can then be accessed via the name that is easier to remember. The directory specification in the example is relative to the CV installation. Here, the icons were previously stored in a separate subdirectory.</p></td>
+<td><p>e.g.</p></td>
+<td><p>NO</p></td>
 </tr>
 </tbody>
 </table>
@@ -376,15 +380,15 @@ Javascript) can be loaded</td>
 </pre></div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">If the icons have been uploaded with the <a class="reference internal" href="manager.html"><span class="doc">Manager</span></a> they are stored in the path
+<p class="admonition-title">Hint</p>
+<p>If the icons have been uploaded with the <a class="reference internal" href="manager.html"><span class="doc">Manager</span></a> they are stored in the path
 <code class="docutils literal notranslate"><span class="pre">resource/config/media/</span></code>. An uploaded icon with the filename <code class="docutils literal notranslate"><span class="pre">logo.svg</span></code> kan be included with the following
 line: <code class="docutils literal notranslate"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;Logo&quot;</span> <span class="pre">uri=&quot;resource/config/media/logo.svg&quot;`.</span>
 <span class="pre">The</span> <span class="pre">path</span> <span class="pre">``resource/config/media/</span></code> is valid for CometVisu versions &gt;=0.11.x. For versions &lt;=0.10.x the path
 <code class="docutils literal notranslate"><span class="pre">config/media/</span></code> is valid.</p>
 </div>
-</div>
-<div class="section" id="footer">
+</section>
+<section id="footer">
 <span id="xml-format-statusbar"></span><h2>Footer<a class="headerlink" href="#footer" title="Permalink to this headline">¶</a></h2>
 <p>The status bar (footer) is located at the bottom of the screen and allows e.g. external links (via URL).</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
@@ -409,8 +413,8 @@ line: <code class="docutils literal notranslate"><span class="pre">&lt;icon-defi
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="templates">
+</section>
+<section id="templates">
 <span id="xml-format-templates"></span><h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line"><strong>Available since version</strong>: 0.11.0</div>
@@ -427,7 +431,7 @@ reuse it in every room.</p>
 <p>In the template definition, placeholders are used for variables, which are then
 replaced by the corresponding values when using the template. The following example
 shows how to define and use a template.</p>
-<div class="literal-block-wrapper container" id="id1">
+<div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Example of a template for a heater and its use in different rooms</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
@@ -490,13 +494,13 @@ shows how to define and use a template.</p>
 </div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">The templates use <a class="reference external" href="https://github.com/janl/mustache.js">mustache.js</a>. For
+<p class="admonition-title">Hint</p>
+<p>The templates use <a class="reference external" href="https://github.com/janl/mustache.js">mustache.js</a>. For
 more information, the mustache.js documentation can be consulted.</p>
 </div>
 <p>As an alternative to the example above, the content of the template can
 also be swapped out to an external file.</p>
-<div class="literal-block-wrapper container" id="id2">
+<div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Example of a template definition from an external file</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
@@ -531,7 +535,7 @@ also be swapped out to an external file.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper container" id="id3">
+<div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Content of the external file <code class="docutils literal notranslate"><span class="pre">resource/config/media/heizung.template.xml</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
   {{{ additional_content }}}
@@ -562,21 +566,27 @@ also be swapped out to an external file.</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="structure-of-the-visu-pages">
+</section>
+<section id="structure-of-the-visu-pages">
 <span id="xml-format-pages"></span><h2>Structure of the visu pages<a class="headerlink" href="#structure-of-the-visu-pages" title="Permalink to this headline">¶</a></h2>
 <p>First, a page must be created as the start page. This happens with the
 topmost container. All other widgets and pages are inside this main page.
 The position of the elements is processed from top to bottom.</p>
 <p>This looks like this:</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <img alt="Mainpage with link to the subpage" src="../_images/structure_main_page.png" />
-<p class="caption"><span class="caption-text">Mainpage with link to the subpage</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id5">
+<figcaption>
+<p><span class="caption-text"><p>Mainpage with link to the subpage</p>
+</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
 <img alt="subpage" src="../_images/structure_sub_page.png" />
-<p class="caption"><span class="caption-text">subpage</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>subpage</p>
+</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
@@ -614,8 +624,8 @@ following entry has to be inserted at the end of the file:</p>
 </pre></div>
 </div>
 <p>This completes the visu_config.xml and can be transferred to the server.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

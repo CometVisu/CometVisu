@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entwicklerversion auf dem Wiregate &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Entwicklerversion auf dem Wiregate &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/install/install-dev.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -100,7 +104,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="entwicklerversion-auf-dem-wiregate">
+  <section id="entwicklerversion-auf-dem-wiregate">
 <h1>Entwicklerversion auf dem Wiregate<a class="headerlink" href="#entwicklerversion-auf-dem-wiregate" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Auf dieser Seite wird erklärt, wie man die Entwicklerversion
 der CometVisu auf dem WireGate installieren kann. Für andere Geräte ist diese Anleitung prinzipiell
@@ -111,11 +115,11 @@ werden und in der Durchführung geeignet angepasst werden.</p>
 <p>Grundsätzlich ist dies die Anleitung für Anwender.
 Die Informationen für Entwickler sind dem <a class="reference external" href="https://github.com/CometVisu/CometVisu/wiki">GitHub CometVisu Wiki</a>
 zu entnehmen.</p>
-<div class="section" id="ohne-versionskontrolle">
+<section id="ohne-versionskontrolle">
 <h2>Ohne Versionskontrolle<a class="headerlink" href="#ohne-versionskontrolle" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Hier wird die Installation der Entwicklerversion erklärt! Produktive Systeme sollten nur
+<p class="admonition-title">Wichtig</p>
+<p>Hier wird die Installation der Entwicklerversion erklärt! Produktive Systeme sollten nur
 ein veröffentlichtes <cite>Release &lt;https://github.com/CometVisu/CometVisu/releases&gt;</cite> nehmen.</p>
 </div>
 <p>Wenn man nur die aktuellste Entwickler-Version ausprobieren möchte
@@ -126,19 +130,19 @@ CometVisu/CometVisu -&gt; develop lädt man dazu die Datei</p>
 <p>und installiert diese wie unter <a class="reference internal" href="update-other.html"><span class="doc">Update der direkt installierten CometVisu</span></a> beschrieben.</p>
 <p>Um jedoch eine richtige Entwickler-Version zu installieren, über die man
 auch Änderungen zurückspielen kann, gelten die im folgenden beschriebenen Punkte.</p>
-</div>
-<div class="section" id="mit-versionskontrolle">
+</section>
+<section id="mit-versionskontrolle">
 <h2>Mit Versionskontrolle<a class="headerlink" href="#mit-versionskontrolle" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="vorbereitung">
+<section id="vorbereitung">
 <h3>Vorbereitung<a class="headerlink" href="#vorbereitung" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="section" id="voraussetzung">
+<section id="voraussetzung">
 <h4>Voraussetzung<a class="headerlink" href="#voraussetzung" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Der Code der CometVisu ist auf
 <a class="reference external" href="https://github.com/CometVisu/CometVisu">GitHub</a> zu finden. Da das
 WireGate den git Client nicht vorinstalliert mitbringt, muss man als
 erstes diesen installieren.</p>
-</div>
-<div class="section" id="installation-mit-paketen">
+</section>
+<section id="installation-mit-paketen">
 <h4>Installation mit Paketen<a class="headerlink" href="#installation-mit-paketen" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Auf neueren Debian basierten Systemen kann man git leicht über die
 Kommandozeile (z.B. remote üer eine SSH-Verbindung) als root mit diesem
@@ -146,8 +150,8 @@ Befehl installieren:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install git-core
 </pre></div>
 </div>
-</div>
-<div class="section" id="installation-ohne-pakete">
+</section>
+<section id="installation-ohne-pakete">
 <span id="install-no-pakets"></span><h4>Installation ohne Pakete<a class="headerlink" href="#installation-ohne-pakete" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Da die aktuell (Stand: 12.04.2015) für das Wiregate verfügbare
 Git-Version zu alt ist (diese ist inkompatibel mit GitHub), muss man
@@ -155,8 +159,8 @@ dort Git „per Hand“ installieren. Es gibt zwei Möglichkeiten dies zu
 tun. Man kann die aktuelle Git version selber installieren und
 compilieren - empfohlene Variante - oder man kann die master.zip Datei
 verwenden.</p>
-</div>
-<div class="section" id="aktuelle-git-version-selbst-installieren-und-compilieren">
+</section>
+<section id="aktuelle-git-version-selbst-installieren-und-compilieren">
 <h4>Aktuelle Git Version selbst installieren und compilieren<a class="headerlink" href="#aktuelle-git-version-selbst-installieren-und-compilieren" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install tcl
 apt-get install tk
@@ -181,9 +185,9 @@ rm git-2.4.1.tar.gz
 <p>Sollte die Installation/Konfiguration von python-software-properties
 abbrechen, dann hilft folgendes Kommando:</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Es&nbsp;gibt&nbsp;Hinweise,&nbsp;dass&nbsp;aktuell&nbsp;(13.01.2016)&nbsp;das&nbsp;nächste&nbsp;Kommando&nbsp;die&nbsp;WireGate-Installation
-beschädigen&nbsp;kann!&nbsp;Bitte&nbsp;nur&nbsp;ausführen,&nbsp;wenn&nbsp;man&nbsp;weiß,&nbsp;was&nbsp;man&nbsp;macht!</p>
+<p class="admonition-title">Vorsicht</p>
+<p>Es gibt Hinweise, dass aktuell (13.01.2016) das nächste Kommando die WireGate-Installation
+beschädigen kann! Bitte nur ausführen, wenn man weiß, was man macht!</p>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -f /usr/bin/python2.5 /usr/bin/python
 dpkg --configure -a
@@ -193,8 +197,8 @@ dpkg --configure -a
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git --version
 </pre></div>
 </div>
-</div>
-<div class="section" id="master-zip-datei-verwenden">
+</section>
+<section id="master-zip-datei-verwenden">
 <h4>master.zip Datei verwenden<a class="headerlink" href="#master-zip-datei-verwenden" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Hierzu nimmt man die Datei von</p>
 <p><a class="reference external" href="https://github.com/git/git/archive/master.zip">https://github.com/git/git/archive/master.zip</a></p>
@@ -205,8 +209,8 @@ nachinstalliert werden:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install libexpat1-dev build-essential libcurl4-openssl-dev libssl-dev gettext
 </pre></div>
 </div>
-</div>
-<div class="section" id="auf-github">
+</section>
+<section id="auf-github">
 <h4>Auf GitHub<a class="headerlink" href="#auf-github" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Wenn die Versionsverwaltung an sich installiert ist, muss man sich auf
 <a class="reference external" href="https://github.com/">GitHub</a> einen Account anlegen, so man noch
@@ -218,13 +222,13 @@ rechts oben auf „Fork“ um einen Fork dieses Repositorys zu erstellen.</p>
 rechten Seite unter „HTTPS clone URL“ eine URL die man sich merken muss
 (bzw. in die Zwischenablage kopiert). Diese URL hat die Form
 <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu.git</span></code></p>
-</div>
-</div>
-<div class="section" id="installation">
+</section>
+</section>
+<section id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Es wird die Installation mit Git empfohlen. Als Fallback steht
 allerdings SVN (bzw. Subversion) weiterhin zur Verfügung.</p>
-<div class="section" id="git">
+<section id="git">
 <h4>Git<a class="headerlink" href="#git" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Der eigene Fork der CometVisu wird nun durch einen simplen Befehl
 installiert:</p>
@@ -255,8 +259,8 @@ als <em>upstream</em> hinzufügen:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/CometVisu/CometVisu.git
 </pre></div>
 </div>
-</div>
-<div class="section" id="subversion">
+</section>
+<section id="subversion">
 <h4>Subversion<a class="headerlink" href="#subversion" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Falls das Git clone nicht funktioniert hat und eine Fehlermeldung wie</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>error: The requested URL returned error: <span class="m">403</span>
@@ -303,8 +307,8 @@ ln -s CometVisuGitSVN/trunk/src visu_git
 </div>
 <p>Herzlichen Glückwunsch! Unter <code class="docutils literal notranslate"><span class="pre">http://wiregate/visu_git/</span></code> sollte jetzt die
 CometVisu laufen!</p>
-</div>
-<div class="section" id="weitere-schritte">
+</section>
+<section id="weitere-schritte">
 <h4>Weitere Schritte<a class="headerlink" href="#weitere-schritte" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Egal ob mit Git oder mit SVN installiert wurde sollte man im Anschluss
 diese Schritte durchführen:</p>
@@ -325,16 +329,16 @@ die Datei noch Schreibrechte eingerichtet werden:</p>
 <p>Jetzt ist die Demo-Visu über <code class="docutils literal notranslate"><span class="pre">http://wiregatexxx/visu_git/</span></code> erreichbar.</p>
 <p>Der Visu-Editor steht unter <code class="docutils literal notranslate"><span class="pre">http://wiregateXXX/visu_git/editor/</span></code> zur Verfügung.</p>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Die CometVisu kann durch einfaches Löschen des Verzeichnisses restlos entfernt werden.
+<p class="admonition-title">Wichtig</p>
+<p>Die CometVisu kann durch einfaches Löschen des Verzeichnisses restlos entfernt werden.
 Auch für eine Neuinstallation (erneutes SVN Checkout) wenn das SVN Update nicht mehr
 funktionieren sollte, muss das Verzeichnis gelöscht werden. Dabei empfiehlt es sich den Inhalt
 des Verzeichnis <em>/config/</em> zu sichern. Ansonsten werden auch die eigenen Configs gelöscht!</p>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="nutzung">
+</section>
+</section>
+</section>
+<section id="nutzung">
 <h2>Nutzung<a class="headerlink" href="#nutzung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Wenn alles vorbereitet wurde, d.h. der Versionskontrollsystem wurde
 installiert und die CometVisu ausgecheckt, dann kann man in die Nutzung
@@ -343,22 +347,22 @@ installiert und die CometVisu ausgecheckt, dann kann man in die Nutzung
 nun mehrere Repositories gibt - und dort auch noch verschiedene
 Branches:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">master</span></code> - <strong>das</strong> Hauptrepository
-und Hauptbranch. Hier stehen nur die offiziellen Releases.</li>
-<li><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> - der Entwicklungsbranch
+<li><p><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">master</span></code> - <strong>das</strong> Hauptrepository
+und Hauptbranch. Hier stehen nur die offiziellen Releases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> - der Entwicklungsbranch
 im Hauptrepository. Hier findet die Hauptentwicklung statt. Der
 Zustand der Dateien in diesem Branch sollte immer funktionsfähig
-sein.</li>
-<li><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">&lt;weitere&gt;</span></code> - unter
+sein.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">&lt;weitere&gt;</span></code> - unter
 <a class="reference external" href="https://github.com/CometVisu/CometVisu/branches">GitHub-&gt;Branches</a>
 sind alle weiteren Branches zu finden. Hier werden manche Features
-für den Entwicklungsbranch vorbereitet.</li>
-<li><code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - Die Branches unter dem Fork die **
+für den Entwicklungsbranch vorbereitet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - Die Branches unter dem Fork die **
 gehören. Meist wird dort <em>master</em> verwendet - oder bei der
 Entwicklung von Patches oder Features extra ein (weiterer) Branch
 angelegt, der nach Fertigstellung und einem Pull nach
-<code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> wieder geschlossen wird.</li>
-<li><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">lokale</span> <span class="pre">Rechner</span> <span class="pre">(bzw.</span> <span class="pre">das</span> <span class="pre">WireGate)</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - die lokalen Branches.</li>
+<code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> wieder geschlossen wird.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">lokale</span> <span class="pre">Rechner</span> <span class="pre">(bzw.</span> <span class="pre">das</span> <span class="pre">WireGate)</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - die lokalen Branches.</p></li>
 </ul>
 <p>Dies bedeutet, dass es im wesentlichen drei verschiedene Orte für die
 Dateien gibt:</p>
@@ -367,14 +371,14 @@ Dateien gibt:</p>
 </div>
 <p>Um diese Orte synchron zu halten müssen verschiedene Schritte
 durchgeführt werden.</p>
-<div class="section" id="generisch">
+<section id="generisch">
 <h3>Generisch<a class="headerlink" href="#generisch" title="Link zu dieser Überschrift">¶</a></h3>
 <p>In diesem Kapitel wird die Synchronisierung von</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <p>beschrieben.</p>
-<div class="section" id="update-des-github-forks">
+<section id="update-des-github-forks">
 <h4>Update des GitHub Forks<a class="headerlink" href="#update-des-github-forks" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> -&gt; ** <span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
@@ -385,29 +389,29 @@ CometVisu/CometVisu -&gt; develop in den eigenen Fork zu
 über die GitHub Seite des eigenen Forks <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu</span></code>
 aus.</p>
 <p>Man klickt auf den <em>Pull Request</em> Button:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/GitHub_Pull_Request_Button.png" src="../_images/GitHub_Pull_Request_Button.png" />
-</div>
+</figure>
 <p>Man stellt sicher, dass der <em>base fork</em> dem eigenen Fork entspricht
 (also <em>&lt;Accountname&gt;</em>) und <em>head fork</em> auf <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> steht:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/GitHub_Comparing_Changes.png" src="../_images/GitHub_Comparing_Changes.png" />
-</div>
+</figure>
 <p>Man klickt auf <em>Create pull request</em> und auf der folgenden Seite (wo
 man bei Bedarf noch einen entsprechenden Commit-Kommentar eintragen
 kann) wieder <em>Create pull request</em>.</p>
 <p>Auf der nun folgenden Seite erscheint (hoffentlich…) <strong>*This pull
 request can be automatically merged.*</strong> - hier klickt man dann auch
 wieder <em>Merge pull request</em>:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/GitHub_automatically_merged.png" src="../_images/GitHub_automatically_merged.png" />
-</div>
+</figure>
 <p>Am Schluss muss man noch auf <em>Configm merge</em> klicken:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/GitHub_confirm_merge.png" src="../_images/GitHub_confirm_merge.png" />
-</div>
-</div>
-<div class="section" id="update-des-hauptrepositorys-auf-github">
+</figure>
+</section>
+<section id="update-des-hauptrepositorys-auf-github">
 <h4>Update des Hauptrepositorys auf GitHub<a class="headerlink" href="#update-des-hauptrepositorys-auf-github" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;- ** <span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
@@ -419,9 +423,9 @@ am besten die GitHub Seite. Dies Funktioniert genau so wie Punkt #2 des Abschnit
 „Update des GitHub Forks“, nur dass hier unter <em>base fork</em>
 <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> stehen muss und unter <em>head fork</em> das
 <code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code>.</p>
-</div>
-</div>
-<div class="section" id="id1">
+</section>
+</section>
+<section id="id1">
 <h3>Git<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Wenn die Installation wie oben durchgeführt wurde, dann sind alle
 Branches unter <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> als upstream bekannt und die
@@ -435,7 +439,7 @@ upstream https://github.com/CometVisu/CometVisu.git  <span class="o">(</span>f
 upstream https://github.com/CometVisu/CometVisu.git  <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
-<div class="section" id="update-auf-dem-wiregate">
+<section id="update-auf-dem-wiregate">
 <h4>Update auf dem WireGate<a class="headerlink" href="#update-auf-dem-wiregate" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>** <span class="o">(</span>origin<span class="o">)</span> -&gt; lokal auf dem WireGate
 </pre></div>
@@ -446,8 +450,8 @@ werden. Hier bitte in geeigneten Quellen nachschlagen!</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull
 </pre></div>
 </div>
-</div>
-<div class="section" id="update-auf-github">
+</section>
+<section id="update-auf-github">
 <h4>Update auf GitHub<a class="headerlink" href="#update-auf-github" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- lokal auf dem WireGate
 </pre></div>
@@ -466,11 +470,11 @@ git commit
 git push
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="id2">
+</section>
+</section>
+<section id="id2">
 <h3>Subversion<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="section" id="id3">
+<section id="id3">
 <h4>Update auf dem WireGate<a class="headerlink" href="#id3" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> -&gt; lokal auf dem WireGate
 </pre></div>
@@ -480,8 +484,8 @@ git push
 svn update .
 </pre></div>
 </div>
-</div>
-<div class="section" id="update-nach-github">
+</section>
+<section id="update-nach-github">
 <h4>Update nach GitHub<a class="headerlink" href="#update-nach-github" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- lokal auf dem WireGate
 </pre></div>
@@ -496,10 +500,10 @@ Durch den Befehl</p>
 </pre></div>
 </div>
 <p>können eigene Änderungen nach GitHub in den eigenen Fork übertragen werden.</p>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>

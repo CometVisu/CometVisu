@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Konfiguration der CometVisu &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Konfiguration der CometVisu &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/index.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -123,7 +127,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="konfiguration-der-cometvisu">
+  <section id="konfiguration-der-cometvisu">
 <h1>Konfiguration der CometVisu<a class="headerlink" href="#konfiguration-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
@@ -138,12 +142,12 @@ Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibba
 <p>Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:</p>
 <ul class="simple">
-<li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden
+<li><p>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden
 (KNX ist dann das Backend), wird die CometVisu manuell in den Verzeichnisbaum „/var/www/visu…“ des Webservers
-(z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
-<li>Da ab Version 0.12 kein spezielles Binding mehr benötigt wird, um die CometVisu mit openHAB als Backend zu benutzen,
+(z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</p></li>
+<li><p>Da ab Version 0.12 kein spezielles Binding mehr benötigt wird, um die CometVisu mit openHAB als Backend zu benutzen,
 gelten hier die selben Regeln wir bei anderen Backends. Es wird empfohlen den Docker-Container zu benutzen,
-wie man diesen installiert und openHAB als Backend konfiguriert wird <a class="reference internal" href="../install/docker_openhab.html#docker-openhab-installation"><span class="std std-ref">hier</span></a> beschrieben.</li>
+wie man diesen installiert und openHAB als Backend konfiguriert wird <a class="reference internal" href="../install/docker_openhab.html#docker-openhab-installation"><span class="std std-ref">hier</span></a> beschrieben.</p></li>
 </ul>
 <p>Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
 (fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
@@ -168,9 +172,9 @@ durch Anhängen von check_config.php an den URL erzwingen.</p>
 <div class="toctree-wrapper compound">
 </div>
 <p>Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter <a class="reference internal" href="url-params.html"><span class="doc">URL-Parameter</span></a> zu finden.</p>
-<div class="section" id="seiten-und-struktur-der-cometvisu">
+<section id="seiten-und-struktur-der-cometvisu">
 <span id="visu-config-details"></span><h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="grundsatzliches">
+<section id="grundsatzliches">
 <h3>Grundsätzliches<a class="headerlink" href="#grundsatzliches" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
 Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
@@ -181,72 +185,74 @@ und weiterleitet und aus nicht sichtbaren Objekten, durch welche die
 Funktionsweise des Widget detaillierter festgelegt werden.</p>
 <p>Es wird zwischen Widgets zur</p>
 <ul class="simple">
-<li>Bedienung (hier z.B. das switch-Widget zum Schalten),</li>
-<li>Darstellung (diese haben ausschließlich informative Funktion),</li>
-<li>Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiedenen Seiten der Visualisierung (Sonstige Widgets)</li>
+<li><p>Bedienung (hier z.B. das switch-Widget zum Schalten),</p></li>
+<li><p>Darstellung (diese haben ausschließlich informative Funktion),</p></li>
+<li><p>Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiedenen Seiten der Visualisierung (Sonstige Widgets)</p></li>
 </ul>
 <p>unterschieden.</p>
 <p>Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.</p>
-</div>
-<div class="section" id="arbeiten-mit-der-konfigurationsdatei">
+</section>
+<section id="arbeiten-mit-der-konfigurationsdatei">
 <h3>Arbeiten mit der Konfigurationsdatei<a class="headerlink" href="#arbeiten-mit-der-konfigurationsdatei" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
 Tags umschlossen aufgenommen werden:</p>
 <ul class="simple">
-<li><a class="reference internal" href="xml-format.html#xml-format-header"><span class="std std-ref">Der xml-Header</span></a></li>
-<li><a class="reference internal" href="xml-format.html#xml-format-plugins"><span class="std std-ref">Plugins</span></a></li>
-<li><a class="reference internal" href="xml-format.html#xml-format-mappings"><span class="std std-ref">Mappings</span></a></li>
-<li><a class="reference internal" href="xml-format.html#xml-format-stylings"><span class="std std-ref">Stylings</span></a></li>
-<li><a class="reference internal" href="xml-format.html#xml-format-icons"><span class="std std-ref">Icons</span></a></li>
-<li><a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a></li>
-<li><a class="reference internal" href="xml-format.html#xml-format-pages"><span class="std std-ref">Aufbau der Visu-Seiten</span></a></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-header"><span class="std std-ref">Der xml-Header</span></a></p></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-plugins"><span class="std std-ref">Plugins</span></a></p></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-mappings"><span class="std std-ref">Mappings</span></a></p></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-stylings"><span class="std std-ref">Stylings</span></a></p></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-icons"><span class="std std-ref">Icons</span></a></p></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a></p></li>
+<li><p><a class="reference internal" href="xml-format.html#xml-format-pages"><span class="std std-ref">Aufbau der Visu-Seiten</span></a></p></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
-<div class="section" id="navigationselemente-in-der-cometvisu">
+</section>
+</section>
+<section id="navigationselemente-in-der-cometvisu">
 <h2>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:</p>
 <ul class="simple">
-<li>Das <a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page-Widget</span></a> ruft die zugehörige Unterseite auf.</li>
-<li>Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten
-zurück zu navigieren .</li>
-<li>Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)</li>
-<li>Das Navbar-Widget in Verbindung mit Pagejump-Widgets</li>
-<li>Das <a class="reference internal" href="widgets/pagejump/index.html#pagejump"><span class="std std-ref">Pagejump-Widget</span></a> erlaubt den Aufruf einer beliebigen Unterseite.</li>
-<li>Das <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group-Widget</span></a> kann mit der Option <code class="docutils literal notranslate"><span class="pre">target=</span></code> ebenfalls eine beliebige Unterseite aufrufen.</li>
-<li>Eine Besonderheit ist der <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> am unteren Bildschirmrand. Von dort können zB. externe URL aufgerufen werden.</li>
+<li><p>Das <a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page-Widget</span></a> ruft die zugehörige Unterseite auf.</p></li>
+<li><p>Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten
+zurück zu navigieren .</p></li>
+<li><p>Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)</p></li>
+<li><p>Das Navbar-Widget in Verbindung mit Pagejump-Widgets</p></li>
+<li><p>Das <a class="reference internal" href="widgets/pagejump/index.html#pagejump"><span class="std std-ref">Pagejump-Widget</span></a> erlaubt den Aufruf einer beliebigen Unterseite.</p></li>
+<li><p>Das <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group-Widget</span></a> kann mit der Option <code class="docutils literal notranslate"><span class="pre">target=</span></code> ebenfalls eine beliebige Unterseite aufrufen.</p></li>
+<li><p>Eine Besonderheit ist der <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> am unteren Bildschirmrand. Von dort können zB. externe URL aufgerufen werden.</p></li>
 </ul>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
-<p class="caption"><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:</p>
 <ul class="simple">
-<li>Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut <code class="docutils literal notranslate"><span class="pre">ga=x/y/z</span></code> in der zugehörigen
-<a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page Definition</span></a> eingetragen ist.</li>
-<li>Die Optionen <code class="docutils literal notranslate"><span class="pre">screensave_time</span></code> und <code class="docutils literal notranslate"><span class="pre">screensave_page</span></code>. Damit wird nach Ablauf einer definierten Zeit eine festgelegte
-Seite aufgerufen.</li>
-<li>Das <a class="reference internal" href="widgets/plugins/timeout/index.html#timeout"><span class="std std-ref">timeout-Plugin</span></a> funktioniert ähnlich der screensave-Funktion, wird aber auch ausgeführt, wenn die Unterseite
-per GA aufgerufen wurde.</li>
+<li><p>Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut <code class="docutils literal notranslate"><span class="pre">ga=x/y/z</span></code> in der zugehörigen
+<a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page Definition</span></a> eingetragen ist.</p></li>
+<li><p>Die Optionen <code class="docutils literal notranslate"><span class="pre">screensave_time</span></code> und <code class="docutils literal notranslate"><span class="pre">screensave_page</span></code>. Damit wird nach Ablauf einer definierten Zeit eine festgelegte
+Seite aufgerufen.</p></li>
+<li><p>Das <a class="reference internal" href="widgets/plugins/timeout/index.html#timeout"><span class="std std-ref">timeout-Plugin</span></a> funktioniert ähnlich der screensave-Funktion, wird aber auch ausgeführt, wenn die Unterseite
+per GA aufgerufen wurde.</p></li>
 </ul>
-</div>
-<div class="section" id="die-verfugbaren-designs">
+</section>
+<section id="die-verfugbaren-designs">
 <h2>Die verfügbaren Designs<a class="headerlink" href="#die-verfugbaren-designs" title="Link zu dieser Überschrift">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="examples/swiss.html"><span class="doc">Metal</span></a> - das wohl beliebteste Design</li>
-<li>Pure - Standard-Design</li>
-<li>Diskreet</li>
-<li>Diskreet Sand</li>
-<li>Diskreet Slim</li>
-<li>Alaska</li>
-<li>Alaska Slim</li>
+<li><p><a class="reference internal" href="examples/swiss.html"><span class="doc">Metal</span></a> - das wohl beliebteste Design</p></li>
+<li><p>Pure - Standard-Design</p></li>
+<li><p>Diskreet</p></li>
+<li><p>Diskreet Sand</p></li>
+<li><p>Diskreet Slim</p></li>
+<li><p>Alaska</p></li>
+<li><p>Alaska Slim</p></li>
 </ul>
-</div>
-<div class="section" id="anderung-der-metal-designs">
+</section>
+<section id="anderung-der-metal-designs">
 <h2>Änderung der Metal-Designs<a class="headerlink" href="#anderung-der-metal-designs" title="Link zu dieser Überschrift">¶</a></h2>
 <p>In der Version 0.12 wurde das Metal-Design überarbeitet. Die Änderungen bestanden im Wesentlichen darin
 Farbverläufe, Text-Schatten und die Schriftart zu verändern um eine moderate Modernisierung zu erreichen.</p>
@@ -260,8 +266,8 @@ Dies wird erreicht durch Hinzufügen des folgenden Texts in den Meta-Bereich der
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="grundlegende-elemente-zum-gestalten-des-layouts">
+</section>
+<section id="grundlegende-elemente-zum-gestalten-des-layouts">
 <h2>Grundlegende Elemente zum Gestalten des Layouts<a class="headerlink" href="#grundlegende-elemente-zum-gestalten-des-layouts" title="Link zu dieser Überschrift">¶</a></h2>
 <p>In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element <code class="docutils literal notranslate"><span class="pre">Layout</span></code> gesteuert werden.
 Damit kann ein „Responsive Design“ realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem
@@ -273,29 +279,29 @@ die Größe des Widgetinhalts (zB. Bild- und Diagrammgröße, etc.) gesteuert we
 <div class="toctree-wrapper compound">
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="layout.html"><span class="doc">Layout</span></a> legt die Größe und Anordnung der Widgets fest</li>
-<li><a class="reference internal" href="size-attributes.html"><span class="doc">Width und Height</span></a> beeinflusst die Größe des Widgetinhalts</li>
+<li><p><a class="reference internal" href="layout.html"><span class="doc">Layout</span></a> legt die Größe und Anordnung der Widgets fest</p></li>
+<li><p><a class="reference internal" href="size-attributes.html"><span class="doc">Width und Height</span></a> beeinflusst die Größe des Widgetinhalts</p></li>
 </ul>
-</div>
-<div class="section" id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
+</section>
+<section id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
 <h2>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>In der CometVisu können Werte auf verschiedenste Art und Weisen
 dargestellt werden. Hierfür können genutzt werden:</p>
 <div class="toctree-wrapper compound">
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="format.html"><span class="doc">Format</span></a> von Werten z.B. auf Anzahl der
-Nachkommastellen, Einheiten etc.</li>
-<li><a class="reference internal" href="mapping.html"><span class="doc">Mapping</span></a> erlaubt das Ersetzen von
+<li><p><a class="reference internal" href="format.html"><span class="doc">Format</span></a> von Werten z.B. auf Anzahl der
+Nachkommastellen, Einheiten etc.</p></li>
+<li><p><a class="reference internal" href="mapping.html"><span class="doc">Mapping</span></a> erlaubt das Ersetzen von
 Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für
-Fensterkontakte)</li>
-<li><a class="reference internal" href="styling.html"><span class="doc">Styling</span></a> erlaubt das wertabhängige
-Färben von Werten (z.B. An in rot und Aus in Grün)</li>
-<li><a class="reference internal" href="flavour.html"><span class="doc">Flavour</span></a> ermöglicht in einigen Designs
-für einige Widgets noch zusätzliche Optionen.</li>
+Fensterkontakte)</p></li>
+<li><p><a class="reference internal" href="styling.html"><span class="doc">Styling</span></a> erlaubt das wertabhängige
+Färben von Werten (z.B. An in rot und Aus in Grün)</p></li>
+<li><p><a class="reference internal" href="flavour.html"><span class="doc">Flavour</span></a> ermöglicht in einigen Designs
+für einige Widgets noch zusätzliche Optionen.</p></li>
 </ul>
-</div>
-<div class="section" id="widgets-in-der-cometvisu">
+</section>
+<section id="widgets-in-der-cometvisu">
 <h2>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
@@ -314,8 +320,8 @@ eingebaut sein oder per Plugin-Schnittstelle integriert.</p>
 beschrieben werden.</p>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="cometvisu-beispiele">
+</section>
+<section id="cometvisu-beispiele">
 <h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Hier befindet sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.</p>
 <div class="toctree-wrapper compound">
@@ -325,8 +331,8 @@ beschrieben werden.</p>
 <li class="toctree-l1"><a class="reference internal" href="examples/swiss.html">CometVisu von swiss (Metal)</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="sonstiges">
+</section>
+<section id="sonstiges">
 <h2>sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -336,8 +342,8 @@ beschrieben werden.</p>
 <li class="toctree-l1"><a class="reference internal" href="customizing.html">Anpassungen vornehmen</a></li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

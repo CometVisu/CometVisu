@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Navbar Widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>Das Navbar Widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/navbar/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -104,7 +108,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="das-navbar-widget">
+  <section id="das-navbar-widget">
 <span id="navbar"></span><h1>Das Navbar Widget<a class="headerlink" href="#das-navbar-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
@@ -112,7 +116,7 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit dem Navbar-Widget kann man ein permanent sichtbares Navigationsmenü erstellen,
 das auf jeder Seite der Visualisierung getrennt konfiguriert oder auch ausgeblendet werden kann.</p>
@@ -121,11 +125,11 @@ Anzeige der Uhrzeit- bzw. des  Datums mit dem strftime-Plugin.</p>
 <p>Je Seite können bis zu 4 Navbars konfiguriert werden, meistens werden aber nur 1-2 Navbars verwendet.
 Die Sichtbarkeit der Navbars kann über die Attribute des Page-Elementes zB. <code class="docutils literal notranslate"><span class="pre">showtopnavigation=&quot;true&quot;</span></code> gesteuert
 werden.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../_images/Navbar_TopLeft.png" src="../../../_images/Navbar_TopLeft.png" />
-</div>
-</div>
-<div class="section" id="einstellungen">
+</figure>
+</section>
+<section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
@@ -143,105 +147,105 @@ und unter welchen Bedingungen diese dynamisch ein- und ausgeblendet wird.
 Das Ein- und Ausblenden ist nur für die linke Navbar implementiert und benötigt
 ein touch-fähiges Gerät. Zum Einblenden muss vom linken Bildschirmrand in die
 Mitte horizontal gewischt werden, zum Ausblenden muss nach links gewischt werden.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="13%" />
-<col width="43%" />
-<col width="43%" />
+<col style="width: 13%" />
+<col style="width: 43%" />
+<col style="width: 43%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">dynamic</span></code></th>
-<th class="head">Mobiles Gerät</th>
-<th class="head">Großer Bildschirm</th>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">dynamic</span></code></p></th>
+<th class="head"><p>Mobiles Gerät</p></th>
+<th class="head"><p>Großer Bildschirm</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><em>leer</em></td>
-<td>Wie auf der übergeordneten Seite, sonst:
+<tbody>
+<tr class="row-even"><td><p><em>leer</em></p></td>
+<td><p>Wie auf der übergeordneten Seite, sonst:
 Navbar ist ein- und ausblendbar.
-Nach Start ist diese ausgeblendet.</td>
-<td>Wie auf der übergeordneten Seite, sonst:
-Navbar ist immer eingeblendet.</td>
+Nach Start ist diese ausgeblendet.</p></td>
+<td><p>Wie auf der übergeordneten Seite, sonst:
+Navbar ist immer eingeblendet.</p></td>
 </tr>
-<tr class="row-odd"><td>true</td>
-<td>Navbar ist ein- und ausblendbar.
-Nach Start ist diese ausgeblendet.</td>
-<td>Navbar ist ein- und ausblendbar.
-Nach Start ist diese eingeblendet.</td>
+<tr class="row-odd"><td><p>true</p></td>
+<td><p>Navbar ist ein- und ausblendbar.
+Nach Start ist diese ausgeblendet.</p></td>
+<td><p>Navbar ist ein- und ausblendbar.
+Nach Start ist diese eingeblendet.</p></td>
 </tr>
-<tr class="row-even"><td>false</td>
-<td>Navbar ist immer eingeblendet.</td>
-<td>Navbar ist immer eingeblendet.</td>
+<tr class="row-even"><td><p>false</p></td>
+<td><p>Navbar ist immer eingeblendet.</p></td>
+<td><p>Navbar ist immer eingeblendet.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="erlaubte-attribute-im-navbar-element">
+<section id="erlaubte-attribute-im-navbar-element">
 <h3>Erlaubte Attribute im Navbar-Element<a class="headerlink" href="#erlaubte-attribute-im-navbar-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="5">navbar</td>
-<td>name</td>
-<td>Text</td>
-<td>Name/Überschrift der Navigationsleiste</td>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><p>navbar</p></td>
+<td><p>name</p></td>
+<td><p>Text</p></td>
+<td><p>Name/Überschrift der Navigationsleiste</p></td>
 </tr>
-<tr class="row-even"><td><abbr title="Pflichtangabe">position</abbr></td>
-<td>navbarPositionType</td>
-<td>Position der Navigationsleiste auf der Seite</td>
+<tr class="row-even"><td><p><abbr title="Pflichtangabe">position</abbr></p></td>
+<td><p>navbarPositionType</p></td>
+<td><p>Position der Navigationsleiste auf der Seite</p></td>
 </tr>
-<tr class="row-odd"><td>dynamic</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Legt dynamisches Verhalten fest, Automatik wenn nicht angegeben</td>
+<tr class="row-odd"><td><p>dynamic</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Legt dynamisches Verhalten fest, Automatik wenn nicht angegeben</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>scope</td>
-<td>Zahl</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>scope</p></td>
+<td><p>Zahl</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
 <p>In einer Navbar können grundsätzlich alle verfügbaren Widget-Elemente eingesetzt werden. Am häufigsten werden
 jedoch PageJump-Widgets platziert, die zusätzlich durch Gruppen-, Line und Text-Widgets optisch gestaltet werden
 können. Besonders praktisch ist auch die Anzeige der Uhrzeit- bzw. des  Datums mit dem strftime-Plugin.</p>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das Navbar Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Ein komplexes Beispiel für einen Navbar mit PageJump- und InfoAction-Widgets findet sich in der Dokumentation
 des <a class="reference internal" href="../pagejump/index.html#pagejump"><span class="std std-ref">PageJump-Widgets</span></a>.</p>
 <p>Nachstehend ein weiteres Beispiel für ein Navigationsmenü mit zwei Navbar-Widgets. Im top-Navbar wird neben mehreren
 PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewendet.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../_images/Navbar_TopLeft.png" src="../../../_images/Navbar_TopLeft.png" />
-</div>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>  <span class="nt">&lt;meta&gt;</span>
       <span class="nt">&lt;plugins&gt;</span>
           <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
@@ -320,8 +324,8 @@ PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewende
 <span class="nt">&lt;/page&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

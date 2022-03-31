@@ -16,7 +16,8 @@
       "cv.core.notifications.ActionRegistry": {},
       "cv.ui.PopupHandler": {},
       "qx.locale.Manager": {},
-      "qx.event.Registration": {}
+      "qx.event.Registration": {},
+      "qx.util.DeferredCall": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -329,9 +330,14 @@
         if (closable && addCloseListeners) {
           this.addListener('close', this.close, this);
           qx.event.Registration.addListener(ret_val, 'tap', function () {
+            var _this = this;
+
             // note: this will call two events - one for the popup itself and
             //       one for the popup_background.
-            this.fireEvent('close');
+            // needs to be delayed to allow links inside the popup
+            new qx.util.DeferredCall(function () {
+              return _this.fireEvent('close');
+            }).schedule();
           }, this);
           var close = ret_val.querySelector('.popup_close');
           qx.event.Registration.addListener(close, 'tap', function () {
@@ -388,4 +394,4 @@
   cv.ui.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1648073886113
+//# sourceMappingURL=Popup.js.map?dt=1648713996391

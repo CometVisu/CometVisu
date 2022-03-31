@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Reload widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>The Reload widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/reload/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.12.0
@@ -115,7 +119,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="the-reload-widget">
+  <section id="the-reload-widget">
 <span id="reload"></span><h1>The Reload widget<a class="headerlink" href="#the-reload-widget" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
@@ -123,11 +127,11 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser.</p>
-</div>
-<div class="section" id="settings">
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -135,102 +139,106 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-reload-element">
+<section id="allowed-attributes-in-the-reload-element">
 <h3>Allowed attributes in the Reload-element<a class="headerlink" href="#allowed-attributes-in-the-reload-element" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>reload</dt><dd><ul class="simple">
-<li><abbr title="mandatory">address</abbr></li>
+<li><p><abbr title="mandatory">address</abbr></p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">transform</abbr></td>
-<td>string</td>
-<td>Transformation of the bus system value to be shown.</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
-<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>decimal</td>
-<td>Position for format string when multiple addresses are used.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>string</td>
-<td>Only MQTT: JSON selector</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>decimal</td>
-<td>Only MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: retain flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: ignore decode errors.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>reload</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <img alt="../../../_images/en_config_widgets_reload_index_editor_elements.png" src="../../../_images/en_config_widgets_reload_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="examples">
+<figcaption>
+<p><span class="caption-text"><p>Elements in the editor</p>
+</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the Reload widget.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
