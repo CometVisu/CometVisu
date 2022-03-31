@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Versteckte Konfigurationen &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Versteckte Konfigurationen &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/hidden-config.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -96,14 +100,14 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="versteckte-konfigurationen">
+<section id="versteckte-konfigurationen">
 <span id="hidden-config"></span><h1>Versteckte Konfigurationen<a class="headerlink" href="#versteckte-konfigurationen" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="hintergrund">
+<section id="hintergrund">
 <h2>Hintergrund<a class="headerlink" href="#hintergrund" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die „Versteckten Konfigurationen“ sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
 Server bleiben. Daher werden diese vor dem Anwender „versteckt“, sind aber auf dem Server selbst im Klartext lesbar.
@@ -111,14 +115,14 @@ Auch im Manager sind diese Informationen im Klartext lesbar.</p>
 <p>Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine sichere Umgebung aufbauen, in
 dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.</p>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Wenn im Rahmen des Support ein <a class="reference internal" href="url-params.html#reporting"><span class="std std-ref">Fehler-Log</span></a> an die Entwickler übergeben wird, so ist der Inhalt
+<p class="admonition-title">Wichtig</p>
+<p>Wenn im Rahmen des Support ein <a class="reference internal" href="url-params.html#reporting"><span class="std std-ref">Fehler-Log</span></a> an die Entwickler übergeben wird, so ist der Inhalt
 der versteckten Konfiguration nicht enthalten und bleiben somit auch vor den Entwicklern versteckt.</p>
 </div>
 <p>Ob und in welcher Form Widgets und Plugins Informationen aus der versteckten
 Konfiguration benötigen wird in deren jeweiligen Dokumentation beschrieben.</p>
-</div>
-<div class="section" id="aufbau">
+</section>
+<section id="aufbau">
 <h2>Aufbau<a class="headerlink" href="#aufbau" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die versteckten Konfigurationen werden in der Datei <code class="docutils literal notranslate"><span class="pre">config/hidden.php</span></code> abgelegt. Diese Datei kann sowohl
 über einen normalen Text-Editor als auch über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> editiert werden.</p>
@@ -142,44 +146,44 @@ In der Datei selbst werden diese Informationen als PHP Array abgelegt:</p>
 <span class="nv">$hidden</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="manager">
+</section>
+<section id="manager">
 <h2>Manager<a class="headerlink" href="#manager" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Komfortabel lässt sich der Inhalt der versteckten Konfiguration über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> editieren.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/hidden_config_de.png" src="../_images/hidden_config_de.png" />
-</div>
-</div>
-<div class="section" id="bekannte-name-eintrage">
+</figure>
+</section>
+<section id="bekannte-name-eintrage">
 <h2>Bekannte <code class="docutils literal notranslate"><span class="pre">Name</span></code> Einträge<a class="headerlink" href="#bekannte-name-eintrage" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Auch wenn die Wahl für den <code class="docutils literal notranslate"><span class="pre">Name</span></code> grundsätzlich frei ist, so gibt es dafür übliche Einträge, bei denen es sich
 anbietet diesem Schema zu folgen. So können manche Widgets bzw. Plugins ohne eine explizite Konfiguration in dem
 für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurations-Aufwand reduzieren lässt.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="28%" />
-<col width="48%" />
-<col width="24%" />
+<col style="width: 28%" />
+<col style="width: 48%" />
+<col style="width: 24%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Verwendung</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Verwendung</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>fritzbox</td>
-<td><a class="reference internal" href="widgets/plugins/tr064/index.html#tr064"><span class="std std-ref">Das tr064 Plugin</span></a></td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-even"><td><p>fritzbox</p></td>
+<td><p><a class="reference internal" href="widgets/plugins/tr064/index.html#tr064"><span class="std std-ref">Das tr064 Plugin</span></a></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>influx</td>
-<td><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a></td>
-<td>X</td>
+<tr class="row-odd"><td><p>influx</p></td>
+<td><p><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a></p></td>
+<td><p>X</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

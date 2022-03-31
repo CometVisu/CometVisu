@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RRD introduction &amp; examples &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>RRD introduction &amp; examples &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/rrd_examples.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -103,21 +107,21 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="rrd-introduction-examples">
+<section id="rrd-introduction-examples">
 <span id="rrd-introduction"></span><h1>RRD introduction &amp; examples<a class="headerlink" href="#rrd-introduction-examples" title="Permalink to this headline">¶</a></h1>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">This section can be ignored if an openHAB backend is used. Help
+<p class="admonition-title">Hint</p>
+<p>This section can be ignored if an openHAB backend is used. Help
 with displaying diagrams with the openHAB backend can be found
 in the documentation of the <a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram plugin</span></a>.</p>
 </div>
-<div class="section" id="general-information-about-rrd">
+<section id="general-information-about-rrd">
 <h2>General information about RRD<a class="headerlink" href="#general-information-about-rrd" title="Permalink to this headline">¶</a></h2>
 <p>The CometVisu diagrams are generated via RRD. These are usually
 stored in the directory <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code>.</p>
@@ -129,15 +133,15 @@ and of course at
 <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html">here</a></p>
 <p>Information on updating / filling RRD databases can be found in English
 <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdupdate.en.html">here</a></p>
-</div>
-<div class="section" id="rrd-and-the-cometvisu">
+</section>
+<section id="rrd-and-the-cometvisu">
 <h2>RRD and the CometVisu<a class="headerlink" href="#rrd-and-the-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>To view a chart in the CometVisu you need:</p>
 <ul class="simple">
-<li>CometVisu Chart Plugin</li>
-<li>RRD file</li>
-<li>rrdtool tuned to CometVisu (either an additional script
-or an <a class="reference external" href="CometVisu/rrdtool">RRDtool with patches</a>)</li>
+<li><p>CometVisu Chart Plugin</p></li>
+<li><p>RRD file</p></li>
+<li><p>rrdtool tuned to CometVisu (either an additional script
+or an <a class="reference external" href="CometVisu/rrdtool">RRDtool with patches</a>)</p></li>
 </ul>
 <p>(both are on the wiregate and on the Raspberry Pi image
 standard available)</p>
@@ -165,8 +169,8 @@ standard available)</p>
 is performed. The smallest time interval with the crontab
 is realizable is <code class="docutils literal notranslate"><span class="pre">*/1</span></code>, so every minute.</p>
 <p>The update distance should match the RRD database!</p>
-</div>
-<div class="section" id="create-the-rrd-database">
+</section>
+<section id="create-the-rrd-database">
 <h2>Create the RRD database<a class="headerlink" href="#create-the-rrd-database" title="Permalink to this headline">¶</a></h2>
 <p>The RRD file/database must first be created.</p>
 <p>For this you have to consider when creating the database how many
@@ -180,8 +184,8 @@ is not a problem as values are regularly summarized.</p>
 with increasing time interval to “now”. (for example, minute values
 for the last 7 days, hourly values for the last 4 weeks, daily
 values for the last 2 years etc …)</p>
-</div>
-<div class="section" id="filling-the-rrd-database">
+</section>
+<section id="filling-the-rrd-database">
 <h2>“Filling” the RRD database<a class="headerlink" href="#filling-the-rrd-database" title="Permalink to this headline">¶</a></h2>
 <p>The RRD file / database must be regularly filled with data - if this
 does not happen RRD recognizes this and enters automatic NaN - so
@@ -191,8 +195,8 @@ a time stamp (or N for “Now”), as well as the values to be
 included in the database.</p>
 <p>The easiest way to do this is via a short shell script, which can
 then be executed regularly via cron.</p>
-</div>
-<div class="section" id="troubleshooting">
+</section>
+<section id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <p>If RRD-based data is not displayed as intended, you can look directly
 into the database to see if any (meaningful) values exist. There
@@ -206,31 +210,31 @@ This can be done e.g. with the grep command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEOFTHEDATABASE.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
 </pre></div>
 </div>
-</div>
-<div class="section" id="examples-of-rrds">
+</section>
+<section id="examples-of-rrds">
 <h2>Examples of RRDs<a class="headerlink" href="#examples-of-rrds" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">These examples do not work with openHAB</p>
+<p class="admonition-title">Hint</p>
+<p>These examples do not work with openHAB</p>
 </div>
 <p>(the example scripts generate the RRD database at the first
 call, then update the database)</p>
 <ul class="simple">
-<li><a class="reference internal" href="rrd/cpuload.html"><span class="doc">CPU load for Linux Systeme</span></a> - the CPU load (1 min, 5 min, 15 min) is written to an RRD database</li>
-<li><a class="reference internal" href="rrd/processes.html"><span class="doc">Number of process on Linux system</span></a> - the number of running processes is written to an RRD database</li>
-<li><a class="reference internal" href="rrd/pi_cputemp.html"><span class="doc">CPU Temperature for Raspberry Pi</span></a> - Raspberry CPU internal temperature sensor query and save in the RRD</li>
-<li><a class="reference internal" href="rrd/knx_linknx.html"><span class="doc">Temperature from KNX with linknx</span></a> - Writing a KNX value stored persistently with Linknx (here a
-temperature of an RTR) in an RRD database.</li>
-<li><a class="reference internal" href="rrd/1wire_owfs.html"><span class="doc">Temperature from 1wire (local 1wire interface with owfs)</span></a> - Direct reading of a 1wire temperature sensor into an RRD database</li>
+<li><p><a class="reference internal" href="rrd/cpuload.html"><span class="doc">CPU load for Linux Systeme</span></a> - the CPU load (1 min, 5 min, 15 min) is written to an RRD database</p></li>
+<li><p><a class="reference internal" href="rrd/processes.html"><span class="doc">Number of process on Linux system</span></a> - the number of running processes is written to an RRD database</p></li>
+<li><p><a class="reference internal" href="rrd/pi_cputemp.html"><span class="doc">CPU Temperature for Raspberry Pi</span></a> - Raspberry CPU internal temperature sensor query and save in the RRD</p></li>
+<li><p><a class="reference internal" href="rrd/knx_linknx.html"><span class="doc">Temperature from KNX with linknx</span></a> - Writing a KNX value stored persistently with Linknx (here a
+temperature of an RTR) in an RRD database.</p></li>
+<li><p><a class="reference internal" href="rrd/1wire_owfs.html"><span class="doc">Temperature from 1wire (local 1wire interface with owfs)</span></a> - Direct reading of a 1wire temperature sensor into an RRD database</p></li>
 </ul>
 <p>for advanced users (adjustments in the script are probably required)</p>
 <ul class="simple">
-<li><a class="reference internal" href="rrd/ifHCoctets.html"><span class="doc">Internet-Bandwidth</span></a> - Internet monitoring via SNMP - adjustments are required!</li>
+<li><p><a class="reference internal" href="rrd/ifHCoctets.html"><span class="doc">Internet-Bandwidth</span></a> - Internet monitoring via SNMP - adjustments are required!</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

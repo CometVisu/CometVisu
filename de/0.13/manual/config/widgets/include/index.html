@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Include Widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>Das Include Widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/include/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -105,12 +109,12 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="das-include-widget">
+<section id="das-include-widget">
 <span id="include"></span><h1>Das Include Widget<a class="headerlink" href="#das-include-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
@@ -118,7 +122,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Include Widget ist im eigentlichen Sinn kein Widget, denn es bewirkt keine sichtbaren Änderungen
 in der Visualisierung.</p>
@@ -135,17 +139,17 @@ bearbeiten möchte. Außerdem können bei mehreren visu_config_&lt;variable&gt;.
 <p>Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei anlegen und diese dann mittels
 <code class="docutils literal notranslate"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Der Pfad zu den inkludierten Dateien muss relativ zum <code class="docutils literal notranslate"><span class="pre">resource</span></code>-Verzeichnis angegeben werden.
+<p class="admonition-title">Hinweis</p>
+<p>Der Pfad zu den inkludierten Dateien muss relativ zum <code class="docutils literal notranslate"><span class="pre">resource</span></code>-Verzeichnis angegeben werden.
 Wenn die einzubindende Datei im config-Ordner liegt, muss also <code class="docutils literal notranslate"><span class="pre">src=config/&lt;dateiname&gt;</span></code>
 angegeben werden (siehe Beispielcode oben).</p>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Der Abschnitt zwischen <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/meta&gt;</span></code> kann nicht ausgelagert werden.</p>
+<p class="admonition-title">Hinweis</p>
+<p>Der Abschnitt zwischen <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/meta&gt;</span></code> kann nicht ausgelagert werden.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

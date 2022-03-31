@@ -442,7 +442,7 @@ body br
 }
 /* Clearfix */
 .clearfix:after {
-    content: ".";
+    content: " ";
     display: block;
     clear: both;
     visibility: hidden;

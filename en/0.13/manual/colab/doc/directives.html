@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Own directives &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Own directives &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/colab/doc/directives.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -25,7 +28,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -71,47 +75,47 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="own-directives">
+<section id="own-directives">
 <h1>Own directives<a class="headerlink" href="#own-directives" title="Permalink to this headline">¶</a></h1>
 <p>In addition to the existing Sphinx/Docutils directives, there are also
 some special directives in the CometVisu that help to keep the
 documentation more up-to-date.</p>
 <p>The following directives are currently supported:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="19%" />
-<col width="81%" />
+<col style="width: 19%" />
+<col style="width: 81%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>widget-example</td>
-<td>Provides sample code for widgets from which screenshots can be automatically created.</td>
+<tbody>
+<tr class="row-even"><td><p>widget-example</p></td>
+<td><p>Provides sample code for widgets from which screenshots can be automatically created.</p></td>
 </tr>
-<tr class="row-odd"><td>parameter-information</td>
-<td>Displays all attributes of a widget with allowed values and short explanation as a table.</td>
+<tr class="row-odd"><td><p>parameter-information</p></td>
+<td><p>Displays all attributes of a widget with allowed values and short explanation as a table.</p></td>
 </tr>
-<tr class="row-even"><td>elements-information</td>
-<td>Shows all allowed sub-elements of a widget including their attributes as a table.</td>
+<tr class="row-even"><td><p>elements-information</p></td>
+<td><p>Shows all allowed sub-elements of a widget including their attributes as a table.</p></td>
 </tr>
-<tr class="row-odd"><td>api-doc</td>
-<td>Includes information from the source code documentation (&#64;author and &#64;since).</td>
+<tr class="row-odd"><td><p>api-doc</p></td>
+<td><p>Includes information from the source code documentation (&#64;author and &#64;since).</p></td>
 </tr>
-<tr class="row-even"><td>replaces</td>
-<td>This determines which pages of the old wiki replace this page</td>
+<tr class="row-even"><td><p>replaces</p></td>
+<td><p>This determines which pages of the old wiki replace this page</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="the-widget-example-directive">
+<section id="the-widget-example-directive">
 <h2>The <em>widget-example</em> Directive<a class="headerlink" href="#the-widget-example-directive" title="Permalink to this headline">¶</a></h2>
 <p>The <em>widget-example</em> directive allows example code of a CometVisu config
 from which one or more screenshots will be automatically generated later
@@ -147,10 +151,13 @@ and integrated into the documentation together with the example code.</p>
 </pre></div>
 </div>
 <p>generates this entry in the documentation:</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <img alt="Switch with mapping + styling" src="../../_images/switch_complete.png" />
-<p class="caption"><span class="caption-text">Switch with mapping + styling</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Switch with mapping + styling</p>
+</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
@@ -178,14 +185,14 @@ and integrated into the documentation together with the example code.</p>
 CometVisu configuration file and is also an XML document. It
 basically consists of 3 areas:</p>
 <ol class="arabic simple">
-<li><strong>&lt;settings&gt;</strong> Here are the screenshots and subtitles defined.</li>
-<li><strong>&lt;meta&gt;</strong> Everything is allowed here, which is also allowed within
+<li><p><strong>&lt;settings&gt;</strong> Here are the screenshots and subtitles defined.</p></li>
+<li><p><strong>&lt;meta&gt;</strong> Everything is allowed here, which is also allowed within
 the <em>&lt;meta&gt;</em> element of the configuration file (for example loading
-plugins, defining mappings, styling, etc.)</li>
-<li><strong>All other</strong> Anything that is not inside a <em>&lt;settings&gt;</em> or <em>&lt;meta&gt;</em>
+plugins, defining mappings, styling, etc.)</p></li>
+<li><p><strong>All other</strong> Anything that is not inside a <em>&lt;settings&gt;</em> or <em>&lt;meta&gt;</em>
 element is interpreted as a sample code. Everything that is allowed
 within a <em>&lt;page&gt;</em> element of the configuration file (such as widgets,
-groups, etc.) is allowed here.</li>
+groups, etc.) is allowed here.</p></li>
 </ol>
 <p>The areas 1 and 2 are optional and may be omitted, so if e.g. only
 1 screenshot of the example code without subtitles required, the
@@ -193,15 +200,15 @@ groups, etc.) is allowed here.</li>
 <p>In addition, there are various options with which the appearance
 of the example code and the corresponding screenshot can be influenced.</p>
 <ol class="arabic simple">
-<li><cite>linenos</cite>: If specified, the example code is given with line numbers</li>
-<li><cite>lineno-start</cite>: Number at which the line numbers should start (default: 1)</li>
-<li><cite>scale</cite>: Percentage with which the screen host can be reduced (default: 100)</li>
-<li><cite>hide-source</cite>: <em>true</em> or <em>false</em>. (Default: <em>false</em>), does not display
-the sample code if <em>true</em></li>
-<li><cite>editor</cite>: <em>attributes</em> or <em>elements</em>. Take a screenshot of the example
-code in the editor, not the widget itself</li>
-<li><cite>align</cite>: <em>left</em>, <em>center</em> or <em>right</em>. Defines the position of the
-screenshot (Default: <em>left</em>)</li>
+<li><p><cite>linenos</cite>: If specified, the example code is given with line numbers</p></li>
+<li><p><cite>lineno-start</cite>: Number at which the line numbers should start (default: 1)</p></li>
+<li><p><cite>scale</cite>: Percentage with which the screen host can be reduced (default: 100)</p></li>
+<li><p><cite>hide-source</cite>: <em>true</em> or <em>false</em>. (Default: <em>false</em>), does not display
+the sample code if <em>true</em></p></li>
+<li><p><cite>editor</cite>: <em>attributes</em> or <em>elements</em>. Take a screenshot of the example
+code in the editor, not the widget itself</p></li>
+<li><p><cite>align</cite>: <em>left</em>, <em>center</em> or <em>right</em>. Defines the position of the
+screenshot (Default: <em>left</em>)</p></li>
 </ol>
 <p>A complete example with all options:</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
@@ -215,92 +222,95 @@ screenshot (Default: <em>left</em>)</li>
 <span class="cp">    ....</span>
 </pre></div>
 </div>
-<div class="section" id="the-settings">
+<section id="the-settings">
 <h3>The <em>&lt;settings&gt;</em><a class="headerlink" href="#the-settings" title="Permalink to this headline">¶</a></h3>
 <p>This area is defined by the <cite>&lt;settings&gt;</cite> element and this can be refined
 by attributes and subelements.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="57%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 57%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="3">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="3"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="3">&lt;settings&gt;</td>
-<td>design</td>
-<td colspan="2">Name of a design| In which design the screenshot should be taken (default: metal)</td>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><p>&lt;settings&gt;</p></td>
+<td><p>design</p></td>
+<td colspan="2"><p>Name of a design| In which design the screenshot should be taken (default: metal)</p></td>
 </tr>
-<tr class="row-even"><td>selector</td>
-<td>Css-Selector</td>
-<td>Defines the area of the screenshot</td>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Css-Selector</p></td>
+<td><p>Defines the area of the screenshot</p></td>
 </tr>
-<tr class="row-odd"><td>sleep</td>
-<td>number</td>
-<td>Initial wait time in ms before the screenshot is taken</td>
+<tr class="row-odd"><td><p>sleep</p></td>
+<td><p>number</p></td>
+<td><p>Initial wait time in ms before the screenshot is taken</p></td>
 </tr>
-<tr class="row-even"><td><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
+<tr class="row-even"><td><dl class="simple">
+<dt>&lt;settings&gt;</dt><dd><p>&lt;caption&gt;</p>
+</dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>#text</td>
-<td>Subtitles of the example code</td>
+<td></td>
+<td><p>#text</p></td>
+<td><p>Subtitles of the example code</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
+<tr class="row-odd"><td rowspan="4"><dl class="simple">
+<dt>&lt;settings&gt;</dt><dd><p>&lt;screenshot&gt;</p>
+</dd>
 </dl>
 </td>
-<td>name</td>
-<td>text</td>
-<td>File name of the screenshot</td>
+<td><p>name</p></td>
+<td><p>text</p></td>
+<td><p>File name of the screenshot</p></td>
 </tr>
-<tr class="row-even"><td>clickpath</td>
-<td>CSS-Selector</td>
-<td>CSS path to an item to be clicked before the screenshot</td>
+<tr class="row-even"><td><p>clickpath</p></td>
+<td><p>CSS-Selector</p></td>
+<td><p>CSS path to an item to be clicked before the screenshot</p></td>
 </tr>
-<tr class="row-odd"><td>waitfor</td>
-<td>CSS-Selector</td>
-<td>CSS path to an item that should be visible before the screenshot</td>
+<tr class="row-odd"><td><p>waitfor</p></td>
+<td><p>CSS-Selector</p></td>
+<td><p>CSS path to an item that should be visible before the screenshot</p></td>
 </tr>
-<tr class="row-even"><td>sleep</td>
-<td>number</td>
-<td>Waiting time between sending the data and screenshot</td>
+<tr class="row-even"><td><p>sleep</p></td>
+<td><p>number</p></td>
+<td><p>Waiting time between sending the data and screenshot</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
-<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>&lt;settings&gt;</dt><dd><dl class="simple">
+<dt>&lt;screenshot&gt;</dt><dd><p>&lt;data&gt;</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </td>
-<td>address</td>
-<td>group address</td>
-<td>Send data to this address before taking the screenshot</td>
+<td><p>address</p></td>
+<td><p>group address</p></td>
+<td><p>Send data to this address before taking the screenshot</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td><em>float</em> or <em>int</em></td>
-<td>If real numbers need to be sent</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p><em>float</em> or <em>int</em></p></td>
+<td><p>If real numbers need to be sent</p></td>
 </tr>
-<tr class="row-odd"><td>#text</td>
-<td>text</td>
-<td>Content of the data to be sent</td>
+<tr class="row-odd"><td><p>#text</p></td>
+<td><p>text</p></td>
+<td><p>Content of the data to be sent</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="the-parameter-information-directive">
+</section>
+</section>
+<section id="the-parameter-information-directive">
 <h2>The <em>parameter-information</em> Directive<a class="headerlink" href="#the-parameter-information-directive" title="Permalink to this headline">¶</a></h2>
 <p>This directive automatically creates a table summary with the
 widget’s attributes. These data are read from the schema definition
@@ -310,65 +320,65 @@ one parameter that contains the widget name.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="9">switch</td>
-<td>styling</td>
-<td>string</td>
-<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tbody>
+<tr class="row-odd"><td rowspan="9"><p>switch</p></td>
+<td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>mapping</td>
-<td>string</td>
-<td>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../../config/mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>string</p></td>
+<td><p>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../../config/mapping.html#mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td>on_value</td>
-<td>string</td>
-<td>Value of the “on” state. Defaults to “1”.</td>
+<tr class="row-odd"><td><p>on_value</p></td>
+<td><p>string</p></td>
+<td><p>Value of the “on” state. Defaults to “1”.</p></td>
 </tr>
-<tr class="row-even"><td>off_value</td>
-<td>string</td>
-<td>Value of the “off” state. Defaults to “0”.</td>
+<tr class="row-even"><td><p>off_value</p></td>
+<td><p>string</p></td>
+<td><p>Value of the “off” state. Defaults to “0”.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> or <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> or <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-even"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-odd"><td>bind_click_to_widget</td>
-<td><em>true</em> or <em>false</em></td>
-<td>use the whole widget area to react on click events</td>
+<tr class="row-odd"><td><p>bind_click_to_widget</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>use the whole widget area to react on click events</p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
-<tr class="row-odd"><td>format</td>
-<td>string</td>
-<td>Formatting of the value (printf syntax).</td>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>string</p></td>
+<td><p>Formatting of the value (printf syntax).</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="the-elements-information-directive">
+</section>
+<section id="the-elements-information-directive">
 <h2>The <em>elements-information</em> Directive<a class="headerlink" href="#the-elements-information-directive" title="Permalink to this headline">¶</a></h2>
 <p>This directive automatically creates a table summary with the allowed
 sub-elements of a widget. These data are read from the schema definition
@@ -378,249 +388,251 @@ one parameter that contains the widget name.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>decimal</td>
-<td>Amount of columns this widget should be wide.</td>
+<td><p>colspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of columns this widget should be wide.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a medium screen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a small screen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>decimal</td>
-<td>Amount of rows this widget should be high.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of rows this widget should be high.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>string</td>
-<td>Reserved for future use.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>string</p></td>
+<td><p>Reserved for future use.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>string</td>
-<td>Width for the widget for 2D pages.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">name</abbr></td>
-<td>string</td>
-<td>Name of the icon registration.</td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Name of the icon registration.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>string</td>
-<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the icon in CSS notation (e.g. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>string</td>
-<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>Text to display a label for the widget.</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>Text to display a label for the widget.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li><abbr title="mandatory">address</abbr></li>
+<li><p><abbr title="mandatory">address</abbr></p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">transform</abbr></td>
-<td>string</td>
-<td>Transformation of the bus system value to be shown.</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
-<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>decimal</td>
-<td>Position for format string when multiple addresses are used.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>string</td>
-<td>Only MQTT: JSON selector</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>decimal</td>
-<td>Only MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: retain flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: ignore decode errors.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>switch</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="the-api-doc-directive">
+</section>
+<section id="the-api-doc-directive">
 <h2>The <em>api-doc</em> Directive<a class="headerlink" href="#the-api-doc-directive" title="Permalink to this headline">¶</a></h2>
 <p>This directive reads important information from the source code
 documentation of a widget or plugin. Currently these are the values
 of the <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> specifications.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">It is important that the name of the widget corresponds exactly
+<p class="admonition-title">Important</p>
+<p>It is important that the name of the widget corresponds exactly
 to the name of the source code file without file extension, e.g.
 for <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">Switch</span></code>
 (case-sensitive). For plugins, the folder name of the plugin
@@ -638,8 +650,8 @@ take <code class="docutils literal notranslate"><span class="pre">..</span> <spa
 <div class="line"><br /></div>
 </div>
 </div>
-</div>
-<div class="section" id="the-replaces-directive">
+</section>
+<section id="the-replaces-directive">
 <h2>The <em>replaces</em> Directive<a class="headerlink" href="#the-replaces-directive" title="Permalink to this headline">¶</a></h2>
 <p>This directive defines which pages of the old wiki are replaced by
 this manual page. Several wiki pages can be specified. This
@@ -652,8 +664,8 @@ used to automatically create redirects.</p>
     CometVisu/switch_(Deutsch)
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

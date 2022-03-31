@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Group widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>The Group widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/widgets/group/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -104,13 +108,13 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="the-group-widget">
+<section id="the-group-widget">
 <span id="group"></span><h1>The Group widget<a class="headerlink" href="#the-group-widget" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
@@ -118,11 +122,11 @@ by an online translation service.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>A group can be used to group a couple of widgets and optionally surround them with a border or name the group.</p>
-</div>
-<div class="section" id="settings">
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -130,70 +134,73 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-group-element">
+<section id="allowed-attributes-in-the-group-element">
 <h3>Allowed attributes in the Group-element<a class="headerlink" href="#allowed-attributes-in-the-group-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6">group</td>
-<td>name</td>
-<td>string</td>
-<td>Name/title of the group</td>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p>group</p></td>
+<td><p>name</p></td>
+<td><p>string</p></td>
+<td><p>Name/title of the group</p></td>
 </tr>
-<tr class="row-even"><td>nowidget</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Removes the frame borders inside the group (only in Metal Design)</td>
+<tr class="row-even"><td><p>nowidget</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Removes the frame borders inside the group (only in Metal Design)</p></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>target</td>
-<td>string</td>
-<td>The name of the page, that should be called.</td>
+<tr class="row-even"><td><p>target</p></td>
+<td><p>string</p></td>
+<td><p>The name of the page, that should be called.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> or <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> or <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <img alt="../../../_images/en_config_widgets_group_index_editor_attributes.png" src="../../../_images/en_config_widgets_group_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
 <p>All widgets and plugins are allowed in a group.</p>
-</div>
-</div>
-<div class="section" id="examples">
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the Group widget.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Example Group&quot;</span><span class="nt">&gt;</span>
@@ -229,14 +236,13 @@ XML-editor to UTF-8 mode!</p>
 </pre></div>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

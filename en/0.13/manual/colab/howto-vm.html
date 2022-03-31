@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Set up a VM with Visual Studio code &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Set up a VM with Visual Studio code &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/colab/howto-vm.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -92,13 +96,13 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="set-up-a-vm-with-visual-studio-code">
+<section id="set-up-a-vm-with-visual-studio-code">
 <h1>Set up a VM with Visual Studio code<a class="headerlink" href="#set-up-a-vm-with-visual-studio-code" title="Permalink to this headline">¶</a></h1>
 <p>Some of the tools used to generate documentation are only available
 on Linux. Therefore, the Live Preview does not currently work in
@@ -108,99 +112,93 @@ virtual machine with Ubuntu and set up Visual Studio code including
 running live preview for rst-files. Emphasis is the configuration of
 the Linux environment and not the establishment of the VM, there are
 numerous good descriptions on the Internet.</p>
-<div class="section" id="preparation-of-the-virtual-machine">
+<section id="preparation-of-the-virtual-machine">
 <h2>Preparation of the virtual machine<a class="headerlink" href="#preparation-of-the-virtual-machine" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Download and install the free VMware Player from vmware.com.
+<li><p>Download and install the free VMware Player from vmware.com.
 Of course, all other players for virtual machines are possible,
-but the following description refers in part to the VMware player used.</li>
-<li>Download iso image from Linux. This can eg. in the download area of
+but the following description refers in part to the VMware player used.</p></li>
+<li><p>Download iso image from Linux. This can eg. in the download area of
 <a class="reference external" href="https://www.ubunutu.com">https://www.ubunutu.com</a> be downloaded. Use the latest desktop
-version (not the LTS version).</li>
-<li>Install Ubuntu in VMware: =&gt; Create New Virtual Machine. Then select
-the Ubuntu image and follow the further steps.</li>
-<li>Configure VM. To do this, select the virtual machine in the left
+version (not the LTS version).</p></li>
+<li><p>Install Ubuntu in VMware: =&gt; Create New Virtual Machine. Then select
+the Ubuntu image and follow the further steps.</p></li>
+<li><p>Configure VM. To do this, select the virtual machine in the left
 selection area and then select the menu item “Edit Virtual Machine
 Settings”. In the hardware tab then allocate about 2GB memory
 (at 4GB of physical memory). Depending on the number of CPUs, assign
 at least half of the physical CPU cores (not to be confused with
-the number of virtual CPUs).</li>
-<li>Start Ubuntu in VM: =&gt; Play Virtual Machine.</li>
-<li>Ignore hints to VMware tools or select to install manually.
-The vm-tools will later be installed as a package.</li>
+the number of virtual CPUs).</p></li>
+<li><p>Start Ubuntu in VM: =&gt; Play Virtual Machine.</p></li>
+<li><p>Ignore hints to VMware tools or select to install manually.
+The vm-tools will later be installed as a package.</p></li>
 </ol>
 <p>For a detailed description of installing VMware search in the internet.</p>
-</div>
-<div class="section" id="basic-configuration-of-ubuntu">
+</section>
+<section id="basic-configuration-of-ubuntu">
 <h2>Basic configuration of Ubuntu<a class="headerlink" href="#basic-configuration-of-ubuntu" title="Permalink to this headline">¶</a></h2>
 <p>The next steps will be executed in the terminal window. This can be opened
 with Ctrl-Alt-T. With a right click the terminal can be fixed with “Lock to
 Launcher” on the left toolbar.</p>
 <ol class="arabic">
-<li><p class="first">Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg-reconfigure</span> <span class="pre">keyboard-configuration</span></code> to change layout
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg-reconfigure</span> <span class="pre">keyboard-configuration</span></code> to change layout
 to the layout for your keyboard to german. In the Generic
 105-key keyboard submenu, then navigate to OK using the cursor keys
-and then select the german language on the next page.</p>
-</li>
-<li><p class="first">Install VMware tools with `` sudo apt-get install open-vm-tools``.
+and then select the german language on the next page.</p></li>
+<li><p>Install VMware tools with `` sudo apt-get install open-vm-tools``.
 The VMware tools are necessary to eg. Adjust screen size to window
 size, enable copy-paste between host and VM etc. After the package
-is installed, shut down and restart the VM.</p>
-</li>
-<li><p class="first">Install Visual Studio Code. Open Firefox from the left toolbar and
+is installed, shut down and restart the VM.</p></li>
+<li><p>Install Visual Studio Code. Open Firefox from the left toolbar and
 change to <a class="reference external" href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>. Select the
 package with the button .deb and select the option “Open with Software
 install (default)” in the dialog box. After the download, the Ubuntu
 Software Center will appear, where the “Install” button must be pressed.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">If, as in my case, the installation does not work this way, the package
+<p class="admonition-title">Hint</p>
+<p>If, as in my case, the installation does not work this way, the package
 with the option “Save” download and install with the following command
 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">code_1.17.1-1507645403_amd64.deb</span></code>.</p>
 </div>
 </li>
-<li><p class="first">Next git with `` sudo install apt-get install git-all`` and configure
+<li><p>Next git with `` sudo install apt-get install git-all`` and configure
 user / e-mail correctly. The Commands for this are
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">=</span> <span class="pre">&quot;Max</span> <span class="pre">Mustermann&quot;</span></code> or
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email</span> <span class="pre">=</span> <span class="pre">&quot;Max.Mustermann&#64;abc.com&quot;</span></code>.</p>
-</li>
-<li><p class="first">Open Visual Studio Code. The easiest way to do this is to enter VSCode
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email</span> <span class="pre">=</span> <span class="pre">&quot;Max.Mustermann&#64;abc.com&quot;</span></code>.</p></li>
+<li><p>Open Visual Studio Code. The easiest way to do this is to enter VSCode
 in the search, select “Visual Studio Code” and add it to the launcher
-for the future.</p>
-</li>
-<li><p class="first">At the “Welcome” screen of VS Code, select “Clone Git Repository”.
+for the future.</p></li>
+<li><p>At the “Welcome” screen of VS Code, select “Clone Git Repository”.
 Then the link to your own fork on Github must be inserted. Confirm
 the default directory and confirm “Open Repository” after downloading.
 For the topic github (create user, create fork, etc.) please refer
-to the section <a class="reference internal" href="index.html"><span class="doc">General preparations</span></a> in the documentation.</p>
-</li>
-<li><p class="first">Install the extension <cite>restructuredtext</cite> in the VS Code Editor. To
+to the section <a class="reference internal" href="index.html"><span class="doc">General preparations</span></a> in the documentation.</p></li>
+<li><p>Install the extension <cite>restructuredtext</cite> in the VS Code Editor. To
 do this, go to the menu item “View -&gt; Extensions -&gt; restructuredtext” and
 then select “install”. Then reload the editor!</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
-<p class="caption"><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>After a single reload of the editor, the extension is available.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">The installation of Python is not discussed here, as Python is already
+<p class="admonition-title">Hint</p>
+<p>The installation of Python is not discussed here, as Python is already
 preinstalled on Ubuntu (and most other Linux distributions).</p>
 </div>
 </li>
-<li><p class="first">Install Python pip because it requires additional Python tools
+<li><p>Install Python pip because it requires additional Python tools
 for the development environment. To do this, first run
 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">-y</span> <span class="pre">upgrade</span></code> in the terminal
 window to bring all installed packages to their last state. This can
-take up to 30min. Then run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code>.</p>
-</li>
-<li><p class="first">In the Cometvisu folder (in which git saved the repository)
+take up to 30min. Then run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code>.</p></li>
+<li><p>In the Cometvisu folder (in which git saved the repository)
 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code>. This will
-install all required packages.</p>
-</li>
-<li><p class="first">Open Visual Studio Code again. If the CometVisu project is no
-longer open, open it again with “File -&gt; Open Recent”.</p>
-</li>
+install all required packages.</p></li>
+<li><p>Open Visual Studio Code again. If the CometVisu project is no
+longer open, open it again with “File -&gt; Open Recent”.</p></li>
 </ol>
 <p>If everything is set up correctly, you can open an RST file from the
 documentation and open the Live Preview window with `` Ctrl + Shift r``.
@@ -226,12 +224,14 @@ the Cometvisu project (directory .vscode). Then save the file and
 restart Visual Studio code.</p>
 <p>So in the end Visual Studio Code should look like with the live
 preview of a rst-file:</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
-<p class="caption"><span class="caption-text">Editors with Live-Preview</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
+<figcaption>
+<p><span class="caption-text">Editors with Live-Preview</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 
 
            </div>

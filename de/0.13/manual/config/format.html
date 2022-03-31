@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Format &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Format &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/format.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -96,84 +100,84 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="format">
+<section id="format">
 <span id="id1"></span><h1>Format<a class="headerlink" href="#format" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Über das Format-Attribut kann die Formatierung der Anzeige von Werten
 beeinflusst werden. Dazu wird die Syntax des vom „printf“ bekannten
 Formats benutzt. <strong>Man beachte dabei den Punkt zwischen dem % und der
 Kommastelle!</strong></p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="63%" />
-<col width="20%" />
+<col style="width: 17%" />
+<col style="width: 63%" />
+<col style="width: 20%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Format</td>
-<td>Ausgabe</td>
-<td>Beispiel</td>
+<tbody>
+<tr class="row-odd"><td><p>Format</p></td>
+<td><p>Ausgabe</p></td>
+<td><p>Beispiel</p></td>
 </tr>
-<tr class="row-even"><td>%.0f</td>
-<td>Ein Wert ohne Nachkommastellen</td>
-<td>31</td>
+<tr class="row-even"><td><p>%.0f</p></td>
+<td><p>Ein Wert ohne Nachkommastellen</p></td>
+<td><p>31</p></td>
 </tr>
-<tr class="row-odd"><td>%.1f</td>
-<td>Ein Wert mit einer Nachkommastelle</td>
-<td>31.0</td>
+<tr class="row-odd"><td><p>%.1f</p></td>
+<td><p>Ein Wert mit einer Nachkommastelle</p></td>
+<td><p>31.0</p></td>
 </tr>
-<tr class="row-even"><td>%.2f</td>
-<td>Ein Wert mit 2 Nachkommastellen</td>
-<td>31.00</td>
+<tr class="row-even"><td><p>%.2f</p></td>
+<td><p>Ein Wert mit 2 Nachkommastellen</p></td>
+<td><p>31.00</p></td>
 </tr>
-<tr class="row-odd"><td>%.3f</td>
-<td>Ein Wert mit 3 Nachkommastellen</td>
-<td>31.000</td>
+<tr class="row-odd"><td><p>%.3f</p></td>
+<td><p>Ein Wert mit 3 Nachkommastellen</p></td>
+<td><p>31.000</p></td>
 </tr>
-<tr class="row-even"><td>%.4f</td>
-<td>Ein Wert mit 4 Nachkommastellen</td>
-<td>31.0000</td>
+<tr class="row-even"><td><p>%.4f</p></td>
+<td><p>Ein Wert mit 4 Nachkommastellen</p></td>
+<td><p>31.0000</p></td>
 </tr>
 </tbody>
 </table>
 <p>Unter Format kann auch eine Einheit eingetragen werden. Diese wird
 einfach hinter den Dezimaltrenner gesetzt. Beispielsweise:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="20%" />
-<col width="59%" />
-<col width="21%" />
+<col style="width: 20%" />
+<col style="width: 59%" />
+<col style="width: 21%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Format</td>
-<td>Ausgabe</td>
-<td>Beispiel</td>
+<tbody>
+<tr class="row-odd"><td><p>Format</p></td>
+<td><p>Ausgabe</p></td>
+<td><p>Beispiel</p></td>
 </tr>
-<tr class="row-even"><td>%.0f %%</td>
-<td>Ein Wert ohne Nachkommastellen mit % als Einheit</td>
-<td>31 %</td>
+<tr class="row-even"><td><p>%.0f %%</p></td>
+<td><p>Ein Wert ohne Nachkommastellen mit % als Einheit</p></td>
+<td><p>31 %</p></td>
 </tr>
-<tr class="row-odd"><td>%.1f °C</td>
-<td>Ein Wert mit einer Nachkommastelle und °C als Einheit</td>
-<td>31.0 °C</td>
+<tr class="row-odd"><td><p>%.1f °C</p></td>
+<td><p>Ein Wert mit einer Nachkommastelle und °C als Einheit</p></td>
+<td><p>31.0 °C</p></td>
 </tr>
-<tr class="row-even"><td>%.2f km/h</td>
-<td>Ein Wert mit 2 Nachkommastellen und km/h als Einheit</td>
-<td>31.00 km/h</td>
+<tr class="row-even"><td><p>%.2f km/h</p></td>
+<td><p>Ein Wert mit 2 Nachkommastellen und km/h als Einheit</p></td>
+<td><p>31.00 km/h</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Wenn man ein % Zeichen verwenden möchte muss man %% nutzen (sonst gibt
+<p class="admonition-title">Hinweis</p>
+<p>Wenn man ein % Zeichen verwenden möchte muss man %% nutzen (sonst gibt
 es je nach verwendetem Browser Fehlermeldungen, da das einzelne % dann
 evt. als Steuerzeichen interpretiert wird)</p>
 </div>
-</div>
+</section>
 
 
            </div>

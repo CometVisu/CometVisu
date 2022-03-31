@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The ColorChooser widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <title>The ColorChooser widget &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/widgets/colorchooser/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -116,13 +120,13 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="the-colorchooser-widget">
+<section id="the-colorchooser-widget">
 <span id="colorchooser"></span><h1>The ColorChooser widget<a class="headerlink" href="#the-colorchooser-widget" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
@@ -130,15 +134,18 @@ by an online translation service.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>The ColorChooser let you select and display a color, e.g. for lighting effects.
 It supports a RGB light source with red, green and blue light components as well
 as a RGBW light source that also has a white channel.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <img alt="The ColorChooser" src="../../../_images/colorchooser_example.png" />
-<p class="caption"><span class="caption-text">The ColorChooser</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>The ColorChooser</p>
+</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-box;T:2500-15000;Y&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser<span class="nt">&lt;/label&gt;</span>
@@ -148,67 +155,67 @@ as a RGBW light source that also has a white channel.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="simple-mode">
+<section id="simple-mode">
 <h3>Simple mode<a class="headerlink" href="#simple-mode" title="Permalink to this headline">¶</a></h3>
 <p>For most use cases the simple mode will be sufficient. It is optimized for
 a simple configuration by ignoring a perfect color consistency between lighting
 and display.</p>
-<div class="section" id="widget-components-slider">
+<section id="widget-components-slider">
 <h4>Widget components: slider<a class="headerlink" href="#widget-components-slider" title="Permalink to this headline">¶</a></h4>
 <p>The ColorChooser offers different possibilities and combinations for selecting
 and displaying of a color. There are sliders for a direct control of a
 color channel, but also some for a indirect modification of a channel by
 representing a part of a color in the way a human is experiencing it.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="13%" />
-<col width="87%" />
+<col style="width: 13%" />
+<col style="width: 87%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
-<td>red channel - direct control of RGB-lighting</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></p></td>
+<td><p>red channel - direct control of RGB-lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
-<td>green channel - direct control of RGB-lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></p></td>
+<td><p>green channel - direct control of RGB-lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
-<td>blue channel - direct control of RGB-lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></p></td>
+<td><p>blue channel - direct control of RGB-lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></td>
-<td>red channel - direct control of RGBW-lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></p></td>
+<td><p>red channel - direct control of RGBW-lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></td>
-<td>green channel - direct control of RGBW-lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></p></td>
+<td><p>green channel - direct control of RGBW-lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></td>
-<td>blue channel - direct control of RGBW-lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></p></td>
+<td><p>blue channel - direct control of RGBW-lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></td>
-<td>white channel - direct control of RGBW-lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></p></td>
+<td><p>white channel - direct control of RGBW-lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">h</span></code></td>
-<td>hue of the HSV-color space, indirect control</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p>hue of the HSV-color space, indirect control</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
-<td>saturation of the HSV-color space, indirect control</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>saturation of the HSV-color space, indirect control</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">v</span></code></td>
-<td>value, the brightness of the HSV-color space, indirect control</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">v</span></code></p></td>
+<td><p>value, the brightness of the HSV-color space, indirect control</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">T</span></code></td>
-<td>color temperature of white, indirect control</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+<td><p>color temperature of white, indirect control</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Y</span></code></td>
-<td>brightness of the xyY-color space, indirect control</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p>brightness of the xyY-color space, indirect control</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-L</span></code></td>
-<td>lightness of the L*C*h° CIE color space, indirect control</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LCh-L</span></code></p></td>
+<td><p>lightness of the L*C*h° CIE color space, indirect control</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">LCh-C</span></code></td>
-<td>chroma of the L*C*h° CIE color space, indirect control</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LCh-C</span></code></p></td>
+<td><p>chroma of the L*C*h° CIE color space, indirect control</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-h</span></code></td>
-<td>hue of the L*C*h° CIE color space, indirect control</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LCh-h</span></code></p></td>
+<td><p>hue of the L*C*h° CIE color space, indirect control</p></td>
 </tr>
 </tbody>
 </table>
@@ -219,12 +226,15 @@ to use <code class="docutils literal notranslate"><span class="pre">Y</span></co
 <p>It is possible to configure the color temperature range that is used for the
 <code class="docutils literal notranslate"><span class="pre">T</span></code> slider by stating it separated by a colon. E.g. <code class="docutils literal notranslate"><span class="pre">T:2000-10000</span></code> would
 create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
-<div class="section" id="example-rgb-slider">
+<section id="example-rgb-slider">
 <h5>Example: RGB slider<a class="headerlink" href="#example-rgb-slider" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <img alt="ColorChooser, RGB slider" src="../../../_images/colorchooser_slider_rgb.png" />
-<p class="caption"><span class="caption-text">ColorChooser, RGB slider</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, RGB slider</p>
+</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;RGB-r;RGB-g;RGB-b&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser RGB slider<span class="nt">&lt;/label&gt;</span>
@@ -234,13 +244,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-rgbw-slider">
+</section>
+<section id="example-rgbw-slider">
 <h5>Example: RGBW slider<a class="headerlink" href="#example-rgbw-slider" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <img alt="ColorChooser, RGBW slider" src="../../../_images/colorchooser_slider_rgbw.png" />
-<p class="caption"><span class="caption-text">ColorChooser, RGBW slider</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, RGBW slider</p>
+</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;RGBW-r;RGBW-g;RGBW-b;RGBW-w&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser RGBW slider<span class="nt">&lt;/label&gt;</span>
@@ -251,13 +264,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-hsv-slider">
+</section>
+<section id="example-hsv-slider">
 <h5>Example: HSV slider<a class="headerlink" href="#example-hsv-slider" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id6">
+<figure class="align-default" id="id6">
 <img alt="ColorChooser, HSV slider" src="../../../_images/colorchooser_slider_hsv.png" />
-<p class="caption"><span class="caption-text">ColorChooser, HSV slider</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, HSV slider</p>
+</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;h;s;v&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser HSV slider<span class="nt">&lt;/label&gt;</span>
@@ -267,13 +283,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-color-temperature-and-brightness-slider">
+</section>
+<section id="example-color-temperature-and-brightness-slider">
 <h5>Example: color temperature and brightness slider<a class="headerlink" href="#example-color-temperature-and-brightness-slider" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id7">
+<figure class="align-default" id="id7">
 <img alt="ColorChooser, color temperature and brightness slider" src="../../../_images/colorchooser_slider_TY.png" />
-<p class="caption"><span class="caption-text">ColorChooser, color temperature and brightness slider</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, color temperature and brightness slider</p>
+</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;T:2000-10000;Y&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser T and Y slider<span class="nt">&lt;/label&gt;</span>
@@ -283,13 +302,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-lch-slider">
+</section>
+<section id="example-lch-slider">
 <h5>Example: LCh slider<a class="headerlink" href="#example-lch-slider" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id8">
+<figure class="align-default" id="id8">
 <img alt="ColorChooser, LCh slider" src="../../../_images/colorchooser_slider_LCh.png" />
-<p class="caption"><span class="caption-text">ColorChooser, LCh slider</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, LCh slider</p>
+</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-L;LCh-C;LCh-h&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser LCh slider<span class="nt">&lt;/label&gt;</span>
@@ -299,37 +321,40 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="widget-components-color-selection-wheel">
+</section>
+</section>
+<section id="widget-components-color-selection-wheel">
 <h4>Widget components: color selection wheel<a class="headerlink" href="#widget-components-color-selection-wheel" title="Permalink to this headline">¶</a></h4>
 <p>There are also combined, more complex interactions possible:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="14%" />
-<col width="86%" />
+<col style="width: 14%" />
+<col style="width: 86%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">box</span></code></td>
-<td>Color selection wheel with quadratic brightness and saturation selector, HSV color space</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></td>
+<td><p>Color selection wheel with quadratic brightness and saturation selector, HSV color space</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">triangle</span></code></td>
-<td>Color selection wheel with triangular brightness and saturation selector, HSV color space</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">triangle</span></code></p></td>
+<td><p>Color selection wheel with triangular brightness and saturation selector, HSV color space</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-box</span></code></td>
-<td>Color selection wheel with quadratic brightness and saturation selector, L*C*h° CIE color space</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LCh-box</span></code></p></td>
+<td><p>Color selection wheel with quadratic brightness and saturation selector, L*C*h° CIE color space</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code></td>
-<td>Color selection wheel with triangular brightness and saturation selector, L*C*h° CIE color space</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code></p></td>
+<td><p>Color selection wheel with triangular brightness and saturation selector, L*C*h° CIE color space</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="example-combined-chooser-box">
+<section id="example-combined-chooser-box">
 <h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">box</span></code><a class="headerlink" href="#example-combined-chooser-box" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id9">
+<figure class="align-default" id="id9">
 <img alt="ColorChooser, combined chooser: box" src="../../../_images/colorchooser_complex_box.png" />
-<p class="caption"><span class="caption-text">ColorChooser, combined chooser: box</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, combined chooser: box</p>
+</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;box&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser box<span class="nt">&lt;/label&gt;</span>
@@ -339,13 +364,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-combined-chooser-triangle">
+</section>
+<section id="example-combined-chooser-triangle">
 <h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">triangle</span></code><a class="headerlink" href="#example-combined-chooser-triangle" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id10">
+<figure class="align-default" id="id10">
 <img alt="ColorChooser, combined chooser: triangle" src="../../../_images/colorchooser_complex_triangle.png" />
-<p class="caption"><span class="caption-text">ColorChooser, combined chooser: triangle</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, combined chooser: triangle</p>
+</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;triangle&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser triangle<span class="nt">&lt;/label&gt;</span>
@@ -355,13 +383,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-combined-chooser-lch-box">
+</section>
+<section id="example-combined-chooser-lch-box">
 <h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-box</span></code><a class="headerlink" href="#example-combined-chooser-lch-box" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id11">
+<figure class="align-default" id="id11">
 <img alt="ColorChooser, combined chooser: LCh-box" src="../../../_images/colorchooser_complex_LCh_box.png" />
-<p class="caption"><span class="caption-text">ColorChooser, combined chooser: LCh-box</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, combined chooser: LCh-box</p>
+</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-box&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser LCh-box<span class="nt">&lt;/label&gt;</span>
@@ -371,13 +402,16 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <span class="nt">&lt;/colorchooser&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-combined-chooser-lch-triangle">
+</section>
+<section id="example-combined-chooser-lch-triangle">
 <h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code><a class="headerlink" href="#example-combined-chooser-lch-triangle" title="Permalink to this headline">¶</a></h5>
-<div class="figure align-default" id="id12">
+<figure class="align-default" id="id12">
 <img alt="ColorChooser, combined chooser: LCh-triangle" src="../../../_images/colorchooser_complex_LCh_triangle.png" />
-<p class="caption"><span class="caption-text">ColorChooser, combined chooser: LCh-triangle</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>ColorChooser, combined chooser: LCh-triangle</p>
+</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-triangle&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;label&gt;</span>ColorChooser LCh-triangle<span class="nt">&lt;/label&gt;</span>
@@ -388,15 +422,15 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In the simple mode it is recommended to use the color selection wheel in the
+<p class="admonition-title">Note</p>
+<p>In the simple mode it is recommended to use the color selection wheel in the
 HSV color space. In the professional mode, when the chromaticity coordinates
 are configured, the L*C*h° color space should be used for best color
 alignment.</p>
 </div>
-</div>
-</div>
-<div class="section" id="dim-curves">
+</section>
+</section>
+<section id="dim-curves">
 <h4>Dim curves<a class="headerlink" href="#dim-curves" title="Permalink to this headline">¶</a></h4>
 <p>The eye doesn’t measure brightness in a linear fashion but in a logarithmic
 way to be able to see at a dark night as well as during high noon. Different
@@ -410,8 +444,8 @@ compensate it for color mixing. Apart from defining a look up table (intended
 for the use at the professional mode) the keywords <code class="docutils literal notranslate"><span class="pre">linear</span></code>, <code class="docutils literal notranslate"><span class="pre">exponential</span></code>
 and <code class="docutils literal notranslate"><span class="pre">logarithmic</span></code> allow a simple use of the most common types of curve.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Configuring a dim curve is only required when the communication is
+<p class="admonition-title">Note</p>
+<p>Configuring a dim curve is only required when the communication is
 done in raw color components (<code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> and perhaps <code class="docutils literal notranslate"><span class="pre">w</span></code>).
 Using a complete color in <code class="docutils literal notranslate"><span class="pre">HSV</span></code> or - in the best case - as <code class="docutils literal notranslate"><span class="pre">xyY</span></code> color
 a dim curve isn’t necessary.</p>
@@ -430,28 +464,28 @@ shows the correct curve to use for compensation:</p>
    .exporange    {background-color:#ffe500; color:#ffe500;}
    .linearorange {background-color:#ff7f00; color:#ff7f00;}
    .logorange    {background-color:#ff0800; color:#ff0800;}
-</style><table border="1" class="docutils">
+</style><table class="docutils align-default">
 <colgroup>
-<col width="26%" />
-<col width="26%" />
-<col width="48%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 48%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>target color</td>
-<td>real color</td>
-<td>dim curve to use for compensation</td>
+<tbody>
+<tr class="row-odd"><td><p>target color</p></td>
+<td><p>real color</p></td>
+<td><p>dim curve to use for compensation</p></td>
 </tr>
-<tr class="row-even"><td><span class="linearorange">——</span></td>
-<td><span class="logorange">——</span></td>
-<td><cite>logarithmic</cite></td>
+<tr class="row-even"><td><p><span class="linearorange">——</span></p></td>
+<td><p><span class="logorange">——</span></p></td>
+<td><p><cite>logarithmic</cite></p></td>
 </tr>
-<tr class="row-odd"><td><span class="linearorange">——</span></td>
-<td><span class="linearorange">——</span></td>
-<td><cite>linear</cite></td>
+<tr class="row-odd"><td><p><span class="linearorange">——</span></p></td>
+<td><p><span class="linearorange">——</span></p></td>
+<td><p><cite>linear</cite></p></td>
 </tr>
-<tr class="row-even"><td><span class="linearorange">——</span></td>
-<td><span class="exporange">——</span></td>
-<td><cite>exponential</cite></td>
+<tr class="row-even"><td><p><span class="linearorange">——</span></p></td>
+<td><p><span class="exporange">——</span></p></td>
+<td><p><cite>exponential</cite></p></td>
 </tr>
 </tbody>
 </table>
@@ -462,16 +496,16 @@ of 0% and have a color tint and not a neutral white you can use  <code class="do
 This is also possible with a RGBW light source but the judgement by eye will
 be quite demanding. In this case it’s better suited to use a measurement
 device as described in the professional mode.</p>
-</div>
-</div>
-<div class="section" id="professional-mode">
+</section>
+</section>
+<section id="professional-mode">
 <h3>Professional mode<a class="headerlink" href="#professional-mode" title="Permalink to this headline">¶</a></h3>
 <p>For professional applications like architecture, art galleries or yachting the
 simple mode can be easily upgraded to the professional mode where the color
 chooser can be used for true color selecting.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Best results require a calibrated display. As, on purpose, only the sRGB
+<p class="admonition-title">Note</p>
+<p>Best results require a calibrated display. As, on purpose, only the sRGB
 color space is used for showing the widget also uncalibrated devices
 (like a smart phone or a tablet computer) should still have acceptable
 performance in most cases. Although only the sRGB color space is used the
@@ -509,8 +543,8 @@ reducing any errors in between. A communication in the HSV color space might
 still work. A direct control by RGB or RGBW values would require an accurate
 configured dim curve.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The ColorChooser is using internally the CIE xyY color space. For the
+<p class="admonition-title">Note</p>
+<p>The ColorChooser is using internally the CIE xyY color space. For the
 conversion in the L*a*b* and the L*C*h° color space it is using the D65
 light with a 10° standard observer.</p>
 </div>
@@ -530,35 +564,35 @@ LED stripe “LF700RGBW-G1-830-06” with the datasheet data and a control via D
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="admonition-title">Warning</p>
 <p>It is technically possible to use multiple address elements with different
 color space types like <code class="docutils literal notranslate"><span class="pre">RGB</span></code> and <code class="docutils literal notranslate"><span class="pre">HSV</span></code>. It is also technically possible
 to use <code class="docutils literal notranslate"><span class="pre">RGB-R</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-G</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-B</span></code> and at the same time <code class="docutils literal notranslate"><span class="pre">RGB</span></code>.</p>
-<p class="last">Although it might seem to work it can have unwanted side effects leading
+<p>Although it might seem to work it can have unwanted side effects leading
 to the display of a wrong color, so it should be prevented and be considered
 a misconfiguration.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">It is recommended to use a bus communication where all color components are
+<p class="admonition-title">Note</p>
+<p>It is recommended to use a bus communication where all color components are
 stated in the same data type (e.g. <code class="docutils literal notranslate"><span class="pre">rgb</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code>
 and <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code>). Otherwise it is possible that for short time periods
 after an external change of the color artefacts in the displayed or
 animated color are shown.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>When multiple ColorChooser are used for the same light (e.g. in one
 configuration or by opening the CometVisu in two browsers) it is possible
 that both will show a slightly different color. This happens when a color
 is selected that isn’t contained in the color space used on the bus
 communication. This happens most likely with a ColorChooser in LCh mode
 and RGB mode for communication.</p>
-<p class="last">Changing the communication to xyY mode will solve this issue.</p>
+<p>Changing the communication to xyY mode will solve this issue.</p>
 </div>
-</div>
-</div>
-<div class="section" id="settings">
+</section>
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -566,468 +600,476 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-colorchooser-element">
+<section id="allowed-attributes-in-the-colorchooser-element">
 <h3>Allowed attributes in the colorchooser-element<a class="headerlink" href="#allowed-attributes-in-the-colorchooser-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="25">colorchooser</td>
-<td>controls</td>
-<td>string</td>
-<td>List of controls to show (separated by semicolons)</td>
+<tbody>
+<tr class="row-odd"><td rowspan="25"><p>colorchooser</p></td>
+<td><p>controls</p></td>
+<td><p>string</p></td>
+<td><p>List of controls to show (separated by semicolons)</p></td>
 </tr>
-<tr class="row-even"><td>r_x</td>
-<td>decimal</td>
-<td>x coordinate of the red channel in the CIE xyY color space</td>
+<tr class="row-even"><td><p>r_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the red channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-odd"><td>r_y</td>
-<td>decimal</td>
-<td>y coordinate of the red channel in the CIE xyY color space</td>
+<tr class="row-odd"><td><p>r_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the red channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-even"><td>r_wavelength</td>
-<td>decimal</td>
-<td>Wavelength in nanometers of the red channel</td>
+<tr class="row-even"><td><p>r_wavelength</p></td>
+<td><p>decimal</p></td>
+<td><p>Wavelength in nanometers of the red channel</p></td>
 </tr>
-<tr class="row-odd"><td>r_strength</td>
-<td>decimal</td>
-<td>Maximal strength of the red channel</td>
+<tr class="row-odd"><td><p>r_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the red channel</p></td>
 </tr>
-<tr class="row-even"><td>r_curve</td>
-<td>string</td>
-<td>Dim curve of the red channel</td>
+<tr class="row-even"><td><p>r_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the red channel</p></td>
 </tr>
-<tr class="row-odd"><td>r_scale</td>
-<td>decimal</td>
-<td>Scaling of the dim curve of the red channel</td>
+<tr class="row-odd"><td><p>r_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the red channel</p></td>
 </tr>
-<tr class="row-even"><td>g_x</td>
-<td>decimal</td>
-<td>x coordinate of the green channel in the CIE xyY color space</td>
+<tr class="row-even"><td><p>g_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the green channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-odd"><td>g_y</td>
-<td>decimal</td>
-<td>y coordinate of the green channel in the CIE xyY color space</td>
+<tr class="row-odd"><td><p>g_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the green channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-even"><td>g_wavelength</td>
-<td>decimal</td>
-<td>Wavelength in nanometers of the green channel</td>
+<tr class="row-even"><td><p>g_wavelength</p></td>
+<td><p>decimal</p></td>
+<td><p>Wavelength in nanometers of the green channel</p></td>
 </tr>
-<tr class="row-odd"><td>g_strength</td>
-<td>decimal</td>
-<td>Maximal strength of the green channel</td>
+<tr class="row-odd"><td><p>g_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the green channel</p></td>
 </tr>
-<tr class="row-even"><td>g_curve</td>
-<td>string</td>
-<td>Dim curve of the green channel</td>
+<tr class="row-even"><td><p>g_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the green channel</p></td>
 </tr>
-<tr class="row-odd"><td>g_scale</td>
-<td>decimal</td>
-<td>Scaling of the dim curve of the green channel</td>
+<tr class="row-odd"><td><p>g_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the green channel</p></td>
 </tr>
-<tr class="row-even"><td>b_x</td>
-<td>decimal</td>
-<td>x coordinate of the blue channel in the CIE xyY color space</td>
+<tr class="row-even"><td><p>b_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the blue channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-odd"><td>b_y</td>
-<td>decimal</td>
-<td>y coordinate of the blue channel in the CIE xyY color space</td>
+<tr class="row-odd"><td><p>b_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the blue channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-even"><td>b_wavelength</td>
-<td>decimal</td>
-<td>Wavelength in nanometers of the blue channel</td>
+<tr class="row-even"><td><p>b_wavelength</p></td>
+<td><p>decimal</p></td>
+<td><p>Wavelength in nanometers of the blue channel</p></td>
 </tr>
-<tr class="row-odd"><td>b_strength</td>
-<td>decimal</td>
-<td>Maximal strength of the blue channel</td>
+<tr class="row-odd"><td><p>b_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the blue channel</p></td>
 </tr>
-<tr class="row-even"><td>b_curve</td>
-<td>string</td>
-<td>Dim curve of the blue channel</td>
+<tr class="row-even"><td><p>b_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the blue channel</p></td>
 </tr>
-<tr class="row-odd"><td>b_scale</td>
-<td>decimal</td>
-<td>Scaling of the dim curve of the blue channel</td>
+<tr class="row-odd"><td><p>b_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the blue channel</p></td>
 </tr>
-<tr class="row-even"><td>w_x</td>
-<td>decimal</td>
-<td>x coordinate of the white channel in the CIE xyY color space</td>
+<tr class="row-even"><td><p>w_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the white channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-odd"><td>w_y</td>
-<td>decimal</td>
-<td>y coordinate of the white channel in the CIE xyY color space</td>
+<tr class="row-odd"><td><p>w_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the white channel in the CIE xyY color space</p></td>
 </tr>
-<tr class="row-even"><td>w_strength</td>
-<td>decimal</td>
-<td>Maximal strength of the white channel</td>
+<tr class="row-even"><td><p>w_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the white channel</p></td>
 </tr>
-<tr class="row-odd"><td>w_curve</td>
-<td>string</td>
-<td>Dim curve of the white channel</td>
+<tr class="row-odd"><td><p>w_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the white channel</p></td>
 </tr>
-<tr class="row-even"><td>w_scale</td>
-<td>decimal</td>
-<td>Scaling of the dim curve of the white channel</td>
+<tr class="row-even"><td><p>w_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the white channel</p></td>
 </tr>
-<tr class="row-odd"><td>send_on_finish</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Send only when the slider is released.</td>
+<tr class="row-odd"><td><p>send_on_finish</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Send only when the slider is released.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id13">
+<figure class="align-center" id="id13">
 <img alt="../../../_images/en_config_widgets_colorchooser_index_editor_attributes.png" src="../../../_images/en_config_widgets_colorchooser_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#id2" id="id1">[1]</a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>colorchooser</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>decimal</td>
-<td>Amount of columns this widget should be wide.</td>
+<td><p>colspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of columns this widget should be wide.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a medium screen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a small screen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>decimal</td>
-<td>Amount of rows this widget should be high.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of rows this widget should be high.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>string</td>
-<td>Reserved for future use.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>string</p></td>
+<td><p>Reserved for future use.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>string</td>
-<td>Width for the widget for 2D pages.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>colorchooser</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">name</abbr></td>
-<td>string</td>
-<td>Name of the icon registration.</td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Name of the icon registration.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>string</td>
-<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the icon in CSS notation (e.g. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>string</td>
-<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>colorchooser</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>Text to display a label for the widget.</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>Text to display a label for the widget.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>colorchooser</dt><dd><ul class="simple">
-<li><abbr title="mandatory">address</abbr></li>
+<li><p><abbr title="mandatory">address</abbr></p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">transform</abbr></td>
-<td>string</td>
-<td>Transformation of the bus system value to be shown.</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
-<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>decimal</td>
-<td>Position for format string when multiple addresses are used.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>string</td>
-<td>Only MQTT: JSON selector</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>decimal</td>
-<td>Only MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: retain flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: ignore decode errors.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>colorchooser</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id14">
+<figure class="align-center" id="id14">
 <img alt="../../../_images/en_config_widgets_colorchooser_index_editor_elements.png" src="../../../_images/en_config_widgets_colorchooser_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>Elements in the editor</p>
+</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">When you need to address each color (red, green and blue) individually you
+<p class="admonition-title">Important</p>
+<p>When you need to address each color (red, green and blue) individually you
 need to add a group address with corresponding <code class="docutils literal notranslate"><span class="pre">variant</span></code> each. For
 OpenHAB Color Items or one of the combined KNX data types this does not hold,
 here it is e.g. possible to use a <code class="docutils literal notranslate"><span class="pre">variant=&quot;rgb&quot;</span></code> instead.</p>
 </div>
 <p>Valid values for <code class="docutils literal notranslate"><span class="pre">variant</span></code> are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="13%" />
-<col width="87%" />
+<col style="width: 13%" />
+<col style="width: 87%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
-<td>Red channel of RGB lighting</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></p></td>
+<td><p>Red channel of RGB lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
-<td>Green channel of RGB lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></p></td>
+<td><p>Green channel of RGB lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
-<td>Blue channel of RGB lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></p></td>
+<td><p>Blue channel of RGB lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">r</span></code></td>
-<td>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r</span></code></p></td>
+<td><p>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">g</span></code></td>
-<td>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">g</span></code></p></td>
+<td><p>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">b</span></code></td>
-<td>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+<td><p>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">rgb</span></code></td>
-<td>Combined data type of RGB lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rgb</span></code></p></td>
+<td><p>Combined data type of RGB lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></td>
-<td>Red channel of RGBW lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></p></td>
+<td><p>Red channel of RGBW lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></td>
-<td>Green channel of RGBW lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></p></td>
+<td><p>Green channel of RGBW lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></td>
-<td>Blue channel of RGBW lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></p></td>
+<td><p>Blue channel of RGBW lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></td>
-<td>White channel of RGBW lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></p></td>
+<td><p>White channel of RGBW lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rgbw</span></code></td>
-<td>Combined data type of RGBW lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rgbw</span></code></p></td>
+<td><p>Combined data type of RGBW lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">h</span></code></td>
-<td>Hue channel of HSV controlled lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p>Hue channel of HSV controlled lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
-<td>Saturation channel of HSV controlled lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>Saturation channel of HSV controlled lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">v</span></code></td>
-<td>Value channel of HSV controlled lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v</span></code></p></td>
+<td><p>Value channel of HSV controlled lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">hsv</span></code></td>
-<td>Combined data type of HSV controlled lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hsv</span></code></p></td>
+<td><p>Combined data type of HSV controlled lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">x</span></code></td>
-<td>x channel of xyY controlled lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>x channel of xyY controlled lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">y</span></code></td>
-<td>y channel of xyY controlled lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>y channel of xyY controlled lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Y</span></code></td>
-<td>Y channel of xyY controlled lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p>Y channel of xyY controlled lighting</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xy</span></code></td>
-<td>Combined data type of xyY controlled lighting</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xy</span></code></p></td>
+<td><p>Combined data type of xyY controlled lighting</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">xyY</span></code></td>
-<td>Combined data type of xyY controlled lighting</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xyY</span></code></p></td>
+<td><p>Combined data type of xyY controlled lighting</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">variant</span></code> used for communication doesn’t necessarily be similar to
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">variant</span></code> used for communication doesn’t necessarily be similar to
 the used widget elements as defined by <code class="docutils literal notranslate"><span class="pre">controls</span></code>. It is valid to use
 a ColorChooser with a HSV control and RGB bus communication.</p>
 </div>
-</div>
-</div>
-<div class="section" id="examples">
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the Info widget.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser&gt;</span>
@@ -1040,14 +1082,13 @@ XML-editor to UTF-8 mode!</p>
 </pre></div>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

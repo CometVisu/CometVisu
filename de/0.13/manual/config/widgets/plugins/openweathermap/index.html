@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das OpenweatherMap Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>Das OpenweatherMap Plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/plugins/openweathermap/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -112,12 +116,12 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="das-openweathermap-plugin">
+<section id="das-openweathermap-plugin">
 <span id="openweathermap"></span><h1>Das OpenweatherMap Plugin<a class="headerlink" href="#das-openweathermap-plugin" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Matthias</div>
@@ -125,12 +129,12 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das OpenweatherMap Plugin fügt der Visu ein Widget für die Wettervorhersage
 hinzu.</p>
-</div>
-<div class="section" id="einstellungen">
+</section>
+<section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
@@ -139,114 +143,114 @@ Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Scree
 beides über den <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<div class="section" id="erlaubte-attribute-im-openweathermap-element">
+<section id="erlaubte-attribute-im-openweathermap-element">
 <h3>Erlaubte Attribute im OpenweatherMap-Element<a class="headerlink" href="#erlaubte-attribute-im-openweathermap-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="13">openweathermap</td>
-<td>lang</td>
-<td><em>en</em>, <em>de</em> oder <em>fr</em></td>
-<td>Sprache / Datum-Formatierung</td>
+<tbody>
+<tr class="row-odd"><td rowspan="13"><p>openweathermap</p></td>
+<td><p>lang</p></td>
+<td><p><em>en</em>, <em>de</em> oder <em>fr</em></p></td>
+<td><p>Sprache / Datum-Formatierung</p></td>
 </tr>
-<tr class="row-even"><td><abbr title="Pflichtangabe">appid</abbr></td>
-<td>Text</td>
-<td>Persönlicher Zugriffsschlüssel von <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a></td>
+<tr class="row-even"><td><p><abbr title="Pflichtangabe">appid</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Persönlicher Zugriffsschlüssel von <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a></p></td>
 </tr>
-<tr class="row-odd"><td>description</td>
-<td>Text</td>
-<td>Beschreibungstext, zeigt den Ortsname an, wenn leer gelassen. „false“ deaktiviert Anzeige</td>
+<tr class="row-odd"><td><p>description</p></td>
+<td><p>Text</p></td>
+<td><p>Beschreibungstext, zeigt den Ortsname an, wenn leer gelassen. „false“ deaktiviert Anzeige</p></td>
 </tr>
-<tr class="row-even"><td>detailItems</td>
-<td>integer</td>
-<td>Anzeige von Details wenn Wert 1 ist (Voreinstellung). 0 deaktiviert Anzeige</td>
+<tr class="row-even"><td><p>detailItems</p></td>
+<td><p>integer</p></td>
+<td><p>Anzeige von Details wenn Wert 1 ist (Voreinstellung). 0 deaktiviert Anzeige</p></td>
 </tr>
-<tr class="row-odd"><td>forecast24hItems</td>
-<td>integer</td>
-<td>Anzahl der Einträge (0…8)</td>
+<tr class="row-odd"><td><p>forecast24hItems</p></td>
+<td><p>integer</p></td>
+<td><p>Anzahl der Einträge (0…8)</p></td>
 </tr>
-<tr class="row-even"><td>forecastDailyItems</td>
-<td>integer</td>
-<td>Anzahl der Einträge (0…4)</td>
+<tr class="row-even"><td><p>forecastDailyItems</p></td>
+<td><p>integer</p></td>
+<td><p>Anzahl der Einträge (0…4)</p></td>
 </tr>
-<tr class="row-odd"><td>showSunrise</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Sonnenauf- und untergang anzeigen</td>
+<tr class="row-odd"><td><p>showSunrise</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Sonnenauf- und untergang anzeigen</p></td>
 </tr>
-<tr class="row-even"><td>owID</td>
-<td>Text</td>
-<td>OpenWeatherMap City ID aus <a class="reference external" href="http://bulk.openweathermap.org/sample/city.list.json.gz">http://bulk.openweathermap.org/sample/city.list.json.gz</a></td>
+<tr class="row-even"><td><p>owID</p></td>
+<td><p>Text</p></td>
+<td><p>OpenWeatherMap City ID aus <a class="reference external" href="http://bulk.openweathermap.org/sample/city.list.json.gz">http://bulk.openweathermap.org/sample/city.list.json.gz</a></p></td>
 </tr>
-<tr class="row-odd"><td>q</td>
-<td>Text</td>
-<td>Wenn owID nicht verwendet wird: Ortsname und ISO 3166 Ländercode, durch Komma getrennt</td>
+<tr class="row-odd"><td><p>q</p></td>
+<td><p>Text</p></td>
+<td><p>Wenn owID nicht verwendet wird: Ortsname und ISO 3166 Ländercode, durch Komma getrennt</p></td>
 </tr>
-<tr class="row-even"><td>lat</td>
-<td>Text</td>
-<td>Wenn owID oder q nicht verwendet wird: Geographische Breite des Ortes</td>
+<tr class="row-even"><td><p>lat</p></td>
+<td><p>Text</p></td>
+<td><p>Wenn owID oder q nicht verwendet wird: Geographische Breite des Ortes</p></td>
 </tr>
-<tr class="row-odd"><td>lon</td>
-<td>Text</td>
-<td>Wenn owID oder q nicht verwendet wird: Geographische Länge des Ortes</td>
+<tr class="row-odd"><td><p>lon</p></td>
+<td><p>Text</p></td>
+<td><p>Wenn owID oder q nicht verwendet wird: Geographische Länge des Ortes</p></td>
 </tr>
-<tr class="row-even"><td>refresh</td>
-<td>integer</td>
-<td>Aktualisierungsintervall in Minuten</td>
+<tr class="row-even"><td><p>refresh</p></td>
+<td><p>integer</p></td>
+<td><p>Aktualisierungsintervall in Minuten</p></td>
 </tr>
-<tr class="row-odd"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Der Wert des Attributs <cite>appid</cite> muss durch den eigenen Schlüssel ersetzt werden!</p>
+<p class="admonition-title">Wichtig</p>
+<p>Der Wert des Attributs <cite>appid</cite> muss durch den eigenen Schlüssel ersetzt werden!</p>
 </div>
 <p>Das OpenweatherMap nutzt den Web-Service von <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a> um
 die aktuellen Wetterdaten bzw. Vorhersage darstellen zu können. Um auf diese
 Daten zugreifen zu können benötigt man einen Schlüssel, der dort auf der
 Homepage kostenlos erzeugt werden kann und im Attribut <cite>appid</cite> angegeben
 werden muss.</p>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Keine.</p>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das OpenweatherMap Plugin auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Wichtig</p>
-<p class="last">Der Wert des Attributs <cite>appid</cite> muss durch den eigenen Schlüssel ersetzt werden!</p>
+<p class="admonition-title">Wichtig</p>
+<p>Der Wert des Attributs <cite>appid</cite> muss durch den eigenen Schlüssel ersetzt werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das OpenweatherMap Plugin aus dem folgenden,
 Screenshot erzeugt:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../../_images/weather.png" src="../../../../_images/weather.png" />
-</div>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
         <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;openweathermap&quot;</span> <span class="nt">/&gt;</span>
@@ -256,8 +260,8 @@ Screenshot erzeugt:</p>
 <span class="nt">&lt;openweathermap</span> <span class="na">q=</span><span class="s">&quot;Munich&quot;</span> <span class="na">appid=</span><span class="s">&quot;...&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

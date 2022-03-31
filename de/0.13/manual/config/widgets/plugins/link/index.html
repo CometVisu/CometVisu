@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Link Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>Das Link Plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/plugins/link/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -112,12 +116,12 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="das-link-plugin">
+<section id="das-link-plugin">
 <span id="link"></span><h1>Das Link Plugin<a class="headerlink" href="#das-link-plugin" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Stefan Borchert [<a class="reference external" href="mailto:stefan&#37;&#52;&#48;borchert&#46;cc">stefan<span>&#64;</span>borchert<span>&#46;</span>cc</a>]</div>
@@ -125,14 +129,14 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Link-Plugin fügt einen einfachen Link zu einer anderen Webseite hinzu, die beim Klicken auf den Link entweder
 im selben oder einem neuen Fenster geöffnet wird.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../../_images/link.png" src="../../../../_images/link.png" />
-</div>
-<div class="literal-block-wrapper container" id="offnet-google-in-einem-neuen-fenster">
+</figure>
+<div class="literal-block-wrapper docutils container" id="offnet-google-in-einem-neuen-fenster">
 <div class="code-block-caption"><span class="caption-text">Öffnet Google in einem neuen Fenster</span><a class="headerlink" href="#offnet-google-in-einem-neuen-fenster" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
@@ -143,8 +147,8 @@ im selben oder einem neuen Fenster geöffnet wird.</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="einstellungen">
+</section>
+<section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
@@ -153,156 +157,156 @@ Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Scree
 beides über den <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<div class="section" id="erlaubte-attribute-im-link-element">
+<section id="erlaubte-attribute-im-link-element">
 <h3>Erlaubte Attribute im link-Element<a class="headerlink" href="#erlaubte-attribute-im-link-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="4">link</td>
-<td>class</td>
-<td>Text</td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p>link</p></td>
+<td><p>class</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>text</td>
-<td>Text</td>
-<td>Der Link Text.</td>
+<tr class="row-even"><td><p>text</p></td>
+<td><p>Text</p></td>
+<td><p>Der Link Text.</p></td>
 </tr>
-<tr class="row-odd"><td>href</td>
-<td>Text</td>
-<td>Die URL des Links.</td>
+<tr class="row-odd"><td><p>href</p></td>
+<td><p>Text</p></td>
+<td><p>Die URL des Links.</p></td>
 </tr>
-<tr class="row-even"><td>newWindow</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Öffnet den Link in einem neuen Fenster, wenn der Wert auf „true“ gesetzt ist.</td>
+<tr class="row-even"><td><p>newWindow</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Öffnet den Link in einem neuen Fenster, wenn der Wert auf „true“ gesetzt ist.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>link</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>Zahl</td>
-<td>Spaltenanzahl für dieses Widget.</td>
+<td><p>colspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Spaltenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>Zahl</td>
-<td>Zeilenanzahl für dieses Widget.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeilenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>Text</td>
-<td>Für zukünftige Anwendungen reserviert.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>Text</p></td>
+<td><p>Für zukünftige Anwendungen reserviert.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das link Plugin auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Benachrichtigungen &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Benachrichtigungen &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/notifications.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -100,12 +104,12 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="benachrichtigungen">
+<section id="benachrichtigungen">
 <span id="notifications"></span><h1>Benachrichtigungen<a class="headerlink" href="#benachrichtigungen" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
@@ -113,7 +117,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das <code class="docutils literal notranslate"><span class="pre">state-notification</span></code> Element im Meta-Bereich der Konfiguration erlaubt es Benachrichtigungen zu erstellen wenn
 ein neuer Wert für ein Widget vom Backend hochgemeldet wird. Diese Benachrichtigungen können als Popup oder
@@ -121,7 +125,7 @@ als Eintrag in der Benachrichtigungszentrale angezeigt werden.</p>
 <p>Sobald Nachrichten in der Benachrichtigungszentrale vorhanden sind, wird die Anzahl der Nachrichten am oberen rechten
 Rand des Browserfensters und im Favicon (im Browser-Tab) anzeigt. Sollten Nachrichten mit höherer Priorität darunter
 sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
-<div class="literal-block-wrapper container" id="id1">
+<div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Einfaches Beispiel zeigt eine Nachricht in der Nachrichtenzentrale, wenn die Wohnzimmerlampe eingeschaltet ist.</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;notifications&gt;</span>
@@ -140,8 +144,8 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
 </div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Die <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> Einträge in den Notifications sind die gleichen, wie sich innerhalb der Widgets benutzt werden.
+<p class="admonition-title">Hinweis</p>
+<p>Die <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> Einträge in den Notifications sind die gleichen, wie sich innerhalb der Widgets benutzt werden.
 In den Beispielen werden openHAB-Adressen benutzt. Ein entsprechendes Beispiel für das Default-Backend wäre:
 <code class="docutils literal notranslate"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
 </div>
@@ -152,28 +156,28 @@ Die beiden Elemente <code class="docutils literal notranslate"><span class="pre"
 Bei den Templates handelt es sich um <a class="reference external" href="https://github.com/janl/mustache.js">Mustache</a>-Templates,
 bei denen bestimmte Platzhalter an eine beliebige Stelle in den Text eingefügt werden können.
 Folgende Platzhalter stehen zur Verfügung:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="18%" />
-<col width="82%" />
+<col style="width: 18%" />
+<col style="width: 82%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Inhalt</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">address</span></code></td>
-<td>Adresse von der das Status-Update gekommen ist</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">address</span></code></p></td>
+<td><p>Adresse von der das Status-Update gekommen ist</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">value</span></code></td>
-<td>Wert des Status-Updates</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+<td><p>Wert des Status-Updates</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">date</span></code></td>
-<td>Datum des Empfangs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></td>
+<td><p>Datum des Empfangs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">time</span></code></td>
-<td>Zeit des Empfangs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>Zeit des Empfangs</p></td>
 </tr>
 </tbody>
 </table>
@@ -188,73 +192,73 @@ als Popup anzuzeigen.</p>
 <p><code class="docutils literal notranslate"><span class="pre">unique=&quot;true&quot;</span></code> legt fest, dass die Nachricht nur einmal angezeigt wird, und zwar nur, wenn der Wert des
 Status-Updates gleich dem <code class="docutils literal notranslate"><span class="pre">&lt;condition&gt;</span></code> festgelegten Wert <code class="docutils literal notranslate"><span class="pre">ON</span></code> entspricht, d.h. die Nachricht wird angezeigt,
 wenn die Lampe eingeschaltet ist, wenn sie ausgeschaltet wird, wird die Nachricht automatisch gelöscht.</p>
-<div class="section" id="erklarung-zu-den-attributen-im-state-notification-element">
+<section id="erklarung-zu-den-attributen-im-state-notification-element">
 <h3>Erklärung zu den Attributen im state-notification-Element<a class="headerlink" href="#erklarung-zu-den-attributen-im-state-notification-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8">state-notification</td>
-<td>name</td>
-<td>Text</td>
-<td>Name muss definiert werden, wenn unique=true ist</td>
+<tbody>
+<tr class="row-odd"><td rowspan="8"><p>state-notification</p></td>
+<td><p>name</p></td>
+<td><p>Text</p></td>
+<td><p>Name muss definiert werden, wenn unique=true ist</p></td>
 </tr>
-<tr class="row-even"><td>target</td>
-<td><em>popup</em>, <em>notificationCenter</em> oder <em>speech</em></td>
-<td><ul class="first last simple">
-<li><em>popup</em>: Nachricht als Popup anzeigen</li>
-<li><em>notificationCenter</em>: Nachricht im Notification-Center anzeigen</li>
-<li><em>speech</em>: Nachricht per Sprachausgabe ausgeben</li>
+<tr class="row-even"><td><p>target</p></td>
+<td><p><em>popup</em>, <em>notificationCenter</em> oder <em>speech</em></p></td>
+<td><ul class="simple">
+<li><p><em>popup</em>: Nachricht als Popup anzeigen</p></li>
+<li><p><em>notificationCenter</em>: Nachricht im Notification-Center anzeigen</p></li>
+<li><p><em>speech</em>: Nachricht per Sprachausgabe ausgeben</p></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>unique</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Nur eine Nachricht für dieses Update zeigen (name muss angegeben werden)</td>
+<tr class="row-odd"><td><p>unique</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur eine Nachricht für dieses Update zeigen (name muss angegeben werden)</p></td>
 </tr>
-<tr class="row-even"><td>deletable</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Benutzer kann diese Nachricht löschen</td>
+<tr class="row-even"><td><p>deletable</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Benutzer kann diese Nachricht löschen</p></td>
 </tr>
-<tr class="row-odd"><td>skip-initial</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Erstes Statusupdate ignorieren</td>
+<tr class="row-odd"><td><p>skip-initial</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Erstes Statusupdate ignorieren</p></td>
 </tr>
-<tr class="row-even"><td>severity</td>
-<td><em>urgent</em>, <em>high</em>, <em>normal</em> oder <em>low</em></td>
-<td>Nachrichten mit höherer Priorität werden farblich gekennzeichnet</td>
+<tr class="row-even"><td><p>severity</p></td>
+<td><p><em>urgent</em>, <em>high</em>, <em>normal</em> oder <em>low</em></p></td>
+<td><p>Nachrichten mit höherer Priorität werden farblich gekennzeichnet</p></td>
 </tr>
-<tr class="row-odd"><td>icon</td>
-<td>Text</td>
-<td>Zeigt dieses Icon zusammen mit der Nachricht.</td>
+<tr class="row-odd"><td><p>icon</p></td>
+<td><p>Text</p></td>
+<td><p>Zeigt dieses Icon zusammen mit der Nachricht.</p></td>
 </tr>
-<tr class="row-even"><td>icon-classes</td>
-<td>Text</td>
-<td>Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasst werden kann.</td>
+<tr class="row-even"><td><p>icon-classes</p></td>
+<td><p>Text</p></td>
+<td><p>Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasst werden kann.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="weitere-beispiele">
+</section>
+</section>
+<section id="weitere-beispiele">
 <h2>Weitere Beispiele<a class="headerlink" href="#weitere-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="komplexes-beispiel-mit-mapping">
+<section id="komplexes-beispiel-mit-mapping">
 <h3>Komplexes Beispiel mit Mapping<a class="headerlink" href="#komplexes-beispiel-mit-mapping" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="literal-block-wrapper container" id="id2">
+<div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Komplexes Beispiel mit Benachrichtigungen für Bewegungen inkl. Mapping</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
@@ -287,14 +291,16 @@ mit hoher Priorität (<code class="docutils literal notranslate"><span class="pr
 <p>Um den etwas kryptischen Adressennamen in ein lesbares Format zu bringen wird ein <a class="reference internal" href="mapping.html#mapping"><span class="std std-ref">Mapping</span></a> benutzt.
 Wenn der Bewegungsmelder mit dem Namen <em>Motion_FF_Corridor</em> nun eine Bewegung signalisiert würde die Nachricht
 folgenden Inhalt haben:</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <img alt="../_images/nachrichten_zentrale.png" src="../_images/nachrichten_zentrale.png" />
-<p class="caption"><span class="caption-text">Beispiel einer Nachricht in der Nachrichtenzentrale</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-<div class="section" id="sprachausgabe">
+<figcaption>
+<p><span class="caption-text">Beispiel einer Nachricht in der Nachrichtenzentrale</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="sprachausgabe">
 <h3>Sprachausgabe<a class="headerlink" href="#sprachausgabe" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="literal-block-wrapper container" id="id4">
+<div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Ausgabe der Nachricht über die Text-to-speech Engine des Browsers</span><a class="headerlink" href="#id4" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;mappings&gt;</span>
@@ -327,9 +333,9 @@ als Wert <code class="docutils literal notranslate"><span class="pre">ON</span><
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bewegung im Flur OG
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

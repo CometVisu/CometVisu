@@ -294,7 +294,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         switch (textStatus) {
           case 'parsererror':
-            message = qx.locale.Manager.tr('Invalid config file!') + '<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">' + qx.locale.Manager.tr('Please check!') + '</a>';
+            message = qx.locale.Manager.tr('Invalid config file!') + '<br/><a href="javascript:showConfigErrors(\'' + configSuffix + '\')">' + qx.locale.Manager.tr('Please check!') + '</a>';
             break;
 
           case 'libraryerror':
@@ -306,7 +306,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
 
               link += '&libraryCheck=false';
-              message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' + qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' + '<p>' + qx.locale.Manager.tr('You can run the %1Configuration Upgrader%2.', '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' + qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
+              message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' + qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' + '<p>' + qx.locale.Manager.tr('You can run the %1Configuration Upgrader%2.', '<a href="javascript:showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' + qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
               break;
             }
 
@@ -369,4 +369,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1648068893687
+//# sourceMappingURL=ConfigLoader.js.map?dt=1648710512373

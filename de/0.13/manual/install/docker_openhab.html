@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation auf einem Ubuntu System mit openHAB und Docker &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Installation auf einem Ubuntu System mit openHAB und Docker &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/docker_openhab.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -93,28 +97,28 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="installation-auf-einem-ubuntu-system-mit-openhab-und-docker">
+<section id="installation-auf-einem-ubuntu-system-mit-openhab-und-docker">
 <span id="docker-openhab-installation"></span><h1>Installation auf einem Ubuntu System mit openHAB und Docker<a class="headerlink" href="#installation-auf-einem-ubuntu-system-mit-openhab-und-docker" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="voraussetzungen">
+<section id="voraussetzungen">
 <h2>1. Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für den Betrieb der CometVisu mit openHAB und Docker werden folgende Dinge benötigt:</p>
 <ol class="arabic simple">
-<li>Server mit funktionierender openHAB Installation.</li>
-<li>Docker-CE und Docker Compose</li>
+<li><p>Server mit funktionierender openHAB Installation.</p></li>
+<li><p>Docker-CE und Docker Compose</p></li>
 </ol>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Es wird kein zusätzlicher Webserver, wie z.B. Apache o.ä. mit installiertem PHP Support benötigt, da dies
+<p class="admonition-title">Hinweis</p>
+<p>Es wird kein zusätzlicher Webserver, wie z.B. Apache o.ä. mit installiertem PHP Support benötigt, da dies
 alles Bestandteil des Containers ist.
 Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich ist.</p>
 </div>
-</div>
-<div class="section" id="installation-von-docker-ce-und-compose-auf-dem-server">
+</section>
+<section id="installation-von-docker-ce-und-compose-auf-dem-server">
 <h2>2. Installation von Docker-CE und Compose auf dem Server<a class="headerlink" href="#installation-von-docker-ce-und-compose-auf-dem-server" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Update
@@ -136,8 +140,8 @@ Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich is
 <span class="go">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="systemvorbereitungen">
+</section>
+<section id="systemvorbereitungen">
 <h2>3. Systemvorbereitungen<a class="headerlink" href="#systemvorbereitungen" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Aktuellen Benutzer zur Gruppe *Docker* hinzufügen
 <span class="go">sudo usermod -aG docker $USER</span>
@@ -185,8 +189,8 @@ Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich is
 <span class="go">sudo chown -hR www-data:www-data resource/config</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="cometvisu-per-docker-installieren">
+</section>
+<section id="cometvisu-per-docker-installieren">
 <h2>4. CometVisu per Docker installieren<a class="headerlink" href="#cometvisu-per-docker-installieren" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Jetzt den Container installieren</p>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># yaml datei Anlegen</span>
@@ -211,8 +215,8 @@ services:
 </pre></div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Bei der YAML-Datei ist darauf zu achten, dass die Einrückungen jeweils mit 2 Leerzeichen erstellt werden.</p>
+<p class="admonition-title">Hinweis</p>
+<p>Bei der YAML-Datei ist darauf zu achten, dass die Einrückungen jeweils mit 2 Leerzeichen erstellt werden.</p>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>docker starten
 <span class="go">docker-compose up -d</span>
@@ -225,8 +229,8 @@ services:
 </pre></div>
 </div>
 <p>Die CometVisu ist dann direkt unter der URL <code class="docutils literal notranslate"><span class="pre">http://&lt;container-IP&gt;:</span></code> im Browser erreichbar.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

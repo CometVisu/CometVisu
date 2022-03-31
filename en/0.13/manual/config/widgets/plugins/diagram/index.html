@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The diagram plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>The diagram plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/widgets/plugins/diagram/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -110,13 +114,13 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="the-diagram-plugin">
+<section id="the-diagram-plugin">
 <span id="diagram"></span><h1>The diagram plugin<a class="headerlink" href="#the-diagram-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Michael Hausl [michael at hausl dot com]</div>
@@ -124,12 +128,12 @@ by an online translation service.</p>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>This plugins integrates flot (diagrams in javascript) into the visualization.
 server-side data-storage is rrd</p>
-</div>
-<div class="section" id="settings">
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -137,604 +141,612 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-diagram-element">
+<section id="allowed-attributes-in-the-diagram-element">
 <h3>Allowed attributes in the diagram-element<a class="headerlink" href="#allowed-attributes-in-the-diagram-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="18">diagram</td>
-<td>width</td>
-<td>dimension (number+unit)</td>
-<td>Deprecated: please remove attribute and use layout with colspan instead for best results.</td>
+<tbody>
+<tr class="row-odd"><td rowspan="18"><p>diagram</p></td>
+<td><p>width</p></td>
+<td><p>dimension (number+unit)</p></td>
+<td><p>Deprecated: please remove attribute and use layout with colspan instead for best results.</p></td>
 </tr>
-<tr class="row-even"><td>height</td>
-<td>dimension (number+unit)</td>
-<td>Deprecated: please remove attribute and use layout with rowspan instead for best results.</td>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>dimension (number+unit)</p></td>
+<td><p>Deprecated: please remove attribute and use layout with rowspan instead for best results.</p></td>
 </tr>
-<tr class="row-odd"><td>popup</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Makes diagram clickable and opens fullscreen view of diagram when clicked</td>
+<tr class="row-odd"><td><p>popup</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Makes diagram clickable and opens fullscreen view of diagram when clicked</p></td>
 </tr>
-<tr class="row-even"><td>previewlabels</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Show labels on inline-diagram in widget</td>
+<tr class="row-even"><td><p>previewlabels</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show labels on inline-diagram in widget</p></td>
 </tr>
-<tr class="row-odd"><td>series</td>
-<td><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em>, <em>year</em>, <em>fullday</em> or <em>custom</em></td>
-<td>Defines the base unit for the period attribute</td>
+<tr class="row-odd"><td><p>series</p></td>
+<td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em>, <em>year</em>, <em>fullday</em> or <em>custom</em></p></td>
+<td><p>Defines the base unit for the period attribute</p></td>
 </tr>
-<tr class="row-even"><td>refresh</td>
-<td>integer</td>
-<td>refresh-rate in seconds, no refresh if missing</td>
+<tr class="row-even"><td><p>refresh</p></td>
+<td><p>integer</p></td>
+<td><p>refresh-rate in seconds, no refresh if missing</p></td>
 </tr>
-<tr class="row-odd"><td>period</td>
-<td>string</td>
-<td>Defines whether an interval of hours, weeks, month or years is displayed (as multiple of “series)”</td>
+<tr class="row-odd"><td><p>period</p></td>
+<td><p>string</p></td>
+<td><p>Defines whether an interval of hours, weeks, month or years is displayed (as multiple of “series)”</p></td>
 </tr>
-<tr class="row-even"><td>gridcolor</td>
-<td>string</td>
-<td>Color of the grid shown behind the graphs</td>
+<tr class="row-even"><td><p>gridcolor</p></td>
+<td><p>string</p></td>
+<td><p>Color of the grid shown behind the graphs</p></td>
 </tr>
-<tr class="row-odd"><td>legend</td>
-<td><em>both</em>, <em>inline</em>, <em>popup</em> or <em>none</em></td>
-<td>Defines whether legend is shown in combination with popup attribute. “none” =&gt; no legend, “both” =&gt; legend is shown in small inline diagram and popup, “inline” =&gt; legend in inline diagram only, “popup” =&gt; legend is only displayed in popup diagram</td>
+<tr class="row-odd"><td><p>legend</p></td>
+<td><p><em>both</em>, <em>inline</em>, <em>popup</em> or <em>none</em></p></td>
+<td><p>Defines whether legend is shown in combination with popup attribute. “none” =&gt; no legend, “both” =&gt; legend is shown in small inline diagram and popup, “inline” =&gt; legend in inline diagram only, “popup” =&gt; legend is only displayed in popup diagram</p></td>
 </tr>
-<tr class="row-even"><td>legendposition</td>
-<td><em>nw</em>, <em>ne</em>, <em>sw</em> or <em>se</em></td>
-<td>Defines position of legend in diagram</td>
+<tr class="row-even"><td><p>legendposition</p></td>
+<td><p><em>nw</em>, <em>ne</em>, <em>sw</em> or <em>se</em></p></td>
+<td><p>Defines position of legend in diagram</p></td>
 </tr>
-<tr class="row-odd"><td>title</td>
-<td>string</td>
-<td>Adds a title to the diagram</td>
+<tr class="row-odd"><td><p>title</p></td>
+<td><p>string</p></td>
+<td><p>Adds a title to the diagram</p></td>
 </tr>
-<tr class="row-even"><td>tooltip</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enables a tooltip which displays the current value where the graph is clicked</td>
+<tr class="row-even"><td><p>tooltip</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enables a tooltip which displays the current value where the graph is clicked</p></td>
 </tr>
-<tr class="row-odd"><td>timeformat</td>
-<td>string</td>
-<td>Defines time format for x-axis</td>
+<tr class="row-odd"><td><p>timeformat</p></td>
+<td><p>string</p></td>
+<td><p>Defines time format for x-axis</p></td>
 </tr>
-<tr class="row-even"><td>timeformatTooltip</td>
-<td>string</td>
-<td>Defines time format for displayed values if tooltip is used</td>
+<tr class="row-even"><td><p>timeformatTooltip</p></td>
+<td><p>string</p></td>
+<td><p>Defines time format for displayed values if tooltip is used</p></td>
 </tr>
-<tr class="row-odd"><td>zoomYAxis</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Defines whether zoom acts on y-axis in addition to x-axis</td>
+<tr class="row-odd"><td><p>zoomYAxis</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Defines whether zoom acts on y-axis in addition to x-axis</p></td>
 </tr>
-<tr class="row-even"><td>seriesStart</td>
-<td>string</td>
-<td>In case series attribute is of type “custom” the value of this attribute is used for the start of the series.</td>
+<tr class="row-even"><td><p>seriesStart</p></td>
+<td><p>string</p></td>
+<td><p>In case series attribute is of type “custom” the value of this attribute is used for the start of the series.</p></td>
 </tr>
-<tr class="row-odd"><td>seriesEnd</td>
-<td>string</td>
-<td>In case series attribute is of type “custom” the value of this attribute is used for the end of the series.</td>
+<tr class="row-odd"><td><p>seriesEnd</p></td>
+<td><p>string</p></td>
+<td><p>In case series attribute is of type “custom” the value of this attribute is used for the end of the series.</p></td>
 </tr>
-<tr class="row-even"><td>seriesResolution</td>
-<td>integer</td>
-<td>In case series attribute is of type “custom” the value of this attribute is used for the resolution of the series.</td>
+<tr class="row-even"><td><p>seriesResolution</p></td>
+<td><p>integer</p></td>
+<td><p>In case series attribute is of type “custom” the value of this attribute is used for the resolution of the series.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <img alt="../../../../_images/en_config_widgets_plugins_diagram_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_diagram_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>decimal</td>
-<td>Amount of columns this widget should be wide.</td>
+<td><p>colspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of columns this widget should be wide.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a medium screen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a small screen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>decimal</td>
-<td>Amount of rows this widget should be high.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of rows this widget should be high.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>string</td>
-<td>Reserved for future use.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>string</p></td>
+<td><p>Reserved for future use.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>string</td>
-<td>Width for the widget for 2D pages.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">name</abbr></td>
-<td>string</td>
-<td>Name of the icon registration.</td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Name of the icon registration.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>string</td>
-<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the icon in CSS notation (e.g. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>string</td>
-<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>Text to display a label for the widget.</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>Text to display a label for the widget.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>axis</li>
+<li><p>axis</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>label</td>
-<td>string</td>
-<td>Defines the label of the axis</td>
+<td><p>label</p></td>
+<td><p>string</p></td>
+<td><p>Defines the label of the axis</p></td>
 </tr>
-<tr class="row-even"><td>min</td>
-<td>decimal</td>
-<td>Defines the minimum of y-axis.</td>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>decimal</p></td>
+<td><p>Defines the minimum of y-axis.</p></td>
 </tr>
-<tr class="row-odd"><td>max</td>
-<td>decimal</td>
-<td>Defines the maximum of y-axis.</td>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>decimal</p></td>
+<td><p>Defines the maximum of y-axis.</p></td>
 </tr>
-<tr class="row-even"><td>position</td>
-<td><em>left</em> or <em>right</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>position</p></td>
+<td><p><em>left</em> or <em>right</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>unit</td>
-<td>string</td>
-<td>Defines the unit shown behind values in y-axis and tooltip</td>
+<tr class="row-odd"><td><p>unit</p></td>
+<td><p>string</p></td>
+<td><p>Defines the unit shown behind values in y-axis and tooltip</p></td>
 </tr>
-<tr class="row-even"><td>decimals</td>
-<td>integer</td>
-<td>Defines the number of digits in values of y-axis</td>
+<tr class="row-even"><td><p>decimals</p></td>
+<td><p>integer</p></td>
+<td><p>Defines the number of digits in values of y-axis</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>axis<ul>
-<li>#text</li>
+<li><p>axis</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>&#160;</td>
+<td></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="13"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="13"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>rrd</li>
+<li><p>rrd</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>yaxis</td>
-<td>string</td>
-<td>Assigns the rrd-data to a y-axis</td>
+<td><p>yaxis</p></td>
+<td><p>string</p></td>
+<td><p>Assigns the rrd-data to a y-axis</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>string</td>
-<td>Defines the color of the data-line in the graph</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Defines the color of the data-line in the graph</p></td>
 </tr>
-<tr class="row-odd"><td>label</td>
-<td>string</td>
-<td>Defines the label of the data-series in the legend</td>
+<tr class="row-odd"><td><p>label</p></td>
+<td><p>string</p></td>
+<td><p>Defines the label of the data-series in the legend</p></td>
 </tr>
-<tr class="row-even"><td>scaling</td>
-<td>decimal</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>scaling</p></td>
+<td><p>decimal</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>steps</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>steps</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>fill</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Fill the space below the data-series or bar</td>
+<tr class="row-even"><td><p>fill</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Fill the space below the data-series or bar</p></td>
 </tr>
-<tr class="row-odd"><td>style</td>
-<td><em>lines</em>, <em>bars</em> or <em>points</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p><em>lines</em>, <em>bars</em> or <em>points</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>barWidth</td>
-<td>integer</td>
-<td>Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</td>
+<tr class="row-even"><td><p>barWidth</p></td>
+<td><p>integer</p></td>
+<td><p>Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> or <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> or <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>datasourceIndex</td>
-<td>integer</td>
-<td>If there are multiple datasources in the RRD file this index defines which one to show. Use “rrdtool info” to find the correct index.</td>
+<tr class="row-even"><td><p>datasourceIndex</p></td>
+<td><p>integer</p></td>
+<td><p>If there are multiple datasources in the RRD file this index defines which one to show. Use “rrdtool info” to find the correct index.</p></td>
 </tr>
-<tr class="row-odd"><td>consolidationFunction</td>
-<td><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> or <em>MAX</em></td>
-<td>Choose one of the consolidation functions of the RRDTool (see <a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</td>
+<tr class="row-odd"><td><p>consolidationFunction</p></td>
+<td><p><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> or <em>MAX</em></p></td>
+<td><p>Choose one of the consolidation functions of the RRDTool (see <a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</p></td>
 </tr>
-<tr class="row-even"><td>resolution</td>
-<td>integer</td>
-<td>The standard resolution for retrieving data from the RRD file can be overriden with a custom value in seconds.</td>
+<tr class="row-even"><td><p>resolution</p></td>
+<td><p>integer</p></td>
+<td><p>The standard resolution for retrieving data from the RRD file can be overriden with a custom value in seconds.</p></td>
 </tr>
-<tr class="row-odd"><td>offset</td>
-<td>integer</td>
-<td>An offset in seconds to modify the timestamp of the retrieved data from the RRD file.</td>
+<tr class="row-odd"><td><p>offset</p></td>
+<td><p>integer</p></td>
+<td><p>An offset in seconds to modify the timestamp of the retrieved data from the RRD file.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="first last docutils">
+<tr class="row-even"><td><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>rrd<ul>
-<li>#text</li>
+<li><p>rrd</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>&#160;</td>
+<td></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="16"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="16"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
+<li><p>influx</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>measurement</td>
-<td>string</td>
-<td>Selection of the database and measurement (example: timeseries_db/KNX_LINE1)</td>
+<td><p>measurement</p></td>
+<td><p>string</p></td>
+<td><p>Selection of the database and measurement (example: timeseries_db/KNX_LINE1)</p></td>
 </tr>
-<tr class="row-even"><td>yaxis</td>
-<td>string</td>
-<td>Assigns the InfluxDB-data to a y-axis</td>
+<tr class="row-even"><td><p>yaxis</p></td>
+<td><p>string</p></td>
+<td><p>Assigns the InfluxDB-data to a y-axis</p></td>
 </tr>
-<tr class="row-odd"><td>color</td>
-<td>string</td>
-<td>Defines the color of the data-line in the graph</td>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Defines the color of the data-line in the graph</p></td>
 </tr>
-<tr class="row-even"><td>label</td>
-<td>string</td>
-<td>Defines the label of the data-series in the legend</td>
+<tr class="row-even"><td><p>label</p></td>
+<td><p>string</p></td>
+<td><p>Defines the label of the data-series in the legend</p></td>
 </tr>
-<tr class="row-odd"><td>scaling</td>
-<td>decimal</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>scaling</p></td>
+<td><p>decimal</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>steps</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>steps</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>fill</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Fill the space below the data-series or bar</td>
+<tr class="row-odd"><td><p>fill</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Fill the space below the data-series or bar</p></td>
 </tr>
-<tr class="row-even"><td>style</td>
-<td><em>lines</em>, <em>bars</em> or <em>points</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>style</p></td>
+<td><p><em>lines</em>, <em>bars</em> or <em>points</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>barWidth</td>
-<td>integer</td>
-<td>Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</td>
+<tr class="row-odd"><td><p>barWidth</p></td>
+<td><p>integer</p></td>
+<td><p>Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</p></td>
 </tr>
-<tr class="row-even"><td>align</td>
-<td><em>left</em>, <em>right</em> or <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> or <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>authentication</td>
-<td>string</td>
-<td>When the InfluxDB requires authentication the credentials in the hidden config with this key will be used.</td>
+<tr class="row-odd"><td><p>authentication</p></td>
+<td><p>string</p></td>
+<td><p>When the InfluxDB requires authentication the credentials in the hidden config with this key will be used.</p></td>
 </tr>
-<tr class="row-even"><td>field</td>
-<td>string</td>
-<td>If there are multiple fields in the InfluxDB series this field defines which one to show. When not set a default of “*” will be used. Warning: when more than one field is selected none will be displayed.</td>
+<tr class="row-even"><td><p>field</p></td>
+<td><p>string</p></td>
+<td><p>If there are multiple fields in the InfluxDB series this field defines which one to show. When not set a default of “*” will be used. Warning: when more than one field is selected none will be displayed.</p></td>
 </tr>
-<tr class="row-odd"><td>resolution</td>
-<td>integer</td>
-<td>The temporal resolution for the InfluxDB data can be set to a fixed interval (value in seconds). A value of “0” disables the grouping.</td>
+<tr class="row-odd"><td><p>resolution</p></td>
+<td><p>integer</p></td>
+<td><p>The temporal resolution for the InfluxDB data can be set to a fixed interval (value in seconds). A value of “0” disables the grouping.</p></td>
 </tr>
-<tr class="row-even"><td>consolidationFunction</td>
-<td><em>COUNT</em>, <em>DERIVATIVE</em>, <em>DERIVATIVE_COUNT</em>, <em>DERIVATIVE_MEAN</em>, <em>DERIVATIVE_MEDIAN</em>, <em>DERIVATIVE_MODE</em>, <em>DERIVATIVE_SUM</em>, <em>DERIVATIVE_FIRST</em>, <em>DERIVATIVE_LAST</em>, <em>DERIVATIVE_MIN</em>, <em>DERIVATIVE_MAX</em>, <em>DERIVATIVE_PERCENTILE_1</em>, <em>DERIVATIVE_PERCENTILE_5</em>, <em>DERIVATIVE_PERCENTILE_10</em>, <em>DERIVATIVE_PERCENTILE_20</em>, <em>DERIVATIVE_PERCENTILE_25</em>, <em>DERIVATIVE_PERCENTILE_75</em>, <em>DERIVATIVE_PERCENTILE_80</em>, <em>DERIVATIVE_PERCENTILE_90</em>, <em>DERIVATIVE_PERCENTILE_95</em>, <em>DERIVATIVE_PERCENTILE_99</em>, <em>DIFFERENCE</em>, <em>DIFFERENCE_COUNT</em>, <em>DIFFERENCE_MEAN</em>, <em>DIFFERENCE_MEDIAN</em>, <em>DIFFERENCE_MODE</em>, <em>DIFFERENCE_SUM</em>, <em>DIFFERENCE_FIRST</em>, <em>DIFFERENCE_LAST</em>, <em>DIFFERENCE_MIN</em>, <em>DIFFERENCE_MAX</em>, <em>DIFFERENCE_PERCENTILE_1</em>, <em>DIFFERENCE_PERCENTILE_5</em>, <em>DIFFERENCE_PERCENTILE_10</em>, <em>DIFFERENCE_PERCENTILE_20</em>, <em>DIFFERENCE_PERCENTILE_25</em>, <em>DIFFERENCE_PERCENTILE_75</em>, <em>DIFFERENCE_PERCENTILE_80</em>, <em>DIFFERENCE_PERCENTILE_90</em>, <em>DIFFERENCE_PERCENTILE_95</em>, <em>DIFFERENCE_PERCENTILE_99</em>, <em>ELAPSED</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> or <em>SUM</em></td>
-<td>Choose one of the available data aggregation functions - required when the “resolution” attribute is set.</td>
+<tr class="row-even"><td><p>consolidationFunction</p></td>
+<td><p><em>COUNT</em>, <em>DERIVATIVE</em>, <em>DERIVATIVE_COUNT</em>, <em>DERIVATIVE_MEAN</em>, <em>DERIVATIVE_MEDIAN</em>, <em>DERIVATIVE_MODE</em>, <em>DERIVATIVE_SUM</em>, <em>DERIVATIVE_FIRST</em>, <em>DERIVATIVE_LAST</em>, <em>DERIVATIVE_MIN</em>, <em>DERIVATIVE_MAX</em>, <em>DERIVATIVE_PERCENTILE_1</em>, <em>DERIVATIVE_PERCENTILE_5</em>, <em>DERIVATIVE_PERCENTILE_10</em>, <em>DERIVATIVE_PERCENTILE_20</em>, <em>DERIVATIVE_PERCENTILE_25</em>, <em>DERIVATIVE_PERCENTILE_75</em>, <em>DERIVATIVE_PERCENTILE_80</em>, <em>DERIVATIVE_PERCENTILE_90</em>, <em>DERIVATIVE_PERCENTILE_95</em>, <em>DERIVATIVE_PERCENTILE_99</em>, <em>DIFFERENCE</em>, <em>DIFFERENCE_COUNT</em>, <em>DIFFERENCE_MEAN</em>, <em>DIFFERENCE_MEDIAN</em>, <em>DIFFERENCE_MODE</em>, <em>DIFFERENCE_SUM</em>, <em>DIFFERENCE_FIRST</em>, <em>DIFFERENCE_LAST</em>, <em>DIFFERENCE_MIN</em>, <em>DIFFERENCE_MAX</em>, <em>DIFFERENCE_PERCENTILE_1</em>, <em>DIFFERENCE_PERCENTILE_5</em>, <em>DIFFERENCE_PERCENTILE_10</em>, <em>DIFFERENCE_PERCENTILE_20</em>, <em>DIFFERENCE_PERCENTILE_25</em>, <em>DIFFERENCE_PERCENTILE_75</em>, <em>DIFFERENCE_PERCENTILE_80</em>, <em>DIFFERENCE_PERCENTILE_90</em>, <em>DIFFERENCE_PERCENTILE_95</em>, <em>DIFFERENCE_PERCENTILE_99</em>, <em>ELAPSED</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> or <em>SUM</em></p></td>
+<td><p>Choose one of the available data aggregation functions - required when the “resolution” attribute is set.</p></td>
 </tr>
-<tr class="row-odd"><td>fillMissing</td>
-<td>string</td>
-<td>Optional when attribute “resolution” is set: fill the time steps where data is missing by this value or one of “linear”, “none”, “null” or “previous”.</td>
+<tr class="row-odd"><td><p>fillMissing</p></td>
+<td><p>string</p></td>
+<td><p>Optional when attribute “resolution” is set: fill the time steps where data is missing by this value or one of “linear”, “none”, “null” or “previous”.</p></td>
 </tr>
-<tr class="row-even"><td>offset</td>
-<td>integer</td>
-<td>An offset in seconds to modify the displayed timestamps of the retrieved data from the InfluxDB.</td>
+<tr class="row-even"><td><p>offset</p></td>
+<td><p>integer</p></td>
+<td><p>An offset in seconds to modify the displayed timestamps of the retrieved data from the InfluxDB.</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
-<li>tag</li>
+<li><p>influx</p></li>
+<li><p>tag</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>key</td>
-<td>string</td>
-<td>&#160;</td>
+<td><p>key</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>operator</td>
-<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> or <em>!~</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>operator</p></td>
+<td><p><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> or <em>!~</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>value</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-even"><td rowspan="3"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
-<li>and</li>
-<li>tag</li>
+<li><p>influx</p></li>
+<li><p>and</p></li>
+<li><p>tag</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>key</td>
-<td>string</td>
-<td>&#160;</td>
+<td><p>key</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>operator</td>
-<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> or <em>!~</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>operator</p></td>
+<td><p><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> or <em>!~</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>value</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
-<li>or</li>
-<li>tag</li>
+<li><p>influx</p></li>
+<li><p>or</p></li>
+<li><p>tag</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>key</td>
-<td>string</td>
-<td>&#160;</td>
+<td><p>key</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>operator</td>
-<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> or <em>!~</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>operator</p></td>
+<td><p><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> or <em>!~</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>value</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <img alt="../../../../_images/en_config_widgets_plugins_diagram_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_diagram_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="examples">
+<figcaption>
+<p><span class="caption-text"><p>Elements in the editor</p>
+</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the diagram plugin.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+<p class="admonition-title">Caution</p>
+<p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>

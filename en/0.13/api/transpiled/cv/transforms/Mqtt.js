@@ -48,6 +48,12 @@
       cv.Transform.addTransform('MQTT', {
         'number': {
           name: 'MQTT_Number',
+          lname: {
+            'de': 'Zahl',
+            'en': 'number'
+          },
+          example: '42',
+          unit: '-',
           encode: function encode(phy) {
             return parseFloat(phy);
           },
@@ -57,6 +63,12 @@
         },
         'string': {
           name: 'MQTT_String',
+          lname: {
+            'de': 'Zeichenkette',
+            'en': 'string'
+          },
+          example: '"abc"',
+          unit: '-',
           encode: function encode(phy) {
             return phy.toString();
           },
@@ -66,6 +78,12 @@
         },
         'unixtime': {
           name: 'MQTT_unixtime',
+          lname: {
+            'de': 'UNIX Zeitstempel',
+            'en': 'unix timestamp'
+          },
+          example: '1641054600',
+          unit: '-',
           encode: function encode(phy) {
             return Math.round(phy.getTime() / 1000);
           },
@@ -75,6 +93,12 @@
         },
         'timestring': {
           name: 'MQTT_timestring',
+          lname: {
+            'de': 'Uhrzeit-String',
+            'en': 'time string'
+          },
+          example: '"16:30:00"',
+          unit: '-',
           encode: function encode(phy) {
             return phy.toTimeString().split(' ')[0];
           },
@@ -89,6 +113,12 @@
         },
         'datetime': {
           name: 'MQTT_datetime',
+          lname: {
+            'de': 'ISO 8601 Zeit-String',
+            'en': 'ISO 8601 time string'
+          },
+          example: '"2022-01-01T16:30:00.000Z"',
+          unit: '-',
           encode: function encode(phy) {
             return phy.toISOString();
           },
@@ -141,7 +171,7 @@
             'de': 'HSV-Farbe als Zeichenkette',
             'en': 'HSV color as string'
           },
-          example: '360,100,100',
+          example: '"360,100,100"',
           unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
@@ -185,7 +215,7 @@
             'de': 'HSL-Farbe als Zeichenkette',
             'en': 'HSL color as string'
           },
-          example: '360,100,100',
+          example: '"360,100,100"',
           unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
@@ -229,7 +259,7 @@
             'de': 'RGB-Farbe als Zeichenkette',
             'en': 'RGB color as string'
           },
-          example: '100,100,100',
+          example: '"100,100,100"',
           unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
@@ -273,7 +303,7 @@
             'de': 'RGBW-Farbe als Zeichenkette',
             'en': 'RGBW color as string'
           },
-          example: '100,100,100,100',
+          example: '"100,100,100,100"',
           unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
@@ -318,7 +348,7 @@
             'de': 'RGB-Farbe',
             'en': 'RGB color'
           },
-          example: '#11FF88',
+          example: '"#11FF88"',
           unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
@@ -339,7 +369,7 @@
             'de': 'RGBW-Farbe',
             'en': 'RGBW color'
           },
-          example: '#11FF88AA',
+          example: '"#11FF88AA"',
           unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
@@ -360,4 +390,4 @@
   cv.transforms.Mqtt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mqtt.js.map?dt=1648068859725
+//# sourceMappingURL=Mqtt.js.map?dt=1648710475649

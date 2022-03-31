@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Format &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Format &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/format.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -95,84 +99,84 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="format">
+<section id="format">
 <span id="id1"></span><h1>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h1>
 <p>The format attribute can influence the formatting of the display
 of values. For this, the syntax of the format known from
 “printf” is used. <strong>Note the point between the % and the decimal place!</strong></p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="63%" />
-<col width="20%" />
+<col style="width: 17%" />
+<col style="width: 63%" />
+<col style="width: 20%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Format</td>
-<td>Output</td>
-<td>Example</td>
+<tbody>
+<tr class="row-odd"><td><p>Format</p></td>
+<td><p>Output</p></td>
+<td><p>Example</p></td>
 </tr>
-<tr class="row-even"><td>%.0f</td>
-<td>A value without decimal places</td>
-<td>31</td>
+<tr class="row-even"><td><p>%.0f</p></td>
+<td><p>A value without decimal places</p></td>
+<td><p>31</p></td>
 </tr>
-<tr class="row-odd"><td>%.1f</td>
-<td>A value with 1 decimal places</td>
-<td>31.0</td>
+<tr class="row-odd"><td><p>%.1f</p></td>
+<td><p>A value with 1 decimal places</p></td>
+<td><p>31.0</p></td>
 </tr>
-<tr class="row-even"><td>%.2f</td>
-<td>A value with 2 decimal places</td>
-<td>31.00</td>
+<tr class="row-even"><td><p>%.2f</p></td>
+<td><p>A value with 2 decimal places</p></td>
+<td><p>31.00</p></td>
 </tr>
-<tr class="row-odd"><td>%.3f</td>
-<td>A value with 3 decimal places</td>
-<td>31.000</td>
+<tr class="row-odd"><td><p>%.3f</p></td>
+<td><p>A value with 3 decimal places</p></td>
+<td><p>31.000</p></td>
 </tr>
-<tr class="row-even"><td>%.4f</td>
-<td>A value with 4 decimal places</td>
-<td>31.0000</td>
+<tr class="row-even"><td><p>%.4f</p></td>
+<td><p>A value with 4 decimal places</p></td>
+<td><p>31.0000</p></td>
 </tr>
 </tbody>
 </table>
 <p>A format can also be entered under Format. This is simply
 placed behind the decimal separator. For example:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="21%" />
-<col width="57%" />
-<col width="22%" />
+<col style="width: 21%" />
+<col style="width: 57%" />
+<col style="width: 22%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Format</td>
-<td>Output</td>
-<td>Example</td>
+<tbody>
+<tr class="row-odd"><td><p>Format</p></td>
+<td><p>Output</p></td>
+<td><p>Example</p></td>
 </tr>
-<tr class="row-even"><td>%.0f %%</td>
-<td>A value without decimal places and % as Unit</td>
-<td>31 %</td>
+<tr class="row-even"><td><p>%.0f %%</p></td>
+<td><p>A value without decimal places and % as Unit</p></td>
+<td><p>31 %</p></td>
 </tr>
-<tr class="row-odd"><td>%.1f °C</td>
-<td>A value with 1 decimal places and °C as Unit</td>
-<td>31.0 °C</td>
+<tr class="row-odd"><td><p>%.1f °C</p></td>
+<td><p>A value with 1 decimal places and °C as Unit</p></td>
+<td><p>31.0 °C</p></td>
 </tr>
-<tr class="row-even"><td>%.2f km/h</td>
-<td>A value with 2 decimal places and km/h as Unit</td>
-<td>31.00 km/h</td>
+<tr class="row-even"><td><p>%.2f km/h</p></td>
+<td><p>A value with 2 decimal places and km/h as Unit</p></td>
+<td><p>31.00 km/h</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">If you want to use a % character you have to use %% (otherwise
+<p class="admonition-title">Hint</p>
+<p>If you want to use a % character you have to use %% (otherwise
 there will be error messages depending on the browser you are using,
 since the single % might be interpreted as a control character)</p>
 </div>
-</div>
+</section>
 
 
            </div>

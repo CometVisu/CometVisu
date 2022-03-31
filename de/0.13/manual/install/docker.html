@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation mittels Docker-Container &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Installation mittels Docker-Container &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/docker.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -96,24 +100,24 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="installation-mittels-docker-container">
+<section id="installation-mittels-docker-container">
 <span id="docker"></span><h1>Installation mittels Docker-Container<a class="headerlink" href="#installation-mittels-docker-container" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Vom CometVisu Projekt werden offizielle Docker-Container bereit gestellt, die
 über DockerHub unter <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu/">cometvisu/cometvisu</a>
 bezogen werden können.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Die Installation des Docker-Containers wird - am Beispiel eines Raspberry
+<p class="admonition-title">Bemerkung</p>
+<p>Die Installation des Docker-Containers wird - am Beispiel eines Raspberry
 Pi - auch im Tutorial
 <a class="reference internal" href="../tutorial/rpi_cometvisu.html#rpi-tutorial-cometvisu-in-docker"><span class="std std-ref">Raspberry Pi: CometVisu in Docker installieren</span></a>
 beschrieben.</p>
 </div>
-<div class="section" id="versionen">
+<section id="versionen">
 <h2>Versionen<a class="headerlink" href="#versionen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Als <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu/tags/">Tags</a> stehen die
 neuesten Releases unter ihrem Release-Namen zur Verfügung, so wie unter dem
@@ -125,57 +129,57 @@ gemerged wird, so wird im Anschluss automatisch ein neuer Docker-Container
 gebaut und unter dem aktuellen Datum abgelegt. Wenn ein Tag für dieses Datum
 noch nicht existiert, wird dieses angelegt, und wenn das Tag bereits existiert,
 so wird dieses mit dem neu erstellten Container überschrieben.</p>
-</div>
-<div class="section" id="einrichtung">
+</section>
+<section id="einrichtung">
 <h2>Einrichtung<a class="headerlink" href="#einrichtung" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="umgebungsvariablen-environment">
+<section id="umgebungsvariablen-environment">
 <span id="dockerenvironment"></span><h3>Umgebungsvariablen (environment)<a class="headerlink" href="#umgebungsvariablen-environment" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Der Container wird über Umgebungsvariablen grundsätzlich konfiguriert.
 Zur Verfügung stehen:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="18%" />
-<col width="26%" />
-<col width="56%" />
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Parameter</th>
-<th class="head">Default</th>
-<th class="head">Beschreibung</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>KNX_INTERFACE</td>
-<td><code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.1:3700</span></code></td>
-<td>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der
-<code class="docutils literal notranslate"><span class="pre">knxd</span></code> nicht geladen.</td>
+<tbody>
+<tr class="row-even"><td><p>KNX_INTERFACE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.1:3700</span></code></p></td>
+<td><p>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der
+<code class="docutils literal notranslate"><span class="pre">knxd</span></code> nicht geladen.</p></td>
 </tr>
-<tr class="row-odd"><td>KNX_PA</td>
-<td><code class="docutils literal notranslate"><span class="pre">1.1.238</span></code></td>
-<td>Physikalische Schnittstelle (PA) für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</td>
+<tr class="row-odd"><td><p>KNX_PA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.1.238</span></code></p></td>
+<td><p>Physikalische Schnittstelle (PA) für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td>KNXD_PARAMETERS</td>
-<td><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">-d/var/log/eibd.log</span> <span class="pre">-c</span></code></td>
-<td>Weitere Aufruf-Parameter für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</td>
+<tr class="row-even"><td><p>KNXD_PARAMETERS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">-d/var/log/eibd.log</span> <span class="pre">-c</span></code></p></td>
+<td><p>Weitere Aufruf-Parameter für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td>CGI_URL_PATH</td>
-<td><code class="docutils literal notranslate"><span class="pre">/cgi-bin/</span></code></td>
-<td>URL-Prefix um die <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> Ressourcen zu lokalisieren.</td>
+<tr class="row-odd"><td><p>CGI_URL_PATH</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/cgi-bin/</span></code></p></td>
+<td><p>URL-Prefix um die <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> Ressourcen zu lokalisieren.</p></td>
 </tr>
-<tr class="row-even"><td>BACKEND_PROXY_SOURCE</td>
-<td>&#160;</td>
-<td>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> für das
-openHAB Backend.</td>
+<tr class="row-even"><td><p>BACKEND_PROXY_SOURCE</p></td>
+<td></td>
+<td><p>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> für das
+openHAB Backend.</p></td>
 </tr>
-<tr class="row-odd"><td>BACKEND_PROXY_TARGET</td>
-<td>&#160;</td>
-<td>Ziel-URL für die Proxy-Anfragen an <code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code>,
+<tr class="row-odd"><td><p>BACKEND_PROXY_TARGET</p></td>
+<td></td>
+<td><p>Ziel-URL für die Proxy-Anfragen an <code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code>,
 z.B. <code class="docutils literal notranslate"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> für das
-openHAB Backend.</td>
+openHAB Backend.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="klassisch-knxd-mit-eibread-cgi-eibwrite-cgi">
+<section id="klassisch-knxd-mit-eibread-cgi-eibwrite-cgi">
 <h4>Klassisch (<code class="docutils literal notranslate"><span class="pre">knxd</span></code> mit <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code>/<code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code>)<a class="headerlink" href="#klassisch-knxd-mit-eibread-cgi-eibwrite-cgi" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Für das klassische Backend läuft ein <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, der über die <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> und
 <code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code> Befehle das Interface der CometVisu zu dem KNX-Bus bereit
@@ -186,8 +190,8 @@ Die Dokumentation für den <code class="docutils literal notranslate"><span clas
 kann dem
 <a class="reference external" href="https://github.com/knxd/knxd/wiki/Command-line-parameters/e49c9d1a2a81cb692cc88683920108f032d2b9bc">knxd-Wiki</a>
 entnommen werden.</p>
-</div>
-<div class="section" id="openhab">
+</section>
+<section id="openhab">
 <h4>OpenHAB<a class="headerlink" href="#openhab" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Beispiel-Konfiguration für das OpenHAB Backend (wenn es auf einem Server mit
 der Adresse <code class="docutils literal notranslate"><span class="pre">192.168.0.10</span></code> läuft):</p>
@@ -197,33 +201,33 @@ der Adresse <code class="docutils literal notranslate"><span class="pre">192.168
 <span class="nv">BACKEND_PROXY_TARGET</span><span class="o">=</span>http://192.168.0.10:8080/rest
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="volumes">
+</section>
+</section>
+<section id="volumes">
 <h3>Volumes<a class="headerlink" href="#volumes" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="section" id="konfigurations-dateien">
+<section id="konfigurations-dateien">
 <h4>Konfigurations-Dateien<a class="headerlink" href="#konfigurations-dateien" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Um über den Restart oder die Neuerstellung von Containern hinweg Daten persistent
 abzulegen zu können müssen diese in einem Volume liegen. Für die Config-Dateien
 wird hierzu das Verzeichnis <code class="docutils literal notranslate"><span class="pre">/var/www/html/config</span></code> (bis einschließlich
 Release 0.10.2) bzw. <code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> (ab Release 0.11) als
 Volume exportiert.</p>
-</div>
-<div class="section" id="rrd-diagram-plugin">
+</section>
+<section id="rrd-diagram-plugin">
 <h4>RRD (Diagram-Plugin)<a class="headerlink" href="#rrd-diagram-plugin" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Für das <a class="reference internal" href="../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram-Plugin</span></a> können die Zeitserien als RRD-Dateien
 bereit gestellt werden. Diese müssen unter dem Pfad <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> als
 Mount eingebunden werden. Die RRD-Dateien selbst müssen außerhalb befüllt
 und aktualisiert werden, z.B. von einem anderen Container der dieses Volume
 gleichzeitig mit einbindet.</p>
-</div>
-</div>
-<div class="section" id="ports">
+</section>
+</section>
+<section id="ports">
 <h3>Ports<a class="headerlink" href="#ports" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Der Container exportiert den Port 80 für den Web-Server.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

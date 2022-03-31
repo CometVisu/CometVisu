@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>URL-Parameter &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>URL-Parameter &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/url-params.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -108,68 +112,68 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="url-parameter">
+<section id="url-parameter">
 <h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Permalink to this headline">¶</a></h1>
 <p>The behavior of CometVisu can be partially adjusted by URL parameters.
 Since these parameters can also be saved in the favorites of the browser,
 the corresponding variants can be accessed as effectively and quickly.</p>
-<div class="section" id="use">
+<section id="use">
 <h2>Use<a class="headerlink" href="#use" title="Permalink to this headline">¶</a></h2>
 <p>These parameters are simply appended to the URL by a “?”
 (first URL parameter), separated by a “&amp;” (all other URL parameters).</p>
 <p>Examples:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="48%" />
-<col width="52%" />
+<col style="width: 48%" />
+<col style="width: 52%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Description</th>
-<th class="head">URL</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>URL</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Standard</td>
-<td><a class="reference external" href="http://server/visu/">http://server/visu/</a></td>
+<tbody>
+<tr class="row-even"><td><p>Standard</p></td>
+<td><p><a class="reference external" href="http://server/visu/">http://server/visu/</a></p></td>
 </tr>
-<tr class="row-odd"><td>A parameter for another config</td>
-<td><a class="reference external" href="http://server/visu/?config=demo">http://server/visu/?config=demo</a></td>
+<tr class="row-odd"><td><p>A parameter for another config</p></td>
+<td><p><a class="reference external" href="http://server/visu/?config=demo">http://server/visu/?config=demo</a></p></td>
 </tr>
-<tr class="row-even"><td>A parameter for a different design</td>
-<td><a class="reference external" href="http://server/visu/?design=pure">http://server/visu/?design=pure</a></td>
+<tr class="row-even"><td><p>A parameter for a different design</p></td>
+<td><p><a class="reference external" href="http://server/visu/?design=pure">http://server/visu/?design=pure</a></p></td>
 </tr>
-<tr class="row-odd"><td>Several parameters are linked with &amp;</td>
-<td><a class="reference external" href="http://server/visu/?config=demo&amp;design=metal">http://server/visu/?config=demo&amp;design=metal</a></td>
+<tr class="row-odd"><td><p>Several parameters are linked with &amp;</p></td>
+<td><p><a class="reference external" href="http://server/visu/?config=demo&amp;design=metal">http://server/visu/?config=demo&amp;design=metal</a></p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="parameter">
+</section>
+<section id="parameter">
 <h2>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="config-config-file">
+<section id="config-config-file">
 <h3><em>config</em> - Config file<a class="headerlink" href="#config-config-file" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">config</span></code> selects another config file.</p>
 <p>So, for example <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">=</span> <span class="pre">NAME</span></code> - This config file must be
 under the name <code class="docutils literal notranslate"><span class="pre">visu_config_NAME.xml</span></code> either in the config directory
 of the Visu or in the <code class="docutils literal notranslate"><span class="pre">config/demo</span></code> directory of Visu.</p>
-</div>
-<div class="section" id="design-design">
+</section>
+<section id="design-design">
 <h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">design</span></code> overrides the design in the config file.</p>
-</div>
-<div class="section" id="forcereload-cache-settings">
+</section>
+<section id="forcereload-cache-settings">
 <h3><em>forceReload</em> - Cache settings<a class="headerlink" href="#forcereload-cache-settings" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">forceReload</span></code> with the value <em>true</em>
 (<code class="docutils literal notranslate"><span class="pre">forceReload=true</span></code>) safely reloads all files.</p>
 <p>This may be important after customizing the config file.</p>
-</div>
-<div class="section" id="startpage-start-page">
+</section>
+<section id="startpage-start-page">
 <h3><em>startpage</em> - Start page<a class="headerlink" href="#startpage-start-page" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">startpage</span></code> can be used to specify the sub-page which
 will be displayed first after loading the visu.</p>
@@ -186,16 +190,16 @@ the name <em>Bad</em> as the start page, the URL is
 <p>Especially if you have distributed visual acuity in several places
 in the house, it can make sense to display the subpage that corresponds
 to the room first, depending on the Visu location, for a complete config file.</p>
-</div>
-<div class="section" id="forcedevice-override-output-device">
+</section>
+<section id="forcedevice-override-output-device">
 <h3><em>forceDevice</em> - Override output device<a class="headerlink" href="#forcedevice-override-output-device" title="Permalink to this headline">¶</a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">forceDevice</span></code> parameter, the value <code class="docutils literal notranslate"><span class="pre">mobile</span></code> can be used
 to display the page on “large” devices as well as on a small, mobile
 device (such as a smartphone). Any other value will display the page
 (even on mobile devices) as on the PC.</p>
 <p>This is actually only needed for developers.</p>
-</div>
-<div class="section" id="maturity-maturity">
+</section>
+<section id="maturity-maturity">
 <h3><em>maturity</em> - Maturity<a class="headerlink" href="#maturity-maturity" title="Permalink to this headline">¶</a></h3>
 <p>By the parameter <code class="docutils literal notranslate"><span class="pre">maturity</span></code> you can unlock features that are still
 in development and thus have unintended cross-effects.</p>
@@ -204,8 +208,8 @@ in development and thus have unintended cross-effects.</p>
 </pre></div>
 </div>
 <p>This should only be used by developers!</p>
-</div>
-<div class="section" id="backend-backend">
+</section>
+<section id="backend-backend">
 <h3><em>backend</em> - Backend<a class="headerlink" href="#backend-backend" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> configures the used backend at runtime. There is
 also a <code class="docutils literal notranslate"><span class="pre">backend</span></code> parameter in the config to fix this.</p>
@@ -217,8 +221,8 @@ also a <code class="docutils literal notranslate"><span class="pre">backend</spa
 element, default = “cgi”!) is usually correct and does not need to be
 changed. “r”, “w” and “l” are in /cgi-bin/.</p>
 <p>The option “openhab” uses the path necessary for OpenHAB.</p>
-</div>
-<div class="section" id="enablequeue-queue">
+</section>
+<section id="enablequeue-queue">
 <h3><em>enableQueue</em> - Queue<a class="headerlink" href="#enablequeue-queue" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">enableQueue</span></code> parameter influences whether all or only the group
 addresses required on the current page are queried by the CV. This may
@@ -229,8 +233,8 @@ lead to performance improvements.</p>
 </div>
 <p>This is an experimental feature that may not work as expected, so it
 is currently off by default.</p>
-</div>
-<div class="section" id="testmode-test-mode-without-real-backend">
+</section>
+<section id="testmode-test-mode-without-real-backend">
 <h3><em>testMode</em> - Test mode without real backend<a class="headerlink" href="#testmode-test-mode-without-real-backend" title="Permalink to this headline">¶</a></h3>
 <p>With the parameter <code class="docutils literal notranslate"><span class="pre">testMode</span></code> you can test the CometVisu rudimentarily
 without having a running backend in the background. Normally, the CometVisu
@@ -248,8 +252,8 @@ and return addresses, this will not work with the TestMode.</p>
 <span class="n">Options</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="enablecache-activate-caching">
+</section>
+<section id="enablecache-activate-caching">
 <span id="enablecache"></span><h3><em>enableCache</em> - Activate Caching<a class="headerlink" href="#enablecache-activate-caching" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">enableCache</span></code> can be used to configure caching. This has
 the effect that a config is not completely read in every reload and that an
@@ -264,8 +268,8 @@ or deleted (=invalid).</p>
 <span class="n">Options</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">false</span><span class="p">),</span> <span class="n">true</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">invalid</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">invalid</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="reporting-record-session">
+</section>
+<section id="reporting-record-session">
 <span id="reporting"></span><h3><em>reporting</em> - Record Session<a class="headerlink" href="#reporting-record-session" title="Permalink to this headline">¶</a></h3>
 <p>To support an error message, the interaction with the CometVisu can be
 recorded and made available to the developers as a replay file. They can thus
@@ -277,11 +281,11 @@ with these log files, making it much easier to fix the problem.</p>
 </pre></div>
 </div>
 <div class="admonition attention">
-<p class="first admonition-title">Attention</p>
+<p class="admonition-title">Attention</p>
 <p>The complete configuration file is saved in the replay files. If
 credentials are in this configuration, make a copy of the configuration
 without such sensitive data and record the session with this configuration.</p>
-<p class="last">Data from the <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden config</span></a> is not transferred with.</p>
+<p>Data from the <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden config</span></a> is not transferred with.</p>
 </div>
 <p>To record these replay files, you have to load the CometVisu with
 <code class="docutils literal notranslate"><span class="pre">reporting=true</span></code>. After reaching the faulty state, you can download the
@@ -290,15 +294,15 @@ and confirming with <em>enter</em>. In addition to the automatic download of
 the replay file, its content is also shown in the console.
 So you can control which data is contained in the file.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">Since the replay files are played in real time, it is advisable to keep the
+<p class="admonition-title">Hint</p>
+<p>Since the replay files are played in real time, it is advisable to keep the
 runtime as short as possible. A replay file that runs for 30 minutes or
 more until the problem occurs will make troubleshooting more difficult,
 as the developer may need to play it very often during error analysis and
 resolution.</p>
 </div>
-</div>
-<div class="section" id="reporterrors-automatically-send-error-messages-to-sentry-io">
+</section>
+<section id="reporterrors-automatically-send-error-messages-to-sentry-io">
 <span id="reporterrors"></span><h3><em>reportErrors</em> - Automatically send error messages to sentry.io<a class="headerlink" href="#reporterrors-automatically-send-error-messages-to-sentry-io" title="Permalink to this headline">¶</a></h3>
 <p>Another way for developers to improve CometVisu is to enable automatic bug
 reports. These reports are sometimes sent completely automatically to a web
@@ -316,8 +320,8 @@ enabled via this URL parameter.</p>
 CometVisu with this parameter, if that has not happened yet. Then the user
 can try to reproduce the error again and then send an error report with
 further explanations to sentry.io.</p>
-</div>
-<div class="section" id="log-debug-messages-in-the-browser-console">
+</section>
+<section id="log-debug-messages-in-the-browser-console">
 <span id="log"></span><h3><em>log</em> - Debug-messages in the browser console<a class="headerlink" href="#log-debug-messages-in-the-browser-console" title="Permalink to this headline">¶</a></h3>
 <p>Use this parameter to turn debug messages output on and off in the browser
 console. In the developer version, these are turned on by default.</p>
@@ -325,9 +329,9 @@ console. In the developer version, these are turned on by default.</p>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

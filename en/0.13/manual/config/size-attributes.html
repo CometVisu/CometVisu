@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resize widget content &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>Resize widget content &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/size-attributes.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -98,25 +102,25 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="resize-widget-content">
+<section id="resize-widget-content">
 <span id="size-attributes"></span><h1>Resize widget content<a class="headerlink" href="#resize-widget-content" title="Permalink to this headline">¶</a></h1>
 <p>In the following widgets are next to the child element <code class="docutils literal notranslate"><span class="pre">layout</span></code>
 (specifies the outer widget dimensions) other attributes such as.
 <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> to influence the content:</p>
 <ul class="simple">
-<li><a class="reference internal" href="widgets/image/index.html"><span class="doc">Image</span></a></li>
-<li><a class="reference internal" href="widgets/video/index.html"><span class="doc">Video</span></a></li>
-<li><a class="reference internal" href="widgets/web/index.html"><span class="doc">Web</span></a></li>
-<li><a class="reference internal" href="widgets/plugins/diagram/index.html"><span class="doc">Diagram</span></a></li>
-<li>RSSlog</li>
-<li><a class="reference internal" href="widgets/plugins/rss/index.html"><span class="doc">RSS</span></a></li>
-<li><a class="reference internal" href="widgets/plugins/gauge/index.html"><span class="doc">Gauge</span></a></li>
+<li><p><a class="reference internal" href="widgets/image/index.html"><span class="doc">Image</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/video/index.html"><span class="doc">Video</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/web/index.html"><span class="doc">Web</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/plugins/diagram/index.html"><span class="doc">Diagram</span></a></p></li>
+<li><p>RSSlog</p></li>
+<li><p><a class="reference internal" href="widgets/plugins/rss/index.html"><span class="doc">RSS</span></a></p></li>
+<li><p><a class="reference internal" href="widgets/plugins/gauge/index.html"><span class="doc">Gauge</span></a></p></li>
 </ul>
 <p>Basically, it is recommended to start without these attributes at
 the beginning, since in most cases the size of the content is
@@ -125,20 +129,20 @@ it may make sense to use the <code class="docutils literal notranslate"><span cl
 in addition.</p>
 <p>The information is in CSS format and can be in pixels, percent
 or relative to the font size.</p>
-<div class="section" id="size-information-in-pixels">
+<section id="size-information-in-pixels">
 <h2>Size information in pixels<a class="headerlink" href="#size-information-in-pixels" title="Permalink to this headline">¶</a></h2>
 <p>The specification in pixels takes place in the
 format <code class="docutils literal notranslate"><span class="pre">width=&quot;300px&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">height=&quot;200px&quot;</span></code>.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">The indication in pixels scales in relation to the viewport
+<p class="admonition-title">Important</p>
+<p>The indication in pixels scales in relation to the viewport
 size and not in relation to the physical resolution of the
 display. The viewport size is defined for each device based
 on the display size (screen size). An overview provides e.g.
 <a class="reference external" href="Viewportsizes.com">Viewportsizes.com</a></p>
 </div>
-</div>
-<div class="section" id="sizes-in-percent">
+</section>
+<section id="sizes-in-percent">
 <h2>Sizes in percent<a class="headerlink" href="#sizes-in-percent" title="Permalink to this headline">¶</a></h2>
 <p>The percentage is expressed in the format
 <code class="docutils literal notranslate"><span class="pre">width=&quot;100%&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">height=&quot;100%&quot;</span></code>.</p>
@@ -146,14 +150,14 @@ on the display size (screen size). An overview provides e.g.
 with <code class="docutils literal notranslate"><span class="pre">width=100%</span></code> the content will be scaled (both enlarged
 and reduced) to the entire width of the widget, with
 <code class="docutils literal notranslate"><span class="pre">width=50%</span></code> the widget will be half filled.</p>
-</div>
-<div class="section" id="size-information-relative-to-the-font-size">
+</section>
+<section id="size-information-relative-to-the-font-size">
 <h2>Size information relative to the font size<a class="headerlink" href="#size-information-relative-to-the-font-size" title="Permalink to this headline">¶</a></h2>
 <p>The specification is in the format <code class="docutils literal notranslate"><span class="pre">width=&quot;50em&quot;</span></code> or
 <code class="docutils literal notranslate"><span class="pre">height=&quot;30em&quot;</span></code>. The unit “em” is the standard font size of
 the text in the Cometvisu.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

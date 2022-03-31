@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RRD Einführung &amp; Beispiele &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>RRD Einführung &amp; Beispiele &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/rrd_examples.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> CometVisu
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -104,20 +108,20 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="rrd-einfuhrung-beispiele">
+<section id="rrd-einfuhrung-beispiele">
 <span id="rrd-introduction"></span><h1>RRD Einführung &amp; Beispiele<a class="headerlink" href="#rrd-einfuhrung-beispiele" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Dieser Abschnitt kann ignoriert werden, wenn ein openHAB-Backend benutzt wird.
+<p class="admonition-title">Hinweis</p>
+<p>Dieser Abschnitt kann ignoriert werden, wenn ein openHAB-Backend benutzt wird.
 Hilfe bei der Anzeige von Diagrammen mit dem openHAB-Backend sind in der Dokumentation
 des <a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram-Plugins</span></a> zu finden.</p>
 </div>
-<div class="section" id="allgemeine-infos-uber-rrd">
+<section id="allgemeine-infos-uber-rrd">
 <h2>Allgemeine Infos über RRD<a class="headerlink" href="#allgemeine-infos-uber-rrd" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die CometVisu-Diagramme werden über RRD generiert.</p>
 <p>Diese werden üblicherweise im Verzeichnis <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> abgelegt.</p>
@@ -129,15 +133,15 @@ bei
 <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html">hier</a></p>
 <p>Infos zum Aktualisieren/Befüllen von RRD-Datenbanken findet man auf
 englisch <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdupdate.en.html">hier</a></p>
-</div>
-<div class="section" id="rrd-und-die-cometvisu">
+</section>
+<section id="rrd-und-die-cometvisu">
 <h2>RRD und die CometVisu<a class="headerlink" href="#rrd-und-die-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Zum Anzeigen eines Diagramms in der CometVisu ist nötig:</p>
 <ul class="simple">
-<li>CometVisu-Diagramm-Plugin</li>
-<li>RRD Datei</li>
-<li>auf CometVisu abgestimmtes rrdtool (entweder ein zusätzliches Script
-oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patches</a>)</li>
+<li><p>CometVisu-Diagramm-Plugin</p></li>
+<li><p>RRD Datei</p></li>
+<li><p>auf CometVisu abgestimmtes rrdtool (entweder ein zusätzliches Script
+oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patches</a>)</p></li>
 </ul>
 <p>(beides ist auf dem wiregate und auf dem Raspberry Pi image
 standardmäßig verfügbar)</p>
@@ -165,8 +169,8 @@ standardmäßig verfügbar)</p>
 ausgeführt wird. Der kleinste Zeitabstand der mit der crontab
 realisierbar ist ist <code class="docutils literal notranslate"><span class="pre">*/1</span></code>, also jede Minute.</p>
 <p>Der Aktualisierungsabstand sollte zur RRD Datenbank passen!</p>
-</div>
-<div class="section" id="anlegen-der-rrd-datenbank">
+</section>
+<section id="anlegen-der-rrd-datenbank">
 <h2>Anlegen der RRD-Datenbank<a class="headerlink" href="#anlegen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die RRD Datei/Datenbank muss zunächst angelegt werden.</p>
 <p>Hierfür muss man sich beim Anlegen der Datenbank überlegen wie viele
@@ -181,8 +185,8 @@ zusammengefasst werden.</p>
 Zeitabstand zu „jetzt“ geringer wird. (z.B. minütliche Werte für die
 letzten 7 Tage, stündliche Werte für die letzten 4 Wochen, tägliche
 Werte für die letzten 2 Jahre etc…)</p>
-</div>
-<div class="section" id="befullen-der-rrd-datenbank">
+</section>
+<section id="befullen-der-rrd-datenbank">
 <h2>„Befüllen“ der RRD-Datenbank<a class="headerlink" href="#befullen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die RRD Datei/Datenbank muss regelmäßig mit Daten befüllt werden - wenn
 dies nicht geschieht erkennt RRD das und trägt automatische NaN ein -
@@ -192,8 +196,8 @@ damit bleiben die Zusammenfassungen korrekt.</p>
 die Werte die in die Datenbank aufgenommen werden sollen.</p>
 <p>Am, einfachsten lässt sich dieses über ein kurzes Shellscript erledigen,
 das man dann per cron regelmäßig ausführen lässt.</p>
-</div>
-<div class="section" id="fehlersuche">
+</section>
+<section id="fehlersuche">
 <h2>Fehlersuche<a class="headerlink" href="#fehlersuche" title="Link zu dieser Überschrift">¶</a></h2>
 <p>wenn RRD basierte Daten nicht wie vorgesehen angezeigt werden kann man
 direkt in die Datenbank schauen ob überhaupt (sinnvolle) Werte vorhanden
@@ -208,31 +212,31 @@ machen:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEDERDATENBANK.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
 </pre></div>
 </div>
-</div>
-<div class="section" id="beispiele-fur-rrds">
+</section>
+<section id="beispiele-fur-rrds">
 <h2>Beispiele für RRDs<a class="headerlink" href="#beispiele-fur-rrds" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Diese Beispiele funktionieren nicht mit openHAB</p>
+<p class="admonition-title">Hinweis</p>
+<p>Diese Beispiele funktionieren nicht mit openHAB</p>
 </div>
 <p>(die Beispiel-Scripte erzeugen beim ersten Aufruf die RRD Datenbank,
 danach aktualisieren sie die Datenbank)</p>
 <ul class="simple">
-<li><a class="reference internal" href="rrd/cpuload.html"><span class="doc">CPU load für Linux Systeme</span></a> - die CPU load (1 Min, 5 Min, 15 Min wird in eine RRD Datenbank geschrieben</li>
-<li><a class="reference internal" href="rrd/processes.html"><span class="doc">Anzahl der Prozess auf Linux System</span></a> - die Anzahl der laufenden Prozesse wird in eine RRD Datenbank geschrieben</li>
-<li><a class="reference internal" href="rrd/pi_cputemp.html"><span class="doc">CPU Temperatur für Raspberry Pi</span></a> - internen Temperatur-Sensor der Raspberry CPU abfragen und im RRD speichern</li>
-<li><a class="reference internal" href="rrd/knx_linknx.html"><span class="doc">Temperatur vom KNX mit linknx</span></a> - Schreiben eines mit Linknx persistent abgelegten KNX-Wertes (hier
-eine Temperatur eines RTR) in einer RRD Datenbank.</li>
-<li><a class="reference internal" href="rrd/1wire_owfs.html"><span class="doc">Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)</span></a> - direktes Lesen eines 1wire-Temperatur-Sensors in eine RRD Datenbank</li>
+<li><p><a class="reference internal" href="rrd/cpuload.html"><span class="doc">CPU load für Linux Systeme</span></a> - die CPU load (1 Min, 5 Min, 15 Min wird in eine RRD Datenbank geschrieben</p></li>
+<li><p><a class="reference internal" href="rrd/processes.html"><span class="doc">Anzahl der Prozess auf Linux System</span></a> - die Anzahl der laufenden Prozesse wird in eine RRD Datenbank geschrieben</p></li>
+<li><p><a class="reference internal" href="rrd/pi_cputemp.html"><span class="doc">CPU Temperatur für Raspberry Pi</span></a> - internen Temperatur-Sensor der Raspberry CPU abfragen und im RRD speichern</p></li>
+<li><p><a class="reference internal" href="rrd/knx_linknx.html"><span class="doc">Temperatur vom KNX mit linknx</span></a> - Schreiben eines mit Linknx persistent abgelegten KNX-Wertes (hier
+eine Temperatur eines RTR) in einer RRD Datenbank.</p></li>
+<li><p><a class="reference internal" href="rrd/1wire_owfs.html"><span class="doc">Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)</span></a> - direktes Lesen eines 1wire-Temperatur-Sensors in eine RRD Datenbank</p></li>
 </ul>
 <p>für fortgeschrittene Anwender (Anpassungen im Script sind wahrscheinlich erforderlich)</p>
 <ul class="simple">
-<li><a class="reference internal" href="rrd/ifHCoctets.html"><span class="doc">Internet-Bandbreite</span></a> - Internet-Überwachung per SNMP - es sind Anpassungen erforderlich!</li>
+<li><p><a class="reference internal" href="rrd/ifHCoctets.html"><span class="doc">Internet-Bandbreite</span></a> - Internet-Überwachung per SNMP - es sind Anpassungen erforderlich!</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

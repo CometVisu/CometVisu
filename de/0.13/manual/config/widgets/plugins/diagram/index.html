@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="de" >
+<html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Diagram Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>Das Diagram Plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/plugins/diagram/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -28,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -112,12 +116,12 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="das-diagram-plugin">
+<section id="das-diagram-plugin">
 <span id="diagram"></span><h1>Das Diagram Plugin<a class="headerlink" href="#das-diagram-plugin" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Michael Hausl [michael at hausl dot com]</div>
@@ -126,845 +130,851 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 </div>
 <div class="admonition-todo admonition" id="id1">
-<p class="first admonition-title">Zu tun</p>
-<p class="last">openHAB Ergänzungen</p>
+<p class="admonition-title">Zu tun</p>
+<p>openHAB Ergänzungen</p>
 </div>
-<div class="section" id="beschreibung">
+<section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Diagram-Plugin bietet die Möglichkeit den zeitlichen Verlauf von Messwerten etc. zu visualisieren. Die Datenquelle
 muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt <a class="reference internal" href="../../../rrd_examples.html#rrd-introduction"><span class="std std-ref">RRD-Einführung &amp; Beispiele</span></a>.</p>
 <p>Das Diagramm wird standardmäßig im Inline-Modus als Widget dargestellt. Zusätzlich kann die Option Popup
 aktiviert werden, so dass das Diagramm nach dem Anklicken im Vollbildmodus erscheint. Je nach Widgetgröße kann
 für die Inline Ansicht festgelegt werden ob Legende bzw. Achsenbeschriftungen angezeigt werden sollen.</p>
-<div class="figure align-default" id="id43">
+<figure class="align-default" id="id43">
 <img alt="../../../../_images/Diagram_simple_inline2.png" src="../../../../_images/Diagram_simple_inline2.png" />
-<p class="caption"><span class="caption-text">Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht</span><a class="headerlink" href="#id43" title="Link zu diesem Bild">¶</a></p>
-</div>
-<div class="figure align-default" id="id44">
+<figcaption>
+<p><span class="caption-text">Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht</span><a class="headerlink" href="#id43" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id44">
 <img alt="../../../../_images/Diagram_simple_popup.png" src="../../../../_images/Diagram_simple_popup.png" />
-<p class="caption"><span class="caption-text">Diagramm Popup das nach dem Anklicken des Diagramms angezeigt wird.</span><a class="headerlink" href="#id44" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Diagramm Popup das nach dem Anklicken des Diagramms angezeigt wird.</span><a class="headerlink" href="#id44" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Wenn ein Anzeigewert als Aufruf für das Popup dienen soll, muss das <code class="docutils literal notranslate"><span class="pre">diagram_info</span></code>-Plugin verwendet werden.
 Genauere Informationen dazu unter <a class="reference internal" href="../diagram_info/index.html#diagram-info"><span class="std std-ref">Das Diagramm_Info Plugin</span></a>.</p>
-</div>
-<div class="section" id="detaillierte-einstellungen">
+</section>
+<section id="detaillierte-einstellungen">
 <h2>Detaillierte Einstellungen<a class="headerlink" href="#detaillierte-einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Diagram-Plugin ist eines der Widgets mit den umfangreichsten Konfigurationsmöglichkeiten. Viele der Attribute-
 bzw. Elemente sind aber optional für verschiedene Sonderanwendungen, so dass bereits mit wenigen Einstellungen
 sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
-<div class="section" id="erlaubte-attribute-im-diagramm-element">
+<section id="erlaubte-attribute-im-diagramm-element">
 <h3>Erlaubte Attribute im Diagramm-Element<a class="headerlink" href="#erlaubte-attribute-im-diagramm-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="18">diagram</td>
-<td>width</td>
-<td>Dimension (Zahl+Einheit)</td>
-<td>Veraltet: bitte statt diesem Attribut ein layout mit colspan verwenden.</td>
+<tbody>
+<tr class="row-odd"><td rowspan="18"><p>diagram</p></td>
+<td><p>width</p></td>
+<td><p>Dimension (Zahl+Einheit)</p></td>
+<td><p>Veraltet: bitte statt diesem Attribut ein layout mit colspan verwenden.</p></td>
 </tr>
-<tr class="row-even"><td>height</td>
-<td>Dimension (Zahl+Einheit)</td>
-<td>Veraltet: bitte statt diesem Attribut ein layout mit rowspan verwenden.</td>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>Dimension (Zahl+Einheit)</p></td>
+<td><p>Veraltet: bitte statt diesem Attribut ein layout mit rowspan verwenden.</p></td>
 </tr>
-<tr class="row-odd"><td>popup</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Aktiviert die Popup-Funktion, die ein Vollbilddiagramm anzeigt, wenn das Diagramm angeklickt wird</td>
+<tr class="row-odd"><td><p>popup</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Aktiviert die Popup-Funktion, die ein Vollbilddiagramm anzeigt, wenn das Diagramm angeklickt wird</p></td>
 </tr>
-<tr class="row-even"><td>previewlabels</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt die Achsenbeschriftung im Inline-diagramm an</td>
+<tr class="row-even"><td><p>previewlabels</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Zeigt die Achsenbeschriftung im Inline-diagramm an</p></td>
 </tr>
-<tr class="row-odd"><td>series</td>
-<td><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em>, <em>year</em>, <em>fullday</em> oder <em>custom</em></td>
-<td>Legt die Einheit des period Attributs fest</td>
+<tr class="row-odd"><td><p>series</p></td>
+<td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em>, <em>year</em>, <em>fullday</em> oder <em>custom</em></p></td>
+<td><p>Legt die Einheit des period Attributs fest</p></td>
 </tr>
-<tr class="row-even"><td>refresh</td>
-<td>integer</td>
-<td>Aktualisierungsintervall des Diagramms ins Sekundens</td>
+<tr class="row-even"><td><p>refresh</p></td>
+<td><p>integer</p></td>
+<td><p>Aktualisierungsintervall des Diagramms ins Sekundens</p></td>
 </tr>
-<tr class="row-odd"><td>period</td>
-<td>Text</td>
-<td>Definiert ob ein Stunden-, Tage-, Wochen- oder Jahresbereich dargestellt werden soll (als Vielfaches von „series“)</td>
+<tr class="row-odd"><td><p>period</p></td>
+<td><p>Text</p></td>
+<td><p>Definiert ob ein Stunden-, Tage-, Wochen- oder Jahresbereich dargestellt werden soll (als Vielfaches von „series“)</p></td>
 </tr>
-<tr class="row-even"><td>gridcolor</td>
-<td>Text</td>
-<td>Farbe der Gitternetzlinien im Diagramm</td>
+<tr class="row-even"><td><p>gridcolor</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe der Gitternetzlinien im Diagramm</p></td>
 </tr>
-<tr class="row-odd"><td>legend</td>
-<td><em>both</em>, <em>inline</em>, <em>popup</em> oder <em>none</em></td>
-<td>Definiert ob eine Legende angezeigt werden soll (in Verbindung mit popup Parameter). „None“ =&gt; keine Legende, „both“ =&gt; Legende im kleinen Inline Diagramm und Popup, „inline“ =&gt; Legende nur im Inline Diagramm, „popup“ =&gt; Legende nur im Popup Diagramm</td>
+<tr class="row-odd"><td><p>legend</p></td>
+<td><p><em>both</em>, <em>inline</em>, <em>popup</em> oder <em>none</em></p></td>
+<td><p>Definiert ob eine Legende angezeigt werden soll (in Verbindung mit popup Parameter). „None“ =&gt; keine Legende, „both“ =&gt; Legende im kleinen Inline Diagramm und Popup, „inline“ =&gt; Legende nur im Inline Diagramm, „popup“ =&gt; Legende nur im Popup Diagramm</p></td>
 </tr>
-<tr class="row-even"><td>legendposition</td>
-<td><em>nw</em>, <em>ne</em>, <em>sw</em> oder <em>se</em></td>
-<td>Legt die Position der Legende im Diagramm fest</td>
+<tr class="row-even"><td><p>legendposition</p></td>
+<td><p><em>nw</em>, <em>ne</em>, <em>sw</em> oder <em>se</em></p></td>
+<td><p>Legt die Position der Legende im Diagramm fest</p></td>
 </tr>
-<tr class="row-odd"><td>title</td>
-<td>Text</td>
-<td>Fügt dem Diagramm einen Titel hinzu</td>
+<tr class="row-odd"><td><p>title</p></td>
+<td><p>Text</p></td>
+<td><p>Fügt dem Diagramm einen Titel hinzu</p></td>
 </tr>
-<tr class="row-even"><td>tooltip</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Aktiviert die Tooltip-Funktion, die den aktuellen Wert anzeigt, an der die Diagrammlinie angeklickt wird</td>
+<tr class="row-even"><td><p>tooltip</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Aktiviert die Tooltip-Funktion, die den aktuellen Wert anzeigt, an der die Diagrammlinie angeklickt wird</p></td>
 </tr>
-<tr class="row-odd"><td>timeformat</td>
-<td>Text</td>
-<td>Legt das Datums-Zeitformat für x-Achse fest</td>
+<tr class="row-odd"><td><p>timeformat</p></td>
+<td><p>Text</p></td>
+<td><p>Legt das Datums-Zeitformat für x-Achse fest</p></td>
 </tr>
-<tr class="row-even"><td>timeformatTooltip</td>
-<td>Text</td>
-<td>Legt das Datums-Zeitformat für die im Tooltip angezeigten Werte fest</td>
+<tr class="row-even"><td><p>timeformatTooltip</p></td>
+<td><p>Text</p></td>
+<td><p>Legt das Datums-Zeitformat für die im Tooltip angezeigten Werte fest</p></td>
 </tr>
-<tr class="row-odd"><td>zoomYAxis</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Legt fest, ob beim Zoomen die y-Achse zusätzlich zur x-Achse skaliert wird</td>
+<tr class="row-odd"><td><p>zoomYAxis</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Legt fest, ob beim Zoomen die y-Achse zusätzlich zur x-Achse skaliert wird</p></td>
 </tr>
-<tr class="row-even"><td>seriesStart</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>seriesStart</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>seriesEnd</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>seriesEnd</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>seriesResolution</td>
-<td>integer</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>seriesResolution</p></td>
+<td><p>integer</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>Zahl</td>
-<td>Spaltenanzahl für dieses Widget.</td>
+<td><p>colspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Spaltenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>Zahl</td>
-<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>Zahl</td>
-<td>Zeilenanzahl für dieses Widget.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeilenanzahl für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>Text</td>
-<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>Text</td>
-<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>Text</td>
-<td>Für zukünftige Anwendungen reserviert.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>Text</p></td>
+<td><p>Für zukünftige Anwendungen reserviert.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>Text</td>
-<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="Pflichtangabe">name</abbr></td>
-<td>Text</td>
-<td>Name unter dem das Icon registriert ist.</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>Text</td>
-<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>Text</td>
-<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>Text</td>
-<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>axis</li>
+<li><p>axis</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>label</td>
-<td>Text</td>
-<td>Legt die Achsenbeschriftung fest</td>
+<td><p>label</p></td>
+<td><p>Text</p></td>
+<td><p>Legt die Achsenbeschriftung fest</p></td>
 </tr>
-<tr class="row-even"><td>min</td>
-<td>Zahl</td>
-<td>Definiert das Minimum der y-Achse.</td>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Definiert das Minimum der y-Achse.</p></td>
 </tr>
-<tr class="row-odd"><td>max</td>
-<td>Zahl</td>
-<td>Definiert das Maximum der y-Achse.</td>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Definiert das Maximum der y-Achse.</p></td>
 </tr>
-<tr class="row-even"><td>position</td>
-<td><em>left</em> oder <em>right</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>position</p></td>
+<td><p><em>left</em> oder <em>right</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>unit</td>
-<td>Text</td>
-<td>Legt die Einheit fest, die hinter den Zahlen der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</td>
+<tr class="row-odd"><td><p>unit</p></td>
+<td><p>Text</p></td>
+<td><p>Legt die Einheit fest, die hinter den Zahlen der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</p></td>
 </tr>
-<tr class="row-even"><td>decimals</td>
-<td>integer</td>
-<td>Legt die Anzahl der Nachkommastellen fest, die in der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</td>
+<tr class="row-even"><td><p>decimals</p></td>
+<td><p>integer</p></td>
+<td><p>Legt die Anzahl der Nachkommastellen fest, die in der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>axis<ul>
-<li>#text</li>
+<li><p>axis</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>&#160;</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="13"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="13"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>rrd</li>
+<li><p>rrd</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>yaxis</td>
-<td>Text</td>
-<td>Weist die Daten einer y-Achse zu</td>
+<td><p>yaxis</p></td>
+<td><p>Text</p></td>
+<td><p>Weist die Daten einer y-Achse zu</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>Text</td>
-<td>Legt die Farbe der Diagrammlinie fest</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Legt die Farbe der Diagrammlinie fest</p></td>
 </tr>
-<tr class="row-odd"><td>label</td>
-<td>Text</td>
-<td>Definiert den Namen der Datenreihe in der Legende</td>
+<tr class="row-odd"><td><p>label</p></td>
+<td><p>Text</p></td>
+<td><p>Definiert den Namen der Datenreihe in der Legende</p></td>
 </tr>
-<tr class="row-even"><td>scaling</td>
-<td>Zahl</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>scaling</p></td>
+<td><p>Zahl</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>steps</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>steps</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>fill</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</td>
+<tr class="row-even"><td><p>fill</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</p></td>
 </tr>
-<tr class="row-odd"><td>style</td>
-<td><em>lines</em>, <em>bars</em> oder <em>points</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p><em>lines</em>, <em>bars</em> oder <em>points</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>barWidth</td>
-<td>integer</td>
-<td>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</td>
+<tr class="row-even"><td><p>barWidth</p></td>
+<td><p>integer</p></td>
+<td><p>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</p></td>
 </tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> oder <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>datasourceIndex</td>
-<td>integer</td>
-<td>Im Falle mehrerer Datenquellen in einer RRD-Datei kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. Um den richtigen Index herauszufinden, kann „rrdtool info“ verwendet werden.</td>
+<tr class="row-even"><td><p>datasourceIndex</p></td>
+<td><p>integer</p></td>
+<td><p>Im Falle mehrerer Datenquellen in einer RRD-Datei kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. Um den richtigen Index herauszufinden, kann „rrdtool info“ verwendet werden.</p></td>
 </tr>
-<tr class="row-odd"><td>consolidationFunction</td>
-<td><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> oder <em>MAX</em></td>
-<td>Auswählen einer der verfügbaren Consolidation Functions des RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</td>
+<tr class="row-odd"><td><p>consolidationFunction</p></td>
+<td><p><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> oder <em>MAX</em></p></td>
+<td><p>Auswählen einer der verfügbaren Consolidation Functions des RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</p></td>
 </tr>
-<tr class="row-even"><td>resolution</td>
-<td>integer</td>
-<td>Die Standard-Auflösung für die Daten aus der RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.</td>
+<tr class="row-even"><td><p>resolution</p></td>
+<td><p>integer</p></td>
+<td><p>Die Standard-Auflösung für die Daten aus der RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.</p></td>
 </tr>
-<tr class="row-odd"><td>offset</td>
-<td>integer</td>
-<td>Offset in Sekunden, um die Zeitstempel der Daten aus der RRD-Datei zu modifizieren.</td>
+<tr class="row-odd"><td><p>offset</p></td>
+<td><p>integer</p></td>
+<td><p>Offset in Sekunden, um die Zeitstempel der Daten aus der RRD-Datei zu modifizieren.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="first last docutils">
+<tr class="row-even"><td><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>rrd<ul>
-<li>#text</li>
+<li><p>rrd</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>Text</td>
-<td>&#160;</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
 </tr>
-<tr class="row-even"><th class="head">Struktur</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="16"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="16"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
+<li><p>influx</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>measurement</td>
-<td>Text</td>
-<td>Auswahl der Datenbank und des Measurement (Beispiel: timeseries_db/KNX_LINE1)</td>
+<td><p>measurement</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Datenbank und des Measurement (Beispiel: timeseries_db/KNX_LINE1)</p></td>
 </tr>
-<tr class="row-even"><td>yaxis</td>
-<td>Text</td>
-<td>Weist die InfluxDB-Daten einer y-Achse zu</td>
+<tr class="row-even"><td><p>yaxis</p></td>
+<td><p>Text</p></td>
+<td><p>Weist die InfluxDB-Daten einer y-Achse zu</p></td>
 </tr>
-<tr class="row-odd"><td>color</td>
-<td>Text</td>
-<td>Legt die Farbe der Diagrammlinie fest</td>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Legt die Farbe der Diagrammlinie fest</p></td>
 </tr>
-<tr class="row-even"><td>label</td>
-<td>Text</td>
-<td>Definiert den Namen der Datenreihe in der Legende</td>
+<tr class="row-even"><td><p>label</p></td>
+<td><p>Text</p></td>
+<td><p>Definiert den Namen der Datenreihe in der Legende</p></td>
 </tr>
-<tr class="row-odd"><td>scaling</td>
-<td>Zahl</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>scaling</p></td>
+<td><p>Zahl</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>steps</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>steps</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>fill</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</td>
+<tr class="row-odd"><td><p>fill</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</p></td>
 </tr>
-<tr class="row-even"><td>style</td>
-<td><em>lines</em>, <em>bars</em> oder <em>points</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>style</p></td>
+<td><p><em>lines</em>, <em>bars</em> oder <em>points</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>barWidth</td>
-<td>integer</td>
-<td>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</td>
+<tr class="row-odd"><td><p>barWidth</p></td>
+<td><p>integer</p></td>
+<td><p>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</p></td>
 </tr>
-<tr class="row-even"><td>align</td>
-<td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> oder <em>center</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>authentication</td>
-<td>Text</td>
-<td>Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</td>
+<tr class="row-odd"><td><p>authentication</p></td>
+<td><p>Text</p></td>
+<td><p>Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</p></td>
 </tr>
-<tr class="row-even"><td>field</td>
-<td>Text</td>
-<td>Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. Wenn nicht explizit angegeben, wird „*“ verwendet. Achtung: Es darf nur eine Spalte ausgewählt werden, sonst wird keiner angezeigt.</td>
+<tr class="row-even"><td><p>field</p></td>
+<td><p>Text</p></td>
+<td><p>Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. Wenn nicht explizit angegeben, wird „*“ verwendet. Achtung: Es darf nur eine Spalte ausgewählt werden, sonst wird keiner angezeigt.</p></td>
 </tr>
-<tr class="row-odd"><td>resolution</td>
-<td>integer</td>
-<td>Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden. Der Wert „0“ schaltet die Gruppierung aus.</td>
+<tr class="row-odd"><td><p>resolution</p></td>
+<td><p>integer</p></td>
+<td><p>Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden. Der Wert „0“ schaltet die Gruppierung aus.</p></td>
 </tr>
-<tr class="row-even"><td>consolidationFunction</td>
-<td><em>COUNT</em>, <em>DERIVATIVE</em>, <em>DERIVATIVE_COUNT</em>, <em>DERIVATIVE_MEAN</em>, <em>DERIVATIVE_MEDIAN</em>, <em>DERIVATIVE_MODE</em>, <em>DERIVATIVE_SUM</em>, <em>DERIVATIVE_FIRST</em>, <em>DERIVATIVE_LAST</em>, <em>DERIVATIVE_MIN</em>, <em>DERIVATIVE_MAX</em>, <em>DERIVATIVE_PERCENTILE_1</em>, <em>DERIVATIVE_PERCENTILE_5</em>, <em>DERIVATIVE_PERCENTILE_10</em>, <em>DERIVATIVE_PERCENTILE_20</em>, <em>DERIVATIVE_PERCENTILE_25</em>, <em>DERIVATIVE_PERCENTILE_75</em>, <em>DERIVATIVE_PERCENTILE_80</em>, <em>DERIVATIVE_PERCENTILE_90</em>, <em>DERIVATIVE_PERCENTILE_95</em>, <em>DERIVATIVE_PERCENTILE_99</em>, <em>DIFFERENCE</em>, <em>DIFFERENCE_COUNT</em>, <em>DIFFERENCE_MEAN</em>, <em>DIFFERENCE_MEDIAN</em>, <em>DIFFERENCE_MODE</em>, <em>DIFFERENCE_SUM</em>, <em>DIFFERENCE_FIRST</em>, <em>DIFFERENCE_LAST</em>, <em>DIFFERENCE_MIN</em>, <em>DIFFERENCE_MAX</em>, <em>DIFFERENCE_PERCENTILE_1</em>, <em>DIFFERENCE_PERCENTILE_5</em>, <em>DIFFERENCE_PERCENTILE_10</em>, <em>DIFFERENCE_PERCENTILE_20</em>, <em>DIFFERENCE_PERCENTILE_25</em>, <em>DIFFERENCE_PERCENTILE_75</em>, <em>DIFFERENCE_PERCENTILE_80</em>, <em>DIFFERENCE_PERCENTILE_90</em>, <em>DIFFERENCE_PERCENTILE_95</em>, <em>DIFFERENCE_PERCENTILE_99</em>, <em>ELAPSED</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> oder <em>SUM</em></td>
-<td>Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut „resolution“ gesetzt ist.</td>
+<tr class="row-even"><td><p>consolidationFunction</p></td>
+<td><p><em>COUNT</em>, <em>DERIVATIVE</em>, <em>DERIVATIVE_COUNT</em>, <em>DERIVATIVE_MEAN</em>, <em>DERIVATIVE_MEDIAN</em>, <em>DERIVATIVE_MODE</em>, <em>DERIVATIVE_SUM</em>, <em>DERIVATIVE_FIRST</em>, <em>DERIVATIVE_LAST</em>, <em>DERIVATIVE_MIN</em>, <em>DERIVATIVE_MAX</em>, <em>DERIVATIVE_PERCENTILE_1</em>, <em>DERIVATIVE_PERCENTILE_5</em>, <em>DERIVATIVE_PERCENTILE_10</em>, <em>DERIVATIVE_PERCENTILE_20</em>, <em>DERIVATIVE_PERCENTILE_25</em>, <em>DERIVATIVE_PERCENTILE_75</em>, <em>DERIVATIVE_PERCENTILE_80</em>, <em>DERIVATIVE_PERCENTILE_90</em>, <em>DERIVATIVE_PERCENTILE_95</em>, <em>DERIVATIVE_PERCENTILE_99</em>, <em>DIFFERENCE</em>, <em>DIFFERENCE_COUNT</em>, <em>DIFFERENCE_MEAN</em>, <em>DIFFERENCE_MEDIAN</em>, <em>DIFFERENCE_MODE</em>, <em>DIFFERENCE_SUM</em>, <em>DIFFERENCE_FIRST</em>, <em>DIFFERENCE_LAST</em>, <em>DIFFERENCE_MIN</em>, <em>DIFFERENCE_MAX</em>, <em>DIFFERENCE_PERCENTILE_1</em>, <em>DIFFERENCE_PERCENTILE_5</em>, <em>DIFFERENCE_PERCENTILE_10</em>, <em>DIFFERENCE_PERCENTILE_20</em>, <em>DIFFERENCE_PERCENTILE_25</em>, <em>DIFFERENCE_PERCENTILE_75</em>, <em>DIFFERENCE_PERCENTILE_80</em>, <em>DIFFERENCE_PERCENTILE_90</em>, <em>DIFFERENCE_PERCENTILE_95</em>, <em>DIFFERENCE_PERCENTILE_99</em>, <em>ELAPSED</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> oder <em>SUM</em></p></td>
+<td><p>Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut „resolution“ gesetzt ist.</p></td>
 </tr>
-<tr class="row-odd"><td>fillMissing</td>
-<td>Text</td>
-<td>Option wenn Attribut „resolution“ gesetzt ist: fülle Zeitpunkte für die keine Daten vorhanden sind mit diesem Wert oder einem aus „linear“, „none“, „null“ oder „previous“.</td>
+<tr class="row-odd"><td><p>fillMissing</p></td>
+<td><p>Text</p></td>
+<td><p>Option wenn Attribut „resolution“ gesetzt ist: fülle Zeitpunkte für die keine Daten vorhanden sind mit diesem Wert oder einem aus „linear“, „none“, „null“ oder „previous“.</p></td>
 </tr>
-<tr class="row-even"><td>offset</td>
-<td>integer</td>
-<td>Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</td>
+<tr class="row-even"><td><p>offset</p></td>
+<td><p>integer</p></td>
+<td><p>Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
-<li>tag</li>
+<li><p>influx</p></li>
+<li><p>tag</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>key</td>
-<td>Text</td>
-<td>&#160;</td>
+<td><p>key</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>operator</td>
-<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>operator</p></td>
+<td><p><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>value</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-even"><td rowspan="3"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
-<li>and</li>
-<li>tag</li>
+<li><p>influx</p></li>
+<li><p>and</p></li>
+<li><p>tag</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>key</td>
-<td>Text</td>
-<td>&#160;</td>
+<td><p>key</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>operator</td>
-<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>operator</p></td>
+<td><p><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>value</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
 <dt>diagram</dt><dd><ul class="simple">
-<li>influx</li>
-<li>or</li>
-<li>tag</li>
+<li><p>influx</p></li>
+<li><p>or</p></li>
+<li><p>tag</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>key</td>
-<td>Text</td>
-<td>&#160;</td>
+<td><p>key</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>operator</td>
-<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>operator</p></td>
+<td><p><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>value</td>
-<td>Text</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="authentication-attribut">
+<section id="authentication-attribut">
 <span id="diagram-influx"></span><h4><code class="docutils literal notranslate"><span class="pre">authentication</span></code> Attribut<a class="headerlink" href="#authentication-attribut" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Im <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal notranslate"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
 <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfiguration</span></a> verwiesen werden (als Default wird als Name <cite>influx</cite> angenommen).</p>
 <p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="9%" />
-<col width="66%" />
-<col width="24%" />
+<col style="width: 9%" />
+<col style="width: 66%" />
+<col style="width: 24%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Schlüssel</th>
-<th class="head">Wert</th>
-<th class="head">Beispiel</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
+<th class="head"><p>Wert</p></th>
+<th class="head"><p>Beispiel</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>uri</td>
-<td>Die URI für den Zugriff auf die InfluxDB (optional)</td>
-<td><a class="reference external" href="http://localhost:8086/query">http://localhost:8086/query</a></td>
+<tbody>
+<tr class="row-even"><td><p>uri</p></td>
+<td><p>Die URI für den Zugriff auf die InfluxDB (optional)</p></td>
+<td><p><a class="reference external" href="http://localhost:8086/query">http://localhost:8086/query</a></p></td>
 </tr>
-<tr class="row-odd"><td>user</td>
-<td>Der Benutzername für die InfluxDB</td>
-<td>InfluxDBTestUser</td>
+<tr class="row-odd"><td><p>user</p></td>
+<td><p>Der Benutzername für die InfluxDB</p></td>
+<td><p>InfluxDBTestUser</p></td>
 </tr>
-<tr class="row-even"><td>pass</td>
-<td>Das Passwort für die InfluxDB</td>
-<td><code class="docutils literal notranslate"><span class="pre">Xsdwfw324SEs</span></code></td>
+<tr class="row-even"><td><p>pass</p></td>
+<td><p>Das Passwort für die InfluxDB</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Xsdwfw324SEs</span></code></p></td>
 </tr>
-<tr class="row-odd"><td>selfsigned</td>
-<td>Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert <code class="docutils literal notranslate"><span class="pre">true</span></code> ist</td>
-<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+<tr class="row-odd"><td><p>selfsigned</p></td>
+<td><p>Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert <code class="docutils literal notranslate"><span class="pre">true</span></code> ist</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition hint">
-<p class="first admonition-title">Hinweis</p>
-<p class="last">Wenn die Verbindung zur Datenbank mit der Fehlermeldung
+<p class="admonition-title">Hinweis</p>
+<p>Wenn die Verbindung zur Datenbank mit der Fehlermeldung
 <code class="docutils literal notranslate"><span class="pre">failed</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">stream:</span> <span class="pre">operation</span> <span class="pre">failed</span></code>
 nicht aufgebaut werden kann, so kann dies ein Hinweis darauf sein, dass
 <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt werden muss.</p>
 </div>
-</div>
-<div class="section" id="consolidationfunction-attribut">
+</section>
+<section id="consolidationfunction-attribut">
 <h4><code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code> Attribut<a class="headerlink" href="#consolidationfunction-attribut" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Wenn für einen Zeitraum nur ein Wert angezeigt werden soll, so wird dieser über
 eine <code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code> gebildet. Möglich ist:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">COUNT</span></code></td>
-<td>Anzahl der Werte</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COUNT</span></code></p></td>
+<td><p>Anzahl der Werte</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE</span></code> <a class="footnote-reference" href="#id42" id="id2">[1]</a></td>
-<td>Änderung pro Sekunde</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE</span></code> <a class="footnote-reference brackets" href="#id42" id="id2">1</a></p></td>
+<td><p>Änderung pro Sekunde</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_COUNT</span></code> <a class="footnote-reference" href="#id42" id="id3">[1]</a></td>
-<td>Änderung pro Sekunde der Messwertanzahlen im jeweiligen Zeitbereich</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_COUNT</span></code> <a class="footnote-reference brackets" href="#id42" id="id3">1</a></p></td>
+<td><p>Änderung pro Sekunde der Messwertanzahlen im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEAN</span></code> <a class="footnote-reference" href="#id42" id="id4">[1]</a></td>
-<td>Änderung pro Sekunde der Mittelwerte des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id4">1</a></p></td>
+<td><p>Änderung pro Sekunde der Mittelwerte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEDIAN</span></code> <a class="footnote-reference" href="#id42" id="id5">[1]</a></td>
-<td>Änderung pro Sekunde der Mediane des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEDIAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id5">1</a></p></td>
+<td><p>Änderung pro Sekunde der Mediane des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MODE</span></code> <a class="footnote-reference" href="#id42" id="id6">[1]</a></td>
-<td>Änderung pro Sekunde der häufigsten Werte des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MODE</span></code> <a class="footnote-reference brackets" href="#id42" id="id6">1</a></p></td>
+<td><p>Änderung pro Sekunde der häufigsten Werte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_SUM</span></code> <a class="footnote-reference" href="#id42" id="id7">[1]</a></td>
-<td>Änderung pro Sekunde der Summen des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_SUM</span></code> <a class="footnote-reference brackets" href="#id42" id="id7">1</a></p></td>
+<td><p>Änderung pro Sekunde der Summen des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_FIRST</span></code> <a class="footnote-reference" href="#id42" id="id8">[1]</a></td>
-<td>Änderung pro Sekunde der ersten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_FIRST</span></code> <a class="footnote-reference brackets" href="#id42" id="id8">1</a></p></td>
+<td><p>Änderung pro Sekunde der ersten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_LAST</span></code> <a class="footnote-reference" href="#id42" id="id9">[1]</a></td>
-<td>Änderung pro Sekunde der letzten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_LAST</span></code> <a class="footnote-reference brackets" href="#id42" id="id9">1</a></p></td>
+<td><p>Änderung pro Sekunde der letzten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MIN</span></code> <a class="footnote-reference" href="#id42" id="id10">[1]</a></td>
-<td>Änderung pro Sekunde der kleinsten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MIN</span></code> <a class="footnote-reference brackets" href="#id42" id="id10">1</a></p></td>
+<td><p>Änderung pro Sekunde der kleinsten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MAX</span></code> <a class="footnote-reference" href="#id42" id="id11">[1]</a></td>
-<td>Änderung pro Sekunde der größten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MAX</span></code> <a class="footnote-reference brackets" href="#id42" id="id11">1</a></p></td>
+<td><p>Änderung pro Sekunde der größten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_1</span></code> <a class="footnote-reference" href="#id42" id="id12">[1]</a></td>
-<td>Änderung pro Sekunde des 1% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_1</span></code> <a class="footnote-reference brackets" href="#id42" id="id12">1</a></p></td>
+<td><p>Änderung pro Sekunde des 1% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_5</span></code> <a class="footnote-reference" href="#id42" id="id13">[1]</a></td>
-<td>Änderung pro Sekunde des 5% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_5</span></code> <a class="footnote-reference brackets" href="#id42" id="id13">1</a></p></td>
+<td><p>Änderung pro Sekunde des 5% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_10</span></code> <a class="footnote-reference" href="#id42" id="id14">[1]</a></td>
-<td>Änderung pro Sekunde des 10% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_10</span></code> <a class="footnote-reference brackets" href="#id42" id="id14">1</a></p></td>
+<td><p>Änderung pro Sekunde des 10% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_20</span></code> <a class="footnote-reference" href="#id42" id="id15">[1]</a></td>
-<td>Änderung pro Sekunde des 20% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_20</span></code> <a class="footnote-reference brackets" href="#id42" id="id15">1</a></p></td>
+<td><p>Änderung pro Sekunde des 20% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_25</span></code> <a class="footnote-reference" href="#id42" id="id16">[1]</a></td>
-<td>Änderung pro Sekunde des 25% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_25</span></code> <a class="footnote-reference brackets" href="#id42" id="id16">1</a></p></td>
+<td><p>Änderung pro Sekunde des 25% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_75</span></code> <a class="footnote-reference" href="#id42" id="id17">[1]</a></td>
-<td>Änderung pro Sekunde des 75% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_75</span></code> <a class="footnote-reference brackets" href="#id42" id="id17">1</a></p></td>
+<td><p>Änderung pro Sekunde des 75% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_80</span></code> <a class="footnote-reference" href="#id42" id="id18">[1]</a></td>
-<td>Änderung pro Sekunde des 80% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_80</span></code> <a class="footnote-reference brackets" href="#id42" id="id18">1</a></p></td>
+<td><p>Änderung pro Sekunde des 80% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_90</span></code> <a class="footnote-reference" href="#id42" id="id19">[1]</a></td>
-<td>Änderung pro Sekunde des 90% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_90</span></code> <a class="footnote-reference brackets" href="#id42" id="id19">1</a></p></td>
+<td><p>Änderung pro Sekunde des 90% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_95</span></code> <a class="footnote-reference" href="#id42" id="id20">[1]</a></td>
-<td>Änderung pro Sekunde des 95% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_95</span></code> <a class="footnote-reference brackets" href="#id42" id="id20">1</a></p></td>
+<td><p>Änderung pro Sekunde des 95% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_99</span></code> <a class="footnote-reference" href="#id42" id="id21">[1]</a></td>
-<td>Änderung pro Sekunde des 99% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_99</span></code> <a class="footnote-reference brackets" href="#id42" id="id21">1</a></p></td>
+<td><p>Änderung pro Sekunde des 99% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE</span></code> <a class="footnote-reference" href="#id42" id="id22">[1]</a></td>
-<td>Differenz</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE</span></code> <a class="footnote-reference brackets" href="#id42" id="id22">1</a></p></td>
+<td><p>Differenz</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_COUNT</span></code> <a class="footnote-reference" href="#id42" id="id23">[1]</a></td>
-<td>Differenz der Messwertanzahlen im jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_COUNT</span></code> <a class="footnote-reference brackets" href="#id42" id="id23">1</a></p></td>
+<td><p>Differenz der Messwertanzahlen im jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEAN</span></code> <a class="footnote-reference" href="#id42" id="id24">[1]</a></td>
-<td>Differenz der Mittelwerte des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id24">1</a></p></td>
+<td><p>Differenz der Mittelwerte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEDIAN</span></code> <a class="footnote-reference" href="#id42" id="id25">[1]</a></td>
-<td>Differenz der Mediane des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEDIAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id25">1</a></p></td>
+<td><p>Differenz der Mediane des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MODE</span></code> <a class="footnote-reference" href="#id42" id="id26">[1]</a></td>
-<td>Differenz der häufigsten Werte des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MODE</span></code> <a class="footnote-reference brackets" href="#id42" id="id26">1</a></p></td>
+<td><p>Differenz der häufigsten Werte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_SUM</span></code> <a class="footnote-reference" href="#id42" id="id27">[1]</a></td>
-<td>Differenz der Summen des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_SUM</span></code> <a class="footnote-reference brackets" href="#id42" id="id27">1</a></p></td>
+<td><p>Differenz der Summen des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_FIRST</span></code> <a class="footnote-reference" href="#id42" id="id28">[1]</a></td>
-<td>Differenz der ersten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_FIRST</span></code> <a class="footnote-reference brackets" href="#id42" id="id28">1</a></p></td>
+<td><p>Differenz der ersten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_LAST</span></code> <a class="footnote-reference" href="#id42" id="id29">[1]</a></td>
-<td>Differenz der letzten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_LAST</span></code> <a class="footnote-reference brackets" href="#id42" id="id29">1</a></p></td>
+<td><p>Differenz der letzten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MIN</span></code> <a class="footnote-reference" href="#id42" id="id30">[1]</a></td>
-<td>Differenz der kleinsten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MIN</span></code> <a class="footnote-reference brackets" href="#id42" id="id30">1</a></p></td>
+<td><p>Differenz der kleinsten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MAX</span></code> <a class="footnote-reference" href="#id42" id="id31">[1]</a></td>
-<td>Differenz der größten Messwerte im jeweiligen Zeitbereich</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MAX</span></code> <a class="footnote-reference brackets" href="#id42" id="id31">1</a></p></td>
+<td><p>Differenz der größten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_1</span></code> <a class="footnote-reference" href="#id42" id="id32">[1]</a></td>
-<td>Differenz des 1% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_1</span></code> <a class="footnote-reference brackets" href="#id42" id="id32">1</a></p></td>
+<td><p>Differenz des 1% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_5</span></code> <a class="footnote-reference" href="#id42" id="id33">[1]</a></td>
-<td>Differenz des 5% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_5</span></code> <a class="footnote-reference brackets" href="#id42" id="id33">1</a></p></td>
+<td><p>Differenz des 5% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_10</span></code> <a class="footnote-reference" href="#id42" id="id34">[1]</a></td>
-<td>Differenz des 10% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_10</span></code> <a class="footnote-reference brackets" href="#id42" id="id34">1</a></p></td>
+<td><p>Differenz des 10% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_20</span></code> <a class="footnote-reference" href="#id42" id="id35">[1]</a></td>
-<td>Differenz des 20% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_20</span></code> <a class="footnote-reference brackets" href="#id42" id="id35">1</a></p></td>
+<td><p>Differenz des 20% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_25</span></code> <a class="footnote-reference" href="#id42" id="id36">[1]</a></td>
-<td>Differenz des 25% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_25</span></code> <a class="footnote-reference brackets" href="#id42" id="id36">1</a></p></td>
+<td><p>Differenz des 25% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_75</span></code> <a class="footnote-reference" href="#id42" id="id37">[1]</a></td>
-<td>Differenz des 75% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_75</span></code> <a class="footnote-reference brackets" href="#id42" id="id37">1</a></p></td>
+<td><p>Differenz des 75% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_80</span></code> <a class="footnote-reference" href="#id42" id="id38">[1]</a></td>
-<td>Differenz des 80% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_80</span></code> <a class="footnote-reference brackets" href="#id42" id="id38">1</a></p></td>
+<td><p>Differenz des 80% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_90</span></code> <a class="footnote-reference" href="#id42" id="id39">[1]</a></td>
-<td>Differenz des 90% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_90</span></code> <a class="footnote-reference brackets" href="#id42" id="id39">1</a></p></td>
+<td><p>Differenz des 90% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_95</span></code> <a class="footnote-reference" href="#id42" id="id40">[1]</a></td>
-<td>Differenz des 95% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_95</span></code> <a class="footnote-reference brackets" href="#id42" id="id40">1</a></p></td>
+<td><p>Differenz des 95% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_99</span></code> <a class="footnote-reference" href="#id42" id="id41">[1]</a></td>
-<td>Differenz des 99% Percentils des jeweiligen Zeitbereichs</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_99</span></code> <a class="footnote-reference brackets" href="#id42" id="id41">1</a></p></td>
+<td><p>Differenz des 99% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ELAPSED</span></code></td>
-<td>Zeit seit dem letzten Messwert (ignoriert <code class="docutils literal notranslate"><span class="pre">resolution</span></code> Attribut)</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ELAPSED</span></code></p></td>
+<td><p>Zeit seit dem letzten Messwert (ignoriert <code class="docutils literal notranslate"><span class="pre">resolution</span></code> Attribut)</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">INTEGRAL</span></code></td>
-<td>Integral der Werte</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">INTEGRAL</span></code></p></td>
+<td><p>Integral der Werte</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">MAX</span></code></td>
-<td>Maximum</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX</span></code></p></td>
+<td><p>Maximum</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">MEAN</span></code></td>
-<td>Mittelwert</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MEAN</span></code></p></td>
+<td><p>Mittelwert</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">MEDIAN</span></code></td>
-<td>Median</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MEDIAN</span></code></p></td>
+<td><p>Median</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">MIN</span></code></td>
-<td>Minimum</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MIN</span></code></p></td>
+<td><p>Minimum</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">MODE</span></code></td>
-<td>Der häufigste Wert</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MODE</span></code></p></td>
+<td><p>Der häufigste Wert</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">SPREAD</span></code></td>
-<td>Differenz zwischen Maximum und Minimum</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SPREAD</span></code></p></td>
+<td><p>Differenz zwischen Maximum und Minimum</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">STDDEV</span></code></td>
-<td>Standardabweichung</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">STDDEV</span></code></p></td>
+<td><p>Standardabweichung</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">SUM</span></code></td>
-<td>Summe</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SUM</span></code></p></td>
+<td><p>Summe</p></td>
 </tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id42" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id4">3</a>, <a class="fn-backref" href="#id5">4</a>, <a class="fn-backref" href="#id6">5</a>, <a class="fn-backref" href="#id7">6</a>, <a class="fn-backref" href="#id8">7</a>, <a class="fn-backref" href="#id9">8</a>, <a class="fn-backref" href="#id10">9</a>, <a class="fn-backref" href="#id11">10</a>, <a class="fn-backref" href="#id12">11</a>, <a class="fn-backref" href="#id13">12</a>, <a class="fn-backref" href="#id14">13</a>, <a class="fn-backref" href="#id15">14</a>, <a class="fn-backref" href="#id16">15</a>, <a class="fn-backref" href="#id17">16</a>, <a class="fn-backref" href="#id18">17</a>, <a class="fn-backref" href="#id19">18</a>, <a class="fn-backref" href="#id20">19</a>, <a class="fn-backref" href="#id21">20</a>, <a class="fn-backref" href="#id22">21</a>, <a class="fn-backref" href="#id23">22</a>, <a class="fn-backref" href="#id24">23</a>, <a class="fn-backref" href="#id25">24</a>, <a class="fn-backref" href="#id26">25</a>, <a class="fn-backref" href="#id27">26</a>, <a class="fn-backref" href="#id28">27</a>, <a class="fn-backref" href="#id29">28</a>, <a class="fn-backref" href="#id30">29</a>, <a class="fn-backref" href="#id31">30</a>, <a class="fn-backref" href="#id32">31</a>, <a class="fn-backref" href="#id33">32</a>, <a class="fn-backref" href="#id34">33</a>, <a class="fn-backref" href="#id35">34</a>, <a class="fn-backref" href="#id36">35</a>, <a class="fn-backref" href="#id37">36</a>, <a class="fn-backref" href="#id38">37</a>, <a class="fn-backref" href="#id39">38</a>, <a class="fn-backref" href="#id40">39</a>, <a class="fn-backref" href="#id41">40</a>)</em> Hinweis: In zukünftigen Versionen der CometVisu kann sich die Syntax für
+<dl class="footnote brackets">
+<dt class="label" id="id42"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>,<a href="#id5">4</a>,<a href="#id6">5</a>,<a href="#id7">6</a>,<a href="#id8">7</a>,<a href="#id9">8</a>,<a href="#id10">9</a>,<a href="#id11">10</a>,<a href="#id12">11</a>,<a href="#id13">12</a>,<a href="#id14">13</a>,<a href="#id15">14</a>,<a href="#id16">15</a>,<a href="#id17">16</a>,<a href="#id18">17</a>,<a href="#id19">18</a>,<a href="#id20">19</a>,<a href="#id21">20</a>,<a href="#id22">21</a>,<a href="#id23">22</a>,<a href="#id24">23</a>,<a href="#id25">24</a>,<a href="#id26">25</a>,<a href="#id27">26</a>,<a href="#id28">27</a>,<a href="#id29">28</a>,<a href="#id30">29</a>,<a href="#id31">30</a>,<a href="#id32">31</a>,<a href="#id33">32</a>,<a href="#id34">33</a>,<a href="#id35">34</a>,<a href="#id36">35</a>,<a href="#id37">36</a>,<a href="#id38">37</a>,<a href="#id39">38</a>,<a href="#id40">39</a>,<a href="#id41">40</a>)</span></dt>
+<dd><p>Hinweis: In zukünftigen Versionen der CometVisu kann sich die Syntax für
 diese Transformations ändern. Bei einem Update bitte im Handbuch auf
-Änderungen diesbezüglich achten.</td></tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="fillmissing-attribut">
+Änderungen diesbezüglich achten.</p>
+</dd>
+</dl>
+</section>
+<section id="fillmissing-attribut">
 <h4><code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> Attribut<a class="headerlink" href="#fillmissing-attribut" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Über <code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> lassen sich Lücken in den Daten schließen. Möglich ist:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">linear</span></code></td>
-<td>Lineare Interpolation</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">linear</span></code></p></td>
+<td><p>Lineare Interpolation</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">none</span></code></td>
-<td>Keine Auffüllung</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Keine Auffüllung</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">null</span></code></td>
-<td>Kein Wert</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Kein Wert</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">previous</span></code></td>
-<td>Übername des letzten Wertes</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">previous</span></code></p></td>
+<td><p>Übername des letzten Wertes</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="elemente-innerhalb-influx">
+</section>
+<section id="elemente-innerhalb-influx">
 <h4>Elemente innerhalb <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code><a class="headerlink" href="#elemente-innerhalb-influx" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Im <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code> Element können über <code class="docutils literal notranslate"><span class="pre">&lt;add&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;or&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;tag&gt;</span></code> Elemente
 die anzuzeigenden Daten gefiltert werden. Über <code class="docutils literal notranslate"><span class="pre">&lt;add&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;or&gt;</span></code> werden
@@ -972,35 +982,35 @@ die (auch verschachtelten) Kind-Elemente UND bzw. ODER verknüpft. Im <code clas
 wird nach dem in der InfluxDB abgelegten Tags gefiltert in dem der Schlüssel
 <code class="docutils literal notranslate"><span class="pre">key</span></code> mit dem Wert <code class="docutils literal notranslate"><span class="pre">value</span></code> über den Operator <code class="docutils literal notranslate"><span class="pre">operator</span></code> verglichen wird.
 Mögliche Operatoren sind:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="85%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">=</span></code></td>
-<td>Gleich</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td><p>Gleich</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">!=</span></code></td>
-<td>Ungleich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>Ungleich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></td>
-<td>Kleiner</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p>Kleiner</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></td>
-<td>Kleiner gleich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p>Kleiner gleich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></td>
-<td>Größer</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p>Größer</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></td>
-<td>Größer gleich</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>Größer gleich</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">=~</span></code></td>
-<td>Match des regulären Ausdrucks</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">=~</span></code></p></td>
+<td><p>Match des regulären Ausdrucks</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">!~</span></code></td>
-<td>Kein Match des regulären Ausdrucks</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!~</span></code></p></td>
+<td><p>Kein Match des regulären Ausdrucks</p></td>
 </tr>
 </tbody>
 </table>
@@ -1019,26 +1029,28 @@ Mögliche Operatoren sind:</p>
 <span class="nt">&lt;/diagram&gt;</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id45">
+<figure class="align-default" id="id45">
 <img alt="../../../../_images/Diagram_influx_editor.png" src="../../../../_images/Diagram_influx_editor.png" />
-<p class="caption"><span class="caption-text">Beispiel Influx-Datenquelle mit Filtern</span><a class="headerlink" href="#id45" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="xml-syntax-minimal">
+<figcaption>
+<p><span class="caption-text">Beispiel Influx-Datenquelle mit Filtern</span><a class="headerlink" href="#id45" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="xml-syntax-minimal">
 <h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+<p class="admonition-title">Vorsicht</p>
+<p>In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Nachstehend ein einfaches Beispiel für das Diagram als Widget mit Popup-Funktion inkl. Beispielcode.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../../_images/Diagram_simple_inline3.png" src="../../../../_images/Diagram_simple_inline3.png" />
-</div>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span>  <span class="na">period=</span><span class="s">&quot;24&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">series=</span><span class="s">&quot;hour&quot;</span> <span class="na">gridcolor=</span><span class="s">&quot;#707070&quot;</span> <span class="na">popup=</span><span class="s">&quot;true&quot;</span> <span class="na">previewlabels=</span><span class="s">&quot;true&quot;</span> <span class="na">legend=</span><span class="s">&quot;both&quot;</span> <span class="na">legendposition=</span><span class="s">&quot;nw&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;axis</span> <span class="na">unit=</span><span class="s">&quot;°C&quot;</span> <span class="na">label=</span><span class="s">&quot;Temperatur&quot;</span><span class="nt">/&gt;</span>
@@ -1050,8 +1062,8 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <span class="nt">&lt;/diagram&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

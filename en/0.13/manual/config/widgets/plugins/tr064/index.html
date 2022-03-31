@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The tr064 Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <title>The tr064 Plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/widgets/plugins/tr064/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
@@ -27,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
@@ -110,13 +114,13 @@
            <div itemprop="articleBody">
              
   <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="admonition-title">Caution</p>
 <p>This is the documentation for the current development branch of the CometVisu.
 It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="the-tr064-plugin">
+<section id="the-tr064-plugin">
 <span id="tr064"></span><h1>The tr064 Plugin<a class="headerlink" href="#the-tr064-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
@@ -125,20 +129,20 @@ by an online translation service.</p>
 </div>
 </div>
 <div class="admonition-todo admonition" id="id1">
-<p class="first admonition-title">Todo</p>
-<p class="last">automatic screenshot creation (from dummy data)</p>
+<p class="admonition-title">Todo</p>
+<p>automatic screenshot creation (from dummy data)</p>
 </div>
-<div class="section" id="description">
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>The plugin is an interface to routers that implement the TR-064 protocol, like
 the widely used Fritz!Box. The <code class="docutils literal notranslate"><span class="pre">calllist</span></code> widget from this plugin displays
 a call list that contains the name of the callers (when known to the router)
 as well as the records of the answering machine.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../../_images/calllist.png" src="../../../../_images/calllist.png" />
-</div>
-</div>
-<div class="section" id="settings">
+</figure>
+</section>
+<section id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
@@ -146,387 +150,395 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-calllist-element">
+<section id="allowed-attributes-in-the-calllist-element">
 <h3>Allowed attributes in the calllist-element<a class="headerlink" href="#allowed-attributes-in-the-calllist-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="26">calllist</td>
-<td><abbr title="mandatory">device</abbr></td>
-<td>string</td>
-<td>ID/Name of the device as used in the hidden configuration.</td>
+<tbody>
+<tr class="row-odd"><td rowspan="26"><p>calllist</p></td>
+<td><p><abbr title="mandatory">device</abbr></p></td>
+<td><p>string</p></td>
+<td><p>ID/Name of the device as used in the hidden configuration.</p></td>
 </tr>
-<tr class="row-even"><td>max</td>
-<td>decimal</td>
-<td>Maximum number of entries to fetch from the router.</td>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximum number of entries to fetch from the router.</p></td>
 </tr>
-<tr class="row-odd"><td>columns</td>
-<td>string</td>
-<td>By semicolon separated list of column types (allowed types: caller, date, name, nameOrCaller, tam, type)</td>
+<tr class="row-odd"><td><p>columns</p></td>
+<td><p>string</p></td>
+<td><p>By semicolon separated list of column types (allowed types: caller, date, name, nameOrCaller, tam, type)</p></td>
 </tr>
-<tr class="row-even"><td>TAM</td>
-<td>string</td>
-<td>Icon for telephone answering machine.</td>
+<tr class="row-even"><td><p>TAM</p></td>
+<td><p>string</p></td>
+<td><p>Icon for telephone answering machine.</p></td>
 </tr>
-<tr class="row-odd"><td>TAMColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>TAMColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>TAMwait</td>
-<td>string</td>
-<td>Icon for waiting for telephone answering machine.</td>
+<tr class="row-even"><td><p>TAMwait</p></td>
+<td><p>string</p></td>
+<td><p>Icon for waiting for telephone answering machine.</p></td>
 </tr>
-<tr class="row-odd"><td>TAMwaitColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>TAMwaitColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>TAMplay</td>
-<td>string</td>
-<td>Icon for playing the telephone answering machine.</td>
+<tr class="row-even"><td><p>TAMplay</p></td>
+<td><p>string</p></td>
+<td><p>Icon for playing the telephone answering machine.</p></td>
 </tr>
-<tr class="row-odd"><td>TAMplayColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>TAMplayColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>TAMstop</td>
-<td>string</td>
-<td>Icon for stopping the telephone answering machine.</td>
+<tr class="row-even"><td><p>TAMstop</p></td>
+<td><p>string</p></td>
+<td><p>Icon for stopping the telephone answering machine.</p></td>
 </tr>
-<tr class="row-odd"><td>TAMstopColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>TAMstopColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeIncoming</td>
-<td>string</td>
-<td>Icon for incoming call.</td>
+<tr class="row-even"><td><p>typeIncoming</p></td>
+<td><p>string</p></td>
+<td><p>Icon for incoming call.</p></td>
 </tr>
-<tr class="row-odd"><td>typeIncomingColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeIncomingColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeMissed</td>
-<td>string</td>
-<td>Icon for missed call.</td>
+<tr class="row-even"><td><p>typeMissed</p></td>
+<td><p>string</p></td>
+<td><p>Icon for missed call.</p></td>
 </tr>
-<tr class="row-odd"><td>typeMissedColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeMissedColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeOutgoing</td>
-<td>string</td>
-<td>Icon for outgoing call.</td>
+<tr class="row-even"><td><p>typeOutgoing</p></td>
+<td><p>string</p></td>
+<td><p>Icon for outgoing call.</p></td>
 </tr>
-<tr class="row-odd"><td>typeOutgoingColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeOutgoingColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeActiveIncoming</td>
-<td>string</td>
-<td>Icon for active incoming call.</td>
+<tr class="row-even"><td><p>typeActiveIncoming</p></td>
+<td><p>string</p></td>
+<td><p>Icon for active incoming call.</p></td>
 </tr>
-<tr class="row-odd"><td>typeActiveIncomingColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeActiveIncomingColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeRejectedIncoming</td>
-<td>string</td>
-<td>Icon for rejected incoming call.</td>
+<tr class="row-even"><td><p>typeRejectedIncoming</p></td>
+<td><p>string</p></td>
+<td><p>Icon for rejected incoming call.</p></td>
 </tr>
-<tr class="row-odd"><td>typeRejectedIncomingColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeRejectedIncomingColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeActiveOutgoing</td>
-<td>string</td>
-<td>Icon for active outgoing call.</td>
+<tr class="row-even"><td><p>typeActiveOutgoing</p></td>
+<td><p>string</p></td>
+<td><p>Icon for active outgoing call.</p></td>
 </tr>
-<tr class="row-odd"><td>typeActiveOutgoingColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeActiveOutgoingColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>typeUnknown</td>
-<td>string</td>
-<td>Icon for unknown call type.</td>
+<tr class="row-even"><td><p>typeUnknown</p></td>
+<td><p>string</p></td>
+<td><p>Icon for unknown call type.</p></td>
 </tr>
-<tr class="row-odd"><td>typeUnknownColor</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>typeUnknownColor</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>refresh</td>
-<td>decimal</td>
-<td>Sets the update rate for the call list in seconds</td>
+<tr class="row-even"><td><p>refresh</p></td>
+<td><p>decimal</p></td>
+<td><p>Sets the update rate for the call list in seconds</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id4">
+<figure class="align-center" id="id4">
 <img alt="../../../../_images/en_config_widgets_plugins_tr064_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_tr064_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id2">[1]</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="allowed-child-elements-and-their-attributes">
+<figcaption>
+<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id2">1</a></p>
+</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
 <dt>calllist</dt><dd><ul class="simple">
-<li>layout</li>
+<li><p>layout</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>colspan</td>
-<td>decimal</td>
-<td>Amount of columns this widget should be wide.</td>
+<td><p>colspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of columns this widget should be wide.</p></td>
 </tr>
-<tr class="row-even"><td>colspan-m</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a medium screen.</td>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>colspan-s</td>
-<td>decimal</td>
-<td>Overrules the amount of columns on a small screen.</td>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>rowspan</td>
-<td>decimal</td>
-<td>Amount of rows this widget should be high.</td>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of rows this widget should be high.</p></td>
 </tr>
-<tr class="row-odd"><td>x</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages.</td>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-even"><td>x-s</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-odd"><td>x-m</td>
-<td>string</td>
-<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-even"><td>y</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages.</td>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>y-s</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>y-m</td>
-<td>string</td>
-<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>z</td>
-<td>string</td>
-<td>Reserved for future use.</td>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>string</p></td>
+<td><p>Reserved for future use.</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>string</td>
-<td>Width for the widget for 2D pages.</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages.</p></td>
 </tr>
-<tr class="row-odd"><td>width-s</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a small screen.</td>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a small screen.</p></td>
 </tr>
-<tr class="row-even"><td>width-m</td>
-<td>string</td>
-<td>Width for the widget for 2D pages on a medium screen.</td>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a medium screen.</p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</p></td>
 </tr>
-<tr class="row-even"><td>scale-s</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</p></td>
 </tr>
-<tr class="row-odd"><td>scale-m</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>calllist</dt><dd><ul class="simple">
-<li>label</li>
-<li>icon</li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">name</abbr></td>
-<td>string</td>
-<td>Name of the icon registration.</td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Name of the icon registration.</p></td>
 </tr>
-<tr class="row-even"><td>type</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>flavour</td>
-<td>string</td>
-<td>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td>color</td>
-<td>string</td>
-<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the icon in CSS notation (e.g. #1188FF).</p></td>
 </tr>
-<tr class="row-odd"><td>styling</td>
-<td>string</td>
-<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
 </tr>
-<tr class="row-even"><td>class</td>
-<td>string</td>
-<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>calllist</dt><dd><ul class="simple">
-<li>label<ul>
-<li>#text</li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>Text to display a label for the widget.</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>Text to display a label for the widget.</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="schema-table docutils">
+<table class="schema-table docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="15%" />
-<col width="15%" />
-<col width="55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
 </tr>
-<tr class="row-even"><th class="head">Structure</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>calllist</dt><dd><ul class="simple">
-<li>address</li>
+<li><p>address</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><abbr title="mandatory">transform</abbr></td>
-<td>string</td>
-<td>Transformation of the bus system value to be shown.</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
 </tr>
-<tr class="row-even"><td>mode</td>
-<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
-<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
 </tr>
-<tr class="row-odd"><td>variant</td>
-<td>string</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>format-pos</td>
-<td>decimal</td>
-<td>Position for format string when multiple addresses are used.</td>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
 </tr>
-<tr class="row-odd"><td>selector</td>
-<td>string</td>
-<td>Only MQTT: JSON selector</td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
 </tr>
-<tr class="row-even"><td>qos</td>
-<td>decimal</td>
-<td>Only MQTT: QoS</td>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
 </tr>
-<tr class="row-odd"><td>retain</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: retain flag</td>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
 </tr>
-<tr class="row-even"><td>ignore-error</td>
-<td><em>true</em> or <em>false</em></td>
-<td>Only MQTT: ignore decode errors.</td>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td><dl class="simple">
 <dt>calllist</dt><dd><ul class="simple">
-<li>address<ul>
-<li>#text</li>
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
 </ul>
 </li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>&#160;</td>
-<td>string</td>
-<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id5">
+<figure class="align-center" id="id5">
 <img alt="../../../../_images/en_config_widgets_plugins_tr064_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_tr064_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Element in the editor</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="xml-syntax">
+<figcaption>
+<p><span class="caption-text"><p>Element in the editor</p>
+</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="xml-syntax">
 <h2>XML syntax<a class="headerlink" href="#xml-syntax" title="Permalink to this headline">¶</a></h2>
 <p>Alternatively it is possible to manually add the tr064 plugin entry to the
 <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a>.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">In the config only the UTF-8 charset is allowed. So an editor that is
+<p class="admonition-title">Caution</p>
+<p>In the config only the UTF-8 charset is allowed. So an editor that is
 set to UTF-8 mode must be used.</p>
 </div>
 <p>The minimale example code for the calllist widget to create the shown
@@ -544,10 +556,13 @@ screenshot is:</p>
 <span class="nt">&lt;/page&gt;</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id6">
+<figure class="align-default" id="id6">
 <img alt="calllist, einfaches Beispiel" src="../../../../_images/calllist_simple.png" />
-<p class="caption"><span class="caption-text">calllist, einfaches Beispiel</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><p>calllist, einfaches Beispiel</p>
+</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
@@ -560,62 +575,62 @@ screenshot is:</p>
 <span class="nt">&lt;/calllist&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="prerequisites-setup-of-the-server">
+</section>
+<section id="prerequisites-setup-of-the-server">
 <h2>Prerequisites / setup of the server<a class="headerlink" href="#prerequisites-setup-of-the-server" title="Permalink to this headline">¶</a></h2>
 <p>To be able to use the plugin the server must support PHP with the extension
 of the SoapClient package.</p>
 <p>On debian based systems it means that the <code class="docutils literal notranslate"><span class="pre">php-soap</span></code> package must be
 installed.</p>
-</div>
-<div class="section" id="setup-of-the-fritz-box">
+</section>
+<section id="setup-of-the-fritz-box">
 <h2>Setup of the Fritz!Box<a class="headerlink" href="#setup-of-the-fritz-box" title="Permalink to this headline">¶</a></h2>
 <p>To get access to the call list of the Fritz!Box a user with according permissions
 must be created (or an existing user account must be used). This is possible
 on the user page:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../../_images/fritzbox_overview.png" src="../../../../_images/fritzbox_overview.png" />
-</div>
+</figure>
 <p>The user itself needs the rights to access the call list:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
-</div>
+</figure>
 <p>The plugin needs to know the credentials to be able to use this user. This
 uses the <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">“hidden configuration”</span></a> infrastructure which
-can be accessed by the <a class="reference internal" href="../../../manager.html#manager"><span class="std std-ref">CometVisu manager</span></a> <a class="footnote-reference" href="#f2" id="id3">[2]</a>.</p>
-<div class="figure align-default">
+can be accessed by the <a class="reference internal" href="../../../manager.html#manager"><span class="std std-ref">CometVisu manager</span></a> <a class="footnote-reference brackets" href="#f2" id="id3">2</a>.</p>
+<figure class="align-default">
 <img alt="../../../../_images/hidden_config_en.png" src="../../../../_images/hidden_config_en.png" />
-</div>
+</figure>
 <p>The used name must be given in the calllist widget in the attribute <code class="docutils literal notranslate"><span class="pre">device</span></code>.</p>
 <p>The key and value pairs of the hidden configuration” are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="12%" />
-<col width="56%" />
-<col width="33%" />
+<col style="width: 12%" />
+<col style="width: 56%" />
+<col style="width: 33%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Key</th>
-<th class="head">Value</th>
-<th class="head">Example</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Example</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>uri</td>
-<td>The URI to access the TR-064 interface</td>
-<td><code class="docutils literal notranslate"><span class="pre">https://192.168.0.1:49443/</span></code></td>
+<tbody>
+<tr class="row-even"><td><p>uri</p></td>
+<td><p>The URI to access the TR-064 interface</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://192.168.0.1:49443/</span></code></p></td>
 </tr>
-<tr class="row-odd"><td>user</td>
-<td>The username for the TR-064 access</td>
-<td><code class="docutils literal notranslate"><span class="pre">CometVisuTestUser</span></code></td>
+<tr class="row-odd"><td><p>user</p></td>
+<td><p>The username for the TR-064 access</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CometVisuTestUser</span></code></p></td>
 </tr>
-<tr class="row-even"><td>pass</td>
-<td>The password for the TR-64 access</td>
-<td><code class="docutils literal notranslate"><span class="pre">pa3bvNM4j9z4</span></code></td>
+<tr class="row-even"><td><p>pass</p></td>
+<td><p>The password for the TR-64 access</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pa3bvNM4j9z4</span></code></p></td>
 </tr>
-<tr class="row-odd"><td>selfsigned</td>
-<td>Allow self signed certificates when <code class="docutils literal notranslate"><span class="pre">true</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+<tr class="row-odd"><td><p>selfsigned</p></td>
+<td><p>Allow self signed certificates when <code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -630,37 +645,32 @@ $hidden = array(
 </pre></div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
+<p class="admonition-title">Hint</p>
 <p>When the connection to the router is secured by SSL (i.e. the URI starts with
 <code class="docutils literal notranslate"><span class="pre">https</span></code>) it is usual that <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> as a
 router in the home network will work usually with a self signed certificate.</p>
-<p class="last">The error message
+<p>The error message
 <code class="docutils literal notranslate"><span class="pre">{&quot;faultstring&quot;:&quot;Could</span> <span class="pre">not</span> <span class="pre">connect</span> <span class="pre">to</span> <span class="pre">host&quot;,&quot;faultcode&quot;:&quot;HTTP&quot;}</span></code> can be a
 hint that <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In the simple view some things might be not visible. The expert view
-will show all entries.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="f2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><p class="first">The “hidden configuration” contains configuration data that is not
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>In the simple view some things might be not visible. The expert view
+will show all entries.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>The “hidden configuration” contains configuration data that is not
 transmitted to the client any stay on the server. So there information
 is “hidden” to the user. On the server it is still readable in clear
 text. This is also true for the manager.</p>
-<p class="last">This by itself doesn’t create a secure environment, but it supports
+<p>This by itself doesn’t create a secure environment, but it supports
 building one. There at least the manager must be inaccessible to the
 user.</p>
-</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+</dd>
+</dl>
+</section>
+</section>
 
 
            </div>
