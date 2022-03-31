@@ -1,6 +1,6 @@
-docutils==0.12
+docutils
 sh
-sphinx==3.4.3
+sphinx==4.5.0
 lxml
 sphinxcontrib-plantuml
 sphinxcontrib-spelling
@@ -10,4 +10,3 @@ rjsmin
 semver
 requests
 Pillow
-jinja2<3.1.0
