@@ -10,3 +10,4 @@ rjsmin
 semver
 requests
 Pillow
+jinja2<3.1.0
