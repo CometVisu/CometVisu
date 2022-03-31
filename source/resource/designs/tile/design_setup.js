@@ -10,8 +10,15 @@ function resizeTiles() {
   if (lastWindowWidth !== window.innerWidth) {
     const style = document.querySelector(':root').style;
     let spacing = parseInt(style.getPropertyValue('--spacing')) || 8;
+    const pageStyle = getComputedStyle(document.querySelector('cv-page'));
+    let pageXPadding = parseInt(pageStyle.paddingLeft) + parseInt(pageStyle.paddingRight);
+    if (isNaN(pageXPadding)) {
+      // eslint-disable-next-line no-console
+      console.error('page padding could not be calculated using fallback of 16px');
+      pageXPadding = 16;
+    }
     // paddingLeft + paddingRight (2*spacing)
-    let availableWidth = window.innerWidth - spacing * 2;
+    let availableWidth = window.innerWidth - pageXPadding;
     if (availableWidth >= 1000) {
       // reset to defaults
       style.setProperty('--spacing', '8px');
