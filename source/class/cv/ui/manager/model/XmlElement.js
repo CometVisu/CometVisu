@@ -64,6 +64,20 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    entityMap: {
+      '&': '&amp;',
+      '"': '&quot;',
+      '\'': '&#39;',
+      '`': '&#x60;'
+    }
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -845,6 +859,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           } else {
             value = '' + value;
           }
+          value = value.replace(/[&"'`]/g, function (s) {
+            return cv.ui.manager.model.XmlElement.entityMap[s];
+          });
           newValue = value;
           if (attribute.isValueValid(value)) {
             if (oldValue !== value) {
