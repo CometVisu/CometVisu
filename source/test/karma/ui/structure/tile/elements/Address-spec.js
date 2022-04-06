@@ -251,4 +251,57 @@ describe('testing the <cv-address> component of the tile structure', () => {
 
     expect(addr.getConnected()).toBeFalsy();
   });
+
+  it('should not sent the same value twice', () => {
+    const client = cv.io.BackendConnections.getClient('main');
+    spyOn(client, 'write');
+
+    const address = document.createElement('cv-address');
+    address.setAttribute('transform', 'raw');
+    address.setAttribute('mode', 'readwrite');
+    address.textContent = 'Test';
+    document.body.appendChild(address);
+    const addr = address._instance;
+
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        value: '1'
+      }
+    }));
+    expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
+
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        value: '1'
+      }
+    }));
+    expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
+
+    // send same value as update back -> should still block duplicated
+    addr.fireStateUpdate('Test', '1');
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        value: '1'
+      }
+    }));
+    expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
+
+    // now sent an update with a different value -> should unblock
+    addr.fireStateUpdate('Test', '0');
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        value: '1'
+      }
+    }));
+    expect(client.write).toHaveBeenCalledTimes(2);
+    address.remove();
+  });
 });
