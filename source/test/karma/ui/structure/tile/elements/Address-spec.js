@@ -142,7 +142,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
 
     addr.fireStateUpdate('Test', 'ON');
 
-    expect( cv.Application.structureController.mapValue).toHaveBeenCalledOnceWith('testMapping', 1);
+    expect(cv.Application.structureController.mapValue).toHaveBeenCalledOnceWith('testMapping', 1);
 
     // as this is a read address if must NOT have add as listener to the stateEvent
     expect(address.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
@@ -346,6 +346,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
         value: '1'
       }
     }));
+
     expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
 
     address.dispatchEvent(new CustomEvent('sendState', {
@@ -355,6 +356,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
         value: '1'
       }
     }));
+
     expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
 
     // send same value as update back -> should still block duplicated
@@ -366,6 +368,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
         value: '1'
       }
     }));
+
     expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
 
     // now sent an update with a different value -> should unblock
@@ -377,6 +380,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
         value: '1'
       }
     }));
+
     expect(client.write).toHaveBeenCalledTimes(2);
     address.remove();
   });

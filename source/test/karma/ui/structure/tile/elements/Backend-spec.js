@@ -96,10 +96,11 @@ describe('testing the <cv-backend> component of the tile structure', () => {
   });
 
   it('should throw an exception when multiple backends with name "main" are added', function() {
-    spyOn(cv.io.BackendConnections, "hasBackend").and.callFake( () => false);
+    spyOn(cv.io.BackendConnections, 'hasBackend').and.callFake(() => false);
     const backend = document.createElement('cv-backend');
     backend.setAttribute('type', 'knxd');
     document.body.appendChild(backend);
+
     expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('main', 'knxd', null);
 
     const second = document.createElement('cv-backend');
@@ -107,13 +108,13 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     second.setAttribute('type', 'openhab');
     cv.io.BackendConnections.hasBackend.and.callThrough();
 
-    spyOn(cv.core.notifications.Router, "dispatchMessage").and.callFake(() => null);
+    spyOn(cv.core.notifications.Router, 'dispatchMessage').and.callFake(() => null);
     document.body.appendChild(second);
 
     expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('main', 'knxd', null);
     expect(cv.core.notifications.Router.dispatchMessage).toHaveBeenCalledOnceWith('cv.config.error', jasmine.objectContaining({
       topic: 'cv.config.error'
-    }))
+    }));
     backend.remove();
     second.remove();
   });
