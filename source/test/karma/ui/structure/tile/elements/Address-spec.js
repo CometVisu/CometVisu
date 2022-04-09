@@ -130,6 +130,38 @@ describe('testing the <cv-address> component of the tile structure', () => {
     expect(addr.getConnected()).toBeFalsy();
   });
 
+  it('should apply the mapping to the receivedValue', () => {
+    const address = document.createElement('cv-address');
+    address.setAttribute('transform', 'OH:switch');
+    address.setAttribute('mapping', 'testMapping');
+    spyOn(cv.Application.structureController, 'mapValue').and.returnValue('MappedOn');
+    spyOn(address, 'dispatchEvent');
+    address.textContent = 'Test';
+    document.body.appendChild(address);
+    const addr = address._instance;
+
+    addr.fireStateUpdate('Test', 'ON');
+
+    expect( cv.Application.structureController.mapValue).toHaveBeenCalledOnceWith('testMapping', 1);
+
+    // as this is a read address if must NOT have add as listener to the stateEvent
+    expect(address.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
+    const ev = address.dispatchEvent.calls.mostRecent().args[0];
+
+    expect(ev.detail).toEqual({
+      address: 'Test',
+      state: 'MappedOn',
+      raw: 'ON',
+      mapping: 'testMapping',
+      target: '',
+      source: addr
+    });
+
+    address.remove();
+
+    expect(addr.getConnected()).toBeFalsy();
+  });
+
   it('should send a write request to the client on an sendState event', () => {
     const address = document.createElement('cv-address');
     address.setAttribute('transform', 'OH:switch');
@@ -192,6 +224,50 @@ describe('testing the <cv-address> component of the tile structure', () => {
 
     const button = new cv.ui.structure.tile.components.Button();
     button.setType('trigger');
+
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        value: '0',
+        source: button
+      }
+    }));
+
+    // as this is a read address if must NOT have add as listener to the stateEvent
+    expect(client.write).toHaveBeenCalledOnceWith('Test', 'ON', address);
+
+    // make sure that the same value is not sent again
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        source: button
+      }
+    }));
+
+    expect(client.write).toHaveBeenCalledTimes(2);
+
+    address.remove();
+
+    expect(addr.getConnected()).toBeFalsy();
+  });
+
+  it('should always send the fixed value for a pushbutton', () => {
+    const address = document.createElement('cv-address');
+    address.setAttribute('transform', 'OH:switch');
+    address.setAttribute('value', '1');
+    address.textContent = 'Test';
+    document.body.appendChild(address);
+    const addr = address._instance;
+
+    const client = cv.io.BackendConnections.getClient('main');
+    spyOn(client, 'write');
+
+    expect(client.write).not.toHaveBeenCalled();
+
+    const button = new cv.ui.structure.tile.components.Button();
+    button.setType('push');
 
     address.dispatchEvent(new CustomEvent('sendState', {
       bubbles: true,
