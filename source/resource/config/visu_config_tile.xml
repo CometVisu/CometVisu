@@ -230,8 +230,8 @@
             </cv-info>
             <cv-info format="%.2f">
                 <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn2/raw</cv-address>
-                <span slot="label">Gasverbrauch</span>
-                <span slot="unit">m³/h</span>
+                <span slot="label">Stromverbrauch</span>
+                <span slot="unit">W</span>
             </cv-info>
         </cv-group>
         <cv-group>
