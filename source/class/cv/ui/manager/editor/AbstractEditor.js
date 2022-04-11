@@ -176,6 +176,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
         this._onSaved();
         const file = this.getFile();
         if (file) {
+          // file content loaded from FS is outdated now
+          file.resetContent();
           qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
             type: type,
             file: file,
