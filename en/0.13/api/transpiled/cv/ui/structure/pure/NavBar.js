@@ -134,7 +134,7 @@
           var touches = evt.touches[0];
           var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
-          if (pPH.navbars.left.dynamic === false || !qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true || pPH.navbars.left.fadeVisible && !evt.path.some(function (i) {
+          if (pPH.navbars.left.dynamic === false || !qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true || pPH.navbars.left.fadeVisible && !evt.composedPath().some(function (i) {
             return i.id === 'navbarLeft';
           }) || // left navbar is visible, but the touch is somewhere else
           !pPH.navbars.left.fadeVisible && touches.clientX > 20) {
@@ -244,4 +244,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1648710480184
+//# sourceMappingURL=NavBar.js.map?dt=1649957662608

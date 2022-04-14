@@ -80,7 +80,7 @@
           name: 'MQTT_unixtime',
           lname: {
             'de': 'UNIX Zeitstempel',
-            'en': 'unix timestamp'
+            'en': 'UNIX timestamp'
           },
           example: '1641054600',
           unit: '-',
@@ -390,4 +390,4 @@
   cv.transforms.Mqtt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mqtt.js.map?dt=1648710475649
+//# sourceMappingURL=Mqtt.js.map?dt=1649957656155

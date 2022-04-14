@@ -109,6 +109,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /*
     ***********************************************
+      STATICS
+    ***********************************************
+    */
+    statics: {
+      entityMap: {
+        '&': '&amp;',
+        '"': '&quot;',
+        '\'': '&#39;',
+        '`': '&#x60;'
+      }
+    },
+
+    /*
+    ***********************************************
       PROPERTIES
     ***********************************************
     */
@@ -968,6 +982,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               value = '' + value;
             }
 
+            value = value.replace(/[&"'`]/g, function (s) {
+              return cv.ui.manager.model.XmlElement.entityMap[s];
+            });
             newValue = value;
 
             if (attribute.isValueValid(value)) {
@@ -1476,4 +1493,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1648710478746
+//# sourceMappingURL=XmlElement.js.map?dt=1649957660782
