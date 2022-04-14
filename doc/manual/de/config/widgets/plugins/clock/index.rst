@@ -133,19 +133,19 @@ richten:
 
 * Die Zeiger und Elemente müssen in SVG-Gruppen mit entsprechender ID liegen:
 
-  * `Hour24` - der 24h-Zeiger
-  * `Hour` - der Stunden-Zeiger
-  * `Minute` - der Minuten-Zeiger
-  * `Second` - der Sekunden-Zeiger
-  * `AM` - die Anzeige "AM" am Vormittag
-  * `PM` - die Anzeige "PM" am Nachmittag
-  * `Digits` - die numerische Anzeige der Uhrzeit
-  * `Hour24Group` - das Ziffernblatt des 24h-Zeigers
+  * ``Hour24`` - der 24h-Zeiger
+  * ``Hour`` - der Stunden-Zeiger
+  * ``Minute`` - der Minuten-Zeiger
+  * ``Second`` - der Sekunden-Zeiger
+  * ``AM`` - die Anzeige "AM" am Vormittag
+  * ``PM`` - die Anzeige "PM" am Nachmittag
+  * ``Digits`` - die numerische Anzeige der Uhrzeit
+  * ``Hour24Group`` - das Ziffernblatt des 24h-Zeigers
 * Die Zeiger werden durch eine Rotation um den Ursprung verstellt. Somit ist es
   in der Regel notwendig den Zeiger in eine weiteren SVG-Gruppe zu legen die
   diesen an die Zielposition verschiebt.
 * Wenn in der Konfig-Datei Elemente ausgeblendet werden, so wird die
-  entsprechende Ebene durch ein `display="none"` versteckt.
+  entsprechende Ebene durch ein ``display="none"`` versteckt.
 * Für einen einfachen Start kann das Ziffernblatt "Full" mit einem SVG Editor
   wie Inkscape angepasst werden.
 
