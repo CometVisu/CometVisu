@@ -68,6 +68,8 @@ function mock() {
         res.writeHead(200, {'Content-Type': 'application/json'});
       } else if (req.url.endsWith('.svg')) {
         res.writeHead(200, {'Content-Type': 'image/svg+xml'});
+      } else if (req.url.endsWith('.css')) {
+        res.writeHead(200, {'Content-Type': 'text/css'});
       }
       res.write(mockedResponse.content);
       res.end();

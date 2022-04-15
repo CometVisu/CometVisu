@@ -40,10 +40,10 @@ class WidgetExampleParser:
         "end":   '</pages>'
     }
     config_parts_tile = {
-        "start": '<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd">',
+        "start": '<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd">',
         "meta": '',
-        "content_start": '<cv-page id="root" name="Example" class="screenshots active">',
-        "content_end": '</cv-page>',
+        "content_start": '<main><cv-page id="root" name="Example" class="screenshots active">',
+        "content_end": '</cv-page></main>',
         "end":   '</config>'
     }
     screenshot_dir = None

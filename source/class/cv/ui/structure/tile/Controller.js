@@ -17,6 +17,8 @@
  * User are able to define own templates for re-usable tiles if they need one that this structure does not provide.
  *
  * @asset(structures/tile/*)
+ * @author Tobias Bräutigam
+ * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.Controller', {
   extend: qx.core.Object,

@@ -3,7 +3,7 @@
 Das Switch Widget
 =================
 
-.. api-doc:: TileSwitch
+.. api-doc:: cv.ui.structure.tile.Controller
 
 Beschreibung
 ------------

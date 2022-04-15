@@ -8,11 +8,11 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element name="cv-meta" type="cv-meta" minOccurs="0"/>
-        <xsd:element name="header" type="header"/>
+        <xsd:element name="header" type="header" minOccurs="0"/>
         <xsd:element name="main" type="main"/>
-        <xsd:element name="footer" type="footer"/>
+        <xsd:element name="footer" type="footer" minOccurs="0"/>
       </xsd:sequence>
-      <xsd:attribute name="design" type="xsd:string" use="required" default="tile">
+      <xsd:attribute name="design" type="xsd:string" default="tile">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
           <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
@@ -506,7 +506,7 @@
         <xsd:element name="header" minOccurs="0" type="custom"/>
         <xsd:element name="template" maxOccurs="2">
           <xsd:complexType>
-            <xsd:simpleContent>
+            <xsd:complexContent>
               <xsd:extension base="template">
                 <xsd:attribute name="when">
                   <xsd:simpleType>
@@ -516,7 +516,7 @@
                   </xsd:simpleType>
                 </xsd:attribute>
               </xsd:extension>
-            </xsd:simpleContent>
+            </xsd:complexContent>
           </xsd:complexType>
         </xsd:element>
         <xsd:element name="model">
@@ -717,7 +717,7 @@
         </xsd:element>
         <xsd:element name="cv-value" maxOccurs="unbounded">
           <xsd:complexType>
-            <xsd:simpleContent>
+            <xsd:complexContent>
               <xsd:extension base="cv-value">
                 <xsd:attribute name="slot" use="required">
                   <xsd:simpleType>
@@ -727,7 +727,7 @@
                   </xsd:simpleType>
                 </xsd:attribute>
               </xsd:extension>
-            </xsd:simpleContent>
+            </xsd:complexContent>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
@@ -764,7 +764,7 @@
       </xsd:element>
       <xsd:element name="cv-popup" minOccurs="0">
         <xsd:complexType>
-          <xsd:simpleContent>
+          <xsd:complexContent>
             <xsd:extension base="cv-popup">
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
@@ -774,7 +774,7 @@
                 </xsd:simpleType>
               </xsd:attribute>
             </xsd:extension>
-          </xsd:simpleContent>
+          </xsd:complexContent>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
