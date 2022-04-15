@@ -4,6 +4,22 @@ var fs = require('fs');
 
 
 var mocks = [];
+
+function setMimeType() {
+  return function(req, res, next) {
+    const url = req.url.split('?')[0];
+    if (url.endsWith('.xml')) {
+      res.setHeader('Content-Type', 'application/xml;charset=UTF-8');
+    } else if (url.endsWith('.json')) {
+      res.setHeader('Content-Type', 'application/json');
+    } else if (url.endsWith('.svg')) {
+      res.setHeader('Content-Type', 'image/svg+xml');
+    } else if (url.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    }
+    next();
+  }
+}
 function captureMock() {
   return function (req, res, next) {
     // match on POST requests starting with /mock
@@ -62,13 +78,13 @@ function mock() {
     if (mockedResponse) {
       if (mockedResponse.hasOwnProperty('mimeType')) {
         res.writeHead(200, {'Content-Type': mockedResponse.mimeType});
-      } else if (req.url.endsWith('.xml')) {
+      } else if (url.endsWith('.xml')) {
         res.writeHead(200, {'Content-Type': 'text/xml;charset=UTF-8'});
-      } else if (req.url.endsWith('.json')) {
+      } else if (url.endsWith('.json')) {
         res.writeHead(200, {'Content-Type': 'application/json'});
-      } else if (req.url.endsWith('.svg')) {
+      } else if (url.endsWith('.svg')) {
         res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-      } else if (req.url.endsWith('.css')) {
+      } else if (url.endsWith('.css')) {
         res.writeHead(200, {'Content-Type': 'text/css'});
       }
       res.write(mockedResponse.content);
@@ -329,6 +345,7 @@ module.exports = function(grunt) {
           base: 'compiled',
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
+            middlewares.unshift(setMimeType());
             middlewares.unshift(captureMock());
             middlewares.unshift(mock());
             return middlewares;

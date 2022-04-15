@@ -372,6 +372,7 @@ qx.Class.define('cv.Application',
     _applyInManager: function (value) {
       if (value) {
         qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+        this.block(false);
       } else {
         qx.bom.History.getInstance().addToHistory('', 'CometVisu');
       }

@@ -125,7 +125,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
   },
 
   defer: function(statics) {
-    // initialize on load
-    statics.getInstance();
+    // initialize on load but delay the call
+    qx.event.Timer.once(statics.getInstance, statics, 1000);
   }
 });

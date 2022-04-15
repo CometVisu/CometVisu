@@ -127,7 +127,7 @@ qx.Class.define('cv.data.Model', {
     },
 
     /**
-     * handles incomind data from a specitic backend.
+     * handles incoming data from a specific backend.
      * @param backendName {String} name of the backend
      * @param data {Map} Key/value map of address/state
      */
@@ -136,11 +136,15 @@ qx.Class.define('cv.data.Model', {
         return;
       }
       const addressList = this.__addressList[backendName];
-      Object.getOwnPropertyNames(data).forEach(function(address) {
-        if (Object.prototype.hasOwnProperty.call(addressList, address)) {
-          this.onUpdate(address, data[address], backendName);
-        }
-      }, this);
+      if (addressList) {
+        Object.getOwnPropertyNames(data).forEach(function (address) {
+          if (Object.prototype.hasOwnProperty.call(addressList, address)) {
+            this.onUpdate(address, data[address], backendName);
+          }
+        }, this);
+      } else {
+        this.warn('no addresses registered for backend "'+backendName+'", skipping update');
+      }
     },
 
     /**

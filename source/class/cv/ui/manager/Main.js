@@ -484,13 +484,7 @@ qx.Class.define('cv.ui.manager.Main', {
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
         }
-        if (!editorConfig.instance.isReady()) {
-          editorConfig.instance.addListenerOnce('changeReady', () => {
-            editorConfig.instance.setFile(file);
-          }, this);
-        } else {
-          editorConfig.instance.setFile(file);
-        }
+        editorConfig.instance.setFile(file);
         if (this._stack.indexOf(editorConfig.instance) < 0) {
           this._stack.add(editorConfig.instance);
         }

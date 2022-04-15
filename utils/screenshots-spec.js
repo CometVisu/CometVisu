@@ -417,7 +417,6 @@ describe('generation screenshots from jsdoc examples', function () {
         } catch (e) {
           const name = currentScreenshot.name || settings.screenshots.map(e => e.name).join(',');
           console.error('>>> error creating screenshot(s)', name, 'from file', filePath);
-          console.error(e.message);
           stats.error++;
           stats.total++;
           runResult.failed = true;

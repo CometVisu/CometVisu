@@ -35,6 +35,8 @@ class WidgetExampleParser:
     config_parts_pure = {
         "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
         "meta": '<meta/>',
+        "meta_tag": "meta",
+        "default_meta_content": "",
         "content_start": '<page name="Example">',
         "content_end": '</page>',
         "end":   '</pages>'
@@ -42,6 +44,8 @@ class WidgetExampleParser:
     config_parts_tile = {
         "start": '<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd">',
         "meta": '',
+        "meta_tag": "cv-meta",
+        "default_meta_content": '<cv-backend name="main" default="true" type="simulated"/>',
         "content_start": '<main><cv-page id="root" name="Example" class="screenshots active">',
         "content_end": '</cv-page></main>',
         "end":   '</config>'
@@ -191,6 +195,11 @@ class WidgetExampleParser:
         if parsed['meta_content'] and len(parsed['meta_content']) > 0:
             # replace default value
             visu_config_parts['meta'] = parsed['meta_content']
+
+        if visu_config_parts['default_meta_content'] and len(visu_config_parts['default_meta_content']) > 0:
+            visu_config_parts['meta'] = visu_config_parts['meta'].replace(
+                "<%s>" % visu_config_parts["meta_tag"],
+                "<%s>%s" % (visu_config_parts["meta_tag"], visu_config_parts['default_meta_content']))
 
         # build the real config source
         visu_config = visu_config_parts['start'] + \
