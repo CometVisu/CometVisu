@@ -3,7 +3,7 @@
     <template id="switch">
         <cv-tile>
             <cv-row colspan="3" row="middle">
-                <cv-button class="round-button" slot-mapping="" slot-styling="" size="large">
+                <cv-button class="round-button" slot-mapping="" slot-styling="" size="large" slot-progress-mapping="">
                     <slot name="address">NEEDS ADDRESS</slot>
                     <cv-icon class="value ri-question-mark" />
                 </cv-button>

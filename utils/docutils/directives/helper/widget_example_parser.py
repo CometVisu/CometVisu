@@ -70,7 +70,7 @@ class WidgetExampleParser:
         settings_node = None
         global_caption = None
         meta_content = None
-        config_example = None
+        config_example = []
 
         if not name in self.counters:
             self.counters[name] = 0
@@ -79,6 +79,7 @@ class WidgetExampleParser:
         try:
             # we need one surrounding element to prevent parse errors
             xml = etree.fromstring("<root>%s</root>" % source)
+            single_widget = True
             for child in xml:
                 if etree.iselement(child):
 
@@ -91,12 +92,16 @@ class WidgetExampleParser:
                     elif child.tag == "caption":
                         global_caption = child.text
                     else:
+                        if child.tag == "header" or child.tag == "footer" or child.tag == "main":
+                            single_widget = False
                         # the config example
-                        config_example = child
+                        config_example.append(child)
         except Exception as e:
             print("Parse error: %s" % str(e))
 
-        example_content = etree.tostring(config_example, encoding='utf-8')
+        example_content = b""
+        for elem in config_example:
+            example_content += etree.tostring(elem, encoding='utf-8')
         display_content = example_content
 
         if meta_node is not None:
@@ -175,11 +180,12 @@ class WidgetExampleParser:
         result = {
             "example_content": example_content,
             "display_content": display_content,
-            "example_tag": config_example.tag,
+            "example_tag": config_example[0].tag,
             "meta_content": meta_content,
             "global_caption": global_caption,
             "settings": settings,
-            "design": design
+            "design": design,
+            "single_widget": single_widget
         }
         return result
 
@@ -202,12 +208,17 @@ class WidgetExampleParser:
                 "<%s>%s" % (visu_config_parts["meta_tag"], visu_config_parts['default_meta_content']))
 
         # build the real config source
-        visu_config = visu_config_parts['start'] + \
-                      visu_config_parts['meta'] + \
-                      visu_config_parts['content_start'] + \
-                      parsed['example_content'].decode('utf-8') + \
-                      visu_config_parts['content_end'] + \
-                      visu_config_parts['end']
+        if parsed["single_widget"] is True:
+            visu_config = visu_config_parts['start'] + \
+                          visu_config_parts['meta'] + \
+                          visu_config_parts['content_start'] + \
+                          parsed['example_content'].decode('utf-8') + \
+                          visu_config_parts['content_end'] + \
+                          visu_config_parts['end']
+        else:
+            visu_config = visu_config_parts['start'] + \
+                          parsed['example_content'].decode('utf-8') + \
+                          visu_config_parts['end']
 
         # validate generated config against XSD
         try:

@@ -39,33 +39,62 @@ wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kan
 |   |   |   |
 +---+---+---+
 
-Innerhalb den Zellen einer Kachel können nun die von der Tile-Struktur vordefiniertem Komponenten frei platziert werden.
+Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur vordefiniertem Komponenten frei platziert werden.
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Charts.
 
 Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit. So enthält das
-Switch-Widget z.B. eine Button in der mittleren Zelle und einen zentrierte Text in der Zeile darunter.
-
-
-Widgets
--------
-
-* Switch
-* Info
-* Shutter
-* Status
-* MediaPlayer
-
-.. toctree::
-
-    widgets/switch
+Switch-Widget z.B. eine Button in der mittleren Zelle und zentrierten Text in der Zelle darunter.
 
 
 Navigation / Seitenstruktur
 ---------------------------
 
+.. widget-example::
+
+            <settings design="tile" selector="body">
+                <screenshot name="tile-ui-structure">
+                </screenshot>
+            </settings>
+            <header>
+                <h1>Header-Bereich</h1>
+            </header>
+            <main>
+                <aside mobile="false">
+                    <h1>Linke Seitenleiste</h1>
+                </aside>
+                <cv-page id="main" name="Start">
+                    <h1>Seiteninhalte</h1>
+                </cv-page>
+                <aside>
+                    <h1>Rechte Seitenleiste</h1>
+                </aside>
+            </main>
+            <footer>
+                <h1>Footer-Bereich</h1>
+            </footer>
+
+
 * Pages
 * Navbar / MainNav / SideNav
 * Details-Element
+* Group
+* Popup
+
+
+Widgets
+-------
+
+.. toctree::
+    :maxdepth: 1
+
+    widgets/switch
+* Shutter
+* Info
+* Status
+* MediaPlayer
+* RTC
+
+
 
 Komponenten
 -----------
@@ -77,6 +106,8 @@ Komponenten
 * Select
 * Spinner
 * Slider
+* List
+* Menu
 * Chart
 
 

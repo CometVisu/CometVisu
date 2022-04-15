@@ -93,7 +93,7 @@ Taster
 
 Ein Taster sendet unterschiedliche Werte beim Drücken und Loslassen des Buttons. Dazu benötigt man jeweils eine
 Adresse für jedes dieser Events (up bzw. down). Über das ``on`` Attribut einer Adresse kann man festlegen, bei welchem Event
-der Wert des `value`-Attributs gesendet wird. Eine <cv-address> mit ``mode="write" value="1" on="down"`` schickt also
+der Wert des ``value``-Attributs gesendet wird. Eine ``<cv-address> mit`` ``mode="write" value="1" on="down"`` schickt also
 den Wert ``1`` beim Drücken des Buttons an das Backend und eine <cv-address> mit ``mode="write" value="0" on="up"`` schickt
 den Wert ``0`` beim Loslassen des Buttons.
 
@@ -119,6 +119,43 @@ den Wert ``0`` beim Loslassen des Buttons.
                 <cv-address slot="address" transform="DPT:1.001" mode="read">1/4/0</cv-address>
                 <span slot="primaryLabel">Taster</span>
             </cv-switch>
+
+
+Fortschrittsanzeige
+-------------------
+
+Das Switch-Widget bietet zusätzlich die Möglichkeit einen runden Fortschrittsbalken anzuzeigen. Ein möglicher
+Anwendungsfall hierfür wäre ein Switch mit dem man einen Musik-Player steuert und über den Fortschrittsbalken
+anzeigt wie viel vom aktuellen Lied schon abgespielt wurde (oder alternativ die Lautstärke des Players).
+Der Fortschrittsbalken dient hier aber nur der Information und kann selbst nicht bedient werden.
+Für den Fortschrittsbalken muss nur eine zusätzliches ``<cv-address slot="address"`` Element mit ``mode="read"``
+und ``target="progress"`` hinzugefügt werden. Der Fortschrittsbalken kann Werte zwischen 0 und 100 darstellen.
+
+.. widget-example::
+
+            <settings design="tile">
+                <screenshot name="cv-progress" margin="0 10 10 0">
+                    <data address="1/4/0">1</data>
+                    <data address="1/4/1">65</data>
+                </screenshot>
+            </settings>
+            <cv-meta>
+               <cv-mapping name="PlayStop">
+                    <entry value="0">ri-play-fill</entry>
+                    <entry value="1">ri-stop-fill</entry>
+                </cv-mapping>
+                <cv-styling name="button">
+                    <entry value="1">active</entry>
+                    <entry value="0">inactive</entry>
+                </cv-styling>
+            </cv-meta>
+            <cv-switch mapping="PlayStop" styling="button">
+                <cv-address slot="address" transform="DPT:1.001" value="1">1/4/0</cv-address>
+                <cv-address slot="address" transform="DPT:5.001" mode="read" target="progress">1/4/1</cv-address>
+                <span slot="primaryLabel">Player</span>
+                <span slot="secondaryLabel"></span>
+            </cv-switch>
+
 
 Erlaubte Attribute im Switch-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

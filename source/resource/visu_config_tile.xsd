@@ -146,6 +146,8 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
+        <xsd:element name="p" type="p"/>
+        <xsd:element name="h1" type="text"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -156,6 +158,8 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
+        <xsd:element name="p" type="p"/>
+        <xsd:element name="h1" type="text"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -197,12 +201,13 @@
   </xsd:complexType>
 
   <xsd:complexType name="aside">
-
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
+        <xsd:element name="p" type="p"/>
+        <xsd:element name="h1" type="text"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class"/>
@@ -223,6 +228,8 @@
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
+        <xsd:element name="p" type="p"/>
+        <xsd:element name="h1" type="text"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string">
@@ -592,6 +599,12 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
+    <xsd:attribute name="progress-mapping" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Mapping for the progress values.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Mapping für die "progress" Werte.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="on-value" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
@@ -1090,6 +1103,11 @@
 
   <xsd:complexType name="label" mixed="true">
     <xsd:attribute ref="class"/>
+  </xsd:complexType>
+  <xsd:complexType name="text">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string"/>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="p" mixed="true">
     <xsd:sequence>
