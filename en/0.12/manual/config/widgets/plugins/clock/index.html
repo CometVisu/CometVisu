@@ -123,7 +123,7 @@
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
-<p>The behaviour and appearance of the gauge plugins can be influenced by using certain attributes and elements.
+<p>The behaviour and appearance of the clock plugins can be influenced by using certain attributes and elements.
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
@@ -201,8 +201,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <figure class="align-center" id="id2">
 <img alt="../../../../_images/en_config_widgets_plugins_clock_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_clock_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text"><p>Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
-</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -447,8 +446,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <figure class="align-center" id="id3">
 <img alt="../../../../_images/en_config_widgets_plugins_clock_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_clock_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text"><p>Elements in the editor</p>
-</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -462,6 +460,72 @@ for the gauge plugin.</p>
 <p>Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
+<p>This example clock plugin is created by the following code:</p>
+<figure class="align-default" id="id4">
+<img alt="Clock plugin" src="../../../../_images/clock_pure_simple.png" />
+<figcaption>
+<p><span class="caption-text">Clock plugin</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;clock&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;clock</span> <span class="na">src=</span><span class="s">&quot;plugins/clock/clock_pure.svg&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:10.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>12/7/10<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/clock&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-clock-face">
+<h2>Custom clock face<a class="headerlink" href="#custom-clock-face" title="Permalink to this headline">¶</a></h2>
+<p>The attribute <code class="docutils literal notranslate"><span class="pre">src</span></code> allows the use of a custom clock face. It must be
+supplied as a SVG file and follow the described standard defined below:</p>
+<ul class="simple">
+<li><p>The hands and their elements must be contained in a SVG group each and have
+the corresponding ID:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hour24</span></code> - the 24h hand</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hour</span></code> - the hour hand</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Minute</span></code> - the minute hand</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Second</span></code> - the second hand</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AM</span></code> - the “AM” display for the morning</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PM</span></code> - the “PM” display for afternoon</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Digits</span></code> - the numerical display of the time</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hour24Group</span></code> - the clock face of the 24h hand</p></li>
+</ul>
+</li>
+<li><p>The hands will be positioned by a rotation around the origin. So it is usually
+required that the hands are within an additional SVG group that moves them
+to the desired position.</p></li>
+<li><p>When the config file hides elements the corresponding layer is hidden by
+a <code class="docutils literal notranslate"><span class="pre">display=&quot;none&quot;</span></code>.</p></li>
+<li><p>For a quick start the clock face “full” can be used and modified by an SVG
+editor like Inkscape.</p></li>
+</ul>
+<p>The CometVisu comes with these clock faces:</p>
+<figure class="align-default" id="id5">
+<img alt="Clock face &quot;full&quot;: plugins/clock/clock_full.svg" src="../../../../_images/clock_full.png" />
+<figcaption>
+<p><span class="caption-text">Clock face “full”: plugins/clock/clock_full.svg</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<img alt="Clock face &quot;simple&quot;: plugins/clock/clock_simple.svg" src="../../../../_images/clock_simple.png" />
+<figcaption>
+<p><span class="caption-text">Clock face “simple”: plugins/clock/clock_simple.svg</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<img alt="Clock face &quot;pure&quot;: plugins/clock/clock_pure.svg" src="../../../../_images/clock_pure.png" />
+<figcaption>
+<p><span class="caption-text">Clock face “pure”: plugins/clock/clock_pure.svg</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>

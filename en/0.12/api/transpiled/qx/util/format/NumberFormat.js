@@ -296,4 +296,4 @@
   qx.util.format.NumberFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NumberFormat.js.map?dt=1650119490622
+//# sourceMappingURL=NumberFormat.js.map?dt=1650122803215
