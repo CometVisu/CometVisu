@@ -69,10 +69,10 @@ Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weg
                 <h1>Header-Bereich</h1>
             </header>
             <main>
-                <aside mobile="false">
+                <aside>
                     <h1>Linke Seitenleiste</h1>
                 </aside>
-                <cv-page id="main" name="Start">
+                <cv-page id="start">
                     <h1>Seiteninhalte</h1>
                 </cv-page>
                 <aside>
