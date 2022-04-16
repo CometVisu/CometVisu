@@ -43,16 +43,26 @@ Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur vordefin
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Charts.
 
 Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit. So enthält das
-Switch-Widget z.B. eine Button in der mittleren Zelle und zentrierten Text in der Zelle darunter.
+Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
 
 
 Navigation / Seitenstruktur
 ---------------------------
 
+Neben den eigentlichen Seiteninhalten, gibt es feste Bereiche, die immer sichtbar sind unabhängig davon auf welcher
+Unterseite sich man gerade befindet. Dazu gibt es Header- und Footer-Bereiche und jeweils eine linke und rechte
+Seitenleiste. Im Hauptbereich befinden sich dann die einzelnen Seiten mit den jeweiligen Inhalten (Kacheln) zwischen denen
+hin und her navigiert werden kann. Die feststehenden Bereiche können für Inhalte benutzt werden die immer sichtbar
+sein sollen, also z.B. Navigationsleisten oder Widgets die einen globalen Status anzeigen, wie die Anzahl der
+offenen Fenster oder der eingeschalteten Lichter.
+
+Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weggelassen werden.
+
 .. widget-example::
 
             <settings design="tile" selector="body">
                 <screenshot name="tile-ui-structure">
+                <caption>Grundstruktur mit allen verfügbaren optionalen Bereichen</caption>
                 </screenshot>
             </settings>
             <header>
