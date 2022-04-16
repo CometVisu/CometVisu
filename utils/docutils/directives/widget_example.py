@@ -98,7 +98,10 @@ class WidgetExampleDirective(Directive):
         cnode = nodes.Element()  # anonymous container for parsing
         sl = statemachine.StringList([caption_string], source='')
         self.state.nested_parse(sl, self.content_offset, cnode)
-        caption = nodes.caption(caption_string, '', *cnode)
+        caption = nodes.caption(caption_string, '')
+        for child in cnode[0]:
+            caption += child
+
         if 'align' in self.options:
             caption['align'] = self.options['align']
         else:
