@@ -69,7 +69,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         name: 'MQTT_unixtime',
         lname: {
           'de': 'UNIX Zeitstempel',
-          'en': 'unix timestamp'
+          'en': 'UNIX timestamp'
         },
         example: '1641054600',
         unit: '-',
