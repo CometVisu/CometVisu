@@ -74,7 +74,7 @@ Option                       Description                                    Valu
         <files>
             <file type="css">resource/config/media/style.css</file>
             <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
-        </plugins>
+        </files>
         ...
     </meta>
 
