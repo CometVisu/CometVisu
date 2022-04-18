@@ -28,7 +28,13 @@ Backend
 -------
 
 Damit die CometVisu auf die Geräte zugreifen kann wird ein "Backend" benötigt.
-Hierzu gibt es verschiedene Möglichkeiten:
+
+.. note::
+
+    Die CometVisu unterstützt die Verbindung mit einem Backend. Die
+    gleichzeitige Verbindung zu mehreren Backends wird nicht unterstützt.
+
+Für die Backend-Verbindung gibt es verschiedene Möglichkeiten:
 
 knxd / eibd
 ~~~~~~~~~~~

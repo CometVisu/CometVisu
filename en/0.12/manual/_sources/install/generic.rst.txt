@@ -27,6 +27,12 @@ Backend
 -------
 
 To be able to connect the devices with the CometVisu you need a "backend".
+
+.. note::
+
+    The CometVisu supports only one backend at the same time. The simultaneous
+    connection to multiple backends is not supported.
+
 There are different possibilities:
 
 knxd / eibd

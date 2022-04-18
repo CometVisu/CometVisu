@@ -195,6 +195,8 @@
           var file = this.getFile();
 
           if (file) {
+            // file content loaded from FS is outdated now
+            file.resetContent();
             qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
               type: type,
               file: file,
@@ -248,4 +250,4 @@
   cv.ui.manager.editor.AbstractEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractEditor.js.map?dt=1650122770793
+//# sourceMappingURL=AbstractEditor.js.map?dt=1650269536437
