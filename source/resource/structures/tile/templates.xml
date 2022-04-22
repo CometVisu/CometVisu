@@ -17,12 +17,12 @@
     <template id="shutter">
         <cv-tile>
             <cv-row colspan="3" row="first">
-                <cv-value slot-position-mapping="">
+                <cv-value slot-position-mapping="" slot-position-format="%d%%">
                     <slot name="positionAddress">NEEDS ADDRESS</slot>
                     <label class="value"/>
                 </cv-value>
             </cv-row>
-            <cv-button class="round-button" row="2" column="1" slot-styling="" size="small">
+            <cv-button class="round-button" row="2" column="1" slot-styling="button" size="small">
                 <slot name="downAddress">NEEDS DOWNADDRESS</slot>
                 <cv-icon class="ri-arrow-down-s-line"/>
             </cv-button>

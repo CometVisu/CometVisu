@@ -160,7 +160,7 @@
         </cv-group>
         <cv-group open="true">
             <summary>Other actors</summary>
-            <cv-shutter styling="button" position-mapping="percent">
+            <cv-shutter>
                 <cv-address slot="downAddress" transform="OH:rollershutter" mode="write" value="100" backend="main">Shutter_FF_Living</cv-address>
                 <cv-address slot="stopAddress" transform="OH:rollershutter" mode="write" value="STOP" backend="main">Shutter_FF_Living</cv-address>
                 <cv-address slot="upAddress" transform="OH:rollershutter" mode="write" value="0" backend="main">Shutter_FF_Living</cv-address>

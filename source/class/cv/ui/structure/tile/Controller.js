@@ -385,7 +385,7 @@ class TemplatedElement extends HTMLElement {
       // transfer attribute slots
       const attributes = this.getAttributeNames();
       attributes.forEach(name => {
-        const value = this.getAttribute(name);
+        let value = this.getAttribute(name);
         const targets = content.querySelectorAll('[slot-'+name+']');
         let targetName = name;
         // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
@@ -393,18 +393,44 @@ class TemplatedElement extends HTMLElement {
           targetName = 'mapping';
         } else if (name.endsWith('-styling')) {
           targetName = 'styling';
+        } else if (name.endsWith('-format')) {
+          targetName = 'format';
         }
         targets.forEach(target => {
           target.removeAttribute('slot-'+name);
-          target.setAttribute(targetName, value);
+          target.setAttribute(targetName, value || target.getAttribute('slot-'+name));
         });
         if (targets.length > 0) {
           this.removeAttribute(name);
         }
       });
+      content.querySelectorAll('*')
+        .forEach(elem => {
+          [...elem.attributes].forEach(attr => {
+            if (attr.name.startsWith('slot-')) {
+              let targetName = attr.name.substring(5)
+              if (attr.name.endsWith('-mapping')) {
+                targetName = 'mapping';
+              } else if (attr.name.endsWith('-styling')) {
+                targetName = 'styling';
+              } else if (attr.name.endsWith('-format')) {
+                targetName = 'format';
+              }
+              if (attr.value) {
+                elem.setAttribute(targetName, attr.value)
+              }
+              elem.removeAttribute(attr.name)
+            }
+          })
+        })
+      
       // clear content
       this.innerHTML = '';
       this.appendChild(content);
     }
+  }
+
+  deleteEmptySlotAttributes(elem) {
+    
   }
 }
