@@ -140,13 +140,14 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
-      } 
-        return {
-          top: page.getShowNavbarTop(),
-          bottom: page.getShowNavbarBottom(),
-          left: page.getShowNavbarLeft(),
-          right: page.getShowNavbarRight()
-        };
+      }
+
+      return {
+        top: page.getShowNavbarTop(),
+        bottom: page.getShowNavbarBottom(),
+        left: page.getShowNavbarLeft(),
+        right: page.getShowNavbarRight()
+      };
     },
 
     /**
@@ -305,6 +306,10 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           const nav = document.querySelector('#' + id + pos + '_navbar');
           if (nav) {
             const data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            if (tree.length-level > data.scope) {
+              // navbar that is not visible at the moment -> ignore it
+              return;
+            }
             if (data.dynamic !== null) {
               dynamic[pos] = data.dynamic;
             }
@@ -317,9 +322,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
             if (data.width !== null) {
               size[pos] = data.width;
             } else if (size[pos] === 0) {
-                // navbar with content but no size given so far => use default
-                size[pos] = 300;
-              }
+              // navbar with content but no size given so far => use default
+              size[pos] = 300;
+            }
           }
         });
         level++;
