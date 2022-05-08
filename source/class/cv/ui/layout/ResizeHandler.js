@@ -154,15 +154,15 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             // backdrop not available yet - reload
             qx.event.Timer.once(this.invalidateBackdrop, this, 100);
             return;
-          } else {
-            // backdrop available
-            if (
-              page.getSize() === 'scaled' && page.getBackdropType() === 'embed' &&
-              backdropSVG &&
-              backdropSVG.children[0].getAttribute('preserveAspectRatio') !== 'none'
-            ) {
-              backdropSVG.children[0].setAttribute('preserveAspectRatio','none');
-            }
+          }
+
+          // backdrop available
+          if (
+            page.getSize() === 'scaled' && page.getBackdropType() === 'embed' &&
+            backdropSVG &&
+            backdropSVG.children[0].getAttribute('preserveAspectRatio') !== 'none'
+          ) {
+            backdropSVG.children[0].setAttribute('preserveAspectRatio', 'none');
           }
 
           // Note 1: this here is a work around for older browsers that can't use
