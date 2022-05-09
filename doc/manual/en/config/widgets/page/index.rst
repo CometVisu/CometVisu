@@ -82,7 +82,7 @@ position in pixel.
     config must be opened in the browser where the development mode must be
     activated. Then the "box with cursor" must be clicked followed by a click
     on the widget of interest in the browser window itself. This widget is now
-    shown in the DOM tree. Probably it is necessary to go there a few levels up
+    shown in the DOM tree. Probably it is necessary to go a few levels up there
     so that in the end the line with ``<div class="widget ...`` is selected.
     There you can see at the ``style`` attribute the values set in the config
     file for ``left`` and ``top``.
