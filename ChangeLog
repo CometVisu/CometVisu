@@ -3,6 +3,10 @@
 0.12.0
 ======
 
+### v0.12.0-RC11 (2022/05/11)
+
+- [#1277](https://github.com/CometVisu/CometVisu/pull/1277) only skip if the navbar has a scope set (@peuter)
+
 ### v0.12.0-RC10 (2022/05/11)
 
 - [#1276](https://github.com/CometVisu/CometVisu/pull/1276) Fix 2d pages. (@ChristianMayer)
