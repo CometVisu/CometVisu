@@ -64,8 +64,8 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
         right: path === 'id' ? false : null
       };
       Array.from(page.children).filter(function(m) {
- return m.matches('navbar'); 
-}).forEach(function(elem) {
+        return m.matches('navbar');
+      }).forEach(function(elem) {
         shownavbar[elem.getAttribute('position') || 'left'] = true;
       });
       // overwrite default when set manually in the config

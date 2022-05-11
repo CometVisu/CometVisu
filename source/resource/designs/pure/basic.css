@@ -15,6 +15,11 @@ h1
   margin-left: 15px;
 }
 
+.type_2d > div > h1
+{
+  position: absolute;
+}
+
 h2
 {
   font-size: 1.25em;
@@ -384,7 +389,7 @@ body br
 
 /* Clearfix */
 .clearfix:after {
-    content: ".";
+    content: " ";
     display: block;
     clear: both;
     visibility: hidden;

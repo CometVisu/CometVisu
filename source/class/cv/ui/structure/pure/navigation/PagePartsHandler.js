@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
           if (!this.navbars.left.fadeVisible) {
             navbar.style.left = -navbar.getBoundingClientRect().width + 'px';
           }
-          cv.ui.structure.pure.layout.ResizeHandler.invalidateNavbar();
+          cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
@@ -155,6 +155,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
       }
+
       return {
         top: page.getShowNavbarTop(),
         bottom: page.getShowNavbarBottom(),
@@ -319,6 +320,10 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
           const nav = document.querySelector('#' + id + pos + '_navbar');
           if (nav) {
             const data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            if (tree.length-level > data.scope) {
+              // navbar that is not visible at the moment -> ignore it
+              return;
+            }
             if (data.dynamic !== null) {
               dynamic[pos] = data.dynamic;
             }

@@ -203,7 +203,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     },
 
     /**
-     * Set childrens column widths
+     * Set children column widths
      */
     applyColumnWidths: function() {
       cv.ui.structure.pure.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
@@ -222,7 +222,10 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         let size = 'width:100%;height:100%;';
         switch (this.getSize()) {
           case 'fixed':
-            size = '';
+            size += 'object-fit:none;';
+            if (this.getBackdropAlign()) {
+              size += 'object-position:' + this.getBackdropAlign() + ';';
+            }
             break;
 
           case 'contained':
