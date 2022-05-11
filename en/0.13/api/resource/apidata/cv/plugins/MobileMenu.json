@@ -250,17 +250,17 @@
         "@param": [
           {
             "name": "@param",
-            "body": "noWidgetContainer {Boolean} if false: do not surround the childrens with a div-element with class 'widget_container'",
+            "body": "{boolean=} noWidgetContainer if false: do not surround the childrens with a div-element with class 'widget_container'",
             "paramName": "noWidgetContainer",
-            "description": " if false: do not surround the childrens with a div-element with class 'widget_container'",
-            "type": "Boolean"
+            "description": "if false: do not surround the childrens with a div-element with class 'widget_container'",
+            "type": "boolean="
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{String} HTML code",
-            "type": "String",
+            "body": "{string} HTML code",
+            "type": "string",
             "description": " HTML code"
           }
         ]

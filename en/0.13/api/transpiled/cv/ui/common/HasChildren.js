@@ -99,10 +99,11 @@
       /**
        * Creates the HTML code for the children if this widget
        *
-       * @param noWidgetContainer {Boolean} if false: do not surround the childrens with a div-element with class 'widget_container'
-       * @return {String} HTML code
+       * @param {boolean=} noWidgetContainer if false: do not surround the childrens with a div-element with class 'widget_container'
+       * @return {string} HTML code
        */
-      getChildrenDomString: function getChildrenDomString(noWidgetContainer) {
+      getChildrenDomString: function getChildrenDomString() {
+        var noWidgetContainer = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
         var container = '';
         this.getChildWidgets().forEach(function (widget) {
           var subelement = widget.getDomString();
@@ -125,4 +126,4 @@
   cv.ui.common.HasChildren.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasChildren.js.map?dt=1650225678045
+//# sourceMappingURL=HasChildren.js.map?dt=1652287882508

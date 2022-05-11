@@ -385,40 +385,40 @@ not to reprogram all parsers in such a case, this separation has been made.</p>
 <h3>example plugin<a class="headerlink" href="#example-plugin" title="Permalink to this headline">¶</a></h3>
 <p>A simple example, for a new widget that can be plugged in,
 can be found in the <code class="docutils literal notranslate"><span class="pre">resource/config/structure_custom.js</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">extend</span><span class="o">:</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">AbstractWidget</span><span class="p">,</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nx">extend</span><span class="o">:</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">AbstractWidget</span><span class="p">,</span><span class="w"></span>
 
-  <span class="nx">statics</span><span class="o">:</span> <span class="p">{</span>
-    <span class="c1">// parse element from visu_config*.xml</span>
-    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">xml</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">flavour</span><span class="p">,</span> <span class="nx">pageType</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">parseElement</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">xml</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">flavour</span><span class="p">,</span> <span class="nx">pageType</span><span class="p">);</span>
-      <span class="nx">data</span><span class="p">.</span><span class="nx">content</span> <span class="o">=</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
-      <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
+<span class="w">  </span><span class="nx">statics</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// parse element from visu_config*.xml</span><span class="w"></span>
+<span class="w">    </span><span class="nx">parse</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">xml</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">flavour</span><span class="p">,</span><span class="w"> </span><span class="nx">pageType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">parseElement</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="nx">xml</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">flavour</span><span class="p">,</span><span class="w"> </span><span class="nx">pageType</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
 
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">content</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">check</span><span class="o">:</span> <span class="s1">&#39;String&#39;</span><span class="p">,</span>
-        <span class="nx">init</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
+<span class="w">  </span><span class="nx">properties</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nx">check</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;String&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">init</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
 
-  <span class="nx">members</span><span class="o">:</span> <span class="p">{</span>
-    <span class="c1">// generate the DOM string to be added to the GUI</span>
-    <span class="nx">getDomString</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="s1">&#39;&lt;h1 &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span> <span class="o">?</span> <span class="s1">&#39;class=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">getContent</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;&lt;/h1&gt;&#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
+<span class="w">  </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// generate the DOM string to be added to the GUI</span><span class="w"></span>
+<span class="w">    </span><span class="nx">getDomString</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;&lt;h1 &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;class=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getContent</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&lt;/h1&gt;&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
 
-  <span class="c1">// this function is executed when this file is loaded</span>
-  <span class="nx">defer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">statics</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// register the parser</span>
-    <span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">addHandler</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">pure</span><span class="p">.</span><span class="nx">Headline</span><span class="p">);</span>
-    <span class="c1">// register the widget</span>
-    <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">WidgetFactory</span><span class="p">.</span><span class="nx">registerClass</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span> <span class="nx">statics</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+<span class="w">  </span><span class="c1">// this function is executed when this file is loaded</span><span class="w"></span>
+<span class="w">  </span><span class="nx">defer</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">statics</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// register the parser</span><span class="w"></span>
+<span class="w">    </span><span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">addHandler</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">pure</span><span class="p">.</span><span class="nx">Headline</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// register the widget</span><span class="w"></span>
+<span class="w">    </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">WidgetFactory</span><span class="p">.</span><span class="nx">registerClass</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">statics</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This file provides a widget which adds to the GUI a heading element

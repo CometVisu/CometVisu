@@ -228,6 +228,53 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </figcaption>
 </figure>
 </section>
+<section id="d-pages">
+<h3>2D pages<a class="headerlink" href="#d-pages" title="Permalink to this headline">¶</a></h3>
+<p>At 2D pages it is possible to freely position the widgets on the page as well
+as use a background image. A typical use case is a floor plan as backdrop
+where in each room the relevant widgets are positioned accordingly.</p>
+<section id="background-image">
+<h4>Background image<a class="headerlink" href="#background-image" title="Permalink to this headline">¶</a></h4>
+<p>The size of the background in relation to the browser window is controlled
+by the attribute <code class="docutils literal notranslate"><span class="pre">size</span></code>. The following holds:</p>
+<figure class="align-default">
+<img alt="size attribute" src="../../../_images/size.svg" /></figure>
+<div class="line-block">
+<div class="line">The attribute <code class="docutils literal notranslate"><span class="pre">backdropalign</span></code> can move the position of the background
+image. By default it is centered, which is the same as a value of <code class="docutils literal notranslate"><span class="pre">50%</span> <span class="pre">50%</span></code>.</div>
+<div class="line">Setting <code class="docutils literal notranslate"><span class="pre">0px</span> <span class="pre">50%</span></code> would place it on the left side but vertical centered and
+<code class="docutils literal notranslate"><span class="pre">0px</span> <span class="pre">0px</span></code> would place it on the left and top of the page.</div>
+</div>
+</section>
+<section id="widgets">
+<h4>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h4>
+<p>For the widgets it is important to set the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> attributes of its
+<code class="docutils literal notranslate"><span class="pre">layout</span></code> element. These values must have a CSS unit. Typical would be a
+value like <code class="docutils literal notranslate"><span class="pre">12%</span></code> for a relative position and <code class="docutils literal notranslate"><span class="pre">123px</span></code> for an absolute
+position in pixel.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To figure out the optimal value for the position it is possible to use
+the development mode of the modern browsers: this mode is activated by
+pressing <kbd class="kbd docutils literal notranslate">ctrl</kbd> + <kbd class="kbd docutils literal notranslate">shift</kbd> + <kbd class="kbd docutils literal notranslate">i</kbd>.</p>
+<p>First the widget must be roughly positioned in the config file, then this
+config must be opened in the browser where the development mode must be
+activated. Then the “box with cursor” must be clicked followed by a click
+on the widget of interest in the browser window itself. This widget is now
+shown in the DOM tree. Probably it is necessary to go a few levels up there
+so that in the end the line with <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;widget</span> <span class="pre">...</span></code> is selected.
+There you can see at the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute the values set in the config
+file for <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">top</span></code>.
+These values can be changed now (most easily in the right part of the
+window in the “styles” section). These changes are immediately shown in the
+browser window. The determined value must then be transferred to the config
+file to make them persistent.</p>
+<figure class="align-default">
+<a class="reference external image-reference" href="../../../_images/editor_2d_widgets.png"><img alt="development mode" src="../../../_images/editor_2d_widgets.png" /></a>
+</figure>
+</div>
+</section>
+</section>
 <section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
 <p>All widgets are allowed in the page widget.</p>

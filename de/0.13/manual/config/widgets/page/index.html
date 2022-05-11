@@ -236,6 +236,56 @@ daher weg gelassen werden.</p>
 </figcaption>
 </figure>
 </section>
+<section id="d-seiten">
+<h3>2D Seiten<a class="headerlink" href="#d-seiten" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Bei 2D Seiten lassen sich die Widgets frei auf der Seite positionieren so wie
+ein Hintergrundbild verwenden. Ein typisches Anwendungsbeispiel ist ein
+Grundriss als Hintergrundbild, bei dem die für den jeweiligen Raum relevanten
+Widgets entsprechend positioniert sind.</p>
+<section id="hintergrundbild">
+<h4>Hintergrundbild<a class="headerlink" href="#hintergrundbild" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Die dargestellte Größe des Hintergrundbildes in Relation zum Browserfenster
+lässt sich über das Attribut <code class="docutils literal notranslate"><span class="pre">size</span></code> anpassen. Hierbei gilt:</p>
+<figure class="align-default">
+<img alt="size Attribut" src="../../../_images/size.svg" /></figure>
+<div class="line-block">
+<div class="line">Über das Attribut <code class="docutils literal notranslate"><span class="pre">backdropalign</span></code> lässt sich die Position des
+Hintergrundbildes verschieben. Ohne Angabe wird dieses zentriert dargestellt,
+was einem Wert von <code class="docutils literal notranslate"><span class="pre">50%</span> <span class="pre">50%</span></code> entspricht.</div>
+<div class="line">Mit <code class="docutils literal notranslate"><span class="pre">0px</span> <span class="pre">50%</span></code> würde es am linken Rand, aber vertikal zentriert erscheinen
+und mit <code class="docutils literal notranslate"><span class="pre">0px</span> <span class="pre">0px</span></code> links oben.</div>
+</div>
+</section>
+<section id="widgets">
+<h4>Widgets<a class="headerlink" href="#widgets" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Bei den Widgets muss nun das im <code class="docutils literal notranslate"><span class="pre">layout</span></code> Element das <code class="docutils literal notranslate"><span class="pre">x</span></code> und <code class="docutils literal notranslate"><span class="pre">y</span></code> Attribut
+zur korrekten Positionierung befüllt werden. Bei diesen Widgets wird ein Wert
+mit einer CSS-Einheit benötigt. Typisch sind daher relative Angaben wie <code class="docutils literal notranslate"><span class="pre">12%</span></code>
+oder absolute Angaben in Pixeln wie <code class="docutils literal notranslate"><span class="pre">123px</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tipp</p>
+<p>Um die optimalen Werte für die Positionierung bestimmen zu können gibt es
+einen Trick den moderne Browser unterstützen: Den Entwicklungsmodus, der
+über <kbd class="kbd docutils literal notranslate">Strg</kbd> + <kbd class="kbd docutils literal notranslate">Umschalt</kbd> + <kbd class="kbd docutils literal notranslate">i</kbd> aktiviert wird.</p>
+<p>Als erstes positioniert man das Widget grob über die Config-Datei, lädt
+diese Config dann im Browser und öffnet dort den Entwicklermodus.
+Dann klickt man auf das „Box mit Cursor“ Icon und anschließend auf das
+zu bearbeitende Widget im Browser-Fenster selbst. Nun wird im DOM-Tree
+dieses Widget angezeigt. Hier muss man nun ggf. ein paar Ebenen nach oben
+gehen und das <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;widget</span> <span class="pre">...</span></code> auswählen. Hier sieht man auch bei
+dem Attribut <code class="docutils literal notranslate"><span class="pre">style</span></code> in den Werten <code class="docutils literal notranslate"><span class="pre">left</span></code> und <code class="docutils literal notranslate"><span class="pre">top</span></code> genau die
+Werte aus der Config-Datei stehen.
+Dieses Werte lassen sich nun ändern (am einfachsten im rechten
+Fensterbereich im Reiter „Styles“). Diese Änderungen werden sofort im
+Browserfenster umgesetzt, so dass sich hier leicht eine Fein-Positionierung
+durchführen lässt. Der gefundene Zielwert muss anschließend nur noch in die
+Config-Datei übernommen werden.</p>
+<figure class="align-default">
+<a class="reference external image-reference" href="../../../_images/editor_2d_widgets.png"><img alt="Entwicklermodus" src="../../../_images/editor_2d_widgets.png" /></a>
+</figure>
+</div>
+</section>
+</section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Innerhalb des Page-Widgets sind alle anderen Widgets (auch andere Page-Widgets) erlaubt.</p>
