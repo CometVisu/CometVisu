@@ -3,6 +3,22 @@
 0.12.0
 ======
 
+### v0.12.0-RC10 (2022/05/11)
+
+- [#1276](https://github.com/CometVisu/CometVisu/pull/1276) Fix 2d pages. (@ChristianMayer)
+- [#1274](https://github.com/CometVisu/CometVisu/pull/1274) Bump grunt from 1.4.1 to 1.5.2 (@dependabot[bot])
+- [#1275](https://github.com/CometVisu/CometVisu/pull/1275) Fix navbar on subpages where it is not inherited anymore. (@ChristianMayer)
+- [#1273](https://github.com/CometVisu/CometVisu/pull/1273) Update documentation according to user feedback (@ChristianMayer)
+- [#1270](https://github.com/CometVisu/CometVisu/pull/1270) update file content after save (@peuter)
+- [#1272](https://github.com/CometVisu/CometVisu/pull/1272) Bump axios from 0.21.1 to 0.21.4 (@dependabot[bot])
+- [#1269](https://github.com/CometVisu/CometVisu/pull/1269) Enhance english documentation of clock plugin. (@ChristianMayer)
+- [#1271](https://github.com/CometVisu/CometVisu/pull/1271) Bump simple-git from 3.3.0 to 3.5.0 in /.github/actions/github (@dependabot[bot])
+- [#1267](https://github.com/CometVisu/CometVisu/pull/1267) replace some special characters in attribute values (@peuter)
+- [#1265](https://github.com/CometVisu/CometVisu/pull/1265) Use more standard mechanism to fix mobile firefox. (@ChristianMayer)
+- [#1264](https://github.com/CometVisu/CometVisu/pull/1264) Enhance MQTT transfom documentation (@ChristianMayer)
+- [#1261](https://github.com/CometVisu/CometVisu/pull/1261) use space as clearfix content, fixes layout problem in chrome (@peuter)
+- [#1262](https://github.com/CometVisu/CometVisu/pull/1262) fix configuration upgrader process (@peuter)
+
 ### v0.12.0-RC9 (2022/03/23)
 
 - [#1252](https://github.com/CometVisu/CometVisu/pull/1252) Optimize diagram (@ChristianMayer)
