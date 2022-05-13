@@ -320,7 +320,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
           const nav = document.querySelector('#' + id + pos + '_navbar');
           if (nav) {
             const data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
-            if (tree.length-level > data.scope) {
+            if (data.scope >= 0 && tree.length-level > data.scope) {
               // navbar that is not visible at the moment -> ignore it
               return;
             }
