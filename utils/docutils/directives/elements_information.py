@@ -61,7 +61,7 @@ class ElementsInformationDirective(BaseXsdDirective):
                 name = element.get("name")
                 elem_type = element.get('type')
                 mandatory = element.get("minOccurs") is not None and int(element.get("minOccurs")) > 0
-                table_node = self.generate_complex_table(name, structure_name=structure_name, include_name=True, mandatory=mandatory, parent=element_name, element_type=elem_type)
+                table_node = self.generate_complex_table(name, node=element, structure_name=structure_name, include_name=True, mandatory=mandatory, parent=element_name, element_type=elem_type)
                 if table_node is not None:
                     res_nodes.append(table_node)
 

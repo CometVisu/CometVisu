@@ -171,7 +171,7 @@ class BaseXsdDirective(BaseDirective):
             return ""
 
     def generate_complex_table(self, element_name, structure_name="pure", include_name=False, mandatory=False, element_type=None,
-                               table_body=None, sub_run=False, parent=None):
+                               table_body=None, sub_run=False, parent=None, node=None):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
@@ -179,7 +179,7 @@ class BaseXsdDirective(BaseDirective):
         schema = tile_schema if structure_name == "tile" else pure_schema
 
         if not element_name == "#text":
-            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name)
+            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name, type_node=node)
             elements = schema.get_widget_elements(element_type if element_type is not None else element_name, locale=self.locale)
             if include_name:
                 rowspan = len(attributes)-1
