@@ -222,7 +222,7 @@ class BasePage {
   // eslint-disable-next-line class-methods-use-this
   sendUpdate(address, value) {
     let data = {
-      i: new Date().getTime(),
+      i: Date.now(),
       d: {}
     };
     data.d[address] = value;

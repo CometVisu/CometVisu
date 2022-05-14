@@ -98,7 +98,8 @@ Widgets
     :maxdepth: 1
 
     widgets/switch
-* Shutter
+    widgets/shutter
+
 * Info
 * Status
 * MediaPlayer

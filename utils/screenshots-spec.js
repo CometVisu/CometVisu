@@ -111,6 +111,12 @@ describe('generation screenshots from jsdoc examples', function () {
     mockup.to();
     mockup.at();
     runResult = {};
+    browser.executeAsyncScript(function (callback) {
+      if (typeof window._receive !== 'function') {
+        cv.io.BackendConnections.initBackendClient();
+      }
+      callback();
+    });
   });
 
   afterEach(function () {

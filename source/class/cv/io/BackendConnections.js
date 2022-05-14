@@ -17,6 +17,9 @@ qx.Class.define('cv.io.BackendConnections', {
      * Initialize the {@link cv.io.Client} for backend communication
      */
     initBackendClient: function () {
+      if (cv.Config.testMode === true || window.cvTestMode === true) {
+        this.addBackendClient('main', 'simulated');
+      } else {
       let backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
       const backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
@@ -39,6 +42,7 @@ qx.Class.define('cv.io.BackendConnections', {
         case 'oh2':
           this.addBackendClient('main', 'openhab', backendOpenHABUrl);
           break;
+      }
       }
     },
 
@@ -95,6 +99,10 @@ qx.Class.define('cv.io.BackendConnections', {
     getClient(backendName) {
       if (!backendName) {
         backendName = cv.data.Model.getInstance().getDefaultBackendName();
+      }
+      if (!this.__clients[backendName] && cv.Config.testMode) {
+        // in testMode the client might not have been initialized yet
+        return this.addBackendClient('main', 'simulated');
       }
       return this.__clients[backendName];
     },
