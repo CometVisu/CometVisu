@@ -345,6 +345,7 @@ class TemplatedElement extends HTMLElement {
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
+        const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
@@ -374,11 +375,24 @@ class TemplatedElement extends HTMLElement {
         } else {
           // eslint-disable-next-line no-console
           console.log('['+templateId+']no content for slot', slotName, ' removing');
-          const parentNode = slot.parentNode;
-          slot.remove();
-          if (parentNode.children.length === 0) {
-            // also remove slots parent when it hat no content
-            parentNode.remove();
+
+          let parentNode = slot.parentNode;
+          if (slotParentScope > 0) {
+            // got slotParentScope elements up and remove that one
+            let i = slotParentScope-1;
+            while (i > 0) {
+              parentNode = parentNode.parentNode;
+              i--;
+            }
+            if (parentNode) {
+              parentNode.remove();
+            }
+          } else {
+            slot.remove();
+            if (parentNode.children.length === 0) {
+              // also remove slots parent when it has no content
+              parentNode.remove();
+            }
           }
         }
       }

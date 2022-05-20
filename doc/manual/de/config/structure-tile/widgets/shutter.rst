@@ -30,6 +30,27 @@ untersten Zeile kann man z.B. den Namen/den Ort der Rolllade anzeigen.
         <span slot="secondaryLabel">Schlafzimmer</span>
     </cv-shutter>
 
+Für jeden dieser Buttons muss mindestens eine ``<cv-address>`` angegeben werden mit dem jeweiligen Ziel als
+Wert des ``slot``-Attributs. Die möglichen slot-Werte sind "downAddress", "stopAddress" und "upAddress".
+Wird kein ``<cv-address>`` Element für einen dieser Slots angegeben, dann wird dieser Button nicht dargestellt.
+
+Um die aktuelle Position der Rolllade darzustellen wird eine zusätzliche, optionale ``<cv-address slot="positionAddress"``
+benötigt.
+
+.. widget-example::
+
+    <settings design="tile">
+        <screenshot name="cv-shutter-no-stop" margin="0 10 10 0">
+            <data address="1/4/2">50</data>
+        </screenshot>
+    </settings>
+    <cv-shutter styling="button">
+        <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/0</cv-address>
+        <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/0</cv-address>
+        <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/2</cv-address>
+        <span slot="primaryLabel">Jalousie</span>
+        <span slot="secondaryLabel">ohne Stop-Adresse</span>
+    </cv-shutter>
 
 Erlaubte Attribute im Shutter-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -624,7 +624,7 @@
 
   <xsd:complexType name="cv-shutter">
     <xsd:sequence>
-      <xsd:element name="cv-address" minOccurs="3" maxOccurs="unbounded">
+      <xsd:element name="cv-address" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="address">
