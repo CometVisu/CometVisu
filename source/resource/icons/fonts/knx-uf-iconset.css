@@ -546,2262 +546,2271 @@
 .knxuf-measure_battery_50:before { 
   content: "\eef6";
 }
-.knxuf-edit_delete:before { 
+.knxuf-scene_wallbox:before { 
   content: "\eef7";
 }
-.knxuf-light_wall_4:before { 
+.knxuf-edit_delete:before { 
   content: "\eef8";
 }
-.knxuf-fts_shutter_vert_blade_20:before { 
+.knxuf-light_wall_4:before { 
   content: "\eef9";
 }
-.knxuf-scene_freezer:before { 
+.knxuf-fts_shutter_vert_blade_20:before { 
   content: "\eefa";
 }
-.knxuf-scene_cleaning:before { 
+.knxuf-scene_freezer:before { 
   content: "\eefb";
 }
-.knxuf-info_attention:before { 
+.knxuf-scene_cleaning:before { 
   content: "\eefc";
 }
-.knxuf-scene_drink:before { 
+.knxuf-info_attention:before { 
   content: "\eefd";
 }
-.knxuf-weather_cloudy_heavy:before { 
+.knxuf-scene_drink:before { 
   content: "\eefe";
 }
-.knxuf-scene_robo_lawnmower_attention:before { 
+.knxuf-weather_cloudy_heavy:before { 
   content: "\eeff";
 }
-.knxuf-audio_loudness:before { 
+.knxuf-scene_robo_lawnmower_attention:before { 
   content: "\ef00";
 }
-.knxuf-control_building_modern_s_int_og:before { 
+.knxuf-audio_loudness:before { 
   content: "\ef01";
 }
-.knxuf-fts_window_1w_tilt:before { 
+.knxuf-control_building_modern_s_int_og:before { 
   content: "\ef02";
 }
-.knxuf-control_building_s_okg_int_eg:before { 
+.knxuf-fts_window_1w_tilt:before { 
   content: "\ef03";
 }
-.knxuf-message_error:before { 
+.knxuf-control_building_s_okg_int_eg:before { 
   content: "\ef04";
 }
-.knxuf-message_help:before { 
+.knxuf-message_error:before { 
   content: "\ef05";
 }
-.knxuf-secur_frost_protection:before { 
+.knxuf-message_help:before { 
   content: "\ef06";
 }
-.knxuf-scene_multicooker:before { 
+.knxuf-secur_frost_protection:before { 
   content: "\ef07";
 }
-.knxuf-sani_buffer_temp_all:before { 
+.knxuf-scene_multicooker:before { 
   content: "\ef08";
 }
-.knxuf-audio_eq:before { 
+.knxuf-sani_buffer_temp_all:before { 
   content: "\ef09";
 }
-.knxuf-weather_sunrise:before { 
+.knxuf-audio_eq:before { 
   content: "\ef0a";
 }
-.knxuf-measure_globe_lat:before { 
+.knxuf-weather_sunrise:before { 
   content: "\ef0b";
 }
-.knxuf-vent_low_pressure_protection_unit:before { 
+.knxuf-measure_globe_lat:before { 
   content: "\ef0c";
 }
-.knxuf-fts_yard_gate_2w_open:before { 
+.knxuf-vent_low_pressure_protection_unit:before { 
   content: "\ef0d";
 }
-.knxuf-weather_rain_light:before { 
+.knxuf-fts_yard_gate_2w_open:before { 
   content: "\ef0e";
 }
-.knxuf-control_building_modern_s_2og_int_eg:before { 
+.knxuf-weather_rain_light:before { 
   content: "\ef0f";
 }
-.knxuf-fts_frontdoor:before { 
+.knxuf-control_building_modern_s_2og_int_eg:before { 
   content: "\ef10";
 }
-.knxuf-message_socket_ch_on_off:before { 
+.knxuf-fts_frontdoor:before { 
   content: "\ef11";
 }
-.knxuf-fts_shutter_manual:before { 
+.knxuf-message_socket_ch_on_off:before { 
   content: "\ef12";
 }
-.knxuf-scene_robo_vac_cleaner_attention:before { 
+.knxuf-fts_shutter_manual:before { 
   content: "\ef13";
 }
-.knxuf-measure_current:before { 
+.knxuf-scene_robo_vac_cleaner_attention:before { 
   content: "\ef14";
 }
-.knxuf-control_building_2_s_eg:before { 
+.knxuf-measure_current:before { 
   content: "\ef15";
 }
-.knxuf-scene_minion:before { 
+.knxuf-control_building_2_s_eg:before { 
   content: "\ef16";
 }
-.knxuf-weather_moonset:before { 
+.knxuf-scene_minion:before { 
   content: "\ef17";
 }
-.knxuf-control_building_edg_int_eg:before { 
+.knxuf-weather_moonset:before { 
   content: "\ef18";
 }
-.knxuf-scene_plant:before { 
+.knxuf-control_building_edg_int_eg:before { 
   content: "\ef19";
 }
-.knxuf-sani_valve_30:before { 
+.knxuf-scene_plant:before { 
   content: "\ef1a";
 }
-.knxuf-fts_blade_s:before { 
+.knxuf-sani_valve_30:before { 
   content: "\ef1b";
 }
-.knxuf-control_switch_3:before { 
+.knxuf-fts_blade_s:before { 
   content: "\ef1c";
 }
-.knxuf-message_garbage_3:before { 
+.knxuf-control_switch_3:before { 
   content: "\ef1d";
 }
-.knxuf-control_hamburger_s:before { 
+.knxuf-message_garbage_3:before { 
   content: "\ef1e";
 }
-.knxuf-scene_gaming_3:before { 
+.knxuf-control_hamburger_s:before { 
   content: "\ef1f";
 }
-.knxuf-control_reboot:before { 
+.knxuf-scene_gaming_3:before { 
   content: "\ef20";
 }
-.knxuf-light_pool_rgb:before { 
+.knxuf-control_reboot:before { 
   content: "\ef21";
 }
-.knxuf-control_building_modern_s_okg_int_og:before { 
+.knxuf-light_pool_rgb:before { 
   content: "\ef22";
 }
-.knxuf-fts_blade_z_60:before { 
+.knxuf-control_building_modern_s_okg_int_og:before { 
   content: "\ef23";
 }
-.knxuf-fts_shutter_20:before { 
+.knxuf-fts_blade_z_60:before { 
   content: "\ef24";
 }
-.knxuf-secur_locked:before { 
+.knxuf-fts_shutter_20:before { 
   content: "\ef25";
 }
-.knxuf-light_wire_system_1:before { 
+.knxuf-secur_locked:before { 
   content: "\ef26";
 }
-.knxuf-scene_pool:before { 
+.knxuf-light_wire_system_1:before { 
   content: "\ef27";
 }
-.knxuf-user_n_a:before { 
+.knxuf-scene_pool:before { 
   content: "\ef28";
 }
-.knxuf-fts_garage_door_20:before { 
+.knxuf-user_n_a:before { 
   content: "\ef29";
 }
-.knxuf-message_bell_door_disabled:before { 
+.knxuf-fts_garage_door_20:before { 
   content: "\ef2a";
 }
-.knxuf-scene_robo_lawnmower_charging:before { 
+.knxuf-message_bell_door_disabled:before { 
   content: "\ef2b";
 }
-.knxuf-message_garbage:before { 
+.knxuf-scene_robo_lawnmower_charging:before { 
   content: "\ef2c";
 }
-.knxuf-scene_projector_open_on_off:before { 
+.knxuf-message_garbage:before { 
   content: "\ef2d";
 }
-.knxuf-weather_fog_heavy:before { 
+.knxuf-scene_projector_open_on_off:before { 
   content: "\ef2e";
 }
-.knxuf-it_internet:before { 
+.knxuf-weather_fog_heavy:before { 
   content: "\ef2f";
 }
-.knxuf-vent_ventilation:before { 
+.knxuf-it_internet:before { 
   content: "\ef30";
 }
-.knxuf-scene_robo_lawnmower:before { 
+.knxuf-vent_ventilation:before { 
   content: "\ef31";
 }
-.knxuf-light_floor_lamp_2:before { 
+.knxuf-scene_robo_lawnmower:before { 
   content: "\ef32";
 }
-.knxuf-light_outdoor:before { 
+.knxuf-light_floor_lamp_2:before { 
   content: "\ef33";
 }
-.knxuf-weather_rain:before { 
+.knxuf-light_outdoor:before { 
   content: "\ef34";
 }
-.knxuf-sani_irrigation:before { 
+.knxuf-weather_rain:before { 
   content: "\ef35";
 }
-.knxuf-control_building_s_eg:before { 
+.knxuf-sani_irrigation:before { 
   content: "\ef36";
 }
-.knxuf-control_building_2_s_all:before { 
+.knxuf-control_building_s_eg:before { 
   content: "\ef37";
 }
-.knxuf-fts_blade_arc_sun:before { 
+.knxuf-control_building_2_s_all:before { 
   content: "\ef38";
 }
-.knxuf-scene_power_inverter:before { 
+.knxuf-fts_blade_arc_sun:before { 
   content: "\ef39";
 }
-.knxuf-it_camera:before { 
+.knxuf-scene_power_inverter:before { 
   content: "\ef3a";
 }
-.knxuf-scene_dinner:before { 
+.knxuf-it_camera:before { 
   content: "\ef3b";
 }
-.knxuf-measure_cistern_100:before { 
+.knxuf-scene_dinner:before { 
   content: "\ef3c";
 }
-.knxuf-edit_numeric_5:before { 
+.knxuf-measure_cistern_100:before { 
   content: "\ef3d";
 }
-.knxuf-fts_shutter_stop:before { 
+.knxuf-edit_numeric_5:before { 
   content: "\ef3e";
 }
-.knxuf-weather_wind_speed:before { 
+.knxuf-fts_shutter_stop:before { 
   content: "\ef3f";
 }
-.knxuf-light_disco_ball_on:before { 
+.knxuf-weather_wind_speed:before { 
   content: "\ef40";
 }
-.knxuf-edit_copy:before { 
+.knxuf-light_disco_ball_on:before { 
   content: "\ef41";
 }
-.knxuf-status_presence_simulation_run:before { 
+.knxuf-edit_copy:before { 
   content: "\ef42";
 }
-.knxuf-measure_pond_0:before { 
+.knxuf-status_presence_simulation_run:before { 
   content: "\ef43";
 }
-.knxuf-it_telephone:before { 
+.knxuf-measure_pond_0:before { 
   content: "\ef44";
 }
-.knxuf-fts_blade_s_40:before { 
+.knxuf-it_telephone:before { 
   content: "\ef45";
 }
-.knxuf-message_presence_active:before { 
+.knxuf-fts_blade_s_40:before { 
   content: "\ef46";
 }
-.knxuf-control_hamburger_f:before { 
+.knxuf-message_presence_active:before { 
   content: "\ef47";
 }
-.knxuf-fts_blade_arc_90:before { 
+.knxuf-control_hamburger_f:before { 
   content: "\ef48";
 }
-.knxuf-scene_workshop:before { 
+.knxuf-fts_blade_arc_90:before { 
   content: "\ef49";
 }
-.knxuf-fts_blade_s_30:before { 
+.knxuf-scene_workshop:before { 
   content: "\ef4a";
 }
-.knxuf-audio_ff:before { 
+.knxuf-fts_blade_s_30:before { 
   content: "\ef4b";
 }
-.knxuf-control_building_2_s_kg:before { 
+.knxuf-audio_ff:before { 
   content: "\ef4c";
 }
-.knxuf-status_economy:before { 
+.knxuf-control_building_2_s_kg:before { 
   content: "\ef4d";
 }
-.knxuf-status_available:before { 
+.knxuf-status_economy:before { 
   content: "\ef4e";
 }
-.knxuf-vent_ventilation_level_automatic:before { 
+.knxuf-status_available:before { 
   content: "\ef4f";
 }
-.knxuf-measure_voltage:before { 
+.knxuf-vent_ventilation_level_automatic:before { 
   content: "\ef50";
 }
-.knxuf-sani_cogeneration:before { 
+.knxuf-measure_voltage:before { 
   content: "\ef51";
 }
-.knxuf-message_tendency_downward:before { 
+.knxuf-sani_cogeneration:before { 
   content: "\ef52";
 }
-.knxuf-control_building_2_s_int_dg:before { 
+.knxuf-message_tendency_downward:before { 
   content: "\ef53";
 }
-.knxuf-scene_clothes_dryer:before { 
+.knxuf-control_building_2_s_int_dg:before { 
   content: "\ef54";
 }
-.knxuf-measure_pressure_bar:before { 
+.knxuf-scene_clothes_dryer:before { 
   content: "\ef55";
 }
-.knxuf-control_building_2_s_dg:before { 
+.knxuf-measure_pressure_bar:before { 
   content: "\ef56";
 }
-.knxuf-scene_birthday:before { 
+.knxuf-control_building_2_s_dg:before { 
   content: "\ef57";
 }
-.knxuf-message_ok:before { 
+.knxuf-scene_birthday:before { 
   content: "\ef58";
 }
-.knxuf-fts_shutter_vert:before { 
+.knxuf-message_ok:before { 
   content: "\ef59";
 }
-.knxuf-scene_dressing_room_alternat:before { 
+.knxuf-fts_shutter_vert:before { 
   content: "\ef5a";
 }
-.knxuf-scene_cubby:before { 
+.knxuf-scene_dressing_room_alternat:before { 
   content: "\ef5b";
 }
-.knxuf-message_socket_ch_3:before { 
+.knxuf-scene_cubby:before { 
   content: "\ef5c";
 }
-.knxuf-control_building_modern_s_okg_eg:before { 
+.knxuf-message_socket_ch_3:before { 
   content: "\ef5d";
 }
-.knxuf-message_presence_geo_active:before { 
+.knxuf-control_building_modern_s_okg_eg:before { 
   content: "\ef5e";
 }
-.knxuf-control_building_s_int_og:before { 
+.knxuf-message_presence_geo_active:before { 
   content: "\ef5f";
 }
-.knxuf-control_building_modern_s_okg_og:before { 
+.knxuf-control_building_s_int_og:before { 
   content: "\ef60";
 }
-.knxuf-status_frost:before { 
+.knxuf-control_building_modern_s_okg_og:before { 
   content: "\ef61";
 }
-.knxuf-weather_moon_phases_6:before { 
+.knxuf-status_frost:before { 
   content: "\ef62";
 }
-.knxuf-time_graph:before { 
+.knxuf-weather_moon_phases_6:before { 
   content: "\ef63";
 }
-.knxuf-audio_play:before { 
+.knxuf-time_graph:before { 
   content: "\ef64";
 }
-.knxuf-light_bollard_1:before { 
+.knxuf-audio_play:before { 
   content: "\ef65";
 }
-.knxuf-phone_ring:before { 
+.knxuf-light_bollard_1:before { 
   content: "\ef66";
 }
-.knxuf-light_disco_ball:before { 
+.knxuf-phone_ring:before { 
   content: "\ef67";
 }
-.knxuf-sani_valve_40:before { 
+.knxuf-light_disco_ball:before { 
   content: "\ef68";
 }
-.knxuf-message_bug:before { 
+.knxuf-sani_valve_40:before { 
   content: "\ef69";
 }
-.knxuf-light_indoor_dg:before { 
+.knxuf-message_bug:before { 
   content: "\ef6a";
 }
-.knxuf-scene_solar_panel:before { 
+.knxuf-light_indoor_dg:before { 
   content: "\ef6b";
 }
-.knxuf-weather_humidity_soil:before { 
+.knxuf-scene_solar_panel:before { 
   content: "\ef6c";
 }
-.knxuf-weather_directions_w:before { 
+.knxuf-weather_humidity_soil:before { 
   content: "\ef6d";
 }
-.knxuf-control_building_flat_okg_eg:before { 
+.knxuf-weather_directions_w:before { 
   content: "\ef6e";
 }
-.knxuf-info_ack:before { 
+.knxuf-control_building_flat_okg_eg:before { 
   content: "\ef6f";
 }
-.knxuf-fts_sliding_gate_l:before { 
+.knxuf-info_ack:before { 
   content: "\ef70";
 }
-.knxuf-scene_dishwasher:before { 
+.knxuf-fts_sliding_gate_l:before { 
   content: "\ef71";
 }
-.knxuf-it_ups_attention:before { 
+.knxuf-scene_dishwasher:before { 
   content: "\ef72";
 }
-.knxuf-it_television:before { 
+.knxuf-it_ups_attention:before { 
   content: "\ef73";
 }
-.knxuf-message_presence_inactive:before { 
+.knxuf-it_television:before { 
   content: "\ef74";
 }
-.knxuf-message_attention:before { 
+.knxuf-message_presence_inactive:before { 
   content: "\ef75";
 }
-.knxuf-edit_open:before { 
+.knxuf-message_attention:before { 
   content: "\ef76";
 }
-.knxuf-scene_office:before { 
+.knxuf-edit_open:before { 
   content: "\ef77";
 }
-.knxuf-scene_childs_room:before { 
+.knxuf-scene_office:before { 
   content: "\ef78";
 }
-.knxuf-temp_temperature_min:before { 
+.knxuf-scene_childs_room:before { 
   content: "\ef79";
 }
-.knxuf-weather_moonrise:before { 
+.knxuf-temp_temperature_min:before { 
   content: "\ef7a";
 }
-.knxuf-status_light_low:before { 
+.knxuf-weather_moonrise:before { 
   content: "\ef7b";
 }
-.knxuf-light_light_dim_90:before { 
+.knxuf-status_light_low:before { 
   content: "\ef7c";
 }
-.knxuf-fts_door_locked:before { 
+.knxuf-light_light_dim_90:before { 
   content: "\ef7d";
 }
-.knxuf-control_building_outside:before { 
+.knxuf-fts_door_locked:before { 
   content: "\ef7e";
 }
-.knxuf-sani_central_vacuum_cleaner_filter:before { 
+.knxuf-control_building_outside:before { 
   content: "\ef7f";
 }
-.knxuf-light_led_stripe_rgb:before { 
+.knxuf-sani_central_vacuum_cleaner_filter:before { 
   content: "\ef80";
 }
-.knxuf-scene_robo_lawnmower_active:before { 
+.knxuf-light_led_stripe_rgb:before { 
   content: "\ef81";
 }
-.knxuf-fts_light_dome_open:before { 
+.knxuf-scene_robo_lawnmower_active:before { 
   content: "\ef82";
 }
-.knxuf-phone_ring_in:before { 
+.knxuf-fts_light_dome_open:before { 
   content: "\ef83";
 }
-.knxuf-fts_shutter_vert_manual:before { 
+.knxuf-phone_ring_in:before { 
   content: "\ef84";
 }
-.knxuf-control_3dot_vert_s:before { 
+.knxuf-fts_shutter_vert_manual:before { 
   content: "\ef85";
 }
-.knxuf-secur_sabotage:before { 
+.knxuf-control_3dot_vert_s:before { 
   content: "\ef86";
 }
-.knxuf-light_led_stripe:before { 
+.knxuf-secur_sabotage:before { 
   content: "\ef87";
 }
-.knxuf-control_3:before { 
+.knxuf-light_led_stripe:before { 
   content: "\ef88";
 }
-.knxuf-fts_window_roof_open_1:before { 
+.knxuf-control_3:before { 
   content: "\ef89";
 }
-.knxuf-fts_garage_door_70:before { 
+.knxuf-fts_window_roof_open_1:before { 
   content: "\ef8a";
 }
-.knxuf-light_wall_1:before { 
+.knxuf-fts_garage_door_70:before { 
   content: "\ef8b";
 }
-.knxuf-control_standby:before { 
+.knxuf-light_wall_1:before { 
   content: "\ef8c";
 }
-.knxuf-scene_shower:before { 
+.knxuf-control_standby:before { 
   content: "\ef8d";
 }
-.knxuf-sani_solar_temp:before { 
+.knxuf-scene_shower:before { 
   content: "\ef8e";
 }
-.knxuf-control_building_modern_s_okg_int_eg:before { 
+.knxuf-sani_solar_temp:before { 
   content: "\ef8f";
 }
-.knxuf-control_arrow_upward:before { 
+.knxuf-control_building_modern_s_okg_int_eg:before { 
   content: "\ef90";
 }
-.knxuf-light_x-mas_star_1:before { 
+.knxuf-control_arrow_upward:before { 
   content: "\ef91";
 }
-.knxuf-edit_paste:before { 
+.knxuf-light_x-mas_star_1:before { 
   content: "\ef92";
 }
-.knxuf-status_light_off:before { 
+.knxuf-edit_paste:before { 
   content: "\ef93";
 }
-.knxuf-control_1:before { 
+.knxuf-status_light_off:before { 
   content: "\ef94";
 }
-.knxuf-sani_irrigation_pop_up_off:before { 
+.knxuf-control_1:before { 
   content: "\ef95";
 }
-.knxuf-fts_blade_s_automatic:before { 
+.knxuf-sani_irrigation_pop_up_off:before { 
   content: "\ef96";
 }
-.knxuf-phone_answering:before { 
+.knxuf-fts_blade_s_automatic:before { 
   content: "\ef97";
 }
-.knxuf-weather_station_generic:before { 
+.knxuf-phone_answering:before { 
   content: "\ef98";
 }
-.knxuf-audio_ls_51_sub:before { 
+.knxuf-weather_station_generic:before { 
   content: "\ef99";
 }
-.knxuf-measure_cistern_90:before { 
+.knxuf-audio_ls_51_sub:before { 
   content: "\ef9a";
 }
-.knxuf-fts_umbrella_offset_closed:before { 
+.knxuf-measure_cistern_90:before { 
   content: "\ef9b";
 }
-.knxuf-scene_hall:before { 
+.knxuf-fts_umbrella_offset_closed:before { 
   content: "\ef9c";
 }
-.knxuf-sani_irrigation_automatic:before { 
+.knxuf-scene_hall:before { 
   content: "\ef9d";
 }
-.knxuf-temp_control:before { 
+.knxuf-scene_firewood:before { 
   content: "\ef9e";
 }
-.knxuf-light_window:before { 
+.knxuf-sani_irrigation_automatic:before { 
   content: "\ef9f";
 }
-.knxuf-vent_used_air:before { 
+.knxuf-temp_control:before { 
   content: "\efa0";
 }
-.knxuf-control_x:before { 
+.knxuf-light_window:before { 
   content: "\efa1";
 }
-.knxuf-control_centr_arrow_down_left:before { 
+.knxuf-vent_used_air:before { 
   content: "\efa2";
 }
-.knxuf-scene_deckchair:before { 
+.knxuf-control_x:before { 
   content: "\efa3";
 }
-.knxuf-fts_shutter_vert_blade_50:before { 
+.knxuf-control_centr_arrow_down_left:before { 
   content: "\efa4";
 }
-.knxuf-status_night:before { 
+.knxuf-scene_deckchair:before { 
   content: "\efa5";
 }
-.knxuf-status_open:before { 
+.knxuf-fts_shutter_vert_blade_50:before { 
   content: "\efa6";
 }
-.knxuf-audio_volume_mute:before { 
+.knxuf-status_night:before { 
   content: "\efa7";
 }
-.knxuf-control_building_flat_s_mkg_eg:before { 
+.knxuf-status_open:before { 
   content: "\efa8";
 }
-.knxuf-it_av_receiver:before { 
+.knxuf-audio_volume_mute:before { 
   content: "\efa9";
 }
-.knxuf-light_ceiling_spots:before { 
+.knxuf-control_building_flat_s_mkg_eg:before { 
   content: "\efaa";
 }
-.knxuf-fts_blade_arc_10:before { 
+.knxuf-it_av_receiver:before { 
   content: "\efab";
 }
-.knxuf-control_all_on_off:before { 
+.knxuf-light_ceiling_spots:before { 
   content: "\efac";
 }
-.knxuf-sani_central_vacuum_cleaner_dust_cont:before { 
+.knxuf-fts_blade_arc_10:before { 
   content: "\efad";
 }
-.knxuf-weather_wind_directions_ne:before { 
+.knxuf-control_all_on_off:before { 
   content: "\efae";
 }
-.knxuf-control_building_modern02_okg_int_eg:before { 
+.knxuf-sani_central_vacuum_cleaner_dust_cont:before { 
   content: "\efaf";
 }
-.knxuf-audio_ls_51_rear:before { 
+.knxuf-weather_wind_directions_ne:before { 
   content: "\efb0";
 }
-.knxuf-message_garbage_collection:before { 
+.knxuf-control_building_modern02_okg_int_eg:before { 
   content: "\efb1";
 }
-.knxuf-audio_audio:before { 
+.knxuf-audio_ls_51_rear:before { 
   content: "\efb2";
 }
-.knxuf-vent_ventilation_control:before { 
+.knxuf-message_garbage_collection:before { 
   content: "\efb3";
 }
-.knxuf-scene_sauna:before { 
+.knxuf-audio_audio:before { 
   content: "\efb4";
 }
-.knxuf-sani_garden_pump:before { 
+.knxuf-vent_ventilation_control:before { 
   content: "\efb5";
 }
-.knxuf-fts_blade_s_60:before { 
+.knxuf-scene_sauna:before { 
   content: "\efb6";
 }
-.knxuf-control_centr_arrow_up_left:before { 
+.knxuf-sani_garden_pump:before { 
   content: "\efb7";
 }
-.knxuf-fts_blade_arc_30:before { 
+.knxuf-fts_blade_s_60:before { 
   content: "\efb8";
 }
-.knxuf-fts_shutter_vert_100:before { 
+.knxuf-control_centr_arrow_up_left:before { 
   content: "\efb9";
 }
-.knxuf-light_indoor_kg:before { 
+.knxuf-fts_blade_arc_30:before { 
   content: "\efba";
 }
-.knxuf-fts_window_2w_tilt_lr:before { 
+.knxuf-fts_shutter_vert_100:before { 
   content: "\efbb";
 }
-.knxuf-message_garbage_4:before { 
+.knxuf-light_indoor_kg:before { 
   content: "\efbc";
 }
-.knxuf-fts_blade_s_50:before { 
+.knxuf-fts_window_2w_tilt_lr:before { 
   content: "\efbd";
 }
-.knxuf-fts_garage_door_40:before { 
+.knxuf-message_garbage_4:before { 
   content: "\efbe";
 }
-.knxuf-scene_fountain:before { 
+.knxuf-fts_blade_s_50:before { 
   content: "\efbf";
 }
-.knxuf-message_notice:before { 
+.knxuf-fts_garage_door_40:before { 
   content: "\efc0";
 }
-.knxuf-sani_water_softening_unit:before { 
+.knxuf-scene_fountain:before { 
   content: "\efc1";
 }
-.knxuf-measure_battery_0:before { 
+.knxuf-message_notice:before { 
   content: "\efc2";
 }
-.knxuf-fts_garage:before { 
+.knxuf-sani_water_softening_unit:before { 
   content: "\efc3";
 }
-.knxuf-fts_yard_gate_2w:before { 
+.knxuf-measure_battery_0:before { 
   content: "\efc4";
 }
-.knxuf-fts_shutter_80:before { 
+.knxuf-fts_garage:before { 
   content: "\efc5";
 }
-.knxuf-control_centr_arrow_left:before { 
+.knxuf-fts_yard_gate_2w:before { 
   content: "\efc6";
 }
-.knxuf-scene_gas_station:before { 
+.knxuf-fts_shutter_80:before { 
   content: "\efc7";
 }
-.knxuf-scene_stream_course:before { 
+.knxuf-control_centr_arrow_left:before { 
   content: "\efc8";
 }
-.knxuf-fts_blade_arc_-20:before { 
+.knxuf-scene_gas_station:before { 
   content: "\efc9";
 }
-.knxuf-control_building_s_int_kg:before { 
+.knxuf-scene_stream_course:before { 
   content: "\efca";
 }
-.knxuf-control_building_flat_s_filled:before { 
+.knxuf-fts_blade_arc_-20:before { 
   content: "\efcb";
 }
-.knxuf-fts_awning:before { 
+.knxuf-control_building_s_int_kg:before { 
   content: "\efcc";
 }
-.knxuf-fts_window_2w_tilt:before { 
+.knxuf-control_building_flat_s_filled:before { 
   content: "\efcd";
 }
-.knxuf-it_nas:before { 
+.knxuf-fts_awning:before { 
   content: "\efce";
 }
-.knxuf-scene_cockle_stove:before { 
+.knxuf-fts_window_2w_tilt:before { 
   content: "\efcf";
 }
-.knxuf-control_clear:before { 
+.knxuf-it_nas:before { 
   content: "\efd0";
 }
-.knxuf-fts_blade_arc_100:before { 
+.knxuf-scene_cockle_stove:before { 
   content: "\efd1";
 }
-.knxuf-control_reload:before { 
+.knxuf-control_clear:before { 
   content: "\efd2";
 }
-.knxuf-time_alarm_clock_alarm_on:before { 
+.knxuf-fts_blade_arc_100:before { 
   content: "\efd3";
 }
-.knxuf-weather_winter:before { 
+.knxuf-control_reload:before { 
   content: "\efd4";
 }
-.knxuf-it_fax:before { 
+.knxuf-time_alarm_clock_alarm_on:before { 
   content: "\efd5";
 }
-.knxuf-measure_cistern_0:before { 
+.knxuf-weather_winter:before { 
   content: "\efd6";
 }
-.knxuf-light_office:before { 
+.knxuf-it_fax:before { 
   content: "\efd7";
 }
-.knxuf-user_ext_away:before { 
+.knxuf-measure_cistern_0:before { 
   content: "\efd8";
 }
-.knxuf-light_pendant_light:before { 
+.knxuf-light_office:before { 
   content: "\efd9";
 }
-.knxuf-control_building_modern_s_2og_all:before { 
+.knxuf-user_ext_away:before { 
   content: "\efda";
 }
-.knxuf-fts_window_2w_tilt_l:before { 
+.knxuf-light_pendant_light:before { 
   content: "\efdb";
 }
-.knxuf-fts_blade_arc_60:before { 
+.knxuf-control_building_modern_s_2og_all:before { 
   content: "\efdc";
 }
-.knxuf-weather_wind_no_wind:before { 
+.knxuf-fts_window_2w_tilt_l:before { 
   content: "\efdd";
 }
-.knxuf-scene_projector_open:before { 
+.knxuf-fts_blade_arc_60:before { 
   content: "\efde";
 }
-.knxuf-status_presence_simulation:before { 
+.knxuf-weather_wind_no_wind:before { 
   content: "\efdf";
 }
-.knxuf-fts_window_2w_tilt_l_open_r:before { 
+.knxuf-scene_projector_open:before { 
   content: "\efe0";
 }
-.knxuf-measure_cistern_30:before { 
+.knxuf-status_presence_simulation:before { 
   content: "\efe1";
 }
-.knxuf-weather_cloudy_light:before { 
+.knxuf-fts_window_2w_tilt_l_open_r:before { 
   content: "\efe2";
 }
-.knxuf-fts_window_1w_unlocked:before { 
+.knxuf-measure_cistern_30:before { 
   content: "\efe3";
 }
-.knxuf-it_wifi:before { 
+.knxuf-weather_cloudy_light:before { 
   content: "\efe4";
 }
-.knxuf-status_protection:before { 
+.knxuf-fts_window_1w_unlocked:before { 
   content: "\efe5";
 }
-.knxuf-control_building_modern_s_int_kg:before { 
+.knxuf-it_wifi:before { 
   content: "\efe6";
 }
-.knxuf-scene_laundry_room_fem:before { 
+.knxuf-status_protection:before { 
   content: "\efe7";
 }
-.knxuf-fts_door_slide_2w_open_l:before { 
+.knxuf-control_building_modern_s_int_kg:before { 
   content: "\efe8";
 }
-.knxuf-measure_photovoltaic_inst:before { 
+.knxuf-scene_laundry_room_fem:before { 
   content: "\efe9";
 }
-.knxuf-sani_earth_source_heat_pump:before { 
+.knxuf-fts_door_slide_2w_open_l:before { 
   content: "\efea";
 }
-.knxuf-info_catastrophe:before { 
+.knxuf-measure_photovoltaic_inst:before { 
   content: "\efeb";
 }
-.knxuf-fts_window_2w_tilt_r:before { 
+.knxuf-sani_earth_source_heat_pump:before { 
   content: "\efec";
 }
-.knxuf-audio_ls_51:before { 
+.knxuf-info_catastrophe:before { 
   content: "\efed";
 }
-.knxuf-control_building_modern_s_2og_dg:before { 
+.knxuf-fts_window_2w_tilt_r:before { 
   content: "\efee";
 }
-.knxuf-control_building_flat_filled:before { 
+.knxuf-audio_ls_51:before { 
   content: "\efef";
 }
-.knxuf-light_rgb:before { 
+.knxuf-control_building_modern_s_2og_dg:before { 
   content: "\eff0";
 }
-.knxuf-fts_blade_z_80:before { 
+.knxuf-control_building_flat_filled:before { 
   content: "\eff1";
 }
-.knxuf-vent_air_filter:before { 
+.knxuf-light_rgb:before { 
   content: "\eff2";
 }
-.knxuf-fts_blade_arc_-40:before { 
+.knxuf-fts_blade_z_80:before { 
   content: "\eff3";
 }
-.knxuf-fts_shutter_40:before { 
+.knxuf-vent_air_filter:before { 
   content: "\eff4";
 }
-.knxuf-phone_ring_out:before { 
+.knxuf-fts_blade_arc_-40:before { 
   content: "\eff5";
 }
-.knxuf-sani_solar:before { 
+.knxuf-fts_shutter_40:before { 
   content: "\eff6";
 }
-.knxuf-sani_water_tap:before { 
+.knxuf-phone_ring_out:before { 
   content: "\eff7";
 }
-.knxuf-weather_storm:before { 
+.knxuf-sani_solar:before { 
   content: "\eff8";
 }
-.knxuf-it_smartphone:before { 
+.knxuf-sani_water_tap:before { 
   content: "\eff9";
 }
-.knxuf-scene_kitchen_sink:before { 
+.knxuf-weather_storm:before { 
   content: "\effa";
 }
-.knxuf-fts_door_tilt:before { 
+.knxuf-it_smartphone:before { 
   content: "\effb";
 }
-.knxuf-scene_making_love:before { 
+.knxuf-scene_kitchen_sink:before { 
   content: "\effc";
 }
-.knxuf-it_ups_standby:before { 
+.knxuf-fts_door_tilt:before { 
   content: "\effd";
 }
-.knxuf-weather_station_quadra:before { 
+.knxuf-scene_making_love:before { 
   content: "\effe";
 }
-.knxuf-light_diffused:before { 
+.knxuf-it_ups_standby:before { 
   content: "\efff";
 }
-.knxuf-phone_call_end_in:before { 
+.knxuf-weather_station_quadra:before { 
   content: "\f000";
 }
-.knxuf-control_building_int_all:before { 
+.knxuf-light_diffused:before { 
   content: "\f001";
 }
-.knxuf-temp_windchill:before { 
+.knxuf-phone_call_end_in:before { 
   content: "\f002";
 }
-.knxuf-light_ceiling_light:before { 
+.knxuf-control_building_int_all:before { 
   content: "\f003";
 }
-.knxuf-control_zoom_in:before { 
+.knxuf-temp_windchill:before { 
   content: "\f004";
 }
-.knxuf-measure_battery_100:before { 
+.knxuf-light_ceiling_light:before { 
   content: "\f005";
 }
-.knxuf-message_presence_disabled:before { 
+.knxuf-control_zoom_in:before { 
   content: "\f006";
 }
-.knxuf-scene_cooking_hob:before { 
+.knxuf-measure_battery_100:before { 
   content: "\f007";
 }
-.knxuf-control_building_modern_s_2og_int_dg:before { 
+.knxuf-message_presence_disabled:before { 
   content: "\f008";
 }
-.knxuf-light_starlit_sky:before { 
+.knxuf-scene_cooking_hob:before { 
   content: "\f009";
 }
-.knxuf-control_building_int_og:before { 
+.knxuf-control_building_modern_s_2og_int_dg:before { 
   content: "\f00a";
 }
-.knxuf-fts_door_opener_key:before { 
+.knxuf-light_starlit_sky:before { 
   content: "\f00b";
 }
-.knxuf-status_presence_simulation_rec:before { 
+.knxuf-control_building_int_og:before { 
   content: "\f00c";
 }
-.knxuf-control_building_int_eg:before { 
+.knxuf-fts_door_opener_key:before { 
   content: "\f00d";
 }
-.knxuf-weather_snow:before { 
+.knxuf-status_presence_simulation_rec:before { 
   content: "\f00e";
 }
-.knxuf-it_server:before { 
+.knxuf-control_building_int_eg:before { 
   content: "\f00f";
 }
-.knxuf-it_network:before { 
+.knxuf-weather_snow:before { 
   content: "\f010";
 }
-.knxuf-control_minus:before { 
+.knxuf-it_server:before { 
   content: "\f011";
 }
-.knxuf-fts_door_slide_2w:before { 
+.knxuf-it_network:before { 
   content: "\f012";
 }
-.knxuf-sani_heating_manual:before { 
+.knxuf-control_minus:before { 
   content: "\f013";
 }
-.knxuf-scene_hall_alternat:before { 
+.knxuf-fts_door_slide_2w:before { 
   content: "\f014";
 }
-.knxuf-weather_directions_s:before { 
+.knxuf-sani_heating_manual:before { 
   content: "\f015";
 }
-.knxuf-control_building_s_all:before { 
+.knxuf-scene_hall_alternat:before { 
   content: "\f016";
 }
-.knxuf-control_circuit_breaker_off:before { 
+.knxuf-weather_directions_s:before { 
   content: "\f017";
 }
-.knxuf-sani_towel_rad:before { 
+.knxuf-control_building_s_all:before { 
   content: "\f018";
 }
-.knxuf-vent_stop:before { 
+.knxuf-control_circuit_breaker_off:before { 
   content: "\f019";
 }
-.knxuf-control_building_modern_s_og:before { 
+.knxuf-sani_towel_rad:before { 
   content: "\f01a";
 }
-.knxuf-scene_night:before { 
+.knxuf-vent_stop:before { 
   content: "\f01b";
 }
-.knxuf-control_building_modern_s_okg_int_all:before { 
+.knxuf-control_building_modern_s_og:before { 
   content: "\f01c";
 }
-.knxuf-temp_outside:before { 
+.knxuf-scene_night:before { 
   content: "\f01d";
 }
-.knxuf-it_ups_on_battery:before { 
+.knxuf-control_building_modern_s_okg_int_all:before { 
   content: "\f01e";
 }
-.knxuf-fts_window_2w_open_l:before { 
+.knxuf-temp_outside:before { 
   content: "\f01f";
 }
-.knxuf-control_arrow_leftward:before { 
+.knxuf-it_ups_on_battery:before { 
   content: "\f020";
 }
-.knxuf-fts_blade_z_70:before { 
+.knxuf-fts_window_2w_open_l:before { 
   content: "\f021";
 }
-.knxuf-fts_entrance_boom_closed:before { 
+.knxuf-control_arrow_leftward:before { 
   content: "\f022";
 }
-.knxuf-weather_rain_meter:before { 
+.knxuf-fts_blade_z_70:before { 
   content: "\f023";
 }
-.knxuf-phone_call:before { 
+.knxuf-fts_entrance_boom_closed:before { 
   content: "\f024";
 }
-.knxuf-fts_blade_arc_close_00:before { 
+.knxuf-weather_rain_meter:before { 
   content: "\f025";
 }
-.knxuf-measure_cistern_10:before { 
+.knxuf-phone_call:before { 
   content: "\f026";
 }
-.knxuf-fts_window_roof_open_2:before { 
+.knxuf-fts_blade_arc_close_00:before { 
   content: "\f027";
 }
-.knxuf-control_building_s_int_dg:before { 
+.knxuf-measure_cistern_10:before { 
   content: "\f028";
 }
-.knxuf-sani_water_cold:before { 
+.knxuf-fts_window_roof_open_2:before { 
   content: "\f029";
 }
-.knxuf-status_light_high:before { 
+.knxuf-control_building_s_int_dg:before { 
   content: "\f02a";
 }
-.knxuf-control_3dot_hor_f:before { 
+.knxuf-sani_water_cold:before { 
   content: "\f02b";
 }
-.knxuf-measure_globe:before { 
+.knxuf-status_light_high:before { 
   content: "\f02c";
 }
-.knxuf-fts_shutter_locked:before { 
+.knxuf-control_3dot_hor_f:before { 
   content: "\f02d";
 }
-.knxuf-scene_visit_guests:before { 
+.knxuf-measure_globe:before { 
   content: "\f02e";
 }
-.knxuf-control_building_modern02_okg_og:before { 
+.knxuf-fts_shutter_locked:before { 
   content: "\f02f";
 }
-.knxuf-scene_washing_machine:before { 
+.knxuf-scene_visit_guests:before { 
   content: "\f030";
 }
-.knxuf-light_indoor_og_1:before { 
+.knxuf-control_building_modern02_okg_og:before { 
   content: "\f031";
 }
-.knxuf-weather_summer:before { 
+.knxuf-scene_washing_machine:before { 
   content: "\f032";
 }
-.knxuf-light_office_desk:before { 
+.knxuf-light_indoor_og_1:before { 
   content: "\f033";
 }
-.knxuf-fts_blade_s_100:before { 
+.knxuf-weather_summer:before { 
   content: "\f034";
 }
-.knxuf-weather_moon_phases_7_half:before { 
+.knxuf-light_office_desk:before { 
   content: "\f035";
 }
-.knxuf-measure_battery_25:before { 
+.knxuf-fts_blade_s_100:before { 
   content: "\f036";
 }
-.knxuf-sani_heating_automatic:before { 
+.knxuf-weather_moon_phases_7_half:before { 
   content: "\f037";
 }
-.knxuf-fts_blade_z_100:before { 
+.knxuf-measure_battery_25:before { 
   content: "\f038";
 }
-.knxuf-measure_cistern_80:before { 
+.knxuf-sani_heating_automatic:before { 
   content: "\f039";
 }
-.knxuf-fts_window_roof_shutter:before { 
+.knxuf-fts_blade_z_100:before { 
   content: "\f03a";
 }
-.knxuf-weather_directions_o:before { 
+.knxuf-measure_cistern_80:before { 
   content: "\f03b";
 }
-.knxuf-scene_making_love_clean:before { 
+.knxuf-fts_window_roof_shutter:before { 
   content: "\f03c";
 }
-.knxuf-phone_remote_trans_disabled:before { 
+.knxuf-weather_directions_o:before { 
   content: "\f03d";
 }
-.knxuf-message_light_barrier:before { 
+.knxuf-scene_making_love_clean:before { 
   content: "\f03e";
 }
-.knxuf-text_min:before { 
+.knxuf-phone_remote_trans_disabled:before { 
   content: "\f03f";
 }
-.knxuf-weather_cloudy:before { 
+.knxuf-message_light_barrier:before { 
   content: "\f040";
 }
-.knxuf-fts_door_open:before { 
+.knxuf-text_min:before { 
   content: "\f041";
 }
-.knxuf-fts_blade_z_40:before { 
+.knxuf-weather_cloudy:before { 
   content: "\f042";
 }
-.knxuf-control_building_flat_s_okg_eg:before { 
+.knxuf-fts_door_open:before { 
   content: "\f043";
 }
-.knxuf-fts_blade_s_10:before { 
+.knxuf-fts_blade_z_40:before { 
   content: "\f044";
 }
-.knxuf-scene_party:before { 
+.knxuf-control_building_flat_s_okg_eg:before { 
   content: "\f045";
 }
-.knxuf-edit_collapse:before { 
+.knxuf-fts_blade_s_10:before { 
   content: "\f046";
 }
-.knxuf-edit_cut:before { 
+.knxuf-scene_party:before { 
   content: "\f047";
 }
-.knxuf-light_indoor_eg:before { 
+.knxuf-edit_collapse:before { 
   content: "\f048";
 }
-.knxuf-message_achtung:before { 
+.knxuf-edit_cut:before { 
   content: "\f049";
 }
-.knxuf-control_home:before { 
+.knxuf-light_indoor_eg:before { 
   content: "\f04a";
 }
-.knxuf-weather_barometric_pressure:before { 
+.knxuf-message_achtung:before { 
   content: "\f04b";
 }
-.knxuf-temp_frost:before { 
+.knxuf-control_home:before { 
   content: "\f04c";
 }
-.knxuf-measure_pond_70:before { 
+.knxuf-weather_barometric_pressure:before { 
   content: "\f04d";
 }
-.knxuf-control_switch_m_8:before { 
+.knxuf-temp_frost:before { 
   content: "\f04e";
 }
-.knxuf-control_building_modern_s_okg_int_dg:before { 
+.knxuf-measure_pond_70:before { 
   content: "\f04f";
 }
-.knxuf-scene_gaming_2:before { 
+.knxuf-control_switch_m_8:before { 
   content: "\f050";
 }
-.knxuf-control_building_modern02_okg_int_og:before { 
+.knxuf-control_building_modern_s_okg_int_dg:before { 
   content: "\f051";
 }
-.knxuf-light_wire_system_2:before { 
+.knxuf-scene_gaming_2:before { 
   content: "\f052";
 }
-.knxuf-scene_cinema:before { 
+.knxuf-control_building_modern02_okg_int_og:before { 
   content: "\f053";
 }
-.knxuf-fts_garage_door_30:before { 
+.knxuf-light_wire_system_2:before { 
   content: "\f054";
 }
-.knxuf-control_building_flat_s_mkg:before { 
+.knxuf-scene_cinema:before { 
   content: "\f055";
 }
-.knxuf-control_3dot_vert_f:before { 
+.knxuf-fts_garage_door_30:before { 
   content: "\f056";
 }
-.knxuf-status_child_boy:before { 
+.knxuf-control_building_flat_s_mkg:before { 
   content: "\f057";
 }
-.knxuf-control_building_s_okg_all:before { 
+.knxuf-control_3dot_vert_f:before { 
   content: "\f058";
 }
-.knxuf-control_building_modern_s_2og_og1:before { 
+.knxuf-status_child_boy:before { 
   content: "\f059";
 }
-.knxuf-fts_door_unlocked:before { 
+.knxuf-control_building_s_okg_all:before { 
   content: "\f05a";
 }
-.knxuf-fts_blade_z_30:before { 
+.knxuf-control_building_modern_s_2og_og1:before { 
   content: "\f05b";
 }
-.knxuf-control_building_modern_s_2og_int_og2:before { 
+.knxuf-fts_door_unlocked:before { 
   content: "\f05c";
 }
-.knxuf-fts_sunblind:before { 
+.knxuf-fts_blade_z_30:before { 
   content: "\f05d";
 }
-.knxuf-scene_day:before { 
+.knxuf-control_building_modern_s_2og_int_og2:before { 
   content: "\f05e";
 }
-.knxuf-control_building_flat_okg_all:before { 
+.knxuf-fts_sunblind:before { 
   content: "\f05f";
 }
-.knxuf-weather_wind_directions_se:before { 
+.knxuf-scene_day:before { 
   content: "\f060";
 }
-.knxuf-light_x-mas_star_2:before { 
+.knxuf-control_building_flat_okg_all:before { 
   content: "\f061";
 }
-.knxuf-weather_wind_directions_sw:before { 
+.knxuf-weather_wind_directions_se:before { 
   content: "\f062";
 }
-.knxuf-time_alarm_clock:before { 
+.knxuf-light_x-mas_star_2:before { 
   content: "\f063";
 }
-.knxuf-info_warning:before { 
+.knxuf-weather_wind_directions_sw:before { 
   content: "\f064";
 }
-.knxuf-control_circuit_breaker_on:before { 
+.knxuf-time_alarm_clock:before { 
   content: "\f065";
 }
-.knxuf-sani_valve_0:before { 
+.knxuf-info_warning:before { 
   content: "\f066";
 }
-.knxuf-fts_shutter_vert_automatic:before { 
+.knxuf-control_circuit_breaker_on:before { 
   content: "\f067";
 }
-.knxuf-control_centr_arrow_up:before { 
+.knxuf-sani_valve_0:before { 
   content: "\f068";
 }
-.knxuf-message_garbage_2:before { 
+.knxuf-fts_shutter_vert_automatic:before { 
   content: "\f069";
 }
-.knxuf-measure_pond_40:before { 
+.knxuf-control_centr_arrow_up:before { 
   content: "\f06a";
 }
-.knxuf-fts_door_slide:before { 
+.knxuf-message_garbage_2:before { 
   content: "\f06b";
 }
-.knxuf-fts_sliding_gate_closed:before { 
+.knxuf-measure_pond_40:before { 
   content: "\f06c";
 }
-.knxuf-light_fairy_lights:before { 
+.knxuf-fts_door_slide:before { 
   content: "\f06d";
 }
-.knxuf-weather_wind_directions_s:before { 
+.knxuf-fts_sliding_gate_closed:before { 
   content: "\f06e";
 }
-.knxuf-fts_blade_arc_80:before { 
+.knxuf-light_fairy_lights:before { 
   content: "\f06f";
 }
-.knxuf-temp_temperature_max:before { 
+.knxuf-weather_wind_directions_s:before { 
   content: "\f070";
 }
-.knxuf-status_comfort:before { 
+.knxuf-fts_blade_arc_80:before { 
   content: "\f071";
 }
-.knxuf-control_building_modern_s_eg:before { 
+.knxuf-temp_temperature_max:before { 
   content: "\f072";
 }
-.knxuf-control_building_s_okg_dg:before { 
+.knxuf-status_comfort:before { 
   content: "\f073";
 }
-.knxuf-control_building_s_dg:before { 
+.knxuf-control_building_modern_s_eg:before { 
   content: "\f074";
 }
-.knxuf-audio_playlist:before { 
+.knxuf-control_building_s_okg_dg:before { 
   content: "\f075";
 }
-.knxuf-weather_moon_phases_2:before { 
+.knxuf-control_building_s_dg:before { 
   content: "\f076";
 }
-.knxuf-fts_shutter_50:before { 
+.knxuf-audio_playlist:before { 
   content: "\f077";
 }
-.knxuf-fts_blade_arc_close_50:before { 
+.knxuf-weather_moon_phases_2:before { 
   content: "\f078";
 }
-.knxuf-fts_blade_z_00:before { 
+.knxuf-fts_shutter_50:before { 
   content: "\f079";
 }
-.knxuf-control_plus:before { 
+.knxuf-fts_blade_arc_close_50:before { 
   content: "\f07a";
 }
-.knxuf-fts_window_roof_shutter_90:before { 
+.knxuf-fts_blade_z_00:before { 
   content: "\f07b";
 }
-.knxuf-measure_cistern_20:before { 
+.knxuf-control_plus:before { 
   content: "\f07c";
 }
-.knxuf-control_building_modern_s_2og_int_all:before { 
+.knxuf-fts_window_roof_shutter_90:before { 
   content: "\f07d";
 }
-.knxuf-temp_dew_point:before { 
+.knxuf-measure_cistern_20:before { 
   content: "\f07e";
 }
-.knxuf-weather_night_fog:before { 
+.knxuf-control_building_modern_s_2og_int_all:before { 
   content: "\f07f";
 }
-.knxuf-light_bar_table:before { 
+.knxuf-temp_dew_point:before { 
   content: "\f080";
 }
-.knxuf-scene_robo_vac_cleaner_active:before { 
+.knxuf-weather_night_fog:before { 
   content: "\f081";
 }
-.knxuf-scene_scene:before { 
+.knxuf-light_bar_table:before { 
   content: "\f082";
 }
-.knxuf-audio_fade:before { 
+.knxuf-scene_robo_vac_cleaner_active:before { 
   content: "\f083";
 }
-.knxuf-scene_livingroom:before { 
+.knxuf-scene_scene:before { 
   content: "\f084";
 }
-.knxuf-measure_cistern_50:before { 
+.knxuf-audio_fade:before { 
   content: "\f085";
 }
-.knxuf-it_remote:before { 
+.knxuf-scene_livingroom:before { 
   content: "\f086";
 }
-.knxuf-scene_toilet:before { 
+.knxuf-measure_cistern_50:before { 
   content: "\f087";
 }
-.knxuf-status_automatic:before { 
+.knxuf-it_remote:before { 
   content: "\f088";
 }
-.knxuf-vent_error:before { 
+.knxuf-scene_toilet:before { 
   content: "\f089";
 }
-.knxuf-status_man:before { 
+.knxuf-status_automatic:before { 
   content: "\f08a";
 }
-.knxuf-control_building_edg_eg:before { 
+.knxuf-vent_error:before { 
   content: "\f08b";
 }
-.knxuf-weather_rain_gauge:before { 
+.knxuf-status_man:before { 
   content: "\f08c";
 }
-.knxuf-message_light_barrier_open:before { 
+.knxuf-control_building_edg_eg:before { 
   content: "\f08d";
 }
-.knxuf-status_light_max:before { 
+.knxuf-weather_rain_gauge:before { 
   content: "\f08e";
 }
-.knxuf-secur_alarm_test:before { 
+.knxuf-message_light_barrier_open:before { 
   content: "\f08f";
 }
-.knxuf-weather_directions_nw:before { 
+.knxuf-status_light_max:before { 
   content: "\f090";
 }
-.knxuf-light_showcase:before { 
+.knxuf-secur_alarm_test:before { 
   content: "\f091";
 }
-.knxuf-scene_fountain_indoor:before { 
+.knxuf-weather_directions_nw:before { 
   content: "\f092";
 }
-.knxuf-control_building_control:before { 
+.knxuf-light_showcase:before { 
   content: "\f093";
 }
-.knxuf-control_arrow_downward:before { 
+.knxuf-scene_fountain_indoor:before { 
   content: "\f094";
 }
-.knxuf-audio_ls_51_center:before { 
+.knxuf-control_building_control:before { 
   content: "\f095";
 }
-.knxuf-time_eco_mode:before { 
+.knxuf-control_arrow_downward:before { 
   content: "\f096";
 }
-.knxuf-light_indoor_ug:before { 
+.knxuf-audio_ls_51_center:before { 
   content: "\f097";
 }
-.knxuf-fts_garage_door_80:before { 
+.knxuf-time_eco_mode:before { 
   content: "\f098";
 }
-.knxuf-weather_moon_phases_8:before { 
+.knxuf-light_indoor_ug:before { 
   content: "\f099";
 }
-.knxuf-vent_low_pressure_warning:before { 
+.knxuf-fts_garage_door_80:before { 
   content: "\f09a";
 }
-.knxuf-control_building_dg:before { 
+.knxuf-weather_moon_phases_8:before { 
   content: "\f09b";
 }
-.knxuf-message_socket_ch:before { 
+.knxuf-vent_low_pressure_warning:before { 
   content: "\f09c";
 }
-.knxuf-control_fault_current_circuit_breaker_on:before { 
+.knxuf-control_building_dg:before { 
   content: "\f09d";
 }
-.knxuf-edit_numeric_1:before { 
+.knxuf-message_socket_ch:before { 
   content: "\f09e";
 }
-.knxuf-fts_door_slide_m:before { 
+.knxuf-control_fault_current_circuit_breaker_on:before { 
   content: "\f09f";
 }
-.knxuf-fts_shutter_vert_50:before { 
+.knxuf-edit_numeric_1:before { 
   content: "\f0a0";
 }
-.knxuf-message_socket_on_off:before { 
+.knxuf-fts_door_slide_m:before { 
   content: "\f0a1";
 }
-.knxuf-status_woman:before { 
+.knxuf-fts_shutter_vert_50:before { 
   content: "\f0a2";
 }
-.knxuf-weather_directions_no:before { 
+.knxuf-message_socket_on_off:before { 
   content: "\f0a3";
 }
-.knxuf-scene_pet:before { 
+.knxuf-status_woman:before { 
   content: "\f0a4";
 }
-.knxuf-audio_eject:before { 
+.knxuf-weather_directions_no:before { 
   content: "\f0a5";
 }
-.knxuf-measure_pond_50:before { 
+.knxuf-scene_pet:before { 
   content: "\f0a6";
 }
-.knxuf-control_building_og:before { 
+.knxuf-audio_eject:before { 
   content: "\f0a7";
 }
-.knxuf-vent_ventilation_level_manual_m:before { 
+.knxuf-measure_pond_50:before { 
   content: "\f0a8";
 }
-.knxuf-weather_light_meter:before { 
+.knxuf-control_building_og:before { 
   content: "\f0a9";
 }
-.knxuf-control_centr_arrow_down_right:before { 
+.knxuf-vent_ventilation_level_manual_m:before { 
   content: "\f0aa";
 }
-.knxuf-fts_window_roof_shutter_40:before { 
+.knxuf-weather_light_meter:before { 
   content: "\f0ab";
 }
-.knxuf-fts_shutter_30:before { 
+.knxuf-control_centr_arrow_down_right:before { 
   content: "\f0ac";
 }
-.knxuf-light_wall_2:before { 
+.knxuf-fts_window_roof_shutter_40:before { 
   content: "\f0ad";
 }
-.knxuf-light_light_dim_70:before { 
+.knxuf-fts_shutter_30:before { 
   content: "\f0ae";
 }
-.knxuf-fts_shutter_vert_blade_30:before { 
+.knxuf-light_wall_2:before { 
   content: "\f0af";
 }
-.knxuf-measure_water_meter:before { 
+.knxuf-light_light_dim_70:before { 
   content: "\f0b0";
 }
-.knxuf-scene_swimming:before { 
+.knxuf-fts_shutter_vert_blade_30:before { 
   content: "\f0b1";
 }
-.knxuf-sani_sprinkling:before { 
+.knxuf-measure_water_meter:before { 
   content: "\f0b2";
 }
-.knxuf-status_locked:before { 
+.knxuf-scene_swimming:before { 
   content: "\f0b3";
 }
-.knxuf-scene_sleeping_twin_1_0:before { 
+.knxuf-sani_sprinkling:before { 
   content: "\f0b4";
 }
-.knxuf-weather_directions_sw:before { 
+.knxuf-status_locked:before { 
   content: "\f0b5";
 }
-.knxuf-measure_cistern_70:before { 
+.knxuf-scene_sleeping_twin_1_0:before { 
   content: "\f0b6";
 }
-.knxuf-edit_numeric_8:before { 
+.knxuf-weather_directions_sw:before { 
   content: "\f0b7";
 }
-.knxuf-secur_breakage_glass:before { 
+.knxuf-measure_cistern_70:before { 
   content: "\f0b8";
 }
-.knxuf-fts_door_slide_open_m:before { 
+.knxuf-edit_numeric_8:before { 
   content: "\f0b9";
 }
-.knxuf-sani_heating_temp:before { 
+.knxuf-secur_breakage_glass:before { 
   content: "\f0ba";
 }
-.knxuf-control_ok:before { 
+.knxuf-fts_door_slide_open_m:before { 
   content: "\f0bb";
 }
-.knxuf-light_indoor:before { 
+.knxuf-sani_heating_temp:before { 
   content: "\f0bc";
 }
-.knxuf-light_indoor_og_2:before { 
+.knxuf-control_ok:before { 
   content: "\f0bd";
 }
-.knxuf-control_building_modern_s_int_eg:before { 
+.knxuf-light_indoor:before { 
   content: "\f0be";
 }
-.knxuf-fts_shutter_vert_blade_00:before { 
+.knxuf-light_indoor_og_2:before { 
   content: "\f0bf";
 }
-.knxuf-message_presence_geo_inactive:before { 
+.knxuf-control_building_modern_s_int_eg:before { 
   content: "\f0c0";
 }
-.knxuf-control_building_modern02_okg_eg:before { 
+.knxuf-fts_shutter_vert_blade_00:before { 
   content: "\f0c1";
 }
-.knxuf-sani_cooling_temp:before { 
+.knxuf-message_presence_geo_inactive:before { 
   content: "\f0c2";
 }
-.knxuf-fts_window_louvre:before { 
+.knxuf-control_building_modern02_okg_eg:before { 
   content: "\f0c3";
 }
-.knxuf-sani_valve_50:before { 
+.knxuf-sani_cooling_temp:before { 
   content: "\f0c4";
 }
-.knxuf-weather_night_cloudy:before { 
+.knxuf-fts_window_louvre:before { 
   content: "\f0c5";
 }
-.knxuf-audio_rew:before { 
+.knxuf-sani_valve_50:before { 
   content: "\f0c6";
 }
-.knxuf-fts_shutter_jam:before { 
+.knxuf-weather_night_cloudy:before { 
   content: "\f0c7";
 }
-.knxuf-fts_door_slide_2w_open_r:before { 
+.knxuf-audio_rew:before { 
   content: "\f0c8";
 }
-.knxuf-it_ups:before { 
+.knxuf-fts_shutter_jam:before { 
   content: "\f0c9";
 }
-.knxuf-control_building_flat:before { 
+.knxuf-fts_door_slide_2w_open_r:before { 
   content: "\f0ca";
 }
-.knxuf-control_hamburger_e:before { 
+.knxuf-it_ups:before { 
   content: "\f0cb";
 }
-.knxuf-fts_blade_z_sun:before { 
+.knxuf-control_building_flat:before { 
   content: "\f0cc";
 }
-.knxuf-weather_wind:before { 
+.knxuf-control_hamburger_e:before { 
   content: "\f0cd";
 }
-.knxuf-scene_aquarium:before { 
+.knxuf-fts_blade_z_sun:before { 
   content: "\f0ce";
 }
-.knxuf-vent_ambient_air:before { 
+.knxuf-weather_wind:before { 
   content: "\f0cf";
 }
-.knxuf-sani_valve_20:before { 
+.knxuf-scene_aquarium:before { 
   content: "\f0d0";
 }
-.knxuf-sani_pool_filter_pump:before { 
+.knxuf-vent_ambient_air:before { 
   content: "\f0d1";
 }
-.knxuf-control_building_flat_s_mkg_all:before { 
+.knxuf-sani_valve_20:before { 
   content: "\f0d2";
 }
-.knxuf-phone_dial:before { 
+.knxuf-sani_pool_filter_pump:before { 
   content: "\f0d3";
 }
-.knxuf-it_pc:before { 
+.knxuf-control_building_flat_s_mkg_all:before { 
   content: "\f0d4";
 }
-.knxuf-fts_sunblind_closed:before { 
+.knxuf-phone_dial:before { 
   content: "\f0d5";
 }
-.knxuf-fts_blade_s_70:before { 
+.knxuf-it_pc:before { 
   content: "\f0d6";
 }
-.knxuf-control_building_modern_s_all:before { 
+.knxuf-fts_sunblind_closed:before { 
   content: "\f0d7";
 }
-.knxuf-it_media_player:before { 
+.knxuf-fts_blade_s_70:before { 
   content: "\f0d8";
 }
-.knxuf-scene_massage_jet:before { 
+.knxuf-control_building_modern_s_all:before { 
   content: "\f0d9";
 }
-.knxuf-control_building_modern02_okg_all:before { 
+.knxuf-it_media_player:before { 
   content: "\f0da";
 }
-.knxuf-audio_repeat:before { 
+.knxuf-scene_massage_jet:before { 
   content: "\f0db";
 }
-.knxuf-secur_smoke_detector:before { 
+.knxuf-control_building_modern02_okg_all:before { 
   content: "\f0dc";
 }
-.knxuf-control_on_off:before { 
+.knxuf-audio_repeat:before { 
   content: "\f0dd";
 }
-.knxuf-scene_jukebox:before { 
+.knxuf-secur_smoke_detector:before { 
   content: "\f0de";
 }
-.knxuf-light_indoor_og:before { 
+.knxuf-control_on_off:before { 
   content: "\f0df";
 }
-.knxuf-weather_wind_directions_n:before { 
+.knxuf-scene_jukebox:before { 
   content: "\f0e0";
 }
-.knxuf-fts_blade_arc_40:before { 
+.knxuf-light_indoor_og:before { 
   content: "\f0e1";
 }
-.knxuf-phone_missed_out:before { 
+.knxuf-weather_wind_directions_n:before { 
   content: "\f0e2";
 }
-.knxuf-weather_moon_phases_3_half:before { 
+.knxuf-fts_blade_arc_40:before { 
   content: "\f0e3";
 }
-.knxuf-measure_pond_60:before { 
+.knxuf-phone_missed_out:before { 
   content: "\f0e4";
 }
-.knxuf-weather_station:before { 
+.knxuf-weather_moon_phases_3_half:before { 
   content: "\f0e5";
 }
-.knxuf-light_x-mas_candle_arch:before { 
+.knxuf-measure_pond_60:before { 
   content: "\f0e6";
 }
-.knxuf-info_ok:before { 
+.knxuf-weather_station:before { 
   content: "\f0e7";
 }
-.knxuf-edit_save:before { 
+.knxuf-light_x-mas_candle_arch:before { 
   content: "\f0e8";
 }
-.knxuf-edit_favorites:before { 
+.knxuf-info_ok:before { 
   content: "\f0e9";
 }
-.knxuf-light_x-mas_manger:before { 
+.knxuf-edit_save:before { 
   content: "\f0ea";
 }
-.knxuf-scene_flash:before { 
+.knxuf-edit_favorites:before { 
   content: "\f0eb";
 }
-.knxuf-measure_globe_long:before { 
+.knxuf-light_x-mas_manger:before { 
   content: "\f0ec";
 }
-.knxuf-control_return:before { 
+.knxuf-scene_flash:before { 
   content: "\f0ed";
 }
-.knxuf-control_building_modern02_okg_int_dg:before { 
+.knxuf-measure_globe_long:before { 
   content: "\f0ee";
 }
-.knxuf-light_dressing_room:before { 
+.knxuf-control_return:before { 
   content: "\f0ef";
 }
-.knxuf-fts_garage_door_50:before { 
+.knxuf-control_building_modern02_okg_int_dg:before { 
   content: "\f0f0";
 }
-.knxuf-fts_shutter_unlocked:before { 
+.knxuf-light_dressing_room:before { 
   content: "\f0f1";
 }
-.knxuf-vent_bypass:before { 
+.knxuf-fts_garage_door_50:before { 
   content: "\f0f2";
 }
-.knxuf-control_3dot_vert_e:before { 
+.knxuf-fts_shutter_unlocked:before { 
   content: "\f0f3";
 }
-.knxuf-light_light_dim_30:before { 
+.knxuf-vent_bypass:before { 
   content: "\f0f4";
 }
-.knxuf-fts_blade_arc_automatic:before { 
+.knxuf-control_3dot_vert_e:before { 
   content: "\f0f5";
 }
-.knxuf-light_light_dim_10:before { 
+.knxuf-light_light_dim_30:before { 
   content: "\f0f6";
 }
-.knxuf-fts_shutter_90:before { 
+.knxuf-fts_blade_arc_automatic:before { 
   content: "\f0f7";
 }
-.knxuf-weather_directions:before { 
+.knxuf-light_light_dim_10:before { 
   content: "\f0f8";
 }
-.knxuf-control_arrow_right:before { 
+.knxuf-fts_shutter_90:before { 
   content: "\f0f9";
 }
-.knxuf-scene_gaming:before { 
+.knxuf-weather_directions:before { 
   content: "\f0fa";
 }
-.knxuf-weather_sunset:before { 
+.knxuf-control_arrow_right:before { 
   content: "\f0fb";
 }
-.knxuf-scene_wine_cellar:before { 
+.knxuf-scene_gaming:before { 
   content: "\f0fc";
 }
-.knxuf-scene_sleeping_alternat:before { 
+.knxuf-weather_sunset:before { 
   content: "\f0fd";
 }
-.knxuf-message_postbox_mail:before { 
+.knxuf-scene_wine_cellar:before { 
   content: "\f0fe";
 }
-.knxuf-control_building_edg_dg:before { 
+.knxuf-scene_sleeping_alternat:before { 
   content: "\f0ff";
 }
-.knxuf-light_dinner_table:before { 
+.knxuf-message_postbox_mail:before { 
   content: "\f100";
 }
-.knxuf-sani_cooling_automatic:before { 
+.knxuf-control_building_edg_dg:before { 
   content: "\f101";
 }
-.knxuf-control_building_modern_s_kg:before { 
+.knxuf-light_dinner_table:before { 
   content: "\f102";
 }
-.knxuf-control_arrow_rightward:before { 
+.knxuf-sani_cooling_automatic:before { 
   content: "\f103";
 }
-.knxuf-sani_domestic_waterworks:before { 
+.knxuf-control_building_modern_s_kg:before { 
   content: "\f104";
 }
-.knxuf-sani_valve_90:before { 
+.knxuf-control_arrow_rightward:before { 
   content: "\f105";
 }
-.knxuf-text_exclamation_mark:before { 
+.knxuf-sani_domestic_waterworks:before { 
   content: "\f106";
 }
-.knxuf-control_2:before { 
+.knxuf-sani_valve_90:before { 
   content: "\f107";
 }
-.knxuf-control_building_flat_s_okg_all:before { 
+.knxuf-text_exclamation_mark:before { 
   content: "\f108";
 }
-.knxuf-fts_shutter_60:before { 
+.knxuf-control_2:before { 
   content: "\f109";
 }
-.knxuf-fts_sliding_gate_l_closed:before { 
+.knxuf-control_building_flat_s_okg_all:before { 
   content: "\f10a";
 }
-.knxuf-message_tendency_upward:before { 
+.knxuf-fts_shutter_60:before { 
   content: "\f10b";
 }
-.knxuf-secur_alarm_alarm:before { 
+.knxuf-fts_sliding_gate_l_closed:before { 
   content: "\f10c";
 }
-.knxuf-control_building_modern_s_okg_all:before { 
+.knxuf-message_tendency_upward:before { 
   content: "\f10d";
 }
-.knxuf-message_bug_filled:before { 
+.knxuf-secur_alarm_alarm:before { 
   content: "\f10e";
 }
-.knxuf-status_standby:before { 
+.knxuf-control_building_modern_s_okg_all:before { 
   content: "\f10f";
 }
-.knxuf-message_bell_door:before { 
+.knxuf-message_bug_filled:before { 
   content: "\f110";
 }
-.knxuf-weather_directions_so:before { 
+.knxuf-status_standby:before { 
   content: "\f111";
 }
-.knxuf-light_garage:before { 
+.knxuf-message_bell_door:before { 
   content: "\f112";
 }
-.knxuf-vent_humidifier:before { 
+.knxuf-weather_directions_so:before { 
   content: "\f113";
 }
-.knxuf-measure_cistern_60:before { 
+.knxuf-light_garage:before { 
   content: "\f114";
 }
-.knxuf-control_zoom_out:before { 
+.knxuf-vent_humidifier:before { 
   content: "\f115";
 }
-.knxuf-fts_blade_s_sun:before { 
+.knxuf-measure_cistern_60:before { 
   content: "\f116";
 }
-.knxuf-measure_power:before { 
+.knxuf-control_zoom_out:before { 
   content: "\f117";
 }
-.knxuf-message_attention_2:before { 
+.knxuf-fts_blade_s_sun:before { 
   content: "\f118";
 }
-.knxuf-control_switch_1:before { 
+.knxuf-measure_power:before { 
   content: "\f119";
 }
-.knxuf-text_question_mark:before { 
+.knxuf-message_attention_2:before { 
   content: "\f11a";
 }
-.knxuf-sani_valve_60:before { 
+.knxuf-control_switch_1:before { 
   content: "\f11b";
 }
-.knxuf-scene_robo_vac_cleaner_charging:before { 
+.knxuf-text_question_mark:before { 
   content: "\f11c";
 }
-.knxuf-user_available:before { 
+.knxuf-sani_valve_60:before { 
   content: "\f11d";
 }
-.knxuf-time_manual_mode:before { 
+.knxuf-scene_robo_vac_cleaner_charging:before { 
   content: "\f11e";
 }
-.knxuf-light_mirrored_wardrobe:before { 
+.knxuf-user_available:before { 
   content: "\f11f";
 }
-.knxuf-message_presence:before { 
+.knxuf-time_manual_mode:before { 
   content: "\f120";
 }
-.knxuf-fts_blade_s_20:before { 
+.knxuf-light_mirrored_wardrobe:before { 
   content: "\f121";
 }
-.knxuf-time_alarm_clock_snooze:before { 
+.knxuf-message_presence:before { 
   content: "\f122";
 }
-.knxuf-it_wifi_2:before { 
+.knxuf-fts_blade_s_20:before { 
   content: "\f123";
 }
-.knxuf-time_timer_switch:before { 
+.knxuf-time_alarm_clock_snooze:before { 
   content: "\f124";
 }
-.knxuf-light_led:before { 
+.knxuf-it_wifi_2:before { 
   content: "\f125";
 }
-.knxuf-weather_humidity_abs:before { 
+.knxuf-time_timer_switch:before { 
   content: "\f126";
 }
-.knxuf-scene_laundry_room:before { 
+.knxuf-light_led:before { 
   content: "\f127";
 }
-.knxuf-light_floor_lamp:before { 
+.knxuf-weather_humidity_abs:before { 
   content: "\f128";
 }
-.knxuf-scene_beer:before { 
+.knxuf-scene_laundry_room:before { 
   content: "\f129";
 }
-.knxuf-light_mirror:before { 
+.knxuf-light_floor_lamp:before { 
   content: "\f12a";
 }
-.knxuf-control_building_s_okg_int_all:before { 
+.knxuf-scene_beer:before { 
   content: "\f12b";
 }
-.knxuf-fts_window_2w_open_l_tilt_r:before { 
+.knxuf-light_mirror:before { 
   content: "\f12c";
 }
-.knxuf-fts_blade_arc_-10:before { 
+.knxuf-control_building_s_okg_int_all:before { 
   content: "\f12d";
 }
-.knxuf-control_reset:before { 
+.knxuf-fts_window_2w_open_l_tilt_r:before { 
   content: "\f12e";
 }
-.knxuf-light_light_dim_20:before { 
+.knxuf-fts_blade_arc_-10:before { 
   content: "\f12f";
 }
-.knxuf-scene_horse:before { 
+.knxuf-control_reset:before { 
   content: "\f130";
 }
-.knxuf-fts_shutter_vert_blade_90:before { 
+.knxuf-light_light_dim_20:before { 
   content: "\f131";
 }
-.knxuf-control_arrow_turn_left:before { 
+.knxuf-scene_horse:before { 
   content: "\f132";
 }
-.knxuf-light_bollard_2:before { 
+.knxuf-fts_shutter_vert_blade_90:before { 
   content: "\f133";
 }
-.knxuf-control_building_modern_s_2og_kg:before { 
+.knxuf-control_arrow_turn_left:before { 
   content: "\f134";
 }
-.knxuf-message_tendency_steady:before { 
+.knxuf-light_bollard_2:before { 
   content: "\f135";
 }
-.knxuf-control_3dot_hor_e:before { 
+.knxuf-control_building_modern_s_2og_kg:before { 
   content: "\f136";
 }
-.knxuf-message_medicine:before { 
+.knxuf-message_tendency_steady:before { 
   content: "\f137";
 }
-.knxuf-sani_central_vacuum_cleaner:before { 
+.knxuf-control_3dot_hor_e:before { 
   content: "\f138";
 }
-.knxuf-fts_garage_door_90:before { 
+.knxuf-message_medicine:before { 
   content: "\f139";
 }
-.knxuf-scene_robo_lawnmower_paused:before { 
+.knxuf-sani_central_vacuum_cleaner:before { 
   content: "\f13a";
 }
-.knxuf-light_fountain_indoor:before { 
+.knxuf-fts_garage_door_90:before { 
   content: "\f13b";
 }
-.knxuf-scene_cooking_alternat:before { 
+.knxuf-scene_robo_lawnmower_paused:before { 
   content: "\f13c";
 }
-.knxuf-weather_wind_speed_bft:before { 
+.knxuf-light_fountain_indoor:before { 
   content: "\f13d";
 }
-.knxuf-it_net:before { 
+.knxuf-scene_cooking_alternat:before { 
   content: "\f13e";
 }
-.knxuf-control_building_2_s_int_kg:before { 
+.knxuf-weather_wind_speed_bft:before { 
   content: "\f13f";
 }
-.knxuf-status_away_1:before { 
+.knxuf-it_net:before { 
   content: "\f140";
 }
-.knxuf-control_building_kg:before { 
+.knxuf-control_building_2_s_int_kg:before { 
   content: "\f141";
 }
-.knxuf-fts_blade_arc_00:before { 
+.knxuf-status_away_1:before { 
   content: "\f142";
 }
-.knxuf-measure_pond_80:before { 
+.knxuf-control_building_kg:before { 
   content: "\f143";
 }
-.knxuf-weather_night_starry:before { 
+.knxuf-fts_blade_arc_00:before { 
   content: "\f144";
 }
-.knxuf-light_cube:before { 
+.knxuf-measure_pond_80:before { 
   content: "\f145";
 }
-.knxuf-temp_inside:before { 
+.knxuf-weather_night_starry:before { 
   content: "\f146";
 }
-.knxuf-control_arrow_left:before { 
+.knxuf-light_cube:before { 
   content: "\f147";
 }
-.knxuf-fts_shutter_vert_30:before { 
+.knxuf-temp_inside:before { 
   content: "\f148";
 }
-.knxuf-fts_window_roof_shutter_30:before { 
+.knxuf-control_arrow_left:before { 
   content: "\f149";
 }
-.knxuf-control_building_2_s_int_all:before { 
+.knxuf-fts_shutter_vert_30:before { 
   content: "\f14a";
 }
-.knxuf-fts_blade_z:before { 
+.knxuf-fts_window_roof_shutter_30:before { 
   content: "\f14b";
 }
-.knxuf-time_clock:before { 
+.knxuf-control_building_2_s_int_all:before { 
   content: "\f14c";
 }
-.knxuf-fts_shutter_10:before { 
+.knxuf-fts_blade_z:before { 
   content: "\f14d";
 }
-.knxuf-control_building_modern02_okg_int_all:before { 
+.knxuf-time_clock:before { 
   content: "\f14e";
 }
-.knxuf-light_kitchen_hood:before { 
+.knxuf-fts_shutter_10:before { 
   content: "\f14f";
 }
-.knxuf-light_bedside:before { 
+.knxuf-control_building_modern02_okg_int_all:before { 
   content: "\f150";
 }
-.knxuf-sani_valve_100:before { 
+.knxuf-light_kitchen_hood:before { 
   content: "\f151";
 }
-.knxuf-measure_pond_10:before { 
+.knxuf-light_bedside:before { 
   content: "\f152";
 }
-.knxuf-control_building_all:before { 
+.knxuf-sani_valve_100:before { 
   content: "\f153";
 }
-.knxuf-info_no_state:before { 
+.knxuf-measure_pond_10:before { 
   content: "\f154";
 }
-.knxuf-fts_blade_arc:before { 
+.knxuf-control_building_all:before { 
   content: "\f155";
 }
-.knxuf-control_building_eg:before { 
+.knxuf-info_no_state:before { 
   content: "\f156";
 }
-.knxuf-light_light_dim_100:before { 
+.knxuf-fts_blade_arc:before { 
   content: "\f157";
 }
-.knxuf-sani_water_hot:before { 
+.knxuf-control_building_eg:before { 
   content: "\f158";
 }
-.knxuf-fts_entrance_boom_open:before { 
+.knxuf-light_light_dim_100:before { 
   content: "\f159";
 }
-.knxuf-light_cabinet:before { 
+.knxuf-sani_water_hot:before { 
   content: "\f15a";
 }
-.knxuf-light_table_lamp:before { 
+.knxuf-fts_entrance_boom_open:before { 
   content: "\f15b";
 }
-.knxuf-secur_encoding:before { 
+.knxuf-light_cabinet:before { 
   content: "\f15c";
 }
-.knxuf-scene_living:before { 
+.knxuf-light_table_lamp:before { 
   content: "\f15d";
 }
-.knxuf-message_stop:before { 
+.knxuf-secur_encoding:before { 
   content: "\f15e";
 }
-.knxuf-edit_settings:before { 
+.knxuf-scene_living:before { 
   content: "\f15f";
 }
-.knxuf-vent_air_filter_full:before { 
+.knxuf-message_stop:before { 
   content: "\f160";
 }
-.knxuf-status_not_available:before { 
+.knxuf-edit_settings:before { 
   content: "\f161";
 }
-.knxuf-light_painting:before { 
+.knxuf-vent_air_filter_full:before { 
   content: "\f162";
 }
-.knxuf-scene_projector_closed_on_off:before { 
+.knxuf-status_not_available:before { 
   content: "\f163";
 }
-.knxuf-status_vacation:before { 
+.knxuf-light_painting:before { 
   content: "\f164";
 }
-.knxuf-control_building_modern_s_2og_eg:before { 
+.knxuf-scene_projector_closed_on_off:before { 
   content: "\f165";
 }
-.knxuf-audio_sync:before { 
+.knxuf-status_vacation:before { 
   content: "\f166";
 }
-.knxuf-measure_pond_100:before { 
+.knxuf-control_building_modern_s_2og_eg:before { 
   content: "\f167";
 }
-.knxuf-scene_garden:before { 
+.knxuf-audio_sync:before { 
   content: "\f168";
 }
-.knxuf-edit_numeric_7:before { 
+.knxuf-measure_pond_100:before { 
   content: "\f169";
 }
-.knxuf-weather_thunderstorm:before { 
+.knxuf-scene_garden:before { 
   content: "\f16a";
 }
-.knxuf-control_building_edg_int_dg:before { 
+.knxuf-edit_numeric_7:before { 
   content: "\f16b";
 }
-.knxuf-weather_moon_phases_1_new:before { 
+.knxuf-weather_thunderstorm:before { 
   content: "\f16c";
 }
-.knxuf-scene_terrace:before { 
+.knxuf-control_building_edg_int_dg:before { 
   content: "\f16d";
 }
-.knxuf-user_away:before { 
+.knxuf-weather_moon_phases_1_new:before { 
   content: "\f16e";
 }
-.knxuf-scene_football:before { 
+.knxuf-scene_terrace:before { 
   content: "\f16f";
 }
-.knxuf-sani_valve_70:before { 
+.knxuf-user_away:before { 
   content: "\f170";
 }
-.knxuf-sani_boiler_temp:before { 
+.knxuf-scene_football:before { 
   content: "\f171";
 }
-.knxuf-fts_balcony:before { 
+.knxuf-sani_valve_70:before { 
   content: "\f172";
 }
-.knxuf-fts_window_1w_locked:before { 
+.knxuf-sani_boiler_temp:before { 
   content: "\f173";
 }
-.knxuf-light_downlight:before { 
+.knxuf-fts_balcony:before { 
   content: "\f174";
 }
-.knxuf-control_building_flat_okg_og:before { 
+.knxuf-fts_window_1w_locked:before { 
   content: "\f175";
 }
-.knxuf-fts_shutter_vert_blade_10:before { 
+.knxuf-light_downlight:before { 
   content: "\f176";
 }
-.knxuf-scene_sleeping:before { 
+.knxuf-control_building_flat_okg_og:before { 
   content: "\f177";
 }
-.knxuf-measure_ph_value:before { 
+.knxuf-fts_shutter_vert_blade_10:before { 
   content: "\f178";
 }
-.knxuf-message_mail_open:before { 
+.knxuf-scene_sleeping:before { 
   content: "\f179";
 }
-.knxuf-measure_radioactivity:before { 
+.knxuf-measure_ph_value:before { 
   content: "\f17a";
 }
-.knxuf-audio_headphone:before { 
+.knxuf-message_mail_open:before { 
   content: "\f17b";
 }
-.knxuf-time_note:before { 
+.knxuf-measure_radioactivity:before { 
   content: "\f17c";
 }
-.knxuf-sani_pump:before { 
+.knxuf-audio_headphone:before { 
   content: "\f17d";
 }
-.knxuf-it_ups_battery_empty:before { 
+.knxuf-time_note:before { 
   content: "\f17e";
 }
-.knxuf-fts_umbrella_offset_open:before { 
+.knxuf-sani_pump:before { 
   content: "\f17f";
 }
-.knxuf-fts_garage_door_100:before { 
+.knxuf-it_ups_battery_empty:before { 
   content: "\f180";
 }
-.knxuf-scene_ironing:before { 
+.knxuf-fts_umbrella_offset_open:before { 
   content: "\f181";
 }
-.knxuf-weather_sleet:before { 
+.knxuf-fts_garage_door_100:before { 
   content: "\f182";
 }
-.knxuf-vent_supply_air:before { 
+.knxuf-scene_ironing:before { 
   content: "\f183";
 }
-.knxuf-fts_window_2w_open:before { 
+.knxuf-weather_sleet:before { 
   content: "\f184";
 }
-.knxuf-control_cancel:before { 
+.knxuf-vent_supply_air:before { 
   content: "\f185";
 }
-.knxuf-fts_garage_door_60:before { 
+.knxuf-fts_window_2w_open:before { 
   content: "\f186";
 }
-.knxuf-scene_bumper_car:before { 
+.knxuf-control_cancel:before { 
   content: "\f187";
 }
-.knxuf-control_building_s_okg_eg:before { 
+.knxuf-fts_garage_door_60:before { 
   content: "\f188";
 }
-.knxuf-scene_dressing_room:before { 
+.knxuf-scene_bumper_car:before { 
   content: "\f189";
 }
-.knxuf-scene_cat:before { 
+.knxuf-control_building_s_okg_eg:before { 
   content: "\f18a";
 }
-.knxuf-control_fault_current_circuit_breaker_off:before { 
+.knxuf-scene_dressing_room:before { 
   content: "\f18b";
 }
-.knxuf-weather_rain_heavy:before { 
+.knxuf-scene_cat:before { 
   content: "\f18c";
 }
-.knxuf-light_pendant_light_round:before { 
+.knxuf-measure_smart_meter:before { 
   content: "\f18d";
 }
-.knxuf-fts_shutter_70:before { 
+.knxuf-control_fault_current_circuit_breaker_off:before { 
   content: "\f18e";
 }
-.knxuf-fts_window_roof_shutter_80:before { 
+.knxuf-weather_rain_heavy:before { 
   content: "\f18f";
 }
-.knxuf-light_x-mas_tree:before { 
+.knxuf-light_pendant_light_round:before { 
   content: "\f190";
 }
-.knxuf-message_light_intensity:before { 
+.knxuf-fts_shutter_70:before { 
   content: "\f191";
 }
-.knxuf-scene_fitness:before { 
+.knxuf-fts_window_roof_shutter_80:before { 
   content: "\f192";
 }
-.knxuf-sani_cooling_manual:before { 
+.knxuf-light_x-mas_tree:before { 
   content: "\f193";
 }
-.knxuf-control_building_s_okg_int_og:before { 
+.knxuf-message_light_intensity:before { 
   content: "\f194";
 }
-.knxuf-message_postbox:before { 
+.knxuf-scene_fitness:before { 
   content: "\f195";
 }
-.knxuf-it_ups_charging:before { 
+.knxuf-sani_cooling_manual:before { 
   content: "\f196";
 }
-.knxuf-weather_fog:before { 
+.knxuf-control_building_s_okg_int_og:before { 
   content: "\f197";
 }
-.knxuf-fts_light_dome:before { 
+.knxuf-message_postbox:before { 
   content: "\f198";
 }
-.knxuf-scene_cooking:before { 
+.knxuf-it_ups_charging:before { 
   content: "\f199";
 }
-.knxuf-control_building_edg_all:before { 
+.knxuf-weather_fog:before { 
   content: "\f19a";
 }
-.knxuf-control_building_modern_s_okg_dg:before { 
+.knxuf-fts_light_dome:before { 
   content: "\f19b";
 }
-.knxuf-control_building_edg_kg:before { 
+.knxuf-scene_cooking:before { 
   content: "\f19c";
 }
-.knxuf-control_building_s_int_all:before { 
+.knxuf-control_building_edg_all:before { 
   content: "\f19d";
 }
-.knxuf-control_building_edg_int_all:before { 
+.knxuf-control_building_modern_s_okg_dg:before { 
   content: "\f19e";
 }
-.knxuf-scene_summerhouse:before { 
+.knxuf-control_building_edg_kg:before { 
   content: "\f19f";
 }
-.knxuf-vent_ventilation_level_0:before { 
+.knxuf-control_building_s_int_all:before { 
   content: "\f1a0";
 }
-.knxuf-weather_sun:before { 
+.knxuf-control_building_edg_int_all:before { 
   content: "\f1a1";
 }
-.knxuf-weather_humidity_rel:before { 
+.knxuf-scene_summerhouse:before { 
   content: "\f1a2";
 }
-.knxuf-control_centr_arrow_up_right:before { 
+.knxuf-vent_ventilation_level_0:before { 
   content: "\f1a3";
 }
-.knxuf-weather_snow_heavy:before { 
+.knxuf-weather_sun:before { 
   content: "\f1a4";
 }
-.knxuf-light_light_dim_60:before { 
+.knxuf-weather_humidity_rel:before { 
   content: "\f1a5";
 }
-.knxuf-light_wall_3:before { 
+.knxuf-control_centr_arrow_up_right:before { 
   content: "\f1a6";
 }
-.knxuf-control_building_filled:before { 
+.knxuf-weather_snow_heavy:before { 
   content: "\f1a7";
 }
-.knxuf-scene_toilet_alternat:before { 
+.knxuf-light_light_dim_60:before { 
   content: "\f1a8";
 }
-.knxuf-fts_window_roof_shutter_70:before { 
+.knxuf-light_wall_3:before { 
   content: "\f1a9";
 }
-.knxuf-light_stairs:before { 
+.knxuf-control_building_filled:before { 
   content: "\f1aa";
 }
-.knxuf-scene_baby:before { 
+.knxuf-scene_toilet_alternat:before { 
   content: "\f1ab";
 }
-.knxuf-light_waterfall:before { 
+.knxuf-fts_window_roof_shutter_70:before { 
   content: "\f1ac";
 }
-.knxuf-fts_blade_s_90:before { 
+.knxuf-light_stairs:before { 
   content: "\f1ad";
 }
-.knxuf-fts_shutter_vert_blade_100:before { 
+.knxuf-scene_baby:before { 
   content: "\f1ae";
 }
-.knxuf-info_info:before { 
+.knxuf-light_waterfall:before { 
   content: "\f1af";
 }
-.knxuf-vent_bypass_open:before { 
+.knxuf-fts_blade_s_90:before { 
   content: "\f1b0";
 }
-.knxuf-fts_shutter_vert_20:before { 
+.knxuf-fts_shutter_vert_blade_100:before { 
   content: "\f1b1";
 }
-.knxuf-control_building_flat_s_okg_og:before { 
+.knxuf-info_info:before { 
   content: "\f1b2";
 }
-.knxuf-scene_microwave_oven:before { 
+.knxuf-vent_bypass_open:before { 
   content: "\f1b3";
 }
-.knxuf-secur_heat_protection:before { 
+.knxuf-fts_shutter_vert_20:before { 
   content: "\f1b4";
 }
-.knxuf-control_building_s_okg_og:before { 
+.knxuf-control_building_flat_s_okg_og:before { 
   content: "\f1b5";
 }
-.knxuf-audio_shuffle:before { 
+.knxuf-scene_microwave_oven:before { 
   content: "\f1b6";
 }
-.knxuf-audio_volume_low:before { 
+.knxuf-secur_heat_protection:before { 
   content: "\f1b7";
 }
-.knxuf-control_building_modern02_okg_dg:before { 
+.knxuf-control_building_s_okg_og:before { 
   content: "\f1b8";
 }
-.knxuf-fts_blade_arc_-50:before { 
+.knxuf-audio_shuffle:before { 
   content: "\f1b9";
 }
-.knxuf-weather_moon_phases_5_full:before { 
+.knxuf-audio_volume_low:before { 
   content: "\f1ba";
 }
-.knxuf-edit_numeric_0:before { 
+.knxuf-control_building_modern02_okg_dg:before { 
   content: "\f1bb";
 }
-.knxuf-fts_shutter_automatic:before { 
+.knxuf-fts_blade_arc_-50:before { 
   content: "\f1bc";
 }
-.knxuf-message_socket:before { 
+.knxuf-weather_moon_phases_5_full:before { 
   content: "\f1bd";
 }
-.knxuf-edit_sort:before { 
+.knxuf-edit_numeric_0:before { 
   content: "\f1be";
 }
-.knxuf-fts_shutter_vert_70:before { 
+.knxuf-fts_shutter_automatic:before { 
   content: "\f1bf";
 }
-.knxuf-light_ball:before { 
+.knxuf-message_socket:before { 
   content: "\f1c0";
 }
-.knxuf-audio_desync:before { 
+.knxuf-edit_sort:before { 
   content: "\f1c1";
 }
-.knxuf-time_sandglass:before { 
+.knxuf-fts_shutter_vert_70:before { 
   content: "\f1c2";
 }
-.knxuf-status_away_2:before { 
+.knxuf-light_ball:before { 
   content: "\f1c3";
 }
-.knxuf-weather_directions_n:before { 
+.knxuf-audio_desync:before { 
   content: "\f1c4";
 }
-.knxuf-fts_garage_door_10:before { 
+.knxuf-time_sandglass:before { 
   content: "\f1c5";
 }
-.knxuf-status_child_girl:before { 
+.knxuf-status_away_2:before { 
   content: "\f1c6";
 }
-.knxuf-fts_shutter_vert_blade_60:before { 
+.knxuf-weather_directions_n:before { 
   content: "\f1c7";
 }
-.knxuf-scene_dog:before { 
+.knxuf-fts_garage_door_10:before { 
   content: "\f1c8";
 }
-.knxuf-fts_window_1w:before { 
+.knxuf-status_child_girl:before { 
   content: "\f1c9";
 }
-.knxuf-sani_irrigation_pop_up_on:before { 
+.knxuf-fts_shutter_vert_blade_60:before { 
   content: "\f1ca";
 }
-.knxuf-time_automatic:before { 
+.knxuf-scene_dog:before { 
   content: "\f1cb";
 }
-.knxuf-fts_door:before { 
+.knxuf-fts_window_1w:before { 
   content: "\f1cc";
 }
-.knxuf-control_arrow_up_right:before { 
+.knxuf-sani_irrigation_pop_up_on:before { 
   content: "\f1cd";
 }
-.knxuf-time_calendar:before { 
+.knxuf-time_automatic:before { 
   content: "\f1ce";
 }
-.knxuf-light_party:before { 
+.knxuf-fts_door:before { 
   content: "\f1cf";
 }
-.knxuf-fts_blade_arc_50:before { 
+.knxuf-control_arrow_up_right:before { 
   content: "\f1d0";
 }
-.knxuf-sani_supply_temp:before { 
+.knxuf-time_calendar:before { 
   content: "\f1d1";
 }
-.knxuf-vent_ventilation_level_1:before { 
+.knxuf-light_party:before { 
   content: "\f1d2";
 }
-.knxuf-fts_door_slide_2w_open_lr:before { 
+.knxuf-fts_blade_arc_50:before { 
   content: "\f1d3";
 }
-.knxuf-fts_shutter_vert_blade_80:before { 
+.knxuf-sani_supply_temp:before { 
   content: "\f1d4";
 }
-.knxuf-secur_alarm_disabled:before { 
+.knxuf-vent_ventilation_level_1:before { 
   content: "\f1d5";
 }
-.knxuf-light_light_dim_50:before { 
+.knxuf-fts_door_slide_2w_open_lr:before { 
   content: "\f1d6";
 }
-.knxuf-weather_pollen:before { 
+.knxuf-fts_shutter_vert_blade_80:before { 
   content: "\f1d7";
 }
-.knxuf-it_router:before { 
+.knxuf-secur_alarm_disabled:before { 
   content: "\f1d8";
 }
-.knxuf-text_na:before { 
+.knxuf-light_light_dim_50:before { 
   content: "\f1d9";
 }
-.knxuf-weather_snow_light:before { 
+.knxuf-weather_pollen:before { 
   content: "\f1da";
 }
-.knxuf-fts_blade_arc_close_100:before { 
+.knxuf-it_router:before { 
   content: "\f1db";
 }
-.knxuf-fts_window_roof_shutter_60:before { 
+.knxuf-text_na:before { 
   content: "\f1dc";
 }
-.knxuf-fts_window_2w_open_r:before { 
+.knxuf-weather_snow_light:before { 
   content: "\f1dd";
 }
-.knxuf-fts_shutter_100:before { 
+.knxuf-fts_blade_arc_close_100:before { 
   content: "\f1de";
 }
-.knxuf-vent_ventilation_level_3:before { 
+.knxuf-fts_window_roof_shutter_60:before { 
   content: "\f1df";
 }
-.knxuf-control_3dot_hor_s:before { 
+.knxuf-fts_window_2w_open_r:before { 
   content: "\f1e0";
 }
-.knxuf-scene_bathroom:before { 
+.knxuf-fts_shutter_100:before { 
   content: "\f1e1";
 }
-.knxuf-light_plant:before { 
+.knxuf-vent_ventilation_level_3:before { 
   content: "\f1e2";
 }
-.knxuf-phone_missed_in:before { 
+.knxuf-control_3dot_hor_s:before { 
   content: "\f1e3";
 }
-.knxuf-scene_unicorn:before { 
+.knxuf-scene_bathroom:before { 
   content: "\f1e4";
 }
-.knxuf-scene_waterfall:before { 
+.knxuf-light_plant:before { 
   content: "\f1e5";
 }
-.knxuf-it_satellite_dish_heating:before { 
+.knxuf-phone_missed_in:before { 
   content: "\f1e6";
 }
-.knxuf-sani_valve_80:before { 
+.knxuf-scene_unicorn:before { 
   content: "\f1e7";
+}
+.knxuf-scene_waterfall:before { 
+  content: "\f1e8";
+}
+.knxuf-it_satellite_dish_heating:before { 
+  content: "\f1e9";
+}
+.knxuf-sani_valve_80:before { 
+  content: "\f1ea";
 }
