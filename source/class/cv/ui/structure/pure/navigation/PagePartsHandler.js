@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
           if (!this.navbars.left.fadeVisible) {
             navbar.style.left = -navbar.getBoundingClientRect().width + 'px';
           }
-          cv.ui.layout.ResizeHandler.invalidateNavbar();
+          cv.ui.structure.pure.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
