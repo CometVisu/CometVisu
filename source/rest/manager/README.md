@@ -1,12 +1,14 @@
-# php-base - PHP Slim Server library for CometVisu Manager backend
+# php-base - PHP Slim 4 Server library for CometVisu Manager backend
 
 * [OpenAPI Generator](https://openapi-generator.tech)
-* [Slim Framework Documentation](https://www.slimframework.com/docs/)
+* [Slim 4 Documentation](https://www.slimframework.com/docs/v4/)
+
+This server has been generated with [Slim PSR-7](https://github.com/slimphp/Slim-Psr7) implementation.
 
 ## Requirements
 
 * Web server with URL rewriting
-* PHP 7.0 or newer
+* PHP 7.4 or newer
 
 This package contains `.htaccess` for Apache configuration.
 If you use another server(Nginx, HHVM, IIS, lighttpd) check out [Web Servers](https://www.slimframework.com/docs/v3/start/web-servers.html) doc.
@@ -19,11 +21,15 @@ This command downloads the Slim Framework and its third-party dependencies into 
 $ composer install
 ```
 
+## Add configs
+
+Application requires at least one config file(`config/dev/config.inc.php` or `config/prod/config.inc.php`). You can use [config/dev/example.inc.php](config/dev/example.inc.php) as starting point.
+
 ## Start devserver
 
-Run the following command in terminal to start localhost web server, assuming `./php-slim-server/` is public-accessible directory with `index.php` file:
+Run the following command in terminal to start localhost web server, assuming `./php-slim-server/public/` is public-accessible directory with `index.php` file:
 ```bash
-$ php -S localhost:8888 -t php-slim-server
+$ php -S localhost:8888 -t php-slim-server/public
 ```
 > **Warning** This web server was designed to aid application development.
 > It may also be useful for testing purposes or for application demonstrations that are run in controlled environments.
@@ -33,9 +39,9 @@ $ php -S localhost:8888 -t php-slim-server
 
 ### PHPUnit
 
-This package uses PHPUnit 6 or 7(depends from your PHP version) for unit testing.
-[Test folder](test) contains templates which you can fill with real test assertions.
-How to write tests read at [PHPUnit Manual - Chapter 2. Writing Tests for PHPUnit](https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html).
+This package uses PHPUnit 8 or 9(depends from your PHP version) for unit testing.
+[Test folder](tests) contains templates which you can fill with real test assertions.
+How to write tests read at [2. Writing Tests for PHPUnit - PHPUnit 8.5 Manual](https://phpunit.readthedocs.io/en/8.5/writing-tests-for-phpunit.html).
 
 #### Run
 
@@ -49,7 +55,7 @@ Command | Target
 
 Package contains fully functional config `./phpunit.xml.dist` file. Create `./phpunit.xml` in root folder to override it.
 
-Quote from [3. The Command-Line Test Runner — PHPUnit 7.4 Manual](https://phpunit.readthedocs.io/en/7.4/textui.html#command-line-options):
+Quote from [3. The Command-Line Test Runner — PHPUnit 8.5 Manual](https://phpunit.readthedocs.io/en/8.5/textui.html#command-line-options):
 
 > If phpunit.xml or phpunit.xml.dist (in that order) exist in the current working directory and --configuration is not used, the configuration will be automatically read from that file.
 
@@ -80,16 +86,24 @@ $ composer phplint
 
 ## Show errors
 
-Switch on option in `./index.php`:
+Switch on option in your application config file like:
 ```diff
-    /**
-     * When true, additional information about exceptions are displayed by the default
-     * error handler.
-     * Default: false
-     */
---- // 'displayErrorDetails' => false,
-+++ 'displayErrorDetails' => true,
+ return [
+     'slimSettings' => [
+-        'displayErrorDetails' => false,
++        'displayErrorDetails' => true,
+         'logErrors' => true,
+         'logErrorDetails' => true,
+     ],
 ```
+
+## Mock Server
+For a quick start uncomment [mocker middleware options](config/dev/example.inc.php#L67-L94) in your application config file.
+
+Used packages:
+* [Openapi Data Mocker](https://github.com/ybelenko/openapi-data-mocker) - first implementation of OAS3 fake data generator.
+* [Openapi Data Mocker Server Middleware](https://github.com/ybelenko/openapi-data-mocker-server-middleware) - PSR-15 HTTP server middleware.
+* [Openapi Data Mocker Interfaces](https://github.com/ybelenko/openapi-data-mocker-interfaces) - package with mocking interfaces.
 
 ## API Endpoints
 

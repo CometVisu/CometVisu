@@ -18,7 +18,8 @@
     "test": "grunt karma:debug",
     "lint": "qx lint source/class/cv/ client/source/class/cv/",
     "make-client": "cd client && qx compile -t build",
-    "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/"
+    "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
+    "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate"
   },
   "license": "GPL-3.0",
   "authors": [
@@ -39,6 +40,7 @@
     "@babel/eslint-parser": "^7.16.3",
     "@babel/polyfill": "^7.8.7",
     "@openapitools/openapi-generator-cli": "^2.4.25",
+    "@prettier/plugin-php": "^0.17.6",
     "@qooxdoo/compiler": "^1.0.5",
     "@qooxdoo/eslint-config-qx": "^2.0.1",
     "@qooxdoo/eslint-plugin-qx": "^1.2.22",
@@ -84,6 +86,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
     "mustache": "^4.0.1",
+    "prettier": "^2.5.1",
     "protractor": "^7.0.0",
     "request": "^2.88.2",
     "uglify-es": "^3.3.9",

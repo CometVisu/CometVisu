@@ -73,6 +73,9 @@ qx.Class.define('cv.io.rest.Client', {
         this.__configFile = new qx.io.rest.Resource(config);
         this.__configFile.setBaseUrl(this.getBaseUrl());
         this.__configFile.configureRequest(function (req, action) {
+          if (cv.Config.transactionId) {
+           req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+          }
           if (action === 'save') {
             req.setRequestHeader('Content-Type', 'application/json');
           }
@@ -109,6 +112,9 @@ qx.Class.define('cv.io.rest.Client', {
         this.__dirClient = new qx.io.rest.Resource(config);
         this.__dirClient.setBaseUrl(this.getBaseUrl());
         this.__dirClient.configureRequest(function (req, action, params) {
+          if (cv.Config.transactionId) {
+            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+          }
           if (params.hash) {
             req.setUrl(req.getUrl() + '&hash=' + params.hash);
           }
@@ -164,6 +170,11 @@ qx.Class.define('cv.io.rest.Client', {
         };
         this.__dpClient = new qx.io.rest.Resource(config);
         this.__dpClient.setBaseUrl(this.getBaseUrl());
+        if (cv.Config.transactionId) {
+          this.__dpClient.configureRequest(function (req, action, params) {
+            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+          });
+        }
 
         this._enableSync(this.__dpClient, config);
       }
