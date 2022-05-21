@@ -3,6 +3,11 @@
 0.12.0
 ======
 
+
+### v0.12.0-RC12 (2022/05/11)
+
+- [#1277](https://github.com/CometVisu/CometVisu/pull/1278) set navbars to inactive before bailing out (@peuter)
+
 ### v0.12.0-RC11 (2022/05/11)
 
 - [#1277](https://github.com/CometVisu/CometVisu/pull/1277) only skip if the navbar has a scope set (@peuter)
