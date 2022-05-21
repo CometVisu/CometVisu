@@ -875,11 +875,10 @@ qx.Class.define('cv.Application',
           const req = e.getTarget();
           const env = req.getResponse();
           const serverVersionId = env.PHP_VERSION_ID;
-          //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
           let disable = false;
           if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
-            const parts = env.required_php_version.split(' ');
-            disable = parts.some(constraint => {
+            const parts = env.required_php_version.trim().split(' ');
+            const disabledParts = parts.map(constraint => {
               const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
               if (match) {
                 const operator = match[1];
@@ -926,6 +925,24 @@ qx.Class.define('cv.Application',
               }
               return false;
             });
+
+            if (parts.length ===3) {
+              // one operator
+              switch (parts[1]) {
+                case '||':
+                  // both must be true to disable
+                  disable = disabledParts[0] && disabledParts[2];
+                  break;
+
+                case '&&':
+                  // one must be true to disable
+                  disable = disabledParts[0] || disabledParts[2];
+                  break;
+              }
+            } else if (parts.length === 1) {
+              disable = disabledParts[0];
+            }
+
             if (disable) {
               this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
               this.setManagerDisabled(true);
