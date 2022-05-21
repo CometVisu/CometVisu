@@ -92,19 +92,24 @@ Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weg
 
 
 Widgets
--------
+=======
 
 .. toctree::
     :maxdepth: 1
 
-    widgets/switch
-    widgets/shutter
+    Switch <widgets/switch>
+    Shutter <widgets/shutter>
+    Info <widgets/info>
+    Status <widgets/status>
 
-* Info
-* Status
+
 * MediaPlayer
 * RTC
 
+Eigene Widgets definieren
+=========================
+
+Wie definiert man ein Template für ein Custom-Widget
 
 
 Komponenten
@@ -122,7 +127,3 @@ Komponenten
 * Chart
 
 
-Eigene Widgets definieren
--------------------------
-
-Wie definiert man ein Template für ein Custom-Widget
