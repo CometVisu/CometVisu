@@ -17,7 +17,7 @@ Das Status-Widget belegt nur die halbe Höhe eines Standard-Widgets.
 
     <settings design="tile">
         <screenshot name="cv-status" margin="0 10 10 0">
-            <data address="1/4/2">5</data>
+            <data address="1/4/2">2</data>
         </screenshot>
     </settings>
     <cv-status format="%d offen">
@@ -28,8 +28,47 @@ Das Status-Widget belegt nur die halbe Höhe eines Standard-Widgets.
 
 Es muss ein ``<cv-address slot="address">`` angegeben werden über den der anzuzeigende Wert übermittelt wird.
 Zusätzlich kann eine Beschriftung über ``<span slot="label">`` hinzugefügt werden.
-Über das ``format``-Attribut kann der Wert :ref:`formatiert <format>` mit zusätzlichem Text versehen werden.
+Über das ``format``-Attribut kann der Wert :ref:`formatiert <format>` und mit zusätzlichem Text versehen werden.
 
+Es ist auch möglich das Icon über ein Mapping anzupassen um, je nach Wert, ein Icon für offene oder geschlossene Fenster
+anzuzeigen. Über ein zusätzliches Styling kann man das Icon auch noch entsprechend einfärben.
+
+.. widget-example::
+
+    <settings design="tile">
+        <screenshot name="cv-status-closed" margin="0 10 10 0">
+            <data address="1/4/2">0</data>
+        </screenshot>
+        <screenshot name="cv-status-opened" margin="0 10 10 0">
+            <data address="1/4/2">1</data>
+        </screenshot>
+    </settings>
+    <cv-meta>
+        <cv-mapping name="WindowOpen">
+            <entry value="0">knxuf-fts_window_1w</entry>
+            <entry range-min="1">knxuf-fts_window_1w_open</entry>
+        </cv-mapping>
+        <cv-styling name="OpenAlert">
+            <entry range-min="1">red</entry>
+        </cv-styling>
+    </cv-meta>
+    <cv-status format="%d offen">
+        <cv-value slot="icon" mapping="WindowOpen" styling="OpenAlert">
+            <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
+            <cv-address transform="DPT:5.010" mode="read">1/4/2</cv-address>
+        </cv-value>
+        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/2</cv-address>
+        <span slot="label">Fenster</span>
+    </cv-status>
+
+Dazu wird für den "icon"-slot kein einfaches ``<cv-icon>`` sondern ein ``<cv-value>`` mit darin liegendem ``<cv-icon>``
+verwendet.
+Dadurch hat man die Möglichkeit ein mapping/styling für dieses Icon zu definieren. Damit das Value-Element die selben
+Werte benutzt, wie das Status-Element muss hier nochmal die selbe ``<cv-address>``-Element benutzt werden.
+
+.. TODO:
+    Listen
+    cv-icon, cv-value verlinken
 
 
 Erlaubte Attribute im Status-Element

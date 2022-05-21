@@ -28,6 +28,9 @@
             <entry value="0">knxuf-fts_window_1w</entry>
             <entry range-min="1">knxuf-fts_window_1w_open</entry>
         </cv-mapping>
+        <cv-styling name="WindowOpen">
+            <entry range-min="1">red</entry>
+        </cv-styling>
         <cv-mapping name="PlayProgress">
             <formula>y = Math.round(100/store.get('duration')*x)</formula>
         </cv-mapping>
@@ -83,7 +86,7 @@
                 <span slot="label">Rollladen</span>
             </cv-status>
             <cv-status format="%d offen">
-                <cv-value slot="icon" mapping="WindowOpen">
+                <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
                     <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
                     <cv-address transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
                 </cv-value>
