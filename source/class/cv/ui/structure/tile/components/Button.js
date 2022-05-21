@@ -1,5 +1,7 @@
 /**
  *
+ * @author Tobias Bräutigam
+ * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.components.Button', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,

@@ -356,6 +356,11 @@ body {
         justify-items: center;
         position: relative;
 
+        &.screenshots {
+            /* white background for screenshots of widgets with border radius */
+            background-color: white;
+        }
+
         .row {
             height: var(--tileCellHeight);
             width: 100%;

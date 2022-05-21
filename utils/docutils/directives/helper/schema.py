@@ -106,7 +106,7 @@ class Schema:
         enums = None
         if 'type' in node.attrib:
             type = node.get('type')
-        elif len(node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))) > 0:
+        elif len(node.findall("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE))) > 0:
             enums = node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))
             values = [enum.get('value') for enum in enums]
             type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")

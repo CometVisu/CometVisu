@@ -115,7 +115,12 @@ Wie definiert man ein Template für ein Custom-Widget
 Komponenten
 -----------
 
-* Button
+.. toctree::
+    :maxdepth: 1
+
+    Button <components/button>
+
+
 * Value
 * Image
 * RoundProgress

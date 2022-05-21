@@ -100,9 +100,15 @@ class WidgetExampleParser:
             print("Parse error: %s" % str(e))
 
         example_content = b""
+        display_content = b""
+        wrapper = settings_node.get("wrap-in") if settings_node is not None else None
         for elem in config_example:
+            if wrapper is not None:
+                example_content += bytes("<%s class=\"screenshots\">" % wrapper, 'utf-8')
             example_content += etree.tostring(elem, encoding='utf-8')
-        display_content = example_content
+            display_content += etree.tostring(elem, encoding='utf-8')
+            if wrapper is not None:
+                example_content += bytes("</%s>" % wrapper, 'utf-8')
 
         if meta_node is not None:
             display_content = b"...\n%s...\n%s" % (etree.tostring(meta_node, encoding='utf-8'), display_content)
