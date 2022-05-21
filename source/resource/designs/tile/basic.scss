@@ -615,6 +615,17 @@ body {
             border: 1px solid $primaryColor;
             box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
         }
+
+        > label.button-label {
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 14px;
+            color: $secondaryText;
+            text-overflow: ellipsis;
+        }
     }
 
     cv-value {

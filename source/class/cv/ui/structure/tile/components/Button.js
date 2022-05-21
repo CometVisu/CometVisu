@@ -264,7 +264,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (!this.__textLabel) {
         this.__textLabel = document.createElement('label');
         this.__textLabel.classList.add('button-label');
-        this._element.parentNode.insertBefore(this.__textLabel, this._element.nextElementSibling);
+        this._element.appendChild(this.__textLabel);
       }
       this.__textLabel.textContent = value;
     },

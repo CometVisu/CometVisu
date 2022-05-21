@@ -1,6 +1,6 @@
-*************
+=============
 Tile-Struktur
-*************
+=============
 
 Die CometVisu bot seit jeher die Möglichkeit weitere Strukturen neben der vorhandenen pure-Struktur einzubinden.
 Die Strukturen sind dafür verantwortlich eine Config-Datei im Browser darzustellen. Normalerweise geschieht dies

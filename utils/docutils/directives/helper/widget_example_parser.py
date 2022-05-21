@@ -102,11 +102,19 @@ class WidgetExampleParser:
         example_content = b""
         display_content = b""
         wrapper = settings_node.get("wrap-in") if settings_node is not None else None
+        wrapper_attributes = ' class="%s"' % settings_node.get("wrapper-class") if settings_node is not None else ""
         for elem in config_example:
+            content = etree.tostring(elem, encoding='utf-8')
+            display = content
             if wrapper is not None:
-                example_content += bytes("<%s class=\"screenshots\">" % wrapper, 'utf-8')
-            example_content += etree.tostring(elem, encoding='utf-8')
-            display_content += etree.tostring(elem, encoding='utf-8')
+                example_content += bytes("<%s%s>" % (wrapper, wrapper_attributes), 'utf-8')
+                if wrapper == 'cv-tile':
+                    # center the widget
+                    parts = content.decode('utf-8').split(" ", 1)
+                    parts.insert(1, 'row="middle" column="middle"')
+                    content = bytes(" ".join(parts), 'utf-8')
+            example_content += content
+            display_content += display
             if wrapper is not None:
                 example_content += bytes("</%s>" % wrapper, 'utf-8')
 

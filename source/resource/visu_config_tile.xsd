@@ -416,6 +416,12 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="text" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Additional label for the button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zusätzliche Beschriftung für den Button.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-slider">
