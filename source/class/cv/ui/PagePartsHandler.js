@@ -308,6 +308,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
             const data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
             if (data.scope >= 0 && tree.length-level > data.scope) {
               // navbar that is not visible at the moment -> ignore it
+              nav.classList.remove('navbarActive');
               return;
             }
             if (data.dynamic !== null) {
