@@ -9,10 +9,12 @@ Button
 Beschreibung
 ------------
 
+Der Button unterstützt unterschiedliche Betriebsmodi, die im folgenden beschrieben werden.
+
 Schalter
 ^^^^^^^^
 
-Ein Button erlaubt das Senden und Darstellen eines Zustands. Das einfachste Beispiel hierfür ist ein An/Aus-Schalter.
+Ein Schalter-Button erlaubt das Senden und Darstellen eines Zustands. Das einfachste Beispiel hierfür ist ein An/Aus-Schalter.
 Der Button zeigt den aktuellen Zustand an und wechselt beim Klicken zwischen den beiden möglichen Zuständen.
 
 .. widget-example::
@@ -50,8 +52,7 @@ Icons und der Umrandung des Buttons je nach Zustand unterschiedlich gesetzt.
 Trigger
 ^^^^^^^
 
-Neben dem beschriebenen Schalter erlaubt der Button jedoch noch andere Betriebsmodi. Er kann auch als "Trigger" konfiguriert
-werden und sendet dann beim Klicken immer einen festen Wert an das Backend. Hier ist der gesendete Wert also
+Ein Trigger-Button sendet dann beim Klicken immer einen festen Wert an das Backend. Hier ist der gesendete Wert also
 nicht wie beim Schalter abhängig vom aktuellen Zustand, sondern es wird immer ein und der selbe Wert gesendet.
 Eingestellt wird dieser Modus indem der zu sendende feste Wert in dem <cv-address>-Element angeben wird:
 
@@ -63,9 +64,9 @@ Eingestellt wird dieser Modus indem der zu sendende feste Wert in dem <cv-addres
 Taster
 ^^^^^^^
 
-Ebenso kann der Button als Taster konfiguriert werden. In diesem Modus wird beim Drücken des Buttons ein Wert gesendet
-und beim Loslassen des Buttons ein anderer. Auch dieser Modus wird über das <cv-address>-Element aktiviert.
-Genauer gesagt benötigt man hier zwei Adressen:
+Ein Taster-Button sendet einen Wert beim Drücken des Buttons und beim Loslassen des Buttons einen anderen.
+Im Trigger- und Schalter-Modus wird nur ein Wert beim Loslassen des Buttons gesendet (einfacher Klick).
+Auch dieser Modus wird über das <cv-address>-Element aktiviert. Genauer gesagt benötigt man hier zwei Adressen:
 
 .. code-block:: xml
 
