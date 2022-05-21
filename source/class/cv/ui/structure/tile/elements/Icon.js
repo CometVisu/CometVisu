@@ -14,7 +14,12 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
       check: 'String',
       nullable: true,
       apply: '_applyId'
-    }
+    },
+    styleClass: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyStyleClass'
+    },
   },
 
   /*
@@ -56,7 +61,21 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
           }
         }
       }
-    }
+    },
+
+    _applyStyleClass(value, oldValue) {
+      const classes = this._element.classList;
+      if (oldValue) {
+        if (classes.contains(oldValue)) {
+          classes.replace(oldValue, value);
+        } else {
+          classes.add(value);
+          classes.remove(oldValue);
+        }
+      } else if (value) {
+        classes.add(value);
+      }
+    },
   },
 
   defer(Clazz) {

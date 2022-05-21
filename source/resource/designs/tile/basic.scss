@@ -436,6 +436,10 @@ body {
                 width: 100%;
                 height: 100%;
             }
+
+            &.active {
+                color: $primaryColor;
+            }
         }
         cv-icon[size='large'] {
             font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) / 2);

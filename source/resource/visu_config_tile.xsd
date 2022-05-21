@@ -368,7 +368,6 @@
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
-        <xsd:element name="span" type="label-span" maxOccurs="3" minOccurs="0" />
         <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
         <xsd:element name="label" type="label" minOccurs="0" />
         <xsd:element name="meter" type="meter" minOccurs="0" />
@@ -380,6 +379,10 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-button">
@@ -387,7 +390,6 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
         <xsd:element name="cv-icon" type="cv-icon" minOccurs="0"/>
-        <xsd:element name="span" type="label-span" maxOccurs="3" minOccurs="0" />
         <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
         <xsd:element name="label" type="label" minOccurs="0" />
       </xsd:choice>
@@ -1059,8 +1061,8 @@
   </xsd:attribute>
   <xsd:attribute name="rowspan">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Number of rows this row spans</xsd:documentation>
-      <xsd:documentation xml:lang="de">Anzahl der Zeilen die diese Zeile belegt</xsd:documentation>
+      <xsd:documentation xml:lang="en">Number of rows this element spans</xsd:documentation>
+      <xsd:documentation xml:lang="de">Anzahl der Zeilen die dieses Element belegt</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:integer">
@@ -1071,8 +1073,8 @@
   </xsd:attribute>
   <xsd:attribute name="colspan">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Number of columns this row spans</xsd:documentation>
-      <xsd:documentation xml:lang="de">Anzahl der Spalten die diese Zeile belegt</xsd:documentation>
+      <xsd:documentation xml:lang="en">Number of columns this element spans</xsd:documentation>
+      <xsd:documentation xml:lang="de">Anzahl der Spalten die dieses Element belegt</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:integer">

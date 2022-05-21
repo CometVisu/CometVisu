@@ -119,9 +119,9 @@ Komponenten
     :maxdepth: 1
 
     Button <components/button>
+    Value <components/value>
 
 
-* Value
 * Image
 * RoundProgress
 * Select

@@ -1,5 +1,7 @@
 /**
  * Shows a value from the backend, as label or image/icon
+ * @author Tobias Bräutigam
+ * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.components.Value', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -19,6 +21,11 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
         switch (tagName) {
           case 'cv-icon':
             target._instance.setId(mappedValue);
+            let styleClass = "";
+            if (this._element.hasAttribute('styling')) {
+              styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__store);
+            }
+            target._instance.setStyleClass(styleClass);
             break;
           case 'meter':
           case 'progress':

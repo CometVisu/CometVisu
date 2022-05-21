@@ -20,6 +20,7 @@ from os import path, makedirs
 from lxml import etree
 from io import open
 import json
+import re
 import hashlib
 from xml.sax.saxutils import escape
 from settings import config, root_dir
@@ -103,6 +104,7 @@ class WidgetExampleParser:
         display_content = b""
         wrapper = settings_node.get("wrap-in") if settings_node is not None else None
         wrapper_attributes = ' class="%s"' % settings_node.get("wrapper-class") if settings_node is not None else ""
+        wrapped_position = settings_node.get("wrapped-position").replace("'", "\"") if settings_node is not None and settings_node.get("wrapped-position") else 'row="middle" column="middle"'
         for elem in config_example:
             content = etree.tostring(elem, encoding='utf-8')
             display = content
@@ -110,9 +112,11 @@ class WidgetExampleParser:
                 example_content += bytes("<%s%s>" % (wrapper, wrapper_attributes), 'utf-8')
                 if wrapper == 'cv-tile':
                     # center the widget
-                    parts = content.decode('utf-8').split(" ", 1)
-                    parts.insert(1, 'row="middle" column="middle"')
-                    content = bytes(" ".join(parts), 'utf-8')
+                    code = content.decode('utf-8')
+                    pos = re.search("[ >]", code).start()
+                    if pos > 0:
+                        code = code[0:pos] + ' ' + wrapped_position + code[pos:]
+                        content = bytes(code, 'utf-8')
             example_content += content
             display_content += display
             if wrapper is not None:
