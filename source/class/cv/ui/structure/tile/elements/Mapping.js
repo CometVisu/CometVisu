@@ -26,10 +26,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
 
     _applyConnected(value, oldValue, name) {
       this.base(arguments, value, oldValue, name);
-      if (value) {
-        cv.Application.structureController.addMapping(this._element.getAttribute('name'), this);
-      } else {
-        cv.Application.structureController.removeMapping(this._element.getAttribute('name'));
+      // avoid adding styling elements here as they inherit this method but call the super method too
+      if (this._element.tagName.toLowerCase().endsWith('mapping')) {
+        if (value) {
+          cv.Application.structureController.addMapping(this._element.getAttribute('name'), this);
+        } else {
+          cv.Application.structureController.removeMapping(this._element.getAttribute('name'));
+        }
       }
     },
 
