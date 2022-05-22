@@ -21,7 +21,7 @@ Das Info Widget f√ºgt der Visualisierung einen dynamischen Text hinzu. Dies erm√
     :hide-source: true
 
     <settings>
-        <screenshot name="info_simple">
+        <screenshot name="info_simple_default">
             <caption>Beispiel Info Widget</caption>
             <data address="3/3/1">103</data>
         </screenshot>
