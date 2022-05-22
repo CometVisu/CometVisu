@@ -41,6 +41,9 @@ qx.Class.define('cv.plugins.tr064.CallList', {
   construct: function (props) {
     this.base(arguments, props);
     this.__TAMeventAttached = {};
+    this.addListenerOnce('domReady', () => {
+      this.refreshCalllist('initial');
+    });
   },
 
   /*
@@ -167,7 +170,6 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     __TAMeventAttached: null,
     
     _getInnerDomString: function () {
-      this.refreshCalllist('initial');
       return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
     },
     _setupRefreshAction: function() {

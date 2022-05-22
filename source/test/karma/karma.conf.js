@@ -57,7 +57,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'coverage', 'remap-coverage'],
+    reporters: ['spec', 'coverage'],
 
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
@@ -69,9 +69,21 @@ module.exports = function(config) {
     },
 
     coverageReporter : {
-      type: 'in-memory'
+      dir: '../coverage/',
+      reporters: [
+        {
+          type: 'text-summary'
+        }, {
+          type: 'html',
+          subdir: '.'
+        }, {
+          type: 'lcovonly',
+          subdir: '.',
+          file: 'lcov.info'
+        }
+      ]
     },
-    remapOptions: {
+   /* remapOptions: {
       mapFileName: function (file) {
         const relPath = file.split('/transpiled/')[1];
         let filePath = path.join('source', 'class', relPath);
@@ -95,7 +107,7 @@ module.exports = function(config) {
       'text-summary': null, // to show summary in console
       html: 'coverage',
       lcovonly: 'coverage/lcov.info'
-    },
+    },*/
 
     // web server port
     port: 9876,
