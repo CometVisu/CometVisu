@@ -198,13 +198,15 @@ class WidgetExampleParser:
         result = {
             "example_content": example_content,
             "display_content": display_content,
-            "example_tag": config_example[0].tag,
+            "example_tag": config_example[0].tag if len(config_example) > 0 else "",
             "meta_content": meta_content,
             "global_caption": global_caption,
             "settings": settings,
             "design": design,
             "single_widget": single_widget
         }
+        if len(config_example) == 0:
+            print("# ERROR parsing example:\n%s" % example_content)
         return result
 
     def save_screenshot_control_files(self, parsed, name="", editor=False):

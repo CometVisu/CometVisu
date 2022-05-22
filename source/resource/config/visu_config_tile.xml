@@ -250,6 +250,28 @@
                     </cv-value>
                 </cv-row>
             </cv-tile>
+            <cv-tile>
+                <cv-row colspan="3" row="last">
+                    <label class="secondary">Circle Progress</label>
+                </cv-row>
+                <cv-row colspan="3" row="2">
+                    <cv-value format="%d%%">
+                        <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
+                        <cv-round-progress class="value"/>
+                    </cv-value>
+                </cv-row>
+            </cv-tile>
+            <cv-tile>
+                <cv-row colspan="3" row="last">
+                    <label class="secondary">Semi-circle progress</label>
+                </cv-row>
+                <cv-row colspan="3" row="2">
+                    <cv-value>
+                        <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
+                        <cv-round-progress class="value" type="semiCircle"/>
+                    </cv-value>
+                </cv-row>
+            </cv-tile>
             <cv-tile size="2x4">
                 <cv-image src="http://192.168.178.24/Streaming/channels/1/picture?snapShotImageType=JPEG" refresh="60" authorization="basic" username="viewer" password="viewer" proxy="true"/>
             </cv-tile>

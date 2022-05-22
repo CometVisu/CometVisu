@@ -268,6 +268,14 @@ body {
         &.screenshots {
             /* white background for screenshots of widgets with border radius */
             background-color: white;
+
+            cv-round-progress {
+                svg[type="circle"] {
+                    circle.bar {
+                        transition: unset;
+                    }
+                }
+            }
         }
 
         &.active {

@@ -17,7 +17,6 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
       const target = this._element.querySelector('.value');
       if (target) {
         const tagName = target.tagName.toLowerCase();
-        let roundProgress;
         switch (tagName) {
           case 'cv-icon':
             target._instance.setId(mappedValue);
@@ -28,14 +27,15 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             target._instance.setStyleClass(styleClass);
             break;
           case 'meter':
-          case 'progress':
             target.setAttribute('value', mappedValue);
             target.innerHTML = '' + mappedValue;
             break;
           case 'cv-round-progress':
-            roundProgress = target.getQxInstance();
-            roundProgress.setProgress(value);
-            roundProgress.setText(mappedValue);
+            if (typeof value === 'string') {
+              value = parseInt(value);
+            }
+            target._instance.setProgress(value);
+            target._instance.setText('' + mappedValue);
             break;
           case 'label':
             target.innerHTML = mappedValue;

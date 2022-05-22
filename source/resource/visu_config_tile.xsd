@@ -111,6 +111,20 @@
     </xsd:simpleContent>
   </xsd:complexType>
 
+  <xsd:complexType name="cv-round-progress">
+      <xsd:attribute name="radius" type="xsd:integer" />
+      <xsd:attribute name="stroke" type="xsd:integer" />
+      <xsd:attribute ref="class"/>
+      <xsd:attribute name="type">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="circle" />
+            <xsd:enumeration value="semiCircle" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+  </xsd:complexType>
+
   <xsd:complexType name="cv-backend">
     <xsd:attribute name="type" use="required">
       <xsd:simpleType>
@@ -372,6 +386,7 @@
         <xsd:element name="label" type="label" minOccurs="0" />
         <xsd:element name="meter" type="meter" minOccurs="0" />
         <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
+        <xsd:element name="cv-round-progress" type="cv-round-progress" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="styling" />

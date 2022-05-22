@@ -196,6 +196,7 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   files.forEach(async function(filePath) {
+    shotIndex = {};
     let stat = fs.statSync(filePath);
     if (stat.isFile()) {
       runResult.file = filePath;
@@ -226,6 +227,7 @@ describe('generation screenshots from jsdoc examples', function () {
 
       // check if we have to renew any ob the screenshots
       const skippedScreenshots = [];
+      const screenshots = [];
       let allSkipped = true;
       settings.screenshots.forEach(setting => {
         if (setting.hasOwnProperty('hash') && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
@@ -235,8 +237,13 @@ describe('generation screenshots from jsdoc examples', function () {
             stats.skipped++;
             stats.total++;
             skippedScreenshots.push(setting.name);
+          } else {
+            console.log('file not found, creating screenshot', path.join(settings.screenshotDir, setting.name + '.png'))
+            screenshots.push(setting.name);
           }
         } else {
+          console.log('hash mismatch, creating screenshot', setting.name, setting.hash, shotIndex[setting.name]);
+          screenshots.push(setting.name);
           allSkipped = false;
         }
       });
@@ -380,8 +387,9 @@ describe('generation screenshots from jsdoc examples', function () {
             }
             location.x = Math.max(0, location.x);
             location.y = Math.max(0, location.y);
-            if (setting.sleep) {
-              browser.sleep(setting.sleep);
+            const sleepTime = setting.sleep ? parseInt(setting.sleep) : 0;
+            if (!isNaN(sleepTime) && sleepTime > 0) {
+              browser.sleep(sleepTime);
             }
             //console.log("  - creating screenshot '" + setting.name + "'");
             const locales = setting.locales ? setting.locales : [''];
