@@ -24,11 +24,11 @@
 qx.Class.define('cv.ui.manager.viewer.Folder', {
   extend: cv.ui.manager.viewer.AbstractViewer,
   implement: [
-    qx.ui.core.IMultiSelection,
+    qx.ui.core.ISingleSelection,
     qx.ui.form.IModelSelection
   ],
   include: [
-    qx.ui.core.MMultiSelectionHandling,
+    qx.ui.core.MSingleSelectionHandling,
     qx.ui.core.MRemoteChildrenHandling,
     qx.ui.form.MModelSelection,
     cv.ui.manager.control.MFileEventHandler
@@ -148,8 +148,13 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     _isImageRegex: null,
     _newItem: null,
 
-    /** @type {Class} Pointer to the selection manager to use */
-    SELECTION_MANAGER : qx.ui.core.selection.ScrollArea,
+    _getItems: function() {
+      return this.getChildControl('list').getChildren();
+    },
+
+    _isAllowEmptySelection: function () {
+      return true;
+    },
 
     _defaultLabelConverter: function (name) {
       if (this.getViewMode() === 'list') {

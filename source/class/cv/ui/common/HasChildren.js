@@ -80,10 +80,10 @@ qx.Mixin.define('cv.ui.common.HasChildren', {
     /**
      * Creates the HTML code for the children if this widget
      *
-     * @param noWidgetContainer {Boolean} if false: do not surround the childrens with a div-element with class 'widget_container'
-     * @return {String} HTML code
+     * @param {boolean=} noWidgetContainer if false: do not surround the childrens with a div-element with class 'widget_container'
+     * @return {string} HTML code
      */
-    getChildrenDomString: function (noWidgetContainer) {
+    getChildrenDomString: function (noWidgetContainer = false) {
       let container = '';
 
       this.getChildWidgets().forEach(function (widget) {

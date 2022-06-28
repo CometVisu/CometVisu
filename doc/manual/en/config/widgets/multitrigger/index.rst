@@ -56,7 +56,7 @@ Allowed attributes in the MultiTrigger-element
     </multitrigger>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: multitrigger

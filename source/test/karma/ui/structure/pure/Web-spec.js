@@ -23,6 +23,7 @@
  */
 describe('testing a web widget', function() {
   it('should test the web creator', function() {
+    cv.Config.backend = 'knxd';
     const [widget, element] = this.createTestWidgetString('web', {ga: 'Test'}, '<label>Test</label>');
 
     expect(widget.getPath()).toBe('id_0');
@@ -35,7 +36,7 @@ describe('testing a web widget', function() {
 
   it('should test the ga with openhab backend', function() {
     var defBackend = cv.Config.backend;
-    cv.Config.backend = 'oh';
+    cv.Config.backend = 'openhab';
     const [widget, element] = this.createTestWidgetString('web', {ga: 'Test'}, '<label>Test</label>');
 
     expect(widget.getAddress()['_Test'].transform).toBe('OH:switch');

@@ -47,7 +47,7 @@ Allowed attributes in the timeout-element
     <timeout target="id_"/>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The timeout widget has no child elements.

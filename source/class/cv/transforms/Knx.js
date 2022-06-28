@@ -67,7 +67,7 @@ qx.Class.define('cv.transforms.Knx', {
         name: 'DPT_Bool',
         lname: {
           'de': 'Boolscher-Wert',
-          'en': 'boolead value'
+          'en': 'boolean value'
         }
       },
       '1.003': {

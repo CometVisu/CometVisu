@@ -13,8 +13,8 @@ Then the widget is inserted and clicked on the + sign
 Can be configured as follows;
 
 
-Operatable widgets
-==================
+Operable widgets
+================
 
 These widgets can be operated in any way to send data to the backend or trigger other
 actions, e.g. you can switch on a lamp by clicking a switch-widget, or you can navigate withon the visu with a Pagejump.
@@ -193,7 +193,7 @@ For example:
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | :doc:`Timeout <plugins/timeout/index>`                                | Changes currently displayed page after some time of inactivity.                                                       |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`tr064 <plugins/tr064/index>`                                    | Router informationen, like Fritz!Box call lists, via TR-064.                                                          |
+| :doc:`tr064 <plugins/tr064/index>`                                    | Router information, like Fritz!Box call lists, via TR-064.                                                            |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | UPNPController                                                        | UPNP Controller.                                                                                                      |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+

@@ -6,7 +6,7 @@ Bei Unittest geht es darum einzelne Funktionen innerhalb des Sourcecodes zu test
 Wenn man z.B. eine `add`-Funktion hat, die zwei Zahlen addiert, dann ruft ein Unittest diese 
 Funktion auf, übergibt ihr zwei Zahlen und prüft ob das Ergebnis korrekt ist.
 
-End-to-End Tests prüfen eher das "Große Ganze" und simulieren das Benutzervehalten.
+End-to-End Tests prüfen eher das "Große Ganze" und simulieren das Benutzerverhalten.
 Hierbei wird also die CometVisu voll-automatisiert in einem Browser geöffnet und die Tests
 bedienen die Visu wie ein Benutzer und prüfen ob eine Aktion die gewünschten Veränderungen bewirkt.
 Zu kann man z.B. prüfen ob das Klicken auf einen Switch den passenden Wert an das Backend liefert und
@@ -33,7 +33,7 @@ Die vorhandenen Unittests kann man dann mit folgendem Befehl ausführen:
     grunt karma:ci
 
 
-Dies führt die Tests inkl. eine Code-Coverage Analyse aus. Die Code-Coverage zeigt als Ergebnis an wieviel
+Dies führt die Tests inkl. eine Code-Coverage Analyse aus. Die Code-Coverage zeigt als Ergebnis an wie viel
 Prozent des Sourcecodes durch Tests abgedeckt wurde, die Ausgabe sieht so aus:
 
 .. code-block:: bash
@@ -47,11 +47,11 @@ Prozent des Sourcecodes durch Tests abgedeckt wurde, die Ausgabe sieht so aus:
 
 
 Einen ausführlicheren Coverage Report findet man unter ``./coverage/<browser-name>/index.html``. Wobei
-der Browser Name dem des den ausführenden Browsers entspeist. Zur Zeit ist dies der für Headless-Testing
+der Browser Name dem des ausführenden Browsers entspricht. Zur Zeit ist dies der für Headless-Testing
 entwickelte (auf Chrome basierende) PhantomJS. Theoretisch sind hier aber alle auf dem lokalen System
 installierten Browser möglich. In dem ausführlichen Coverage Report, kann man bis hinunter in einzelne
 Sourcecode Dateien navigieren und dort sehen, welche Zeilen noch nicht getestet wurde. Das ist sehr 
-nützlich, um zu sehen an welchen Stellen die Tests noch verfollständigt werden müssen
+nützlich, um zu sehen an welchen Stellen die Tests noch vervollständigt werden müssen
 
 Eigene Tests schreiben
 ----------------------
@@ -70,7 +70,7 @@ Tests sieht so aus:
 
 Dieser Code testet eine ``add``-Funktion die einfach zwei Zahlen addiert.
 
-Zu finden sind die vorhandenen Tests im ``source/test/karma`` Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
+Zu finden sind die vorhandenen Tests im ``source/test/karma`` Unterverzeichnis. Möchte man nun einen neuen Test für eine (fiktive)
 Sourcecode Datei unter ``source/ui/structure/pure/NewWidget.js`` schreiben, legt man die neue Datei
 ``source/test/karma/ui/structure/pure/NewWidget-spec.js`` an.
 Wichtig ist hier, dass der Name der Testdatei auf ``-spec`` endet, sonst wird sie vom Testrunner nicht gefunden.

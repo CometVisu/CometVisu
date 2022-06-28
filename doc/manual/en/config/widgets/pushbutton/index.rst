@@ -45,7 +45,7 @@ Allowed attributes in the PushButton-element
     </pushbutton>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: pushbutton

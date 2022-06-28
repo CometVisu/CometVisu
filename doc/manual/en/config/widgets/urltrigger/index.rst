@@ -43,7 +43,7 @@ Allowed attributes in the UrlTrigger-element
     </urltrigger>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: urltrigger

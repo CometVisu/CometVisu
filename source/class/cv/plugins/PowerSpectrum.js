@@ -311,7 +311,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       let phase;
       if (addressInfo.variantInfo[0] === 'I') {
         phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
-        const value = cv.Transform.encode(addressInfo.transform, data);
+        const value = cv.Transform.encode(addressInfo, data);
         this.getCurrent()[phase-1] = value / 1000; // transform mA to A
       } else if (addressInfo.variantInfo.substr(0, 8) === 'spectrum' && data.length === 28) { // sanity check for 14 bytes
         phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[8] || 1);

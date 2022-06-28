@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CometVisu\n"
-"POT-Creation-Date: 2022-01-10 19:39+CET\n"
-"PO-Revision-Date: 2022-01-10 22:24+0100\n"
+"POT-Creation-Date: 2022-02-24 23:22+CET\n"
+"PO-Revision-Date: 2022-02-24 23:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: Tobias Bräutigam <tbraeutigam@gmail.com>\n"
 "Language: de_DE\n"
@@ -25,23 +25,32 @@ msgstr "Verfügbar seit Version"
 msgid "Author"
 msgstr "Autor"
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+msgid "example"
+msgstr "Beispiel"
+
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "description"
 msgstr "Beschreibung"
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "max"
 msgstr "Max"
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "min"
 msgstr "Min"
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "name"
 msgstr "Name"
 
-#: utils/docutils/directives/backend_transform.py:84
+#: utils/docutils/directives/backend_transform.py:86
+#: utils/docutils/directives/backend_transform.py:90
 msgid "unit"
 msgstr "Einheit"
 

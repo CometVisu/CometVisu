@@ -224,6 +224,16 @@ qx.Class.define('cv.ui.manager.Main', {
       return actions.includes(actionName);
     },
 
+    _doClose() {
+      if (document.querySelector('#main.loading')) {
+        // there is no config file loaded, load the default one
+        let configLoader = new cv.util.ConfigLoader();
+        let app = qx.core.Init.getApplication();
+        configLoader.load(app.bootstrap, app);
+      }
+      this.setVisible(false);
+    },
+
     handleAction: function (actionName, data) {
       let unsavedFiles;
       switch (actionName) {
@@ -237,6 +247,7 @@ qx.Class.define('cv.ui.manager.Main', {
 
         case 'quit':
           unsavedFiles = this.getOpenFiles().filter(openFile => openFile.getFile().isModified());
+
           if (unsavedFiles.length > 0) {
             const dialog = new qxl.dialog.Confirm({
               message: qx.locale.Manager.tr('You have files opened with unsaved changes, you should save them now.'),
@@ -247,7 +258,7 @@ qx.Class.define('cv.ui.manager.Main', {
                   });
                 }
                 dialog.dispose();
-                this.setVisible(false);
+                this._doClose();
               },
               context: this,
               caption: qx.locale.Manager.tr('Unsaved changes'),
@@ -257,7 +268,7 @@ qx.Class.define('cv.ui.manager.Main', {
             });
             dialog.show();
           } else {
-            this.setVisible(false);
+            this._doClose();
           }
           break;
 

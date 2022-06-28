@@ -132,7 +132,7 @@ function getTags( $tsParameter, $auth )
   return $arrData;
 }
 
-$arrData = getTags( $_GET['measurement'], $_GET['auth'] );
+$arrData = getTags( $_GET['measurement'] ?? '', $_GET['auth'] ?? '');
 
 Header("Content-type: application/json");
 print json_encode($arrData);

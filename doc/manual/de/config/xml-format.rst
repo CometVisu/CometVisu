@@ -34,6 +34,22 @@ In der zweiten Zeile sind folgende Einstellungen relevant:
 +----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 | ``screensave_page="main"`` | Mit dieser Option kann festgelegt werden, auf welche Seite nach Ablauf von ``sceensave_time`` angezeigt wird | Angabe der Seite-ID zB. "id_1" bzw. Seitenname zB. "Main"                  | NEIN       |
 +----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend="mqtt"``         | Mit dieser Option kann das Backend festgelegt werden und die vom Server gesendete Information übersteuern    | ``knxd``, ``openhab``, ``mqtt``                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-knxd-url=""``    | URL für die knxd Login-Ressource                                                                             |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-mqtt-url=""``    | URL für die MQTT Login-Ressource                                                                             |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-openhab-url=""`` | Pfad zur REST-API für openHAB                                                                                | Üblicher Weise ``/rest/``                                                  | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-url="/rest/"``   | Veraltet: URL für die openHAB Verbindung                                                                     |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``username="user"``        | Veraltet, nur für openHAB: Benutzername                                                                      |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``password="secret"``      | Veraltet, nur für openHAB: Passwort                                                                          |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``lib_version="9"``        | Version der CometVisu-library. Dieser Wert ist nur für die korrekte Funktion des Upgrade-Scripts notwendig.  | In der CometVisu Version 0.12.0 muss der Wert ``9`` sein                   | JA         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 
 
 Als nächstes kommen in der visu_config.xml innerhalb des meta-tags alle Definitionen für
@@ -64,7 +80,7 @@ Option                       Beschreibung                                   Wert
         <files>
             <file type="css">resource/config/media/style.css</file>
             <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
-        </plugins>
+        </files>
         ...
     </meta>
 
@@ -214,7 +230,7 @@ Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte e
 seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
 Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
 und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
-die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+die benutzen Adresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
 jedem Raum wiederverwenden.
 
 In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
@@ -401,7 +417,7 @@ Als nächstes wird auf der Hauptseite der Colorchooser mit dem Namen
 **RGB Küche** eingefügt.
 
 Mit dieser Struktur können beliebig komplexe Seitenstrukturen angelegt
-werden. Eine Beschreibung der einzelen Widgets mit den zugehörigen XML
+werden. Eine Beschreibung der einzelnen Widgets mit den zugehörigen XML
 Codes finden Sie in der :doc:`Widgetübersicht <widgets/index>`
 
 In der letzten Zeile der Config muss noch der Tag geschlossen werden.

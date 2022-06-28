@@ -33,7 +33,7 @@ Erlaubte Attribute im OpenweatherMap-Element
 
 
 .. IMPORTANT::
-    Der Wert des Attibuts `appid` muss durch den eigenen Schlüssel ersetzt werden!
+    Der Wert des Attributs `appid` muss durch den eigenen Schlüssel ersetzt werden!
 
 Das OpenweatherMap nutzt den Web-Service von https://openweathermap.org/ um
 die aktuellen Wetterdaten bzw. Vorhersage darstellen zu können. Um auf diese
@@ -59,7 +59,7 @@ der :ref:`visu_config.xml <xml-format>` hinzufügen.
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
 .. IMPORTANT::
-    Der Wert des Attibuts `appid` muss durch den eigenen Schlüssel ersetzt werden!
+    Der Wert des Attributs `appid` muss durch den eigenen Schlüssel ersetzt werden!
 
 Hier der minimale Beispielcode der das OpenweatherMap Plugin aus dem folgenden,
 Screenshot erzeugt:
@@ -76,8 +76,3 @@ Screenshot erzeugt:
     ...
     <openweathermap q="Munich" appid="..." />
 
-
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

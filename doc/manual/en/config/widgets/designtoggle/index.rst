@@ -31,7 +31,7 @@ Allowed attributes in the DesignToggle-element
 
 None
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: designtoggle
@@ -60,7 +60,3 @@ for the DesignToggle widget.
     
 
 .. ###END-WIDGET-EXAMPLES###
-
-.. rubric:: Footnotes
-
-.. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.

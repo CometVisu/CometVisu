@@ -5,8 +5,8 @@ The ColorChooser widget
 
 .. api-doc:: ColorChooser
 
-Descripton
-----------
+Description
+-----------
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
@@ -382,7 +382,7 @@ The configured brightness doesn't need to follow a specific physical unit (like
 lumen or lumen/meter for LED stripes) as the ColorChooser is using only relative
 values.
 
-For a best match between the displayes color and that from the light the
+For a best match between the displayed color and that from the light the
 widget element should not be used in the HSV but in the L*C*h° mode. The
 bus communication should use the ``xy``, ``xyY`` or L*a*B* color space as then
 the conversation to control the light source is happening close to it
@@ -464,14 +464,14 @@ Allowed attributes in the colorchooser-element
     :scale: 75
     :align: center
 
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
+    <caption>Attributes in the editor (simple view) [1]_</caption>
     <colorchooser>
         <label>RGB floor</label>
         <address transform="DPT:232.600" mode="readwrite" variant="rgb">1/2/59</address>
     </colorchooser>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: colorchooser
@@ -555,3 +555,5 @@ for the Info widget.
 .. ###END-WIDGET-EXAMPLES###
 
 .. rubric:: Footnotes
+
+.. [1] The simple view might not show everything. To see all elements/attributes use the expert view.

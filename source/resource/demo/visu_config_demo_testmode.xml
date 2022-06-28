@@ -571,7 +571,6 @@
             <layout colspan="12" rowspan="8"/>
             <axis unit="°C"/>
             <rrd>13/0/14</rrd>
-            <!--address transform="OH:number">Temperature_SF_Bed</address-->
           </diagram>
         </group>
       </page>
@@ -635,7 +634,7 @@
     </page>
     <page name="Heizung" type="2d" backdrop="demo/media/demo_2d_backdrop_red_pot.svg" visible="false">
       <slide format="%.0f" class="noborder">
-        <layout x="150px" y="270px" width="500px"/>
+        <layout x="10%" y="70%" width="20%"/>
         <label>Level</label>
         <address transform="DPT:5.001">12/7/52</address>
       </slide>

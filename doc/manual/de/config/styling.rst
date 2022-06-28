@@ -12,7 +12,7 @@ zugewiesen werden.
 Zum Beispiel kann AUS in rot und AN in grün dargestellt werden (oder
 umgekehrt)
 
-Hier eine Liste der möglichen Farben die standardmässig in der CometVisu
+Hier eine Liste der möglichen Farben die standardmäßig in der CometVisu
 enthalten sind:
 
 .. raw:: html
@@ -103,7 +103,7 @@ Mit diesem styling wird 0 (oft AUS) in grün und 1 (oft AN) in rot dargestellt.
         <entry value="1">red</entry>
      </styling>
 
-Um ein Element mit den entgegengesezten Farben darzustellen, muss der
+Um ein Element mit den entgegen gesetzten Farben darzustellen, muss der
 folgende style tag erstellt werden. Jetzt hat das Element bei einem Wert
 von 0 die Farbe rot.
 
@@ -120,7 +120,7 @@ Im folgenden Beispiel wie folgt:
 
 -  von -100 bis 0: blau
 -  der Wert 0: lila
--  Werte grösser 0: rot
+-  Werte größer 0: rot
 
 .. code-block:: xml
 

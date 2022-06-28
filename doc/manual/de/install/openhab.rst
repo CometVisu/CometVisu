@@ -16,7 +16,7 @@ Für den Betrieb der CometVisu mit openHAB werden folgende Dinge benötigt:
 .. HINT::
 
     Seit Version 0.12.0 werden keinerlei openHAB-Erweiterungen mehr benötigt, um die CometVisu nutzen zu können.
-    Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zu Kommunikation.
+    Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zur Kommunikation.
 
 Es wird davon ausgegangen, dass Punkt 1 bereits erfüllt ist und im folgenden nur auf die weiteren Punkte eingegangen.
 
@@ -41,7 +41,7 @@ eingetragen werden).
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-        Header set X-CometVisu-Backend-LoginUrl "/rest/cv/l"
+        Header set X-CometVisu-Backend-OpenHAB-Url "/rest/"
         Header set X-CometVisu-Backend-Name "openhab"
 
         ProxyPass /rest http://<openhab>:8080/rest

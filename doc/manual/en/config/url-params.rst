@@ -28,7 +28,7 @@ Examples:
 Parameter
 ---------
 
-*config* - Config-Datei
+*config* - Config file
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 The parameter ``config`` selects another config file.
@@ -42,15 +42,15 @@ of the Visu or in the ``config/demo`` directory of Visu.
 
 The parameter ``design`` overrides the design in the config file.
 
-*forceReload* - Cache übersteuern
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*forceReload* - Cache settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The parameter ``forceReload`` with the value *true* 
 (``forceReload=true``) safely reloads all files.
 
 This may be important after customizing the config file.
 
-*startpage* - start page
+*startpage* - Start page
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The parameter ``startpage`` can be used to specify the sub-page which
@@ -82,7 +82,7 @@ device (such as a smartphone). Any other value will display the page
 
 This is actually only needed for developers.
 
-*maturity* - maturity
+*maturity* - Maturity
 ~~~~~~~~~~~~~~~~~~~~~
 
 By the parameter ``maturity`` you can unlock features that are still
@@ -104,13 +104,13 @@ also a ``backend`` parameter in the config to fix this.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2)
+    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), mqtt
 
 The default value "cgi-bin" (attention, inconsistent with xml
 element, default = "cgi"!) is usually correct and does not need to be
 changed. "r", "w" and "l" are in /cgi-bin/.
 
-The option "oh" uses the path necessary for OpenHAB.
+The option "openhab" uses the path necessary for OpenHAB.
 
 *enableQueue* - Queue
 ~~~~~~~~~~~~~~~~~~~~~

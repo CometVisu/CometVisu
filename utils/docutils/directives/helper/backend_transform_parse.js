@@ -49,6 +49,7 @@ function convertData( dataParsed ) {
       en: {}
     }
   ];
+  let hasExample = false;
   Object.keys(finalData[1]).forEach( lang => {
     Object.keys(dataParsed[1]).forEach( key => {
       const keyNew = (dataParsed[0] !== '') ? (dataParsed[0] + ':' + key) : key;
@@ -56,8 +57,12 @@ function convertData( dataParsed ) {
       if ('lname' in finalData[1][lang][keyNew]) {     // then filter
         finalData[1][lang][keyNew].lname = finalData[1][lang][keyNew].lname[lang];
       }
+      if ('example' in finalData[1][lang][keyNew]) {
+        hasExample = true;
+      }
     });
   });
+  finalData.push(hasExample);
 
   // done -> write output as JSON string
   console.log(JSON.stringify(finalData));

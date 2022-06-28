@@ -42,9 +42,9 @@ qx.Class.define('cv.io.Client', {
    */
   /**
    * @param backendName {String} name of the backend
-   * @param backendUrl {String} URL of the login resource
+   * @param backendLoginUrl {String} URL of the login resource
    */
-  construct: function(backendName, backendUrl) {
+  construct: function(backendName, backendLoginUrl) {
     this.base(arguments);
     cv.io.Client.CLIENTS.push(this);
     this.backend = {};
@@ -57,10 +57,9 @@ qx.Class.define('cv.io.Client', {
 
     // init default settings
     if (cv.io.Client.backendNameAliases[backendName]) {
-      this.backendName = cv.io.Client.backendNameAliases[backendName];
-    } else {
-      this.backendName = backendName;
+      backendName = cv.io.Client.backendNameAliases[backendName];
     }
+    this.backendName = backendName;
 
     if (backendName && backendName !== 'default') {
       if (typeof backendName === 'object') {
@@ -74,7 +73,7 @@ qx.Class.define('cv.io.Client', {
       this.setBackend(cv.io.Client.backends['default']);
     }
 
-    this.backendUrl = backendUrl;
+    this.backendLoginUrl = backendLoginUrl;
 
     this.addresses = [];
     this.initialAddresses = [];
@@ -111,9 +110,10 @@ qx.Class.define('cv.io.Client', {
 
     // used for backwards compability
     backendNameAliases: {
+      'knxd': 'default',
       'cgi-bin': 'default',
       'oh': 'openhab',
-      'oh2': 'openhab2'
+      'oh2': 'openhab'
     },
     // setup of the different known backends (openhab2 configures itself by sending the config
     // with the login response so no defaults are defined here
@@ -137,33 +137,6 @@ qx.Class.define('cv.io.Client', {
       },
       'openhab': {
         name: 'openHAB',
-        baseURL: '/services/cv/',
-        // keep the e.g. atmosphere tracking-id if there is one
-        resendHeaders: {
-          'X-Atmosphere-tracking-id': undefined
-        },
-        // fixed headers that are send everytime
-        headers: {
-          'X-Atmosphere-Transport': 'long-polling'
-        },
-        hooks: {
-          onClose: function () {
-            // send an close request to the openHAB server
-            var oldValue = this.headers['X-Atmosphere-Transport'];
-            this.headers['X-Atmosphere-Transport'] = 'close';
-            this.doRequest(this.getResourcePath('read'), null, null, null, {
-              beforeSend: this.beforeSend
-            });
-            if (oldValue !== undefined) {
-              this.headers['X-Atmosphere-Transport'] = oldValue;
-            } else {
-              delete this.headers['X-Atmosphere-Transport'];
-            }
-          }
-        }
-      },
-      'openhab2': {
-        name: 'openHAB2',
         baseURL: '/rest/cv/',
         transport: 'sse'
       }
@@ -227,7 +200,7 @@ qx.Class.define('cv.io.Client', {
   members: {
     backend: null,
     backendName: null,
-    backendUrl: null,
+    backendLoginUrl: null,
     addresses: null, // the subscribed addresses
     initialAddresses: null, // the addresses which should be loaded before the subscribed addresses
     filters: null, // the subscribed filters
@@ -379,7 +352,7 @@ qx.Class.define('cv.io.Client', {
         if (this.device !== '') {
           request.d = this.device;
         }
-        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath('login'),
+        this.doRequest(this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'),
           request, this.handleLogin, this);
       } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         // call callback immediately

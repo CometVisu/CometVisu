@@ -298,7 +298,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           // console.log(lastOpenedTag);
           // get opened tags to see what tag we should look for in the XSD schema
           const openedTags = [];
-          // attrobutes of the ancestors
+          // attributes of the ancestors
           const openedAttributes = [];
           // get the elements/attributes that are already mentioned in the element we're in
           const usedItems = [];
@@ -320,7 +320,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             let lastChild = xmlDoc.lastElementChild;
             let i;
             let lastFound = false;
-            while (lastChild) {
+            while (lastChild && lastChild.tagName.toLowerCase() !== 'parsererror') {
               openedTags.push(lastChild.tagName);
               openedAttributes.push(lastChild.attributes);
               // if we found our last opened tag
@@ -376,7 +376,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
               return {suggestions: this._dataProvider.getPlugins()};
             } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
-              return {suggestions: this._dataProvider.getIcons()};
+              return {suggestions: this._dataProvider.getIcons('monaco', {cache: false}, completeText)};
             } else if (lastOpenedTag.tagName === 'influx') {
               if (lastOpenedTag.currentAttribute === 'measurement') {
                 return this._dataProvider.getInfluxDBs().then(function (suggestions) {

@@ -4,7 +4,7 @@ Adressen - die Kommunikation mit dem Backend
 ============================================
 
 Die meisten Widgets verwenden ein oder mehrere ``address`` Elemente für die
-Kommunikation mit dem Backend, welches darüber die ensprechenden Informationen
+Kommunikation mit dem Backend, welches darüber die entsprechenden Informationen
 vom KNX-Bus, OpenHAB oder MQTT bereitstellt. Der Inhalt ist die Adresse selbst,
 über die Attribute lässt sich das Verhalten des Widgets im Bezug auf die
 Adresse einstellen:
@@ -41,6 +41,41 @@ MQTT
 
 .. backend-transform:: MQTT
 
+Über weitere Attribute im ``<address>``-Element kann die Kommunikation mit MQTT
+weiter spezifiziert werden:
+
+================ ===============================================================
+``selector``     Der JSON-Pfad, wenn das Kommunikationsobjekt als JSON
+                 übertragen wird.
+``retain``       Setzt bei ``true`` das Retain-Flag, so dass die Daten auch
+                 neuen Kommunikationsteilnehmern am MQTT sofort bereit gestellt
+                 werden.
+``qos``          Setzt den QOS-Wert.
+``ignore-error`` Ignoriert Konvertierungsfehler, wenn auf dem MQTT Daten
+                 gesendet werden, die z.B. nicht zum ``selector`` passen.
+================ ===============================================================
+
+Beispiel:
+^^^^^^^^^
+
+Um einen numerischen Wert am Topic ``/topic/baz`` zu adressieren, der in einem
+JSON wie
+
+.. code-block:: json
+
+    {
+      "foo": [
+        {"bar": 0}
+        {"bar": 1}
+      ]
+    }
+
+übertragen wird, müsste das ``<address>``-Element aussehen wie:
+
+.. code-block:: xml
+
+     <address transform="MQTT:number" selector="foo[1].bar" retain="true">/topic/baz<address>
+
 Roh-Werte / Test:
 .................
 
@@ -60,5 +95,5 @@ Mode
     ``write`` Adresse übereinstimmen, als ``read``.
 
     Dieses Prinzip ist damit genau das gleiche wie bei allen anderen KNX
-    Komponenten bei denen über eine Addresse der Wert gesetzt wird und über eine
+    Komponenten bei denen über eine Adresse der Wert gesetzt wird und über eine
     andere die Rückmeldung erfolgt.

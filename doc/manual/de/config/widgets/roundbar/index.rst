@@ -141,7 +141,7 @@ Hier der minimale Beispielcode, der das Roundbar Widget aus dem folgenden Screen
 Bestandteile
 ------------
 
-Das Roundbar-Widget besteht aus vielen verschiednen Bestandteilen, die teilweise optional sind und auf
+Das Roundbar-Widget besteht aus vielen verschiedenen Bestandteilen, die teilweise optional sind und auf
 verschiedene Arten konfiguriert werden können. Grundsätzlich wird für die Realisierung in die Visu-Seite
 ein SVG-Block eingebunden, dessen Darstellung über CSS-Regeln angepasst werden kann (siehe auch
 :ref:`"Vorhandenes Design verändern" <custom_cssrules>`).
@@ -274,7 +274,7 @@ Presets
 ^^^^^^^
 
 Um die Konfiguration zu erleichtern gibt es vorgefertigte Designs die verwendet werden können. Alle Eigenschaften
-eines Presetzt können durch die Werte aus der Konfiguration übersteuert werden.
+eines Presets können durch die Werte aus der Konfiguration übersteuert werden.
 
 .. widget-example::
 

@@ -101,7 +101,7 @@ And now again the same steps in detail:
 Now you have to wait until one of the maintainers of the CometVisu project
 reviewed the pull request. In addition, some automated checks are performed
 on the pull request to detect potential problems. If everything is alright,
-the pull request is gemerged *by one of the the maintainers* and so the changes
+the pull request is merged *by one of the the maintainers* and so the changes
 are becoming part of the CometVisu project. If the maintainer has suggestions
 for improvement, he will do so through comments in the pull request. If
 this is the case, the advantage of the extra branch created in step 1

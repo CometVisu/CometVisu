@@ -219,7 +219,7 @@
 						<layout colspan="6" />							
 						<text align="left">
 							<layout colspan="2" />
-							<label><icon name="fts_shutter" />Alle Rolläden</label>
+							<label><icon name="fts_shutter" />Alle Rollläden</label>
 						</text>
 						<trigger value="1" mapping="AufAbSymbol" align="center">
 							<layout colspan="2" />

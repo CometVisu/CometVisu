@@ -183,6 +183,7 @@ body br
   float:left;
   text-align:left;
   line-height: 2em;
+  -webkit-tap-highlight-color: transparent;
 }
 .widget .switchPressed, .widget .switchUnpressed, .widget .ui-slider {
 	 line-height: normal; 
@@ -207,12 +208,17 @@ body br
 .navbar .switchPressed, .navbar .switchUnpressed {
   width: 100% !important;
 }
-.navbar .switchPressed .value, .navbar .switchUnpressed .value {
+.navbar .switchPressed:not(:first-child) .value, .navbar .switchUnpressed:not(:first-child) .value {
 	padding-left: 2.2em;
 }
 #navbarTop .navbar .switchPressed .value, #navbarTop .navbar .switchUnpressed .value, #navbarBottom .navbar .switchPressed .value, #navbarBottom .navbar .switchUnpressed .value {
 	padding-left: 2.5em;
 }
+
+.center > .value {
+  text-align: center;
+}
+
 .green.switchPressed div, .green.switchUnpressed div {
     background-image: radial-gradient(rgba(88, 181, 0, 0.45), transparent 80%);
 	color: white !important;
@@ -326,7 +332,7 @@ body br
 	margin-right: 0;
 	float: left;
 }
-.group .pagejump .switchUnpressed div, .group .pagejump  .switchPressed div {
+.group .pagejump .switchUnpressed:not(.center) div, .group .pagejump .switchPressed:not(.center) div {
 	width: auto;
 	text-align: left;
 	margin-left: 0.3em;
@@ -436,7 +442,7 @@ body br
 }
 /* Clearfix */
 .clearfix:after {
-    content: ".";
+    content: " ";
     display: block;
     clear: both;
     visibility: hidden;
@@ -497,7 +503,6 @@ div#loading {
 }
 
 .diagram_inline {
-    margin-left: 1em;
     width: 320px;
     height: 180px;
 }
@@ -683,11 +688,11 @@ div#demo_3 {
 /* END: alignment of widgets */
 
 /* fixes for plugin line-heights */
-.widget .actor.rsslogBody, .widget .actor .diagram_inline {
+.widget .actor.rsslogBody, .widget .actor .diagram_inline, .widget .actor .rss_inline {
     line-height: normal;
 }
 
-.rsslog_popup ul li a { color: inherit; }
+.rsslog_popup ul li a, ul.rss_inline li a { color: inherit; }
 
  
  /*****************************************************************************/
@@ -710,7 +715,7 @@ div#demo_3 {
 	background-color: #000000;
 }
 .flavour_black.group > div > h2 {
-  background-image: linear-gradient(top , #000000 , #333 );
+  background-image: linear-gradient(to top , #000000 , #333 );
 }
 
 .flavour_white hr
@@ -729,7 +734,7 @@ div#demo_3 {
 	background-color: #ffffff;
 }
 .flavour_white.group > div > h2 {
-  background-image: linear-gradient(top , #ffffff , #333 );
+  background-image: linear-gradient(to top , #ffffff , #333 );
 }
 
 .flavour_antimony hr
@@ -748,7 +753,7 @@ div#demo_3 {
 	background-color: #00ddff;
 }
 .flavour_antimony.group > div > h2 {
- background-image: linear-gradient(top , #00ddff , #333 );
+ background-image: linear-gradient(to top , #00ddff , #333 );
 }
 
 .flavour_boron hr
@@ -767,7 +772,7 @@ div#demo_3 {
 	background-color: #00ff11;
 }
 .flavour_boron.group > div > h2 {
-    background-image: linear-gradient(top, #00ff11, #333);
+    background-image: linear-gradient(to top, #00ff11, #333);
 }
 
 .flavour_lithium hr
@@ -786,7 +791,7 @@ div#demo_3 {
 	background-color: #ff0000;
 }
 .flavour_lithium.group > div > h2 {
-    background-image: linear-gradient(top, #ff0000, #333);
+    background-image: linear-gradient(to top, #ff0000, #333);
 }
 
 .flavour_potassium hr
@@ -805,7 +810,7 @@ div#demo_3 {
 	background-color: #d00055;
 }
 .flavour_potassium.group > div > h2 {
-   background-image: linear-gradient(top, #d00055, #333);
+   background-image: linear-gradient(to top, #d00055, #333);
 }
 
 .flavour_sodium hr
@@ -821,7 +826,7 @@ div#demo_3 {
   border: #ff8000 1px solid;
 }
 .flavour_sodium.group > div > h2 {
-    background-image: linear-gradient(top, #ff8000, #333);
+    background-image: linear-gradient(to top, #ff8000, #333);
 }
 .flavour_sodium:not(.group) .ui-slider .ui-slider-range {
 	background-color: #ff8000;

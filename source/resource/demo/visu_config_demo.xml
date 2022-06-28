@@ -57,7 +57,7 @@
       </mapping>
       <mapping name="audio_mute">
         <entry value="0">
-          <icon name="audio_mute"/> Aus</entry>
+          <icon name="audio_volume_mute"/> Aus</entry>
         <entry value="1">
           <icon name="audio_audio"/>
         </entry>
@@ -170,7 +170,7 @@
       <label>Herzlich willkommen bei dem CometVisu Widget Demo!</label>
     </text>
     <text>
-      <label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label>
+      <label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Adressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label>
     </text>
     <line>
       <layout colspan="12"/>
@@ -349,10 +349,10 @@
       <label>Image</label>
     </image>
     <page name="Image: Erweitert..." align="center">
-      <image src="https://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
+      <image src="https://picsum.photos/200/300" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
-      <image src="icons/comet_128_ff8000.png" width="500px" height="46px">
+      <image src="icons/cometvisu_icon_raw.svg" width="300px" height="300px">
         <label>Image: mit Größenangabe</label>
       </image>
     </page>
@@ -362,8 +362,8 @@
         <label>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</label>
       </text>
       <break/>
-      <video src="https://upload.wikimedia.org/wikipedia/commons/c/c5/I-15bis.ogv" autoplay="false">
-        <label>Polikarpov I-15bis - Ogg Theora</label>
+      <video src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c5/I-15bis.ogv/I-15bis.ogv.240p.webm" autoplay="false">
+        <label>Polikarpov I-15bis - WebM</label>
       </video>
     </page>
     <trigger value="1">
@@ -1454,19 +1454,61 @@
     <break/>
     <page name="2D fixed Bitmap" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan.png" align="center" size="fixed">
       <switch mapping="On_Off" styling="Red_Green">
-        <layout x="525px" y="450px"/>
+        <layout x="415px" y="560px"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </switch>
       <trigger value="0" mapping="On_Off">
-        <layout x="400px" y="450px"/>
+        <layout x="290px" y="560px"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
       <trigger value="1" mapping="On_Off">
-        <layout x="650px" y="450px"/>
+        <layout x="540px" y="560px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D fixed SVG" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan_inkscape.svg" align="center" size="fixed">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="405px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="280px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="530px" y="450px"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
     <page name="2D scaled Bitmap" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan.png" align="center" size="scaled">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="50%" y="88%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="40%" y="88%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="60%" y="88%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D scaled SVG" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan_viewbox.svg" align="center" size="scaled">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="50%" y="88%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="40%" y="88%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="60%" y="88%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D contained Bitmap" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan.png" align="center" size="contained">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="50%" y="70%"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1480,21 +1522,7 @@
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
-    <page name="2D fixed SVG" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan_inkscape.svg" align="center" size="fixed">
-      <switch mapping="On_Off" styling="Red_Green">
-        <layout x="525px" y="450px"/>
-        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
-      </switch>
-      <trigger value="0" mapping="On_Off">
-        <layout x="400px" y="450px"/>
-        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
-      </trigger>
-      <trigger value="1" mapping="On_Off">
-        <layout x="650px" y="450px"/>
-        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
-      </trigger>
-    </page>
-    <page name="2D scaled SVG" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan_viewbox.svg" align="center">
+    <page name="2D contained SVG" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan_viewbox.svg" align="center" size="contained">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="50%" y="70%"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1578,8 +1606,7 @@
       <address transform="DPT:9.021" mode="readwrite">12/7/9</address>
     </diagram_info>
     <break/>
-    <diagram width="600" height="400" popup="false" previewlabels="true">
-      <label/>
+    <diagram height="400" popup="false" previewlabels="true">
       <rrd>eib_traffic</rrd>
     </diagram>
     <line>
@@ -1600,7 +1627,7 @@
           <layout colspan="5"/>
           <label>Ohne Flavour</label>
         </text>
-        <info styling="Blue_Purple_Red">
+        <info styling="Blue_Purple_Red" format="%.2f">
           <layout colspan="5"/>
           <label>Info</label>
           <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -1608,7 +1635,7 @@
       </group>
       <!-- <line /> -->
       <group name="Slider Gruppe mit Flavour" flavour="lithium" align="center">
-        <info styling="Blue_Purple_Red">
+        <info styling="Blue_Purple_Red" format="%.2f">
           <label>Info: Slider</label>
           <address transform="DPT:9" mode="readwrite">12/7/9</address>
         </info>

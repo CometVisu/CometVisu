@@ -54,7 +54,7 @@ qx.Class.define('cv.Config', {
      * Threshold where the mobile.css is loaded
      * @type {Number}
      */
-    maxMobileScreenWidth: 480,
+    maxMobileScreenWidth: 599,
     /**
      * Threshold where colspan-s is used
      * @type {Number}
@@ -93,12 +93,12 @@ qx.Class.define('cv.Config', {
      * Type of the used backend (*default*, *openhab* or *openhab2*)
      * @type {String}
      */
-    backend : 'default',
+    backend : null,
     /**
      * Initial URL to the backend
      * @type {String}
      */
-    backendUrl : null,
+    backendLoginUrl : null,
     /**
      * @type {String}
      */
@@ -118,6 +118,18 @@ qx.Class.define('cv.Config', {
      * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)
      */
     pluginsToLoad: [],
+
+    /**
+     * Load the manager directly, no config
+     * @type {boolean}
+     */
+    loadManager: false,
+
+    /**
+     * Optional settings for manager loading
+     * @type {Map}
+     */
+    managerOptions: {},
 
     /**
      * All configuration and settings from the current configuration
@@ -268,8 +280,11 @@ qx.Class.define('cv.Config', {
     if (req.queryKey.libraryCheck) {
       cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
     }
+
     if (req.queryKey.backend) {
-      cv.Config.backend = req.queryKey.backend;
+      cv.Config.URL = {backend: req.queryKey.backend};
+    } else {
+      cv.Config.URL = {backend: undefined};
     }
 
     if (req.queryKey.design) {
@@ -338,6 +353,12 @@ qx.Class.define('cv.Config', {
       cv.Config.enableLogging = true;
     }
 
+    cv.Config.loadManager = cv.Config.request.queryKey.manager || window.location.hash === '#manager';
+    cv.Config.managerOptions = {
+      action: cv.Config.request.queryKey.open ? 'open' : '',
+      data: cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined
+    };
+
     // "Bug"-Fix for ID: 3204682 "Caching on web server"
     // Config isn't a real fix for the problem as that's part of the web browser,
     // but
@@ -345,11 +366,6 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    const uagent = navigator.userAgent.toLowerCase();
-    cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
-    if (/(nexus 7|tablet)/i.test(uagent)) {
-      cv.Config.mobileDevice = false; // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
-    }
     if (req.queryKey.forceDevice) { // overwrite detection when set by URL
       switch (req.queryKey.forceDevice) {
         case 'mobile':

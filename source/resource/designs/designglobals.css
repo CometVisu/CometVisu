@@ -454,6 +454,11 @@ button.ui-slider-handle {
   background: linear-gradient(90deg, rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
 }
 
+.widget.diagram > .actor {
+  overflow: hidden;
+  float: none;
+}
+
 #notification-center {
   position: absolute;
   width: 300px;
@@ -747,6 +752,10 @@ pre.inline { display: inline-block; }
   width: 200px;
   font-size: 14px;
   text-align: center;
+}
+
+#manager {
+  color: rgb(192, 192, 192);
 }
 
 #manager div.touch-tree-open-icon {

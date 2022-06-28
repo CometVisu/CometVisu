@@ -319,12 +319,14 @@ qx.Class.define('cv.parser.WidgetParser', {
 
       Array.prototype.forEach.call(label.childNodes, function(elem) {
         if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
-          ret_val += cv.IconHandler.getInstance().getIconText(
+          ret_val += cv.IconHandler.getInstance().getIconElement(
             elem.getAttribute('name'),
             elem.getAttribute('type'),
             elem.getAttribute('flavour') || flavour,
             elem.getAttribute('color'),
-            elem.getAttribute('styling'));
+            elem.getAttribute('styling'),
+            '',
+            true);
         } else if (elem.nodeType === Node.TEXT_NODE) {
           ret_val += elem.textContent;
         }
@@ -406,17 +408,16 @@ qx.Class.define('cv.parser.WidgetParser', {
     makeAddressList: function (element, id, makeAddressListFn, skipAdding) {
       let address = {};
       element.querySelectorAll('address').forEach(function (elem) {
-        let
-          src = elem.textContent;
-          let transform = elem.getAttribute('transform');
-          let addressInfo = {};
-          let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
-          let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+        let src = elem.textContent;
+        let transform = elem.getAttribute('transform');
+        let addressInfo = {};
+        let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
+        let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
-        if (cv.Config.backend === 'mqtt') {
-          addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
-          addressInfo.retain = elem.getAttribute('retain') === 'true';
-        }
+        addressInfo.selector = elem.getAttribute('selector');
+        addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
+        addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
+        addressInfo.retain = elem.getAttribute('retain') === 'true';
 
         if ((!src) || (!transform)) { // fix broken address-entries in config
           qx.log.Logger.error(this, 'Either address or transform is missing in address element %1', element.outerHTML);

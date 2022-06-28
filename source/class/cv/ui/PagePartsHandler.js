@@ -140,13 +140,14 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
-      } 
-        return {
-          top: page.getShowNavbarTop(),
-          bottom: page.getShowNavbarBottom(),
-          left: page.getShowNavbarLeft(),
-          right: page.getShowNavbarRight()
-        };
+      }
+
+      return {
+        top: page.getShowNavbarTop(),
+        bottom: page.getShowNavbarBottom(),
+        left: page.getShowNavbarLeft(),
+        right: page.getShowNavbarRight()
+      };
     },
 
     /**
@@ -209,63 +210,65 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       const initCss = {};
       const targetCss = {};
       const navbar = document.querySelector('#navbar' + position);
-      const key = position.toLowerCase();
-      const self = this;
-      const onAnimationEnd = function () {
-        self.navbars[key].fadeVisible = direction === 'in';
-        cv.ui.layout.ResizeHandler.invalidateNavbar();
-      };
-      switch (direction) {
-        case 'in':
-          if (window.getComputedStyle(navbar).display === 'none') {
-            initCss.display = 'block';
-          }
-          targetCss[key] = 0;
-          switch (position) {
-            case 'Top':
-            case 'Bottom':
-              initCss[key] = -navbar.getBoundingClientRect().height + 'px';
-              break;
-            case 'Left':
-            case 'Right':
-              initCss[key] = -navbar.getBoundingClientRect().width + 'px';
-              break;
-          }
-          break;
-        case 'out':
-          initCss[key] = 0;
-          switch (position) {
-            case 'Top':
-            case 'Bottom':
-              targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
-              break;
-            case 'Left':
-            case 'Right':
-              targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
-              break;
-          }
-          break;
-      }
-      Object.entries(initCss).forEach(function(key_value) {
- navbar.style[key_value[0]]=key_value[1]; 
-});
-      if (speed === 0) {
-        Object.entries(targetCss).forEach(function(key_value) {
- navbar.style[key_value[0]]=key_value[1]; 
-});
-        onAnimationEnd();
-      } else {
-        const spec = {
-          duration: speed,
-          timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
-          keep: 100,
-          keyFrames: {
-            0: initCss,
-            100: targetCss
-          }
+      if (navbar) {
+        const key = position.toLowerCase();
+        const self = this;
+        const onAnimationEnd = function () {
+          self.navbars[key].fadeVisible = direction === 'in';
+          cv.ui.layout.ResizeHandler.invalidateNavbar();
         };
-        const anim = qx.bom.element.Animation.animate(navbar, spec);
-        anim.addListenerOnce('end', onAnimationEnd, this);
+        switch (direction) {
+          case 'in':
+            if (window.getComputedStyle(navbar).display === 'none') {
+              initCss.display = 'block';
+            }
+            targetCss[key] = 0;
+            switch (position) {
+              case 'Top':
+              case 'Bottom':
+                initCss[key] = -navbar.getBoundingClientRect().height + 'px';
+                break;
+              case 'Left':
+              case 'Right':
+                initCss[key] = -navbar.getBoundingClientRect().width + 'px';
+                break;
+            }
+            break;
+          case 'out':
+            initCss[key] = 0;
+            switch (position) {
+              case 'Top':
+              case 'Bottom':
+                targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
+                break;
+              case 'Left':
+              case 'Right':
+                targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
+                break;
+            }
+            break;
+        }
+        Object.entries(initCss).forEach(function (key_value) {
+          navbar.style[key_value[0]] = key_value[1];
+        });
+        if (speed === 0) {
+          Object.entries(targetCss).forEach(function (key_value) {
+            navbar.style[key_value[0]] = key_value[1];
+          });
+          onAnimationEnd();
+        } else {
+          const spec = {
+            duration: speed,
+            timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
+            keep: 100,
+            keyFrames: {
+              0: initCss,
+              100: targetCss
+            }
+          };
+          const anim = qx.bom.element.Animation.animate(navbar, spec);
+          anim.addListenerOnce('end', onAnimationEnd, this);
+        }
       }
     },
 
@@ -303,6 +306,11 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           const nav = document.querySelector('#' + id + pos + '_navbar');
           if (nav) {
             const data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            if (data.scope >= 0 && tree.length-level > data.scope) {
+              // navbar that is not visible at the moment -> ignore it
+              nav.classList.remove('navbarActive');
+              return;
+            }
             if (data.dynamic !== null) {
               dynamic[pos] = data.dynamic;
             }
@@ -315,9 +323,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
             if (data.width !== null) {
               size[pos] = data.width;
             } else if (size[pos] === 0) {
-                // navbar with content but no size given so far => use default
-                size[pos] = 300;
-              }
+              // navbar with content but no size given so far => use default
+              size[pos] = 300;
+            }
           }
         });
         level++;

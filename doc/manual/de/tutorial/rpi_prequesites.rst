@@ -51,10 +51,10 @@ Minimale Ausstattung
 * microSD Karte
 
 .. figure:: _static/rpi_minimum.jpg
-   :scale: 50 %
+   :width: 100 %
 
-Empfohlende Ausstattung
------------------------
+Empfohlene Ausstattung
+----------------------
 
 Die größte Schwachstelle bei dauerhaften Betrieb eines Raspberry Pi ist die
 Lebensdauer der SD-Karte, da diese nicht auf die dabei auftretende hohe Anzahl
@@ -78,7 +78,7 @@ empfohlen, dass auch die CPU kühlen kann.
 * Gehäuse
 
 .. figure:: _static/rpi_recomended.jpg
-   :scale: 50 %
+   :width: 100 %
 
 Ausstattungsbeispiel
 --------------------
@@ -94,7 +94,7 @@ Dieses Tutorial wurde anhand dieser Ausstattung erstellt:
 Anschaffungspreis (2021) waren keine 150 Euro.
 
 .. figure:: _static/rpi_housing.jpg
-   :scale: 50 %
+   :width: 100 %
 
 Setup der Hardware
 ==================
@@ -189,7 +189,7 @@ geändert:
     Das installierte Raspberry OS kennt, wie jedes andere Linux auch, mehrere
     Benutzer. Als normaler Nutzer ist der Account ``pi`` angelegt worden, dieser
     hat aber - bewusst! - nur eingeschränkte Rechte. Werden für administrative
-    Aufgaben erweiterte Rechte benötigt, so müssen diese mit dem Accout ``root``
+    Aufgaben erweiterte Rechte benötigt, so müssen diese mit dem Account ``root``
     durchgeführt werden. Aus Sicherheitsgründen kann man sich normalerweise
     nicht direkt als ``root`` anmelden, sondern geht über einen normalen Account
     (wie ``pi``) und wechselt dann von dort auf den ``root``-Account.
@@ -200,7 +200,7 @@ geändert:
     werden. Durch ein ``exit`` wird wieder zurück gewechselt.
 
 Der Raspberry Pi kann nun über ``shutdown -h now`` herunter gefahren werd, die
-Spannungsversorgnug getrennt, die SD-Karte entfernt und anschließend über das
+Spannungsversorgung getrennt, die SD-Karte entfernt und anschließend über das
 Wiedereinstecken der Spannungsversorgung wieder gestartet werden.
 
 Basisadministration
@@ -291,8 +291,8 @@ oder, wenn wider Erwarten notwendig, die HDMI Ausgänge konfigurieren.
 Netzwerkzugriff - Teil 2
 ------------------------
 
-Netzwerkaddresse ändern
-^^^^^^^^^^^^^^^^^^^^^^^
+Netzwerkadresse ändern
+^^^^^^^^^^^^^^^^^^^^^^
 
 Bis jetzt hat sich der Raspberry Pi selbst eine Netzwerkadresse besorgt. Damit
 dieser aber als Server immer unter der gleichen Adresse zu erreichen ist muss
@@ -362,7 +362,7 @@ Auf dem Raspberry Pi muss nun im Home-Verzeichnis des entsprechenden Users (also
 ``pi`` oder ``root``) das Unterverzeichnis ``.ssh`` angelegt werden und der
 öffentliche Schlüssel dann in die Datei ``authorized_keys`` kopiert werden.
 Für einen Key Exchange mit ``root`` wird erst über ``sudo -s`` der Benutzer
-gewechselt. Anschließdend dann: ::
+gewechselt. Anschließend dann: ::
 
     mkdir -p ~/.ssh
     nano ~/.ssh/authorized_keys
@@ -400,7 +400,7 @@ Docker-Umgebung läuft: :doc:`Raspberry Pi: Docker installieren <rpi_docker>` un
 :doc:`Raspberry Pi: CometVisu in Docker installieren <rpi_cometvisu>`.
 
 Es kann aber auch sein, dass der Raspberry Pi als CometVisu Client laufen soll
-und den Browser mit der CometVisu auf einem Touch Sreen darstellen soll:
+und den Browser mit der CometVisu auf einem Touchscreen darstellen soll:
 :doc:`Client einrichten (Kiosk Modus) <rpi_kiosk>`.
 
 Genau so ist es möglich den Raspberry Pi als Automatisierungs-Server für

@@ -1,14 +1,14 @@
 .. _openhab-plugin:
 
-Das openHAB2 Plugin
-===================
+Das openHAB Plugin
+==================
 
 .. api-doc:: cv.plugins.openhab.Openhab
 
 Beschreibung
 ------------
 
-Das openHAB Plugin verbessert das Zusammenspiel zwischen der CometVisu und dem openHAB2 Backend.
+Das openHAB Plugin verbessert das Zusammenspiel zwischen der CometVisu und dem openHAB Backend.
 Dieses Plugin bietet zur Zeit folgende Features:
 
 * Anzeige von Benachrichtigungen des Backend, z.B. wenn eine neue CometVisu Version bereitsteht
@@ -17,8 +17,8 @@ Dieses Plugin bietet zur Zeit folgende Features:
 
 .. NOTE::
 
-    Dieses Plugin wird automatisch geladen, sobald das openHAB2 Backend benutzt wird.
-    Es besteht also keine Notwendingkeit, dieses Plugin in der ``visu_config.xml`` zu aktivieren.
+    Dieses Plugin wird automatisch geladen, sobald das openHAB Backend benutzt wird.
+    Es besteht also keine Notwendigkeit, dieses Plugin in der ``visu_config.xml`` zu aktivieren.
 
 
 

@@ -203,7 +203,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     },
 
     /**
-     * Set childrens column widths
+     * Set children column widths
      */
     applyColumnWidths: function() {
       cv.ui.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
@@ -222,7 +222,10 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         let size = 'width:100%;height:100%;';
         switch (this.getSize()) {
           case 'fixed':
-            size = '';
+            size += 'object-fit:none;';
+            if (this.getBackdropAlign()) {
+              size += 'object-position:' + this.getBackdropAlign() + ';';
+            }
             break;
 
           case 'contained':
@@ -322,7 +325,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
             if (cv.data.Model.isWriteAddress(address)) {
-              cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address.transform, value));
+              cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address, value));
             }
           }
         }

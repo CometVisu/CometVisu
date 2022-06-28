@@ -42,7 +42,7 @@ a key that can be obtained free of charge at the homepage and which must be
 inserted at the `appid` attribute.
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 None.
@@ -79,7 +79,3 @@ This minimal example code will create this screen shot:
 
 
 .. ###END-WIDGET-EXAMPLES###
-
-.. rubric:: Footnotes
-
-.. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.
