@@ -205,6 +205,7 @@ qx.Class.define('cv.Application',
   members :
   {
     _blocker: null,
+    __appReady: null,
 
     /**
      * Toggle the {@link qx.bom.Blocker} visibility
