@@ -1,6 +1,6 @@
 /* Strftime.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -19,7 +19,7 @@
 
 
 /**
- * This plugins integrates formated date and clock strings into based on strftime.
+ * This plugins integrates formatted date and clock strings into based on strftime.
  *
  * @author Michael Hausl [michael at hausl dot com]
  * @since 0.8.0
@@ -35,11 +35,11 @@ qx.Class.define('cv.plugins.Strftime', {
   */
   properties: {
     format: {
-      check: "String",
-      init: "%c"
+      check: 'String',
+      init: '%c'
     },
     locale: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -70,7 +70,7 @@ qx.Class.define('cv.plugins.Strftime', {
     getAttributeToPropertyMappings: function() {
       return {
         'lang': { target: 'locale' },
-        'format': { "default": "%c"}
+        'format': { 'default': '%c'}
       };
     },
 
@@ -104,7 +104,7 @@ qx.Class.define('cv.plugins.Strftime', {
     // overridden
     getValueElement: function() {
       if (!this.__valueElement) {
-        this.__valueElement = qx.bom.Selector.query(".strftime_value", this.getDomElement())[0];
+        this.__valueElement = this.getDomElement().querySelector('.strftime_value');
       }
       return this.__valueElement;
     },
@@ -112,14 +112,14 @@ qx.Class.define('cv.plugins.Strftime', {
     // overridden
     _onDomReady: function () {
       this.self(arguments).startTimer();
-      this.self(arguments).__timer.addListener("interval", this.__update, this);
+      this.self(arguments).__timer.addListener('interval', this.__update, this);
     },
 
     __update: function() {
-      var elem = this.getValueElement();
-      var d = new Date();
+      const elem = this.getValueElement();
+      const d = new Date();
       d.locale = this.getLocale();
-      qx.bom.element.Attribute.set(elem, "text", d.strftime(this.getFormat()));
+      elem.innerText = d.strftime(this.getFormat());
     }
   },
 
@@ -129,14 +129,14 @@ qx.Class.define('cv.plugins.Strftime', {
   ******************************************************
   */
   destruct: function() {
-    this.self(arguments).__timer.removeListener("interval", this.__update, this);
+    this.self(arguments).__timer.removeListener('interval', this.__update, this);
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
-    cv.parser.WidgetParser.addHandler("strftime", statics);
-    cv.ui.structure.WidgetFactory.registerClass("strftime", statics);
+    cv.parser.WidgetParser.addHandler('strftime', statics);
+    cv.ui.structure.WidgetFactory.registerClass('strftime', statics);
 
     // extend locales by German and French
     Date.ext.locales.de = {

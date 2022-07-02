@@ -2,7 +2,6 @@
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" min_column_width="70">
 	<meta>
 		<plugins>
-			<plugin name="colorchooser"/>
 			<plugin name="diagram"/>						
 		</plugins>
 		<mappings>
@@ -150,7 +149,7 @@
 		</stylings>
 		<statusbar>
 			<status type="html">
-				<![CDATA[<img src="icon/comet_64_ffffff.png" alt="CometVisu"></a>
+				<![CDATA[<img src="icons/comet_64_ffffff.png" alt="CometVisu"></a>
 			<a href=".?forceReload=true">Aktualisieren</a>
 			- <a href="?config=demo">Demo</a>
 			]]></status>
@@ -220,7 +219,7 @@
 						<layout colspan="6" />							
 						<text align="left">
 							<layout colspan="2" />
-							<label><icon name="fts_shutter" />Alle Rolläden</label>
+							<label><icon name="fts_shutter" />Alle Rollläden</label>
 						</text>
 						<trigger value="1" mapping="AufAbSymbol" align="center">
 							<layout colspan="2" />

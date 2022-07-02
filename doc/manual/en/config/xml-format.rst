@@ -30,6 +30,22 @@ The following settings are relevant in the second line:
 +----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 | ``screensave_page="main"`` | This option allows you to specify which page will be displayed after ``sceensave_time`` has expired          | Specification of the page ID eg. "id_1" or page name e.g. "Main"           | NO         |
 +----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend="mqtt"``         | This option sets the backend to use - overriding the information sent from the server                        | ``knxd``, ``openhab``, ``mqtt``                                            | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-knxd-url=""``    | URL of the knxd login resource                                                                               |                                                                            | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-mqtt-url=""``    | URL of the MQTT login resource                                                                               |                                                                            | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-openhab-url=""`` | Path to the openHAB REST-API                                                                                 | Usually ``/rest/``                                                         | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-url="/rest/"``   | Deprecated, only for openHAB: URL of the connection to the MQTT broker web sockets                           |                                                                            | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``username="user"``        | Deprecated, only for openHAB: user name                                                                      |                                                                            | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``password="secret"``      | Deprecated, only for openHAB: password                                                                       |                                                                            | NO         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``lib_version="9"``        | Version of the CometVisu-library. This value is only required for the upgrade script.                        | The CometVisu version 0.12.0 uses the value ``9``                          | YES        |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 
 Next in the visu_config.xml within the meta tag are all definitions for
 plugins, mappings, stylings, icons and the status bar. The correct
@@ -58,7 +74,7 @@ Option                       Description                                    Valu
         <files>
             <file type="css">resource/config/media/style.css</file>
             <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
-        </plugins>
+        </files>
         ...
     </meta>
 
@@ -72,14 +88,14 @@ Plugins
 +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+------------+
 | Option                   | Description                                                                                                                          | Values                         | Necessary  |
 +==========================+======================================================================================================================================+================================+============+
-| ``<plugin name=" "/>``   | With this option the plugins are included. Here the name of the plugin is entered. For each plugin such an entry must be created.    | z.B. colorchooser or diagram   | NO         |
+| ``<plugin name=" "/>``   | With this option the plugins are included. Here the name of the plugin is entered. For each plugin such an entry must be created.    | z.B. clock or diagram          | NO         |
 +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+------------+
 
 .. code-block:: xml
 
     <meta>
         <plugins>
-            <plugin name="colorchooser"/>
+            <plugin name="clock"/>
         </plugins>
         ...
     </meta>
@@ -179,7 +195,7 @@ The status bar (footer) is located at the bottom of the screen and allows e.g. e
         ...
         <statusbar>
             <status type="html"><![CDATA[
-                <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+                <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
                 - <a href=".?forceReload=true">Reload</a>
                 - <a href="?config=demo">Widget Demo</a>
                 ]]></status>
@@ -222,34 +238,36 @@ shows how to define and use a template.
 
     <pages>
         <meta>
-            <template name="Heating">
-                <group name="Heating">
-                  {{{ additional_content }}}
-                  <slide min="0" max="100" format="%d%%">
-                    <label>
-                      <icon name="sani_heating" />
-                      Heating
-                    </label>
-                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
-                  </slide>
-                  <info format="%.1f °C">
-                    <label>
-                      <icon name="temp_temperature" />
-                      actual value
-                    </label>
-                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
-                  </info>
-                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
-                               downvalue="-0.5" styling="BluePurpleRedTemp"
-                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-                    <label>
-                      <icon name="temp_control" />
-                      setpoint
-                    </label>
-                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
-                  </infotrigger>
-                </group>
-            </template>
+            <templates>
+                <template name="Heating">
+                    <group name="Heating">
+                      {{{ additional_content }}}
+                      <slide min="0" max="100" format="%d%%">
+                        <label>
+                          <icon name="sani_heating" />
+                          Heating
+                        </label>
+                        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                      </slide>
+                      <info format="%.1f °C">
+                        <label>
+                          <icon name="temp_temperature" />
+                          actual value
+                        </label>
+                        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                      </info>
+                      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                                   downvalue="-0.5" styling="BluePurpleRedTemp"
+                                   infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                        <label>
+                          <icon name="temp_control" />
+                          setpoint
+                        </label>
+                        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                      </infotrigger>
+                    </group>
+                </template>
+            </templates>
         </meta>
         <page>
             <page name="Living room">
@@ -289,7 +307,9 @@ also be swapped out to an external file.
 
     <pages>
         <meta>
-            <template name="Heizung" ref="resource/config/media/heating.template.xml"/>
+            <templates>
+                <template name="Heizung" ref="resource/config/media/heating.template.xml"/>
+            </templates>
         </meta>
         <page>
             <page name="Living room">
@@ -370,7 +390,7 @@ This looks like this:
     </settings>
     <meta>
         <plugins>
-         <plugin name="colorchooser"/>
+         <plugin name="clock"/>
         </plugins>
     </meta>
     <page name="Mainpage">

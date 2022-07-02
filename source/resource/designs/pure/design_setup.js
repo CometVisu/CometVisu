@@ -1,6 +1,6 @@
 /* design_setup.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -25,8 +25,8 @@
  * @since 2012
  */
 qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarLeft')[0], 'columns', 6);
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#main')[0], 'columns', 12);
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarRight')[0], 'columns', 6);
+  document.querySelector('#navbarLeft').dataset['columns'] = 6;
+  document.querySelector('#main').dataset['columns'] = 12;
+  document.querySelector('#navbarRight').dataset['columns'] = 6;
 });
 

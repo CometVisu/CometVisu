@@ -1,6 +1,6 @@
 /* InfoTrigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.InfoTrigger', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,7 +40,7 @@ qx.Class.define('cv.parser.widgets.InfoTrigger', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
@@ -48,27 +48,30 @@ qx.Class.define('cv.parser.widgets.InfoTrigger', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'downvalue': {target: 'downValue', transform: parseFloat, "default": 0},
+        'downvalue': {target: 'downValue', transform: parseFloat, 'default': 0},
         'shortdownvalue': {target: 'shortDownValue', transform: function (value) {
-            return !!value ? parseFloat(value) : null;
+            return value ? parseFloat(value) : null;
           }},
         'downlabel': {target: 'downLabel'},
-        'upvalue': {target: 'upValue', transform: parseFloat, "default": 0},
+        'upvalue': {target: 'upValue', transform: parseFloat, 'default': 0},
         'shortupvalue': {target: 'shortUpValue', transform: function (value) {
-          return !!value ? parseFloat(value) : null;
+          return value ? parseFloat(value) : null;
          }},
         'uplabel': {target: 'upLabel'},
-        'shorttime': {target: 'shortThreshold', transform: parseFloat, "default": -1},
+        'shorttime': {target: 'shortThreshold', transform: parseFloat, 'default': -1},
+        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {
+            return value ? value === 'true' : true;
+         }},
         'change': {
           target: 'isAbsolute', transform: function (value) {
-            return (value || 'relative') === "absolute";
+            return (value || 'relative') === 'absolute';
           }
         },
-        'min': {transform: parseFloat, "default": 0},
-        'max': {transform: parseFloat, "default": 255},
+        'min': {transform: parseFloat, 'default': 0},
+        'max': {transform: parseFloat, 'default': 255},
         'infoposition': {
           target: 'infoPosition',
-          "default": 'left',
+          'default': 'left',
           transform: function (value) {
             return ['middle', 'right'].includes(value) ? value : 'left';
           }
@@ -84,6 +87,6 @@ qx.Class.define('cv.parser.widgets.InfoTrigger', {
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("infotrigger", statics);
+    cv.parser.WidgetParser.addHandler('infotrigger', statics);
   }
 });

@@ -1,6 +1,6 @@
 /* Config.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  * Main settings that an be accessed from anywhere inside the Application
  */
 qx.Class.define('cv.Config', {
-  type:"static",
+  type:'static',
 
   statics: {
     /**
@@ -38,7 +38,7 @@ qx.Class.define('cv.Config', {
      * The current path tree
      * @type {String}
      */
-    treePath: "",
+    treePath: '',
 
     /**
      * Path to the current page
@@ -47,11 +47,6 @@ qx.Class.define('cv.Config', {
     currentPageId: null,
 
     /**
-     * Config file version
-     * @type {Number}
-     */
-    libraryVersion: 8,
-    /**
      * @type {Boolean}
      */
     libraryCheck: true,
@@ -59,7 +54,7 @@ qx.Class.define('cv.Config', {
      * Threshold where the mobile.css is loaded
      * @type {Number}
      */
-    maxMobileScreenWidth: 480,
+    maxMobileScreenWidth: 599,
     /**
      * Threshold where colspan-s is used
      * @type {Number}
@@ -98,12 +93,12 @@ qx.Class.define('cv.Config', {
      * Type of the used backend (*default*, *openhab* or *openhab2*)
      * @type {String}
      */
-    backend : 'default',
+    backend : null,
     /**
      * Initial URL to the backend
      * @type {String}
      */
-    backendUrl : null,
+    backendLoginUrl : null,
     /**
      * @type {String}
      */
@@ -112,12 +107,29 @@ qx.Class.define('cv.Config', {
      * The design currently used
      * @type {String}
      */
-    clientDesign : "",
+    clientDesign : '',
     /**
      * Maturity level
      * @type {var}
      */
     use_maturity : false,
+
+    /**
+     * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)
+     */
+    pluginsToLoad: [],
+
+    /**
+     * Load the manager directly, no config
+     * @type {boolean}
+     */
+    loadManager: false,
+
+    /**
+     * Optional settings for manager loading
+     * @type {Map}
+     */
+    managerOptions: {},
 
     /**
      * All configuration and settings from the current configuration
@@ -137,7 +149,14 @@ qx.Class.define('cv.Config', {
        * Array with alls icons defined in the current config file
        * @type {Array}
        */
-      iconsFromConfig: []
+      iconsFromConfig: [],
+      /**
+       * Credentials for Backend authentication, username/token and optional password
+       */
+      credentials: {
+        username: null,
+        password: null
+      }
     },
 
     /**
@@ -156,8 +175,13 @@ qx.Class.define('cv.Config', {
      * Defines which structure is supported by which designs
      */
     designStructureMap: {
-      "pure": ["alaska", "alaska_slim", "discreet", "discreet_sand", "discreet_slim", "metal", "pitchblack", "planet", "pure"]
+      'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure']
     },
+
+    /**
+     * Wether the error reporting with sentry is enabled or not
+     */
+    sentryEnabled: false,
 
     /**
      * If enabled the user interaction gets logged
@@ -175,9 +199,11 @@ qx.Class.define('cv.Config', {
     configServer: null,
 
     /**
-     * In testMode the visu can be filled with some demo data
+     * If the CometVisu can use service workers
      */
-    initialDemoData: null,
+    useServiceWorker: false,
+
+    enableServiceWorkerCache : true,
 
     /**
      * Get the structure that is related to this design
@@ -188,15 +214,15 @@ qx.Class.define('cv.Config', {
       if (!design) {
         design = this.getDesign();
       }
-      for (var structure in this.designStructureMap) {
-        if (this.designStructureMap.hasOwnProperty(structure)) {
+      for (let structure in this.designStructureMap) {
+        if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
-            return "structure-"+structure;
+            return 'structure-'+structure;
           }
         }
       }
       // fallback to pure
-      return "structure-pure";
+      return 'structure-pure';
     },
 
     /**
@@ -206,7 +232,7 @@ qx.Class.define('cv.Config', {
      */
     guessIfProxied: function() {
       if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
-        throw new Error("not ready yet");
+        throw new Error('not ready yet');
       }
       return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
     },
@@ -220,7 +246,7 @@ qx.Class.define('cv.Config', {
     },
 
     hasMapping: function(name) {
-      return this.configSettings.mappings.hasOwnProperty(name);
+      return Object.prototype.hasOwnProperty.call(this.configSettings.mappings, name);
     },
 
     clearMappings: function() {
@@ -236,7 +262,7 @@ qx.Class.define('cv.Config', {
     },
 
     hasStyling: function(name) {
-      return this.configSettings.stylings.hasOwnProperty(name);
+      return Object.prototype.hasOwnProperty.call(this.configSettings.stylings, name);
     },
 
     getDesign: function() {
@@ -245,7 +271,7 @@ qx.Class.define('cv.Config', {
   },
 
   defer: function(statics) {
-    var req = qx.util.Uri.parseUri(window.location.href);
+    const req = qx.util.Uri.parseUri(window.location.href);
 
     if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;
@@ -254,8 +280,11 @@ qx.Class.define('cv.Config', {
     if (req.queryKey.libraryCheck) {
       cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
     }
+
     if (req.queryKey.backend) {
-      cv.Config.backend = req.queryKey.backend;
+      cv.Config.URL = {backend: req.queryKey.backend};
+    } else {
+      cv.Config.URL = {backend: undefined};
     }
 
     if (req.queryKey.design) {
@@ -266,19 +295,26 @@ qx.Class.define('cv.Config', {
       cv.Config.startpage = req.queryKey.startpage;
     }
 
+    if (req.queryKey.reportErrors) {
+      if (window.Sentry) {
+        cv.Config.sentryEnabled = true;
+        Sentry.configureScope(function (scope) {
+          scope.setTag('build.date', cv.Version.DATE);
+          scope.setTag('build.branch', cv.Version.BRANCH);
+          Object.keys(cv.Version.TAGS).forEach(function (tag) {
+            scope.setTag(tag, cv.Version.TAGS[tag]);
+          });
+        });
+      }
+    }
+
+    // store for later usage
+    cv.Config.request = req;
+
     if (qx.core.Environment.get('cv.testMode') !== false) {
       cv.Config.testMode = true;
-      if (qx.core.Environment.get('cv.testMode') !== "true") {
-        // load the demo data to fill the visu with some values
-        var r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
-        r.addListener('success', function (e) {
-          var data = e.getTarget().getResponse();
-          cv.Config.initialDemoData = data;
-        });
-        r.send();
-      }
     } else if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
+      cv.Config.testMode = req.queryKey.testMode === 'true' || req.queryKey.testMode === '1';
     }
 
     // propagate to the client
@@ -297,24 +333,28 @@ qx.Class.define('cv.Config', {
     }
 
     // caching is only possible when localStorage is available
-    if (qx.core.Environment.get("html.storage.local") === false) {
+    if (qx.core.Environment.get('html.storage.local') === false) {
       cv.Config.enableCache = false;
-      console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
-    } else {
-      if (req.queryKey.enableCache === "invalid") {
+      qx.log.Logger.warn(statics, 'localStorage is not available in your browser. Some advanced features, like caching will not work!');
+    } else if (req.queryKey.enableCache === 'invalid') {
         cv.ConfigCache.clear(cv.Config.configSuffix);
         cv.Config.enableCache = true;
       } else {
-        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
+        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === 'true' : !qx.core.Environment.get('qx.debug');
       }
-    }
 
-    cv.Config.enableLogging = qx.core.Environment.get("html.console");
-    if (req.queryKey.log === "false") {
+    cv.Config.enableLogging = qx.core.Environment.get('html.console');
+    if (req.queryKey.log === 'false') {
       cv.Config.enableLogging = false;
-    } else if (req.queryKey.log === "true") {
+    } else if (req.queryKey.log === 'true') {
       cv.Config.enableLogging = true;
     }
+
+    cv.Config.loadManager = cv.Config.request.queryKey.manager || window.location.hash === '#manager';
+    cv.Config.managerOptions = {
+      action: cv.Config.request.queryKey.open ? 'open' : '',
+      data: cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined
+    };
 
     // "Bug"-Fix for ID: 3204682 "Caching on web server"
     // Config isn't a real fix for the problem as that's part of the web browser,
@@ -323,19 +363,17 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    if (req.queryKey.forceDevice) {
-      cv.Config.forceMobile = req.queryKey.forceDevice === 'mobile';
-      cv.Config.forceNonMobile = !cv.Config.forceMobile;
-    } else {
-      cv.Config.forceMobile = false;
-      cv.Config.forceNonMobile = false;
+    if (req.queryKey.forceDevice) { // overwrite detection when set by URL
+      switch (req.queryKey.forceDevice) {
+        case 'mobile':
+          cv.Config.mobileDevice = true;
+          break;
+
+        case 'nonmobile':
+          cv.Config.mobileDevice = false;
+          break;
+      }
     }
-    var uagent = navigator.userAgent.toLowerCase();
-    cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
-    if (/(nexus 7|tablet)/i.test(uagent)) {
-      cv.Config.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
-    }
-    cv.Config.mobileDevice |= cv.Config.forceMobile;  // overwrite detection when set by URL
 
 
     // Disable features that aren't ready yet
@@ -352,6 +390,15 @@ qx.Class.define('cv.Config', {
 
     if (isNaN(cv.Config.use_maturity)) {
       cv.Config.use_maturity = statics.Maturity.release; // default to release
+    }
+
+    cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === 'https' || req.host === 'localhost');
+
+    if (cv.Config.useServiceWorker) {
+      if (qx.core.Environment.get('qx.debug')) {
+        // disable service worker in dev environment unless the user wants it
+        cv.Config.useServiceWorker = req.queryKey.worker === 'true';
+      }
     }
   }
 });

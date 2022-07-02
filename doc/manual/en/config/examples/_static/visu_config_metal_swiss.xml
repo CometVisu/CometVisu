@@ -116,12 +116,11 @@
     </stylings>
     <plugins>
       <plugin name="diagram"/>
-      <plugin name="colorchooser"/>
       <plugin name="strftime"/>
       <plugin name="rsslog"/>
     </plugins>
     <statusbar>
-      <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt; 
+      <status type="html">&lt;img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
 &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt; - &lt;a href="?config=demo"&gt;Widget 
 Demo&lt;/a&gt;</status>
       <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check 

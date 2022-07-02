@@ -1,6 +1,6 @@
 /* WidgetFactory.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -19,7 +19,7 @@
 
 
 qx.Class.define('cv.ui.structure.WidgetFactory', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,17 +40,17 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
 
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
-        if (!cv.ui.structure.pure[qx.lang.String.firstUp(type)]) {
-          var clazz = this.__typeMapping[type];
-          if (clazz) {
-            this.registry[data.path] = new clazz(data); // jshint ignore:line
+        if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
+          const Clazz = this.__typeMapping[type];
+          if (Clazz) {
+            this.registry[data.path] = new Clazz(data); // jshint ignore:line
           } else {
-            qx.log.Logger.error(this, "No handler found for type '"+type+"'");
+            qx.log.Logger.error(this, 'No handler found for type \''+type+'\'');
             return null;
           }
         } else {
-          // console.log(data.path+" cv.ui.structure.pure."+qx.lang.String.firstUp(type));
-          this.registry[data.path] = new cv.ui.structure.pure[qx.lang.String.firstUp(type)](data);
+          // console.log(data.path+" cv.ui.structure.pure."+type.charAt(0).toUpperCase() + type.substr(1));
+          this.registry[data.path] = new cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)](data);
         }
         this.c++;
       }
@@ -58,16 +58,18 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
     },
 
     getInstanceById: function (id, skipCreation) {
-      var widget = this.registry[id];
+      let widget = this.registry[id];
       if (!widget && !skipCreation && cv.Config.lazyLoading === true) {
-        var data = cv.data.Model.getInstance().getWidgetData(id);
-        widget = this.createInstance(data.$$type, data);
+        const data = cv.data.Model.getInstance().getWidgetData(id);
+        if (data.$$type) {
+          widget = this.createInstance(data.$$type, data);
+        }
       }
       return widget;
     },
 
     getInstanceByElement: function(element) {
-      var instance = this.getInstanceById(qx.bom.element.Attribute.get(element, 'id'));
+      const instance = this.getInstanceById(element.getAttribute('id'));
       if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();

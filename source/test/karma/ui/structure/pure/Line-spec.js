@@ -1,6 +1,6 @@
 /* Line-spec.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,15 +24,11 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a line widget", function() {
+describe('testing a line widget', function() {
+  it('should test the line creator', function() {
+    const [widget, element] = this.createTestWidgetString('line');
 
-  it("should test the line creator", function() {
-
-    var res = this.createTestWidgetString("line");
-
-    var line = qx.bom.Html.clean([res[1]])[0];
-
-    expect(qx.dom.Node.getName(line).toLowerCase()).toBe('hr');
-    expect(res[0].getPath()).toBe("id_0");
+    expect(element.nodeName.toLowerCase()).toBe('hr');
+    expect(widget.getPath()).toBe('id_0');
   });
 });

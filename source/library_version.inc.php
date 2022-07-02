@@ -27,8 +27,12 @@
  * @since       2013-02-05
  */
 /**
- * the current lib version
+ * the current lib version, read from package.json for backwards compability
  * @const   integer
  */
-define('LIBRARY_VERSION', 8);
-?>
+$packageJsonFile = dirname(__FILE__) . '/package.json';
+if (!file_exists($packageJsonFile)) {
+  $packageJsonFile = dirname(dirname(__FILE__)) . '/package.json';
+}
+$packageJson = json_decode(file_get_contents($packageJsonFile), true);
+define('LIBRARY_VERSION', $packageJson['org_cometvisu']['libraryVersion']);

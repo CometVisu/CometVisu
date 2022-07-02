@@ -121,7 +121,3 @@ wird dieser ignoriert.
     <speech lang="de" repeat-timout="300" mapping="speak">
         <address transform="DPT:5.010" mode="read">Speak</address>
     </speech>
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

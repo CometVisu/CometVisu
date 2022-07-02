@@ -16,10 +16,18 @@ Beschreibung
 
 Das Image Widget fügt der Visualisierung ein statisches Bild oder ein Kamerabild hinzu.
 
+Es gibt zwei Möglichkeiten die URL des Bildes anzugeben. Einmal über den ``src``-Parameter,
+oder als Alternative über den Wert einer Gruppenadresse.
+
+.. hint::
+
+    Die Möglichkeit Bilder über den Wert einer Gruppenadresse zu übermitteln wurde in
+    Version 0.12 eingeführt.
+
 Das Bild muss als URL angegeben werden. Wenn man Dateien anzeigen möchte müssen diese über
 http erreichbar auf dem CV-System oder einem anderen Server liegen.
 
-Als Dateiformate können alle Formate verwendet werden, die vom für die CV genutzen
+Als Dateiformate können alle Formate verwendet werden, die vom für die CV genutzten
 Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
 
 .. widget-example::
@@ -28,7 +36,7 @@ Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
     <settings>
         <screenshot name="image_simple"/>
     </settings>
-    <image src="icon/comet_128_ff8000.png"/>
+    <image src="resource/icons/comet_128_ff8000.png"/>
 
 
 Einstellungen
@@ -72,13 +80,28 @@ Die gültigen Werte für ``cachecontrol`` sind:
     Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
     durch den Cache verhindert wird ist jedoch wahrscheinlich.
 
+Die gültigen Werte für ``placeholder`` sind:
+
+``none``
+    Standard. Keine spezielle Behandlung.
+
+``src``
+    Benutze die URL, die in 'src' definiert wurde. In diesem Fall wird die 'src'-URL als Fallback benutzt,
+    wenn die per Gruppen-Adresse übermittelte URL leer ist.
+
+``hide``
+    Zeigt ein transparentes Platzhalter Bild, um den Platz zu reservieren.
+
+``exclude``
+    Zeigt das Bild nicht an und beansprucht auch den Platz nicht.
+
 .. widget-example::
     :editor: attributes
     :scale: 75
     :align: center
 
         <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
-        <image src="/icon/comet_128_ff8000.png"/>
+        <image src="/resource/icons/comet_128_ff8000.png"/>
 
 
 Erlaubte Kind-Elemente und deren Attribute
@@ -92,7 +115,7 @@ Erlaubte Kind-Elemente und deren Attribute
     :align: center
 
         <caption>Elemente im Editor</caption>
-        <image src="/icon/comet_128_ff8000.png">
+        <image src="/resource/icons/comet_128_ff8000.png">
             <label>Beschreibung der Grafik</label>
         </image>
 
@@ -110,7 +133,7 @@ Hier der minimale Beispielcode der das Image Widget aus dem oben gezeigten Scree
 
 .. code-block:: xml
 
-    <image src="icon/comet_128_ff8000.png"/>
+    <image src="icons/comet_128_ff8000.png"/>
 
 
 XML Syntax komplett
@@ -124,10 +147,20 @@ Eigenschaften einfügt:
     <settings>
         <screenshot name="image_complete"/>
     </settings>
-    <image src="icon/comet_128_ff8000.png" width="300px" height="200px" refresh="300">
+    <image src="icons/comet_128_ff8000.png" width="300px" height="200px" refresh="300">
         <label>Beschreibung der Grafik</label>
     </image>
 
+
+.. code-block:: xml
+
+Beispiel für die Übermittlung eines Bildes per Gruppenadresse. Da der KNX-Bus die Übermittlung
+von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
+Dieses Beispiel nutzt ein openHAB-Item.
+
+    <image>
+        <address transform="OH:string">CovertArt</address>
+    </image>
 
 .. rubric:: Fußnoten
 

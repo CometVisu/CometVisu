@@ -1,6 +1,6 @@
 /* PageLink.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -35,16 +35,16 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
    */
   properties: {
     name : {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     },
     wstyle : {
-      check: "String",
+      check: 'String',
       init: ''
     },
     address : {
-      check: "Object",
+      check: 'Object',
       init: {}
     },
     bindClickToWidget: {
@@ -61,11 +61,11 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
   members: {
     // overridden
     getDomString: function() {
-      var layout = this.getLayout();
+      const layout = this.getLayout();
 
-      var style = qx.lang.Type.isObject(layout) ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
+      const style = typeof layout === 'object' ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
 
-      var ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
+      let ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
       ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';
       ret_val += '</div>';
       return ret_val;
@@ -73,11 +73,11 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
 
     // overridden
     action: function() {
-      cv.TemplateEngine.getInstance().scrollToPage( this.getPath() + '_' );
+      cv.TemplateEngine.getInstance().scrollToPage(this.getPath() + '_');
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pagelink", statics);
+    cv.ui.structure.WidgetFactory.registerClass('pagelink', statics);
   }
 });

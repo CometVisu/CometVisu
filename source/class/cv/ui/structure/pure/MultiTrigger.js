@@ -1,6 +1,6 @@
 /* MultiTrigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -19,7 +19,7 @@
 
 
 /**
- * Adds a widget with 4 buttons to the visu.
+ * Adds a widget with multiple buttons to the visu.
  * Thus, e.g. change the operating mode of the heating system
  * (Comfort -> Night -> Absent -> Frost protection) or create scene functions.
  *
@@ -37,40 +37,16 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
   */
   properties: {
     showstatus: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
-    button1label: {
-      check: "String",
-      nullable: true
+    elementsPerLine: {
+      check: 'Number',
+      init: 2
     },
-    button1value: {
-      check: "String",
-      nullable: true
-    },
-    button2label: {
-      check: "String",
-      nullable: true
-    },
-    button2value: {
-      check: "String",
-      nullable: true
-    },
-    button3label: {
-      check: "String",
-      nullable: true
-    },
-    button3value: {
-      check: "String",
-      nullable: true
-    },
-    button4label: {
-      check: "String",
-      nullable: true
-    },
-    button4value: {
-      check: "String",
-      nullable: true
+    buttonConfiguration: {
+      check: 'Object',
+      nullable: false
     }
   },
 
@@ -83,54 +59,37 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var ret_val = '<div class="actor_container" style="float:left">';
+      let ret_val = '<div class="actor_container" style="float:left">';
+      const mapping = this.getMapping();
+      const elementsPerLine = this.getElementsPerLine();
 
-      if (this.getButton1label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton1label() + '</div>';
-        ret_val += '</div>';
-      }
+      const config = this.getButtonConfiguration();
+      const indices = Object.keys(config).sort();
 
-      if (this.getButton2label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton2label() + '</div>';
-        ret_val += '</div>';
-        ret_val += '<br/>';
-      }
+      indices.forEach(function (i) {
+        const buttonConfig = config[i];
+        let label = buttonConfig.label;
+        if (mapping) {
+          const mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
+          if (mappedValue !== buttonConfig.value || !label) {
+            const div = document.createElement('div');
+            this.defaultValue2DOM(mappedValue, div);
+            label = div.innerHTML;
+          }
+        }
 
-      if (this.getButton3label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton3label() + '</div>';
-        ret_val += '</div>';
-      }
-
-      if (this.getButton4label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton4label() + '</div>';
-        ret_val += '</div>';
-        ret_val += '<br/>';
-      }
+        if (label) {
+          ret_val += '<div class="actor switchUnpressed"><div class="value">' + label + '</div></div>';
+        }
+        if (elementsPerLine > 0 && i % elementsPerLine === 0) {
+          ret_val+= '<br/>';
+        }
+      }, this);
       return ret_val + '</div>';
     },
 
-    // overridden
-    _onDomReady: function() {
-      this.base(arguments);
-      var actor = this.getActor();
-      var children = qx.dom.Hierarchy.getChildElements(actor);
-      var value;
-
-      if (this.getMapping()) {
-        children.forEach(function (element, i) {
-          value = this.defaultValueHandling(undefined, this['getButton' + (i + 1) + 'value']());
-          qx.dom.Element.empty(element);
-          this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
-        }, this);
-      }
-    },
-
-    getActors: function(){
-      return qx.bom.Selector.query('.actor_container .actor', this.getDomElement());
+    getActors: function() {
+      return this.getDomElement().querySelectorAll('.actor_container .actor');
     },
 
     // overridden, only transform the value, do not apply it to DOM
@@ -142,42 +101,46 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
      * Handles the incoming data from the backend for this widget
      */
     handleUpdate: function () {
-      var children = this.getActors();
+      const children = this.getActors();
+      const buttonConfiguration = this.getButtonConfiguration();
       children.forEach(function(actor) {
-        var index = children.indexOf(actor)+1;
-        var isPressed = (''+this.getBasicValue()) === (''+this['getButton' + index + 'value']()); // compare as string
+        const index = Array.prototype.indexOf.call(children, actor) + 1;
+        if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
+          const isPressed = ('' + this.getBasicValue()) === ('' + buttonConfiguration[index].value); // compare as string
 
-        // delay this a little bit to give the HasAnimatedButton stuff time to finish
-        // otherwise it might override the settings here
-        new qx.util.DeferredCall(function() {
-          qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
-          qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
-        }, this).schedule();
+          // delay this a little bit to give the HasAnimatedButton stuff time to finish
+          // otherwise it might override the settings here
+          new qx.util.DeferredCall(function () {
+            actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
+            actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
+          }, this).schedule();
+        }
       }, this);
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
+     * @param event
      */
     getActionValue: function (event) {
-      var index = qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).indexOf(event.getCurrentTarget())+1;
-      return this['getButton' + index + 'value']();
+      const index = Array.prototype.indexOf.call(this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget()) + 1;
+      return this.getButtonConfiguration()[index].value;
     },
 
     // overridden
     initListeners: function() {
-      if (this.isAnonymous()) { return; }
+      if (this.isAnonymous()) {
+ return; 
+}
 
       this.getActors().forEach(function(actor) {
-        qx.event.Registration.addListener(actor, "tap", this.action, this);
-        qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
+        qx.event.Registration.addListener(actor, 'tap', this.action, this);
+        qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
       }, this);
-
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("multitrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('multitrigger', statics);
   }
 });

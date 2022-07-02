@@ -39,11 +39,11 @@
 
 include '../../config/hidden.php';
 
-$TR064device = $hidden[$_GET['device']];
+$TR064device = $hidden[($_GET['device'] ?? '')] ?? false;
 if( !$TR064device )
 {
   header("HTTP/1.0 404 Not Found");
-  echo 'Device key "' . $_GET['device'] . '" is not known in config file.';
+  echo 'Device key "' . ($_GET['device'] ?? '') . '" is not known in config file.';
   die();
 }
 $TR064_uri = $TR064device['uri'];
@@ -67,7 +67,7 @@ if( array_key_exists( 'selfsigned', $TR064device ) &&
   ) );
 }
 
-$uri = $_GET['uri'];
+$uri = $_GET['uri'] ?? '';
 $uri = preg_replace( '#^(https?://[^/]*/)? */*#', $TR064_uri, $uri );
 
 if( $stream = @fopen($uri, 'r', false, $context) )

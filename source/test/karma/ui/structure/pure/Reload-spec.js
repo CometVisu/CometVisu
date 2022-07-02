@@ -1,6 +1,6 @@
 /* Reload-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,19 +22,21 @@
  * Unit tests for reload widget
  *
  */
-describe("testing a reload widget", function() {
+describe('testing a reload widget', function() {
+  it('should test the reload creator', function() {
+    const [widget, element] = this.createTestWidgetString('reload');
 
-  it("should test the reload creator", function() {
-    var res = this.createTestWidgetString("reload");
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should test the reload action", function() {
-    var widgetInstance = this.createTestElement("reload", null, null, '1/0/0');
-    spyOn(cv.util.Location, "reload");
+  it('should test the reload action', function() {
+    var widgetInstance = this.createTestElement('reload', null, null, '1/0/0');
+    spyOn(cv.util.Location, 'reload');
     widgetInstance._update('1/0/0', 0);
+
     expect(cv.util.Location.reload).not.toHaveBeenCalled();
     widgetInstance._update('1/0/0', 1);
+
     expect(cv.util.Location.reload).toHaveBeenCalledWith(true);
   });
 });

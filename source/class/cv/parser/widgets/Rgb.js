@@ -1,6 +1,6 @@
 /* Rgb.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Rgb', {
-  type: "static",
+  type: 'static',
 
   /*
    ******************************************************
@@ -41,7 +41,7 @@ qx.Class.define('cv.parser.widgets.Rgb', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
@@ -54,6 +54,6 @@ qx.Class.define('cv.parser.widgets.Rgb', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("rgb", statics);
+    cv.parser.WidgetParser.addHandler('rgb', statics);
   }
 });

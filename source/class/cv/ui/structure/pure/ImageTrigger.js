@@ -1,6 +1,6 @@
 /* ImageTrigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -29,13 +29,13 @@
  * </ul>
  * Example:
  * <pre class="sunlight-highlight-xml">
- * &lt;imagetrigger src="resource/icon/comet" suffix="svg" sendValue="clicked" type="select"&gt;
+ * &lt;imagetrigger src="resource/icons/comet" suffix="svg" sendValue="clicked" type="select"&gt;
  *    &lt;address transform="DPT:16.001" mode="readwrite"&gt;0/0/0&lt;/address&gt;
  * &lt;/imagetrigger&gt;
  * </pre>
  *
  * initially shows nothing. When the CometVisu receives the string <code>_icon</code> in address <code>0/0/0</code>,
- * the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,
+ * the image <code>icons/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,
  * this image is hidden.
  *
  * @widgetexample <settings>
@@ -48,7 +48,7 @@
  *     <data address="0/0/0">grey</data>
  *   </screenshot>
  *  </settings>
- *  <imagetrigger src="resource/icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
+ *  <imagetrigger src="resource/icons/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
  *    <layout colspan="1" />
  *    <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
  *  </imagetrigger>
@@ -59,7 +59,7 @@
  *     <data address="0/0/0">1</data>
  *   </screenshot>
  *  </settings>
- *  <imagetrigger src="resource/icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
+ *  <imagetrigger src="resource/icons/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
  *    <layout colspan="0" />
  *    <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
  *  </imagetrigger>
@@ -83,12 +83,12 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   ******************************************************
   */
   properties: {
-    height: { check: "String", nullable: true },
-    updateType: {check: "String", init: ''},
-    width: {check: "String", init: '100%'},
-    src: { check: "String", nullable: true },
-    suffix: { check: "String", nullable: true },
-    sendValue: { check: "String", init: ''}
+    height: { check: 'String', nullable: true },
+    updateType: {check: 'String', init: ''},
+    width: {check: 'String', init: '100%'},
+    src: { check: 'String', nullable: true },
+    suffix: { check: 'String', nullable: true },
+    sendValue: { check: 'String', init: ''}
   },
 
   /*
@@ -99,9 +99,8 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   members: {
     // overridden
     _getInnerDomString: function () {
-
-      var style = "";
-      if (qx.lang.Object.isEmpty(this.getLayout())) {
+      let style = '';
+      if (Object.keys(this.getLayout()).length === 0) {
         style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
@@ -111,11 +110,10 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
         style = ' style="'+style+'"';
       }
 
-      var actor = '<div class="actor">';
-      if ( this.getUpdateType() === 'show' ) {
+      let actor = '<div class="actor">';
+      if (this.getUpdateType() === 'show') {
         actor += '<img src="' + this.__getUrl(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
-      }
-      else {
+      } else {
         actor += '<img src=""' + style + ' />';
       }
 
@@ -124,23 +122,20 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     _update: function(address, value) {
-      var imageChild = qx.bom.Selector.query("img", this.getDomElement())[0];
-      if (this.getUpdateType() === "show") {
+      const imageChild = this.getDomElement().querySelector('img');
+      if (this.getUpdateType() === 'show') {
         if (value === 0) {
-          qx.bom.element.Style.set(imageChild, "display", "none");
+          imageChild.style.display = 'none';
+        } else {
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
+          imageChild.style.display = 'block';
         }
-        else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
-          qx.bom.element.Style.set(imageChild, "display", "block");
-        }
-      }
-      else if (this.getUpdateType() === "select") {
+      } else if (this.getUpdateType() === 'select') {
         if (value === 0) {
-          qx.bom.element.Style.set(imageChild, "display", "none");
-        }
-        else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
-          qx.bom.element.Style.set(imageChild, "display", "block");
+          imageChild.style.display = 'none';
+        } else {
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
+          imageChild.style.display = 'block';
         }
       }
 
@@ -151,8 +146,8 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     __getUrl: function(url) {
-      var parsedUri = qx.util.Uri.parseUri(url);
-      if (!parsedUri.protocol && !url.startsWith("/")) {
+      const parsedUri = qx.util.Uri.parseUri(url);
+      if (!parsedUri.protocol && !url.startsWith('/')) {
         // is relative URI, use the ResourceManager
         url = qx.util.ResourceManager.getInstance().toUri(url);
       }
@@ -160,12 +155,14 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     _action: function() {
-      if (this.getSendValue() === "") { return; }
+      if (this.getSendValue() === '') {
+ return; 
+}
       this.sendToBackend(this.getSendValue());
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("imagetrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('imagetrigger', statics);
   }
 });

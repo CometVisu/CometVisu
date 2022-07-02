@@ -1,6 +1,6 @@
 /* Unknown.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -45,23 +45,23 @@ qx.Class.define('cv.ui.structure.pure.Unknown', {
   */
   properties: {
     path: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
     $$type: {
-      check: "String",
-      init: "Unknown"
+      check: 'String',
+      init: 'Unknown'
     },
     unknownType: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
     pageType: {
-      check: ["text", "2d", "3d"],
-      init: "text"
+      check: ['text', '2d', '3d'],
+      init: 'text'
     },
     parentWidget: {
-      check: "cv.ui.structure.AbstractBasicWidget",
+      check: 'cv.ui.structure.AbstractBasicWidget',
       init: null
     }
   },
@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.structure.pure.Unknown', {
      * @return {Element} the DOM element
      */
     getDomElement: function () {
-      return qx.bom.Selector.query('#' + this.getPath())[0];
+      return document.querySelector('#' + this.getPath());
     },
 
     /**
@@ -85,12 +85,12 @@ qx.Class.define('cv.ui.structure.pure.Unknown', {
      * @return {String} HTML code
      */
     getDomString: function () {
-      return '<div class="widget clearfix"><pre>'+qx.locale.Manager.tr("unknown: %1", this.getUnknownType()) + '</pre></div>';
+      return '<div class="widget clearfix"><pre>'+qx.locale.Manager.tr('unknown: %1', this.getUnknownType()) + '</pre></div>';
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("unknown", statics);
+    cv.ui.structure.WidgetFactory.registerClass('unknown', statics);
   }
 });
 

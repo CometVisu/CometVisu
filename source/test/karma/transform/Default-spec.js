@@ -1,6 +1,6 @@
 /* Default-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -25,19 +25,25 @@
  * @since 2016
  */
 describe('checking default transforms', function() {
-
   it('should transform int values', function() {
-    expect(cv.Transform.encode('int', 0)).toEqual('0');
-    expect(cv.Transform.decode('int', "0")).toEqual(0);
+    expect(cv.Transform.encode({transform:'int'}, 0)).toEqual('0');
+    expect(cv.Transform.decode({transform:'int'}, '0')).toEqual(0);
   });
 
   it('should transform float values', function() {
-    expect(cv.Transform.encode('float', 0.5)).toEqual('0.5');
-    expect(cv.Transform.decode('float', "0.5")).toEqual(0.5);
+    expect(cv.Transform.encode({transform:'float'}, 0.5)).toEqual('0.5');
+    expect(cv.Transform.decode({transform:'float'}, '0.5')).toEqual(0.5);
   });
 
   it('should transform raw values', function() {
-    expect(cv.Transform.encode('raw', 0.5)).toEqual(0.5);
-    expect(cv.Transform.decode('raw', "0.5")).toEqual("0.5");
+    expect(cv.Transform.encode({transform:'raw'}, 0.5)).toEqual(0.5);
+    expect(cv.Transform.decode({transform:'raw'}, '0.5')).toEqual('0.5');
+  });
+
+  it('should transform raw values with JSON selector', function() {
+    expect(cv.Transform.encode({transform:'raw', selector:''}, {'b':{'c':-0.5}})).toEqual('{"b":{"c":-0.5}}');
+    expect(cv.Transform.encode({transform:'raw', selector:'b'}, {'c':-0.5})).toEqual('{"b":{"c":-0.5}}');
+    expect(cv.Transform.decode({transform:'raw', selector:''}, '{"b":{"c":-0.5}}')).toEqual({'b':{'c':-0.5}});
+    expect(cv.Transform.decode({transform:'raw', selector:'b'}, '{"b":{"c":-0.5}}')).toEqual({'c':-0.5});
   });
 });

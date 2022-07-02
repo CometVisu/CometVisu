@@ -1,6 +1,6 @@
 /* Dark.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -18,12 +18,11 @@
  */
 
 
-
 /**
  * Basic theme for QX-UI relevant parts (should be seen as equilavent to designglobals.css, not design specific
  * but something like the common sense of all designs)
  */
-qx.Theme.define("cv.theme.Dark", {
+qx.Theme.define('cv.theme.Dark', {
   meta: {
     color: cv.theme.dark.Color,
     decoration: cv.theme.dark.Decoration,

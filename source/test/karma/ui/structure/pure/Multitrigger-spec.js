@@ -1,6 +1,6 @@
 /* Multitrigger-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,59 +22,38 @@
  * Unit tests for multitrigger widget
  *
  */
-describe("testing a multitrigger widget", function() {
+describe('testing a multitrigger widget', function() {
+  it('should test the multitrigger creator', function() {
+    const [widget, element] = this.createTestWidgetString('multitrigger', {}, '<label>Test</label>');
 
-  it("should test the multitrigger creator", function() {
+    expect(element).toHaveClass('multitrigger');
+    expect(element).toHaveLabel('Test');
 
-    var res = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
-    var widget = qx.bom.Html.clean([res[1]])[0];
-
-    expect(widget).toHaveClass('multitrigger');
-    expect(widget).toHaveLabel('Test');
-
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should test the multitrigger creator", function() {
-
-    var res = this.createTestWidgetString("multitrigger", {
-      'button1label': 'B1',
-      'button2label': 'B2',
-      'button3label': 'B3',
-      'button4label': 'B4',
-      'button1value': '1',
-      'button2value': '2',
-      'button3value': '3',
-      'button4value': '4',
+  it('should test the multitrigger creator with buttons', function() {
+    const [widget, element] = this.createTestWidgetString('multitrigger', {
       'showstatus': 'true',
       'mapping': 'test'
-    });
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>');
 
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName('setup.dom.finished');
 
-    var values = qx.bom.Selector.query("div.actor > div.value", widget);
+    var values = element.querySelectorAll('div.actor > div.value');
     for (var i=0; i<4; i++) {
-      expect(qx.dom.Node.getText(values[i])).toBe('B'+(i+1));
+      expect(values[i].innerText).toBe('B'+(i+1));
     }
   });
 
-  it("should update an multitrigger widget", function(done) {
+  it('should update an multitrigger widget', function(done) {
     var creator = this.createTestElement('multitrigger', {
-      'button1label': 'B1',
-      'button2label': 'B2',
-      'button3label': 'B3',
-      'button4label': 'B4',
-      'button1value': 1,
-      'button2value': 2,
-      'button3value': 3,
-      'button4value': 4,
       'showstatus': 'true'
-    }, null, null, {'transform': '4.001'});
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>', null, {'transform': '4.001'});
     this.initWidget(creator);
 
     var check = function(index) {
-      qx.bom.Selector.query(".actor_container .actor", this.container.children[0]).forEach(function(actor, i) {
+      this.container.children[0].querySelectorAll('.actor_container .actor').forEach(function(actor, i) {
         if (index === i) {
           expect(actor).toHaveClass('switchPressed');
           expect(actor).not.toHaveClass('switchUnpressed');
@@ -120,39 +99,35 @@ describe("testing a multitrigger widget", function() {
           resolve();
         }, this, 10);
       });
-    }).then(done);
+    }).then(done).catch(done.fail);
   });
 
   it('should trigger the multitrigger action', function() {
-
     var creator = this.createTestElement('multitrigger', {
-      'button1label': 'B1',
-      'button2label': 'B2',
-      'button3label': 'B3',
-      'button4label': 'B4',
-      'button1value': 1,
-      'button2value': 2,
-      'button3value': 3,
-      'button4value': 4,
       'showstatus': 'true'
-    }, null, '<address transform="DPT:4001" mode="read">1/0/0</address>', {'transform': '4.001'});
-    spyOn(creator, "sendToBackend");
-    var actors = qx.bom.Selector.query(".actor_container .actor", this.container.children[0]);
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>', '<address transform="DPT:4.001" mode="read">1/0/0</address>', {'transform': '4.001'});
+    spyOn(creator, 'sendToBackend');
+    var actors = this.container.children[0].querySelectorAll('.actor_container .actor');
+
     expect(actors.length).not.toBe(0);
 
     this.initWidget(creator);
     var Reg = qx.event.Registration;
 
-    Reg.fireEvent(actors[0], "tap", qx.event.type.Event, []);
+    Reg.fireEvent(actors[0], 'tap', qx.event.type.Event, []);
+
     expect(creator.sendToBackend).toHaveBeenCalledWith('1');
 
-    Reg.fireEvent(actors[1], "tap", qx.event.type.Event, []);
+    Reg.fireEvent(actors[1], 'tap', qx.event.type.Event, []);
+
     expect(creator.sendToBackend).toHaveBeenCalledWith('2');
 
-    Reg.fireEvent(actors[2], "tap", qx.event.type.Event, []);
+    Reg.fireEvent(actors[2], 'tap', qx.event.type.Event, []);
+
     expect(creator.sendToBackend).toHaveBeenCalledWith('3');
 
-    Reg.fireEvent(actors[3], "tap", qx.event.type.Event, []);
+    Reg.fireEvent(actors[3], 'tap', qx.event.type.Event, []);
+
     expect(creator.sendToBackend).toHaveBeenCalledWith('4');
   });
 });

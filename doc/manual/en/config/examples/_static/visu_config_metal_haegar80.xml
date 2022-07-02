@@ -2,7 +2,6 @@
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" lib_version="8">
   <meta>
     <plugins>
-      <plugin name="colorchooser"/>
       <plugin name="diagram"/>
     </plugins>
     <mappings>
@@ -529,7 +528,7 @@
       </styling>
     </stylings>
     <statusbar>
-      <status type="html"><![CDATA[<img src="icon/comet_64_ffffff.png" alt="CometVisu"></a>
+      <status type="html"><![CDATA[<img src="icons/comet_64_ffffff.png" alt="CometVisu"></a>
 			<a href=".?forceReload=true">Aktualisieren</a>
 			- <a href="?config=demo">Demo</a>
 			]]></status>

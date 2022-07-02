@@ -98,7 +98,10 @@ class WidgetExampleDirective(Directive):
         cnode = nodes.Element()  # anonymous container for parsing
         sl = statemachine.StringList([caption_string], source='')
         self.state.nested_parse(sl, self.content_offset, cnode)
-        caption = nodes.caption(caption_string, '', *cnode)
+        caption = nodes.caption(caption_string, '')
+        for child in cnode[0]:
+            caption += child
+
         if 'align' in self.options:
             caption['align'] = self.options['align']
         else:
@@ -166,9 +169,9 @@ class WidgetExampleDirective(Directive):
             parse_result['settings']['editor'] = editor
             parse_result['settings']['widget'] = parse_result['example_tag']
             if editor == "attributes":
-                parse_result['settings']['selector'] = ".treeType_%s ul.attributes" % parse_result['example_tag']
+                parse_result['settings']['selector'] = "div[qxclass='cv.ui.manager.form.ElementForm']"
             elif editor == "elements":
-                parse_result['settings']['selector'] = ".treeType_%s" % parse_result['example_tag']
+                parse_result['settings']['selector'] = "#manager div[qxclass='qx.ui.virtual.layer.WidgetCell']"
             parse_result['settings']['screenshots'].append({
                 "name": "%s_editor_%s" % (name, editor),
                 "data": {}

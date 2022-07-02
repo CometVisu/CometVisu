@@ -1,11 +1,45 @@
 .. _timberwolf:
 
+Installation auf dem Timberwolf über die App
+============================================
+
+Die einfachste Möglichkeit die CometVisu auf dem  `Timberwolf <https://wiregate.de/>`__-Server zu
+installieren ist über die dort angebotene App.
+
+.. figure:: _static/timberwolf_app.png
+   :scale: 50 %
+
+   Auswahl der CometVisu App auf der Timberwolf-Oberfläche
+
+Nach der Installation über das grüne "+" wird die CometVisu unter "Aktive Apps" aufgeführt. Hinter "URL" ist
+bereits der Link eingeblendet über den die CometVisu aufgerufen werden kann.
+
+Update
+------
+
+.. figure:: _static/timberwolf_installed_app.png
+   :scale: 50 %
+
+   Installierte CometVisu App
+
+Über das Stift-Symbol kann die App konfiguriert werden. Am wichtigsten ist die Zeile "Version". Die dort eingestelle
+Versions-Nummer wird installiert, bzw. über Speichern wird auf diese Versionsnummer gewechselt.
+
+.. _timberwolf portainer:
+
 Installation auf dem Timberwolf mittels Portainer
 =================================================
 
-Um die CometVisu auf dem `Timberwolf <https://wiregate.de/>`__-Server zu
-installieren wird die dort verwendete Administrationsoberfläche
-`Portainer <https://portainer.io/>`__ verwendet.
+Die fortgeschrittene Methode die CometVisu auf dem Timberwolf-Server zu installieren (wird nur in Ausnahmefällen
+benötigt, empfohlen ist die Installation über die App) ist über die Docker Administrationsoberfläche
+`Portainer <https://portainer.io/>`__. Auch für andere Systeme mit Docker und Portainer ist diese Anleitung im
+wesentlichen geeignet.
+
+.. note::
+
+    Für weitere Informationen kann hier auch auf das :ref:`Tutorial zur
+    CometVisu Installation auf dem Raspberry Pi <rpi tutorial cometvisu in docker>`
+    zurück gegriffen werden.
 
 Installation
 ------------
@@ -81,7 +115,7 @@ Unter *Containers* → *Add Container*
       :ref:`Docker Containers <dockerenvironment>` angegeben wurden.
 
       So kann es notwendig sein für ``KNX_PA`` einen anderen Wert als das
-      Default ``1.1.238`` zu setzen, wenn diese physikalische Addresse bereits
+      Default ``1.1.238`` zu setzen, wenn diese physikalische Adresse bereits
       belegt ist oder eine andere Linie als ``1.1`` verwendet werden soll.
 
       Es ist auch wichtig, dass der Port der KNX Schnittstelle korrekt ist. Im
@@ -139,8 +173,9 @@ InfluxDB Zugriff
 ^^^^^^^^^^^^^^^^
 
 .. HINT::
-  The InfluxDB access as well as the hidden config was introduced with
-  version 0.11.0 and isn't available in earlier versions.
+
+    Der Zugriff auf die InfluxDB und die versteckte Konfiguration wurden
+    erst mit Version 0.11.0 eingeführt und stehen in früheren Versionen nicht zur Verfügung.
 
 Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
 :ref:`Versteckten Konfiguration <hidden-config>` über den
@@ -163,7 +198,7 @@ ist nun ein Eintrag mit diesen Eigenschaften anzulegen:
 
   - ``uri``: ``https://172.17.0.1/proxy/ts/query`` (Sollte entgegen dieser
     Anleitung das Netzwerk des Containers angepasst worden sein, so muss
-    gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)
+    gegebenenfalls hier die IP-Adresse entsprechend angepasst werden)
   - ``user``: Benutzername aus den Credentials
   - ``pass``: Passwort aus den Credentials
   - ``selfsigned``: ``true``
@@ -226,13 +261,13 @@ Entwicklungsversion
 
 Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
 Schritte wie für das Release durchzuführen. Auch wenn theoretisch das gleiche
-Konfigutations-Volume wie für die Produktiv-Version verwendet werden kann, so
+Konfigurations-Volume wie für die Produktiv-Version verwendet werden kann, so
 sollte ein getrenntes Volume (z.B. ``CometVisuTestConfig``) angelegt werden, da
 sich durch zukünftige Updates das Format der Config-Dateien inkompatibel ändern
 kann.
 
 Wie unter :ref:`Docker <docker>` beschrieben hat die neueste
-Entwicklunglungsversion den Tag ``testing``. Somit ist unter *Anlegen des
+Entwicklungsversion den Tag ``testing``. Somit ist unter *Anlegen des
 Containers* als ``name`` ``cometvisu/cometvisu:testing`` bzw.
 ``cometvisu/cometvisu:testing-arm`` zu verwenden.
 

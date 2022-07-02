@@ -1,6 +1,6 @@
 /* BasicUpdate.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  * This role provides the basic update methods
  *
  */
-qx.Mixin.define("cv.ui.common.BasicUpdate", {
+qx.Mixin.define('cv.ui.common.BasicUpdate', {
   include: cv.ui.common.HasAddress,
 
   /*
@@ -37,7 +37,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     value: {
       nullable: true,
       init: null,
-      event: "changeValue"
+      event: 'changeValue'
     },
 
     /**
@@ -52,8 +52,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * Format to apply to incoming values
      */
     format: {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     }
   },
@@ -67,35 +67,39 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     /**
      * Apply the given mapping to the value
      *
-     * @param value {var} value to be mapped
-     * @param mappingName {String} mapping name, if not set the <code>mapping</code> property value is used
-     * @return {var} the mapped value
+     * @param {*} value - value to be mapped
+     * @param {string} mappingName - mapping name, if not set the <code>mapping</code> property value is used
+     * @return {*} the mapped value
      */
     applyMapping: function (value, mappingName) {
       if (mappingName && cv.Config.hasMapping(mappingName)) {
-        var mapping = cv.Config.getMapping(mappingName);
+        const mapping = cv.Config.getMapping(mappingName);
 
-        var ret = value;
+        let ret = value;
         if (mapping.formula) {
           ret = mapping.formula(ret);
         }
 
-        var mapValue = function (v) {
+        const mapValue = function (v) {
           if (v === null && mapping.NULL) {
             return mapping.NULL;
           } else if (mapping[v]) {
             return mapping[v];
           } else if (mapping.range) {
-            var valueFloat = parseFloat(v);
-            var range = mapping.range;
-            for (var min in range) {
-              if (min > valueFloat) { continue; }
-              if (range[min][0] < valueFloat) { continue; } // check max
+            const valueFloat = parseFloat(v);
+            const range = mapping.range;
+            for (let min in range) {
+              if (min > valueFloat) {
+                continue;
+              }
+              if (range[min][0] < valueFloat) {
+                continue;
+              } // check max
               return range[min][1];
             }
-          } else if (mapping["*"]) {
+          } else if (mapping['*']) {
             // catchall mapping
-            return mapping["*"];
+            return mapping['*'];
           }
           return v; // pass through when nothing was found
         };
@@ -128,9 +132,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     applyTransform: function (address, data) {
       if (address) {
-        var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
-        return cv.Transform.decode(transform, data);
+        return cv.Transform.decode(this.getAddress()[address], data);
       }
       return data;
     },
@@ -159,8 +162,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     getNextMappedValue: function (value, this_map) {
       if (this_map && cv.Config.hasMapping(this_map)) {
-        var keys = Object.keys(cv.Config.getMapping(this_map));
-        return keys[(keys.indexOf("" + value) + 1) % keys.length];
+        const keys = Object.keys(cv.Config.getMapping(this_map));
+        return keys[(keys.indexOf('' + value) + 1) % keys.length];
       }
       return value;
     },
@@ -179,7 +182,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
           this.formatValueCache = [this.getFormat()];
         }
 
-        var argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address][3] : 1;
+        const argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address].formatPos : 1;
 
         this.formatValueCache[argListPos] = value;
 
@@ -192,14 +195,13 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * The default value handling for most of the widgets.
      * This method applies the transform, mapping, format and styling to the value.
      *
-     * @param address {String} KNX-GA or openHAB item name
-     * @param data {var} value to be processes
-     * @return {var} the processed value
+     * @param {string} address - KNX-GA or openHAB item name
+     * @param {*} data - value to be processes
+     * @return {*} the processed value
      */
     defaultValueHandling: function (address, data) {
-
       // #1: transform the raw value to a JavaScript type
-      var value = this.applyTransform(address, data);
+      let value = this.applyTransform(address, data);
 
       // store it to be able to suppress sending of unchanged data
       if (value !== undefined) {
@@ -216,8 +218,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       }
 
       if (value && value.constructor === Date) {
-        switch (this.getAddress()[address][0]) // special case for KNX
-        {
+        switch (this.getAddress()[address].transform) { // special case for KNX
           case 'DPT:10.001':
             value = value.toLocaleTimeString();
             break;
@@ -239,92 +240,74 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     },
 
     /**
+     * @typedef widgetValueTypes
+     * @type {(string|number|Uint8Array|Map|Function)}
+     */
+    /**
      * Method to handle all special cases for the value. The might come from
      * the mapping where it can be quite complex as it can contain icons.
-     * value: the value that will be inserted
-     * modifyFn: callback function that modifies the DOM
-     *
-     * @param value {var}
-     * @param modifyFn {Function}
+     * @param {(*|*[])} value - the value, or an array of values, that will be inserted
+     * @param {HTMLElement} targetElement - the element where `value` will be added to
+     * @param {Function?} modifyFn - callback function that modifies the DOM
      */
-    defaultValue2DOM: function (value, modifyFn) {
-      var element;
-      if (('string' === typeof value) || ('number' === typeof value)) {
-        modifyFn(value);
+    defaultValue2DOM: function (value, targetElement, modifyFn = this._applyValueToDom) {
+      if (Array.isArray(value)) {
+        value.forEach(v => this.defaultValue2DOM(v, targetElement, modifyFn));
+        return;
       }
-      else if ('function' === typeof value) {
-        // thisValue(valueElement);
-        this.error('typeof value === function - special case not handled anymore!');
-      }
-      else if (!Array.isArray(value)) {
-        element = value.cloneNode();
+      if (value instanceof Node) {
+        let element = value.cloneNode(true);
         if (value.getContext) {
           cv.util.IconTools.fillRecoloredIcon(element);
         }
-        modifyFn(element);
+        modifyFn(targetElement, element);
       } else {
-        for (var i = 0; i < value.length; i++) {
-          var thisValue = value[i];
-          if (!thisValue) { continue; }
-
-          if (('string' === typeof thisValue) || ('number' === typeof thisValue)) {
-            modifyFn(thisValue);
-          }
-          else if ('function' === typeof thisValue) {
-            // thisValue(valueElement);
-            this.error('typeof value === function - special case not handled anymore!');
-          }
-          else {
-            element = thisValue.cloneNode();
-            if (thisValue.getContext) {
-              cv.util.IconTools.fillRecoloredIcon(element);
-            }
-            modifyFn(element);
-          }
-        }
+        modifyFn(targetElement, value);
       }
     },
 
     /**
-     * Default update function, processes the incoming value and applies it to the Dom value element.
+     * Default update function, processes the incoming value and applies it to the DOM value element.
      *
-     * @param ga {String} KNX-GA or openHAB item name
-     * @param data {var} the raw value from the bus
-     * @param passedElement {Element?} the element to update, if not given {@link getDomElement()} is used
-     * @return {var} value
+     * @param {string} ga - KNX-GA or openHAB item name
+     * @param {*} data - the raw value from the bus
+     * @param {HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used
+     * @return {*} - value
      */
     defaultUpdate: function (ga, data, passedElement) {
-      var element = passedElement || this.getDomElement();
-      var value = this.defaultValueHandling(ga, data);
+      const element = passedElement || this.getDomElement();
+      const value = this.defaultValueHandling(ga, data);
 
       // TODO: check if this is the right place for this
       // might be if the styling removes the align class
       if (this.getAlign()) {
-        qx.bom.element.Class.add(element, this.getAlign());
+        element.classList.add(this.getAlign());
       }
-      var valueElement = this.getValueElement ? this.getValueElement() : qx.bom.Selector.query('.value', element)[0];
-      qx.dom.Element.empty(valueElement);
+      const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
       if (undefined !== value) {
-        this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));
-      }
-      else {
-        qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
+        valueElement.replaceChildren(); // delete anything inside
+        this.defaultValue2DOM(value, valueElement);
+      } else {
+        valueElement.textContent = '-';
       }
       return value;
     },
 
     /**
      * Internal function which updates the DOM element with the given value
-     * @param valueElement {Element} element to update
-     * @param e {var} value to add to the element
+     * @param {HTMLElement} targetElement - element to update
+     * @param {*} value - value to add to the element
      */
-    _applyValueToDom: function(valueElement, e) {
-      if (qx.lang.Type.isNumber(e)) {
-        qx.bom.element.Attribute.set(valueElement, "text", e);
+    _applyValueToDom: function(targetElement, value) {
+      if (value === undefined || value === null) {
+        return;
+      }
+      if (value instanceof Node) {
+        targetElement.appendChild(value);
+      } else if (typeof value === 'number' || typeof value === 'string') {
+        targetElement.appendChild(document.createTextNode(value));
       } else {
-        qx.bom.Html.clean([e]).forEach(function (newElem) {
-          qx.dom.Element.insertEnd(newElem, valueElement);
-        }, this);
+        targetElement.innerHTML += value;
       }
     }
   }

@@ -1,6 +1,6 @@
 /* Video-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,18 +22,17 @@
  * Unit tests for video widget
  *
  */
-describe("testing a video widget", function() {
+describe('testing a video widget', function() {
+  it('should test the video creator', function() {
+    const [widget, element] = this.createTestWidgetString('video', {src: '', width: '100%', height: '90%'}, '<label>Test</label>');
 
-  it("should test the video creator", function() {
+    expect(widget.getPath()).toBe('id_0');
+    expect(element).toHaveClass('video');
+    expect(element).toHaveLabel('Test');
 
-    var res = this.createTestWidgetString("video", {src: '', width: "100%", height: "90%"}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
-    expect(res[0].getPath()).toBe("id_0");
-    expect(widget).toHaveClass('video');
-    expect(widget).toHaveLabel('Test');
+    const videoWidget = element.querySelector('video');
 
-    var videoWidget = qx.bom.Selector.query("video", widget)[0];
-    expect(videoWidget).toHaveStyleSetting("width", "100%");
-    expect(videoWidget).toHaveStyleSetting("height", "90%");
+    expect(videoWidget).toHaveStyleSetting('width', '100%');
+    expect(videoWidget).toHaveStyleSetting('height', '90%');
   });
 });

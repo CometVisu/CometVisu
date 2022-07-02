@@ -151,23 +151,27 @@ Der dort verwendete Name muss im calllist Widget im Attribut ``device`` angegebe
 
 Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 
-+-----------+-----------------------------------------------------+-------------------------------+
-|Schlüssel  |Wert                                                 |Beispiel                       |
-+===========+=====================================================+===============================+
-|uri        |Die URI für den Zugriff auf die TR-064 Schnittstelle |``https://192.168.0.1:49443/`` |
-+-----------+-----------------------------------------------------+-------------------------------+
-|user       |Der Benutzername für den TR-064 Zugang               |``CometVisuTestUser``          |
-+-----------+-----------------------------------------------------+-------------------------------+
-|pass       |Das Passwort für den TR-64 Zugang                    |``pa3bvNM4j9z4``               |
-+-----------+-----------------------------------------------------+-------------------------------+
-|selfsigned |Erlaube selbstsignierte Zertifikate wenn ``true``    |``false``                      |
-+-----------+-----------------------------------------------------+-------------------------------+
++-----------+------------------------------------------------------+-------------------------------+
+|Schlüssel  |Wert                                                  |Beispiel                       |
++===========+======================================================+===============================+
+|uri        |Die URI für den Zugriff auf die TR-064 Schnittstelle  |``https://192.168.0.1:49443/`` |
++-----------+------------------------------------------------------+-------------------------------+
+|user       |Der Benutzername für den TR-064 Zugang                |``CometVisuTestUser``          |
++-----------+------------------------------------------------------+-------------------------------+
+|pass       |Das Passwort für den TR-64 Zugang                     |``pa3bvNM4j9z4``               |
++-----------+------------------------------------------------------+-------------------------------+
+|selfsigned |Erlaube selbst signierte Zertifikate wenn ``true``    |``false``                      |
++-----------+------------------------------------------------------+-------------------------------+
 
 .. hint::
 
     Wenn eine SSL gesicherte Verbindung zum Router aufgebaut werden soll (d.h. die URI mit
     ``https`` beginnt), so ist meist ``selfsigned`` auf ``true`` zu setzen, da ein Router
     im Heimnetz üblicher Weise mit einem selbst signierten Zertifikat arbeitet.
+
+    Eine Fehlermeldung mit dem Inhalt
+    ``{"faultstring":"Could not connect to host","faultcode":"HTTP"}`` kann darauf hinweisen,
+    dass ``selfsigned`` auf ``true`` gesetzt werden muss.
 
 .. rubric:: Fußnoten
 

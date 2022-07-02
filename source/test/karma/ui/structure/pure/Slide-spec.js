@@ -1,6 +1,6 @@
 /* Slide-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,48 +22,49 @@
  * Unit tests for slide widget
  *
  */
-describe("testing a slide widget", function() {
-
+describe('testing a slide widget', function() {
   // disabled until jquery dep has been removed
-  it("should test the slide creator", function() {
+  it('should test the slide creator', function() {
+    const [widget, element] = this.createTestWidgetString('slide', {}, '<label>Test</label>');
 
-    var res = this.createTestWidgetString("slide", {}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
 
-    expect(widget).toHaveClass('slide');
-    expect(widget).toHaveLabel('Test');
-
+    expect(element).toHaveClass('slide');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should test the min/max and step settings", function() {
-    var widgetInstance = this.createTestElement("slide", {min: 30, max: 130, step: 5});
+  it('should test the min/max and step settings', function() {
+    var widgetInstance = this.createTestElement('slide', {min: 30, max: 130, step: 5});
+
     expect(widgetInstance.getMin()).toBe(30);
     expect(widgetInstance.getMax()).toBe(130);
     expect(widgetInstance.getStep()).toBe(5);
   });
 
-  it("should test the min/max settings from transform", function() {
-    var widgetInstance = this.createTestElement("slide", {}, null, null, {transform: 'DPT:5.004'});
+  it('should test the min/max settings from transform', function() {
+    var widgetInstance = this.createTestElement('slide', {}, null, null, {transform: 'DPT:5.004'});
+
     expect(widgetInstance.getMin()).toBe(0.0);
     expect(widgetInstance.getMax()).toBe(255.0);
   });
 
-  it("should test incoming data", function() {
-    var widgetInstance = this.createTestElement("slide", {}, null, "Test_slide", {transform: 'DPT:5.004'});
+  it('should test incoming data', function() {
+    var widgetInstance = this.createTestElement('slide', {}, null, 'Test_slide', {transform: 'DPT:5.004'});
     this.initWidget(widgetInstance);
-    widgetInstance.update("Test_slide", "64"); // 0x64 == 100
-    expect(widgetInstance.__slider.getValue()).toBe(100);
+    widgetInstance.update('Test_slide', '64');
+
+    expect(widgetInstance.getBasicValue()).toBe(100);
   });
 
-  it("should not re-send incoming data", function() {
-    var widgetInstance = this.createTestElement("slide", {}, null,
-      ["Test_slide_read", "Test_slide_write"],
+  it('should not re-send incoming data', function() {
+    var widgetInstance = this.createTestElement('slide', {}, null,
+      ['Test_slide_read', 'Test_slide_write'],
       [{transform: 'DPT:5.004', mode: 'read'}, {transform: 'DPT:5.004', mode: 'write'}]);
     this.initWidget(widgetInstance);
     spyOn(widgetInstance, 'sendToBackend');
-    widgetInstance.update("Test_slide_read", "64"); // 0x64 == 100
-    expect(widgetInstance.__slider.getValue()).toBe(100);
+    widgetInstance.update('Test_slide_read', '64');
+
+    expect(widgetInstance.getBasicValue()).toBe(100);
     expect(widgetInstance.sendToBackend).not.toHaveBeenCalled();
   });
 });

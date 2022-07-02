@@ -112,8 +112,19 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   } else
   {
     preg_match_all( '/^end-([0-9]*)([a-z]*)$/', $start, $startParts );
-    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
-    $start = $end . ' - ' . $startParts[ 1 ][ 0 ] . $map[ $startParts[ 2 ][ 0 ] ];
+    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w' );
+    switch ($startParts[2][0]) {
+      case 'month':
+        $start = $end . ' - ' . (30 * $startParts[1][0]) . 'd';
+        break;
+
+      case 'year':
+        $start = $end . ' - ' . (365 * $startParts[1][0]) . 'd';
+        break;
+
+      default:
+        $start = $end . ' - ' . $startParts[1][0] . $map[$startParts[2][0]];
+    }
   }
 
   if( $filter )
@@ -124,7 +135,7 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
       $filter = 'AND ' . str_replace( "\\'", "'", $filter );
   }
 
-  if( '' != $res && 'ELAPSED' !== $ds )
+  if( '' !== $res && '0' !== $res && 'ELAPSED' !== $ds )
   {
     if( !preg_match( '/^[0-9]+$/', $res ) )
       return 'Error: invalid res parameter [' . $res . ']';
@@ -221,19 +232,30 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
     $tz = 'Europe/Berlin';  // best guess for a not good set up system
   $q .= " tz('$tz')";
 
-  if( '' != $_GET['debug'] )
+  if( '' != ($_GET['debug'] ?? '') )
     var_dump($q);
 
   $arrData = array();
 
-  $seriesArr = json_decode( query( $q, $ts[0], $_GET['auth'] ), true );
-  $series = $seriesArr['results'][0]['series'][0]['values'];
-  foreach( $series as $thisSeries )
-  {
-    $arrData[] = array(
-      strtotime( $thisSeries[0] ),// * 1000,
-      array( (string)$thisSeries[1] )
-    );
+  $seriesArr = json_decode( query( $q, $ts[0], ($_GET['auth'] ?? '') ), true );
+
+  if( '' != ($_GET['debug'] ?? '') )
+    var_dump(error_get_last());
+
+  if(
+      array_key_exists('results', $seriesArr) &&
+      array_key_exists(0,         $seriesArr['results']) &&
+      array_key_exists('series',  $seriesArr['results'][0]) &&
+      array_key_exists(0,         $seriesArr['results'][0]['series']) &&
+      array_key_exists('values',  $seriesArr['results'][0]['series'][0])
+  ) {
+    $series = $seriesArr['results'][0]['series'][0]['values'];
+    foreach ($series as $thisSeries) {
+      $arrData[] = array(
+          strtotime(array_shift($thisSeries)),// * 1000,
+          array_map('strval', $thisSeries)
+      );
+    }
   }
 
   return $arrData;
@@ -249,20 +271,25 @@ function printRow( $row )
   print ']]';
 }
 
-$arrData = getTs( $_GET['ts'], $_GET['field'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'], $_GET['filter'] );
+$arrData = getTs( $_GET['ts'] ?? '', $_GET['field'] ?? '', $_GET['start'] ?? '', $_GET['end'] ?? '', $_GET['ds'] ?? '', $_GET['res'] ?? '', $_GET['fill'] ?? '', $_GET['filter'] ?? '');
 
 Header("Content-type: application/json");
 
 if( is_array( $arrData ) )
 {
+  $firstLine = true;
   print '[';
-  printRow( array_shift( $arrData ) );
   if( $arrData )
   {
     foreach( $arrData as $row )
     {
-      print ',';
-      printRow( $row );
+      if( !$firstLine )
+        print ',';
+
+      if( isset($row[0]) ) {
+        printRow( $row );
+        $firstLine = false;
+      }
     }
   }
   print ']';

@@ -1,3 +1,22 @@
+/* Router-spec.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 
 
 describe('test the notification router', function () {
@@ -11,30 +30,40 @@ describe('test the notification router', function () {
     router.clear();
   });
 
-  it("should evaluate a message condition", function() {
-
+  it('should evaluate a message condition', function() {
     // no condition means true
     expect(cv.core.notifications.Router.evaluateCondition({})).toBeTruthy();
 
     expect(cv.core.notifications.Router.evaluateCondition({condition: true})).toBeTruthy();
     expect(cv.core.notifications.Router.evaluateCondition({condition: false})).toBeFalsy();
 
-    expect(cv.core.notifications.Router.evaluateCondition({condition: function() { return true; }})).toBeTruthy();
-    expect(cv.core.notifications.Router.evaluateCondition({condition: function() { return false; }})).toBeFalsy();
+    expect(cv.core.notifications.Router.evaluateCondition({
+      condition: function () {
+        return true;
+      }
+    })).toBeTruthy();
 
-    expect(cv.core.notifications.Router.evaluateCondition({condition: "unknown-condition"})).toBeUndefined();
+    expect(cv.core.notifications.Router.evaluateCondition({
+      condition: function() {
+        return false;
+      }
+    })).toBeFalsy();
+
+    expect(cv.core.notifications.Router.evaluateCondition({condition: 'unknown-condition'})).toBeFalsy();
   });
 
-  it("should test the static message dispatching", function() {
-    var spied = spyOn(router, "dispatchMessage");
-    expect(spied).not.toHaveBeenCalled();
-    cv.core.notifications.Router.dispatchMessage("test.unknown", {});
-    expect(spied).toHaveBeenCalled();
+  it('should test the static message dispatching', function() {
+    spyOn(router, 'dispatchMessage');
+
+    expect(router.dispatchMessage).not.toHaveBeenCalled();
+    cv.core.notifications.Router.dispatchMessage('test.unknown', {});
+
+    expect(router.dispatchMessage).toHaveBeenCalled();
   });
 
-  it("should test the routing", function() {
+  it('should test the routing', function() {
     var callCounter = 0;
-    qx.Class.define("cv.test.MessageHandler", {
+    qx.Class.define('cv.test.MessageHandler', {
       extend: qx.core.Object,
       implement: cv.core.notifications.IHandler,
 
@@ -46,106 +75,117 @@ describe('test the notification router', function () {
     });
 
     var handler = new cv.test.MessageHandler();
-    var spiedHandleMessage = spyOn(handler, "handleMessage").and.callThrough();
+    spyOn(handler, 'handleMessage').and.callThrough();
 
     router.registerMessageHandler(handler, {
-      "test.message": {},
-      "test.wildcard.*": {}
+      'test.message': {},
+      'test.wildcard.*': {}
     });
 
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
-    router.dispatchMessage("test.unknown", {});
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    router.dispatchMessage('test.unknown', {});
 
-    router.dispatchMessage("test.message.other", {});
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
-    router.dispatchMessage("test.message", {});
-    expect(spiedHandleMessage).toHaveBeenCalled();
+    router.dispatchMessage('test.message.other', {});
+
+    expect(handler.handleMessage).not.toHaveBeenCalled();
+
+    router.dispatchMessage('test.message', {});
+
+    expect(handler.handleMessage).toHaveBeenCalled();
 
     // test the wildcard
-    spiedHandleMessage.calls.reset();
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    handler.handleMessage.calls.reset();
 
-    router.dispatchMessage("test.wildcard.anything.thats.possible", {});
-    expect(spiedHandleMessage).toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
+
+    router.dispatchMessage('test.wildcard.anything.thats.possible', {});
+
+    expect(handler.handleMessage).toHaveBeenCalled();
 
     // get target from message
-    var spy = spyOn(cv.ui.PopupHandler, "handleMessage");
-    router.dispatchMessage("test.message", {target: "popup"});
-    expect(spy).toHaveBeenCalled();
+    spyOn(cv.ui.PopupHandler, 'handleMessage');
+    router.dispatchMessage('test.message', {target: 'popup'});
 
-    spiedHandleMessage.calls.reset();
+    expect(cv.ui.PopupHandler.handleMessage).toHaveBeenCalled();
+
+    handler.handleMessage.calls.reset();
     // test unknown topic
-    router.dispatchMessage("unknown.message", {});
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    router.dispatchMessage('unknown.message', {});
+
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
     // for some reason the spy does not count the number of calls right, so we use our own counter
     callCounter = 0;
     // dispatch with wildcard
-    router.dispatchMessage("test.*", {});
-    expect(spy).toHaveBeenCalled();
+    router.dispatchMessage('test.*', {});
+
+    expect(cv.ui.PopupHandler.handleMessage).toHaveBeenCalled();
     expect(callCounter).toEqual(2);
 
-    qx.Class.undefine("cv.test.MessageHandler");
+    qx.Class.undefine('cv.test.MessageHandler');
   });
 
-  it("should test the state notification handling", function() {
+  it('should test the state notification handling', function() {
     var config = {
-      "0/0/1": [{
-        topic: "cv.state.0/0/1",
+      '0/0/1': [{
+        topic: 'cv.state.0/0/1',
         target: cv.ui.PopupHandler,
-        severity: "normal",
+        severity: 'normal',
         skipInitial: true,
         deletable: true,
         unique: true,
-        valueMapping: "mapping-name",
-        addressMapping: "mapping-name",
-        titleTemplate: "Kitchen light on",
-        messageTemplate: "turned on at {{ time }} o'clock",
+        valueMapping: 'mapping-name',
+        addressMapping: 'mapping-name',
+        titleTemplate: 'Kitchen light on',
+        messageTemplate: 'turned on at {{ time }} o\'clock',
         condition: 1,
-        addressConfig: ["raw"]
+        addressConfig: {transform: 'raw'}
       }]
     };
     router.registerStateUpdateHandler(config);
 
     var model = cv.data.Model.getInstance();
-    model.onUpdate("0/0/1", 1);
+    model.onUpdate('0/0/1', 1);
 
-    var popup = qx.bom.Selector.query("#popup_0")[0];
+    var popup = document.querySelector('#popup_0');
 
     // initial state should trigger no popup
-    expect(popup).toBeUndefined();
+    expect(popup).toBeNull();
 
-    model.onUpdate("0/0/1", 0);
-    popup = qx.bom.Selector.query("#popup_0")[0];
+    model.onUpdate('0/0/1', 0);
+    popup = document.querySelector('#popup_0');
     // still no popup cause value is 0
-    expect(popup).toBeUndefined();
+    expect(popup).toBeNull();
 
-    model.onUpdate("0/0/1", 1);
-    popup = qx.bom.Selector.query("#popup_0")[0];
-    expect(popup).not.toBeUndefined();
+    model.onUpdate('0/0/1', 1);
+    popup = document.querySelector('#popup_0');
 
-    model.onUpdate("0/0/1", 0);
-    popup = qx.bom.Selector.query("#popup_0")[0];
+    expect(popup).not.toBeNull();
+
+    model.onUpdate('0/0/1', 0);
+    popup = document.querySelector('#popup_0');
     // as the condition isn't met anymore the popup must be gone
-    expect(popup).toBeUndefined();
+    expect(popup).toBeNull();
 
-    router.unregisterStateUpdatehandler(["0/0/1"]);
+    router.unregisterStateUpdatehandler(['0/0/1']);
   });
 
-  it("should test the target mapping", function() {
-    expect(cv.core.notifications.Router.getTarget("popup")).toEqual(cv.ui.PopupHandler);
-    expect(cv.core.notifications.Router.getTarget("notificationCenter")).toEqual(cv.ui.NotificationCenter.getInstance());
+  it('should test the target mapping', function() {
+    expect(cv.core.notifications.Router.getTarget('popup')).toEqual(cv.ui.PopupHandler);
+    expect(cv.core.notifications.Router.getTarget('notificationCenter')).toEqual(cv.ui.NotificationCenter.getInstance());
 
     // prevent speech target if no browser support
     var speechSynthesis = window.speechSynthesis;
     delete window.speechSynthesis;
-    expect(cv.core.notifications.Router.getTarget("speech")).toBeUndefined();
-    window.speechSynthesis = speechSynthesis;
-    expect(cv.core.notifications.Router.getTarget("speech")).toEqual(cv.core.notifications.SpeechHandler.getInstance());
 
-    expect(cv.core.notifications.Router.getTarget("unknown")).toBeNull();
+    expect(cv.core.notifications.Router.getTarget('speech')).toBeNull();
+    window.speechSynthesis = speechSynthesis;
+
+    expect(cv.core.notifications.Router.getTarget('speech')).toEqual(cv.core.notifications.SpeechHandler.getInstance());
+
+    expect(cv.core.notifications.Router.getTarget('unknown')).toBeNull();
   });
 });

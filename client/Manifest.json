@@ -1,16 +1,11 @@
 {
-  "info" :
-  {
-    "name" : "CometVisuClient",
-
-    "summary" : "CometVisu-Client",
-    "description" : "The JavaScript library that implements the CometVisu protocol.",
-
-    "homepage" : "http://www.cometvisu.org/",
-
-    "license" : "GPL-3.0",
-    "authors" :
-    [
+  "info": {
+    "name": "CometVisuClient",
+    "summary": "CometVisu-Client",
+    "description": "The JavaScript library that implements the CometVisu protocol.",
+    "homepage": "http://www.cometvisu.org/",
+    "license": "GPL-3.0",
+    "authors": [
       {
         "name": "Christian Mayer (ChristianMayer)",
         "email": "CometVisu at ChristianMayer dot de"
@@ -19,14 +14,19 @@
         "name": "Tobias Bräutigam (Peuter)",
         "email": "tbraeutigam at gmail dot com"
       }
-    ]
+    ],
+    "version": "1.0.0"
   },
-
-  "provides" :
-  {
-    "namespace"   : "cv.io",
-    "encoding"    : "utf-8",
-    "class"       : "source/class",
-    "type"        : "library"
+  "provides": {
+    "namespace": "cv.io",
+    "encoding": "utf-8",
+    "class": "source/class",
+    "resource": "source/resource",
+    "translation": "source/translation"
+  },
+  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/Manifest-1-0-0.json",
+  "requires": {
+    "@qooxdoo/compiler": "^1.0.0-beta.20190917-1105",
+    "@qooxdoo/framework": "^6.0.0-beta"
   }
 }

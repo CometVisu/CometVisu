@@ -32,7 +32,7 @@ The existing unit tests can then be executed with the following command:
 
 .. code-block:: bash
 
-    grunt karma:travis
+    grunt karma:ci
 
 
 This carries out the tests including a code coverage analysis. The code
@@ -95,7 +95,7 @@ The test for this file should now look like this:
         // the helper returns an array of 2 elements, the first is the widget object, the second the HTML code as a string
         var res = this.createTestWidgetString("new-widget", {}, "<label>Test</label>");
         // turns the string into a DOM element
-        var widget = qx.bom.Html.clean([res[1]])[0];
+        var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
         // Widget Object (instance of class cv.ui.structure.pure.NewWidget)
         var obj = res[0];
 

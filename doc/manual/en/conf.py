@@ -13,7 +13,9 @@ extensions = ['sphinx.ext.todo',
               'sphinx.ext.coverage',
               'sphinx.ext.ifconfig',
               'sphinxcontrib.plantuml',
-              'cometvisu']
+              'cometvisu',
+              'sphinxcontrib.spelling'
+              ]
 
 todo_include_todos = True
 templates_path = ['_templates']
@@ -29,6 +31,11 @@ locale_dirs = ["locale/"]
 
 project = 'CometVisu'
 copyright = '2010-%s Christian Mayer and the CometVisu contributers' % date.today().year
+
+spelling_lang = 'en_US'
+spelling_ignore_wiki_words = True
+spelling_ignore_acronyms = True
+spelling_filters = ["enchant.tokenize.URLFilter", "enchant.tokenize.EmailFilter"]
 
 with open(os.path.join(root_dir, "package.json")) as data_file:
     data = json.load(data_file)
@@ -58,10 +65,10 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'canonical_url': ('https://www.cometvisu.org/CometVisu/%s/%s/manual/' % (language, versionpath) )
 }
-html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template', 'sphinx_rtd_theme-0.2.4')]
+html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template', 'sphinx_rtd_theme-1.0.0')]
 html_title = "CometVisu"
 #html_short_title = None
-html_logo = os.path.join(root_dir, "source", "resource", "icon", "comet_webapp_icon_android_48.png")
+html_logo = os.path.join(root_dir, "source", "resource", "icons", "comet_webapp_icon_android_48.png")
 #html_favicon = None
 html_static_path = ['_static']
 html_domain_indices = False
@@ -196,7 +203,8 @@ code_add_python_path = ["../py"]
 
 
 def setup(app):
-    app.add_stylesheet('theme_override.css')
+    app.add_css_file('theme_override.css')
+    app.add_js_file('versions.js')
     app.add_config_value('releaselevel', '', 'env')
 
     from sphinx.util.texescape import tex_replacements

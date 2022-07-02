@@ -1,11 +1,36 @@
 .. _timberwolf:
 
+Installation on the Timberwolf server with the app
+==================================================
+
+The easiest way to install the CometVisu on the `Timberwolf <https://wiregate.de/>`__-Server is by using the
+supplied app.
+
+.. figure:: _static/timberwolf_app.png
+   :scale: 50 %
+
+   Selection of the CometVisu app on the Timberwolf user interface
+
+When it was installed by clicking on the green "+" the CometVisu will be listed on the "active apps" section.
+Behind "URL" is the link shown that can be used to directly access the CometVisu.
+
+Update
+------
+
+.. figure:: _static/timberwolf_installed_app.png
+   :scale: 50 %
+
+   Installed CometVisu app
+
+The app can be configured by using the pen symbol. Most important is the row "Version". The version number given
+there will be installed. By changing this number it is possible to switch to this version number.
+
 Installation on the Timberwolf with Portainer
 =============================================
 
-To install the CometVisu on the `Timberwolf <https://wiregate.de/>`
-server, the administration interface at the device
-(`Portainer<https://portainer.io/>`) is used.
+The advanced method to install the CometVisu on the Timberwolf server (only necessary in rare occasions, the
+installation by app is recommended) is to use the Docker administration interface `Portainer<https://portainer.io/>`.
+This instruction can be used mostly also for other systems that are based on Docker and Portainer.
 
 Installation
 ------------
@@ -27,7 +52,7 @@ Volume for Config Files
 First, create a volume to store the configuration files and
 keep them while rebooting and updating the container.
 
-Nesseccary steps are: *Volumes* → *Add Volume* → Name:
+Necessary steps are: *Volumes* → *Add Volume* → Name:
 ``CometVisuConfig`` → *Create the Volume*
 
 .. figure:: _static/portainer_volume_add.png
@@ -47,7 +72,6 @@ InfluxDB this step can be skipped.
 
 The steps for creating the *Volume for Config Files* must
 be repeated, but the name ``CometVisuRRD`` is hereby meaningfully chosen.
-
 The filling of this container must be external, e.g. by
 another container that simultaneously incorporates this RRD container.
 
@@ -250,7 +274,7 @@ the testing version should be installed with these parameters:
       - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuTestConfig``
       - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
 
-    - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visutest/cgi-bin/``
+    - Env: Environment variables ``name``: ``CGI_URL_PATH`` with ``value``: ``/proxy/visutest/cgi-bin/``
 
 - Proxy:
 
@@ -275,7 +299,7 @@ the testing version should be installed with these parameters:
 
      rrdtool restore -f RRD_Name.xml RRD_Name.rrd
 
-  executed to greate a new RRD-File.
+  executed to create a new RRD-File.
 
   If you work with a localization on the source system that
   uses numbers with a comma as the decimal separator

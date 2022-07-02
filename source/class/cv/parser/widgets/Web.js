@@ -1,6 +1,6 @@
 /* Web.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Web', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,18 +40,18 @@ qx.Class.define('cv.parser.widgets.Web', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseRefresh(xml, path);
 
-      var ga = xml.getAttribute("ga");
+      const ga = xml.getAttribute('ga');
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) === "oh") {
-          data.address['_' + ga] = ['OH:switch', 'OFF'];
+        if (cv.Config.backend === 'openhab') {
+          data.address['_' + ga] = {transform:'OH:switch', mode: 'OFF'};
         } else {
-          data.address['_' + ga] = ['DPT:1.001', 0];
+          data.address['_' + ga] = {transform:'DPT:1.001', mode: 0};
         }
       }
       return data;
@@ -68,7 +68,7 @@ qx.Class.define('cv.parser.widgets.Web', {
         height: {},
         frameborder: {
           transform: function (value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         background: {},
@@ -80,7 +80,7 @@ qx.Class.define('cv.parser.widgets.Web', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("web", statics);
+    cv.parser.WidgetParser.addHandler('web', statics);
   }
 });
 

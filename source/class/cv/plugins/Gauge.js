@@ -1,6 +1,6 @@
 /* Gauge.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -25,7 +25,9 @@
  * @since 0.8.1
  *
  * @ignore(steelseries.*)
- * @asset(plugins/gauge/gauge.css,plugins/gauge/dep/*.min.js)
+ * @asset(plugins/gauge/gauge.css)
+ * @asset(plugins/gauge/dep/steelseries.js)
+ * @asset(plugins/gauge/dep/tween.js)
 */ 
 qx.Class.define('cv.plugins.Gauge', {
   extend: cv.ui.structure.AbstractWidget,
@@ -37,39 +39,39 @@ qx.Class.define('cv.plugins.Gauge', {
   ******************************************************
   */
   properties: {
-    pagejumpTarget          : { check: "String", nullable: true },
-    gaugeType               : { check: "String", nullable: true },
-    subtype                 : { check: "String", nullable: true },
-    gType                   : { check: "String", init: "Radial" },
-    titleString             : { check: "String", nullable: true },
-    unitString              : { check: "String", nullable: true },
-    unitStringVisible       : { check: "Boolean", init: false },
-    size                    : { check: "Number", init: 150 },
-    width                   : { check: "Number", init: 320 },
-    height                  : { check: "Number", init: 140 },
-    minValue                : { check: "Number", init: 0 },
-    maxValue                : { check: "Number", init: 100 },
-    frameDesign             : { check: "String", nullable: true },
-    backgroundColor         : { check: "String", nullable: true },
-    foregroundType          : { check: "String", nullable: true },
-    pointerType             : { check: "String", nullable: true },
-    pointerColor            : { check: "String", nullable: true },
-    lcdColor                : { check: "String", nullable: true },
-    lcdVisible              : { check: "Boolean", init: false },
-    lcdDecimals             : { check: "Number", nullable:true },
-    ledVisible              : { check: "Boolean", init: false },
-    ledColor                : { check: "String", nullable: true },
-    valueColor              : { check: "String", nullable: true },
-    trendVisible            : { check: "Boolean", init: false },
-    thresholdRising         : { check: "Boolean", init: false },
+    pagejumpTarget          : { check: 'String', nullable: true },
+    gaugeType               : { check: 'String', nullable: true },
+    subtype                 : { check: 'String', nullable: true },
+    gType                   : { check: 'String', init: 'Radial' },
+    titleString             : { check: 'String', nullable: true },
+    unitString              : { check: 'String', nullable: true },
+    unitStringVisible       : { check: 'Boolean', init: false },
+    size                    : { check: 'Number', init: 150 },
+    width                   : { check: 'Number', init: 320 },
+    height                  : { check: 'Number', init: 140 },
+    minValue                : { check: 'Number', init: 0 },
+    maxValue                : { check: 'Number', init: 100 },
+    frameDesign             : { check: 'String', nullable: true },
+    backgroundColor         : { check: 'String', nullable: true },
+    foregroundType          : { check: 'String', nullable: true },
+    pointerType             : { check: 'String', nullable: true },
+    pointerColor            : { check: 'String', nullable: true },
+    lcdColor                : { check: 'String', nullable: true },
+    lcdVisible              : { check: 'Boolean', init: false },
+    lcdDecimals             : { check: 'Number', nullable:true },
+    ledVisible              : { check: 'Boolean', init: false },
+    ledColor                : { check: 'String', nullable: true },
+    valueColor              : { check: 'String', nullable: true },
+    trendVisible            : { check: 'Boolean', init: false },
+    thresholdRising         : { check: 'Boolean', init: false },
     threshold               : {
-      check: "Number",
+      check: 'Number',
       init: 0,
-      apply: "_applyThreshold"
+      apply: '_applyThreshold'
     },
-    thresholdVisible        : { check: "Boolean", init: false },
-    autoScroll              : { check: "Boolean", init: false },
-    valuesNumeric           : { check: "Boolean", init: false }
+    thresholdVisible        : { check: 'Boolean', init: false },
+    autoScroll              : { check: 'Boolean', init: false },
+    valuesNumeric           : { check: 'Boolean', init: false }
   },
 
   /*
@@ -89,7 +91,7 @@ qx.Class.define('cv.plugins.Gauge', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
@@ -98,59 +100,59 @@ qx.Class.define('cv.plugins.Gauge', {
     getAttributeToPropertyMappings: function() {
       return {
         'target': {target: 'pagejumpTarget'},
-        'type': { target: "gType", "default": "Radial" },
+        'type': { target: 'gType', 'default': 'Radial' },
         'subtype': { },
         'titleString': { },
         'unitString': { },
         'unitStringVisible': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
-        'size': { "default": 150, transform: parseFloat },
-        'width': { "default": 320, transform: parseFloat },
-        'height': { "default": 140, transform: parseFloat },
-        'minValue': { "default": 0, transform: parseFloat },
-        'maxValue': { "default": 100, transform: parseFloat },
+        'size': { 'default': 150, transform: parseFloat },
+        'width': { 'default': 320, transform: parseFloat },
+        'height': { 'default': 140, transform: parseFloat },
+        'minValue': { 'default': 0, transform: parseFloat },
+        'maxValue': { 'default': 100, transform: parseFloat },
         'framedesign': { target: 'frameDesign' },
         'background': { target: 'backgroundColor' },
         'lcdVisible': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
-        'lcdDecimals': { "default": 0, transform: parseInt },
+        'lcdDecimals': { 'default': 0, transform: parseInt },
         'ledVisible': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         'valueColor': { },
         'trendVisible': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         'thresholdRising': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
-        'threshold': { "default": 0, transform: parseFloat },
+        'threshold': { 'default': 0, transform: parseFloat },
         'autoScroll': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         'valuesNumeric': {
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
     },
 
-    makeAddressListFn: function( src, transform, mode, variant ) {
+    makeAddressListFn: function(src, transform, mode, variant) {
       return [ true, variant ];
     }
   },
@@ -170,7 +172,7 @@ qx.Class.define('cv.plugins.Gauge', {
 
     // overridden
     _onDomReady: function() {
-      var additional = {
+      const additional = {
         gaugeType: this.getSubtype() ? steelseries.GaugeType[this.getSubtype()] : undefined,
         frameDesign: this.getFrameDesign() ? steelseries.FrameDesign[this.getFrameDesign()] : undefined,
         backgroundColor: this.getBackgroundColor() ? steelseries.BackgroundColor[this.getBackgroundColor()] : undefined,
@@ -181,17 +183,14 @@ qx.Class.define('cv.plugins.Gauge', {
         lcdColor: steelseries.LcdColor.STANDARD,
         ledColor: steelseries.LedColor.RED_LED
       };
-      var params = qx.lang.Object.mergeWith(
-        qx.lang.Object.clone(cv.data.Model.getInstance().getWidgetData(this.getPath())),
-        additional
-      );
-      this.__gaugeElement = new steelseries[this.getGType()]("gauge_"+this.getPath(), params);
+      const params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
+      this.__gaugeElement = new steelseries[this.getGType()]('gauge_'+this.getPath(), params);
       this.base(arguments);
     },
 
     // overridden
     getValueElement: function() {
-      return qx.bom.Selector.query('#gauge_' + this.getPath(), this.getDomElement())[0];
+      return this.getDomElement().querySelector('#gauge_' + this.getPath());
     },
 
     // property apply
@@ -214,11 +213,13 @@ qx.Class.define('cv.plugins.Gauge', {
      * @param value {var} Processed incoming value
      * @param address {String} source address of the value
      */
-    handleUpdate: function( value, address) {
-      if (!address || value === undefined) { return; }
+    handleUpdate: function(value, address) {
+      if (!address || value === undefined) {
+ return; 
+}
 
-      var variant = this.getAddress()[address][2];
-      var gaugeElement = this.__gaugeElement;
+      const variant = this.getAddress()[address].variantInfo;
+      const gaugeElement = this.__gaugeElement;
       if (gaugeElement) {
         switch (variant) {
           case 'average':
@@ -233,14 +234,12 @@ qx.Class.define('cv.plugins.Gauge', {
             break;
           case 'trend':
             if (gaugeElement.setTrend) {
-              var trend;
+              let trend;
               if (value > 0) {
                 trend = steelseries.TrendState.UP;
-              }
-              else if (value < 0) {
+              } else if (value < 0) {
                 trend = steelseries.TrendState.DOWN;
-              }
-              else {
+              } else {
                 trend = steelseries.TrendState.STEADY;
               }
               gaugeElement.setTrend(trend);
@@ -275,19 +274,19 @@ qx.Class.define('cv.plugins.Gauge', {
     // overridden
     _action: function() {
       if (this.getPagejumpTarget()) {
-        cv.TemplateEngine.getInstance().scrollToPage( this.getPagejumpTarget() );
+        cv.TemplateEngine.getInstance().scrollToPage(this.getPagejumpTarget());
       }
     }
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/gauge/gauge.css');
     loader.addScripts([
-      'plugins/gauge/dep/tween-min.js',
-      'plugins/gauge/dep/steelseries-min.js'
+      'plugins/gauge/dep/tween.js',
+      'plugins/gauge/dep/steelseries.js'
     ]);
-    cv.parser.WidgetParser.addHandler("gauge", cv.plugins.Gauge);
-    cv.ui.structure.WidgetFactory.registerClass("gauge", statics);
+    cv.parser.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
+    cv.ui.structure.WidgetFactory.registerClass('gauge', statics);
   }
 });

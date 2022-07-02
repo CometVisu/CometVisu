@@ -1,0 +1,25 @@
+name: Cleanup nightly
+on:
+  workflow_dispatch:
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install action dependencies
+        run: npm install
+        working-directory: ./.github/actions/github
+      - name: Cleanup old nightly builds
+        uses: ./.github/actions/github
+        with:
+          action: cleanup-assets
+          options: 3

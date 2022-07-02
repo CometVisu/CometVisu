@@ -1,6 +1,6 @@
 /* ActionRegistry.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -25,8 +25,8 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.ActionRegistry", {
-  type: "static",
+qx.Class.define('cv.core.notifications.ActionRegistry', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,7 +47,7 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
      */
     registerActionHandler: function(type, handler) {
       if (this.__handlers[type]) {
-        qx.log.Logger.warn(this, "there is already an action handler registered for '"+type+"' action. replacing now");
+        qx.log.Logger.warn(this, 'there is already an action handler registered for \''+type+'\' action. replacing now');
       }
       this.__handlers[type] = handler;
     },
@@ -72,9 +72,8 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
     getActionHandler: function(type, config) {
       if (this.__handlers[type]) {
         return new (this.__handlers[type])(config);
-      } else {
+      } 
         return null;
-      }
     },
 
     /**
@@ -87,12 +86,11 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
      */
     createActionElement: function(type, config) {
       if (!this.__handlers[type]) {
-        qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);
+        qx.log.Logger.error(this, 'no action handler registered for \'%1\' action type', type);
         return null;
-      } else {
-        var actionHandler = new (this.__handlers[type])(config);
-        return actionHandler.getDomElement();
       }
+      const actionHandler = new (this.__handlers[type])(config);
+      return actionHandler.getDomElement();
     }
   }
 });

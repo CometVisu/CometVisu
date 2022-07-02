@@ -1,174 +1,1181 @@
-#
+#. NO LONGER USED
 msgid ""
-msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: you@your.org\n"
-"POT-Creation-Date: 2017-04-26 18:57+0100\n"
-"PO-Revision-Date: 2017-04-26 18:57+0100\n"
-"Last-Translator: you <you@your.org>\n"
-"Language-Team: Team <yourteam@your.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2017-04-26 18:57+0100\nPO-Revision-Date: 2017-04-26 18:57+0100\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:187
+#. NO LONGER USED
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 
-#: cv/Application.js:254
+#: cv/Application.js
 msgid "An error occured"
 msgstr ""
 
-#: cv/Application.js:260
+#: cv/Application.js
 msgid "Enable on reload:"
 msgstr ""
 
-#: cv/Application.js:265
+#: cv/ui/Popup.js
 msgid "Reload"
 msgstr ""
 
-#: cv/Application.js:297
+#. NO LONGER USED
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 
-#: cv/Application.js:304
+#: cv/Application.js
 msgid "Action recording"
 msgstr ""
 
-#: cv/Application.js:315
+#. NO LONGER USED
 msgid "Send error to sentry.io"
 msgstr ""
 
-#: cv/Application.js:329
+#. NO LONGER USED
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
-#: cv/TemplateEngine.js:252
+#: cv/TemplateEngine.js
 msgid "Connection error"
 msgstr ""
 
-#: cv/TemplateEngine.js:261
+#: cv/TemplateEngine.js
 msgid "Error requesting %1: %2 - %3."
 msgstr ""
 
-#: cv/TemplateEngine.js:263
+#: cv/TemplateEngine.js
 msgid "Connection to backend is lost."
 msgstr ""
 
-#: cv/TemplateEngine.js:278 cv/TemplateEngine.js:293
+#: cv/TemplateEngine.js
 msgid "CometVisu protocol error"
 msgstr ""
 
-#: cv/TemplateEngine.js:279
-msgid ""
-"The backend did send an invalid response to the %1Login%2 request: missing "
-"protocol version."
+#: cv/TemplateEngine.js
+msgid "The backend did send an invalid response to the %1Login%2 request: missing protocol version."
 msgstr ""
 
-#: cv/TemplateEngine.js:282 cv/TemplateEngine.js:297
+#: cv/TemplateEngine.js
 msgid "Please try to fix the problem in the backend."
 msgstr ""
 
-#: cv/TemplateEngine.js:283 cv/TemplateEngine.js:298
+#: cv/TemplateEngine.js
 msgid "Backend-Response:"
 msgstr ""
 
-#: cv/TemplateEngine.js:294
-msgid ""
-"The backend did send an invalid response to a %1read%2 request: Missing "
-"\"i\" value."
+#: cv/io/rest/Client.js
+msgid "Backend does not respond!"
 msgstr ""
 
-#: cv/plugins/openhab/Settings.js:174
-msgid ""
-"The CometVisu seems to be delivered by a proxied webserver. Changing "
-"configuration values might not have the expected effect. Please proceed only"
-" if you know what you are doing."
+#: cv/io/rest/Client.js
+msgid "File has been saved"
 msgstr ""
 
-#: cv/plugins/openhab/Settings.js:212
+#: cv/io/rest/Client.js
+msgid "Error saving file"
+msgstr ""
+
+#: cv/parser/MetaParser.js
+msgid "Template loading error"
+msgstr ""
+
+#: cv/parser/MetaParser.js
+msgid "Template '%1' could not be loaded from '%2'."
+msgstr ""
+
+#: cv/plugins/openhab/Settings.js
+msgid "The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing."
+msgstr ""
+
+#: cv/plugins/openhab/Settings.js
 msgid "openHAB backend settings"
 msgstr ""
 
-#: cv/plugins/openhab/Settings.js:227
+#: cv/ui/manager/dialog/ValidationError.js
 msgid "Cancel"
 msgstr ""
 
-#: cv/plugins/openhab/Settings.js:232
+#: cv/ui/manager/MenuBar.js
 msgid "Save"
 msgstr ""
 
-#: cv/ui/NotificationCenter.js:227
+#: cv/ui/NotificationCenter.js
 msgid "Delete all"
 msgstr ""
 
-#: cv/ui/NotificationCenter.js:227
+#: cv/ui/NotificationCenter.js
 msgid "Message center"
 msgstr ""
 
-#: cv/ui/structure/pure/Unknown.js:88
+#: cv/ui/manager/Main.js
+msgid "config folder does not exists"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "config folder is not readable"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "config folder is not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "backup folder is not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "media folder is not writeable"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration file (hidden.php) not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Cannot load config template"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Cannot load file content"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Cannot open file: \"%1\""
+msgstr ""
+
+#. NO LONGER USED
+msgid "This file has unsaved changes that will be lost when you close it. Do you really want to close the file?"
+msgstr ""
+
+#. NO LONGER USED
+msgid "This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Unsaved changes"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "A configuration with this name already exists."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Please enter the file name."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "A file with this name already exists."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Please enter the folder name."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "A folder with this name already exists."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Folder has been created"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "New file"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "New folder"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "New config file"
+msgstr ""
+
+#: cv/ui/manager/viewer/Folder.js
+msgid "Upload file"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Save as..."
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Delete"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Quit"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Ctrl+Z"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Undo"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Ctrl+Y"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Redo"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Ctrl+X"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Cut"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Copy"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Ctrl+C"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Ctrl+V"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Paste"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Use text editor"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Use xml editor"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Enable quick preview"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Expert mode"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "CometVisu Manager"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "File"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Edit"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "New"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "Preferences"
+msgstr ""
+
+#: cv/ui/manager/Start.js
+msgid "List mode"
+msgstr ""
+
+#: cv/ui/manager/Start.js
+msgid "Preview mode"
+msgstr ""
+
+#: cv/ui/manager/Start.js
+msgid "Configurations"
+msgstr ""
+
+#: cv/ui/manager/Start.js
+msgid "Demo configurations"
+msgstr ""
+
+#: cv/ui/manager/Start.js
+msgid "Media files"
+msgstr ""
+
+#: cv/ui/manager/Start.js
+msgid "Miscellaneous"
+msgstr ""
+
+#: cv/ui/manager/model/FileItem.js
+msgid "Hidden configuration"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Download"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Validate"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Clear"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Backup from %1"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "New name"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Rename file"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Clone file"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Rename"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Open"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Restore"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Replace"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Compare with..."
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Open with..."
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been created"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been created"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been renamed"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been renamed"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been moved"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been moved"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "%1 has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Do you really want to clear the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Do you really want to delete file \"%1\" from the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Do you really want to delete folder \"%1\" from the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Do you really want to delete file \"%1\"?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Do you really want to delete folder \"%1\"?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Confirm deletion"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Trash has been cleared"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been removed from trash"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been removed from trash"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been deleted"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been deleted"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Validating %1"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "%1 has no errors!"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "%1 error found in %2!"
+msgid_plural "%1 errors found in %2!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cv/ui/manager/editor/AbstractEditor.js
+msgid "File has been created"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Section name duplicate: \"%1\"."
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Option key duplicate: \"%1\" in section \"%2\"."
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Saving hidden config failed with error %1 (%2)"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden config has been saved"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Section is invalid and has not been saved."
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Add section"
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "File compare"
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js
+msgid "Texteditor"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Xml-editor"
+msgstr ""
+
+#: cv/ui/manager/editor/completion/Config.js
+msgid "Variable from template %1"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js
+msgid "Drop the file here to replace the content."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Do you really want to replace the \'%1\' with the uploaded files content?"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js
+msgid "Double click to open \"%1\""
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js
+msgid "Download file"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js
+msgid "Other file actions"
+msgstr ""
+
+#: cv/ui/manager/form/FileTabItem.js
+msgid "This file is not writeable"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js
+msgid "Delete option"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js
+msgid "Add option"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js
+msgid "Key"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js
+msgid "Value"
+msgstr ""
+
+#: cv/ui/manager/form/SectionListItem.js
+msgid "Section"
+msgstr ""
+
+#: cv/ui/manager/form/SectionListItem.js
+msgid "Delete section"
+msgstr ""
+
+#: cv/ui/manager/model/CompareFiles.js
+msgid "Diff: %1"
+msgstr ""
+
+#: cv/ui/manager/tree/VirtualFsItem.js
+msgid "Trash"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js
+msgid "Replacing the file failed."
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js
+msgid "This file already exists, do you want to replace it?"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js
+msgid "File already exists"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js
+msgid "Uploading this file is not allowed here."
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js
+msgid "File upload stopped with an error: %1"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js
+msgid "File has been uploaded"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js
+msgid "Config viewer"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js
+msgid "%1 is no configuration file"
+msgstr ""
+
+#: cv/ui/manager/viewer/Folder.js
+msgid "Show folder"
+msgstr ""
+
+#: cv/ui/manager/viewer/Folder.js
+msgid "Filter by name..."
+msgstr ""
+
+#: cv/ui/manager/viewer/Icons.js
+msgid "Show icons"
+msgstr ""
+
+#: cv/ui/manager/viewer/Image.js
+msgid "Show image"
+msgstr ""
+
+#: cv/ui/structure/pure/Unknown.js
 msgid "unknown: %1"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:169
+#: cv/util/ConfigLoader.js
 msgid "Config-File Error!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:173
+#: cv/util/ConfigLoader.js
 msgid "Invalid config file!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:173
+#: cv/util/ConfigLoader.js
 msgid "Please check!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:181
+#: cv/util/ConfigLoader.js
 msgid "Config file has wrong library version!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:182
+#: cv/util/ConfigLoader.js
 msgid "This can cause problems with your configuration"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:183
+#: cv/util/ConfigLoader.js
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr ""
 
-#: cv/util/ConfigLoader.js:184
-msgid ""
-"Or you can start without upgrading %1with possible configuration problems%2"
+#: cv/util/ConfigLoader.js
+msgid "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:187
-msgid ""
-"404: Config file not found. Neither as normal config (%1) nor as demo config"
-" (%2)."
+#: cv/util/ConfigLoader.js
+msgid "404: Config file not found. Neither as normal config (%1) nor as demo config (%2)."
 msgstr ""
 
-#: cv/util/ConfigLoader.js:190
+#: cv/util/ConfigLoader.js
 msgid "Unhandled error of type \"%1\""
 msgstr ""
 
-#: cv/util/ScriptLoader.js:157
+#: cv/util/ScriptLoader.js
 msgid "Error loading plugin \"%1\""
 msgstr ""
 
-#: cv/util/ScriptLoader.js:158 cv/util/ScriptLoader.js:166
+#: cv/util/ScriptLoader.js
 msgid "File %1 could not be loaded."
 msgstr ""
 
-#: cv/util/ScriptLoader.js:165
+#: cv/util/ScriptLoader.js
 msgid "File loading error"
 msgstr ""
 
-#~ msgid "Enable error reporting"
-#~ msgstr ""
+#: cv/Application.js
+msgid "Validating configuration file..."
+msgstr ""
 
-#~ msgid "Enable reporting on reload"
-#~ msgstr ""
+#: cv/Application.js
+msgid "The %1 configuration has no errors!"
+msgstr ""
 
-#~ msgid "Enable error sending on reload"
-#~ msgstr ""
+#: cv/Application.js
+msgid "The %1 configuration has %2 errors!"
+msgstr ""
 
-#~ msgid "Report Bug"
-#~ msgstr ""
+#: cv/Application.js
+msgid "Show errors"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Please enter the name of the new configuration (without \"visu_config_\" at the beginning and \".xml\" at the end)"
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "Config file has been upgraded to the current library version."
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "The following changes have been made"
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Changes are highlighted. Please save the file and reload the browser to apply the changes."
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "Upgrade successful"
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js
+msgid "Hidden config is invalid, please correct the errors"
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js
+msgid "Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js
+msgid "Confirm saving with warnings"
+msgstr ""
+
+#. NO LONGER USED
+msgid "The XML-Editor does not support files that are not writeable!"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js
+msgid "Do you really want to replace the '%1' with the uploaded files content?"
+msgstr ""
+
+#: cv/TemplateEngine.js
+msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
+msgstr ""
+
+#: cv/util/ConfigUpgrader.js
+msgid "Upgrader from version %1 not implemented"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Click \"yes\" if you want to save the changes and reload the browser."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Click \"no\" if you want to check the changes. You have to save the changes and reload your browser yourself in this case."
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "Click \"Apply\" if you want to save the changes and reload the browser."
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "Click \"Check\" if you want to check the changes. You have to save the changes and reload your browser yourself in this case."
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "Apply"
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "Check"
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "No changes have been made"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Help"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Add child"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Undo: %1"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Expertview"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Reload preview"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Search..."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Please create a new Element by dragging this button to the place where the new element should be inserted."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Choose element"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please choose the element you want to add here."
+msgstr ""
+
+#: cv/ui/manager/form/CheckBox.js
+msgid "not set"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "This is not a valid value."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Content"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit %1"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Show %1"
+msgstr ""
+
+#: cv/ui/manager/form/ElementForm.js
+msgid "Value is invalid"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Remove %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Move %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Add %1"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Invalid text content: %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content not allowed here"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Change %1"
+msgstr ""
+
+#: cv/ui/manager/model/schema/Attribute.js
+msgid "complex type, please see documentation"
+msgstr ""
+
+#: cv/ui/manager/tree/VirtualElementItem.js
+msgid "Drag to move"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js
+msgid "This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window."
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>Search for elements</h3>          <p>You can search for element names (tag names or content of name attribute) by typing a search value here.          All elements whose tag name or name-attribute start with the search term will be found</p>          <p>Search will start automatically when the search term is at least 2 characters long.</p>          <p>The first found element will be opened and selected in the element tree. You can jump to the next          found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element          with the 'Up' key.</p>"
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3>          <p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure.          You can traverse through the tree by opening/closing elements with a double-click.</p>          <p>The Xml-Editor will make sure that you do not create an invalid configuration file.          If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p>          <h4>Editing attributes</h4>          <p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar          above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p>          <h4>Editing elements</h4>          <p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them.          You can add new elements by starting a drag in the round + button on the bottom of the tree, or          by right clicking on an element and choosing the 'add child'-button.</p>          <p>You can delete elements by the delete buttons in the toolbar</p>          <h4>Expert view</h4>          <p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually          are not needed that often. You can access these attributes by toggling to the 'Expertview'-button           in the toolbar directly above the tree.</p>          <h4>Config preview</h4>          <p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically          refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>        "
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here.All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the nextfound element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found elementwith the 'Up' key.</p>"
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure.You can traverse through the tree by opening/closing elements with a double-click.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file.If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbarabove the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them.You can add new elements by starting a drag in the round + button on the bottom of the tree, orby right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usuallyare not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automaticallyrefresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here. All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the next found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element with the 'Up' key.</p>"
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a double-click.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "View"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "<h3>Config Errors</h3><p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because it can break the file completely. Please open this file in the text editor and fix the errors there. Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "<p>You can choose between the following options:<ul>    <li><b>Cancel</b> - Close this editor</li>    <li><b>Proceed</b> - Open the defective file in this editor</li>    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li></ul></p>"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Proceed"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Open in text editor"
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a double-click.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js
+msgid "Loading..."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a click on the expand icon.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Preview shows the current state of the edited configuration."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Preview is out of sync. Click here to refresh."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Line %s"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Line %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid text content: '%1'"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid value"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' not allowed"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' is required but missing"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is missing"
+msgstr ""
+
+#: cv/ui/manager/form/ElementForm.js
+msgid "Possible values could no be retrieved, please check browser console for error details"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved after \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied after \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved before \"%2\""
+msgstr ""
+
+#. NO LONGER USED
+msgid "\"%1\" has been inserted before \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\" as first child"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\" as first child"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied before \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Create new %1 element"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please edit the attributes of the new %1 element, that will be added to the chosen position."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element attributes"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please edit the content of the new %1 element, that will be added to the chosen position."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element and content"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element content"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit text content"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "About"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Build date"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Build revision"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Library version"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is invalid"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Child element '%1' not allowed."
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js
+msgid "\"%1\" is not writable. Upgrading not possible."
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Diagram communication error"
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "URL: %1<br/><br/>Response:</br>%2"
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "TR-064 communication error"
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "TR-064 communication response error"
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "Reading URL \"%1\" failed with status \"%2\": \"%2\""
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "refreshCalllist() error: \"%1\""
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "Reading URL \"%1\" failed with content: \"%2\""
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "This file has unsaved changes that will be lost when you close it without saving."
+msgstr ""
+
+#. NO LONGER USED
+msgid "This file has not been saved on the backend yet. It will be lost when you close it without saving.?"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Save changes"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Discard changes"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "This file has not been saved on the backend yet. It will be lost when you close it without saving."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "You have files opened with unsaved changes, you should save them now."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Save changes and quit"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Quit without saving"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Save changes and close"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Discard changes and close"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Save & close"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Discard & close"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Save & quit"
+msgstr ""
+
+#: cv/Application.js
+msgid "Manager is not available"
+msgstr ""
+
+#: cv/Application.js
+msgid "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2"
+msgstr ""
+
+#: cv/Application.js
+msgid "Manager"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" does not fit to value %2"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector \"%1\" has bad first part \"%2\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "Sub-selector error: \"%1\""
+msgstr ""
+
+#: cv/Transform.js
+msgid "decode: JSON.parse error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/Transform.js
+msgid "Transform decode error"
+msgstr ""
+
+#: cv/ui/common/Operate.js
+msgid "Transform encode error"
+msgstr ""
+
+#: cv/ui/common/Operate.js
+msgid "Encode error: %1; selector: \"%2\"; value: %3"
+msgstr ""
+
+#: cv/ui/structure/pure/ColorChooser.js
+msgid "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\""
+msgstr ""
+
+#: cv/util/ConfigLoader.js
+msgid "You can open the manager to create or upload a config file."
+msgstr ""
+
+#: cv/util/ConfigLoader.js
+msgid "Open manager"
+msgstr ""

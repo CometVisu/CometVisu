@@ -1,6 +1,6 @@
 /* Rgb-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,33 +22,34 @@
  * Unit tests for rgb widget
  *
  */
-describe("testing a rgb widget", function() {
+describe('testing a rgb widget', function() {
+  it('should test the rgb creator', function() {
+    const [widget, element] = this.createTestWidgetString('rgb', {}, '<label>Test</label>');
 
-  it("should test the rgb creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("rgb", {}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(widget).toHaveClass('rgb');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('rgb');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should test the RGB update in R variant", function() {
-    var widgetInstance = this.createTestElement("rgb", {}, null, "Test", {variant: "r", transform: 'OH:Number'});
-    widgetInstance.update("Test", 255);
-    expect(qx.bom.element.Style.get(widgetInstance.getValueElement(), 'background-color')).toBe('rgb(255, 0, 0)');
+  it('should test the RGB update in R variant', function() {
+    var widgetInstance = this.createTestElement('rgb', {}, null, 'Test', {variant: 'r', transform: 'OH:Number'});
+    widgetInstance.update('Test', 255);
+
+    expect(window.getComputedStyle(widgetInstance.getValueElement())['background-color']).toBe('rgb(255, 0, 0)');
   });
 
-  it("should test the RGB update in G variant", function() {
-    var widgetInstance = this.createTestElement("rgb", {}, null, "Test", {variant: "g", transform: 'OH:Number'});
-    widgetInstance.update("Test", 255);
-    expect(qx.bom.element.Style.get(widgetInstance.getValueElement(), 'background-color')).toBe('rgb(0, 255, 0)');
+  it('should test the RGB update in G variant', function() {
+    var widgetInstance = this.createTestElement('rgb', {}, null, 'Test', {variant: 'g', transform: 'OH:Number'});
+    widgetInstance.update('Test', 255);
+
+    expect(window.getComputedStyle(widgetInstance.getValueElement())['background-color']).toBe('rgb(0, 255, 0)');
   });
 
-  it("should test the RGB update in B variant", function() {
-    var widgetInstance = this.createTestElement("rgb", {}, null, "Test", {variant: "b", transform: 'OH:Number'});
-    widgetInstance.update("Test", 255);
-    expect(qx.bom.element.Style.get(widgetInstance.getValueElement(), 'background-color')).toBe('rgb(0, 0, 255)');
+  it('should test the RGB update in B variant', function() {
+    var widgetInstance = this.createTestElement('rgb', {}, null, 'Test', {variant: 'b', transform: 'OH:Number'});
+    widgetInstance.update('Test', 255);
+
+    expect(window.getComputedStyle(widgetInstance.getValueElement())['background-color']).toBe('rgb(0, 0, 255)');
   });
 });

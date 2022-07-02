@@ -1,6 +1,6 @@
 /* Mockup.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -27,6 +27,7 @@
 /* istanbul ignore next */
 qx.Class.define('cv.io.Mockup', {
   extend: qx.core.Object,
+  implement: cv.io.IClient,
 
   /*
   ******************************************************
@@ -38,28 +39,153 @@ qx.Class.define('cv.io.Mockup', {
     cv.io.Client.CLIENTS.push(this);
     // make some functions accessible for the protactor runner
     window._receive = this.receive.bind(this);
-    var model = cv.data.Model.getInstance();
+    const model = cv.data.Model.getInstance();
     window._widgetDataGet = model.getWidgetData.bind(model);
     window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
     window.writeHistory = [];
 
-    if (qx.core.Environment.get('cv.testMode') && cv.Config.initialDemoData && cv.Config.initialDemoData.xhr) {
-      this.__xhr = cv.Config.initialDemoData.xhr;
-      // configure server
-      qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
-        return url.startsWith('https://sentry.io');
+    const testMode = qx.core.Environment.get('cv.testMode');
+    if (typeof testMode === 'string' && testMode !== 'true') {
+      this.__loadTestData();
+    }
+    this.addresses = [];
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    dataReceived : {
+      check: 'Boolean',
+      init: true
+    },
+    server: {
+      check: 'String',
+      init: 'Mockup'
+    },
+    connected: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeConnected'
+    }
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    backendName: 'mockup',
+    addresses: null,
+    __xhr: null,
+    __sequence: null,
+    __sequenceIndex: 0,
+    __simulations: null,
+
+    __loadTestData: function () {
+      // load the demo data to fill the visu with some values
+      const r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+      r.addListener('success', function (e) {
+        cv.Config.initialDemoData = e.getTarget().getResponse();
+        this.__applyTestData();
       }, this);
-      var server = qx.dev.FakeServer.getInstance().getFakeServer();
+      r.send();
+    },
+
+    __applyTestData: function () {
+      this.__xhr = cv.Config.initialDemoData.xhr;
+
+      // we need to adjust the timestamps of the chart data
+      const now = Date.now();
+      for (let url in this.__xhr) {
+        if (url.startsWith('rrd')) {
+          this.__xhr[url].forEach(d => {
+            const data = d.body;
+            const offset = now - data[data.length - 1][0];
+            data.forEach(entry => entry[0] += offset);
+          });
+        } else if (url.startsWith('resource/plugin/rsslog.php')) {
+          this.__xhr[url].forEach(d => {
+            const data = d.body.responseData.feed.entries;
+            let date = new Date();
+            date.setDate(date.getDate()-1);
+            data.forEach(entry => {
+              entry.publishedDate = date.toUTCString();
+              date.setTime(date.getTime() + 60*60*1000);
+            });
+          });
+        }
+      }
+
+      const that = this;
+
+      // override sinons filter handling to be able to manipulate the target URL from the filter
+      // eslint-disable-next-line consistent-return
+      sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
+        this.method = method;
+        this.url = url;
+        this.async = typeof async == 'boolean' ? async : true;
+        this.username = username;
+        this.password = password;
+        this.responseText = null;
+        this.responseXML = null;
+        this.requestHeaders = {};
+        this.sendFlag = false;
+        if (sinon.FakeXMLHttpRequest.useFilters === true) {
+          let xhrArgs = arguments;
+          let defake = sinon.FakeXMLHttpRequest.filters.some(function(filter) {
+            return filter.call(this, xhrArgs);
+          });
+          if (defake) {
+            const xhr = that.defake(this, xhrArgs);
+            xhr.open.apply(xhr, xhrArgs);
+            xhr.setRequestHeader('Accept', 'text/*, image/*');
+            return;
+          }
+        }
+        this.readyStateChange(sinon.FakeXMLHttpRequest.OPENED);
+      };
+
+      // configure server
+      qx.dev.FakeServer.getInstance().addFilter(function (args) {
+        const method = args[0];
+        const url = args[1];
+        if (url.startsWith('https://sentry.io')) {
+          return true;
+        } else if (method === 'GET' && (
+          url.indexOf('resource/visu_config') >= 0 ||
+          url.indexOf('resource/demo/visu_config') >= 0 ||
+          url.indexOf('resource/hidden-schema.json') >= 0 ||
+          url.indexOf('resource/manager/') >= 0
+        )) {
+          return true;
+        } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
+          // change url to avoid API access and do a real request
+          const path = url.split('=').pop();
+          const suffix = path.startsWith('demo/') ? '' : 'config/';
+          args[1] = window.location.pathname + 'resource/' + suffix + path;
+          return true;
+        }
+        return false;
+      }, this);
+      const server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(function (request) {
-        var url = cv.report.Record.normalizeUrl(request.url);
-        if (url.indexOf("nocache=") >= 0) {
-          url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+        const parsed = qx.util.Uri.parseUri(request.url);
+        let url = request.url;
+        if (!parsed.host || parsed.host === window.location.host) {
+          url = cv.report.Record.normalizeUrl(request.url);
+          if (url.startsWith(window.location.pathname)) {
+            url = url.substr(window.location.pathname.length-1);
+          }
         }
         if (!this.__xhr[url] || this.__xhr[url].length === 0) {
-          qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
+          qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
         } else {
-          qx.log.Logger.debug(this, "faking response for " + url);
-          var response = "";
+          qx.log.Logger.debug(this, 'faking response for ' + url);
+          let response = '';
           if (this.__xhr[url].length === 1) {
             response = this.__xhr[url][0];
           } else {
@@ -72,50 +198,67 @@ qx.Class.define('cv.io.Mockup', {
             // the respond would fail if we do not override it here
             request.readyState = 1;
           }
-          request.respond(response.status, response.headers, qx.lang.Json.stringify(response.body));
+          request.respond(response.status, response.headers, JSON.stringify(response.body));
         }
       }.bind(this));
-    }
-
-    this.addresses = [];
-  },
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    dataReceived : {
-      check: "Boolean",
-      init: true
     },
-    server: {
-      check: "String",
-      init: "Mockup"
-    },
-    connected: {
-      check: "Boolean",
-      init: true,
-      event: "changeConnected"
-    }
-  },
 
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    addresses: null,
-    __xhr: null,
-    __sequence: null,
-    __sequenceIndex: 0,
-    __simulations: null,
+    defake: function(fakeXhr, xhrArgs) {
+      // eslint-disable-next-line new-cap
+      const xhr = new sinon.xhr.workingXHR();
+      ['open', 'setRequestHeader', 'send', 'abort', 'getResponseHeader',
+          'getAllResponseHeaders', 'addEventListener', 'overrideMimeType', 'removeEventListener'].forEach(function(method) {
+          fakeXhr[method] = function() {
+            return xhr[method].apply(xhr, arguments);
+          };
+        });
+
+      const copyAttrs = function(args) {
+        args.forEach(function(attr) {
+          try {
+            fakeXhr[attr] = xhr[attr];
+          } catch (e) {
+            if (!/MSIE 6/.test(navigator.userAgent)) {
+             throw e;
+            }
+          }
+        });
+      };
+
+      const stateChange = function() {
+        fakeXhr.readyState = xhr.readyState;
+        if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
+          copyAttrs(['status', 'statusText']);
+        }
+        if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
+          copyAttrs(['responseText']);
+        }
+        if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
+          copyAttrs(['responseXML']);
+        }
+        if (fakeXhr.onreadystatechange) {
+          fakeXhr.onreadystatechange({ target: fakeXhr });
+        }
+      };
+      if (xhr.addEventListener) {
+        for (let event in fakeXhr.eventListeners) {
+          // eslint-disable-next-line no-prototype-builtins
+          if (fakeXhr.eventListeners.hasOwnProperty(event)) {
+            fakeXhr.eventListeners[event].forEach(function(handler) {
+              xhr.addEventListener(event, handler);
+            });
+          }
+        }
+        xhr.addEventListener('readystatechange', stateChange);
+      } else {
+        xhr.onreadystatechange = stateChange;
+      }
+      return xhr;
+    },
 
     /**
      * This function gets called once the communication is established and session information is available
-     *
+     * @param json
      */
     receive: function (json) {
       if (json) {
@@ -125,7 +268,7 @@ qx.Class.define('cv.io.Mockup', {
       }
     },
 
-    login: function (loginOnly, callback, context) {
+    login: function (loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
         if (qx.core.Environment.get('cv.testMode')) {
@@ -151,9 +294,9 @@ qx.Class.define('cv.io.Mockup', {
     _registerSimulations: function (simulations) {
       this.__simulations = {};
       Object.keys(simulations).forEach(function (mainAddress) {
-        var simulation = simulations[mainAddress];
+        const simulation = simulations[mainAddress];
         this.__simulations[mainAddress] = simulation;
-        if (simulation.hasOwnProperty("additionalAddresses")) {
+        if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
           simulation.additionalAddresses.forEach(function (addr) {
             this.__simulations[addr] = simulation;
           }, this);
@@ -177,17 +320,17 @@ qx.Class.define('cv.io.Mockup', {
     },
 
     _processSimulation: function (address, value) {
-      var simulation = this.__simulations[address];
+      const simulation = this.__simulations[address];
       if (!simulation) {
         return;
       }
-      var start = false;
-      var stop = false;
-      if (simulation.hasOwnProperty('startValues')) {
+      let start = false;
+      let stop = false;
+      if (Object.prototype.hasOwnProperty.call(simulation, 'startValues')) {
         // try the more specific matches with address included
-        start = simulation.startValues.indexOf(address + "|" + value) >= 0;
-        if (simulation.hasOwnProperty('stopValues')) {
-          stop = simulation.stopValues.indexOf(address + "|" + value) >= 0;
+        start = simulation.startValues.indexOf(address + '|' + value) >= 0;
+        if (Object.prototype.hasOwnProperty.call(simulation, 'stopValues')) {
+          stop = simulation.stopValues.indexOf(address + '|' + value) >= 0;
         }
         if (!stop) {
           // the the more general ones
@@ -197,9 +340,9 @@ qx.Class.define('cv.io.Mockup', {
       }
       if (start) {
         // start simulation
-        if (simulation.type === "shutter") {
-          simulation.direction = value === "0" ? "up" : "down";
-          var initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
+        if (simulation.type === 'shutter') {
+          simulation.direction = value === '0' ? 'up' : 'down';
+          let initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
           if (initValue === undefined) {
             initValue = 0;
           }
@@ -209,10 +352,10 @@ qx.Class.define('cv.io.Mockup', {
             simulation.timer.stop();
           } else {
             simulation.timer = new qx.event.Timer(simulation.interval || 100);
-            var stepSize = simulation.stepSize || 10;
-            simulation.timer.addListener("interval", function () {
-              var newValue = simulation.value;
-              if (simulation.direction === "up") {
+            const stepSize = simulation.stepSize || 10;
+            simulation.timer.addListener('interval', function () {
+              let newValue = simulation.value;
+              if (simulation.direction === 'up') {
                 // drive up
                 newValue = simulation.value + stepSize;
                 if (newValue > 100) {
@@ -227,7 +370,7 @@ qx.Class.define('cv.io.Mockup', {
                   return;
                 }
               }
-              var update = {
+              const update = {
                 i: new Date().getTime(),
                 d: {}
               };
@@ -250,7 +393,7 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * Subscribe to the addresses in the parameter
-     *
+     * @param addresses
      */
     subscribe: function (addresses) {
       this.addresses = addresses ? addresses : [];
@@ -258,14 +401,15 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * This function sends a value
-     *
+     * @param address
+     * @param value
      */
     write: function (address, value) {
       if (cv.report.Record.REPLAYING === true) {
         // do nothing in replay mode
         return;
       }
-      var ts = new Date().getTime();
+      const ts = new Date().getTime();
       // store in window, to make it accessible for protractor
       window.writeHistory.push({
         address: address,
@@ -273,11 +417,11 @@ qx.Class.define('cv.io.Mockup', {
         ts: ts
       });
 
-      if (this.__simulations && this.__simulations.hasOwnProperty(address)) {
+      if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
         this._processSimulation(address, value);
       } else {
         // send update
-        var answer = {
+        const answer = {
           i: ts,
           d: {}
         };
@@ -292,7 +436,47 @@ qx.Class.define('cv.io.Mockup', {
     stop: function () {},
 
     getResourcePath: function (name) {
+      if (name === 'charts') {
+        return null;
+      }
       return name;
+    },
+
+    getLastError: function () {
+      return null;
+    },
+
+    getBackend: function () {
+      return {};
+    },
+
+    authorize: function (req) {
+    },
+
+    terminate: function () {},
+
+    update: function(json) {},
+    record: function(type, data) {},
+    showError: function(type, message, args) {},
+
+    // not used / needed in this client
+    setInitialAddresses: function(addresses) {
+    },
+
+    hasCustomChartsDataProcessor : function () {
+      return false;
+    },
+    processChartsData : function (data) {
+      return data;
+    },
+    hasProvider: function (name) {
+      return false;
+    },
+    getProviderUrl: function (name) {
+      return null;
+    },
+    getProviderConvertFunction : function (name, format) {
+      return null;
     }
   }
 });

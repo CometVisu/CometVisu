@@ -1,6 +1,6 @@
 /* PushButton.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -35,8 +35,8 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
   ******************************************************
   */
   properties: {
-    'downValue': {check: "String", init: "1"},
-    'upValue': {check: "String", init: "0"}
+    'downValue': {check: 'String', init: '1'},
+    'upValue': {check: 'String', init: '0'}
   },
 
   /*
@@ -52,8 +52,8 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
 
     // overridden
     initListeners: function() {
-      this.addElementListener("pointerdown", this._onPointerDown, this);
-      this.addElementListener("pointerup", this._onPointerUp, this);
+      this.addElementListener('pointerdown', this._onPointerDown, this);
+      this.addElementListener('pointerup', this._onPointerUp, this);
     },
 
     /**
@@ -63,43 +63,41 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function (value) {
-      var actor = this.getActor();
+      const actor = this.getActor();
       // compare against the unmapped value
-      value = "" + this.getBasicValue();
-      var off = this.getUpValue();
-      qx.bom.element.Class.remove(actor, value === off ? 'switchPressed' : 'switchUnpressed');
-      qx.bom.element.Class.add(actor, value === off ? 'switchUnpressed' : 'switchPressed');
+      value = '' + this.getBasicValue();
+      const off = this.getUpValue();
+      actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
+      actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
-     *
+     * @param event
      */
     getActionValue: function (event) {
-      if (event.type === "pointerup") {
+      if (event.type === 'pointerup') {
         return this.getUpValue();
-      } else {
+      } 
         return this.getDownValue();
-      }
     },
 
     _onPointerUp: function () {
-      var sendValue = this.getUpValue();
+      const sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
-        return (!address[2] || address[2] === "up");
+        return (!address.variantInfo || address.variantInfo === 'up');
       });
     },
 
     _onPointerDown: function () {
-      var sendValue = this.getDownValue();
+      const sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
-        return (!address[2] || address[2] === "down");
+        return (!address.variantInfo || address.variantInfo === 'down');
       });
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pushbutton", statics);
+    cv.ui.structure.WidgetFactory.registerClass('pushbutton', statics);
   }
 });

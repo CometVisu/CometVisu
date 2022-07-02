@@ -437,7 +437,7 @@ Update auf GitHub
 Um eigene Änderungen nach GitHub zu veröffentlichen braucht man mehrere
 - aber dafür einfache - Schritte.
 
-Durch den Upload der eigenen Änderungen wird nun zuerst ``<Accountname>/CometVisu`` aktuallisiert.
+Durch den Upload der eigenen Änderungen wird nun zuerst ``<Accountname>/CometVisu`` aktualisiert.
 Von dort kann man nun per Pull-Request diese Änderungen in das Hauptrepository
 ``CometVisu/CometVisu`` überführen. Bei dem Pull-Request kann man auch aussuchen in welchen
 Branch dort integriert werden soll. Diesen Pull-Request kann man natürlich auch über die Kommandozeile mit

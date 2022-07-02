@@ -1,6 +1,6 @@
 /* WidgetInfoAction.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -38,7 +38,7 @@ qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
       refine: true,
       init: true
     },
-    childObjects: {check: "Array", init: []}
+    childObjects: {check: 'Array', init: []}
   },
 
   /*
@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("widgetinfo", statics);
-    cv.ui.structure.WidgetFactory.registerClass("widgetaction", statics);
+    cv.ui.structure.WidgetFactory.registerClass('widgetinfo', statics);
+    cv.ui.structure.WidgetFactory.registerClass('widgetaction', statics);
   }
 });

@@ -28,6 +28,23 @@ The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
 Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
 
+The ``dynamic`` attribute allows to dynamically show and hide the navbar.
+The show and hide is only implemented for the left navbar and requires a
+touch capable device. To show you must swipe from the left end of the screen
+horizontal to the middle, to hide you must swipe to the left.
+
++-------------+------------------------------------+------------------------------------+
+| ``dynamic`` | Mobile device                      | Big screen                         |
++=============+====================================+====================================+
+| *empty*     | Navbar can be shown and hidden.    | Navbar is always shown.            |
+|             | After start it is hidden.          |                                    |
++-------------+------------------------------------+------------------------------------+
+| true        | Navbar can be shown and hidden.    | Navbar can be shown and hidden.    |
+|             | After start it is hidden.          | After start it is shown.           |
++-------------+------------------------------------+------------------------------------+
+| false       | Navbar is always shown.            | Navbar is always shown.            |
++-------------+------------------------------------+------------------------------------+
+
 Allowed attributes in the NavBar-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -44,7 +61,7 @@ Allowed attributes in the NavBar-element
     </navbar>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All widgets are allowed in the page widget.
@@ -64,6 +81,3 @@ for the NavBar widget.
 
 .. ###END-WIDGET-EXAMPLES###
 
-.. rubric:: Footnotes
-
-.. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.

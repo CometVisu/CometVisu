@@ -1,6 +1,6 @@
 /* Group.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -79,15 +79,15 @@ qx.Class.define('cv.ui.structure.pure.Group', {
   */
   properties: {
     noWidget: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     name: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
     target: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -123,18 +123,18 @@ qx.Class.define('cv.ui.structure.pure.Group', {
     // overridden
     _onDomReady: function() {
       this.base(arguments);
-      qx.bom.element.Style.set(this.getDomElement(), "z-index", 1);
+      this.getDomElement().style['z-index'] = 1;
     },
 
     // overridden
     getDomString: function () {
       // heading style
-      var hstyle = '';
+      let hstyle = '';
       if (this.getAlign()) {
         hstyle += 'style="text-align:' + this.getAlign() + '"';
       }
 
-      var container = '<div class="clearfix">';
+      let container = '<div class="clearfix">';
       if (this.getName()) {
         container += '<h2 ' + hstyle + '>' + this.getName() + '</h2>';
       }
@@ -147,6 +147,6 @@ qx.Class.define('cv.ui.structure.pure.Group', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("group", statics);
+    cv.ui.structure.WidgetFactory.registerClass('group', statics);
   }
 });

@@ -33,42 +33,20 @@ Allowed attributes in the openweathermap-element
 
 .. parameter-information:: openweathermap
 
-.. widget-example::
-    :editor: attributes
-    :scale: 75
-    :align: center
+.. IMPORTANT::
+    The value of the attribute `appid` has to be replaced by your own key!
 
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <meta>
-        <plugins>
-            <plugin name="openweathermap" />
-        </plugins>
-    </meta>
-    <openweathermap>
-        <layout colspan="4" />
-    </openweathermap>
+The OpenweatherMap uses the web service of https://openweathermap.org/ to fetch
+the current weather date and forecast. To be able to access this data you need
+a key that can be obtained free of charge at the homepage and which must be
+inserted at the `appid` attribute.
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements-information:: openweathermap
+None.
 
-.. widget-example::
-    :editor: elements
-    :scale: 75
-    :align: center
-
-    <caption>Elements in the editor</caption>
-    <meta>
-        <plugins>
-            <plugin name="openweathermap" />
-        </plugins>
-    </meta>
-    <openweathermap>
-        <layout colspan="4" />
-        <label>openweathermap</label>
-    </openweathermap>
 
 Examples
 --------
@@ -80,11 +58,24 @@ for the openweathermap plugin.
     Make sure that you only use UTF-8 encoded characters by settings the encoding in your
     XML-editor to UTF-8 mode!
 
+.. IMPORTANT::
+    The value of the attribute `appid` has to be replaced by your own key!
+
+This minimal example code will create this screen shot:
+
+.. figure:: _static/weather.png
+
+.. code-block:: xml
+
+    <meta>
+        <plugins>
+            <plugin name="openweathermap" />
+        </plugins>
+    </meta>
+    ...
+    <openweathermap q="Munich" appid="..." />
+
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
 
 .. ###END-WIDGET-EXAMPLES###
-
-.. rubric:: Footnotes
-
-.. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.

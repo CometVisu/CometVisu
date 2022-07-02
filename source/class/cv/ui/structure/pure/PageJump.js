@@ -1,6 +1,6 @@
 /* PageJump.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -53,19 +53,19 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
   */
   properties: {
     target : {
-      check: "String",
-      init: "0"
+      check: 'String',
+      init: '0'
     },
     activeScope : {
       check: ['target', 'path'],
       init: 'target'
     },
     name : {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     targetPath : {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -83,46 +83,48 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
      * @protected
      */
     _onScrollToPage: function(ev) {
-      var page_id = ev.getData();
-      var page = cv.ui.structure.WidgetFactory.getInstanceById(page_id);
-      var model = cv.data.Model.getInstance();
-      var name = page.getName();
+      const page_id = ev.getData();
+      const page = cv.ui.structure.WidgetFactory.getInstanceById(page_id);
+      const model = cv.data.Model.getInstance();
+      const name = page.getName();
 
       // remove old active classes
-      qx.bom.Selector.query('.pagejump.active').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active');
+      document.querySelectorAll('.pagejump.active').forEach(function(elem) {
+        elem.classList.remove('active');
       }, this);
-      qx.bom.Selector.query('.pagejump.active_ancestor').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active_ancestor');
+      document.querySelectorAll('.pagejump.active_ancestor').forEach(function(elem) {
+        elem.classList.remove('active_ancestor');
       }, this);
 
       // and set the new active ones
-      qx.bom.Selector.query('.pagejump').forEach(function(elem) {
-        var data = model.getWidgetDataByElement(elem);
+      document.querySelectorAll('.pagejump').forEach(function(elem) {
+        const data = model.getWidgetDataByElement(elem);
         if (name === data.target) {
-          qx.bom.element.Class.add(elem, 'active');
+          elem.classList.add('active');
         }
       }, this);
 
       // now set the active ancestors
-      var parentPage = cv.util.Tree.getParentWidget(page, "page");
+      let parentPage = cv.util.Tree.getParentWidget(page, 'page');
       // set for all parent pages apart from the root page
 
-      var pageJumps = qx.bom.Selector.query('.pagejump');
-      var markPageJumps = function(parentName, elem) {
-        var data = model.getWidgetDataByElement(elem);
-        if (parentName === data.target || (data.activeScope === "path" && (
-            qx.lang.Type.isString(data.path) && data.path.match(parentName + "$") ||
-            qx.lang.Type.isString(data.targetPath) && data.targetPath.match(parentName + "$"))
+      const pageJumps = document.querySelectorAll('.pagejump');
+      const markPageJumps = function (parentName, elem) {
+        const data = model.getWidgetDataByElement(elem);
+        if (parentName === data.target || (data.activeScope === 'path' && (
+            (typeof data.path === 'string') && data.path.match(parentName + '$') ||
+            (typeof data.targetPath === 'string') && data.targetPath.match(parentName + '$'))
         )) {
-          qx.bom.element.Class.add(elem, 'active_ancestor');
+          elem.classList.add('active_ancestor');
         }
       };
 
-      while (parentPage && cv.util.Tree.getParentWidget(parentPage, "page")) {
-        pageJumps.forEach(qx.lang.Function.curry(markPageJumps, parentPage.getName()));
+      while (parentPage && cv.util.Tree.getParentWidget(parentPage, 'page')) {
+        pageJumps.forEach(function(elem) {
+ markPageJumps(parentPage.getName(), elem); 
+});
         // recursively find pagejumps for parent pages
-        parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
+        parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
       }
     }
   },
@@ -137,9 +139,9 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
 
     // overridden
     _getInnerDomString: function() {
-      var actor = '<div class="actor switchUnpressed';
+      let actor = '<div class="actor switchUnpressed';
       if (this.getAlign()) {
-        actor += this.getAlign();
+        actor += ' ' + this.getAlign();
       }
       actor += '">';
       if (this.getName()) {
@@ -151,16 +153,16 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
 
     // overridden
     action: function() {
-      var target = this.getTarget();
+      let target = this.getTarget();
       if (this.getTargetPath() !== null) {
-        target = cv.TemplateEngine.getInstance().getPageIdByPath(target,this.getTargetPath());
+        target = cv.TemplateEngine.getInstance().getPageIdByPath(target, this.getTargetPath());
       }
-      cv.TemplateEngine.getInstance().scrollToPage( target );
+      cv.TemplateEngine.getInstance().scrollToPage(target);
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pagejump", statics);
-    qx.event.message.Bus.subscribe("path.pageChanged", statics._onScrollToPage, statics);
+    cv.ui.structure.WidgetFactory.registerClass('pagejump', statics);
+    qx.event.message.Bus.subscribe('path.pageChanged', statics._onScrollToPage, statics);
   }
 });

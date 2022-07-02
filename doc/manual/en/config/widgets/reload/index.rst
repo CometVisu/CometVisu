@@ -33,7 +33,7 @@ Allowed attributes in the Reload-element
 None.
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: reload
@@ -63,6 +63,3 @@ for the Reload widget.
 
 .. ###END-WIDGET-EXAMPLES###
 
-.. rubric:: Footnotes
-
-.. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.

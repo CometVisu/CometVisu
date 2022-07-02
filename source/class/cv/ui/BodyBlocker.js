@@ -1,6 +1,6 @@
 /* BodyBlocker.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -21,7 +21,7 @@
 //noinspection JSUnusedGlobalSymbols
 qx.Class.define('cv.ui.BodyBlocker', {
   extend: qx.bom.Blocker,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -31,8 +31,9 @@ qx.Class.define('cv.ui.BodyBlocker', {
   construct: function () {
     this.base(arguments);
     this.__counters = {};
+    this.__uniques = [];
     this.setBlockerOpacity(0.5);
-    this.setBlockerColor("#000000");
+    this.setBlockerColor('#000000');
   },
 
   /*
@@ -43,7 +44,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
   members: {
     __body: null,
     __counters: null,
-    __uniques: [],
+    __uniques: null,
 
     /**
      * @param topic {String} topic of the message related to this blocker
@@ -51,26 +52,26 @@ qx.Class.define('cv.ui.BodyBlocker', {
      */
     block: function(topic, unique) {
       this.base(arguments, this.__getBody());
-      if (!this.__counters.hasOwnProperty(topic)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__counters, topic)) {
         this.__counters[topic] = 1;
       } else if (!unique) {
         this.__counters[topic]++;
       }
-      qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
-        qx.bom.element.Class.add(elem, "blurred");
+      document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function(elem) {
+        elem.classList.add('blurred');
       });
     },
 
     unblock: function(topic) {
       if (topic) {
-        if (this.__counters.hasOwnProperty(topic)) {
+        if (Object.prototype.hasOwnProperty.call(this.__counters, topic)) {
           this.__counters[topic]--;
           if (this.__counters[topic] === 0) {
             delete this.__counters[topic];
             if (Object.keys(this.__counters).length === 0) {
               this.base(arguments);
-              qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-                qx.bom.element.Class.remove(elem, "blurred");
+              document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+                elem.classList.remove('blurred');
               });
             }
           }
@@ -79,15 +80,15 @@ qx.Class.define('cv.ui.BodyBlocker', {
         // not topic given unblock all
         this.__counters = {};
         this.base(arguments);
-        qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-          qx.bom.element.Class.remove(elem, "blurred");
+        document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+          elem.classList.remove('blurred');
         });
       }
     },
 
     __getBody: function() {
       if (!this.__body) {
-        this.__body = qx.bom.Selector.query("body")[0];
+        this.__body = document.querySelector('body');
       }
       return this.__body;
     }

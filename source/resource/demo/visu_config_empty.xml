@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <plugins>
     </plugins>
@@ -9,12 +9,12 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
-          - <a href="manager.php">Config-Manager</a>
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="?manager=1" onclick="showManager(); return false;">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
         ]]></status>
-      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
-          - <a href="editor/">Edit</a>
+      <status type="html" condition="!edit" hrefextend="action"><![CDATA[
+          - <a cv-action="edit">Edit</a>
         ]]></status>
       <status type="html" condition="edit" hrefextend="config"><![CDATA[
           - <a href=".">normal Mode</a>
@@ -22,8 +22,8 @@
       <status type="html"><![CDATA[
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>
-      <status type="html" hrefextend="config"><![CDATA[
-          - <a href="check_config.php">Check Config</a>
+      <status type="html" hrefextend="action"><![CDATA[
+          - <a cv-action="validate">Check Config</a>
         ]]></status>
     </statusbar>
   </meta>

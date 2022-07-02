@@ -1,6 +1,6 @@
 /* ProgressBar.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.ui.util.ProgressBar", {
+qx.Class.define('cv.ui.util.ProgressBar', {
   extend: qx.core.Object,
 
   /*
@@ -44,9 +44,9 @@ qx.Class.define("cv.ui.util.ProgressBar", {
   */
   properties: {
     value: {
-      check: "Integer",
+      check: 'Integer',
       init: 0,
-      apply: "_applyValue"
+      apply: '_applyValue'
     }
   },
 
@@ -60,9 +60,9 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     __progressElement: null,
 
     _applyValue: function(value) {
-      var totalWidth = qx.bom.element.Dimension.getContentWidth(this.__domElement);
-      var progressWidth = Math.round(totalWidth*value/100)+"px";
-      qx.bom.element.Style.set(this.__progressElement, "width", progressWidth);
+      const rect = this.__domElement.getBoundingClientRect();
+      const totalWidth = Math.round(rect.right - rect.left);
+      this.__progressElement.style.width = Math.round(totalWidth * value / 100) + 'px';
     },
 
     getDomElement: function() {
@@ -70,10 +70,10 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     },
 
     _createDomElement: function() {
-      var container = this.__domElement = qx.dom.Element.create("div", { "class": "progressbar" });
+      const container = this.__domElement = qx.dom.Element.create('div', {'class': 'progressbar'});
       this.__domElement.$$widget = this;
-      var progress = this.__progressElement = qx.dom.Element.create("div", { "class": "completed" });
-      qx.dom.Element.insertEnd(progress, container);
+      const progress = this.__progressElement = qx.dom.Element.create('div', {'class': 'completed'});
+      container.appendChild(progress);
       return container;
     }
   }

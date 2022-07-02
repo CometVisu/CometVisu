@@ -37,7 +37,7 @@ Valid values for ``cachecontrol`` are:
 
 ``full``   Standard. By extending the URL with a timestamp a refresh is
            ensured. Server support is required though.
-``force``  Using sophisticated methods an enfocrement of the refresh is
+``force``  Using sophisticated methods an enforcement of the refresh is
            attempted.
 ``weak``   The URL will be extended by an anchor with timestamp. This will
            work with most servers where ``full`` mode doesn't work. But it
@@ -57,7 +57,7 @@ Valid values for ``cachecontrol`` are:
     </image>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: image
@@ -88,7 +88,7 @@ for the Image widget.
 .. widget-example::
 
     
-    <image src="resource/icon/CometVisu_orange.png" width="45px" height="32px">
+    <image src="resource/icons/CometVisu_orange.png" width="45px" height="32px">
       <layout colspan="2" />
     </image>
     

@@ -1,6 +1,6 @@
 /* Link.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.Link", {
+qx.Class.define('cv.core.notifications.actions.Link', {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -45,20 +45,24 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   */
   properties: {
     title: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     url: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
+    type: {
+      check: 'String',
+      init: ''
+    },
     action: {
-      check: "Function",
+      check: 'Function',
       nullable: true,
-      transform: "_transformAction"
+      transform: '_transformAction'
     },
     hidden: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -71,16 +75,16 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   members: {
 
     _transformAction: function(value) {
-      if (qx.lang.Type.isFunction(value)) {
+      if (typeof value === 'function') {
         return value;
       }
-      switch(value) {
-        case "reload":
-        case "restart":
+      switch (value) {
+        case 'reload':
+        case 'restart':
           return cv.util.Location.reload;
       }
       if (value) {
-        this.error("Unknown action: " + value);
+        this.error('Unknown action: ' + value);
       }
       return null;
     },
@@ -96,7 +100,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       if (this.getUrl()) {
         if (this.isHidden()) {
           // open link in background (fire and forget)
-          var req = new qx.io.request.Xhr(this.getUrl());
+          const req = new qx.io.request.Xhr(this.getUrl());
           req.send();
         } else {
           cv.util.Location.open(this.getUrl(), '_blank');
@@ -108,19 +112,19 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     },
 
     getDomElement: function() {
-      var actionButton = qx.dom.Element.create("button", {
-        "class": "action",
-        "text": this.getTitle(),
-        "style": this.getStyle()
+      const actionButton = qx.dom.Element.create('button', {
+        'class': 'action ' + this.getType(),
+        'text': this.getTitle(),
+        'style': this.getStyle()
       });
       actionButton.$$handler = this;
 
-      qx.event.Registration.addListener(actionButton, "tap", this.handleAction, this);
+      qx.event.Registration.addListener(actionButton, 'tap', this.handleAction, this);
       return actionButton;
     }
   },
 
   defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler("link", cv.core.notifications.actions.Link);
+    cv.core.notifications.ActionRegistry.registerActionHandler('link', cv.core.notifications.actions.Link);
   }
 });

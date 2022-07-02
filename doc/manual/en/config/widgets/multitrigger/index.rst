@@ -10,12 +10,15 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-Adds a widget with 4 buttons to the visu.
+Adds a widget with multiple buttons to the visu.
 Thus, e.g. change the operating mode of the heating system
 (Comfort -> Night -> Absent -> Frost protection) or create scene functions.
 
 
 .. ###END-WIDGET-DESCRIPTION###
+
+.. hint::
+    Since version 0.12.0 multiple buttons are possible, in older versions the buttons were limited to 4.
 
 Settings
 --------
@@ -41,12 +44,19 @@ Allowed attributes in the MultiTrigger-element
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <multitrigger>
-        <layout colspan="4" />
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <layout colspan="6" />
+        <label>Source</label>
+        <address transform="DPT:5.001" mode="readwrite">9/6/1</address>
+        <buttons>
+            <button label="HTML1">0</button>
+            <button label="HTML2">1</button>
+            <button label="VGA">2</button>
+            <button label="-"></button>
+        </buttons>
     </multitrigger>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: multitrigger
@@ -58,9 +68,15 @@ Allowed child-elements und their attributes
 
     <caption>Elements in the editor</caption>
     <multitrigger>
-        <layout colspan="4" />
-        <label>MultiTrigger</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <layout colspan="6" />
+        <label>Source</label>
+        <address transform="DPT:5.001" mode="readwrite">9/6/1</address>
+        <buttons>
+            <button label="HTML1">0</button>
+            <button label="HTML2">1</button>
+            <button label="VGA">2</button>
+            <button label="-"></button>
+        </buttons>
     </multitrigger>
 
 Examples

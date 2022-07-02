@@ -1,3 +1,6 @@
+.. replaces:: CometVisu/0.8.x/manual/updatewiregate/de
+    CometVisu/de/0.12/manual/install/update-wiregate.html
+
 **************************
 Installation der CometVisu
 **************************
@@ -5,34 +8,22 @@ Installation der CometVisu
 Einfache Installation:
 
 -  :doc:`Allgemein <allgemein>`
--  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
--  auf einem Debian System mit openHAB1 (`OpenHAB-WIKI <https://github.com/openhab/openhab1-addons/wiki/CometVisu>`__)
--  :doc:`auf einem Debian System mit openHAB2 <openhab2>`
+-  :doc:`auf einem Debian System mit openHAB <openhab>`
 -  :doc:`Über Docker <docker>`
+-  :doc:`Über Docker mit openHAB <docker_openhab>`
 -  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
 
 .. toctree::
     :hidden:
 
     allgemein
-    wiregate
     raspberry
     install-dev
-    openhab2
+    openhab
     docker
+    docker_openhab
     timberwolf
-
-Schwieriger, nur für **Fortgeschrittene**:
-
--  :doc:`auf beliebigen anderen Linux-Systemen <linux>`
--  :doc:`auf NAS-Systemen <nas>`
-
-.. toctree::
-    :hidden:
-
-    linux
-    nas
 
 Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
 jedoch **NIE** produktiv eingesetzt werden.
@@ -42,13 +33,13 @@ jedoch **NIE** produktiv eingesetzt werden.
 Update der CometVisu
 --------------------
 
-Falls bereits eine Version 0.8 installiert war, kann die Installation direkt
-auf dem :doc:`WireGate <update-wiregate>` oder :doc:`anderen Installationen <update-other>` aktualisiert werden.
+Das Update einer bestehenden, direkten Installation (also nicht eines Docker
+Containers) wird im Abschnitt :doc:`Update einer anderen Installation <update-other>`
+beschrieben.
 
 .. toctree::
     :hidden:
 
-    update-wiregate
     update-other
 
 Installation auf mobilen Geräten

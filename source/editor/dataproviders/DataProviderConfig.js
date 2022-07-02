@@ -29,10 +29,21 @@
  * @since       2012-10-17
  */
 
+var baseRestPath = parent && parent.cv ? parent.cv.io.rest.Client.BASE_URL : '';
+
+var cvProvider = parent && parent.cv ? parent.cv.ui.manager.editor.data.Provider.getInstance() : null;
+
+if (!window.client) {
+  window.client = parent && parent.cv ? parent.cv.TemplateEngine.getClient() : null;
+}
+
 var DataProviderConfig = {
   'address': {
     '_nodeValue':  {
-      url: 'editor/dataproviders/list_all_addresses.php',
+      url: window.client && window.client.hasProvider("addresses") ?
+        window.client.getProviderUrl("addresses") :
+        (cvProvider ? baseRestPath + '/data/addresses' : 'editor/dataproviders/list_all_addresses.php'),
+      convert: window.client && window.client.hasProvider("addresses") ? window.client.getProviderConvertFunction("addresses") : null,
       cache: true,
       userInputAllowed: true,
       grouped: true,
@@ -40,7 +51,10 @@ var DataProviderConfig = {
   },
   'rrd': {
     '_nodeValue':  {
-      url: 'editor/dataproviders/list_all_rrds.php',
+      url: window.client && window.client.hasProvider("rrd") ?
+        window.client.getProviderUrl("rrd") :
+        (cvProvider ? baseRestPath + '/data/rrds' : 'editor/dataproviders/list_all_rrds.php'),
+      convert: window.client && window.client.hasProvider("rrd") ? window.client.getProviderConvertFunction("rrd") : null,
       cache: true,
       userInputAllowed: true,
     },
@@ -71,21 +85,27 @@ var DataProviderConfig = {
   },
   'icon': {
     'name':  {
-      url: 'editor/dataproviders/list_all_icons.php',
+      url: cvProvider ? null : 'editor/dataproviders/list_all_icons.php',
+      live: cvProvider ? function () {
+        return cvProvider.getIcons('dp');
+      } : null,
       cache: true,
       userInputAllowed: false,
     },
   },
   'plugin': {
     'name':  {
-      url: 'editor/dataproviders/list_all_plugins.php',
+      url: cvProvider ? null : 'editor/dataproviders/list_all_plugins.php',
+        live: cvProvider ? function () {
+        return cvProvider.getPlugins('dp');
+      } : null,
       cache: true,
       userInputAllowed: false,
     },
   },
   'pages': {
     'design':  {
-      url: 'resource/designs/get_designs.php',
+      url: cvProvider ? baseRestPath + '/data/designs' : 'resource/designs/get_designs.php',
       map: function(element) {
         return {value: element, label: element};
       },
@@ -96,18 +116,27 @@ var DataProviderConfig = {
   // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
   '*': {
     'rrd':  {
-      url: 'editor/dataproviders/list_all_rrds.php',
+      url: window.client && window.client.hasProvider("rrd") ?
+        window.client.getProviderUrl("rrd") :
+        (cvProvider ? baseRestPath + '/data/rrds' : 'editor/dataproviders/list_all_rrds.php'),
+      convert: window.client && window.client.hasProvider("rrd") ? window.client.getProviderConvertFunction("rrd") : null,
       cache: true,
       userInputAllowed: true,
     },
     'ga':  {
-      url: 'editor/dataproviders/list_all_addresses.php',
+      url: window.client && window.client.hasProvider("addresses") ?
+        window.client.getProviderUrl("addresses") :
+        (cvProvider ? baseRestPath + '/data/addresses' : 'editor/dataproviders/list_all_addresses.php'),
+      convert: window.client && window.client.hasProvider("addresses") ? window.client.getProviderConvertFunction("addresses") : null,
       cache: true,
       userInputAllowed: true,
       grouped: true,
     },
     'transform':  {
-      url: 'editor/dataproviders/dpt_list.json',
+      url: cvProvider ? null : 'editor/dataproviders/dpt_list.json',
+      live: cvProvider ? function () {
+        return cvProvider.getTransforms('dp');
+      } : null,
       cache: true,
       userInputAllowed: false,
     },
@@ -172,7 +201,8 @@ function getInfluxMeasurements( element ) {
     influxCache[auth]['#callback'] = [];
   }
 
-  $.ajax('editor/dataproviders/list_all_influxdbs.php' + (auth ? '?auth=' + auth : ''),
+  let uri = cvProvider ? baseRestPath + '/data/influxdbs' : 'editor/dataproviders/list_all_influxdbs.php';
+  $.ajax(uri + (auth ? '?auth=' + auth : ''),
     {
       dataType: 'json',
       async: true,

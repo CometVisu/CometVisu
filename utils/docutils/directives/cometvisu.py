@@ -25,10 +25,11 @@ from widget_example import WidgetExampleDirective
 from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
 from api_doc import ApiDocDirective
+from backend_transform import BackendTransformDirective
 from settings import config, root_dir
 from __init__ import Version
 
-references = {"_base": "http://www.cometvisu.org/CometVisu/"}
+references = {"_base": "https://www.cometvisu.org/CometVisu/"}
 reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_target_path())
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
@@ -64,11 +65,32 @@ def process_references(app, doctree, fromdocname):
 
 
 def store_references(app):
-    # only update references when we build from develop branch and for the correct language
-    if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping") and \
-       app.config.language == config.get("references", "language"):
-        with open(references_file, "w") as f:
-            f.write(dumps(references, indent=2, sort_keys=True))
+    if app.config.language == config.get("references", "language"):
+        if references_file[-5:] == ".json":
+            with open(references_file, "w") as f:
+                f.write(dumps(references, indent=2, sort_keys=True))
+        else:
+            content_before = []
+            content_after = []
+            mode = "before"
+            with open(references_file, "r") as f:
+                for l in f:
+                    if re.match("^    MAP:\\s{\\s*$", l):
+                        mode = "inside"
+                        content_before.append(l)
+                    elif re.match("^    }$", l):
+                        mode = "after"
+                    if mode == "before":
+                        content_before.append(l)
+                    elif mode == "after":
+                        content_after.append(l)
+            content = "%s    %s\n%s" % (
+                     "".join(content_before),
+                     "\n    ".join(dumps(references, indent=2, sort_keys=True).replace("\"", "'").split("\n")[1:-1]),
+                     "".join(content_after)
+                 )
+            with open(references_file, "w") as f:
+                f.write(content)
 
 
 def store_redirect_map():
@@ -115,6 +137,7 @@ def setup(app):
     app.add_directive("parameter-information", ParameterInformationDirective)
     app.add_directive("replaces", ReplacesDirective)
     app.add_directive("api-doc", ApiDocDirective)
+    app.add_directive("backend-transform", BackendTransformDirective)
 
     app.connect('doctree-resolved', process_references)
     app.connect('build-finished', on_finish)

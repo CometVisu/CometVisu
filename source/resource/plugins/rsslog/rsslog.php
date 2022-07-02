@@ -71,15 +71,15 @@ if( isset($_GET['info']) )
 { 
   // store a new log
   $store = true;
-  $log_content = $_GET['c'] ? $_GET['c'] : '<no content>';
-  $log_title = $_GET['h'] ? $_GET['h'] : '';
-  $log_state = $_GET['state'] ? $_GET['state'] : 0;
-  $log_mapping = $_GET['mapping'] ? $_GET['mapping'] : '';
+  $log_content = $_GET['c'] ?? '<no content>';
+  $log_title = $_GET['h'] ?? '';
+  $log_state = $_GET['state'] ?? 0;
+  $log_mapping = $_GET['mapping'] ?? '';
   if( mb_detect_encoding($log_content, 'UTF-8', true) != 'UTF-8' )
     $log_content = utf8_encode($log_content);
   if( mb_detect_encoding($log_title, 'UTF-8', true) != 'UTF-8' )
     $log_title = utf8_encode($log_title);
-  $log_tags    = $_GET['t'] ? $_GET['t'] : array();
+  $log_tags    = $_GET['t'] ?? array();
   if(! is_array($log_tags))
     die("wrong format - use one or more t[]= for tags");
   insert( $dbh, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
@@ -115,8 +115,8 @@ if( isset($_GET['info']) )
   <?php
 } else if( isset($_GET['r']) )
 {
-  $timestamp  = $_GET['r'] ? $_GET['r'] : '';
-  $filter  = $_GET['f'] ? $_GET['f'] : '';
+  $timestamp  = $_GET['r'] ?? '';
+  $filter  = $_GET['f'] ?? '';
   delete( $dbh, $timestamp, $filter );
 ?>
 Successfully run deletion.
@@ -138,9 +138,9 @@ Successfully run deletion.
 <?php
 
   // send logs
-  $log_filter  = $_GET['f'] ? $_GET['f'] : '';
-  $state = $_GET['state']; // ? $_GET['state'] : '';
-  $future = $_GET['future'];
+  $log_filter  = $_GET['f'] ?? '';
+  $state = $_GET['state'] ?? 0;
+  $future = $_GET['future'] ?? '';
 
   // retrieve data
   $result = retrieve( $dbh, $log_filter, $state, $future );
@@ -171,7 +171,7 @@ Successfully run deletion.
   $id = $_GET['u'];
   if (!is_numeric($id))
     die("wrong format - id has to be numeric");
-  $newstate = $_GET['state'];
+  $newstate = $_GET['state'] ?? 0;
   if (!is_numeric($newstate))
     die("wrong format - state is required and has to be numeric");
   updatestate( $dbh, $id, $newstate );
@@ -188,9 +188,9 @@ Successfully deleted ID=<?php echo $id; ?>.
 <?php
 } else {
   // send logs
-  $log_filter  = $_GET['f'] ? $_GET['f'] : '';
-  $state = $_GET['state']; // ? $_GET['state'] : '';
-  $future = $_GET['future'];
+  $log_filter  = $_GET['f'] ?? '';
+  $state = $_GET['state'] ?? 0;
+  $future = $_GET['future'] ?? '';
 
   // retrieve data
   $result = retrieve( $dbh, $log_filter, $state, $future );
@@ -320,7 +320,7 @@ function create( $dbh )
     
   switch( $logschema )
   {
-    case 0:  // inital setup of database
+    case 0:  // initial setup of database
       // no table found - create it
       $q = 'CREATE TABLE Logs' . $currentSchema;
       $ok = $dbh->exec( $q );
@@ -380,7 +380,7 @@ function retrieve( $dbh, $filter, $state, $future, $dump = false, $order = 'DESC
   } else {
     $filters = explode(',', $filter); // accept filters by separated by ,
     function substrmatch($s) { return "%$s%"; };
-    $filters = array_map( substrmatch, $filters );
+    $filters = array_map( 'substrmatch', $filters );
     $filterString = '(tags LIKE ?) ' . str_repeat( 'OR (tags LIKE ?) ', count( $filters )-1 );
   }
   

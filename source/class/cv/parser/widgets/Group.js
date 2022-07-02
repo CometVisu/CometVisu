@@ -1,6 +1,6 @@
 /* Group.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  * Parse group config elements
  */
 qx.Class.define('cv.parser.widgets.Group', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,13 +40,13 @@ qx.Class.define('cv.parser.widgets.Group', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       if (data.target) {
         data.classes += ' clickable';
         data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
       }
       if (data.noWidget === true) {
-        data.classes = data.classes.replace("widget ", "");
+        data.classes = data.classes.replace('widget ', '');
       }
       cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
@@ -55,17 +55,17 @@ qx.Class.define('cv.parser.widgets.Group', {
     getAttributeToPropertyMappings: function () {
       return {
         'nowidget': {
-          target: 'noWidget', "default": false, transform: function (value) {
-            return value === "true";
+          target: 'noWidget', 'default': false, transform: function (value) {
+            return value === 'true';
           }
         },
-        'name': { "default": "" },
-        'target': { "default": "" }
+        'name': { 'default': '' },
+        'target': { 'default': '' }
       };
     }
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("group", statics);
+    cv.parser.WidgetParser.addHandler('group', statics);
   }
 });

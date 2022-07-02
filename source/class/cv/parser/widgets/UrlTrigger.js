@@ -1,6 +1,6 @@
 /* UrlTrigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.UrlTrigger', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,7 +40,7 @@ qx.Class.define('cv.parser.widgets.UrlTrigger', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -48,8 +48,8 @@ qx.Class.define('cv.parser.widgets.UrlTrigger', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'value' : { target: 'sendValue', "default": "0" },
-        'params'  : { "default": '' },
+        'value' : { target: 'sendValue', 'default': '0' },
+        'params'  : { 'default': '' },
         'url': { }
       };
     },
@@ -61,6 +61,6 @@ qx.Class.define('cv.parser.widgets.UrlTrigger', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("urltrigger", statics);
+    cv.parser.WidgetParser.addHandler('urltrigger', statics);
   }
 });

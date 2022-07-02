@@ -1,3 +1,22 @@
+/* metal-spec.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 /**
  * Test the metal design
  * @author Tobias Bräutigam
@@ -16,7 +35,7 @@ describe('cometvisu metal design config test:', function () {
 
   var mockupConfig = [];
   var configParts = {
-    start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
+    start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
     end :   '</pages>'
   };
 
@@ -47,15 +66,18 @@ describe('cometvisu metal design config test:', function () {
   // see: https://github.com/CometVisu/CometVisu/issues/287
   it('should set slider flavours correct in a flavoured group', function() {
     // test for lithium flavour #ff0000
-    var widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(0);
+    var widget = element.all(by.css('.activePage .slide .actor .ui-slider-range')).first();
+
     expect(widget.getCssValue('background-color')).toBe('rgba(255, 0, 0, 1)');
 
     // test for boron flavour #00ff11
-    widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(1);
+    widget = element.all(by.css('.activePage .slide .actor .ui-slider-range')).get(1);
+
     expect(widget.getCssValue('background-color')).toBe('rgba(0, 255, 17, 1)');
 
     // test for antimony flavour #00ddff
-    widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(2);
+    widget = element.all(by.css('.activePage .slide .actor .ui-slider-range')).get(2);
+
     expect(widget.getCssValue('background-color')).toBe('rgba(0, 221, 255, 1)');
   });
 
@@ -78,7 +100,8 @@ describe('cometvisu metal design config test:', function () {
 
     it('should show the info value correctly styled in the pagejump', function () {
       // border radius 20px leads to computed radius of 11px in firefox (???)
-      var widget = element(by.css(".navbar .pagejump .widgetinfo .info"));
+      var widget = element(by.css('.navbar .pagejump .widgetinfo .info'));
+
       expect(widget.getCssValue('border-top-left-radius')).toBe('11px');
       expect(widget.getCssValue('border-top-right-radius')).toBe('11px');
       expect(widget.getCssValue('border-bottom-left-radius')).toBe('11px');
@@ -87,8 +110,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      cvMockup.sendUpdate('1/0/1', 10.2).then(() => {
+        expect(widget.element(by.css('.actor .value')).getText()).toBe('10');
+      });
     });
 
     // infoaction widget
@@ -113,7 +137,8 @@ describe('cometvisu metal design config test:', function () {
 
     it('should show the infoaction widget', function () {
       // border radius 20px leads to computed radius of 11px in firefox (???)
-      var widget = element(by.css(".infoaction .widgetinfo .info"));
+      var widget = element(by.css('.infoaction .widgetinfo .info'));
+
       expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
       expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
       expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
@@ -122,13 +147,15 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      cvMockup.sendUpdate('1/0/1', 10.2).then(() => {
+        expect(widget.element(by.css('.actor .value')).getText()).toBe('10');
+      });
 
       // click the action part
-      var action = element(by.css(".infoaction .widgetaction .switch .actor"));
+      var action = element(by.css('.infoaction .widgetaction .switch .actor'));
       action.click();
-      expect(action.element(by.css(".value")).getText()).toEqual('0');
+
+      expect(action.element(by.css('.value')).getText()).toEqual('0');
       cvMockup.getLastWrite().then(function (lastWrite) {
         expect(lastWrite.value).toEqual(0);
       });
@@ -150,7 +177,8 @@ describe('cometvisu metal design config test:', function () {
 
     it('should show a pagejump with widgetinfo inside a page, styled like the infoaction->widgetinfo part', function () {
       // border radius 20px leads to computed radius of 11px in firefox (???)
-      var widget = element(by.css(".pagejump .widgetinfo .info"));
+      var widget = element(by.css('.pagejump .widgetinfo .info'));
+
       expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
       expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
       expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
@@ -159,9 +187,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10.2");
-
+      cvMockup.sendUpdate('1/0/1', 10.2).then(() => {
+        expect(widget.element(by.css('.actor .value')).getText()).toBe('10.2');
+      });
     });
   }
 });

@@ -1,6 +1,6 @@
 /* Trigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -42,8 +42,8 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", init: "0" },
-    shortValue: { check: "String", init: "0" }
+    sendValue: { check: 'String', init: '0' },
+    shortValue: { check: 'String', init: '0' }
   },
 
   /*
@@ -68,9 +68,9 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
      * If there is no short threshold set, this send the value for long presses to the backend.
      */
     _action: function() {
-      var value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
+      const value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
       this.sendToBackend(value, function(address) {
-        return !!(address[2] & 1);
+        return !!(address.variantInfo & 1);
       });
     },
 
@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
      */
     _onLongTap: function() {
       this.sendToBackend(this.getSendValue(), function(address) {
-        return !!(address[2] & 2);
+        return !!(address.variantInfo & 2);
       });
     }
   }

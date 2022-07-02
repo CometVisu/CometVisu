@@ -1,6 +1,6 @@
 /* Info.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 qx.Class.define('cv.plugins.diagram.Info', {
   extend: cv.plugins.diagram.AbstractDiagram,
@@ -47,7 +48,7 @@ qx.Class.define('cv.plugins.diagram.Info', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
+      const data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseFormat(xml, path);
       return data;
@@ -68,12 +69,13 @@ qx.Class.define('cv.plugins.diagram.Info', {
       if (address !== undefined && data !== undefined) {
         return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       }
+      return null;
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("diagram_info", statics);
-    cv.ui.structure.WidgetFactory.registerClass("diagram_info", statics);
+    cv.parser.WidgetParser.addHandler('diagram_info', statics);
+    cv.ui.structure.WidgetFactory.registerClass('diagram_info', statics);
   }
 });

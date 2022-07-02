@@ -5,25 +5,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-10-21 23:48+0200\n"
-"PO-Revision-Date: 2016-10-21 23:51+0200\n"
+"POT-Creation-Date: 2022-01-10 19:39+CET\n"
+"PO-Revision-Date: 2022-01-28 20:53+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en_US\n"
-
-#: utils/commands/scaffolding.py:83
-msgid "The %s plugin"
-msgstr "The %s plugin"
-
-#: utils/commands/scaffolding.py:83
-msgid "The %s widget"
-msgstr "The %s widget"
 
 #: utils/docutils/directives/api_doc.py:54
 msgid "Available since version"
@@ -33,76 +25,102 @@ msgstr "Available since version"
 msgid "Author"
 msgstr "Author"
 
-#: utils/docutils/directives/common.py:41
-#: utils/docutils/directives/common.py:65
+#: utils/docutils/directives/backend_transform.py:84
+msgid "description"
+msgstr "description"
+
+#: utils/docutils/directives/backend_transform.py:84
+msgid "max"
+msgstr "max"
+
+#: utils/docutils/directives/backend_transform.py:84
+msgid "min"
+msgstr "min"
+
+#: utils/docutils/directives/backend_transform.py:84
+msgid "name"
+msgstr "name"
+
+#: utils/docutils/directives/backend_transform.py:84
+msgid "unit"
+msgstr "unit"
+
+#: utils/docutils/directives/common.py:43
 #: utils/docutils/directives/common.py:67
+#: utils/docutils/directives/common.py:69
 msgid "or"
 msgstr "or"
 
-#: utils/docutils/directives/common.py:42
+#: utils/docutils/directives/common.py:44
 msgid "string"
 msgstr "string"
 
-#: utils/docutils/directives/common.py:43
+#: utils/docutils/directives/common.py:45
 msgid "decimal"
 msgstr "decimal"
 
-#: utils/docutils/directives/common.py:44
+#: utils/docutils/directives/common.py:46
 msgid "uri"
 msgstr "URI"
 
-#: utils/docutils/directives/common.py:45
+#: utils/docutils/directives/common.py:47
 msgid "addr"
 msgstr "address"
 
-#: utils/docutils/directives/common.py:46
+#: utils/docutils/directives/common.py:48
 msgid "nonNegativeInteger"
 msgstr "number > 0"
 
-#: utils/docutils/directives/common.py:47
+#: utils/docutils/directives/common.py:49
 msgid "dimension"
-msgstr "dimenstion (number+unit)"
+msgstr "dimension (number+unit)"
 
-#: utils/docutils/directives/common.py:110
-#: utils/docutils/directives/common.py:116
-#: utils/docutils/directives/common.py:181
-#: utils/docutils/directives/common.py:188
+#: utils/docutils/directives/common.py:120
+#: utils/docutils/directives/common.py:126
+#: utils/docutils/directives/common.py:208
+#: utils/docutils/directives/common.py:215
 msgid "mandatory"
 msgstr "mandatory"
 
-#: utils/docutils/directives/common.py:131
-#: utils/docutils/directives/common.py:137
-#: utils/docutils/directives/common.py:244
-#: utils/docutils/directives/common.py:250
+#: utils/docutils/directives/common.py:141
+#: utils/docutils/directives/common.py:147
+#: utils/docutils/directives/common.py:281
+#: utils/docutils/directives/common.py:287
 msgid "Attribute"
 msgstr "Attribute"
 
-#: utils/docutils/directives/common.py:131
-#: utils/docutils/directives/common.py:244
+#: utils/docutils/directives/common.py:141
+#: utils/docutils/directives/common.py:281
 msgid "Element"
 msgstr "Element"
 
-#: utils/docutils/directives/common.py:132
-#: utils/docutils/directives/common.py:138
-#: utils/docutils/directives/common.py:245
-#: utils/docutils/directives/common.py:251
+#: utils/docutils/directives/common.py:142
+#: utils/docutils/directives/common.py:148
+#: utils/docutils/directives/common.py:282
+#: utils/docutils/directives/common.py:288
 msgid "Content"
 msgstr "Content"
 
-#: utils/docutils/directives/common.py:132
-#: utils/docutils/directives/common.py:138
-#: utils/docutils/directives/common.py:245
-#: utils/docutils/directives/common.py:251
+#: utils/docutils/directives/common.py:142
+#: utils/docutils/directives/common.py:148
+#: utils/docutils/directives/common.py:282
+#: utils/docutils/directives/common.py:288
 msgid "Description"
 msgstr "Description"
 
-#: utils/docutils/directives/common.py:132
-#: utils/docutils/directives/common.py:138
-#: utils/docutils/directives/common.py:245
-#: utils/docutils/directives/common.py:251
+#: utils/docutils/directives/common.py:142
+#: utils/docutils/directives/common.py:148
+#: utils/docutils/directives/common.py:282
+#: utils/docutils/directives/common.py:288
 msgid "Name"
 msgstr "Name"
 
-#: utils/docutils/directives/common.py:245
+#: utils/docutils/directives/common.py:282
 msgid "Structure"
 msgstr "Structure"
+
+#~ msgid "The %s plugin"
+#~ msgstr "The %s plugin"
+
+#~ msgid "The %s widget"
+#~ msgstr "The %s widget"

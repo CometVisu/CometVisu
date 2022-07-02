@@ -1,6 +1,6 @@
 /* Trigger.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Trigger', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,7 +40,7 @@ qx.Class.define('cv.parser.widgets.Trigger', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
@@ -48,13 +48,16 @@ qx.Class.define('cv.parser.widgets.Trigger', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'value'      : { target: 'sendValue' , "default": "0" },
-        'shorttime'  : { target: 'shortThreshold', "default": -1, transform: parseFloat},
-        'shortvalue' : { target: 'shortValue', "default": "0" }
+        'value'      : { target: 'sendValue', 'default': '0' },
+        'shorttime'  : { target: 'shortThreshold', 'default': -1, transform: parseFloat},
+        'shortvalue' : { target: 'shortValue', 'default': '0' },
+        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {
+            return value ? value === 'true' : true;
+        }}
       };
     },
 
-    makeAddressListFn: function( src, transform, mode, variant ) {
+    makeAddressListFn: function(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [ true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1|2) ];
     }
@@ -62,6 +65,6 @@ qx.Class.define('cv.parser.widgets.Trigger', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("trigger", statics);
+    cv.parser.WidgetParser.addHandler('trigger', statics);
   }
 });

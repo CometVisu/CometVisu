@@ -142,7 +142,7 @@ This area is defined by the `<settings>` element and this can be refined
 by attributes and subelements.
 
 +-------------------+--------------------------------------------------------------------------------------------------------------------+
-| Element           | Attribut                                                                                                           |
+| Element           | Attribute                                                                                                          |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 |                   | Name              | Content           | Description                                                                |
 +===================+===================+===================+============================================================================+
@@ -215,8 +215,8 @@ of the ``@author`` and ``@since`` specifications.
     to the name of the source code file without file extension, e.g.
     for ``structure/pure/Switch.js`` use ``.. api-doc :: Switch``
     (case-sensitive). For plugins, the folder name of the plugin
-    must be specified, e.g. for ``plugins/colorchooser/`` you
-    take ``.. api-doc :: colorchooser``
+    must be specified, e.g. for ``plugins/clock/`` you
+    take ``.. api-doc :: clock``
 
 Example for the Switch-Widget:
 
@@ -244,4 +244,3 @@ used to automatically create redirects.
         CometVisu/switch
         CometVisu/switch_(Deutsch)
 
-        

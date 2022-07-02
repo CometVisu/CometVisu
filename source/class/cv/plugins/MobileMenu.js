@@ -1,6 +1,6 @@
 /* MobileMenu.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -45,14 +45,14 @@ qx.Class.define('cv.plugins.MobileMenu', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
 
     getWidgetElements: function(xmlElement, path) {
-      cv.data.Model.getInstance().setWidgetData( path+"_0", {
-        containerClass           : "actor"
+      cv.data.Model.getInstance().setWidgetData(path+'_0', {
+        containerClass           : 'actor'
       });
     }
   },
@@ -69,61 +69,60 @@ qx.Class.define('cv.plugins.MobileMenu', {
 
     // overridden
     getDomString: function() {
-      if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
-        var navLeft = this.__navLeft = qx.bom.Selector.query('#navbarLeft')[0];
-        if (!qx.bom.element.Class.has(navLeft, 'mobilemenu')){
-          qx.bom.element.Class.add(navLeft, 'mobilemenu');
+      if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
+        const navLeft = this.__navLeft = document.querySelector('#navbarLeft');
+        if (!navLeft.classList.contains('mobilemenu')) {
+          navLeft.classList.add('mobilemenu');
         }
-        qx.bom.element.Style.set(navLeft, "display", "none");
-        qx.event.message.Bus.subscribe("path.pageChanged", function() {
-          var navbar = qx.bom.Selector.query('.navbar', navLeft)[0];
-          var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
-          animation.addListenerOnce("end", function() {
-            qx.bom.element.Style.set(navLeft, "display", "none");
+        navLeft.style.display = 'none';
+        qx.event.message.Bus.subscribe('path.pageChanged', function() {
+          const navbar = navLeft.querySelector('.navbar');
+          const animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
+          animation.addListenerOnce('end', function() {
+            navLeft.style.display = 'none';
           }, this);
         });
 
         return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
-      } else {
+      } 
         return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
-      }
     },
 
     _onDomReady: function() {
-      if(this.isTouchDevice()){
-        this.touchScroll("navbarLeft");
+      if (this.isTouchDevice()) {
+        this.touchScroll('navbarLeft');
       }
     },
 
     _action: function() {
-      if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
-        if(this.isTouchDevice()){
-          qx.bom.element.Style.set(this.__navLeft, "display", "block");
-          var navbar = qx.bom.Selector.query('.navbar.navbarActive', this.__navLeft)[0];
+      if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
+        if (this.isTouchDevice()) {
+          this.__navLeft.style.display = 'block';
+          const navbar = this.__navLeft.querySelector('.navbar.navbarActive');
           qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
         }
       }
     },
 
-    touchScroll: function(id){
-      var scrollStartPos=0;
+    touchScroll: function(id) {
+      let scrollStartPos = 0;
 
-      var elem = qx.bom.Selector.query('#'+id)[0];
-      qx.event.Registration.addListener(elem, "touchstart", function(event) {
+      const elem = document.querySelector('#' + id);
+      qx.event.Registration.addListener(elem, 'touchstart', function(event) {
         scrollStartPos=this.scrollTop+event.touches[0].pageY;
         event.preventDefault();
       }, false);
 
-      qx.event.Registration.addListener(elem, "touchmove", function(event) {
+      qx.event.Registration.addListener(elem, 'touchmove', function(event) {
         this.scrollTop=scrollStartPos-event.touches[0].pageY;
         event.preventDefault();
-      },false);
+      }, false);
     },
 
-    isTouchDevice: function(){
+    isTouchDevice: function() {
       if (this.__isTouchDevice === null) {
         try {
-          document.createEvent("TouchEvent");
+          document.createEvent('TouchEvent');
           this.__isTouchDevice = true;
         } catch (e) {
           this.__isTouchDevice = false;
@@ -142,9 +141,9 @@ qx.Class.define('cv.plugins.MobileMenu', {
   // });
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-    cv.parser.WidgetParser.addHandler("mobilemenu", statics);
-    cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
+    cv.parser.WidgetParser.addHandler('mobilemenu', statics);
+    cv.ui.structure.WidgetFactory.registerClass('mobilemenu', statics);
   }
 });

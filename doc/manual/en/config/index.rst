@@ -29,18 +29,10 @@ the CometVisu tree is located in different places:
     "/var/www/visu..." of the web server (e.g. Apache or Lighttpd)
     The web server usually listens on port 80 in the default setting.
 
--   If openHAB is used as the backend for the CometVisu, the CometVisu
-    files must be in the openHAB directory tree. The openHAB own web
-    server is addressed in the default setting via port 8080 and is
-    not php-capable. In this case you have to be satisfied with a text-based
-    editor or "divert" the probably parallel running web server
-    (for example Apache or Lighttpd).
+-   Since version 0.12 the special binding is no longer needed to use openHAB as a backend for the CometVisu.
+    It is recommended to use the CometVisu docker container.
+    Information on how to install and configure the container to use openHAB as backend can be found :ref:`here <Docker_OpenHAB_Installation>`
 
--   If openHAB was automatically installed via apt-get, the CometVisu
-    will be installed manually in "/usr/share/openhab/webapps/visu...".
-
--   If openHAB was manually installed in e.g. "/opt/openHAB",
-    the CometVisu is installed manually in "/opt/openhab/www/visu...".
 
 .. hint::
 
@@ -138,7 +130,7 @@ For navigation inside the visualization, the Cometvisu offers numerous
 options for the user:
 
 -  The :ref:`Page widget <page>` calls the associated subpage.
--  The Top Navigation Display showes the current path and allows you to
+-  The Top Navigation Display shows the current path and allows you to
    navigate back to parent pages.
 -  The back button of the browser or the operating system (e.g. iOS, Android)
 -  The Navbar widget in conjunction with page jump widgets.
@@ -173,9 +165,24 @@ The available designs
 * Alaska
 * Alaska Slim
 
-.. TODO::
 
-    More example pages for the other designs
+Changes of the metal design
+---------------------------
+
+In version 0.12 the metal design has been revised. In order to achieve a cleaner, modern look all
+background gradients, text shadows and the font have been replaced.
+
+Those changes can be easily reverted by loading an additional css file.
+You can achieve this, by adding the following text to the meta section of your configuration file.
+
+.. code-block:: xml
+
+    <meta>
+        <files>
+            <file type="css">resource/designs/metal/version1.css</file>
+        </files>
+        ...
+    </meta>
 
 
 Basic elements for designing the layout
@@ -242,6 +249,14 @@ The description of the widgets can be read here:
 .. toctree::
 
     widgets/index
+
+To configure the communication of the widget with the backend ``address``
+elements are used. They are described in the :ref:`chapter address <address>`.
+
+.. toctree::
+    :hidden:
+
+    address
 
 CometVisu - Examples
 --------------------

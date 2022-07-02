@@ -6,10 +6,13 @@ CometVisu von swiss (Metal)
 Hier wird die produktiv im Einsatz befindliche Visu von swiss vorgestellt.
 
 | **Design**: Metal
-| **Plugins**: colorchooser, rsslog, strftime, diagram
-| **Config**: :download:`visu_config_metal_swiss.xml <_static/visu_config_metal_swiss.xml>`
-| **Live-Demo**: `Live-Demo <http://demo.wiregate.de/visu-svn_neu/?config=metal_swiss>`__
+| **Plugins**: rsslog, strftime, diagram
 |
+
+.. hint ::
+
+    In der Version 0.12 wurde das Metal-Design überarbeitet.
+    Die Screenshots auf dieser Seite zeigen noch das alte Design ohne Überarbeitungen.
 
 Screenshots
 -----------
@@ -46,7 +49,7 @@ Zeitanzeige in der Navbar
    Plugins hinzugefügt werden. Das Attribut *class* wird im Editor nur angezeigt, wenn der *complex*-Modus aktiviert wurde.
 
 
-Die Zeitanzeige (inspiriert von netsrac) wurde folgendermassen
+Die Zeitanzeige (inspiriert von netsrac) wurde folgendermaßen
 eingebaut:
 
 In der Navbar wurde an der obersten Stelle ein **Group** Widget
@@ -89,7 +92,7 @@ In der config.xml sieht dieser Abschnitt wie folgt aus:
               </group>
             </group>
 
-Für die Formatierung (Farbe, Schriftgrösse und Schriftart) müssen folgende CSS-Regeln eingefügt werden:
+Für die Formatierung (Farbe, Schriftgröße und Schriftart) müssen folgende CSS-Regeln eingefügt werden:
 
 .. code-block:: css
 

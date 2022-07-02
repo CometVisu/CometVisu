@@ -1,6 +1,6 @@
 /* Break.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  * Parse &lt;break;gt; config elements
  */
 qx.Class.define('cv.parser.widgets.Break', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -46,6 +46,6 @@ qx.Class.define('cv.parser.widgets.Break', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("break", statics);
+    cv.parser.WidgetParser.addHandler('break', statics);
   }
 });

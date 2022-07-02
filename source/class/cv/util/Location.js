@@ -1,6 +1,6 @@
 /* Location.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,12 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Helper function to proxy access to <code>window.location.*</code> functions.
  * The main purpose of proxying them is to allow them to be spyable in unit tests.
  */
 qx.Class.define('cv.util.Location', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************

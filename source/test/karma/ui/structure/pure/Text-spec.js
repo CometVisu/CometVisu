@@ -1,6 +1,6 @@
 /* Text-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,18 +24,19 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a text widget", function() {
+describe('testing a text widget', function() {
+  it('should test the text creator', function() {
+    const [widget, element] = this.createTestWidgetString('text', {}, '<label>Test</label>');
 
-  it("should test the text creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("text", {}, '<label>Test</label>');
-    var text = qx.bom.Html.clean([res[1]])[0];
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(text).toHaveClass('text');
+    expect(element).toHaveClass('text');
     // the text widget does not add the 'label' class to the label-div, so the toHaveLabel
     // helper does not work here and we have to check it manually
-    var label = qx.bom.Selector.matches("div", qx.dom.Hierarchy.getChildElements(text))[0];
-    expect(qx.dom.Node.getText(label)).toBe('Test');
+    var label = Array.from(element.children).filter(function(m) {
+      return m.matches('div');
+    })[0];
+
+    expect(label.innerText).toBe('Test');
   });
 });

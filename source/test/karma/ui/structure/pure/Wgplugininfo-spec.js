@@ -1,6 +1,6 @@
 /* Wgplugininfo-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,22 +22,19 @@
  * Unit tests for wgplugin_info widget
  *
  */
-describe("testing a wgplugin_info widget", function() {
+describe('testing a wgplugin_info widget', function() {
+  it('should test the wgplugin_info creator', function() {
+    const [widget, element] = this.createTestWidgetString('wgplugin_info', {}, '<label>Test</label>');
 
-  it("should test the wgplugin_info creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("wgplugin_info", {}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(widget).toHaveClass('info');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('info');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should test the wgplugin_info update", function() {
-    var res = this.createTestElement("wgplugin_info", {variable: "Test"}, '', "Test", {transform: "raw"});
-    spyOn(res.__request, "send");
-    res.update("Test", 1);
-
+  it('should test the wgplugin_info update', function() {
+    var res = this.createTestElement('wgplugin_info', {variable: 'Test'}, '', 'Test', {transform: 'raw'});
+    spyOn(res.getRequest(), 'send');
+    res.update('Test', 1);
   });
 });

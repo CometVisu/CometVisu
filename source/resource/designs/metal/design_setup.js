@@ -1,6 +1,6 @@
 /* design_setup.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -25,9 +25,9 @@
  * @since 2012
  */
 qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarLeft')[0], 'columns', 6);
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#main')[0], 'columns', 12);
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarRight')[0], 'columns', 6);
+  document.querySelector('#navbarLeft').dataset['columns'] = 6;
+  document.querySelector('#main').dataset['columns'] = 12;
+  document.querySelector('#navbarRight').dataset['columns'] = 6;
 });
 
 function getOffsetCorners(elem) {
@@ -41,30 +41,30 @@ function getOffsetCorners(elem) {
 }
 
 function setRadius(elem, type, value) {
-  qx.bom.element.Style.set(elem, type, value);
-  qx.dom.Hierarchy.getChildElements(elem).forEach(function(subElem) {
-    qx.bom.element.Style.set(subElem, type, value);
+  elem.style[type] = value;
+  Array.from(elem.children).forEach(function(subElem) {
+    subElem.style[type] = value;
   }, this);
 }
 
 function roundCorners() {
   // find elements in each groups corners
-  qx.bom.Selector.query('.page.activePage .group').forEach(function(group) {
+  document.querySelectorAll('.page.activePage .group').forEach(function(group) {
     var bounds = group.getBoundingClientRect();
     // skip invisible groups
     if (bounds.width === 0 || bounds.height === 0) {
       return;
     }
     // do not use this in navbars
-    if (qx.bom.Selector.matches('.navbar', qx.dom.Hierarchy.getAncestors(group)).length > 0) { return; }
+    if (Array.prototype.filter.call(qx.dom.Hierarchy.getAncestors(group),function(m){return m.matches('.navbar');}).length > 0) { return; }
     var groupCorners = getOffsetCorners(group);
     // if the group has a headline (=name) we must not round the upper corners
-    var topRight = qx.bom.element.Style.get(group, 'border-top-right-radius');
-    var bottomRight = qx.bom.element.Style.get(group, 'border-bottom-right-radius');
-    var bottomLeft = qx.bom.element.Style.get(group, 'border-bottom-left-radius');
-    var roundUpperCorners = (qx.bom.Selector.query('.widget_container:first-child', group).length>0) && topRight !== "0px";
+    var topRight = window.getComputedStyle(group)['border-top-right-radius'];
+    var bottomRight = window.getComputedStyle(group)['border-bottom-right-radius'];
+    var bottomLeft = window.getComputedStyle(group)['border-bottom-left-radius'];
+    var roundUpperCorners = (group.querySelectorAll('.widget_container:first-child').length>0) && topRight !== "0px";
     var threshold=5;
-    qx.bom.Selector.query('.widget_container', group).forEach(function (elem) {
+    group.querySelectorAll('.widget_container').forEach(function (elem) {
       var elemCorners = getOffsetCorners(elem);
       if (roundUpperCorners) {
         // upper left corner is done by regular  css-rule  upper right corner
@@ -93,22 +93,22 @@ if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
 }
 
 qx.event.message.Bus.subscribe("setup.dom.finished", function() {
-  qx.bom.Selector.query('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
+  document.querySelectorAll('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
 
     if (label.textContent.trim()!=="") {
-      var actor = qx.bom.Selector.matches('.actor', qx.dom.Hierarchy.getSiblings(label))[0];
-      if (actor && qx.bom.Selector.matches('img', qx.dom.Hierarchy.getChildElements(label)).length === 0) {
-        var value = qx.bom.Selector.matches('.value', qx.dom.Hierarchy.getChildElements(actor))[0];
+      var actor = Array.prototype.filter.call(qx.dom.Hierarchy.getSiblings(label),function(m){return m.matches('.actor');})[0];
+      if (actor && Array.from(label.children).filter(function(m){return m.matches('img');}).length === 0) {
+        var value = Array.from(actor.children).filter(function(m){return m.matches('.value');})[0];
         if (value && value.textContent.trim() !== "") {
-          qx.bom.element.Style.set(actor, 'padding-top', '0.5em');
+          actor.style['padding-top'] = '0.5em';
         }
       }
     }
   });
   // Disable borders for groups that contain widget-group as children
-  qx.bom.Selector.query('.page > div > .widget_container > .group:not(.widget)').forEach(function(elem) {
-    if (qx.bom.Selector.query('.clearfix > .widget_container > .group.widget', elem).length > 0) {
-      qx.bom.element.Style.setStyles(elem, {'border': 'none', 'margin': 0});
+  document.querySelectorAll('.page > div > .widget_container > .group:not(.widget)').forEach(function(elem) {
+    if (elem.querySelectorAll('.clearfix > .widget_container > .group.widget').length > 0) {
+      Object.entries({'border': 'none', 'margin': 0}).forEach(function(key_value){elem.style[key_value[0]]=key_value[1];});
     }
   });
 });

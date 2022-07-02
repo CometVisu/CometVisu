@@ -78,14 +78,14 @@ gesetzt werden (z.B. An in rot und Aus in Grün)
 
         <settings>
             <screenshot name="switch_styling">
-                <data address="1/4/0">0</data>
+                <data address="1/4/0">1</data>
             </screenshot>
         </settings>
         <meta>
             <stylings>
                 <styling name="RedGreen">
-                    <entry value="1">red</entry>
-                    <entry value="0">green</entry>
+                    <entry value="0">red</entry>
+                    <entry value="1">green</entry>
                 </styling>
             </stylings>
         </meta>
@@ -102,7 +102,7 @@ Natürlich kann man auch beides gleichzeitig nutzen:
 
     <settings>
         <screenshot name="switch_mapping_styling">
-            <data address="1/4/0">0</data>
+            <data address="1/4/0">1</data>
         </screenshot>
     </settings>
     <meta>
@@ -114,8 +114,8 @@ Natürlich kann man auch beides gleichzeitig nutzen:
         </mappings>
         <stylings>
             <styling name="RedGreen">
-                <entry value="1">red</entry>
-                <entry value="0">green</entry>
+                <entry value="0">red</entry>
+                <entry value="1">green</entry>
             </styling>
         </stylings>
     </meta>
@@ -168,7 +168,7 @@ Erlaubte Kind-Elemente und deren Attribute
     +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | **label**                     | Text                                                | Hier wird der Name und ggf. ein Icon eingetragen. Dies erscheint links neben dem Switch. Beispielsweise: **Spot Fernseher**                                                                                                                                                                                 |
     +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | **address**                   | KNX Gruppenaddresse                                 | Hier werden die Gruppenadressen für Schalten, sowie optional für Rückmeldungen eingetragen.                                                                                                                                                                                                                 |
+    | **address**                   | KNX Gruppenadresse                                  | Hier werden die Gruppenadressen für Schalten, sowie optional für Rückmeldungen eingetragen.                                                                                                                                                                                                                 |
     |                               |                                                     |                                                                                                                                                                                                                                                                                                             |
     |                               | mit Parametern                                      | Typisch sind mindestens zwei Gruppenaddressen nötig. Eine **readwrite** GA für das eigentliche Schalten sowie eine **read** GA für das dazu gehörige Rückmelde/Statusobjekt.                                                                                                                                |
     |                               |                                                     |                                                                                                                                                                                                                                                                                                             |
@@ -226,7 +226,7 @@ Hier der minimale Beispielcode der das switch Widget aus dem folgenden Screensho
 
 
 Die zweite address Zeile ist zwar streng genommen optional, jedoch macht
-ein Switch-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
+ein Switch-Widget ohne die Rückmeldeadresse in der Praxis keinen Sinn,
 da es dann Ereignisse vom Bus (wie z.B. Zentral-Aus, Treppenlicht) nicht
 mitbekommt und den Status falsch anzeigt.
 

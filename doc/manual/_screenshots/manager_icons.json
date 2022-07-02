@@ -1,0 +1,20 @@
+{
+  "selector": "#manager",
+  "baseDir": "doc/manual",
+  "screenshots": [
+    {
+      "name": "manager_icons",
+      "data": {},
+      "locales": ["de", "en"]
+    }
+  ],
+  "screenshotDir": "config/_static",
+  "fixtures": [],
+  "scale": 75,
+  "mode": "manager",
+  "openFile": {
+    "name": "CometVisu-Icons",
+    "waitFor": "div[qxclass=\"cv.ui.manager.viewer.Icons\"]"
+  },
+  "config": "<pages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" lib_version=\"0\" design=\"metal\" xsi:noNamespaceSchemaLocation=\"../visu_config.xsd\" scroll_speed=\"0\"/>"
+}

@@ -1,6 +1,6 @@
 /* Unknown-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,14 +24,12 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a unknown widget", function() {
+describe('testing a unknown widget', function() {
+  it('should test the unknown creator', function() {
+    var data = cv.parser.WidgetParser.parse(document.createElement('unknown_widget'), 'id_0', null, 'text');
+    var inst = cv.ui.structure.WidgetFactory.createInstance('unknown', data);
+    var unknown = cv.util.String.htmlStringToDomElement(inst.getDomString());
 
-  it("should test the unknown creator", function() {
-
-    var data = cv.parser.WidgetParser.parse(qx.dom.Element.create('unknown_widget'), 'id_0', null, "text");
-    var inst = cv.ui.structure.WidgetFactory.createInstance("unknown", data);
-    var unknown = qx.bom.Html.clean([inst.getDomString()])[0];
-
-    expect(qx.bom.Selector.query("pre", unknown)[0].textContent).toBe('unknown: unknown_widget');
+    expect(unknown.querySelector('pre').textContent).toBe('unknown: unknown_widget');
   });
 });

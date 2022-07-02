@@ -13,8 +13,8 @@ Then the widget is inserted and clicked on the + sign
 Can be configured as follows;
 
 
-Operatable widgets
-==================
+Operable widgets
+================
 
 These widgets can be operated in any way to send data to the backend or trigger other
 actions, e.g. you can switch on a lamp by clicking a switch-widget, or you can navigate withon the visu with a Pagejump.
@@ -23,6 +23,8 @@ actions, e.g. you can switch on a lamp by clicking a switch-widget, or you can n
 | Widget                                          | Description                                                                                                                                                                                                                                                                                               |
 +=================================================+===========================================================================================================================================================================================================================================================================================================+
 | :doc:`Audio <audio/index>`                      | With this widget, an audio file can be integrated into the visu, which can be played by an address.                                                                                                                                                                                                       |
++-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`ColorChooser <colorchooser/index>`        | Color selection for RGB illumination.                                                                                                                                                                                                                                                                     |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Designtoggle <designtoggle/index>`        | Adds a button to the visu that allows you to change the design.                                                                                                                                                                                                                                           |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -38,9 +40,9 @@ actions, e.g. you can switch on a lamp by clicking a switch-widget, or you can n
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`PushButton <pushbutton/index>`            | Adds a button to the visu that sends a defined value to the BUS when you press and release. E.g. pushing a 1 and releasing a 0. This makes it possible, for example, to simulate a push button to open and close a garage door, blinds or blinds.                                                         |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Refresh <refresh/index>`                  | With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data.                                                                                                                                                                                                  |
+| :doc:`Refresh <refresh/index>`                  | With the widget refresh, the visu shows a switch, which allows the visu to reload the displayed data.                                                                                                                                                                                                     |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Reload <reload/index>`                    | With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser.                                                                                                                                                                                                  |
+| :doc:`Reload <reload/index>`                    | With the reload widget, the visu shows a switch, which allows to reload the full visu in the browser.                                                                                                                                                                                                     |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Slide <slide/index>`                      | Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.                                                                                                                                                                                         |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -61,6 +63,7 @@ actions, e.g. you can switch on a lamp by clicking a switch-widget, or you can n
     :hidden:
 
     audio/index
+    colorchooser/index
     designtoggle/index
     imagetrigger/index
     infoaction/index
@@ -93,6 +96,8 @@ These widgets have a purely informative function, an operation is not possible.
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`RGB <rgb/index>`                            | With the RGB widget you can display a colour in the visu.                                                                             |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`Roundbar <roundbar/index>`                  | With the roundbar widget, the visu shows a round bar or indicator, which displays the value of one or more values graphically.        |
++---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Text <text/index>`                          | Adds a static text field to the visu.                                                                                                 |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Video <video/index>`                        | Adds a video or live stream to the visu. Currently, most sources do not support this yet.                                             |
@@ -110,6 +115,7 @@ These widgets have a purely informative function, an operation is not possible.
     info/index
     line/index
     rgb/index
+    roundbar/index
     text/index
     video/index
     web/index
@@ -147,7 +153,7 @@ Other widgets
 Widgets that can be included as plugin
 ======================================
 
-These must be integrated in the ``meta`` area of ​​the :doc:`visu_config.xml <../xml-format>` before they can be used.
+These must be integrated in the ``meta`` area of the :doc:`visu_config.xml <../xml-format>` before they can be used.
 
 For example:
 
@@ -155,45 +161,46 @@ For example:
 
     <plugins>
         <plugin name="diagram" />
-        <plugin name="colorchooser" />
         <plugin name="strftime" />
     </plugins>
 
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Widget                                                                | Description                                                                                                           |
 +=======================================================================+=======================================================================================================================+
-| ColorChooser                                                          | Color selection wheel for RGB illumination.                                                                           |
+| :doc:`Clock <plugins/clock/index>`                                    | Widget to display the time of an address.                                                                             |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | :doc:`Diagram <plugins/diagram/index>`                                | RRD based graphs.                                                                                                     |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Diagram_Info                                                          | Information display that opens a graph when you click on it.                                                          |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| :doc:`Gauge <plugins/gauge/index>`                                    | Pointer instrument.                                                                                                   |
++-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| :doc:`Link <plugins/link/index>`                                      | Add a simple clickable link that opens another website.                                                               |
++-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| :doc:`OpenweatherMap <plugins/openweathermap/index>`                  | Weather forecast                                                                                                      |
++-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | :doc:`PowerSpectrum <plugins/powerspectrum/index>`                    | Graph of the spectrum of a power source.                                                                              |
-+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Strftime <plugins/strftime/index>`                              | Display of the time in text form.                                                                                     |
-+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| RSSlog                                                                | Display of RSS feed.                                                                                                  |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | :doc:`RSS <plugins/rss/index>`                                        | Display of RSS feed.                                                                                                  |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Gauge <plugins/gauge/index>`                                    | Pointer instrument.                                                                                                   |
+| RSSlog                                                                | Display of RSS feed.                                                                                                  |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| CalendarList                                                          | External calendar.                                                                                                    |
+| :doc:`Speech <plugins/speech/index>`                                  | Uses the browsers built in text-to-speech engine to speak text.                                                       |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| Clock                                                                 | Widget to display the time of an address.                                                                             |
+| :doc:`Strftime <plugins/strftime/index>`                              | Display of the time in text form.                                                                                     |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | SVG                                                                   | Demo plugin to show the integration of an interactive scalable vector graphic.                                        |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | :doc:`Timeout <plugins/timeout/index>`                                | Changes currently displayed page after some time of inactivity.                                                       |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`tr064 <plugins/tr064/index>`                                    | Router informationen, like Fritz!Box call lists, via TR-064.                                                          |
+| :doc:`tr064 <plugins/tr064/index>`                                    | Router information, like Fritz!Box call lists, via TR-064.                                                            |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | UPNPController                                                        | UPNP Controller.                                                                                                      |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Speech <plugins/speech/index>`                                  | Uses the browsers built in text-to-speech engine to speak text.                                                       |
-+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Link <plugins/link/index>`                                      | Add a simple clickable link that opens another website.                                                               |
-+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+.. hint::
+
+    The calendarlist-plugin is not available any more, because it used an interface of the google calendar, that is not available anymore.
 
 .. toctree::
     :titlesonly:

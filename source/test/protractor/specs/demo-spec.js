@@ -1,3 +1,22 @@
+/* demo-spec.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 /**
  * Test the demo config file from cometvisu
  *
@@ -16,20 +35,22 @@ describe('cometvisu demo config test:', function () {
 
   it('should load the demo page', function () {
     expect(browser.getTitle()).toEqual('CometVisu Widget Demo - CometVisu');
-    expect(cvDemo.getPages().count()).toEqual(36);
+    expect(cvDemo.getPages().count()).toEqual(39);
     expect(cvDemo.getPageTitle()).toEqual('CometVisu Widget Demo');
   });
 
-  it('should navigate to a page', function() {
-    cvDemo.goToPage("Format Test");
+  it('should navigate to a page', async function() {
+    await cvDemo.disablePageAnimations();
+    await cvDemo.goToPage('Format Test');
+    browser.driver.sleep(200);
     expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
 
   it('should use a switch', function() {
-    var widget = element.all(by.css(".activePage .switch .actor")).first();
+    var widget = element.all(by.css('.activePage .switch .actor')).first();
 
     // get widget data from parent
-    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+    widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function(data) {
         var address;
         for (var addr in data.address) {
@@ -38,39 +59,44 @@ describe('cometvisu demo config test:', function () {
         }
 
         browser.actions().click(widget).perform();
-        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+
+        expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function(lastWrite) {
-          expect(lastWrite.value).toEqual("0");
+          expect(lastWrite.value).toEqual('0');
         });
 
         browser.actions().click(widget).perform();
-        expect(widget.element(by.css(".value")).getText()).toEqual('An');
+
+        expect(widget.element(by.css('.value')).getText()).toEqual('An');
         cvDemo.getLastWrite().then(function(lastWrite) {
-          expect(lastWrite.value).toEqual("1");
+          expect(lastWrite.value).toEqual('1');
         });
 
         // send update via backend
-        cvDemo.sendUpdate(address, 0);
-        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        cvDemo.sendUpdate(address, 0).then(() => {
+          expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
+        });
       });
     });
   });
 
   it('should use a trigger', function() {
-    var widget = element.all(by.css(".activePage .trigger .actor")).first();
+    var widget = element.all(by.css('.activePage .trigger .actor')).first();
 
     // get widget data from parent
-    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+    widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function (data) {
         var sendValue = data.sendValue;
 
         widget.click();
-        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+
+        expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function (lastWrite) {
           expect(lastWrite.value).toEqual(sendValue);
         });
         widget.click();
-        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+
+        expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function (lastWrite) {
           expect(lastWrite.value).toEqual(sendValue);
         });
@@ -79,26 +105,21 @@ describe('cometvisu demo config test:', function () {
   });
 
   it('should use a pushbutton', function() {
-    var widget = element.all(by.css(".activePage .pushbutton .actor")).first();
+    var widget = element.all(by.css('.activePage .pushbutton .actor')).first();
 
     // get widget data from parent
-    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+    widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function (data) {
-        var address;
-        for (var addr in data.address) {
-          address = addr;
-          break;
-        }
-
         browser.actions().mouseDown(widget).perform();
 
-        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function (lastWrite) {
           expect(lastWrite.value).toEqual(data.downValue);
         });
 
         browser.actions().mouseUp(widget).perform();
-        expect(widget.element(by.css(".value")).getText()).toEqual('An');
+
+        expect(widget.element(by.css('.value')).getText()).toEqual('An');
         cvDemo.getLastWrite().then(function (lastWrite) {
           expect(lastWrite.value).toEqual(data.upValue);
         });
@@ -107,10 +128,10 @@ describe('cometvisu demo config test:', function () {
   });
 
   it('should use a slider', function() {
-    var widget = element.all(by.css(".activePage .slide .actor")).first();
+    var widget = element.all(by.css('.activePage .slide .actor')).first();
 
     // get widget data from parent
-    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+    widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function (data) {
         var address;
         for (var addr in data.address) {
@@ -119,11 +140,14 @@ describe('cometvisu demo config test:', function () {
         }
 
         // find the slider knob
-        var knob = widget.element(by.css(".ui-slider-handle"));
-        browser.actions().mouseDown(knob).mouseMove(knob, {x: 20, y:0}).mouseUp(knob).perform();
-
-        cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toBeGreaterThan(0);
+        var knob = widget.element(by.css('.ui-slider-handle'));
+        browser.actions().mouseMove(knob, {x: 10, y:10}).mouseDown().perform();
+        cvDemo.getLastWrite().then(function (lastWrite1) {
+          browser.actions().mouseMove(knob, {x: 30, y:10}).mouseUp().perform();
+          browser.sleep(500);
+          cvDemo.getLastWrite().then(function (lastWrite2) {
+            expect(lastWrite2.value).toBeGreaterThan(lastWrite1.value);
+          });
         });
         var borderWidth = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
 
@@ -135,16 +159,17 @@ describe('cometvisu demo config test:', function () {
                 // slider min
                 cvDemo.sendUpdate(address, data.min || 0);
                 // give the slider some time to reach its position
-                browser.sleep(1000);
+                browser.sleep(1500);
                 knob.getLocation().then(function (newPos) {
-                  expect(newPos.x).toEqual(rangePosition.x + borderWidth - Math.round(knobSize.width/2));
+                  // check with some tolerance
+                  expect(Math.abs(newPos.x-(rangePosition.x + borderWidth - Math.round(knobSize.width/2)))).toBeLessThan(25);
                   expect(newPos.y).toEqual(pos.y);
                 });
 
                 // slider max
                 cvDemo.sendUpdate(address, data.max || 100);
                 // give the slider some time to reach its position
-                browser.sleep(1000);
+                browser.sleep(1500);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
                   expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(25);

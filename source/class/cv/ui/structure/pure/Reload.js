@@ -1,6 +1,6 @@
 /* Reload.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -47,7 +47,7 @@ qx.Class.define('cv.ui.structure.pure.Reload', {
     },
 
     _update: function (address, data) {
-      var value = this.defaultValueHandling(address, data);
+      const value = this.defaultValueHandling(address, data);
       if (value > 0) {
         cv.util.Location.reload(true);
       }

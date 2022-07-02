@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
@@ -26,16 +26,10 @@ import socket
 import errno
 import json
 import shutil
+from sh import npm
 
-try:
-    # Python 2.x
-    from SocketServer import ThreadingMixIn
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-    from BaseHTTPServer import HTTPServer
-except ImportError:
-    # Python 3.x
-    from socketserver import ThreadingMixIn
-    from http.server import SimpleHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 
 class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
@@ -63,7 +57,7 @@ class MutedHttpRequestHandler(SimpleHTTPRequestHandler, object):
 
 
 def prepare_replay(file):
-    with open(os.path.join("source", "replay-log.js"), "w") as target:
+    with open(os.path.join("compiled", "source", "replay-log.js"), "w") as target:
         with open(file) as source:
             data = source.read()
             target.write('var replayLog = %s;' % data)
@@ -98,7 +92,7 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             flags.append("--user-agent=%s" % user_agent)
 
         flags.append("--app=%s" % url)
-        sh.google_chrome(*flags)
+        return sh.google_chrome(*flags, _bg=True)
 
     elif browser == "firefox":
         os.makedirs(user_dir)
@@ -116,7 +110,9 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             "--no-remote", "--new-window", "--new-instance", "-width", "%s" % dimension[0],
             "-height", dimension[1], "--profile", user_dir, "-url", url
         ]
-        sh.firefox(*flags)
+        if open_devtools is True:
+            flags.append("--devtools")
+        return sh.firefox(*flags, _bg=True)
 
 
 def get_server(host="", port=9000, next_attempts=0):
@@ -131,11 +127,13 @@ def get_server(host="", port=9000, next_attempts=0):
             else:
                 raise
 
+
 if __name__ == '__main__':
     parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
 
     parser.add_argument('file', type=str, help='log file', nargs='?')
     parser.add_argument('--devtools', '-d', action='store_true', dest='devtools', help='Open browser with dev tools')
+    parser.add_argument('--globalErrorHandling', '-e', action='store_true', dest='global_error_handling', help='Enable globalErrorHandling')
     options, unknown = parser.parse_known_args()
 
     if options.file is None:
@@ -143,10 +141,18 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(0)
 
+    # compile cv
+    args = ['compile']
+    if options.global_error_handling is True:
+        args.extend(['--', '--set-env', 'qx.globalErrorHandling=true'])
+
+    npm.run(*args, _out=sys.stdout, _err=sys.stderr)
+
     settings = prepare_replay(options.file)
     window_size = "%s,%s" % (settings["width"], settings["height"])
     browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
-    anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None else ""
+    anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None and settings["anchor"] != "#" else ""
+    query = "?%s" % "&".join([key + "=" + value for key, value in settings["query"].items()]) if "query" in settings and settings["query"] is not None and len(settings["query"]) > 0 else ""
 
     print("Replaying log recorded with CometVisu:")
     print("  Branch:   %s" % settings["cv"]["BRANCH"])
@@ -169,13 +175,11 @@ if __name__ == '__main__':
         thread.start()
 
         # open browser
-        start_browser("http://localhost:%s/source/replay.html%s" % (port, anchor),
+        cmd = start_browser("http://localhost:%s/compiled/source/replay.html%s%s" % (port, query, anchor),
                       browser=browser_name, size=window_size, open_devtools=options.devtools)
-
-        while thread.isAlive():
-            thread.join(1)
+        cmd.wait()
+        sys.exit()
 
     except (KeyboardInterrupt, SystemExit):
-        print("aborted")
         server.shutdown()
         sys.exit()

@@ -1,6 +1,6 @@
 /* Toggle-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,25 +22,23 @@
  * Unit tests for toggle widget
  *
  */
-describe("testing a toggle widget", function() {
+describe('testing a toggle widget', function() {
+  it('should test the toggle creator', function() {
+    const [widget, element] = this.createTestWidgetString('toggle', {}, '<label>Test</label>');
 
-  it("should test the toggle creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("toggle", {}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(widget).toHaveClass('toggle');
-    expect(widget).toHaveLabel('Test');
-
+    expect(element).toHaveClass('toggle');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should test the action value return", function() {
-    cv.Config.addMapping("test", {0: 0, 1: 1});
-    var res = this.createTestElement("toggle", {mapping: "test"});
+  it('should test the action value return', function() {
+    cv.Config.addMapping('test', {0: 0, 1: 1});
+    var res = this.createTestElement('toggle', {mapping: 'test'});
 
     expect(res.getActionValue()).toBe('0');
     res.setBasicValue(0);
+
     expect(res.getActionValue()).toBe('1');
     cv.Config.clearMappings();
   });

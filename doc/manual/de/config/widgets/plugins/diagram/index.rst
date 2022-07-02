@@ -77,6 +77,13 @@ Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 |selfsigned |Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert ``true`` ist |``false``                   |
 +-----------+-----------------------------------------------------------------------------+----------------------------+
 
+.. hint::
+
+    Wenn die Verbindung zur Datenbank mit der Fehlermeldung
+    ``failed to open stream: operation failed``
+    nicht aufgebaut werden kann, so kann dies ein Hinweis darauf sein, dass
+    ``selfsigned`` auf ``true`` gesetzt werden muss.
+
 ``consolidationFunction`` Attribut
 """"""""""""""""""""""""""""""""""
 
@@ -125,7 +132,7 @@ eine ``consolidationFunction`` gebildet. Möglich ist:
 ``DIFFERENCE_PERCENTILE_90`` [1]_  Differenz des 90% Percentils des jeweiligen Zeitbereichs
 ``DIFFERENCE_PERCENTILE_95`` [1]_  Differenz des 95% Percentils des jeweiligen Zeitbereichs
 ``DIFFERENCE_PERCENTILE_99`` [1]_  Differenz des 99% Percentils des jeweiligen Zeitbereichs
-``ELAPSED``                        Zeit seit dem letzen Messwert (ignoriert ``resolution`` Attribut)
+``ELAPSED``                        Zeit seit dem letzten Messwert (ignoriert ``resolution`` Attribut)
 ``INTEGRAL``                       Integral der Werte
 ``MAX``                            Maximum
 ``MEAN``                           Mittelwert
@@ -176,7 +183,8 @@ Mögliche Operatoren sind:
 
 .. code-block:: xml
 
-    <diagram width="600" height="300" series="fullday" period="8">
+    <diagram series="fullday" period="8">
+      <layout colspan="12" rowspan="4"/>
       <influx field="Val" fillMissing="linear" style="lines" fill="true" measurement="timeseries_db/KNX_LINE1" authentication="influx">
         <and>
           <tag key="PA" operator="=" value="1.2.3"/>

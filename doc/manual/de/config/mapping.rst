@@ -57,7 +57,7 @@ Iconset <http://knx-user-forum.de/knx-uf-iconset/>`__
 
 Eine Übersicht der verfügbaren Icons findet man am einfachsten auf dem
 Rechner auf dem die CometVisu läuft unter
-``http://<IP>/visu/resource/icon/iconlist.html``
+``http://<IP>/visu/resource/icons/iconlist.html``
 
 Man kann damit Mapping nutzen um statt Werten (z.B. 0 oder 1) Icons
 anzuzeigen.
@@ -224,7 +224,7 @@ um andere Einheiten zu benutzen.
 Wert "y" zuweisen muss.
 
 Komplexere Funktionen und Berechnungen mit mehreren Werten können hier
-nicht durchgeführt werden, dafür muss eine externe Logik Engine (linkknx
+nicht durchgeführt werden, dafür muss eine externe Logik Engine (linknx
 o.ä.) eingesetzt werden. Allerdings ist es durchaus möglich, die
 gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.
 
@@ -453,8 +453,8 @@ Windrichtung
             <entry range_min="348.75" range_max="360">Nord</entry>
         </mapping>
 
-Rolläden, Raffstores und Jalousien
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Rollläden, Raffstores und Jalousien
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: xml
 

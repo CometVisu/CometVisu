@@ -1,6 +1,6 @@
 /* Web.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -39,27 +39,27 @@ qx.Class.define('cv.ui.structure.pure.Web', {
   properties: {
 
     width: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     height: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     frameborder: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     background: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     scrolling: {
-      check: ["auto", "yes", "no"],
+      check: ['auto', 'yes', 'no'],
       nullable: true
     },
     src: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -72,20 +72,29 @@ qx.Class.define('cv.ui.structure.pure.Web', {
   members: {
     // overridden
     _getInnerDomString: function () {
-      var webStyle = '';
+      let webStyle = this.getStyle();
       if (this.getWidth()) {
         webStyle += 'width:' + this.getWidth() + ';';
-      } else {  // default width is 100% of widget space (fix bug #3175343 part 1)
+      } else { // default width is 100% of widget space (fix bug #3175343 part 1)
         webStyle += 'width: 100%;';
       }
-      var style = this.getStyle();
-      if (this.getHeight()) { webStyle += 'height:' + this.getHeight() + ';'; }
-      if (this.getFrameborder() === false) { style += 'border: 0px ;'; }
-      if (this.getBackground()) { webStyle += 'background-color:' + this.getBackground() + ';'; }
-      if (webStyle !== '') { webStyle = 'style="' + webStyle + '"'; }
+      if (this.getHeight()) {
+        webStyle += 'height:' + this.getHeight() + ';';
+      }
+      if (this.getFrameborder() === false) {
+        webStyle += 'border: 0px ;';
+      }
+      if (this.getBackground()) {
+        webStyle += 'background-color:' + this.getBackground() + ';';
+      }
+      if (webStyle !== '') {
+        webStyle = 'style="' + webStyle + '"';
+      }
 
-      var scrolling = '';
-      if (this.getScrolling()) { scrolling = 'scrolling="' + this.getScrolling() + '"'; } // add scrolling parameter to iframe
+      let scrolling = '';
+      if (this.getScrolling()) {
+        scrolling = 'scrolling="' + this.getScrolling() + '"';
+      } // add scrolling parameter to iframe
       return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
     },
 
@@ -96,13 +105,15 @@ qx.Class.define('cv.ui.structure.pure.Web', {
      * @param data {var} incoming data (already transformed + mapped)
      */
     _update: function(address, data) {
-      var addr = this.getAddress()[ address ];
-      if (!addr) { return; }
+      let addr = this.getAddress()[address];
+      if (!addr) {
+        return;
+      }
       if (data === 1) {
-        var iframe = qx.bom.Selector.query('iframe', this.getDomElement())[0];
-        this.refreshAction(iframe, qx.bom.element.Attribute.get(iframe, 'src'));
+        const iframe = this.getDomElement().querySelector('iframe');
+        this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
-        cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr[0], 0));
+        cv.TemplateEngine.getInstance().visu.write(address, cv.Transform.encode(addr, 0));
       }
     }
   }

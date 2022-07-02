@@ -1,6 +1,6 @@
 /* Speech.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -65,6 +65,7 @@ qx.Class.define('cv.plugins.Speech', {
    ******************************************************
    */
   construct: function(props) {
+    this._initOnCreate = true;
     this.base(arguments);
     this.set(props);
     this.__lastSpeech = {};
@@ -79,19 +80,21 @@ qx.Class.define('cv.plugins.Speech', {
   statics: {
     parse: function (element, path) {
       if (!window.speechSynthesis) {
-        qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
-        return;
+        qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
+        return null;
       }
 
-      var address = cv.parser.WidgetParser.makeAddressList(element, path);
+      const address = cv.parser.WidgetParser.makeAddressList(element, path);
 
-      return cv.data.Model.getInstance().setWidgetData( path, {
+      return cv.data.Model.getInstance().setWidgetData(path, {
         'path'    : path,
-        'language': qx.bom.element.Attribute.get(element, 'lang') ? qx.bom.element.Attribute.get(element, 'lang') .toLowerCase() : null,
+        'language': element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : null,
         'address' : address,
-        'mapping' : qx.bom.element.Attribute.get(element, 'mapping'),
-        'repeatTimeout': qx.bom.element.Attribute.get(element, 'repeat-timeout') ? parseInt(qx.bom.element.Attribute.get(element, 'repeat-timeout')) : -1,
-        '$$type'  : 'speech'
+        'mapping' : element.getAttribute('mapping'),
+        'repeatTimeout': element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
+        '$$type'  : 'speech',
+        // this widget needs to be initialized when the cache is used, otherwise it wont be available
+        '$$initOnCacheLoad': true
       });
     }
   },
@@ -102,13 +105,14 @@ qx.Class.define('cv.plugins.Speech', {
    ******************************************************
    */
   properties: {
-    path              : { check: "String" },
-    $$type            : { check: "String" },
-    language          : { check: "String" },
-    mapping           : { check: "String", init: "" },
-    repeatTimeout     : { check: "Number", init: -1 },
+    path              : { check: 'String' },
+    $$type            : { check: 'String' },
+    $$initOnCacheLoad : { check: 'Boolean' },
+    language          : { check: 'String' },
+    mapping           : { check: 'String', init: '' },
+    repeatTimeout     : { check: 'Number', init: -1 },
     parentWidget: {
-      check: "cv.ui.structure.AbstractBasicWidget",
+      check: 'cv.ui.structure.AbstractBasicWidget',
       init: null
     }
   },
@@ -127,46 +131,44 @@ qx.Class.define('cv.plugins.Speech', {
 
     _processIncomingValue: function(address, data) {
       // #1: transform the raw value to a JavaScript type
-      var value = this.applyTransform(address, data);
+      const value = this.applyTransform(address, data);
 
       // #2: map it to a value the user wants to see
       return this.applyMapping(value);
     },
 
     handleUpdate: function(text, address) {
-
       if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
         // first call -> skipping
         this.__lastSpeech[address] = {
           text: text,
           time: Date.now()
         };
-        this.debug("skipping initial TTS for "+text);
+        this.debug('skipping initial TTS for '+text);
         return;
       }
 
       if (!text || text.length === 0) {
         // nothing to say
-        this.debug("no text to speech given");
+        this.debug('no text to speech given');
         return;
       }
 
-      if (typeof text === "string" && text.substring(0,1) === "!") {
+      if (typeof text === 'string' && text.substring(0, 1) === '!') {
         // override repeatTimeout, force saying this
         text = text.substring(1);
-      }
-      else if (this.getRepeatTimeout() >= 0) {
+      } else if (this.getRepeatTimeout() >= 0) {
         // do not repeat (within timeout when this.repeatTimeout > 0)
         if (this.__lastSpeech[address] && this.__lastSpeech[address].text === text && (this.getRepeatTimeout() === 0 ||
           this.getRepeatTimeout() >= Math.round((Date.now()-this.__lastSpeech[address].time)/1000))) {
           // update time
           this.__lastSpeech[address].time = Date.now();
           // do not repeat
-          this.debug("skipping TTS because of repetition " + text);
+          this.debug('skipping TTS because of repetition ' + text);
           return;
         }
       }
-      this.debug("changing lastSpeech from '%s' to '%s'", this.__lastSpeech[address] ? this.__lastSpeech[address].text : "", text);
+      this.debug('changing lastSpeech from \'%s\' to \'%s\'', this.__lastSpeech[address] ? this.__lastSpeech[address].text : '', text);
       this.__lastSpeech[address] = {
         text: text,
         time: Date.now()
@@ -178,7 +180,7 @@ qx.Class.define('cv.plugins.Speech', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("speech", cv.plugins.Speech);
-    cv.ui.structure.WidgetFactory.registerClass("speech", statics);
+    cv.parser.WidgetParser.addHandler('speech', cv.plugins.Speech);
+    cv.ui.structure.WidgetFactory.registerClass('speech', statics);
   }
 });

@@ -1,6 +1,6 @@
 /* Svg.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -44,7 +44,7 @@ qx.Class.define('cv.plugins.Svg', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -63,43 +63,45 @@ qx.Class.define('cv.plugins.Svg', {
 
     _onDomReady: function() {
       this.base(arguments);
-      var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
+      const ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
       ajaxRequest.set({
-        accept: "text/plain",
+        accept: 'text/plain',
         cache: !cv.Config.forceReload
       });
-      ajaxRequest.addListenerOnce("success", function (e) {
-        var req = e.getTarget();
-        var actor = this.getActor();
-        qx.bom.element.Attribute.set(actor, 'html', req.getResponseText());
+      ajaxRequest.addListenerOnce('success', function (e) {
+        const req = e.getTarget();
+        const actor = this.getActor();
+        actor.innerHTML = req.getResponseText();
       }, this);
       ajaxRequest.send();
     },
 
     _update: function(address, value) {
       value = this.defaultValueHandling(address, value);
-      var element = this.getActor();
-      var linewidth=3;
-      var space = 1;
-      var total = linewidth + space;
-      var line_qty = 48 / total;
-      var line, i, l;
-      for(i = 0, l = Math.floor(value/line_qty); i<=l;i++) {
-        line = qx.bom.Selector.query('#line'+(i+1), element)[0];
-        qx.bom.element.Attribute.set(line, 'y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
-        qx.bom.element.Attribute.set(line, 'y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
+      const element = this.getActor();
+      const linewidth = 3;
+      const space = 1;
+      const total = linewidth + space;
+      const line_qty = 48 / total;
+      let line;
+      let i;
+      let l;
+      for (i = 0, l = Math.floor(value/line_qty); i<=l; i++) {
+        line = element.querySelector('#line'+(i+1));
+        line.setAttribute('y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
+        line.setAttribute('y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
       }
-      for(i = Math.floor(value/line_qty)+1; i<=line_qty;i++) {
-        line = qx.bom.Selector.query('#line'+(i+1), element)[0];
-        qx.bom.element.Attribute.set(line, 'y1', 9);
-        qx.bom.element.Attribute.set(line, 'y2', 9);
+      for (i = Math.floor(value/line_qty)+1; i<=line_qty; i++) {
+        line = element.querySelector('#line'+(i+1));
+        line.setAttribute('y1', 9);
+        line.setAttribute('y2', 9);
       }
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("svg", cv.plugins.Svg);
-    cv.ui.structure.WidgetFactory.registerClass("svg", statics);
+    cv.parser.WidgetParser.addHandler('svg', cv.plugins.Svg);
+    cv.ui.structure.WidgetFactory.registerClass('svg', statics);
   }
 });

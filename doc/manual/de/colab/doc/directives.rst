@@ -102,7 +102,7 @@ Die Bereiche 1. und 2. sind optional und können auch weggelassen werden, wenn m
 vom Beispielcode ohne Untertitel benötigt kann der *<settings>*-Teil auch weggelassen werden.
 
 Darüber hinaus gibt es noch diverse Optionen mit denen das Aussehen des Beispiel-Codes und des zu gehörigen
-Screenshots beinflusst werden können
+Screenshots beeinflusst werden können
 
 #. `linenos`: Wenn angegeben, wird der Beispielcode mit Zeilennummern angegeben
 #. `lineno-start`: Zahl bei der die Zeilennummern starten sollen (Default: 1)
@@ -154,7 +154,7 @@ verfeinert werden.
 |                   +-------------------+-------------------+----------------------------------------------------------------------------+
 |                   | sleep             | Zahl              | Wartezeit zwischen Senden der Daten und Screenshot                         |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
-| <settings>        | address           | Gruppenaddresse   | Sende Daten an diese Adresse bevor der Screenshot gemacht wird             |
+| <settings>        | address           | Gruppenadresse    | Sende Daten an diese Adresse bevor der Screenshot gemacht wird             |
 |   <screenshot>    +-------------------+-------------------+----------------------------------------------------------------------------+
 |      <data>       | type              | *float* oder *int*| Falls echte Zahlenwerte gesendet werden müssen                             |
 +                   +-------------------+-------------------+----------------------------------------------------------------------------+
@@ -202,7 +202,7 @@ Momentan sind das die Werte der ``@author`` und ``@since`` Angaben.
     Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
     entspricht, also z.B. für ``structure/pure/Switch.js`` nimmt man ``.. api-doc:: Switch``
     (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
-    z.B. für ``plugins/colorchooser/`` nimmt man ``.. api-doc:: colorchooser``
+    z.B. für ``plugins/clock/`` nimmt man ``.. api-doc:: clock``
 
 Beispiel für das Switch-Widget:
 

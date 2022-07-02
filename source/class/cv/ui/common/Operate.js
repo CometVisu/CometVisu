@@ -1,6 +1,6 @@
 /* Operate.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  * Provides methods for widgets that can be controlled by the user.
  * Usually this operation includes sending values to the backend.
  */
-qx.Mixin.define("cv.ui.common.Operate", {
+qx.Mixin.define('cv.ui.common.Operate', {
 
   /*
   ******************************************************
@@ -43,11 +43,9 @@ qx.Mixin.define("cv.ui.common.Operate", {
       }
       if (this._action) {
         this._action(event);
-      } else {
-        if (this.getActionValue) {
+      } else if (this.getActionValue) {
           this.sendToBackend(this.getActionValue(event));
         }
-      }
       if (event && event.getBubbles()) {
         event.stopPropagation();
       }
@@ -79,20 +77,33 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @return the object/hash of encoded values that were sent last time
      */
     sendToBackend: function (value, filter, currentBusValues) {
-      var encodedValues = {};
+      const encodedValues = {};
       if (this.getAddress) {
-        var list = this.getAddress();
-        for (var id in list) {
-          if (list.hasOwnProperty(id)) {
-            var address = list[id];
+        const list = this.getAddress();
+        for (let id in list) {
+          if (Object.prototype.hasOwnProperty.call(list, id)) {
+            const address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              var
-                encoding = address[0],
-                encodedValue = cv.Transform.encode(encoding, value);
-              if( !currentBusValues || encodedValue !== currentBusValues[encoding] ) {
-                cv.TemplateEngine.getInstance().visu.write(id, encodedValue);
+              try {
+                const encoding = address.transform;
+                const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
+                if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
+                  cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
+                }
+                encodedValues[encoding] = encodedValue.raw;
+              } catch (e) {
+                if (!address.ignoreError) {
+                  const message = {
+                    topic: 'cv.transform.encode',
+                    title: qx.locale.Manager.tr('Transform encode error'),
+                    severity: 'urgent',
+                    unique: false,
+                    deletable: true,
+                    message: qx.locale.Manager.tr('Encode error: %1; selector: "%2"; value: %3', e, address.selector, JSON.stringify(value))
+                  };
+                  cv.core.notifications.Router.dispatchMessage(message.topic, message);
+                }
               }
-              encodedValues[encoding] = encodedValue;
             }
           }
         }

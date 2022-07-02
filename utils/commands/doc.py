@@ -18,10 +18,11 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 import os
+import io
 import logging
 import configparser
 import codecs
-
+import enchant
 import subprocess
 from json import dumps
 from semver import compare
@@ -39,8 +40,8 @@ from lxml import etree
 from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
-from scaffolding import Scaffolder
-from sphinx import main
+from utils.commands.scaffolding import Scaffolder
+
 try:
     # Python 2.6-2.7
     from HTMLParser import HTMLParser
@@ -87,7 +88,7 @@ class DocParser:
 
     def parse(self):
         self.init()
-        with open(self.file) as f:
+        with io.open(self.file, mode="r", encoding="utf-8") as f:
             current_section = None
             # find sections
             for line in f.readlines():
@@ -125,13 +126,14 @@ class DocParser:
         return "".join(content)
 
     def write(self):
-        with open(self.file, "w") as f:
+        with io.open(self.file, "w", encoding="utf-8") as f:
             f.write(self.tostring())
 
 
 class DocGenerator(Command):
     _source_version = None
     _doc_version = None
+    _check_line = re.compile(r'^(.+):([\d]+):\sSpell\scheck:\s([\w]+):\s(.*)$')
 
     def __init__(self):
         super(DocGenerator, self).__init__()
@@ -140,10 +142,6 @@ class DocGenerator(Command):
 
     def _get_doc_version(self):
         if self._doc_version is None:
-            git = sh.Command("git")
-            branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-                else os.environ.get('TRAVIS_BRANCH')
-
             self._doc_version = self._get_source_version()
         return self._doc_version
 
@@ -163,7 +161,24 @@ class DocGenerator(Command):
         else:
             return ver
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None):
+    def _handle_spellcheck(self, line, fails={}):
+        match = self._check_line.match(line.rstrip())
+        if match:
+            if match.group(1) not in fails:
+                fails[match.group(1)] = []
+            fails[match.group(1)].append({
+                "line": int(match.group(2)),
+                "word": match.group(3),
+                "context": match.group(4)
+            })
+
+    def _run(self, language, target_dir, browser,
+             skip_screenshots=True,
+             force=False,
+             screenshot_build="source",
+             target_version=None,
+             spelling=False
+             ):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -177,6 +192,35 @@ class DocGenerator(Command):
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
         target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
+
+        if spelling:
+            # check if german dictionary is available
+            if "de_DE" not in enchant.list_languages():
+                print("spellcheck for german is not possible, german dictionary not installed!")
+                print(enchant.list_languages())
+                sys.exit(1)
+
+            print("check spelling in %s" % source_dir)
+            args = ["-N", "-b", "spelling", source_dir, target_dir]
+            total_fails = {}
+            total_count = 0
+            sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails))
+            for file, fails in total_fails.items():
+                rel_file = file[len(self.root_dir)+1:]
+                total_count += len(fails)
+                print("\n%s (%s failures):" % (rel_file, len(fails)))
+                longest_word = 0
+                for fail in fails:
+                    if len(fail["word"]) > longest_word:
+                        longest_word = len(fail["word"])
+                for fail in fails:
+                    print(" - {word:{longest_word}} [{context}]".format(**fail, longest_word=longest_word))
+
+            if len(total_fails) > 0:
+                print("\nfound %s spelling errors in %s" % (total_count, source_dir))
+                sys.exit(1)
+            sys.exit(0)
+
         print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
@@ -215,8 +259,8 @@ class DocGenerator(Command):
         # create symlinks
         symlinkname = ''
         git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-            else os.environ.get('TRAVIS_BRANCH')
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('GITHUB_REF') is None \
+            else os.environ.get('GITHUB_REF').split("/")[:-1]
 
         if branch == "develop":
             # handle develop builds:
@@ -246,7 +290,10 @@ class DocGenerator(Command):
         Generates the english manual from the source code comments (api documentation)
         """
         # traverse through the widgets
-        root, dirs, files = os.walk(path).next()
+        if not os.path.exists(path):
+            print("%s does not exist" % path)
+            return
+        root, dirs, files = list(os.walk(path))[0]
         source_files = []
         cleanr = re.compile('</?h.*?>')
         clean_tags = re.compile('</?.*?>')
@@ -269,13 +316,13 @@ class DocGenerator(Command):
                 if os.path.exists(parser_path):
                     source_files.append((parser, parser_path))
                 else:
-                    print("file not found %s" % parser_path)
+                    print("file not found %s - skipping it and continue the processing..." % parser_path)
 
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
             api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "resource", "apiviewer", "examples")
 
-            with open(file) as f:
+            with io.open(file, mode="r", encoding="utf-8") as f:
                 content = {
                     "WIDGET-DESCRIPTION": [],
                     "WIDGET-EXAMPLES": []
@@ -350,9 +397,9 @@ class DocGenerator(Command):
                                             content[section].append(".. code-block:: xml\n\n    ")
                                             for child in xml:
                                                 if child.tag == "meta":
-                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode('utf-8').split("\n")))
                                                 elif child.tag != "settings":
-                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode('utf-8').split("\n")))
                                         else:
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
@@ -475,7 +522,7 @@ class DocGenerator(Command):
                         if len(features[name]['screenshot']) == 0:
                             del features[name]['screenshot']
                         elif len(features[name]['screenshot']) == 1:
-                            features[name]['screenshot'] = features[name]['screenshot'].values()[0]
+                            features[name]['screenshot'] = list(features[name]['screenshot'].values())[0]
                         if len(features[name]['manual']) == 0:
                             del features[name]['manual']
 
@@ -498,16 +545,16 @@ class DocGenerator(Command):
 
         return None
 
-    def _sort_versions(self, a, b):
-        return cmp(LooseVersion(a.split("|")[0]), LooseVersion(b.split("|")[0]))
+    def _key_sort_versions(self, a):
+        return LooseVersion(a.split("|")[0])
 
     def process_versions(self, path):
-        root, dirs, files = os.walk(path).next()
+        root, dirs, files = list(os.walk(path))[0]
         for lang_dir in dirs:
             if lang_dir[0:1] != "." and len(lang_dir) == 2:
                 print("checking versions in language: %s" % lang_dir)
                 # collect versions and symlinks
-                root, dirs, files = os.walk(os.path.join(path, lang_dir)).next()
+                root, dirs, files = list(os.walk(os.path.join(path, lang_dir)))[0]
                 symlinks = {}
                 versions = []
                 special_versions = []
@@ -524,7 +571,7 @@ class DocGenerator(Command):
                         special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
 
                 # max_version = max_ver(versions)
-                versions.sort(self._sort_versions)
+                versions.sort(key=self._key_sort_versions)
                 max_version = None
                 max_version_path = None
                 found_max = False
@@ -573,11 +620,13 @@ class DocGenerator(Command):
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
+        parser.add_argument("--move-apiviewer-screenshots", dest="move_apiviewer_screenshots", action="store_true", help="move the generated apiviewer screenshots to the correct version subfolder")
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
+        parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
 
         options = parser.parse_args(args)
 
@@ -617,18 +666,26 @@ class DocGenerator(Command):
             # move to the correct dir
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
             target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
-            # remove api suffix from target
-            target_dir = os.path.sep.join(target_dir.split(os.path.sep)[0:-1])
             shutil.move(self.config.get("api", "generator_target"), target_dir)
+
+        elif options.move_apiviewer_screenshots:
+            # move to the correct dir
+            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
+            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
+            screenshots_dir = self.config.get("api", "screenshots-path")
+            screenshots_parent_dir = "/".join(screenshots_dir.split("/")[0:-1])
+            shutil.move(os.path.join(self.config.get("api", "generator_target"), screenshots_dir), os.path.join(target_dir, screenshots_parent_dir))
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,
                       skip_screenshots=not options.complete, screenshot_build=options.screenshot_build,
-                      target_version=options.target_version)
+                      target_version=options.target_version,
+                      spelling=options.spelling
+                      )
             sys.exit(0)
 
         elif options.doc == "source":
-            cmd = "./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
+            cmd = "CV_VERSION=%s npm run api" % self._get_doc_version()
             subprocess.call(cmd, shell=True)
 
         else:

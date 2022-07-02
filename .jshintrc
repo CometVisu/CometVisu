@@ -1,7 +1,7 @@
 {
   "node": true,
   "browser": true,
-  "esnext": true,
+  "esversion": 7,
   "bitwise": false,
   "curly": true,
   "eqeqeq": true,
@@ -16,6 +16,7 @@
   "smarttabs": true,
   "multistr": true,
   "jasmine": true,
+  "worker": true,
   "globals": {
     "browser": false,
     "describe": false,
@@ -47,6 +48,12 @@
     "EVENT_RECORDER": true,
     "DOMWindow": false,
     "Favico": false,
-    "Sentry": true
+    "Sentry": true,
+    "osparc": true,
+    "monaco": true,
+    "CRC32": true,
+    "xmllint": true,
+    "dialog": true,
+    "com": true
   }
 }

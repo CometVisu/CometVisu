@@ -1,6 +1,6 @@
 /* ToastManager.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,14 +17,15 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Handles toast positioning in the gui.
  */
-qx.Class.define("cv.ui.ToastManager", {
+qx.Class.define('cv.ui.ToastManager', {
   extend: qx.core.Object,
   implement: cv.core.notifications.IHandler,
   include: cv.ui.MHandleMessage,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -34,19 +35,19 @@ qx.Class.define("cv.ui.ToastManager", {
   construct: function() {
     this.base(arguments);
     this.set({
-      rootElementId: "toast-list",
-      messageElementId: "toast_"
+      rootElementId: 'toast-list',
+      messageElementId: 'toast_'
     });
 
     this.setDelegate({
       prepareMessage: function(message) {
         // all toast messages need a duration
-        if (!message.hasOwnProperty("duration")) {
+        if (!Object.prototype.hasOwnProperty.call(message, 'duration')) {
           message.duration = this.getMessageDuration();
         }
       }.bind(this),
       postHandleMessage: function(message, config, payload) {
-        if (payload.action === "added" || payload.action === "replaced") {
+        if (payload.action === 'added' || payload.action === 'replaced') {
           // add removal listener
           qx.event.Timer.once(function() {
             this.getMessages().remove(message);
@@ -73,7 +74,7 @@ qx.Class.define("cv.ui.ToastManager", {
      * Default time in MS a toast message is visible
      */
     messageDuration: {
-      check: "Number",
+      check: 'Number',
       init: 5000
     }
   },
@@ -95,24 +96,24 @@ qx.Class.define("cv.ui.ToastManager", {
     _init: function() {
       if (!this.__domElement) {
         // check if there is one (might be restored from cache)
-        this.__domElement = qx.bom.Selector.query(this.getRootElementId())[0];
+        this.__domElement = document.querySelector(this.getRootElementId());
         if (!this.__domElement) {
-          this.__domElement = qx.dom.Element.create("div", {"id": this.getRootElementId()});
+          this.__domElement = qx.dom.Element.create('div', {'id': this.getRootElementId()});
         }
       }
-      if (qx.bom.Selector.query(this.getRootElementId()).length === 0) {
-        qx.dom.Element.insertEnd(this.__domElement, document.body);
+      if (document.querySelectorAll(this.getRootElementId()).length === 0) {
+        document.body.appendChild(this.__domElement);
       }
-      if (qx.bom.Selector.query("#ToastTemplate").length === 0) {
-        var template = qx.dom.Element.create("script", {
-          id: "ToastTemplate",
-          type: "text/template",
-          html: '<div class="toast {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}"><div class="content">{{&message}}</div></div>'
+      if (document.querySelectorAll('#ToastTemplate').length === 0) {
+        const template = qx.dom.Element.create('script', {
+          id: 'ToastTemplate',
+          type: 'text/template',
+          html: '<div class="toast {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="' + this.getMessageElementId() + '{{ id }}"><div class="content">{{&message}}</div></div>'
         });
-        qx.dom.Element.insertEnd(template, document.body);
+        document.body.appendChild(template);
       }
-      this._list = new qx.data.controller.website.List(this._messages, this.__domElement, "ToastTemplate");
-      qx.event.Registration.addListener(this.__domElement, "tap", this._onListTap, this);
+      this._list = new qx.data.controller.website.List(this._messages, this.__domElement, 'ToastTemplate');
+      qx.event.Registration.addListener(this.__domElement, 'tap', this._onListTap, this);
     },
 
     _performAction: function(message) {
@@ -120,7 +121,7 @@ qx.Class.define("cv.ui.ToastManager", {
         return false;
       }
       // default is to delete the toast
-      this.deleteMessage(message.id);
+      return this.deleteMessage(message.id);
     }
   },
 
@@ -135,7 +136,7 @@ qx.Class.define("cv.ui.ToastManager", {
       this.__timer = null;
     }
     if (this.__domElement) {
-      qx.dom.Element.remove(this.__domElement);
+      this.__domElement.parentNode.removeChild(this.__domElement);
       this.__domElement = null;
     }
   }

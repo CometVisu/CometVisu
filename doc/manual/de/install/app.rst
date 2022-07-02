@@ -26,8 +26,8 @@ Im ersten Schritt muss die CometVisu normal im Browser geöffnet werden:
 Browser-Menü
 ------------
 
-Wenn die gewünsche Konfiguration und Seite angezeigt wird, wird über das Browser-Menü (⋮)
-der Eintrag "Zum Startbildschrim zufügen" ausgewählt:
+Wenn die gewünschte Konfiguration und Seite angezeigt wird, wird über das Browser-Menü (⋮)
+der Eintrag "Zum Startbildschirm zufügen" ausgewählt:
 
 .. figure:: _static/app_android_browser_menu.png
 
@@ -91,7 +91,7 @@ Im ersten Schritt muss die CometVisu normal im Browser geöffnet werden:
 Browser-Menü
 ------------
 
-Wenn die gewünsche Konfiguration und Seite angezeigt wird, wird über das Browser-Menü
+Wenn die gewünschte Konfiguration und Seite angezeigt wird, wird über das Browser-Menü
 der Eintrag "Zum Home-Bildschirm" ausgewählt:
 
 .. figure:: _static/app_ios_browser_menu.png

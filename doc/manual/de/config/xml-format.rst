@@ -34,6 +34,22 @@ In der zweiten Zeile sind folgende Einstellungen relevant:
 +----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 | ``screensave_page="main"`` | Mit dieser Option kann festgelegt werden, auf welche Seite nach Ablauf von ``sceensave_time`` angezeigt wird | Angabe der Seite-ID zB. "id_1" bzw. Seitenname zB. "Main"                  | NEIN       |
 +----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend="mqtt"``         | Mit dieser Option kann das Backend festgelegt werden und die vom Server gesendete Information übersteuern    | ``knxd``, ``openhab``, ``mqtt``                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-knxd-url=""``    | URL für die knxd Login-Ressource                                                                             |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-mqtt-url=""``    | URL für die MQTT Login-Ressource                                                                             |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-openhab-url=""`` | Pfad zur REST-API für openHAB                                                                                | Üblicher Weise ``/rest/``                                                  | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``backend-url="/rest/"``   | Veraltet: URL für die openHAB Verbindung                                                                     |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``username="user"``        | Veraltet, nur für openHAB: Benutzername                                                                      |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``password="secret"``      | Veraltet, nur für openHAB: Passwort                                                                          |                                                                            | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``lib_version="9"``        | Version der CometVisu-library. Dieser Wert ist nur für die korrekte Funktion des Upgrade-Scripts notwendig.  | In der CometVisu Version 0.12.0 muss der Wert ``9`` sein                   | JA         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 
 
 Als nächstes kommen in der visu_config.xml innerhalb des meta-tags alle Definitionen für
@@ -64,7 +80,7 @@ Option                       Beschreibung                                   Wert
         <files>
             <file type="css">resource/config/media/style.css</file>
             <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
-        </plugins>
+        </files>
         ...
     </meta>
 
@@ -78,14 +94,14 @@ Plugins
 +--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+------------+
 | Option                   | Beschreibung                                                                                                                                         | Werte                            | Zwingend   |
 +==========================+======================================================================================================================================================+==================================+============+
-| ``<plugin name=" "/>``   | Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.   | z.B. colorchooser oder diagram   | NEIN       |
+| ``<plugin name=" "/>``   | Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.   | z.B. clock oder diagram          | NEIN       |
 +--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+------------+
 
 .. code-block:: xml
 
     <meta>
         <plugins>
-            <plugin name="colorchooser"/>
+            <plugin name="clock"/>
         </plugins>
         ...
     </meta>
@@ -185,7 +201,7 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzei
         ...
         <statusbar>
             <status type="html"><![CDATA[
-                <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+                <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
                 - <a href=".?forceReload=true">Reload</a>
                 - <a href="?config=demo">Widget Demo</a>
                 ]]></status>
@@ -214,7 +230,7 @@ Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte e
 seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
 Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
 und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
-die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+die benutzen Adresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
 jedem Raum wiederverwenden.
 
 In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
@@ -225,34 +241,36 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
 
     <pages>
         <meta>
-            <template name="Heizung">
-                <group name="Heizung">
-                  {{{ additional_content }}}
-                  <slide min="0" max="100" format="%d%%">
-                    <label>
-                      <icon name="sani_heating" />
-                      Heizung
-                    </label>
-                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
-                  </slide>
-                  <info format="%.1f °C">
-                    <label>
-                      <icon name="temp_temperature" />
-                      Ist
-                    </label>
-                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
-                  </info>
-                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
-                               downvalue="-0.5" styling="BluePurpleRedTemp"
-                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-                    <label>
-                      <icon name="temp_control" />
-                      Soll
-                    </label>
-                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
-                  </infotrigger>
-                </group>
-            </template>
+            <templates>
+                <template name="Heizung">
+                    <group name="Heizung">
+                      {{{ additional_content }}}
+                      <slide min="0" max="100" format="%d%%">
+                        <label>
+                          <icon name="sani_heating" />
+                          Heizung
+                        </label>
+                        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                      </slide>
+                      <info format="%.1f °C">
+                        <label>
+                          <icon name="temp_temperature" />
+                          Ist
+                        </label>
+                        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                      </info>
+                      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                                   downvalue="-0.5" styling="BluePurpleRedTemp"
+                                   infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                        <label>
+                          <icon name="temp_control" />
+                          Soll
+                        </label>
+                        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                      </infotrigger>
+                    </group>
+                </template>
+            </templates>
         </meta>
         <page>
             <page name="Wohnzimmer">
@@ -291,7 +309,9 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
 
     <pages>
         <meta>
-            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+            <templates>
+                <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+            </templates>
         </meta>
         <page>
             <page name="Wohnzimmer">
@@ -371,7 +391,7 @@ wird von oben nach unten verarbeitet. Das sieht schematisch so aus:
     </settings>
     <meta>
         <plugins>
-         <plugin name="colorchooser"/>
+         <plugin name="clock"/>
         </plugins>
     </meta>
     <page name="Startseite">
@@ -397,7 +417,7 @@ Als nächstes wird auf der Hauptseite der Colorchooser mit dem Namen
 **RGB Küche** eingefügt.
 
 Mit dieser Struktur können beliebig komplexe Seitenstrukturen angelegt
-werden. Eine Beschreibung der einzelen Widgets mit den zugehörigen XML
+werden. Eine Beschreibung der einzelnen Widgets mit den zugehörigen XML
 Codes finden Sie in der :doc:`Widgetübersicht <widgets/index>`
 
 In der letzten Zeile der Config muss noch der Tag geschlossen werden.

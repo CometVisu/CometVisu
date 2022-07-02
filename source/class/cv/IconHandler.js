@@ -1,6 +1,6 @@
 /* IconHandler.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -29,7 +29,7 @@
  */
 qx.Class.define('cv.IconHandler', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
    ******************************************************
@@ -47,8 +47,22 @@ qx.Class.define('cv.IconHandler', {
    */
   members: {
     /**
+     * @typedef iconDBEntry
+     * @type {object}
+     * @property {string} uri
+     * @property {string} styling
+     * @property {(string|HTMLCanvasElement|SVGElement)} icon
+     */
+    /**
+     * @typedef iconDB
+     * Hierachy:      name,           type,                   flavour,                color,   URI
+     * @type {Object.<string, Object.<string, (string|Object.<string, (string|Object.<string, (iconDBEntry|recolorCallback)>)>)>>}
+     */
+
+    /**
      * Internal database of the known icons.
      * Initially filled with the default icons.
+     * @type {iconDB}
      */
     __db: null,
 
@@ -57,18 +71,21 @@ qx.Class.define('cv.IconHandler', {
      * might be a full hash of icon definitions or a single one consisting out of
      * a name and a URI path. Optional further parameters are a "type" and a
      * flavour.
+     * @param {string} name
+     * @param {string} uri
+     * @param {string?} type
+     * @param {string?} flavour
+     * @param {string?} color
+     * @param {string?} styling
+     * @param {string?} dynamic
+     * @param {string?} source
      */
-    insert: function () {
-      var name = arguments[0];
-      var uri = arguments[1];
-      var type = arguments[2] || '*';
-      var flavour = arguments[3] || '*';
-      var color = arguments[4] || '*';
-      var styling = arguments[5];
-      var dynamic = arguments[6];
-
+    insert: function (name, uri, type= '*', flavour='*', color='*', styling=undefined, dynamic='', source = undefined) {
       if (!this.__db[name]) {
         this.__db[name] = {};
+      }
+      if (source) {
+        this.__db[name].source = source;
       }
       if (!this.__db[name][type]) {
         this.__db[name][type] = {};
@@ -79,8 +96,9 @@ qx.Class.define('cv.IconHandler', {
 
       if (dynamic && window[dynamic]) {
         this.__db[name][type][flavour][color] = window[dynamic](uri);
-      }
-      else {
+      } else if (dynamic && cv.util.IconTools[dynamic]) {
+          this.__db[name][type][flavour][color] = cv.util.IconTools[dynamic](uri);
+      } else {
         this.__db[name][type][flavour][color] = {
           uri: uri,
           styling: styling
@@ -91,20 +109,20 @@ qx.Class.define('cv.IconHandler', {
     /**
      * Get the icon information for a name.
      *
-     * @param name {String} Name
-     * @param type {String?} Type
-     * @param flavour {String?} Flavour
-     * @param color {String?} Color (only relevant for monochrome icons)
-     * @return {String} The URI for the icon - or "undefined" if not known
+     * @param {string} name
+     * @param {string?} type
+     * @param {string?} flavour
+     * @param {string?} color (only relevant for monochrome icons)
+     * @return {(string|recolorCallback|undefined)} The URI for the icon - or "undefined" if not known
      */
-    get: function (name, type, flavour, color) {
+    get: function (name, type = '*', flavour = '*', color = '*') {
       if (!this.__db[name]) {
-        return undefined;
+        return (a, b, c, asText) => asText?'[unknown]':document.createTextNode('[unknown]');
       }
       if (!this.__db[name][type]) {
         type = '*'; // undefined -> use default
       }
-      var all;
+      let all;
       if (typeof this.__db[name][type] === 'string') {
         type = this.__db[name][type]; // redirect link
         if (type.split('/').length > 1) {
@@ -129,7 +147,12 @@ qx.Class.define('cv.IconHandler', {
         }
       }
       if (!this.__db[name][type][flavour][color]) {
-        color = '*'; // undefined -> use default
+        if (/\.svg(#.+)?$/.test(this.__db[name][type][flavour]['*'].uri)) {
+          // SVGs can be dynamically recolored, so create new entry for this color
+          this.__db[name][type][flavour][color] = Object.assign({}, this.__db[name][type][flavour]['*']);
+        } else {
+          color = '*'; // undefined -> use default
+        }
       }
       // handle a generic mapping function
       if (typeof this.__db[name][type][flavour]['*'] === 'function') {
@@ -142,20 +165,32 @@ qx.Class.define('cv.IconHandler', {
     },
 
     getURI: function () {
-      var i = this.get.apply(this, arguments);
+      const i = this.get.apply(this, arguments);
       if (i) {
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
+      return '';
     },
 
     /**
-     * Return an icon DOM element.
+     * Get the icon - either as DOM element (`asText = false`) or as string
+     * (`asText = true`).
+     * When it is returned as string and it was added to the DOM, the
+     * fillIcons method must be called to fill missing content (e.g. the
+     * <canvas> icons.
+     *
+     * @param {string} name
+     * @param {string?} type
+     * @param {string?} flavour
+     * @param {string?} color (only relevant for monochrome icons)
+     * @param {string?} styling
+     * @param {string?} iconclass
+     * @param {boolean?} asText
      */
-    getIconElement: function () {
-      var i = this.get.apply(this, arguments);
+    getIconElement: function (name, type, flavour, color, styling = '', iconclass = '', asText = false) {
+      const i = this.get(name, type, flavour, color);
       if (i) {
-        var styling = arguments[4];
-        if (i.icon && !styling && typeof i !== 'function') {
+        if (i.icon && !styling && typeof i !== 'function' && !asText) {
           return i.icon;
         }
 
@@ -164,58 +199,66 @@ qx.Class.define('cv.IconHandler', {
           styling = i.styling;
         }
 
-        var classes = 'icon';
-        var iconclass = arguments[5];
+        let classes = 'icon';
         if (iconclass) {
           classes = classes + ' custom_' + iconclass;
         }
 
         if (typeof i === 'function') {
-          i.icon = i(arguments[3], styling, classes, false);
+          if (asText) {
+            return i(color, styling, classes, true);
+          }
+          i.icon = i(color, styling, classes, false);
         } else {
-          i.icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+          if (color) {
+            styling += ';color:' + color;
+          }
+          let icon = /\.svg#.*?$/.test(i.uri) // SVG with fragment identifier?
+            ? '<svg class="' + classes + '" style="' + (styling ? styling : '') + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'"></use></svg>'
+            : '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+          if (asText) {
+            return icon;
+          }
+          let template = document.createElement('template');
+          template.innerHTML = icon;
+          i.icon = template.content.firstChild;
         }
         return i.icon;
       }
+      return asText ? '' : null;
     },
 
     /**
-     * Return a String for the icon, e.g. build a DOM tree in a string before
-     * passing it to ParseHTML. After the content was added to the DOM the
-     * fillIcons method must be called to fill missing content (e.g. the <canvas>
-     * icons.
-     * @param name {String} Name
-     * @param type {String?} Type
-     * @param flavour {String?} Flavour
-     * @param color {String?} Color (only relevant for monochrome icons)
-     * @param styling {String?} Styling
-     * @param iconclass {String?} icon class
+     * Provide a value that can be used by cv.ui.manager.basic.Image to display the icon on an qooxdoo widget.
+     * @param {string} name
+     * @param {string?} classes - optional css classes used in the svg icon code (default is 'icon')
+     * @returns {string}
      */
-    getIconText: function (name, type, flavour, color, styling, iconclass) {
-      var i = this.get.apply(this, arguments);
+    getIconSource: function (name, classes) {
+      const i = this.get(name);
       if (i) {
-        if (!styling) {
-          styling = !i.styling ? '' : ' style="' + i.styling + '"';
+        if (!classes) {
+          classes = 'icon';
         }
-        else {
-          styling = ' style="' + styling + '"';
-        }
-
-        var classes = 'icon';
-        if (iconclass) {
-          classes = classes + ' custom_' + iconclass;
-        }
-
         if (typeof i === 'function') {
-          return i(color, styling, classes, true);
-        } else {
-          return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
+          const res = i(undefined, undefined, classes, true);
+          if (res.startsWith('<canvas')) {
+            // no support for canvas as icon preview
+            return '';
+          }
+          return res;
         }
+        if (/\.svg#.*?$/.test(i.uri)) {
+          return '<svg class="' + classes + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'"></use></svg>';
+        }
+        return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
+      return '';
     },
 
     /**
      * Fill the icons in the array.
+     * @param array
      */
     fillIcons: function (array) {
       array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
@@ -225,7 +268,7 @@ qx.Class.define('cv.IconHandler', {
      * List all known icons
      *
      *
-     * @return {Array} List of all known icon names
+     * @return {string[]} List of all known icon names
      */
     list: function () {
       return Object.keys(this.__db);

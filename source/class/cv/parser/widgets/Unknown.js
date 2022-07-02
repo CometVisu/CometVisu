@@ -1,6 +1,6 @@
 /* Unknown.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -26,7 +26,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.parser.widgets.Unknown', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -37,8 +37,8 @@ qx.Class.define('cv.parser.widgets.Unknown', {
     parse: function (xml, path, flavour, pageType) {
       return cv.data.Model.getInstance().setWidgetData(path, {
         'path': path,
-        'unknownType': qx.dom.Node.getName(xml).toLowerCase(),
-        '$$type': "unknown",
+        'unknownType': xml.nodeName.toLowerCase(),
+        '$$type': 'unknown',
         'pageType': pageType
       });
     }
@@ -46,7 +46,7 @@ qx.Class.define('cv.parser.widgets.Unknown', {
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("unknown", statics);
+    cv.parser.WidgetParser.addHandler('unknown', statics);
   }
 });
 

@@ -1,12 +1,11 @@
 .. replaces:: CometVisu/Installation/de
+    CometVisu/de/latest/manual/install/linux.html
+    CometVisu/de/latest/manual/install/nas.html
+    CometVisu/Installation/WireGate/de
+    CometVisu/de/0.12/manual/install/wiregate.html
 
 Voraussetzungen für die Installation
 ====================================
-
-Wenn WireGate 1.1 oder später eingesetzt wird, ist CometVisu 0.8.5
-bereits vorinstalliert und kann ohne Weiteres genutzt werden. Um die
-alte CometVisu auf einem WireGate zu installieren, gibt es hier
-:doc:`weitere Informationen <wiregate>`.
 
 Um die CometVisu nutzen zu können, muss das System gewisse
 Voraussetzungen erfüllen.
@@ -19,16 +18,129 @@ Diese sind
 -  ein Webserver, mit (optional aber empfohlen) PHP Unterstützung
 -  das CometVisu-Softwarepaket
 
-Backend - knxd/eibd oder OpenHAB
---------------------------------
+.. note::
 
-Die Installation des Backends wird unter
+    Für den :ref:`Manager <manager>` und :ref:`Editor <editor>` wird PHP
+    ab Version 7 benötigt. Der Kern der CometVisu selbst kann jedoch auch
+    ohne PHP genutzt werden.
+
+Backend
+-------
+
+Damit die CometVisu auf die Geräte zugreifen kann wird ein "Backend" benötigt.
+
+.. note::
+
+    Die CometVisu unterstützt die Verbindung mit einem Backend. Die
+    gleichzeitige Verbindung zu mehreren Backends wird nicht unterstützt.
+
+Für die Backend-Verbindung gibt es verschiedene Möglichkeiten:
+
+knxd / eibd
+~~~~~~~~~~~
+
+Um direkt auf den KNX Bus zuzugreifen wird der knxd verwendet.
+Die Installation dieses Backends wird unter
 :doc:`backends/install-eibd` beschrieben.
 
 .. toctree::
     :hidden:
 
     backends/install-eibd
+
+openHAB
+~~~~~~~
+
+Für die Verwendung von openHAB als Backend gibt es die Anleitungen
+:doc:`openhab`
+und
+:doc:`docker_openhab`.
+
+MQTT
+~~~~
+
+Damit die CometVisu ein MQTT-Teilnehmer ist, wird ein MQTT Broker benötigt
+der über WebSocket ansprechbar ist.
+
+Backend konfigurieren
+~~~~~~~~~~~~~~~~~~~~~
+
+Um die CometVisu für die Verwendung von einem spezifischen Backend zu
+konfigurieren gibt es mehrere Möglichkeiten, die im Folgenden Aufgeführt sind.
+Hierbei überschreibt eine Methode die darüber aufgeführten Werte, d.h.
+beispielsweise überschreiben die Werte in der Konfigurationsdatei die Einstellungen
+aus den Umgebungsvariablen.
+
+HTTP-Header / Docker-Umgebungsvariablen
+.......................................
+
+.. spelling::
+
+    OpenHAB
+    LoginUrl
+    mqtt
+    Url
+    url
+    username
+    password
+
+Der Web-Server kann in den HTTP-Headern der Konfigurationsdatei die
+Backend-Parameter mit übergeben. Dies ist bei Verwendung des offiziellen
+Docker-Images der CometVisu leicht durch das Setzen entsprechender
+``ENVIRONMENT`` Parameter erreichbar
+
+=============================== ================ ===========
+HTTP Header                     ``ENVIRONMENT``  Bedeutung
+------------------------------- ---------------- -----------
+X-CometVisu-Backend-Name        BACKEND_NAME     Name wie ``knxd``, ``openhab`` oder ``mqtt``
+X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL für die knxd Login-Ressource
+X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL für die MQTT Login-Ressource
+X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  openHAB: Pfad zur REST-API
+X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     Veraltet: URL für die knxd oder openHAB Login-Ressource
+X-CometVisu-Backend-User        BACKEND_USERNAME Veraltet: Benutzername, wenn für openHAB benötigt
+X-CometVisu-Backend-Pass        BACKEND_PASSWORD Veraltet: Passwort, wenn für openHAB benötigt
+=============================== ================ ===========
+
+.. warning::
+
+    Der Benutzername und das Passwort für den MQTT Broker liegen hier direkt
+    lesbar vor und werden auch so über das Netzwerk übertragen!
+
+Konfigurationsdatei
+...................
+
+Im alles umschließenden ``<pages>``-Element können die entsprechenden Parameter
+als Attribut gesetzt werden:
+
+=================== ===========
+Attribut            Bedeutung
+------------------- -----------
+backend             Name wie ``knxd``, ``openhab`` oder ``mqtt``
+backend-knxd-url    URL für die knxd Login-Ressource
+backend-mqtt-url    URL für die MQTT Login-Ressource
+backend-openhab-url openHAB: Pfad zur REST-API
+backend-url         Veraltet: URL für die openHAB Verbindung
+username            Veraltet: Benutzername, wenn für openHAB benötigt
+password            Veraltet: Passwort, wenn für openHAB benötigt
+=================== ===========
+
+Beispiel:
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <pages backend="mqtt" backend-url="wss://web.server:443/mqtt/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+      <meta>
+        <plugins>
+    ...
+
+URL
+...
+
+Durch den URL Parameter ``backend`` kann auch durch den Seitenaufruf das Backend
+ausgewählt werden. Dies ist jedoch nur in Spezialfällen wie Entwicklung- und
+Testbetrieb sinnvoll und bedingt, dass die Zugriffs-URLs bereits über eine der
+weiter oben stehenden Methoden gesetzt wurden.
 
 Graphentool - RRDtool
 ---------------------
@@ -43,6 +155,9 @@ CometVisu wird unter :doc:`RRDtool <install-rrd>` beschrieben.
     :hidden:
 
     install-rrd
+
+Die Darstellung von Zeitreihen aus einer InfluxDB Datenbank wird direkt
+unterstützt und benötigt (außer PHP Unterstützung) keine weitere Software.
 
 Webserver
 ---------

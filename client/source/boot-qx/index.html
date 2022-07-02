@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>CometVisu-Client Testpage - qooxdoo version</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script type="text/javascript" src="cv-client.js"></script>
+  <script type="text/javascript">
+    ${preBootJs}
+    var client = new cv.io.Client('default', "/cgi-bin/l");
+    client.update = function(data) {
+      console.log(data);
+    }; // override clients update function
+    client.user = 'demo_user'; // example for setting a user
+    client.subscribe(['1/0/0', "1/0/1"]);
+  </script>
+</head>
+<body>
+</body>
+</html>

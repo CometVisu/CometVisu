@@ -349,6 +349,7 @@ var SchemaSimpleType = function (node, schema) {
             return false;
           }
           break;
+        case 'xsd:unsignedByte':
         case 'xsd:nonNegativeInteger':
           if (!value.match(/^[+]?[0-9]+$/)) {
             return false;
@@ -2629,7 +2630,7 @@ var regexFromString = function (input, modifiers) {
     modifiers = '';
   }
     
-  return new RegExp(input, modifiers);
+  return new RegExp(input.replace(/\\([\s\S])|(\$)/g, '\\$1$2'), modifiers);
 }
 
 /**

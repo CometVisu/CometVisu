@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0" bind_click_to_widget="true">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0" bind_click_to_widget="true">
   <meta>
     <files>
       <file type="css">resource/demo/media/testmode.css</file>
       <file type="js">resource/demo/media/testmode.js</file>
     </files>
     <plugins>
-      <plugin name="colorchooser"/>
       <plugin name="diagram"/>
       <plugin name="rsslog"/>
       <plugin name="gauge"/>
+      <plugin name="openweathermap"/>
     </plugins>
     <mappings>
       <mapping name="Shutter">
@@ -95,7 +95,7 @@
     <statusbar>
       <status type="html"><![CDATA[
       <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center;">
-          <div style="flex: auto"><a href="https://www.cometvisu.org/"><img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /></a></div>
+          <div style="flex: auto"><a href="https://www.cometvisu.org/"><img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /></a></div>
 ]]></status>
       <status type="html" condition="testMode"><![CDATA[
       <div style="flex: auto;"><span style="color: #FF8000;">Bitte beachten: Im Testmodus steht nicht die volle Funktionalität der CometVisu zur Verfügung!</span></div>
@@ -109,20 +109,29 @@
       <template name="Heizung">
         <group name="Heizung">
           <slide min="0" max="100" format="%d%%" flavour="sodium">
-            <label><icon name="sani_heating"/>Heizung</label>
+            <label>
+              <icon name="sani_heating"/>Heizung</label>
             <address transform="DPT:5.001">{{ valve_control_address }}</address>
           </slide>
           <info format="%.1f °C">
-            <label><icon name="temp_temperature"/>Ist</label>
+            <label>
+              <icon name="temp_temperature"/>Ist</label>
             <address transform="DPT:9.001">{{ current_temp_address }}</address>
           </info>
           <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="left" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-            <label><icon name="temp_control"/>Soll</label>
+            <label>
+              <icon name="temp_control"/>Soll</label>
             <address transform="DPT:9.001">{{ target_temp_address }}</address>
           </infotrigger>
           <!-- {{#modus_address}}-->
-          <multitrigger class="one-line" button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Stand by" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
+          <multitrigger class="one-line" showstatus="true" mapping="KonnexHVAC">
             <address transform="DPT:20.102" mode="readwrite">{{ modus_address }}</address>
+            <buttons>
+              <button label="Auto">auto</button>
+              <button label="Komfort">comfort</button>
+              <button label="Stand By">standby</button>
+              <button label="Economy">ecomony</button>
+            </buttons>
           </multitrigger>
           <!-- {{/modus_address}}-->
         </group>
@@ -132,7 +141,8 @@
           <layout colspan="6"/>
           <text>
             <layout colspan="3"/>
-            <label><icon name="fts_shutter"/>{{ name }}</label>
+            <label>
+              <icon name="fts_shutter"/>{{ name }}</label>
           </text>
           <trigger value="0" mapping="Shutter" align="center">
             <layout colspan="1"/>
@@ -154,7 +164,8 @@
     <navbar position="top">
       <pagejump target="Übersicht">
         <layout colspan="0"/>
-        <label><icon name="control_home"/>Übersicht</label>
+        <label>
+          <icon name="control_home"/>Übersicht</label>
       </pagejump>
       <text class="vertical">
         <layout colspan="0"/>
@@ -162,17 +173,19 @@
       </text>
       <pagejump target="Wohnzimmer">
         <layout colspan="0"/>
-        <label><icon name="it_television"/>Wohnen</label>
+        <label>
+          <icon name="it_television"/>Wohnen</label>
         <widgetinfo>
           <info format="%d°">
-          <layout colspan="0" />
+            <layout colspan="0" />
             <address transform="DPT:9.001">10/1/1</address>
           </info>
         </widgetinfo>
       </pagejump>
       <pagejump target="Schlafzimmer">
         <layout colspan="0"/>
-        <label><icon name="scene_sleeping"/>Schlafen</label>
+        <label>
+          <icon name="scene_sleeping"/>Schlafen</label>
         <widgetinfo>
           <info format="%d°">
             <layout colspan="0" />
@@ -182,7 +195,8 @@
       </pagejump>
       <pagejump target="Bad">
         <layout colspan="0"/>
-        <label><icon name="temp_temperature"/>Bad</label>
+        <label>
+          <icon name="temp_temperature"/>Bad</label>
         <widgetinfo>
           <info format="%d°">
             <layout colspan="0" />
@@ -196,7 +210,8 @@
       </text>
       <pagejump target="Büro">
         <layout colspan="0"/>
-        <label><icon name="it_television"/>Büro</label>
+        <label>
+          <icon name="it_television"/>Büro</label>
         <widgetinfo>
           <info format="%d°">
             <layout colspan="0" />
@@ -210,11 +225,18 @@
       </text>
       <pagejump target="Audio">
         <layout colspan="0"/>
-        <label><icon name="audio_audio"/>Audio</label>
+        <label>
+          <icon name="audio_audio"/>Audio</label>
       </pagejump>
       <pagejump target="Heizung">
         <layout colspan="0"/>
-        <label><icon name="sani_heating"/>Heizung</label>
+        <label>
+          <icon name="sani_heating"/>Heizung</label>
+      </pagejump>
+      <pagejump target="Wetter">
+        <layout colspan="0"/>
+        <label>
+          <icon name="scene_day"/>Wetter</label>
       </pagejump>
     </navbar>
     <group name="Status">
@@ -322,7 +344,7 @@
             </label>
             <widgetinfo>
               <info format="%d">
-              <layout colspan="0" />
+                <layout colspan="0" />
                 <address transform="DPT:9.001">13/1/28</address>
               </info>
             </widgetinfo>
@@ -472,12 +494,18 @@
         </group>
         <group name="Jalousien + Fenster">
           <layout colspan="12"/>
-          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
-            <label><icon name="fts_shutter"/>Jalousien</label>
+          <multitrigger>
+            <label>
+              <icon name="fts_shutter"/>Jalousien</label>
             <address transform="DPT:1.001">13/1/1</address>
+            <buttons>
+              <button label="↑">0</button>
+              <button label="↓">1</button>
+            </buttons>
           </multitrigger>
           <info mapping="OpenClose">
-            <label><icon name="fts_shutter"/>Fenster</label>
+            <label>
+              <icon name="fts_shutter"/>Fenster</label>
             <address transform="DPT:1.001">13/1/17</address>
           </info>
         </group>
@@ -516,7 +544,8 @@
         <group name="Licht">
           <layout colspan="6"/>
           <colorchooser>
-            <label><icon name="light_led_stripe_rgb"/>Ambiente</label>
+            <label>
+              <icon name="light_led_stripe_rgb"/>Ambiente</label>
             <address transform="DPT:5.001" variant="r" mode="readwrite">12/7/17</address>
             <address transform="DPT:5.001" variant="g" mode="readwrite">12/7/18</address>
             <address transform="DPT:5.001" variant="b" mode="readwrite">12/7/19</address>
@@ -534,13 +563,14 @@
             <address transform="DPT:5.001" mode="readwrite">12/7/19</address>
           </slide>
         </group>
-        <line><layout colspan="12"/></line>
+        <line>
+          <layout colspan="12"/>
+        </line>
         <group name="Temperaturverlauf Bad">
           <diagram series="day" refresh="300" legend="both" popup="false" previewlabels="true" >
             <layout colspan="12" rowspan="8"/>
             <axis unit="°C"/>
             <rrd>13/0/14</rrd>
-            <!--address transform="OH:number">Temperature_SF_Bed</address-->
           </diagram>
         </group>
       </page>
@@ -604,10 +634,16 @@
     </page>
     <page name="Heizung" type="2d" backdrop="demo/media/demo_2d_backdrop_red_pot.svg" visible="false">
       <slide format="%.0f" class="noborder">
-        <layout x="150px" y="270px" width="500px"/>
+        <layout x="10%" y="70%" width="20%"/>
         <label>Level</label>
         <address transform="DPT:5.001">12/7/52</address>
       </slide>
+    </page>
+    <page name="Wetter" visible="false">
+      <group name="Wettervorhersage" class="container weather-forecast element">
+        <layout colspan="6"/>
+        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
+      </group>
     </page>
   </page>
 </pages>

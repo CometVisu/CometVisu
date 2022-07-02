@@ -1,6 +1,6 @@
 /* Page.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Page', {
-  type: "static",
+  type: 'static',
 
   /*
    ******************************************************
@@ -31,21 +31,20 @@ qx.Class.define('cv.parser.widgets.Page', {
    */
   statics: {
 
-    parse: function( page, path, flavour, pageType ) {
-
-      var storagePath = cv.parser.WidgetParser.getStoragePath(page, path);
-      var addresses = {};
-      if (qx.bom.element.Attribute.get(page, 'ga')) {
-        var src = qx.bom.element.Attribute.get(page, 'ga');
+    parse: function(page, path, flavour, pageType) {
+      const storagePath = cv.parser.WidgetParser.getStoragePath(page, path);
+      const addresses = {};
+      if (page.getAttribute('ga')) {
+        const src = page.getAttribute('ga');
         cv.data.Model.getInstance().addAddress(src, storagePath);
-        addresses[ src ] = [ 'DPT:1.001', cv.data.Model.READ ];
+        addresses[src] = [ 'DPT:1.001', cv.data.Model.READ ];
       }
 
-      var name    = qx.bom.element.Attribute.get(page, 'name');
-      pageType = qx.bom.element.Attribute.get(page, 'type') || 'text';              //text, 2d or 3d
-      var backdrop = qx.bom.element.Attribute.get(page, 'backdrop');
-      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : null;
-      var showfooter = qx.bom.element.Attribute.get(page, 'showfooter') ? qx.bom.element.Attribute.get(page, 'showfooter') === "true": true;
+      const name = page.getAttribute('name');
+      pageType = page.getAttribute('type') || 'text'; //text, 2d or 3d
+      const backdrop = page.getAttribute('backdrop');
+      const showtopnavigation = page.getAttribute('showtopnavigation') ? page.getAttribute('showtopnavigation') === 'true' : null;
+      const showfooter = page.getAttribute('showfooter') ? page.getAttribute('showfooter') === 'true' : true;
       // make sure the type has the correct value as we need to use it ass CSS class
       switch (pageType) {
         case '2d':
@@ -58,14 +57,16 @@ qx.Class.define('cv.parser.widgets.Page', {
       }
 
       // automatically set the navbars if not set in the config file
-      var shownavbar = {
-        top    : path === "id" ? false : null,
-        bottom : path === "id" ? false : null,
-        left   : path === "id" ? false : null,
-        right  : path === "id" ? false : null
+      const shownavbar = {
+        top: path === 'id' ? false : null,
+        bottom: path === 'id' ? false : null,
+        left: path === 'id' ? false : null,
+        right: path === 'id' ? false : null
       };
-      qx.bom.Selector.matches("navbar", qx.dom.Hierarchy.getChildElements(page)).forEach( function(elem) {
-        shownavbar[ qx.bom.element.Attribute.get(elem, 'position') || 'left' ] = true;
+      Array.from(page.children).filter(function(m) {
+        return m.matches('navbar');
+      }).forEach(function(elem) {
+        shownavbar[elem.getAttribute('position') || 'left'] = true;
       });
       // overwrite default when set manually in the config
       ['top', 'left', 'right', 'bottom'].forEach(function(pos) {
@@ -73,75 +74,76 @@ qx.Class.define('cv.parser.widgets.Page', {
           // do not override current values
           return;
         }
-        var value = qx.bom.element.Attribute.get(page, 'shownavbar-'+pos);
-        if (qx.lang.Type.isString(value)) {
-          shownavbar[pos] = value === "true";
+        const value = page.getAttribute('shownavbar-' + pos);
+        if (typeof value === 'string') {
+          shownavbar[pos] = value === 'true';
         }
       }, this);
-      var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
-      if (qx.bom.element.Attribute.get(page, "bind_click_to_widget")) {
-        bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")==="true";
+      let bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
+      if (page.getAttribute('bind_click_to_widget')) {
+        bindClickToWidget = page.getAttribute('bind_click_to_widget')==='true';
       }
-      if( qx.bom.element.Attribute.get(page, 'flavour') ) {
-        flavour = qx.bom.element.Attribute.get(page, 'flavour');// sub design choice
+      if (page.getAttribute('flavour')) {
+        flavour = page.getAttribute('flavour');// sub design choice
       }
-      var wstyle  = '';                                     // widget style
-      if( qx.bom.element.Attribute.get(page, 'align') ) {
-        wstyle += 'text-align:' + qx.bom.element.Attribute.get(page, 'align') + ';';
+      let wstyle = ''; // widget style
+      if (page.getAttribute('align')) {
+        wstyle += 'text-align:' + page.getAttribute('align') + ';';
       }
-      if( wstyle !== '' ) {
+      if (wstyle !== '') {
         wstyle = 'style="' + wstyle + '"';
       }
 
-      var layout = cv.parser.WidgetParser.parseLayout( qx.bom.Selector.matches("layout", qx.dom.Hierarchy.getChildElements(page))[0] );
-      var backdropType = null;
+      const layout = cv.parser.WidgetParser.parseLayout(Array.from(page.children).filter(function (m) {
+        return m.matches('layout');
+      })[0]);
+      let backdropType = null;
       if (backdrop) {
-        backdropType = '.svg' === backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
+        backdropType = backdrop.substring(backdrop.length - 4) === '.svg' ? 'embed' : 'img';
       }
 
-      var data = cv.data.Model.getInstance().setWidgetData( storagePath, {
-        path              : storagePath,
-        name              : name,
-        pageType          : pageType,
-        showTopNavigation : showtopnavigation,
-        showFooter        : showfooter,
-        showNavbarTop     : shownavbar.top,
-        showNavbarBottom  : shownavbar.bottom,
-        showNavbarLeft    : shownavbar.left,
-        showNavbarRight   : shownavbar.right,
-        backdropAlign     : '2d' === pageType ? (qx.bom.element.Attribute.get(page, 'backdropalign' ) || '50% 50%') : null,
-        size              : qx.bom.element.Attribute.get(page, 'size') || null,
-        address           : addresses,
-        linkVisible       : qx.bom.element.Attribute.get(page, 'visible') ? qx.bom.element.Attribute.get(page, 'visible') === "true" : true,
-        flavour           : flavour || null,
-        $$type            : "page",
-        backdrop          : backdrop || null,
-        backdropType      : backdropType
+      const data = cv.data.Model.getInstance().setWidgetData(storagePath, {
+        path: storagePath,
+        name: name,
+        pageType: pageType,
+        showTopNavigation: showtopnavigation,
+        showFooter: showfooter,
+        showNavbarTop: shownavbar.top,
+        showNavbarBottom: shownavbar.bottom,
+        showNavbarLeft: shownavbar.left,
+        showNavbarRight: shownavbar.right,
+        backdropAlign: pageType === '2d' ? (page.getAttribute('backdropalign') || '50% 50%') : null,
+        size: page.getAttribute('size') || null,
+        address: addresses,
+        linkVisible: page.getAttribute('visible') ? page.getAttribute('visible') === 'true' : true,
+        flavour: flavour || null,
+        $$type: 'page',
+        backdrop: backdrop || null,
+        backdropType: backdropType
       });
       cv.parser.WidgetParser.parseAddress(page, path);
       cv.parser.WidgetParser.parseFormat(page, path);
       // this has to be called manually to allow inheritance of the flavour, pageType values
       cv.parser.WidgetParser.parseChildren(page, path, flavour, pageType);
       if (data.linkVisible === true) {
-        var linkData = cv.data.Model.getInstance().setWidgetData( path, {
-          $$type          : "pagelink",
-          path            : path,
-          name            : name,
-          classes         : cv.parser.WidgetParser.setWidgetLayout( page, path ) || '',
-          layout          : layout || null,
-          address         : addresses,
-          pageType        : pageType,
-          wstyle          : wstyle || '',
+        const linkData = cv.data.Model.getInstance().setWidgetData(path, {
+          $$type: 'pagelink',
+          path: path,
+          name: name,
+          classes: cv.parser.WidgetParser.setWidgetLayout(page, path) || '',
+          layout: layout || null,
+          address: addresses,
+          pageType: pageType,
+          wstyle: wstyle || '',
           bindClickToWidget: bindClickToWidget
         });
         return [data, linkData];
-      } else {
+      } 
         return data;
-      }
     }
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("page", statics);
+    cv.parser.WidgetParser.addHandler('page', statics);
   }
 });

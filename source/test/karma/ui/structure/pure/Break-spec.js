@@ -1,6 +1,6 @@
 /* Break-spec.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,11 +24,11 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a break", function() {
+describe('testing a break', function() {
+  it('should test the break creator', function() {
+    const [widget, element] = this.createTestWidgetString('break');
 
-  it("should test the break creator", function() {
-    var res = this.createTestWidgetString("break");
-    expect(res[1]).toBe('<br/>');
-    expect(res[0].getPath()).toBe("id_0");
+    expect(element.tagName.toLowerCase()).toBe('br');
+    expect(widget.getPath()).toBe('id_0');
   });
 });

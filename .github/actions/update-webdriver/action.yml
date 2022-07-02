@@ -1,0 +1,13 @@
+name: 'Prepare Webdriver'
+runs:
+  using: "composite"
+  steps:
+    - name: Install Webdriver version
+      run: |
+        export CHROME_BIN=`pwd`/chrome/google-chrome
+        export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
+        echo "using chrome version $CHROME_VERSION"
+        export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+        echo "using chrome driver version $DRIVER_VERSION"
+        ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=${DRIVER_VERSION}
+      shell: bash

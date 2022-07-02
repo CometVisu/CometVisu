@@ -95,7 +95,10 @@ Date.ext.util.xPad=function(x, pad, r)
  */
 Date.prototype.locale = 'en-GB';
 //! \cond FALSE
-if(document.getElementsByTagName('html') && document.getElementsByTagName('html')[0].lang)
+if(navigator.language)
+{
+  Date.prototype.locale = navigator.language;
+} else if(document.getElementsByTagName('html') && document.getElementsByTagName('html')[0].lang)
 {
   Date.prototype.locale = document.getElementsByTagName('html')[0].lang;
 }
@@ -338,6 +341,10 @@ Date.prototype.strftime=function(fmt)
   // After the first call this condition should never be entered unless someone changes the locale
   if(!(this.locale in Date.ext.locales))
   {
+    if(!this.locale)
+    {
+      this.locale = Date.prototype.locale;
+    }
     if(this.locale.replace(/-[a-zA-Z]+$/, '') in Date.ext.locales)
     {
       this.locale = this.locale.replace(/-[a-zA-Z]+$/, '');

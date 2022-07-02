@@ -8,11 +8,11 @@
     width: 60px;
     height: 60px;
     line-height: 60px;
-    background-color: #222;
+    background-color: #222 !important;
     margin: 0;
 }
 
-.page.type_2d .widget.custom_bubble.embedded {
+.page.type_2d .widget.custom_bubble.custom_embedded {
     border-width: 0;
     box-shadow: 2px 4px 4px 0px rgba(135, 135, 135, 0.5);
 }
@@ -49,6 +49,7 @@
 
 .page.type_2d .widget_container .widget {
     margin: 0;
+    background: none;
 }
 
 .page.type_2d .widget_container .widget.custom_bubble > div {
@@ -60,7 +61,7 @@
     color: #888888;
 }
 
-.page.type_2d .widget.custom_embedded, .page.type_2d .widget.embedded {
+.page.type_2d .widget.custom_embedded {
     transform: skew(-10deg, 4deg);
 }
 
@@ -73,7 +74,7 @@
     line-height: normal;
     font-size: 14px;
     width: 20px;
-    height: 75px;
+    height: 68px;
     background-color: rgba(129, 102, 75, 0.8);
     color: rgb(226, 212, 198);
 }
@@ -174,18 +175,43 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
     margin-right: -1px;
     margin-bottom: -1px;
 }
+.page.type_text .custom_weather-forecast .clearfix:not(.widget):not(.group) {
+    display: block !important;
+    grid-template-columns: unset !important;
+    grid-auto-rows: unset !important;
+    align-items: unset !important;
+    margin-right: unset !important;
+    margin-bottom: unset !important;
+}
+ul.detailed li.night {
+    display: inline-block !important;
+}
+
+.page.type_text .clearfix.custom_weather-forecast .widget_container.jowm .custom_weather-forecast {
+    margin: 0 .5rem;
+}
+.page.type_text .widget_container.jowm {
+    padding: 0;
+}
+.page.type_text .widget_container.jowm .separationLine {
+    margin: 16px 0;
+}
 
 .page.type_text > .clearfix > .widget_container[data-type="navbar"] {
     display: none;
 }
 
-.page.type_text > .clearfix .widget_container {
+.page.type_text > .clearfix .widget_container:not(.jowm) {
     float: none;
     width: auto !important;
 }
 
 .page.type_text > .clearfix .widget_container.width-100 {
     grid-column-end: span 12;
+}
+
+.page.type_text > .clearfix .widget_container.width-75 {
+    grid-column-end: span 9;
 }
 
 .page.type_text > .clearfix .widget_container.width-50 {
@@ -204,4 +230,8 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
 .page.type_text > .clearfix .widget_container .group > .clearfix > h2 {
     grid-column-start: 1;
     grid-column-end: span 12;
+}
+
+.page.type_2d .widget_container, .page.type_2d .widget_container .group:not(.widget) {
+    position: relative;
 }

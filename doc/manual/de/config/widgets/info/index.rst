@@ -42,7 +42,7 @@ Die Ausgabewerte können formatiert werden (Anzahl der Nachkomma-Stellen, Einhei
             <data address="3/6/0">10.7</data>
         </screenshot>
     </settings>
-    <info format="%.1f°C">
+    <info format="%.1f °C">
         <label>Aussentemperatur</label>
         <address transform="DPT:9.001" mode="read">3/6/0</address>
     </info>
@@ -185,7 +185,7 @@ Hier der minimale Beispielcode der das Info Widget aus dem folgenden Screenshot 
 
 
 Die 2. address Zeile ist zwar streng genommen optional, jedoch macht
-ein Info-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
+ein Info-Widget ohne die Rückmeldeadresse in der Praxis keinen Sinn,
 da es dann Ereignisse vom Bus (wie z.B. Zentral-Aus, Treppenlicht) nicht
 mitbekommt und den Status falsch anzeigt.
 

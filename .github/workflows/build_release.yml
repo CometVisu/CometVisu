@@ -1,0 +1,57 @@
+name: Publish release
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  NODE_VERSION: '14.15'
+jobs:
+
+  build:
+    name: "Build release"
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - run: npm install
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install python dependencies
+        run: |
+          python -m pip install -r utils/requirements.txt
+      - name: Update DocumentationMapping
+        run: ./cv doc --doc-type manual -f -l de
+      - name: Build CometVisu
+        run: grunt release-cv
+        env:
+          DEPLOY_NIGHTLY: ${{ contains(github.ref, '-dev') }}
+      - run: ls -la ./
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./CometVisu-*.{tar.gz,zip}
+          file_glob: true
+          tag: ${{ github.ref }}
+          overwrite: true

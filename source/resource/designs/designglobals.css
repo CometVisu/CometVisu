@@ -20,12 +20,21 @@ body
   overflow: hidden;
 }
 
+a, img {
+  -webkit-user-drag: none;
+  /* not a standard yet, but probably in the future. Also no way known to help firefox at the moment. */
+  user-drag: none;
+}
 /*
  * Default height for all icons
  */
 .icon {
   height: 2em;
   width: 2em;
+}
+.tree-icon {
+  height: 20px;
+  width: 20px;
 }
 
 /*
@@ -51,6 +60,11 @@ body
 #navbarRight {
   width: 0;          /* right bar width */
   margin-right: 0;   /* right bar width */
+}
+.mobile #navbarLeft,
+.mobile #navbarRight {
+  position: absolute;
+  z-index: 1;
 }
 #navbarTop {
 }
@@ -138,6 +152,11 @@ input, textarea, select, button { font: inherit; }
 .pageActive, html[xmlns] .navbar.clearfix.navbarActive {
   display: block;
 }
+
+.highlightedWidget, .navbar > .highlightedWidget > .widget {
+  box-shadow: inset 0px 0px 8px 2px #cb4606;
+  border-radius: 4px;
+}
 /*
  * global color declarations for stylings in all designs
  * may be overloaded by designs
@@ -222,6 +241,8 @@ input, textarea, select, button { font: inherit; }
   clear: both;
 }
 
+.image > .actor { overflow: hidden; }
+
 /* infoaction widget basic styling, just positioning no fancy stuff */
 .infoaction { position: relative; }
 .infoaction .widget_container.widgetinfo {
@@ -251,6 +272,191 @@ input, textarea, select, button { font: inherit; }
 button.ui-slider-handle {
   min-width: 2em;
   min-height: 2em;
+}
+
+.roundbar > .actor {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.roundbar .axis,
+.roundbar .major,
+.roundbar .minor {
+  stroke: white;
+}
+.roundbar .sector {
+  fill: none;
+}
+.roundbar .indicator {
+  fill: #FF8000;
+  stroke: #FF8000;
+}
+.roundbar .axislabel,
+.roundbar .value {
+  fill: white;
+}
+
+.colorchooser .actors {
+  width: 30%;
+  float: left;
+}
+
+.colorchooser .actor {
+  touch-action: none;
+}
+
+.colorchooser .actor.ui-slider {
+  width: 100%;
+  margin-top: 1.5em;
+}
+.colorchooser .cc_box,
+.colorchooser .cc_wheel {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.colorchooser .hue {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border-radius: 50%;
+}
+
+.colorchooser .hsv_hue {
+  background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+}
+
+.colorchooser .lch_hue {
+  background: conic-gradient(rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
+}
+
+.colorchooser .cc_wheel .hue {
+  -webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 10px),#fff calc(100% - 9.5px));
+}
+
+.colorchooser .cc_box .hue {
+  -webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 20px),#fff calc(100% - 19.5px));
+}
+
+.colorchooser .sv_box {
+  position: absolute;
+  margin: calc(14.645% + 0.7071 * 22px);
+  top:0;right:0;bottom:0;left:0;
+}
+
+.colorchooser .sv_box .inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,#f00, #808080 100%);
+}
+
+.colorchooser .sv_triangle {
+  position: absolute;
+  margin:10px;
+  top:0;right:0;bottom:0;left:0;
+  transform:rotate(0deg);
+}
+
+.colorchooser .sv_triangle .inner {
+  width: 100%;
+  height: 75%;
+  -webkit-mask: conic-gradient(at 50% 0%, transparent 0deg 150deg, #fff 150deg 210deg, transparent 210deg);
+  background: linear-gradient(210deg, transparent 45%, black 90%), linear-gradient(150deg, transparent 45%, white 90%), linear-gradient(45deg, #f00, #f00);
+}
+
+.colorchooser .handle_hue {
+  position: absolute;
+  border: 2px solid white;
+  box-shadow:inset 0 0 0 2px black;
+  border-radius:50%;
+  box-sizing:border-box;
+}
+
+.colorchooser .cc_box .handle_hue {
+  top: 3px;
+  left: calc(50% - 0.375em);
+  transform-origin: 0.375em 100px;
+}
+
+.colorchooser .cc_wheel .handle_hue {
+  top:calc(-0.5 * 10px - 0.5 * 1em);
+  left:calc(50% - 0.5 * 1em);
+}
+
+.colorchooser .handle {
+  position: absolute;
+  top:50%;
+  left:50%;
+  border-radius:50%;
+  box-sizing:border-box;
+  transform:translate(-50%,-50%);
+}
+
+.colorchooser .cc_box .handle_hue,
+.colorchooser .cc_box .handle {
+  width: 0.75em;
+  height: 0.75em;
+  border: 1.5px solid white;
+  box-shadow:inset 0 0 0 1.5px black;
+}
+
+.colorchooser .cc_wheel .handle_hue,
+.colorchooser .cc_wheel .handle {
+  width: 1em;
+  height: 1em;
+  border: 2px solid white;
+  box-shadow:inset 0 0 0 2px black;
+}
+
+.colorchooser .ui-slider .ui-slider-range {
+  width: 100%;
+}
+
+.colorchooser .cc_RGB-r.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-r.ui-slider .ui-slider-range {
+  background-color: #f00;
+}
+
+.colorchooser .cc_RGB-g.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-g.ui-slider .ui-slider-range {
+  background-color: #0f0;
+}
+
+.colorchooser .cc_RGB-b.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-b.ui-slider .ui-slider-range {
+  background-color: #00f;
+}
+
+.colorchooser .cc_RGBW-w.ui-slider .ui-slider-range {
+  background-color: #fff;
+}
+
+.colorchooser .cc_h.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, red, yellow, lime, aqua, blue, magenta, red);
+}
+
+.colorchooser .cc_s.ui-slider .ui-slider-range,
+.colorchooser .cc_LCh-C.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, #888, transparent), linear-gradient(red, yellow, lime, blue);
+  background: linear-gradient(90deg, #888, transparent), linear-gradient(rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245));
+}
+
+.colorchooser .cc_v.ui-slider .ui-slider-range,
+.colorchooser .cc_LCh-L.ui-slider .ui-slider-range,
+.colorchooser .cc_Y.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, #000, #fff);
+}
+
+.colorchooser .cc_LCh-h.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
+}
+
+.widget.diagram > .actor {
+  overflow: hidden;
+  float: none;
 }
 
 #notification-center {
@@ -304,6 +510,7 @@ button.ui-slider-handle {
 
 #notification-center > .badge.normal, #toast-list .toast.normal {
   background-color: rgba(255, 244, 230, 0.9);
+  color: #000000;
 }
 
 #notification-center > .badge.low, #toast-list .toast.low {
@@ -379,6 +586,13 @@ button.ui-slider-handle {
   min-height: 25px;
 }
 
+#notification-center .message .icon {
+  float: left;
+  height: 3em;
+  width: 3em;
+  margin-right: 0.5em;
+}
+
 #notification-center .message.selectable, #notification-center .message .delete {
   cursor: pointer;
 }
@@ -403,9 +617,6 @@ button.ui-slider-handle {
 .popup_background.notification {
   position: absolute;
   padding: 30px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
   width: auto;
   height: auto;
   max-width: calc(100vw - 60px);
@@ -450,7 +661,7 @@ button.ui-slider-handle {
   overflow-y: auto;
 }
 
-.popup .main .icon:not(.spinner):not(.rsslogRow) {
+.popup .main > div > .icon:not(.spinner) {
   float: left;
   margin: 0 1em 0 0;
   vertical-align: top;
@@ -483,6 +694,7 @@ button.ui-slider-handle {
   font-size: 0.8em;
 }
 
+.popup .reload,
 .popup .actions { text-align: center; white-space: nowrap; clear: both; }
 .popup .actions button {
   padding: 0.3em 1em;
@@ -496,7 +708,7 @@ button.ui-slider-handle {
   color: #FFF;
 }
 
-.popup_background.error a { color: #FFF; }
+.popup_background.error a { color: #d7be5f; }
 
 pre.inline { display: inline-block; }
 
@@ -540,4 +752,35 @@ pre.inline { display: inline-block; }
   width: 200px;
   font-size: 14px;
   text-align: center;
+}
+
+#manager {
+  color: rgb(192, 192, 192);
+}
+
+#manager div.touch-tree-open-icon {
+  line-height: 32px !important;
+  text-align: right !important;
+}
+
+#manager a {
+  color: #CCC;
+}
+
+.about-cv {
+  text-align: center;
+}
+
+.about-cv h2 {
+  margin-left: 0;
+}
+
+.about-cv .info {
+  text-align: left;
+}
+
+.about-cv label {
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
 }

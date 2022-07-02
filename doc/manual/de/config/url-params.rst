@@ -73,7 +73,7 @@ der Startseite anzugeben. Wenn man also eine Unterseite mit dem Namen *Bad*
 als Startseite nutzen möchte so lautet die URL ``http://<server>/cometvisu/?config=home&startpage=Bad``
 
 Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
-Sinn machen bei einer gesammten Config-Datei je nach Visu-Standort die
+Sinn machen bei einer gesamten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.
 
 *forceDevice* - Ausgabegerät übersteuern
@@ -103,19 +103,19 @@ Dies sollte nur von Entwicklern benutzt werden!
 ~~~~~~~~~~~~~~~~~~~
 
 Durch den Parameter ``backend`` wird das verwendete Backend zur Laufzeit
-konfiguriert. Es exisitiert auch ein ``backend`` Parameter in der Config
+konfiguriert. Es existiert auch ein ``backend`` Parameter in der Config
 um dies fest einzustellen.
 
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), oh (backend=oh), oh2 (backend=oh2)
+    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), mqtt
 
 Der Default-Wert "cgi-bin" (Achtung, inkonsistent mit xml Element,
 default="cgi"!) ist normalerweise richtig und braucht nicht geändert
 werden. "r", "w" und "l" liegen dabei in /cgi-bin/.
 
-Bei der Option "oh" wird der für OpenHAB notwendige Pfad verwendet.
+Bei der Option "openhab" wird der für OpenHAB notwendige Pfad verwendet.
 
 *enableQueue* - Queue
 ~~~~~~~~~~~~~~~~~~~~~
@@ -235,7 +235,7 @@ Erklärungen an sentry.io schicken.
 .. _log:
 
 *log* - Debug-Meldungen in der Browserconsole an-/abschalten
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mit diesem Parameter können die Debug-Meldungen auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.
@@ -244,3 +244,17 @@ In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Relea
 
     Default: false im Release, true in Entwicklerversion
     Options: true  (log=true), false (log=false)
+
+
+.. _worker:
+
+*worker* - ServiceWorker Cache in der Entwicklerversion einschalten
+
+In der Entwicklerversion ist der ServiceWorker zum Caching der Dateien abgeschaltet, damit man Änderungen
+während des Entwickelns beim neu Laden direkt testen kann. Mit diesem URL-Parameter kann der ServiceWorker
+trotzdem eingeschaltet werden
+
+.. code::
+
+    Default: false (worker=false)
+    Options: true  (worker=true) [nur in Entwicklungsversion, in einem Release hat dieser Parameter eine Funktion]

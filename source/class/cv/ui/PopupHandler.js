@@ -1,6 +1,6 @@
 /* PopupHandler.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -22,7 +22,7 @@
  * Handles all popups
  */
 qx.Class.define('cv.ui.PopupHandler', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -34,28 +34,28 @@ qx.Class.define('cv.ui.PopupHandler', {
     configs: {},
 
     init: function() {
-      this.addPopup(new cv.ui.Popup("unknown"));
-      this.addPopup(new cv.ui.Popup("info"));
-      this.addPopup(new cv.ui.Popup("warning"));
-      this.addPopup(new cv.ui.Popup("error"));
+      this.addPopup(new cv.ui.Popup('unknown'));
+      this.addPopup(new cv.ui.Popup('info'));
+      this.addPopup(new cv.ui.Popup('warning'));
+      this.addPopup(new cv.ui.Popup('error'));
 
       // register to topics
       cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
         'cv.config.error': {
-          type: "error",
-          icon: "message_attention"
+          type: 'error',
+          icon: 'message_attention'
         },
         'cv.error': {
-          type: "error",
-          icon: "message_attention"
+          type: 'error',
+          icon: 'message_attention'
         },
         'cv.client.connection': {
-          type: "error",
-          icon: "message_attention",
+          type: 'error',
+          icon: 'message_attention',
           deletable: true
         }
       });
-      qx.event.message.Bus.subscribe("path.pageLeft", this._onPageChanged, this);
+      qx.event.message.Bus.subscribe('path.pageLeft', this._onPageChanged, this);
     },
 
     /**
@@ -63,10 +63,10 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @param ev {Event}
      */
     _onPageChanged: function (ev) {
-      Object.keys(this.popups).filter(function (type) {
+      Object.keys(this.popups).forEach(function (type) {
         if (type !== 'error') {
-          var popup = this.popups[type];
-          var domElement = popup.getCurrentDomElement();
+          const popup = this.popups[type];
+          const domElement = popup.getCurrentDomElement();
           if (domElement && domElement.$$page === ev.getData()) {
             this.removePopup(popup);
           }
@@ -75,7 +75,7 @@ qx.Class.define('cv.ui.PopupHandler', {
     },
 
     handleMessage: function(message, config) {
-      var popupConfig = {
+      const popupConfig = {
         title: message.title,
         content: message.message,
         closable: config.deletable || message.deletable,
@@ -83,13 +83,13 @@ qx.Class.define('cv.ui.PopupHandler', {
         iconClasses: message.iconClasses,
         actions: message.actions,
         progress: message.progress,
-        type: "notification"
+        type: 'notification'
       };
       // popups are always unique
       if (cv.core.notifications.Router.evaluateCondition(message)) {
         this.showPopup(config.type, popupConfig);
       } else {
-        var popup = this.getPopup(config.type);
+        const popup = this.getPopup(config.type);
         if (!popup.isClosed()) {
           popup.close();
         }
@@ -104,7 +104,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @return {cv.ui.Popup} The popup
      */
     showPopup: function (type, attributes) {
-      var popup = this.getPopup(type);
+      const popup = this.getPopup(type);
       // if (!popup.isClosed()) {
       //   popup.close();
       // }
@@ -120,7 +120,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       if (popup instanceof cv.ui.Popup) {
         popup.close();
       } else {
-        qx.dom.Element.remove(popup);
+        popup.parentNode.removeChild(popup);
       }
     },
 
@@ -139,7 +139,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @return {Object}
      */
     getPopup: function(name) {
-      var p = this.popups[name];
+      const p = this.popups[name];
       if (p === undefined) {
         return this.popups.unknown;
       }
@@ -158,14 +158,16 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @param preference {Number}
      * @return {Map}
      */
-    placementStrategy: function( anchor, popup, page, preference ) {
-      var position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
-      if (preference !== undefined) { position_order.unshift(preference); }
+    placementStrategy: function(anchor, popup, page, preference) {
+      const position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
+      if (preference !== undefined) {
+ position_order.unshift(preference); 
+}
 
-      for (var pos in position_order) {
-        var xy = {};
+      for (let pos in position_order) {
+        const xy = {};
         switch (position_order[pos]) {
-          case 0: // page center - will allways work
+          case 0: // page center - will always work
             return {x: (page.w - popup.w) / 2, y: (page.h - popup.h) / 2};
 
           case 1:

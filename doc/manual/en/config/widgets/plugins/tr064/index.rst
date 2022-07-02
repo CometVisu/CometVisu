@@ -7,7 +7,7 @@ The tr064 Plugin
 
 .. TODO::
 
-    Automatische Screenshot-Generierung (aus Dummy-Daten)
+    automatic screenshot creation (from dummy data)
 
 Description
 -----------
@@ -53,7 +53,7 @@ Allowed attributes in the calllist-element
     :scale: 75
     :align: center
 
-    <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
+    <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <meta>
         <plugins>
             <plugin name="tr064" />
@@ -63,7 +63,7 @@ Allowed attributes in the calllist-element
         <layout colspan="4" />
     </calllist>
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: calllist
@@ -73,7 +73,7 @@ Allowed child-elements und their attributes
     :scale: 75
     :align: center
 
-    <caption>Elemente im Editor</caption>
+    <caption>Element in the editor</caption>
     <meta>
         <plugins>
             <plugin name="tr064" />
@@ -141,7 +141,7 @@ installed.
 Setup of the Fritz!Box
 ----------------------
 
-To get access to the call list of the Fritz!Box a user with according permissons
+To get access to the call list of the Fritz!Box a user with according permissions
 must be created (or an existing user account must be used). This is possible
 on the user page:
 
@@ -188,6 +188,10 @@ manually and add a line like::
     When the connection to the router is secured by SSL (i.e. the URI starts with
     ``https``) it is usual that ``selfsigned`` must be set to ``true`` as a
     router in the home network will work usually with a self signed certificate.
+
+    The error message
+    ``{"faultstring":"Could not connect to host","faultcode":"HTTP"}`` can be a
+    hint that ``selfsigned`` should be set to ``true``.
 
 .. rubric:: Footnotes
 

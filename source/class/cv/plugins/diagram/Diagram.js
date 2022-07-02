@@ -1,6 +1,6 @@
 /* Diagram.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 qx.Class.define('cv.plugins.diagram.Diagram', {
   extend: cv.plugins.diagram.AbstractDiagram,
@@ -37,11 +38,11 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
    */
   properties: {
     width: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     height: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -68,10 +69,10 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
     getAttributeToPropertyMappings: function() {
       return {
         width: { transform: function(value) {
-          return value ? parseInt(value)+"px" : null;
+          return value ? parseInt(value)+'px' : '100%';
         }},
         height: { transform: function(value) {
-          return value ? parseInt(value)+"px" : null;
+          return value ? parseInt(value)+'px' : null;
         }}
       };
     }
@@ -87,27 +88,23 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
 
     _onDomReady: function() {
       if (!this.$$domReady) {
-        var pageId = this.getParentPage().getPath();
-        var broker = qx.event.message.Bus;
+        const pageId = this.getParentPage().getPath();
+        const broker = qx.event.message.Bus;
 
-        // stop refreshing when page is left
-        broker.subscribe("path." + pageId + ".exitingPageChange", function () {
-          this._stopRefresh(this._timer);
-        }, this);
+        // let the refresh only be active when this widget is visible
+        this.setRestartOnVisible(true);
 
-        broker.subscribe("path." + pageId + ".beforePageChange", function () {
+        broker.subscribe('path.' + pageId + '.beforePageChange', function () {
           if (!this._init) {
             this.loadDiagramData(this.plot, false, false);
           }
         }, this);
 
-        broker.subscribe("page." + pageId + ".appear", function () {
+        broker.subscribe('page.' + pageId + '.appear', function () {
           // create diagram when it's not already existing
           if (this._init) {
             this.initDiagram(false);
           }
-          // start refreshing when page is entered
-          this._startRefresh(this._timer, true);
         }, this);
 
         // initialize the diagram but don't make the initialization process wait for it
@@ -121,7 +118,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
             }
           }, this).schedule();
         } else {
-          this.__vlid1 = this.addListener("changeVisible", function(ev) {
+          this.__vlid1 = this.addListener('changeVisible', function(ev) {
             if (ev.getData()) {
               if (!this._init) {
                 this.loadDiagramData(this.plot, false, false);
@@ -139,11 +136,10 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
     },
 
     _getInnerDomString: function() {
-      var
-        classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
-        styleStr = 'min-height: 40px' +
-          (this.getWidth()  ? (';width:'  + this.getWidth() ) : ''             ) +
-          (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
+      const classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview';
+      const styleStr = 'min-height: 40px' +
+        (this.getWidth() ? (';width:' + this.getWidth()) : '') +
+        (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
 
       return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
     }
@@ -151,7 +147,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("diagram", statics);
-    cv.ui.structure.WidgetFactory.registerClass("diagram", statics);
+    cv.parser.WidgetParser.addHandler('diagram', statics);
+    cv.ui.structure.WidgetFactory.registerClass('diagram', statics);
   }
 });

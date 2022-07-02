@@ -1,6 +1,6 @@
 /* Switch.js 
  * 
- * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -67,12 +67,12 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
    */
   properties: {
     onValue: {
-      check: "String",
-      init: "1"
+      check: 'String',
+      init: '1'
     },
     offValue: {
-      check: "String",
-      init: "0"
+      check: 'String',
+      init: '0'
     }
   },
 
@@ -94,13 +94,13 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function(value) {
-      var actor = this.getActor();
+      const actor = this.getActor();
       // compare against the unmapped value
       value = this.getBasicValue();
-      var off = this.getOffValue();
+      const off = this.getOffValue();
       // using == comparisons to make sure that e.g. 1 equals "1"
-      qx.bom.element.Class.remove(actor, value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
-      qx.bom.element.Class.add(actor, value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
+      actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
+      actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
     },
 
     /**

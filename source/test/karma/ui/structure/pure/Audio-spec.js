@@ -1,6 +1,6 @@
 /* Audio-spec.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,30 +24,25 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a audio widget", function() {
+describe('testing a audio widget', function() {
+  it('should test the audio creator', function() {
+    const [widget, element] = this.createTestWidgetString('audio', {id: 'test'}, '<label>Test</label>');
 
-  it("should test the audio creator", function() {
+    expect(element).toHaveClass('audio');
+    expect(element).toHaveLabel('Test');
 
-    var res = this.createTestWidgetString("audio", {id: 'test'}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
-    var widgetInstance = res[0];
+    const audio = element.querySelector('audio');
 
-    expect(widget).toHaveClass('audio');
-    expect(widget).toHaveLabel('Test');
+    expect(audio).not.toHaveAttribute('autoplay');
+    expect(audio).not.toHaveAttribute('loop');
+    expect(audio).not.toHaveAttribute('style');
+    expect(audio).toHaveAttribute('controls');
 
-    var audio = qx.bom.Selector.query("audio", widget)[0];
-
-    expect(audio).not.toHaveAttribute("autoplay");
-    expect(audio).not.toHaveAttribute("loop");
-    expect(audio).not.toHaveAttribute("style");
-    expect(audio).toHaveAttribute("controls");
-
-    expect(widgetInstance.getPath()).toBe("id_0");
-
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should test the audio creator with more attributes", function() {
-    var res = this.createTestWidgetString("audio", {
+  it('should test the audio creator with more attributes', function() {
+    const [widget, element] = this.createTestWidgetString('audio', {
       id: 'test',
       width: '50%',
       height: '50%',
@@ -55,34 +50,34 @@ describe("testing a audio widget", function() {
       loop: 'true'
     }, '<label>Test</label>');
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    expect(element).toHaveClass('audio');
+    expect(element).toHaveLabel('Test');
 
-    expect(widget).toHaveClass('audio');
-    expect(widget).toHaveLabel('Test');
+    const audio = element.querySelector('audio');
 
-    var audio = qx.bom.Selector.query("audio", widget)[0];
-    expect(audio).toHaveAttribute("autoplay");
-    expect(audio).toHaveAttribute("loop");
-    expect(audio).toHaveAttribute("controls");
-    expect(qx.bom.element.Attribute.get(audio, 'style')).toBe('width:50%;height:50%;');
-    expect(qx.bom.element.Attribute.get(audio, 'id')).toBe('test');
-
+    expect(audio).toHaveAttribute('autoplay');
+    expect(audio).toHaveAttribute('loop');
+    expect(audio).toHaveAttribute('controls');
+    expect(audio.getAttribute('style')).toBe('width:50%;height:50%;');
+    expect(audio.getAttribute('id')).toBe('test');
   });
 
-  it("should update a audio item", function() {
-    var widgetInstance = this.createTestElement("audio", {id: 'test'});
+  it('should update a audio item', function() {
+    var widgetInstance = this.createTestElement('audio', {id: 'test'});
 
     var actor = widgetInstance.getActor();
-    spyOn(actor, "play");
+    spyOn(actor, 'play');
 
-    spyOn(widgetInstance, "getActor").and.callFake(function() {
+    spyOn(widgetInstance, 'getActor').and.callFake(function() {
       return actor;
     });
 
     widgetInstance.update('12/7/37', 0);
+
     expect(actor.play).not.toHaveBeenCalled();
 
     widgetInstance.update('12/7/37', 1);
+
     expect(actor.play).toHaveBeenCalled();
   });
 });

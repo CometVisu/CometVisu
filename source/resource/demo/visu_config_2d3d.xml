@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <plugins>
-      <plugin name="colorchooser"/>
       <plugin name="diagram"/>
     </plugins>
     <mappings>
@@ -47,13 +46,13 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
-          - <a href="manager.php">Config-Manager</a>
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="?manager=1" onclick="showManager(); return false;">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>
       <status type="html"><![CDATA[
-          - <a href="check_config.php">Check Config</a>
+          - <a cv-action="validate">Check Config</a>
           <div style="float:right;padding-right:0.5em">Version: Git</div>
         ]]></status>
     </statusbar>
@@ -75,6 +74,7 @@
         <address transform="DPT:5.001">12/7/52</address>
       </info>
     </page>
+    <!--
     <page name="3D Demo" type="3d" backdrop="config/demo/floorplan_demo.xml" azimut="12/7/53" elevation="12/7/54" floor="12/7/51">
       <info format="%.2f">
         <layout x="3.5" y="3.7" z="1.0"/>
@@ -118,5 +118,6 @@
       </trigger>
     </page>
     <line/>
+    -->
   </page>
 </pages>
