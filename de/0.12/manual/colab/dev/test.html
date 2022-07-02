@@ -140,11 +140,11 @@ nützlich, um zu sehen an welchen Stellen die Tests noch vervollständigt werden
 <p>Die Unittests werden mit Hilfe des <a class="reference external" href="http://jasmine.github.io/2.4/introduction.html">Jasmine Frameworks</a>
 geschrieben. Dadurch ist es möglich, die Tests fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
 Tests sieht so aus:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Meine Testsuite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should add two numbers&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">expect</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">9</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Meine Testsuite&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should add two numbers&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">});</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Dieser Code testet eine <code class="docutils literal notranslate"><span class="pre">add</span></code>-Funktion die einfach zwei Zahlen addiert.</p>
@@ -153,32 +153,32 @@ Sourcecode Datei unter <code class="docutils literal notranslate"><span class="p
 <code class="docutils literal notranslate"><span class="pre">source/test/karma/ui/structure/pure/NewWidget-spec.js</span></code> an.
 Wichtig ist hier, dass der Name der Testdatei auf <code class="docutils literal notranslate"><span class="pre">-spec</span></code> endet, sonst wird sie vom Testrunner nicht gefunden.</p>
 <p>Der Test für diese Datei sollte nun folgendermaßen aussehen:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;testing the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;testing the new-widget&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test the creation of a new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Hilfsfunktion die den HTML-Code des widgets erzeugt (weitere Hilfsfunktionen sind in source/test/karma/helper-spec.js zu finden)</span>
-    <span class="c1">// die Hilfsfunktion gibt ein Array mit 2 Elementen zurück, das erste ist die Instanz den Widget-Objekts, das zweite der HTML-Code als String</span>
-    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createTestWidgetString</span><span class="p">(</span><span class="s2">&quot;new-widget&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="s2">&quot;&lt;label&gt;Test&lt;/label&gt;&quot;</span><span class="p">);</span>
-    <span class="c1">// macht aus dem String ein DOM Element</span>
-    <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">div</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span><span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">res</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span><span class="k">return</span> <span class="nx">div</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mf">0</span><span class="p">];})();</span>
-    <span class="c1">// das Widget Object (Instanz der Klasse cv.ui.structure.pure.NewWidget)</span>
-    <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">res</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test the creation of a new-widget&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Hilfsfunktion die den HTML-Code des widgets erzeugt (weitere Hilfsfunktionen sind in source/test/karma/helper-spec.js zu finden)</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// die Hilfsfunktion gibt ein Array mit 2 Elementen zurück, das erste ist die Instanz den Widget-Objekts, das zweite der HTML-Code als String</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createTestWidgetString</span><span class="p">(</span><span class="s2">&quot;new-widget&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="s2">&quot;&lt;label&gt;Test&lt;/label&gt;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// macht aus dem String ein DOM Element</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">widget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span><span class="w"> </span><span class="nx">div</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span><span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">res</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span><span class="k">return</span><span class="w"> </span><span class="nx">div</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mf">0</span><span class="p">];})();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// das Widget Object (Instanz der Klasse cv.ui.structure.pure.NewWidget)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">res</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"></span>
 
-    <span class="c1">// prüft ob das DOM Element die CSS Klasse newwidget hat</span>
-    <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveClass</span><span class="p">(</span><span class="s1">&#39;newwidget&#39;</span><span class="p">);</span>
-    <span class="c1">// prüft ob das DOM Element ein Label mit dem Text &#39;Test&#39; hat</span>
-    <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveLabel</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">);</span>
-    <span class="c1">// prüft ob der widget Pfad &#39;id_0&#39; ist</span>
-    <span class="nx">expect</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">getPath</span><span class="p">()).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;id_0&quot;</span><span class="p">);</span>
-  <span class="p">});</span>
+<span class="w">    </span><span class="c1">// prüft ob das DOM Element die CSS Klasse newwidget hat</span><span class="w"></span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveClass</span><span class="p">(</span><span class="s1">&#39;newwidget&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// prüft ob das DOM Element ein Label mit dem Text &#39;Test&#39; hat</span><span class="w"></span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveLabel</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// prüft ob der widget Pfad &#39;id_0&#39; ist</span><span class="w"></span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">getPath</span><span class="p">()).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;id_0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">});</span><span class="w"></span>
 
-  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test another part of the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// weitere Tests</span>
-  <span class="p">});</span>
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test another part of the new-widget&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// weitere Tests</span><span class="w"></span>
+<span class="w">  </span><span class="p">});</span><span class="w"></span>
 
-  <span class="p">...</span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
 
-<span class="p">});</span>
+<span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen.</p>

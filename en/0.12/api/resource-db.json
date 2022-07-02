@@ -1,840 +1,5 @@
 {
   "resources": {
-    "qxl.versionlabel": {
-      "dummy.txt": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "osparc.theme": {
-      "widgetbrowser/blank.html": {
-        "resourcePath": "resourcePath"
-      },
-      "widgetbrowser/fo_tester.swf": {
-        "resourcePath": "resourcePath"
-      },
-      "widgetbrowser/loading66.gif": {
-        "resourcePath": "resourcePath",
-        "width": 66,
-        "height": 66
-      },
-      "widgetbrowser/people.json": {
-        "resourcePath": "resourcePath"
-      },
-      "widgetbrowser/test.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "widgetbrowser/tree.json": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/README-opensans.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-Bold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-BoldItalic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-Italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-Medium.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-MediumItalic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-Regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-SemiBold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/Asap-SemiBoldItalic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Asap/OFL.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "iconfont.fontawesome5": {
-      "iconfont/fontawesome5/CHANGELOG.md": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-map-convert.js": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/icons.yml": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/update.sh": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "qxl.apiviewer": {
-      "qxl/apiviewer/app.png": {
-        "resourcePath": "resourcePath",
-        "width": 180,
-        "height": 180
-      },
-      "qxl/apiviewer/favicon.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qxl/apiviewer/css/apiviewer.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/image/blank.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qxl/apiviewer/image/childcontrol18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/close.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/constant18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/cross.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/event18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/includes.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/information18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 22
-      },
-      "qxl/apiviewer/image/interface18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/interface_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/loading66.gif": {
-        "resourcePath": "resourcePath",
-        "width": 66,
-        "height": 66
-      },
-      "qxl/apiviewer/image/method_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/nextlevel.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/open.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/overlay_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_error18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_overridden18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/search18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/vline.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/imagesCombined/symbols.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 630
-      },
-      "qxl/apiviewer/imagesCombined/symbols.meta": {
-        "resourcePath": "resourcePath",
-        "meta": {
-          "qxl/apiviewer/image/childcontrol18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -540
-          ],
-          "qxl/apiviewer/image/class18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -324
-          ],
-          "qxl/apiviewer/image/class_abstract18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -486
-          ],
-          "qxl/apiviewer/image/class_abstract_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -306
-          ],
-          "qxl/apiviewer/image/class_singleton18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -612
-          ],
-          "qxl/apiviewer/image/class_singleton_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -252
-          ],
-          "qxl/apiviewer/image/class_static18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -234
-          ],
-          "qxl/apiviewer/image/class_static_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -144
-          ],
-          "qxl/apiviewer/image/class_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -342
-          ],
-          "qxl/apiviewer/image/constant18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -504
-          ],
-          "qxl/apiviewer/image/constructor18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -558
-          ],
-          "qxl/apiviewer/image/event18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -198
-          ],
-          "qxl/apiviewer/image/interface18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -432
-          ],
-          "qxl/apiviewer/image/interface_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -450
-          ],
-          "qxl/apiviewer/image/method_private18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -270
-          ],
-          "qxl/apiviewer/image/method_protected18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -216
-          ],
-          "qxl/apiviewer/image/method_public18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -126
-          ],
-          "qxl/apiviewer/image/method_public_inherited18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -18
-          ],
-          "qxl/apiviewer/image/mixin18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -162
-          ],
-          "qxl/apiviewer/image/mixin_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -108
-          ],
-          "qxl/apiviewer/image/overlay_abstract18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            0
-          ],
-          "qxl/apiviewer/image/overlay_constructor18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -36
-          ],
-          "qxl/apiviewer/image/overlay_error18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -414
-          ],
-          "qxl/apiviewer/image/overlay_inherited18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -576
-          ],
-          "qxl/apiviewer/image/overlay_mixin18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -180
-          ],
-          "qxl/apiviewer/image/overlay_overridden18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -288
-          ],
-          "qxl/apiviewer/image/overlay_static18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -378
-          ],
-          "qxl/apiviewer/image/overlay_themeable18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -360
-          ],
-          "qxl/apiviewer/image/overlay_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -594
-          ],
-          "qxl/apiviewer/image/package18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -54
-          ],
-          "qxl/apiviewer/image/package_warning18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -90
-          ],
-          "qxl/apiviewer/image/property18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -522
-          ],
-          "qxl/apiviewer/image/property_private18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -72
-          ],
-          "qxl/apiviewer/image/property_protected18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -468
-          ],
-          "qxl/apiviewer/image/property_themeable18.gif": [
-            18,
-            18,
-            "gif",
-            "qxl/apiviewer/imagesCombined/symbols.gif",
-            0,
-            -396
-          ]
-        }
-      }
-    },
-    "qxl.dialog": {
-      "qxl/dialog/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      }
-    },
-    "iconfont.material": {
-      "iconfont/material/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.md": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/fetch-urls.sh": {
-        "resourcePath": "resourcePath"
-      }
-    },
     "cv": {
       ".gitignore": {
         "resourcePath": "resourcePath"
@@ -2187,6 +1352,16 @@
         "resourcePath": "resourcePath"
       }
     },
+    "cv.io": {
+      "lib/jquery.js": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "qxl.versionlabel": {
+      "dummy.txt": {
+        "resourcePath": "resourcePath"
+      }
+    },
     "com.zenesis.qx.upload": {
       "FileSaver.js": {
         "resourcePath": "resourcePath"
@@ -2215,9 +1390,834 @@
         "height": 32
       }
     },
-    "cv.io": {
-      "lib/jquery.js": {
+    "qxl.apiviewer": {
+      "qxl/apiviewer/app.png": {
+        "resourcePath": "resourcePath",
+        "width": 180,
+        "height": 180
+      },
+      "qxl/apiviewer/favicon.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qxl/apiviewer/css/apiviewer.css": {
         "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/image/blank.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qxl/apiviewer/image/childcontrol18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/close.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/constant18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/cross.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/event18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/includes.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/information18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 22
+      },
+      "qxl/apiviewer/image/interface18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/interface_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/loading66.gif": {
+        "resourcePath": "resourcePath",
+        "width": 66,
+        "height": 66
+      },
+      "qxl/apiviewer/image/method_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/nextlevel.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/open.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/overlay_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_error18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_overridden18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/search18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/vline.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/imagesCombined/symbols.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 630
+      },
+      "qxl/apiviewer/imagesCombined/symbols.meta": {
+        "resourcePath": "resourcePath",
+        "meta": {
+          "qxl/apiviewer/image/childcontrol18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -540
+          ],
+          "qxl/apiviewer/image/class18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -324
+          ],
+          "qxl/apiviewer/image/class_abstract18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -486
+          ],
+          "qxl/apiviewer/image/class_abstract_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -306
+          ],
+          "qxl/apiviewer/image/class_singleton18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -612
+          ],
+          "qxl/apiviewer/image/class_singleton_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -252
+          ],
+          "qxl/apiviewer/image/class_static18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -234
+          ],
+          "qxl/apiviewer/image/class_static_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -144
+          ],
+          "qxl/apiviewer/image/class_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -342
+          ],
+          "qxl/apiviewer/image/constant18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -504
+          ],
+          "qxl/apiviewer/image/constructor18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -558
+          ],
+          "qxl/apiviewer/image/event18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -198
+          ],
+          "qxl/apiviewer/image/interface18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -432
+          ],
+          "qxl/apiviewer/image/interface_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -450
+          ],
+          "qxl/apiviewer/image/method_private18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -270
+          ],
+          "qxl/apiviewer/image/method_protected18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -216
+          ],
+          "qxl/apiviewer/image/method_public18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -126
+          ],
+          "qxl/apiviewer/image/method_public_inherited18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -18
+          ],
+          "qxl/apiviewer/image/mixin18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -162
+          ],
+          "qxl/apiviewer/image/mixin_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -108
+          ],
+          "qxl/apiviewer/image/overlay_abstract18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            0
+          ],
+          "qxl/apiviewer/image/overlay_constructor18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -36
+          ],
+          "qxl/apiviewer/image/overlay_error18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -414
+          ],
+          "qxl/apiviewer/image/overlay_inherited18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -576
+          ],
+          "qxl/apiviewer/image/overlay_mixin18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -180
+          ],
+          "qxl/apiviewer/image/overlay_overridden18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -288
+          ],
+          "qxl/apiviewer/image/overlay_static18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -378
+          ],
+          "qxl/apiviewer/image/overlay_themeable18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -360
+          ],
+          "qxl/apiviewer/image/overlay_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -594
+          ],
+          "qxl/apiviewer/image/package18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -54
+          ],
+          "qxl/apiviewer/image/package_warning18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -90
+          ],
+          "qxl/apiviewer/image/property18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -522
+          ],
+          "qxl/apiviewer/image/property_private18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -72
+          ],
+          "qxl/apiviewer/image/property_protected18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -468
+          ],
+          "qxl/apiviewer/image/property_themeable18.gif": [
+            18,
+            18,
+            "gif",
+            "qxl/apiviewer/imagesCombined/symbols.gif",
+            0,
+            -396
+          ]
+        }
+      }
+    },
+    "osparc.theme": {
+      "widgetbrowser/blank.html": {
+        "resourcePath": "resourcePath"
+      },
+      "widgetbrowser/fo_tester.swf": {
+        "resourcePath": "resourcePath"
+      },
+      "widgetbrowser/loading66.gif": {
+        "resourcePath": "resourcePath",
+        "width": 66,
+        "height": 66
+      },
+      "widgetbrowser/people.json": {
+        "resourcePath": "resourcePath"
+      },
+      "widgetbrowser/test.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "widgetbrowser/tree.json": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/README-opensans.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-Bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-BoldItalic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-Italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-Medium.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-MediumItalic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-Regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-SemiBold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/Asap-SemiBoldItalic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Asap/OFL.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-italic.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "iconfont.material": {
+      "iconfont/material/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.md": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/fetch-urls.sh": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "iconfont.fontawesome5": {
+      "iconfont/fontawesome5/CHANGELOG.md": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-map-convert.js": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/icons.yml": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/update.sh": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "qxl.dialog": {
+      "qxl/dialog/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
       }
     },
     "qx": {
@@ -10021,496 +10021,6 @@
       "qx/website/scss/ui/_widget.scss": {
         "resourcePath": "resourcePath"
       },
-      "qx/icon/Oxygen/128/actions/address-book-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/application-exit.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/appointment-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/check-spelling.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/contact-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-apply.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-cancel.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-ok.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-open-recent.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-open.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-print-preview.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-print.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-properties.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-revert.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-save-as.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-save.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-clear.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-copy.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-cut.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-delete.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-find.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-paste.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-redo.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-select-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-undo.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/folder-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-center.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-fill.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-bold.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-direction-ltr.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-direction-rtl.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-italic.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-strikethrough.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-underline.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-bottom.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-down.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-first.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-home.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-last.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-previous.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-next.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-top.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-up.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-about.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-contents.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-faq.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-image.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-link.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-text.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/list-add.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/list-remove.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-unread.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-receive.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-reply-sender.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-eject.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-pause.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-record.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-seek-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-seek-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-skip-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-skip-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-flip-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-flip-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-rotate-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-rotate-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/process-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-log-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-run.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-search.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-shutdown.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-refresh.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-restore.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-sort-ascending.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-sort-descending.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/window-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/window-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-fit-best.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-in.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-original.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -11145,6 +10655,496 @@
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
+      },
+      "qx/icon/Oxygen/16/actions/address-book-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/application-exit.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/appointment-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/bookmark-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/check-spelling.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/contact-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/dialog-apply.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/dialog-cancel.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/dialog-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/dialog-ok.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-open-recent.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-open.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-print-preview.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-print.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-properties.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-revert.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-save-as.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-save.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/document-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-clear.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-copy.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-cut.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-delete.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-find.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-paste.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-redo.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-select-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/edit-undo.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/folder-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-indent-less.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-indent-more.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-justify-center.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-justify-fill.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-justify-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-justify-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-text-bold.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-text-direction-ltr.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-text-direction-rtl.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-text-italic.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-text-strikethrough.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/format-text-underline.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-bottom.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-down.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-first.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-home.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-last.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-next.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-previous.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-top.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/go-up.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/help-about.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/help-contents.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/help-faq.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/insert-image.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/insert-link.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/insert-text.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/list-add.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/list-remove.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-mark-important.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-mark-junk.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-mark-read.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-mark-unread.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-message-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-receive.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-reply-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-reply-sender.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-eject.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-playback-pause.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-playback-start.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-playback-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-record.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-seek-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-seek-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-skip-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/media-skip-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/object-flip-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/object-flip-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/object-rotate-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/object-rotate-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/process-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/system-log-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/system-run.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/system-search.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/system-shutdown.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/view-fullscreen.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/view-refresh.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/view-restore.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/view-sort-ascending.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/view-sort-descending.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/window-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/window-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/zoom-fit-best.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/zoom-in.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/zoom-original.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/zoom-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
       },
       "qx/icon/Oxygen/16/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
@@ -12376,12 +12376,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/office-writer.png": {
+      "qx/icon/Oxygen/22/apps/office-web.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/office-web.png": {
+      "qx/icon/Oxygen/22/apps/office-writer.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12591,12 +12591,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/camera-web.png": {
+      "qx/icon/Oxygen/22/devices/camera-photo.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/camera-photo.png": {
+      "qx/icon/Oxygen/22/devices/camera-web.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -13721,12 +13721,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/devices/computer.png": {
+      "qx/icon/Oxygen/32/devices/camera-web.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/devices/camera-web.png": {
+      "qx/icon/Oxygen/32/devices/computer.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -13926,12 +13926,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/places/folder-remote.png": {
+      "qx/icon/Oxygen/32/places/folder-open.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/places/folder-open.png": {
+      "qx/icon/Oxygen/32/places/folder-remote.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14986,12 +14986,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/mimetypes/executable.png": {
+      "qx/icon/Oxygen/48/mimetypes/archive.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/mimetypes/archive.png": {
+      "qx/icon/Oxygen/48/mimetypes/executable.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15096,12 +15096,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/status/dialog-information.png": {
+      "qx/icon/Oxygen/48/status/dialog-error.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/status/dialog-error.png": {
+      "qx/icon/Oxygen/48/status/dialog-information.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15156,12 +15156,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/64/actions/application-exit.png": {
+      "qx/icon/Oxygen/64/actions/address-book-new.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/address-book-new.png": {
+      "qx/icon/Oxygen/64/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -15646,12 +15646,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/apps/internet-download-manager.png": {
+      "qx/icon/Oxygen/64/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/apps/internet-blog.png": {
+      "qx/icon/Oxygen/64/apps/internet-download-manager.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22696,12 +22696,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/devices/audio-input-microphone.png": {
+      "qx/icon/Tango/64/devices/audio-card.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/devices/audio-card.png": {
+      "qx/icon/Tango/64/devices/audio-input-microphone.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22776,12 +22776,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/devices/phone.png": {
+      "qx/icon/Tango/64/devices/pda.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/devices/pda.png": {
+      "qx/icon/Tango/64/devices/phone.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22796,12 +22796,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/emblems/emblem-important.png": {
+      "qx/icon/Tango/64/emblems/emblem-favorite.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/emblems/emblem-favorite.png": {
+      "qx/icon/Tango/64/emblems/emblem-important.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22856,12 +22856,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/executable.png": {
+      "qx/icon/Tango/64/mimetypes/archive.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/archive.png": {
+      "qx/icon/Tango/64/mimetypes/executable.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22876,12 +22876,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/office-calendar.png": {
+      "qx/icon/Tango/64/mimetypes/media-video.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/media-video.png": {
+      "qx/icon/Tango/64/mimetypes/office-calendar.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22921,12 +22921,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/places/folder-remote.png": {
+      "qx/icon/Tango/64/places/folder-open.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/places/folder-open.png": {
+      "qx/icon/Tango/64/places/folder-remote.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22966,17 +22966,17 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Tango/64/status/dialog-error.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Tango/64/status/dialog-information.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
       "qx/icon/Tango/64/status/dialog-password.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/status/dialog-error.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23006,6 +23006,11 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Tango/64/status/mail-unread.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Tango/64/status/security-high.png": {
         "resourcePath": "resourcePath",
         "width": 64,
@@ -23021,506 +23026,501 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/status/mail-unread.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
       "qx/mobile/scss/theme/flat/_styles.scss": {
         "resourcePath": "resourcePath"
       },
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
       },
-      "qx/icon/Oxygen/16/actions/address-book-new.png": {
+      "qx/icon/Oxygen/128/actions/address-book-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/application-exit.png": {
+      "qx/icon/Oxygen/128/actions/application-exit.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/appointment-new.png": {
+      "qx/icon/Oxygen/128/actions/appointment-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/bookmark-new.png": {
+      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/check-spelling.png": {
+      "qx/icon/Oxygen/128/actions/check-spelling.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/contact-new.png": {
+      "qx/icon/Oxygen/128/actions/contact-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/dialog-apply.png": {
+      "qx/icon/Oxygen/128/actions/dialog-apply.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/dialog-cancel.png": {
+      "qx/icon/Oxygen/128/actions/dialog-cancel.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/dialog-close.png": {
+      "qx/icon/Oxygen/128/actions/dialog-close.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/dialog-ok.png": {
+      "qx/icon/Oxygen/128/actions/dialog-ok.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-new.png": {
+      "qx/icon/Oxygen/128/actions/document-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-open-recent.png": {
+      "qx/icon/Oxygen/128/actions/document-open-recent.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-open.png": {
+      "qx/icon/Oxygen/128/actions/document-open.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-print-preview.png": {
+      "qx/icon/Oxygen/128/actions/document-print-preview.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-print.png": {
+      "qx/icon/Oxygen/128/actions/document-print.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-properties.png": {
+      "qx/icon/Oxygen/128/actions/document-properties.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-save-as.png": {
+      "qx/icon/Oxygen/128/actions/document-revert.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-save.png": {
+      "qx/icon/Oxygen/128/actions/document-save-as.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-revert.png": {
+      "qx/icon/Oxygen/128/actions/document-save.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/document-send.png": {
+      "qx/icon/Oxygen/128/actions/document-send.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-clear.png": {
+      "qx/icon/Oxygen/128/actions/edit-clear.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-copy.png": {
+      "qx/icon/Oxygen/128/actions/edit-copy.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-cut.png": {
+      "qx/icon/Oxygen/128/actions/edit-cut.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-delete.png": {
+      "qx/icon/Oxygen/128/actions/edit-delete.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-find.png": {
+      "qx/icon/Oxygen/128/actions/edit-find.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-paste.png": {
+      "qx/icon/Oxygen/128/actions/edit-paste.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-redo.png": {
+      "qx/icon/Oxygen/128/actions/edit-redo.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-select-all.png": {
+      "qx/icon/Oxygen/128/actions/edit-select-all.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/edit-undo.png": {
+      "qx/icon/Oxygen/128/actions/edit-undo.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/folder-new.png": {
+      "qx/icon/Oxygen/128/actions/folder-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-indent-less.png": {
+      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-indent-more.png": {
+      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-justify-center.png": {
+      "qx/icon/Oxygen/128/actions/format-justify-center.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-justify-fill.png": {
+      "qx/icon/Oxygen/128/actions/format-justify-fill.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-justify-left.png": {
+      "qx/icon/Oxygen/128/actions/format-justify-left.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-justify-right.png": {
+      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-text-bold.png": {
+      "qx/icon/Oxygen/128/actions/format-text-bold.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-text-direction-ltr.png": {
+      "qx/icon/Oxygen/128/actions/format-text-direction-ltr.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-text-direction-rtl.png": {
+      "qx/icon/Oxygen/128/actions/format-text-direction-rtl.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-text-italic.png": {
+      "qx/icon/Oxygen/128/actions/format-text-italic.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-text-strikethrough.png": {
+      "qx/icon/Oxygen/128/actions/format-text-strikethrough.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/format-text-underline.png": {
+      "qx/icon/Oxygen/128/actions/format-text-underline.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-bottom.png": {
+      "qx/icon/Oxygen/128/actions/go-bottom.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-down.png": {
+      "qx/icon/Oxygen/128/actions/go-down.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-first.png": {
+      "qx/icon/Oxygen/128/actions/go-first.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-home.png": {
+      "qx/icon/Oxygen/128/actions/go-home.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-last.png": {
+      "qx/icon/Oxygen/128/actions/go-last.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-next.png": {
+      "qx/icon/Oxygen/128/actions/go-next.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-previous.png": {
+      "qx/icon/Oxygen/128/actions/go-previous.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-top.png": {
+      "qx/icon/Oxygen/128/actions/go-top.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/go-up.png": {
+      "qx/icon/Oxygen/128/actions/go-up.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/help-about.png": {
+      "qx/icon/Oxygen/128/actions/help-about.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/help-contents.png": {
+      "qx/icon/Oxygen/128/actions/help-contents.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/help-faq.png": {
+      "qx/icon/Oxygen/128/actions/help-faq.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/insert-image.png": {
+      "qx/icon/Oxygen/128/actions/insert-image.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/insert-link.png": {
+      "qx/icon/Oxygen/128/actions/insert-link.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/insert-text.png": {
+      "qx/icon/Oxygen/128/actions/insert-text.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/list-add.png": {
+      "qx/icon/Oxygen/128/actions/list-add.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/list-remove.png": {
+      "qx/icon/Oxygen/128/actions/list-remove.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-forward.png": {
+      "qx/icon/Oxygen/128/actions/mail-forward.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-mark-important.png": {
+      "qx/icon/Oxygen/128/actions/mail-mark-important.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-mark-junk.png": {
+      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-mark-read.png": {
+      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-mark-unread.png": {
+      "qx/icon/Oxygen/128/actions/mail-mark-unread.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-message-new.png": {
+      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-receive.png": {
+      "qx/icon/Oxygen/128/actions/mail-receive.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-reply-all.png": {
+      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-reply-sender.png": {
+      "qx/icon/Oxygen/128/actions/mail-reply-sender.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/mail-send.png": {
+      "qx/icon/Oxygen/128/actions/mail-send.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-eject.png": {
+      "qx/icon/Oxygen/128/actions/media-eject.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-playback-pause.png": {
+      "qx/icon/Oxygen/128/actions/media-playback-pause.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-playback-start.png": {
+      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-playback-stop.png": {
+      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-seek-backward.png": {
+      "qx/icon/Oxygen/128/actions/media-record.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-seek-forward.png": {
+      "qx/icon/Oxygen/128/actions/media-seek-backward.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-record.png": {
+      "qx/icon/Oxygen/128/actions/media-seek-forward.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-skip-backward.png": {
+      "qx/icon/Oxygen/128/actions/media-skip-backward.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/media-skip-forward.png": {
+      "qx/icon/Oxygen/128/actions/media-skip-forward.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/object-flip-horizontal.png": {
+      "qx/icon/Oxygen/128/actions/object-flip-horizontal.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/object-flip-vertical.png": {
+      "qx/icon/Oxygen/128/actions/object-flip-vertical.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/object-rotate-left.png": {
+      "qx/icon/Oxygen/128/actions/object-rotate-left.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/object-rotate-right.png": {
+      "qx/icon/Oxygen/128/actions/object-rotate-right.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/process-stop.png": {
+      "qx/icon/Oxygen/128/actions/process-stop.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/system-run.png": {
+      "qx/icon/Oxygen/128/actions/system-log-out.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/system-search.png": {
+      "qx/icon/Oxygen/128/actions/system-run.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/system-log-out.png": {
+      "qx/icon/Oxygen/128/actions/system-search.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/system-shutdown.png": {
+      "qx/icon/Oxygen/128/actions/system-shutdown.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/view-fullscreen.png": {
+      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/view-refresh.png": {
+      "qx/icon/Oxygen/128/actions/view-refresh.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/view-restore.png": {
+      "qx/icon/Oxygen/128/actions/view-restore.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/view-sort-ascending.png": {
+      "qx/icon/Oxygen/128/actions/view-sort-ascending.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/view-sort-descending.png": {
+      "qx/icon/Oxygen/128/actions/view-sort-descending.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/window-close.png": {
+      "qx/icon/Oxygen/128/actions/window-close.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/window-new.png": {
+      "qx/icon/Oxygen/128/actions/window-new.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/zoom-fit-best.png": {
+      "qx/icon/Oxygen/128/actions/zoom-fit-best.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/zoom-in.png": {
+      "qx/icon/Oxygen/128/actions/zoom-in.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/zoom-original.png": {
+      "qx/icon/Oxygen/128/actions/zoom-original.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Oxygen/16/actions/zoom-out.png": {
+      "qx/icon/Oxygen/128/actions/zoom-out.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 128,
+        "height": 128
       }
     }
   }

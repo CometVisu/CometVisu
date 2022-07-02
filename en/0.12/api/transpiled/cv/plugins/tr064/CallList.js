@@ -71,8 +71,13 @@
     ***********************************************
     */
     construct: function construct(props) {
+      var _this = this;
+
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
       this.__P_22_0 = {};
+      this.addListenerOnce('domReady', function () {
+        _this.refreshCalllist('initial');
+      });
     },
 
     /*
@@ -291,7 +296,6 @@
        */
       __P_22_0: null,
       _getInnerDomString: function _getInnerDomString() {
-        this.refreshCalllist('initial');
         return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
       },
       _setupRefreshAction: function _setupRefreshAction() {
@@ -550,4 +554,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1650269535127
+//# sourceMappingURL=CallList.js.map?dt=1656748382335

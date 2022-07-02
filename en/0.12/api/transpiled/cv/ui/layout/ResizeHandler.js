@@ -156,13 +156,14 @@
             var backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {};
             var backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width;
             var backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height;
-            var backdropScale = Math.min(this.width / backdropNWidth, this.height / backdropNHeight);
+            var backdropFixed = page.getSize() === 'fixed';
+            var backdropScale = backdropFixed ? 1 : Math.min(this.width / backdropNWidth, this.height / backdropNHeight);
             var backdropWidth = backdropNWidth * backdropScale;
             var backdropHeight = backdropNHeight * backdropScale;
             var backdropPos = page.getBackdropAlign().split(' ');
             var backdropLeftRaw = backdropPos[0].match(cssPosRegEx);
             var backdropTopRaw = backdropPos[1].match(cssPosRegEx);
-            var backdropLeft = backdropLeftRaw[2] === '%' ? this.width > backdropWidth ? (this.width - backdropWidth) * +backdropLeftRaw[1] / 100 : 0 : +backdropLeftRaw[1];
+            var backdropLeft = backdropLeftRaw[2] === '%' ? (this.width - backdropWidth) * +backdropLeftRaw[1] / 100 : +backdropLeftRaw[1];
             var backdropTop = backdropTopRaw[2] === '%' ? this.height > backdropHeight ? (this.height - backdropHeight) * +backdropTopRaw[1] / 100 : 0 : +backdropTopRaw[1];
             var uagent = navigator.userAgent.toLowerCase();
 
@@ -170,6 +171,11 @@
               // backdrop not available yet - reload
               qx.event.Timer.once(this.invalidateBackdrop, this, 100);
               return;
+            } // backdrop available
+
+
+            if (page.getSize() === 'scaled' && page.getBackdropType() === 'embed' && backdropSVG && backdropSVG.children[0].getAttribute('preserveAspectRatio') !== 'none') {
+              backdropSVG.children[0].setAttribute('preserveAspectRatio', 'none');
             } // Note 1: this here is a work around for older browsers that can't use
             // the object-fit property yet.
             // Currently (26.05.16) only Safari is known to not support
@@ -177,15 +183,19 @@
             // Note 2: The embed element always needs it
 
 
-            if (page.getBackdropType() === 'embed' || uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1) {
-              Object.entries({
-                width: backdropWidth + 'px',
-                height: backdropHeight + 'px',
-                left: backdropLeft + 'px',
-                top: backdropTop + 'px'
-              }).forEach(function (key_value) {
-                backdrop.style[key_value[0]] = key_value[1];
-              });
+            if ((page.getBackdropType() === 'embed' || uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1) && page.getSize() !== 'scaled') {
+              backdrop.style.width = backdropWidth + 'px';
+              backdrop.style.height = backdropHeight + 'px';
+              backdrop.style.left = backdropLeft + 'px';
+              backdrop.style.top = backdropTop + 'px';
+            }
+
+            if (backdropFixed && !backdropSVG) {
+              if (this.height < backdropHeight) {
+                backdrop.style.height = backdropHeight + 'px';
+              } else {
+                backdrop.style.height = '100%';
+              }
             }
 
             page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
@@ -376,4 +386,4 @@
   cv.ui.layout.ResizeHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResizeHandler.js.map?dt=1650269569299
+//# sourceMappingURL=ResizeHandler.js.map?dt=1656748418861

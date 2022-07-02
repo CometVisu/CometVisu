@@ -243,7 +243,7 @@
       },
 
       /**
-       * Set childrens column widths
+       * Set children column widths
        */
       applyColumnWidths: function applyColumnWidths() {
         cv.ui.layout.Manager.applyColumnWidths('#' + this.getPath(), false);
@@ -261,7 +261,12 @@
 
           switch (this.getSize()) {
             case 'fixed':
-              size = '';
+              size += 'object-fit:none;';
+
+              if (this.getBackdropAlign()) {
+                size += 'object-position:' + this.getBackdropAlign() + ';';
+              }
+
               break;
 
             case 'contained':
@@ -381,4 +386,4 @@
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1650269539787
+//# sourceMappingURL=Page.js.map?dt=1656748387186

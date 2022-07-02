@@ -221,22 +221,22 @@ Konfigurations-Optionen.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</p></li>
 </ul>
 <p>Ein Nachrichtenempfänger (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) kann sich nun für eines oder mehrere solcher Topics registrieren:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
-        <span class="nx">icon</span><span class="o">:</span> <span class="s2">&quot;message_attention&quot;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;cv.error&#39;</span><span class="o">:</span> <span class="p">{</span>
-       <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
-       <span class="nx">icon</span><span class="o">:</span> <span class="s2">&quot;message_attention&quot;</span>
-    <span class="p">}</span>
-<span class="p">});</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;cv.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Auch Wildcards sind möglich:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;cv.*&#39;</span><span class="o">:</span> <span class="p">{}</span>
-<span class="p">});</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;cv.*&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

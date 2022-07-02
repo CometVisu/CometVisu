@@ -223,6 +223,7 @@
     "de": "/de/develop/manual/config/widgets/pagejump/index.html"
     "en": "/en/develop/manual/config/widgets/pagejump/index.html"
   "name": "Pagejump"
+  "screenshot": "/de/develop/manual/_images/pagejump_komplex.png"
 - "description":
     "de": "Fügt der Visu eine Schaltfläche hinzu, mit der beim Drücken und Loslassen jeweils ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit ist es z.B. möglich einen Taster zu simulieren um ein Garagentor, Rollläden oder Raffstores zu öffnen und zu schließen."
     "en": "Adds a button to the visu that sends a defined value to the BUS when you press and release. E.g. pushing a 1 and releasing a 0. This makes it possible, for example, to simulate a push button to open and close a garage door, blinds or blinds."
