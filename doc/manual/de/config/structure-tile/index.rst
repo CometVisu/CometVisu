@@ -122,8 +122,6 @@ Komponenten
     Value <components/value>
     Image <components/image>
 
-
-* RoundProgress
 * Select
 * Spinner
 * Slider

@@ -25,8 +25,8 @@ aus ohne verzerrt zu werden.
 
 Über das optionale ``refresh``-Attribut kann festgelegt werden in welchem Interval in Sekunden das Bild neu geladen wird.
 
-Sollte eine Autorisierung erforderlich sein um das Bild laden zu können, so kann diese über die Attribute
-``authorization``, ``username`` und ``password`` definiert werden. Bisher wird nur die `"Basic"-Authentifizierung <https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication>`_./
+Sollte eine Authentifizierung erforderlich sein um das Bild laden zu können, so kann diese über die Attribute
+``auth-type``, ``username`` und ``password`` definiert werden. Bisher wird nur die `"Basic"-Authentifizierung <https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication>`_./
 unterstützt. Sofern es dabei Probleme gibt kann das Laden den Bildes über einen Proxy im Backend benutzt werden indem
 man das ``proxy``-Attribut auf ``true`` setzt.
 

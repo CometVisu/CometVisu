@@ -38,8 +38,8 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         this._url.searchParams.set('url', element.getAttribute('src'));
       }
       this._headers = {};
-      if (element.hasAttribute('authorization')) {
-        switch (element.getAttribute('authorization').toLowerCase()) {
+      if (element.hasAttribute('auth-type')) {
+        switch (element.getAttribute('auth-type').toLowerCase()) {
           case 'basic':
             if (useProxy) {
               this._url.searchParams.set('authorization', 'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password')));
