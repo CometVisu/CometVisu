@@ -15,12 +15,12 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
 
     _updateValue(mappedValue, value) {
       const target = this._element.querySelector('.value');
+      let styleClass = '';
       if (target) {
         const tagName = target.tagName.toLowerCase();
         switch (tagName) {
           case 'cv-icon':
             target._instance.setId(mappedValue);
-            let styleClass = "";
             if (this._element.hasAttribute('styling')) {
               styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__store);
             }
