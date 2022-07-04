@@ -1,5 +1,9 @@
 /**
- * Shows a round progress bar (partially filled circle)
+ * Shows a round progress bar (partially filled circle).
+ * This component must be used inside a cv-value component, it is not meant to be used standalone.
+ *
+ * @author Tobias Bräutigam
+ * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
