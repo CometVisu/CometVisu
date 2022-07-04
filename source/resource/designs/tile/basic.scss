@@ -167,7 +167,8 @@ body {
             /* popup sub-menus */
             background-color: $appBackground;
             box-shadow: 0 6px 8px 4px $shadowColor;
-            border-radius: var(--spacing);
+            border-bottom-left-radius: var(--spacing);
+            border-bottom-right-radius: var(--spacing);
         }
 
         ul {
@@ -203,6 +204,12 @@ body {
                         vertical-align: text-bottom;
                         font-size: 28px;
                         line-height: 20px;
+                    }
+
+                    &[open] > summary {
+                        background-color: $appBackground;
+                        border-top-left-radius: var(--spacing);
+                        border-top-right-radius: var(--spacing);
                     }
 
                     &[open] > summary:after {
