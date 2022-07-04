@@ -38,13 +38,20 @@ qx.Class.define('cv.ConfigCache', {
     _valid : null,
     replayCache: null,
     __initPromise: null,
+    failed: null,
     DB: null,
 
     init: function () {
       if (!this.__initPromise) {
         this.__initPromise = new Promise((resolve, reject) => {
-          if (!cv.ConfigCache.DB) {
+          if (!cv.ConfigCache.DB && !cv.ConfigCache.failed) {
             const request = indexedDB.open('cvCache', 1);
+            request.onerror = function() {
+              cv.ConfigCache.failed = true;
+              qx.log.Logger.error(cv.ConfigCache, 'error opening cache database');
+              cv.ConfigCache.DB = null;
+              resolve(cv.ConfigCache.DB);
+            };
             request.onsuccess = function (ev) {
               qx.log.Logger.debug(cv.ConfigCache, 'Success creating/accessing IndexedDB database');
               cv.ConfigCache.DB = request.result;
@@ -90,24 +97,52 @@ qx.Class.define('cv.ConfigCache', {
       const model = cv.data.Model.getInstance();
       this.getData().then(cache => {
         cv.Config.configSettings = cache.configSettings;
-        // restore formulas
+
+        // restore icons
+        cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
+          cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+        }, this);
+
+        // restore mappings
         if (cv.Config.configSettings.mappings) {
           Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
             const mapping = cv.Config.configSettings.mappings[name];
             if (mapping && mapping.formulaSource) {
               mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+            } else {
+              Object.keys(mapping).forEach(key => {
+                if (key === 'range') {
+                  Object.keys(mapping.range).forEach(rangeMin => {
+                    mapping.range[rangeMin][1].forEach((valueElement, i) => {
+                      const iconDefinition = valueElement.definition;
+                      if (iconDefinition) {
+                        let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                        icon.definition = iconDefinition;
+                        mapping.range[rangeMin][1][i] = icon;
+                      }
+                    });
+                  });
+                } else if (Array.isArray(mapping[key])) {
+                  const contents = mapping[key];
+                  for (let i = 0; i < contents.length; i++) {
+                    const iconDefinition = contents[i].definition;
+                    if (iconDefinition) {
+                      let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                      icon.definition = iconDefinition;
+                      contents[i] = icon;
+                    }
+                  }
+                } else {
+                  const iconDefinition = mapping[key].definition;
+                  if (iconDefinition) {
+                    let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                    icon.definition = iconDefinition;
+                    mapping[key] = icon;
+                  }
+                }
+              });
             }
           }, this);
-        }
-        if (cv.Config.mobileDevice) {
-          document.querySelector('body').classList.add('mobile');
-          const hasMobile = cv.Config.configSettings.stylesToLoad.some(style => style.endsWith('mobile.css'));
-          if (!hasMobile) {
-            cv.Config.configSettings.stylesToLoad.push('designs/' + cv.Config.configSettings.clientDesign + '/mobile.css');
-          }
-        } else {
-          // do not load mobile css
-          cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(style => !style.endsWith('mobile.css'));
         }
         model.setWidgetDataModel(cache.data);
         model.setAddressList(cache.addresses);
@@ -128,12 +163,18 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     save: function(data) {
-      const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
-      objectStore.put(data);
+      if (cv.ConfigCache.DB) {
+        const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
+        objectStore.put(data);
+      }
     },
     
     getData: async function(key) {
       return new Promise((resolve, reject) => {
+        if (!cv.ConfigCache.DB) {
+          resolve(null);
+          return;
+        }
         if (!this._parseCacheData) {
           const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readonly').objectStore('data');
           const dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
@@ -197,12 +238,14 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     clear: function(configSuffix) {
-      configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
-      const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
-      const dataRequest = objectStore.delete(configSuffix);
-      dataRequest.onsuccess = function () {
-        qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
-      };
+      if (cv.ConfigCache.DB) {
+        configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
+        const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
+        const dataRequest = objectStore.delete(configSuffix);
+        dataRequest.onsuccess = function () {
+          qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
+        };
+      }
     },
     
     /**

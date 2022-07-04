@@ -153,7 +153,7 @@ qx.Class.define('cv.ui.Popup', {
         if (attributes.icon) {
           if (!this.__elementMap.icon) {
             const iconClasses = attributes.iconClasses ? ' ' + attributes.iconClasses : '';
-            this.__elementMap.icon = qx.dom.Element.create('div', {'html': cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses)});
+            this.__elementMap.icon = qx.dom.Element.create('div', {'html': cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses, true, true)});
             qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
           } else {
             const use = this.__elementMap.icon.querySelector('use');
@@ -277,7 +277,8 @@ qx.Class.define('cv.ui.Popup', {
         qx.event.Registration.addListener(ret_val, 'tap', function () {
           // note: this will call two events - one for the popup itself and
           //       one for the popup_background.
-          this.fireEvent('close');
+          // needs to be delayed to allow links inside the popup
+          new qx.util.DeferredCall(() => this.fireEvent('close')).schedule();
         }, this);
         const close = ret_val.querySelector('.popup_close');
         qx.event.Registration.addListener(close, 'tap', function () {

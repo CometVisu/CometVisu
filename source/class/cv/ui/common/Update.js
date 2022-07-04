@@ -76,8 +76,8 @@ qx.Mixin.define('cv.ui.common.Update', {
       } else {
         const value = this.processIncomingValue(address, data);
         if (this.handleUpdate) {
- this.handleUpdate(value, address); 
-}
+          this.handleUpdate(value, address);
+        }
       }
     },
 
@@ -107,8 +107,8 @@ qx.Mixin.define('cv.ui.common.Update', {
 
       let floorFilter = true;
       if (l.floorFilter) {
- floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter]; 
-}
+        floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter];
+      }
       ev.data.element.css('display', floorFilter ? '' : 'none');
     }
   }

@@ -41,6 +41,9 @@ qx.Class.define('cv.plugins.tr064.CallList', {
   construct: function (props) {
     this.base(arguments, props);
     this.__TAMeventAttached = {};
+    this.addListenerOnce('domReady', () => {
+      this.refreshCalllist('initial');
+    });
   },
 
   /*
@@ -167,7 +170,6 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     __TAMeventAttached: null,
     
     _getInnerDomString: function () {
-      this.refreshCalllist('initial');
       return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
     },
     _setupRefreshAction: function() {
@@ -209,7 +211,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
             '<source src="resource/plugins/tr064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">' +
             '</audio>' +
             '<div class="tam clickable">' +
-            cv.IconHandler.getInstance().getIconText(self.getTAM(), '*', '*', self.getTAMColor()) +
+            cv.IconHandler.getInstance().getIconElement(self.getTAM(), '*', '*', self.getTAMColor(), '', '', true) +
             '</div>';
         }
         
@@ -217,7 +219,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
         self.getColumns().split(';').forEach(function(col) {
           switch (col) {
             case 'type':
-              html += '<td>' + cv.IconHandler.getInstance().getIconText(type.name, '*', '*', type.color) + '</td>';
+              html += '<td>' + cv.IconHandler.getInstance().getIconElement(type.name, '*', '*', type.color, '', '', true) + '</td>';
               break;
             
             case 'date':
@@ -386,15 +388,15 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     },
     
     __TAMwait: function(element) {
-      element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMwait(), '*', '*', this.getTAMwaitColor());
+      element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMwait(), '*', '*', this.getTAMwaitColor(), '', '', true);
     },
     
     __TAMplay: function(element) {
-      element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMplay(), '*', '*', this.getTAMplayColor());
+      element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMplay(), '*', '*', this.getTAMplayColor(), '', '', true);
     },
     
     __TAMstop: function(element) {
-      element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMstop(), '*', '*', this.getTAMstopColor());
+      element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMstop(), '*', '*', this.getTAMstopColor(), '', '', true);
     }
   },
 

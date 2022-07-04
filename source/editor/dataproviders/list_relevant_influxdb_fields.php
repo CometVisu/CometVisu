@@ -116,7 +116,7 @@ function getFields( $tsParameter, $auth )
   return $arrData;
 }
 
-$arrData = getFields( $_GET['measurement'], $_GET['auth'] );
+$arrData = getFields( $_GET['measurement'] ?? '', $_GET['auth'] ?? '');
 
 Header("Content-type: application/json");
 print json_encode($arrData);

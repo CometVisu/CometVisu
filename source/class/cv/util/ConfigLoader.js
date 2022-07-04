@@ -104,21 +104,43 @@ qx.Class.define('cv.util.ConfigLoader', {
           if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
             this.configError('libraryerror');
           } else {
+            cv.Config.server = {};
             let backendName = '';
             if (req.getResponseHeader('X-CometVisu-Backend-Name')) {
               backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
             }
             if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
-              cv.Config.backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
-              if (!cv.Config.backendUrl.endsWith('/')) {
-                cv.Config.backendUrl += '/';
+              this.error('The usage of "X-CometVisu-Backend-LoginUrl" is deprecated. Please update the server setup.');
+              let backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
+              if (!backendUrl.endsWith('/')) {
+                backendUrl += '/';
               }
-              if (!backendName && cv.Config.backendUrl.startsWith('/rest/')) {
+              cv.Config.server.backendKnxdUrl = backendUrl;
+              cv.Config.server.backendOpenHABUrl = backendUrl;
+              if (!backendName && backendUrl.startsWith('/rest/')) {
+                backendName = 'openhab';
+              }
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-KNXD-Url')) {
+              cv.Config.server.backendKnxdUrl = req.getResponseHeader('X-CometVisu-Backend-KNXD-Url');
+              if (backendName === '') {
+                backendName = 'knxd';
+              }
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-MQTT-Url')) {
+              cv.Config.server.backendMQTTUrl = req.getResponseHeader('X-CometVisu-Backend-MQTT-Url');
+              if (backendName === '') {
+                backendName = 'mqtt';
+              }
+            }
+            if (req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url')) {
+              cv.Config.server.backendOpenHABUrl = req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url');
+              if (backendName === '') {
                 backendName = 'openhab';
               }
             }
             if (backendName) {
-              cv.Config.backend = backendName;
+              cv.Config.server.backend = backendName;
             }
             this._checkQueue();
           }
@@ -198,9 +220,10 @@ qx.Class.define('cv.util.ConfigLoader', {
       const configSuffix = (cv.Config.configSuffix ? cv.Config.configSuffix : '');
       const title = qx.locale.Manager.tr('Config-File Error!').translate().toString();
       let message = '';
+      let actions;
       switch (textStatus) {
         case 'parsererror':
-          message = qx.locale.Manager.tr('Invalid config file!')+'<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">'+qx.locale.Manager.tr('Please check!')+'</a>';
+          message = qx.locale.Manager.tr('Invalid config file!')+'<br/><a href="javascript:showConfigErrors(\'' + configSuffix + '\')">'+qx.locale.Manager.tr('Please check!')+'</a>';
           break;
         case 'libraryerror': {
           let link = window.location.href.split('#')[0];
@@ -210,12 +233,25 @@ qx.Class.define('cv.util.ConfigLoader', {
           link += '&libraryCheck=false';
           message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' +
             qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' +
-            '<p>' + qx.locale.Manager.tr('You can run the %1Configuration Upgrader%2.', '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' +
+            '<p>' + qx.locale.Manager.tr('You can run the %1Configuration Upgrader%2.', '<a href="javascript:showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' +
             qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
           break;
         }
         case 'filenotfound':
           message = qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]).translate().toString();
+          message += '<br/>'  + qx.locale.Manager.tr('You can open the manager to create or upload a config file.').translate().toString();
+          actions = {
+            link: [
+              {
+                title: qx.locale.Manager.tr('Open manager'),
+                type: 'manager',
+                action: () => {
+                  qx.core.Init.getApplication().showManager();
+                },
+                needsConfirmation: false
+              }
+            ]
+          };
           break;
         default:
           message = qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus).translate().toString();
@@ -230,9 +266,11 @@ qx.Class.define('cv.util.ConfigLoader', {
         title: title,
         message: message,
         severity: 'urgent',
-        unique: true,
-        deletable: false
+        unique: true
       };
+      if (actions) {
+        notification.actions = actions;
+      }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       this.error(this, message.toString());
       qx.core.Init.getApplication().block(false);

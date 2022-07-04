@@ -105,24 +105,26 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       //   horizontal (up to +/-45° tolerance is allowed)
       //   When during a valid swipe the direction is reversed the fading
       //   action is also reverted.
-      document.addEventListener('touchstart', function (evt) {
+      const content = document.body.querySelector('#centerContainer');
+      content.addEventListener('touchstart', function (evt) {
         const touches = evt.touches[0];
         const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
         if (pPH.navbars.left.dynamic === false ||
-          (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
+          (!qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true) ||
+          (pPH.navbars.left.fadeVisible && !evt.composedPath().some(i => i.id==='navbarLeft')) || // left navbar is visible, but the touch is somewhere else
           (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
           return;
         }
 
         self._touchX = touches.clientX;
         self._touchY = touches.clientY;
-      }, false);
-      document.addEventListener('touchend', function () {
+      }, {passive: true});
+      content.addEventListener('touchend', function () {
         self._touchX = null;
         self._touchY = null;
       }, false);
-      document.addEventListener('touchmove', function (evt) {
+      content.addEventListener('touchmove', function (evt) {
         if (self._touchX === null) {
           return; // early exit as this touch isn't relevant for us
         }
@@ -135,6 +137,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         const horizontal = Math.abs(x) > Math.abs(y);
         const toRight = x > 0;
         if (horizontal && enoughDistance) {
+          evt.preventDefault();
           const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
           if (toRight) {
             self._touchX = touches.clientX - necessaryDistance;
@@ -150,7 +153,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
             }
           }
         }
-      }, false);
+      }, {passive: false});
     }
   },
   

@@ -61,8 +61,3 @@ Hier der minimale Beispielcode der das Line Widget aus dem folgenden Screenshot 
         </screenshot>
     </settings>
     <line/>
-
-
-.. rubric:: Fußnoten
-
-.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

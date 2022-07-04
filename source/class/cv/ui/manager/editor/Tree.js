@@ -2124,40 +2124,40 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         return null;
     },
 
-    _prettify: function (node, level, singleton) {
-      let tabs = Array(level + 1).fill('').join('\t');
+    _prettify: function (node, level, noFormat) {
+      let tabs = Array(level).fill('  ').join('');
       let newLine = '\n';
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.textContent.trim()) {
-          return (singleton ? '' : tabs) + qx.xml.String.escape(node.textContent.trim()) + (singleton ? '' : newLine);
+          return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
         } 
           return '';
       }
       if (node.nodeType === Node.COMMENT_NODE) {
-        return (singleton ? '' : tabs) + `<!--${node.textContent}--> ${(singleton ? '' : newLine)}`;
+        return (noFormat ? '' : tabs) + `<!--${node.textContent}--> ${(noFormat ? '' : newLine)}`;
       } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-        return (singleton ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${(singleton ? '' : newLine)}`;
+        return (noFormat ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${(noFormat ? '' : newLine)}`;
       }
       if (!node.tagName) {
         return this._prettify(node.firstChild, level);
       }
-      let output = tabs + `<${node.tagName}`; // >\n
+      let output = (noFormat ? '' : tabs) + `<${node.tagName}`; // >\n
       for (let i = 0; i < node.attributes.length; i++) {
         output += ` ${node.attributes[i].name}="${node.attributes[i].value}"`;
       }
       if (node.childNodes.length === 0) {
-        return output + ' />' + newLine;
+        return output + ' />' + (!noFormat ? newLine : '');
       } 
-        output += '>';
+      output += '>';
       
-      let onlyOneTextChild = ((node.childNodes.length === 1) && (node.childNodes[0].nodeType === 3));
-      if (!onlyOneTextChild) {
+      let hasTextChild = Array.prototype.some.call(node.childNodes, child => child.nodeType === Node.TEXT_NODE && child.textContent.trim());
+      if (!noFormat && !hasTextChild) {
         output += newLine;
       }
       for (let i = 0; i < node.childNodes.length; i++) {
-        output += this._prettify(node.childNodes[i], level + 1, onlyOneTextChild);
+        output += this._prettify(node.childNodes[i], level + 1, hasTextChild);
       }
-      return output + (onlyOneTextChild ? '' : tabs) + `</${node.tagName}>` + newLine;
+      return output + (hasTextChild || noFormat ? '' : tabs) + `</${node.tagName}>` + (!noFormat ? newLine : '');
     },
 
     _onSaved: function () {

@@ -454,7 +454,7 @@ Windrichtung
         </mapping>
 
 Rollläden, Raffstores und Jalousien
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: xml
 

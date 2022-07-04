@@ -100,17 +100,17 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     makeAllSizesValid : function() {
       if (this.states.isPageSizeInvalid()) {
- this.makePagesizeValid(); 
-} // must be first due to dependencies
+        this.makePagesizeValid();
+      } // must be first due to dependencies
       if (this.states.isNavbarInvalid()) {
- this.makeNavbarValid(); 
-}
+        this.makeNavbarValid();
+      }
       if (this.states.isRowspanInvalid()) {
- this.makeRowspanValid(); 
-}
+        this.makeRowspanValid();
+      }
       if (this.states.isBackdropInvalid()) {
- this.makeBackdropValid(); 
-}
+        this.makeBackdropValid();
+      }
     },
 
     makeBackdropValid: function () {
@@ -135,13 +135,14 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
           const backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {};
           const backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width;
           const backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height;
-          const backdropScale = Math.min(this.width / backdropNWidth, this.height / backdropNHeight);
+          const backdropFixed = page.getSize() === 'fixed';
+          const backdropScale = backdropFixed ? 1 : Math.min(this.width / backdropNWidth, this.height / backdropNHeight);
           const backdropWidth = backdropNWidth * backdropScale;
           const backdropHeight = backdropNHeight * backdropScale;
           const backdropPos = page.getBackdropAlign().split(' ');
           const backdropLeftRaw = backdropPos[0].match(cssPosRegEx);
           const backdropTopRaw = backdropPos[1].match(cssPosRegEx);
-          const backdropLeft = backdropLeftRaw[2] === '%' ? (this.width > backdropWidth ? ((this.width - backdropWidth) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1];
+          const backdropLeft = backdropLeftRaw[2] === '%' ? (((this.width - backdropWidth) * (+backdropLeftRaw[1]) / 100)) : +backdropLeftRaw[1];
           const backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1]) / 100) : 0) : +backdropTopRaw[1];
           const uagent = navigator.userAgent.toLowerCase();
 
@@ -155,23 +156,37 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             return;
           }
 
+          // backdrop available
+          if (
+            page.getSize() === 'scaled' && page.getBackdropType() === 'embed' &&
+            backdropSVG &&
+            backdropSVG.children[0].getAttribute('preserveAspectRatio') !== 'none'
+          ) {
+            backdropSVG.children[0].setAttribute('preserveAspectRatio', 'none');
+          }
+
           // Note 1: this here is a work around for older browsers that can't use
           // the object-fit property yet.
           // Currently (26.05.16) only Safari is known to not support
           // object-position although object-fit itself does work
           // Note 2: The embed element always needs it
           if (
-            page.getBackdropType() === 'embed' ||
-            (uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1)
+            (page.getBackdropType() === 'embed' ||
+            (uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1)) &&
+            page.getSize() !== 'scaled'
           ) {
-            Object.entries({
-              width: backdropWidth + 'px',
-              height: backdropHeight + 'px',
-              left: backdropLeft + 'px',
-              top: backdropTop + 'px'
-            }).forEach(function(key_value) {
- backdrop.style[key_value[0]]=key_value[1]; 
-});
+            backdrop.style.width = backdropWidth + 'px';
+            backdrop.style.height = backdropHeight + 'px';
+            backdrop.style.left = backdropLeft + 'px';
+            backdrop.style.top = backdropTop + 'px';
+          }
+
+          if (backdropFixed && !backdropSVG) {
+            if (this.height < backdropHeight) {
+              backdrop.style.height = backdropHeight + 'px';
+            } else {
+              backdrop.style.height = '100%';
+            }
           }
 
           page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
@@ -254,8 +269,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makePagesizeValid: function() {
       if (!cv.Config.currentPageId) {
- return; 
-}
+        return;
+      }
       qx.log.Logger.debug(this, 'makePagesizeValid');
       const page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
       if (page && !page.isInitialized()) {
@@ -298,9 +313,9 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if (height === 0) {
         // not ready try again
         const self = this;
-        qx.bom.AnimationFrame.request(function() {
- self.__updateRowHeight(elem); 
-}, this);
+        window.requestAnimationFrame(() => {
+          self.__updateRowHeight(elem);
+        });
         return;
       }
       let styles = '';
