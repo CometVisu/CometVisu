@@ -120,9 +120,9 @@ Komponenten
 
     Button <components/button>
     Value <components/value>
+    Image <components/image>
 
 
-* Image
 * RoundProgress
 * Select
 * Spinner

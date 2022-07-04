@@ -104,7 +104,7 @@ class WidgetExampleParser:
         display_content = b""
         wrapper = settings_node.get("wrap-in") if settings_node is not None else None
         wrapper_attributes = ' class="%s"' % settings_node.get("wrapper-class") if settings_node is not None else ""
-        wrapped_position = settings_node.get("wrapped-position").replace("'", "\"") if settings_node is not None and settings_node.get("wrapped-position") else 'row="middle" column="middle"'
+        wrapped_position = settings_node.get("wrapped-position").replace("'", "\"") if settings_node is not None and "wrapped-position" in settings_node.attrib else 'row="middle" column="middle"'
         for elem in config_example:
             content = etree.tostring(elem, encoding='utf-8')
             display = content

@@ -25,7 +25,13 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         img = document.createElement('img');
         element.appendChild(img);
       }
-      this._url = new URL(element.getAttribute('src'), window.location.origin);
+      let src = element.getAttribute('src');
+      let base = window.location.origin;
+      if (src.substring(0, 1) !== '/' && src.substring(0, 4) !== 'http') {
+        // relative url
+        base += window.location.pathname;
+      }
+      this._url = new URL(src, base);
       const useProxy = element.hasAttribute('proxy') && element.getAttribute('proxy') === 'true';
       if (useProxy) {
         this._url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);

@@ -487,17 +487,36 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute name="src" type="xsd:string"/>
-    <xsd:attribute name="refresh" type="xsd:decimal"/>
-    <xsd:attribute name="proxy" type="xsd:boolean"/>
+    <xsd:attribute ref="refresh" />
+    <xsd:attribute name="proxy" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Use a proxy in the backend to load this picture to avoid loading errors.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Proxy im Backend benutzen, über den dieses Bild geladen wird. Dadurch können Fehler beim Laden vermieden werden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="authorization">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Type of authorization, if needed.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Art der Autorisierung, falls erforderlich.</xsd:documentation>
+      </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="basic" />
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="username" type="xsd:string"/>
-    <xsd:attribute name="password" type="xsd:string"/>
+    <xsd:attribute name="username" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Username for authorization.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzername für die Autorisierung.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="password" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Password for authorization.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Passwort fpr die Autorisierung.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-chart">
@@ -527,7 +546,7 @@
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
     <xsd:attribute name="series" type="xsd:string"/>
-    <xsd:attribute name="refresh" type="xsd:decimal"/>
+    <xsd:attribute ref="refresh"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">
@@ -570,7 +589,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class" />
-    <xsd:attribute name="refresh" type="xsd:decimal"/>
+    <xsd:attribute ref="refresh" />
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
   </xsd:complexType>
@@ -998,6 +1017,14 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
       <xsd:documentation xml:lang="de">Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</xsd:documentation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="refresh" type="xsd:decimal">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Time interval in seconds this widget is being refreshed.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Zeitinternval in Sekunden in denen dieses Widget aktualisiert wird.</xsd:documentation>
       <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>
