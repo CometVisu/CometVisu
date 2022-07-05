@@ -1,7 +1,7 @@
 .. _tile-component-image:
 
 Image
-======
+=====
 
 .. api-doc:: cv.ui.structure.tile.components.Image
 

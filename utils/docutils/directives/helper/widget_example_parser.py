@@ -166,6 +166,8 @@ class WidgetExampleParser:
                     shot['waitFor'] = screenshot.get('waitfor')
                 if screenshot.get("margin"):
                     shot['margin'] = [int(x) for x in screenshot.get("margin").split(" ")]
+                if screenshot.get("selector", None):
+                    shot['selector'] = screenshot.get('selector')
 
                 for data in screenshot.iter('data'):
                     values = {

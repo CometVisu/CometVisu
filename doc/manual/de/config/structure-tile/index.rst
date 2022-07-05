@@ -94,6 +94,10 @@ Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weg
 Widgets
 =======
 
+Ein Widget ist eine Kachel mit einer oder mehreren Komponenten mit der eine bestimmte Funktion erfüllt wird.
+Damit können übliche Anwendungsfälle innerhalb eines Smart-Homes abgedeckt werden, wie z.B. Lichtschalter (Switch)
+oder die Bedienung einer Rolllade (Shutter).
+
 .. toctree::
     :maxdepth: 1
 
@@ -109,11 +113,20 @@ Widgets
 Eigene Widgets definieren
 =========================
 
-Wie definiert man ein Template für ein Custom-Widget
+Sofern die vorhandenen Widgets nicht ausreichen, kann man sich auch eigenen Widgets definieren.
+Dazu werden 1 bis maximal 9 Komponenten in einer Kachel platziert.
+
+.. TODO::
+
+    Wie macht man aus einem Custom-Widget ein Custom-Template zur Wiederverwendung
 
 
 Komponenten
 -----------
+
+Eine Komponente ist ein einzelnes visuelles Element, das entweder bedienbar (z.B. Button) oder zur reinen
+Darstellung eines Werts benutzt wird (z.B. Value). Die bereits vorgestellten Widgets kombinieren eine oder
+mehrere Komponenten in einer Kachel.
 
 .. toctree::
     :maxdepth: 1
@@ -121,12 +134,26 @@ Komponenten
     Button <components/button>
     Value <components/value>
     Image <components/image>
+    Select <components/select>
+    Spinner <components/spinner>
+    Slider <components/slider>
+    List <components/list>
+    Menu <components/menu>
+    Chart <components/chart>
 
-* Select
-* Spinner
-* Slider
-* List
-* Menu
-* Chart
 
+Elemente
+--------
 
+Elemente sind Hilfsmittel die entweder der Konfiguration dienen und somit nicht in der UI sichtbar sind (z.B: Address oder Backend)
+oder sie sind visuelle Element, die aber nur innerhalb einer Komponente benutzt werden dürfen (z.B. Icon oder RoundProgress).
+
+.. toctree::
+    :maxdepth: 1
+
+    Icon <elements/icon>
+    RoundProgress <elements/round-progress>
+    Address <elements/address>
+    Backend <elements/backend>
+    Mapping <elements/mapping>
+    Styling <elements/styling>

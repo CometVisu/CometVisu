@@ -94,10 +94,12 @@
   <xsd:complexType name="cv-icon">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
-        <xsd:attribute name="name" type="xsd:string" />
-        <xsd:attribute name="set" type="xsd:string" />
         <xsd:attribute ref="class"/>
         <xsd:attribute name="size">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the size of the icon.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Legt die Größe des Icons fest.</xsd:documentation>
+          </xsd:annotation>
           <xsd:simpleType>
             <xsd:restriction base="xsd:string">
               <xsd:enumeration value="large" />

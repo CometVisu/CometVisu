@@ -5,7 +5,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
+qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
 
   /*

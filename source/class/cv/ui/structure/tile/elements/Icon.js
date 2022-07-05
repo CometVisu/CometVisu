@@ -38,7 +38,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
       } else {
         const it = element.classList.values();
         for (let name of it) {
-          if (name.startsWith('ri-') || name.startsWith('knxuf_')) {
+          if (name.startsWith('ri-') || name.startsWith('knxuf-')) {
             this.setId(name);
             break;
           }

@@ -331,6 +331,7 @@ describe('generation screenshots from jsdoc examples', function () {
           runResult.screenshots = [];
           for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
             currentScreenshot = setting;
+            let shotWidget = widget;
 
             if (setting.data && Array.isArray(setting.data)) {
               setting.data.forEach(function (data) {
@@ -352,24 +353,31 @@ describe('generation screenshots from jsdoc examples', function () {
               var actor = element.all(by.css(setting.clickPath)).first();
               if (actor) {
                 actor.click();
-                var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
-                widget = element(by.css(waitFor));
+                const waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
+                const waitForWidget = element(by.css(waitFor));
                 browser.wait(function () {
-                  return widget.isDisplayed();
+                  return waitForWidget.isDisplayed();
                 }, 1000);
               }
+            }
+
+            if (setting.selector) {
+              shotWidget = element.all(by.css(selectorPrefix + setting.selector)).first();
+              await browser.wait(function () {
+                return shotWidget.isDisplayed();
+              }, 2000, 'widget did not appear');
             }
             let size;
             let location;
             if (setting.size) {
               size = setting.size;
             } else {
-              size = await widget.getSize();
+              size = await shotWidget.getSize();
             }
             if (setting.location) {
               location = setting.location;
             } else {
-              location = await widget.getLocation();
+              location = await shotWidget.getLocation();
             }
             if (setting.locationOffset) {
               location.x += setting.locationOffset.x;

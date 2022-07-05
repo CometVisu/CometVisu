@@ -74,7 +74,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
         this.__value.innerHTML = '';
         const current = this.__options.get(mappedValue);
         if (current.children.length > 0) {
-          // if we have non text children, we only use them (only icons no text
+          // if we have non text children, we only use them (only icons no text)
           for (const child of current.children) {
             this.__value.appendChild(child.cloneNode());
           }
