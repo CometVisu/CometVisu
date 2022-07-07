@@ -5,6 +5,9 @@
  *  - Backend-Selection
  *  - Target
  *  - Mapping
+ *
+ *  @author Tobias Bräutigam
+ *  @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.elements.Address', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,

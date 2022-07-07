@@ -67,11 +67,8 @@ Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter :doc:`URL-Par
 
 .. _visu-config-details:
 
-Seiten und Struktur der CometVisu
----------------------------------
-
 Grundsätzliches
-^^^^^^^^^^^^^^^
+---------------
 
 Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
 Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
@@ -94,10 +91,31 @@ unterschieden.
 Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
 
-Arbeiten mit der Konfigurationsdatei
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
+Unterschiedliche Arten der Konfigurationsdatei
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Die CometVisu unterstützt unterschiedliche Arten von Konfigurationsdateien, im folgenden auch Strukturen genannt.
+Die verfügbaren Strukturen "Pure" und "Tile" unterstützen unterschiedliche Designs:
+
++-------------------+----------------------------------+------------------------+
+| **Struktur**      | Pure                             | Tile                   |
++-------------------+----------------------------------+------------------------+
+| **Designs**       | :doc:`Metal <examples/swiss>`    | Tile                   |
++-------------------+----------------------------------+------------------------+
+|                   | Pure                             |                        |
++-------------------+----------------------------------+------------------------+
+
+.. HINT::
+
+    Diese beiden Strukturen sind nicht miteinander kompatibel, d.h. je nachdem welches Design man nutzen möchte muss
+    man sich eine Konfigurationsdatei in der Struktur anlegen, welche von diesem Design unterstützt wird.
+
+
+Pure-Struktur
+-------------
+
+Der Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
 Tags umschlossen aufgenommen werden:
 
@@ -115,8 +133,8 @@ Tags umschlossen aufgenommen werden:
     xml-format
 
 
-Navigationselemente in der CometVisu
-------------------------------------
+Navigationselemente in der Pure-Struktur
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:  
 
@@ -143,20 +161,9 @@ Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation oh
    per GA aufgerufen wurde. 
 
 
-Die verfügbaren Designs
-------------------------
-
-* :doc:`Metal <examples/swiss>` - das wohl beliebteste Design
-* Pure - Standard-Design
-* Diskreet
-* Diskreet Sand
-* Diskreet Slim
-* Alaska
-* Alaska Slim
-
 
 Änderung der Metal-Designs
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In der Version 0.12 wurde das Metal-Design überarbeitet. Die Änderungen bestanden im Wesentlichen darin
 Farbverläufe, Text-Schatten und die Schriftart zu verändern um eine moderate Modernisierung zu erreichen.
@@ -175,7 +182,7 @@ Dies wird erreicht durch Hinzufügen des folgenden Texts in den Meta-Bereich der
 
 
 Grundlegende Elemente zum Gestalten des Layouts
------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element ``Layout`` gesteuert werden. 
 Damit kann ein "Responsive Design" realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem 
@@ -198,8 +205,8 @@ Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:
 
 
 
-Elemente für Konvertierung und Formatierung in der CometVisu
-------------------------------------------------------------
+Elemente für Konvertierung und Formatierung
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In der CometVisu können Werte auf verschiedenste Art und Weisen
 dargestellt werden. Hierfür können genutzt werden:
@@ -222,8 +229,8 @@ dargestellt werden. Hierfür können genutzt werden:
 -  :doc:`Flavour <flavour>` ermöglicht in einigen Designs
    für einige Widgets noch zusätzliche Optionen.
 
-Widgets in der CometVisu
-------------------------
+Widgets in der Pure-Struktur
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
@@ -245,15 +252,8 @@ beschrieben werden.
     address
 
 
-Tile-Struktur
--------------
-
-.. toctree::
-
-    structure-tile/index
-
-CometVisu - Beispiele
----------------------
+Pure-Struktur - Beispiele
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Hier befindet sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.
 
@@ -265,7 +265,7 @@ Hier befindet sich mehrere Beispiele von Visualisierungen die sich im produktive
 
 
 sonstiges
----------
+^^^^^^^^^
 
 .. toctree::
     :maxdepth: 1
@@ -274,3 +274,36 @@ sonstiges
     rrd_examples
     hydraulik
     customizing
+
+
+
+Tile-Struktur
+-------------
+
+Die CometVisu bot seit jeher die Möglichkeit weitere Strukturen neben der vorhandenen pure-Struktur einzubinden.
+Die Strukturen sind dafür verantwortlich eine Config-Datei im Browser darzustellen. Normalerweise geschieht dies
+indem die Config-Datei eingelesen wird und daraus HTML-Code generiert wird.
+Die Tile-Struktur geht hier einen anderen Weg, indem sie `Web-Components <https://wiki.selfhtml.org/wiki/HTML/Web_Components>`_
+benutzt für spezielle Elemente und ansonsten bereits von Browser darstellbarer HTML-Code ist. Config-Dateien für die Tile-Struktur werden also
+nicht in HTML-Code umgewandelt sondern direkt in den Browser geladen.
+
+.. HINT::
+
+    Bisherige Config-Dateien sind nicht mit der Tile-Struktur kompatibel! Dasselbe gilt für die bisher bekannten Plugins!
+    Ebenso benötigen die benutzen Features einen modernen Browser (Chrome, Firefox, Safari, Edge in einer aktuellen Version)
+    Der Internet Explorer wird in keiner Version unterstützt!
+
+Neue Features:
+
+* Multi-Backend fähig
+* Flexiblerer Einsatz von `Templates <https://wiki.selfhtml.org/wiki/HTML/Web_Components/template>`_
+    * Templates erklären
+    * Slots erklären
+    * Wie benutzt man eigene Templates in der Config (oder extern laden)
+* Alternativer Ansatz für die Implementierung von Plugins
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    structure-tile/index

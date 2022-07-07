@@ -86,7 +86,7 @@ Icon
 ^^^^
 
 Wird ein ``cv-icon`` als ``class="value"`` benutzt, kann das Icon über ein Mapping und dessen Farbe über Styling
-wert abhängig beeinflusst werden.
+wert-abhängig beeinflusst werden.
 
 .. HINT::
 

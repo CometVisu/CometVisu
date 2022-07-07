@@ -866,8 +866,8 @@
         </xsd:attribute>
         <xsd:attribute name="on">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Event on which a value should be sent to this address (only useful in mode: write or readwrite), also needs value.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit value und mode = read oder readwrite).</xsd:documentation>
+            <xsd:documentation xml:lang="en">Event on which a ``value`` should be sent to this address (only useful in mode=``write or ``readwrite`), also needs ``value``.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit ``value`` und mode=``read`` oder ``readwrite``).</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleType>
             <xsd:restriction base="xsd:string">
@@ -904,7 +904,7 @@
         <xsd:attribute name="backend" type="xsd:string">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Optional name of the backend this address belongs to.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Optionaler name des Backends zu dem diese Adresse gehört.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Optionaler Name des Backends zu dem diese Adresse gehört.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute ref="mapping"/>
@@ -973,8 +973,8 @@
 
   <xsd:attribute name="transform" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Transformation of the bus system value to be shown.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Umwandlung des Bus-System Wertes um angezeigt werden zu können.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Defines the datatype in the backend, e.g. DPT:1.001 for KNX datapoint type 1.001.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt den Datentyp im Backend fest, z.B. DPT:1.001 für den KNX Datenpunkttyp 1.001.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   <xsd:attribute name="format" type="xsd:string">
@@ -1005,6 +1005,10 @@
   <xsd:attribute name="value" type="xsd:string" />
 
   <xsd:attribute name="mode">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines if this address is only used to ``read``, ``write``, both ``readwrite`` or none of them ``disable`.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt fest, ob auf dieser Adresse nur gelesen ``read``, geschrieben ``write``, beides ``readwrite`` oder nichts davon ``disable`` werden soll</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="disable" />
