@@ -16,8 +16,8 @@ wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kan
 Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur vordefiniertem Komponenten frei platziert werden.
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Charts.
 
-Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit. So enthält das
-Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
+Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
+Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
 
 Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
 
