@@ -119,7 +119,7 @@ qx.Class.define('cv.Application',
     },
 
     /**
-     * Register shortcuts to usefull commands the user can execute in the browser console
+     * Register shortcuts to useful commands the user can execute in the browser console
      * @param shortcutName {String} command name used to install the command in the global namespace
      * @param command {Function} command to execute
      * @param help {String} some documentation about the command

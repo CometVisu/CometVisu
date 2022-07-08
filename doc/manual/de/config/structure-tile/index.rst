@@ -19,6 +19,25 @@ Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder
 Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit. So enthält das
 Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
 
+Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
+
+.. code-block:: xml
+
+    <config>
+        <cv-meta>
+            <!-- Nicht sichtbare Konfigurations-Elemente -->
+        </cv-meta>
+        <header>
+            <!-- Optionaler Inhalt oben -->
+        </header>
+        <main>
+            <!-- Hauptinhalt inkl. optionaler Seitenleisten -->
+        </main>
+        <footer>
+            <!-- Optionaler Inhalt unten -->
+        </footer>
+    </config>
+
 
 Navigation / Seitenstruktur
 ---------------------------
@@ -34,28 +53,28 @@ Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weg
 
 .. widget-example::
 
-            <settings design="tile" selector="body">
-                <screenshot name="tile-ui-structure">
-                <caption>Grundstruktur mit allen verfügbaren optionalen Bereichen</caption>
-                </screenshot>
-            </settings>
-            <header>
-                <h1>Header-Bereich</h1>
-            </header>
-            <main>
-                <aside>
-                    <h1>Linke Seitenleiste</h1>
-                </aside>
-                <cv-page id="start">
-                    <h1>Seiteninhalte</h1>
-                </cv-page>
-                <aside>
-                    <h1>Rechte Seitenleiste</h1>
-                </aside>
-            </main>
-            <footer>
-                <h1>Footer-Bereich</h1>
-            </footer>
+        <settings design="tile" selector="body">
+            <screenshot name="tile-ui-structure">
+            <caption>Grundstruktur mit allen verfügbaren optionalen Bereichen</caption>
+            </screenshot>
+        </settings>
+        <header>
+            <h1>Header-Bereich</h1>
+        </header>
+        <main>
+            <aside>
+                <h1>Linke Seitenleiste</h1>
+            </aside>
+            <cv-page id="start">
+                <h1>Seiteninhalte</h1>
+            </cv-page>
+            <aside>
+                <h1>Rechte Seitenleiste</h1>
+            </aside>
+        </main>
+        <footer>
+            <h1>Footer-Bereich</h1>
+        </footer>
 
 
 * Pages

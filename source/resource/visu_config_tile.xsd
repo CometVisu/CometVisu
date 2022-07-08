@@ -129,6 +129,10 @@
 
   <xsd:complexType name="cv-backend">
     <xsd:attribute name="type" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Type of backend: ``default`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>
+        <xsd:documentation xml:lang="de">Typ des Backends: ``default`` = KNXD, ``openhab`` = openHAB Server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simuliertes Backend zu Testzwecken. </xsd:documentation>
+      </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="default" />
@@ -138,9 +142,24 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="name" type="xsd:string" />
-    <xsd:attribute name="default" type="xsd:boolean" />
-    <xsd:attribute name="uri" type="xsd:anyURI" />
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Optionale name if this backend connection (default=main).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Optionaler Name dieser Backend-Verbindung (default=main).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="default" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Use this connection as default, all cv-address elements without "name"-Attribut will use this connection.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Diese Verbindung als Standard nehmen, alle cv-address Elemente ohne "name"-Attribut nutzen diese Verbindung.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="uri" type="xsd:anyURI">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL for the backend connection.</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL für die Verbindung zum Backend.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="username" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Backend username used to authenticate requests (can also be an access token).</xsd:documentation>

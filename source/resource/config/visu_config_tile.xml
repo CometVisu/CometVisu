@@ -6,7 +6,7 @@
         version="1"
 >
     <cv-meta>
-        <cv-backend type="openhab" username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig"/>
+        <cv-backend type="openhab" uri="/rest/" username="oh.CometVisu.NxR3UQ5AhJB8Ju8ZFI9Z6IXnvlqgmFJ5EhVGFVy49fi6REytcCFCxhKSKoesju6nDWuqWC9DZR39vIh2ig"/>
         <cv-backend name="si" default="true" type="simulated"/>
         <cv-backend name="mqtt" type="mqtt" uri="ws://mqtt:9001/"/>
         <cv-mapping name="light">
