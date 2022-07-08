@@ -273,7 +273,7 @@
                 </cv-row>
             </cv-tile>
             <cv-tile size="2x4">
-                <cv-image src="http://192.168.178.24/Streaming/channels/1/picture?snapShotImageType=JPEG" refresh="60" authorization="basic" username="viewer" password="viewer" proxy="true"/>
+                <cv-image src="http://192.168.178.24/Streaming/channels/1/picture?snapShotImageType=JPEG" refresh="60" auth-type="basic" username="viewer" password="viewer" proxy="true"/>
             </cv-tile>
             <cv-tile>
                 <cv-image src="resource/icons/comet_128_ff8000.png"/>
