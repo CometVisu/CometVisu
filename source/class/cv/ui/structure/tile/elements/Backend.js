@@ -13,7 +13,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
     _init() {
       const element = this._element;
       const type = element.getAttribute('type');
-      const uri = element.hasAttribute('uri') ? new URL(element.getAttribute('uri')) : null;
+      const uriString = element.hasAttribute('uri') ? element.getAttribute('uri') : '';
+      let uri;
+      if (uriString) {
+        try {
+          uri = new URL(uriString, window.location.origin + window.location.pathname);
+        } catch (e) {
+          this.error('Error parsing uri: ' + uriString);
+        }
+      }
+
       if (type) {
         let credentials = null;
         if (element.hasAttribute('username')) {
