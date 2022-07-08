@@ -2,6 +2,7 @@
 
 namespace OpenAPIServer\Api;
 
+use OpenAPIServer\Helper;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,8 +15,8 @@ class RequestproxyApi extends AbstractRequestproxyApi {
 
   public function getProxied(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
-    $url = $request->getQueryParam('url');
-    $auth = $request->getQueryParam('authorization');
+    $url = Helper::getQueryParam($request, 'url');
+    $auth = Helper::getQueryParam($request, 'authorization');
     $curl_session = curl_init();
     curl_setopt($curl_session, CURLOPT_HTTPHEADER, array(
         'Authorization: ' . $auth)
@@ -35,10 +36,11 @@ class RequestproxyApi extends AbstractRequestproxyApi {
       }
       $body = substr($result, $header_size);
       curl_close($curl_session);
+      $response->getBody()->write($body);
       if ($contentType != null) {
-        return $response->withStatus($http_code)->write($body)->withHeader('Content-Type', $contentType);
+        return $response->withStatus($http_code)->withHeader('Content-Type', $contentType);
       } else {
-        return $response->withStatus($http_code)->write($body);
+        return $response->withStatus($http_code);
       }
     } else {
       return $response->withStatus(500);
