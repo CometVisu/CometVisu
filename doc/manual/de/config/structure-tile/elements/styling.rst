@@ -3,7 +3,10 @@
 Styling
 =======
 
-.. api-doc:: cv.ui.structure.tile.elements.Styling
+.. HINT::
+
+    Die Funktionalität der Stylings in der Tile-Struktur unterscheidet nicht nicht von den Stylings in der Pure-Struktur.
+    Lediglich der Names des Elements in der Konfigurationsdatei ist anders: ``<cv-styling>``.
 
 Mit dem styling Tag können Elementen bei jeweiligen Werten Farben
 zugewiesen werden.
@@ -136,11 +139,3 @@ Im folgenden Beispiel wie folgt:
 
 **Die Farben können auch im HTML-Code angegeben werden. Zum Beispiel:
 #F33333**
-
-
-.. elements-information:: cv-styling tile
-
-.. parameter-information:: cv-styling tile
-
-
-

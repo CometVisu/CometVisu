@@ -3,9 +3,6 @@
 Mapping
 =======
 
-.. api-doc:: cv.ui.structure.tile.elements.Mapping
-
-
 .. HINT::
 
     Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht von den Mappings in der Pure-Struktur.
