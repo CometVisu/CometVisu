@@ -652,13 +652,13 @@ body {
             margin-block-start: 0;
             margin-block-end: 0;
         }
-        label.value.medium {
+        label.value[value-size="medium"] {
             font-size: medium;
         }
-        label.value {
+        label.value:not([value-size]), label.value[value-size="normal"] {
             font-size: x-large;
         }
-        label.value.large {
+        label.value[value-size="large"] {
             font-size: xxx-large;
         }
         label.unit {

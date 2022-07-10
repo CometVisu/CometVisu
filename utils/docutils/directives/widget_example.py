@@ -23,6 +23,7 @@ from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path
 from lxml import etree
+import math
 
 from helper.widget_example_parser import WidgetExampleParser
 
@@ -88,9 +89,12 @@ class WidgetExampleDirective(Directive):
         'linenos': directives.flag,
         'lineno-start': int,
         'scale': int, # scale screenshot in percent
+        'hide': directives.unchanged, # true or false
+        'hide-screenshots': directives.unchanged, # true or false
         'hide-source': directives.unchanged, # true or false
         'editor': editor,
-        'align': align
+        'align': align,
+        'shots-per-row': int
     }
     has_content = True
 
@@ -109,7 +113,10 @@ class WidgetExampleDirective(Directive):
         node += caption
 
     def run(self):
-        show_source = True
+        hide = False
+        hide_source = False
+        hide_screenshots = False
+        shots_per_row = min(4, int(self.options['shots-per-row'])) if 'shots-per-row' in self.options else 1
         editor = self.options['editor'] if 'editor' in self.options else None
         self.assert_has_content()
         source = "\n".join(self.content)
@@ -117,6 +124,12 @@ class WidgetExampleDirective(Directive):
         screenshot_dir = path.join("doc", "manual", path.sep.join(source_path.split(path.sep)[0:-1]), "_static")
         parser.set_screenshot_dir(screenshot_dir)
         name = source_path[:-4].replace("/", "_")
+        if 'hide' in self.options and self.options['hide'] == "true":
+            hide = True
+        if 'hide-screenshots' in self.options and self.options['hide-screenshots'] == "true":
+            hide_screenshots = True
+        if 'hide-source' in self.options and self.options['hide-source'] == "true":
+            hide_source = True
 
         parse_result = parser.parse(source, name, editor)
 
@@ -136,7 +149,7 @@ class WidgetExampleDirective(Directive):
                 "name": "%s_editor_%s" % (name, editor),
                 "data": {}
             })
-            show_source = False
+            hide_source = True
 
         try:
             parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
@@ -159,43 +172,75 @@ class WidgetExampleDirective(Directive):
             # add linenumber filter:
             tokens = NumberLines(tokens, startline, endline)
 
-        if 'hide-source' in self.options and show_source:
-            show_source = self.options['hide-source'] != "true"
-
         res_nodes = []
-        for shot in parse_result['settings']['screenshots']:
-            reference = "_static/%s.png" % shot['name']
-            options = dict(uri=reference)
-            if 'caption' in shot:
-                options['alt'] = shot['caption']
+        if not hide:
+            if not hide_screenshots:
+                shots = len(parse_result['settings']['screenshots'])
+                use_table = shots_per_row > 1 and shots > 1
+                if use_table:
+                    columns = min(shots_per_row, shots)
+                    rows = math.ceil(shots / columns)
+                    col_width = 100/columns
+                    table = nodes.table()
+                    tgroup = nodes.tgroup(cols=columns)
+                    table += tgroup
+                    table['classes'].append("image-float")
+                    tbody = nodes.tbody()
+                    for i in range(columns):
+                        tgroup += nodes.colspec(colwidth=col_width)
 
-            image_node = nodes.image(rawsource=shot['name'], **options)
-            figure_node = nodes.figure('', image_node)
-            if 'align' in self.options:
-                figure_node['align'] = self.options['align']
+                    for row in range(rows):
+                        row_node = nodes.row()
+                        for col in range(columns):
+                            index = row * columns + col
+                            if index >= shots:
+                                break
+                            shot = parse_result['settings']['screenshots'][index]
+                            cell = nodes.entry()
+                            cell += self.create_figure(shot, parse_result, hide_source)
+                            row_node += cell
+                        tbody += row_node
 
-            if 'caption' in shot:
-                self.add_caption(shot['caption'], figure_node)
+                    tgroup += tbody
+                    res_nodes.append(table)
+                else:
+                    for shot in parse_result['settings']['screenshots']:
+                        figure_node = self.create_figure(shot, parse_result, hide_source)
+                        res_nodes.append(figure_node)
 
-            elif not show_source and parse_result['global_caption'] and len(parse_result['settings']['screenshots']) == 1:
-                self.add_caption(parse_result['global_caption'], figure_node)
+            if not hide_source:
+                example_content = parse_result['display_content'].decode('utf-8')
+                node = nodes.literal_block(example_content, example_content)
+                node['language'] = 'xml'
+                node['linenos'] = 'linenos' in self.options or \
+                                 'lineno-start' in self.options
+                node['classes'] += self.options.get('class', [])
 
-            res_nodes.append(figure_node)
+                set_source_info(self, node)
 
-        if show_source:
-            example_content = parse_result['display_content'].decode('utf-8')
-            node = nodes.literal_block(example_content, example_content)
-            node['language'] = 'xml'
-            node['linenos'] = 'linenos' in self.options or \
-                             'lineno-start' in self.options
-            node['classes'] += self.options.get('class', [])
-
-            set_source_info(self, node)
-
-            if parse_result['global_caption']:
-                self.options.setdefault('name', nodes.fully_normalize_name(parse_result['global_caption']))
-                node = container_wrapper(self, node, parse_result['global_caption'])
-            self.add_name(node)
-            res_nodes.append(node)
+                if parse_result['global_caption']:
+                    self.options.setdefault('name', nodes.fully_normalize_name(parse_result['global_caption']))
+                    node = container_wrapper(self, node, parse_result['global_caption'])
+                self.add_name(node)
+                res_nodes.append(node)
 
         return res_nodes
+
+    def create_figure(self, shot, parse_result, hide_source):
+        reference = "_static/%s.png" % shot['name']
+        options = dict(uri=reference)
+        if 'caption' in shot:
+            options['alt'] = shot['caption']
+
+        image_node = nodes.image(rawsource=shot['name'], **options)
+        figure_node = nodes.figure('', image_node)
+        if 'align' in self.options:
+            figure_node['align'] = self.options['align']
+
+        if 'caption' in shot:
+            self.add_caption(shot['caption'], figure_node)
+
+        elif hide_source and parse_result['global_caption'] and len(parse_result['settings']['screenshots']) == 1:
+            self.add_caption(parse_result['global_caption'], figure_node)
+
+        return figure_node

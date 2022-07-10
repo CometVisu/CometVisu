@@ -9,7 +9,8 @@ Icon
 Beschreibung
 ------------
 
-Das Icon-Element ermöglicht die Anzeige eines Icons. Das Tile-Design stellt neben den KNX-UF Icons auch das
+Das Icon-Element ermöglicht die Anzeige eines Icons. Das Tile-Design stellt neben dem `KNX User Forum
+Iconset <http://knx-user-forum.de/knx-uf-iconset/>`__ auch das
 `Remix Iconset <https://remixicon.com/>`_ zur Verfügung.
 Die Auswahl eines Icons erfolgt durch den Präfix für das jeweilige Icon-Set:
 ``ri-`` für ein remix-Icon

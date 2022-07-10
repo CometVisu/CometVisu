@@ -293,6 +293,13 @@ nicht in HTML-Code umgewandelt sondern direkt in den Browser geladen.
     Ebenso benötigen die benutzen Features einen modernen Browser (Chrome, Firefox, Safari, Edge in einer aktuellen Version)
     Der Internet Explorer wird in keiner Version unterstützt!
 
+**Einige Vorteile der Tile-Struktur**
+
+* Automatisches Anpassen an alle Bildschirmgrößen (Responsives Design). Spezielle Layout-Angaben in der Konfigurationsdatei sind nicht nötig.
+* Höhere Geschwindigkeit beim Laden, da die Konfigurationsdatei nicht mehr geparsed werden muss.
+* Navigationsmenüs werden automatisch erstellt.
+* Spezielle Widgets für Smarthome typische Aufgaben (Dimmer, Rollladen, Raumtemperaturregler).
+* Einfaches Erstellen eigener, wiederverwendbarer Widgets ohne Programmierkenntnisse.
 
 .. toctree::
     :maxdepth: 1

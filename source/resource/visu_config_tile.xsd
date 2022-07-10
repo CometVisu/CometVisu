@@ -736,7 +736,7 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="span" maxOccurs="unbounded">
+      <xsd:element name="span" maxOccurs="unbounded" minOccurs="0">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="xsd:string">
@@ -758,6 +758,19 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
+    <xsd:attribute name="value-size">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the font size of the value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Schriftgröße des Werts fest.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="medium" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="large" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-status">

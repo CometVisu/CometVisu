@@ -38,6 +38,46 @@ Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
         </footer>
     </config>
 
+Meta-Bereich
+------------
+
+Im Meta-Bereich (``<cv-meta>``) finden sich alle Einstellungen, die für diese Konfigurationsdatei benötigt werden.
+Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>` und die :ref:`Mappings <tile-element-mapping>` und :ref:`Stylings <tile-element-styling>`.
+
+.. code-block:: xml
+
+    <cv-meta>
+        <cv-backend type="openhab" uri="/rest/" />
+        <cv-backend name="si" default="true" type="simulated"/>
+        <cv-backend name="mqtt" type="mqtt" uri="ws://mqtt:9001/"/>
+        <cv-mapping name="light">
+            <entry value="0">ri-lightbulb-line</entry>
+            <entry value="1">ri-lightbulb-fill</entry>
+        </cv-mapping>
+        <cv-mapping name="speaker">
+            <entry value="0">ri-speaker-line</entry>
+            <entry value="1">ri-speaker-fill</entry>
+        </cv-mapping>
+        <cv-styling name="WindowOpen">
+            <entry range-min="1">red</entry>
+        </cv-styling>
+        <cv-mapping name="PlayProgress">
+            <formula>y = Math.round(100/store.get('duration')*x)</formula>
+        </cv-mapping>
+        <cv-styling name="button">
+            <entry value="0">inactive</entry>
+            <entry range-min="1">active</entry>
+        </cv-styling>
+    </cv-meta>
+
+.. toctree::
+    :hidden:
+    :maxdepth: 1
+
+    Backend <elements/backend>
+    Mapping <elements/mapping>
+    Styling <elements/styling>
+
 
 Navigation / Seitenstruktur
 ---------------------------
@@ -95,6 +135,7 @@ oder die Bedienung einer Rolllade (Shutter).
     :maxdepth: 1
 
     Switch <widgets/switch>
+    Dimmer <widgets/dimmer>
     Shutter <widgets/shutter>
     Info <widgets/info>
     Status <widgets/status>
@@ -138,7 +179,7 @@ mehrere Komponenten in einer Kachel.
 Elemente
 --------
 
-Elemente sind Hilfsmittel die entweder der Konfiguration dienen und somit nicht in der UI sichtbar sind (z.B: Address oder Backend)
+Elemente sind Hilfsmittel die entweder der Konfiguration dienen und somit nicht in der UI sichtbar sind (z.B: Address)
 oder sie sind visuelle Element, die aber nur innerhalb einer Komponente benutzt werden dürfen (z.B. Icon oder RoundProgress).
 
 .. toctree::
@@ -147,6 +188,3 @@ oder sie sind visuelle Element, die aber nur innerhalb einer Komponente benutzt 
     Icon <elements/icon>
     RoundProgress <elements/round-progress>
     Address <elements/address>
-    Backend <elements/backend>
-    Mapping <elements/mapping>
-    Styling <elements/styling>

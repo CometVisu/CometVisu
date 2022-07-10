@@ -47,6 +47,19 @@
             <entry value="Building Protection">false</entry>
             <entry value="Stondby">false</entry>
         </cv-mapping>
+        <cv-mapping name="AufZuTuerSymbol">
+            <entry value="0">knxuf-fts_door</entry>
+            <entry value="1">knxuf-fts_door_open</entry>
+            <entry value="2">knxuf-fts_door_tilt</entry>
+        </cv-mapping>
+        <cv-styling name="AufZuTuer">
+            <entry value="0">green</entry>
+            <entry value="1">red</entry>
+            <entry value="2">orange</entry>
+        </cv-styling>
+        <cv-mapping name="HourMinute">
+            <formula>y = x &amp;&amp; x.constructor === Date ? x.getHours() + ':' + x.getMinutes() : x;</formula>
+        </cv-mapping>
     </cv-meta>
     <header>
         <!--<div style="display: flex; padding: calc(var(&#45;&#45;spacing)*2); gap: var(&#45;&#45;spacing)">-->
@@ -163,6 +176,20 @@
         </cv-group>
         <cv-group open="true">
             <summary>Other actors</summary>
+            <cv-info>
+                <cv-address slot="address" transform="DPT:1.001" mode="read">1/4/2</cv-address>
+            </cv-info>
+            <cv-tile>
+                <cv-row colspan="3" row="first">
+                    <label class="secondary">Haustür</label>
+                </cv-row>
+                <cv-row colspan="3" row="2">
+                    <cv-value mapping="AufZuTuerSymbol" styling="AufZuTuer">
+                        <cv-address transform="raw" mode="read">1/1/0</cv-address>
+                        <cv-icon class="value" size="xxx-large"/>
+                    </cv-value>
+                </cv-row>
+            </cv-tile>
             <cv-shutter>
                 <cv-address slot="downAddress" transform="OH:rollershutter" mode="write" value="100" backend="main">Shutter_FF_Living</cv-address>
                 <cv-address slot="stopAddress" transform="OH:rollershutter" mode="write" value="STOP" backend="main">Shutter_FF_Living</cv-address>
@@ -221,7 +248,7 @@
                     <label class="primary">RTC</label>
                 </cv-row>
             </cv-tile>
-            <cv-info mapping="kWh">
+           <cv-info mapping="kWh">
                 <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn0/raw</cv-address>
                 <span slot="label">Zählerstand</span>
                 <span slot="unit">kWh</span>
@@ -235,6 +262,9 @@
                 <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn2/raw</cv-address>
                 <span slot="label">Stromverbrauch</span>
                 <span slot="unit">W</span>
+            </cv-info>
+            <cv-info format="%s Uhr" mapping="HourMinute" value-size="normal">
+                <cv-address slot="address" transform="OH:datetime">Sunrise_Time</cv-address>
             </cv-info>
         </cv-group>
         <cv-group>
