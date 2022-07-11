@@ -85,15 +85,16 @@ und large größer.
 Icon
 ^^^^
 
-Wird ein ``cv-icon`` als ``class="value"`` benutzt, kann das Icon über ein Mapping und dessen Farbe über Styling
-wert-abhängig beeinflusst werden.
+Wird ein :ref:`Icon <tile-element-icon>` als ``class="value"`` benutzt, kann das Icon über ein Mapping und dessen Farbe über Styling
+Wert-abhängig beeinflusst werden.
 
 .. HINT::
 
-    Hier darf das ``cv-value`-Element kein ``format`` benutzen, da sonst das Mapping und das Styling nicht mehr
+    Hier darf das ``cv-value``-Element kein ``format`` benutzen, da sonst das Mapping und das Styling nicht mehr
     funktionieren würden.
 
 .. widget-example::
+    :shots-per-row: 2
 
     <settings design="tile" selector="cv-value" wrap-in="cv-tile">
         <screenshot name="cv-value-icon-off" margin="10 10 -30 10">

@@ -1,7 +1,7 @@
 .. _tile-element-icon:
 
 Icon
-======
+====
 
 .. api-doc:: cv.ui.structure.tile.elements.Icon
 

@@ -114,10 +114,24 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-round-progress">
-      <xsd:attribute name="radius" type="xsd:integer" />
-      <xsd:attribute name="stroke" type="xsd:integer" />
+      <xsd:attribute name="radius" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Radius of the circle.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Radius des Kreises. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="stroke" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Stroke width of the circle border.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Randbreite des Kreises.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
       <xsd:attribute ref="class"/>
       <xsd:attribute name="type">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Visualization type.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Darstellungsart (Kreis: ``circle`` (default) oder Halbkreis: ``semiCircle``).</xsd:documentation>
+        </xsd:annotation>
         <xsd:simpleType>
           <xsd:restriction base="xsd:string">
             <xsd:enumeration value="circle" />
@@ -478,9 +492,19 @@
     <xsd:attribute ref="colspan"/>
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
-    <xsd:attribute name="step-width" type="xsd:decimal"/>
-    <xsd:attribute name="throttle-interval" type="xsd:decimal" />
-    <xsd:attribute name="hide-value" type="xsd:boolean" />
+    <xsd:attribute ref="step-width" />
+    <xsd:attribute name="throttle-interval" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the interval used for sending changes to the backend.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt das Sende-Interval in dem Wertänderungen an das Backend geschickt werden fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="hide-value" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Controls if the value is shown a text above the slider.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Steuert ob der Wert als Text über dem Slider angezeigt wird oder nicht.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-spinner">
@@ -500,8 +524,7 @@
     <xsd:attribute ref="colspan"/>
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
-    <xsd:attribute name="step-width" type="xsd:decimal"/>
-    <xsd:attribute name="throttle-interval" type="xsd:decimal" />
+    <xsd:attribute ref="step-width" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-image">
@@ -996,9 +1019,24 @@
   #####################################################################################################################
   # -->
 
-  <xsd:attribute name="min" type="xsd:decimal" />
-  <xsd:attribute name="max" type="xsd:decimal" />
-  <xsd:attribute name="step" type="xsd:decimal" />
+  <xsd:attribute name="min" type="xsd:decimal">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Minimum value.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Minimaler Wert.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="max" type="xsd:decimal">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Maximum value.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Maximaler Wert.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="step-width" type="xsd:decimal">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Step with.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Schrittgröße.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
 
   <xsd:attribute name="slot" type="xsd:string"/>
 

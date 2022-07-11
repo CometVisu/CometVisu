@@ -176,15 +176,8 @@ mehrere Komponenten in einer Kachel.
     Chart <components/chart>
 
 
-Elemente
---------
-
-Elemente sind Hilfsmittel die entweder der Konfiguration dienen und somit nicht in der UI sichtbar sind (z.B: Address)
-oder sie sind visuelle Element, die aber nur innerhalb einer Komponente benutzt werden dürfen (z.B. Icon oder RoundProgress).
-
 .. toctree::
-    :maxdepth: 1
+    :hidden:
 
     Icon <elements/icon>
-    RoundProgress <elements/round-progress>
     Address <elements/address>
