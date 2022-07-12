@@ -117,11 +117,11 @@ Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weg
         </footer>
 
 
-* Pages
-* Navbar / MainNav / SideNav
-* Details-Element
-* Group
-* Popup
+.. toctree::
+    :maxdepth: 1
+
+    Page <components/page>
+    Nav bars <components/navBars>
 
 
 Widgets
@@ -139,10 +139,9 @@ oder die Bedienung einer Rolllade (Shutter).
     Shutter <widgets/shutter>
     Info <widgets/info>
     Status <widgets/status>
+    MediaPLayer <widgets/media-player>
+    RTC <widgets/rtc>
 
-
-* MediaPlayer
-* RTC
 
 Eigene Widgets definieren
 =========================
@@ -153,6 +152,12 @@ Dazu werden 1 bis maximal 9 Komponenten in einer Kachel platziert.
 .. TODO::
 
     Wie macht man aus einem Custom-Widget ein Custom-Template zur Wiederverwendung
+
+.. toctree::
+    :maxdepth: 1
+
+    Popup <components/popup>
+    Group <components/group>
 
 
 Komponenten
@@ -171,6 +176,7 @@ mehrere Komponenten in einer Kachel.
     Select <components/select>
     Spinner <components/spinner>
     Slider <components/slider>
+
     List <components/list>
     Menu <components/menu>
     Chart <components/chart>

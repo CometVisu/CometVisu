@@ -344,6 +344,13 @@ describe('generation screenshots from jsdoc examples', function () {
                     case 'int':
                       value = parseInt(value);
                       break;
+                    case 'json':
+                      try {
+                        value = JSON.parse(value);
+                      } catch (e) {
+                        console.error('error parsing JSON data', e.message);
+                      }
+                      break;
                   }
                 }
                 cvMockup.sendUpdate(data.address, value);

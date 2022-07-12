@@ -25,20 +25,6 @@
           <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
-      <xsd:attribute ref="backend" />
-      <xsd:attribute name="backend-url" type="xsd:anyURI" />
-      <xsd:attribute name="username" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Backend username used to authenticate requests (can also be an access token).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="password" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Backend password used to authenticate requests (if you use an access token as username a password is not required).</xsd:documentation>
-          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird, ist ein Passwort nicht erforderlich). </xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
     </xsd:complexType>
   </xsd:element>
 
@@ -617,6 +603,11 @@
             <xsd:choice maxOccurs="unbounded">
               <xsd:element name="script" minOccurs="0"/>
               <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+              <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:anyAttribute processContents="skip"/>
+                </xsd:complexType>
+              </xsd:element>
             </xsd:choice>
             <xsd:attribute name="sort-by" type="xsd:string"/>
             <xsd:attribute name="sort-mode" default="asc">
@@ -1123,20 +1114,6 @@
     </xsd:simpleType>
   </xsd:attribute>
   <xsd:attribute name="variant" type="xsd:string" />
-
-  <xsd:attribute name="backend">
-    <xsd:annotation>
-      <xsd:appinfo>level:expert</xsd:appinfo>
-    </xsd:annotation>
-    <xsd:simpleType>
-      <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="default" />
-        <xsd:enumeration value="openhab" />
-        <xsd:enumeration value="openhab2" />
-        <xsd:enumeration value="mqtt" />
-      </xsd:restriction>
-    </xsd:simpleType>
-  </xsd:attribute>
 
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>

@@ -106,7 +106,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         };
       }
       const script = model.querySelector(':scope > script');
-      const readAddresses = model.querySelectorAll('cv-address:not([mode="write"])');
+      const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
+      const data = model.querySelectorAll(':scope > cv-data');
       if (script) {
         this._getModel = new Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
         this._model = this._getModel();
@@ -119,8 +120,20 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           ev.stopPropagation();
         });
         refreshOnUpdate = true;
+      } else if (data.length > 0) {
+        this._model = [];
+        this._getModel = () => this._model;
+        data.forEach((elem, i) => {
+          const d = {
+            index: i
+          };
+          for (const a of elem.attributes) {
+            d[a.name] = a.value;
+          }
+          this._model.push(d);
+        });
       } else {
-        this.error('cv-list > model must have at least one read address or a script that fills the model.');
+        this.error('cv-list > model must have at least one read address, cv-data child or a script that fills the model.');
         return;
       }
       if (!refreshOnUpdate) {

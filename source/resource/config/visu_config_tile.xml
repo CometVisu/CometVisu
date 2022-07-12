@@ -2,7 +2,6 @@
 <config
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd"
-        design="tile"
         version="1"
 >
     <cv-meta>
@@ -323,22 +322,20 @@
             </cv-status>
             <cv-tile size="1x2">
                 <cv-list rowspan="3" colspan="3">
-                    <model sort-by="label" sort-mode="desc">
-                        <script><![CDATA[
-                    for (let i = 0; i < Math.round(Math.random()*10); i++) {
-                        model.push({
-                            label: 'This is list item no ' + i,
-                            subLabel: 'Sublabel number ' + i
-                        })
-                    }
-                   ]]>
-                        </script>
+                    <model>
+                        <cv-address transform="raw" mode="read" backend="si">members:Lights</cv-address>
                     </model>
                     <template>
-                        <li>
-                            <label class="primary">${label}</label>
-                            <label class="secondary">${subLabel}</label>
-                        </li>
+                        <cv-listitem>
+                            <cv-button class="round-button" mapping="light" size="small">
+                                <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
+                                <cv-icon class="value" />
+                            </cv-button>
+                            <div class="content">
+                                <label class="primary">${label}</label>
+                            </div>
+                            <cv-address backend="main" mode="read" transform="OH:switch" target="show-exclude">${name}</cv-address>
+                        </cv-listitem>
                     </template>
                 </cv-list>
             </cv-tile>
@@ -358,7 +355,7 @@
             <cv-page id="calls" name="Anrufe"/>
         </cv-page>
         <cv-popup modal="true" style="padding: 0" auto-close-timeout="120">
-            <cv-image style="width: 470px" src="http://192.168.178.24/ISAPI/streaming/channels/1/picture" refresh="2" authorization="basic" username="viewer" password="viewer" proxy="true"/>
+            <cv-image style="width: 470px" src="http://192.168.178.24/ISAPI/streaming/channels/1/picture" refresh="2" auth-type="basic" username="viewer" password="viewer" proxy="true"/>
             <cv-button class="bottom green overlay">
                 <cv-address backend="main" mode="readwrite" transform="OH:switch" on="down" value="1">Switch_GF_FrontDoor</cv-address>
                 <cv-address backend="main" mode="write" transform="OH:switch" on="up" value="0">Switch_GF_FrontDoor</cv-address>

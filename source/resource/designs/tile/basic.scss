@@ -901,7 +901,6 @@ body {
             flex: 1;
 
             li, cv-listitem {
-                display: block;
                 padding: var(--spacing) calc(var(--spacing)*2);
                 border-bottom: 1px solid $borderColor;
 
@@ -977,7 +976,7 @@ body {
     }
 
     cv-listitem {
-        display: flex !important;
+        display: flex;
         flex-direction: row;
         align-items: center;
         gap: var(--spacing);

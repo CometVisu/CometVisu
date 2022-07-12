@@ -19,6 +19,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   */
   members: {
     __lastValue: null,
+    __transformedValue: null,
 
     _init() {
       const element = this._element;
@@ -96,6 +97,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             source: this
           }
         });
+        this.__transformedValue = transformedState;
         //console.log(ev.detail);
         this._element.dispatchEvent(ev);
         this.__lastValue = state;
@@ -104,6 +106,10 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
           this._element.lastSentValue = null;
         }
       }
+    },
+
+    getValue() {
+      return this.__transformedValue;
     }
   },
 
