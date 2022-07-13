@@ -11,7 +11,7 @@ Beschreibung
 
 Mit der List-Komponente lassen sich Listen von gleichartigen Elementen erzeugen. Die Liste benötigt dafür ein
 Datenmodell, welches einen Eintrag mit Daten für jedes Element in der Liste enthält und ein Template, welches
-den HTML-Code für die jeweiligen Listen-Elemente definiert. Die List-Komponente erzeugt nun eine HTML-Element, basierend
+den HTML-Code für die jeweiligen Listen-Elemente definiert. Die List-Komponente erzeugt nun ein HTML-Element, basierend
 auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmodells.
 
 .. widget-example::
@@ -19,11 +19,11 @@ auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmode
     <settings design="tile" selector="cv-tile">
         <screenshot name="cv-js-list" />
     </settings>
-    <cv-tile size="1x2">
+    <cv-tile>
         <cv-list rowspan="3" colspan="3">
             <model>
                 <script><![CDATA[
-                    for (let i = 0; i < 5; i++) {
+                    for (let i = 0; i < 3; i++) {
                         model.push({
                             label: 'This is list item no ' + i,
                             subLabel: 'Sublabel number ' + i
