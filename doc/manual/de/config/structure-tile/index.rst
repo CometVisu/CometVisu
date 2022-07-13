@@ -5,15 +5,25 @@ Wie der Name schon suggeriert setzt sich eine Visualisierung in der Tile-Struktu
 zusammen. Die Inhalte in den Kacheln sind in maximal 3 Zeilen mit jeweils 3 Spalten angeordnet, wobei hier ähnlich
 wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kann.
 
-+---+---+---+
-|   |   |   |
-+---+---+---+
-|   |   |   |
-+---+---+---+
-|   |   |   |
-+---+---+---+
+.. widget-example::
+    :hide-source: true
 
-Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur vordefiniertem Komponenten frei platziert werden.
+    <settings design="tile" selector="cv-tile">
+        <screenshot name="tile-grid"/>
+    </settings>
+    <cv-tile>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+        <p class="grid"/>
+    </cv-tile>
+
+Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten Komponenten frei platziert werden.
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Charts.
 
 Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
@@ -121,7 +131,8 @@ Alle Bereiche bis auf den Haupt-Bereich ``<main>`` sind optional und können weg
     :maxdepth: 1
 
     Page <components/page>
-    Nav bars <components/navBars>
+    Navigation <components/nav>
+    Menu <components/menu>
 
 
 Widgets
@@ -176,10 +187,9 @@ mehrere Komponenten in einer Kachel.
     Select <components/select>
     Spinner <components/spinner>
     Slider <components/slider>
-
     List <components/list>
-    Menu <components/menu>
-    Chart <components/chart>
+
+..    Chart <components/chart>
 
 
 .. toctree::
