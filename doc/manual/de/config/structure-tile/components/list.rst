@@ -23,10 +23,10 @@ auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmode
         <cv-list rowspan="3" colspan="3">
             <model>
                 <script><![CDATA[
-                    for (let i = 0; i < 3; i++) {
+                    for (let i = 0; i < 4; i++) {
                         model.push({
-                            label: 'This is list item no ' + i,
-                            subLabel: 'Sublabel number ' + i
+                            label: 'Listeneintrag ' + i,
+                            subLabel: 'Zusatztext Nummer ' + i
                         })
                     }]]>
                 </script>
