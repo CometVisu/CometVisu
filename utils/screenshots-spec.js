@@ -18,6 +18,7 @@ const stats = {
   error: 0,
   skipped: 0
 };
+const shotIndexFiles = [];
 
 browser.executeAsyncScript(function (callback) {
   callback(window.devicePixelRatio);
@@ -121,25 +122,29 @@ describe('generation screenshots from jsdoc examples', function () {
 
   afterEach(function () {
     mockedFixtures.forEach(fix => mockup.resetMockupFixture(fix));
-    if (runResult && (runResult.failed || runResult.success !== true)) {
-      runResult.failed = true;
-      runResult.browserErrors = [];
-      browser.manage().logs().get('browser').then(function (browserLogs) {
-        // browserLogs is an array of objects with level and message fields
-        browserLogs.forEach(function (log) {
-          runResult.browserErrors.push(log.message);
-          console.log('Failed run log message:',log.message); // FIXME: This should be replaced by a working logging mechanism with runResult.browserErrors where the results are also shown on the console
+    if (runResult) {
+      if (runResult.failed || runResult.success !== true) {
+        runResult.failed = true;
+        runResult.browserErrors = [];
+        browser.manage().logs().get('browser').then(function (browserLogs) {
+          // browserLogs is an array of objects with level and message fields
+          browserLogs.forEach(function (log) {
+            runResult.browserErrors.push(log.message);
+            console.log('Failed run log message:', log.message); // FIXME: This should be replaced by a working logging mechanism with runResult.browserErrors where the results are also shown on the console
+          });
         });
-      });
-    } else if (runResult && runResult.success) {
-      // save shotIndex
-      fs.writeFile(runResult.shotIndexFile, JSON.stringify(shotIndex, null, 4), function (err) {
-        if (err) {
-          console.log(err);
-        }
-      });
+      } else if (runResult.success) {
+        // save shotIndex
+        fs.writeFileSync(runResult.shotIndexFile, JSON.stringify(shotIndex[runResult.screenshotDir], null, 4), function (err) {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } else if (runResult.skipped) {
+        return;
+      }
+      results.push(runResult);
     }
-    results.push(runResult);
   });
 
   afterAll(function () {
@@ -160,6 +165,32 @@ describe('generation screenshots from jsdoc examples', function () {
         console.log('Screenshot:  ', res.screenshot);
         console.log('Stacktrace:  ', res.error);
       });
+    }
+
+    // delete index entries that are not available anymore
+    for (let indexFile of shotIndexFiles) {
+      let indexData = '';
+      try {
+        indexData = fs.readFileSync(indexFile, 'utf-8');
+        const shotIndexData = JSON.parse(indexData);
+        const existingFiles = fs.readdirSync(path.dirname(indexFile))
+          .filter(file => file.endsWith('.png'))
+          .map(file => file.substring(0, file.lastIndexOf('.')));
+        for (let file in shotIndexData) {
+          if (!existingFiles.includes(file)) {
+            delete shotIndexData[file];
+          }
+        }
+        fs.writeFileSync(indexFile, JSON.stringify(shotIndexData, null, 4), function (err) {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } catch (e) {
+        console.error(indexFile);
+        console.error(e.message);
+        console.error(indexData);
+      }
     }
   });
 
@@ -196,7 +227,6 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   files.forEach(async function(filePath) {
-    shotIndex = {};
     let stat = fs.statSync(filePath);
     if (stat.isFile()) {
       runResult.file = filePath;
@@ -218,7 +248,10 @@ describe('generation screenshots from jsdoc examples', function () {
       if (fs.existsSync(indexFile)) {
         const indexData = fs.readFileSync(indexFile, 'utf-8');
         try {
-          shotIndex = JSON.parse(indexData);
+          shotIndex[settings.screenshotDir] = JSON.parse(indexData);
+          if (!shotIndexFiles.includes(indexFile)) {
+            shotIndexFiles.push(indexFile);
+          }
         } catch (e) {
           console.error('\n>>> error parsing screenshot index data', indexData, indexFile);
           console.error(e.message);
@@ -230,7 +263,7 @@ describe('generation screenshots from jsdoc examples', function () {
       const screenshots = [];
       let allSkipped = true;
       settings.screenshots.forEach(setting => {
-        if (setting.hasOwnProperty('hash') && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
+        if (setting.hasOwnProperty('hash') && shotIndex[settings.screenshotDir].hasOwnProperty(setting.name) && setting.hash === shotIndex[settings.screenshotDir][setting.name] && !browser.forced) {
           // also check if the file really exists
           if (fs.existsSync(path.join(settings.screenshotDir, setting.name + '.png'))) {
             // skip this screenshot because is has not changed since last generation
@@ -238,11 +271,12 @@ describe('generation screenshots from jsdoc examples', function () {
             stats.total++;
             skippedScreenshots.push(setting.name);
           } else {
-            console.log('file not found, creating screenshot', path.join(settings.screenshotDir, setting.name + '.png'))
+            console.log('file not found, creating screenshot', path.join(settings.screenshotDir, setting.name + '.png'));
             screenshots.push(setting.name);
+            allSkipped = false;
           }
         } else {
-          console.log('hash mismatch, creating screenshot', setting.name, setting.hash, shotIndex[setting.name]);
+          console.log('hash mismatch, creating screenshot', setting.name, setting.hash, shotIndex[settings.screenshotDir][setting.name]);
           screenshots.push(setting.name);
           allSkipped = false;
         }
@@ -276,6 +310,7 @@ describe('generation screenshots from jsdoc examples', function () {
         //console.log(">>> processing " + filePath + "...");
         let currentScreenshot = {};
         runResult.shotIndexFile = indexFile;
+        runResult.screenshotDir = settings.screenshotDir;
         try {
           let widget;
           if (loadManager) {
@@ -433,7 +468,7 @@ describe('generation screenshots from jsdoc examples', function () {
                 stats.total++;
                 runResult.success = true;
                 if (setting.hash) {
-                  shotIndex[setting.name] = setting.hash;
+                  shotIndex[settings.screenshotDir][setting.name] = setting.hash;
                 }
               } catch (err) {
                 runResult.failed = true;
