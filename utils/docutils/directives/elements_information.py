@@ -33,7 +33,9 @@ class ElementsInformationDirective(BaseXsdDirective):
     required_arguments = 1
     optional_arguments = 1
     final_argument_whitespace = True
-    option_spec = {}
+    option_spec = {
+        'depth': int
+    }
     has_content = False
 
     def make_title(self, element):
@@ -55,13 +57,21 @@ class ElementsInformationDirective(BaseXsdDirective):
         element_name = self.arguments[0]
         structure_name = self.arguments[1] if len(self.arguments) > 1 else "pure"
         schema = tile_schema if structure_name == "tile" else pure_schema
+        depth = int(self.options['depth']) if 'depth' in self.options else -1
         res_nodes = []
         for element in schema.get_widget_elements(element_name):
             if not isinstance(element, tuple):
                 name = element.get("name")
                 elem_type = element.get('type')
                 mandatory = element.get("minOccurs") is not None and int(element.get("minOccurs")) > 0
-                table_node = self.generate_complex_table(name, node=element, structure_name=structure_name, include_name=True, mandatory=mandatory, parent=element_name, element_type=elem_type)
+                table_node = self.generate_complex_table(name,
+                                                         node=element,
+                                                         structure_name=structure_name,
+                                                         include_name=True,
+                                                         mandatory=mandatory,
+                                                         parent=element_name,
+                                                         element_type=elem_type,
+                                                         depth=depth)
                 if table_node is not None:
                     res_nodes.append(table_node)
 

@@ -529,6 +529,13 @@ body {
                 object-fit: contain;
             }
         }
+
+        p.grid {
+            border: 1px dashed #585757;
+            width: 100%;
+            margin: 0;
+            height: 100%;
+        }
     }
 
     cv-image {

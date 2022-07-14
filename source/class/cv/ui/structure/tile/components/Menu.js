@@ -1,5 +1,8 @@
 /**
  * Generates a menu of a model, currently only the pages model is implemented.
+ *
+ * @author Tobias Bräutigam
+ * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.components.Menu', {
   extend: cv.ui.structure.tile.components.AbstractComponent,

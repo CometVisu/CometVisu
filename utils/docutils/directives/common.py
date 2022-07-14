@@ -171,7 +171,7 @@ class BaseXsdDirective(BaseDirective):
             return ""
 
     def generate_complex_table(self, element_name, structure_name="pure", include_name=False, mandatory=False, element_type=None,
-                               table_body=None, sub_run=False, parent=None, node=None):
+                               table_body=None, sub_run=False, parent=None, node=None, depth=-1, level=0):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
@@ -245,10 +245,10 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         sub_parent = element_name
                     #no recursions
-                    if sub_type != element_type:
+                    if sub_type != element_type and (depth < 0 or depth < level):
                         self.generate_complex_table(name, include_name=include_name,
                                                     mandatory=mandatory, table_body=table_body, element_type=sub_type,
-                                                    sub_run=True, parent=sub_parent)
+                                                    sub_run=True, parent=sub_parent, depth=depth, level=level+1)
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1

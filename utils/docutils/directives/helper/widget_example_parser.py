@@ -164,6 +164,8 @@ class WidgetExampleParser:
                     shot['clickPath'] = screenshot.get('clickpath')
                 if screenshot.get("waitfor", None):
                     shot['waitFor'] = screenshot.get('waitfor')
+                if screenshot.get("screen-width", None):
+                    shot['screenWidth'] = int(screenshot.get('screen-width'))
                 if screenshot.get("margin"):
                     shot['margin'] = [int(x) for x in screenshot.get("margin").split(" ")]
                 if screenshot.get("selector", None):

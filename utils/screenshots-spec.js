@@ -19,6 +19,8 @@ const stats = {
   skipped: 0
 };
 const shotIndexFiles = [];
+const defaultWidth = 1300; // from protractor conf
+const defaultHeight = 800; // from protractor conf
 
 browser.executeAsyncScript(function (callback) {
   callback(window.devicePixelRatio);
@@ -55,6 +57,10 @@ const cropInFile = function(size, location, srcFile, width, height) {
     }
     return null;
   }).catch(errorHandler);
+};
+
+const changeBrowserWidth = function (width) {
+  browser.driver.manage().window().setSize(width, defaultHeight);
 };
 
 const createDir = function(dir) {
@@ -367,7 +373,7 @@ describe('generation screenshots from jsdoc examples', function () {
           for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
             currentScreenshot = setting;
             let shotWidget = widget;
-
+            changeBrowserWidth(setting.screenWidth > 0 ? setting.screenWidth : defaultWidth);
             if (setting.data && Array.isArray(setting.data)) {
               setting.data.forEach(function (data) {
                 var value = data.value;
