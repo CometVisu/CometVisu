@@ -345,7 +345,7 @@ class TemplatedElement extends HTMLElement {
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
-        const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0
+        const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
@@ -411,8 +411,13 @@ class TemplatedElement extends HTMLElement {
           targetName = 'format';
         }
         targets.forEach(target => {
-          target.removeAttribute('slot-'+name);
-          target.setAttribute(targetName, value || target.getAttribute('slot-'+name));
+          if (targetName !== name && target.hasAttribute('slot-' + name)) {
+            target.removeAttribute('slot-'+name);
+            target.setAttribute(name, value || target.getAttribute('slot-'+name));
+          } else {
+            target.removeAttribute('slot-'+targetName);
+            target.setAttribute(targetName, value || target.getAttribute('slot-'+targetName));
+          }
         });
         if (targets.length > 0) {
           this.removeAttribute(name);
@@ -422,7 +427,7 @@ class TemplatedElement extends HTMLElement {
         .forEach(elem => {
           [...elem.attributes].forEach(attr => {
             if (attr.name.startsWith('slot-')) {
-              let targetName = attr.name.substring(5)
+              let targetName = attr.name.substring(5);
               if (attr.name.endsWith('-mapping')) {
                 targetName = 'mapping';
               } else if (attr.name.endsWith('-styling')) {
@@ -431,20 +436,16 @@ class TemplatedElement extends HTMLElement {
                 targetName = 'format';
               }
               if (attr.value) {
-                elem.setAttribute(targetName, attr.value)
+                elem.setAttribute(targetName, attr.value);
               }
-              elem.removeAttribute(attr.name)
+              elem.removeAttribute(attr.name);
             }
-          })
-        })
+          });
+        });
       
       // clear content
       this.innerHTML = '';
       this.appendChild(content);
     }
-  }
-
-  deleteEmptySlotAttributes(elem) {
-    
   }
 }
