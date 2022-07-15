@@ -3,6 +3,8 @@
 Group
 .....
 
+.. api-doc:: cv.ui.structure.tile.widgets.Group
+
 Die Group-Komponente kann genutzt werden um :ref:`Widgets <tile-widgets>` zu gruppieren. Gruppen haben immer einen sichtbaren Titel,
 der die gesamte verfügbare Breite einnimmt und darunter die Widgets. Gruppen können geöffnet (Widgets sind sichtbar)
 oder geschlossen sein (Widgets sind nicht sichtbar). Durch einen Klick auf den Titel kann zwischen diesen Zuständen

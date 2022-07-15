@@ -61,14 +61,13 @@ anzuzeigen. Über ein zusätzliches Styling kann man das Icon auch noch entsprec
         <span slot="label">Fenster</span>
     </cv-status>
 
-Dazu wird für den "icon"-slot kein einfaches ``<cv-icon>`` sondern ein ``<cv-value>`` mit darin liegendem ``<cv-icon>``
-verwendet.
+Dazu wird für den "icon"-slot kein einfaches :ref:`cv-icon <tile-element-icon>` sondern ein
+:ref:`cv-value <tile-component-value>` mit darin liegendem :ref:`cv-icon <tile-element-icon>` verwendet.
 Dadurch hat man die Möglichkeit ein mapping/styling für dieses Icon zu definieren. Damit das Value-Element die selben
-Werte benutzt, wie das Status-Element muss hier nochmal die selbe ``<cv-address>``-Element benutzt werden.
+Werte benutzt, wie das Status-Element muss hier nochmal die selbe :ref:`cv-address <tile-element-address>`-Element benutzt werden.
 
-.. TODO:
-    Listen
-    cv-icon, cv-value verlinken
+Um weitere Details zum Status zu liefern kann dieses Widget mit einem :ref:`Popup <tile-component-popup>` verknüpft werden.
+Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Informationen.
 
 
 Erlaubte Attribute im Status-Element
