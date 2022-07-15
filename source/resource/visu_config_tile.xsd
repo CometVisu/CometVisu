@@ -325,7 +325,7 @@
     <xsd:attribute name="wrap" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Prevents line wraps when the content is wider that the screen size. The content will be horizontally scrollable instead.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verhindert Zeilenumbrüche, wenn der Inhalt zu breit wür die Bildschirmgröße ist. Stattdessen wird der Inhalt scrollbar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verhindert Zeilenumbrüche, wenn der Inhalt zu breit für die Bildschirmgröße ist. Stattdessen wird der Inhalt scrollbar.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />

@@ -1,13 +1,7 @@
 .. _tile-component-page:
 
 Page
-====
-
-.. api-doc:: cv.ui.structure.tile.components.Page
-
-
-Beschreibung
-------------
+....
 
 Die Page-Komponente ist das Haupt-Inhaltselement der Tile-Struktur. Es wird immer nur ein Page gleichzeitig sichtbar.
 Innerhalb der Page können beliebige Widgets angezeigt werden, ebenso kann eine Page weitere Pages enthalten.

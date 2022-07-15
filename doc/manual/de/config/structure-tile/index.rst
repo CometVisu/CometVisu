@@ -104,7 +104,7 @@ offenen Fenster oder der eingeschalteten Lichter, nutzen.
 
 Der ``<main>``-Bereich ist nicht optional und muss immer vorhanden sein
 Innerhalb dieses Bereichs können beliebig viele :ref:`Pages <tile-component-page>` angegeben werden.
-Eine Page kann wiederum neben den Inhalts-Elementen weitere Pages enthalten. Durch diese Verschachtelung
+Eine Page kann wiederum `Widgets`_, :ref:`Gruppen <tile-component-group>` und weitere Pages enthalten. Durch diese Verschachtelung
 kann man eine Navigationsstruktur festlegen. So kann man z.B. für jede Etage eine Page angeben, die wiederum
 für jeden Raum in dieser Etage eine Page enthält.
 
@@ -172,6 +172,7 @@ jedoch der Header oder Footer Bereich an).
     Group <components/group>
     Popup <components/popup>
 
+.. _tile-widgets:
 
 Widgets
 =======

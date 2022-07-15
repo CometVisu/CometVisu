@@ -1,13 +1,13 @@
 .. _tile-component-menu:
 
 Menu
-====
+....
 
 .. api-doc:: cv.ui.structure.tile.components.Menu
 
 
 Beschreibung
-------------
+^^^^^^^^^^^^
 
 Diese Komponente erzeugt ein Navigationsmenü aus einem Modell. Momentan ist nur die Seitenstruktur der Konfigurationsdatei
 als Modell verfügbar: ``pages``.

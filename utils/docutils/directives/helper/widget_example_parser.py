@@ -38,7 +38,8 @@ class WidgetExampleParser:
         "meta": '<meta/>',
         "meta_tag": "meta",
         "default_meta_content": "",
-        "content_start": '<page name="Example">',
+        "content_start": '<page name="Example" class="%s">',
+        "content_class": '',
         "content_end": '</page>',
         "end":   '</pages>'
     }
@@ -47,8 +48,9 @@ class WidgetExampleParser:
         "meta": '',
         "meta_tag": "cv-meta",
         "default_meta_content": '<cv-backend name="main" default="true" type="simulated"/>',
-        "content_start": '<main><cv-page id="root" name="Example" class="screenshots active">',
+        "content_start": '<main><cv-page id="root" name="Example" class="%s active">',
         "content_end": '</cv-page></main>',
+        "content_class": 'screenshots',
         "end":   '</config>'
     }
     screenshot_dir = None
@@ -102,6 +104,7 @@ class WidgetExampleParser:
 
         example_content = b""
         display_content = b""
+        content_class = settings_node.get("content-class") if settings_node is not None else None
         wrapper = settings_node.get("wrap-in") if settings_node is not None else None
         wrapper_attributes = ' class="%s"' % settings_node.get("wrapper-class") if settings_node is not None else ""
         wrapped_position = settings_node.get("wrapped-position").replace("'", "\"") if settings_node is not None and "wrapped-position" in settings_node.attrib else 'row="middle" column="middle"'
@@ -207,7 +210,8 @@ class WidgetExampleParser:
             "global_caption": global_caption,
             "settings": settings,
             "design": design,
-            "single_widget": single_widget
+            "single_widget": single_widget,
+            "content_class": content_class
         }
         if len(config_example) == 0:
             print("# ERROR parsing example:\n%s" % example_content)
@@ -215,6 +219,8 @@ class WidgetExampleParser:
 
     def save_screenshot_control_files(self, parsed, name="", editor=False):
         visu_config_parts = self.config_parts_tile.copy() if parsed['settings']['structure'] == "tile" else self.config_parts_pure.copy()
+
+        visu_config_parts["content_start"] = visu_config_parts["content_start"] % (parsed['content_class'] if parsed['content_class'] is not None else visu_config_parts["content_class"])
         # replace the design value in the config
         visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", parsed['design'])
 
