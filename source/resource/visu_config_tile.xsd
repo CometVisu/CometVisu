@@ -380,6 +380,8 @@
       <xsd:element name="cv-tile" type="cv-tile"/>
       <xsd:element name="cv-info" type="cv-info"/>
       <xsd:element name="cv-status" type="cv-status"/>
+      <xsd:element name="cv-rtc" type="cv-rtc"/>
+      <xsd:element name="cv-media-player" type="cv-media-player"/>
     </xsd:choice>
   </xsd:group>
 
@@ -676,12 +678,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute name="progress-mapping" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Mapping for the progress values.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Mapping für die "progress" Werte.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute ref="progress-mapping" />
     <xsd:attribute name="on-value" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
@@ -875,7 +872,79 @@
     <xsd:attribute ref="format" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-rtc">
+    <xsd:sequence>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="hvacAddress" />
+                    <xsd:enumeration value="temperatureAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="label" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute ref="min" />
+    <xsd:attribute ref="max" />
+    <xsd:attribute ref="step-width" />
+  </xsd:complexType>
 
+  <xsd:complexType name="cv-media-player">
+    <xsd:sequence>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="albumAddress" />
+                    <xsd:enumeration value="titleAddress" />
+                    <xsd:enumeration value="previousAddress" />
+                    <xsd:enumeration value="playPauseAddress" />
+                    <xsd:enumeration value="playTimeAddress" />
+                    <xsd:enumeration value="durationAddress" />
+                    <xsd:enumeration value="nextAddress" />
+                    <xsd:enumeration value="volumeAddress" />
+                    <xsd:enumeration value="tileAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute ref="progress-mapping" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+  </xsd:complexType>
   <!--
   #####################################################################################################################
   # START: simple types
@@ -1054,6 +1123,13 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping`</xsd:documentation>
       <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="progress-mapping" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Map the bus value to a value between 0 and 100 to display a progress :ref:`mapping`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus einen Wert zwischen 0 und 100 zu, um einen Fortschritt anzeugen zu können. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 

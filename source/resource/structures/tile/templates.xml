@@ -67,4 +67,57 @@
             <slot name="popup"/>
         </cv-tile>
     </template>
+    <template id="rtc">
+        <cv-tile>
+            <cv-spinner slot-format="%.1f °C" slot-min="15" slot-max="25" slot-step-width="0.5" colspan="3">
+                <slot name="temperatureAddress">NEEDS ADDRESS</slot>
+                <label class="value primary"/>
+            </cv-spinner>
+            <cv-select row="2" colspan="3">
+                <slot name="hvacAddress">NEEDS ADDRESS</slot>
+                <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto</cv-option>
+                <cv-option key="stondby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
+                <cv-option key="economy"><cv-icon>ri-leaf-line</cv-icon>Eco</cv-option>
+                <cv-option key="comfort"><cv-icon>ri-temp-cold-line</cv-icon>Komfort</cv-option>
+                <cv-option key="building protection"><cv-icon>ri-shield-line</cv-icon>Frostschutz</cv-option>
+            </cv-select>
+            <cv-row colspan="3" row="3">
+                <label class="primary"><slot name="label">RTC</slot></label>
+            </cv-row>
+        </cv-tile>
+    </template>
+    <template id="media-player">
+        <cv-tile>
+            <cv-row colspan="3" row="first">
+                <cv-value>
+                    <slot name="albumAddress">NEEDS ADDRESS</slot>
+                    <label class="value secondary"/>
+                </cv-value>
+                <cv-value>
+                    <slot name="titleAddress">NEEDS ADDRESS</slot>
+                    <label class="value primary medium"/>
+                </cv-value>
+            </cv-row>
+            <cv-button class="round-button" row="2" column="1" size="small">
+                <slot name="previousAddress">NEEDS ADDRESS</slot>
+                <cv-icon>ri-skip-back-mini-fill</cv-icon>
+            </cv-button>
+            <cv-button class="round-button" row="2" column="2" slot-mapping="" slot-progress-mapping="">
+                <slot name="playPauseAddress">NEEDS ADDRESS</slot>
+                <slot name="playTimeAddress">NEEDS ADDRESS</slot>
+                <slot name="durationAddress">NEEDS ADDRESS</slot>
+                <cv-icon class="value">ri-stop-fill</cv-icon>
+            </cv-button>
+            <cv-button class="round-button" row="2" column="3" size="small">
+                <slot name="nextAddress">NEEDS ADDRESS</slot>
+                <cv-icon>ri-skip-forward-mini-fill</cv-icon>
+            </cv-button>
+            <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="0">
+                <slot name="volumeAddress">NEEDS ADDRESS</slot>
+                <cv-icon class="decrease">ri-volume-down-line</cv-icon>
+                <cv-icon class="increase">ri-volume-up-line</cv-icon>
+            </cv-slider>
+            <slot name="tileAddress">NEEDS ADDRESS</slot>
+        </cv-tile>
+    </template>
 </templates>

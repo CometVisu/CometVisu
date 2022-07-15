@@ -196,57 +196,24 @@
                 <cv-address slot="positionAddress" transform="OH:number" mode="read" backend="main">Shutter_FF_Living</cv-address>
                 <span slot="primaryLabel">Default</span>
             </cv-shutter>
-            <cv-tile>
-                <cv-row colspan="3" row="first">
-                    <cv-value>
-                        <cv-address transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Album</cv-address>
-                        <label class="value secondary"/>
-                    </cv-value>
-                    <cv-value>
-                        <cv-address transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Title</cv-address>
-                        <label class="value primary medium"/>
-                    </cv-value>
-                </cv-row>
-                <cv-button class="round-button" row="2" column="1" size="small">
-                    <cv-address transform="OH:raw" backend="main" value="PREVIOUS" mode="write">Sink_Tuxedo_Control</cv-address>
-                    <cv-icon>ri-skip-back-mini-fill</cv-icon>
-                </cv-button>
-                <cv-button class="round-button" row="2" column="2" mapping="PlayStop" progress-mapping="PlayProgress">
-                    <cv-address transform="OH:playPause" backend="main">Sink_Tuxedo_Control</cv-address>
-                    <cv-address transform="OH:number" backend="main" mode="read" target="progress">Sink_Tuxedo_PlayTime</cv-address>
-                    <cv-address transform="OH:number" backend="main" mode="read" target="store:duration">Sink_Tuxedo_Duration</cv-address>
-                    <cv-icon class="value">ri-stop-fill</cv-icon>
-                </cv-button>
-                <cv-button class="round-button" row="2" column="3" size="small">
-                    <cv-address transform="OH:raw" backend="main" value="NEXT" mode="write">Sink_Tuxedo_Control</cv-address>
-                    <cv-icon>ri-skip-forward-mini-fill</cv-icon>
-                </cv-button>
-                <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="0">
-                    <cv-address transform="OH:number" backend="main">Sink_Tuxedo_Volume</cv-address>
-                    <cv-icon class="decrease">ri-volume-down-line</cv-icon>
-                    <cv-icon class="increase">ri-volume-up-line</cv-icon>
-                </cv-slider>
-                <cv-address transform="OH:string" backend="main" mode="read" target="background-image">Sink_Tuxedo_CoverArt</cv-address>
-                <cv-address transform="OH:thing:status" backend="main" mode="read" target="show-exclude">squeezebox:squeezeboxplayer:lms:Tuxedo</cv-address>
-            </cv-tile>
-            <cv-tile>
-                <cv-spinner format="%.1f °C" min="15" max="25" step-width="0.5" colspan="3">
-                    <cv-address transform="OH:number" backend="main">Temperature_SF_Office_Target</cv-address>
-                    <cv-address transform="OH:string" backend="main" mode="read" target="show-hide" mapping="RtcOn">HVAC_SF_Office</cv-address>
-                    <label class="value primary"/>
-                </cv-spinner>
-                <cv-select row="2" colspan="3">
-                    <cv-address transform="OH:string" backend="main">HVAC_SF_Office</cv-address>
-                    <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto</cv-option>
-                    <cv-option key="stondby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
-                    <cv-option key="economy"><cv-icon>ri-leaf-line</cv-icon>Eco</cv-option>
-                    <cv-option key="comfort"><cv-icon>ri-temp-cold-line</cv-icon>Komfort</cv-option>
-                    <cv-option key="building protection"><cv-icon>ri-shield-line</cv-icon>Frostschutz</cv-option>
-                </cv-select>
-                <cv-row colspan="3" row="3">
-                    <label class="primary">RTC</label>
-                </cv-row>
-            </cv-tile>
+            <cv-media-player mapping="PlayStop" progress-mapping="PlayProgress">
+                <cv-address slot="albumAddress" transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Album</cv-address>
+                <cv-address slot="titleAddress" transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Title</cv-address>
+                <cv-address slot="previousAddress" transform="OH:raw" backend="main" value="PREVIOUS" mode="write">Sink_Tuxedo_Control</cv-address>
+                <cv-address slot="playPauseAddress" transform="OH:playPause" backend="main">Sink_Tuxedo_Control</cv-address>
+                <cv-address slot="playTimeAddress" transform="OH:number" backend="main" mode="read" target="progress">Sink_Tuxedo_PlayTime</cv-address>
+                <cv-address slot="durationAddress" transform="OH:number" backend="main" mode="read" target="store:duration">Sink_Tuxedo_Duration</cv-address>
+                <cv-address slot="nextAddress" transform="OH:raw" backend="main" value="NEXT" mode="write">Sink_Tuxedo_Control</cv-address>
+                <cv-address slot="volumeAddress" transform="OH:number" backend="main">Sink_Tuxedo_Volume</cv-address>
+                <cv-address slot="tileAddress" transform="OH:string" backend="main" mode="read" target="background-image">Sink_Tuxedo_CoverArt</cv-address>
+                <cv-address slot="tileAddress" transform="OH:thing:status" backend="main" mode="read" target="show-exclude">squeezebox:squeezeboxplayer:lms:Tuxedo</cv-address>
+            </cv-media-player>
+            <cv-rtc>
+                <cv-address slot="hvacAddress" transform="OH:string" backend="main">HVAC_SF_Office</cv-address>
+                <cv-address slot="temperatureAddress" transform="OH:number" backend="main">Temperature_SF_Office_Target</cv-address>
+                <cv-address slot="temperatureAddress" transform="OH:string" backend="main" mode="read" target="show-hide" mapping="RtcOn">HVAC_SF_Office</cv-address>
+                <span slot="label">RTC</span>
+            </cv-rtc>
            <cv-info mapping="kWh">
                 <cv-address slot="address" backend="mqtt" mode="read" transform="MQTT:number">vzlogger/data/chn0/raw</cv-address>
                 <span slot="label">Zählerstand</span>
