@@ -10,7 +10,10 @@
             <entry value="1">ri-stop-fill</entry>
         </cv-mapping>
         <cv-mapping name="tile-play-progress">
-            <formula>y = Math.round(100/store.get('duration')*x)</formula>
+            <formula>
+                d = store.get('duration');
+                y = d > 0 ? Math.round(100/d*x) : 0;
+            </formula>
         </cv-mapping>
         <cv-styling name="tile-button">
             <entry value="0">inactive</entry>

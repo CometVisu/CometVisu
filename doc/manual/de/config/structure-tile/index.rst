@@ -30,7 +30,8 @@ Meta-Bereich
 ------------
 
 Im Meta-Bereich (``<cv-meta>``) finden sich alle Einstellungen, die für diese Konfigurationsdatei benötigt werden.
-Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>` und die :ref:`Mappings <tile-element-mapping>` und :ref:`Stylings <tile-element-styling>`.
+Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>`, die
+:ref:`Mappings <tile-element-mapping>`, :ref:`Stylings <tile-element-styling>` und :ref:`Loader <tile-element-loader>`.
 
 .. code-block:: xml
 
@@ -56,6 +57,9 @@ Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>
             <entry value="0">inactive</entry>
             <entry range-min="1">active</entry>
         </cv-styling>
+        <cv-loader type="css" src="resource/config/media/example.css" />
+        <cv-loader type="js" src="resource/config/media/example.js" />
+        <cv-loader type="templates" src="resource/config/media/my-templates.xml" />
     </cv-meta>
 
 .. toctree::
@@ -65,6 +69,7 @@ Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>
     Backend <elements/backend>
     Mapping <elements/mapping>
     Styling <elements/styling>
+    Loader <elements/loader>
 
 
 Navigation / Seitenstruktur
@@ -222,9 +227,82 @@ wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kan
 Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten Komponenten frei platziert werden.
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Listen.
 
-.. TODO::
+Am einfachsten erstellt man sich erstmal eine Kachel mit allen benötigten Komponenten an den gewünschten Stellen
+in seiner normalen Konfigurationsdatei. So kann man Aussehen und Funktionalität am besten testen.
+Das folgende Beispiel zeigt die eine Kachel in der ein runder :ref:`Fortschrittsbalken <tile-component-value>`
+und ein Text angezeigt wird.
 
-    Wie macht man aus einem Custom-Widget ein Custom-Template zur Wiederverwendung
+.. code-block:: xml
+
+    <cv-tile>
+        <cv-row colspan="3" row="2">
+            <cv-value format="%d%%">
+                <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
+                <cv-round-progress class="value"/>
+            </cv-value>
+        </cv-row>
+        <cv-row colspan="3" row="last">
+            <label class="secondary">Circle Progress</label>
+        </cv-row>
+    </cv-tile>
+
+Dieser Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
+anlegen. Das geht am besten über den :ref:`Manager <Manager>` indem man im Order "media" eine Datei mit namen "my-templates.xml"
+erzeugt. Damit diese Templates geladen werden fügt man in der Konfigurationsdatei im Meta-Bereich einen :ref:`Loader <tile-element-loader>`
+hinzu.
+
+.. code-block:: xml
+
+    <cv-meta>
+        <cv-loader type="templates" src="resource/config/media/my-templates.xml" />
+    </cv-meta>
+
+
+Diese Datei sollte dann folgenden Inhalt enthalten.
+
+.. code-block:: xml
+
+    <templates structure="tile">
+        <template id="meter">
+            <cv-tile>
+                <cv-row colspan="3" row="last">
+                    <label class="secondary"><slot name="label"/></label>
+                </cv-row>
+                <cv-row colspan="3" row="2">
+                    <cv-value slot-format="%d%%">
+                        <slot name="address"/>
+                        <cv-round-progress class="value"/>
+                    </cv-value>
+                </cv-row>
+            </cv-tile>
+        </template>
+    </templates>
+
+Man sieht innerhalb der Template-Definition mit der id "meter" den leicht modifizierten Inhalt der Kachel.
+Modifiziert werden müssen lediglich Inhalte die man später konfigurierbar haben möchte. In der Regel
+gehören dazu Adressen, Label und ggf. einige Attribute wie Mappings, Stylings und Formatierungen.
+
+Wenn man nun dieses Template in der Konfigurationsdatei benutzen möchte fügt man dort ein ``<cv-meter>`` Element hinzu.
+Der Name ergibt sich aus der Template ID mit dem Präfix ``cv-``.
+
+Das Prinzip der <slot>-Elemente ist relativ einfach, sie dienen als Platzhalter für Elemente die diesen Slot benutzen.
+In dem Beispiel gibt es zwei Slot-Elemente: einen für die Adresse des Value-Elements: ``<slot name="address"/>``
+und einen für das Label: ``<slot name="label"/>``.
+
+Daraus ergibt sich folgender Code mit dem man das neu definierte Template-Widget nun nutzen kann.
+
+.. code-block:: xml
+
+    <custom>
+        <cv-meter>
+            <span slot="label">Circle Progress</span>
+            <cv-address slot="address" transform="OH:5.001" mode="read">1/4/0</cv-address>
+        </cv-meter>
+    </custom>
+
+Die selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
+muss man diese in ein ``<custom>...</custom>`` Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
+wird.
 
 
 Komponenten

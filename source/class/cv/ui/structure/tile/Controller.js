@@ -400,9 +400,6 @@ class TemplatedElement extends HTMLElement {
       const attributes = this.getAttributeNames();
       attributes.forEach(name => {
         let value = this.getAttribute(name);
-        if (value === 'tile-play-progress') {
-          debugger;
-        }
         const targets = content.querySelectorAll('[slot-'+name+']');
         let targetName = name;
         // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
@@ -450,6 +447,9 @@ class TemplatedElement extends HTMLElement {
       // clear content
       this.innerHTML = '';
       this.appendChild(content);
+    } else {
+      // eslint-disable-next-line no-console
+      console.error('no template found for id', templateId);
     }
   }
 }
