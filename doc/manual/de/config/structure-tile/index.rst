@@ -224,12 +224,13 @@ wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kan
         <p class="grid"/>
     </cv-tile>
 
-Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten Komponenten frei platziert werden.
-Beispiele für diese Komponenten sind z.B. einfacher Text, ein Button, Bild oder komplexere Anzeigeelemente wie Listen.
+Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten :ref:`Komponenten <tile-components>` frei platziert werden.
+Beispiele für diese Komponenten sind z.B. einfacher Text, ein :ref:`Button <tile-component-button>`,
+:ref:`Bild <tile-component-image>` oder komplexere Anzeigeelemente wie :ref:`Listen <tile-component-list>`.
 
 Am einfachsten erstellt man sich erstmal eine Kachel mit allen benötigten Komponenten an den gewünschten Stellen
 in seiner normalen Konfigurationsdatei. So kann man Aussehen und Funktionalität am besten testen.
-Das folgende Beispiel zeigt die eine Kachel in der ein runder :ref:`Fortschrittsbalken <tile-component-value>`
+Das folgende Beispiel zeigt eine Kachel in der ein runder :ref:`Fortschrittsbalken <tile-component-value>`
 und ein Text angezeigt wird.
 
 .. code-block:: xml
@@ -265,14 +266,14 @@ Diese Datei sollte dann folgenden Inhalt enthalten.
     <templates structure="tile">
         <template id="meter">
             <cv-tile>
-                <cv-row colspan="3" row="last">
-                    <label class="secondary"><slot name="label"/></label>
-                </cv-row>
                 <cv-row colspan="3" row="2">
                     <cv-value slot-format="%d%%">
                         <slot name="address"/>
                         <cv-round-progress class="value"/>
                     </cv-value>
+                </cv-row>
+                <cv-row colspan="3" row="last">
+                    <label class="secondary"><slot name="label"/></label>
                 </cv-row>
             </cv-tile>
         </template>
@@ -295,8 +296,8 @@ Daraus ergibt sich folgender Code mit dem man das neu definierte Template-Widget
 
     <custom>
         <cv-meter>
-            <span slot="label">Circle Progress</span>
             <cv-address slot="address" transform="OH:5.001" mode="read">1/4/0</cv-address>
+            <span slot="label">Circle Progress</span>
         </cv-meter>
     </custom>
 
@@ -304,6 +305,7 @@ Die selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konf
 muss man diese in ein ``<custom>...</custom>`` Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
 wird.
 
+.. _tile-components:
 
 Komponenten
 -----------
