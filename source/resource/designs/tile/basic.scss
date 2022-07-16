@@ -1002,4 +1002,12 @@ body {
         height: 100%;
         background-color: $blockerColor;
     }
+
+    cv-media-player {
+        cv-tile {
+            cv-row[row="first"] {
+                justify-content: center;
+            }
+        }
+    }
 }

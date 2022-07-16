@@ -90,8 +90,8 @@
         <cv-tile>
             <cv-row colspan="3" row="first">
                 <cv-value>
-                    <slot name="albumAddress">NEEDS ADDRESS</slot>
-                    <label class="value secondary"/>
+                    <slot name="subtitleAddress">NEEDS ADDRESS</slot>
+                    <label class="value secondary" value-size="medium"/>
                 </cv-value>
                 <cv-value>
                     <slot name="titleAddress">NEEDS ADDRESS</slot>

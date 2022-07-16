@@ -20,7 +20,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
+     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      */
     onStateUpdate(ev) {
       if (!this.base(arguments, ev)) {

@@ -197,7 +197,7 @@
                 <span slot="primaryLabel">Default</span>
             </cv-shutter>
             <cv-media-player mapping="PlayStop" progress-mapping="PlayProgress">
-                <cv-address slot="albumAddress" transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Album</cv-address>
+                <cv-address slot="subtitleAddress" transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Album</cv-address>
                 <cv-address slot="titleAddress" transform="OH:string" mode="read" backend="main">Sink_Tuxedo_Title</cv-address>
                 <cv-address slot="previousAddress" transform="OH:raw" backend="main" value="PREVIOUS" mode="write">Sink_Tuxedo_Control</cv-address>
                 <cv-address slot="playPauseAddress" transform="OH:playPause" backend="main">Sink_Tuxedo_Control</cv-address>

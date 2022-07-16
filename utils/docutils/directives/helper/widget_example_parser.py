@@ -38,8 +38,7 @@ class WidgetExampleParser:
         "meta": '<meta/>',
         "meta_tag": "meta",
         "default_meta_content": "",
-        "content_start": '<page name="Example" class="%s">',
-        "content_class": '',
+        "content_start": '<page name="Example">',
         "content_end": '</page>',
         "end":   '</pages>'
     }
@@ -101,6 +100,8 @@ class WidgetExampleParser:
                         config_example.append(child)
         except Exception as e:
             print("Parse error: %s" % str(e))
+            print("<root>%s</root>" % source)
+            return
 
         example_content = b""
         display_content = b""
@@ -220,7 +221,8 @@ class WidgetExampleParser:
     def save_screenshot_control_files(self, parsed, name="", editor=False):
         visu_config_parts = self.config_parts_tile.copy() if parsed['settings']['structure'] == "tile" else self.config_parts_pure.copy()
 
-        visu_config_parts["content_start"] = visu_config_parts["content_start"] % (parsed['content_class'] if parsed['content_class'] is not None else visu_config_parts["content_class"])
+        if parsed['settings']['structure'] == "tile":
+            visu_config_parts["content_start"] = visu_config_parts["content_start"] % (parsed['content_class'] if parsed['content_class'] is not None else visu_config_parts["content_class"])
         # replace the design value in the config
         visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", parsed['design'])
 

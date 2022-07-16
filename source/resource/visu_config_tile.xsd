@@ -923,7 +923,7 @@
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="albumAddress" />
+                    <xsd:enumeration value="subtitleAddress" />
                     <xsd:enumeration value="titleAddress" />
                     <xsd:enumeration value="previousAddress" />
                     <xsd:enumeration value="playPauseAddress" />
