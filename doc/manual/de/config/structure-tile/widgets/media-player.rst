@@ -76,16 +76,16 @@ Lautstärke                ``slot="volumeAddress"``
 Widget                    ``slot="tileAddress"``
 ========================= ================================
 
-Die Adressen für das Widget selbst ``slot="tileAddress"`` ermöglichen mittels des
+Die Adressen für das Widget selbst ``slot="tileAddress"`` sind optional und ermöglichen mittels des
 :ref:`target <tile-element-address-target>`-Attributs einige Besonderheiten.
 
-So kann z.B. die Sichtbarkeit des Widgets gesteuert werden, um das Widget auszublenden, wenn der Musik-Player gerade nicht
+So kann z.B. die Sichtbarkeit des Widgets gesteuert werden, um es auszublenden, wenn der Musik-Player gerade nicht
 zur Verfügung steht. Wie in dem Beispiel zu sehen ist würde das Widget entfernt, wenn auf der Address "1/4/8" der Wert "0" empfangen würde.
-Dieses Verhalten wird durch ``target="show-exclude"`` aktiviert.
+Wird der Wert "1" empfangen wird es wieder sichtbar. Dieses Verhalten wird durch ``target="show-exclude"`` aktiviert.
 
-Ebenso ist es möglich z.B. ein Cover des aktuell gespielten Songs als Hintergrundbild der Kachel zu zeigen.
+Ebenso ist es möglich z.B. das Cover des aktuell gespielten Songs als Hintergrundbild der Kachel zu zeigen.
 Dazu dient dieser Eintrag aus dem Beispiel ``<cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/4/7</cv-address>``.
-Auf der Adresse muss dazu eine URL des Bilds geliefert werden unter der die ConetVisu dieses Bild laden kann, oder
+Auf der Adresse muss dazu entweder die URL des Bilds geliefert werden unter der die CometVisu dieses Bild laden kann, oder
 das Bild direkt als `Data-URI <https://de.wikipedia.org/wiki/Data-URL>`_. Letztes wird mit den Beschränkungen bgzl. der
 Datenmenge, die auf dem KNX-Bus gesendet werden können mit dem KNX-Backend wohl nicht möglich sein, aber z.B. das
 openHAB-Backend kann solche Daten ausliefern.
