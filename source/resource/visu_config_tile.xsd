@@ -376,6 +376,7 @@
   <xsd:group name="Widgets">
     <xsd:choice>
       <xsd:element name="cv-switch" type="cv-switch" />
+      <xsd:element name="cv-dimmer" type="cv-dimmer" />
       <xsd:element name="cv-shutter" type="cv-shutter" />
       <xsd:element name="cv-tile" type="cv-tile"/>
       <xsd:element name="cv-info" type="cv-info"/>
@@ -945,6 +946,48 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
   </xsd:complexType>
+
+  <xsd:complexType name="cv-dimmer">
+    <xsd:sequence>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="switchAddress" />
+                    <xsd:enumeration value="brightnessAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="primaryLabel" />
+                    <xsd:enumeration value="secondaryLabel" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+  </xsd:complexType>
+
   <!--
   #####################################################################################################################
   # START: simple types

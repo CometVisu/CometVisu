@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <templates structure="tile">
+    <cv-meta>
+        <cv-mapping name="tile-light">
+            <entry value="0">ri-lightbulb-line</entry>
+            <entry value="1">ri-lightbulb-fill</entry>
+        </cv-mapping>
+        <cv-mapping name="tile-play-stop">
+            <entry value="0">ri-play-fill</entry>
+            <entry value="1">ri-stop-fill</entry>
+        </cv-mapping>
+        <cv-mapping name="tile-play-progress">
+            <formula>y = Math.round(100/store.get('duration')*x)</formula>
+        </cv-mapping>
+        <cv-styling name="tile-button">
+            <entry value="0">inactive</entry>
+            <entry range-min="1">active</entry>
+        </cv-styling>
+    </cv-meta>
     <template id="switch">
         <cv-tile>
             <cv-row colspan="3" row="middle">
-                <cv-button class="round-button" slot-mapping="" slot-styling="" size="large" slot-progress-mapping="">
+                <cv-button class="round-button" slot-mapping="tile-light" slot-styling="tile-button" size="large" slot-progress-mapping="">
                     <slot name="address">NEEDS ADDRESS</slot>
                     <cv-icon class="value ri-question-mark" />
                 </cv-button>
@@ -102,7 +119,7 @@
                 <slot name="previousAddress">NEEDS ADDRESS</slot>
                 <cv-icon>ri-skip-back-mini-fill</cv-icon>
             </cv-button>
-            <cv-button class="round-button" row="2" column="2" slot-mapping="" slot-progress-mapping="">
+            <cv-button class="round-button" row="2" column="2" slot-mapping="tile-play-stop" slot-progress-mapping="tile-play-progress">
                 <slot name="playPauseAddress">NEEDS ADDRESS</slot>
                 <slot name="playTimeAddress">NEEDS ADDRESS</slot>
                 <slot name="durationAddress">NEEDS ADDRESS</slot>
@@ -118,6 +135,25 @@
                 <cv-icon class="increase">ri-volume-up-line</cv-icon>
             </cv-slider>
             <slot name="tileAddress">NEEDS ADDRESS</slot>
+        </cv-tile>
+    </template>
+    <template id="dimmer">
+        <cv-tile>
+            <cv-row colspan="2" rowspan="2">
+                <cv-button class="round-button" size="large" slot-mapping="tile-light" slot-styling="tile-button">
+                    <slot name="switchAddress">NEEDS ADDRESS</slot>
+                    <cv-icon class="value ri-question-mark" />
+                </cv-button>
+            </cv-row>
+            <cv-row colspan="2" row="last">
+                <label class="primary"><slot name="primaryLabel"/></label>
+                <label class="secondary"><slot name="secondaryLabel"/></label>
+            </cv-row>
+            <cv-row rowspan="3" column="3">
+                <cv-slider min="0" max="100" format="%d %%" throttle-interval="100" class="vertical">
+                    <slot name="brightnessAddress">NEEDS ADDRESS</slot>
+                </cv-slider>
+            </cv-row>
         </cv-tile>
     </template>
 </templates>

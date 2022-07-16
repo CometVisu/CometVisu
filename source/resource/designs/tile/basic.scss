@@ -859,6 +859,23 @@ body {
             opacity: 0.7;
             transition: opacity .2s;
         }
+
+        &.vertical {
+            height: calc(100% - var(--spacing)*2);
+            grid-column: span 3 / span 1;
+            width: var(--tileCellWidth);
+
+            input[type="range"] {
+                transform: rotate(270deg);
+            }
+
+            label.value {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        }
         input[type="range"]:hover {
             opacity: 1;
         }
@@ -1007,6 +1024,19 @@ body {
         cv-tile {
             cv-row[row="first"] {
                 justify-content: center;
+            }
+        }
+    }
+
+    cv-dimmer {
+        cv-tile {
+            cv-row[colspan="2"][rowspan="2"] {
+                justify-content: end;
+            }
+            cv-row[colspan="2"] {
+                > * {
+                    margin-left: 40px;
+                }
             }
         }
     }

@@ -125,7 +125,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
     _updateValue(mappedValue, value) {
       const target = this._element.querySelector(':scope > input');
       if (target) {
-        target.setAttribute('value', value);
+        target.value = value;
       }
       if (this.isShowValue()) {
         let valueLabel = this._element.querySelector(':scope > label.value');
