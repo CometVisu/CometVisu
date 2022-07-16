@@ -10,6 +10,7 @@ Beschreibung
 
 Das Info-Widget stellt einen Wert mit optionaler Einheit und einem erklärendem zusätzlichen Text dar.
 Es kann z.B. genutzt werden um Temperaturen oder Verbrauchswerte darzustellen.
+Für die Darstellung des Werts wird ein :ref:`Value <tile-component-value>` genutzt.
 
 
 .. widget-example::

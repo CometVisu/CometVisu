@@ -18,7 +18,7 @@ Für die Soll-Temperatur kommt ein :ref:`Spinner <tile-component-spinner>` zum E
 .. widget-example::
 
     <settings design="tile">
-        <screenshot name="cv-rtc">
+        <screenshot name="cv-rtc" margin="0 10 10 0">
             <data address="1/4/0">comfort</data>
             <data address="1/4/1">21.5</data>
         </screenshot>
@@ -39,7 +39,7 @@ angeben.
 .. widget-example::
 
     <settings design="tile">
-        <screenshot name="cv-rtc-notemp">
+        <screenshot name="cv-rtc-notemp" margin="0 10 10 0">
             <data address="1/4/0">economy</data>
             <data address="1/4/1">21.5</data>
         </screenshot>

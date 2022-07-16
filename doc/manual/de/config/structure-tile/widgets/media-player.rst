@@ -20,7 +20,7 @@ Für Start/Stop, Lied vor und zurück kommen :ref:`Buttons <tile-component-butto
     :shots-per-row: 2
 
     <settings design="tile">
-        <screenshot name="cv-media-player">
+        <screenshot name="cv-media-player" margin="0 10 10 0">
             <data address="1/4/0">Kings of Leon</data>
             <data address="1/4/1">Sex is on Fire</data>
             <data address="1/4/3">1</data>
@@ -29,7 +29,7 @@ Für Start/Stop, Lied vor und zurück kommen :ref:`Buttons <tile-component-butto
             <data address="1/4/6">75</data>
             <caption>Ohne Hintergrundbild</caption>
         </screenshot>
-        <screenshot name="cv-media-player-bg">
+        <screenshot name="cv-media-player-bg" margin="0 10 10 0">
             <data address="1/4/0">Kings of Leon</data>
             <data address="1/4/1">Sex is on Fire</data>
             <data address="1/4/3">1</data>
@@ -40,16 +40,7 @@ Für Start/Stop, Lied vor und zurück kommen :ref:`Buttons <tile-component-butto
             <caption>Mit Hintergrundbild</caption>
         </screenshot>
     </settings>
-    <cv-meta>
-        <cv-mapping name="PlayStop">
-            <entry value="0">ri-play-fill</entry>
-            <entry value="1">ri-stop-fill</entry>
-        </cv-mapping>
-        <cv-mapping name="PlayProgress">
-            <formula>y = Math.round(100/store.get('duration')*x)</formula>
-        </cv-mapping>
-    </cv-meta>
-    <cv-media-player mapping="PlayStop" progress-mapping="PlayProgress">
+    <cv-media-player>
         <cv-address slot="subtitleAddress" transform="DPT:24.001" mode="read">1/4/0</cv-address>
         <cv-address slot="titleAddress" transform="DPT:24.001" mode="read">1/4/1</cv-address>
         <cv-address slot="previousAddress" transform="DPT:1.001" value="0" mode="write">1/4/2</cv-address>

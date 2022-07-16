@@ -189,8 +189,8 @@ oder die Bedienung einer Rolllade (Shutter).
     Shutter <widgets/shutter>
     Info <widgets/info>
     Status <widgets/status>
-    MediaPLayer <widgets/media-player>
     RTC <widgets/rtc>
+    Media Player <widgets/media-player>
 
 
 Eigene Widgets definieren

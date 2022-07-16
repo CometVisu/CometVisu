@@ -14,7 +14,7 @@ hinzugefügten Adressen gesteuert werden. Das normale Verhalten beinhaltet einen
 Ein Klick auf den Schalter löst einen Wechsel zwischen diesen Zuständen aus, es wird also immer der Wert gesendet,
 der gerade nicht aktiv ist.
 
-Das Switch-Widget besteht aus einem zentrierten Button mit optionalen Titel und Untertitel darunter.
+Das Switch-Widget besteht aus einem zentrierten :ref:`Button <tile-component-button>` mit optionalen Titel und Untertitel darunter.
 
 Der Schalter kann sich aber auch wie ein Trigger verhalten, d.h. er wechselt nicht zwischen Zuständen sondern
 beim Klick auf den Schalter wird immer der selbe Wert gesendet.
@@ -40,17 +40,7 @@ Bei jeden Klick wird zwischen den beiden Zuständen (an / aus) umgeschaltet.
                 <data address="1/4/0">1</data>
             </screenshot>
         </settings>
-        <cv-meta>
-            <cv-mapping name="light">
-                <entry value="1">ri-lightbulb-fill</entry>
-                <entry value="0">ri-lightbulb-line</entry>
-            </cv-mapping>
-            <cv-styling name="button">
-                <entry value="1">active</entry>
-                <entry value="0">inactive</entry>
-            </cv-styling>
-        </cv-meta>
-        <cv-switch mapping="light" styling="button">
+        <cv-switch>
             <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
             <span slot="primaryLabel">Schalter</span>
             <span slot="secondaryLabel">Ein/Aus</span>
@@ -71,17 +61,7 @@ Dieser Wert wird auch für das Mapping / Styling benutzt, sofern angegeben.
                 <screenshot name="cv-trigger" margin="0 10 10 0">
                 </screenshot>
             </settings>
-            <cv-meta>
-                <cv-mapping name="light">
-                    <entry value="1">ri-lightbulb-fill</entry>
-                    <entry value="0">ri-lightbulb-line</entry>
-                </cv-mapping>
-                <cv-styling name="button">
-                    <entry value="1">active</entry>
-                    <entry value="0">inactive</entry>
-                </cv-styling>
-            </cv-meta>
-            <cv-switch mapping="light" styling="button">
+            <cv-switch>
                 <cv-address slot="address" transform="DPT:1.001" mode="write" value="1">1/4/0</cv-address>
                 <span slot="primaryLabel">Trigger</span>
                 <span slot="secondaryLabel">Sendet immer 1</span>
@@ -103,17 +83,7 @@ den Wert ``0`` beim Loslassen des Buttons.
                 <screenshot name="cv-pushbutton" margin="0 10 10 0">
                 </screenshot>
             </settings>
-            <cv-meta>
-                <cv-mapping name="light">
-                    <entry value="1">ri-lightbulb-fill</entry>
-                    <entry value="0">ri-lightbulb-line</entry>
-                </cv-mapping>
-                <cv-styling name="button">
-                    <entry value="1">active</entry>
-                    <entry value="0">inactive</entry>
-                </cv-styling>
-            </cv-meta>
-            <cv-switch mapping="light" styling="button">
+            <cv-switch>
                 <cv-address slot="address" transform="DPT:1.001" mode="write" value="1" on="down">1/4/0</cv-address>
                 <cv-address slot="address" transform="DPT:1.001" mode="write" value="0" on="up">1/4/0</cv-address>
                 <cv-address slot="address" transform="DPT:1.001" mode="read">1/4/0</cv-address>
@@ -144,12 +114,8 @@ und ``target="progress"`` hinzugefügt werden. Der Fortschrittsbalken kann Werte
                     <entry value="0">ri-play-fill</entry>
                     <entry value="1">ri-stop-fill</entry>
                 </cv-mapping>
-                <cv-styling name="button">
-                    <entry value="1">active</entry>
-                    <entry value="0">inactive</entry>
-                </cv-styling>
             </cv-meta>
-            <cv-switch mapping="PlayStop" styling="button">
+            <cv-switch mapping="PlayStop">
                 <cv-address slot="address" transform="DPT:1.001" value="1">1/4/0</cv-address>
                 <cv-address slot="address" transform="DPT:5.001" mode="read" target="progress">1/4/1</cv-address>
                 <span slot="primaryLabel">Player</span>
