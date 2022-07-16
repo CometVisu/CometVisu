@@ -77,7 +77,7 @@ Wird der Wert "1" empfangen wird es wieder sichtbar. Dieses Verhalten wird durch
 Ebenso ist es möglich z.B. das Cover des aktuell gespielten Songs als Hintergrundbild der Kachel zu zeigen.
 Dazu dient dieser Eintrag aus dem Beispiel ``<cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/4/7</cv-address>``.
 Auf der Adresse muss dazu entweder die URL des Bilds geliefert werden unter der die CometVisu dieses Bild laden kann, oder
-das Bild direkt als `Data-URI <https://de.wikipedia.org/wiki/Data-URL>`_. Letztes wird mit den Beschränkungen bgzl. der
+das Bild direkt als `Data-URI <https://de.wikipedia.org/wiki/Data-URL>`_. Letztes wird mit den Beschränkungen bzgl. der
 Datenmenge, die auf dem KNX-Bus gesendet werden können mit dem KNX-Backend wohl nicht möglich sein, aber z.B. das
 openHAB-Backend kann solche Daten ausliefern.
 

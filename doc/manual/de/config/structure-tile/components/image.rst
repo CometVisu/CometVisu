@@ -9,7 +9,7 @@ Image
 Beschreibung
 ------------
 
-Die Image-Komponente dient zu Anzeige eines Bildes. Optional kann dieses Bild in regelmässigen Abständen
+Die Image-Komponente dient zu Anzeige eines Bildes. Optional kann dieses Bild in regelmäßigen Abständen
 automatisiert neu geladen werden.
 
 .. widget-example::

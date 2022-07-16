@@ -185,8 +185,8 @@ Grundlegende Elemente zum Gestalten des Layouts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element ``Layout`` gesteuert werden. 
-Damit kann ein "Responsive Design" realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem 
-aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufes, sondern dynamisch 
+Damit kann ein "responsives Design" realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem
+aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufs, sondern dynamisch
 zB. auch beim Drehen des Endgerätes vom Quer- ins Hochformat bzw. beim Ändern der Fenstergröße am PC.   
 
 Innerhalb der Widgets stehen noch verschiedene Attribute wie ``width``, ``height``, etc. zur Verfügung. Damit kann
@@ -295,7 +295,7 @@ nicht in HTML-Code umgewandelt sondern direkt in den Browser geladen.
 
 **Einige Vorteile der Tile-Struktur**
 
-* Automatisches Anpassen an alle Bildschirmgrößen (Responsives Design). Spezielle Layout-Angaben in der Konfigurationsdatei sind nicht nötig.
+* Automatisches Anpassen an alle Bildschirmgrößen (responsives Design). Spezielle Layout-Angaben in der Konfigurationsdatei sind nicht nötig.
 * Höhere Geschwindigkeit beim Laden, da die Konfigurationsdatei nicht mehr geparsed werden muss.
 * Navigationsmenüs werden automatisch erstellt.
 * Spezielle Widgets für Smarthome typische Aufgaben (Dimmer, Rollladen, Raumtemperaturregler).

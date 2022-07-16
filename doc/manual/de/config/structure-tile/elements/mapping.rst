@@ -6,7 +6,7 @@ Mapping
 .. HINT::
 
     Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht von den Mappings in der Pure-Struktur.
-    Lediglich der Names des Elements in der Konfigurationsdatei ist anders: ``<cv-mapping>``.
+    Lediglich der Name des Elements in der Konfigurationsdatei ist anders: ``<cv-mapping>``.
 
 Mit dem Element "cv-mapping" können verschiedene Werte, die auf dem Bus
 gesendet werden für die Visualisierung unterschiedliche Bezeichnungen

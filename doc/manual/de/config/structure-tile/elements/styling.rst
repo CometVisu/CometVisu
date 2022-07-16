@@ -6,7 +6,7 @@ Styling
 .. HINT::
 
     Die Funktionalität der Stylings in der Tile-Struktur unterscheidet nicht nicht von den Stylings in der Pure-Struktur.
-    Lediglich der Names des Elements in der Konfigurationsdatei ist anders: ``<cv-styling>``.
+    Lediglich der Name des Elements in der Konfigurationsdatei ist anders: ``<cv-styling>``.
 
 Mit dem styling Tag können Elementen bei jeweiligen Werten Farben
 zugewiesen werden.

@@ -61,7 +61,7 @@ Um die Primärfarbe zu nutzen muss das label folgendermaßen aussehen.
     </cv-value>
 
 Zusätzlich kann man die Text-Größe einstellen, ebenfalls über einen zusätzlichen Eintrag in das ``class``-Attribut.
-Es stehen folgende Möglichkeiten zur Verfügung: ``medium`` und ``large``. Wobei medium kleiner als die Standarggröße ist
+Es stehen folgende Möglichkeiten zur Verfügung: ``medium`` und ``large``. Wobei medium kleiner als die Standardgröße ist
 und large größer.
 
 .. code:: xml

@@ -549,7 +549,7 @@
     <xsd:attribute name="password" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Password for authentication.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Passwort fpr die Authentifizierung.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Passwort für die Authentifizierung.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -998,7 +998,7 @@
   <xsd:simpleType name="addr">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</xsd:documentation>
-      <xsd:documentation xml:lang="de">Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+" />
@@ -1187,7 +1187,7 @@
   <xsd:attribute name="progress-mapping" type="xsd:string">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Map the bus value to a value between 0 and 100 to display a progress :ref:`mapping`</xsd:documentation>
-      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus einen Wert zwischen 0 und 100 zu, um einen Fortschritt anzeugen zu können. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus einen Wert zwischen 0 und 100 zu, um einen Fortschritt anzeigen zu können. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
@@ -1225,7 +1225,7 @@
   <xsd:attribute name="refresh" type="xsd:decimal">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Time interval in seconds this widget is being refreshed.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Zeitinternval in Sekunden in denen dieses Widget aktualisiert wird.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</xsd:documentation>
       <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>

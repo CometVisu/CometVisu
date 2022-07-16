@@ -116,7 +116,7 @@ Das Popup bindet dazu ein :ref:`Image <tile-component-image>` ein mit einer nied
 Über dem Bild wird ein :ref:`Button <tile-component-button>` angezeigt, der beim Drücken der Maus den Wert "1"
 an die Adresse "1/4/0" sendet (``on="down" value="1"``) und beim Loslassen den Wert "0" (``on="up" value="0"``).
 
-Das Popup öffnet sich, wenn aud der Adresse "1/4/2" der Wert "1" empfangen wird (``target="open"``).
+Das Popup öffnet sich, wenn auf der Adresse "1/4/2" der Wert "1" empfangen wird (``target="open"``).
 Wenn das Popup auch geschlossen werden soll, wenn der Wert "0" empfangen wird muss ``target="open-close"`` benutzt werden.
 
 Erlaubte Attribute

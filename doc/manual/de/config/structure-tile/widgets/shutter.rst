@@ -9,7 +9,7 @@ Beschreibung
 ------------
 
 Das Shutter-Widget enthält Buttons zur Bedienung einer Rolllade und zeigt deren aktuelle Position an.
-Mit den drei Buttons lässt sich die Rolllade hoch-, runterfahren oder stoppen.
+Mit den drei Buttons lässt sich die Rolllade hoch-, runter fahren oder stoppen.
 Die Buttons werden in der mittleren Zeile angezeigt, die Position in der obersten und in der
 untersten Zeile kann man z.B. den Namen/den Ort der Rolllade anzeigen.
 
