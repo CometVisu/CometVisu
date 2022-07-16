@@ -196,7 +196,7 @@ oder die Bedienung einer Rolllade (Shutter).
     Status <widgets/status>
     RTC <widgets/rtc>
     Media Player <widgets/media-player>
-
+    Tile-pair <widgets/tile-pair>
 
 Eigene Widgets definieren
 =========================
