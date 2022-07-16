@@ -400,6 +400,9 @@ class TemplatedElement extends HTMLElement {
       const attributes = this.getAttributeNames();
       attributes.forEach(name => {
         let value = this.getAttribute(name);
+        if (value === 'tile-play-progress') {
+          debugger;
+        }
         const targets = content.querySelectorAll('[slot-'+name+']');
         let targetName = name;
         // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
@@ -412,11 +415,11 @@ class TemplatedElement extends HTMLElement {
         }
         targets.forEach(target => {
           if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            target.removeAttribute('slot-'+name);
             target.setAttribute(name, value || target.getAttribute('slot-'+name));
+            target.removeAttribute('slot-'+name);
           } else {
-            target.removeAttribute('slot-'+targetName);
             target.setAttribute(targetName, value || target.getAttribute('slot-'+targetName));
+            target.removeAttribute('slot-'+targetName);
           }
         });
         if (targets.length > 0) {
@@ -428,11 +431,12 @@ class TemplatedElement extends HTMLElement {
           [...elem.attributes].forEach(attr => {
             if (attr.name.startsWith('slot-')) {
               let targetName = attr.name.substring(5);
-              if (attr.name.endsWith('-mapping')) {
+              // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
+              if (attr.name.endsWith('-mapping') && elem.hasAttribute('slot-mapping')) {
                 targetName = 'mapping';
-              } else if (attr.name.endsWith('-styling')) {
+              } else if (attr.name.endsWith('-styling') && elem.hasAttribute('slot-styling')) {
                 targetName = 'styling';
-              } else if (attr.name.endsWith('-format')) {
+              } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
                 targetName = 'format';
               }
               if (attr.value) {
