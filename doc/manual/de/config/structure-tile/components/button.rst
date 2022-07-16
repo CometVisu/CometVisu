@@ -62,7 +62,7 @@ Eingestellt wird dieser Modus indem der zu sendende feste Wert in dem <cv-addres
 
 
 Taster
-^^^^^^^
+^^^^^^
 
 Ein Taster-Button sendet einen Wert beim Drücken des Buttons und beim Loslassen des Buttons einen anderen.
 Im Trigger- und Schalter-Modus wird nur ein Wert beim Loslassen des Buttons gesendet (einfacher Klick).

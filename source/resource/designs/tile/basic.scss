@@ -356,6 +356,20 @@ body {
         height: calc(var(--tileCellHeight) * #{$tileRows});
     }
 
+    cv-tile-pair {
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        row-gap: var(--spacing);
+
+        > * {
+            height: auto;
+        }
+        cv-tile {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing) / 2);
+        }
+    }
+
     cv-tile {
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
@@ -374,6 +388,10 @@ body {
         &.screenshots {
             /* white background for screenshots of widgets with border radius */
             background-color: white;
+        }
+
+        .clickable {
+            cursor: pointer;
         }
 
         .row {

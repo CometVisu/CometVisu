@@ -451,6 +451,10 @@
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
     <xsd:attribute name="size">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
+      </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="small" />
@@ -463,6 +467,12 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Additional label for the button.</xsd:documentation>
         <xsd:documentation xml:lang="de">Zusätzliche Beschriftung für den Button.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="whole-tile" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Augments the clickable area to the whole tile.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erweitert den klickbaren Bereich auf die gesamte Kachel.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -1179,22 +1189,22 @@
 
   <xsd:attribute name="mapping" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping`</xsd:documentation>
-      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping &lt;tile-element-mapping&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;tile-element-mapping&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
   <xsd:attribute name="progress-mapping" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Map the bus value to a value between 0 and 100 to display a progress :ref:`mapping`</xsd:documentation>
-      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus einen Wert zwischen 0 und 100 zu, um einen Fortschritt anzeigen zu können. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="en">Map the bus value to a value between 0 and 100 to display a progress :ref:`mapping &lt;tile-element-mapping&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus einen Wert zwischen 0 und 100 zu, um einen Fortschritt anzeigen zu können. Siehe auch :ref:`Mapping &lt;tile-element-mapping&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
   <xsd:attribute name="styling" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Change the color of the displayed value depending on its value. See also :ref:`styling`</xsd:documentation>
-      <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="en">Change the color of the displayed value depending on its value. See also :ref:`styling &lt;tile-element-styling&gt;`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;tile-element-styling&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   <xsd:attribute name="value" type="xsd:string" />

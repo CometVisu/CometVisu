@@ -115,6 +115,20 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
       if (writeAddresses.length > 0) {
         const events = {};
+        let eventSource = this;
+        if (element.getAttribute('whole-tile') === 'true') {
+          // find parent tile and use it as event source
+          let parent = element.parentElement;
+          let level = 0;
+          while (level <= 2) {
+            parent = parent.parentElement;
+            level++;
+            if (parent.tagName.toLowerCase() === 'cv-tile') {
+              eventSource = parent;
+              eventSource.classList.add('clickable');
+            }
+          }
+        }
         writeAddresses.forEach(addr => {
           let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
           switch (event) {
@@ -129,7 +143,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
               break;
           }
         });
-        Object.getOwnPropertyNames(events).forEach(eventName => element.addEventListener(eventName, ev => {
+        Object.getOwnPropertyNames(events).forEach(eventName => eventSource.addEventListener(eventName, ev => {
           events[eventName](ev);
         }));
       }
