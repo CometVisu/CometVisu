@@ -104,6 +104,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           });
         }
         this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() && !isBackup ? 'visible' : 'excluded');
+        this.getChildControl('convert-file-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded');
         this.getChildControl('delete-button').setLabel(file.isTrash()
           ? this.tr('Clear')
           : this.tr('Delete'));
@@ -202,6 +203,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         this.add(this.getChildControl('new-file-button'));
       }
       this.add(this.getChildControl('clone-file-button'));
+      this.add(this.getChildControl('convert-file-button'));
       if (!this._noNew) {
         this.add(this.getChildControl('new-folder-button'));
       }
@@ -289,6 +291,14 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     _onClone: function () {
       if (this._selectedNode && this.isActive()) {
         qx.event.message.Bus.dispatchByName('cv.manager.action.clone', {
+          file: this._selectedNode
+        });
+      }
+    },
+
+    _onConvert: function () {
+      if (this._selectedNode && this.isActive()) {
+        qx.event.message.Bus.dispatchByName('cv.manager.action.convertToTile', {
           file: this._selectedNode
         });
       }
@@ -382,6 +392,11 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
          case 'open-with-menu':
            control = new qx.ui.menu.Menu();
            break;
+
+        case 'convert-file-button':
+          control = new qx.ui.menu.Button(this.tr('Convert to tile'), cv.theme.dark.Images.getIcon('convert', 18));
+          control.addListener('execute', this._onConvert, this);
+          break;
        }
 
        return control || this.base(arguments, id);

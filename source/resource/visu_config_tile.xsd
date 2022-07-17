@@ -131,12 +131,12 @@
   <xsd:complexType name="cv-backend">
     <xsd:attribute name="type" use="required">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Type of backend: ``default`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>
-        <xsd:documentation xml:lang="de">Typ des Backends: ``default`` = KNXD, ``openhab`` = openHAB Server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simuliertes Backend zu Testzwecken. </xsd:documentation>
+        <xsd:documentation xml:lang="en">Type of backend: ``knxd`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>
+        <xsd:documentation xml:lang="de">Typ des Backends: ``knxd`` = KNXD, ``openhab`` = openHAB Server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simuliertes Backend zu Testzwecken. </xsd:documentation>
       </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="default" />
+          <xsd:enumeration value="knxd" />
           <xsd:enumeration value="openhab" />
           <xsd:enumeration value="mqtt" />
           <xsd:enumeration value="simulated" />
@@ -368,10 +368,7 @@
         <xsd:group ref="Components"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
@@ -421,10 +418,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-button">
@@ -447,10 +441,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="size"/>
     <xsd:attribute name="text" type="xsd:string">
       <xsd:annotation>
@@ -476,10 +467,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
     <xsd:attribute ref="step-width" />
@@ -508,10 +496,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
     <xsd:attribute ref="step-width" />
@@ -575,10 +560,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute name="series" type="xsd:string"/>
     <xsd:attribute ref="refresh"/>
   </xsd:complexType>
@@ -652,10 +634,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="row"/>
-    <xsd:attribute ref="column"/>
-    <xsd:attribute ref="rowspan"/>
-    <xsd:attribute ref="colspan"/>
+    <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
   <!-- template based type (of templates that the structure has build in) -->
@@ -694,7 +673,6 @@
         <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="bind_click_to_widget" />
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
   </xsd:complexType>
@@ -1029,7 +1007,7 @@
   <xsd:complexType name="address">
     <xsd:simpleContent>
       <xsd:extension base="addr">
-        <xsd:attribute ref="transform" use="required" />
+        <xsd:attribute ref="transform" />
         <xsd:attribute ref="mode" />
         <xsd:attribute name="value" type="xsd:string">
           <xsd:annotation>
@@ -1113,7 +1091,7 @@
       <xsd:appinfo>descriptor:#text</xsd:appinfo>
     </xsd:annotation>
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
-      <xsd:element name="icon" type="cv-icon" />
+      <xsd:element name="cv-icon" type="cv-icon" />
     </xsd:choice>
     <xsd:attribute ref="value" />
     <xsd:attributeGroup ref="range" />
@@ -1188,6 +1166,13 @@
   <xsd:attributeGroup name="range">
     <xsd:attribute name="range-min" type="xsd:float" />
     <xsd:attribute name="range-max" type="xsd:float" />
+  </xsd:attributeGroup>
+
+  <xsd:attributeGroup name="layout-attributes">
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
   </xsd:attributeGroup>
 
   <xsd:attribute name="mapping" type="xsd:string">

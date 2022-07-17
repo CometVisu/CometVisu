@@ -5,8 +5,10 @@ Mapping
 
 .. HINT::
 
-    Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht von den Mappings in der Pure-Struktur.
+    Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht wesentlich von den Mappings in der Pure-Struktur.
     Lediglich der Name des Elements in der Konfigurationsdatei ist anders: ``<cv-mapping>``.
+    Dennoch können Mappings aus einer alten Config nicht einfach übernommen werden, da die Widgets in der Tile-Struktur
+    zum Teil mit den gemappten Werte nichts anfangen können.
 
 Mit dem Element "cv-mapping" können verschiedene Werte, die auf dem Bus
 gesendet werden für die Visualisierung unterschiedliche Bezeichnungen

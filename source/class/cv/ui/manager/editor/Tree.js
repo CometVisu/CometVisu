@@ -2134,46 +2134,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (fast) {
           return new XMLSerializer().serializeToString(rootNode.ownerDocument);
         } 
-          // prettify content
-          return '<?xml version="1.0" encoding="UTF-8"?>\n' + this._prettify(rootNode, 0);
+        // prettify content
+        return cv.util.Prettifier.xml(rootNode.ownerDocument);
       } 
         return null;
-    },
-
-    _prettify: function (node, level, noFormat) {
-      let tabs = Array(level).fill('  ').join('');
-      let newLine = '\n';
-      if (node.nodeType === Node.TEXT_NODE) {
-        if (node.textContent.trim()) {
-          return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
-        } 
-          return '';
-      }
-      if (node.nodeType === Node.COMMENT_NODE) {
-        return (noFormat ? '' : tabs) + `<!--${node.textContent}--> ${(noFormat ? '' : newLine)}`;
-      } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-        return (noFormat ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${(noFormat ? '' : newLine)}`;
-      }
-      if (!node.tagName) {
-        return this._prettify(node.firstChild, level);
-      }
-      let output = (noFormat ? '' : tabs) + `<${node.tagName}`; // >\n
-      for (let i = 0; i < node.attributes.length; i++) {
-        output += ` ${node.attributes[i].name}="${node.attributes[i].value}"`;
-      }
-      if (node.childNodes.length === 0) {
-        return output + ' />' + (!noFormat ? newLine : '');
-      } 
-      output += '>';
-      
-      let hasTextChild = Array.prototype.some.call(node.childNodes, child => child.nodeType === Node.TEXT_NODE && child.textContent.trim());
-      if (!noFormat && !hasTextChild) {
-        output += newLine;
-      }
-      for (let i = 0; i < node.childNodes.length; i++) {
-        output += this._prettify(node.childNodes[i], level + 1, hasTextChild);
-      }
-      return output + (hasTextChild || noFormat ? '' : tabs) + `</${node.tagName}>` + (!noFormat ? newLine : '');
     },
 
     _onSaved: function () {

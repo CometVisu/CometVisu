@@ -94,6 +94,12 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (element.hasAttribute('progress')) {
         this.setProgress(element.getAttribute('progress'));
       }
+      if (element.hasAttribute('on-value')) {
+        this.setOnValue(element.getAttribute('on-value'));
+      }
+      if (element.hasAttribute('off-value')) {
+        this.setOffValue(element.getAttribute('off-value'));
+      }
       let hasReadAddress = false;
       let writeAddresses = [];
       Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
@@ -115,7 +121,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
       if (writeAddresses.length > 0) {
         const events = {};
-        let eventSource = this;
+        let eventSource = element;
         if (element.getAttribute('whole-tile') === 'true') {
           // find parent tile and use it as event source
           let parent = element.parentElement;
@@ -317,8 +323,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     onClicked() {
-      if (!this.__writeAddresses) {
-        this.__writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'),
+      if (!this._writeAddresses) {
+        this._writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'),
           address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read');
       }
       const ev = new CustomEvent('sendState', {

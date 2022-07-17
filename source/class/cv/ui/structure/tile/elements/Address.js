@@ -49,7 +49,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               ev.detail.source instanceof cv.ui.structure.tile.components.Button &&
               (ev.detail.source.getType() === 'trigger' || ev.detail.source.getType() === 'push');
             if (value !== null) {
-              const encoding = element.getAttribute('transform');
+              const encoding = element.getAttribute('transform') || 'raw';
               const encodedValue = cv.Transform.encodeBusAndRaw({transform: encoding}, value);
               // noinspection EqualityComparisonWithCoercionJS
               if (allowDuplicates ||
