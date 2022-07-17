@@ -1068,6 +1068,11 @@
   </xsd:complexType>
 
   <xsd:complexType name="label-span" mixed="true">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-icon" type="cv-icon"/>
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attribute name="slot">
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
@@ -1338,6 +1343,11 @@
   # -->
 
   <xsd:complexType name="label" mixed="true">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-icon" type="cv-icon"/>
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attribute ref="class"/>
   </xsd:complexType>
   <xsd:complexType name="text">

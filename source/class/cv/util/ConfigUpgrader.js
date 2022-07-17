@@ -396,6 +396,33 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 target.appendChild(clonedChild);
                 break;
 
+              case 'pushbutton':
+                clonedChild = target.ownerDocument.createElement('cv-switch');
+                this._copyAttributes(child, clonedChild, {
+                  format: true
+                });
+                value = {
+                  down: child.getAttribute('downValue'),
+                  up: child.getAttribute('upValue')
+                };
+                this._copyAddresses(child.querySelectorAll(':scope > address'), clonedChild, 'address', null, address => {
+                  if (!address.hasAttribute('variant')) {
+                    address.setAttribute('value', value.down);
+                    address.setAttribute('on', 'down');
+                    const upAddress = address.cloneNode(true);
+                    upAddress.setAttribute('value', value.up);
+                    upAddress.setAttribute('on', 'up');
+                    clonedChild.appendChild(upAddress);
+                  } else {
+                    address.setAttribute('value', address.getAttribute('variant') === 'up' ? value.up : value.down);
+                    address.setAttribute('on', address.getAttribute('variant'));
+                    address.removeAttribute('variant');
+                  }
+                });
+                this._copyLabel(child.querySelector(':scope > label'), clonedChild, 'primaryLabel');
+                target.appendChild(clonedChild);
+                break;
+
               case 'info':
                 // use cv-value > cv-icon when the mapping uses icons
                 if (child.hasAttribute('mapping') &&
@@ -490,7 +517,21 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         // <span slot="primaryLabel">Default</span>
         let label = target.ownerDocument.createElement('span');
         label.setAttribute('slot', slotName);
-        label.textContent = sourceLabel.textContent.trim();
+        let child;
+        for (let i=0; i < sourceLabel.childNodes.length; i++) {
+          child = sourceLabel.childNodes[i];
+          if (child.nodeType === Node.TEXT_NODE) {
+            label.appendChild(child.cloneNode());
+          } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName.toLowerCase() === 'icon') {
+            const icon = target.ownerDocument.createElement('cv-icon');
+            let name = child.getAttribute('name');
+            if (name.indexOf('_') >= 0) {
+              name = 'knxuf-' + name;
+            }
+            icon.textContent = name;
+            label.appendChild(icon);
+          }
+        }
         target.appendChild(label);
       }
     },
