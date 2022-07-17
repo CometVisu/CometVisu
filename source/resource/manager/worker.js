@@ -29,7 +29,7 @@ importScripts('crc32.js');
 let configSchemas = {};
 let currentSchema;
 
-const schemaRegex = /xsi:noNamespaceSchemaLocation="([^"]+)"/;
+const schemaRegex = /\w+:noNamespaceSchemaLocation="([^"]+)"/;
 
 /**
  * @param path
