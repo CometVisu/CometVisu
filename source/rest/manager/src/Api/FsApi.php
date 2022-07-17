@@ -166,6 +166,7 @@ class FsApi extends AbstractFsApi
                         $fsPath,
                         Helper::getQueryParam($request, "force")
                     );
+                  return $response->withStatus(200);
                 } catch (Exception $e) {
                     return Helper::withJson(
                         $response,
@@ -180,6 +181,7 @@ class FsApi extends AbstractFsApi
                         $fsPath,
                         Helper::getQueryParam($request, "force")
                     );
+                  return $response->withStatus(200);
                 } catch (Exception $e) {
                     return Helper::withJson(
                         $response,
