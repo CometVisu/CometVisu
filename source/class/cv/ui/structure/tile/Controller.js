@@ -163,6 +163,14 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     // not needed, backend parse/init themselves
     parseBackendSettings(xml) {
+      if (xml.querySelectorAll('cv-backend').length === 0) {
+        // no backends defined, use the default one;
+        const client = cv.io.BackendConnections.initBackendClient();
+        client.login(true, cv.Config.configSettings.credentials, () => {
+          this.debug('logged in');
+          cv.io.BackendConnections.startInitialRequest();
+        });
+      }
     },
 
     /**

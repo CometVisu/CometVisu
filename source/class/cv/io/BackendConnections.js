@@ -18,8 +18,8 @@ qx.Class.define('cv.io.BackendConnections', {
      */
     initBackendClient: function () {
       if (cv.Config.testMode === true || window.cvTestMode === true) {
-        this.addBackendClient('main', 'simulated');
-      } else {
+        return this.addBackendClient('main', 'simulated');
+      }
       let backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
       const backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
@@ -29,20 +29,16 @@ qx.Class.define('cv.io.BackendConnections', {
         case 'knxd':
         case 'default':
         default:
-          this.addBackendClient('main', 'knxd', backendKnxdUrl);
-          break;
+          return this.addBackendClient('main', 'knxd', backendKnxdUrl);
 
         case 'mqtt':
-          this.addBackendClient('main', 'mqtt', backendMQTTUrl);
-          break;
+          return this.addBackendClient('main', 'mqtt', backendMQTTUrl);
 
         case 'openhab':
         case 'openhab2':
         case 'oh':
         case 'oh2':
-          this.addBackendClient('main', 'openhab', backendOpenHABUrl);
-          break;
-      }
+          return this.addBackendClient('main', 'openhab', backendOpenHABUrl);
       }
     },
 
