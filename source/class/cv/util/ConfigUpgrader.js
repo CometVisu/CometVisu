@@ -152,7 +152,20 @@ qx.Class.define('cv.util.ConfigUpgrader', {
     },
 
     /**
-     * Converts a pure-config file to a tile-config file
+     * Converts a pure-config file to a tile-config file. Currently only a small amount widgets can be converted
+     * because they have a similar equivalent in the tile-structure. This is the list of converted widgets:
+     *  - Pages
+     *  - Meta-Area (only mappings, stylings and files)
+     *  - Switch (without mappings, stylings)
+     *  - Info
+     *  - Pushbutton (without mappings, stylings)
+     *  - Trigger (without mappings, stylings)
+     *  - Group (only the ones that do not have nowidget="true")
+     *
+     *  Whats not working:
+     *  - Everything that uses templates
+     *  - All other widgets that have not been mentioned above
+     *
      * @param sourceXml {XMLDocument|string}
      * @return [{String}, {String}] Error, Result
      */
@@ -199,7 +212,6 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       }
       const tagName = element.tagName.toLowerCase();
       let attr;
-      let name;
       let id;
       let postfix;
 
@@ -467,6 +479,21 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                     format: true
                   });
                 }
+                target.appendChild(clonedChild);
+                break;
+
+              case 'layout':
+                // silently ignore those
+                break;
+
+              default:
+                // no conversion possible, add as comment placeholder for manual conversion
+                clonedChild = target.ownerDocument.createComment(`
+                
+###########################################################
+### Automatic conversion to tile-structure not possible ###
+###########################################################
+${child.previousSibling.nodeType === Node.TEXT_NODE ? child.previousSibling.textContent : ''}${child.outerHTML.replaceAll('<!--', '').replaceAll('-->', '')}`);
                 target.appendChild(clonedChild);
                 break;
             }
