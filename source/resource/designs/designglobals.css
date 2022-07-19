@@ -158,7 +158,7 @@ input, textarea, select, button { font: inherit; }
   display: block;
 }
 
-.highlightedWidget, .navbar > .highlightedWidget > .widget {
+.highlightedWidget, .navbar > .highlightedWidget > .widget, .highlightedWidget > cv-tile:only-child {
   box-shadow: inset 0px 0px 8px 2px #cb4606;
   border-radius: 4px;
 }
