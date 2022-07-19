@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       this._node.$$widget = this;
       this.setSchemaElement(schemaElement);
       this.initName(node.nodeName);
-      this._updateShowEditButton()
+      this._updateShowEditButton();
       if (this.hasChildren()) {
         // we have to add a fake node to the children to show the tree that this node has children
         // it will be removed when the real children are loaded
@@ -97,7 +97,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'String',
       deferredInit: true,
       event: 'changeName',
-      apply: '_updateDisplayName'
+      apply: 'updateDisplayName'
     },
     displayName: {
       check: 'String',
@@ -808,7 +808,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (this._node) {
           if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
             this._node.nodeValue = value;
-            this._updateDisplayName();
+            const parent = this.getParent();
+            if (parent.getName() === 'summary' && parent.getParent().getName() === 'cv-group') {
+              parent.getParent().updateDisplayName();
+            }
+            this.updateDisplayName();
           } else if (this._node.nodeType === Node.ELEMENT_NODE) {
             this._node.textContent = value;
           }
@@ -874,7 +878,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                 this._node.setAttribute(name, value);
               }
               if (name === 'name') {
-                this._updateDisplayName();
+                this.updateDisplayName();
                 if (this.getName() === 'icon') {
                   this._maintainIcon();
                 }
@@ -1009,10 +1013,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _applyModified: function () {
-      this._updateDisplayName();
+      this.updateDisplayName();
     },
 
-    _updateDisplayName: function () {
+    updateDisplayName: function () {
       let displayName = this.getName();
       if (this._node) {
         if (this._node.nodeType === Node.ELEMENT_NODE) {
@@ -1022,6 +1026,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           } else if (this.getSchemaElement().getSchema().isRoot(this.getName()) && this._node.hasAttribute('design')) {
             const designAttr = this._node.getAttribute('design');
             displayName += ' "' + designAttr + '"';
+          } else if (this.getName() === 'cv-group') {
+            const summary = this._node.querySelector(':scope > summary');
+            displayName += ' "' + summary.textContent.trim() + '"';
           }
         } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE || this._node.nodeType === Node.COMMENT_NODE) && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
@@ -1283,13 +1290,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (c.hasAttribute('id')) {
             selector = selector ? `#${c.getAttribute('id')} > ${selector}` : `#${c.getAttribute('id')}`;
             break;
+          } else if (c.nodeName.toLowerCase() === 'config') {
+            selector = selector ? `config > ${selector}` : 'config';
+            break;
           } else {
             index = Array.prototype.indexOf.call(parent.children, c) + 1;
             selector = selector ? `*:nth-child(${index}) > ${selector}` : `*:nth-child(${index})`;
           }
           c = parent;
         }
-        console.log(selector);
         return selector;
       }
       return '';
