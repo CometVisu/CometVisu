@@ -368,6 +368,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
         value: '1'
       }
     }));
+    expect(addr.getValue()).toBe('1');
 
     expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
 
