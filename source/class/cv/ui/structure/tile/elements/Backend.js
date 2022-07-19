@@ -48,8 +48,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         if (cv.io.BackendConnections.hasBackend(name)) {
           const notification = {
             topic: 'cv.config.error',
-            title: qx.locale.Manager.tr('CometVisu config error'),
-            message:  qx.locale.Manager.tr('The already has a backend named: "%1"', name),
+            title: qx.locale.Manager.tr('Config error'),
+            message:  qx.locale.Manager.tr('There already exists a backend named: "%1"', name),
             severity: 'urgent',
             unique: true,
             deletable: true

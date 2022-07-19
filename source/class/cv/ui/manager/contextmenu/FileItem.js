@@ -394,7 +394,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
            break;
 
         case 'convert-file-button':
-          control = new qx.ui.menu.Button(this.tr('Convert to tile'), cv.theme.dark.Images.getIcon('convert', 18));
+          control = new qx.ui.menu.Button(this.tr('Convert to tile structure'), cv.theme.dark.Images.getIcon('convert', 18));
           control.addListener('execute', this._onConvert, this);
           break;
        }

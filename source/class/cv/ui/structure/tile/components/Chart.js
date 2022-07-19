@@ -175,7 +175,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     _onStatusError: function(ts, key, ev) {
       cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
-        title: qx.locale.Manager.tr('Chart communication error'),
+        title: qx.locale.Manager.tr('Communication error'),
         severity: 'urgent',
         message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), ev._target._transport.responseText)
       });
