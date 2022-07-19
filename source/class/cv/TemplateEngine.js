@@ -357,13 +357,13 @@ qx.Class.define('cv.TemplateEngine', {
 
     _applyHighlightedWidget: function (value, old) {
       if (old) {
-        const oldElement = document.getElementById(old);
+        const oldElement = document.querySelector(old);
         if (oldElement) {
           oldElement.classList.remove('highlightedWidget');
         }
       }
       if (value) {
-        const element = document.getElementById(value);
+        const element = document.querySelector(value);
         if (element) {
           element.classList.add('highlightedWidget');
         }

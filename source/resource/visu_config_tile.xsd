@@ -313,7 +313,7 @@
   <xsd:complexType name="cv-group">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
-        <xsd:element name="summary" />
+        <xsd:element name="summary" type="summary"/>
         <xsd:group ref="Widgets"/>
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
@@ -1362,6 +1362,12 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="summary">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string"/>
+    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="meter">

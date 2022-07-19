@@ -164,6 +164,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     __buttonListeners: null,
     __searchResults: null,
     __searchResultIndex: 0,
+    _structure: null,
 
     async getSchema(file) {
       if (file.startsWith('../')) {
@@ -1903,14 +1904,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // get page path for this node
           let path = [];
           let node = selected.getNode();
-          while (node && node.nodeName !== 'pages') {
-            if (node.nodeName === 'page') {
-              path.unshift(node.getAttribute('name'));
+          if (this._structure === 'tile') {
+            while (node && node.nodeName !== 'config') {
+              if (node.nodeName === 'cv-page') {
+                preview.openPage(node.getAttribute('id'));
+                break;
+              }
+              node = node.parentNode;
             }
-            node = node.parentNode;
-          }
-          if (path.length > 0) {
-            preview.openPage(path.pop(), path.join('/'));
+          } else {
+            while (node && node.nodeName !== 'pages') {
+              if (node.nodeName === 'page') {
+                path.unshift(node.getAttribute('name'));
+              }
+              node = node.parentNode;
+            }
+            if (path.length > 0) {
+              preview.openPage(path.pop(), path.join('/'));
+            }
           }
           preview.setHighlightWidget(selected.getWidgetPath());
         } else {
@@ -2010,6 +2021,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const schema = await this.getSchema(rootElement.getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation'));
         const schemaElement = schema.getElementNode(rootElement.nodeName);
         const rootNode = new cv.ui.manager.model.XmlElement(rootElement, schemaElement, this);
+        this._structure = schema.getStructure();
         rootNode.setEditable(file.getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
@@ -2071,6 +2083,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           });
         }
+      } else {
+        this._structure = null;
       }
     },
 

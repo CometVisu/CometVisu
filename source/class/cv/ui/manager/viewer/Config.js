@@ -178,9 +178,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       if (this.hasChildControl('iframe')) {
         const element = this.getChildControl('iframe').getContentElement().getDomElement();
         if (element && element.contentWindow.cv) {
-          const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
-          const pageId = path ? otherEngine.getPageIdByPath(page, path) : page;
-          otherEngine.scrollToPage(pageId, 0);
+          const otherController = element.contentWindow.cv.Application.structureController;
+          const pageId = path ? otherController.getPageIdByPath(page, path) : page;
+          otherController.scrollToPage(pageId, 0);
         }
       }
     },
