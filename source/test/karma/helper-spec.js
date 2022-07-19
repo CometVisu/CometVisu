@@ -307,12 +307,14 @@ beforeAll(function (done) {
       cv.Config.enableCache = false;
       // always test in 'en' locale
       qx.locale.Manager.getInstance().setLocale('en');
+      const client = cv.io.BackendConnections.initBackendClient();
       const templateEngine = cv.TemplateEngine.getInstance();
-      cv.io.BackendConnections.initBackendClient();
       templateEngine.loadParts(['structure-tile', 'structure-pure']);
-      templateEngine.addListenerOnce('changePartsLoaded', done);
+      templateEngine.addListenerOnce('changePartsLoaded', () => {
+        done();
+      });
       const model = cv.data.Model.getInstance();
-      templateEngine.getClient().update = model.update.bind(model); // override clients update function
+      client.update = model.update.bind(model); // override clients update function
       resetApplication();
     } catch (e) {
       console.error(e);
