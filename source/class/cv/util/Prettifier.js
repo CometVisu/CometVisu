@@ -47,11 +47,13 @@ qx.Class.define('cv.util.Prettifier', {
         prefix = '';
         if (attr.namespaceURI) {
           let nsIndex = namespaces.indexOf(attr.namespaceURI);
-          if (nsIndex < 0) {
-            namespaces.push(attr.namespaceURI);
-            nsIndex = namespaces.length-1;
+          if (!attr.prefix) {
+            if (nsIndex < 0) {
+              namespaces.push(attr.namespaceURI);
+              nsIndex = namespaces.length - 1;
+            }
+            prefix = `ns${nsIndex + 1}:`;
           }
-          prefix = `ns${nsIndex+1}:`;
         }
         attributesOutput += ` ${prefix}${attr.name}="${attr.value}"`;
       }
