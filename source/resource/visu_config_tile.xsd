@@ -354,7 +354,6 @@
           <xsd:enumeration value="1x2" />
           <xsd:enumeration value="2x2" />
           <xsd:enumeration value="2x4" />
-          <xsd:enumeration value="simulated" />
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
@@ -1081,14 +1080,6 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-  </xsd:complexType>
-
-  <xsd:complexType name="slot-address">
-    <xsd:simpleContent>
-      <xsd:extension base="address">
-        <xsd:attribute name="slot" use="required" />
-      </xsd:extension>
-    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="entry" mixed="true">
