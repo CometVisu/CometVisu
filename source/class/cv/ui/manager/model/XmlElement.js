@@ -1218,10 +1218,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _currentChildNames: function () {
       const names = [];
+      let name;
+      let widget;
       for (let i = 0; i < this._node.childNodes.length; i++) {
         const childNode = this._node.childNodes.item(i);
         if (childNode.nodeType === Node.ELEMENT_NODE) {
-          names.push(childNode.nodeName);
+          widget = this._node.$$widget;
+          name = widget ? widget.getDisplayName() : childNode.nodeName;
+          names.push(name);
         } else if ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim()) {
           names.push(childNode.nodeName);
         }
