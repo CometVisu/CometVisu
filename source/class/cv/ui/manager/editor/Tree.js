@@ -1556,7 +1556,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const rootNode = tree.getModel().getNode();
         formData.type = 'SelectBox';
         formData.options = [];
-        rootNode.querySelectorAll('meta > ' + type + 's > ' + type).forEach(element => {
+        const selector = this._structure === 'tile' ? 'cv-meta > cv-' + type : 'meta > ' + type + 's > ' + type;
+        rootNode.querySelectorAll(selector).forEach(element => {
           const name = element.getAttribute('name');
           formData.options.push({label: name, value: name});
         });
