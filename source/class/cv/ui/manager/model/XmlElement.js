@@ -1028,7 +1028,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             displayName += ' "' + designAttr + '"';
           } else if (this.getName() === 'cv-group') {
             const summary = this._node.querySelector(':scope > summary');
-            displayName += ' "' + summary.textContent.trim() + '"';
+            if (summary) {
+              displayName += ' "' + summary.textContent.trim() + '"';
+            }
           }
         } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE || this._node.nodeType === Node.COMMENT_NODE) && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
