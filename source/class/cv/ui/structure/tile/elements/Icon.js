@@ -15,7 +15,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
       nullable: true,
       apply: '_applyId',
       // the id is used as 'class' property and therefore must not have spaces
-      validate: qx.util.Validate.regexp(/^[^\s]+$/, 'icon ID must not contain spaces')
+      validate: qx.util.Validate.regExp(/^[^\s]+$/, 'icon ID must not contain spaces')
     },
     styleClass: {
       check: 'String',
