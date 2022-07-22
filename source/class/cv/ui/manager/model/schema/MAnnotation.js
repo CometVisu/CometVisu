@@ -62,7 +62,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
         let thisNode = iterator.iterateNext();
 
         while (thisNode) {
-          texts.push(thisNode.textContent);
+          texts.push(thisNode.textContent.replaceAll(/``([^`]+)``/g, '<code>$1</code>'));
           thisNode = iterator.iterateNext();
         }
       } catch (e) {

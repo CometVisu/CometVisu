@@ -789,3 +789,8 @@ pre.inline { display: inline-block; }
   width: 120px;
   display: inline-block;
 }
+
+#manager code {
+  color: #b5a388;
+  font-style: italic;
+}
