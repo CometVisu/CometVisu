@@ -13,13 +13,15 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
     id: {
       check: 'String',
       nullable: true,
-      apply: '_applyId'
+      apply: '_applyId',
+      // the id is used as 'class' property and therefore must not have spaces
+      validate: qx.util.Validate.regexp(/^[^\s]+$/, 'icon ID must not contain spaces')
     },
     styleClass: {
       check: 'String',
       nullable: true,
       apply: '_applyStyleClass'
-    },
+    }
   },
 
   /*
@@ -75,7 +77,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
       } else if (value) {
         classes.add(value);
       }
-    },
+    }
   },
 
   defer(Clazz) {
