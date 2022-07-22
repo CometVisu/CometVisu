@@ -155,12 +155,14 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
     createDocumentationWebLinks: function (text) {
       const language = this.__language;
       return text.replace(this.__linkRegex, function(match, contents) {
-        const
-          reference = contents.match(/^(.*?) *<([^<]*)>$/);
-          const label = reference ? reference[1] : contents;
-          const key = reference ? reference[2] : contents;
-
-        return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + '">' + label + '</a>';
+        const reference = contents.match(/^(.*?) *<([^<]*)>$/);
+        const label = reference ? reference[1] : contents;
+        const key = reference ? reference[2] : contents;
+        const link = cv.ui.manager.model.schema.DocumentationMapping.MAP[key];
+        if (link) {
+          return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + link + '">' + label + '</a>';
+        }
+        return label;
       });
     }
   },
