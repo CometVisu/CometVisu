@@ -209,15 +209,26 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * @param   refName string  Name as per the ref-attribute
      * @return  object          jQuery-object of the ref'ed element
      */
-    getReferencedNode: function (type, refName) {
+    getReferencedNode: function (type, refName, noFallback) {
       if (Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, type) && Object.prototype.hasOwnProperty.call(this.__referencedNodeCache[type], refName)) {
         return this.__referencedNodeCache[type][refName];
+      }
+      const fallbackType = type === 'simpleType' ? 'complexType' : 'simpleType';
+      if (!noFallback) {
+        if (Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, fallbackType) && Object.prototype.hasOwnProperty.call(this.__referencedNodeCache[fallbackType], refName)) {
+          return this.__referencedNodeCache[fallbackType][refName];
+        }
       }
 
       const selector = 'schema > ' + type + '[name="' + refName + '"]';
       let ref = this.__xsd.querySelector(selector);
+      if (!ref && !noFallback) {
+        try {
+          ref = this.getReferencedNode(fallbackType, refName, true);
+        } catch (e) {}
+      }
       if (!ref) {
-        throw new Error('schema/xsd appears to be invalid, reference ' + type + '"' + refName + '" can not be found');
+        throw new Error('schema/xsd appears to be invalid, reference ' + type + ' "' + refName + '" can not be found');
       }
 
       if (ref.hasAttribute('ref')) {
