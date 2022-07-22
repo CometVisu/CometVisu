@@ -298,7 +298,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     detectSchema(completeText) {
-      const match = /xsi:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
+      const match = /:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
       if (match && match[1].endsWith('visu_config_tile.xsd')) {
         this.setStructure('tile');
       } else {
@@ -596,9 +596,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       const textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
       const mappingNames = [];
       const stylingNames = [];
-      const templates = {};
       let map;
-      let vmap;
       let regex = /<cv-mapping name="([^"]+)"/gm;
       while ((map = regex.exec(textMeta)) !== null) {
         mappingNames.push(map[1]);
@@ -606,20 +604,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       regex = /<cv-styling name="([^"]+)"/gm;
       while ((map = regex.exec(textMeta)) !== null) {
         stylingNames.push(map[1]);
-      }
-      const templatesStart = textMeta.indexOf('<templates');
-      if (templatesStart >= 0) {
-        const templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
-        templatesString.split('</template>').forEach(function (rawTemplate) {
-          const nameMatch = /<template id="([^"]+)"/.exec(rawTemplate);
-          // search for variables
-          const variables = [];
-          const vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
-          while ((vmap = vregex.exec(rawTemplate)) !== null) {
-            variables.push(vmap[1]);
-          }
-          templates[nameMatch[1]] = variables;
-        }, this);
       }
 
       // if we want suggestions, inside of which tag are we?
@@ -701,36 +685,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           return {suggestions: suggestions};
         } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === 'transform') {
           return {suggestions: this._dataProvider.getTransforms()};
-        } else if (lastOpenedTag.tagName === 'cv-plugin' && lastOpenedTag.currentAttribute === 'name') {
-          return {suggestions: this._dataProvider.getPlugins()};
         } else if (lastOpenedTag.tagName === 'cv-icon' && lastOpenedTag.currentAttribute === 'name') {
           return {suggestions: this._dataProvider.getIcons()};
-        } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && openedTags.includes('cv-meta')) {
-          res = Object.keys(templates).map(function (name) {
-            return {
-              label: name,
-              insertText: name,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember
-            };
-          }, this);
-          return {suggestions: res};
-        } else if (lastOpenedTag.tagName === 'value' &&
-          lastOpenedTag.currentAttribute === 'name' &&
-          !openedTags.includes('cv-meta') &&
-          openedTags.includes('template')) {
-          // TODO: find out template name
-          const templateNames = Object.keys(templates);
-          templateNames.forEach(function (name) {
-            templates[name].forEach(function (variableName) {
-              res.push({
-                label: variableName,
-                insertText: variableName,
-                detail: qx.locale.Manager.tr('Variable from template %1', name),
-                kind: window.monaco.languages.CompletionItemKind.Variable
-              });
-            }, this);
-          }, this);
-          return {suggestions: res};
         } else if (lastOpenedTag.currentAttribute === 'mapping') {
           res = mappingNames.map(function (mappingName) {
             return {
@@ -755,10 +711,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         searchedElement = openedTags[openedTags.length-2];
       } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === null) {
         return this._dataProvider.getAddresses('monaco').then(res => ({suggestions: res}));
-      }
-      if (searchedElement === 'rrd') {
+      } else if (lastOpenedTag.tagName === 'cv-chart' && lastOpenedTag.currentAttribute === 'src') {
         return this._dataProvider.getRrds('monaco').then(res => ({suggestions: res}));
-      } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
+      } else if (lastOpenedTag.tagName === 'cv-loader' && lastOpenedTag.currentAttribute === 'src') {
         match = /type="([^"]+)"/.exec(lastOpenedTag.text);
         const typeFilter = match ? match[1] : null;
         return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
