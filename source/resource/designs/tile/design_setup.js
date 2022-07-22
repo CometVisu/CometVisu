@@ -7,10 +7,11 @@ window.addEventListener('resize', () => {
  * Resize tile width to consume the available screen width
  */
 function resizeTiles() {
-  if (lastWindowWidth !== window.innerWidth) {
+  const page = document.querySelector('cv-page');
+  if (lastWindowWidth !== window.innerWidth && page) {
     const style = document.querySelector(':root').style;
     let spacing = parseInt(style.getPropertyValue('--spacing')) || 8;
-    const pageStyle = getComputedStyle(document.querySelector('cv-page'));
+    const pageStyle = getComputedStyle(page);
     let pageXPadding = parseInt(pageStyle.paddingLeft) + parseInt(pageStyle.paddingRight);
     if (isNaN(pageXPadding)) {
       // eslint-disable-next-line no-console
