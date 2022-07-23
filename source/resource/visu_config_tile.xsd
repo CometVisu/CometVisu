@@ -450,12 +450,7 @@
         <xsd:documentation xml:lang="de">Zusätzliche Beschriftung für den Button.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="whole-tile" type="xsd:boolean">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Augments the clickable area to the whole tile.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Erweitert den klickbaren Bereich auf die gesamte Kachel.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute ref="whole-tile" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-slider">
@@ -656,12 +651,28 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="cv-icon" minOccurs="0">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="cv-icon">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="icon" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="span" type="label-span" maxOccurs="unbounded" />
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="size" />
     <xsd:attribute ref="progress-mapping" />
+    <xsd:attribute ref="whole-tile" />
     <xsd:attribute name="on-value" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
@@ -729,51 +740,53 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="cv-round-progress" maxOccurs="unbounded" minOccurs="0">
-        <xsd:complexType>
-          <xsd:complexContent>
-            <xsd:extension base="cv-round-progress">
-              <xsd:attribute name="slot" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="value-component" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
-            </xsd:extension>
-          </xsd:complexContent>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="cv-icon" maxOccurs="unbounded" minOccurs="0">
-        <xsd:complexType>
-          <xsd:complexContent>
-            <xsd:extension base="cv-icon">
-              <xsd:attribute name="slot" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="value-component" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
-            </xsd:extension>
-          </xsd:complexContent>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="meter" maxOccurs="unbounded" minOccurs="0">
-        <xsd:complexType>
-          <xsd:complexContent>
-            <xsd:extension base="meter">
-              <xsd:attribute name="slot" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="value-component" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
-            </xsd:extension>
-          </xsd:complexContent>
-        </xsd:complexType>
-      </xsd:element>
+      <xsd:choice>
+        <xsd:element name="cv-round-progress" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-round-progress">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="value-component" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-icon" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-icon">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="value-component" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="meter" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="meter">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="value-component" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
       <xsd:element name="span" maxOccurs="unbounded" minOccurs="0">
         <xsd:complexType>
           <xsd:simpleContent>
@@ -1366,6 +1379,13 @@
         <xsd:enumeration value="large" />
       </xsd:restriction>
     </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="whole-tile" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Augments the clickable area to the whole tile.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Erweitert den klickbaren Bereich auf die gesamte Kachel.</xsd:documentation>
+    </xsd:annotation>
   </xsd:attribute>
 
   <!--

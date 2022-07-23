@@ -23,9 +23,10 @@
     <template id="switch">
         <cv-tile>
             <cv-row colspan="3" row="middle">
-                <cv-button class="round-button" whole-tile="true" slot-mapping="tile-light" slot-styling="tile-button" slot-size="large" slot-progress-mapping="" slot-on-value="1" slot-off-value="0">
+                <cv-button class="round-button" slot-whole-tile="true" slot-mapping="tile-light" slot-styling="tile-button" slot-size="large" slot-progress-mapping="" slot-on-value="1" slot-off-value="0">
                     <slot name="address">NEEDS ADDRESS</slot>
-                    <cv-icon class="value ri-question-mark" />
+                    <slot name="icon" replaces="cv-icon.value"/>
+                    <cv-icon class="value ri-question-mark"/>
                 </cv-button>
             </cv-row>
             <cv-row colspan="3" row="last">
