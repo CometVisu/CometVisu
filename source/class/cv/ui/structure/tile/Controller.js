@@ -347,6 +347,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 class TemplatedElement extends HTMLElement {
   constructor(templateId) {
     super();
+    const controller = cv.ui.structure.tile.Controller.getInstance();
     let template = document.getElementById(templateId);
     if (template) {
       const slotAttributes = ['name', 'replaces', 'parent-scope'];
@@ -372,8 +373,7 @@ class TemplatedElement extends HTMLElement {
                   // append it
                   newNode.classList.add(attrs[attrName]);
                 } else {
-                  // eslint-disable-next-line no-console
-                  console.log('attribute', attrName, 'already set, skipping');
+                  qx.log.Logger.debug(controller, '['+templateId+'] attribute', attrName, 'already set, skipping');
                 }
               } else {
                 newNode.setAttribute(attrName, attrs[attrName]);
@@ -389,8 +389,7 @@ class TemplatedElement extends HTMLElement {
             });
           }
         } else {
-          // eslint-disable-next-line no-console
-          console.log('['+templateId+']no content for slot', slotName, ' removing');
+          qx.log.Logger.debug(controller, '['+templateId+'] no content for slot', slotName, ' removing');
 
           let parentNode = slot.parentNode;
           if (slotParentScope > 0) {
@@ -464,8 +463,7 @@ class TemplatedElement extends HTMLElement {
       this.innerHTML = '';
       this.appendChild(content);
     } else {
-      // eslint-disable-next-line no-console
-      console.error('no template found for id', templateId);
+      qx.logger.Log.error(controller, '['+templateId+'] no template found for id', templateId);
     }
   }
 }
