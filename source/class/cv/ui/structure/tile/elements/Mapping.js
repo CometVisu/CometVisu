@@ -56,15 +56,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       }
       const formula = this._element.querySelector(':scope > formula');
       if (formula) {
-        let noCache = false;
         if (!formula._formula) {
           let content = formula.textContent;
           formula._formula = new Function('x', 'store', 'let y;' + content + '; return y;');
         }
         mappedValue = this._convert(formula._formula(val, store), type);
-        if (!noCache) {
-          this.__cache[val] = mappedValue;
-        }
         return mappedValue;
       }
       const entries = this._element.querySelectorAll(':scope > entry');
