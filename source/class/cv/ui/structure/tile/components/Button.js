@@ -205,7 +205,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       svg.setAttribute('type', 'circle');
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       circle.classList.add('bar');
-      circle.setAttribute('r', '50');
+      circle.setAttribute('r', '49');
       circle.setAttribute('cx', '50');
       circle.setAttribute('cy', '50');
       circle.setAttribute('stroke-width', '2');
@@ -361,6 +361,12 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     createRipple(event) {
       const button = event.currentTarget;
+      let container = button.querySelector(':scope .ripple-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.classList.add('ripple-container');
+        button.appendChild(container);
+      }
       const circle = document.createElement('span');
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
@@ -375,8 +381,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       circle.style.top = `${y}px`;
       circle.classList.add('ripple');
       // remove old ones
-      button.querySelectorAll('.ripple').forEach(ripple => ripple.remove());
-      button.appendChild(circle);
+      container.querySelectorAll('.ripple').forEach(ripple => ripple.remove());
+      container.appendChild(circle);
     }
   },
 

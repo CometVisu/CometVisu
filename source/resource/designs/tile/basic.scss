@@ -356,13 +356,6 @@ body {
         height: calc(var(--tileCellHeight) * #{$tileRows});
     }
 
-    cv-switch {
-        cv-tile {
-            /* for ripple effect */
-            overflow: hidden;
-        }
-    }
-
     cv-tile-pair {
         display: flex;
         flex-flow: column;
@@ -391,6 +384,16 @@ body {
         grid-template-rows: repeat($tileRows, 1fr);
         justify-items: center;
         position: relative;
+
+        .ripple-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+            border-radius: inherit;
+        }
 
         span.ripple {
             position: absolute; /* The absolute position we mentioned earlier */
@@ -628,7 +631,6 @@ body {
         align-self: center;
         cursor: pointer;
         display: block;
-        overflow: hidden;
 
         .value, cv-icon {
             margin: 0;
@@ -646,10 +648,10 @@ body {
             transform: rotate(90deg);
             overflow: initial;
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            left: -1px;
+            top: -1px;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
 
             circle {
                 fill: none;
