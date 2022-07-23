@@ -158,7 +158,7 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
         let valueElement;
         let end;
         let valueInRange = value - this.getMin();
-        let percent = (100 / (this.getMax() - this.getMin())) * valueInRange;
+        let percent = Math.max(0, Math.min(100, (100 / (this.getMax() - this.getMin())) * valueInRange));
         switch (this.getType()) {
           case 'circle':
             valueElement = this._element.querySelector(':scope > svg > circle.bar');
