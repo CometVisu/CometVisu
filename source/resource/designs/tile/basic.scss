@@ -710,6 +710,14 @@ body {
         p {
             margin-block-start: 0;
             margin-block-end: 0;
+
+            &.center {
+                white-space: nowrap;
+                label {
+                    display: inline;
+                    vertical-align: top;
+                }
+            }
         }
 
         label {
@@ -1106,15 +1114,6 @@ body {
                 width: 100%;
                 border-top: 1px solid #7a7a7a;
                 border-bottom: 1px solid #7a7a7a;
-            }
-        }
-        cv-value {
-            p.center {
-                white-space: nowrap;
-                label {
-                    display: inline;
-                    vertical-align: top;
-                }
             }
         }
     }
