@@ -318,7 +318,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       } else if (target === 'progress') {
         this.setProgress(ev.detail.state);
       } else if (target.startsWith('store:')) {
-        this.__store.set(target.substr(6), ev.detail.state);
+        this.__store.set(target.substring(6), ev.detail.state);
       }
     },
 
