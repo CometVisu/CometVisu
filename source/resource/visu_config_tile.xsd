@@ -321,6 +321,12 @@
         <xsd:element name="cv-address" type="address"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name of the group.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name der Gruppe.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="open" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Makes the groups content visible, otherwise only the content of "summary" is visible.</xsd:documentation>
@@ -1442,7 +1448,7 @@
     <xsd:attribute ref="class"/>
   </xsd:complexType>
 
-  <xsd:complexType name="summary" mixed="true">
+  <xsd:complexType name="summary">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:group ref="Components"/>

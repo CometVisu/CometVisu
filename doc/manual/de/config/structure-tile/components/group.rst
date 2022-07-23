@@ -30,8 +30,7 @@ gewechselt werden.
             <entry value="0">inactive</entry>
         </cv-styling>
     </cv-meta>
-    <cv-group>
-        <summary>Lampen</summary>
+    <cv-group name="Lampen">
         <cv-switch mapping="light" styling="button">
             <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
             <span slot="primaryLabel">Wohnzimmer</span>
@@ -64,8 +63,8 @@ Gruppe hat die einen Raum repräsentiert kann damit die Raumtemperatur angezeigt
             <data address="1/4/0">21.5</data>
         </screenshot>
     </settings>
-    <cv-group>
-        <summary>Wohnzimmer
+    <cv-group name="Wohnzimmer">
+        <summary>
             <cv-value format="%.1f °C">
                 <cv-address mode="read" transform="DPT:9.001">1/4/0</cv-address>
                 <label class="value"/>

@@ -328,27 +328,44 @@ body {
             overflow-x: auto;
         }
 
-        summary {
+        > summary {
             flex-basis: 100%;
-            padding: calc(var(--spacing) * 2) var(--spacing);
+            display: flex;
+            /*padding: calc(var(--spacing) * 2) var(--spacing);*/
+            cursor: pointer;
+            font-size: 18px;
+            height: var(--tileCellHeight);
+            align-items: center;
+            gap: var(--spacing);
 
-            label {
-                display: inline-block;
-                margin-left: var(--spacing);
-                font-size: inherit;
-
-                &:first-child {
-                  margin-left: 0;
-                }
+            > label:first-child {
+                flex-grow: 1;
+                text-align: left;
             }
 
-            *:not(:first-child) {
-                float: right;
+            &:before {
+                font-family: 'remixicon' !important;
+                font-style: normal;
+                -webkit-font-smoothing: antialiased;
+                content: "\EA6E";
+                vertical-align: text-bottom;
+            }
+
+            > label.title:after {
+                content: "..."
+            }
+
+            > * {
+                /*margin-top: calc(var(--spacing) * -1.5);
+                margin-bottom: calc(var(--spacing) * -1.5);*/
+                justify-self: flex-end;
             }
 
             cv-value {
                 label.value {
                     font-size: inherit !important;
+                    /*margin-top: calc(var(--spacing) * 1.5);
+                    margin-bottom: calc(var(--spacing) * 1.5);*/
                 }
             }
         }
@@ -360,22 +377,12 @@ body {
             border-top: none;
             margin-top: 0;
         }
-        > summary:before {
-            font-family: 'remixicon' !important;
-            font-style: normal;
-            -webkit-font-smoothing: antialiased;
-            content: "\EA6E";
-            vertical-align: text-bottom;
-            padding-right: $defaultSpace;
-        }
 
         &[open] > summary:before {
             content: "\EA4E";
         }
-        > summary:after {
-            content: "..."
-        }
-        &[open] > summary:after {
+
+        &[open] > summary > label.title:after {
             content: "";
         }
     }
@@ -511,36 +518,6 @@ body {
             margin-top: 4px;
         }
 
-        cv-icon {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 2);
-            position: relative;
-
-            svg {
-                color: $primaryText;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-            }
-
-            &.active {
-                color: $primaryColor;
-            }
-        }
-        cv-icon[size='large'] {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) / 2);
-        }
-        cv-icon[size='x-large'] {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) - var(--spacing)*2);
-        }
-        cv-icon[size='xx-large'] {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) - var(--spacing));
-        }
-        cv-icon[size='xxx-large'] {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))));
-        }
-
         &[size="1x0.5"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
         }
@@ -607,6 +584,40 @@ body {
             width: 100%;
             margin: 0;
             height: 100%;
+        }
+    }
+
+    cv-icon {
+        font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 2);
+        position: relative;
+
+        svg {
+            color: $primaryText;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &.active {
+            color: $primaryColor;
+        }
+
+        &[size='large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) / 2);
+        }
+
+        &[size='x-large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) - var(--spacing) * 2);
+        }
+
+        &[size='xx-large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) - var(--spacing));
+        }
+
+        &[size='xxx-large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))));
         }
     }
 
@@ -727,6 +738,8 @@ body {
     }
 
     cv-value {
+        position: relative;
+
         p {
             margin-block-start: 0;
             margin-block-end: 0;

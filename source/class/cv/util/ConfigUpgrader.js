@@ -367,10 +367,8 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 } else {
                   clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
                   clonedChild.setAttribute('open', 'true');
-                  elem = target.ownerDocument.createElement('summary');
-                  clonedChild.appendChild(elem);
                   if (child.hasAttribute('name')) {
-                    elem.textContent = child.getAttribute('name');
+                    clonedChild.setAttribute('name', child.getAttribute('name'));
                   }
                   target.appendChild(clonedChild);
                   this._convertElement(clonedChild, child, options);

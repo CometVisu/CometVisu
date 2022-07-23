@@ -15,8 +15,20 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
   members: {
     _init() {
       this.base(arguments);
-      const summary = this._element.querySelector(':scope > summary');
-      if (summary) {
+      const element = this._element;
+      if (element.hasAttribute('name')) {
+        let summary = element.querySelector(':scope > summary');
+        if (!summary) {
+          summary = document.createElement('summary');
+          element.insertBefore(summary, element.firstChild);
+        }
+        let label = element.querySelector(':scope > summary > label.title');
+        if (!label) {
+          label = document.createElement('label');
+          label.classList.add('title');
+          summary.insertBefore(label, summary.firstChild);
+        }
+        label.textContent = element.getAttribute('name');
         qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
       }
     },

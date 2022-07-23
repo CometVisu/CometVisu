@@ -808,10 +808,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (this._node) {
           if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
             this._node.nodeValue = value;
-            const parent = this.getParent();
-            if (parent.getName() === 'summary' && parent.getParent().getName() === 'cv-group') {
-              parent.getParent().updateDisplayName();
-            }
             this.updateDisplayName();
           } else if (this._node.nodeType === Node.ELEMENT_NODE) {
             this._node.textContent = value;
@@ -1026,11 +1022,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           } else if (this.getSchemaElement().getSchema().isRoot(this.getName()) && this._node.hasAttribute('design')) {
             const designAttr = this._node.getAttribute('design');
             displayName += ' "' + designAttr + '"';
-          } else if (this.getName() === 'cv-group') {
-            const summary = this._node.querySelector(':scope > summary');
-            if (summary) {
-              displayName += ' "' + summary.textContent.trim() + '"';
-            }
           }
         } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE || this._node.nodeType === Node.COMMENT_NODE) && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
