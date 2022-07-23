@@ -44,9 +44,15 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
 
     onClicked(ev) {
       const style = getComputedStyle(this.__popup);
-      if (ev.target.parentNode.tagName.toLowerCase() === 'cv-option') {
-        // select this option
-        this._sendSelection(ev.target.parentNode.getAttribute('key'), true);
+      for (let target of ev.path) {
+        if (target.tagName.toLowerCase() === 'cv-option') {
+          // select this option
+          this._sendSelection(target.getAttribute('key'), true);
+          break;
+        }
+        if (target === ev.currentTarget) {
+          break;
+        }
       }
       // open popup
       if (style.getPropertyValue('display') === 'none') {
