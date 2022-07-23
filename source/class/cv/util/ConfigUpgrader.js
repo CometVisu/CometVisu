@@ -445,7 +445,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                   if (sourceLabel) {
                     const row = target.ownerDocument.createElement('cv-row');
                     row.setAttribute('colspan', '3');
-                    row.setAttribute('row', 'first');
+                    row.setAttribute('row', 'last');
 
                     const label = target.ownerDocument.createElement('label');
                     label.setAttribute('class', 'primary');
