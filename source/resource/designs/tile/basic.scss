@@ -495,6 +495,7 @@ body {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            max-width: 100%;
         }
         > [align='center'] {
             align-self: center;
@@ -761,7 +762,7 @@ body {
             font-size: medium;
         }
         label.value:not([value-size]), label.value[value-size="normal"] {
-            font-size: x-large;
+            font-size: large;
         }
         label.value[value-size="large"] {
             font-size: xxx-large;
@@ -1124,6 +1125,30 @@ body {
         cv-tile {
             cv-row[row="first"] {
                 justify-content: center;
+            }
+
+            cv-value {
+                max-width: calc(100% - var(--spacing) - var(--spacing));
+                overflow: hidden;
+
+                > label {
+                    white-space: nowrap;
+                    display: inline-block !important;
+
+                    &.scroll {
+                        transform: translateX(100%);
+                        animation: my-animation 15s linear infinite;
+
+                        @keyframes my-animation {
+                            from {
+                                transform: translateX(100%);
+                            }
+                            to {
+                                transform: translateX(-100%);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

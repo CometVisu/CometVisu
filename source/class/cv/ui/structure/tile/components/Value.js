@@ -2,6 +2,7 @@
  * Shows a value from the backend, as label or image/icon
  * @author Tobias Bräutigam
  * @since 2022
+ * @ignore ResizeObserver
  */
 qx.Class.define('cv.ui.structure.tile.components.Value', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -12,6 +13,25 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
   ***********************************************
   */
   members: {
+    _init() {
+      this.base(arguments);
+      const target = this._element.querySelector('.value');
+      if (target.tagName.toLowerCase() === 'label') {
+        // check for overflowing text
+        new ResizeObserver(() => {
+          this._detectOverflow();
+        }).observe(target);
+      }
+    },
+
+    _detectOverflow() {
+      const target = this._element.querySelector('.value');
+      if (target.clientWidth > target.parentElement.clientWidth) {
+        target.classList.add('scroll');
+      } else {
+        target.classList.remove('scroll');
+      }
+    },
 
     _updateValue(mappedValue, value) {
       const target = this._element.querySelector('.value');
@@ -39,6 +59,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             break;
           case 'label':
             target.innerHTML = mappedValue;
+            this._detectOverflow();
             break;
         }
       }
