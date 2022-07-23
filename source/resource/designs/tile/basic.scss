@@ -384,6 +384,22 @@ body {
         grid-template-rows: repeat($tileRows, 1fr);
         justify-items: center;
         position: relative;
+        overflow: hidden;
+
+        span.ripple {
+            position: absolute; /* The absolute position we mentioned earlier */
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 600ms linear;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
 
         &.screenshots {
             /* white background for screenshots of widgets with border radius */
@@ -593,19 +609,20 @@ body {
     }
 
     cv-button {
+        position: relative;
         width: var(--defaultButtonSize);
         height: var(--defaultButtonSize);
         border-radius: var(--spacing);
         background: $buttonBackground;
         box-sizing: border-box;
         text-align: center;
-        position: relative;
         color: $secondaryColor;
         border: 1px solid $secondaryColor;
         box-shadow: 0 0 1px 0 $secondaryColor inset, 0 0 1px 0 $secondaryColor;
         align-self: center;
         cursor: pointer;
         display: block;
+        overflow: hidden;
 
         .value, cv-icon {
             margin: 0;
