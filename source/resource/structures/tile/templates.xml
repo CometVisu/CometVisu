@@ -134,7 +134,7 @@
                 <slot name="nextAddress">NEEDS ADDRESS</slot>
                 <cv-icon>ri-skip-forward-mini-fill</cv-icon>
             </cv-button>
-            <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="0">
+            <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="100">
                 <slot name="volumeAddress">NEEDS ADDRESS</slot>
                 <cv-icon class="decrease">ri-volume-down-line</cv-icon>
                 <cv-icon class="increase">ri-volume-up-line</cv-icon>
