@@ -80,6 +80,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
           mapping = this._element.getAttribute('mapping');
           transformedState = cv.Application.structureController.mapValue(mapping, transformedState);
         }
+        if (this._element.hasAttribute('format')) {
+          transformedState = cv.util.String.sprintf(this._element.getAttribute('format'), transformedState instanceof Date ? transformedState.toLocaleString() : transformedState);
+        }
         const ev = new CustomEvent('stateUpdate', {
           bubbles: true,
           cancelable: true,

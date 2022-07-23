@@ -318,6 +318,7 @@
         <xsd:element name="summary" type="summary"/>
         <xsd:group ref="Widgets"/>
         <xsd:element name="custom" type="custom"/>
+        <xsd:element name="cv-address" type="address"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="open" type="xsd:boolean">
@@ -1121,6 +1122,7 @@
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute ref="mapping"/>
+        <xsd:attribute ref="format"/>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1440,10 +1442,12 @@
     <xsd:attribute ref="class"/>
   </xsd:complexType>
 
-  <xsd:complexType name="summary">
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:string"/>
-    </xsd:simpleContent>
+  <xsd:complexType name="summary" mixed="true">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:group ref="Components"/>
+      </xsd:choice>
+    </xsd:sequence>
   </xsd:complexType>
 
   <xsd:complexType name="meter">

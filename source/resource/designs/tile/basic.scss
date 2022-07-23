@@ -331,6 +331,26 @@ body {
         summary {
             flex-basis: 100%;
             padding: calc(var(--spacing) * 2) var(--spacing);
+
+            label {
+                display: inline-block;
+                margin-left: var(--spacing);
+                font-size: inherit;
+
+                &:first-child {
+                  margin-left: 0;
+                }
+            }
+
+            *:not(:first-child) {
+                float: right;
+            }
+
+            cv-value {
+                label.value {
+                    font-size: inherit !important;
+                }
+            }
         }
         &:not([open]) > *:not(summary) {
             display: none;
