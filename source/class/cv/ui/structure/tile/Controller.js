@@ -349,15 +349,17 @@ class TemplatedElement extends HTMLElement {
     super();
     let template = document.getElementById(templateId);
     if (template) {
+      const slotAttributes = ['name', 'replaces', 'parent-scope'];
       const content = template.content.cloneNode(true);
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
+        const replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
         const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
-          if (slot.attributes[i].name !== 'name') {
+          if (!slotAttributes.includes(slot.attributes[i].name)) {
             attrs[slot.attributes[i].name] = slot.attributes[i].value;
           }
         }
@@ -377,9 +379,15 @@ class TemplatedElement extends HTMLElement {
                 newNode.setAttribute(attrName, attrs[attrName]);
               }
             });
+            newNode.removeAttribute('slot');
             slot.parentNode.insertBefore(newNode, slot);
           });
           slot.remove();
+          if (replacementSelector) {
+            content.querySelectorAll(replacementSelector).forEach(replaced => {
+              replaced.remove();
+            });
+          }
         } else {
           // eslint-disable-next-line no-console
           console.log('['+templateId+']no content for slot', slotName, ' removing');

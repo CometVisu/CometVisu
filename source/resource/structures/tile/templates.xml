@@ -66,10 +66,11 @@
                 <label class="secondary"><slot name="label">LABEL</slot></label>
             </cv-row>
             <cv-row colspan="3" row="2">
-                <cv-value slot-mapping="" slot-format="">
+                <cv-value slot-mapping="" slot-format="" slot-styling="">
                     <slot name="address">NEEDS ADDRESS</slot>
-                    <p><label class="value" slot-value-size="large"/></p>
-                    <p><label class="unit"><slot name="unit">UNIT</slot></label></p>
+                    <slot name="value-component" replaces="label.value" class="value"/>
+                    <label class="value" slot-value-size="large"/>
+                    <label class="unit"><slot name="unit">UNIT</slot></label>
                 </cv-value>
             </cv-row>
         </cv-tile>

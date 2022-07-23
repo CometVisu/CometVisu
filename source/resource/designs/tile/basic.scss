@@ -756,6 +756,7 @@ body {
             transform: translate(-50%, -50%);
             font-size: 28px;
             color: $primaryText;
+            white-space: nowrap;
         }
 
         &[type='semiCircle'] {

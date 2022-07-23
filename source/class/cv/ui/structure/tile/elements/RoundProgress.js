@@ -30,6 +30,14 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
     type: {
       check: ['circle', 'semiCircle'],
       init: 'circle'
+    },
+    min: {
+      check: 'Number',
+      init: 0
+    },
+    max: {
+      check: 'Number',
+      init: 100
     }
   },
   /*
@@ -43,6 +51,10 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
     __start: null,
     __normalizedRadius: null,
     __radius: null,
+    __label: null,
+    __canvas: null,
+    __availableLabelWidth: null,
+    __defaultLabelFontSize: null,
 
     _init() {
       const element = this._element;
@@ -52,6 +64,20 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
       const strokeWidth = element.getAttribute('stroke') || 8;
       const normalizedRadius = this.__normalizedRadius = radius - strokeWidth / 2;
       this.__circumference = normalizedRadius * 2 * Math.PI;
+
+      if (element.hasAttribute('min')) {
+        const min = parseInt(element.getAttribute('min'));
+        if (!isNaN(min)) {
+          this.setMin(min);
+        }
+      }
+
+      if (element.hasAttribute('max')) {
+        const max = parseInt(element.getAttribute('max'));
+        if (!isNaN(max)) {
+          this.setMax(max);
+        }
+      }
 
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
@@ -87,6 +113,9 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
       }
       code += '</svg><label></label>';
       element.innerHTML = code;
+
+      this.__availableLabelWidth = radius * 2 - strokeWidth * 2 - 24;
+
       if (!hasFixedRadius) {
         qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', ev => {
           this.__radius = ev.getData();
@@ -128,15 +157,17 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
       if (this.isConnected()) {
         let valueElement;
         let end;
+        let valueInRange = value - this.getMin();
+        let percent = (100 / (this.getMax() - this.getMin())) * valueInRange;
         switch (this.getType()) {
           case 'circle':
             valueElement = this._element.querySelector(':scope > svg > circle.bar');
-            valueElement.setAttribute('stroke-dashoffset', ''+this.__circumference - value / 100 * this.__circumference);
+            valueElement.setAttribute('stroke-dashoffset', '' + this.__circumference - percent / 100 * this.__circumference);
             break;
 
           case 'semiCircle':
             valueElement = this._element.querySelector(':scope > svg > path.bar');
-            end = this.__convert(180/100 * value);
+            end = this.__convert(180/100 * percent);
             valueElement.setAttribute('d', [
               'M', this.__start.x, this.__start.y,
               'A', this.__normalizedRadius, this.__normalizedRadius, 0, 0, 1, end.x, end.y
@@ -148,10 +179,34 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
 
     _applyText(value) {
       if (this.isConnected()) {
-        const label = this._element.querySelector(':scope > label');
-        label.innerText = value;
+        if (!this.__label) {
+          this.__label = this._element.querySelector(':scope > label');
+          this.__canvas = document.createElement('canvas');
+          this.__context = this.__canvas.getContext('2d');
+          const compStyle = window.getComputedStyle(this.__label);
+          this.__context.font = compStyle.getPropertyValue('font');
+          this.__defaultLabelFontSize = compStyle.getPropertyValue('font-size');
+        }
+        this.__label.innerText = value;
+        const metrics = this.__context.measureText(value);
+        if (metrics.width > this.__availableLabelWidth) {
+          // adjust font-size
+          const factor = this.__availableLabelWidth / metrics.width;
+          this.__label.style.fontSize = Math.floor(parseInt(this.__defaultLabelFontSize) * factor) + 'px';
+        } else {
+          this.__label.style.fontSize = this.__defaultLabelFontSize;
+        }
       }
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this.__label = null;
   },
 
   defer(QxClass) {
