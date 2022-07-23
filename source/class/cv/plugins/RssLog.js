@@ -35,13 +35,17 @@ qx.Class.define('cv.plugins.RssLog', {
   properties: {
     src: {
       check: 'String',
-      nullable:true,
+      nullable: true,
       transform: 'normalizeUrl',
       apply: '_applySrc'
     },
+    database: {
+      check: 'String',
+      nullable: true
+    },
     filter: {
       check: 'String',
-      nullable:true
+      nullable: true
     },
     datetime: {
       check: 'Boolean',
@@ -108,6 +112,7 @@ qx.Class.define('cv.plugins.RssLog', {
     getAttributeToPropertyMappings: function() {
       return {
         src:    {},
+        database: {},
         width:  {},
         height: {},
         filter: {},
@@ -148,7 +153,7 @@ qx.Class.define('cv.plugins.RssLog', {
     __separatorprevday: null,
 
     /**
-     * Strip querystring from URL and store is as Map
+     * Strip querystring from URL and store it as Map
      * @param value {String} URL
      * @return {String} normalized URL
      */
@@ -159,11 +164,17 @@ qx.Class.define('cv.plugins.RssLog', {
         value = value.substring(0, value.indexOf('?'));
         this.__fixedRequestData = parts.queryKey;
       }
+      if (this.getDatabase()) {
+        this.__fixedRequestData.database = this.getDatabase();
+      }
       return value;
     },
 
     // property apply
     _applySrc: function(value) {
+      if (value.match(/rsslog_mysql\.php/)) {
+        this.error('Use of rsslog_mysql.php is depreciated. Please consult the documentation.');
+      }
       this.__external = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
     },
 
@@ -359,11 +370,11 @@ qx.Class.define('cv.plugins.RssLog', {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = parseInt(c.dataset['itemoffset'], 10) || 0;
+          itemoffset = parseInt(c.dataset.itemoffset, 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
-          c.dataset['itemoffset'] = itemoffset + 1;
+          c.dataset.itemoffset = itemoffset + 1;
         }
       }
 
@@ -407,8 +418,8 @@ qx.Class.define('cv.plugins.RssLog', {
           rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
-        rowElem.dataset['id'] = item.id;
-        rowElem.dataset['mapping'] = item.mapping;
+        rowElem.dataset.id = item.id;
+        rowElem.dataset.mapping = item.mapping;
         if (item.tags) {
           const tmp = rowElem.querySelector('span');
           if (Array.isArray(item.tags)) {
@@ -462,8 +473,8 @@ qx.Class.define('cv.plugins.RssLog', {
     _onTap: function(ev) {
       const item = ev.getCurrentTarget();
 
-      const id = item.dataset['id'];
-      const mapping = item.dataset['mapping'];
+      const id = item.dataset.id;
+      const mapping = item.dataset.mapping;
       item.classList.toggle('rsslog_ack');
       const state = +item.classList.contains('rsslog_ack'); // the new state is the same as hasClass
       if (mapping && mapping !== '') {

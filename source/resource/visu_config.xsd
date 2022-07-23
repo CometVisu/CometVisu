@@ -316,15 +316,7 @@
       <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>
-  
-  <xsd:simpleType name="rss_mode">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="first" />
-      <xsd:enumeration value="last" />
-      <xsd:enumeration value="rollover" />
-    </xsd:restriction>
-  </xsd:simpleType>
-      
+
   <xsd:attribute name="series">
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
@@ -2542,14 +2534,74 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="src" type="xsd:string" use="required" />
-    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
-    <xsd:attribute name="limit" type="xsd:integer" use="optional" />
-    <xsd:attribute name="mode" type="rss_mode" use="optional" />
-    <xsd:attribute name="datetime" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
-    <xsd:attribute name="filter" type="xsd:string" use="optional" />
-    <xsd:attribute name="itemack" type="xsd:string" use="optional" />
+    <xsd:attribute name="src" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the rsslog.php.</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL der rsslog.php.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="database" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID/Name of the database configuration as used in the hidden configuration.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID/Name für die Datenbank Einstellungen aus der versteckten Konfiguration.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Refresh the display automatically after this amount of seconds.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktuallisiert die Anzeige automatisch nach dieser Zahl von Sekunden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="limit" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of entries to show.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der anzuzeigenden Einträge.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="rss_mode">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">first, last, rollover</xsd:documentation>
+        <xsd:documentation xml:lang="de">first, last, rollover</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="first" />
+          <xsd:enumeration value="last" />
+          <xsd:enumeration value="rollover" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="datetime" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show date and time of entry.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige Datum und Zeit des Eintrags mit an.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="timeformat" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the date and time (in strftime syntax).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Format des Datums und der Uhrzeit (im strftime Format).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="filter" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Only show entries with this filter set.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige nur Einträge mit diesem Filter-Text.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="itemack" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">modify, display, disable</xsd:documentation>
+        <xsd:documentation xml:lang="de">modify, display, disable</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="modify" />
+          <xsd:enumeration value="display" />
+          <xsd:enumeration value="disable" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
     <xsd:attribute name="future" type="xsd:integer" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hours for coming events.</xsd:documentation>
