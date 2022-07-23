@@ -335,6 +335,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
       });
       this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
+      event.stopPropagation();
     },
 
     onPointerDown() {
