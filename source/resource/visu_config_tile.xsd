@@ -1410,12 +1410,27 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class"/>
+    <xsd:attribute name="value-size">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the font size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Schriftgröße fest.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="medium" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="large" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
+
   <xsd:complexType name="text">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string"/>
     </xsd:simpleContent>
   </xsd:complexType>
+
   <xsd:complexType name="p" mixed="true">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
