@@ -149,6 +149,15 @@ body {
         border-radius: inherit;
     }
 
+    .center {
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     nav {
         position: relative;
         z-index: 10;
@@ -715,6 +724,7 @@ body {
         }
         label.value[value-size="large"] {
             font-size: xxx-large;
+            line-height: 0.8em;
         }
         label.unit {
             color: $primaryText;
@@ -1085,6 +1095,25 @@ body {
             cv-row[colspan="2"] {
                 > * {
                     margin-left: 40px;
+                }
+            }
+        }
+    }
+
+    cv-rtc {
+        cv-tile {
+            *[row="2"] {
+                width: 100%;
+                border-top: 1px solid #7a7a7a;
+                border-bottom: 1px solid #7a7a7a;
+            }
+        }
+        cv-value {
+            p.center {
+                white-space: nowrap;
+                label {
+                    display: inline;
+                    vertical-align: top;
                 }
             }
         }

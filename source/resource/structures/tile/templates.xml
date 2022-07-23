@@ -38,7 +38,7 @@
     <template id="shutter">
         <cv-tile>
             <cv-row colspan="3" row="first">
-                <cv-value slot-position-mapping="" slot-position-format="%d%%">
+                <cv-value slot-format="%d%%">
                     <slot name="positionAddress">NEEDS ADDRESS</slot>
                     <label class="value"/>
                 </cv-value>
@@ -63,9 +63,6 @@
     </template>
     <template id="info">
         <cv-tile>
-            <cv-row colspan="3" row="first">
-                <label class="secondary"><slot name="label">LABEL</slot></label>
-            </cv-row>
             <cv-row colspan="3" row="2">
                 <cv-value slot-mapping="" slot-format="" slot-styling="">
                     <slot name="address">NEEDS ADDRESS</slot>
@@ -73,6 +70,9 @@
                     <label class="value" slot-value-size="large"/>
                     <label class="unit"><slot name="unit">UNIT</slot></label>
                 </cv-value>
+            </cv-row>
+            <cv-row colspan="3" row="last">
+                <label class="secondary"><slot name="label">LABEL</slot></label>
             </cv-row>
         </cv-tile>
     </template>
@@ -92,11 +92,18 @@
     <template id="rtc">
         <cv-tile>
             <cv-spinner slot-format="%.1f °C" slot-min="15" slot-max="25" slot-step-width="0.5" colspan="3">
-                <slot name="temperatureAddress">NEEDS ADDRESS</slot>
+                <slot name="temperatureAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <label class="value primary"/>
             </cv-spinner>
+            <cv-value row="2" colspan="3" slot-mapping="" slot-format="%.1f °C" slot-styling="">
+                <slot name="measuredTemperatureAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <p class="center">
+                    <label class="value" value-size="large"/>
+                    <label class="unit"><slot name="unit">UNIT</slot></label>
+                </p>
+            </cv-value>
             <cv-select row="2" colspan="3">
-                <slot name="hvacAddress">NEEDS ADDRESS</slot>
+                <slot name="hvacAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto</cv-option>
                 <cv-option key="stondby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
                 <cv-option key="economy"><cv-icon>ri-leaf-line</cv-icon>Eco</cv-option>

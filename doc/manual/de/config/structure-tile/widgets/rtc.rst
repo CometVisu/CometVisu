@@ -62,6 +62,23 @@ angeben.
 Der Spinner der Soll-Temperatur kann noch feinjustiert wenden indem man die Attribute `m̀in``, ``max``, ``step-width`` und
 ``format`` angibt. So kann z.B. das Widget auf Fahrenheit umgestellt werden mit: ``<cv-rtc min="0" max="100" format="%d ′F">``.
 
+Falls eine Steuerung des Betriebsmodus nicht möglich sein, kann stattdessen die Ist-Temperatur angezeigt werden.
+
+.. widget-example::
+
+    <settings design="tile">
+        <screenshot name="cv-rtc-no-hvac" margin="0 10 10 0">
+            <data address="1/4/0">22</data>
+            <data address="1/4/1">21.5</data>
+        </screenshot>
+    </settings>
+    <cv-rtc format="%.1f">
+        <cv-address slot="measuredTemperatureAddress" transform="DPT:9.001">1/4/0</cv-address>
+        <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/1</cv-address>
+        <span slot="label">Wohnzimmer</span>
+        <span slot="unit">°C</span>
+    </cv-rtc>
+
 
 Erlaubte Attribute im RTC-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
