@@ -54,6 +54,24 @@ gewechselt werden.
         </cv-switch>
     </cv-group>
 
+Im Summary-Element können weitere :ref:`Komponenten <tile-components>` platziert werden. Wenn man z.B. eine
+Gruppe hat die einen Raum repräsentiert kann damit die Raumtemperatur angezeigt werden.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-group" content-class="">
+        <screenshot name="tile-group-value" screen-width="400">
+            <data address="1/4/0">21.5</data>
+        </screenshot>
+    </settings>
+    <cv-group>
+        <summary>Wohnzimmer
+            <cv-value format="%.1f °C">
+                <cv-address mode="read" transform="DPT:9.001">1/4/0</cv-address>
+                <label class="value"/>
+            </cv-value>
+        </summary>
+    </cv-group>
 
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^
