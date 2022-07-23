@@ -25,6 +25,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         img = document.createElement('img');
         element.appendChild(img);
       }
+      element.addEventListener('click', () => this.refresh());
       let src = element.getAttribute('src');
       let base = window.location.origin;
       if (src.substring(0, 1) !== '/' && src.substring(0, 4) !== 'http') {
@@ -84,10 +85,25 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         this._url.searchParams.set('r', '' + Math.random());
         this._loadImage();
       }
+    },
+
+    /**
+     * Handles the incoming data from the backend for this widget
+     *
+     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
+     */
+    onStateUpdate(ev) {
+      if (!this.base(arguments, ev)) {
+        if (ev.detail.target === 'refresh') {
+          if (ev.detail.state) {
+            this.refresh();
+          }
+        } else {
+          this.debug('unhandled address target', ev.detail.target);
+        }
+      }
     }
   },
-
-
 
   defer(QxClass) {
     customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'image', class extends QxConnector {

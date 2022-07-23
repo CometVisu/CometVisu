@@ -499,6 +499,11 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-image">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute name="src" type="xsd:string"/>
