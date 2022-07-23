@@ -694,6 +694,11 @@ body {
             margin-block-start: 0;
             margin-block-end: 0;
         }
+
+        label {
+            color: inherit;
+        }
+
         label.value[value-size="medium"] {
             font-size: medium;
         }
