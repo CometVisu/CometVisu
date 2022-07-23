@@ -105,7 +105,7 @@
             <cv-select row="2" colspan="3">
                 <slot name="hvacAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto</cv-option>
-                <cv-option key="stondby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
+                <cv-option key="standby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
                 <cv-option key="economy"><cv-icon>ri-leaf-line</cv-icon>Eco</cv-option>
                 <cv-option key="comfort"><cv-icon>ri-temp-cold-line</cv-icon>Komfort</cv-option>
                 <cv-option key="building protection"><cv-icon>ri-shield-line</cv-icon>Frostschutz</cv-option>
