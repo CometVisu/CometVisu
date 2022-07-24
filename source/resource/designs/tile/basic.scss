@@ -238,6 +238,17 @@ body {
                     display: inline-block;
                     padding: var(--spacing) calc(var(--spacing)*2);
                 }
+                a {
+                    i {
+                        vertical-align: text-top;
+                        &:first-child {
+                            margin-right: var(--spacing);
+                        }
+                        &:last-child {
+                            margin-left: var(--spacing);
+                        }
+                    }
+                }
                 /*&:hover {
                     background-color: $secondaryColor;
                 }*/

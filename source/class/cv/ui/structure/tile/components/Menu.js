@@ -114,10 +114,17 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           continue;
         }
         const pageName = page.getAttribute('name') || '';
+        const pageIcon = page.getAttribute('icon') || '';
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.setAttribute('href', '#' + pageId);
-        a.textContent = pageName;
+        if (pageIcon) {
+          const i = document.createElement('i');
+          i.classList.add(pageIcon);
+          a.appendChild(i);
+        }
+        const text = document.createTextNode(pageName);
+        a.appendChild(text);
         if (currentPage === pageId) {
           li.classList.add('active');
         }
