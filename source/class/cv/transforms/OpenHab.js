@@ -213,19 +213,13 @@ qx.Class.define('cv.transforms.OpenHab', {
           return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
         }
       },
-      'thing': {
+      'thing-status': {
         name: 'OH_Thing',
-        encode: function (val, param) {
-          if (param === 'status') {
-            return val ? 'ONLINE' : 'OFFLINE';
-          }
-          return '';
+        encode: function (val) {
+          return val ? 'ONLINE' : 'OFFLINE';
         },
-        decode: function (val, param) {
-          if (param === 'status') {
-            return val === 'ONLINE';
-          }
-          return null;
+        decode: function (val) {
+          return val === 'ONLINE';
         }
       }
     });
