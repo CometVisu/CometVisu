@@ -85,7 +85,7 @@ und large größer.
 Icon
 ^^^^
 
-Wird ein :ref:`Icon <tile-element-icon>` als ``class="value"`` benutzt, kann das Icon über ein Mapping und dessen Farbe über Styling
+Wird ein :ref:`Icon <tile-component-icon>` als ``class="value"`` benutzt, kann das Icon über ein Mapping und dessen Farbe über Styling
 Wert-abhängig beeinflusst werden.
 
 .. HINT::

@@ -451,7 +451,7 @@
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="size"/>
-    <xsd:attribute name="text" type="xsd:string">
+    <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Additional label for the button.</xsd:documentation>
         <xsd:documentation xml:lang="de">Zusätzliche Beschriftung für den Button.</xsd:documentation>

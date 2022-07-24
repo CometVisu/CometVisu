@@ -50,7 +50,7 @@ Um den aktuellen Wert anzeigen zu können wird eine lesende ``cv-address`` benö
 Wert verändern zu können eine schreibende. In dem Beispiel is die Address beides (default).
 Die Einträge in der Auswahlliste werden durch ``cv-option``-Elemente definiert.
 Diese haben einen ``key`` was dem Wert entspricht der von der Adresse gelesen wird oder dorthin geschickt wird und
-einen Inhalt, welcher sich in dem Beispiel aus einer Kombination aus einem :ref:`Icon <tile-element-icon>` und einem Text zusammensetzt.
+einen Inhalt, welcher sich in dem Beispiel aus einer Kombination aus einem :ref:`Icon <tile-component-icon>` und einem Text zusammensetzt.
 
 
 Erlaubte Attribute

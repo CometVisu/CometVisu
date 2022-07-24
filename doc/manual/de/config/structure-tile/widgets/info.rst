@@ -61,7 +61,7 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.
         <span slot="label">Lautstärke</span>
     </cv-info>
 
-Oder ein :ref:`Icon <tile-element-icon>` um z.B. den Fensterstatus darzustellen.
+Oder ein :ref:`Icon <tile-component-icon>` um z.B. den Fensterstatus darzustellen.
 
 .. widget-example::
     :shots-per-row: 2

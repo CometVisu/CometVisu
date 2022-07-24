@@ -7,6 +7,25 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (element) {
+    this.base(arguments, element);
+    this.addListener('changeVisibility', this._updateVisible, this);
+  },
+
+  /*
+  ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    visibleChanged: 'qx.event.type.Data'
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -28,7 +47,23 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     visibility: {
       check: ['visible', 'excluded', 'hidden'],
       init: 'visible',
-      apply: '_applyVisibility'
+      apply: '_applyVisibility',
+      event: 'changeVisibility'
+    },
+    parentVisible: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeParentVisible',
+      apply: '_updateVisible'
+    },
+
+    /**
+     * Real visibility of this component (depends on 'visibility' and 'parentVisible')
+     */
+    visible: {
+      check: 'Boolean',
+      init: true,
+      apply: '_applyVisible'
     }
   },
   /*
@@ -40,10 +75,31 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _writeAddresses: null,
     _visibleDisplayMode: null,
 
+    _updateVisible() {
+      this.setVisible(this.getVisibility() === 'visible' && this.isParentVisible());
+    },
+
+    _applyVisible() {},
+
     _init() {
       const element = this._element;
       let hasReadAddress = false;
       const writeAddresses = [];
+      let parent = element.parentElement;
+      while (parent) {
+        if (parent.tagName === 'CV-PAGE') {
+          if (parent._instance) {
+            parent._instance.bind('visibility', this, 'parentVisible', {
+              converter: value => value === 'visible'
+            });
+          } else {
+            this.warn('no widget instance connected to parent cv-page');
+          }
+        } else if (parent.tagName === 'BODY') {
+          break;
+        }
+        parent = parent.parentElement;
+      }
 
       Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
         const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';

@@ -1,9 +1,9 @@
-.. _tile-element-icon:
+.. _tile-component-icon:
 
 Icon
 ====
 
-.. api-doc:: cv.ui.structure.tile.elements.Icon
+.. api-doc:: cv.ui.structure.tile.components.Icon
 
 
 Beschreibung

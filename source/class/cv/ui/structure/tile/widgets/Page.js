@@ -9,16 +9,55 @@ qx.Class.define('cv.ui.structure.tile.widgets.Page', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    visibility: {
+      refine: true,
+      init: 'excluded'
+    }
+  },
+
+  /*
    ******************************************************
    MEMBERS
    ******************************************************
    */
   members: {
+    _supportsContentVisibility: null,
+
     _init() {
       if (typeof InstallTrigger !== 'undefined') {
         // firefox does not support content-visibility CSS property
         // see: https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
         this._element.classList.add('no-content-visibility');
+        this._supportsContentVisibility = false;
+      } else {
+        this._supportsContentVisibility = true;
+      }
+    },
+
+    _applyVisibility(value) {
+      switch (value) {
+        case 'visible':
+          if (this._supportsContentVisibility) {
+            this._element.style.contentVisibility = 'visible';
+          } else if (this._visibleDisplayMode) {
+            this._element.style.display = this._visibleDisplayMode || 'initial';
+          }
+          break;
+
+        case 'hidden':
+        case 'excluded':
+          if (this._supportsContentVisibility) {
+            this._element.style.contentVisibility = 'hidden';
+          } else {
+            this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
+            this._element.style.display = 'none';
+          }
+          break;
       }
     }
   },

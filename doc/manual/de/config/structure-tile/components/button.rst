@@ -183,7 +183,7 @@ Optional kann der Button über ein ``text``-Attribut eine zusätzliche Beschrift
             <entry range-min="1">active</entry>
         </cv-styling>
     </cv-meta>
-    <cv-button class="round-button" mapping="light" styling="button" text="Licht">
+    <cv-button class="round-button" mapping="light" styling="button" name="Licht">
         <cv-address transform="DPT:1.001" mode="readwrite">1/4/2</cv-address>
         <cv-icon class="value">ri-question-mark</cv-icon>
     </cv-button>

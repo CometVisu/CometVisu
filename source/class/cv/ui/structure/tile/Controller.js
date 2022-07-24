@@ -463,7 +463,7 @@ class TemplatedElement extends HTMLElement {
       this.innerHTML = '';
       this.appendChild(content);
     } else {
-      qx.logger.Log.error(controller, '['+templateId+'] no template found for id', templateId);
+      qx.log.Logger.error(controller, '['+templateId+'] no template found for id', templateId);
     }
   }
 }

@@ -331,5 +331,5 @@ mehrere Komponenten in einer Kachel.
 .. toctree::
     :hidden:
 
-    Icon <elements/icon>
+    Icon <components/icon>
     Address <elements/address>

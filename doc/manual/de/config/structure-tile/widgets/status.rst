@@ -61,8 +61,8 @@ anzuzeigen. Über ein zusätzliches Styling kann man das Icon auch noch entsprec
         <span slot="label">Fenster</span>
     </cv-status>
 
-Dazu wird für den "icon"-slot kein einfaches :ref:`cv-icon <tile-element-icon>` sondern ein
-:ref:`cv-value <tile-component-value>` mit darin liegendem :ref:`cv-icon <tile-element-icon>` verwendet.
+Dazu wird für den "icon"-slot kein einfaches :ref:`cv-icon <tile-component-icon>` sondern ein
+:ref:`cv-value <tile-component-value>` mit darin liegendem :ref:`cv-icon <tile-component-icon>` verwendet.
 Dadurch hat man die Möglichkeit ein mapping/styling für dieses Icon zu definieren. Damit das Value-Element die selben
 Werte benutzt, wie das Status-Element muss hier nochmal die selbe :ref:`cv-address <tile-element-address>`-Element benutzt werden.
 

@@ -5,8 +5,8 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
-  extend: cv.ui.structure.tile.elements.AbstractCustomElement,
+qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
+  extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
   ***********************************************
@@ -21,11 +21,6 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
     text: {
       check: 'String',
       apply: '_applyText'
-    },
-    styleClass: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyStyleClass'
     },
     type: {
       check: ['circle', 'semiCircle'],
@@ -55,8 +50,10 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
     __canvas: null,
     __availableLabelWidth: null,
     __defaultLabelFontSize: null,
+    _queuedFitText: null,
 
     _init() {
+      this.base(arguments);
       const element = this._element;
       const style = document.querySelector(':root').style;
       const hasFixedRadius = element.hasAttribute('radius');
@@ -177,24 +174,51 @@ qx.Class.define('cv.ui.structure.tile.elements.RoundProgress', {
       }
     },
 
+    _fitText() {
+      if (this.__label && this.__label.textContent) {
+        if (this.isVisible()) {
+          if (!this.__canvas) {
+            this.__canvas = document.createElement('canvas');
+            this.__context = this.__canvas.getContext('2d');
+            const compStyle = window.getComputedStyle(this.__label);
+            this.__context.font = compStyle.getPropertyValue('font');
+            this.__defaultLabelFontSize = compStyle.getPropertyValue('font-size');
+          }
+          const metrics = this.__context.measureText(this.__label.textContent);
+          if (metrics.width > this.__availableLabelWidth) {
+            // adjust font-size
+            const factor = this.__availableLabelWidth / metrics.width;
+            this.__label.style.fontSize = Math.floor(parseInt(this.__defaultLabelFontSize) * factor) + 'px';
+          } else {
+            this.__label.style.fontSize = this.__defaultLabelFontSize;
+          }
+          this._queuedFitText = false;
+        } else {
+          this._queuedFitText = true;
+        }
+      }
+    },
+
+    _applyVisible(visible) {
+      if (visible && this._queuedFitText) {
+        this._fitText();
+      }
+    },
+
+
     _applyText(value) {
       if (this.isConnected()) {
         if (!this.__label) {
           this.__label = this._element.querySelector(':scope > label');
-          this.__canvas = document.createElement('canvas');
-          this.__context = this.__canvas.getContext('2d');
-          const compStyle = window.getComputedStyle(this.__label);
-          this.__context.font = compStyle.getPropertyValue('font');
-          this.__defaultLabelFontSize = compStyle.getPropertyValue('font-size');
         }
-        this.__label.innerText = value;
-        const metrics = this.__context.measureText(value);
-        if (metrics.width > this.__availableLabelWidth) {
-          // adjust font-size
-          const factor = this.__availableLabelWidth / metrics.width;
-          this.__label.style.fontSize = Math.floor(parseInt(this.__defaultLabelFontSize) * factor) + 'px';
+        this.__label.textContent = value;
+        if (!value) {
+          // empty text, just reset to default font size
+          if (this.__defaultLabelFontSize) {
+            this.__label.style.fontSize = this.__defaultLabelFontSize;
+          }
         } else {
-          this.__label.style.fontSize = this.__defaultLabelFontSize;
+          this._fitText();
         }
       }
     }

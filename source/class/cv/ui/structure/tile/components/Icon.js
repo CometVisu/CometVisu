@@ -1,8 +1,8 @@
 /**
  *
  */
-qx.Class.define('cv.ui.structure.tile.elements.Icon', {
-  extend: cv.ui.structure.tile.elements.AbstractCustomElement,
+qx.Class.define('cv.ui.structure.tile.components.Icon', {
+  extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
   ***********************************************
@@ -16,11 +16,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
       apply: '_applyId',
       // the id is used as 'class' property and therefore must not have spaces
       validate: qx.util.Validate.regExp(/^[^\s]+$/, 'icon ID must not contain spaces')
-    },
-    styleClass: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyStyleClass'
     }
   },
 
@@ -33,6 +28,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
     __initialized: false,
 
     _init() {
+      this.base(arguments);
       const element = this._element;
       if (element.textContent.trim()) {
         this.__initialized = true;
@@ -62,20 +58,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
             element.textContent = '';
           }
         }
-      }
-    },
-
-    _applyStyleClass(value, oldValue) {
-      const classes = this._element.classList;
-      if (oldValue) {
-        if (classes.contains(oldValue)) {
-          classes.replace(oldValue, value);
-        } else {
-          classes.add(value);
-          classes.remove(oldValue);
-        }
-      } else if (value) {
-        classes.add(value);
       }
     }
   },

@@ -13,6 +13,8 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
   ***********************************************
   */
   members: {
+    _queuedOverflowDetection: null,
+
     _init() {
       this.base(arguments);
       const target = this._element.querySelector('.value');
@@ -24,12 +26,23 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
       }
     },
 
+    _applyVisible(visible) {
+      if (visible && this._queuedOverflowDetection) {
+        this._detectOverflow();
+      }
+    },
+
     _detectOverflow() {
-      const target = this._element.querySelector('.value');
-      if (target.clientWidth > target.parentElement.clientWidth) {
-        target.classList.add('scroll');
+      if (this.isVisible()) {
+        const target = this._element.querySelector('.value');
+        if (target.clientWidth > target.parentElement.clientWidth) {
+          target.classList.add('scroll');
+        } else {
+          target.classList.remove('scroll');
+        }
+        this._queuedOverflowDetection = false;
       } else {
-        target.classList.remove('scroll');
+        this._queuedOverflowDetection = true;
       }
     },
 

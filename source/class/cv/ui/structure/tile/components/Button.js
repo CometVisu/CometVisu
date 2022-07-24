@@ -52,10 +52,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       nullable: true,
       apply: '_applyStyleClass'
     },
-    text: {
+    name: {
       check: 'String',
       init: '',
-      apply: '_applyText'
+      apply: '_applyName'
     },
     progress: {
       check: 'Number',
@@ -88,8 +88,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
       }
-      if (element.hasAttribute('text')) {
-        this.setText(element.getAttribute('text'));
+      if (element.hasAttribute('name')) {
+        this.setName(element.getAttribute('name'));
       }
       if (element.hasAttribute('progress')) {
         this.setProgress(element.getAttribute('progress'));
@@ -280,7 +280,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
     },
 
-    _applyText(value) {
+    _applyName(value) {
       if (!this.__textLabel) {
         this.__textLabel = document.createElement('label');
         this.__textLabel.classList.add('button-label');
