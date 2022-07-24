@@ -8,7 +8,6 @@ $buttonBackground: #1f1f1f;
 $primaryColor: #ff9900;
 $secondaryColor: #666666;
 $borderColor: #7a7a7a;
-$blockerColor: #000000;
 $shadowColor: rgb(0 0 0 / 20%);
 $blockerColor: rgb(0 0 0 / 70%);
 $greenBackground: #175927;
@@ -84,6 +83,17 @@ body {
         }
     }
 
+    > footer > nav > cv-menu[appearance="dock"] {
+        position: fixed;
+        background-color: $buttonBackground;
+        border-radius: 44px;
+        left: 50%;
+        transform: translate(-50%, -90px);
+        padding: calc(var(--spacing) * 0.5) var(--spacing);
+        white-space: nowrap;
+        max-width: calc(100vw - calc(var(--spacing) * 2))
+    }
+
     &.mobile main aside[mobile="false"] {
         display: none;
     }
@@ -100,11 +110,16 @@ body {
 
         box-shadow: inset 0 0 12px 6px $headerBackground;*/
 
+        &.has-dock > cv-page.active {
+            padding-bottom: 100px;
+        }
+
         > cv-page {
             &.active, &.sub-active {
                 flex-basis: 0;
                 flex-grow: 999;
                 min-inline-size: 50%;
+                scroll-padding-bottom: 116px;
             }
             &.sub-active {
                 content-visibility: visible;
@@ -162,121 +177,155 @@ body {
         position: relative;
         z-index: 10;
 
-        /* expand icons in sub levels */
-        > ul > li > details > ul details > summary:after {
-            content: "\ea54";
-        }
+        cv-menu {
+            /* expand icons in sub levels */
+            > ul > li > details > ul details > summary:after {
+                content: "\ea54";
+            }
 
-        > ul ul ul {
-            margin-left: calc(100% - 1.2em);
-            margin-top: -40px;
-        }
+            > ul ul ul {
+                margin-left: calc(100% - 1.2em);
+                margin-top: -40px;
+            }
 
-        > ul ul {
-            /* popup sub-menus */
-            background-color: $appBackground;
-            box-shadow: 0 6px 8px 4px $shadowColor;
-            border-bottom-left-radius: var(--spacing);
-            border-bottom-right-radius: var(--spacing);
-        }
+            > ul ul {
+                /* popup sub-menus */
+                background-color: $appBackground;
+                box-shadow: 0 6px 8px 4px $shadowColor;
+                border-bottom-left-radius: var(--spacing);
+                border-bottom-right-radius: var(--spacing);
+            }
 
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
 
-            li {
-                display: inline-block;
-                position: relative;
-                height: 40px;
-
-                details {
-                    summary::-webkit-details-marker, summary::marker {
-                        display: none;
-                        content: "";
-                    }
-                    z-index: 100;
-
-                    summary {
-                        display: inline-block;
-                        white-space: nowrap;
-                    }
-
-                    summary:after {
-                        display: inline-block;
-                        margin-left: calc(var(--spacing)*-1);
-                        content: "\ea50";
-                        font-family: 'remixicon' !important;
-                        font-style: normal;
-                        -webkit-font-smoothing: antialiased;
-                        -moz-osx-font-smoothing: grayscale;
-                        vertical-align: text-bottom;
-                        font-size: 28px;
-                        line-height: 20px;
-                    }
-
-                    &[open] > summary {
-                        background-color: $appBackground;
-                        border-top-left-radius: var(--spacing);
-                        border-top-right-radius: var(--spacing);
-                    }
-
-                    &[open] > summary:after {
-                        transform:rotate(180deg);
-                    }
-
-                    ul {
-                        z-index: 100;
-                        position: absolute;
-                        li {
-                            padding: 0;
-                            width: 100%;
-                        }
-                    }
-                }
-                a, p {
+                li {
                     display: inline-block;
-                    padding: var(--spacing) calc(var(--spacing)*2);
-                }
-                a {
-                    i {
-                        vertical-align: text-top;
-                        &:first-child {
-                            margin-right: var(--spacing);
+                    position: relative;
+                    height: 40px;
+
+                    details {
+                        summary::-webkit-details-marker, summary::marker {
+                            display: none;
+                            content: "";
                         }
-                        &:last-child {
-                            margin-left: var(--spacing);
+
+                        z-index: 100;
+
+                        summary {
+                            display: inline-block;
+                            white-space: nowrap;
+                        }
+
+                        summary:after {
+                            display: inline-block;
+                            margin-left: calc(var(--spacing) * -1);
+                            content: "\ea50";
+                            font-family: 'remixicon' !important;
+                            font-style: normal;
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale;
+                            vertical-align: text-bottom;
+                            font-size: 28px;
+                            line-height: 20px;
+                        }
+
+                        &[open] > summary {
+                            background-color: $appBackground;
+                            border-top-left-radius: var(--spacing);
+                            border-top-right-radius: var(--spacing);
+                        }
+
+                        &[open] > summary:after {
+                            transform: rotate(180deg);
+                        }
+
+                        ul {
+                            z-index: 100;
+                            position: absolute;
+
+                            li {
+                                padding: 0;
+                                width: 100%;
+                            }
                         }
                     }
-                }
-                /*&:hover {
-                    background-color: $secondaryColor;
-                }*/
-                &.active {
-                    > a, > details > summary, > details > summary > a {
-                        color: $primaryColor;
+
+                    a, p {
+                        display: inline-block;
+                        padding: var(--spacing) calc(var(--spacing) * 2);
+                        i {
+                            vertical-align: text-top;
+
+                            &:first-child {
+                                margin-right: var(--spacing);
+                            }
+
+                            &:last-child {
+                                margin-left: var(--spacing);
+                            }
+                        }
                     }
-                }
-                &.sub-active {
-                    > details > summary:after {
-                        color: $primaryColor;
+
+                    /*&:hover {
+                        background-color: $secondaryColor;
+                    }*/
+                    &.active {
+                        > a, > details > summary, > details > summary > a {
+                            color: $primaryColor;
+                        }
+                    }
+
+                    &.sub-active {
+                        > details > summary:after {
+                            color: $primaryColor;
+                        }
                     }
                 }
             }
-        }
-        a, p {
-            color: $primaryText;
-            text-align: center;
-            text-decoration: none;
-            font-size: 20px;
-            margin: 0;
-        }
 
-        .menu {
-            display: none;
+            a, p {
+                color: $primaryText;
+                text-align: center;
+                text-decoration: none;
+                font-size: 20px;
+                margin: 0;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            &[appearance="icons"], &[appearance="dock"] {
+                /* change appearance of the first menu level */
+                > ul > li > details > summary > a,
+                > ul > li > details > summary > p,
+                > ul > li > a {
+                    font-size: 14px;
+                    text-align: center;
+
+                    i {
+                        font-size: 40px;
+                        display: block
+                    }
+                }
+                > ul > li > details > summary {
+                    position: relative;
+                    &:after {
+                        position: absolute;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+
+                > ul > li {
+                    height: 72px;
+                }
+            }
         }
     }
-
 
     cv-page {
         display: flex;
@@ -317,8 +366,8 @@ body {
             }
         }
 
-        > :not(cv-group) {
-            /* Row gap for everything that is no detail element */
+        > :not(cv-group):not(cv-page) {
+            /* Row gap for everything that is no detail or page element */
             margin-bottom: var(--spacing);
         }
 

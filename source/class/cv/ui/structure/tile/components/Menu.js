@@ -9,15 +9,36 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    appearance: {
+      check: ['text', 'icons', 'dock'],
+      init: 'text',
+      apply: '_applyAppearance'
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
-    _target: null,
+
+    _applyAppearance(value, oldValue) {
+      const main = document.querySelector('main');
+      if (oldValue === 'dock') {
+        main.classList.remove('has-dock');
+      }
+      if (value === 'dock') {
+        main.classList.add('has-dock');
+      }
+    },
 
     _init() {
       const element = this._element;
-      const target = this._target = element.parentElement;
       const model = element.getAttribute('model');
       if (!model) {
         this.error('no model defined, menu will be empty');
@@ -26,7 +47,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       if (model === 'pages') {
         qx.event.message.Bus.subscribe('setup.dom.append', this._generateMenu, this);
         const rootList = document.createElement('ul');
-        target.replaceChild(rootList, element);
+        element.appendChild(rootList);
 
         // add hamburger menu
         const ham = document.createElement('a');
@@ -36,7 +57,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         const icon = document.createElement('i');
         icon.classList.add('ri-menu-line');
         ham.appendChild(icon);
-        target.appendChild(ham);
+        element.appendChild(ham);
 
         qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
         // add some general listeners to close
@@ -56,13 +77,13 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           parentElement = firstPage.parentElement;
         }
       }
-      const rootList = this._target.querySelector(':scope > ul');
+      const rootList = this._element.querySelector(':scope > ul');
       this.__generatePagesModel(rootList, parentElement, currentPage);
     },
 
     _onHamburgerMenu() {
-      this._target.classList.toggle('responsive');
-      for (let detail of this._target.querySelectorAll('details')) {
+      this._element.classList.toggle('responsive');
+      for (let detail of this._element.querySelectorAll('details')) {
         detail.setAttribute('open', '');
       }
     },
@@ -90,10 +111,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
      * @private
      */
     _closeAll(except) {
-      if (this._target.classList.contains('responsive')) {
-        this._target.classList.remove('responsive');
+      if (this._element.classList.contains('responsive')) {
+        this._element.classList.remove('responsive');
       } else {
-        for (let detail of this._target.querySelectorAll('details[open]')) {
+        for (let detail of this._element.querySelectorAll('details[open]')) {
           if (!except || detail !== except) {
             detail.removeAttribute('open');
           }
@@ -132,12 +153,18 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         if (page.querySelectorAll(':scope > cv-page').length > 0) {
           const details = document.createElement('details');
           const summary = document.createElement('summary');
+          const pageIcon = page.getAttribute('icon') || '';
           if (page.querySelector(':scope > *:not(cv-page)')) {
             // only add this as link, when this page has real content
             summary.appendChild(a);
           } else {
             const p = document.createElement('p');
-            p.textContent = pageName;
+            if (pageIcon) {
+              const i = document.createElement('i');
+              i.classList.add(pageIcon);
+              p.appendChild(i);
+            }
+            p.appendChild(document.createTextNode(pageName));
             summary.appendChild(p);
           }
           details.appendChild(summary);
@@ -154,16 +181,16 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     _onPageChange(ev) {
       const pageElement = ev.getData();
       // unset all currently active
-      for (let link of this._target.querySelectorAll('li.active, li.sub-active')) {
+      for (let link of this._element.querySelectorAll('li.active, li.sub-active')) {
         link.classList.remove('active');
         link.classList.remove('sub-active');
       }
       // find link to current page
-      for (let link of this._target.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
+      for (let link of this._element.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
         // activate all parents
         let parent = link.parentElement;
         let activeName = 'active';
-        while (parent && parent.tagName.toLowerCase() !== 'nav') {
+        while (parent && parent.tagName.toLowerCase() !== 'cv-menu') {
           if (parent.tagName.toLowerCase() === 'li') {
             parent.classList.add(activeName);
             // all other parents have a sub-menu active
@@ -189,6 +216,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'menu', class extends QxConnector {
       constructor() {
         super(QxClass);
+      }
+      static get observedAttributes() {
+        return ['appearance'];
       }
     });
   }

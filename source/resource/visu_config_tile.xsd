@@ -223,6 +223,19 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="appearance" default="text">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Appearance of the menu.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erscheinungsbild des Menüs.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="text" />
+          <xsd:enumeration value="icons" />
+          <xsd:enumeration value="dock" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="main">
@@ -270,16 +283,22 @@
         <xsd:element name="h1" type="text"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID of this page</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID der Seite</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Title of this page</xsd:documentation>
         <xsd:documentation xml:lang="de">Titel der Seite</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="id" type="xsd:string" use="required">
+    <xsd:attribute name="icon" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">ID of this page</xsd:documentation>
-        <xsd:documentation xml:lang="de">ID der Seite</xsd:documentation>
+        <xsd:documentation xml:lang="en">Icon of this page in navigation menus</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon der Seite in Navigationsmenüs</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
