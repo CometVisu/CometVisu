@@ -236,6 +236,12 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="depth" type="xsd:integer" default="-1">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Depth of the menu. Value '-1' (default) includes all pages, '0' only for pages on the first level, and so on.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Tiefe des Menüs. Ein Wert von '-1' (default) bindet alle Seiten inkl. Unterseiten ein, ein Wert von '0' bindet nur die obersten Ebene ein usw.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="main">

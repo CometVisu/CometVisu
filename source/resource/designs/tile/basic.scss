@@ -173,13 +173,32 @@ body {
         transform: translate(-50%, -50%);
     }
 
+    footer > nav > cv-menu {
+        > ul ul {
+            /* popup sub-menus */
+            box-shadow: 0 6px 8px 4px $shadowColor;
+            border-radius: var(--spacing) var(--spacing) 0 0;
+        }
+        ul li .details {
+            &[open] > .summary {
+                border-radius: 0 0 var(--spacing) var(--spacing);
+            }
+
+            ul {
+                z-index: 100;
+                position: absolute;
+                top: 0;
+                transform: translate(0, -100%);
+            }
+        }
+    }
     nav {
         position: relative;
         z-index: 10;
 
         cv-menu {
             /* expand icons in sub levels */
-            > ul > li > details > ul details > summary:after {
+            > ul > li > .details > ul .details > .summary:after {
                 content: "\ea54";
             }
 
@@ -206,22 +225,21 @@ body {
                     position: relative;
                     height: 40px;
 
-                    details {
-                        summary::-webkit-details-marker, summary::marker {
-                            display: none;
-                            content: "";
-                        }
+                    .details:not([open]) > *:not(.summary) {
+                        display: none
+                    }
 
+                    .details {
                         z-index: 100;
 
-                        summary {
+                        .summary {
                             display: inline-block;
                             white-space: nowrap;
+                            padding: var(--spacing) calc(var(--spacing) * 3) var(--spacing) var(--spacing);
                         }
 
-                        summary:after {
+                        .summary:after {
                             display: inline-block;
-                            margin-left: calc(var(--spacing) * -1);
                             content: "\ea50";
                             font-family: 'remixicon' !important;
                             font-style: normal;
@@ -232,13 +250,13 @@ body {
                             line-height: 20px;
                         }
 
-                        &[open] > summary {
+                        &[open] > .summary {
                             background-color: $appBackground;
                             border-top-left-radius: var(--spacing);
                             border-top-right-radius: var(--spacing);
                         }
 
-                        &[open] > summary:after {
+                        &[open] > .summary:after {
                             transform: rotate(180deg);
                         }
 
@@ -255,7 +273,12 @@ body {
 
                     a, p {
                         display: inline-block;
-                        padding: var(--spacing) calc(var(--spacing) * 2);
+                    }
+                    > a, > p {
+                        margin: var(--spacing) calc(var(--spacing) * 2);
+                    }
+
+                    a {
                         i {
                             vertical-align: text-top;
 
@@ -273,13 +296,13 @@ body {
                         background-color: $secondaryColor;
                     }*/
                     &.active {
-                        > a, > details > summary, > details > summary > a {
+                        > a, > .details > .summary, > .details > .summary > a {
                             color: $primaryColor;
                         }
                     }
 
                     &.sub-active {
-                        > details > summary:after {
+                        > .details > .summary:after {
                             color: $primaryColor;
                         }
                     }
@@ -300,23 +323,25 @@ body {
 
             &[appearance="icons"], &[appearance="dock"] {
                 /* change appearance of the first menu level */
-                > ul > li > details > summary > a,
-                > ul > li > details > summary > p,
+                > ul > li > .details > .summary > a,
+                > ul > li > .details > .summary > p,
                 > ul > li > a {
                     font-size: 14px;
                     text-align: center;
 
                     i {
                         font-size: 40px;
-                        display: block
+                        display: block;
+                        margin: 0;
                     }
                 }
-                > ul > li > details > summary {
+                > ul > li > .details > .summary {
                     position: relative;
                     &:after {
                         position: absolute;
-                        top: 50%;
-                        transform: translate(-50%, -50%);
+                        height: 100%;
+                        line-height: 72px;
+                        top: 0;
                     }
                 }
 

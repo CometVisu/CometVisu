@@ -17,6 +17,16 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       check: ['text', 'icons', 'dock'],
       init: 'text',
       apply: '_applyAppearance'
+    },
+    depth: {
+      check: '!isNaN(value) && value >= -1 && value <= 100',
+      init: -1,
+      apply: '_applyDepth'
+    },
+    domReady: {
+      check: 'Boolean',
+      init: false,
+      apply: '_generateMenu'
     }
   },
 
@@ -37,6 +47,18 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
     },
 
+    _applyDepth(value) {
+      console.log('depth', value);
+      if (this.isDomReady()) {
+        this._generateMenu();
+      }
+    },
+
+    _onDomAppended() {
+      this.setDomReady(true);
+      qx.event.message.Bus.unsubscribe('setup.dom.append', this._onDomAppended, this);
+    },
+
     _init() {
       const element = this._element;
       const model = element.getAttribute('model');
@@ -45,7 +67,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         return;
       }
       if (model === 'pages') {
-        qx.event.message.Bus.subscribe('setup.dom.append', this._generateMenu, this);
+        qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
         const rootList = document.createElement('ul');
         element.appendChild(rootList);
 
@@ -68,7 +90,6 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     },
 
     _generateMenu() {
-      qx.event.message.Bus.unsubscribe('setup.dom.append', this._generateMenu, this);
       const currentPage = window.location.hash.substring(1);
       let parentElement = document.querySelector('main');
       if (parentElement) {
@@ -78,7 +99,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         }
       }
       const rootList = this._element.querySelector(':scope > ul');
-      this.__generatePagesModel(rootList, parentElement, currentPage);
+      if (rootList) {
+        rootList.replaceChildren();
+        this.__generatePagesModel(rootList, parentElement, currentPage, 0);
+      }
     },
 
     _onHamburgerMenu() {
@@ -123,7 +147,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     },
 
 
-    __generatePagesModel(parentList, parentElement, currentPage) {
+    __generatePagesModel(parentList, parentElement, currentPage, currentLevel) {
       if (!parentElement) {
         return;
       }
@@ -150,9 +174,22 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           li.classList.add('active');
         }
         parentList.appendChild(li);
-        if (page.querySelectorAll(':scope > cv-page').length > 0) {
-          const details = document.createElement('details');
-          const summary = document.createElement('summary');
+        const depth = this.getDepth();
+        if ((depth < 0 || depth > currentLevel) && page.querySelectorAll(':scope > cv-page').length > 0) {
+          const details = document.createElement('div');
+          details.classList.add('details');
+          const summary = document.createElement('div');
+          summary.classList.add('summary');
+          summary.addEventListener('click', ev => {
+            if (details.hasAttribute('open')) {
+              details.removeAttribute('open');
+            } else {
+              details.setAttribute('open', '');
+            }
+          });
+          a.addEventListener('click', ev => {
+            ev.stopPropagation();
+          });
           const pageIcon = page.getAttribute('icon') || '';
           if (page.querySelector(':scope > *:not(cv-page)')) {
             // only add this as link, when this page has real content
@@ -170,7 +207,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           details.appendChild(summary);
           const subList = document.createElement('ul');
           details.appendChild(subList);
-          this.__generatePagesModel(subList, page, currentPage);
+          this.__generatePagesModel(subList, page, currentPage, currentLevel++);
           li.appendChild(details);
         } else {
           li.appendChild(a);
@@ -218,7 +255,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         super(QxClass);
       }
       static get observedAttributes() {
-        return ['appearance'];
+        return ['appearance', 'depth'];
       }
     });
   }
