@@ -7,6 +7,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.ui.structure.tile.MVisibility,
 
   /*
   ***********************************************

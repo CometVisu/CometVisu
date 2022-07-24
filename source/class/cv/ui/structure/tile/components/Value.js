@@ -2,11 +2,10 @@
  * Shows a value from the backend, as label or image/icon
  * @author Tobias Bräutigam
  * @since 2022
- * @ignore ResizeObserver
  */
 qx.Class.define('cv.ui.structure.tile.components.Value', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-
+  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MResize],
   /*
   ***********************************************
     MEMBERS
@@ -14,33 +13,41 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
   */
   members: {
     _queuedOverflowDetection: null,
+    _debouncedDetectOverflow: null,
 
     _init() {
       this.base(arguments);
+      this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
       const target = this._element.querySelector('.value');
-      if (target.tagName.toLowerCase() === 'label') {
-        // check for overflowing text
-        new ResizeObserver(() => {
-          this._detectOverflow();
-        }).observe(target);
+      if (target && target.tagName.toLowerCase() === 'label') {
+        // check for overflowing text, when labels parent gets resized
+        this.setResizeTarget(this._element);
+        this.addListener('resize', this._debouncedDetectOverflow, this);
       }
     },
 
     _applyVisible(visible) {
-      if (visible && this._queuedOverflowDetection) {
-        this._detectOverflow();
+      if (visible) {
+        if (this._queuedOverflowDetection) {
+          this._debouncedDetectOverflow();
+        }
+      } else {
+        const target = this._element.querySelector('.value');
+        if (target && target.classList.contains('scroll')) {
+          target.classList.remove('scroll');
+        }
       }
     },
 
     _detectOverflow() {
+      const target = this._element.querySelector('.value');
       if (this.isVisible()) {
-        const target = this._element.querySelector('.value');
+        this._queuedOverflowDetection = false;
         if (target.clientWidth > target.parentElement.clientWidth) {
           target.classList.add('scroll');
         } else {
           target.classList.remove('scroll');
         }
-        this._queuedOverflowDetection = false;
       } else {
         this._queuedOverflowDetection = true;
       }
@@ -72,7 +79,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             break;
           case 'label':
             target.innerHTML = mappedValue;
-            this._detectOverflow();
+            this._debouncedDetectOverflow();
             break;
         }
       }
