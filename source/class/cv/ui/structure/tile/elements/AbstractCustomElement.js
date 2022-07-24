@@ -100,8 +100,8 @@ class QxConnector extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this.instance && qx.Class.hasProperty(this.instance.constructor, name)) {
-      this.instance.set(name, newValue);
+    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
+      this._instance.set(name, newValue);
     }
   }
 }
