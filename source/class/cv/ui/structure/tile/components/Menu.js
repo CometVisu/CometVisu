@@ -188,7 +188,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
             }
           });
           a.addEventListener('click', ev => {
-            ev.stopPropagation();
+            // only stop propagation if we are not close to the right border
+            if (ev.pointerType !== 'touch' || (ev.currentTarget.clientWidth - ev.offsetX) >= 8) {
+              ev.stopPropagation();
+            }
           });
           const pageIcon = page.getAttribute('icon') || '';
           if (page.querySelector(':scope > *:not(cv-page)')) {
