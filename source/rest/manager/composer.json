@@ -9,15 +9,14 @@
   ],
   "require": {
     "php": "^7.4 || ^8.1",
-    "slim/slim": "^4.5.0",
+    "slim/slim": "^4.10.0",
     "dyorg/slim-token-authentication": "dev-slim4",
     "ybelenko/openapi-data-mocker": "^1.0",
     "ybelenko/openapi-data-mocker-server-middleware": "^1.0",
-    "slim/psr7": "^1.1.0",
-    "sentry/sdk": "^3.1"
+    "slim/psr7": "^1.1.0"
   },
   "require-dev": {
-    "overtrue/phplint": "^2.0.2",
+    "overtrue/phplint": "^5.3",
     "squizlabs/php_codesniffer": "^3.5"
   },
   "autoload": {

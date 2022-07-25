@@ -558,12 +558,6 @@ class SlimRouter
         }
         $this->slimApp = AppFactory::create();
 
-        // middlewares requires Psr\Container\ContainerInterface
-        $container = $this->slimApp->getContainer();
-        if (array_key_exists('HTTP_X_TRANSACTION_ID', $_SERVER)) {
-          \Sentry\init($settings->get('sentry'));
-        }
-
         foreach ($this->operations as $operation) {
             $callback = function ($request, $response, $arguments) use (
                 $operation
