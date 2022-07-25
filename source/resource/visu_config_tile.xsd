@@ -399,6 +399,12 @@
     </xsd:attribute>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
+    <xsd:attribute name="background-image" type="xsd:anyURI">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Background image for this tile.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Hintergrundbild für diese Kachel.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-row">

@@ -7,6 +7,19 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    backgroundImage: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyBackgroundImage'
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -15,6 +28,25 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     _init() {
       this.base(arguments);
       this.initPopup();
+      if (this._element.hasAttribute('background-image')) {
+        this.setBackgroundImage(this._element.getAttribute('background-image'));
+      }
+    },
+
+    _applyBackgroundImage(value) {
+      if (value) {
+        this._element.style.backgroundImage = `url(${value})`;
+        let overlay = this._element.querySelector(':scope > div.overlay');
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.classList.add('overlay');
+          this._element.insertBefore(overlay, this._element.firstChild);
+        }
+        this._element.classList.add('has-bg-image');
+      } else {
+        this._element.style.backgroundImage = '';
+        this._element.classList.remove('has-bg-image');
+      }
     },
 
     /**
@@ -25,18 +57,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     onStateUpdate(ev) {
       if (!this.base(arguments, ev)) {
         if (ev.detail.target === 'background-image') {
-          this._element.style.backgroundImage = ev.detail.state ? `url(${ev.detail.state})` : '';
-          let overlay = this._element.querySelector(':scope > div.overlay');
-          if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            this._element.insertBefore(overlay, this._element.firstChild);
-          }
-          if (ev.detail.state) {
-            this._element.classList.add('has-bg-image');
-          } else {
-            this._element.classList.remove('has-bg-image');
-          }
+          this.setBackgroundImage(ev.detail.state);
         } else {
           this.debug('unhandled address target', ev.detail.target);
         }
