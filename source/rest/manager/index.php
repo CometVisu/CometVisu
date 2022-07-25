@@ -23,7 +23,6 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 use OpenAPIServer\Container;
 use OpenAPIServer\SlimRouter;
-use OpenAPIServer\Middleware\SentryMiddleware;
 
 // load config file
 $config = [];
@@ -53,8 +52,6 @@ $app->addBodyParsingMiddleware();
  * Otherwise exceptions thrown from it will not be handled
  */
 $app->addRoutingMiddleware();
-
-$app->add(new SentryMiddleware);
 
 /**
  * Add Error Handling Middleware

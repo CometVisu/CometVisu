@@ -94,10 +94,5 @@ return [
         //     // mark mocked response to distinguish real and fake responses
         //     return $response->withHeader('X-OpenAPIServer-Mock', 'pong');
         // },
-    ],
-    'sentry' => [
-      'dsn' => 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
-      'environment' => $package['version'],
-      'release' => $revision
     ]
 ];
