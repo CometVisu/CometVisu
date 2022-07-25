@@ -578,10 +578,12 @@ body {
 
         cv-row {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: row;
+            align-content: center;
             align-items: center;
-            max-width: 100%;
+            width: 100%;
+            gap: var(--spacing);
+            justify-content: space-evenly;
         }
         > [align='center'] {
             align-self: center;
@@ -589,7 +591,7 @@ body {
 
         > [row='first'] {
             grid-row: 1;
-            justify-content: space-evenly;
+            align-content: space-evenly;
         }
 
         > [row='middle'] {
@@ -598,7 +600,8 @@ body {
 
         > [row='last'] {
             grid-row: $tileRows;
-            justify-content: flex-start;
+            align-items: flex-start;
+            justify-content: center;
         }
 
         > [row='last'] > label:first-child {
@@ -1254,7 +1257,9 @@ body {
     cv-dimmer {
         cv-tile {
             cv-row[colspan="2"][rowspan="2"] {
-                justify-content: end;
+                cv-button {
+                    align-self: end;
+                }
             }
             cv-row[colspan="2"] {
                 > * {
