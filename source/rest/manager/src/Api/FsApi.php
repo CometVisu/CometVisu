@@ -67,6 +67,9 @@ class FsApi extends AbstractFsApi
                 if (sizeof($uploadedFiles) > 0) {
                     // upload file mode, get the information from the uploaded file
                     $options = $request->getParsedBody();
+                    if ($options == null) {
+                      $options = [];
+                    }
                     if (!array_key_exists("filename", $options)) {
                         $options["filename"] = $uploadedFiles[
                             "file"
@@ -166,6 +169,7 @@ class FsApi extends AbstractFsApi
                         $fsPath,
                         Helper::getQueryParam($request, "force")
                     );
+                  return $response->withStatus(200);
                 } catch (Exception $e) {
                     return Helper::withJson(
                         $response,
@@ -180,6 +184,7 @@ class FsApi extends AbstractFsApi
                         $fsPath,
                         Helper::getQueryParam($request, "force")
                     );
+                  return $response->withStatus(200);
                 } catch (Exception $e) {
                     return Helper::withJson(
                         $response,
@@ -461,7 +466,7 @@ class FsApi extends AbstractFsApi
             if (is_array($content)) {
                 $uploadedFile = $content["file"];
                 if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-                    $content = file_get_contents($uploadedFile->file);
+                    $content = $uploadedFile->getStream()->getContents();
                     if (!$content) {
                         throw new Exception(
                             "Uploaded file could not be read",
