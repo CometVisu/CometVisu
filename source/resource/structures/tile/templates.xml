@@ -124,7 +124,7 @@
                 </cv-value>
                 <cv-value>
                     <slot name="titleAddress">NEEDS ADDRESS</slot>
-                    <label class="value primary medium"/>
+                    <label class="value primary" value-size="medium"/>
                 </cv-value>
             </cv-row>
             <cv-button class="round-button" row="2" column="1" size="small">
