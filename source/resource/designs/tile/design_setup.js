@@ -7,7 +7,7 @@ window.addEventListener('resize', () => {
  * Resize tile width to consume the available screen width
  */
 function resizeTiles() {
-  const page = document.querySelector('cv-page');
+  const page = document.querySelector('cv-page.active');
   if (lastWindowWidth !== window.innerWidth && page) {
     const style = document.querySelector(':root').style;
     let spacing = parseInt(style.getPropertyValue('--spacing')) || 8;
