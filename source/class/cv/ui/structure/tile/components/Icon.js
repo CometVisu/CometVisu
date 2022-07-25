@@ -6,6 +6,16 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (element) {
+    this.base(arguments, element);
+    this._idRegex = /^[^\s]+$/;
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -15,7 +25,13 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
       nullable: true,
       apply: '_applyId',
       // the id is used as 'class' property and therefore must not have spaces
-      validate: qx.util.Validate.regExp(/^[^\s]+$/, 'icon ID must not contain spaces')
+      transform: '_transformId'
+    },
+
+    color: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyColor'
     }
   },
 
@@ -26,6 +42,15 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
   */
   members: {
     __initialized: false,
+    _idRegex: null,
+
+    _transformId(value) {
+      if (this._idRegex.test(value)) {
+        return value;
+      }
+      this.error('invalid icon id:', value);
+      return null;
+    },
 
     _init() {
       this.base(arguments);
@@ -59,6 +84,16 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
           }
         }
       }
+    },
+
+    _applyColor(value, oldValue) {
+      const element = this._element;
+      if (oldValue) {
+        element.classList.remove(oldValue);
+      }
+      if (value) {
+        element.classList.add(value);
+      }
     }
   },
 
@@ -66,6 +101,10 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
     customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'icon', class extends QxConnector {
       constructor() {
         super(Clazz);
+      }
+
+      static get observedAttributes() {
+        return ['color'];
       }
     });
   }

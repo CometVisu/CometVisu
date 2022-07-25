@@ -96,6 +96,12 @@
             </xsd:restriction>
           </xsd:simpleType>
         </xsd:attribute>
+        <xsd:attribute name="color" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Icon color.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Farbe des Icons.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
