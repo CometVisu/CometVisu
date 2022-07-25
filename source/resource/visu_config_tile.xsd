@@ -687,6 +687,7 @@
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="address" />
+                    <xsd:enumeration value="tileAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -745,6 +746,7 @@
                     <xsd:enumeration value="stopAddress" />
                     <xsd:enumeration value="upAddress" />
                     <xsd:enumeration value="positionAddress" />
+                    <xsd:enumeration value="tileAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -770,6 +772,7 @@
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="address" />
+                    <xsd:enumeration value="tileAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -903,6 +906,7 @@
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="address" />
+                    <xsd:enumeration value="tileAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -961,6 +965,7 @@
                     <xsd:enumeration value="hvacAddress" />
                     <xsd:enumeration value="temperatureAddress" />
                     <xsd:enumeration value="measuredTemperatureAddress" />
+                    <xsd:enumeration value="tileAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -1038,6 +1043,7 @@
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="switchAddress" />
                     <xsd:enumeration value="brightnessAddress" />
+                    <xsd:enumeration value="tileAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
