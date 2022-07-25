@@ -385,7 +385,7 @@ body {
              The page padding is used to calculate tile width and also the spacing variable (in design_setup.js)
              In order to avoid a circular dependency we must not use it here!
              */
-            padding: var(--spacing) 16px;
+            padding: 8px;
             content-visibility: visible;
             &.no-content-visibility {
                 display: flex; 
@@ -847,18 +847,25 @@ body {
 
         label {
             color: inherit;
+
+            &.value {
+                font-size: large;
+
+                &[value-size="medium"] {
+                    font-size: medium;
+                }
+
+                &[value-size="large"] {
+                    font-size: xxx-large;
+                    line-height: 0.8em;
+                }
+
+                > * {
+                    vertical-align: middle;
+                }
+            }
         }
 
-        label.value[value-size="medium"] {
-            font-size: medium;
-        }
-        label.value:not([value-size]), label.value[value-size="normal"] {
-            font-size: large;
-        }
-        label.value[value-size="large"] {
-            font-size: xxx-large;
-            line-height: 0.8em;
-        }
         label.unit {
             color: $primaryText;
         }
