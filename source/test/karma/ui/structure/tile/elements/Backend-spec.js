@@ -106,7 +106,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     const second = document.createElement('cv-backend');
     second.setAttribute('name', 'main');
     second.setAttribute('type', 'openhab');
-    cv.io.BackendConnections.hasBackend.and.callThrough();
+    cv.io.BackendConnections.hasClient.and.callThrough();
 
     spyOn(cv.core.notifications.Router, 'dispatchMessage').and.callFake(() => null);
     document.body.appendChild(second);
