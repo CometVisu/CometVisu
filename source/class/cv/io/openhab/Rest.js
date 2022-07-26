@@ -375,8 +375,8 @@ qx.Class.define('cv.io.openhab.Rest', {
     getLastError: function() {
       return this.__lastError;
     },
-    restart: function(full) {
-      this.error('Not implemented');
+    restart: function() {
+      this.debug('Not implemented');
     },
 
     update: function(json) {}, // jshint ignore:line
