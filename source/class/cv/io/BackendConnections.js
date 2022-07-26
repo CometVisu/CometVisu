@@ -43,6 +43,9 @@ qx.Class.define('cv.io.BackendConnections', {
     },
 
     addBackendClient(name, type, backendUrl, source) {
+      if (name === 'system') {
+        throw Error('"system" is not allowed as a backend name');
+      }
       const client = cv.Application.createClient(type, backendUrl);
       if (source) {
         client.configuredIn = source;
@@ -96,6 +99,12 @@ qx.Class.define('cv.io.BackendConnections', {
      * @param backendName {String?} name of the backend
      */
     getClient(backendName) {
+      if (backendName === 'system') {
+        if (!this.hasClient('system')) {
+          this.__clients.system = new cv.io.System();
+        }
+        return this.__clients.system;
+      }
       if (!backendName) {
         backendName = cv.data.Model.getInstance().getDefaultBackendName();
       }

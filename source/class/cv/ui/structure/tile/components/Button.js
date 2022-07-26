@@ -334,6 +334,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           source: this
         }
       });
+      if (this.getType('trigger')) {
+        // simulate feedback
+        this.setOn(true);
+        qx.event.Timer.once(() => {
+          this.setOn(false);
+        }, null, 250);
+      }
       this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
       event.stopPropagation();
     },
