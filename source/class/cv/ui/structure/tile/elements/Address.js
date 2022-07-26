@@ -92,6 +92,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             target: this._element.getAttribute('target') || '',
             raw: state,
             mapping: mapping,
+            addressValue: this._element.hasAttribute('value') ? this._element.getAttribute('value') : null,
             source: this
           }
         });

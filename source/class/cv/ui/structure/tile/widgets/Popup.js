@@ -22,8 +22,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
    ******************************************************
    */
   members: {
-    _closeButton: null,
-    _autoCloseTimer: null,
 
     _init() {
       this.base(arguments);
@@ -56,16 +54,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       const popup = this._element;
       if (!popup.hasAttribute('open')) {
         popup.setAttribute('open', '');
-        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
         if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
-          let blocker = document.body.querySelector('.modal-popup-blocker');
-          if (!blocker) {
-            blocker = document.createElement('div');
-            blocker.classList.add('modal-popup-blocker');
-            document.body.appendChild(blocker);
-          }
-          blocker.style.display = 'block';
-          cv.ui.structure.tile.widgets.Popup.openedPopups.push(this);
+          this.registerModalPopup();
         }
         if (this._autoCloseTimer) {
           this._autoCloseTimer.start();
@@ -77,25 +67,12 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       const popup = this._element;
       if (popup) {
         popup.removeAttribute('open');
-        qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
-        const index = cv.ui.structure.tile.widgets.Popup.openedPopups.indexOf(this);
-        cv.ui.structure.tile.widgets.Popup.openedPopups.splice(index, 1);
         if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
-          let blocker = document.body.querySelector('.modal-popup-blocker');
-          if (blocker && cv.ui.structure.tile.widgets.Popup.openedPopups.length === 0) {
-            blocker.style.display = 'none';
-          }
+          this.unregisterModalPopup();
         }
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
-      }
-    },
-
-    _onPointerDown(ev) {
-      if (!cv.util.Tree.isChildOf(ev.getTarget(), this._element)) {
-        // clicked outside -> close
-        this.close();
       }
     },
 

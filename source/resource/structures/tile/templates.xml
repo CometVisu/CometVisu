@@ -78,7 +78,7 @@
     </template>
     <template id="status">
         <cv-tile size="1x0.5">
-            <cv-row rowspan="3" style="margin-left: calc(var(--spacing)*2);"><slot name="icon">NEEDS ICON</slot></cv-row>
+            <cv-row rowspan="3"><slot name="icon">NEEDS ICON</slot></cv-row>
             <cv-row colspan="2" column="2" rowspan="3">
                 <cv-value slot-format="" slot-mapping="" slot-styling="">
                     <slot name="address">NEEDS ADDRESS</slot>

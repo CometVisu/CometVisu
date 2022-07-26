@@ -15,6 +15,15 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       check: 'String',
       nullable: true,
       apply: '_applyBackgroundImage'
+    },
+
+    /**
+     * Turn this tile into a popup
+     */
+    popup: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyPopup'
     }
   },
 
@@ -27,7 +36,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
 
     _init() {
       this.base(arguments);
-      this.initPopup();
+      this._initPopupChild();
       if (this._element.hasAttribute('background-image')) {
         this.setBackgroundImage(this._element.getAttribute('background-image'));
       }
@@ -49,6 +58,38 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       }
     },
 
+    close() {
+      this.setPopup(false);
+      if (this._autoCloseTimer) {
+        this._autoCloseTimer.stop();
+      }
+    },
+
+    _applyPopup(value) {
+      if (value) {
+        let closeButton = this._element.querySelector(':scope > button.close');
+        if (!closeButton) {
+          closeButton = document.createElement('button');
+          closeButton.classList.add('close');
+          const icon = document.createElement('i');
+          icon.classList.add('ri-close-line');
+          closeButton.appendChild(icon);
+          this._element.appendChild(closeButton);
+          closeButton.addEventListener('click', () => this.setPopup(false));
+        }
+        closeButton.style.display = 'block';
+        this._element.classList.add('popup');
+        this.registerModalPopup();
+      } else {
+        this._element.classList.remove('popup');
+        let closeButton = this._element.querySelector(':scope > button.close');
+        if (closeButton) {
+          closeButton.style.display = 'none';
+        }
+        this.unregisterModalPopup();
+      }
+    },
+
     /**
      * Handles the incoming data from the backend for this widget
      *
@@ -56,10 +97,32 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
      */
     onStateUpdate(ev) {
       if (!this.base(arguments, ev)) {
-        if (ev.detail.target === 'background-image') {
-          this.setBackgroundImage(ev.detail.state);
-        } else {
-          this.debug('unhandled address target', ev.detail.target);
+        switch (ev.detail.target) {
+          case 'background-image':
+            this.setBackgroundImage(ev.detail.state);
+            break;
+
+          case 'popup':
+            if (ev.detail.addressValue) {
+              // only open when the sent value equals the fixed value
+              // noinspection EqualityComparisonWithCoercionJS
+              if (ev.detail.addressValue == ev.detail.state) {
+                this.setPopup(true);
+                // this is not closing by address, so we set a close timeout to 3 minutes
+                if (!this._autoCloseTimer) {
+                  this._autoCloseTimer = new qx.event.Timer(180 * 1000);
+                  this._autoCloseTimer.addListener('interval', this.close, this);
+                }
+                this._autoCloseTimer.restart();
+              }
+            } else {
+              // open / close depending on value
+              this.setPopup(ev.detail.state === 1);
+            }
+            break;
+
+          default:
+            this.debug('unhandled address target', ev.detail.target);
         }
       }
     }
