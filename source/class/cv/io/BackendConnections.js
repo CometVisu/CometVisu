@@ -29,21 +29,24 @@ qx.Class.define('cv.io.BackendConnections', {
         case 'knxd':
         case 'default':
         default:
-          return this.addBackendClient('main', 'knxd', backendKnxdUrl);
+          return this.addBackendClient('main', 'knxd', backendKnxdUrl, 'server');
 
         case 'mqtt':
-          return this.addBackendClient('main', 'mqtt', backendMQTTUrl);
+          return this.addBackendClient('main', 'mqtt', backendMQTTUrl, 'server');
 
         case 'openhab':
         case 'openhab2':
         case 'oh':
         case 'oh2':
-          return this.addBackendClient('main', 'openhab', backendOpenHABUrl);
+          return this.addBackendClient('main', 'openhab', backendOpenHABUrl, 'server');
       }
     },
 
-    addBackendClient(name, type, backendUrl) {
+    addBackendClient(name, type, backendUrl, source) {
       const client = cv.Application.createClient(type, backendUrl);
+      if (source) {
+        client.configuredIn = source;
+      }
       this.__clients[name] = client;
 
       const model = cv.data.Model.getInstance();
@@ -83,7 +86,7 @@ qx.Class.define('cv.io.BackendConnections', {
      * @param name {String} name of the backend
      * @return {boolean}
      */
-    hasBackend(name) {
+    hasClient(name) {
       return Object.prototype.hasOwnProperty.call(this.__clients, name);
     },
 

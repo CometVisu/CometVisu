@@ -41,11 +41,15 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         let name = type;
         if (element.hasAttribute('name')) {
           name = element.getAttribute('name');
-        } else if (!cv.io.BackendConnections.hasBackend('main')) {
+        } else if (!cv.io.BackendConnections.hasClient('main')) {
           // we need one main backend
           name = 'main';
+        } else if (cv.io.BackendConnections.getClient('main').configuredIn === 'config') {
+          qx.log.Logger.warn(this, 'there is already a backend registered with name "main" and type', type, 'skipping this one');
+          return cv.io.BackendConnections.getClient('main');
         }
-        if (cv.io.BackendConnections.hasBackend(name)) {
+        qx.log.Logger.debug(this, 'init backend', name);
+        if (cv.io.BackendConnections.hasClient(name)) {
           const notification = {
             topic: 'cv.config.error',
             title: qx.locale.Manager.tr('Config error'),
@@ -55,9 +59,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             deletable: true
           };
           cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
-          return;
+          return null;
         }
-        const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl);
+        const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
         client.update = data => model.updateFrom(name, data); // override clients update function
         client.login(true, credentials, () => {
           this.debug(name, 'connected');
