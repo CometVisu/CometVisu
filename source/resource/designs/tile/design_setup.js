@@ -1,6 +1,6 @@
 let lastWindowWidth = 0;
 window.addEventListener('resize', () => {
-  resizeTiles();
+  window.requestAnimationFrame(resizeTiles);
 });
 
 /**
@@ -39,11 +39,11 @@ function resizeTiles() {
       }
       const tileWidth = availableWidth / columns - (columns - 1) * spacing;
       const cellWidth = Math.floor(tileWidth / 3);
-      //console.log('Cols:', columns, tileWidth);
+      //console.log('Cols:', columns, tileWidth, 'aw:', availableWidth, 'padX:', pageXPadding);
       style.setProperty('--tileCellWidth', cellWidth + 'px');
       qx.event.message.Bus.dispatchByName('cv.design.tile.cellWidthChanged', cellWidth);
     }
     lastWindowWidth = window.innerWidth;
   }
 }
-resizeTiles();
+setTimeout(resizeTiles, 100);
