@@ -65,6 +65,9 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
         const [name, icon] = value;
         this.setLabel(name);
         this.setIcon(icon);
+      } else {
+        this.resetLabel();
+        this.resetIcon();
       }
     },
 
@@ -76,21 +79,24 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
           if (icon) {
             icon.setValue(value);
           }
+          this._excludeChildControl('icon');
         } else {
           this._iconChildControlName = 'icon';
           const icon = this.getChildControl(this._iconChildControlName, true);
           if (icon) {
             icon.setSource(value);
           }
+          this._excludeChildControl('htmlIcon');
         }
       } else {
         this._iconChildControlName = 'icon';
+        this._excludeChildControl('htmlIcon');
       }
       this._handleIcon();
     },
 
     _handleIcon() {
-      if (this.getIcon() == null || this.getShow() === 'label') {
+      if (this.getIcon() === null || this.getShow() === 'label') {
         this._excludeChildControl(this._iconChildControlName);
       } else {
         this._showChildControl(this._iconChildControlName);
