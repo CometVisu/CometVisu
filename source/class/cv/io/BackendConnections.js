@@ -55,8 +55,14 @@ qx.Class.define('cv.io.BackendConnections', {
         client.configuredIn = source;
       }
       this.__clients[name] = client;
-
       const model = cv.data.Model.getInstance();
+      client.addListener('changeConnected', ev => {
+        const data = {};
+        // convert to internal state used for boolean values
+        data[`backend:${name}:connected`] = ev.getData() ? 1 : 0;
+        // this is a value the system backend
+        model.updateFrom('system', data);
+      });
       client.update = data => model.updateFrom(name, data); // override clients update function
       if (cv.Config.reporting) {
         const recordInstance = cv.report.Record.getInstance();
