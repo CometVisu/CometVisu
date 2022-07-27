@@ -79,6 +79,15 @@ qx.Class.define('cv.io.System', {
                 this.warn('unhandled backend action:', value);
             }
           }
+        } else if (target === 'browser') {
+          switch (value) {
+            case 'reload':
+              window.location.reload();
+              break;
+
+            default:
+              this.warn('unhandled browser action:', value);
+          }
         }
       }
     },
