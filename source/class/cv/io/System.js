@@ -23,7 +23,7 @@ qx.Class.define('cv.io.System', {
 
     connected: {
       check: 'Boolean',
-      init: false,
+      init: true,
       event: 'changeConnected'
     },
 
@@ -48,7 +48,7 @@ qx.Class.define('cv.io.System', {
     getType() {
       return this.backendName;
     },
-    
+
     receive: function (json) {
     },
 
