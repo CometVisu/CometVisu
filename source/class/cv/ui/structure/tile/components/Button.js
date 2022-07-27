@@ -334,7 +334,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           source: this
         }
       });
-      if (this.getType('trigger')) {
+      if (this.getType() === 'trigger') {
         // simulate feedback
         this.setOn(true);
         qx.event.Timer.once(() => {
