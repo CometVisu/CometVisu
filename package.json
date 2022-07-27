@@ -18,7 +18,8 @@
     "test": "grunt karma:debug",
     "lint": "qx lint source/class/cv/ client/source/class/cv/",
     "make-client": "cd client && qx compile -t build",
-    "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/"
+    "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
+    "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate"
   },
   "license": "GPL-3.0",
   "authors": [
@@ -36,6 +37,8 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.8.7",
+    "@openapitools/openapi-generator-cli": "^2.4.25",
+    "@prettier/plugin-php": "^0.17.6",
     "@qooxdoo/compiler": "^1.0.4",
     "chmodr": "^1.2.0",
     "coffeescript": "^2.6.1",

@@ -26,6 +26,8 @@
  * @asset(icons/*)
  * @asset(sentry/bundle.min.js)
  * @asset(sentry/bundle.tracing.min.js)
+ * @asset(sentry/bundle.min.js.map)
+ * @asset(sentry/bundle.tracing.min.js.map)
  * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -907,6 +909,54 @@ qx.Class.define('cv.Application',
       }
     },
 
+    __constraintFails: function (serverVersionId, constraint) {
+      const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+      if (match) {
+        const operator = match[1];
+        const majorConstraint = parseInt(match[2]);
+        const hasMinorVersion = match[3] !== undefined;
+        const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+        const hasPatchVersion = match[4] !== undefined;
+        const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+        const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+        const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
+        // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+        switch (operator) {
+          case '>=':
+            if (serverVersionId < constraintId) {
+              return true;
+            }
+            break;
+          case '>':
+            if (serverVersionId <= constraintId) {
+              return true;
+            }
+            break;
+          case '<=':
+            if (serverVersionId > maxId) {
+              return true;
+            }
+            break;
+          case '<':
+            if (serverVersionId >= maxId) {
+              return true;
+            }
+            break;
+          case '^':
+            if (serverVersionId < constraintId || serverVersionId > 10000 *(majorConstraint+1)) {
+              return true;
+            }
+            break;
+          case '~':
+            if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint+1) : serverVersionId > (10000 *(majorConstraint) + 100 * (patchConstraint+1))) {
+              return true;
+            }
+            break;
+        }
+      }
+      return false;
+    },
+
     _checkBackend: function () {
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
@@ -917,68 +967,25 @@ qx.Class.define('cv.Application',
           method: 'GET',
           accept: 'application/json'
         });
+
         xhr.addListenerOnce('success', function (e) {
           const req = e.getTarget();
           const env = req.getResponse();
           const serverVersionId = env.PHP_VERSION_ID;
-          //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
-          let disable = false;
-          if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
-            const parts = env.required_php_version.split(' ');
-            disable = parts.some(constraint => {
-              const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
-              if (match) {
-                const operator = match[1];
-                const majorConstraint = parseInt(match[2]);
-                const hasMinorVersion = match[3] !== undefined;
-                const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-                const hasPatchVersion = match[4] !== undefined;
-                const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-                const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-                const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
-                // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
-                switch (operator) {
-                  case '>=':
-                    if (serverVersionId < constraintId) {
-                      return true;
-                    }
-                    break;
-                  case '>':
-                    if (serverVersionId <= constraintId) {
-                      return true;
-                    }
-                    break;
-                  case '<=':
-                    if (serverVersionId > maxId) {
-                      return true;
-                    }
-                    break;
-                  case '<':
-                    if (serverVersionId >= maxId) {
-                      return true;
-                    }
-                    break;
-                  case '^':
-                    if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                      return true;
-                    }
-                    break;
-                  case '~':
-                    if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > (10000 * (majorConstraint) + 100 * (patchConstraint + 1))) {
-                      return true;
-                    }
-                    break;
-                }
-              }
-              return false;
-            });
-            if (disable) {
-              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-              this.setManagerDisabled(true);
-              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-            } else {
-              this.info('Manager available for PHP version', env.phpversion);
-            }
+          const orParts = env.required_php_version.split('||').map(e => e.trim());
+          const passed = orParts.map(orConstraint => {
+            const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
+            // pass when no failed andPart has been found
+            return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
+          });
+          // one of the OR constraints need to pass
+          const enable = passed.some(res => res === true);
+          if (enable) {
+            this.info('Manager available for PHP version', env.phpversion);
+          } else {
+            this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+            this.setManagerDisabled(true);
+            this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
           }
           this.setManagerChecked(true);
 
