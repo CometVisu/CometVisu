@@ -784,11 +784,15 @@ body {
         box-sizing: border-box;
         text-align: center;
         color: $secondaryColor;
-        border: 1px solid $secondaryColor;
-        box-shadow: 0 0 1px 0 $secondaryColor inset, 0 0 1px 0 $secondaryColor;
+        border: 1px solid currentColor;
+        box-shadow: 0 0 1px 0 currentColor inset, 0 0 1px 0 currentColor;
         align-self: center;
         cursor: pointer;
         display: block;
+
+        .progress {
+            border: 1px solid $secondaryColor;
+        }
 
         &[name] {
             /* we need space for the label on the bottom */
@@ -843,10 +847,10 @@ body {
         &.active {
             color: $primaryColor;
         }
-        &.active:not(.progress) {
+     /*   &.active:not(.progress) {
             border: 1px solid $primaryColor;
             box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
-        }
+        }*/
 
         > label.button-label {
             position: absolute;
@@ -1321,6 +1325,17 @@ body {
                 &:first-child {
                     align-items: flex-end;
                 }
+            }
+        }
+    }
+
+    cv-switch {
+        cv-tile {
+            cv-row[row="last"] {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0;
             }
         }
     }
