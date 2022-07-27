@@ -46,6 +46,10 @@ qx.Class.define('cv.io.BackendConnections', {
       if (name === 'system') {
         throw Error('"system" is not allowed as a backend name');
       }
+      if (this.__clients[name]) {
+        this.__clients[name].dispose();
+        delete this.__clients[name];
+      }
       const client = cv.Application.createClient(type, backendUrl);
       if (source) {
         client.configuredIn = source;
@@ -82,6 +86,15 @@ qx.Class.define('cv.io.BackendConnections', {
       client.addListener('changeConnected', () => this._checkBackendConnection(name), this);
 
       return client;
+    },
+
+    removeClient(client) {
+      for (let name in this.__clients) {
+        if (this.__clients[name] === client) {
+          delete this.__clients[name];
+          break;
+        }
+      }
     },
 
     /**

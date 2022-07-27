@@ -46,10 +46,13 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
         this._init();
         this._initialized = true;
       } else {
+        this._disconnected();
         this._initialized = false;
       }
     },
     _init() {},
+
+    _disconnected() {},
 
     getElement() {
       return this._element;

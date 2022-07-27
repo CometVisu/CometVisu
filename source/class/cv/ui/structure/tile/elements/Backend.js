@@ -10,6 +10,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
   ***********************************************
   */
   members: {
+    _name: null,
+
     _init() {
       const element = this._element;
       const type = element.getAttribute('type');
@@ -46,7 +48,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           name = 'main';
         } else if (cv.io.BackendConnections.getClient('main').configuredIn === 'config') {
           qx.log.Logger.warn(this, 'there is already a backend registered with name "main" and type', type, 'skipping this one');
-          return cv.io.BackendConnections.getClient('main');
+          return;
         }
         qx.log.Logger.debug(this, 'init backend', name);
         if (cv.io.BackendConnections.hasClient(name)) {
@@ -59,9 +61,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             deletable: true
           };
           cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
-          return null;
+          return;
         }
         const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
+        this._client = client;
+        this._name = name;
         client.update = data => model.updateFrom(name, data); // override clients update function
         client.login(true, credentials, () => {
           this.debug(name, 'connected');
@@ -75,6 +79,19 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         });
       } else {
         this.error('<cv-backend> must have a type attribute');
+      }
+    },
+
+    _disconnected() {
+      if (this._client) {
+        const model = cv.data.Model.getInstance();
+        if (this._element.hasAttribute('default') && this._element.getAttribute('default') === 'true') {
+          model.resetDefaultBackendName();
+        }
+        this._client.terminate();
+        cv.io.BackendConnections.removeClient(this._client);
+        this._client.dispose();
+        this._client = null;
       }
     }
   },
