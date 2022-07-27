@@ -23,6 +23,10 @@ Sofern kein ``name``-Attribut existiert wird der Name des Backends nach folgende
 Der oberste `cv-backend``-Eintrag ohne ``name``-Attribut erhält den Namen "main", bei den folgenden Einträgen
 entspricht der Name dem Wert des ``type``-Attributs.
 
+.. HINT::
+
+    Der Name ``system`` ist für das interne :ref:`System-Backend <tile-backend-system>` reserviert und darf nicht benutzt werden.
+
 Beispiel für die gleichzeitige Nutzung des KNXD und MQTT Backends:
 
 .. code:: xml
@@ -83,3 +87,42 @@ Der MQTT-Broker muss Websocket Verbindungen unterstützen, damit die CometVisu d
 Sofern der Broker Zugangsdaten benötigt können diese über die ``username`` und ``password`` Attribute angegeben werden.
 
 
+.. _tile-backend-system:
+
+Zugriff auf interne Stati und Funktionen
+----------------------------------------
+
+Ein spezielles Backend, welches immer vorhanden ist und nicht extra konfiguriert werden muss, ist das System-Backend.
+
+Mit diesem Backend kann man sich z.B. einen Schalter bauen der den Verbindungsstatus zu einem Backend anzeigt und
+beim Klick darauf die Verbindung neu startet.
+
+.. code-block:: xml
+
+    <cv-meta>
+        <cv-mapping name="Connected">
+            <entry value="0">ri-link-unlink-m</entry>
+            <entry value="1">ri-link-m</entry>
+        </cv-mapping>
+        <cv-styling name="RedActive">
+            <entry value="0">red</entry>
+            <entry value="1">active</entry>
+        </cv-styling>
+    </cv-meta>
+    ...
+    <cv-switch mapping="Connected" styling="RedActive">
+        <cv-address slot="address" backend="system" mode="write" value="restart">backend:main</cv-address>
+        <cv-address slot="address" backend="system" mode="read">backend:main:connected</cv-address>
+        <span slot="primaryLabel">Verbindung</span>
+        <span slot="secondaryLabel">openHAB</span>
+    </cv-switch>
+
+Als weitere Alternative kann ein Neu-laden des Browserfensters angestoßen werden.
+
+.. code-block:: xml
+
+    <cv-switch>
+        <cv-address slot="address" backend="system" mode="write" value="reload">browser</cv-address>
+        <cv-icon slot="icon">ri-refresh-line</cv-icon>
+        <span slot="primaryLabel">Neu laden</span>
+    </cv-switch>
