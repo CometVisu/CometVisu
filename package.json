@@ -17,6 +17,7 @@
     "pretest": "qx compile",
     "test": "grunt karma:debug",
     "lint": "qx lint source/class/cv/ client/source/class/cv/",
+    "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
     "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate"
