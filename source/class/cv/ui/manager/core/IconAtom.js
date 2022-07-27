@@ -26,6 +26,16 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (label, icon) {
+    this.base(arguments, label, icon);
+    this._fontIconRegex = /^\<i.*class=".*(knxuf-|ri-)([^\s"]+).*".*\<\/i\>$/;
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -33,6 +43,11 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
     appearance: {
       refine: true,
       init: 'cv-icon'
+    },
+
+    model: {
+      check: 'Array',
+      apply: '_applyModel'
     }
   },
 
@@ -42,19 +57,43 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
   ***********************************************
   */
   members: {
-    _applyLabel: function (value) {
-      this.base(arguments, value);
-      this.getChildControl('icon').setName(value);
+    _fontIconRegex: null,
+    _iconChildControlName: null,
+
+    _applyModel: function (value) {
+      if (value) {
+        const [name, icon] = value;
+        this.setLabel(name);
+        this.setIcon(icon);
+      }
     },
 
-    /**
-     * Updates the visibility of the icon
-     */
-    _handleIcon : function() {
-      if (!this.getChildControl('icon').getName() || this.getShow() === 'label') {
-        this._excludeChildControl('icon');
+    _applyIcon(value, old) {
+      if (value) {
+        if (this._fontIconRegex.test(value)) {
+          this._iconChildControlName = 'htmlIcon';
+          const icon = this.getChildControl(this._iconChildControlName, true);
+          if (icon) {
+            icon.setValue(value);
+          }
+        } else {
+          this._iconChildControlName = 'icon';
+          const icon = this.getChildControl(this._iconChildControlName, true);
+          if (icon) {
+            icon.setSource(value);
+          }
+        }
       } else {
-        this._showChildControl('icon');
+        this._iconChildControlName = 'icon';
+      }
+      this._handleIcon();
+    },
+
+    _handleIcon() {
+      if (this.getIcon() == null || this.getShow() === 'label') {
+        this._excludeChildControl(this._iconChildControlName);
+      } else {
+        this._showChildControl(this._iconChildControlName);
       }
     },
 
@@ -64,10 +103,30 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
 
       switch (id) {
          case 'icon':
-           control = new cv.ui.manager.viewer.SvgIcon();
-           control.setAnonymous(true);
+           control = new cv.ui.manager.basic.Image(this.getIcon());
+           control.set({
+             anonymous: true,
+             scale: true,
+             maxHeight: 64
+           });
            this._addAt(control, 0);
+           if (this.getIcon() === null || this.getShow() === 'label') {
+             control.exclude();
+           }
            break;
+
+        case 'htmlIcon':
+          control = new qx.ui.basic.Label(this.getIcon());
+          control.set({
+            anonymous: true,
+            rich: true,
+            height: 64,
+            width: 64
+          });
+          this._addAt(control, 0);
+          if (this.getIcon() === null || this.getShow() === 'label') {
+            control.exclude();
+          }
        }
 
        return control || this.base(arguments, id);

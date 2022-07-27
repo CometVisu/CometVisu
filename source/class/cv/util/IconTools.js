@@ -335,7 +335,9 @@ qx.Class.define('cv.util.IconTools', {
           return '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"></i>';
         }
         let icon = document.createElement('i');
-        icon.setAttribute('class', classes);
+        if (classes) {
+          icon.setAttribute('class', classes);
+        }
         icon.classList.add('knxuf-' + iconID);
         if (style) {
           icon.setAttribute('style', style);

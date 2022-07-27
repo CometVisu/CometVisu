@@ -794,3 +794,7 @@ pre.inline { display: inline-block; }
   color: #b5a388;
   font-style: italic;
 }
+
+#manager .icon-preview {
+  font-size: 64px;
+}
