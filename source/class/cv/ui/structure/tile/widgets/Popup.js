@@ -6,6 +6,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.ui.structure.tile.MPopup,
 
   /*
   ***********************************************
