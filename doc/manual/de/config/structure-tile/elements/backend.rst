@@ -126,3 +126,6 @@ Als weitere Alternative kann ein Neu-laden des Browserfensters angestoßen werde
         <cv-icon slot="icon">ri-refresh-line</cv-icon>
         <span slot="primaryLabel">Neu laden</span>
     </cv-switch>
+
+Alternativ kann mit ``value="forced-reload"`` sichergestellt werden, dass die CometVisu Dateien wirklich neu geladen
+werden und der Browser-Cache umgangen wird.

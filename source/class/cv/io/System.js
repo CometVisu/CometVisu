@@ -80,9 +80,16 @@ qx.Class.define('cv.io.System', {
             }
           }
         } else if (target === 'browser') {
+          let url;
           switch (value) {
             case 'reload':
               window.location.reload();
+              break;
+
+            case 'forced-reload':
+              url = new URL(window.location.href);
+              url.searchParams.set('forceReload', 'true');
+              window.location.replace(url.toString());
               break;
 
             default:
