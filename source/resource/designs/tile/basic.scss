@@ -718,7 +718,7 @@ body {
     }
 
     cv-icon {
-        font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 2);
+        font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 1.5);
         position: relative;
 
         svg {
@@ -820,7 +820,7 @@ body {
         }
 
         cv-icon {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 2);
+            font-size: calc(var(--defaultButtonSize) / 1.5);
         }
 
         svg[type="circle"] {
@@ -849,11 +849,19 @@ body {
         &[size="small"] {
             width: calc(var(--defaultButtonSize) - var(--spacing));
             height: calc(var(--defaultButtonSize) - var(--spacing));
+
+            cv-icon {
+                font-size: calc((var(--defaultButtonSize)) / 2);
+            }
         }
 
         &[size="large"] {
             width: min(var(--tileCellWidth), var(--tileCellHeight));
             height: min(var(--tileCellWidth), var(--tileCellHeight));
+
+            cv-icon {
+                font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) / 2);
+            }
         }
 
         &.active {
@@ -878,6 +886,11 @@ body {
 
     cv-value {
         position: relative;
+        text-align: center;
+
+        &.active {
+            color: $primaryColor;
+        }
 
         p {
             margin-block-start: 0;
@@ -898,18 +911,22 @@ body {
             &.value {
                 font-size: large;
 
-                &[value-size="medium"] {
-                    font-size: medium;
-                }
-
-                &[value-size="large"] {
-                    font-size: xxx-large;
-                    line-height: 0.8em;
-                }
-
                 > * {
                     vertical-align: middle;
                 }
+            }
+
+            &[value-size="medium"] {
+                font-size: medium;
+            }
+
+            &[value-size="large"] {
+                font-size: xxx-large;
+                line-height: 0.8em;
+            }
+
+            &[value-size="small"] {
+                font-size: small;
             }
         }
 
@@ -1347,6 +1364,7 @@ body {
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
+                align-self: flex-start;
                 gap: 0;
             }
         }
