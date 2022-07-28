@@ -72,7 +72,7 @@ qx.Class.define('cv.io.System', {
           if (backend) {
             switch (value) {
               case 'restart':
-                backend.restart();
+                backend.restart(true);
                 break;
 
               default:
