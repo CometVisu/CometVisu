@@ -6,6 +6,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Chart', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.ui.structure.tile.MVisibility,
 
   /*
   ***********************************************
@@ -13,7 +14,24 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   statics: {
-    CSS_LOADED: false
+    JS_LOADED: new Promise(async (resolve, reject) => {
+      const check = () => typeof window.d3 === 'object';
+      await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
+      if (!check()) {
+        const timer = new qx.event.Timer(50);
+        let counter = 0;
+        timer.addListener('interval', () => {
+          counter++;
+          if (check()) {
+            resolve(true);
+          } else if (counter > 5) {
+            reject(new Error('Error loaded d3 library'));
+          }
+        });
+      } else {
+        resolve(true);
+      }
+    })
   },
 
   /*
@@ -43,23 +61,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _width: null,
     _height: null,
 
-    async _init() {
-      const element = this._element;
-      if (element.hasAttribute('type')) {
-        this.setType(element.getAttribute('type'));
-      }
-      if (!cv.ui.structure.tile.components.Chart.CSS_LOADED) {
-        await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
-        cv.ui.structure.tile.components.Chart.CSS_LOADED = true;
-      }
-
+    _initD3() {
       // set the dimensions and margins of the graph
       const margin = {top: 24, right: 24, bottom: 24, left: 24};
       const width = this._width = 392 - margin.left - margin.right;
       const height = this._height = 192 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
-      this._chart = d3.select(element)
+      this._chart = d3.select(this._element)
         .append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
@@ -86,8 +95,24 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
         });
       }
+    },
 
-      this._loadData();
+    async _init() {
+      const element = this._element;
+      if (element.hasAttribute('type')) {
+        this.setType(element.getAttribute('type'));
+      }
+      await cv.ui.structure.tile.components.Chart.JS_LOADED;
+      this._initD3();
+      if (this.isVisible()) {
+        this._loadData();
+      }
+    },
+
+    _applyVisible(value) {
+      if (value) {
+        this._loadData();
+      }
     },
 
     _loadData() {
