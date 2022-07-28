@@ -47,9 +47,9 @@ qx.Class.define('cv.Application',
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
       qx.io.PartLoader.require([lang]);
     }
-
-    qx.bom.PageVisibility.getInstance().addListener('change', function () {
-      this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === 'visible');
+    const pageVis = qx.bom.PageVisibility.getInstance();
+    pageVis.addListener('change', function () {
+      this.setActive(pageVis.getVisibilityState() === 'visible');
     }, this);
 
     // install global shortcut for opening the manager
