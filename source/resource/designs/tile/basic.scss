@@ -1287,6 +1287,8 @@ body {
         cv-tile {
             cv-row[row="first"] {
                 justify-content: center;
+                flex-direction: column;
+                gap: 0;
             }
 
             cv-value {

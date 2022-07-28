@@ -1020,6 +1020,21 @@
 
   <xsd:complexType name="cv-media-player">
     <xsd:sequence>
+      <xsd:element name="span" minOccurs="0">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="title" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="cv-address" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>

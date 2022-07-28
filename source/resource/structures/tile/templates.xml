@@ -118,17 +118,18 @@
     <template id="media-player">
         <cv-tile>
             <cv-row colspan="3" row="first">
+                <label class="secondary"><slot name="title"/></label>
                 <cv-value>
-                    <slot name="subtitleAddress">NEEDS ADDRESS</slot>
+                    <slot name="subtitleAddress" parent-scope="1">NEEDS ADDRESS</slot>
                     <label class="value secondary" value-size="medium"/>
                 </cv-value>
                 <cv-value>
-                    <slot name="titleAddress">NEEDS ADDRESS</slot>
+                    <slot name="titleAddress" parent-scope="1">NEEDS ADDRESS</slot>
                     <label class="value primary" value-size="medium"/>
                 </cv-value>
             </cv-row>
             <cv-button class="round-button" row="2" column="1" size="small">
-                <slot name="previousAddress">NEEDS ADDRESS</slot>
+                <slot name="previousAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-icon>ri-skip-back-mini-fill</cv-icon>
             </cv-button>
             <cv-button class="round-button" row="2" column="2" slot-mapping="tile-play-stop" slot-progress-mapping="tile-play-progress">
@@ -138,11 +139,11 @@
                 <cv-icon class="value">ri-stop-fill</cv-icon>
             </cv-button>
             <cv-button class="round-button" row="2" column="3" size="small">
-                <slot name="nextAddress">NEEDS ADDRESS</slot>
+                <slot name="nextAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-icon>ri-skip-forward-mini-fill</cv-icon>
             </cv-button>
             <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="100">
-                <slot name="volumeAddress">NEEDS ADDRESS</slot>
+                <slot name="volumeAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-icon class="decrease">ri-volume-down-line</cv-icon>
                 <cv-icon class="increase">ri-volume-up-line</cv-icon>
             </cv-slider>
