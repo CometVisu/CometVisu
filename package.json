@@ -57,7 +57,7 @@
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
     "glob": "^7.2.0",
-    "grunt": "^1.5.2",
+    "grunt": "^1.5.3",
     "grunt-banner": "^0.6.0",
     "grunt-bump": "^0.8.0",
     "grunt-chmod": "latest",
