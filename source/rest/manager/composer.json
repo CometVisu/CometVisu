@@ -8,7 +8,7 @@
     }
   ],
   "require": {
-    "php": "^7.4",
+    "php": ">=7.4",
     "slim/slim": "^4.10.0",
     "dyorg/slim-token-authentication": "dev-slim4",
     "slim/psr7": "^1.5.0",
