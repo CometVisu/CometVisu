@@ -71,6 +71,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     __token: null,
     __groups: null,
     __memberLookup: null,
+    __subscribedAddresses: null,
 
     getBackend: function () {
       return {};
@@ -245,6 +246,7 @@ qx.Class.define('cv.io.openhab.Rest', {
           update[entry.name] = entry.state;
         }, this);
         this.update(update);
+        this.__subscribedAddresses = addresses;
       }, this);
       // Send request
       req.send();
@@ -375,8 +377,15 @@ qx.Class.define('cv.io.openhab.Rest', {
     getLastError: function() {
       return this.__lastError;
     },
-    restart: function() {
-      this.debug('Not implemented');
+    restart: function(fullRestart) {
+      if (fullRestart) {
+        // re-read all states
+        if (this.__subscribedAddresses) {
+          this.subscribe(this.__subscribedAddresses);
+        } else {
+          this.debug('no subscribed addresses, skip reading all states.');
+        }
+      }
     },
 
     update: function(json) {}, // jshint ignore:line
