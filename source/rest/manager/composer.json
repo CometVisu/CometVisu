@@ -8,10 +8,11 @@
     }
   ],
   "require": {
-    "php": "^8.0",
+    "php": "^7.4",
     "slim/slim": "^4.10.0",
     "dyorg/slim-token-authentication": "dev-slim4",
-    "slim/psr7": "^1.5.0"
+    "slim/psr7": "^1.5.0",
+    "psr/log": "1.1.4"
   },
   "autoload": {
     "psr-4": { "OpenAPIServer\\": [
