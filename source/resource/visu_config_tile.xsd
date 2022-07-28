@@ -254,6 +254,12 @@
         <xsd:documentation xml:lang="de">Tiefe des Menüs. Ein Wert von '-1' (default) bindet alle Seiten inkl. Unterseiten ein, ein Wert von '0' bindet nur die obersten Ebene ein usw.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="show-labels" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Controls the label visibility.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit des Texts.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="main">

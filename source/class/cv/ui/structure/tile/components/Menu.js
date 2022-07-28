@@ -27,6 +27,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       check: 'Boolean',
       init: false,
       apply: '_generateMenu'
+    },
+    showLabels: {
+      check: 'Boolean',
+      init: true
     }
   },
 
@@ -47,8 +51,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
     },
 
-    _applyDepth(value) {
-      console.log('depth', value);
+    _applyDepth() {
       if (this.isDomReady()) {
         this._generateMenu();
       }
@@ -65,6 +68,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       if (!model) {
         this.error('no model defined, menu will be empty');
         return;
+      }
+      if (element.getAttribute('show-labels') === 'false') {
+        this.setShowLabels(false);
       }
       if (model === 'pages') {
         qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
@@ -166,10 +172,13 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         if (pageIcon) {
           const i = document.createElement('i');
           i.classList.add(pageIcon);
+          i.title = pageName;
           a.appendChild(i);
         }
-        const text = document.createTextNode(pageName);
-        a.appendChild(text);
+        if (this.isShowLabels()) {
+          const text = document.createTextNode(pageName);
+          a.appendChild(text);
+        }
         if (currentPage === pageId) {
           li.classList.add('active');
         }
@@ -202,9 +211,12 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
             if (pageIcon) {
               const i = document.createElement('i');
               i.classList.add(pageIcon);
+              i.title = pageName;
               p.appendChild(i);
             }
-            p.appendChild(document.createTextNode(pageName));
+            if (this.isShowLabels()) {
+              p.appendChild(document.createTextNode(pageName));
+            }
             summary.appendChild(p);
           }
           details.appendChild(summary);
