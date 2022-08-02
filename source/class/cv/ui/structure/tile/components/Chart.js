@@ -73,7 +73,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   members: {
-    _refreshTimer: null,
     _downloadedImage: null,
     _url: null,
     _headers: null,
@@ -81,6 +80,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _chart: null,
     _width: null,
     _height: null,
+    _loaded: null,
 
     _initD3() {
       // set the dimensions and margins of the graph
@@ -116,6 +116,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     _loadData() {
+      if (this._loaded && (Date.now() - this._loaded) < 300000) {
+        // don't reload within 5 minutes
+        return;
+      }
       const client = cv.io.BackendConnections.getClient();
       let key;
       let url;
@@ -223,6 +227,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             .x(d => x(d[0]))
             .y(d => y(d[1]))
           );
+        this._loaded = Date.now();
       }
     },
 
