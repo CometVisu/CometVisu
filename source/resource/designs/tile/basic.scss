@@ -428,6 +428,9 @@ body {
         &[wrap="false"] {
             flex-flow: row nowrap;
             overflow-x: auto;
+            > * {
+                flex-shrink: 0;
+            }
         }
 
         > summary {
