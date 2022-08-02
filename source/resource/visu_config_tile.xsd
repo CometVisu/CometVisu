@@ -610,6 +610,8 @@
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
+            <xsd:attribute name="color" type="color"/>
+            <xsd:attribute name="show-area" type="xsd:boolean"/>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
@@ -1252,6 +1254,13 @@
     </xsd:attribute>
     <xsd:attribute name="src" type="xsd:anyURI" />
   </xsd:complexType>
+
+
+  <xsd:simpleType name="color">
+    <xsd:restriction base="xsd:token">
+      <xsd:pattern value="#[\dA-F]{6}([\dA-F][\dA-F])?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
 
   <!--
   #####################################################################################################################

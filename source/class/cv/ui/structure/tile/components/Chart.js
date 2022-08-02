@@ -31,6 +31,27 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       } else {
         resolve(true);
       }
+    }).then(() => {
+      if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
+        // localize
+        d3.formatDefaultLocale({
+          'decimal': ',',
+          'thousands': '.',
+          'grouping': [3],
+          'currency': ['€', '']
+        });
+
+        d3.timeFormatDefaultLocale({
+          'dateTime': '%A, der %e. %B %Y, %X',
+          'date': '%d.%m.%Y',
+          'time': '%H:%M:%S',
+          'periods': ['AM', 'PM'],
+          'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+          'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+          'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+          'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+        });
+      }
     })
   },
 
@@ -74,27 +95,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .attr('height', height + margin.top + margin.bottom)
         .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
-
-      if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-        // localize
-        d3.formatDefaultLocale({
-          'decimal': ',',
-          'thousands': '.',
-          'grouping': [3],
-          'currency': ['€', '']
-        });
-
-        d3.timeFormatDefaultLocale({
-          'dateTime': '%A, der %e. %B %Y, %X',
-          'date': '%d.%m.%Y',
-          'time': '%H:%M:%S',
-          'periods': ['AM', 'PM'],
-          'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-          'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-          'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-          'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
-        });
-      }
     },
 
     async _init() {
@@ -119,9 +119,36 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const client = cv.io.BackendConnections.getClient();
       let key;
       let url;
+      const dataSet = this._element.querySelector(':scope > dataset');
       let ts = {
-        src: 'Temperature_FF_Living'
+        showArea: true,
+        color: '#FF9900',
+        type: 'line'
       };
+      let attr;
+      let name;
+      let value;
+      for (let i = 0; i < dataSet.attributes.length; i++) {
+        attr = dataSet.attributes.item(i);
+        // CamelCase attribute names
+        name = attr.name.split('-')
+          .map((part, i) => {
+            if (i > 0) {
+              return `${part.substring(0, 1).toUpperCase()}${part.substring(1)}`;
+            }
+            return part;
+          })
+          .join('');
+        value = attr.value;
+        if (value === 'true' || value === 'false') {
+          value = value === 'true';
+        } else if (/^\d+$/.test(value)) {
+          value = parseInt(value);
+        } else if (/^[\d.]+$/.test(value)) {
+          value = parseFloat(value);
+        }
+        ts[name] = value;
+      }
       let start = new Date();
       start.setTime(start.getTime() - 60*60*24*1000);
       url = client.getResourcePath('charts', {
@@ -175,22 +202,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .call(d3.axisLeft(y).ticks(5));
 
         // Add the area
-        this._chart.append('path')
-          .datum(tsdata)
-          .attr('fill', 'rgba(105,179,162,0.2)')
-          .attr('stroke-width', 1.5)
-          .attr('d', d3.area()
-            .x(d => x(d[0]))
-            .y0(() => this._height)
-            .y1(d => y(d[1]))
-          );
+        if (ts.showArea) {
+          this._chart.append('path')
+            .datum(tsdata)
+            .attr('fill', ts.color + '30')
+            .attr('d', d3.area()
+              .x(d => x(d[0]))
+              .y0(() => this._height)
+              .y1(d => y(d[1]))
+            );
+        }
 
         // draw the line
         this._chart.append('path')
           .datum(tsdata)
           .attr('fill', 'none')
-          .attr('stroke', 'rgb(105,179,162)')
-          .attr('class', 'line')
+          .attr('stroke', ts.color)
+          .attr('class', ts.type)
           .attr('d', d3.line()
             .x(d => x(d[0]))
             .y(d => y(d[1]))
