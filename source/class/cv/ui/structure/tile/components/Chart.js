@@ -127,7 +127,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       let ts = {
         showArea: true,
         color: '#FF9900',
-        type: 'line'
+        type: 'line',
+        start: 'end-1day',
+        end: 'now',
+        xFormat: '%H:%M',
+        xTicks: d3.timeHour.every(4)
       };
       let attr;
       let name;
@@ -144,21 +148,50 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           })
           .join('');
         value = attr.value;
-        if (value === 'true' || value === 'false') {
-          value = value === 'true';
-        } else if (/^\d+$/.test(value)) {
-          value = parseInt(value);
-        } else if (/^[\d.]+$/.test(value)) {
-          value = parseFloat(value);
+        if (name === 'series') {
+          switch (value) {
+            case 'hour':
+              ts.xTicks = d3.timeMinute.every(5);
+              ts.start = 'end-1' + value;
+              break;
+
+            case 'day':
+              ts.xTicks = d3.timeHour.every(4);
+              ts.start = 'end-1' + value;
+              break;
+
+            case 'week':
+              ts.xTicks = d3.timeDay.every(1);
+              ts.start = 'end-1' + value;
+              break;
+
+            case 'month':
+              ts.xTicks = d3.timeDay.every(5);
+              ts.start = 'end-1' + value;
+              break;
+
+            case 'year':
+              ts.xTicks = d3.timeDay.every(31);
+              ts.start = 'end-1' + value;
+              break;
+          }
+        } else {
+          if (value === 'true' || value === 'false') {
+            value = value === 'true';
+          } else if (/^\d+$/.test(value)) {
+            value = parseInt(value);
+          } else if (/^[\d.]+$/.test(value)) {
+            value = parseFloat(value);
+          }
+          ts[name] = value;
         }
-        ts[name] = value;
       }
       let start = new Date();
       start.setTime(start.getTime() - 60*60*24*1000);
       url = client.getResourcePath('charts', {
         src: ts.src,
-        start: 'end-1day',
-        end: 'now'
+        start: ts.start,
+        end: ts.end
       });
       if (!url) {
         return;
@@ -189,23 +222,29 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const width = this._width;
         const height = this._height;
         // Add X axis --> it is a date format
+        const timeBoundaries = d3.extent(tsdata, d => d[0]);
         const x = d3.scaleTime()
-          .domain(d3.extent(tsdata, d => d[0]))
+          .domain(timeBoundaries)
           .range([ 0, width ]);
 
         this._chart.append('g')
           .attr('transform', `translate(0, ${height})`)
-          .call(d3.axisBottom(x).ticks(10, '%H:%M'));
+          .call(d3.axisBottom(x).ticks(ts.xTicks, ts.xFormat));
 
         // Add Y axis
+        let minVal = d3.min(tsdata, d =>  +d[1]);
+        if (minVal > 1.0) {
+          minVal -= 1;
+        }
+        const maxVal = d3.max(tsdata, d =>  +d[1]) + 1;
         const y = d3.scaleLinear()
-          .domain([d3.min(tsdata, d =>  +d[1]) - 1, d3.max(tsdata, d =>  +d[1]) + 1])
+          .domain([minVal, maxVal])
           .range([ height, 0 ])
           .nice();
 
-        const yTicks = y.ticks().filter(tick => Number.isInteger(tick));
+        const yTicks = y.ticks(5).filter(tick => Number.isInteger(tick));
 
-          this._chart.append('g')
+        this._chart.append('g')
           .call(d3.axisLeft(y).tickValues(yTicks).tickFormat(d3.format('d')));
 
         // Add the area

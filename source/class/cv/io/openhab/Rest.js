@@ -109,6 +109,9 @@ qx.Class.define('cv.io.openhab.Rest', {
               case 'day':
                 interval = 24 * 60 * 60000;
                 break;
+              case 'week':
+                interval = 7 * 24 * 60 * 60000;
+                break;
               case 'month':
                 interval = 30 * 24 * 60 * 60000;
                 break;

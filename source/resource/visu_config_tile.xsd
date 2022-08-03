@@ -612,6 +612,18 @@
             </xsd:attribute>
             <xsd:attribute name="color" type="color"/>
             <xsd:attribute name="show-area" type="xsd:boolean"/>
+            <xsd:attribute name="series">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="hour" />
+                  <xsd:enumeration value="day" />
+                  <xsd:enumeration value="week" />
+                  <xsd:enumeration value="month" />
+                  <xsd:enumeration value="year" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="x-format" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
