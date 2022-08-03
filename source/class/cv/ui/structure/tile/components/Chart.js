@@ -195,15 +195,18 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         this._chart.append('g')
           .attr('transform', `translate(0, ${height})`)
-          .call(d3.axisBottom(x));
+          .call(d3.axisBottom(x).ticks(10, '%H:%M'));
 
         // Add Y axis
         const y = d3.scaleLinear()
           .domain([d3.min(tsdata, d =>  +d[1]) - 1, d3.max(tsdata, d =>  +d[1]) + 1])
-          .range([ height, 0 ]);
+          .range([ height, 0 ])
+          .nice();
 
-        this._chart.append('g')
-          .call(d3.axisLeft(y).ticks(5));
+        const yTicks = y.ticks().filter(tick => Number.isInteger(tick));
+
+          this._chart.append('g')
+          .call(d3.axisLeft(y).tickValues(yTicks).tickFormat(d3.format('d')));
 
         // Add the area
         if (ts.showArea) {
