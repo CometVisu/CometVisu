@@ -45,7 +45,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           'dateTime': '%A, der %e. %B %Y, %X',
           'date': '%d.%m.%Y',
           'time': '%H:%M:%S',
-          'periods': [],
+          'periods': ['AM', 'PM'],
           'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
           'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
           'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
@@ -291,12 +291,54 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           yLabel: ts.unit,
           xDomain: d3.extent(tsdata, d => d[0]),
           yDomain: [minVal, maxVal],
-          xFormat: ts.xFormat,
           showArea: ts.showArea,
-          mixBlendMode: 'normal'
+          mixBlendMode: 'normal',
+          xFormat: this.multiTimeFormat([
+            ['.%L', function (d) {
+              return d.getMilliseconds();
+            }],
+            [':%S', function (d) {
+              return d.getSeconds();
+            }],
+            ['%H:%M', function (d) {
+              return d.getMinutes();
+            }],
+            ['%H', function (d) {
+              return d.getHours();
+            }],
+            ['%a %d', function (d) {
+              return d.getDay() && d.getDate() !== 1;
+            }],
+            ['%b %d', function (d) {
+              return d.getDate() !== 1;
+            }],
+            ['%B', function (d) {
+              return d.getMonth();
+            }],
+            ['%Y', function () {
+              return true;
+            }]
+          ])
         });
         this._loaded = Date.now();
       }
+    },
+
+    multiTimeFormat(formatsArray) {
+      function multiFormat(date) {
+        let i = 0;
+        let found = false;
+        let fmt = '%c';
+        while (!found && i < formatsArray.length) {
+          found = formatsArray[i][1](date);
+          if (found) {
+            fmt = formatsArray[i][0];
+          }
+          i++;
+        }
+        return fmt;
+      }
+      return date => d3.timeFormat(multiFormat(date))(date);
     },
 
     _onStatusError: function(ts, key, ev) {
@@ -335,6 +377,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           xType: d3.scaleTime, // type of x-scale
           xDomain: undefined, // [xmin, xmax]
           xRange: undefined, // [left, right]
+          xFormat: undefined, // a format specifier string for the x-axis
           yType: d3.scaleLinear, // type of y-scale
           yDomain: undefined, // [ymin, ymax]
           yRange: undefined, // [bottom, top]
@@ -382,7 +425,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Construct scales and axes.
       const xScale = config.xType(config.xDomain, config.xRange);
       const yScale = config.yType(config.yDomain, config.yRange);
-      const xAxis = d3.axisBottom(xScale).ticks(config.width / 80).tickSizeOuter(0);
+      const xAxis = d3.axisBottom(xScale).ticks(config.width / 80).tickSizeOuter(0).tickFormat(config.xFormat);
       const yAxis = d3.axisLeft(yScale).ticks(config.height / 60, config.yFormat);
 
       // Compute titles.
@@ -473,7 +516,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .attr('text-anchor', 'middle')
         .attr('y', -8);
 
-      function pointermoved(event) {
+      /**
+ * @param event
+ */
+function pointermoved(event) {
         const [xm, ym] = d3.pointer(event);
         const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
         path.style('stroke', ([z]) => Z[i] === z ? null : '#ddd').filter(([z]) => Z[i] === z).raise();
@@ -484,12 +530,18 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         svg.property('value', O[i]).dispatch('input', {bubbles: true});
       }
 
-      function pointerentered() {
+      /**
+ *
+ */
+function pointerentered() {
         path.style('mix-blend-mode', null).style('stroke', '#ddd');
         dot.attr('display', null);
       }
 
-      function pointerleft() {
+      /**
+ *
+ */
+function pointerleft() {
         path.style('mix-blend-mode', config.mixBlendMode).style('stroke', null);
         dot.attr('display', 'none');
         svg.node().value = null;
