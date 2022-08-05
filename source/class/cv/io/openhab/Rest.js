@@ -275,22 +275,23 @@ qx.Class.define('cv.io.openhab.Rest', {
           });
           thingsReq.send();
         }
+        if (!this.eventSource) {
+          this.eventSource = new EventSource(this._backendUrl + 'events?topics=' + topic);
 
-        this.eventSource = new EventSource(this._backendUrl + 'events?topics=' + topic);
-
-        // add default listeners
-        this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-        this.eventSource.addEventListener('error', this.handleError.bind(this), false);
-        // add additional listeners
-        //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
-        this.eventSource.onerror = function () {
-          this.error('connection lost');
-          this.setConnected(false);
-        }.bind(this);
-        this.eventSource.onopen = function () {
-          this.debug('connection established');
-          this.setConnected(true);
-        }.bind(this);
+          // add default listeners
+          this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+          this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+          // add additional listeners
+          //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+          this.eventSource.onerror = function () {
+            this.error('connection lost');
+            this.setConnected(false);
+          }.bind(this);
+          this.eventSource.onopen = function () {
+            this.debug('connection established');
+            this.setConnected(true);
+          }.bind(this);
+        }
       }
     },
 
@@ -298,6 +299,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       this.debug('terminating connection');
       if (this.eventSource) {
         this.eventSource.close();
+        this.eventSource = null;
       }
     },
 
