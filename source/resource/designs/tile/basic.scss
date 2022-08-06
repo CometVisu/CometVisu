@@ -1383,4 +1383,43 @@ body {
             }
         }
     }
+
+    cv-color {
+        position: relative;
+        width: min(var(--tileCellWidth), var(--tileCellHeight));
+        height: min(var(--tileCellWidth), var(--tileCellHeight));
+        border-radius: 50%;
+        background: $buttonBackground;
+        box-sizing: border-box;
+        text-align: center;
+        color: $secondaryColor;
+        border: 1px solid currentColor;
+        box-shadow: 0 0 1px 0 currentColor inset, 0 0 1px 0 currentColor;
+        align-self: center;
+        cursor: pointer;
+        display: block;
+
+        input[type="color"] {
+            opacity: 0;
+            -webkit-appearance: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+
+            &::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+            &::-webkit-color-swatch {
+                border: none;
+            }
+        }
+
+        cv-icon {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 }

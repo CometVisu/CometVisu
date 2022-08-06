@@ -93,7 +93,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             raw: state,
             mapping: mapping,
             addressValue: this._element.hasAttribute('value') ? this._element.getAttribute('value') : null,
-            source: this
+            source: this,
+            variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
           }
         });
         this.__transformedValue = transformedState;
