@@ -90,7 +90,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
 
     _applyThrottleInterval(value) {
       if (value > 0) {
-        this.__throttled = cv.util.Function.throttle(this.onInput, 250, { trailing: true }, this);
+        this.__throttled = cv.util.Function.throttle(this.onInput, value, { trailing: true }, this);
       } else {
         // no throttling, direct call
         this.__throttled = {
