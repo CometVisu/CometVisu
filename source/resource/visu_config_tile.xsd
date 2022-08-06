@@ -453,6 +453,7 @@
       <xsd:element name="cv-image" type="cv-image" />
       <xsd:element name="cv-chart" type="cv-chart" />
       <xsd:element name="cv-list" type="cv-list" />
+      <xsd:element name="cv-color" type="cv-color" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
       <xsd:element name="custom" type="custom"/>
@@ -706,6 +707,42 @@
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-color">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-address" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="address">
+                <xsd:attribute name="variant">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Type of coding of the color values that the backend expects.</xsd:documentation>
+                    <xsd:documentation xml:lang="de">Kodierungsart in der die Farbwerte vom Backend über diese Adresse geschickt werden.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="rgb" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="layout-attributes" />
+    <xsd:attribute name="throttle-interval" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the interval used for sending changes to the backend.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt das Sende-Interval in dem Wertänderungen an das Backend geschickt werden fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <!-- template based type (of templates that the structure has build in) -->
