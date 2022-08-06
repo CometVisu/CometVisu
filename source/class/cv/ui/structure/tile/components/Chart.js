@@ -441,7 +441,29 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       d3.select(this._element).select('svg').remove();
 
-      //const svg = d3.create('svg')
+      const pointerMoved = event => {
+        const [xm, ym] = d3.pointer(event);
+        const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
+        path.style('stroke', ([z]) => Z[i] === z ? null : '#ddd').filter(([z]) => Z[i] === z).raise();
+        dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
+        if (T) {
+          dot.select('text').text(T[i]);
+        }
+        svg.property('value', O[i]).dispatch('input', {bubbles: true});
+      };
+
+      const pointerEntered = () => {
+        path.style('mix-blend-mode', null).style('stroke', '#ddd');
+        dot.attr('display', null);
+      };
+
+      const pointerLeft = () => {
+        path.style('mix-blend-mode', config.mixBlendMode).style('stroke', null);
+        dot.attr('display', 'none');
+        svg.node().value = null;
+        svg.dispatch('input', {bubbles: true});
+      };
+
       const svg = d3.select(this._element)
         .append('svg')
         .attr('width', config.width)
@@ -449,10 +471,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .attr('viewBox', [0, 0, config.width, config.height])
         .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
         .style('-webkit-tap-highlight-color', 'transparent')
-        .on('pointerenter', pointerentered)
-        .on('pointermove', pointermoved)
-        .on('pointerleave', pointerleft)
-        .on('touchstart', event => event.preventDefault());
+        .on('pointerenter', pointerEntered)
+        .on('pointermove', pointerMoved)
+        .on('pointerleave', pointerLeft)
+        .on('touchmove', event => {
+          let y = event.targetTouches[0].clientY;
+          const pathRect = path.node().getBoundingClientRect();
+          if (y > pathRect.y && y < (pathRect.y + pathRect.height)) {
+            event.preventDefault();
+          }
+        }, { passive: false });
 
       svg.append('g')
         .attr('transform', `translate(0,${config.height - config.marginBottom})`)
@@ -516,37 +544,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .attr('text-anchor', 'middle')
         .attr('y', -8);
 
-      /**
- * @param event
- */
-function pointermoved(event) {
-        const [xm, ym] = d3.pointer(event);
-        const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
-        path.style('stroke', ([z]) => Z[i] === z ? null : '#ddd').filter(([z]) => Z[i] === z).raise();
-        dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
-        if (T) {
-          dot.select('text').text(T[i]);
-        }
-        svg.property('value', O[i]).dispatch('input', {bubbles: true});
-      }
-
-      /**
- *
- */
-function pointerentered() {
-        path.style('mix-blend-mode', null).style('stroke', '#ddd');
-        dot.attr('display', null);
-      }
-
-      /**
- *
- */
-function pointerleft() {
-        path.style('mix-blend-mode', config.mixBlendMode).style('stroke', null);
-        dot.attr('display', 'none');
-        svg.node().value = null;
-        svg.dispatch('input', {bubbles: true});
-      }
       return Object.assign(svg.node(), {value: null});
     }
   },
