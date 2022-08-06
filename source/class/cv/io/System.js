@@ -13,6 +13,7 @@ qx.Class.define('cv.io.System', {
   construct: function () {
     this.base(arguments);
     this.addresses = [];
+    qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
   /*
  ***********************************************
@@ -44,6 +45,13 @@ qx.Class.define('cv.io.System', {
   members: {
     backendName: 'system',
     addresses: null,
+
+    _onPageChange(ev) {
+      const page = ev.getData();
+      const data = {};
+      data['nav:current-page'] = page.getAttribute('id');
+      cv.data.Model.getInstance().updateFrom('system', data);
+    },
 
     getType() {
       return this.backendName;
@@ -94,6 +102,13 @@ qx.Class.define('cv.io.System', {
 
             default:
               this.warn('unhandled browser action:', value);
+          }
+        } else if (target === 'nav') {
+          const action = parts.shift();
+          switch (action) {
+            case 'current-page':
+              cv.Application.structureController.scrollToPage(value);
+              break;
           }
         }
       }

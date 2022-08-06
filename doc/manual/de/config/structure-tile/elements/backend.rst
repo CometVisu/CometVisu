@@ -94,6 +94,9 @@ Zugriff auf interne Stati und Funktionen
 
 Ein spezielles Backend, welches immer vorhanden ist und nicht extra konfiguriert werden muss, ist das System-Backend.
 
+Backend-Verbindungen
+....................
+
 Mit diesem Backend kann man sich z.B. einen Schalter bauen der den Verbindungsstatus zu einem Backend anzeigt und
 beim Klick darauf die Verbindung neu startet.
 
@@ -117,6 +120,9 @@ beim Klick darauf die Verbindung neu startet.
         <span slot="secondaryLabel">openHAB</span>
     </cv-switch>
 
+Browser-Aktionen
+................
+
 Als weitere Alternative kann ein Neu-laden des Browserfensters angestoßen werden.
 
 .. code-block:: xml
@@ -129,3 +135,19 @@ Als weitere Alternative kann ein Neu-laden des Browserfensters angestoßen werde
 
 Alternativ kann mit ``value="forced-reload"`` sichergestellt werden, dass die CometVisu Dateien wirklich neu geladen
 werden und der Browser-Cache umgangen wird.
+
+Seitennavigation
+................
+
+Ebenso bietet diese Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
+Navigation zu einer bestimmten Seite möglich ist.
+
+.. code-block:: xml
+
+    <cv-switch styling="tile-button">
+      <cv-address slot="address" backend="system" value="floorplan">nav:current-page</cv-address>
+      <cv-icon slot="icon">ri-external-link-line</cv-icon>
+      <span slot="primaryLabel">Räume</span>
+    </cv-switch>
+
+Beim Klick auf dieses Widget wird die Seite mit der id "floorplan" (``<page id="floorplan">``) geöffnet.
