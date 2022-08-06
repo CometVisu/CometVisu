@@ -197,20 +197,20 @@ qx.Class.define('cv.transforms.OpenHab', {
           if (!(phy instanceof Map)) {
             return '0, 0, 0';
           }
-          let rgb = [
-            phy.get('r') || 0,
-            phy.get('g') || 0,
-            phy.get('b') || 0
+          let hsv = [
+            phy.get('h') || 0,
+            phy.get('s') || 0,
+            phy.get('v') || 0
           ];
-          return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
+          return hsv.join(', ');
         },
         decode: function (hsbString) {
           if (cv.transforms.OpenHab.isUndefined(hsbString)) {
-            return new Map([['r', 0], ['g', 0], ['b', 0]]);
+            return new Map([['h', 0], ['s', 0], ['v', 0]]);
           }
           // decode HSV/HSB to RGB
-          let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
-          return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
+          let hsv = hsbString.split(',').map(parseFloat);
+          return new Map([['h', hsv[0]], ['s', hsv[1]], ['v', hsv[2]]]);
         }
       },
       'thing-status': {

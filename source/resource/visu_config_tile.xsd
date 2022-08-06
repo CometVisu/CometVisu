@@ -723,7 +723,7 @@
                   </xsd:annotation>
                   <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                      <xsd:enumeration value="rgb" />
+                      <xsd:enumeration value="hsv" />
                     </xsd:restriction>
                   </xsd:simpleType>
                 </xsd:attribute>
