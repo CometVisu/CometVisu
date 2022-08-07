@@ -4,7 +4,7 @@ var fs = require('fs');
 
 
 var mocks = [];
-function captureMock() {
+function captureMock(verbose) {
   return function (req, res, next) {
     // match on POST requests starting with /mock
     if (req.url.indexOf('/mock') === 0) {
@@ -24,14 +24,29 @@ function captureMock() {
           body += data;
         });
         req.on('end', function () {
-
           mocks[path] = Object.assign({content: body}, queryString);
+          if (verbose) {
+            console.log('\u001b[33;1mRegister ' + Object.keys(mocks).length + '. mock for "' + path + '" with parameters:\u001b[0m',  queryString);
+          }
 
           res.writeHead(200);
           res.end();
         });
         if (mocks.hasOwnProperty(path)) {
           delete mocks[path];
+        }
+        if (verbose) {
+          console.log('\u001b[33;1mRemove mock for "' + path + '", ' + Object.keys(mocks).length + ' mock(s) left.\u001b[0m');
+        }
+        res.writeHead(200);
+        res.end();
+      }
+      if (req.method === 'DELETE') {
+        if (mocks.hasOwnProperty(path)) {
+          delete mocks[path];
+        }
+        if (verbose) {
+          console.log('\u001b[33;1mDelete mock for "' + path + '", ' + Object.keys(mocks).length + ' mock(s) left.\u001b[0m');
         }
         res.writeHead(200);
         res.end();
@@ -42,7 +57,7 @@ function captureMock() {
   };
 }
 
-function mock() {
+function mock(verbose) {
   return function (req, res, next) {
     var url = req.url;
     var found = url.match(/(\?(_|nocache)=[0-9]+)$/);
@@ -59,15 +74,23 @@ function mock() {
         mockedResponse = mocks[url];
       }
     }
+    if (!mockedResponse && url.endsWith('.php') && url !== "/designs/get_designs.php" && url.indexOf('/rest/manager/index.php/') < 0) {
+      console.log('\u001b[31;1mWARNING: PHP file without mock detected! Most likely you need to provide a fixture! Requested URL: "' + req.url + '"\u001b[0m');
+    }
     if (mockedResponse) {
+      let mimeType = 'text/plain';
       if (mockedResponse.hasOwnProperty('mimeType')) {
-        res.writeHead(200, {'Content-Type': mockedResponse.mimeType});
-      } else if (req.url.endsWith('.xml')) {
-        res.writeHead(200, {'Content-Type': 'text/xml;charset=UTF-8'});
-      } else if (req.url.endsWith('.json')) {
-        res.writeHead(200, {'Content-Type': 'application/json'});
-      } else if (req.url.endsWith('.svg')) {
-        res.writeHead(200, {'Content-Type': 'image/svg+xml'});
+        mimeType = mockedResponse.mimeType;
+      } else if (url.endsWith('.xml')) {
+        mimeType = 'text/xml;charset=UTF-8';
+      } else if (url.endsWith('.json')) {
+        mimeType = 'application/json';
+      } else if (url.endsWith('.svg')) {
+        mimeType = 'image/svg+xml';
+      }
+      res.writeHead(200, {'Content-Type': mimeType});
+      if (verbose) {
+        console.log('\u001b[33;1mSent mock for "' + req.url + '" with mimeType "' + mimeType + '"\u001b[0m');
       }
       res.write(mockedResponse.content);
       res.end();
@@ -367,8 +390,8 @@ module.exports = function(grunt) {
           base: 'compiled',
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
-            middlewares.unshift(captureMock());
-            middlewares.unshift(mock());
+            middlewares.unshift(mock(grunt.option('verbose')));
+            middlewares.unshift(captureMock(grunt.option('verbose')));
             return middlewares;
           }
         }
@@ -404,8 +427,10 @@ module.exports = function(grunt) {
               screenshots: grunt.option('files'),
               target: grunt.option('target'),
               targetDir: grunt.option('targetDir'),
-              forced: grunt.option('forced')
-            }
+              forced: grunt.option('forced'),
+              verbose: grunt.option('verbose')
+            },
+            capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
           }
         }
       },

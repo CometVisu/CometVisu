@@ -108,7 +108,7 @@ class CometVisuEditorMockup extends BasePage {
     }
     request({
       method: 'DELETE',
-      uri: 'http://localhost:8000/mock/' + encodeURIComponent(targetPath)
+      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
     });
   }
 
