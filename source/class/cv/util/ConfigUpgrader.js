@@ -480,11 +480,29 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 target.appendChild(clonedChild);
                 break;
 
+              case 'infoaction':
+                clonedChild = target.ownerDocument.createElement('cv-tile-pair');
+                target.appendChild(clonedChild);
+                if (child.querySelector('widgetinfo')) {
+                  this._convertElement(clonedChild, child.querySelector('widgetinfo'), options);
+                  if (child.querySelector(':scope > label')) {
+                    elem = clonedChild.querySelector(':scope > cv-info');
+                    if (elem) {
+                      this._copyLabel(child.querySelector(':scope > label'), elem, 'label');
+                    }
+                  }
+                }
+                if (child.querySelector('widgetaction')) {
+                  this._convertElement(clonedChild, child.querySelector('widgetaction'), options);
+                }
+                break;
+
               case 'layout':
                 // silently ignore those
                 break;
 
               default:
+                this.info('cannot convert', child.nodeName);
                 // no conversion possible, add as comment placeholder for manual conversion
                 clonedChild = target.ownerDocument.createComment(`
                 

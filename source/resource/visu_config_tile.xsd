@@ -785,7 +785,7 @@
           </xsd:complexContent>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="span" type="label-span" maxOccurs="unbounded" />
+      <xsd:element name="span" type="label-span" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
@@ -1169,6 +1169,7 @@
     <xsd:choice minOccurs="2" maxOccurs="2">
       <xsd:element name="cv-tile" type="cv-tile" />
       <xsd:element name="cv-switch" type="cv-switch" />
+      <xsd:element name="cv-info" type="cv-info" />
     </xsd:choice>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
