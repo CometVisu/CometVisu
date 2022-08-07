@@ -157,7 +157,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       if (!parentElement) {
         return;
       }
-      let pages = parentElement.querySelectorAll(':scope > cv-page');
+      let pages = parentElement.querySelectorAll(':scope > cv-page:not([menu="false"])');
       for (let page of pages.values()) {
         const pageId = page.getAttribute('id');
         if (!pageId) {
@@ -184,7 +184,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         }
         parentList.appendChild(li);
         const depth = this.getDepth();
-        if ((depth < 0 || depth > currentLevel) && page.querySelectorAll(':scope > cv-page').length > 0) {
+        if ((depth < 0 || depth > currentLevel) && page.querySelectorAll(':scope > cv-page:not([menu="false"])').length > 0) {
           const details = document.createElement('div');
           details.classList.add('details');
           const summary = document.createElement('div');

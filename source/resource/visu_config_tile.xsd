@@ -327,6 +327,12 @@
     </xsd:attribute>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
+    <xsd:attribute name="menu" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines if this page should be visible in the navigation menus.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt fest, ob diese Seite in den Navigationsmenüs enthalten sein soll.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-popup">
