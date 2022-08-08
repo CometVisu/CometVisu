@@ -64,7 +64,7 @@ $tileColumns: 3;
 
 body {
     background-color: $appBackground;
-    font-family: Roboto Arial sans-serif;
+    font-family: Roboto, Arial, sans-serif;
     color: $primaryText;
     position: relative;
     display: flex;
@@ -81,7 +81,6 @@ body {
     > header, > footer {
         max-width: 100vw;
         background-color: $headerBackground;
-        z-index: 10;
 
         > cv-group {
             padding: var(--spacing);
