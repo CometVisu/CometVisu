@@ -1120,7 +1120,8 @@ body {
             order: 2;
             -webkit-appearance: none;
             appearance: none;
-            flex: 4 0 auto;
+            flex: 1 1 auto;
+            width: 100%;
             margin: 0;
             padding: 0;
             //color: $borderColor;
@@ -1141,6 +1142,7 @@ body {
 
             input[type="range"] {
                 transform: rotate(270deg);
+                width: unset;
             }
 
             label.value {

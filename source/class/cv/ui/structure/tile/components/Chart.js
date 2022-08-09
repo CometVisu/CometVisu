@@ -84,35 +84,19 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _height: null,
     _loaded: null,
 
-    _initD3() {
-      // set the dimensions and margins of the graph
-/*      const margin = {top: 24, right: 24, bottom: 24, left: 24};
-      this._width = 392 - margin.left - margin.right;
-      this._height = 192 - margin.top - margin.bottom;*/
-
-      // append the svg object to the body of the page
-/*      this._chart = d3.select(this._element)
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);*/
-    },
-
     async _init() {
       const element = this._element;
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
       }
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
-      //this._initD3();
       if (this.isVisible()) {
         this._loadData();
       }
     },
 
     _applyVisible(value) {
-      if (value) {
+      if (value && typeof window.d3 === 'object') {
         this._loadData();
       }
     },
@@ -224,56 +208,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         if (client.hasCustomChartsDataProcessor(tsdata)) {
           tsdata = client.processChartsData(tsdata);
         }
-        /*const width = this._width;
-        const height = this._height;
-        // Add X axis --> it is a date format
-        const timeBoundaries = d3.extent(tsdata, d => d[0]);
-        const x = d3.scaleTime()
-          .domain(timeBoundaries)
-          .range([ 0, width ]);
-
-        this._chart.append('g')
-          .attr('transform', `translate(0, ${height})`)
-          .call(d3.axisBottom(x).ticks(ts.xTicks, ts.xFormat));
-
-        // Add Y axis
-        let minVal = d3.min(tsdata, d =>  +d[1]);
-        if (minVal > 1.0) {
-          minVal -= 1;
-        }
-        const maxVal = d3.max(tsdata, d =>  +d[1]) + 1;
-        const y = d3.scaleLinear()
-          .domain([minVal, maxVal])
-          .range([ height, 0 ])
-          .nice();
-
-        const yTicks = y.ticks(5).filter(tick => Number.isInteger(tick));
-
-        this._chart.append('g')
-          .call(d3.axisLeft(y).tickValues(yTicks).tickFormat(d3.format('d')));
-
-        // Add the area
-        if (ts.showArea) {
-          this._chart.append('path')
-            .datum(tsdata)
-            .attr('fill', ts.color + '30')
-            .attr('d', d3.area()
-              .x(d => x(d[0]))
-              .y0(() => this._height)
-              .y1(d => y(d[1]))
-            );
-        }
-
-        // draw the line
-        this._chart.append('path')
-          .datum(tsdata)
-          .attr('fill', 'none')
-          .attr('stroke', ts.color)
-          .attr('class', ts.type)
-          .attr('d', d3.line()
-            .x(d => x(d[0]))
-            .y(d => y(d[1]))
-          );*/
 
         let minVal = d3.min(tsdata, d =>  +d[1]);
         if (minVal > 1.0) {

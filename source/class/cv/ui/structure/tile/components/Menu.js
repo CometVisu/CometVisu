@@ -90,6 +90,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
         // add some general listeners to close
         qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
       } else {
         this.error('visual-model of type', model, 'is not implemented');
       }
@@ -132,6 +133,24 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       } else {
         // close others
         this._closeAll(ev.getTarget().parentElement);
+      }
+    },
+
+    _onSwipe(ev) {
+      if (ev.getDirection() === 'left') {
+        // goto next if there is one
+        const next = this._element.querySelector('li.active + li > a');
+        if (next) {
+          next.click();
+        }
+      } else {
+        const current = this._element.querySelector('li.active');
+        if (current && current.previousElementSibling && current.previousElementSibling.tagName.toLowerCase() === 'li') {
+          const prev = current.previousElementSibling.querySelector(':scope > a');
+          if (prev) {
+            prev.click();
+          }
+        }
       }
     },
 
