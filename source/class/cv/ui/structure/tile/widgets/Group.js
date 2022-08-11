@@ -16,19 +16,42 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
     _init() {
       this.base(arguments);
       const element = this._element;
-      if (element.hasAttribute('name')) {
-        let summary = element.querySelector(':scope > summary');
+      let label = null;
+      let summary = null;
+      const needsSummary = element.hasAttribute('name') || element.hasAttribute('icon');
+      if (needsSummary) {
+        summary = element.querySelector(':scope > summary');
         if (!summary) {
           summary = document.createElement('summary');
           element.insertBefore(summary, element.firstChild);
         }
-        let label = element.querySelector(':scope > summary > label.title');
-        if (!label) {
-          label = document.createElement('label');
-          label.classList.add('title');
-          summary.insertBefore(label, summary.firstChild);
+        if (element.hasAttribute('name')) {
+          label = element.querySelector(':scope > summary > label.title');
+          if (!label) {
+            label = document.createElement('label');
+            label.classList.add('title');
+            summary.insertBefore(label, summary.firstChild);
+          }
+          label.classList.add('last-of-title');
+          label.textContent = element.getAttribute('name');
         }
-        label.textContent = element.getAttribute('name');
+        if (element.hasAttribute('icon')) {
+          let icon = element.querySelector(':scope > summary > cv-icon.title');
+          if (!icon) {
+            icon = document.createElement('cv-icon');
+            icon.classList.add('title');
+            summary.insertBefore(icon, summary.firstChild);
+          }
+          if (!label) {
+            icon.classList.add('last-of-title');
+          }
+          icon.classList.add(element.getAttribute('icon'));
+        }
+      }
+      const empty = !element.querySelector(':scope > *:not(summary)');
+      if (empty) {
+        element.classList.add('empty');
+      } else if (summary) {
         qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
       }
     },

@@ -32,6 +32,7 @@
          </li>
        </template>
    </cv-list>
+ * @ignore(fetch, proxyFetch)
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -61,6 +62,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _getModel: null,
     _filterModel: null,
     _sortModel: null,
+    _limit: null,
 
     _init() {
       const element = this._element;
@@ -74,6 +76,10 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       if (model.hasAttribute('filter')) {
         this._filterModel = new Function('item', 'index', '"use strict"; return ' + model.getAttribute('filter'));
       }
+      if (model.hasAttribute('limit')) {
+        this._limit = parseInt(model.getAttribute('limit'));
+      }
+      const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
       if (model.hasAttribute('sort-by')) {
         const sortBy = model.getAttribute('sort-by');
         // reverse order in 'desc' sort mode
@@ -105,36 +111,43 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           return 0;
         };
       }
-      const script = model.querySelector(':scope > script');
-      const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
-      const data = model.querySelectorAll(':scope > cv-data');
-      if (script) {
-        this._getModel = new Function('"use strict";const model = []; ' + script.innerText.trim()+ '; return model');
-        this._model = this._getModel();
-      } else if (readAddresses.length > 0) {
-        // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
-        this._getModel = this.getValue;
-        element.addEventListener('stateUpdate', ev => {
-          this.onStateUpdate(ev);
-          // cancel event here
-          ev.stopPropagation();
-        });
-        refreshOnUpdate = true;
-      } else if (data.length > 0) {
-        this._model = [];
-        this._getModel = () => this._model;
-        data.forEach((elem, i) => {
-          const d = {
-            index: i
-          };
-          for (const a of elem.attributes) {
-            d[a.name] = a.value;
-          }
-          this._model.push(d);
-        });
+      if (model.hasAttribute('src')) {
+        // fetch from url
+        this._getModel = async () => {
+          // eslint-disable-next-line no-undef
+          const f = model.getAttribute('proxy') === 'true' ? proxyFetch : fetch;
+          const res = await f(model.getAttribute('src'));
+          return res.ok ? res.json() : [];
+        };
       } else {
-        this.error('cv-list > model must have at least one read address, cv-data child or a script that fills the model.');
-        return;
+        const script = model.querySelector(':scope > script');
+        const data = model.querySelectorAll(':scope > cv-data');
+        if (script) {
+          this._getModel = new Function('"use strict";let model = []; ' + script.innerText.trim() + '; return model');
+          this._model = this._getModel();
+        } else if (readAddresses.length > 0) {
+          // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
+          this._getModel = this.getValue;
+          refreshOnUpdate = true;
+        } else if (data.length > 0) {
+          this._model = [];
+          this._getModel = () => this._model;
+          data.forEach((elem, i) => {
+            const d = {
+              index: i
+            };
+            for (const a of elem.attributes) {
+              d[a.name] = a.value;
+            }
+            this._model.push(d);
+          });
+        } else {
+          this.error('cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.');
+          return;
+        }
+      }
+      if (readAddresses.length > 0) {
+        element.addEventListener('stateUpdate', ev => this.onStateUpdate(ev));
       }
       if (!refreshOnUpdate) {
         if (this.isVisible()) {
@@ -147,18 +160,34 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       }
     },
 
+    onStateUpdate(ev) {
+      if (ev.detail.target === 'refresh') {
+        if (this.isVisible()) {
+          // only load when visible
+          this.refresh();
+        }
+      } else {
+        this.base(arguments, ev);
+      }
+      // cancel event here
+      ev.stopPropagation();
+    },
+
     _applyValue() {
       // reset last refresh, because with new data its obsolete
       this._lastRefresh = 0;
       this.refresh();
     },
 
-    refresh() {
+    async refresh() {
       const element = this._element;
       const template = element.querySelector(':scope > template:not([when])');
       let newModel = [];
       if (typeof this._getModel === 'function') {
         newModel = this._getModel();
+      }
+      if (newModel instanceof Promise) {
+        newModel = await newModel;
       }
       let target = element.querySelector(':scope > ul');
       if (!target) {
@@ -173,6 +202,9 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         }
         if (typeof this._sortModel === 'function') {
           newModel.sort(this._sortModel);
+        }
+        if (this._limit) {
+          newModel = newModel.slice(0, this._limit);
         }
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
@@ -202,9 +234,13 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
         newModel.forEach((entry, i) => {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
-          const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, p1) => {
+          const html = template.innerHTML.replaceAll(/\${([^}\[]+)\[?(\d+)?\]?}/g, (match, p1, p2) => {
             if (Object.prototype.hasOwnProperty.call(entry, p1)) {
-              return entry[p1];
+              let val = entry[p1];
+              if (p2 && Array.isArray(val)) {
+                return val[parseInt(p2)];
+              }
+              return val;
             } else if (p1 === 'index') {
               return '' + i;
             }

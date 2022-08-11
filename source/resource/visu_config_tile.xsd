@@ -370,6 +370,12 @@
         <xsd:element name="cv-address" type="address"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for the group.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für die Gruppe.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Name of the group.</xsd:documentation>
@@ -673,6 +679,24 @@
                 </xsd:complexType>
               </xsd:element>
             </xsd:choice>
+            <xsd:attribute name="src" type="xsd:anyURI">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">URL from where the model should be loaded (must return JSON).</xsd:documentation>
+                <xsd:documentation xml:lang="de">URL von der das Modell geladen werden soll (muss JSON zurückliefern).</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="proxy" type="xsd:boolean">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Use a proxy to load the model from src (avoid CORS errors)</xsd:documentation>
+                <xsd:documentation xml:lang="de">Proxy benutzen, um Modell von src zu laden (Vermeidet CORS Fehler).</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="limit" type="xsd:positiveInteger">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Limits the model entries</xsd:documentation>
+                <xsd:documentation xml:lang="de">Limitiert die Einträge des Modells.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
             <xsd:attribute name="sort-by" type="xsd:string"/>
             <xsd:attribute name="sort-mode" default="asc">
               <xsd:simpleType>

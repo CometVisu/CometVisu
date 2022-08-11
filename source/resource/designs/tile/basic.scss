@@ -429,6 +429,15 @@ body {
         gap: var(--spacing);
         border-top: 1px solid $borderColor;
 
+        &.empty > summary {
+            > label.title:after {
+                content: ""
+            }
+            &:before {
+                opacity: 0;
+            }
+        }
+
         &[wrap="false"] {
             flex-flow: row nowrap;
             overflow-x: auto;
@@ -447,9 +456,12 @@ body {
             align-items: center;
             gap: var(--spacing);
 
-            > label:first-child {
-                flex-grow: 1;
+            > .title {
                 text-align: left;
+            }
+
+            > .last-of-title {
+                flex-grow: 1;
             }
 
             &:before {
@@ -886,12 +898,13 @@ body {
         > label.button-label {
             position: absolute;
             bottom: -18px;
-            left: 0;
-            right: 0;
+            left: -4px;
+            right: -4px;
             text-align: center;
             font-size: 12.5px;
             color: $secondaryText;
             text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 
