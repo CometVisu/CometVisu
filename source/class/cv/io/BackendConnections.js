@@ -12,6 +12,7 @@ qx.Class.define('cv.io.BackendConnections', {
     __clients: {},
     __activeChangedTimer: null,
     __hasBeenConnected: false,
+    __activeChangeListenerId: null,
 
     /**
      * Initialize the {@link cv.io.Client} for backend communication
@@ -85,8 +86,9 @@ qx.Class.define('cv.io.BackendConnections', {
         });
         client.addListener('changedServer', () => this._updateClientScope(name), this);
       }
-      const app = qx.core.Init.getApplication();
-      app.addListener('changeActive', this._onActiveChanged, this);
+      if (!this.__activeChangeListenerId) {
+        this.__activeChangeListenerId = qx.core.Init.getApplication().addListener('changeActive', this._onActiveChanged, this);
+      }
 
       // show connection state in NotificationCenter
       client.addListener('changeConnected', () => this._checkBackendConnection(name), this);
@@ -268,7 +270,6 @@ qx.Class.define('cv.io.BackendConnections', {
       if (notification) {
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       }
-    },
-
+    }
   }
 });
