@@ -366,6 +366,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="summary" type="summary"/>
         <xsd:group ref="Widgets"/>
+        <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address"/>
       </xsd:choice>

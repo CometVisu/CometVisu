@@ -429,6 +429,11 @@ body {
         gap: var(--spacing);
         border-top: 1px solid $borderColor;
 
+        cv-group {
+            padding-left: calc(var(--spacing)*2);
+            box-sizing: border-box;
+        }
+
         &.empty > summary {
             > label.title:after {
                 content: ""
