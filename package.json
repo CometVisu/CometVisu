@@ -257,7 +257,8 @@
       "QxConnector": "readonly",
       "d3": "readonly",
       "InstallTrigger": "readonly",
-      "RSSParser": "readonly"
+      "RSSParser": "readonly",
+      "fetch": "readonly"
     }
   }
 }
