@@ -255,6 +255,8 @@ qx.Class.define('cv.Application',
         }
       }
 
+      document.body.classList.add('loading');
+
       // install proxyFetch
       window.proxyFetch = src => {
         const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
@@ -381,6 +383,9 @@ qx.Class.define('cv.Application',
       if (value) {
         qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
         this.block(false);
+        if (document.body.classList.contains('loading')) {
+          document.body.classList.remove('loading');
+        }
       } else {
         qx.bom.History.getInstance().addToHistory('', 'CometVisu');
       }
@@ -776,7 +781,10 @@ qx.Class.define('cv.Application',
       if (styles.length) {
         document.body.classList.add('loading-styles');
         const loader = cv.util.ScriptLoader.getInstance();
-        loader.addListenerOnce('stylesLoaded', () => document.body.classList.remove('loading-styles'));
+        loader.addListenerOnce('stylesLoaded', () => {
+          document.body.classList.remove('loading');
+          document.body.classList.remove('loading-styles');
+        });
         loader.addStyles(styles);
       }
     },

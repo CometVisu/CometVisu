@@ -232,7 +232,7 @@ qx.Class.define('cv.TemplateEngine', {
     // property apply
     _applyDomFinished: function(value) {
       if (value) {
-        document.body.style.visibility = 'visible';
+        document.body.style.visibility = undefined;
         qx.event.message.Bus.dispatchByName('setup.dom.finished');
         // flush the queue
         this._domFinishedQueue.forEach(function(entry) {
@@ -306,7 +306,8 @@ qx.Class.define('cv.TemplateEngine', {
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
-        cv.util.ScriptLoader.getInstance().addListenerOnce('designError', function (ev) {
+        const loader = cv.util.ScriptLoader.getInstance();
+        loader.addListenerOnce('designError', function (ev) {
           if (ev.getData() === design) {
             this.error('Failed to load "' + design + '" design! Falling back to simplified "' + cv.Config.loadedStructure + '"');
 
