@@ -19,7 +19,7 @@
 
 
 /**
- * Atom with cv.ui.manager.viewer.SvgIcon instead ob an qx.ui.basic.Image
+ * Atom with cv.ui.manager.viewer.SvgIcon instead of a qx.ui.basic.Image
  */
 qx.Class.define('cv.ui.manager.core.IconAtom', {
   extend: qx.ui.basic.Atom,
@@ -32,6 +32,7 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
   construct: function (label, icon) {
     this.base(arguments, label, icon);
     this._fontIconRegex = /^\<i.*class=".*(knxuf-|ri-)([^\s"]+).*".*\<\/i\>$/;
+    this.addListener('tap', this._onTap, this);
   },
 
   /*
@@ -59,6 +60,17 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
   members: {
     _fontIconRegex: null,
     _iconChildControlName: null,
+
+    _onTap() {
+      navigator.clipboard.writeText(this.getLabel());
+      cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Icon name has been copied to clipboard'));
+    },
+
+    // property apply
+    _applyLabel(value, old) {
+      this.base(arguments, value, old);
+      this.setToolTipText(value);
+    },
 
     _applyModel: function (value) {
       if (value) {
