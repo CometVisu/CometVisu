@@ -151,3 +151,24 @@ Navigation zu einer bestimmten Seite möglich ist.
     </cv-switch>
 
 Beim Klick auf dieses Widget wird die Seite mit der id "floorplan" (``<page id="floorplan">``) geöffnet.
+
+
+Light- /Dark-Theme
+..................
+
+Sofern das Design Light & Dark-Themes unterstützt, kann über das System Backend auch das Theme gewechselt werden.
+
+.. code-block:: xml
+
+    <cv-meta>
+        <cv-styling name="LightTheme">
+          <entry value="light">active</entry>
+          <entry value="dark">inactive</entry>
+        </cv-styling>
+    </cv-meta>
+    ...
+    <cv-switch on-value="light" off-value="dark" mapping="" styling="LightTheme">
+      <cv-address slot="address" backend="system">theme</cv-address>
+      <cv-icon slot="icon">ri-sun-line</cv-icon>
+      <span slot="primaryLabel">Light-Theme</span>
+    </cv-switch>

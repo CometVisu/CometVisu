@@ -252,23 +252,26 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      */
     async preParse(xml) {
       if (xml.documentElement.hasAttribute('theme')) {
-        const theme = xml.documentElement.getAttribute('theme');
+        let theme = xml.documentElement.getAttribute('theme');
+        const data = {};
         if (theme === 'system') {
           if (window.matchMedia) {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-              // dark mode
-              document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-              document.documentElement.setAttribute('data-theme', 'light');
-            }
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            data['theme'] = theme;
+            cv.data.Model.getInstance().updateFrom('system', data);
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
               document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+              data['theme'] = e.matches ? 'dark' : 'light';
+              cv.data.Model.getInstance().updateFrom('system', data);
             });
           } else {
             this.error('system theme detection not possible in this browser');
           }
         } else {
-          document.documentElement.setAttribute('data-theme', xml.documentElement.getAttribute('theme'));
+          document.documentElement.setAttribute('data-theme', theme);
+          data['theme'] = theme;
+          cv.data.Model.getInstance().updateFrom('system', data);
         }
       }
       return true;

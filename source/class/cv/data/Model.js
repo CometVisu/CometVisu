@@ -119,6 +119,22 @@ qx.Class.define('cv.data.Model', {
     },
 
     /**
+     * Changes a state without notifying the listeners about that change.
+     * @param address {String} KNX-GA or openHAB item name
+     * @param state {variant} new state
+     * @param backendName {String} name of the backend
+     */
+    setState(address, state, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__states, backendName)) {
+        this.__states[backendName] = {};
+      }
+      this.__states[backendName][address] = state;
+    },
+
+    /**
      * Handle incoming data from backend
      * @param data {Map} Key/value map of address/state
      */

@@ -110,6 +110,11 @@ qx.Class.define('cv.io.System', {
               cv.Application.structureController.scrollToPage(value);
               break;
           }
+        } else if (target === 'theme') {
+          const theme = value;
+          document.documentElement.setAttribute('data-theme', theme);
+          const model = cv.data.Model.getInstance();
+          model.onUpdate('theme', theme, 'system');
         }
       }
     },
