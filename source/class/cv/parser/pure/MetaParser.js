@@ -175,127 +175,125 @@ qx.Class.define('cv.parser.pure.MetaParser', {
     },
 
     parseStatusBar: function(xml) {
-      if (cv.Application.structureController.supports('statusBar')) {
-        let code = '';
-        xml.querySelectorAll('meta > statusbar status').forEach(function (elem) {
-          const condition = elem.getAttribute('condition');
-          let extend = elem.getAttribute('hrefextend');
-          const sPath = window.location.pathname;
-          const sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+      let code = '';
+      xml.querySelectorAll('meta > statusbar status').forEach(function (elem) {
+        const condition = elem.getAttribute('condition');
+        let extend = elem.getAttribute('hrefextend');
+        const sPath = window.location.pathname;
+        const sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
-          // @TODO: make this match once the new editor is finished-ish.
-          const editMode = sPage === 'edit_config.html';
+        // @TODO: make this match once the new editor is finished-ish.
+        const editMode = sPage === 'edit_config.html';
 
-          // skip this element if it's edit-only and we are non-edit, or the other
-          // way
-          // round
-          if (editMode && condition === '!edit') {
-            return;
-          }
-          if (!editMode && condition === 'edit') {
-            return;
-          }
+        // skip this element if it's edit-only and we are non-edit, or the other
+        // way
+        // round
+        if (editMode && condition === '!edit') {
+          return;
+        }
+        if (!editMode && condition === 'edit') {
+          return;
+        }
 
-          if (cv.Config.testMode && condition === '!testMode') {
-            return;
-          }
-          if (!cv.Config.testMode && condition === 'testMode') {
-            return;
-          }
+        if (cv.Config.testMode && condition === '!testMode') {
+          return;
+        }
+        if (!cv.Config.testMode && condition === 'testMode') {
+          return;
+        }
 
-          let text = elem.textContent;
-          let search = '';
+        let text = elem.textContent;
+        let search = '';
 
-          // compability change to make existing customer configurations work with the new manager links
-          // this replaces all document links to old manager tools with the new ones
-          let linkMatch;
-          const linkRegex = /href="([^"]+)"/gm;
-          const matches = [];
-          // eslint-disable-next-line no-cond-assign
-          while (linkMatch = linkRegex.exec(text)) {
-            matches.push(linkMatch);
-          }
-          let handled = false;
-          const url = new URL(window.location.href);
-          if (url.searchParams.has('config')) {
-            search = url.searchParams.get('config');
-            search = encodeURIComponent(search).replace(/[!'()*]/g, function (c) {
-              return '%' + c.charCodeAt(0).toString(16);
-            });
-          }
-          matches.forEach(match => {
-            switch (match[1]) {
-              case 'manager.php':
-                text = text.replace(match[0], 'href="?manager=1" onclick="showManager(); return false;"');
-                handled = true;
-                break;
-
-              case 'check_config.php':
-                text = text.replace(match[0], 'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"');
-                handled = true;
-                break;
-
-              case 'editor/':
-              case 'editor': {
-                const suffix = search ? '_' + search : '';
-                text = text.replace(match[0], 'href="'+window.location.pathname+'?config='+search+'&manager=1&open=visu_config' + suffix + '.xml" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
-                handled = true;
-                break;
-              }
-            }
+        // compability change to make existing customer configurations work with the new manager links
+        // this replaces all document links to old manager tools with the new ones
+        let linkMatch;
+        const linkRegex = /href="([^"]+)"/gm;
+        const matches = [];
+        // eslint-disable-next-line no-cond-assign
+        while (linkMatch = linkRegex.exec(text)) {
+          matches.push(linkMatch);
+        }
+        let handled = false;
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('config')) {
+          search = url.searchParams.get('config');
+          search = encodeURIComponent(search).replace(/[!'()*]/g, function (c) {
+            return '%' + c.charCodeAt(0).toString(16);
           });
-
-          if (handled) {
-            // this overrides the extends
-            extend = null;
-          }
-          switch (extend) {
-            case 'all': // append all parameters
-              search = window.location.search.replace(/\$/g, '$$$$');
-              text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+        }
+        matches.forEach(match => {
+          switch (match[1]) {
+            case 'manager.php':
+              text = text.replace(match[0], 'href="?manager=1" onclick="showManager(); return false;"');
+              handled = true;
               break;
-            case 'config': { // append config file info
-              search = window.location.search.replace(/\$/g, '$$$$');
-              search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
 
-              const middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
-              if (middle.indexOf('?') > 0) {
-                search = '&' + search;
-              } else {
-                search = '?' + search;
-              }
+            case 'check_config.php':
+              text = text.replace(match[0], 'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"');
+              handled = true;
+              break;
 
-              text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            case 'editor/':
+            case 'editor': {
+              const suffix = search ? '_' + search : '';
+              text = text.replace(match[0], 'href="'+window.location.pathname+'?config='+search+'&manager=1&open=visu_config' + suffix + '.xml" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+              handled = true;
               break;
             }
+          }
+        });
 
-            case 'action': {
-              search = window.location.search.replace(/\$/g, '$$$$');
-              search = search.replace(/.*config=([^&]*).*|.*/, '$1');
-              const match = /cv-action="([\w]+)"/.exec(text);
-              if (match) {
-                let replacement = 'href="#" ';
-                switch (match[1]) {
-                  case 'validate':
-                    replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
-                    break;
+        if (handled) {
+          // this overrides the extends
+          extend = null;
+        }
+        switch (extend) {
+          case 'all': // append all parameters
+            search = window.location.search.replace(/\$/g, '$$$$');
+            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            break;
+          case 'config': { // append config file info
+            search = window.location.search.replace(/\$/g, '$$$$');
+            search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
 
-                  case 'edit': {
-                    const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
-                    replacement = 'href="'+window.location.pathname+'?config='+search+'&manager=1&open='+configFile+'" onclick="showManager(\'open\', \'' + configFile + '\'); return false;"';
-                    break;
-                  }
+            const middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
+            if (middle.indexOf('?') > 0) {
+              search = '&' + search;
+            } else {
+              search = '?' + search;
+            }
+
+            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            break;
+          }
+
+          case 'action': {
+            search = window.location.search.replace(/\$/g, '$$$$');
+            search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+            const match = /cv-action="([\w]+)"/.exec(text);
+            if (match) {
+              let replacement = 'href="#" ';
+              switch (match[1]) {
+                case 'validate':
+                  replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
+                  break;
+
+                case 'edit': {
+                  const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
+                  replacement = 'href="'+window.location.pathname+'?config='+search+'&manager=1&open='+configFile+'" onclick="showManager(\'open\', \'' + configFile + '\'); return false;"';
+                  break;
                 }
-		text = text.replace(match[0], replacement);
               }
-	      break;
+              text = text.replace(match[0], replacement);
             }
+            break;
           }
-          code += text;
-        }, this);
-        const footerElement = document.querySelector('.footer');
-        footerElement.innerHTML += code;
-      }
+        }
+        code += text;
+      }, this);
+      const footerElement = document.querySelector('.footer');
+      footerElement.innerHTML += code;
     },
 
     parsePlugins: function(xml) {

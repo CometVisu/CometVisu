@@ -125,7 +125,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
      */
     _onPointerDown(ev) {
       const target = ev.getTarget();
-      if (target.classList.contains('menu') || target.parentElement.classList.contains('menu')) {
+      if (target.classList.contains('menu') || (target.parentElement && target.parentElement.classList.contains('menu'))) {
         // clicked in hamburger menu, do nothing
       } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection

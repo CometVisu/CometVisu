@@ -232,7 +232,7 @@ qx.Class.define('cv.TemplateEngine', {
     // property apply
     _applyDomFinished: function(value) {
       if (value) {
-        document.body.style.visibility = undefined;
+        document.body.style.visibility = '';
         qx.event.message.Bus.dispatchByName('setup.dom.finished');
         // flush the queue
         this._domFinishedQueue.forEach(function(entry) {

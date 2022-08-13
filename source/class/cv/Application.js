@@ -760,7 +760,7 @@ qx.Class.define('cv.Application',
         this.loadScripts();
         this.debug('done');
 
-        if (cv.Config.enableCache) {
+        if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
           // cache dom + data when everything is ready
           qx.event.message.Bus.subscribe('setup.dom.finished', function () {
             cv.ConfigCache.dump(xml, engine.getConfigHash());

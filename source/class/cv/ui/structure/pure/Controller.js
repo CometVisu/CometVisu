@@ -12,14 +12,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     this.base(arguments);
     this.__HTML_STRUCT = '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
     this.__supportedFeatures = {
-      navbar: {
-        top: true,
-          right: true,
-          bottom: true,
-          left: true
-      },
-      statusBar: true,
-      plugins: true
+      cache: true
     };
     // load basic CSS rules shared by all designs that support this structure
     qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
