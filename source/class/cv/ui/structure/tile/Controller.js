@@ -251,6 +251,26 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     async preParse(xml) {
+      if (xml.documentElement.hasAttribute('theme')) {
+        const theme = xml.documentElement.getAttribute('theme');
+        if (theme === 'system') {
+          if (window.matchMedia) {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              // dark mode
+              document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+              document.documentElement.setAttribute('data-theme', 'light');
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+              document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            });
+          } else {
+            this.error('system theme detection not possible in this browser');
+          }
+        } else {
+          document.documentElement.setAttribute('data-theme', xml.documentElement.getAttribute('theme'));
+        }
+      }
       return true;
     },
 

@@ -25,6 +25,19 @@
           <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
+      <xsd:attribute name="theme" default="dark">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Choose between "light" and "dark" theme. "system" uses the system settings.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Umschalten zwischen "light" oder "dark" Theme. "system" übernimmt die Einstellungen des Systems.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="system" />
+            <xsd:enumeration value="dark" />
+            <xsd:enumeration value="light" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
     </xsd:complexType>
   </xsd:element>
 

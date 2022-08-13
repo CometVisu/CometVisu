@@ -1,20 +1,5 @@
 @use "sass:math";
 
-/* colors */
-$appBackground: #515151;
-$headerBackground: darken($appBackground, 6);
-$tileBackground: #2e2e2e;
-$buttonBackground: #1f1f1f;
-$primaryColor: #ff9900;
-$secondaryColor: #666666;
-$borderColor: #7a7a7a;
-$shadowColor: rgb(0 0 0 / 20%);
-$blockerColor: rgb(0 0 0 / 70%);
-$greenBackground: #175927;
-
-$primaryText: #b6b6b6;
-$secondaryText: #7e7d7d;
-
 /* dimensions */
 $defaultSpace: 8px;
 $tileCellSize: 64px;
@@ -29,6 +14,31 @@ $tileColumns: 3;
     --tileCellHeight: #{$tileCellSize};
     --spacing: #{$defaultSpace};
     --defaultButtonSize: calc(#{$defaultButtonSize} - #{$defaultSpace});
+
+    /* colors */
+    --appBackground: #515151;
+    --headerBackground: darken(var(--appBackground), 6);
+    --tileBackground: #2e2e2e;
+    --buttonBackground: #1f1f1f;
+    --primaryColor: #ff9900;
+    --secondaryColor: #666666;
+    --borderColor: #7a7a7a;
+    --shadowColor: rgb(0 0 0 / 20%);
+    --blockerColor: rgb(0 0 0 / 70%);
+    --greenBackground: #175927;
+
+    --primaryText: #b6b6b6;
+    --secondaryText: #7e7d7d;
+}
+
+[data-theme="light"] {
+    --appBackground: #efefef;
+    --tileBackground: #FFFFFF;
+    --buttonBackground: #f8f8f8;
+    --secondaryColor: #666666;
+    --primaryText: #1f1f1f;
+
+    --shadowColor: rgb(0 0 0 / 5%);
 }
 
 @font-face {
@@ -54,18 +64,18 @@ $tileColumns: 3;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $secondaryText;
+    background: var(--secondaryText);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: $primaryText;
+    background: var(--primaryText);
 }
 
 body {
-    background-color: $appBackground;
+    background-color: var(--appBackground);
     font-family: Roboto, Arial, sans-serif;
-    color: $primaryText;
+    color: var(--primaryText);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -80,7 +90,7 @@ body {
 
     > header, > footer {
         max-width: 100vw;
-        background-color: $headerBackground;
+        background-color: var(--headerBackground);
 
         > cv-group {
             padding: var(--spacing);
@@ -93,7 +103,7 @@ body {
 
     > footer > nav > cv-menu[appearance="dock"] {
         position: fixed;
-        background-color: $buttonBackground;
+        background-color: var(--buttonBackground);
         border-radius: 44px;
         left: 50%;
         transform: translate(-50%, -90px);
@@ -126,10 +136,10 @@ body {
         display: flex;
         flex-wrap: wrap;
 
-        /*border-bottom: 1px solid $borderColor;
-        border-top: 1px solid $borderColor;
+        /*border-bottom: 1px solid var(--borderColor);
+        border-top: 1px solid var(--borderColor);
 
-        box-shadow: inset 0 0 12px 6px $headerBackground;*/
+        box-shadow: inset 0 0 12px 6px var(--headerBackground);*/
 
         &.has-dock > cv-page.active {
             padding-bottom: 100px;
@@ -155,14 +165,14 @@ body {
             flex-grow: 1;
             align-self: stretch;
             padding: 0 var(--spacing);
-            background-color: $headerBackground;
+            background-color: var(--headerBackground);
         }
 
         /*aside:first-child {
-            border-right: 1px solid $borderColor;
+            border-right: 1px solid var(--borderColor);
         }
         aside:last-child {
-            border-left: 1px solid $borderColor;
+            border-left: 1px solid var(--borderColor);
         }*/
     }
 
@@ -173,7 +183,7 @@ body {
     }
 
     .blocker {
-        background-color: $blockerColor;
+        background-color: var(--blockerColor);
         opacity: 0.5;
         position: absolute;
         top: 0;
@@ -197,7 +207,7 @@ body {
     footer > nav > cv-menu {
         > ul ul {
             /* popup sub-menus */
-            box-shadow: 0 6px 8px 4px $shadowColor;
+            box-shadow: 0 6px 8px 4px var(--shadowColor);
             border-radius: var(--spacing) var(--spacing) 0 0;
         }
         ul li .details {
@@ -230,8 +240,8 @@ body {
 
             > ul ul {
                 /* popup sub-menus */
-                background-color: $appBackground;
-                box-shadow: 0 6px 8px 4px $shadowColor;
+                background-color: var(--appBackground);
+                box-shadow: 0 6px 8px 4px var(--shadowColor);
                 border-bottom-left-radius: var(--spacing);
                 border-bottom-right-radius: var(--spacing);
             }
@@ -272,7 +282,7 @@ body {
                         }
 
                         &[open] > .summary {
-                            background-color: $appBackground;
+                            background-color: var(--appBackground);
                             border-top-left-radius: var(--spacing);
                             border-top-right-radius: var(--spacing);
                         }
@@ -314,24 +324,24 @@ body {
                     }
 
                     /*&:hover {
-                        background-color: $secondaryColor;
+                        background-color: var(--secondaryColor);
                     }*/
                     &.active {
                         > a, > .details > .summary, > .details > .summary > a {
-                            color: $primaryColor;
+                            color: var(--primaryColor);
                         }
                     }
 
                     &.sub-active {
                         > .details > .summary:after {
-                            color: $primaryColor;
+                            color: var(--primaryColor);
                         }
                     }
                 }
             }
 
             a, p {
-                color: $primaryText;
+                color: var(--primaryText);
                 text-align: center;
                 text-decoration: none;
                 font-size: 20px;
@@ -427,7 +437,7 @@ body {
         display: flex;
         flex-flow: row wrap;
         gap: var(--spacing);
-        border-top: 1px solid $borderColor;
+        border-top: 1px solid var(--borderColor);
 
         cv-group {
             padding-left: calc(var(--spacing)*2);
@@ -535,7 +545,7 @@ body {
     cv-tile {
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
-        background-color: $tileBackground;
+        background-color: var(--tileBackground);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -718,12 +728,12 @@ body {
 
         &.popup {
             position: absolute;
-            background-color: $buttonBackground;
+            background-color: var(--buttonBackground);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000000;
-            box-shadow: 6px 6px 18px 4px $shadowColor;
+            box-shadow: 6px 6px 18px 4px var(--shadowColor);
             max-width: 90vw;
             max-height: 90vh;
             overflow: hidden;
@@ -740,7 +750,7 @@ body {
                 cursor: pointer;
                 background: none;
                 border: none;
-                color: $primaryText;
+                color: var(--primaryText);
             }
         }
     }
@@ -750,7 +760,7 @@ body {
         position: relative;
 
         svg {
-            color: $primaryText;
+            color: var(--primaryText);
             position: absolute;
             left: 0;
             top: 0;
@@ -759,7 +769,7 @@ body {
         }
 
         &.active {
-            color: $primaryColor;
+            color: var(--primaryColor);
         }
 
         &[size='large'] {
@@ -798,7 +808,7 @@ body {
         font-size: 18px;
         /* identical to box height */
         text-align: center;
-        color: $primaryText;
+        color: var(--primaryText);
         display: block;
     }
 
@@ -807,7 +817,7 @@ body {
         font-weight: normal;
         font-size: 14px;
         text-align: center;
-        color: $secondaryText;
+        color: var(--secondaryText);
         display: block;
     }
 
@@ -820,10 +830,10 @@ body {
         width: var(--defaultButtonSize);
         height: var(--defaultButtonSize);
         border-radius: var(--spacing);
-        background: $buttonBackground;
+        background: var(--buttonBackground);
         box-sizing: border-box;
         text-align: center;
-        color: $secondaryColor;
+        color: var(--secondaryColor);
         border: 1px solid currentColor;
         box-shadow: 0 0 1px 0 currentColor inset, 0 0 1px 0 currentColor;
         align-self: center;
@@ -831,7 +841,7 @@ body {
         display: block;
 
         .progress {
-            border: 1px solid $secondaryColor;
+            border: 1px solid var(--secondaryColor);
         }
 
         &[name] {
@@ -862,7 +872,7 @@ body {
 
             circle {
                 fill: none;
-                stroke: $primaryColor;
+                stroke: var(--primaryColor);
                 position: relative;
                 z-index: 1;
                 transition: stroke-dashoffset 0.35s;
@@ -893,11 +903,11 @@ body {
         }
 
         &.active {
-            color: $primaryColor;
+            color: var(--primaryColor);
         }
      /*   &.active:not(.progress) {
-            border: 1px solid $primaryColor;
-            box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+            border: 1px solid var(--primaryColor);
+            box-shadow: 0 0 1px 0 var(--primaryColor) inset, 0 0 1px 0 var(--primaryColor);
         }*/
 
         > label.button-label {
@@ -907,7 +917,7 @@ body {
             right: -4px;
             text-align: center;
             font-size: 12.5px;
-            color: $secondaryText;
+            color: var(--secondaryText);
             text-overflow: ellipsis;
             overflow: hidden;
         }
@@ -918,7 +928,7 @@ body {
         text-align: center;
 
         &.active {
-            color: $primaryColor;
+            color: var(--primaryColor);
         }
 
         p {
@@ -960,23 +970,23 @@ body {
         }
 
         label.unit {
-            color: $primaryText;
+            color: var(--primaryText);
         }
         meter, progress {
             width: calc(var(--tileCellWidth) * #{$tileColumns} - var(--spacing)*2);
             border: 0;
         }
         progress[value]::-webkit-progress-bar, meter[value]::-webkit-meter-bar {
-            background-color: $borderColor;
+            background-color: var(--borderColor);
             border: 0;
             height: var(--spacing);
             border-radius: var(--spacing);
             overflow: hidden;
         }
         progress[value]::-webkit-progress-value, meter[value]::-webkit-meter-optimum-value {
-            background-color: $primaryColor;
+            background-color: var(--primaryColor);
             //box-shadow: 1px 1px 5px 3px rgba( 255, 0, 0, 0.8 );*/
-            //background-image: $primaryColor !important;
+            //background-image: var(--primaryColor) !important;
             //background-image: linear-gradient(to right, #F0CB35, #C02425);
         }
     }
@@ -994,11 +1004,11 @@ body {
             }
 
             circle.bg {
-                stroke: $borderColor;
+                stroke: var(--borderColor);
             }
 
             circle.bar {
-                stroke: $primaryColor;
+                stroke: var(--primaryColor);
                 position: relative;
                 z-index: 1;
                 transition: stroke-dashoffset 0.35s;
@@ -1012,11 +1022,11 @@ body {
             }
 
             path.bg {
-                stroke: $borderColor;
+                stroke: var(--borderColor);
             }
 
             path.bar {
-                stroke: $primaryColor;
+                stroke: var(--primaryColor);
                 position: relative;
                 z-index: 1;
             }
@@ -1028,7 +1038,7 @@ body {
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 28px;
-            color: $primaryText;
+            color: var(--primaryText);
             white-space: nowrap;
         }
 
@@ -1043,8 +1053,8 @@ body {
     cv-select {
         position: relative;
         width: 100%;
-        border-top: 1px solid $borderColor;
-        border-bottom: 1px solid $borderColor;
+        border-top: 1px solid var(--borderColor);
+        border-bottom: 1px solid var(--borderColor);
 
         .value {
             margin: 0;
@@ -1057,7 +1067,7 @@ body {
         .popup {
             display: none;
             position: absolute;
-            background-color: $buttonBackground;
+            background-color: var(--buttonBackground);
             top: var(--tileCellHeight);
             width: 100%;
 
@@ -1142,9 +1152,9 @@ body {
             width: 100%;
             margin: 0;
             padding: 0;
-            //color: $borderColor;
+            //color: var(--borderColor);
 
-            background: $borderColor;
+            background: var(--borderColor);
             border: 0;
             height: var(--spacing);
             border-radius: var(--spacing);
@@ -1180,7 +1190,7 @@ body {
             width: $defaultSpace * 2;
             height: $defaultSpace * 2;
             border-radius: 50%;
-            background: $primaryColor;
+            background: var(--primaryColor);
             cursor: pointer;
         }
 
@@ -1188,7 +1198,7 @@ body {
             width: $defaultSpace * 2;
             height: $defaultSpace * 2;
             border-radius: 50%;
-            background: $primaryColor;
+            background: var(--primaryColor);
             cursor: pointer;
         }
     }
@@ -1205,7 +1215,7 @@ body {
 
         header {
             padding: calc(var(--spacing)*2);
-            border-bottom: 1px solid $borderColor;
+            border-bottom: 1px solid var(--borderColor);
             > * {
                 margin: 0;
             }
@@ -1220,7 +1230,7 @@ body {
 
             li, cv-listitem {
                 padding: var(--spacing) calc(var(--spacing)*2);
-                border-bottom: 1px solid $borderColor;
+                border-bottom: 1px solid var(--borderColor);
 
                 label.secondary, label.primary {
                     text-align: left;
@@ -1237,14 +1247,14 @@ body {
         display: none;
         position: fixed;
         padding: calc(var(--spacing)*2);
-        background-color: $appBackground;
-        border: 1px solid $borderColor;
+        background-color: var(--appBackground);
+        border: 1px solid var(--borderColor);
         border-radius: $borderRadius;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000000;
-        box-shadow: 6px 6px 18px 4px $shadowColor;
+        box-shadow: 6px 6px 18px 4px var(--shadowColor);
         max-width: 90vw;
         max-height: 90vh;
         overflow: hidden;
@@ -1271,7 +1281,7 @@ body {
             cursor: pointer;
             background: none;
             border: none;
-            color: $primaryText;
+            color: var(--primaryText);
         }
 
         cv-button.bottom {
@@ -1280,12 +1290,12 @@ body {
             right: 0;
             left: 0;
             text-align: center;
-            color: $primaryText;
+            color: var(--primaryText);
             cursor: pointer;
             width: auto;
 
             &.green.overlay {
-                background-color: rgba( $greenBackground, .7 );
+                background-color: rgba( var(--greenBackground), .7 );
 
                 border-radius: 0;
                 border: none;
@@ -1311,7 +1321,7 @@ body {
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: $blockerColor;
+        background-color: var(--blockerColor);
     }
 
     cv-media-player {
@@ -1408,10 +1418,10 @@ body {
         width: min(var(--tileCellWidth), var(--tileCellHeight));
         height: min(var(--tileCellWidth), var(--tileCellHeight));
         border-radius: 50%;
-        background: $buttonBackground;
+        background: var(--buttonBackground);
         box-sizing: border-box;
         text-align: center;
-        color: $secondaryColor;
+        color: var(--secondaryColor);
         border: 1px solid currentColor;
         box-shadow: 0 0 1px 0 currentColor inset, 0 0 1px 0 currentColor;
         align-self: center;
