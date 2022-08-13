@@ -55,9 +55,20 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               if (allowDuplicates ||
                 !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') ||
                 encodedValue.raw !== element.lastSentValue) {
-                cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
-                if (!allowDuplicates) {
-                  element.lastSentValue = encodedValue.raw;
+                if (element.hasAttribute('delay')) {
+                  const delay = parseInt(element.getAttribute('delay'));
+                  this.debug(`send with delay of ${delay}ms`);
+                  qx.event.Timer.once(() => {
+                    cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
+                    if (!allowDuplicates) {
+                      element.lastSentValue = encodedValue.raw;
+                    }
+                  }, this, delay);
+                } else {
+                  cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
+                  if (!allowDuplicates) {
+                    element.lastSentValue = encodedValue.raw;
+                  }
                 }
               }
             }

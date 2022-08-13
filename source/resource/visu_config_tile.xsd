@@ -1295,6 +1295,13 @@
         </xsd:attribute>
         <xsd:attribute ref="mapping"/>
         <xsd:attribute ref="format"/>
+        <xsd:attribute name="delay" type="xsd:positiveInteger">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Optional delay in milliseconds that a write-request to this address is delayed.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</xsd:documentation>
+            <xsd:appinfo>level:expert</xsd:appinfo>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
