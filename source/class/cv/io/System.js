@@ -115,6 +115,18 @@ qx.Class.define('cv.io.System', {
           document.documentElement.setAttribute('data-theme', theme);
           const model = cv.data.Model.getInstance();
           model.onUpdate('theme', theme, 'system');
+        } else if (target === 'http' || target === 'https') {
+          // send HTTP request, ignore the answer
+          if (parts.length >= 2 && parts[0] === 'proxy') {
+            const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
+            url.searchParams.set('url', target + ':' + parts[1]);
+            address = url.toString();
+          }
+          const xhr = new qx.io.request.Xhr(address);
+          xhr.send();
+        } else if (target === 'state') {
+          // just write the value to the states to update Listeners
+          cv.data.Model.getInstance().onUpdate(address, value, 'system');
         }
       }
     },

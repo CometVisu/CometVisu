@@ -165,6 +165,9 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (this.isVisible()) {
           // only load when visible
           this.refresh();
+        } else {
+          // reset lastRefresh to that the refresh get called when this item gets visible
+          this._lastRefresh = null;
         }
       } else {
         this.base(arguments, ev);

@@ -152,6 +152,23 @@ Navigation zu einer bestimmten Seite möglich ist.
 
 Beim Klick auf dieses Widget wird die Seite mit der id "floorplan" (``<page id="floorplan">``) geöffnet.
 
+HTTP-Requests auslösen
+......................
+
+Es können einfache HTTP Requests ausgelöst werden, um z.B. Aktionen in externen Systemen zu starten.
+
+.. code-block:: xml
+
+    <cv-button size="small" style="position: absolute; top: 0; right: 0; color: red">
+      <cv-address mode="write" backend="system">https://somewhere/delete?this</cv-address>
+      <cv-icon class="ri-delete-bin-line"/>
+    </cv-button>
+
+Oft kommt es beim Aufrufen von URLs von externen Webseiten zu einen CORS Fehler, da das Aufrufen von externen Seiten
+ein Sicherheitsrisiko darstellt. Dies kann umgangen werden, indem die interne Proxy-Funktion dder CometVisu benutzt wird.
+Dazu müssen die aufzurufenden URLs mit ":proxy" erweitert werden. Für das o.g. Beispiel würde aus
+``https://somewhere/delete?this`` -> ``https:proxy://somewhere/delete?this``.
+
 
 Light- /Dark-Theme
 ..................
@@ -172,3 +189,22 @@ Sofern das Design Light & Dark-Themes unterstützt, kann über das System Backen
       <cv-icon slot="icon">ri-sun-line</cv-icon>
       <span slot="primaryLabel">Light-Theme</span>
     </cv-switch>
+
+
+Interne Stati
+.............
+
+Man kann das System Backend auch benutzen um interne Stati zu schreiben und damit Aktionen innerhalb der
+Visualisierung per Mausklick auszulösen. Damit kann man sich z.B. einen Button erzeugen der beim Klick einen Refresh
+eines :ref:`Bilds <tile-component-image>` oder eines :ref:`Listen-modells <tile-component-list>`.
+
+.. code-block:: xml
+
+    <cv-button>
+      <cv-address mode="write" backend="system">state:refresh-image</cv-address>
+      <cv-icon class="ri-refresh-line"/>
+    </cv-button>
+
+    <cv-image src="http://webcam/snapshot.jpeg">
+        <cv-address mode="read" target="refresh" backend="system">state:refresh-image</cv-address>
+    </cv-image>
