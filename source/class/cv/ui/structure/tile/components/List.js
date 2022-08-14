@@ -193,7 +193,19 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         newModel = await newModel;
       }
       let target = element.querySelector(':scope > ul');
-      if (!target) {
+      if (template.getAttribute('wrap') === 'false') {
+        target = element;
+      } else if (template.hasAttribute('target')) {
+        switch (template.getAttribute('target')) {
+          case 'parent':
+            target = element.parentElement;
+            // we do not need the list to be visible then
+            element.style.display = 'none';
+            break;
+          default:
+            throw new Error('invalid target: ' + template.getAttribute('target'));
+        }
+      } else if (!target) {
         target = document.createElement('ul');
         target.classList.add('content');
         element.appendChild(target);
@@ -212,7 +224,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
           if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
-            while (target.firstChild) {
+            while (target.firstChild && target.hasAttribute('data-row')) {
               target.removeChild(target.lastChild);
             }
             const emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);

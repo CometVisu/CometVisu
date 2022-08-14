@@ -12,15 +12,20 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     openedPopups: []
   },
 
+  events: {
+    closed: 'qx.event.type.Event'
+  },
+
   /*
   ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
+    _childPopup: null,
 
     _initPopupChild() {
-      const popup = this._element.querySelector(':scope > cv-popup');
+      const popup = this._childPopup = this._element.querySelector(':scope > cv-popup');
       if (popup) {
         qx.event.Registration.addListener(this._element, 'tap', this._openPopupChild, this);
       }
@@ -30,6 +35,13 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
       const popup = this._element.querySelector(':scope > cv-popup:not([open])');
       if (popup) {
         popup.getInstance().open();
+      }
+    },
+
+    _closePopupChild() {
+      const popup = this._element.querySelector(':scope > cv-popup[open]');
+      if (popup) {
+        popup.getInstance().close();
       }
     },
 
@@ -59,6 +71,7 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
       if (!cv.util.Tree.isChildOf(ev.getTarget(), this._element)) {
         // clicked outside -> close
         this.close();
+        ev.preventDefault();
       }
     }
   },
@@ -70,5 +83,6 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
   */
   destruct: function () {
     qx.event.Registration.removeListener(this._element, 'tap', this._openPopupChild, this);
+    this._childPopup = null;
   }
 });

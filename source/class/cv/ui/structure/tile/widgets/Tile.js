@@ -40,6 +40,11 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       if (this._element.hasAttribute('background-image')) {
         this.setBackgroundImage(this._element.getAttribute('background-image'));
       }
+      if (this._childPopup) {
+        this._childPopup.addEventListener('closed', () => {
+          this.resetPopup();
+        });
+      }
     },
 
     _applyBackgroundImage(value) {
@@ -58,15 +63,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       }
     },
 
-    close() {
-      this.setPopup(false);
-      if (this._autoCloseTimer) {
-        this._autoCloseTimer.stop();
-      }
-    },
-
-    _applyPopup(value) {
-      if (value) {
+    open() {
+      if (this._childPopup) {
+        this._openPopupChild();
+      } else {
         let closeButton = this._element.querySelector(':scope > button.close');
         if (!closeButton) {
           closeButton = document.createElement('button');
@@ -80,6 +80,15 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         closeButton.style.display = 'block';
         this._element.classList.add('popup');
         this.registerModalPopup();
+      }
+    },
+
+    close(keepState) {
+      if (!keepState) {
+        this.setPopup(false);
+      }
+      if (this._childPopup) {
+        this._closePopupChild();
       } else {
         this._element.classList.remove('popup');
         let closeButton = this._element.querySelector(':scope > button.close');
@@ -87,6 +96,17 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
           closeButton.style.display = 'none';
         }
         this.unregisterModalPopup();
+      }
+      if (this._autoCloseTimer) {
+        this._autoCloseTimer.stop();
+      }
+    },
+
+    _applyPopup(value) {
+      if (value) {
+        this.open();
+      } else {
+        this.close(true);
       }
     },
 

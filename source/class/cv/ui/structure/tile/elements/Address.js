@@ -83,7 +83,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
      * @param state {variant} state to send
      */
     fireStateUpdate(address, state) {
-      if (this.__lastValue !== state) {
+      if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
         let transformedState = cv.Transform.decode({transform: transform}, state);
         let mapping = '';

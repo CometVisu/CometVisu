@@ -418,6 +418,7 @@
         <xsd:group ref="Components"/>
         <xsd:element name="cv-row" type="cv-row" maxOccurs="3"/>
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
+        <xsd:element name="cv-popup" type="cv-popup" minOccurs="0"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="size">
@@ -452,6 +453,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="layout-attributes" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
@@ -1302,6 +1304,19 @@
             <xsd:appinfo>level:expert</xsd:appinfo>
           </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="send-mode" default="on-change">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Usually the elements that are using this address recevice an update-event only when that value hast changed (``on-change``). This check can be disabled ``always`` to send the update-event every time when a new value has been received from the backend.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (``on-change``). Mit ``always`` wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</xsd:documentation>
+            <xsd:appinfo>level:expert</xsd:appinfo>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="on-change" />
+              <xsd:enumeration value="always" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1648,6 +1663,17 @@
     <xsd:sequence>
       <xsd:any processContents="lax"/>
     </xsd:sequence>
+    <xsd:attribute name="target">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the target, where new list elements are added. Usually an extra &lt;ul&gt; element is created for that.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt das Ziel fest, in dem die Listen-Elemente erzeugt werden sollen. Normalerweise wird dafür ein extra &lt;ul&gt; Element erzeugt.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="parent" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="custom">
