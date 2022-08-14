@@ -659,7 +659,8 @@
     </xsd:sequence>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
-    <xsd:attribute ref="format" />
+    <xsd:attribute name="y-format" type="xsd:string" />
+    <xsd:attribute name="x-format" type="xsd:string" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute name="series" type="xsd:string"/>
     <xsd:attribute ref="refresh"/>
@@ -1420,7 +1421,7 @@
   </xsd:attribute>
   <xsd:attribute name="format" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Formataion of the value (printf syntax).</xsd:documentation>
+      <xsd:documentation xml:lang="en">Formatting of the value (printf syntax).</xsd:documentation>
       <xsd:documentation xml:lang="de">Formatierung des Wertes (printf-Syntax).</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>

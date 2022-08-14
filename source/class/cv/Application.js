@@ -257,13 +257,6 @@ qx.Class.define('cv.Application',
 
       document.body.classList.add('loading');
 
-      // install proxyFetch
-      window.proxyFetch = src => {
-        const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-        url.searchParams.set('url', src);
-        return fetch(url.toString());
-      };
-
       cv.report.Record.prepare();
 
       let info = '\n' +

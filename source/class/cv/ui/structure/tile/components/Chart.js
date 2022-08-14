@@ -83,6 +83,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _width: null,
     _height: null,
     _loaded: null,
+    _dataSetConfigs: null,
 
     async _init() {
       const element = this._element;
@@ -107,155 +108,172 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         return;
       }
       const client = cv.io.BackendConnections.getClient();
-      let key;
       let url;
-      const dataSet = this._element.querySelector(':scope > dataset');
-      let ts = {
-        showArea: true,
-        color: '#FF9900',
-        type: 'line',
-        start: 'end-1day',
-        end: 'now',
-        xFormat: '%H:%M',
-        xTicks: d3.timeHour.every(4)
-      };
-      let attr;
-      let name;
-      let value;
-      for (let i = 0; i < dataSet.attributes.length; i++) {
-        attr = dataSet.attributes.item(i);
-        // CamelCase attribute names
-        name = attr.name.split('-')
-          .map((part, i) => {
-            if (i > 0) {
-              return `${part.substring(0, 1).toUpperCase()}${part.substring(1)}`;
+      const dataSets = this._element.querySelectorAll(':scope > dataset');
+      const promises = [];
+      this._dataSetConfigs = {};
+      for (let dataSet of dataSets) {
+        let ts = {
+          showArea: true,
+          color: '#FF9900',
+          type: 'line',
+          start: 'end-1day',
+          end: 'now',
+          xFormat: this._element.getAttribute('x-format') || '%H:%M',
+          xTicks: d3.timeHour.every(4)
+        };
+        let attr;
+        let name;
+        let value;
+        for (let i = 0; i < dataSet.attributes.length; i++) {
+          attr = dataSet.attributes.item(i);
+          // CamelCase attribute names
+          name = attr.name.split('-')
+            .map((part, i) => {
+              if (i > 0) {
+                return `${part.substring(0, 1).toUpperCase()}${part.substring(1)}`;
+              }
+              return part;
+            })
+            .join('');
+          value = attr.value;
+          if (name === 'series') {
+            switch (value) {
+              case 'hour':
+                ts.xTicks = d3.timeMinute.every(5);
+                ts.start = 'end-1' + value;
+                break;
+
+              case 'day':
+                ts.xTicks = d3.timeHour.every(4);
+                ts.start = 'end-1' + value;
+                break;
+
+              case 'week':
+                ts.xTicks = d3.timeDay.every(1);
+                ts.start = 'end-1' + value;
+                break;
+
+              case 'month':
+                ts.xTicks = d3.timeDay.every(5);
+                ts.start = 'end-1' + value;
+                break;
+
+              case 'year':
+                ts.xTicks = d3.timeDay.every(31);
+                ts.start = 'end-1' + value;
+                break;
             }
-            return part;
-          })
-          .join('');
-        value = attr.value;
-        if (name === 'series') {
-          switch (value) {
-            case 'hour':
-              ts.xTicks = d3.timeMinute.every(5);
-              ts.start = 'end-1' + value;
-              break;
-
-            case 'day':
-              ts.xTicks = d3.timeHour.every(4);
-              ts.start = 'end-1' + value;
-              break;
-
-            case 'week':
-              ts.xTicks = d3.timeDay.every(1);
-              ts.start = 'end-1' + value;
-              break;
-
-            case 'month':
-              ts.xTicks = d3.timeDay.every(5);
-              ts.start = 'end-1' + value;
-              break;
-
-            case 'year':
-              ts.xTicks = d3.timeDay.every(31);
-              ts.start = 'end-1' + value;
-              break;
+          } else {
+            if (value === 'true' || value === 'false') {
+              value = value === 'true';
+            } else if (/^\d+$/.test(value)) {
+              value = parseInt(value);
+            } else if (/^[\d.]+$/.test(value)) {
+              value = parseFloat(value);
+            }
+            ts[name] = value;
           }
-        } else {
-          if (value === 'true' || value === 'false') {
-            value = value === 'true';
-          } else if (/^\d+$/.test(value)) {
-            value = parseInt(value);
-          } else if (/^[\d.]+$/.test(value)) {
-            value = parseFloat(value);
-          }
-          ts[name] = value;
         }
+        let start = new Date();
+        start.setTime(start.getTime() - 60 * 60 * 24 * 1000);
+        url = client.getResourcePath('charts', {
+          src: ts.src,
+          start: ts.start,
+          end: ts.end
+        });
+        if (!url) {
+          continue;
+        }
+        this._dataSetConfigs[ts.src] = ts;
+        promises.push(cv.io.Fetch.fetch(url, null, false, client).then(data => {
+          if (client.hasCustomChartsDataProcessor(data)) {
+            data = client.processChartsData(data, ts);
+          }
+          return {
+            data: data,
+            ts: ts
+          };
+        }).catch(err => {
+          this._onStatusError(ts, url, err);
+        }));
       }
-      let start = new Date();
-      start.setTime(start.getTime() - 60*60*24*1000);
-      url = client.getResourcePath('charts', {
-        src: ts.src,
-        start: ts.start,
-        end: ts.end
+      Promise.all(promises).then(responses => {
+        this._onSuccess(responses);
       });
-      if (!url) {
-        return;
-      }
-      key = url;
-      //url = client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd';
-      const xhr = new qx.io.request.Xhr(url);
-      client.authorize(xhr);
-      xhr.set({
-        accept: 'application/json'
-      });
-      xhr.addListener('success', function(ev) {
-        this._onSuccess(ts, key, ev);
-      }, this);
-      xhr.addListener('statusError', function(ev) {
-        this._onStatusError(ts, key, ev);
-      }, this);
-      xhr.send();
     },
 
-    _onSuccess: function(ts, key, ev) {
+    _onSuccess: function(data) {
       if (!this.isVisible()) {
         return;
       }
-      let tsdata = ev.getTarget().getResponse();
-      if (tsdata !== null) {
-        const client = cv.io.BackendConnections.getClient('main');
-        if (client.hasCustomChartsDataProcessor(tsdata)) {
-          tsdata = client.processChartsData(tsdata);
+      let chartData = [];
+
+      for (let entry of data) {
+        let tsdata = entry.data;
+        if (tsdata !== null) {
+          for (let [time, value] of tsdata) {
+            chartData.push({
+              src: entry.ts.src,
+              time,
+              value
+            });
+          }
         }
-
-        let minVal = d3.min(tsdata, d =>  +d[1]);
-        if (minVal > 1.0) {
-          minVal -= 1;
-        }
-        const maxVal = d3.max(tsdata, d =>  +d[1]) + 1;
-
-        const format = this._element.hasAttribute('format') ? this._element.getAttribute('format') : '%s' + (ts.unit ? ' ' + ts.unit : '');
-
-        this._chart = this._lineChart(tsdata, {
-          color: ts.color,
-          title: d => {
-            return cv.util.String.sprintf(format, d[1]);
-          },
-          yLabel: ts.unit,
-          xDomain: d3.extent(tsdata, d => d[0]),
-          yDomain: [minVal, maxVal],
-          showArea: ts.showArea,
-          mixBlendMode: 'normal',
-          xFormat: this.multiTimeFormat([
-            ['.%L', function (d) {
-              return d.getMilliseconds();
-            }],
-            [':%S', function (d) {
-              return d.getSeconds();
-            }],
-            ['%H:%M', function (d) {
-              return d.getMinutes();
-            }],
-            ['%H', function (d) {
-              return d.getHours();
-            }],
-            ['%a %d', function (d) {
-              return d.getDay() && d.getDate() !== 1;
-            }],
-            ['%b %d', function (d) {
-              return d.getDate() !== 1;
-            }],
-            ['%B', function (d) {
-              return d.getMonth();
-            }],
-            ['%Y', function () {
-              return true;
-            }]
-          ])
-        });
-        this._loaded = Date.now();
       }
+      let minVal = d3.min(chartData, d => +d.value);
+      let maxVal = d3.max(chartData, d => +d.value) + 1;
+      if (minVal > 1.0) {
+        minVal -= 1;
+      }
+
+      const format = this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s';
+
+      this._chart = this._lineChart(chartData, {
+        x: d => d.time,
+        y: d => d.value,
+        z: d => d.src,
+        color: d => {
+          return d && this._dataSetConfigs[d].color;
+        },
+        title: d => {
+          return cv.util.String.sprintf(format, d.value);
+        },
+        //yLabel: ts.unit,
+        xDomain: d3.extent(chartData, d => d.time),
+        yDomain: [minVal, maxVal],
+        showArea: d => {
+          return this._dataSetConfigs[d].showArea;
+        },
+        mixBlendMode: 'normal',
+        xFormat: this.multiTimeFormat([
+          ['.%L', function (d) {
+            return d.getMilliseconds();
+          }],
+          [':%S', function (d) {
+            return d.getSeconds();
+          }],
+          ['%H:%M', function (d) {
+            return d.getMinutes();
+          }],
+          ['%H', function (d) {
+            return d.getHours();
+          }],
+          ['%a %d', function (d) {
+            return d.getDay() && d.getDate() !== 1;
+          }],
+          ['%b %d', function (d) {
+            return d.getDate() !== 1;
+          }],
+          ['%B', function (d) {
+            return d.getMonth();
+          }],
+          ['%Y', function () {
+            return true;
+          }]
+        ])
+      });
+      this._loaded = Date.now();
     },
 
     multiTimeFormat(formatsArray) {
@@ -275,13 +293,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       return date => d3.timeFormat(multiFormat(date))(date);
     },
 
-    _onStatusError: function(ts, key, ev) {
+    _onStatusError: function(ts, key, err) {
       cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
         title: qx.locale.Manager.tr('Communication error'),
         severity: 'urgent',
-        message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), ev._target._transport.responseText)
+        message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), err)
       });
-      this.error('Chart _onStatusError', ts, key, ev);
+      this.error('Chart _onStatusError', ts, key, err);
     },
 
     /**
@@ -324,10 +342,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           strokeWidth: 1.5, // stroke width of line
           strokeOpacity: undefined, // stroke opacity of line
           mixBlendMode: 'multiply', // blend mode of lines
-          showArea: false // show area below the line
+          showArea: undefined // show area below the line
         };
       }
-      const config = Object.assign(cv.ui.structure.tile.components.Chart.CONFIG, c);
+      const config = Object.assign({}, cv.ui.structure.tile.components.Chart.CONFIG, c);
       config.xRange = [config.marginLeft, config.width - config.marginRight]; // [left, right]
       config.yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
 
@@ -364,7 +382,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       // Compute titles.
       const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
-
 
       // Construct a line generator.
       const line = d3.line()
@@ -442,11 +459,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .data(d3.group(I, i => Z[i]))
         .join('path')
         .style('mix-blend-mode', config.mixBlendMode)
-        .attr('stroke', typeof config.color === 'function' ? ([z]) => config.color(z) : null)
+        .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
         .attr('d', d => line(d[1]));
 
       // Add the area
-      if (config.showArea) {
+      if (typeof config.showArea === 'function') {
         const area = d3.area()
           //.defined(i => D[i])
           .curve(config.curve)
@@ -454,14 +471,25 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .y0(() => config.yRange[0])
           .y1(i => yScale(Y[i]));
 
+        const areaGroups = new Map();
+        for (let i of I) {
+          const key = Z[i];
+          if (config.showArea(key)) {
+            if (!areaGroups.has(key)) {
+              areaGroups.set(key, []);
+            }
+            areaGroups.get(key).push(i);
+          }
+        }
+
         svg.append('g')
           .attr('stroke', 'none')
           .attr('fill', typeof config.color === 'string' ? config.color + '30' : null)
           .selectAll('path')
-          .data(d3.group(I, i => Z[i]))
+          .data(areaGroups)
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
-          .attr('fill', typeof config.color === 'function' ? ([z]) => config.color(z) + '30' : null)
+          .attr('fill', typeof config.color === 'function' ? p => config.color(p[0]) + '30' : null)
           .attr('d', d => area(d[1]));
       }
 
