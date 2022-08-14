@@ -22,7 +22,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
       if (target && target.tagName.toLowerCase() === 'label') {
         // check for overflowing text, when labels parent gets resized
         this.setResizeTarget(this._element);
-        this.addListener('resize', this._debouncedDetectOverflow, this);
+        this.addListener('resized', this._debouncedDetectOverflow, this);
       }
     },
 
