@@ -28,6 +28,18 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
       const popup = this._childPopup = this._element.querySelector(':scope > cv-popup');
       if (popup) {
         qx.event.Registration.addListener(this._element, 'tap', this._openPopupChild, this);
+        // we need to tell the parent widget that is inside a group that wen have a popup here
+        let parent = popup.parentElement;
+        let last;
+        while (parent) {
+          if (parent.tagName.toLowerCase() === 'cv-group') {
+            last.classList.add('has-popup');
+          } else if (parent.tagName.toLowerCase() === 'cv-page') {
+            break;
+          }
+          last = parent
+          parent = parent.parentElement;
+        }
       }
     },
 
