@@ -32,7 +32,6 @@
          </li>
        </template>
    </cv-list>
- * @ignore(fetch, proxyFetch)
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -114,10 +113,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       if (model.hasAttribute('src')) {
         // fetch from url
         this._getModel = async () => {
-          // eslint-disable-next-line no-undef
-          const f = model.getAttribute('proxy') === 'true' ? proxyFetch : fetch;
-          const res = await f(model.getAttribute('src'));
-          return res.ok ? res.json() : [];
+          const res = await cv.io.Fetch.fetch(model.getAttribute('src'), null, model.getAttribute('proxy') === 'true');
+          return res;
         };
       } else {
         const script = model.querySelector(':scope > script');
