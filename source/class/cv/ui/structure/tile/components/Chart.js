@@ -116,7 +116,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         let ts = {
           showArea: true,
           color: '#FF9900',
-          type: 'line',
+          type: dataSet.getAttribute('type') || 'line',
           start: 'end-1day',
           end: 'now',
           xFormat: this._element.getAttribute('x-format') || '%H:%M',
@@ -277,7 +277,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     multiTimeFormat(formatsArray) {
-      function multiFormat(date) {
+      /**
+ * @param date
+ */
+function multiFormat(date) {
         let i = 0;
         let found = false;
         let fmt = '%c';
@@ -342,7 +345,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           strokeWidth: 1.5, // stroke width of line
           strokeOpacity: undefined, // stroke opacity of line
           mixBlendMode: 'multiply', // blend mode of lines
-          showArea: undefined // show area below the line
+          showArea: undefined, // show area below the line,
+          xPadding: 0.1 // amount of x-range to reserve to separate bars
         };
       }
       const config = Object.assign({}, cv.ui.structure.tile.components.Chart.CONFIG, c);
@@ -383,19 +387,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Compute titles.
       const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
 
-      // Construct a line generator.
-      const line = d3.line()
-        //.defined(i => D[i])
-        .curve(config.curve)
-        .x(i => xScale(X[i]))
-        .y(i => yScale(Y[i]));
-
       d3.select(this._element).select('svg').remove();
+
+      let linePath;
 
       const pointerMoved = event => {
         const [xm, ym] = d3.pointer(event);
         const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
-        path.style('stroke', ([z]) => Z[i] === z ? null : '#ddd').filter(([z]) => Z[i] === z).raise();
         dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
         if (T) {
           dot.select('text').text(T[i]);
@@ -404,12 +402,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       };
 
       const pointerEntered = () => {
-        path.style('mix-blend-mode', null).style('stroke', '#ddd');
         dot.attr('display', null);
       };
 
       const pointerLeft = () => {
-        path.style('mix-blend-mode', config.mixBlendMode).style('stroke', null);
         dot.attr('display', 'none');
         svg.node().value = null;
         svg.dispatch('input', {bubbles: true});
@@ -427,9 +423,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .on('pointerleave', pointerLeft)
         .on('touchmove', event => {
           let y = event.targetTouches[0].clientY;
-          const pathRect = path.node().getBoundingClientRect();
-          if (y > pathRect.y && y < (pathRect.y + pathRect.height)) {
-            event.preventDefault();
+          if (linePath) {
+            const pathRect = linePath.node().getBoundingClientRect();
+            if (y > pathRect.y && y < (pathRect.y + pathRect.height)) {
+              event.preventDefault();
+            }
           }
         }, { passive: false });
 
@@ -448,39 +446,65 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('text-anchor', 'start')
           .text(config.yLabel));
 
-      const path = svg.append('g')
-        .attr('fill', 'none')
-        .attr('stroke', typeof config.color === 'string' ? config.color : null)
-        .attr('stroke-linecap', config.strokeLinecap)
-        .attr('stroke-linejoin', config.strokeLinejoin)
-        .attr('stroke-width', config.strokeWidth)
-        .attr('stroke-opacity', config.strokeOpacity)
-        .selectAll('path')
-        .data(d3.group(I, i => Z[i]))
-        .join('path')
-        .style('mix-blend-mode', config.mixBlendMode)
-        .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
-        .attr('d', d => line(d[1]));
+      const lineGroups = new Map();
+      const areaGroups = new Map();
+      const barGroups = new Map();
+      for (let i of I) {
+        const key = Z[i];
+        if (typeof config.showArea === 'function' && config.showArea(key)) {
+          if (!areaGroups.has(key)) {
+            areaGroups.set(key, []);
+          }
+          areaGroups.get(key).push(i);
+        }
+        switch (this._dataSetConfigs[key].type) {
+          case 'line':
+            if (!lineGroups.has(key)) {
+              lineGroups.set(key, []);
+            }
+            lineGroups.get(key).push(i);
+            break;
+
+          case 'bar':
+            if (!barGroups.has(key)) {
+              barGroups.set(key, []);
+            }
+            barGroups.get(key).push(i);
+            break;
+        }
+      }
+
+      if (lineGroups.size > 0) {
+        // Construct a line generator.
+        const line = d3.line()
+          //.defined(i => D[i])
+          .curve(config.curve)
+          .x(i => xScale(X[i]))
+          .y(i => yScale(Y[i]));
+
+        linePath = svg.append('g')
+          .attr('fill', 'none')
+          .attr('stroke', typeof config.color === 'string' ? config.color : null)
+          .attr('stroke-linecap', config.strokeLinecap)
+          .attr('stroke-linejoin', config.strokeLinejoin)
+          .attr('stroke-width', config.strokeWidth)
+          .attr('stroke-opacity', config.strokeOpacity)
+          .selectAll('path')
+          .data(lineGroups)
+          .join('path')
+          .style('mix-blend-mode', config.mixBlendMode)
+          .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
+          .attr('d', d => line(d[1]));
+      }
 
       // Add the area
-      if (typeof config.showArea === 'function') {
+      if (areaGroups.size > 0) {
         const area = d3.area()
           //.defined(i => D[i])
           .curve(config.curve)
           .x(i => xScale(X[i]))
           .y0(() => config.yRange[0])
           .y1(i => yScale(Y[i]));
-
-        const areaGroups = new Map();
-        for (let i of I) {
-          const key = Z[i];
-          if (config.showArea(key)) {
-            if (!areaGroups.has(key)) {
-              areaGroups.set(key, []);
-            }
-            areaGroups.get(key).push(i);
-          }
-        }
 
         svg.append('g')
           .attr('stroke', 'none')
@@ -491,6 +515,29 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .style('mix-blend-mode', config.mixBlendMode)
           .attr('fill', typeof config.color === 'function' ? p => config.color(p[0]) + '30' : null)
           .attr('d', d => area(d[1]));
+      }
+
+      if (barGroups.size > 0) {
+        const xBarScale = d3.scaleBand().domain(X).range(config.xRange).padding(config.xPadding);
+        svg.append('g')
+          .selectAll('g')
+          .data(barGroups)
+          .join('g')
+            .attr('fill', typeof config.color === 'function' ? d => config.color(d[0]) + '30' : null)
+          .selectAll('rect')
+          .data(d => {
+            return d[1].map(val => {
+              return {
+                key: d[0],
+                value: val
+              };
+            });
+          })
+          .join('rect')
+            .attr('x', d => xBarScale(X[d.value]))
+            .attr('y', d => yScale(Y[d.value]))
+            .attr('height', d => config.yRange[0] - yScale(Y[d.value]))
+            .attr('width', xBarScale.bandwidth());
       }
 
       const dot = svg.append('g')
