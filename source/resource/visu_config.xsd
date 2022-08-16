@@ -2549,7 +2549,14 @@
     <xsd:attribute name="refresh" type="xsd:integer" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Refresh the display automatically after this amount of seconds.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Aktuallisiert die Anzeige automatisch nach dieser Zahl von Sekunden.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktualisiert die Anzeige automatisch nach dieser Zahl von Sekunden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="delay" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Additional delay between the refresh request and the refresh.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zusätzliche Wartezeit in Millisekunden zwischen Eintreffen der
+          Aktualisierungsanfrage und der Aktualisierung selbst.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="limit" type="xsd:integer" use="optional">
@@ -2558,10 +2565,12 @@
         <xsd:documentation xml:lang="de">Anzahl der anzuzeigenden Einträge.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="rss_mode">
+    <xsd:attribute name="mode">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">first, last, rollover</xsd:documentation>
-        <xsd:documentation xml:lang="de">first, last, rollover</xsd:documentation>
+        <xsd:documentation xml:lang="en">Show only the first, the last or over the time (-> refresh)
+          changing (rollover) entries.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige nur die ersten (first), letzten (last) oder im zeitlichen Verlauf
+          (-> refresh) wechselnden (rollover) Einträge, wenn der Platz nicht ausreicht.</xsd:documentation>
       </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
@@ -2574,7 +2583,7 @@
     <xsd:attribute name="datetime" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Show date and time of entry.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zeige Datum und Zeit des Eintrags mit an.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige Datum und Zeit des Eintrags an.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="timeformat" type="xsd:string" use="optional">
@@ -2591,8 +2600,10 @@
     </xsd:attribute>
     <xsd:attribute name="itemack" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">modify, display, disable</xsd:documentation>
-        <xsd:documentation xml:lang="de">modify, display, disable</xsd:documentation>
+        <xsd:documentation xml:lang="en">Defines whether the state can be modified,
+          only be displayed or not be displayed (disable).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt fest ob der Status (state) geändert (modify)
+          werden kann, nur angezeigt wird (display) oder nicht angezeigt wird (disable).</xsd:documentation>
       </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">

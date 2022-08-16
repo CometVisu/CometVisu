@@ -218,6 +218,7 @@ Successfully deleted ID=<?php echo $id; ?>.
   $log_filter  = $_GET['f'] ?? NULL;
   $state = $_GET['state'] ?? NULL;
   $future = $_GET['future'] ?? NULL;
+  $showMeta = ($_GET['showmeta'] ?? 'false') === 'true';
 
   // retrieve data
   $result = retrieve( $database, $log_filter, $state, $future );
@@ -232,14 +233,22 @@ Successfully deleted ID=<?php echo $id; ?>.
   // echo '<description>foo</description>';
   while( $row = $result->fetch(PDO::FETCH_ASSOC) )
   {
-    $tags = ' [ id=' . $row['id']. ',state=' . $row['state'];
-    if ($row['tags'])
+    $title = $row['title'] !== '' ? $row['title'] : $row['content'];
+    if ($showMeta || $title === '') {
+      $tags = ' [ id=' . $row['id']. ',state=' . $row['state'];
+      if ($row['tags'])
         $tags .= ',' . $row['tags'];
-    $tags .= ' ]';
+      $tags .= ' ]';
+      $title .= $tags;
+    }
     echo '<item>';
-    echo '<title>' . $row['title'] . $tags . '</title>';
+    echo '<title>' . $title . '</title>';
     echo '<description>' . $row['content'] . '</description>';
+    if ($row['tags'])
+      foreach( explode(',', $row['tags']) as $tag )
+        echo '<category>' . $tag . '</category>';
     echo '<pubDate>' . date( DATE_ATOM, $row['t'] ) . '</pubDate>';
+    echo '<guid>' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . '-' . ($_GET['database'] ?? '') . '-' . $row['id'] . '</guid>';
     echo '</item>' . "\n";
   }
   ?>
@@ -530,17 +539,19 @@ function delete( $database, $timestamp, $filter )
   } else {
     $filters = explode(',', $filter); // accept filters by separated by ,
     function substrmatch($s) { return "%$s%"; };
-    $filters = array_map( substrmatch, $filters );
+    $filters = array_map( 'substrmatch', $filters );
     $filterString = '(tags LIKE ?) ' . str_repeat( 'OR (tags LIKE ?) ', count( $filters )-1 );
   }
 
-  $q = "DELETE from $Logs WHERE t < datetime($timestamp, 'unixepoch') AND ($filterString)";
+  $q = $database['type'] === 'mysql'
+    ? "DELETE from $Logs WHERE UNIX_TIMESTAMP(t) < $timestamp AND ($filterString)"
+    : "DELETE from $Logs WHERE t < datetime($timestamp, 'unixepoch') AND ($filterString)";
   try {
     $sth = $dbh->prepare( $q );
     $sth->execute( $filters );
   } catch (PDOException $e) {
     header("HTTP/1.0 500 Internal Server Error");
-    die ('Cannot execute query: ' . $e->getMessage());
+    die ('Cannot execute query: ' . $q . "<br/>\n" . $e->getMessage());
   }
 }
 
@@ -662,7 +673,7 @@ function update2to3( $database, $dbfile )
 // Show management information
 function showInfo($database)
 {
-  global $dbfile, $usedDBdriver;
+  global $dbfile, $usedDBdriver, $hidden;
   $dbh = $database['dbh'];
 ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -678,6 +689,31 @@ function showInfo($database)
   </li>
   <li>
     Available database drivers: <?php echo join( ', ', PDO::getAvailableDrivers() ); ?>
+  </li>
+  <li>
+    Selected hidden config: <?php
+      echo $_GET['database'] ?? '<i>none</i>';
+      if (($_GET['database'] ?? '') !== '') {
+        $hiddenFound = array_key_exists($_GET['database'] ?? '', $hidden);
+        echo ', hidden config found: ' . ($hiddenFound ? 'true' : 'false');
+        if ($hiddenFound) {
+          echo '</li><li>Database config: host = ' . ($database['host'] ?? 'localhost');
+          echo '</li><li>Database config: port = ' . ($database['port'] ?? '');
+          echo '</li><li>Database config: db = ' . ($database['db'] ?? '');
+          echo '</li><li>Database config: user = ' . ($database['user'] ?? '');
+          echo '</li><li>Database config: pass = ' . str_repeat('*', strlen(($database['pass'] ?? '')));
+        }
+      }
+    ?>
+  </li>
+  <li>
+    Database config: type = <?php echo $database['type']; ?>
+  </li>
+  <li>
+    Database config: Table logs = <?php echo $database['logs'];  ?>
+  </li>
+  <li>
+     Database config: Table version = <?php echo $database['version']; ?>
   </li>
   <li>
     Schema version: <?php echo dbSchemaVersion( $database ); ?>

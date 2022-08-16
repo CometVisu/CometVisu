@@ -1,0 +1,22 @@
+{
+  "responseData" : {
+    "feed" : {
+      "feedUrl": "http://127.0.0.1/resource/plugins/rsslog/rsslog.php",
+      "title": "RSS supplied logs",
+      "link": "http://127.0.0.1/resource/plugins/rsslog/rsslog.php",
+      "author": "",
+      "description": "RSS supplied logs",
+      "type": "rss20",
+      "entries": [
+{"id": "16","title": "","content": "Refuel","tags": ["car"],"mapping": "StateConfirmFuel","state": "0","publishedDate": "2022-08-06T12:34:56+00:00"},
+{"id": "15","title": "","content": "Put out the yellow garbage bin","tags": ["yellow"],"mapping": "StateConfirmGarbage","state": "0","publishedDate": "2022-08-06T06:00:00+00:00"},
+{"id": "14","title": "","content": "Put out the bio garbage bin","tags": ["brown"],"mapping": "StateConfirmGarbage","state": "0","publishedDate": "2022-08-06T06:00:00+00:00"},
+{"id": "13","title": "","content": "Put out the paper garbage bin","tags": ["blue"],"mapping": "StateConfirmGarbage","state": "0","publishedDate": "2022-08-06T06:00:00+00:00"},
+{"id": "12","title": "","content": "Refuel","tags": ["car"],"mapping": "StateConfirmFuel","state": "1","publishedDate": "2022-08-02T21:09:53+00:00"},
+{"id": "11","title": "","content": "Put out the bio garbage bin","tags": ["brown"],"mapping": "StateConfirmGarbage","state": "1","publishedDate": "2022-07-30T06:00:00+00:00"}
+        ]
+    }
+  },
+  "responseDetails" : null,
+  "responseStatus" : 200
+}
