@@ -43,6 +43,10 @@ qx.Class.define('cv.plugins.RssLog', {
       check: 'String',
       nullable: true
     },
+    delay: {
+      check: 'Number',
+      init: 0
+    },
     filter: {
       check: 'String',
       nullable: true
@@ -113,6 +117,7 @@ qx.Class.define('cv.plugins.RssLog', {
       return {
         src:    {},
         database: {},
+        delay: { 'default': 0, transform: parseInt },
         width:  {},
         height: {},
         filter: {},
@@ -215,7 +220,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _update: function () {
-      this.refreshRSSlog();
+      setTimeout(() => this.refreshRSSlog(), this.getDelay());
     },
 
     _action: function () {
@@ -335,7 +340,7 @@ qx.Class.define('cv.plugins.RssLog', {
         }
         displayrows = Math.floor(displayheight / itemheight);
       }
-      c.dataset['last_rowcount'] = displayrows;
+      c.dataset.last_rowcount = displayrows;
       return displayrows;
     },
 
@@ -343,6 +348,8 @@ qx.Class.define('cv.plugins.RssLog', {
       const result = ev.getTarget().getResponse();
       if (typeof result === 'string') {
         // no json -> error
+        this.error('no json -> error');
+        this.error('response MIME:',ev.getTarget().getResponseContentType());
         this.error(result);
         return;
       }
@@ -423,7 +430,10 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.tags) {
           const tmp = rowElem.querySelector('span');
           if (Array.isArray(item.tags)) {
-            tmp.classList.add.apply(tmp.classList, item.tags);
+            const tags = item.tags.filter(x => x !== '');
+            if (tags.length > 0) {
+              tmp.classList.add.apply(tmp.classList, item.tags);
+            }
           } else {
             tmp.classList.add(item.tags);
           }
