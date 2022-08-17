@@ -348,8 +348,7 @@ qx.Class.define('cv.plugins.RssLog', {
       const result = ev.getTarget().getResponse();
       if (typeof result === 'string') {
         // no json -> error
-        this.error('no json -> error');
-        this.error('response MIME:',ev.getTarget().getResponseContentType());
+        this.error('Expected JSON, but got response MIME:', ev.getTarget().getResponseContentType());
         this.error(result);
         return;
       }
