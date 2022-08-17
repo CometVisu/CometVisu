@@ -137,7 +137,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
               }
             } else {
               // open / close depending on value
-              this.setPopup(ev.detail.state === 1);
+              // noinspection EqualityComparisonWithCoercionJS
+              this.setPopup(ev.detail.state == 1);
             }
             break;
 
