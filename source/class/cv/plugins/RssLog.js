@@ -35,13 +35,21 @@ qx.Class.define('cv.plugins.RssLog', {
   properties: {
     src: {
       check: 'String',
-      nullable:true,
+      nullable: true,
       transform: 'normalizeUrl',
       apply: '_applySrc'
     },
+    database: {
+      check: 'String',
+      nullable: true
+    },
+    delay: {
+      check: 'Number',
+      init: 0
+    },
     filter: {
       check: 'String',
-      nullable:true
+      nullable: true
     },
     datetime: {
       check: 'Boolean',
@@ -108,6 +116,8 @@ qx.Class.define('cv.plugins.RssLog', {
     getAttributeToPropertyMappings: function() {
       return {
         src:    {},
+        database: {},
+        delay: { 'default': 0, transform: parseInt },
         width:  {},
         height: {},
         filter: {},
@@ -148,7 +158,7 @@ qx.Class.define('cv.plugins.RssLog', {
     __separatorprevday: null,
 
     /**
-     * Strip querystring from URL and store is as Map
+     * Strip querystring from URL and store it as Map
      * @param value {String} URL
      * @return {String} normalized URL
      */
@@ -159,11 +169,17 @@ qx.Class.define('cv.plugins.RssLog', {
         value = value.substring(0, value.indexOf('?'));
         this.__fixedRequestData = parts.queryKey;
       }
+      if (this.getDatabase()) {
+        this.__fixedRequestData.database = this.getDatabase();
+      }
       return value;
     },
 
     // property apply
     _applySrc: function(value) {
+      if (value.match(/rsslog_mysql\.php/)) {
+        this.error('Use of rsslog_mysql.php is depreciated. Please consult the documentation.');
+      }
       this.__external = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
     },
 
@@ -204,7 +220,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _update: function () {
-      this.refreshRSSlog();
+      setTimeout(() => this.refreshRSSlog(), this.getDelay());
     },
 
     _action: function () {
@@ -324,7 +340,7 @@ qx.Class.define('cv.plugins.RssLog', {
         }
         displayrows = Math.floor(displayheight / itemheight);
       }
-      c.dataset['last_rowcount'] = displayrows;
+      c.dataset.last_rowcount = displayrows;
       return displayrows;
     },
 
@@ -332,6 +348,7 @@ qx.Class.define('cv.plugins.RssLog', {
       const result = ev.getTarget().getResponse();
       if (typeof result === 'string') {
         // no json -> error
+        this.error('Expected JSON, but got response MIME:', ev.getTarget().getResponseContentType());
         this.error(result);
         return;
       }
@@ -359,11 +376,11 @@ qx.Class.define('cv.plugins.RssLog', {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = parseInt(c.dataset['itemoffset'], 10) || 0;
+          itemoffset = parseInt(c.dataset.itemoffset, 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
-          c.dataset['itemoffset'] = itemoffset + 1;
+          c.dataset.itemoffset = itemoffset + 1;
         }
       }
 
@@ -407,12 +424,15 @@ qx.Class.define('cv.plugins.RssLog', {
           rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
-        rowElem.dataset['id'] = item.id;
-        rowElem.dataset['mapping'] = item.mapping;
+        rowElem.dataset.id = item.id;
+        rowElem.dataset.mapping = item.mapping;
         if (item.tags) {
           const tmp = rowElem.querySelector('span');
           if (Array.isArray(item.tags)) {
-            tmp.classList.add.apply(tmp.classList, item.tags);
+            const tags = item.tags.filter(x => x !== '');
+            if (tags.length > 0) {
+              tmp.classList.add.apply(tmp.classList, item.tags);
+            }
           } else {
             tmp.classList.add(item.tags);
           }
@@ -462,8 +482,8 @@ qx.Class.define('cv.plugins.RssLog', {
     _onTap: function(ev) {
       const item = ev.getCurrentTarget();
 
-      const id = item.dataset['id'];
-      const mapping = item.dataset['mapping'];
+      const id = item.dataset.id;
+      const mapping = item.dataset.mapping;
       item.classList.toggle('rsslog_ack');
       const state = +item.classList.contains('rsslog_ack'); // the new state is the same as hasClass
       if (mapping && mapping !== '') {
