@@ -112,7 +112,7 @@ Erlaubte Kind-Elemente und deren Attribute
     eine Aktion vom Server auf dem Client zu aktualisieren, d.h. der Client
     kann nicht wissen, dass es einen neuen Eintrag gibt. Das RSSLog-Plugin
     wird nach der im Attribut ``refresh`` definierten Zeit die Daten neu laden,
-    aber zwischenzeitlich eingetragene Daten bis dahin nicht sehen.
+    aber zwischenzeitlich eingetragene Daten sind bis dahin nicht sehen.
 
     Wenn jedoch optional ein ``<address>`` Element mit angegeben wird, kann
     das RSSLog-Plugin von sich aus die Daten neu laden sobald
@@ -301,7 +301,7 @@ Externe Interaktion mit den Daten
 Das RSSLog-Plugin der CometVisu dient nur der Anzeige der Daten aus der Datenbank,
 die Befüllung muss durch eine Logik-Engine von außen passieren. Empfohlen wird
 hierfür nicht direkt auf die Datenbank zuzugreifen, sondern die gleiche HTTP-API
-zu nutzen, die auch das RRSLog-Plugin nutzt.
+zu nutzen, die auch das RSSLog-Plugin nutzt.
 
 Alle Aufrufe sind normale HTTP GET Requests, die eine Logik-Engine leicht
 erzeugen kann.
