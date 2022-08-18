@@ -71,6 +71,7 @@
         'imagetrigger': '/0.13/manual/config/widgets/imagetrigger/index.html#imagetrigger',
         'include': '/0.13/manual/config/widgets/include/index.html#include',
         'info': '/0.13/manual/config/widgets/info/index.html#info',
+        'info-seite': '/0.13/manual/config/widgets/plugins/rsslog/index.html#info-seite',
         'infoaction': '/0.13/manual/config/widgets/infoaction/index.html#infoaction',
         'infotrigger': '/0.13/manual/config/widgets/infotrigger/index.html#infotrigger',
         'install-no-pakets': '/0.13/manual/install/install-dev.html#install-no-pakets',
@@ -100,6 +101,7 @@
         'roundbar': '/0.13/manual/config/widgets/roundbar/index.html#roundbar',
         'rpi-tutorial-cometvisu-in-docker': '/0.13/manual/tutorial/rpi_cometvisu.html#rpi-tutorial-cometvisu-in-docker',
         'rrd-introduction': '/0.13/manual/config/rrd_examples.html#rrd-introduction',
+        'rsslog': '/0.13/manual/config/widgets/plugins/rsslog/index.html#rsslog',
         'size-attributes': '/0.13/manual/config/size-attributes.html#size-attributes',
         'slide': '/0.13/manual/config/widgets/slide/index.html#slide',
         'speech': '/0.13/manual/config/widgets/plugins/speech/index.html#speech',
@@ -139,4 +141,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1652287841898
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1660800146883

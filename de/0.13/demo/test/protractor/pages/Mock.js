@@ -67,9 +67,15 @@ class CometVisuMockup extends BasePage {
     }
     if (fs.existsSync(sourceFile)) {
       let content = fs.readFileSync(sourceFile);
+
+      let queryString = '';
+      if (fixture.mimeType) {
+        queryString = '?mimeType='+encodeURIComponent(fixture.mimeType);
+      }
+
       request({
         method: 'POST',
-        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath),
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
         body: content
       }, function (error, response, body) {
         if (!error && response.statusCode === 200) {

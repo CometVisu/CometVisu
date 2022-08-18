@@ -1,0 +1,12 @@
+.gitignore
+README.md
+composer.json
+config/.htaccess
+config/dev/example.inc.php
+config/prod/example.inc.php
+lib/Api/AbstractConfigApi.php
+lib/Api/AbstractDataproviderApi.php
+lib/Api/AbstractFsApi.php
+lib/SlimRouter.php
+phpcs.xml.dist
+phpunit.xml.dist

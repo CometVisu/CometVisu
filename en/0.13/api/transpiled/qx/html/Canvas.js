@@ -128,4 +128,4 @@
   qx.html.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1652287856800
+//# sourceMappingURL=Canvas.js.map?dt=1660800159576

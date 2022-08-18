@@ -8,6 +8,7 @@
       "cv.TemplateEngine": {},
       "qx.util.Uri": {},
       "qx.io.rest.Resource": {},
+      "cv.Config": {},
       "cv.ui.manager.tree.FileSystem": {},
       "qx.lang.Array": {},
       "qx.lang.Type": {},
@@ -101,6 +102,10 @@
           this.__P_499_0.setBaseUrl(this.getBaseUrl());
 
           this.__P_499_0.configureRequest(function (req, action) {
+            if (cv.Config.transactionId) {
+              req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+            }
+
             if (action === 'save') {
               req.setRequestHeader('Content-Type', 'application/json');
             }
@@ -146,6 +151,10 @@
           this.__P_499_1.setBaseUrl(this.getBaseUrl());
 
           this.__P_499_1.configureRequest(function (req, action, params) {
+            if (cv.Config.transactionId) {
+              req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+            }
+
             if (params.hash) {
               req.setUrl(req.getUrl() + '&hash=' + params.hash);
             }
@@ -214,6 +223,12 @@
           this.__P_499_2 = new qx.io.rest.Resource(config);
 
           this.__P_499_2.setBaseUrl(this.getBaseUrl());
+
+          if (cv.Config.transactionId) {
+            this.__P_499_2.configureRequest(function (req, action, params) {
+              req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+            });
+          }
 
           this._enableSync(this.__P_499_2, config);
         }
@@ -300,4 +315,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1652287881875
+//# sourceMappingURL=Client.js.map?dt=1660800181050

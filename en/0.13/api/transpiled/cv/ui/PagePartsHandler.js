@@ -379,8 +379,9 @@
             if (nav) {
               var data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
 
-              if (tree.length - level > data.scope) {
+              if (data.scope >= 0 && tree.length - level > data.scope) {
                 // navbar that is not visible at the moment -> ignore it
+                nav.classList.remove('navbarActive');
                 return;
               }
 
@@ -429,4 +430,4 @@
   cv.ui.PagePartsHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PagePartsHandler.js.map?dt=1652287884976
+//# sourceMappingURL=PagePartsHandler.js.map?dt=1660800183782

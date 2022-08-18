@@ -84,6 +84,14 @@
         transform: 'normalizeUrl',
         apply: '_applySrc'
       },
+      database: {
+        check: 'String',
+        nullable: true
+      },
+      delay: {
+        check: 'Number',
+        init: 0
+      },
       filter: {
         check: 'String',
         nullable: true
@@ -152,6 +160,11 @@
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           src: {},
+          database: {},
+          delay: {
+            'default': 0,
+            transform: parseInt
+          },
           width: {},
           height: {},
           filter: {},
@@ -200,7 +213,7 @@
       __P_13_8: null,
 
       /**
-       * Strip querystring from URL and store is as Map
+       * Strip querystring from URL and store it as Map
        * @param value {String} URL
        * @return {String} normalized URL
        */
@@ -213,10 +226,18 @@
           this.__P_13_3 = parts.queryKey;
         }
 
+        if (this.getDatabase()) {
+          this.__P_13_3.database = this.getDatabase();
+        }
+
         return value;
       },
       // property apply
       _applySrc: function _applySrc(value) {
+        if (value.match(/rsslog_mysql\.php/)) {
+          this.error('Use of rsslog_mysql.php is depreciated. Please consult the documentation.');
+        }
+
         this.__P_13_4 = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
       },
       _getInnerDomString: function _getInnerDomString() {
@@ -260,7 +281,11 @@
         }
       },
       _update: function _update() {
-        this.refreshRSSlog();
+        var _this = this;
+
+        setTimeout(function () {
+          return _this.refreshRSSlog();
+        }, this.getDelay());
       },
       _action: function _action() {
         var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
@@ -404,7 +429,7 @@
           displayrows = Math.floor(displayheight / itemheight);
         }
 
-        c.dataset['last_rowcount'] = displayrows;
+        c.dataset.last_rowcount = displayrows;
         return displayrows;
       },
       __P_13_10: function __P_13_10(ev) {
@@ -412,6 +437,7 @@
 
         if (typeof result === 'string') {
           // no json -> error
+          this.error('Expected JSON, but got response MIME:', ev.getTarget().getResponseContentType());
           this.error(result);
           return;
         }
@@ -440,13 +466,13 @@
           }
 
           if (this.getMode() === 'rollover') {
-            itemoffset = parseInt(c.dataset['itemoffset'], 10) || 0;
+            itemoffset = parseInt(c.dataset.itemoffset, 10) || 0;
 
             if (itemoffset === itemnum) {
               itemoffset = 0;
             }
 
-            c.dataset['itemoffset'] = itemoffset + 1;
+            c.dataset.itemoffset = itemoffset + 1;
           }
         }
 
@@ -492,14 +518,20 @@
             rowElem.classList.add(row === 'rsslogodd' ? 'rsslog_futureeven' : 'rsslog_futureodd');
           }
 
-          rowElem.dataset['id'] = item.id;
-          rowElem.dataset['mapping'] = item.mapping;
+          rowElem.dataset.id = item.id;
+          rowElem.dataset.mapping = item.mapping;
 
           if (item.tags) {
             var tmp = rowElem.querySelector('span');
 
             if (Array.isArray(item.tags)) {
-              tmp.classList.add.apply(tmp.classList, item.tags);
+              var tags = item.tags.filter(function (x) {
+                return x !== '';
+              });
+
+              if (tags.length > 0) {
+                tmp.classList.add.apply(tmp.classList, item.tags);
+              }
             } else {
               tmp.classList.add(item.tags);
             }
@@ -547,8 +579,8 @@
       },
       _onTap: function _onTap(ev) {
         var item = ev.getCurrentTarget();
-        var id = item.dataset['id'];
-        var mapping = item.dataset['mapping'];
+        var id = item.dataset.id;
+        var mapping = item.dataset.mapping;
         item.classList.toggle('rsslog_ack');
         var state = +item.classList.contains('rsslog_ack'); // the new state is the same as hasClass
 
@@ -582,4 +614,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1652287837031
+//# sourceMappingURL=RssLog.js.map?dt=1660800142646

@@ -173,4 +173,4 @@
   qx.data.MBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBinding.js.map?dt=1652287851718
+//# sourceMappingURL=MBinding.js.map?dt=1660800155118

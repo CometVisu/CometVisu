@@ -111,6 +111,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    * @asset(icons/*)
    * @asset(sentry/bundle.min.js)
    * @asset(sentry/bundle.tracing.min.js)
+   * @asset(sentry/bundle.min.js.map)
+   * @asset(sentry/bundle.tracing.min.js.map)
    * @asset(test/*)
    *
    * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -1062,8 +1064,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
       },
+      __P_2_5: function __P_2_5(serverVersionId, constraint) {
+        var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+
+        if (match) {
+          var operator = match[1];
+          var majorConstraint = parseInt(match[2]);
+          var hasMinorVersion = match[3] !== undefined;
+          var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+          var hasPatchVersion = match[4] !== undefined;
+          var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+          var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+          var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+
+          switch (operator) {
+            case '>=':
+              if (serverVersionId < constraintId) {
+                return true;
+              }
+
+              break;
+
+            case '>':
+              if (serverVersionId <= constraintId) {
+                return true;
+              }
+
+              break;
+
+            case '<=':
+              if (serverVersionId > maxId) {
+                return true;
+              }
+
+              break;
+
+            case '<':
+              if (serverVersionId >= maxId) {
+                return true;
+              }
+
+              break;
+
+            case '^':
+              if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                return true;
+              }
+
+              break;
+
+            case '~':
+              if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
+                return true;
+              }
+
+              break;
+          }
+        }
+
+        return false;
+      },
       _checkBackend: function _checkBackend() {
-        var _this3 = this;
+        var _this4 = this;
 
         if (cv.Config.testMode === true) {
           this.setManagerChecked(true);
@@ -1075,82 +1137,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             accept: 'application/json'
           });
           xhr.addListenerOnce('success', function (e) {
+            var _this3 = this;
+
             var req = e.getTarget();
             var env = req.getResponse();
-            var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
+            var serverVersionId = env.PHP_VERSION_ID;
+            var orParts = env.required_php_version.split('||').map(function (e) {
+              return e.trim();
+            });
+            var passed = orParts.map(function (orConstraint) {
+              var andParts = orConstraint.split(/(\s+|&{2})/).map(function (e) {
+                return e.trim();
+              }); // pass when no failed andPart has been found
 
-            var disable = false;
-
-            if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
-              var parts = env.required_php_version.split(' ');
-              disable = parts.some(function (constraint) {
-                var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
-
-                if (match) {
-                  var operator = match[1];
-                  var majorConstraint = parseInt(match[2]);
-                  var hasMinorVersion = match[3] !== undefined;
-                  var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-                  var hasPatchVersion = match[4] !== undefined;
-                  var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-                  var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-                  var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
-
-                  switch (operator) {
-                    case '>=':
-                      if (serverVersionId < constraintId) {
-                        return true;
-                      }
-
-                      break;
-
-                    case '>':
-                      if (serverVersionId <= constraintId) {
-                        return true;
-                      }
-
-                      break;
-
-                    case '<=':
-                      if (serverVersionId > maxId) {
-                        return true;
-                      }
-
-                      break;
-
-                    case '<':
-                      if (serverVersionId >= maxId) {
-                        return true;
-                      }
-
-                      break;
-
-                    case '^':
-                      if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                        return true;
-                      }
-
-                      break;
-
-                    case '~':
-                      if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
-                        return true;
-                      }
-
-                      break;
-                  }
-                }
-
-                return false;
+              return !andParts.some(function (constraint) {
+                return _this3.__P_2_5(serverVersionId, constraint);
               });
+            }); // one of the OR constraints need to pass
 
-              if (disable) {
-                this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-                this.setManagerDisabled(true);
-                this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-              } else {
-                this.info('Manager available for PHP version', env.phpversion);
-              }
+            var enable = passed.some(function (res) {
+              return res === true;
+            });
+
+            if (enable) {
+              this.info('Manager available for PHP version', env.phpversion);
+            } else {
+              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+              this.setManagerDisabled(true);
+              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
             }
 
             this.setManagerChecked(true);
@@ -1172,7 +1186,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }, this);
           xhr.addListener('statusError', function (e) {
-            _this3.setManagerChecked(true);
+            _this4.setManagerChecked(true);
           });
           xhr.send();
         }
@@ -1227,4 +1241,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1652287834508
+//# sourceMappingURL=Application.js.map?dt=1660800140478

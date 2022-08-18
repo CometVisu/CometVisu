@@ -351,8 +351,11 @@
 
       if (req.queryKey.reportErrors) {
         if (window.Sentry) {
-          cv.Config.sentryEnabled = true;
+          cv.Config.sentryEnabled = true; // generate unique transactionId and set as Sentry tag
+
+          cv.Config.transactionId = Math.random().toString(36).substr(2, 9);
           Sentry.configureScope(function (scope) {
+            scope.setTag('transaction_id', cv.Config.transactionId);
             scope.setTag('build.date', cv.Version.DATE);
             scope.setTag('build.branch', cv.Version.BRANCH);
             Object.keys(cv.Version.TAGS).forEach(function (tag) {
@@ -452,4 +455,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1652287880809
+//# sourceMappingURL=Config.js.map?dt=1660800180146

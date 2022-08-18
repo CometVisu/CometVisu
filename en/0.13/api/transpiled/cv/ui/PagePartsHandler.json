@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 351,
+        "line": 352,
         "column": 3
       }
     },
@@ -221,7 +221,7 @@
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 337,
           "column": 5
         }
       },
@@ -245,11 +245,11 @@
     "removeInactiveNavbars": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 339,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 350,
           "column": 5
         }
       },

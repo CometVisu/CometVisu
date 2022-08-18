@@ -141,4 +141,4 @@
   qx.html.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1652287857183
+//# sourceMappingURL=Label.js.map?dt=1660800159924
