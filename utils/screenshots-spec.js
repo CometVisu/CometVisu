@@ -153,6 +153,7 @@ describe('generation screenshots from jsdoc examples', function () {
           console.log(runResult.failed ? '\x1b[31mFailed run\x1b[0m log message:' : '\x1b[32mSuccessful run\x1b[0m log message:');
           // browserLogs is an array of objects with level and message fields
           browserLogs.forEach(function (log) {
+            runResult.browserErrors.push(log.message);
             console.log(log.level.name_ + ':', log.message.replaceAll('\\"', '"').replaceAll('\\n', '\n').replaceAll('\\\\', '\\'));
           });
         });
