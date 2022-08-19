@@ -38,6 +38,13 @@ Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
     </settings>
     <image src="resource/icons/comet_128_ff8000.png"/>
 
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="image_simple"/>
+    </settings>
+    <image src="resource/icons/comet_128_ff8000.png"/>
 
 Einstellungen
 -------------
@@ -126,6 +133,7 @@ Alternativ kann man für das Image Widget auch von Hand einen Eintrag in
 der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
 
 .. CAUTION::
+
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 

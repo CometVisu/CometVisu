@@ -110,6 +110,10 @@ describe('generation screenshots from jsdoc examples', function () {
     mockup = (mockedConfigData.mode === 'cv') ? cvMockup : editorMockup;
     if (mockedConfigData.hasOwnProperty('fixtures')) {
       mockedFixtures = mockedConfigData.fixtures;
+      if (browser.verbose) {
+        console.log('\n');
+        mockedConfigData.fixtures.forEach(fix => console.log('Provide fix: use "' + fix.sourceFile + '" for URI "' + fix.targetPath + '" with MIME', fix.mimeType));
+      }
       mockedConfigData.fixtures.forEach(fix => mockup.mockupFixture(fix));
     } else {
       mockedFixtures = [];
@@ -132,13 +136,7 @@ describe('generation screenshots from jsdoc examples', function () {
       if (runResult.failed || runResult.success !== true) {
         runResult.failed = true;
         runResult.browserErrors = [];
-        browser.manage().logs().get('browser').then(function (browserLogs) {
-          // browserLogs is an array of objects with level and message fields
-          browserLogs.forEach(function (log) {
-            runResult.browserErrors.push(log.message);
-            console.log('Failed run log message:', log.message); // FIXME: This should be replaced by a working logging mechanism with runResult.browserErrors where the results are also shown on the console
-          });
-        });
+        showLog = true;
       } else if (runResult.success) {
         // save shotIndex
         fs.writeFileSync(runResult.shotIndexFile, JSON.stringify(shotIndex[runResult.screenshotDir], null, 4), function (err) {
@@ -149,8 +147,16 @@ describe('generation screenshots from jsdoc examples', function () {
       } else if (runResult.skipped) {
         return;
       }
-      results.push(runResult);
+      if (showLog) {
+        browser.manage().logs().get('browser').then(function(browserLogs) {
+        console.log(runResult.failed ? '\x1b[31mFailed run\x1b[0m log message:' : '\x1b[32mSuccessful run\x1b[0m log message:');
+        // browserLogs is an array of objects with level and message fields
+        browserLogs.forEach(function(log){
+          console.log(log.level.name_ + ':', log.message.replaceAll('\\"','"').replaceAll('\\n','\n').replaceAll('\\\\','\\'));
+        });
+      });
     }
+    results.push(runResult);
   });
 
   afterAll(function () {
@@ -313,7 +319,9 @@ describe('generation screenshots from jsdoc examples', function () {
       mockupConfig.push(mockedConfigData);
 
       it('should create a screenshot', async function () {
-        //console.log(">>> processing " + filePath + "...");
+	if (browser.verbose) {
+          console.log(">>> processing " + filePath + "...");
+        }
         let currentScreenshot = {};
         runResult.shotIndexFile = indexFile;
         runResult.screenshotDir = settings.screenshotDir;

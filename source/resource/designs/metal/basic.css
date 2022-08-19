@@ -170,7 +170,8 @@ body br
 .text > div { line-height: 2em; }
 .widget > .label .icon, .text .icon { vertical-align: middle; margin-top: -0.3em; }
 .widget .pagejump .icon { margin-top: -0; }
-.widget .actor .icon { margin-bottom: -0.6em; }
+.widget .actor .icon,
+.rsslog_popup .icon { margin-bottom: -0.6em; }
 .widget .switchPressed .icon, .widget .switchUnpressed .icon { margin-top: -0.4em; margin-bottom: -0.6em;}
 .navbar .widget_container > .pagejump > .label, .navbar .widget_container > .refresh > .label {
 	width: auto;
@@ -694,9 +695,9 @@ div#demo_3 {
 }
 
 .rsslog_popup ul li a, ul.rss_inline li a { color: inherit; }
+.rsslog_popup ul li, .rsslog_inline li { line-height: 2em; }
 
- 
- /*****************************************************************************/
+/*****************************************************************************/
 /* The definition of the flavours - overwrite the generic settings           */
 /*****************************************************************************/
 

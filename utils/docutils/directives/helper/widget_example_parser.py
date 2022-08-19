@@ -151,7 +151,8 @@ class WidgetExampleParser:
             for fixture in settings_node.iter('fixture'):
                 values = {
                     'sourceFile': fixture.get("source-file"),
-                    'targetPath': fixture.get("target-path")
+                    'targetPath': fixture.get("target-path"),
+                    'mimeType': fixture.get("mime-type")
                 }
                 settings['fixtures'].append(values)
 

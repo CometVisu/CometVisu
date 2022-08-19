@@ -173,7 +173,7 @@ Hier der minimale Beispielcode der das Info Widget aus dem folgenden Screenshot 
 .. widget-example::
 
         <settings>
-            <screenshot name="info_simple">
+            <screenshot name="info_simple_xml">
                 <caption>Info, einfaches Beispiel</caption>
                 <data address="3/3/1">103</data>
             </screenshot>
