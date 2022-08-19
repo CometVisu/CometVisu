@@ -182,6 +182,9 @@ class DocGenerator(Command):
 
         sphinx_build = sh.Command("sphinx-build")
 
+        print(os.environ.get('GITHUB_REF'))
+        print(os.environ.get('GITHUB_REF').split("/")[:-1])
+
         # check if sources exist for this language
         section = "manual-%s" % language
         target_type = self.config.get(section, "target-type")
@@ -270,6 +273,8 @@ class DocGenerator(Command):
             # handle releases:
             print('detected build of most recent version of master branch')
             symlinkname = self.config.get("DEFAULT", "most-recent-version-mapping")
+        else:
+            print("skip creating symlinks in branch %s" % branch)
 
         if '' != symlinkname:
             symlinktarget = os.path.join(target_dir, "..")
@@ -621,7 +626,7 @@ class DocGenerator(Command):
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
         parser.add_argument("--move-apiviewer-screenshots", dest="move_apiviewer_screenshots", action="store_true", help="move the generated apiviewer screenshots to the correct version subfolder")
-        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and weite version files")
+        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and write version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
