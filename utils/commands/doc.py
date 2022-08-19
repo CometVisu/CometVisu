@@ -260,7 +260,7 @@ class DocGenerator(Command):
         symlinkname = ''
         git = sh.Command("git")
         branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('GITHUB_REF') is None \
-            else os.environ.get('GITHUB_REF').split("/")[:-1]
+            else os.environ.get('GITHUB_REF').split("/")[-1]
 
         if branch == "develop":
             # handle develop builds:
@@ -270,6 +270,8 @@ class DocGenerator(Command):
             # handle releases:
             print('detected build of most recent version of master branch')
             symlinkname = self.config.get("DEFAULT", "most-recent-version-mapping")
+        else:
+            print("skip creating symlinks in branch %s" % branch)
 
         if '' != symlinkname:
             symlinktarget = os.path.join(target_dir, "..")
@@ -621,7 +623,7 @@ class DocGenerator(Command):
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
         parser.add_argument("--move-apiviewer-screenshots", dest="move_apiviewer_screenshots", action="store_true", help="move the generated apiviewer screenshots to the correct version subfolder")
-        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and weite version files")
+        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and write version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")

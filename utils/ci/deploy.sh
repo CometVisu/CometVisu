@@ -22,7 +22,7 @@ fi
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if ([[ "$GITHUB_EVENT_NAME" != "push" ]] && [[ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ]]) || ( [ "$GITHUB_REF" != "refs/heads/$SOURCE_BRANCH" ] &&
     [[ ! "$GITHUB_REF" =~ release-[0-9\.]+ ]] && [[ "$GITHUB_REF" != "refs/heads/ci-test" ]] && [[ "$GITHUB_REF" != "refs/heads/master" ]]); then
-    echo "Skipping deploy; ${GITHUB_EVENT_NAME} on ${$GITHUB_REF}"
+    echo "Skipping deploy; ${GITHUB_EVENT_NAME} on ${GITHUB_REF}"
     exit 0
 fi
 
@@ -62,7 +62,7 @@ fi;
 if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   # Run our creation script
   echo "generating german manual to extract screenshot examples"
-  $CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
+  ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
   echo "generating api version $VERSION"
 
@@ -99,9 +99,6 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   # extra en generation run to have the new version available for the next step
   ${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
 
-  # update symlinks and write version files
-  ${CV} doc --process-versions
-
   if [[ "$BUILD_CV" -eq 1 ]]; then
     echo "generating the source version of the CometVisu for screenshot generation"
     qx compile -t=source -f=false
@@ -111,6 +108,9 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t source --target-version=${VERSION_PATH}
   echo "generating german manual again with existing screenshots"
   ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
+
+  # update symlinks and write version files
+  ${CV} doc --process-versions
 
   echo "generating feature yml file for homepage"
   ${CV} doc --generate-features
