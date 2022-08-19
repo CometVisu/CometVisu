@@ -22,7 +22,7 @@ fi
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if ([[ "$GITHUB_EVENT_NAME" != "push" ]] && [[ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ]]) || ( [ "$GITHUB_REF" != "refs/heads/$SOURCE_BRANCH" ] &&
     [[ ! "$GITHUB_REF" =~ release-[0-9\.]+ ]] && [[ "$GITHUB_REF" != "refs/heads/ci-test" ]] && [[ "$GITHUB_REF" != "refs/heads/master" ]]); then
-    echo "Skipping deploy; ${GITHUB_EVENT_NAME} on ${$GITHUB_REF}"
+    echo "Skipping deploy; ${GITHUB_EVENT_NAME} on ${GITHUB_REF}"
     exit 0
 fi
 
@@ -62,7 +62,7 @@ fi;
 if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   # Run our creation script
   echo "generating german manual to extract screenshot examples"
-  $CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
+  ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
   echo "generating api version $VERSION"
 
