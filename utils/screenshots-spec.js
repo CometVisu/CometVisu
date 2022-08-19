@@ -131,6 +131,7 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   afterEach(function () {
+    let showLog = browser.verbose || false;
     mockedFixtures.forEach(fix => mockup.resetMockupFixture(fix));
     if (runResult) {
       if (runResult.failed || runResult.success !== true) {
@@ -148,13 +149,14 @@ describe('generation screenshots from jsdoc examples', function () {
         return;
       }
       if (showLog) {
-        browser.manage().logs().get('browser').then(function(browserLogs) {
-        console.log(runResult.failed ? '\x1b[31mFailed run\x1b[0m log message:' : '\x1b[32mSuccessful run\x1b[0m log message:');
-        // browserLogs is an array of objects with level and message fields
-        browserLogs.forEach(function(log){
-          console.log(log.level.name_ + ':', log.message.replaceAll('\\"','"').replaceAll('\\n','\n').replaceAll('\\\\','\\'));
+        browser.manage().logs().get('browser').then(function (browserLogs) {
+          console.log(runResult.failed ? '\x1b[31mFailed run\x1b[0m log message:' : '\x1b[32mSuccessful run\x1b[0m log message:');
+          // browserLogs is an array of objects with level and message fields
+          browserLogs.forEach(function (log) {
+            console.log(log.level.name_ + ':', log.message.replaceAll('\\"', '"').replaceAll('\\n', '\n').replaceAll('\\\\', '\\'));
+          });
         });
-      });
+      }
     }
     results.push(runResult);
   });
@@ -319,8 +321,8 @@ describe('generation screenshots from jsdoc examples', function () {
       mockupConfig.push(mockedConfigData);
 
       it('should create a screenshot', async function () {
-	if (browser.verbose) {
-          console.log(">>> processing " + filePath + "...");
+        if (browser.verbose) {
+          console.log('>>> processing ' + filePath + '...');
         }
         let currentScreenshot = {};
         runResult.shotIndexFile = indexFile;
