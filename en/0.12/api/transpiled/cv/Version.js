@@ -15,11 +15,11 @@
       BRANCH: 'master',
       VERSION: '0.12.0',
       LIBRARY_VERSION: 9,
-      DATE: '2022-07-02T07:50:38.970Z',
+      DATE: '2022-08-19T17:30:47.816Z',
       TAGS: {}
     }
   });
   cv.Version.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Version.js.map?dt=1656748419036
+//# sourceMappingURL=Version.js.map?dt=1660930432493

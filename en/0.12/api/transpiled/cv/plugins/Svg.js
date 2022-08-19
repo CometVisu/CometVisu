@@ -133,4 +133,4 @@
   cv.plugins.Svg.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Svg.js.map?dt=1656748381850
+//# sourceMappingURL=Svg.js.map?dt=1660930395393

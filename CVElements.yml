@@ -56,16 +56,6 @@
     "en": "/en/develop/manual/config/widgets/plugins/rss/index.html"
   "name": "RSS"
 - "description":
-    "de": "Interaktive Log-Meldungen basierend auf RSS-Technologie"
-    "en": "Interactive log based on RSS feed technology."
-  "manual":
-    "de": "/de/develop/manual/config/widgets/plugins/rsslog/index.html"
-    "en": "/en/develop/manual/config/widgets/plugins/rsslog/index.html"
-  "name": "RSSlog"
-  "screenshot":
-    "de": "/de/develop/manual/_images/rsslog_simple_mapping.png"
-    "en": "/en/develop/manual/_images/rsslog_simple_mapping.png"
-- "description":
     "de": "Sprachausgabe (Text-to-speech)"
     "en": "Uses the browsers built in text-to-speech engine to speak text."
   "manual":
@@ -178,7 +168,7 @@
     "de": "/de/develop/manual/config/widgets/info/index.html"
     "en": "/en/develop/manual/config/widgets/info/index.html"
   "name": "Info"
-  "screenshot": "/de/develop/manual/_images/info_simple_example.png"
+  "screenshot": "/de/develop/manual/_images/info_simple.png"
 - "description":
     "de": "Ermöglicht die Kombination eines darstellenden und bedienbaren Widgets."
     "en": "Enables the combination of an illustrative and usable widgets."
@@ -315,16 +305,12 @@
   "screenshot": "/de/develop/manual/_images/trigger1.png"
 - "description":
     "de": "Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im Hintergrund eine URL aufruft um dadurch Aktionen auszuführen, z.B. um ein IFTTT Rezept aufzurufen."
-  "manual":
-    "de": "/de/develop/manual/config/widgets/urltrigger/index.html"
-  "name": "URL-Trigger"
-  "screenshot":
-    "de": "/de/develop/manual/_images/urltrigger_simple.png"
-- "description":
     "en": "The UrlTrigger widget adds a button to the visualization that queries data from a URL in the background."
   "manual":
+    "de": "/de/develop/manual/config/widgets/urltrigger/index.html"
     "en": "/en/develop/manual/config/widgets/urltrigger/index.html"
   "name": "URL-trigger"
+  "screenshot": "/de/develop/manual/_images/urltrigger_simple.png"
 - "description":
     "de": "Fügt der Visu ein Video oder einen Livestream hinzu. Wird derzeit allerdings von den meisten Quellen noch nicht unterstützt."
     "en": "Adds a video or live stream to the visu. Currently, most sources do not support this yet."
