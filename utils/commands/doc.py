@@ -182,9 +182,6 @@ class DocGenerator(Command):
 
         sphinx_build = sh.Command("sphinx-build")
 
-        print(os.environ.get('GITHUB_REF'))
-        print(os.environ.get('GITHUB_REF').split("/")[-1:])
-
         # check if sources exist for this language
         section = "manual-%s" % language
         target_type = self.config.get(section, "target-type")
@@ -263,7 +260,7 @@ class DocGenerator(Command):
         symlinkname = ''
         git = sh.Command("git")
         branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('GITHUB_REF') is None \
-            else os.environ.get('GITHUB_REF').split("/")[-1:]
+            else os.environ.get('GITHUB_REF').split("/")[-1]
 
         if branch == "develop":
             # handle develop builds:

@@ -37,7 +37,7 @@ class Version:
     def get_doc_version(cls):
         git = sh.Command("git")
         branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('GITHUB_REF') is None \
-            else os.environ.get('GITHUB_REF').split("/")[-1:]
+            else os.environ.get('GITHUB_REF').split("/")[-1]
 
         if branch == "develop":
             return cls.config.get("DEFAULT", "develop-version-mapping")
