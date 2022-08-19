@@ -172,4 +172,4 @@
   qx.ui.table.MTableContextMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTableContextMenu.js.map?dt=1660930425971
+//# sourceMappingURL=MTableContextMenu.js.map?dt=1660935335494
