@@ -1,0 +1,21 @@
+{
+  "responseData" : {
+    "feed" : {
+      "feedUrl": "http://127.0.0.1/resource/plugins/rsslog/rsslog.php",
+      "title": "RSS supplied logs",
+      "link": "http://127.0.0.1/resource/plugins/rsslog/rsslog.php",
+      "author": "",
+      "description": "RSS supplied logs",
+      "type": "rss20",
+      "entries": [
+{"id": "15","title": "","content": "Aquarium 1 Wasser wechseln","tags": ["fish"],"mapping": "StateConfirm","state": "0","publishedDate": "2022-08-06T02:00:00+00:00"},
+{"id": "14","title": "","content": "Lüftung Filter tauschen","tags": ["ventilation"],"mapping": "StateConfirm","state": "0","publishedDate": "2022-08-06T02:00:00+00:00"},
+{"id": "13","title": "","content": "Aquarium 1 Wasser wechseln","tags": ["fish"],"mapping": "StateConfirm","state": "1","publishedDate": "2022-07-23T02:00:00+00:00"},
+{"id": "12","title": "","content": "Aquarium 2 Wasser wechseln","tags": ["fish"],"mapping": "StateConfirm","state": "0","publishedDate": "2022-07-23T02:00:00+00:00"},
+{"id": "11","title": "","content": "Lüftung Filter tauschen","tags": ["ventilation"],"mapping": "StateConfirm","state": "1","publishedDate": "2022-07-23T02:00:00+00:00"}
+      ]
+    }
+  },
+  "responseDetails" : null,
+  "responseStatus" : 200
+}
