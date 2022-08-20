@@ -220,7 +220,6 @@ qx.Class.define('cv.transforms.OpenHab', {
               ? new Map([['r', 0], ['g', 0], ['b', 0]])
               : new Map([['h', 0], ['s', 0], ['v', 0]]);
           }
-          console.log(hsbString, variant)
           // decode HSV/HSB to RGB
           if (variant === 'rgb') {
             // decode HSV/HSB to RGB
