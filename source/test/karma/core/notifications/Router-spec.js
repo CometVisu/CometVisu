@@ -18,7 +18,6 @@
  */
 
 
-
 describe('test the notification router', function () {
   var router = null;
 
