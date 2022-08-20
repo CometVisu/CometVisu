@@ -233,7 +233,7 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       selectors.forEach(function (area) {
         const allContainer = document.querySelectorAll(area + ' .widget_container');
         if (allContainer.length > 0) {
-          let areaColspan = cv.Config.defaultColumns
+          let areaColspan = cv.Config.defaultColumns;
           const areaElement = document.querySelector(area);
           if (areaElement) {
             const areaColumns = areaElement.dataset['columns'];

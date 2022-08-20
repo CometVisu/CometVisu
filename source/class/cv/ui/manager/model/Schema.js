@@ -205,8 +205,9 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * Do so recursively.
      * referenced nodes can be top-level-nodes only!
      *
-     * @param   type    string  Type of the node (e.g. element, attributeGroup, ...)
-     * @param   refName string  Name as per the ref-attribute
+     * @param   type       string  Type of the node (e.g. element, attributeGroup, ...)
+     * @param   refName    string  Name as per the ref-attribute
+     * @param   noFallback boolean Don't look up other types as fallback, if the requested type is not found
      * @return  object          jQuery-object of the ref'ed element
      */
     getReferencedNode: function (type, refName, noFallback) {

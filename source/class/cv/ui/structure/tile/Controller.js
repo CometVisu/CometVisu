@@ -78,7 +78,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         }
         this.__I[name].push(new QxClass(element));
       } else {
-        qx.log.Logger.error('no QxClass registered for custom element ' + name);
+        qx.log.Logger.error(this, 'no QxClass registered for custom element ' + name);
       }
     }
   },
@@ -252,7 +252,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     /**
-     * Reisters customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
+     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
      * @param xml {XMLDocument}
      */
     registerTemplates(xml) {

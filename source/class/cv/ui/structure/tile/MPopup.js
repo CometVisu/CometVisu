@@ -56,7 +56,7 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
           } else if (parent.tagName.toLowerCase() === 'cv-page') {
             break;
           }
-          last = parent
+          last = parent;
           parent = parent.parentElement;
         }
       }
