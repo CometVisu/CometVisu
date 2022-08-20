@@ -260,6 +260,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
       switch (variant) {
         case 'h':
+          if (!Number.isFinite(value)) {
+            showInvalidDataErrorMessage();
+            return;
+          }
+          value /= 360;
+          variantType = 'hsv-single';
+          break;
+
         case 's':
         case 'v':
           if (!Number.isFinite(value)) {
