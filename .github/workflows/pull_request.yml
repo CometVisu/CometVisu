@@ -6,7 +6,6 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    if: ${{ false }}  # disable for now, re-activate after upgrade to qx7
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -16,6 +15,7 @@ jobs:
       - run: npm install
       - name: Lint code
         run: npm run lint
+        continue-on-error: true # allow this for now, re-activate after upgrade to qx7
 
   build:
     runs-on: ubuntu-latest
