@@ -32,7 +32,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     oldController = cv.Application.structureController;
     cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
 
-    clientMock = jasmine.createSpyObj('client', ['login', 'subscribe'], {update: null});
+    clientMock = jasmine.createSpyObj('client', ['login', 'subscribe', 'terminate', 'dispose'], {update: null});
 
     spyOn(cv.io.BackendConnections, 'addBackendClient').and.returnValue(clientMock);
     const model = cv.data.Model.getInstance();
@@ -55,7 +55,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     expect(b).toBeInstanceOf(cv.ui.structure.tile.elements.Backend);
     expect(b.getConnected()).toBeTruthy();
-    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('test', 'simulated', jasmine.falsy());
+    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('test', 'simulated', null, 'config');
     expect(clientMock.login).toHaveBeenCalledOnceWith(true, jasmine.falsy(), jasmine.any(Function));
 
     const callback = clientMock.login.calls.mostRecent().args[2];
@@ -83,7 +83,7 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     expect(b).toBeInstanceOf(cv.ui.structure.tile.elements.Backend);
     expect(b.getConnected()).toBeTruthy();
-    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('test', 'mqtt', 'ws://user:passwd@localhost:1883/');
+    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('test', 'mqtt', 'ws://user:passwd@localhost:1883/', 'config');
     expect(clientMock.login).toHaveBeenCalledOnceWith(true, jasmine.objectContaining({
       username: 'user',
       password: 'passwd'
@@ -114,26 +114,25 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     expect(b.getConnected()).toBeFalsy();
   });
 
-  it('should throw an exception when multiple backends with name "main" are added', function() {
-    spyOn(cv.io.BackendConnections, 'hasBackend').and.callFake(() => false);
+  it('should throw a warning when a backend with no name is added and the default "main" already exists', function() {
+    spyOn(cv.io.BackendConnections, 'hasClient').and.callFake(() => false);
     const backend = document.createElement('cv-backend');
+    backend.setAttribute('name', 'main');
     backend.setAttribute('type', 'knxd');
     document.body.appendChild(backend);
 
-    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('main', 'knxd', null);
+    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('main', 'knxd', null, 'config');
 
     const second = document.createElement('cv-backend');
-    second.setAttribute('name', 'main');
-    second.setAttribute('type', 'openhab');
+    second.setAttribute('type', 'knxd');
     cv.io.BackendConnections.hasClient.and.callThrough();
+    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => ({ configuredIn: 'config'}));
 
-    spyOn(cv.core.notifications.Router, 'dispatchMessage').and.callFake(() => null);
+    spyOn(qx.log.Logger, 'warn').and.callFake(() => null);
     document.body.appendChild(second);
 
-    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('main', 'knxd', null);
-    expect(cv.core.notifications.Router.dispatchMessage).toHaveBeenCalledOnceWith('cv.config.error', jasmine.objectContaining({
-      topic: 'cv.config.error'
-    }));
+    expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledWith('main', 'knxd', null, 'config');
+    expect(qx.log.Logger.warn).toHaveBeenCalledOnceWith(jasmine.anything(), 'there is already a backend registered with name "main" and type knxd skipping this one');
     backend.remove();
     second.remove();
   });

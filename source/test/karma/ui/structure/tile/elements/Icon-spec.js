@@ -41,7 +41,7 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     document.body.appendChild(icon);
     const inst = icon._instance;
 
-    expect(inst).toBeInstanceOf(cv.ui.structure.tile.elements.Icon);
+    expect(inst).toBeInstanceOf(cv.ui.structure.tile.components.Icon);
     expect(inst.getConnected()).toBeTruthy();
     expect(inst.getId()).toEqual('ri-test-icon');
     expect(icon.classList.contains('ri-test-icon')).toBeTruthy();
@@ -63,7 +63,7 @@ describe('testing the <cv-icon> component of the tile structure', () => {
     document.body.appendChild(icon);
     const inst = icon._instance;
 
-    expect(inst).toBeInstanceOf(cv.ui.structure.tile.elements.Icon);
+    expect(inst).toBeInstanceOf(cv.ui.structure.tile.components.Icon);
     expect(inst.getConnected()).toBeTruthy();
     expect(inst.getId()).toEqual('ri-test-icon');
     expect(icon.classList.contains('ri-test-icon')).toBeTruthy();

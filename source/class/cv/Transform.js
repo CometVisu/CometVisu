@@ -132,7 +132,7 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} object with both encoded values
      */
@@ -144,12 +144,12 @@ qx.Class.define('cv.Transform', {
         cv.Transform.registry[transform].applyInTestMode === false))) {
         return {bus: value, raw: value};
       }
-      let {selector} = address;
+      let {selector, variantInfo} = address;
       let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].encode(value)
+        ? cv.Transform.registry[transform].encode(value, variantInfo)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].encode(value)
+          ? cv.Transform.registry[basetrans].encode(value, variantInfo)
           : value);
 
       if (typeof selector === 'string') {
@@ -189,7 +189,7 @@ qx.Class.define('cv.Transform', {
 
     /**
      * transform bus to JavaScript value
-     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} the decoded value
      */
@@ -202,7 +202,7 @@ qx.Class.define('cv.Transform', {
         return value;
       }
 
-      let {selector} = address;
+      let {selector, variantInfo} = address;
       const basetrans = transform.split('.')[0];
 
       if (typeof value === 'string' && selector !== undefined && selector !== null) {
@@ -240,9 +240,9 @@ qx.Class.define('cv.Transform', {
         }
       }
       return transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].decode(value)
+        ? cv.Transform.registry[transform].decode(value, variantInfo)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].decode(value)
+          ? cv.Transform.registry[basetrans].decode(value, variantInfo)
           : value);
     },
 

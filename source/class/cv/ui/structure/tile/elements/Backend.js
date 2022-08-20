@@ -66,7 +66,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           // we need one main backend
           name = 'main';
         } else if (cv.io.BackendConnections.getClient('main').configuredIn === 'config') {
-          qx.log.Logger.warn(this, 'there is already a backend registered with name "main" and type', type, 'skipping this one');
+          qx.log.Logger.warn(this, `there is already a backend registered with name "main" and type ${type} skipping this one`);
           return;
         }
         qx.log.Logger.debug(this, 'init backend', name);
