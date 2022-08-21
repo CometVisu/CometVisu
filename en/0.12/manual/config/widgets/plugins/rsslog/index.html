@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The RSSLog plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/plugins/rsslog/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/versions.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="The Speech plugin" href="../speech/index.html" />
+    <link rel="prev" title="The rss plugin" href="../rss/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.12.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Usage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#changes-of-the-metal-design">Changes of the metal design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html">Operable widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#informative-widgets">Informative widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../clock/index.html">The clock plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diagram/index.html">The diagram plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gauge/index.html">The gauge plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../link/index.html">The link plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openweathermap/index.html">The openweathermap plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../powerspectrum/index.html">The powerspectrum plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rss/index.html">The rss plugin</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">The RSSLog plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../speech/index.html">The Speech plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../strftime/index.html">The strftime plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../timeout/index.html">The timeout plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tr064/index.html">The tr064 Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../address.html">Addresses - the communication with the backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#cometvisu-examples">CometVisu - Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Configuration of the CometVisu</a> &raquo;</li>
+          <li><a href="../../index.html">Operable widgets</a> &raquo;</li>
+      <li>The RSSLog plugin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-rsslog-plugin">
+<span id="rsslog"></span><h1>The RSSLog plugin<a class="headerlink" href="#the-rsslog-plugin" title="Permalink to this headline">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Michael Markstaller</div>
+<div class="line"><strong>Available since version</strong>: 2011</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>The RSSLog plugin adds interactive log messages to the visu page which are
+based on the RSS feed technology.</p>
+<p>These log messaged can be used for both, a static event log (e.g. when the
+door bell was ringed or when a fault happened in the installation), as well
+as an interactive one. There the entries can be confirmed by the user as it
+is relevant for a todo list.</p>
+<p>A click on the log list opens a popup screen. In this screen you can see
+more entries and it is possible - for the interactive version - to confirm
+entries.</p>
+<figure class="align-default">
+<img alt="../../../../_images/rsslog_simple_mapping.png" src="../../../../_images/rsslog_simple_mapping.png" />
+</figure>
+</section>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
+<p>The behaviour and appearance of the RSSLog plugin can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
+<p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
+<section id="allowed-attributes-in-the-rsslog-element">
+<h3>Allowed attributes in the rsslog-element<a class="headerlink" href="#allowed-attributes-in-the-rsslog-element" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="11"><p>rsslog</p></td>
+<td><p>src</p></td>
+<td><p>string</p></td>
+<td><p>URL of the rsslog.php.</p></td>
+</tr>
+<tr class="row-even"><td><p>database</p></td>
+<td><p>string</p></td>
+<td><p>ID/Name of the database configuration as used in the hidden configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>refresh</p></td>
+<td><p>integer</p></td>
+<td><p>Refresh the display automatically after this amount of seconds.</p></td>
+</tr>
+<tr class="row-even"><td><p>delay</p></td>
+<td><p>integer</p></td>
+<td><p>Additional delay between the refresh request and the refresh.</p></td>
+</tr>
+<tr class="row-odd"><td><p>limit</p></td>
+<td><p>integer</p></td>
+<td><p>Number of entries to show.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>first</em>, <em>last</em> or <em>rollover</em></p></td>
+<td><p>Show only the first, the last or over the time (-&gt; refresh) changing (rollover) entries.</p></td>
+</tr>
+<tr class="row-odd"><td><p>datetime</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show date and time of entry.</p></td>
+</tr>
+<tr class="row-even"><td><p>timeformat</p></td>
+<td><p>string</p></td>
+<td><p>Format of the date and time (in strftime syntax).</p></td>
+</tr>
+<tr class="row-odd"><td><p>filter</p></td>
+<td><p>string</p></td>
+<td><p>Only show entries with this filter set.</p></td>
+</tr>
+<tr class="row-even"><td><p>itemack</p></td>
+<td><p><em>modify</em>, <em>display</em> or <em>disable</em></p></td>
+<td><p>Defines whether the state can be modified, only be displayed or not be displayed (disable).</p></td>
+</tr>
+<tr class="row-odd"><td><p>future</p></td>
+<td><p>integer</p></td>
+<td><p>Hours for coming events.</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id2">
+<img alt="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_attributes.png" />
+<figcaption>
+<p><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
+<h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
+<dt>rsslog</dt><dd><ul class="simple">
+<li><p>layout</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>colspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of columns this widget should be wide.</p></td>
+</tr>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a medium screen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>decimal</p></td>
+<td><p>Overrules the amount of columns on a small screen.</p></td>
+</tr>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>decimal</p></td>
+<td><p>Amount of rows this widget should be high.</p></td>
+</tr>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages.</p></td>
+</tr>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a small screen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>string</p></td>
+<td><p>Horizontal position of the widget for 2D pages on a medium screen.</p></td>
+</tr>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages.</p></td>
+</tr>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a small screen.</p></td>
+</tr>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>string</p></td>
+<td><p>Vertical position of the widget for 2D pages on a medium screen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>string</p></td>
+<td><p>Reserved for future use.</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages.</p></td>
+</tr>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a small screen.</p></td>
+</tr>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>string</p></td>
+<td><p>Width for the widget for 2D pages on a medium screen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</p></td>
+</tr>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>rsslog</dt><dd><ul class="simple">
+<li><p>label</p></li>
+<li><p>icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="mandatory">name</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Name of the icon registration.</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>flavour</p></td>
+<td><p>string</p></td>
+<td><p>Selection of a display variant. See also <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the icon in CSS notation (e.g. #1188FF).</p></td>
+</tr>
+<tr class="row-odd"><td><p>styling</p></td>
+<td><p>string</p></td>
+<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>rsslog</dt><dd><ul class="simple">
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>Text to display a label for the widget.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
+<dt>rsslog</dt><dd><ul class="simple">
+<li><p>address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
+</tr>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
+</tr>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
+</tr>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
+</tr>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>rsslog</dt><dd><ul class="simple">
+<li><p>address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id3">
+<img alt="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_elements.png" />
+<figcaption>
+<p><span class="caption-text">Element in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Generally there is no technical possibility that a server of a RSS feed
+tells the client to update it due to new content. I.e. the client has
+no information about when it is time to update the content. The RSSLog
+reloads the content based on the <code class="docutils literal notranslate"><span class="pre">refresh</span></code> attribute, but any new
+data written to the database inbetween will not be shown till the next
+refresh.</p>
+<p>But when the optional <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> element is given the RSSLog plugin
+will reload the data as soon as any value is written to that address.
+The attribute <code class="docutils literal notranslate"><span class="pre">delay</span></code> defines a delay before the data is fetched to
+be able to compensate possible any time that the logic engine needs to
+store it first.</p>
+</div>
+</section>
+</section>
+<section id="xml-syntax">
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively it is possible to manually add the rsslog plugin entry to the
+<a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>In the config only the UTF-8 charset is allowed. So an editor that is
+set to UTF-8 mode must be used.</p>
+</div>
+<section id="simple-example-static-list">
+<h3>Simple example: static list<a class="headerlink" href="#simple-example-static-list" title="Permalink to this headline">¶</a></h3>
+<p>The entries of this example can be created by these URLs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Door%20bell
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Mailbox
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Ventilation%20filter%20blocked
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Smoke%20alarm
+</pre></div>
+</div>
+<figure class="align-default" id="id4">
+<img alt="RSSLog, simple example" src="../../../../_images/rsslog_simple.png" />
+<figcaption>
+<p><span class="caption-text">RSSLog, simple example</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;rsslog&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;rsslog</span> <span class="na">src=</span><span class="s">&quot;plugins/rsslog/rsslog.php&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">limit=</span><span class="s">&quot;6&quot;</span> <span class="na">mode=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>12/7/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/rsslog&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-example-static-list-with-mapping">
+<h3>Simple example: static list with mapping<a class="headerlink" href="#simple-example-static-list-with-mapping" title="Permalink to this headline">¶</a></h3>
+<p>The entries of this example can be created by these URLs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Door%20bell&amp;mapping=StateDoorBell
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Mailbox&amp;mapping=StateMail
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Ventilation%20filter%20blocked&amp;mapping=StateService
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Smoke%20alarm&amp;mapping=StateSmokedetector
+</pre></div>
+</div>
+<figure class="align-default" id="id5">
+<img alt="RSSLog, simple example with mapping" src="../../../../_images/rsslog_simple_mapping.png" />
+<figcaption>
+<p><span class="caption-text">RSSLog, simple example with mapping</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;rsslog&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;mappings&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateMail&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;message_postbox_mail&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateDoorBell&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;message_bell_door&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateService&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;message_service&quot;</span> <span class="na">color=</span><span class="s">&quot;#FFA500&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateSmokedetector&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;secur_smoke_detector&quot;</span> <span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+    <span class="nt">&lt;/mappings&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;rsslog</span> <span class="na">src=</span><span class="s">&quot;plugins/rsslog/rsslog.php&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">limit=</span><span class="s">&quot;7&quot;</span> <span class="na">mode=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>12/7/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/rsslog&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-example-interactive-list">
+<h3>Simple example: interactive list<a class="headerlink" href="#simple-example-interactive-list" title="Permalink to this headline">¶</a></h3>
+<p>The entries of this example can be created by these URLs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Change%20fish%20tank%201%20water&amp;t[]=fish&amp;mapping=StateConfirm&amp;state=0
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Change%20fish%20tank%202%20water&amp;t[]=fish&amp;mapping=StateConfirm&amp;state=0
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Replace%20ventilation%20filter&amp;t[]=ventilation&amp;mapping=StateConfirm&amp;state=0
+</pre></div>
+</div>
+<figure class="align-default" id="id6">
+<img alt="RSSLog, interactive list" src="../../../../_images/rsslog_interactive.png" />
+<figcaption>
+<p><span class="caption-text">RSSLog, interactive list</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;rsslog&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;mappings&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateConfirm&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;info_warning&quot;</span> <span class="na">color=</span><span class="s">&quot;#EE0000&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;info_ack&quot;</span> <span class="na">color=</span><span class="s">&quot;#00AA00&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+    <span class="nt">&lt;/mappings&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;rsslog</span> <span class="na">src=</span><span class="s">&quot;plugins/rsslog/rsslog.php&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">limit=</span><span class="s">&quot;6&quot;</span> <span class="na">mode=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>12/7/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/rsslog&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="complex-example-with-multiple-categories">
+<h3>Complex example with multiple categories<a class="headerlink" href="#complex-example-with-multiple-categories" title="Permalink to this headline">¶</a></h3>
+<p>Using tags it is possible have multiple categories. In the display each tag
+will be added to the HTML <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute so that it can be formatted
+by CSS rules. This example uses this feature for the colors of the different
+garbage bin colors.</p>
+<p>The entries of this example can be created by these URLs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Put%20out%20the%20bio%20garbage%20bin&amp;t[]=brown&amp;mapping=StateConfirmGarbage&amp;state=0
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Put%20out%20the%20yellow%20garbage%20bin&amp;t[]=yellow&amp;mapping=StateConfirmGarbage&amp;state=0
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Put%20out%20the%20paper%20garbage%20bin&amp;t[]=blue&amp;mapping=StateConfirmGarbage&amp;state=0
+http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Refuel&amp;t[]=car&amp;mapping=StateConfirmFuel&amp;state=0
+</pre></div>
+</div>
+<p>The two oldest entries were already confirmed by the user.</p>
+<figure class="align-default" id="id7">
+<img alt="RSSLog, complex example" src="../../../../_images/rsslog_complex.png" />
+<figcaption>
+<p><span class="caption-text">RSSLog, complex example</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;rsslog&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;mappings&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateConfirmGarbage&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;message_garbage_collection&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;info_ack&quot;</span> <span class="na">color=</span><span class="s">&quot;#00AA00&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;StateConfirmFuel&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;scene_gas_station&quot;</span> <span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;scene_gas_station&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+    <span class="nt">&lt;/mappings&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;rsslog</span> <span class="na">src=</span><span class="s">&quot;plugins/rsslog/rsslog.php&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">limit=</span><span class="s">&quot;6&quot;</span> <span class="na">mode=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>12/7/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/rsslog&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="external-interaction-with-the-data">
+<h2>External interaction with the data<a class="headerlink" href="#external-interaction-with-the-data" title="Permalink to this headline">¶</a></h2>
+<p>The RSSLog plugin of the CometVisu is just for the display of the data of the
+database. It must be filled by an external logic engine. For that it is highly
+recommended to not access the database directly but use the same HTTP API that
+the RSSLog plugin is using.</p>
+<p>All calls are simple HTTP GET requests that a logic engine can generate easily.</p>
+<section id="api-documentation">
+<h3>API documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<p>Parameter for all calls:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">database</span></code></p></td>
+<td><p>Entry in the <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">hidden config</span></a> where
+information about the database connection is stored.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Relevant entries in the hidden config are:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>Database type: <code class="docutils literal notranslate"><span class="pre">sqlite</span></code> or <code class="docutils literal notranslate"><span class="pre">mysql</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">file</span></code></p></td>
+<td><p>For sqlite: file (including path) for the database.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">host</span></code></p></td>
+<td><p>For mysql: host of the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">port</span></code></p></td>
+<td><p>For mysql, optional: port of the database.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></td>
+<td><p>For mysql: user name to log in to the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pass</span></code></p></td>
+<td><p>For mysql: password to log in to the database.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">db</span></code></p></td>
+<td><p>For mysql: name of the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">logs</span></code></p></td>
+<td><p>Optional: name of the <code class="docutils literal notranslate"><span class="pre">Logs</span></code> table.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td><p>Optional: name of the <code class="docutils literal notranslate"><span class="pre">Version</span></code> table.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="new-entry">
+<h4>New entry<a class="headerlink" href="#new-entry" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">c</span></code></p></td>
+<td><p>Content</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p>Optional: a header or title for the entry. This is only relevant
+for the RSS feed, but not for the RSSLog plugin.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">t[]</span></code></p></td>
+<td><p>Optional: tag to filter.</p>
+<p>It is possible to pass multiple tags when they are separated by
+a comma (e.g. <code class="docutils literal notranslate"><span class="pre">t[]=tag1,tag2</span></code>).</p>
+<p>The values of the tags are added to the HTML <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute of
+the value defined in the <code class="docutils literal notranslate"><span class="pre">mapping</span></code>, so that it can be formated
+by custom CSS rules.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>Optional: status of the entry (<code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p>
+<p>This status can be changed interactively by a click on the entry.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code></p></td>
+<td><p>Optional: Selection of the mapping for the display. This must be
+defined in the <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> section of the configuration and can be
+used to show an icon at the entry. This mapping is also using the
+state of the entry.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?c=Fish&amp;t[]=blue,yellow</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New entries are usually generated by the logic engine by a request of this
+URL. Examples are shown below.</p>
+<p>It is also possible to allow the user of the CometVisu to create manually
+a new entry. For that the <a class="reference internal" href="../../urltrigger/index.html"><span class="doc">URL trigger</span></a>
+can be used with a URL following this schema.</p>
+</div>
+</section>
+<section id="return-log-as-rss-feed">
+<h4>Return log as RSS feed<a class="headerlink" href="#return-log-as-rss-feed" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p>Optional: filter; return only entries fitting for this filter</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>Optional: return only entries with this state</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">limit</span></code></p></td>
+<td><p>Optional: number of entries to return</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">showmeta</span></code></p></td>
+<td><p>Optional: when <code class="docutils literal notranslate"><span class="pre">true</span></code> the the title will be extended with meta
+information</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?f=yellow&amp;state=0&amp;limit=5</span></code></p>
+</section>
+<section id="show-log-on-a-html-page">
+<h4>Show log on a HTML page<a class="headerlink" href="#show-log-on-a-html-page" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dump</span></code></p></td>
+<td><p>(no value)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?dump</span></code></p>
+</section>
+<section id="delete-old-entries">
+<h4>Delete old entries<a class="headerlink" href="#delete-old-entries" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r</span></code></p></td>
+<td><p>UNIX timestamp (seconds since 1.1.1970) of the oldest entry to keep</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p>Optional: filter; only entries fitting this filter will be deleted</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?r=213&amp;f=yellow</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To prevent the database growing too big old entries should be regularly
+deleted.</p>
+<p>For that this URL can be called on a schedule like by a CRON job. E.g. to
+delete all entries older than a year this terminal command could be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>wget http://server/resource/plugins/rsslog/rsslog.php?r=`date +%s -d &quot;1 year ago&quot;`
+</pre></div>
+</div>
+<p>Manually the most simple way is to use the <a class="reference internal" href="#info-page"><span class="std std-ref">info page</span></a>.</p>
+</div>
+</section>
+<section id="delete-one-entry">
+<h4>Delete one entry<a class="headerlink" href="#delete-one-entry" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p>ID of the entry</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?d=123</span></code></p>
+</section>
+<section id="return-content-in-json-format">
+<h4>Return content in JSON format<a class="headerlink" href="#return-content-in-json-format" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">j</span></code></p></td>
+<td><p>(no value)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?j</span></code></p>
+</section>
+<section id="update-the-status">
+<h4>Update the status<a class="headerlink" href="#update-the-status" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
+<td><p>ID of the entry</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>New value of the state</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?u=123&amp;state=1</span></code></p>
+</section>
+<section id="show-info-page">
+<span id="info-page"></span><h4>Show info page<a class="headerlink" href="#show-info-page" title="Permalink to this headline">¶</a></h4>
+<p>The info page shows information about the configuration and the database like
+the number of stored entries. It also shows links to delete older entries.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">info</span></code></p></td>
+<td><p>(no value)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?info</span></code></p>
+</section>
+</section>
+<section id="example-api-access-from-the-linux-shell">
+<h3>Example: API access from the Linux shell<a class="headerlink" href="#example-api-access-from-the-linux-shell" title="Permalink to this headline">¶</a></h3>
+<p>The well known tools <code class="docutils literal notranslate"><span class="pre">wget</span></code> and <code class="docutils literal notranslate"><span class="pre">curl</span></code> can be used to send a HTTP GET
+request from the shell.</p>
+<p>With these commands it is possible to create a new entry, in this example
+with the content <code class="docutils literal notranslate"><span class="pre">bell</span></code> and the database defined in the hidden config
+entry <code class="docutils literal notranslate"><span class="pre">rsslog_db</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget http://server/resource/plugins/rsslog/rsslog.php?database<span class="o">=</span>rsslog_db<span class="p">&amp;</span><span class="nv">c</span><span class="o">=</span>bell
+</pre></div>
+</div>
+</section>
+<section id="example-api-access-with-node-red">
+<h3>Example: API access with Node-RED<a class="headerlink" href="#example-api-access-with-node-red" title="Permalink to this headline">¶</a></h3>
+<p>At Node-RED the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> can be used to create a new entry.</p>
+<p>In this example each ring of the door bell shall be used to create a new entry.
+For this it is listened on the KNX and when a <code class="docutils literal notranslate"><span class="pre">true</span></code> is sent on the right GA
+the URL to create a new entry is called:</p>
+<figure class="align-default" id="id8">
+<img alt="../../../../_images/node-RED_simple.png" src="../../../../_images/node-RED_simple.png" />
+<figcaption>
+<p><span class="caption-text">Simple Node-RED flow.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id9">
+<img alt="../../../../_images/node-RED_simple_config.png" src="../../../../_images/node-RED_simple_config.png" />
+<figcaption>
+<p><span class="caption-text">Configuration of the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> for the simple Node-RED flow.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>It is also possible to define the text for the entry dynamically:</p>
+<figure class="align-default" id="id10">
+<img alt="../../../../_images/node-RED_dynamic.png" src="../../../../_images/node-RED_dynamic.png" />
+<figcaption>
+<p><span class="caption-text">Node-RED flow with dynamic setting of the RSSLog text.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id11">
+<img alt="../../../../_images/node-RED_dynamic_config.png" src="../../../../_images/node-RED_dynamic_config.png" />
+<figcaption>
+<p><span class="caption-text">Configuration of the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> for the dynamic Node-RED flow.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="example-api-access-with-the-timberwolf-server">
+<h3>Example: API access with the Timberwolf server<a class="headerlink" href="#example-api-access-with-the-timberwolf-server" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://timberwolf.io/">Timberwolf server</a> provides a HTTP-API to
+be able to send HTTP GET requests and interact with the RSSLog API.</p>
+<section id="static-api-call">
+<h4>Static API call<a class="headerlink" href="#static-api-call" title="Permalink to this headline">¶</a></h4>
+<p>Most simple is a mechanism where each KNX message to a GA will create an API
+call.</p>
+<p>This example assumes that the GA 4/3/200 will send a <code class="docutils literal notranslate"><span class="pre">On</span></code> with each door
+bell ring. It is also assumed that the CometVisu is accessed by the proxy
+and the path <code class="docutils literal notranslate"><span class="pre">/visu/</span></code>.</p>
+<p>First the HTTP-API subsystem must be created:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_create_subsystem.png" src="../../../../_images/TWS_create_subsystem.png" />
+</figure>
+<p>Then in the “Resource Manager” a new entry must be created by
+“Add new HTTP-API Server”:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_add_server.png" src="../../../../_images/TWS_add_server.png" />
+</figure>
+<p>For this server “Add resource” must be used to create the connection
+to the RSSLog api (“Follow HTTP Redirects” must be activated):</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_add_ressource.png" src="../../../../_images/TWS_add_ressource.png" />
+</figure>
+<p>The link between the KNX subsystem and the HTTP-API call is done by selecting
+“Write to HTTP”. The setting for the “Trigger” must be adjusted:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_add_object.png" src="../../../../_images/TWS_add_object.png" />
+</figure>
+<p>Finalized will this by “Add” in the column “Connections (sources)”:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_add_connection.png" src="../../../../_images/TWS_add_connection.png" />
+</figure>
+<p>At the end it will look like:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_static_final.png" src="../../../../_images/TWS_static_final.png" />
+</figure>
+</section>
+<section id="dynamic-api-call">
+<h4>Dynamic API call<a class="headerlink" href="#dynamic-api-call" title="Permalink to this headline">¶</a></h4>
+<p>The example will be more complex when the door bell sends a “On” for each
+ring but all the time a “Off” otherwise so that the data must be filtered first.
+In this example also the text should not be hard coded in the URL anymore but
+be dynamically passed from the logic.</p>
+<p>The HTTP-API must be configured as described for the static call, but the
+text for the entry must be replaced by the place holder <code class="docutils literal notranslate"><span class="pre">&lt;title&gt;</span></code>:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_add_dynamic_ressource.png" src="../../../../_images/TWS_add_dynamic_ressource.png" />
+</figure>
+<p>At this dialog the “Selector” must have the same palace holder and “Format”
+must be changed to “Text”:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_add_dynamic_object.png" src="../../../../_images/TWS_add_dynamic_object.png" />
+</figure>
+<p>At “Objects &amp; Logic” in the “Logic Manager” by “Add Logic” a
+“Multiplexer(string)” must be added. The “Eingang 1” must be changed
+at “Function: Parameter” and the “Value” must be set to the desired text
+of the entry, in this case <code class="docutils literal notranslate"><span class="pre">bell</span></code>.
+At the “Selektor” the “Function: Parameter” must be changed to the value <code class="docutils literal notranslate"><span class="pre">0</span></code> .
+By <code class="docutils literal notranslate"><span class="pre">+</span></code> a “Inhibit” input must be created. This must be connected to the KNX
+object of the door bell and the input must be inverted (click on the dotted
+circle so that it is displayed filled).
+The Inhibit input as well as the “Ausgang” must be set to “A” for “Always”
+and the output be connected with the object of the HTTP-API:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TWS_logic.png" src="../../../../_images/TWS_logic.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The text for the entry will be included in the URL directly, i.e. the
+text must follow the rules of an URL and thus be “escaped”. For example
+space characters must be replaced by <code class="docutils literal notranslate"><span class="pre">%20</span></code>.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>In the simple view some things might be not visible. The expert view
+will show all entries.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../rss/index.html" class="btn btn-neutral float-left" title="The rss plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../speech/index.html" class="btn btn-neutral float-right" title="The Speech plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.12.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0|0.12/manual">0.12.0|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
