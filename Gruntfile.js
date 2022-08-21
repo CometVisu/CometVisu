@@ -448,16 +448,6 @@ module.exports = function(grunt) {
       }
     },
 
-    coveralls: {
-      options: {
-        debug: true,
-        coverageDir: 'coverage',
-        dryRun: false,
-        force: true,
-        recursive: true
-      }
-    },
-
     shell: {
       updateicons: {
         command: [
@@ -551,7 +541,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
   grunt.loadNpmTasks('grunt-composer');
