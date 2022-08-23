@@ -36,7 +36,7 @@ describe('testing a colorchooser', function() {
 
   // test bug reported here:
   // https://knx-user-forum.de/forum/supportforen/cometvisu/963486-problem-milight-colorchooser-mit-oh-als-backend
-  it('should test the colorchooser with incoming data in HSV mode', function() {
+  it('should test the colorchooser with incoming data in RGB mode', function() {
     let widgetInstance = this.createTestElement('colorchooser', {'controls':'RGB-r;RGB-g;RGB-b'}, '', 'Rgb_Test', {
       transform: 'OH:color',
       variant: 'rgb'
