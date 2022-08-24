@@ -106,8 +106,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (pagesElement.getAttribute('password') !== null) {
         settings.credentials.password = pagesElement.getAttribute('password');
       }
-      cv.io.BackendConnections.initBackendClient();
-      this.login();
+      return true;
     },
 
     login() {
@@ -179,6 +178,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       this.debug('setup.dom.finished');
       qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
       cv.TemplateEngine.getInstance().setDomFinished(true);
+
+      this.login();
 
       this.initLayout();
     },

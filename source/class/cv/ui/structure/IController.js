@@ -62,6 +62,7 @@ qx.Interface.define('cv.ui.structure.IController', {
     /**
      * Extract backend specific settings from the config
      * @param xml {XMLDocument} loaded config
+     * @return {Boolean} true if backend setting have been parsed
      */
     parseBackendSettings(xml) {
     },

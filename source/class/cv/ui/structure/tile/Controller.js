@@ -190,6 +190,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           cv.io.BackendConnections.startInitialRequest();
         });
       }
+      return false;
     },
 
     /**
