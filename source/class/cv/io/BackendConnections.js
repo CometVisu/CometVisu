@@ -219,7 +219,7 @@ qx.Class.define('cv.io.BackendConnections', {
         if (lastError && (Date.now() - lastError.time) < 100) {
           message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
         } else {
-          message.message = qx.locale.Manager.tr('Connection to backend is lost.');
+          message.message = qx.locale.Manager.tr('Connection to backend "%1" is lost.', name);
         }
         message.actions = {
           link: [

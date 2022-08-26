@@ -42,7 +42,7 @@ msgstr "Verbindungsfehler"
 msgid "Error requesting %1: %2 - %3."
 msgstr "Fehler beim Laden von %1: %2 - %3."
 
-#: cv/io/BackendConnections.js
+#. NO LONGER USED
 msgid "Connection to backend is lost."
 msgstr "Verbindung zum Backend verloren."
 
@@ -1139,3 +1139,11 @@ msgstr "Es existiert bereits ein Backend mit dem Namen: \"%1\""
 #: cv/ui/manager/contextmenu/FileItem.js
 msgid "Convert to tile structure"
 msgstr "In Tile-Struktur konvertieren"
+
+#: cv/ui/manager/core/IconAtom.js
+msgid "Icon name has been copied to clipboard"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Connection to backend \"%1\" is lost."
+msgstr "Verbindung zum Backend \"%1\" verloren."

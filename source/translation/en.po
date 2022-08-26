@@ -42,7 +42,7 @@ msgstr ""
 msgid "Error requesting %1: %2 - %3."
 msgstr ""
 
-#: cv/io/BackendConnections.js
+#. NO LONGER USED
 msgid "Connection to backend is lost."
 msgstr ""
 
@@ -1230,4 +1230,12 @@ msgstr ""
 
 #: cv/ui/manager/contextmenu/FileItem.js
 msgid "Convert to tile structure"
+msgstr ""
+
+#: cv/ui/manager/core/IconAtom.js
+msgid "Icon name has been copied to clipboard"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Connection to backend \"%1\" is lost."
 msgstr ""
