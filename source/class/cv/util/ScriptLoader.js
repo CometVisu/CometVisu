@@ -145,7 +145,6 @@ qx.Class.define('cv.util.ScriptLoader', {
         let src;
         if (typeof style === 'string') {
           src = style;
-          promises.push(cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix));
         } else if (typeof style === 'object') {
           src = style.uri;
           media = style.media;
@@ -155,7 +154,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         if (src) {
           let resPath = qx.util.ResourceManager.getInstance().toUri(src);
           if (resPath === src) {
-            // this file is unknown to the resource manager, might be an scss source
+            // this file is unknown to the resource manager, might be a scss source
             const scssStyle = src.replace(/\.css$/, '.scss');
             const scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
             if (scssStyle !== scssPath) {
