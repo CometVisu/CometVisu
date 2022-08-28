@@ -150,6 +150,17 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
+    <xsd:sequence>
+      <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:restriction base="xsd:token">
+              <xsd:attribute name="address" type="addr"/>
+            </xsd:restriction>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
     <xsd:attribute name="type" use="required">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Type of backend: ``knxd`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>

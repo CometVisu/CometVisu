@@ -91,11 +91,35 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
             model.setDefaultBackendName(name);
           }
-          const addressesToSubscribe = model.getAddresses(name);
-          if (addressesToSubscribe.length !== 0) {
-            client.subscribe(addressesToSubscribe);
+
+          const doSubscribe = () => {
+            const addressesToSubscribe = model.getAddresses(name);
+            this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
+            if (addressesToSubscribe.length !== 0) {
+              client.subscribe(addressesToSubscribe);
+            }
+          };
+          if (cv.TemplateEngine.getInstance().isDomFinished()) {
+            doSubscribe();
+          } else {
+            qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+              doSubscribe();
+            }, this);
           }
         });
+
+        for (const data of element.querySelectorAll(':scope > cv-data')) {
+          if (data.hasAttribute('address')) {
+            this.debug(name, 'apply update', data.getAttribute('address'), data.textContent.trim());
+            let value = data.textContent.trim();
+            if (data.hasAttribute('transform')) {
+              const encoding = data.getAttribute('transform');
+              const encodedValue = cv.Transform.encodeBusAndRaw({transform: encoding}, value);
+              value = encodedValue.bus;
+            }
+            model.onUpdate(data.getAttribute('address'), value, name);
+          }
+        }
       } else {
         this.error('<cv-backend> must have a type attribute');
       }
