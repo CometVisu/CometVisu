@@ -30,6 +30,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
   */
   members: {
     _name: null,
+    __applyValues: null,
 
     _init() {
       const element = this._element;
@@ -85,14 +86,18 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
         this._client = client;
         this._name = name;
+        this.__applyValues = [];
         client.update = data => model.updateFrom(name, data); // override clients update function
         client.login(true, credentials, () => {
           this.debug(name, 'connected');
           if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
             model.setDefaultBackendName(name);
           }
-
           const doSubscribe = () => {
+            for (const [address, value] of this.__applyValues) {
+              this.debug(name, 'apply update', address, value);
+              model.onUpdate(address, value, name);
+            }
             const addressesToSubscribe = model.getAddresses(name);
             this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
             if (addressesToSubscribe.length !== 0) {
@@ -108,16 +113,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           }
         });
 
+
         for (const data of element.querySelectorAll(':scope > cv-data')) {
           if (data.hasAttribute('address')) {
-            this.debug(name, 'apply update', data.getAttribute('address'), data.textContent.trim());
             let value = data.textContent.trim();
             if (data.hasAttribute('transform')) {
               const encoding = data.getAttribute('transform');
               const encodedValue = cv.Transform.encodeBusAndRaw({transform: encoding}, value);
               value = encodedValue.bus;
             }
-            model.onUpdate(data.getAttribute('address'), value, name);
+            this.__applyValues.push([data.getAttribute('address'), value]);
           }
         }
       } else {

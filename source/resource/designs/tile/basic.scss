@@ -1422,7 +1422,7 @@ body {
         }
     }
 
-    cv-switch {
+    cv-switch, cv-shutter, cv-dimmer {
         cv-tile {
             cv-row[row="last"] {
                 flex-direction: column;

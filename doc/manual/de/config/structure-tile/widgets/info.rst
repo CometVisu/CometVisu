@@ -69,11 +69,11 @@ Oder ein :ref:`Icon <tile-component-icon>` um z.B. den Fensterstatus darzustelle
     <settings design="tile">
         <screenshot name="cv-info-icon-closed" margin="0 10 10 0">
             <data address="1/4/2">0</data>
-            <caption>Fenster geöffnet</caption>
+            <caption>Fenster geschlossen</caption>
         </screenshot>
         <screenshot name="cv-info-icon-opened" margin="0 10 10 0">
             <data address="1/4/2">1</data>
-            <caption>Fenster geschlossen</caption>
+            <caption>Fenster geöffnet</caption>
         </screenshot>
     </settings>
     <cv-meta>
