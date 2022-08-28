@@ -38,19 +38,13 @@
     "libraryVersionTile": 1
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.3",
     "@babel/polyfill": "^7.8.7",
     "@openapitools/openapi-generator-cli": "^2.4.25",
     "@prettier/plugin-php": "^0.17.6",
-    "@qooxdoo/eslint-config-qx": "^2.0.1",
-    "@qooxdoo/eslint-plugin-qx": "^1.2.22",
     "chmodr": "^1.2.0",
     "coffeescript": "^2.6.1",
     "csso": "^4.2.0",
     "easyimage": "^3.1.1",
-    "eslint": "^8.13.0",
-    "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-custom-elements": "^0.0.6",
     "eslint-plugin-jasmine": "^4.1.3",
     "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.2.11",
@@ -67,6 +61,7 @@
     "grunt-file-creator": "^0.1.3",
     "grunt-http-server": "^2.1.0",
     "grunt-karma": "^4.0.2",
+    "grunt-karma-coveralls": "^2.5.4",
     "grunt-prompt": "^1.3.3",
     "grunt-protractor-runner": "^5.0.0",
     "grunt-scaffold": "^0.7.0",
@@ -93,16 +88,16 @@
   },
   "dependencies": {
     "@qooxdoo/framework": "^7.2.1",
-    "@sentry/browser": "^6.19.6",
-    "@sentry/tracing": "^6.19.6",
-    "crc-32": "^1.2.2",
+    "@sentry/browser": "^6.17.9",
+    "@sentry/tracing": "^6.17.9",
+    "crc-32": "^1.2.0",
     "monaco-editor": "^0.32.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
   },
   "eslintConfig": {
     "extends": [
-      "@qooxdoo/eslint-config-qx/browser",
+      "@qooxdoo/qx/browser",
       "plugin:jasmine/recommended",
       "plugin:protractor/recommended",
       "plugin:custom-elements/minimal"
@@ -223,12 +218,7 @@
       }
     ],
     "globals": {
-      "cv": "readonly",
-      "osparc": "readonly",
-      "com": "readonly",
       "steelseries": "readonly",
-      "iconfont": "readonly",
-      "qxl": "readonly",
       "$": "readonly",
       "EVENT_RECORDER": "writable",
       "EventSource": "readonly",
@@ -247,13 +237,7 @@
       "indexedDB": "readonly",
       "URL": "readonly",
       "sinon": "readonly",
-      "customElements": "readonly",
-      "HTMLElement": "readonly",
-      "QxConnector": "readonly",
-      "d3": "readonly",
-      "InstallTrigger": "readonly",
-      "RSSParser": "readonly",
-      "fetch": "readonly"
+      "RSSParser": "readonly"
     }
   }
 }
