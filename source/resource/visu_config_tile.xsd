@@ -154,9 +154,9 @@
       <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
-            <xsd:restriction base="xsd:token">
+            <xsd:extension base="xsd:token">
               <xsd:attribute name="address" type="addr"/>
-            </xsd:restriction>
+            </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
