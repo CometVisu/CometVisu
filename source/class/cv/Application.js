@@ -690,9 +690,7 @@ qx.Class.define('cv.Application',
       const loader = cv.util.ScriptLoader.getInstance();
 
       engine.setConfigSource(xml);
-      loader.addListenerOnce('finished', function() {
-        engine.setScriptsLoaded(true);
-      }, this);
+      loader.bind('finished', engine, 'scriptsLoaded');
 
       if (this._isCached) {
         // check if cache is still valid

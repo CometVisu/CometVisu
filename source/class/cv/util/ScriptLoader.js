@@ -111,6 +111,11 @@ qx.Class.define('cv.util.ScriptLoader', {
       init: false,
       apply: '_checkQueue',
       event: 'changeAllQueued'
+    },
+    finished: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeFinished'
     }
   },
 
@@ -202,6 +207,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         return;
       }
       this.debug('queueing '+realQueue.length+' scripts');
+      this.resetFinished();
       this.__scriptQueue.append(realQueue);
       if (order) {
         const processQueue = function () {
@@ -282,6 +288,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         if (this.isAllQueued()) {
           this.debug('script loader finished');
           this.fireEvent('finished');
+          this.setFinished(true);
         } else if (!this.__listener) {
           this.debug('script loader waiting for all scripts beeing queued');
 
@@ -290,6 +297,7 @@ qx.Class.define('cv.util.ScriptLoader', {
               if (this.__scriptQueue.length === 0) {
                 this.debug('script loader finished');
                 this.fireEvent('finished');
+                this.setFinished(true);
               }
               this.removeListenerById(this.__listener);
               this.__listener = null;
