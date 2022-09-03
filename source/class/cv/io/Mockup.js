@@ -429,6 +429,13 @@ qx.Class.define('cv.io.Mockup', {
           i: ts,
           d: {}
         };
+        if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
+          if (value.length === 2) {
+            value = "" + (parseInt(value, 16) & 63);
+          } else {
+            value = value.substring(2);
+          }
+        }
         answer.d[address] = value;
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);

@@ -4,7 +4,7 @@
         xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd"
         version="1">
     <cv-meta>
-        <cv-backend name="si" type="simulated">
+        <cv-backend name="si" type="simulated" default="true">
             <cv-data address="1/4/4">80</cv-data>
             <cv-data address="1/4/6">80</cv-data>
             <cv-data address="1/4/9">80</cv-data>
@@ -22,7 +22,6 @@
             <cv-data address="1/4/23">FF</cv-data>
             <cv-data address="1/4/24">B0</cv-data>
         </cv-backend>
-        <cv-backend default="true" type="knxd"/>
         <cv-mapping name="PlayStop">
             <entry value="0">ri-play-fill</entry>
             <entry value="1">ri-stop-fill</entry>
@@ -149,74 +148,74 @@
         <cv-page id="widgets" name="Widgets" icon="ri-slideshow-line">
             <cv-group name="Switches">
                 <cv-switch>
-                    <cv-address slot="address" transform="DPT:1.001" backend="si">1/4/0</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                     <span slot="primaryLabel">Switch</span>
                     <span slot="secondaryLabel">On/Off</span>
                 </cv-switch>
                 <cv-switch>
-                    <cv-address slot="address" transform="DPT:1.001" mode="write" value="1" backend="si">1/4/1</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001" mode="write" value="1">1/4/1</cv-address>
                     <span slot="primaryLabel">Trigger</span>
                     <span slot="secondaryLabel">Always sends 1</span>
                 </cv-switch>
                 <cv-switch>
-                    <cv-address slot="address" transform="DPT:1.001" mode="write" value="1" on="down" backend="si">1/4/2</cv-address>
-                    <cv-address slot="address" transform="DPT:1.001" mode="write" value="0" on="up" backend="si">1/4/2</cv-address>
-                    <cv-address slot="address" transform="DPT:1.001" mode="read" backend="si">1/4/0</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001" mode="write" value="1" on="down">1/4/2</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001" mode="write" value="0" on="up">1/4/2</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001" mode="read">1/4/2</cv-address>
                     <span slot="primaryLabel">Push button</span>
                 </cv-switch>
                 <cv-switch mapping="PlayStop">
-                    <cv-address slot="address" transform="DPT:1.001" value="1" backend="si">1/4/3</cv-address>
-                    <cv-address slot="address" transform="DPT:5.001" mode="read" target="progress" backend="si">1/4/4</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001">1/4/3</cv-address>
+                    <cv-address slot="address" transform="DPT:5.001" mode="read" target="progress">1/4/4</cv-address>
                     <span slot="primaryLabel">Switch</span>
                     <span slot="secondaryLabel">with progress</span>
                 </cv-switch>
             </cv-group>
             <cv-group name="Dimmer">
                 <cv-dimmer>
-                    <cv-address slot="switchAddress" transform="DPT:1.001" backend="si">1/4/5</cv-address>
-                    <cv-address slot="brightnessAddress" transform="DPT:5.001" backend="si">1/4/6</cv-address>
+                    <cv-address slot="switchAddress" transform="DPT:1.001">1/4/5</cv-address>
+                    <cv-address slot="brightnessAddress" transform="DPT:5.001">1/4/6</cv-address>
                     <span slot="primaryLabel">Dimmer</span>
                     <span slot="secondaryLabel">with sub label</span>
                 </cv-dimmer>
             </cv-group>
             <cv-group name="Shutters">
                 <cv-shutter>
-                    <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1" backend="si">1/4/7</cv-address>
-                    <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="0" backend="si">1/4/8</cv-address>
-                    <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0" backend="si">1/4/7</cv-address>
-                    <cv-address slot="positionAddress" transform="DPT:5.001" mode="read" backend="si">1/4/9</cv-address>
+                    <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
+                    <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="0">1/4/8</cv-address>
+                    <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/7</cv-address>
+                    <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/9</cv-address>
                     <span slot="primaryLabel">Shutter</span>
                 </cv-shutter>
                 <cv-shutter>
-                    <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1" backend="si">1/4/7</cv-address>
-                    <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0" backend="si">1/4/7</cv-address>
-                    <cv-address slot="positionAddress" transform="DPT:5.001" mode="read" backend="si">1/4/9</cv-address>
+                    <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
+                    <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/7</cv-address>
+                    <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/9</cv-address>
                     <span slot="primaryLabel">Shutter</span>
                     <span slot="secondaryLabel">without Stop-Address</span>
                 </cv-shutter>
             </cv-group>
             <cv-group name="Info">
                 <cv-info format="%.1f">
-                    <cv-address slot="address" mode="read" transform="DPT:9.001" backend="si">1/4/10</cv-address>
+                    <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/10</cv-address>
                     <span slot="label">Temperature</span>
                     <span slot="unit">°C</span>
                 </cv-info>
                 <cv-info format="%.1f °C">
-                    <cv-address slot="address" mode="read" transform="DPT:9.001" backend="si">1/4/10</cv-address>
+                    <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/10</cv-address>
                     <span slot="label">Temperature</span>
                 </cv-info>
                 <cv-info format="%d%%">
-                    <cv-address slot="address" mode="read" transform="DPT:5.001" backend="si">1/4/11</cv-address>
+                    <cv-address slot="address" mode="read" transform="DPT:5.001">1/4/11</cv-address>
                     <cv-round-progress slot="value-component" type="semiCircle"/>
                     <span slot="label">Volume</span>
                 </cv-info>
                 <cv-info mapping="WindowOpen" styling="WindowOpen">
-                    <cv-address slot="address" mode="read" transform="DPT:1.001" backend="si">1/4/12</cv-address>
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">1/4/12</cv-address>
                     <cv-icon slot="value-component" size="xxx-large"/>
                     <span slot="label">Window closed</span>
                 </cv-info>
                 <cv-info mapping="WindowOpen" styling="WindowOpen">
-                    <cv-address slot="address" mode="read" transform="DPT:1.001" backend="si">1/4/13</cv-address>
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">1/4/13</cv-address>
                     <cv-icon slot="value-component" size="xxx-large"/>
                     <span slot="label">Window opened</span>
                 </cv-info>
@@ -224,53 +223,53 @@
             <cv-group name="States">
                 <cv-status format="%d open">
                     <cv-icon slot="icon" size="x-large">knxuf-fts_window_1w</cv-icon>
-                    <cv-address slot="address" transform="DPT:5.010" mode="read" backend="si">1/4/14</cv-address>
+                    <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/14</cv-address>
                     <span slot="label">Windows</span>
                 </cv-status>
                 <cv-status format="%d open">
                     <cv-value slot="icon" mapping="WindowOpen" styling="OpenAlert">
                         <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                        <cv-address transform="DPT:5.010" mode="read" backend="si">1/4/15</cv-address>
+                        <cv-address transform="DPT:5.010" mode="read">1/4/15</cv-address>
                     </cv-value>
-                    <cv-address slot="address" transform="DPT:5.010" mode="read" backend="si">1/4/15</cv-address>
+                    <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/15</cv-address>
                     <span slot="label">Windows</span>
                 </cv-status>
             </cv-group>
             <cv-group name="Room temperature controllers">
                 <cv-rtc>
-                    <cv-address slot="hvacAddress" transform="DPT:20.102" backend="si">1/4/16</cv-address>
-                    <cv-address slot="temperatureAddress" transform="DPT:9.001" backend="si">1/4/10</cv-address>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">1/4/16</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/10</cv-address>
                     <span slot="label">RTC</span>
                 </cv-rtc>
                 <cv-rtc format="%.1f">
-                    <cv-address slot="measuredTemperatureAddress" transform="DPT:9.001" backend="si">1/4/17</cv-address>
-                    <cv-address slot="temperatureAddress" transform="DPT:9.001" backend="si">1/4/10</cv-address>
+                    <cv-address slot="measuredTemperatureAddress" transform="DPT:9.001">1/4/17</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/10</cv-address>
                     <span slot="label">RTC</span>
                     <span slot="unit">°C</span>
                 </cv-rtc>
             </cv-group>
             <cv-group name="Media player">
                 <cv-media-player>
-                    <cv-address slot="subtitleAddress" transform="DPT:24.001" mode="read" backend="si">1/4/18</cv-address>
-                    <cv-address slot="titleAddress" transform="DPT:24.001" mode="read" backend="si">1/4/19</cv-address>
-                    <cv-address slot="previousAddress" transform="DPT:1.001" value="0" mode="write" backend="si">1/4/20</cv-address>
-                    <cv-address slot="playPauseAddress" transform="DPT:1.001" backend="si">1/4/21</cv-address>
-                    <cv-address slot="playTimeAddress" transform="DPT:7.001" mode="read" target="progress" backend="si">1/4/22</cv-address>
-                    <cv-address slot="durationAddress" transform="DPT:7.001" mode="read" target="store:duration" backend="si">1/4/23</cv-address>
-                    <cv-address slot="nextAddress" transform="DPT:1.001" value="1" mode="write" backend="si">1/4/20</cv-address>
-                    <cv-address slot="volumeAddress" transform="DPT:5.001" backend="si">1/4/24</cv-address>
-                    <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image" backend="si">1/4/25</cv-address>
-                    <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude" backend="si">1/4/26</cv-address>
+                    <cv-address slot="subtitleAddress" transform="DPT:24.001" mode="read">1/4/18</cv-address>
+                    <cv-address slot="titleAddress" transform="DPT:24.001" mode="read">1/4/19</cv-address>
+                    <cv-address slot="previousAddress" transform="DPT:1.001" value="0" mode="write">1/4/20</cv-address>
+                    <cv-address slot="playPauseAddress" transform="DPT:1.001">1/4/21</cv-address>
+                    <cv-address slot="playTimeAddress" transform="DPT:7.001" mode="read" target="progress">1/4/22</cv-address>
+                    <cv-address slot="durationAddress" transform="DPT:7.001" mode="read" target="store:duration">1/4/23</cv-address>
+                    <cv-address slot="nextAddress" transform="DPT:1.001" value="1" mode="write">1/4/20</cv-address>
+                    <cv-address slot="volumeAddress" transform="DPT:5.001">1/4/24</cv-address>
+                    <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/4/25</cv-address>
+                    <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/4/26</cv-address>
                 </cv-media-player>
             </cv-group>
             <cv-group name="Tile-pair">
                 <cv-tile-pair>
                     <cv-switch size="normal">
-                        <cv-address slot="address" transform="DPT:1.001" backend="si">1/4/0</cv-address>
+                        <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                         <span slot="secondaryLabel">Light 1</span>
                     </cv-switch>
                     <cv-switch size="normal">
-                        <cv-address slot="address" transform="DPT:1.001" backend="si">1/4/1</cv-address>
+                        <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
                         <span slot="secondaryLabel">Light 2</span>
                     </cv-switch>
                 </cv-tile-pair>
