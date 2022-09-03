@@ -55,8 +55,8 @@
                     <cv-popup slot="popup" modal="true">
                         <cv-list rowspan="3" colspan="3">
                             <model sort-by="label">
-                                <cv-data label="Office" write-address="4/5/0" read-address="4/5/1"/>
-                                <cv-data label="Bathroom" write-address="4/6/0" read-address="4/6/1"/>
+                                <cv-data label="Office" write-address="4/5/0" read-address="4/5/0"/>
+                                <cv-data label="Bathroom" write-address="4/6/0" read-address="4/6/0"/>
                                 <cv-data label="Living room" write-address="3/1/0" read-address="3/1/0"/>
                                 <cv-data label="Kitchen" write-address="3/2/2" read-address="3/2/2"/>
                             </model>
