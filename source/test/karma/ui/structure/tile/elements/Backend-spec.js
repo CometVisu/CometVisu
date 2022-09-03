@@ -38,6 +38,8 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     const model = cv.data.Model.getInstance();
     spyOn(model, 'getAddresses').and.returnValue(['addr1']);
     spyOn(model, 'setDefaultBackendName');
+    const engine = cv.TemplateEngine.getInstance();
+    spyOn(engine, 'isDomFinished').and.returnValue(true);
   });
 
   afterEach(() => {
