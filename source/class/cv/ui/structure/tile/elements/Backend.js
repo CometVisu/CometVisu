@@ -60,6 +60,26 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         }
         const model = cv.data.Model.getInstance();
         let backendUrl = uri ? uri.toString() : null;
+        let backendUrlConfigKey;
+        switch (type) {
+          case 'knxd':
+            backendUrlConfigKey = 'backendKnxdUrl';
+            break;
+          case 'openhab':
+            backendUrlConfigKey = 'backendOpenHABUrl';
+            break;
+          case 'mqtt':
+            backendUrlConfigKey = 'backendMQTTUrl';
+            break;
+        }
+        if (backendUrlConfigKey) {
+          // override by URL settings
+          if (cv.Config.URL[backendUrlConfigKey]) {
+            backendUrl = cv.Config.URL[backendUrlConfigKey]
+          } else if (!backendUrl && cv.Config.server[backendUrlConfigKey]) {
+            backendUrl = cv.Config.server[backendUrlConfigKey]
+          }
+        }
         let name = type;
         if (element.hasAttribute('name')) {
           name = element.getAttribute('name');
