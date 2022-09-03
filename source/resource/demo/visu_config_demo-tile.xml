@@ -130,7 +130,7 @@
                 <summary>
                     <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
                         <cv-address mode="write" transform="DPT:1.001">4/5/0</cv-address>
-                        <cv-address mode="read" transform="DPT:1.001">4/5/1</cv-address>
+                        <cv-address mode="read" transform="DPT:1.001">4/5/0</cv-address>
                         <cv-icon class="value ri-question-mark"/>
                     </cv-button>
                     <cv-value format="%.1f °C">
@@ -140,7 +140,7 @@
                 </summary>
                 <cv-switch>
                     <cv-address slot="address" mode="write" transform="DPT:1.001">4/5/0</cv-address>
-                    <cv-address slot="address" mode="read" transform="DPT:1.001">4/5/1</cv-address>
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">4/5/0</cv-address>
                     <span slot="primaryLabel">Light</span>
                 </cv-switch>
             </cv-group>
