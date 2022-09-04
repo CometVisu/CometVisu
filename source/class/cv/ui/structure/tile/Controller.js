@@ -202,6 +202,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       const settings = cv.Config.configSettings;
       const configElement = config.documentElement;
       settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
+      this.translate(config);
 
       if (!cv.Config.cacheUsed) {
         const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
@@ -302,6 +303,35 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
     createUI(config) {
+    },
+
+    translate(doc) {
+      for (const attr of ['name', 'label']) {
+        for (const trNameElement of doc.querySelectorAll(`*[${attr}^="tr("]`)) {
+          const match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
+          if (!match) {
+            this.warn('attribute content no valid translation string', trNameElement.getAttribute(attr));
+            continue;
+          }
+          const key = match[1];
+          const translation = doc.querySelector(`cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`);
+          if (translation) {
+            trNameElement.setAttribute(attr, translation.textContent.trim());
+          } else {
+            trNameElement.setAttribute(attr, key);
+            this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+          }
+        }
+      }
+      for (const trTextElement of doc.querySelectorAll('*[tr="true"]')) {
+        const key = trTextElement.textContent.trim();
+        const translation = doc.querySelector(`cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`);
+        if (translation) {
+          trTextElement.textContent = translation.textContent.trim();
+        } else {
+          this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+        }
+      }
     },
 
     /**

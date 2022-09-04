@@ -41,27 +41,66 @@
         <cv-styling name="OpenAlert">
             <entry range-min="1">red</entry>
         </cv-styling>
+        <cv-translations>
+            <language name="de">
+                <tr key="Dashboard">Dashboard</tr>
+                <tr key="States">Status</tr>
+                <tr key="Office">Büro</tr>
+                <tr key="Bathroom">Badezimmer</tr>
+                <tr key="Living room">Wohnzimmer</tr>
+                <tr key="Kitchen">Küche</tr>
+                <tr key="All lights">Alle Lichter</tr>
+                <tr key="Currently no lights are switched on">Zur Zeit sind keine Lampen eingeschaltet</tr>
+                <tr key="Rooms">Räume</tr>
+                <tr key="Light">Licht</tr>
+                <tr key="Widgets">Widgets</tr>
+                <tr key="Switches">Schalter</tr>
+                <tr key="Kitchen">Küche</tr>
+                <tr key="Switch">Schalter</tr>
+                <tr key="Push button">Taster</tr>
+                <tr key="On/Off">An/Aus</tr>
+                <tr key="Always sends 1">Sendet immer 1</tr>
+                <tr key="with progress">mit Fortschritt</tr>
+                <tr key="Dimmer">Dimmer</tr>
+                <tr key="with sub label">mit Unterschrift</tr>
+                <tr key="without Stop-Address">ohne Stop-Adresse</tr>
+                <tr key="Temperature">Temperatur</tr>
+                <tr key="Volume">Lautstärke</tr>
+                <tr key="Window closed">Fenster geschlossen</tr>
+                <tr key="Window opened">Fenster geöffnet</tr>
+                <tr key="RTC">RTR</tr>
+                <tr key="Light 1">Licht 1</tr>
+                <tr key="Light 2">Licht 2</tr>
+                <tr key="Shutter">Rollladen</tr>
+                <tr key="Shutters">Rollläden</tr>
+                <tr key="Windows">Fenster</tr>
+                <tr key="Media player">Medien Abspieler</tr>
+                <tr key="Info">Info</tr>
+                <tr key="Room temperature controllers">Raumtemperaturregler</tr>
+                <tr key="Tile-pair">Tile-Paar</tr>
+            </language>
+        </cv-translations>
     </cv-meta>
     <header>
         <h1>CometVisu - Tile demo</h1>
     </header>
     <main>
-        <cv-page id="start" name="Dashboard" icon="ri-dashboard-line">
-            <cv-group open="true" name="States">
+        <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
+            <cv-group open="true" name="tr('States')">
                 <cv-status format="%d an">
                     <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
                     <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                    <span slot="label">All lights</span>
+                    <span slot="label" tr="true">All lights</span>
                     <cv-popup slot="popup" modal="true">
                         <cv-list rowspan="3" colspan="3">
                             <model sort-by="label">
-                                <cv-data label="Office" write-address="4/5/0" read-address="4/5/0"/>
-                                <cv-data label="Bathroom" write-address="4/6/0" read-address="4/6/0"/>
-                                <cv-data label="Living room" write-address="3/1/0" read-address="3/1/0"/>
-                                <cv-data label="Kitchen" write-address="3/2/2" read-address="3/2/2"/>
+                                <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                                <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                                <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                                <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
                             </model>
                             <header>
-                                <h4>All Lights</h4>
+                                <h4 tr="true">All lights</h4>
                             </header>
                             <template>
                                 <cv-listitem>
@@ -76,7 +115,7 @@
                                 </cv-listitem>
                             </template>
                             <template when="empty">
-                                <li><label class="primary">Zur Zeit sind keine Lampen eingeschaltet</label></li>
+                                <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
                             </template>
                         </cv-list>
                     </cv-popup>
@@ -125,8 +164,8 @@
             </cv-status>-->
             </cv-group>
         </cv-page>
-        <cv-page id="floorplan" name="Rooms" icon="knxuf-control_building_empty">
-            <cv-group name="Office" icon="knxuf-it_pc">
+        <cv-page id="floorplan" name="tr('Rooms')" icon="knxuf-control_building_empty">
+            <cv-group name="tr('Office')" icon="knxuf-it_pc">
                 <summary>
                     <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
                         <cv-address mode="write" transform="DPT:1.001">4/5/0</cv-address>
@@ -141,90 +180,90 @@
                 <cv-switch>
                     <cv-address slot="address" mode="write" transform="DPT:1.001">4/5/0</cv-address>
                     <cv-address slot="address" mode="read" transform="DPT:1.001">4/5/0</cv-address>
-                    <span slot="primaryLabel">Light</span>
+                    <span slot="primaryLabel" tr="true">Light</span>
                 </cv-switch>
             </cv-group>
         </cv-page>
-        <cv-page id="widgets" name="Widgets" icon="ri-slideshow-line">
-            <cv-group name="Switches">
+        <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
+            <cv-group name="tr('Switches')">
                 <cv-switch>
                     <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
-                    <span slot="primaryLabel">Switch</span>
-                    <span slot="secondaryLabel">On/Off</span>
+                    <span slot="primaryLabel" tr="true">Switch</span>
+                    <span slot="secondaryLabel" tr="true">On/Off</span>
                 </cv-switch>
                 <cv-switch>
                     <cv-address slot="address" transform="DPT:1.001" mode="write" value="1">1/4/1</cv-address>
                     <span slot="primaryLabel">Trigger</span>
-                    <span slot="secondaryLabel">Always sends 1</span>
+                    <span slot="secondaryLabel" tr="true">Always sends 1</span>
                 </cv-switch>
                 <cv-switch>
                     <cv-address slot="address" transform="DPT:1.001" mode="write" value="1" on="down">1/4/2</cv-address>
                     <cv-address slot="address" transform="DPT:1.001" mode="write" value="0" on="up">1/4/2</cv-address>
                     <cv-address slot="address" transform="DPT:1.001" mode="read">1/4/2</cv-address>
-                    <span slot="primaryLabel">Push button</span>
+                    <span slot="primaryLabel" tr="true">Push button</span>
                 </cv-switch>
                 <cv-switch mapping="PlayStop">
                     <cv-address slot="address" transform="DPT:1.001">1/4/3</cv-address>
                     <cv-address slot="address" transform="DPT:5.001" mode="read" target="progress">1/4/4</cv-address>
-                    <span slot="primaryLabel">Switch</span>
-                    <span slot="secondaryLabel">with progress</span>
+                    <span slot="primaryLabel" tr="true">Switch</span>
+                    <span slot="secondaryLabel" tr="true">with progress</span>
                 </cv-switch>
             </cv-group>
-            <cv-group name="Dimmer">
+            <cv-group name="tr('Dimmer')">
                 <cv-dimmer>
                     <cv-address slot="switchAddress" transform="DPT:1.001">1/4/5</cv-address>
                     <cv-address slot="brightnessAddress" transform="DPT:5.001">1/4/6</cv-address>
-                    <span slot="primaryLabel">Dimmer</span>
-                    <span slot="secondaryLabel">with sub label</span>
+                    <span slot="primaryLabel" tr="true">Dimmer</span>
+                    <span slot="secondaryLabel" tr="true">with sub label</span>
                 </cv-dimmer>
             </cv-group>
-            <cv-group name="Shutters">
+            <cv-group name="tr('Shutters')">
                 <cv-shutter>
                     <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
                     <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="0">1/4/8</cv-address>
                     <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/7</cv-address>
                     <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/9</cv-address>
-                    <span slot="primaryLabel">Shutter</span>
+                    <span slot="primaryLabel" tr="true">Shutter</span>
                 </cv-shutter>
                 <cv-shutter>
                     <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
                     <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/7</cv-address>
                     <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/9</cv-address>
-                    <span slot="primaryLabel">Shutter</span>
-                    <span slot="secondaryLabel">without Stop-Address</span>
+                    <span slot="primaryLabel" tr="true">Shutter</span>
+                    <span slot="secondaryLabel" tr="true">without Stop-Address</span>
                 </cv-shutter>
             </cv-group>
-            <cv-group name="Info">
+            <cv-group name="tr('Info')">
                 <cv-info format="%.1f">
                     <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/10</cv-address>
-                    <span slot="label">Temperature</span>
+                    <span slot="label" tr="true">Temperature</span>
                     <span slot="unit">°C</span>
                 </cv-info>
                 <cv-info format="%.1f °C">
                     <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/10</cv-address>
-                    <span slot="label">Temperature</span>
+                    <span slot="label" tr="true">Temperature</span>
                 </cv-info>
                 <cv-info format="%d%%">
                     <cv-address slot="address" mode="read" transform="DPT:5.001">1/4/11</cv-address>
                     <cv-round-progress slot="value-component" type="semiCircle"/>
-                    <span slot="label">Volume</span>
+                    <span slot="label" tr="true">Volume</span>
                 </cv-info>
                 <cv-info mapping="WindowOpen" styling="WindowOpen">
                     <cv-address slot="address" mode="read" transform="DPT:1.001">1/4/12</cv-address>
                     <cv-icon slot="value-component" size="xxx-large"/>
-                    <span slot="label">Window closed</span>
+                    <span slot="label" tr="true">Window closed</span>
                 </cv-info>
                 <cv-info mapping="WindowOpen" styling="WindowOpen">
                     <cv-address slot="address" mode="read" transform="DPT:1.001">1/4/13</cv-address>
                     <cv-icon slot="value-component" size="xxx-large"/>
-                    <span slot="label">Window opened</span>
+                    <span slot="label" tr="true">Window opened</span>
                 </cv-info>
             </cv-group>
-            <cv-group name="States">
+            <cv-group name="tr('States')">
                 <cv-status format="%d open">
                     <cv-icon slot="icon" size="x-large">knxuf-fts_window_1w</cv-icon>
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/14</cv-address>
-                    <span slot="label">Windows</span>
+                    <span slot="label" tr="true">Windows</span>
                 </cv-status>
                 <cv-status format="%d open">
                     <cv-value slot="icon" mapping="WindowOpen" styling="OpenAlert">
@@ -232,23 +271,23 @@
                         <cv-address transform="DPT:5.010" mode="read">1/4/15</cv-address>
                     </cv-value>
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/15</cv-address>
-                    <span slot="label">Windows</span>
+                    <span slot="label" tr="true">Windows</span>
                 </cv-status>
             </cv-group>
-            <cv-group name="Room temperature controllers">
+            <cv-group name="tr('Room temperature controllers')">
                 <cv-rtc>
                     <cv-address slot="hvacAddress" transform="DPT:20.102">1/4/16</cv-address>
                     <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/10</cv-address>
-                    <span slot="label">RTC</span>
+                    <span slot="label" tr="true">RTC</span>
                 </cv-rtc>
                 <cv-rtc format="%.1f">
                     <cv-address slot="measuredTemperatureAddress" transform="DPT:9.001">1/4/17</cv-address>
                     <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/10</cv-address>
-                    <span slot="label">RTC</span>
+                    <span slot="label" tr="true">RTC</span>
                     <span slot="unit">°C</span>
                 </cv-rtc>
             </cv-group>
-            <cv-group name="Media player">
+            <cv-group name="tr('Media player')">
                 <cv-media-player>
                     <cv-address slot="subtitleAddress" transform="DPT:24.001" mode="read">1/4/18</cv-address>
                     <cv-address slot="titleAddress" transform="DPT:24.001" mode="read">1/4/19</cv-address>
@@ -262,15 +301,15 @@
                     <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/4/26</cv-address>
                 </cv-media-player>
             </cv-group>
-            <cv-group name="Tile-pair">
+            <cv-group name="tr('Tile-pair')">
                 <cv-tile-pair>
                     <cv-switch size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
-                        <span slot="secondaryLabel">Light 1</span>
+                        <span slot="secondaryLabel" tr="true">Light 1</span>
                     </cv-switch>
                     <cv-switch size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
-                        <span slot="secondaryLabel">Light 2</span>
+                        <span slot="secondaryLabel" tr="true">Light 2</span>
                     </cv-switch>
                 </cv-tile-pair>
             </cv-group>

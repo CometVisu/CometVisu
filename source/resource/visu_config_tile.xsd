@@ -48,6 +48,7 @@
       <xsd:element name="cv-styling" type="cv-styling" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-backend" type="cv-backend" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-loader" type="cv-loader" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="cv-translations" type="cv-translations" minOccurs="0" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -87,6 +88,37 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Name of the styling</xsd:documentation>
         <xsd:documentation xml:lang="de">Name des Stylings</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-translations">
+    <xsd:sequence>
+      <xsd:element name="language" type="language" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="language">
+    <xsd:sequence>
+      <xsd:element name="tr" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="key" type="xsd:string" use="required">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">String to translate</xsd:documentation>
+                  <xsd:documentation xml:lang="de">Der zu übersetzende Text</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Short form of the language (e.g. de or en)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Kürzel der Sprache (z.B. de oder en)</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -966,6 +998,7 @@
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
+              <xsd:attribute ref="tr"/>
             </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
@@ -1053,6 +1086,7 @@
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
+              <xsd:attribute ref="tr"/>
             </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
@@ -1112,6 +1146,7 @@
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
+              <xsd:attribute ref="tr"/>
             </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
@@ -1140,6 +1175,7 @@
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
+              <xsd:attribute ref="tr"/>
             </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
@@ -1205,6 +1241,7 @@
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
+              <xsd:attribute ref="tr"/>
             </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
@@ -1335,6 +1372,7 @@
 
   <xsd:complexType name="slot-span" mixed="true">
     <xsd:attribute ref="slot"/>
+    <xsd:attribute ref="tr"/>
   </xsd:complexType>
 
   <xsd:complexType name="label-span" mixed="true">
@@ -1351,6 +1389,7 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute ref="tr"/>
   </xsd:complexType>
 
   <xsd:complexType name="entry" mixed="true">
@@ -1422,7 +1461,12 @@
   </xsd:attribute>
 
   <xsd:attribute name="slot" type="xsd:string"/>
-
+  <xsd:attribute name="tr" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines that the text content of this element should be translated.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
 
   <xsd:attribute name="transform" type="xsd:string">
     <xsd:annotation>
