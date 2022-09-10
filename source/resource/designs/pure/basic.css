@@ -634,6 +634,11 @@ div#demo_3 {
   vertical-align: middle;
 }
 
+.controllerinput .handler
+{
+  border-radius: 5px;
+}
+
 /* powerspectrum plugin */
 .powerspectrum .diagram_inline {
   margin-left: 0;

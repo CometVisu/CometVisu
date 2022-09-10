@@ -59,6 +59,21 @@
             //"cv.plugins.diagram.*"
           ]
         },
+        "plugin-colorchooser": {
+          "include": [
+            "cv.plugins.ColorChooser"
+          ]
+        },
+        "plugin-controllerinput": {
+          "include": [
+            "cv.plugins.ControllerInput"
+          ]
+        },
+        "plugin-calendarlist": {
+          "include": [
+            "cv.plugins.CalendarList"
+          ]
+        },
         "plugin-clock": {
           "include": [
             "cv.plugins.Clock"
@@ -211,7 +226,6 @@
     "indexedDB",
     "URL",
     "sinon",
-    "XMLDocument",
-    "RSSParser"
+    "XMLDocument"
   ]
 }

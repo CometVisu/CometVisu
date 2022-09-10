@@ -269,6 +269,13 @@ input, textarea, select, button { font: inherit; }
   margin: 0 auto;
 }
 
+/* special class to be able to temporarily disable any transition effects */
+.notransition *
+{
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
 button.ui-slider-handle {
   min-width: 2em;
   min-height: 2em;
