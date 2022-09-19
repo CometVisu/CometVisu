@@ -39,7 +39,7 @@ Hat man nun also folgende 3 Backends definiert:
     <cv-backend name="si" default="true" type="simulated"/>
     <cv-backend name="mqtt-broker" type="mqtt" uri="ws://mqtt:9001/"/>
 
-Beispiele für die Nutzung eines der definierten Backends in einem ``<cv-address>``-Element.
+kann man diese in den ``<cv-address>``-Elementen auf folgende Weise benutzen:
 
 .. code:: xml
 

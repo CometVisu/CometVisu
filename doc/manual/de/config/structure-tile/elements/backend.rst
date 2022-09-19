@@ -38,7 +38,7 @@ In diesem Fall nutzen alle ``cv-address``-Elemente ohne ``name``-Attribut (oder 
 und alle ``cv-address``-Elemente ``name="mqtt"``.
 
 
-Verbindung zum KNXD / EIDB
+Verbindung zum KNXD / EIBD
 --------------------------
 
 .. code:: xml
@@ -165,7 +165,7 @@ Es können einfache HTTP Requests ausgelöst werden, um z.B. Aktionen in externe
     </cv-button>
 
 Oft kommt es beim Aufrufen von URLs von externen Webseiten zu einen CORS Fehler, da das Aufrufen von externen Seiten
-ein Sicherheitsrisiko darstellt. Dies kann umgangen werden, indem die interne Proxy-Funktion dder CometVisu benutzt wird.
+ein Sicherheitsrisiko darstellt. Dies kann umgangen werden, indem die interne Proxy-Funktion der CometVisu benutzt wird.
 Dazu müssen die aufzurufenden URLs mit ":proxy" erweitert werden. Für das o.g. Beispiel würde aus
 ``https://somewhere/delete?this`` -> ``https:proxy://somewhere/delete?this``.
 
@@ -196,7 +196,7 @@ Interne Stati
 
 Man kann das System Backend auch benutzen um interne Stati zu schreiben und damit Aktionen innerhalb der
 Visualisierung per Mausklick auszulösen. Damit kann man sich z.B. einen Button erzeugen der beim Klick einen Refresh
-eines :ref:`Bilds <tile-component-image>` oder eines :ref:`Listen-modells <tile-component-list>`.
+eines :ref:`Bilds <tile-component-image>` oder eines :ref:`Listen-Modells <tile-component-list>` auslöst.
 
 .. code-block:: xml
 
