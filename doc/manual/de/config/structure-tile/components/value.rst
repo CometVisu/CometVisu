@@ -41,7 +41,7 @@ abhängig vom jeweiligen Design. In dem Beispiel oben wurde die sekundäre Textf
     der Value-Komponente mitgeteilt wird wo der Wert hineingeschrieben werden soll. Fehlt dieser Eintrag wird
     kein Wert angezeigt.
 
-Um die Primärfarbe zu nutzen muss das label folgendermaßen aussehen.
+Um die Primärfarbe zu nutzen muss das ``<label>`` folgendermaßen aussehen.
 
 .. code:: xml
 

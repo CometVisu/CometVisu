@@ -18,7 +18,13 @@
  */
 
 /**
- * A Backend client that handles write so internal system calls, e.g. to restart a backend connection, reload the browser, etc.
+ * A backend client to handle internal system states.
+ * With this backend you get access to e.g. backend connection states, currently shown page in the UI and can
+ * trigger some things like:
+ * - Restart a backend connection
+ * - navigate to another page
+ * - reload the browser
+ * - trigger HTTP requests
  */
 qx.Class.define('cv.io.System', {
   extend: qx.core.Object,

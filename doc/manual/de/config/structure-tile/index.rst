@@ -247,7 +247,7 @@ und ein Text angezeigt wird.
         </cv-row>
     </cv-tile>
 
-Dieser Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
+Diese Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
 anlegen. Das geht am besten über den :ref:`Manager <Manager>` indem man im Order "media" eine Datei mit Namen "my-templates.xml"
 erzeugt. Damit diese Templates geladen werden fügt man in der Konfigurationsdatei im Meta-Bereich einen :ref:`Loader <tile-element-loader>`
 hinzu.
@@ -259,7 +259,7 @@ hinzu.
     </cv-meta>
 
 
-Diese Datei sollte dann folgenden Inhalt enthalten.
+Diese Datei sollte dann folgenden Inhalt enthalten:
 
 .. code-block:: xml
 
@@ -286,7 +286,7 @@ gehören dazu Adressen, Label und ggf. einige Attribute wie Mappings, Stylings u
 Wenn man nun dieses Template in der Konfigurationsdatei benutzen möchte fügt man dort ein ``<cv-meter>`` Element hinzu.
 Der Name ergibt sich aus der Template ID mit dem Präfix ``cv-``.
 
-Das Prinzip der <slot>-Elemente ist relativ einfach, sie dienen als Platzhalter für Elemente die diesen Slot benutzen.
+Das Prinzip der ``<slot>``-Elemente ist relativ einfach, sie dienen als Platzhalter für Elemente die diesen Slot benutzen.
 In dem Beispiel gibt es zwei Slot-Elemente: einen für die Adresse des Value-Elements: ``<slot name="address"/>``
 und einen für das Label: ``<slot name="label"/>``.
 

@@ -9,7 +9,7 @@ Select
 Beschreibung
 ------------
 
-Die Select-Komponente zeigt ermöglicht es einen Wert aus einer vorgegebenen Liste auszuwählen.
+Die Select-Komponente ermöglicht es einen Wert aus einer vorgegebenen Liste auszuwählen.
 Ein möglicher Anwendungsfall ist zum Beispiel die Auswahl des Betriebsmodus eines Raumtemperaturreglers.
 Es wird der aktuell ausgewählte Wert angezeigt (sofern Icons benutzt werden, wird nur dieses angezeigt
 ohne den zugehörigen Text) und bei Klick auf die Komponente öffnet sich die Liste

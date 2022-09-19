@@ -160,7 +160,7 @@ Das Backend als Quelle zu nutzen funktioniert momentan nur mit dem openHAB Backe
 Die Mitglieder dieser GroupItems sind der CometVisu bekannt und können mittels der Adresse `members:<group-name>` als
 Quelle für eine Listenmodell genutzt werden. Als Transform darf hier nur ``raw`` benutzt werden.
 Diese Art von Modellen erlaubt es zusätzlich nur die aktiven Mitglieder anzuzeigen (also z.B. nur eingeschaltete Lichter)
-indem als Filter ``item.active===true``` benutzt wird. Ein Sortierung ist ebenfalls möglich.
+in dem als Filter ``item.active===true``` benutzt wird. Ein Sortierung ist ebenfalls möglich.
 
 Durch den Filter ist es möglich, dass das Modell leer ist. Für diesen Sonderfall kann man ein alternatives Template
 definieren (``<template when="empty">``), welches dann angezeigt wird.

@@ -32,7 +32,7 @@ qx.Class.define('cv.io.Net', {
     /**
      * Very basic window.fetch replacement that does not support the `init` parameter and therefore only supports
      * GET requests. Uses `qx.io.request.Xhr` internally which supports the XHR calls being recorded / replayed
-     * by CometVisus own recording feature. window.fetch calls are nor supported by the recording feature and get lost.
+     * by CometVisus own recording feature. window.fetch calls are not supported by the recording feature and get lost.
      *
      * @param url {string}
      * @return {Promise<unknown>}

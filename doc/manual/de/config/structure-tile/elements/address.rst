@@ -30,7 +30,7 @@ In der Tile-Struktur können mehrere Backends definiert werden, mit denen die Co
 kann. So kann zum Beispiel zusätzlich zu dem KNX-Backend eine Verbindung zu einem MQTT-Broker aufgenommen werden.
 Es ist sogar möglich gleichzeitig mit mehreren Backends des selben Typs verbunden zu sein.
 Jedes konfigurierte :ref:`Backend <tile-element-backend>` hat einen eindeutigen Namen, welcher als ``name``-Attribut festgelegt
-wird. Wird dieses nicht angegeben entspricht der Name dem Werte des ``type``-Attributs-
+wird. Wird dieses nicht angegeben entspricht der Name dem Wert des ``type``-Attributs.
 Hat man nun also folgende 3 Backends definiert:
 
 .. code:: xml

@@ -9,7 +9,7 @@ Slider
 Beschreibung
 ------------
 
-Die Spinner-Komponente dient, ebenso wie der :ref:`Spinner <tile-component-spinner>`, zur Anzeige und Einstellung eines Zahlenwertes innerhalb eines festgelegten Zahlenbereichs.
+Die Slider-Komponente dient, ebenso wie der :ref:`Spinner <tile-component-spinner>`, zur Anzeige und Einstellung eines Zahlenwertes innerhalb eines festgelegten Zahlenbereichs.
 Ein klassischer Anwendungsfall wäre die Einstellung eines Dimm- oder Lautstärkewerts. Der Slider besteht aus einem
 horizontalen Balken, welcher den Wertebereich darstellt und einem Button den man darüber verschieben kann, um den aktuellen
 Wert einzustellen.
