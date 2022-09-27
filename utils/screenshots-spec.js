@@ -271,6 +271,8 @@ describe('generation screenshots from jsdoc examples', function () {
           console.error('\n>>> error parsing screenshot index data', indexData, indexFile);
           console.error(e.message);
         }
+      } else {
+        shotIndex[settings.screenshotDir] = {};
       }
 
       // check if we have to renew any ob the screenshots
