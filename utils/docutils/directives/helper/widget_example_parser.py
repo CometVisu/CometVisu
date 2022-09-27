@@ -15,26 +15,42 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-
+import sys
 from os import path, makedirs
 from lxml import etree
 from io import open
 import json
+import re
 import hashlib
 from xml.sax.saxutils import escape
 from settings import config, root_dir
 
-xsd = etree.XMLSchema(etree.parse(path.join(root_dir, config.get("DEFAULT", "schema-file"))))
-parser = etree.XMLParser(schema=xsd)
+pure_xsd = etree.XMLSchema(etree.parse(path.join(root_dir, config.get("DEFAULT", "schema-file"))))
+tile_xsd = etree.XMLSchema(etree.parse(path.join(root_dir, config.get("tile", "schema-file"))))
+parser = etree.XMLParser(schema=pure_xsd)
+tile_parser = etree.XMLParser(schema=tile_xsd)
+
 
 class WidgetExampleParser:
 
-    config_parts = {
+    config_parts_pure = {
         "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
         "meta": '<meta/>',
+        "meta_tag": "meta",
+        "default_meta_content": "",
         "content_start": '<page name="Example">',
         "content_end": '</page>',
         "end":   '</pages>'
+    }
+    config_parts_tile = {
+        "start": '<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd">',
+        "meta": '',
+        "meta_tag": "cv-meta",
+        "default_meta_content": '<cv-backend name="main" default="true" type="simulated"/>',
+        "content_start": '<main><cv-page id="root" name="Example" class="%s active">',
+        "content_end": '</cv-page></main>',
+        "content_class": 'screenshots',
+        "end":   '</config>'
     }
     screenshot_dir = None
 
@@ -46,39 +62,69 @@ class WidgetExampleParser:
     def set_screenshot_dir(self, dir):
         self.screenshot_dir = dir
 
+    def get_structure(self, design):
+        if design == "tile":
+            return "tile"
+        return "pure"
+
     def parse(self, source, name="", editor=False):
         meta_node = None
         settings_node = None
         global_caption = None
         meta_content = None
-        config_example = None
+        config_example = []
 
         if not name in self.counters:
             self.counters[name] = 0
         else:
             self.counters[name] += 1
         try:
-            # we need one surrouding element to prevent parse errors
+            # we need one surrounding element to prevent parse errors
             xml = etree.fromstring("<root>%s</root>" % source)
+            single_widget = True
             for child in xml:
                 if etree.iselement(child):
 
                     if child.tag == "settings":
                         # meta settings
                         settings_node = child
-                    elif child.tag == "meta":
+                    elif child.tag == "meta" or child.tag == "cv-meta":
                         # config meta settings
                         meta_node = child
                     elif child.tag == "caption":
                         global_caption = child.text
                     else:
+                        if child.tag == "header" or child.tag == "footer" or child.tag == "main":
+                            single_widget = False
                         # the config example
-                        config_example = child
+                        config_example.append(child)
         except Exception as e:
             print("Parse error: %s" % str(e))
+            print("<root>%s</root>" % source)
+            return
 
-        example_content = etree.tostring(config_example, encoding='utf-8')
-        display_content = example_content
+        example_content = b""
+        display_content = b""
+        content_class = settings_node.get("content-class") if settings_node is not None else None
+        wrapper = settings_node.get("wrap-in") if settings_node is not None else None
+        wrapper_attributes = ' class="%s"' % settings_node.get("wrapper-class") if settings_node is not None else ""
+        wrapped_position = settings_node.get("wrapped-position").replace("'", "\"") if settings_node is not None and "wrapped-position" in settings_node.attrib else 'row="middle" column="middle"'
+        for elem in config_example:
+            content = etree.tostring(elem, encoding='utf-8')
+            display = content
+            if wrapper is not None:
+                example_content += bytes("<%s%s>" % (wrapper, wrapper_attributes), 'utf-8')
+                if wrapper == 'cv-tile':
+                    # center the widget
+                    code = content.decode('utf-8')
+                    pos = re.search("[ >]", code).start()
+                    if pos > 0:
+                        code = code[0:pos] + ' ' + wrapped_position + code[pos:]
+                        content = bytes(code, 'utf-8')
+            example_content += content
+            display_content += display
+            if wrapper is not None:
+                example_content += bytes("</%s>" % wrapper, 'utf-8')
 
         if meta_node is not None:
             display_content = b"...\n%s...\n%s" % (etree.tostring(meta_node, encoding='utf-8'), display_content)
@@ -91,12 +137,14 @@ class WidgetExampleParser:
             "fixtures": []
         }
         design = "metal"
+        structure = "pure"
 
         shot_index = 0
         if settings_node is not None:
             # read meta settings
             design = settings_node.get("design", "metal")
-            settings['selector'] = settings_node.get("selector", ".widget_container")
+            structure = self.get_structure(design)
+            settings['selector'] = settings_node.get("selector", "cv-page > *:first-child" if structure == "tile" else ".widget_container")
             if settings_node.get("sleep"):
                 settings['sleep'] = settings_node.get("sleep")
 
@@ -121,6 +169,12 @@ class WidgetExampleParser:
                     shot['clickPath'] = screenshot.get('clickpath')
                 if screenshot.get("waitfor", None):
                     shot['waitFor'] = screenshot.get('waitfor')
+                if screenshot.get("screen-width", None):
+                    shot['screenWidth'] = int(screenshot.get('screen-width'))
+                if screenshot.get("margin"):
+                    shot['margin'] = [int(x) for x in screenshot.get("margin").split(" ")]
+                if screenshot.get("selector", None):
+                    shot['selector'] = screenshot.get('selector')
 
                 for data in screenshot.iter('data'):
                     values = {
@@ -149,21 +203,30 @@ class WidgetExampleParser:
                 "name": name + str(self.counters[name] + shot_index)
             })
 
+        settings['structure'] = structure
         result = {
             "example_content": example_content,
             "display_content": display_content,
-            "example_tag": config_example.tag,
+            "example_tag": config_example[0].tag if len(config_example) > 0 else "",
             "meta_content": meta_content,
             "global_caption": global_caption,
             "settings": settings,
-            "design": design
+            "design": design,
+            "single_widget": single_widget,
+            "content_class": content_class
         }
+        if len(config_example) == 0:
+            print("# ERROR parsing example:\n%s" % example_content)
         return result
 
     def save_screenshot_control_files(self, parsed, name="", editor=False):
-        visu_config_parts = self.config_parts.copy()
+        visu_config_parts = self.config_parts_tile.copy() if parsed['settings']['structure'] == "tile" else self.config_parts_pure.copy()
+
+        if parsed['settings']['structure'] == "tile":
+            visu_config_parts["content_start"] = visu_config_parts["content_start"] % (parsed['content_class'] if parsed['content_class'] is not None else visu_config_parts["content_class"])
         # replace the design value in the config
         visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", parsed['design'])
+
         if parsed['example_tag'] == "page":
             visu_config_parts['content_start'] = ""
             visu_config_parts['content_end'] = ""
@@ -172,16 +235,31 @@ class WidgetExampleParser:
             # replace default value
             visu_config_parts['meta'] = parsed['meta_content']
 
+        if visu_config_parts['default_meta_content'] and len(visu_config_parts['default_meta_content']) > 0:
+            visu_config_parts['meta'] = visu_config_parts['meta'].replace(
+                "<%s>" % visu_config_parts["meta_tag"],
+                "<%s>%s" % (visu_config_parts["meta_tag"], visu_config_parts['default_meta_content']))
+
         # build the real config source
-        visu_config = visu_config_parts['start'] + \
-                      visu_config_parts['meta'] + \
-                      visu_config_parts['content_start'] + \
-                      parsed['example_content'].decode('utf-8') + \
-                      visu_config_parts['content_end'] + \
-                      visu_config_parts['end']
+        if parsed["single_widget"] is True:
+            visu_config = visu_config_parts['start'] + \
+                          visu_config_parts['meta'] + \
+                          visu_config_parts['content_start'] + \
+                          parsed['example_content'].decode('utf-8') + \
+                          visu_config_parts['content_end'] + \
+                          visu_config_parts['end']
+        else:
+            visu_config = visu_config_parts['start'] + \
+                          parsed['example_content'].decode('utf-8') + \
+                          visu_config_parts['end']
 
         # validate generated config against XSD
-        etree.fromstring(visu_config, parser)
+        try:
+            etree.fromstring(visu_config, tile_parser if parsed['settings']['structure'] == "tile" else parser)
+        except etree.XMLSyntaxError as e:
+            print(visu_config)
+            print("ERROR: %s" % str(e))
+            raise e
         parsed["settings"]["config"] = visu_config
 
         # generate hash

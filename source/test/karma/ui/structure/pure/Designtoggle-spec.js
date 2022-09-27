@@ -42,7 +42,7 @@ describe('testing a designtoggle widget', function() {
 
     var parts = window.location.href.split('#');
     var loc = parts[0];
-    var anchor = parts[1] ? '#'+parts[1] : '';
+    var anchor = parts[1] ? '#'+parts[1] : '#';
     var creator = this.createTestElement('designtoggle');
     spyOn(cv.util.Location, 'setHref');
     spiedStore.fireDataEvent('loaded', new qx.data.Array(['metal', 'pure']));

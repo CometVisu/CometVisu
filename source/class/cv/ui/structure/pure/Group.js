@@ -69,7 +69,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.ui.structure.pure.Group', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
   /*
@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.structure.pure.Group', {
      */
     action: function (event) {
       if (this.getTarget()) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getTarget());
+        cv.Application.structureController.scrollToPage(this.getTarget());
         if (event.getBubbles()) {
           event.stopPropagation();
         }

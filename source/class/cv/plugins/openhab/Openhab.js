@@ -46,7 +46,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications
-      const client = cv.TemplateEngine.getInstance().visu;
+      const client = cv.io.BackendConnections.getClient();
       const sse = client.getCurrentTransport && client.getCurrentTransport();
       if (sse) {
         sse.subscribe('notifications', this._onNotification, this);
@@ -125,7 +125,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
   },
 
   defer: function(statics) {
-    // initialize on load
-    statics.getInstance();
+    // initialize on load but delay the call
+    qx.event.Timer.once(statics.getInstance, statics, 1000);
   }
 });

@@ -33,7 +33,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.ui.structure.pure.Text', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
    ******************************************************

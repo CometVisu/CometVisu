@@ -289,7 +289,7 @@ qx.Class.define('cv.report.Replay', {
 
     __getClient: function() {
       if (!this.__client) {
-        this.__client = cv.TemplateEngine.getInstance().visu;
+        this.__client = cv.io.BackendConnections.getClient();
       }
       return this.__client;
     }

@@ -67,7 +67,7 @@
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
 qx.Class.define('cv.ui.structure.pure.InfoAction', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   include: cv.ui.common.HasChildren,
 

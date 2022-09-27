@@ -18,7 +18,6 @@
  */
 
 
-
 describe('test the ActionRegistry', function () {
   it('should register an action handler', function() {
     var actionHandler = function() {

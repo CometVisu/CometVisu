@@ -37,7 +37,7 @@ qx.Class.define('cv.io.Mockup', {
   construct: function() {
     this.base(arguments);
     cv.io.Client.CLIENTS.push(this);
-    // make some functions accessible for the protactor runner
+    // make some functions accessible for the protractor runner
     window._receive = this.receive.bind(this);
     const model = cv.data.Model.getInstance();
     window._widgetDataGet = model.getWidgetData.bind(model);
@@ -84,6 +84,10 @@ qx.Class.define('cv.io.Mockup', {
     __sequence: null,
     __sequenceIndex: 0,
     __simulations: null,
+
+    getType() {
+      return this.backendName;
+    },
 
     __loadTestData: function () {
       // load the demo data to fill the visu with some values
@@ -425,6 +429,13 @@ qx.Class.define('cv.io.Mockup', {
           i: ts,
           d: {}
         };
+        if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
+          if (value.length === 2) {
+            value = "" + (parseInt(value, 16) & 63);
+          } else {
+            value = value.substring(2);
+          }
+        }
         answer.d[address] = value;
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);

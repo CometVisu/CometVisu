@@ -577,7 +577,8 @@ div#demo_3 {
 .navbar .pagejump .label > .icon,
 .navbar .refresh .label > .icon { 
 	height: 44px !important;
-        width: 44px !important;
+    width: 44px !important;
+    font-size: 36px;
 	display: block;
 	margin: 0 auto;
 }

@@ -34,31 +34,31 @@ msgstr "Fehlerbericht an sentry.io schicken"
 msgid "Error reporting (on sentry.io)"
 msgstr "Absturzberichte senden (an sentry.io)"
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Connection error"
 msgstr "Verbindungsfehler"
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Error requesting %1: %2 - %3."
 msgstr "Fehler beim Laden von %1: %2 - %3."
 
-#: cv/TemplateEngine.js
+#. NO LONGER USED
 msgid "Connection to backend is lost."
 msgstr "Verbindung zum Backend verloren."
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "CometVisu protocol error"
 msgstr "CometVisu Protokollfehler"
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "The backend did send an invalid response to the %1Login%2 request: missing protocol version."
 msgstr "Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: Fehlende Protokollversion."
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Please try to fix the problem in the backend."
 msgstr "Bitte versuchen Sie das Problem im Backend zu lösen."
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Backend-Response:"
 msgstr "Antwort des Backends:"
 
@@ -74,11 +74,11 @@ msgstr "Datei wurde gespeichert"
 msgid "Error saving file"
 msgstr "Fehler beim Speichern der Datei"
 
-#: cv/parser/MetaParser.js
+#: cv/parser/pure/MetaParser.js
 msgid "Template loading error"
 msgstr "Fehler beim Laden des Templates"
 
-#: cv/parser/MetaParser.js
+#: cv/parser/pure/MetaParser.js
 msgid "Template '%1' could not be loaded from '%2'."
 msgstr "Template '%1' konnte nicht geladen werden von '%2'."
 
@@ -712,7 +712,7 @@ msgstr "Speichen trotz Warnungen bestätigen"
 msgid "The XML-Editor does not support files that are not writeable!"
 msgstr "Der XML-Editor unterstützt keine Dateien, die nicht gespeichert werden können!"
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
 msgstr "Das Backend hat eine ungültige Antwort für eine %1Lese%2-Anfrage gesendet: Fehlender \"i\" Wert."
 
@@ -1000,7 +1000,7 @@ msgstr "\"%1\" ist nicht speicherbar. Upgrade kann nicht durchgeführt werden."
 msgid "Diagram communication error"
 msgstr "Diagram Kommunikations-Fehler"
 
-#: cv/plugins/diagram/AbstractDiagram.js
+#: cv/ui/structure/tile/components/Chart.js
 msgid "URL: %1<br/><br/>Response:</br>%2"
 msgstr "URL: %1<br/><br/>Antwort:</br>%2"
 
@@ -1103,3 +1103,47 @@ msgstr "Sie können den Manager öffnen, um eine neue Konfigurations-Datei zu er
 #: cv/util/ConfigLoader.js
 msgid "Open manager"
 msgstr "Manager öffnen"
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "File Error!"
+msgstr "Dateifehler!"
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "Invalid XML file!"
+msgstr "Ungültige XML Datei!"
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "404: File not found, %1."
+msgstr "404: Datei nicht gefunden, %1."
+
+#: cv/io/BackendConnections.js
+msgid "Restart connection"
+msgstr "Verbindung neu starten"
+
+#: cv/util/ConfigUpgrader.js
+msgid "This is no pure-structure config, root element pages not found"
+msgstr "Diese Konfigurationsdatei enthält keine Pure-Struktur, das Wurzelelement pages wurde nicht gefunden"
+
+#: cv/ui/structure/tile/elements/Backend.js
+msgid "Config error"
+msgstr "Konfigurationsfehler"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Communication error"
+msgstr "Kommunikationsfehler"
+
+#: cv/ui/structure/tile/elements/Backend.js
+msgid "There already exists a backend named: \"%1\""
+msgstr "Es existiert bereits ein Backend mit dem Namen: \"%1\""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Convert to tile structure"
+msgstr "In Tile-Struktur konvertieren"
+
+#: cv/ui/manager/core/IconAtom.js
+msgid "Icon name has been copied to clipboard"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Connection to backend \"%1\" is lost."
+msgstr "Verbindung zum Backend \"%1\" verloren."

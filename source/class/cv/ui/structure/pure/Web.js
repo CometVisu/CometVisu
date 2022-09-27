@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.Web', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.Update,
     cv.ui.common.Refresh
@@ -113,7 +113,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         const iframe = this.getDomElement().querySelector('iframe');
         this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
-        cv.TemplateEngine.getInstance().visu.write(address, cv.Transform.encode(addr, 0));
+        cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
       }
     }
   }

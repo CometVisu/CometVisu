@@ -29,7 +29,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.Update,
 
 

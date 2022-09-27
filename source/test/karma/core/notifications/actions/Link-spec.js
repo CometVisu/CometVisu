@@ -18,7 +18,6 @@
  */
 
 
-
 describe('testing the Link action', function() {
   it('should create a button DOM element and open an url on click', function() {
     var action = new cv.core.notifications.actions.Link({

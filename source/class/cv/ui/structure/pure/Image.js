@@ -32,7 +32,7 @@
  * @asset(qx/static/blank.gif)
  */
 qx.Class.define('cv.ui.structure.pure.Image', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   include: [cv.ui.common.Refresh, cv.ui.common.Update ],
 

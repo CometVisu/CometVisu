@@ -27,17 +27,18 @@ describe('testing a navbar widget', function() {
    * @param pos
    */
   function testNavbar(pos) {
-    var templateEngine = cv.TemplateEngine.getInstance();
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    controller.initPagePartsHandler();
     // eslint-disable-next-line jasmine/no-unsafe-spy
-    spyOn(templateEngine.pagePartsHandler, 'navbarSetSize');
+    spyOn(controller.pagePartsHandler, 'navbarSetSize');
 
-    var bar = document.createElement('div');
-    var barContainerId = 'navbar'+pos[0].toUpperCase() + pos.substring(1);
+    const bar = document.createElement('div');
+    let barContainerId = 'navbar'+pos[0].toUpperCase() + pos.substring(1);
     bar.setAttribute('id', barContainerId);
 
     document.body.appendChild(bar);
 
-    var attrs = {
+    let attrs = {
       'position': pos
     };
     if (pos === 'left') {
@@ -53,7 +54,7 @@ describe('testing a navbar widget', function() {
     qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
     qx.event.message.Bus.dispatchByName('setup.dom.finished');
 
-    var navbar = document.querySelector('#'+barContainerId+' .navbar');
+    const navbar = document.querySelector('#'+barContainerId+' .navbar');
 
     expect(navbar).not.toBeNull();
     expect(navbar.getAttribute('id')).toBe('id_'+pos+'_navbar');
@@ -63,11 +64,11 @@ describe('testing a navbar widget', function() {
       expect(navbar.querySelector('h2').innerText).toBe('Testbar');
       expect(widget.getScope()).toBe(1);
     } else {
-      expect(templateEngine.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
+      expect(controller.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
       expect(widget.getScope()).toBe(-1);
     }
     document.body.removeChild(bar);
-    templateEngine.pagePartsHandler.navbarSetSize.calls.reset();
+    controller.pagePartsHandler.navbarSetSize.calls.reset();
   }
 
   beforeEach(() => {

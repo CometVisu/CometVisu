@@ -217,6 +217,7 @@ qx.Class.define('cv.ui.manager.Main', {
         actions.push('delete');
         actions.push('upload');
         actions.push('clone');
+        actions.push('convertToTile');
       }
       if (cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
         actions.push('new-config-file');
@@ -296,6 +297,28 @@ qx.Class.define('cv.ui.manager.Main', {
               } else {
                 this._onCreate('file', res);
               }
+          }, this);
+          break;
+
+        case 'convertToTile':
+          cv.io.rest.Client.getFsClient().readSync({path: data.file.getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
+            } else if (data.file.isConfigFile()) {
+              const converter = new cv.util.ConfigUpgrader();
+              const [err, convertedContent] = converter.convertPureToTile(res);
+              if (err) {
+                cv.ui.manager.snackbar.Controller.error(err);
+              } else {
+                let suggestedName = 'tile';
+                const match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(data.file.getName());
+                if (match) {
+                  suggestedName = 'tile-' + match[1];
+                }
+                // config files need to be cloned in the root folder
+                this._onCreate('config', convertedContent, cv.ui.manager.model.FileItem.ROOT, 'cv.ui.manager.editor.Source', suggestedName);
+              }
+            }
           }, this);
           break;
 
@@ -484,13 +507,7 @@ qx.Class.define('cv.ui.manager.Main', {
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
         }
-        if (!editorConfig.instance.isReady()) {
-          editorConfig.instance.addListenerOnce('changeReady', () => {
-            editorConfig.instance.setFile(file);
-          }, this);
-        } else {
-          editorConfig.instance.setFile(file);
-        }
+        editorConfig.instance.setFile(file);
         if (this._stack.indexOf(editorConfig.instance) < 0) {
           this._stack.add(editorConfig.instance);
         }
@@ -792,7 +809,7 @@ qx.Class.define('cv.ui.manager.Main', {
       return prompt;
     },
 
-    _onCreate: function (type, content, folder) {
+    _onCreate: function (type, content, folder, handlerId, suggestedName) {
       const currentFolder = folder || this.getCurrentFolder();
       if (!currentFolder) {
         return;
@@ -873,12 +890,12 @@ qx.Class.define('cv.ui.manager.Main', {
           // do not open new folders
           if (type !== 'dir') {
             // open the file in an editor
-            this.openFile(item, false, null, 'edit');
+            this.openFile(item, false, handlerId, 'edit');
           }
         }
       };
 
-      this.__getFileNamePrompt(message, handlePrompt, this);
+      this.__getFileNamePrompt(message, handlePrompt, this, suggestedName);
     },
 
     /**

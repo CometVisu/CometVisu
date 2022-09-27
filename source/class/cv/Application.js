@@ -26,8 +26,6 @@
  * @asset(icons/*)
  * @asset(sentry/bundle.min.js)
  * @asset(sentry/bundle.tracing.min.js)
- * @asset(sentry/bundle.min.js.map)
- * @asset(sentry/bundle.tracing.min.js.map)
  * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -49,9 +47,9 @@ qx.Class.define('cv.Application',
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
       qx.io.PartLoader.require([lang]);
     }
-
-    qx.bom.PageVisibility.getInstance().addListener('change', function () {
-      this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === 'visible');
+    const pageVis = qx.bom.PageVisibility.getInstance();
+    pageVis.addListener('change', function () {
+      this.setActive(pageVis.getVisibilityState() === 'visible');
     }, this);
 
     // install global shortcut for opening the manager
@@ -73,9 +71,12 @@ qx.Class.define('cv.Application',
    ******************************************************
    */
   statics: {
-    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
     __commandManager: null,
+    /**
+     * Controller from the loaded structure injects itself here when loaded
+     */
+    structureController: null,
     _relResourcePath: null,
     _fullResourcePath: null,
 
@@ -100,12 +101,12 @@ qx.Class.define('cv.Application',
      */
     createClient: function(...args) {
       let Client = cv.io.Client;
-      if (cv.Config.testMode === true || window.cvTestMode === true) {
+      if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
-        if (!cv.Config.pluginsToLoad.includes('plugin-openhab')) {
-          cv.Config.pluginsToLoad.push('plugin-openhab');
+        if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+          cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
         }
         if (args[1] && args[1].endsWith('/cv/l/')) {
           // we only need the rest path not the login resource
@@ -114,12 +115,11 @@ qx.Class.define('cv.Application',
       } else if (args[0] === 'mqtt') {
         Client = cv.io.mqtt.Client;
       }
-      args.unshift(null);
-      return new (Function.prototype.bind.apply(Client, args))(); // jshint ignore:line
+      return new Client(...args);
     },
 
     /**
-     * Register shortcuts to usefull commands the user can execute in the browser console
+     * Register shortcuts to useful commands the user can execute in the browser console
      * @param shortcutName {String} command name used to install the command in the global namespace
      * @param command {Function} command to execute
      * @param help {String} some documentation about the command
@@ -149,7 +149,8 @@ qx.Class.define('cv.Application',
     structureLoaded: {
       check: 'Boolean',
       init: false,
-      event: 'changeStructureLoaded'
+      event: 'changeStructureLoaded',
+      apply: '_applyStructureLoaded'
     },
 
     commandManager: {
@@ -206,6 +207,7 @@ qx.Class.define('cv.Application',
   {
     _blocker: null,
     __appReady: null,
+    _isCached: null,
 
     /**
      * Toggle the {@link qx.bom.Blocker} visibility
@@ -231,9 +233,6 @@ qx.Class.define('cv.Application',
       } else if (!value && document.body.classList.contains('mobile')) {
         document.body.classList.remove('mobile');
       }
-      if (this.__appReady) {
-        cv.ui.layout.ResizeHandler.invalidateNavbar();
-      }
     },
 
     _applyManagerChecked: function(value) {
@@ -255,6 +254,9 @@ qx.Class.define('cv.Application',
           cv.report.Replay.prepare(replayLog);
         }
       }
+
+      document.body.classList.add('loading');
+
       cv.report.Record.prepare();
 
       let info = '\n' +
@@ -348,7 +350,7 @@ qx.Class.define('cv.Application',
         };
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       } else {
-        qx.io.PartLoader.require(['manager'], function () {
+        qx.io.PartLoader.require(['manager'], function (states) {
           // break dependency
           const ManagerMain = cv.ui['manager']['Main'];
           const firstCall = !ManagerMain.constructor.$$instance;
@@ -373,6 +375,10 @@ qx.Class.define('cv.Application',
     _applyInManager: function (value) {
       if (value) {
         qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+        this.block(false);
+        if (document.body.classList.contains('loading')) {
+          document.body.classList.remove('loading');
+        }
       } else {
         qx.bom.History.getInstance().addToHistory('', 'CometVisu');
       }
@@ -618,49 +624,48 @@ qx.Class.define('cv.Application',
       'false': null
     }),
 
-    _onResize: function (ev, init) {
+    _onResize: function () {
       if (cv.Config.mobileDevice === undefined) {
         this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
       }
-      if (!init && this.__appReady) {
-        cv.ui.layout.ResizeHandler.invalidateScreensize();
+    },
+
+    _applyStructureLoaded () {
+      if (!cv.Config.cacheUsed) {
+        let body = document.querySelector('body');
+        // load empty HTML structure
+        body.innerHTML = cv.Application.structureController.getHtmlStructure();
       }
     },
 
     /**
      * Internal initialization method
      */
-    __init: function() {
+    async __init() {
       qx.event.Registration.addListener(window, 'unload', function () {
         cv.io.Client.stopAll();
       }, this);
-      qx.bom.Lifecycle.onReady(async function () {
+      qx.bom.Lifecycle.onReady(async () => {
         // init notification router
         cv.core.notifications.Router.getInstance();
-        let body = document.querySelector('body');
-        let isCached = false;
+
+        this._isCached = false;
         if (cv.Config.enableCache) {
-          isCached = await cv.ConfigCache.isCached();
+          this._isCached = await cv.ConfigCache.isCached();
         }
-        if (isCached) {
+        if (this._isCached) {
           // load settings
           this.debug('using cache');
           cv.ConfigCache.restore();
-          // initialize NotificationCenter
-          cv.ui.NotificationCenter.getInstance();
-          cv.ui.ToastManager.getInstance();
-        } else {
-          // load empty HTML structure
-          body.innerHTML = cv.Application.HTML_STRUCT;
-          // initialize NotificationCenter
-          cv.ui.NotificationCenter.getInstance();
-          cv.ui.ToastManager.getInstance();
         }
-        if (!cv.Config.loadManager) {
+        // initialize NotificationCenter
+        cv.ui.NotificationCenter.getInstance();
+        cv.ui.ToastManager.getInstance();
+        if (!window.cvTestMode && !cv.Config.loadManager) {
           let configLoader = new cv.util.ConfigLoader();
           configLoader.load(this.bootstrap, this);
         }
-      }, this);
+      });
 
       // reaction on browser back button
       qx.bom.History.getInstance().addListener('request', function(e) {
@@ -669,8 +674,8 @@ qx.Class.define('cv.Application',
           this.hideManager();
         } else if (!this.isInManager() && anchor === 'manager') {
           this.showManager();
-        } else if (anchor) {
-          cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
+        } else if (cv.Application.structureController) {
+          cv.Application.structureController.onHistoryRequest(anchor);
         }
       }, this);
     },
@@ -679,34 +684,22 @@ qx.Class.define('cv.Application',
      * Initialize the content
      * @param xml {Document} XML configuration retrieved from backend
      */
-    bootstrap: async function(xml) {
+    async bootstrap(xml) {
       this.debug('bootstrapping');
       const engine = cv.TemplateEngine.getInstance();
       const loader = cv.util.ScriptLoader.getInstance();
 
-      engine.xml = xml;
-      loader.addListenerOnce('finished', function() {
-        engine.setScriptsLoaded(true);
-      }, this);
-      let isCached = false;
-      let xmlHash;
-      if (cv.Config.enableCache) {
-        isCached = await cv.ConfigCache.isCached();
-        xmlHash = cv.ConfigCache.toHash(xml);
-      }
+      engine.setConfigSource(xml);
+      loader.bind('finished', engine, 'scriptsLoaded');
 
-      if (isCached) {
+      if (this._isCached) {
         // check if cache is still valid
-        const cacheValid = await cv.ConfigCache.isValid(null, xmlHash);
+        const cacheValid = await cv.ConfigCache.isValid(null, engine.getConfigHash());
         if (!cacheValid) {
           this.debug('cache is invalid re-parse xml');
           // cache invalid
           cv.Config.cacheUsed = false;
           cv.ConfigCache.clear();
-
-          // load empty HTML structure
-          document.body.innerHTML = cv.Application.HTML_STRUCT;
-
           //empty model
           cv.data.Model.getInstance().resetWidgetDataModel();
           cv.data.Model.getInstance().resetAddressList();
@@ -715,30 +708,21 @@ qx.Class.define('cv.Application',
           cv.report.Record.logCache();
           cv.Config.cacheUsed = true;
           cv.Config.lazyLoading = true;
-          engine.initBackendClient();
-          this.__detectInitialPage();
+          cv.io.BackendConnections.initBackendClient();
 
           // load part for structure
           const structure = cv.Config.getStructure();
           this.debug('loading structure '+structure);
-          engine.loadParts([structure], function(states) {
-            if (states === 'complete') {
-              this.debug(structure + ' has been loaded');
-              this.setStructureLoaded(true);
-            } else {
-              this.error(structure + ' could not be loaded');
-              this.setStructureLoaded(false);
-            }
-          }, this);
-
-          engine.addListenerOnce('changeReady', function() {
+          engine.loadParts([structure]).then(() => {
+            this.loadPlugins();
+          });
+          engine.addListenerOnce('changeReady', async () => {
             // create the objects
-            cv.Config.treePath = cv.Config.initialPage;
+            cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
             const data = cv.data.Model.getInstance().getWidgetData('id_');
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           }, this);
           // check if the current design settings overrides the cache one
-          this.loadPlugins();
           if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
             const styles = [];
@@ -759,25 +743,22 @@ qx.Class.define('cv.Application',
         }
       }
       if (!cv.Config.cacheUsed) {
-        this.debug('starting');
-        this.__detectInitialPage();
-        engine.parseXML(xml, function () {
-          this.loadPlugins();
-          this.loadStyles();
-          this.loadScripts();
-          this.debug('done');
+        this.debug('start parsing config file');
+        const engine = cv.TemplateEngine.getInstance();
+        await engine.parse();
+        this.loadPlugins();
+        this.loadStyles();
+        this.loadScripts();
+        this.debug('done');
 
-          if (cv.Config.enableCache) {
-            // cache dom + data when everything is ready
-            qx.event.message.Bus.subscribe('setup.dom.finished', function() {
-              cv.ConfigCache.dump(xml, xmlHash);
-            }, this);
-          }
-          this.__appReady = true;
-        }.bind(this));
-      } else {
-        this.__appReady = true;
+        if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
+          // cache dom + data when everything is ready
+          qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+            cv.ConfigCache.dump(xml, engine.getConfigHash());
+          }, this);
+        }
       }
+      this.__appReady = true;
     },
 
     /**
@@ -789,7 +770,13 @@ qx.Class.define('cv.Application',
         styles = cv.Config.configSettings.stylesToLoad;
       }
       if (styles.length) {
-        cv.util.ScriptLoader.getInstance().addStyles(styles);
+        document.body.classList.add('loading-styles');
+        const loader = cv.util.ScriptLoader.getInstance();
+        loader.addListenerOnce('stylesLoaded', () => {
+          document.body.classList.remove('loading');
+          document.body.classList.remove('loading-styles');
+        });
+        loader.addStyles(styles);
       }
     },
 
@@ -818,21 +805,23 @@ qx.Class.define('cv.Application',
       });
       if (plugins.length > 0) {
         const standalonePlugins = [];
-        let partsLoaded = false;
+        const engine = cv.TemplateEngine.getInstance();
+        let partsLoaded = engine.getPartsLoaded();
         let allPluginsQueued = false;
         this.debug('loading plugins');
-        const engine = cv.TemplateEngine.getInstance();
-        engine.addListener('changePartsLoaded', function(ev) {
-          if (ev.getData() === true) {
-            this.debug('plugins loaded');
-            partsLoaded = true;
-            if (allPluginsQueued) {
-              qx.event.Timer.once(function () {
-                cv.util.ScriptLoader.getInstance().setAllQueued(true);
-              }, this, 0);
+        if (!partsLoaded) {
+          engine.addListener('changePartsLoaded', function (ev) {
+            if (ev.getData() === true) {
+              this.debug('plugins loaded');
+              partsLoaded = true;
+              if (allPluginsQueued) {
+                qx.event.Timer.once(function () {
+                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
+                }, this, 0);
+              }
             }
-          }
-        }, this);
+          }, this);
+        }
         const parts = qx.Part.getInstance().getParts();
         const partPlugins = [];
         const path = cv.Application.getRelativeResourcePath();
@@ -851,7 +840,7 @@ qx.Class.define('cv.Application',
 
         if (standalonePlugins.length > 0) {
           // load standalone plugins after the structure parts has been loaded
-          // because they use need the classes provided by it
+          // because they need the classes provided by it
           if (this.getStructureLoaded()) {
             cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
           } else {
@@ -869,43 +858,13 @@ qx.Class.define('cv.Application',
           }
         } else {
           allPluginsQueued = true;
+          qx.event.Timer.once(function () {
+            cv.util.ScriptLoader.getInstance().setAllQueued(true);
+          }, this, 0);
         }
       } else {
         this.debug('no plugins to load => all scripts queued');
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
-      }
-    },
-
-    __detectInitialPage: function() {
-      let startpage = 'id_';
-      if (cv.Config.startpage) {
-        startpage = cv.Config.startpage;
-        if (qx.core.Environment.get('html.storage.local') === true) {
-          if (startpage === 'remember') {
-            startpage = localStorage.getItem('lastpage');
-            cv.Config.rememberLastPage = true;
-            if (typeof (startpage) !== 'string' || startpage.substr(0, 3) !== 'id_') {
-              startpage = 'id_'; // fix obvious wrong data
-            }
-          } else if (startpage === 'noremember') {
-            localStorage.removeItem('lastpage');
-            startpage = 'id_';
-            cv.Config.rememberLastPage = false;
-          }
-        }
-      } else {
-        const req = qx.util.Uri.parseUri(window.location.href);
-        if (req.anchor && req.anchor.substring(0, 3) === 'id_') {
-          startpage = req.anchor;
-        }
-      }
-      if (startpage.match(/^id_[0-9_]*$/) !== null) {
-        cv.Config.initialPage = startpage;
-      } else {
-        // wait for DOM to be ready and detect the page id then
-        qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
-          cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || 'id_';
-        });
       }
     },
 
@@ -1012,7 +971,7 @@ qx.Class.define('cv.Application',
 
     close: function () {
       this.setActive(false);
-      const client = cv.TemplateEngine.getClient();
+      const client = cv.io.BackendConnections.getClient();
       if (client) {
         client.terminate();
       }

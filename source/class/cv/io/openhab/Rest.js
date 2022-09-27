@@ -31,10 +31,10 @@ qx.Class.define('cv.io.openhab.Rest', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (backendName, backendUrl) {
+  construct: function (type, backendUrl) {
     this.base(arguments);
     this.initialAddresses = [];
-    this._backendName = backendName;
+    this._type = type;
     this._backendUrl = backendUrl || '/rest/';
     this.__groups = {};
     this.__memberLookup = {};
@@ -66,14 +66,19 @@ qx.Class.define('cv.io.openhab.Rest', {
   */
   members: {
     __lastError: null,
-    _backendName: null,
+    _type: null,
     _backendUrl: null,
     __token: null,
     __groups: null,
     __memberLookup: null,
+    __subscribedAddresses: null,
 
     getBackend: function () {
       return {};
+    },
+
+    getType() {
+      return this._type;
     },
 
     // not used / needed in this client
@@ -103,6 +108,9 @@ qx.Class.define('cv.io.openhab.Rest', {
                 break;
               case 'day':
                 interval = 24 * 60 * 60000;
+                break;
+              case 'week':
+                interval = 7 * 24 * 60 * 60000;
                 break;
               case 'month':
                 interval = 30 * 24 * 60 * 60000;
@@ -143,9 +151,15 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     processChartsData : function (response) {
       const data = response.data;
-      const newRrd = new Array(data.length);
+      const newRrd = [];
+      let lastValue;
+      let value;
       for (let j = 0, l = data.length; j < l; j++) {
-        newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+        value = parseFloat(data[j].state);
+        if (value !== lastValue) {
+          newRrd.push([data[j].time, value]);
+        }
+        lastValue = value;
       }
       return newRrd;
     },
@@ -174,21 +188,24 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     __isActive: function (type, state) {
-      switch (type) {
-        case 'Decimal':
-        case 'Percent':
-        case 'Number':
-        case 'Dimmer':
+      switch (type.toLowerCase()) {
+        case 'decimal':
+        case 'percent':
+        case 'number':
+        case 'dimmer':
           return parseInt(state) > 0;
 
-        case 'Rollershutter':
+        case 'color':
+          return state !== '0,0,0';
+
+        case 'rollershutter':
           return state === '0';
 
-        case 'Contact':
+        case 'contact':
           return state === 'OPENED';
 
-        case 'OnOff':
-        case 'Switch':
+        case 'onoff':
+        case 'switch':
           return state === 'ON';
 
         default:
@@ -198,7 +215,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     subscribe : function (addresses, filters) {
       // send first request to get all states once
-      const req = this.createAuthorizedRequest('items?fields=name,state,members,type&recursive=true');
+      const req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
       req.addListener('success', function(e) {
         const req = e.getTarget();
 
@@ -210,9 +227,10 @@ qx.Class.define('cv.io.openhab.Rest', {
             let active = 0;
             const map = {};
             entry.members.forEach(obj => {
-              map[obj.name] = {type: obj.type, state: obj.state};
+              map[obj.name] = {type: obj.type.toLowerCase(), state: obj.state, label: obj.label, name: obj.name, active: false};
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
+                map[obj.name].active = true;
               }
               if (!Object.prototype.hasOwnProperty.call(this.__memberLookup, obj.name)) {
                 this.__memberLookup[obj.name] = [entry.name];
@@ -226,10 +244,12 @@ qx.Class.define('cv.io.openhab.Rest', {
               active: active
             };
             update['number:' + entry.name] = active;
+            update['members:' + entry.name] = Object.values(map);
           }
           update[entry.name] = entry.state;
         }, this);
         this.update(update);
+        this.__subscribedAddresses = addresses;
       }, this);
       // Send request
       req.send();
@@ -237,21 +257,41 @@ qx.Class.define('cv.io.openhab.Rest', {
       // create sse session
       this.running = true;
       if (!cv.report.Record.REPLAYING) {
-        this.eventSource = new EventSource(this._backendUrl + 'events?topics=openhab/items/*/statechanged');
+        const things = addresses.filter(addr => addr.split(':').length > 3);
+        let topic = 'openhab/items/*/statechanged';
+        if (things.length > 0) {
+          topic = 'openhab/*/*/*changed';
+          // request current states
+          const thingsReq = this.createAuthorizedRequest('things?summary=true');
+          thingsReq.addListener('success', e => {
+            const res = e.getTarget().getResponse();
+            const update = {};
+            res.forEach(entry => {
+              if (things.includes(entry.UID)) {
+                update[entry.UID] = entry.statusInfo.status;
+              }
+            });
+            this.update(update);
+          });
+          thingsReq.send();
+        }
+        if (!this.eventSource) {
+          this.eventSource = new EventSource(this._backendUrl + 'events?topics=' + topic);
 
-        // add default listeners
-        this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-        this.eventSource.addEventListener('error', this.handleError.bind(this), false);
-        // add additional listeners
-        //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
-        this.eventSource.onerror = function () {
-          this.error('connection lost');
-          this.setConnected(false);
-        }.bind(this);
-        this.eventSource.onopen = function () {
-          this.debug('connection established');
-          this.setConnected(true);
-        }.bind(this);
+          // add default listeners
+          this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+          this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+          // add additional listeners
+          //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+          this.eventSource.onerror = function () {
+            this.error('connection lost');
+            this.setConnected(false);
+          }.bind(this);
+          this.eventSource.onopen = function () {
+            this.debug('connection established');
+            this.setConnected(true);
+          }.bind(this);
+        }
       }
     },
 
@@ -259,6 +299,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       this.debug('terminating connection');
       if (this.eventSource) {
         this.eventSource.close();
+        this.eventSource = null;
       }
     },
 
@@ -278,17 +319,32 @@ qx.Class.define('cv.io.openhab.Rest', {
             groupNames.forEach(groupName => {
               const group = this.__groups[groupName];
               let active = 0;
-              group.members[item].value = change.value;
+              group.members[item].state = change.value;
               Object.keys(group.members).forEach(memberName => {
                 const member = group.members[memberName];
-                if (this.__isActive(member.type, member.value)) {
+                if (this.__isActive(member.type, member.state)) {
                   active++;
+                  member.active = true;
+                } else {
+                  member.active = false;
                 }
               });
               group.active = active;
               update['number:' + groupName] = active;
+              update['members:' + groupName] = Object.values(group.members);
             });
           }
+          this.update(update);
+        } else if (data.type === 'ThingStatusInfoChangedEvent') {
+          //extract item name from topic
+          const update = {};
+          const item = data.topic.split('/')[2];
+          let change = JSON.parse(data.payload);
+          if (Array.isArray(change)) {
+            // [newState, oldState]
+            change = change[0];
+          }
+          update[item] = change.status;
           this.update(update);
         }
       }
@@ -326,8 +382,15 @@ qx.Class.define('cv.io.openhab.Rest', {
     getLastError: function() {
       return this.__lastError;
     },
-    restart: function(full) {
-      this.error('Not implemented');
+    restart: function(fullRestart) {
+      if (fullRestart) {
+        // re-read all states
+        if (this.__subscribedAddresses) {
+          this.subscribe(this.__subscribedAddresses);
+        } else {
+          this.debug('no subscribed addresses, skip reading all states.');
+        }
+      }
     },
 
     update: function(json) {}, // jshint ignore:line

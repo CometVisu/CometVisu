@@ -160,11 +160,11 @@ Eigenschaften einfügt:
     </image>
 
 
-.. code-block:: xml
-
 Beispiel für die Übermittlung eines Bildes per Gruppenadresse. Da der KNX-Bus die Übermittlung
 von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
 Dieses Beispiel nutzt ein openHAB-Item.
+
+.. code-block:: xml
 
     <image>
         <address transform="OH:string">CovertArt</address>

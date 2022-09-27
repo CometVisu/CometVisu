@@ -88,7 +88,7 @@ qx.Mixin.define('cv.ui.common.Operate', {
                 const encoding = address.transform;
                 const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
                 if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                  cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
+                  cv.io.BackendConnections.getClient().write(id, encodedValue.bus, address);
                 }
                 encodedValues[encoding] = encodedValue.raw;
               } catch (e) {

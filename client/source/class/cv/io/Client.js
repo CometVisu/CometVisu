@@ -213,6 +213,10 @@ qx.Class.define('cv.io.Client', {
     headers: null,
     __lastError: null,
 
+    getType() {
+      return this.backendName;
+    },
+
     // property apply
     _applyConnected: function(value) {
       if (value === true) {

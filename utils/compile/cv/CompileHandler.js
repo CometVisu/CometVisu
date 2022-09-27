@@ -11,7 +11,7 @@ const { CvBuildTarget } = require('./BuildTarget');
 // because the qx compiler does not handle files in the root resoure folder well
 // we add them here
 const additionalResources = [
-  'visu_config.xsd',
+  'visu_config*.xsd',
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
@@ -124,7 +124,12 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (targetDir) {
       filesToCopy.forEach(file => {
         const source = path.join(currentDir, 'source', file);
-        const target = path.join(currentDir, targetDir, (file.startsWith('../') ? file.substring(3) : file));
+        let target = '';
+        if (targetDir.startsWith('/')) {
+          target = path.join(targetDir, (file.startsWith('../') ? file.substring(3) : file));
+        } else {
+          target = path.join(currentDir, targetDir, (file.startsWith('../') ? file.substring(3) : file));
+        }
         const stats = fs.statSync(source);
         const dirname = stats.isDirectory() ? target : path.dirname(target);
         fse.ensureDirSync(dirname);

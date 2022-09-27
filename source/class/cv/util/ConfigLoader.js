@@ -79,29 +79,42 @@ qx.Class.define('cv.util.ConfigLoader', {
         qx.core.Init.getApplication().block(false);
         const req = e.getTarget();
         cv.Config.configServer = req.getResponseHeader('Server');
+        const isTileStructure = /<config/m.test(req.getResponseText());
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
         if (xml && (typeof xml === 'string')) {
-          xml = qx.xml.Document.fromString(xml);
+          const parser = new DOMParser();
+          if (isTileStructure) {
+            xml = xml.replace('<config', '<config xmlns="http://www.w3.org/1999/xhtml"');
+          }
+          xml = parser.parseFromString(xml, 'text/xml');
         }
-        this.__xml = xml;
-        xml.querySelectorAll('include').forEach(this.loadInclude, this);
-        this.__loadQueue.remove(ajaxRequest.getUrl());
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName('parsererror').length) {
           this.configError('parsererror');
         } else {
+          if (isTileStructure && !xml.documentElement.xmlns) {
+            // wrong namespace
+            const rawContent = req.getResponseText().replace('<config', '<config xmlns="http://www.w3.org/1999/xhtml"');
+            const parser = new DOMParser();
+            xml = parser.parseFromString(rawContent, 'text/xml');
+          }
+          this.__xml = xml;
+          xml.querySelectorAll('include').forEach(this.loadInclude, this);
+          this.__loadQueue.remove(ajaxRequest.getUrl());
+
+          const systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE;
           // check the library version
-          let xmlLibVersion = xml.querySelector('pages').getAttribute('lib_version');
-          if (xmlLibVersion === undefined) {
+          let xmlLibVersion = isTileStructure ? xml.documentElement.getAttribute('version') : xml.documentElement.getAttribute('lib_version');
+          if (xmlLibVersion === undefined || xmlLibVersion === null) {
             xmlLibVersion = -1;
           } else if (xmlLibVersion === '0') {
             // special wildcard mode used in screenshot generation fixtures
-            xmlLibVersion = cv.Version.LIBRARY_VERSION;
+            xmlLibVersion = systemLibVersion;
           } else {
             xmlLibVersion = parseInt(xmlLibVersion);
           }
-          if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
+          if (cv.Config.libraryCheck && xmlLibVersion < systemLibVersion) {
             this.configError('libraryerror');
           } else {
             cv.Config.server = {};

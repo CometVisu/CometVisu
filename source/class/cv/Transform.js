@@ -132,21 +132,24 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} object with both encoded values
      */
     encodeBusAndRaw: function (address, value) {
-      if (cv.Config.testMode === true) {
+      const {transform} = address;
+      // some transforms must be executed even in testMode (the ones that convert into objects)
+      if (cv.Config.testMode === true && (transform in cv.Transform.registry && (
+        !Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') ||
+        cv.Transform.registry[transform].applyInTestMode === false))) {
         return {bus: value, raw: value};
       }
-      const {transform} = address;
-      let {selector} = address;
+      let {selector, variantInfo} = address;
       let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].encode(value)
+        ? cv.Transform.registry[transform].encode(value, variantInfo)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].encode(value)
+          ? cv.Transform.registry[basetrans].encode(value, variantInfo)
           : value);
 
       if (typeof selector === 'string') {
@@ -186,17 +189,20 @@ qx.Class.define('cv.Transform', {
 
     /**
      * transform bus to JavaScript value
-     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} the decoded value
      */
     decode: function (address, value) {
-      if (cv.Config.testMode === true) {
+      const {transform, ignoreError} = address;
+      // some transforms must be executed even in testMode (the ones that convert into objects)
+      if (cv.Config.testMode === true && (transform in cv.Transform.registry && (
+        !Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') ||
+        cv.Transform.registry[transform].applyInTestMode === false))) {
         return value;
       }
 
-      const {transform, ignoreError} = address;
-      let {selector} = address;
+      let {selector, variantInfo} = address;
       const basetrans = transform.split('.')[0];
 
       if (typeof value === 'string' && selector !== undefined && selector !== null) {
@@ -234,9 +240,9 @@ qx.Class.define('cv.Transform', {
         }
       }
       return transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].decode(value)
+        ? cv.Transform.registry[transform].decode(value, variantInfo)
         : (basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].decode(value)
+          ? cv.Transform.registry[basetrans].decode(value, variantInfo)
           : value);
     },
 

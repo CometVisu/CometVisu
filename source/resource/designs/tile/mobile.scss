@@ -1,0 +1,58 @@
+body {
+  header nav cv-menu {
+    ul li {
+      display: none;
+    }
+
+    a.menu {
+      display: block;
+      text-align: right;
+      padding: var(--spacing);
+
+      i {
+        vertical-align: middle;
+      }
+    }
+
+    ul ul li {
+      padding-left: calc(var(--spacing) * 2) !important;
+    }
+
+    &.responsive {
+      position: relative;
+
+      .menu {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      ul {
+        position: relative;
+      }
+
+      li {
+        display: block;
+        text-align: left;
+        width: 100%;
+        height: fit-content;
+      }
+    }
+  }
+
+  cv-popup {
+    bottom: 0;
+    left: 0;
+    top: unset;
+    transform: unset;
+    z-index: 1000000;
+    /*box-shadow: 6px 6px 18px 4px $shadowColor;*/
+    max-width: 100%;
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-sizing: border-box;
+    border: none;
+  }
+}
+
