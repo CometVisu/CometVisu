@@ -64,7 +64,7 @@
       */
       // overridden
       _applyValue: function _applyValue(value, old) {
-        qx.ui.toolbar.RadioButton.prototype._applyValue.base.call(this, value, old);
+        qx.ui.toolbar.RadioButton.superclass.prototype._applyValue.call(this, value, old);
 
         if (value) {
           var grp = this.getGroup();
@@ -89,4 +89,4 @@
   qx.ui.toolbar.RadioButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButton.js.map?dt=1660800175668
+//# sourceMappingURL=RadioButton.js.map?dt=1664297899101

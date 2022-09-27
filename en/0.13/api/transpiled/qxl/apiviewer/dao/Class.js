@@ -80,13 +80,13 @@
       _mixins: null,
       _loadingPromise: null,
       _loaded: false,
-      __P_535_0: null,
+      __P_551_0: null,
 
       /**
        * retrieves the meta file name + path
        */
       getMetaFile: function getMetaFile() {
-        return this.__P_535_0;
+        return this.__P_551_0;
       },
 
       /**
@@ -101,7 +101,7 @@
           return this._loadingPromise;
         }
 
-        var url = this.__P_535_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
+        var url = this.__P_551_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
         return this._loadingPromise = qxl.apiviewer.RequestUtil.get(url).then(function (content) {
           /* eslint-disable-next-line no-eval */
           var meta = eval("(" + content + ")");
@@ -125,7 +125,7 @@
       _initMeta: function _initMeta(meta) {
         var _this2 = this;
 
-        qxl.apiviewer.dao.Class.prototype._initMeta.base.call(this, meta);
+        qxl.apiviewer.dao.Class.superclass.prototype._initMeta.call(this, meta);
 
         this._jsdoc = meta.clazz.jsdoc || {};
         this._construct = meta.construct ? [new qxl.apiviewer.dao.Method(meta.construct, this, "construct")] : [];
@@ -883,4 +883,4 @@
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1660800184920
+//# sourceMappingURL=Class.js.map?dt=1664297907709

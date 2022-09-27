@@ -120,10 +120,28 @@
           }
         }, this);
         return container;
+      },
+
+      /**
+       * Create a collection of html elements of the children
+       * @returns {DocumentFragment}
+       */
+      getChildrenDom: function getChildrenDom() {
+        var fragment = document.createDocumentFragment();
+        this.getChildWidgets().forEach(function (widget) {
+          var subelement = widget.getDom();
+          subelement.setAttribute('id', widget.getPath());
+          subelement.setAttribute('data-type', widget.get$$type());
+
+          if (subelement) {
+            fragment.appendChild(subelement);
+          }
+        }, this);
+        return fragment;
       }
     }
   });
   cv.ui.common.HasChildren.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasChildren.js.map?dt=1660800181607
+//# sourceMappingURL=HasChildren.js.map?dt=1664297904736

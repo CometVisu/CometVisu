@@ -188,7 +188,7 @@
             break;
         }
 
-        return control || qx.ui.menu.AbstractButton.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.menu.AbstractButton.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
 
@@ -379,4 +379,4 @@
   qx.ui.menu.AbstractButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractButton.js.map?dt=1660800170254
+//# sourceMappingURL=AbstractButton.js.map?dt=1664297894170

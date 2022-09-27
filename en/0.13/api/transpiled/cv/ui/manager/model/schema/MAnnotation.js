@@ -87,7 +87,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var thisNode = iterator.iterateNext();
 
           while (thisNode) {
-            texts.push(thisNode.textContent);
+            texts.push(thisNode.textContent.replaceAll(/``([^`]+)``/g, '<code>$1</code>'));
             thisNode = iterator.iterateNext();
           }
         } catch (e) {
@@ -191,7 +191,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var reference = contents.match(/^(.*?) *<([^<]*)>$/);
           var label = reference ? reference[1] : contents;
           var key = reference ? reference[2] : contents;
-          return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + '">' + label + '</a>';
+          var link = cv.ui.manager.model.schema.DocumentationMapping.MAP[key];
+
+          if (link) {
+            return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + link + '">' + label + '</a>';
+          }
+
+          return label;
         });
       }
     },
@@ -210,4 +216,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.schema.MAnnotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MAnnotation.js.map?dt=1660800147035
+//# sourceMappingURL=MAnnotation.js.map?dt=1664297870495

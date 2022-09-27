@@ -50,13 +50,13 @@
       CONSTRUCTOR
     ***********************************************
     */
-    construct: function construct(backendName, backendUrl) {
+    construct: function construct(type, backendUrl) {
       qx.core.Object.constructor.call(this);
       this.initialAddresses = [];
-      this._backendName = backendName;
+      this._type = type;
       this._backendUrl = backendUrl || '/rest/';
-      this.__P_487_0 = {};
-      this.__P_487_1 = {};
+      this.__P_507_0 = {};
+      this.__P_507_1 = {};
     },
 
     /*
@@ -83,14 +83,18 @@
     ***********************************************
     */
     members: {
-      __P_487_2: null,
-      _backendName: null,
+      __P_507_2: null,
+      _type: null,
       _backendUrl: null,
-      __P_487_3: null,
-      __P_487_0: null,
-      __P_487_1: null,
+      __P_507_3: null,
+      __P_507_0: null,
+      __P_507_1: null,
+      __P_507_4: null,
       getBackend: function getBackend() {
         return {};
+      },
+      getType: function getType() {
+        return this._type;
       },
       // not used / needed in this client
       setInitialAddresses: function setInitialAddresses(addresses) {},
@@ -100,7 +104,7 @@
           var params = [];
 
           if (map.start) {
-            var endTime = map.end ? this.__P_487_4(map.end) : new Date();
+            var endTime = map.end ? this.__P_507_5(map.end) : new Date();
             var startTime = new Date();
             var match = /^end-([\d]*)([\w]+)$/.exec(map.start);
 
@@ -123,6 +127,10 @@
 
                 case 'day':
                   interval = 86400000;
+                  break;
+
+                case 'week':
+                  interval = 604800000;
                   break;
 
                 case 'month':
@@ -149,7 +157,7 @@
 
         return null;
       },
-      __P_487_4: function __P_487_4(time) {
+      __P_507_5: function __P_507_5(time) {
         if (time === 'now') {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
@@ -165,10 +173,18 @@
       },
       processChartsData: function processChartsData(response) {
         var data = response.data;
-        var newRrd = new Array(data.length);
+        var newRrd = [];
+        var lastValue;
+        var value;
 
         for (var j = 0, l = data.length; j < l; j++) {
-          newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+          value = parseFloat(data[j].state);
+
+          if (value !== lastValue) {
+            newRrd.push([data[j].time, value]);
+          }
+
+          lastValue = value;
         }
 
         return newRrd;
@@ -180,8 +196,8 @@
        * @private
        */
       authorize: function authorize(req) {
-        if (this.__P_487_3) {
-          req.setRequestHeader('Authorization', this.__P_487_3);
+        if (this.__P_507_3) {
+          req.setRequestHeader('Authorization', this.__P_507_3);
         }
       },
 
@@ -196,22 +212,25 @@
         this.authorize(req);
         return req;
       },
-      __P_487_5: function __P_487_5(type, state) {
-        switch (type) {
-          case 'Decimal':
-          case 'Percent':
-          case 'Number':
-          case 'Dimmer':
+      __P_507_6: function __P_507_6(type, state) {
+        switch (type.toLowerCase()) {
+          case 'decimal':
+          case 'percent':
+          case 'number':
+          case 'dimmer':
             return parseInt(state) > 0;
 
-          case 'Rollershutter':
+          case 'color':
+            return state !== '0,0,0';
+
+          case 'rollershutter':
             return state === '0';
 
-          case 'Contact':
+          case 'contact':
             return state === 'OPENED';
 
-          case 'OnOff':
-          case 'Switch':
+          case 'onoff':
+          case 'switch':
             return state === 'ON';
 
           default:
@@ -219,8 +238,10 @@
         }
       },
       subscribe: function subscribe(addresses, filters) {
+        var _this2 = this;
+
         // send first request to get all states once
-        var req = this.createAuthorizedRequest('items?fields=name,state,members,type&recursive=true');
+        var req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
         req.addListener('success', function (e) {
           var req = e.getTarget();
           var res = req.getResponse();
@@ -234,32 +255,38 @@
               var map = {};
               entry.members.forEach(function (obj) {
                 map[obj.name] = {
-                  type: obj.type,
-                  state: obj.state
+                  type: obj.type.toLowerCase(),
+                  state: obj.state,
+                  label: obj.label,
+                  name: obj.name,
+                  active: false
                 };
 
-                if (_this.__P_487_5(obj.type, obj.state)) {
+                if (_this.__P_507_6(obj.type, obj.state)) {
                   active++;
+                  map[obj.name].active = true;
                 }
 
-                if (!Object.prototype.hasOwnProperty.call(_this.__P_487_1, obj.name)) {
-                  _this.__P_487_1[obj.name] = [entry.name];
+                if (!Object.prototype.hasOwnProperty.call(_this.__P_507_1, obj.name)) {
+                  _this.__P_507_1[obj.name] = [entry.name];
                 } else {
-                  _this.__P_487_1[obj.name].push(entry.name);
+                  _this.__P_507_1[obj.name].push(entry.name);
                 }
 
                 return map;
               });
-              this.__P_487_0[entry.name] = {
+              this.__P_507_0[entry.name] = {
                 members: map,
                 active: active
               };
               update['number:' + entry.name] = active;
+              update['members:' + entry.name] = Object.values(map);
             }
 
             update[entry.name] = entry.state;
           }, this);
           this.update(update);
+          this.__P_507_4 = addresses;
         }, this); // Send request
 
         req.send(); // create sse session
@@ -267,21 +294,46 @@
         this.running = true;
 
         if (!cv.report.Record.REPLAYING) {
-          this.eventSource = new EventSource(this._backendUrl + 'events?topics=openhab/items/*/statechanged'); // add default listeners
+          var things = addresses.filter(function (addr) {
+            return addr.split(':').length > 3;
+          });
+          var topic = 'openhab/items/*/statechanged';
 
-          this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-          this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
-          //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+          if (things.length > 0) {
+            topic = 'openhab/*/*/*changed'; // request current states
 
-          this.eventSource.onerror = function () {
-            this.error('connection lost');
-            this.setConnected(false);
-          }.bind(this);
+            var thingsReq = this.createAuthorizedRequest('things?summary=true');
+            thingsReq.addListener('success', function (e) {
+              var res = e.getTarget().getResponse();
+              var update = {};
+              res.forEach(function (entry) {
+                if (things.includes(entry.UID)) {
+                  update[entry.UID] = entry.statusInfo.status;
+                }
+              });
 
-          this.eventSource.onopen = function () {
-            this.debug('connection established');
-            this.setConnected(true);
-          }.bind(this);
+              _this2.update(update);
+            });
+            thingsReq.send();
+          }
+
+          if (!this.eventSource) {
+            this.eventSource = new EventSource(this._backendUrl + 'events?topics=' + topic); // add default listeners
+
+            this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+            this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
+            //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+
+            this.eventSource.onerror = function () {
+              this.error('connection lost');
+              this.setConnected(false);
+            }.bind(this);
+
+            this.eventSource.onopen = function () {
+              this.debug('connection established');
+              this.setConnected(true);
+            }.bind(this);
+          }
         }
       },
       terminate: function terminate() {
@@ -289,10 +341,11 @@
 
         if (this.eventSource) {
           this.eventSource.close();
+          this.eventSource = null;
         }
       },
       handleMessage: function handleMessage(payload) {
-        var _this2 = this;
+        var _this3 = this;
 
         if (payload.type === 'message') {
           this.record('read', {
@@ -308,25 +361,43 @@
             var change = JSON.parse(data.payload);
             update[item] = change.value; // check if this Item is part of any group
 
-            if (Object.prototype.hasOwnProperty.call(this.__P_487_1, item)) {
-              var groupNames = this.__P_487_1[item];
+            if (Object.prototype.hasOwnProperty.call(this.__P_507_1, item)) {
+              var groupNames = this.__P_507_1[item];
               groupNames.forEach(function (groupName) {
-                var group = _this2.__P_487_0[groupName];
+                var group = _this3.__P_507_0[groupName];
                 var active = 0;
-                group.members[item].value = change.value;
+                group.members[item].state = change.value;
                 Object.keys(group.members).forEach(function (memberName) {
                   var member = group.members[memberName];
 
-                  if (_this2.__P_487_5(member.type, member.value)) {
+                  if (_this3.__P_507_6(member.type, member.state)) {
                     active++;
+                    member.active = true;
+                  } else {
+                    member.active = false;
                   }
                 });
                 group.active = active;
                 update['number:' + groupName] = active;
+                update['members:' + groupName] = Object.values(group.members);
               });
             }
 
             this.update(update);
+          } else if (data.type === 'ThingStatusInfoChangedEvent') {
+            //extract item name from topic
+            var _update = {};
+            var _item = data.topic.split('/')[2];
+
+            var _change = JSON.parse(data.payload);
+
+            if (Array.isArray(_change)) {
+              // [newState, oldState]
+              _change = _change[0];
+            }
+
+            _update[_item] = _change.status;
+            this.update(_update);
           }
         }
       },
@@ -342,7 +413,7 @@
       login: function login(loginOnly, credentials, callback, context) {
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
-          this.__P_487_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
+          this.__P_507_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
         } // no login needed we just do a request to the if the backend is reachable
 
 
@@ -359,10 +430,17 @@
         req.send();
       },
       getLastError: function getLastError() {
-        return this.__P_487_2;
+        return this.__P_507_2;
       },
-      restart: function restart(full) {
-        this.error('Not implemented');
+      restart: function restart(fullRestart) {
+        if (fullRestart) {
+          // re-read all states
+          if (this.__P_507_4) {
+            this.subscribe(this.__P_507_4);
+          } else {
+            this.debug('no subscribed addresses, skip reading all states.');
+          }
+        }
       },
       update: function update(json) {},
       // jshint ignore:line
@@ -453,4 +531,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1660800180280
+//# sourceMappingURL=Rest.js.map?dt=1664297903621

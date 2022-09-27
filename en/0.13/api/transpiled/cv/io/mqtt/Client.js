@@ -49,13 +49,13 @@
       CONSTRUCTOR
     ***********************************************
     */
-    construct: function construct(backendName, backendUrl) {
+    construct: function construct(type, backendUrl) {
       qx.core.Object.constructor.call(this);
       this.initialAddresses = [];
-      this._backendName = backendName;
+      this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_488_0 = {};
-      this.__P_488_1 = {};
+      this.__P_508_0 = {};
+      this.__P_508_1 = {};
     },
 
     /*
@@ -86,6 +86,7 @@
        * @var {Paho.MQTT.Client}
        */
       _client: null,
+      _type: null,
 
       /**
        * Returns the current backend configuration
@@ -93,6 +94,9 @@
        */
       getBackend: function getBackend() {
         return {};
+      },
+      getType: function getType() {
+        return this._type;
       },
 
       /**
@@ -337,4 +341,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1660800180318
+//# sourceMappingURL=Client.js.map?dt=1664297903658

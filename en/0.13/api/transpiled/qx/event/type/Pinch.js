@@ -39,7 +39,7 @@
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        var clone = qx.event.type.Pinch.prototype._cloneNativeEvent.base.call(this, nativeEvent, clone);
+        var clone = qx.event.type.Pinch.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
 
         clone.scale = nativeEvent.scale;
         return clone;
@@ -58,4 +58,4 @@
   qx.event.type.Pinch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pinch.js.map?dt=1660800159261
+//# sourceMappingURL=Pinch.js.map?dt=1664297883981

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 407,
+        "line": 419,
         "column": 3
       }
     },
@@ -551,14 +551,36 @@
       "type": "variable",
       "access": "public"
     },
-    "configSettings": {
+    "server": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 137,
+          "column": 14
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Optional settings for backend defined by server</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "configSettings": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
           "column": 5
         }
       },
@@ -576,11 +598,11 @@
     "rememberLastPage": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 171,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 171,
           "column": 27
         }
       },
@@ -598,11 +620,11 @@
     "lazyLoading": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 178,
           "column": 22
         }
       },
@@ -626,11 +648,11 @@
     "designStructureMap": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 179,
+          "line": 186,
           "column": 5
         }
       },
@@ -645,14 +667,36 @@
       "type": "variable",
       "access": "public"
     },
-    "sentryEnabled": {
+    "loadedStructure": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 191,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Currently loaded structure</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "sentryEnabled": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4
+        },
+        "end": {
+          "line": 196,
           "column": 24
         }
       },
@@ -670,11 +714,11 @@
     "reporting": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 201,
           "column": 20
         }
       },
@@ -692,11 +736,11 @@
     "enableLogging": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 206,
           "column": 23
         }
       },
@@ -714,11 +758,11 @@
     "configServer": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 199,
+          "line": 211,
           "column": 22
         }
       },
@@ -736,11 +780,11 @@
     "useServiceWorker": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 216,
           "column": 27
         }
       },
@@ -758,11 +802,11 @@
     "enableServiceWorkerCache": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 218,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 218,
           "column": 35
         }
       },
@@ -772,11 +816,11 @@
     "getStructure": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 238,
           "column": 5
         }
       },
@@ -812,11 +856,11 @@
     "guessIfProxied": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 245,
           "column": 4
         },
         "end": {
-          "line": 238,
+          "line": 250,
           "column": 5
         }
       },
@@ -834,48 +878,6 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 240,
-          "column": 4
-        },
-        "end": {
-          "line": 242,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getMapping": {
-      "location": {
-        "start": {
-          "line": 244,
-          "column": 4
-        },
-        "end": {
-          "line": 246,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "hasMapping": {
-      "location": {
-        "start": {
-          "line": 248,
-          "column": 4
-        },
-        "end": {
-          "line": 250,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "clearMappings": {
-      "location": {
-        "start": {
           "line": 252,
           "column": 4
         },
@@ -887,7 +889,7 @@
       "type": "function",
       "access": "public"
     },
-    "addStyling": {
+    "getMapping": {
       "location": {
         "start": {
           "line": 256,
@@ -901,7 +903,7 @@
       "type": "function",
       "access": "public"
     },
-    "getStyling": {
+    "hasMapping": {
       "location": {
         "start": {
           "line": 260,
@@ -915,7 +917,7 @@
       "type": "function",
       "access": "public"
     },
-    "hasStyling": {
+    "clearMappings": {
       "location": {
         "start": {
           "line": 264,
@@ -929,7 +931,7 @@
       "type": "function",
       "access": "public"
     },
-    "getDesign": {
+    "addStyling": {
       "location": {
         "start": {
           "line": 268,
@@ -942,16 +944,58 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "getStyling": {
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4
+        },
+        "end": {
+          "line": 274,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasStyling": {
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4
+        },
+        "end": {
+          "line": 278,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDesign": {
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4
+        },
+        "end": {
+          "line": 282,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 273,
+        "line": 285,
         "column": 9
       },
       "end": {
-        "line": 406,
+        "line": 418,
         "column": 3
       }
     },

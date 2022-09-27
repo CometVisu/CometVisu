@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/MRefresh.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "properties",
+    "refresh",
+    "check",
+    "init",
+    "apply",
+    "members",
+    "_refreshTimer",
+    "_lastRefresh",
+    "_applyRefresh",
+    "value",
+    "stop",
+    "event",
+    "Timer",
+    "addListener",
+    "__doRefresh",
+    "isVisible",
+    "start",
+    "restartWith",
+    "_applyVisible",
+    "Date",
+    "now",
+    "getInterval",
+    "error",
+    "destruct",
+    "_disposeObjects",
+    "cv",
+    "ui",
+    "structure",
+    "tile",
+    "MRefresh"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EAAiD;AAE/C;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,OAAO,EAAE;AACPC,QAAAA,KAAK,EAAE,QADA;AAEPC,QAAAA,IAAI,EAAE,CAFC;AAGPC,QAAAA,KAAK,EAAE;AAHA;AADC,KAPmC;;AAe/C;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,aAAa,EAAE,IADR;AAEPC,MAAAA,YAAY,EAAE,IAFP;AAIPC,MAAAA,aAJO,yBAIOC,KAJP,EAIc;AACjB,YAAIA,KAAK,KAAK,CAAd,EAAiB;AACf,cAAI,KAAKH,aAAT,EAAwB;AACtB,iBAAKA,aAAL,CAAmBI,IAAnB;AACD;AACF,SAJD,MAIO,IAAI,CAAC,KAAKJ,aAAV,EAAyB;AAC9B,eAAKA,aAAL,GAAqB,IAAIZ,EAAE,CAACiB,KAAH,CAASC,KAAb,CAAmBH,KAAK,GAAG,IAA3B,CAArB;;AACA,eAAKH,aAAL,CAAmBO,WAAnB,CAA+B,UAA/B,EAA2C,KAAKC,QAAhD,EAA6D,IAA7D;;AACA,cAAI,OAAO,KAAKC,SAAZ,KAA0B,UAA9B,EAA0C;AACxC,gBAAI,KAAKA,SAAL,EAAJ,EAAsB;AACpB,mBAAKT,aAAL,CAAmBU,KAAnB;AACD;AACF,WAJD,MAIO;AACL,iBAAKV,aAAL,CAAmBU,KAAnB;AACD;AACF,SAVM,MAUA;AACL,eAAKV,aAAL,CAAmBW,WAAnB,CAA+BR,KAAK,GAAG,IAAvC;AACD;AACJ,OAtBM;AAwBPS,MAAAA,aAxBO,yBAwBOH,SAxBP,EAwBkB;AACvB,YAAIA,SAAJ,EAAe;AACb,cAAI,KAAKT,aAAT,EAAwB;AACtB,iBAAKA,aAAL,CAAmBU,KAAnB;;AACA,gBAAI,CAAC,KAAKT,YAAN,IAAuBY,IAAI,CAACC,GAAL,KAAa,KAAKb,YAAnB,IAAoC,KAAKD,aAAL,CAAmBe,WAAnB,EAA9D,EAAgG;AAC9F;AACA,mBAAKP,QAAL;AACD;AACF,WAND,MAMO,IAAI,CAAC,KAAKP,YAAV,EAAwB;AAC7B;AACA,iBAAKO,QAAL;AACD;AACF,SAXD,MAWO,IAAI,KAAKR,aAAT,EAAwB;AAC7B,eAAKA,aAAL,CAAmBI,IAAnB;AACD;AACF,OAvCM;AAyCPI,MAAAA,QAzCO,sBAyCO;AACZ,YAAI,OAAO,KAAKb,OAAZ,KAAwB,UAA5B,EAAwC;AACtC,eAAKA,OAAL;AACA,eAAKM,YAAL,GAAoBY,IAAI,CAACC,GAAL,EAApB;AACD,SAHD,MAGO;AACL,eAAKE,KAAL,CAAW,qCAAX;AACD;AACF;AAhDM,KApBsC;;AAuE/C;AACF;AACA;AACA;AACA;AACEC,IAAAA,QAAQ,EAAE,oBAAY;AACpB,WAAKC,eAAL,CAAqB,eAArB;AACD;AA9E8C,GAAjD;AAtBAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBC,QAArB,CAA8BhC,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* MRefresh.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.\n */\nqx.Mixin.define('cv.ui.structure.tile.MRefresh', {\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    refresh: {\n      check: 'Number',\n      init: 0,\n      apply: '_applyRefresh'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _refreshTimer: null,\n    _lastRefresh: null,\n\n    _applyRefresh(value) {\n        if (value === 0) {\n          if (this._refreshTimer) {\n            this._refreshTimer.stop();\n          }\n        } else if (!this._refreshTimer) {\n          this._refreshTimer = new qx.event.Timer(value * 1000);\n          this._refreshTimer.addListener('interval', this.__doRefresh, this);\n          if (typeof this.isVisible === 'function') {\n            if (this.isVisible()) {\n              this._refreshTimer.start();\n            }\n          } else {\n            this._refreshTimer.start();\n          }\n        } else {\n          this._refreshTimer.restartWith(value * 1000);\n        }\n    },\n\n    _applyVisible(isVisible) {\n      if (isVisible) {\n        if (this._refreshTimer) {\n          this._refreshTimer.start();\n          if (!this._lastRefresh || (Date.now() - this._lastRefresh) >= this._refreshTimer.getInterval()) {\n            // last execution time too old, refresh now\n            this.__doRefresh();\n          }\n        } else if (!this._lastRefresh) {\n          // refresh once when the item becomes visible\n          this.__doRefresh();\n        }\n      } else if (this._refreshTimer) {\n        this._refreshTimer.stop();\n      }\n    },\n\n    __doRefresh() {\n      if (typeof this.refresh === 'function') {\n        this.refresh();\n        this._lastRefresh = Date.now();\n      } else {\n        this.error('refresh method must be implemented!');\n      }\n    }\n  },\n\n  /*\n  ***********************************************\n    DESTRUCTOR\n  ***********************************************\n  */\n  destruct: function () {\n    this._disposeObjects('_refreshTimer');\n  }\n});\n"
+  ]
+}

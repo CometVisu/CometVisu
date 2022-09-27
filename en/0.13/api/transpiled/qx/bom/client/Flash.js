@@ -160,7 +160,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var os = qx.bom.client.OperatingSystem.getName();
-        return (os == "win" || os == "osx") && qx.bom.client.Flash.__P_101_0("6.0.65", availableVersion);
+        return (os == "win" || os == "osx") && qx.bom.client.Flash.__P_121_0("6.0.65", availableVersion);
       },
 
       /**
@@ -179,9 +179,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var full = version.split(".");
 
         if (full[0] < 10) {
-          return qx.bom.client.Flash.__P_101_0("9.0.151", version);
+          return qx.bom.client.Flash.__P_121_0("9.0.151", version);
         } else {
-          return qx.bom.client.Flash.__P_101_0("10.0.12", version);
+          return qx.bom.client.Flash.__P_121_0("10.0.12", version);
         }
       },
 
@@ -201,7 +201,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   system.
        * @return {Boolean} <code>true</code>, if the version is supported.
        */
-      __P_101_0: function __P_101_0(input, availableVersion) {
+      __P_121_0: function __P_121_0(input, availableVersion) {
         var splitInput = input.split(".");
         var system = availableVersion || qx.bom.client.Flash.getVersion();
         system = system.split(".");
@@ -229,4 +229,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.client.Flash.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flash.js.map?dt=1660800152182
+//# sourceMappingURL=Flash.js.map?dt=1664297877447

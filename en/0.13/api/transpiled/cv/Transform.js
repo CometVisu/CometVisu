@@ -171,22 +171,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       /**
        * transform JavaScript to bus value and raw value
        *
-       * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+       * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
        * @param {*} value - value to transform
        * @return {*} object with both encoded values
        */
       encodeBusAndRaw: function encodeBusAndRaw(address, value) {
-        if (cv.Config.testMode === true) {
+        var transform = address.transform; // some transforms must be executed even in testMode (the ones that convert into objects)
+
+        if (cv.Config.testMode === true && transform in cv.Transform.registry && (!Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') || cv.Transform.registry[transform].applyInTestMode === false)) {
           return {
             bus: value,
             raw: value
           };
         }
 
-        var transform = address.transform;
-        var selector = address.selector;
+        var selector = address.selector,
+            variantInfo = address.variantInfo;
         var basetrans = transform.split('.')[0];
-        var encoding = transform in cv.Transform.registry ? cv.Transform.registry[transform].encode(value) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value) : value;
+        var encoding = transform in cv.Transform.registry ? cv.Transform.registry[transform].encode(value, variantInfo) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value, variantInfo) : value;
 
         if (typeof selector === 'string') {
           var result = {};
@@ -194,9 +196,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var v = result; // use the fact that `v` is now a reference and not a copy
 
           while (selector !== '') {
-            var _this$__P_500_ = this.__P_500_0(selector),
-                firstPart = _this$__P_500_.firstPart,
-                remainingPart = _this$__P_500_.remainingPart;
+            var _this$__P_520_ = this.__P_520_0(selector),
+                firstPart = _this$__P_520_.firstPart,
+                remainingPart = _this$__P_520_.remainingPart;
 
             if (isFinite(firstPart)) {
               v[lastPart] = [];
@@ -236,18 +238,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
       /**
        * transform bus to JavaScript value
-       * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+       * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
        * @param {*} value - value to transform
        * @return {*} the decoded value
        */
       decode: function decode(address, value) {
-        if (cv.Config.testMode === true) {
+        var transform = address.transform,
+            ignoreError = address.ignoreError; // some transforms must be executed even in testMode (the ones that convert into objects)
+
+        if (cv.Config.testMode === true && transform in cv.Transform.registry && (!Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') || cv.Transform.registry[transform].applyInTestMode === false)) {
           return value;
         }
 
-        var transform = address.transform,
-            ignoreError = address.ignoreError;
-        var selector = address.selector;
+        var selector = address.selector,
+            variantInfo = address.variantInfo;
         var basetrans = transform.split('.')[0];
 
         if (typeof value === 'string' && selector !== undefined && selector !== null) {
@@ -258,9 +262,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             var v = JSON.parse(value);
 
             while (selector !== '') {
-              var _this$__P_500_2 = this.__P_500_0(selector),
-                  firstPart = _this$__P_500_2.firstPart,
-                  remainingPart = _this$__P_500_2.remainingPart;
+              var _this$__P_520_2 = this.__P_520_0(selector),
+                  firstPart = _this$__P_520_2.firstPart,
+                  remainingPart = _this$__P_520_2.remainingPart;
 
               if (_typeof(v) === 'object' && firstPart in v) {
                 v = v[firstPart];
@@ -293,7 +297,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           }
         }
 
-        return transform in cv.Transform.registry ? cv.Transform.registry[transform].decode(value) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].decode(value) : value;
+        return transform in cv.Transform.registry ? cv.Transform.registry[transform].decode(value, variantInfo) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].decode(value, variantInfo) : value;
       },
 
       /**
@@ -301,7 +305,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {string} selector - the JSON (sub-)selector
        * @returns {{firstPart: string, remainingPart: string}}
        */
-      __P_500_0: function __P_500_0(selector) {
+      __P_520_0: function __P_520_0(selector) {
         if (selector[0] === '[') {
           var _selector$match = selector.match(/^\[([^\]]*)]\.?(.*)/),
               _selector$match2 = _slicedToArray(_selector$match, 3),
@@ -342,4 +346,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1660800181109
+//# sourceMappingURL=Transform.js.map?dt=1664297904376

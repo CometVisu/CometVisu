@@ -363,7 +363,7 @@
         });
       },
       _applyIcon: function _applyIcon(value, old) {
-        cv.ui.manager.form.FileListItem.prototype._applyIcon.base.call(this, value, old);
+        cv.ui.manager.form.FileListItem.superclass.prototype._applyIcon.call(this, value, old);
 
         if (value && !value.startsWith('@')) {
           var control = this.getChildControl('atom').getChildControl('icon');
@@ -547,20 +547,20 @@
           control = this._createMDragUploadChildControlImpl(id);
         }
 
-        return control || cv.ui.manager.form.FileListItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.form.FileListItem.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       capture: function capture() {
         // do not fire capture method for upload-items (see: com.zenesis.qx.upload.MUploadButton)
         if (!this.getFile() || this.getFile().getSpecial() !== 'add-file') {
-          cv.ui.manager.form.FileListItem.prototype.capture.base.call(this);
+          cv.ui.manager.form.FileListItem.superclass.prototype.capture.call(this);
         }
       },
       // overridden
       releaseCapture: function releaseCapture() {
         // do not fire capture method for upload-items (see: com.zenesis.qx.upload.MUploadButton)
         if (!this.getFile() || this.getFile().getSpecial() !== 'add-file') {
-          cv.ui.manager.form.FileListItem.prototype.releaseCapture.base.call(this);
+          cv.ui.manager.form.FileListItem.superclass.prototype.releaseCapture.call(this);
         }
       }
     },
@@ -582,4 +582,4 @@
   cv.ui.manager.form.FileListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileListItem.js.map?dt=1660800145846
+//# sourceMappingURL=FileListItem.js.map?dt=1664297869498

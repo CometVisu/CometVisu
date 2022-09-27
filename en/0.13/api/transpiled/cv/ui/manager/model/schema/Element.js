@@ -215,7 +215,7 @@
        */
       _type: null,
       parse: function parse() {
-        cv.ui.manager.model.schema.Element.prototype.parse.base.call(this);
+        cv.ui.manager.model.schema.Element.superclass.prototype.parse.call(this);
         var node = this.getNode();
         var schema = this.getSchema();
         this._type = cv.ui.manager.model.schema.Element.getTypeNode(node, schema);
@@ -691,4 +691,4 @@
   cv.ui.manager.model.schema.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1660800146959
+//# sourceMappingURL=Element.js.map?dt=1664297870425

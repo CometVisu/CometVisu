@@ -21,6 +21,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "cv.core.notifications.Router": {
         "construct": true
       },
+      "cv.io.BackendConnections": {
+        "construct": true
+      },
       "cv.TemplateEngine": {
         "construct": true
       },
@@ -32,7 +35,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "qx.theme.manager.Meta": {},
       "cv.theme.Dark": {},
       "qx.ui.layout.VBox": {},
-      "cv.plugins.openhab.Settings": {}
+      "cv.plugins.openhab.Settings": {},
+      "qx.event.Timer": {
+        "defer": "runtime"
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -84,7 +90,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, 'preview')) {
         this.__P_20_0 = cv.core.notifications.Router.getInstance(); // listen to notifications
 
-        var client = cv.TemplateEngine.getInstance().visu;
+        var client = cv.io.BackendConnections.getClient();
         var sse = client.getCurrentTransport && client.getCurrentTransport();
 
         if (sse) {
@@ -174,11 +180,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       this.__P_20_0 = null;
     },
     defer: function defer(statics) {
-      // initialize on load
-      statics.getInstance();
+      // initialize on load but delay the call
+      qx.event.Timer.once(statics.getInstance, statics, 1000);
     }
   });
   cv.plugins.openhab.Openhab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Openhab.js.map?dt=1660800143065
+//# sourceMappingURL=Openhab.js.map?dt=1664297866714

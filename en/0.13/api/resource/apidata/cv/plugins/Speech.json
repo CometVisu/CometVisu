@@ -178,7 +178,7 @@
       },
       "name": "parentWidget",
       "propertyType": "new",
-      "check": "cv.ui.structure.AbstractBasicWidget"
+      "check": "cv.ui.structure.pure.AbstractBasicWidget"
     },
     "value": {
       "type": "property",
@@ -4687,7 +4687,7 @@
         "@return": [
           {
             "name": "@return",
-            "type": "cv.ui.structure.AbstractBasicWidget",
+            "type": "cv.ui.structure.pure.AbstractBasicWidget",
             "desc": "Returns the value for parentWidget"
           }
         ]
@@ -4711,7 +4711,7 @@
         "@param": [
           {
             "name": "@param",
-            "type": "cv.ui.structure.AbstractBasicWidget",
+            "type": "cv.ui.structure.pure.AbstractBasicWidget",
             "paramName": "value",
             "desc": "Value for parentWidget"
           }

@@ -119,11 +119,11 @@
             break;
         }
 
-        return control || qx.ui.toolbar.SplitButton.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.toolbar.SplitButton.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
   });
   qx.ui.toolbar.SplitButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SplitButton.js.map?dt=1660800175696
+//# sourceMappingURL=SplitButton.js.map?dt=1664297899127

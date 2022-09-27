@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -17,7 +17,7 @@
       "cv.ui.common.BasicUpdate": {
         "require": true
       },
-      "cv.TemplateEngine": {}
+      "cv.io.BackendConnections": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -48,7 +48,7 @@
    * @since 2014
    */
   qx.Class.define('cv.ui.structure.pure.Refresh', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
 
     /*
@@ -71,7 +71,7 @@
     members: {
       // overridden
       _onDomReady: function _onDomReady() {
-        cv.ui.structure.pure.Refresh.prototype._onDomReady.base.call(this);
+        cv.ui.structure.pure.Refresh.superclass.prototype._onDomReady.call(this);
 
         this.defaultUpdate(undefined, this.getSendValue());
       },
@@ -80,11 +80,11 @@
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       },
       _action: function _action() {
-        cv.TemplateEngine.getInstance().visu.restart(true);
+        cv.io.BackendConnections.getClient().restart(true);
       }
     }
   });
   cv.ui.structure.pure.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1660800148234
+//# sourceMappingURL=Refresh.js.map?dt=1664297871812

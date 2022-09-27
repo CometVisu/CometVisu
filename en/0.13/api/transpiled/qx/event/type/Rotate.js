@@ -39,7 +39,7 @@
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        var clone = qx.event.type.Rotate.prototype._cloneNativeEvent.base.call(this, nativeEvent, clone);
+        var clone = qx.event.type.Rotate.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
 
         clone.angle = nativeEvent.angle;
         return clone;
@@ -58,4 +58,4 @@
   qx.event.type.Rotate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rotate.js.map?dt=1660800159342
+//# sourceMappingURL=Rotate.js.map?dt=1664297884054

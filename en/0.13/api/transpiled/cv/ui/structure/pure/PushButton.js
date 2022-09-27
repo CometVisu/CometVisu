@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -48,7 +48,7 @@
    * @since 2013
    */
   qx.Class.define('cv.ui.structure.pure.PushButton', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
 
     /*
@@ -129,4 +129,4 @@
   cv.ui.structure.pure.PushButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PushButton.js.map?dt=1660800148215
+//# sourceMappingURL=PushButton.js.map?dt=1664297871798

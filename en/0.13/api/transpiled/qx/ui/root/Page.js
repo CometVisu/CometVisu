@@ -90,7 +90,7 @@
      */
     construct: function construct(doc) {
       // Temporary storage of element to use
-      this.__P_396_0 = doc;
+      this.__P_416_0 = doc;
       qx.ui.root.Abstract.constructor.call(this); // Use a hard-coded basic layout
 
       this._setLayout(new qx.ui.layout.Basic()); // Set a high zIndex to make sure the widgets really overlay the HTML page.
@@ -100,7 +100,7 @@
 
       qx.ui.core.queue.Layout.add(this); // Register resize listener
 
-      this.addListener("resize", this.__P_396_1, this); // Register as root
+      this.addListener("resize", this.__P_416_1, this); // Register as root
 
       qx.ui.core.FocusHandler.getInstance().connectTo(this); // Avoid the automatically scroll in to view.
       // See http://bugzilla.qooxdoo.org/show_bug.cgi?id=3236 for details.
@@ -116,13 +116,13 @@
     *****************************************************************************
     */
     members: {
-      __P_396_2: null,
-      __P_396_0: null,
+      __P_416_2: null,
+      __P_416_0: null,
       // overridden
       _createContentElement: function _createContentElement() {
-        var elem = this.__P_396_0.createElement("div");
+        var elem = this.__P_416_0.createElement("div");
 
-        this.__P_396_0.body.appendChild(elem);
+        this.__P_416_0.body.appendChild(elem);
 
         var root = new qx.html.Root(elem);
         root.setStyles({
@@ -161,7 +161,7 @@
        *
        * @param e {qx.event.type.Data} event object
        */
-      __P_396_1: function __P_396_1(e) {
+      __P_416_1: function __P_416_1(e) {
         // set the size to 0 so make the content element invisible
         // this works because the content element has overflow "show"
         this.getContentElement().setStyles({
@@ -185,7 +185,7 @@
           throw new Error("The root widget does not support 'left', or 'top' paddings!");
         }
 
-        qx.ui.root.Page.prototype._applyPadding.base.call(this, value, old, name);
+        qx.ui.root.Page.superclass.prototype._applyPadding.call(this, value, old, name);
       }
     },
 
@@ -195,10 +195,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_396_0 = null;
+      this.__P_416_0 = null;
     }
   });
   qx.ui.root.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1660800173535
+//# sourceMappingURL=Page.js.map?dt=1664297897131

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grundsätzlicher Aufbau &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/versions.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Konfiguration der Backend Verbindung" href="elements/backend.html" />
+    <link rel="prev" title="Anpassungen vornehmen" href="../customizing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pure-struktur">Pure-Struktur</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Grundsätzlicher Aufbau</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meta-bereich">Meta-Bereich</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#widgets">Widgets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="widgets/switch.html">Switch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/dimmer.html">Dimmer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/shutter.html">Shutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/info.html">Info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/status.html">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/rtc.html">RTC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/media-player.html">Media Player</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/tile-pair.html">Tile-pair</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eigene-widgets-definieren">Eigene Widgets definieren</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#komponenten">Komponenten</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>Grundsätzlicher Aufbau</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="grundsatzlicher-aufbau">
+<h1>Grundsätzlicher Aufbau<a class="headerlink" href="#grundsatzlicher-aufbau" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Wie der Name schon suggeriert setzt sich eine Visualisierung in der Tile-Struktur aus einzelnen Kacheln (engl. Tile)
+zusammen.</p>
+<p>Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
+Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.</p>
+<p>Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;cv-meta&gt;</span>
+        <span class="cm">&lt;!-- Nicht sichtbare Konfigurations-Elemente --&gt;</span>
+    <span class="nt">&lt;/cv-meta&gt;</span>
+    <span class="nt">&lt;header&gt;</span>
+        <span class="cm">&lt;!-- Optionaler Inhalt oben --&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;main&gt;</span>
+        <span class="cm">&lt;!-- Hauptinhalt inkl. optionaler Seitenleisten --&gt;</span>
+    <span class="nt">&lt;/main&gt;</span>
+    <span class="nt">&lt;footer&gt;</span>
+        <span class="cm">&lt;!-- Optionaler Inhalt unten --&gt;</span>
+    <span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;/config&gt;</span>
+</pre></div>
+</div>
+<section id="meta-bereich">
+<h2>Meta-Bereich<a class="headerlink" href="#meta-bereich" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im Meta-Bereich (<code class="docutils literal notranslate"><span class="pre">&lt;cv-meta&gt;</span></code>) finden sich alle Einstellungen, die für diese Konfigurationsdatei benötigt werden.
+Dazu gehören z.B. die Verbindungen zu den <a class="reference internal" href="elements/backend.html#tile-element-backend"><span class="std std-ref">Backends</span></a>, die
+<a class="reference internal" href="elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mappings</span></a>, <a class="reference internal" href="elements/styling.html#tile-element-styling"><span class="std std-ref">Stylings</span></a> und <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+    <span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;cv-backend</span> <span class="na">name=</span><span class="s">&quot;si&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;cv-backend</span> <span class="na">name=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-mapping&gt;</span>
+    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;speaker&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-speaker-line<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-speaker-fill<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-mapping&gt;</span>
+    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;WindowOpen&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-styling&gt;</span>
+    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;PlayProgress&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;formula&gt;</span>y = Math.round(100/store.get(&#39;duration&#39;)*x)<span class="nt">&lt;/formula&gt;</span>
+    <span class="nt">&lt;/cv-mapping&gt;</span>
+    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-styling&gt;</span>
+    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/example.css&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/example.js&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;templates&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="navigation-seitenstruktur">
+<h2>Navigation / Seitenstruktur<a class="headerlink" href="#navigation-seitenstruktur" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Neben den eigentlichen Seiteninhalten, gibt es feste Bereiche, die immer sichtbar sind unabhängig davon auf welcher
+Unterseite sich man gerade befindet. Dazu gibt es Header- und Footer-Bereiche und jeweils eine linke und rechte
+Seitenleiste. Im Hauptbereich befinden sich dann die einzelnen Seiten mit den jeweiligen Inhalten (Kacheln) zwischen denen
+hin und her navigiert werden kann. Die feststehenden Bereiche sind alle optional und können nach Bedarf genutzt oder
+weggelassen werden. Man kann sie z.B. für Navigationsleisten oder Widgets die einen globalen Status anzeigen, wie die Anzahl der
+offenen Fenster oder der eingeschalteten Lichter, nutzen.</p>
+<figure class="align-default" id="id1">
+<img alt="Grundstruktur mit allen verfügbaren optionalen Bereichen" src="../../_images/tile-ui-structure.png" />
+<figcaption>
+<p><span class="caption-text">Grundstruktur mit allen verfügbaren optionalen Bereichen</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Header-Bereich<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+<span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;aside&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Linke Seitenleiste<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/aside&gt;</span>
+    <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;start&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Seiteninhalte<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/cv-page&gt;</span>
+    <span class="nt">&lt;aside&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Rechte Seitenleiste<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/aside&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;footer&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Footer-Bereich<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+</pre></div>
+</div>
+<p>Der <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code>-Bereich ist nicht optional und muss immer vorhanden sein
+Innerhalb dieses Bereichs können beliebig viele <a class="reference internal" href="components/page.html#tile-component-page"><span class="std std-ref">Pages</span></a> angegeben werden.
+Eine Page kann wiederum <a class="reference internal" href="#widgets">Widgets</a>, <a class="reference internal" href="components/group.html#tile-component-group"><span class="std std-ref">Gruppen</span></a> und weitere Pages enthalten. Durch diese Verschachtelung
+kann man eine Navigationsstruktur festlegen. So kann man z.B. für jede Etage eine Page angeben, die wiederum
+für jeden Raum in dieser Etage eine Page enthält.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;eg&quot;</span> <span class="na">name=</span><span class="s">&quot;Erdgeschoss&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;ez&quot;</span> <span class="na">name=</span><span class="s">&quot;Esszimmer&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;wz&quot;</span> <span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;ku&quot;</span> <span class="na">name=</span><span class="s">&quot;Küche&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;bad&quot;</span> <span class="na">name=</span><span class="s">&quot;Badezimmer&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/cv-page&gt;</span>
+     <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;og&quot;</span> <span class="na">name=</span><span class="s">&quot;Obergeschoss&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;sz&quot;</span> <span class="na">name=</span><span class="s">&quot;Schlafzimmer&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;kz1&quot;</span> <span class="na">name=</span><span class="s">&quot;Kinderzimmer 1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;kz2&quot;</span> <span class="na">name=</span><span class="s">&quot;Kinderzimmer 2&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;badOg&quot;</span> <span class="na">name=</span><span class="s">&quot;Badezimmer&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/cv-page&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+</pre></div>
+</div>
+<p>Aus dieser Struktur wird automatisch ein <a class="reference internal" href="components/menu.html#tile-component-menu"><span class="std std-ref">Navigationsmenü</span></a> erzeugt. Diese kann man an beliebiger Stelle einbinden (es bieten sich
+jedoch der Header oder Footer Bereich an).</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;cv-menu</span> <span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="config/structure-tile/_static/tile-nav-menu.png" src="config/structure-tile/_static/tile-nav-menu.png" />
+</figure>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+<section id="widgets">
+<span id="tile-widgets"></span><h1>Widgets<a class="headerlink" href="#widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Ein Widget ist eine Kachel mit einer oder mehreren Komponenten mit der eine bestimmte Funktion erfüllt wird.
+Damit können übliche Anwendungsfälle innerhalb eines Smart-Homes abgedeckt werden, wie z.B. Lichtschalter (Switch)
+oder die Bedienung einer Rolllade (Shutter).</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="widgets/switch.html">Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/dimmer.html">Dimmer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/shutter.html">Shutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/info.html">Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/rtc.html">RTC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/media-player.html">Media Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/tile-pair.html">Tile-pair</a></li>
+</ul>
+</div>
+</section>
+<section id="eigene-widgets-definieren">
+<h1>Eigene Widgets definieren<a class="headerlink" href="#eigene-widgets-definieren" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Sofern die vorhandenen Widgets nicht ausreichen, kann man sich auch eigenen Widgets definieren. Die Definition
+eines neuen Widgets erfolgt in einer Kachel <code class="docutils literal notranslate"><span class="pre">&lt;cv-tile&gt;</span></code>.
+Die Inhalte in den Kacheln sind in maximal 3 Zeilen mit jeweils 3 Spalten angeordnet, wobei hier ähnlich
+wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kann.</p>
+<figure class="align-default">
+<img alt="../../_images/tile-grid.png" src="../../_images/tile-grid.png" />
+</figure>
+<p>Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten <a class="reference internal" href="#tile-components"><span class="std std-ref">Komponenten</span></a> frei platziert werden.
+Beispiele für diese Komponenten sind z.B. einfacher Text, ein <a class="reference internal" href="components/button.html#tile-component-button"><span class="std std-ref">Button</span></a>,
+<a class="reference internal" href="components/image.html#tile-component-image"><span class="std std-ref">Bild</span></a> oder komplexere Anzeigeelemente wie <a class="reference internal" href="components/list.html#tile-component-list"><span class="std std-ref">Listen</span></a>.</p>
+<p>Am einfachsten erstellt man sich erst mal eine Kachel mit allen benötigten Komponenten an den gewünschten Stellen
+in seiner normalen Konfigurationsdatei. So kann man Aussehen und Funktionalität am besten testen.
+Das folgende Beispiel zeigt eine Kachel in der ein runder <a class="reference internal" href="components/value.html#tile-component-value"><span class="std std-ref">Fortschrittsbalken</span></a>
+und ein Text angezeigt wird.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
+    <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;cv-value</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">backend=</span><span class="s">&quot;si&quot;</span><span class="nt">&gt;</span>Test_Value<span class="nt">&lt;/cv-address&gt;</span>
+            <span class="nt">&lt;cv-round-progress</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/cv-value&gt;</span>
+    <span class="nt">&lt;/cv-row&gt;</span>
+    <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>Circle Progress<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/cv-row&gt;</span>
+<span class="nt">&lt;/cv-tile&gt;</span>
+</pre></div>
+</div>
+<p>Diese Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
+anlegen. Das geht am besten über den <a class="reference internal" href="../manager.html#manager"><span class="std std-ref">Manager</span></a> indem man im Order „media“ eine Datei mit Namen „my-templates.xml“
+erzeugt. Damit diese Templates geladen werden fügt man in der Konfigurationsdatei im Meta-Bereich einen <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>
+hinzu.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;templates&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+</pre></div>
+</div>
+<p>Diese Datei sollte dann folgenden Inhalt enthalten:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;templates</span> <span class="na">structure=</span><span class="s">&quot;tile&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">&quot;meter&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;cv-tile&gt;</span>
+            <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;cv-value</span> <span class="na">slot-format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">&quot;address&quot;</span><span class="nt">/&gt;</span>
+                    <span class="nt">&lt;cv-round-progress</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/cv-value&gt;</span>
+            <span class="nt">&lt;/cv-row&gt;</span>
+            <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;&lt;slot</span> <span class="na">name=</span><span class="s">&quot;label&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+            <span class="nt">&lt;/cv-row&gt;</span>
+        <span class="nt">&lt;/cv-tile&gt;</span>
+    <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/templates&gt;</span>
+</pre></div>
+</div>
+<p>Man sieht innerhalb der Template-Definition mit der id „meter“ den leicht modifizierten Inhalt der Kachel.
+Modifiziert werden müssen lediglich Inhalte die man später konfigurierbar haben möchte. In der Regel
+gehören dazu Adressen, Label und ggf. einige Attribute wie Mappings, Stylings und Formatierungen.</p>
+<p>Wenn man nun dieses Template in der Konfigurationsdatei benutzen möchte fügt man dort ein <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code> Element hinzu.
+Der Name ergibt sich aus der Template ID mit dem Präfix <code class="docutils literal notranslate"><span class="pre">cv-</span></code>.</p>
+<p>Das Prinzip der <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code>-Elemente ist relativ einfach, sie dienen als Platzhalter für Elemente die diesen Slot benutzen.
+In dem Beispiel gibt es zwei Slot-Elemente: einen für die Adresse des Value-Elements: <code class="docutils literal notranslate"><span class="pre">&lt;slot</span> <span class="pre">name=&quot;address&quot;/&gt;</span></code>
+und einen für das Label: <code class="docutils literal notranslate"><span class="pre">&lt;slot</span> <span class="pre">name=&quot;label&quot;/&gt;</span></code>.</p>
+<p>Daraus ergibt sich folgender Code mit dem man das neu definierte Template-Widget nun nutzen kann.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;custom&gt;</span>
+    <span class="nt">&lt;cv-meter&gt;</span>
+        <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">transform=</span><span class="s">&quot;OH:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Circle Progress<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/cv-meter&gt;</span>
+<span class="nt">&lt;/custom&gt;</span>
+</pre></div>
+</div>
+<p>Die selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
+muss man diese in ein <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
+wird.</p>
+<section id="komponenten">
+<span id="tile-components"></span><h2>Komponenten<a class="headerlink" href="#komponenten" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Eine Komponente ist ein einzelnes visuelles Element, das entweder bedienbar (z.B. Button) oder zur reinen
+Darstellung eines Werts benutzt wird (z.B. Value). Die bereits vorgestellten Widgets kombinieren eine oder
+mehrere Komponenten in einer Kachel.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/button.html">Button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/value.html">Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/image.html">Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/select.html">Select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/spinner.html">Spinner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/slider.html">Slider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/list.html">List</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../customizing.html" class="btn btn-neutral float-left" title="Anpassungen vornehmen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elements/backend.html" class="btn btn-neutral float-right" title="Konfiguration der Backend Verbindung" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

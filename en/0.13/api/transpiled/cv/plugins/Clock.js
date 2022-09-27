@@ -17,7 +17,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -27,7 +27,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       "cv.ui.common.Operate": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "cv.util.Function": {},
@@ -63,7 +63,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
    * @asset(plugins/clock/*)
    */
   qx.Class.define('cv.plugins.Clock', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Operate],
 
     /*
@@ -76,7 +76,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       props.value.setHours(0, 0, 0, 0);
       this.__P_8_0 = [0, 0, 0];
       this.__P_8_1 = [];
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
 
     /*
@@ -149,9 +149,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseFormat(xml, path);
-        cv.parser.WidgetParser.parseAddress(xml, path);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.parser.pure.WidgetParser.parseFormat(xml, path);
+        cv.parser.pure.WidgetParser.parseAddress(xml, path);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -289,7 +289,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       _onDomReady: function _onDomReady() {
         var _this = this;
 
-        cv.plugins.Clock.prototype._onDomReady.base.call(this);
+        cv.plugins.Clock.superclass.prototype._onDomReady.call(this);
 
         this.__P_8_5 = cv.util.Function.throttle(this.dragAction, 250, {
           trailing: true
@@ -633,11 +633,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler('clock', cv.plugins.Clock);
+      cv.parser.pure.WidgetParser.addHandler('clock', cv.plugins.Clock);
       cv.ui.structure.WidgetFactory.registerClass('clock', statics);
     }
   });
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1660800142277
+//# sourceMappingURL=Clock.js.map?dt=1664297865949

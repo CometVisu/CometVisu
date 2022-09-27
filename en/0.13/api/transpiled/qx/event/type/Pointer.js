@@ -48,7 +48,7 @@
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        clone = qx.event.type.Pointer.prototype._cloneNativeEvent.base.call(this, nativeEvent, clone);
+        clone = qx.event.type.Pointer.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
         clone.pointerId = nativeEvent.pointerId;
         clone.width = nativeEvent.width;
         clone.height = nativeEvent.height;
@@ -65,7 +65,7 @@
       },
       // overridden
       getDocumentLeft: function getDocumentLeft() {
-        var x = qx.event.type.Pointer.prototype.getDocumentLeft.base.call(this); // iOS 6 does not copy pageX over to the fake pointer event
+        var x = qx.event.type.Pointer.superclass.prototype.getDocumentLeft.call(this); // iOS 6 does not copy pageX over to the fake pointer event
 
         if (x == 0 && this.getPointerType() == "touch" && this._native._original !== undefined) {
           x = Math.round(this._native._original.changedTouches[0].pageX) || 0;
@@ -75,7 +75,7 @@
       },
       // overridden
       getDocumentTop: function getDocumentTop() {
-        var y = qx.event.type.Pointer.prototype.getDocumentTop.base.call(this); // iOS 6 does not copy pageY over to the fake pointer event
+        var y = qx.event.type.Pointer.superclass.prototype.getDocumentTop.call(this); // iOS 6 does not copy pageY over to the fake pointer event
 
         if (y == 0 && this.getPointerType() == "touch" && this._native._original !== undefined) {
           y = Math.round(this._native._original.changedTouches[0].pageY) || 0;
@@ -164,7 +164,7 @@
           return qx.bom.Event.getTarget(this._native);
         }
 
-        return qx.event.type.Pointer.prototype.getOriginalTarget.base.call(this);
+        return qx.event.type.Pointer.superclass.prototype.getOriginalTarget.call(this);
       },
 
       /**
@@ -209,4 +209,4 @@
   qx.event.type.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1660800159294
+//# sourceMappingURL=Pointer.js.map?dt=1664297884010

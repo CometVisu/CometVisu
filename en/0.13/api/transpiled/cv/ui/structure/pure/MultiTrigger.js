@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -54,7 +54,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
     /*
@@ -172,4 +172,4 @@
   cv.ui.structure.pure.MultiTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MultiTrigger.js.map?dt=1660800148037
+//# sourceMappingURL=MultiTrigger.js.map?dt=1664297871630

@@ -1,3 +1,7 @@
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -16,9 +20,6 @@
       "qx.ui.layout.Grow": {
         "construct": true
       },
-      "cv.ui.manager.model.Schema": {
-        "construct": true
-      },
       "qx.data.Array": {
         "construct": true
       },
@@ -32,6 +33,7 @@
         "usage": "dynamic",
         "require": true
       },
+      "cv.ui.manager.model.Schema": {},
       "qx.bom.Viewport": {},
       "cv.ui.manager.model.ElementChange": {},
       "cv.ui.manager.editor.Worker": {},
@@ -42,7 +44,7 @@
       "cv.ui.manager.viewer.Config": {},
       "qx.ui.basic.Atom": {},
       "qx.ui.toolbar.Button": {},
-      "qx.ui.form.CheckBox": {},
+      "qx.ui.toolbar.CheckBox": {},
       "qx.ui.toolbar.ToolBar": {},
       "qx.ui.form.TextField": {},
       "qx.util.Function": {},
@@ -69,7 +71,7 @@
       "qx.event.message.Bus": {},
       "cv.ui.manager.model.FileItem": {},
       "qx.xml.Document": {},
-      "qx.xml.String": {},
+      "cv.util.Prettifier": {},
       "qx.ui.core.FocusHandler": {},
       "cv.ui.manager.dialog.BigAlert": {}
     },
@@ -126,14 +128,7 @@
       this._initWorker(); // init schema
 
 
-      this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
-
-      this._schema.onLoaded(function () {
-        this.setReady(true);
-
-        this._draw();
-      }, this);
-
+      this._schemas = {};
       this.__P_33_0 = [];
       this.__P_33_1 = new qx.data.Array();
 
@@ -154,6 +149,8 @@
       this.__P_33_2 = {};
       qx.core.Init.getApplication().getRoot().addListener('keyup', this._onElementKeyUp, this);
       this.addListener('resize', this._maintainPreviewVisibility, this);
+
+      this._draw();
     },
 
     /*
@@ -251,7 +248,7 @@
     ***********************************************
     */
     members: {
-      _schema: null,
+      _schemas: null,
       __P_33_0: null,
       __P_33_1: null,
       _workerWrapper: null,
@@ -259,6 +256,38 @@
       __P_33_2: null,
       __P_33_4: null,
       __P_33_5: 0,
+      _structure: null,
+      getSchema: function getSchema(file) {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  if (file.startsWith('../')) {
+                    file = file.substring(3);
+                  }
+
+                  if (!Object.prototype.hasOwnProperty.call(_this2, file)) {
+                    _this2._schemas[file] = cv.ui.manager.model.Schema.getInstance(file);
+                  }
+
+                  return _context.abrupt("return", new Promise(function (resolve, reject) {
+                    _this2._schemas[file].onLoaded(function () {
+                      this.setReady(true);
+                      resolve(this._schemas[file]);
+                    }, _this2);
+                  }));
+
+                case 3:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }))();
+      },
       isPreviewSynced: function isPreviewSynced() {
         return this.getPreviewState() === 'synced';
       },
@@ -342,22 +371,22 @@
               break;
 
             default:
-              cv.ui.manager.editor.Tree.prototype.handleAction.base.call(this, actionName);
+              cv.ui.manager.editor.Tree.superclass.prototype.handleAction.call(this, actionName);
               break;
           }
         }
       },
       configureButton: function configureButton(actionId, button) {
-        var _this2 = this;
+        var _this3 = this;
 
         switch (actionId) {
           case 'undo':
             this.__P_33_2[actionId] = this.getUnDos().addListener('changeLength', function () {
-              var length = _this2.getUnDos().length;
+              var length = _this3.getUnDos().length;
 
               if (length > 0) {
                 button.setEnabled(true);
-                button.setToolTipText(_this2.tr('Undo: %1', _this2.getUnDos().getItem(length - 1).getTitle()));
+                button.setToolTipText(_this3.tr('Undo: %1', _this3.getUnDos().getItem(length - 1).getTitle()));
               } else {
                 button.setEnabled(false);
                 button.resetToolTipText();
@@ -368,11 +397,11 @@
 
           case 'redo':
             this.__P_33_2[actionId] = this.getReDos().addListener('changeLength', function () {
-              var length = _this2.getReDos().length;
+              var length = _this3.getReDos().length;
 
               if (length > 0) {
                 button.setEnabled(true);
-                button.setToolTipText(_this2.tr('Undo: %1', _this2.getReDos().getItem(length - 1).getTitle()));
+                button.setToolTipText(_this3.tr('Undo: %1', _this3.getReDos().getItem(length - 1).getTitle()));
               } else {
                 button.setEnabled(false);
                 button.resetToolTipText();
@@ -500,9 +529,9 @@
         }
 
         if (file && file.getType() === 'file' && this.isSupported(file)) {
-          cv.ui.manager.editor.Tree.prototype._loadFile.base.call(this, file, old);
+          cv.ui.manager.editor.Tree.superclass.prototype._loadFile.call(this, file, old);
         } else {
-          cv.ui.manager.editor.Tree.prototype._loadFile.base.call(this, null, old);
+          cv.ui.manager.editor.Tree.superclass.prototype._loadFile.call(this, null, old);
 
           if (this.hasChildControl('preview')) {
             this.getChildControl('preview').resetFile();
@@ -513,7 +542,7 @@
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
-        var _this3 = this;
+        var _this4 = this;
 
         var control;
 
@@ -562,8 +591,8 @@
               control.setRich(true);
               control.getChildControl('label').setWrap(true);
               control.addListener('tap', function () {
-                if (!_this3.isPreviewSynced() && _this3.isShowPreview()) {
-                  _this3._updatePreview();
+                if (!_this4.isPreviewSynced() && _this4.isShowPreview()) {
+                  _this4._updatePreview();
                 }
               }, this);
               this.getChildControl('right').addAt(control, 0);
@@ -620,9 +649,9 @@
             break;
 
           case 'toggle-expert':
-            control = new qx.ui.form.CheckBox(this.tr('Expertview'));
-            control.addListener('changeValue', function (ev) {
-              this.setExpert(ev.getData());
+            control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'), cv.theme.dark.Images.getIcon('expert', 16));
+            control.addListener('execute', function () {
+              this.toggleExpert();
             }, this);
             this.getChildControl('toolbar').add(control);
             break;
@@ -760,10 +789,10 @@
               return control.removeState('hovered');
             });
             control.addListener('tap', function () {
-              if (_this3.getSelected()) {
-                _this3._onCreate(_this3.getSelected(), 'inside');
+              if (_this4.getSelected()) {
+                _this4._onCreate(_this4.getSelected(), 'inside');
               } else {
-                qxl.dialog.Dialog.alert(_this3.tr('Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element.'));
+                qxl.dialog.Dialog.alert(_this4.tr('Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element.'));
               }
             }, this);
             this.getChildControl('left').add(control, {
@@ -797,7 +826,7 @@
             break;
         }
 
-        return control || cv.ui.manager.editor.Tree.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.editor.Tree.superclass.prototype._createChildControlImpl.call(this, id);
       },
       _onContextMenu: function _onContextMenu(ev) {
         var target = ev.getCurrentTarget();
@@ -857,22 +886,22 @@
         }
       },
       openByQuerySelector: function openByQuerySelector(selector, edit) {
-        var _this4 = this;
+        var _this5 = this;
 
         return new Promise(function (resolve, reject) {
-          var tree = _this4.getChildControl('tree');
+          var tree = _this5.getChildControl('tree');
 
           var rootNode = tree.getModel().getNode();
           var result = rootNode.querySelector(selector);
 
           if (result) {
-            _this4.__P_33_4 = [result];
-            _this4.__P_33_5 = 0;
+            _this5.__P_33_4 = [result];
+            _this5.__P_33_5 = 0;
 
-            _this4.__P_33_7();
+            _this5.__P_33_7();
 
             if (edit) {
-              _this4._onEdit();
+              _this5._onEdit();
             }
 
             resolve(true);
@@ -991,7 +1020,7 @@
           target: null
         };
         control.addListener('dragover', function (ev) {
-          var _this5 = this;
+          var _this6 = this;
 
           // add ist a custom action that cannot be detected, so we only check if its supported
           var action = ev.getCurrentAction();
@@ -1083,7 +1112,7 @@
                     var acc = Allowed.NONE;
                     var allowedSorting = parentSchemaElement.getAllowedElementsSorting();
                     addable.some(function (elementName) {
-                      acc |= _this5.__P_33_8(allowedSorting, elementName, model.getName());
+                      acc |= _this6.__P_33_8(allowedSorting, elementName, model.getName());
 
                       if (acc & Allowed.BEFORE && acc & Allowed.AFTER) {
                         // we cannot find more
@@ -1538,7 +1567,7 @@
        * @private
        */
       _onCreate: function _onCreate(target, position, elementName) {
-        var _this6 = this;
+        var _this7 = this;
 
         var parent = position === 'inside' || position === 'first-child' ? target : target.getParent();
         var parentSchemaElement = parent.getSchemaElement();
@@ -1722,7 +1751,7 @@
 
               if (xmlElement.isShowEditButton()) {
                 // only show edit dialog when we actually have something to edit
-                res = _this6._onEdit(null, xmlElement, true);
+                res = _this7._onEdit(null, xmlElement, true);
               }
 
               res.then(function (data) {
@@ -1746,12 +1775,12 @@
                       break;
                   }
 
-                  _this6.getChildControl('tree').openNodeAndParents(xmlElement);
+                  _this7.getChildControl('tree').openNodeAndParents(xmlElement);
 
-                  _this6.getChildControl('tree').setSelection([xmlElement]);
+                  _this7.getChildControl('tree').setSelection([xmlElement]);
                 }
-              }, _this6)["catch"](function (err) {
-                return _this6.error(err);
+              }, _this7)["catch"](function (err) {
+                return _this7.error(err);
               });
             }
           });
@@ -1796,7 +1825,7 @@
         return cv.ui.manager.editor.Tree.Allowed.NONE;
       },
       __P_33_9: function __P_33_9(id, formData, element) {
-        var _this7 = this;
+        var _this8 = this;
 
         var provider = cv.ui.manager.editor.data.Provider.get(id);
 
@@ -1817,7 +1846,8 @@
           var rootNode = tree.getModel().getNode();
           formData.type = 'SelectBox';
           formData.options = [];
-          rootNode.querySelectorAll('meta > ' + type + 's > ' + type).forEach(function (element) {
+          var selector = this._structure === 'tile' ? 'cv-meta > cv-' + type : 'meta > ' + type + 's > ' + type;
+          rootNode.querySelectorAll(selector).forEach(function (element) {
             var name = element.getAttribute('name');
             formData.options.push({
               label: name,
@@ -1835,7 +1865,7 @@
               formData.options.then(function (res) {
                 if (Array.isArray(res)) {
                   res.unshift({
-                    label: ' - ' + _this7.tr('not set') + ' - ',
+                    label: ' - ' + _this8.tr('not set') + ' - ',
                     value: ''
                   });
                 }
@@ -1913,7 +1943,7 @@
         return def;
       },
       _onEdit: function _onEdit(ev, element, isNew) {
-        var _this8 = this;
+        var _this9 = this;
 
         if (!this.getFile() || !this.getFile().isWriteable()) {
           return null;
@@ -1951,7 +1981,7 @@
           Object.keys(allowed).forEach(function (name) {
             var attribute = allowed[name];
 
-            if (!_this8.getExpert()) {
+            if (!_this9.getExpert()) {
               var appInfo = attribute.getAppinfo();
 
               if (appInfo.includes('level:expert')) {
@@ -1960,7 +1990,7 @@
               }
             }
 
-            formData[name] = _this8.__P_33_10(element, attribute);
+            formData[name] = _this9.__P_33_10(element, attribute);
           });
 
           if (typeElement.isChildElementAllowed('*')) {
@@ -2063,14 +2093,14 @@
             // save changes
             element.setAttributes(data);
 
-            _this8.clearReDos();
+            _this9.clearReDos();
 
             if (!Object.prototype.hasOwnProperty.call(data, '#outerHTML') && !Object.prototype.hasOwnProperty.call(data, '#innerHTML')) {
               element.validate();
             }
           }
 
-          _this8.__P_33_3 = false;
+          _this9.__P_33_3 = false;
           formDialog.destroy();
           return data;
         });
@@ -2179,6 +2209,8 @@
 
         this._createChildControl('delete-button');
 
+        toolbar.addSeparator();
+
         this._createChildControl('toggle-expert');
 
         toolbar.addSpacer();
@@ -2230,16 +2262,27 @@
             var path = [];
             var node = selected.getNode();
 
-            while (node && node.nodeName !== 'pages') {
-              if (node.nodeName === 'page') {
-                path.unshift(node.getAttribute('name'));
+            if (this._structure === 'tile') {
+              while (node && node.nodeName !== 'config') {
+                if (node.nodeName === 'cv-page') {
+                  preview.openPage(node.getAttribute('id'));
+                  break;
+                }
+
+                node = node.parentNode;
+              }
+            } else {
+              while (node && node.nodeName !== 'pages') {
+                if (node.nodeName === 'page') {
+                  path.unshift(node.getAttribute('name'));
+                }
+
+                node = node.parentNode;
               }
 
-              node = node.parentNode;
-            }
-
-            if (path.length > 0) {
-              preview.openPage(path.pop(), path.join('/'));
+              if (path.length > 0) {
+                preview.openPage(path.pop(), path.join('/'));
+              }
             }
 
             preview.setHighlightWidget(selected.getWidgetPath());
@@ -2258,7 +2301,7 @@
         }
       },
       _applyContent: function _applyContent(value) {
-        var _this9 = this;
+        var _this10 = this;
 
         var tree = this.getChildControl('tree');
         var file = this.getFile();
@@ -2275,21 +2318,21 @@
 
             this._workerWrapper.validateXmlConfig(value).then(function (res) {
               if (res === true) {
-                _this9.info(file.getPath() + ' is a valid config file');
+                _this10.info(file.getPath() + ' is a valid config file');
 
-                _this9.__P_33_11(value);
+                _this10.__P_33_11(value);
               } else {
                 var dialog = new cv.ui.manager.dialog.ValidationError(file, value, res);
                 dialog.addListener('action', function (ev) {
                   switch (ev.getData()) {
                     case 'proceed':
-                      _this9.__P_33_11(value, res);
+                      _this10.__P_33_11(value, res);
 
                       break;
 
                     case 'open-source':
                       {
-                        var _file = _this9.getFile();
+                        var _file = _this10.getFile();
 
                         cv.ui.manager.Main.getInstance().closeFile(_file);
                         qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
@@ -2304,13 +2347,13 @@
 
                     case 'cancel':
                       // close this editor
-                      cv.ui.manager.Main.getInstance().closeFile(_this9.getFile());
+                      cv.ui.manager.Main.getInstance().closeFile(_this10.getFile());
                       break;
                   }
 
                   dialog.hide();
                   dialog.destroy();
-                }, _this9);
+                }, _this10);
                 dialog.show();
               }
             });
@@ -2341,94 +2384,128 @@
 
         return file;
       },
-      __P_33_11: function __P_33_11(value, errors) {
-        var _this10 = this;
+      __P_33_11: function () {
+        var _P_33_ = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(value, errors) {
+          var _this11 = this;
 
-        var tree = this.getChildControl('tree');
-        var file = this.getFile();
+          var tree, file, doc, rootElement, schema, schemaElement, rootNode, preview;
+          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  tree = this.getChildControl('tree');
+                  file = this.getFile();
 
-        if (file) {
-          var _document2 = qx.xml.Document.fromString(value);
-
-          var schemaElement = this._schema.getElementNode(_document2.documentElement.nodeName);
-
-          var rootNode = new cv.ui.manager.model.XmlElement(_document2.documentElement, schemaElement, this);
-          rootNode.setEditable(file.getWriteable());
-          rootNode.load();
-          tree.setModel(rootNode);
-
-          if (this.hasChildControl('add-button')) {
-            this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded'); // extra space für add-button
-
-            tree.setContentPaddingBottom(file.getWriteable() ? 80 : 0);
-          }
-
-          if (this.isShowPreview()) {
-            var preview = this.getChildControl('preview');
-
-            if (file.isWriteable()) {
-              if (!preview.getFile()) {
-                preview.setFile(this.__P_33_6());
-              }
-            } else {
-              preview.setFile(file);
-            }
-
-            this._updatePreview(null, value);
-
-            if (!preview.isVisible()) {
-              preview.show();
-            }
-          }
-
-          if (file.isTemporary()) {
-            this._onContentChanged();
-          }
-
-          if (errors) {
-            errors.forEach(function (error) {
-              if (error.path && error.path.startsWith('/pages')) {
-                var current = rootNode;
-                var parts = error.path.substr(1).split('/');
-
-                while (parts.length > 0) {
-                  var part = parts.shift();
-                  var match = /^([^[]+)\[(\d+)\]$/.exec(part);
-
-                  if (match) {
-                    current = current.getChildren().getItem(parseInt(match[2]));
-
-                    if (current) {
-                      try {
-                        // this can always lead to a loading error, because the element is invalid
-                        current.load();
-                      } catch (e) {
-                        _this10.error('Error loading ' + current.getName() + ': ' + e.toString());
-
-                        current = null;
-                        break;
-                      }
-                    } else {
-                      break;
-                    }
-                  } else {
-                    _this10.error('patch segment format error: ' + part);
-
-                    current = null;
+                  if (!file) {
+                    _context2.next = 20;
                     break;
                   }
-                }
 
-                if (current) {
-                  current.setValid(false);
-                  current.validate(false);
-                  tree.openNodeAndParents(current);
-                }
+                  doc = qx.xml.Document.fromString(value);
+                  rootElement = doc.documentElement;
+                  _context2.next = 7;
+                  return this.getSchema(rootElement.getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation'));
+
+                case 7:
+                  schema = _context2.sent;
+                  schemaElement = schema.getElementNode(rootElement.nodeName);
+                  rootNode = new cv.ui.manager.model.XmlElement(rootElement, schemaElement, this);
+                  this._structure = schema.getStructure();
+                  rootNode.setEditable(file.getWriteable());
+                  rootNode.load();
+                  tree.setModel(rootNode);
+
+                  if (this.hasChildControl('add-button')) {
+                    this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded'); // extra space für add-button
+
+                    tree.setContentPaddingBottom(file.getWriteable() ? 80 : 0);
+                  }
+
+                  if (this.isShowPreview()) {
+                    preview = this.getChildControl('preview');
+
+                    if (file.isWriteable()) {
+                      if (!preview.getFile()) {
+                        preview.setFile(this.__P_33_6());
+                      }
+                    } else {
+                      preview.setFile(file);
+                    }
+
+                    this._updatePreview(null, value);
+
+                    if (!preview.isVisible()) {
+                      preview.show();
+                    }
+                  }
+
+                  if (file.isTemporary()) {
+                    this._onContentChanged();
+                  }
+
+                  if (errors) {
+                    errors.forEach(function (error) {
+                      if (error.path && error.path.startsWith('/pages')) {
+                        var current = rootNode;
+                        var parts = error.path.substr(1).split('/');
+
+                        while (parts.length > 0) {
+                          var part = parts.shift();
+                          var match = /^([^[]+)\[(\d+)\]$/.exec(part);
+
+                          if (match) {
+                            current = current.getChildren().getItem(parseInt(match[2]));
+
+                            if (current) {
+                              try {
+                                // this can always lead to a loading error, because the element is invalid
+                                current.load();
+                              } catch (e) {
+                                _this11.error('Error loading ' + current.getName() + ': ' + e.toString());
+
+                                current = null;
+                                break;
+                              }
+                            } else {
+                              break;
+                            }
+                          } else {
+                            _this11.error('patch segment format error: ' + part);
+
+                            current = null;
+                            break;
+                          }
+                        }
+
+                        if (current) {
+                          current.setValid(false);
+                          current.validate(false);
+                          tree.openNodeAndParents(current);
+                        }
+                      }
+                    });
+                  }
+
+                  _context2.next = 21;
+                  break;
+
+                case 20:
+                  this._structure = null;
+
+                case 21:
+                case "end":
+                  return _context2.stop();
               }
-            });
-          }
+            }
+          }, _callee2, this);
+        }));
+
+        function __P_33_11(_x, _x2) {
+          return _P_33_.apply(this, arguments);
         }
-      },
+
+        return __P_33_11;
+      }(),
       _onContentChanged: function _onContentChanged() {
         var content = this.getCurrentContent();
 
@@ -2441,7 +2518,7 @@
         }
       },
       _updatePreview: function _updatePreview(ev, content, reset) {
-        var _this11 = this;
+        var _this12 = this;
 
         var previewFile = this.getChildControl('preview').getFile();
 
@@ -2464,12 +2541,12 @@
                 type: 'contentChanged',
                 file: previewFile,
                 data: content,
-                source: _this11
+                source: _this12
               });
 
-              _this11.__P_33_1.removeAll();
+              _this12.__P_33_1.removeAll();
 
-              _this11.resetPreviewState();
+              _this12.resetPreviewState();
 
               previewFile.resetTemporary();
             }, this);
@@ -2482,12 +2559,12 @@
                 type: 'contentChanged',
                 file: previewFile,
                 data: content,
-                source: _this11
+                source: _this12
               });
 
-              _this11.__P_33_1.removeAll();
+              _this12.__P_33_1.removeAll();
 
-              _this11.resetPreviewState();
+              _this12.resetPreviewState();
             }, this);
           }
         }
@@ -2503,60 +2580,13 @@
           } // prettify content
 
 
-          return '<?xml version="1.0" encoding="UTF-8"?>\n' + this._prettify(rootNode, 0);
+          return cv.util.Prettifier.xml(rootNode.ownerDocument);
         }
 
         return null;
       },
-      _prettify: function _prettify(node, level, noFormat) {
-        var tabs = Array(level).fill('  ').join('');
-        var newLine = '\n';
-
-        if (node.nodeType === Node.TEXT_NODE) {
-          if (node.textContent.trim()) {
-            return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
-          }
-
-          return '';
-        }
-
-        if (node.nodeType === Node.COMMENT_NODE) {
-          return (noFormat ? '' : tabs) + "<!--".concat(node.textContent, "--> ").concat(noFormat ? '' : newLine);
-        } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-          return (noFormat ? '' : tabs) + "<![CDATA[".concat(node.textContent, "]]> ").concat(noFormat ? '' : newLine);
-        }
-
-        if (!node.tagName) {
-          return this._prettify(node.firstChild, level);
-        }
-
-        var output = (noFormat ? '' : tabs) + "<".concat(node.tagName); // >\n
-
-        for (var i = 0; i < node.attributes.length; i++) {
-          output += " ".concat(node.attributes[i].name, "=\"").concat(node.attributes[i].value, "\"");
-        }
-
-        if (node.childNodes.length === 0) {
-          return output + ' />' + (!noFormat ? newLine : '');
-        }
-
-        output += '>';
-        var hasTextChild = Array.prototype.some.call(node.childNodes, function (child) {
-          return child.nodeType === Node.TEXT_NODE && child.textContent.trim();
-        });
-
-        if (!noFormat && !hasTextChild) {
-          output += newLine;
-        }
-
-        for (var _i2 = 0; _i2 < node.childNodes.length; _i2++) {
-          output += this._prettify(node.childNodes[_i2], level + 1, hasTextChild);
-        }
-
-        return output + (hasTextChild || noFormat ? '' : tabs) + "</".concat(node.tagName, ">") + (!noFormat ? newLine : '');
-      },
       _onSaved: function _onSaved() {
-        cv.ui.manager.editor.Tree.prototype._onSaved.base.call(this);
+        cv.ui.manager.editor.Tree.superclass.prototype._onSaved.call(this);
 
         this.__P_33_0.forEach(function (elem) {
           return elem.onSaved();
@@ -2621,7 +2651,7 @@ refresh after you have changed something. You can refresh is manually by clickin
     ***********************************************
     */
     destruct: function destruct() {
-      this._schema = null;
+      this._schemas = null;
       this._workerWrapper = null;
 
       this._disposeArray("__P_33_0", "__P_33_1");
@@ -2632,4 +2662,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1660800145208
+//# sourceMappingURL=Tree.js.map?dt=1664297868783

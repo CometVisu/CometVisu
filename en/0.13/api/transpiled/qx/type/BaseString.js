@@ -54,13 +54,13 @@
     construct: function construct(txt) {
       var txt = txt || ""; // no base call needed
 
-      this.__P_261_0 = txt;
+      this.__P_281_0 = txt;
       this.length = txt.length;
     },
     members: {
       $$isString: true,
       length: 0,
-      __P_261_0: null,
+      __P_281_0: null,
 
       /**
        * Returns a string representing the specified object.
@@ -73,7 +73,7 @@
        * @return {String} A new string containing the string value.
        */
       toString: function toString() {
-        return this.__P_261_0;
+        return this.__P_281_0;
       },
 
       /**
@@ -359,7 +359,7 @@
      */
     defer: function defer(statics, members) {
       // add asserts into each debug build
-      var mappedFunctions = ['charAt', 'charCodeAt', 'concat', 'indexOf', 'lastIndexOf', 'match', 'replace', 'search', 'slice', 'split', 'substr', 'substring', 'toLowerCase', 'toUpperCase', 'toLocaleLowerCase', 'toLocaleUpperCase', 'trim']; // feature/bug detection:
+      var mappedFunctions = ['charAt', 'charCodeAt', 'concat', 'indexOf', 'lastIndexOf', 'match', 'replace', 'search', 'slice', 'split', 'substr', 'substring', 'toLowerCase', 'toUpperCase', 'toLocaleLowerCase', 'toLocaleUpperCase', 'trim', 'codePointAt']; // feature/bug detection:
       // Some older Firefox version (<2) break if valueOf is overridden
 
       members.valueOf = members.toString;
@@ -376,4 +376,4 @@
   qx.type.BaseString.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseString.js.map?dt=1660800164757
+//# sourceMappingURL=BaseString.js.map?dt=1664297888938

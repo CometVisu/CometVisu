@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -18,9 +18,9 @@
       "qx.util.Function": {
         "construct": true
       },
-      "cv.parser.WidgetParser": {},
+      "cv.parser.pure.WidgetParser": {},
       "cv.data.Model": {},
-      "cv.TemplateEngine": {},
+      "cv.io.BackendConnections": {},
       "qx.io.request.Xhr": {},
       "cv.core.notifications.Router": {},
       "qx.locale.Manager": {},
@@ -101,7 +101,7 @@
    * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
    */
   qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Refresh],
     type: 'abstract',
 
@@ -111,7 +111,7 @@
     ***********************************************
     */
     construct: function construct(props) {
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this._debouncedLoadDiagramData = qx.util.Function.debounce(this.loadDiagramData.bind(this), 200);
     },
 
@@ -139,8 +139,8 @@
           mappings = this.getAttributeToPropertyMappings();
         }
 
-        cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
-        cv.parser.WidgetParser.parseRefresh(xml, path);
+        cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
+        cv.parser.pure.WidgetParser.parseRefresh(xml, path);
         var legend = xml.getAttribute('legend') || 'both';
         return cv.data.Model.getInstance().setWidgetData(path, {
           content: this.getDiagramElements(xml),
@@ -324,7 +324,7 @@
        * @param callbackParameter
        */
       lookupTsCache: function lookupTsCache(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
-        var client = cv.TemplateEngine.getInstance().visu;
+        var client = cv.io.BackendConnections.getClient();
         var key;
         var url;
         var chartsResource = client.getResourcePath('charts', {
@@ -383,7 +383,7 @@
         var tsdata = ev.getTarget().getResponse();
 
         if (tsdata !== null) {
-          var client = cv.TemplateEngine.getInstance().visu;
+          var client = cv.io.BackendConnections.getClient();
 
           if (client.hasCustomChartsDataProcessor(tsdata)) {
             tsdata = client.processChartsData(tsdata);
@@ -962,4 +962,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1660800142974
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1664297866630

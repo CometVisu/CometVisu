@@ -65,7 +65,7 @@
 
         this._row = 0;
 
-        qx.ui.form.renderer.Single.prototype._onFormChange.base.call(this);
+        qx.ui.form.renderer.Single.superclass.prototype._onFormChange.call(this);
       },
 
       /**
@@ -223,4 +223,4 @@
   qx.ui.form.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1660800169272
+//# sourceMappingURL=Single.js.map?dt=1664297893149

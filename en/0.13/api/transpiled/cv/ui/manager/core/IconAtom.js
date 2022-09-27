@@ -1,3 +1,15 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -6,9 +18,13 @@
         "require": true
       },
       "qx.ui.basic.Atom": {
+        "construct": true,
         "require": true
       },
-      "cv.ui.manager.viewer.SvgIcon": {}
+      "cv.ui.manager.snackbar.Controller": {},
+      "qx.locale.Manager": {},
+      "cv.ui.manager.basic.Image": {},
+      "qx.ui.basic.Label": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -33,10 +49,21 @@
    */
 
   /**
-   * Atom with cv.ui.manager.viewer.SvgIcon instead ob an qx.ui.basic.Image
+   * Atom with cv.ui.manager.viewer.SvgIcon instead of a qx.ui.basic.Image
    */
   qx.Class.define('cv.ui.manager.core.IconAtom', {
     extend: qx.ui.basic.Atom,
+
+    /*
+    ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct(label, icon) {
+      qx.ui.basic.Atom.constructor.call(this, label, icon);
+      this._fontIconRegex = /^\<i.*class=".*(knxuf-|ri-)([^\s"]+).*".*\<\/i\>$/;
+      this.addListener('tap', this._onTap, this);
+    },
 
     /*
     ***********************************************
@@ -47,6 +74,10 @@
       appearance: {
         refine: true,
         init: 'cv-icon'
+      },
+      model: {
+        check: 'Array',
+        apply: '_applyModel'
       }
     },
 
@@ -56,20 +87,66 @@
     ***********************************************
     */
     members: {
-      _applyLabel: function _applyLabel(value) {
-        cv.ui.manager.core.IconAtom.prototype._applyLabel.base.call(this, value);
-
-        this.getChildControl('icon').setName(value);
+      _fontIconRegex: null,
+      _iconChildControlName: null,
+      _onTap: function _onTap() {
+        navigator.clipboard.writeText(this.getLabel());
+        cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Icon name has been copied to clipboard'));
       },
+      // property apply
+      _applyLabel: function _applyLabel(value, old) {
+        cv.ui.manager.core.IconAtom.superclass.prototype._applyLabel.call(this, value, old);
 
-      /**
-       * Updates the visibility of the icon
-       */
-      _handleIcon: function _handleIcon() {
-        if (!this.getChildControl('icon').getName() || this.getShow() === 'label') {
-          this._excludeChildControl('icon');
+        this.setToolTipText(value);
+      },
+      _applyModel: function _applyModel(value) {
+        if (value) {
+          var _value = _slicedToArray(value, 2),
+              name = _value[0],
+              icon = _value[1];
+
+          this.setLabel(name);
+          this.setIcon(icon);
         } else {
-          this._showChildControl('icon');
+          this.resetLabel();
+          this.resetIcon();
+        }
+      },
+      _applyIcon: function _applyIcon(value, old) {
+        if (value) {
+          if (this._fontIconRegex.test(value)) {
+            this._iconChildControlName = 'htmlIcon';
+            var icon = this.getChildControl(this._iconChildControlName, true);
+
+            if (icon) {
+              icon.setValue(value);
+            }
+
+            this._excludeChildControl('icon');
+          } else {
+            this._iconChildControlName = 'icon';
+
+            var _icon = this.getChildControl(this._iconChildControlName, true);
+
+            if (_icon) {
+              _icon.setSource(value);
+            }
+
+            this._excludeChildControl('htmlIcon');
+          }
+        } else {
+          this._iconChildControlName = 'icon';
+
+          this._excludeChildControl('htmlIcon');
+        }
+
+        this._handleIcon();
+      },
+      _handleIcon: function _handleIcon() {
+        if (this.getIcon() === null || this.getShow() === 'label') {
+          this._excludeChildControl(this._iconChildControlName);
+        } else {
+          this._showChildControl(this._iconChildControlName);
         }
       },
       // overridden
@@ -78,19 +155,43 @@
 
         switch (id) {
           case 'icon':
-            control = new cv.ui.manager.viewer.SvgIcon();
-            control.setAnonymous(true);
+            control = new cv.ui.manager.basic.Image(this.getIcon());
+            control.set({
+              anonymous: true,
+              scale: true,
+              maxHeight: 64
+            });
 
             this._addAt(control, 0);
 
+            if (this.getIcon() === null || this.getShow() === 'label') {
+              control.exclude();
+            }
+
             break;
+
+          case 'htmlIcon':
+            control = new qx.ui.basic.Label(this.getIcon());
+            control.set({
+              anonymous: true,
+              rich: true,
+              height: 64,
+              width: 64
+            });
+
+            this._addAt(control, 0);
+
+            if (this.getIcon() === null || this.getShow() === 'label') {
+              control.exclude();
+            }
+
         }
 
-        return control || cv.ui.manager.core.IconAtom.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.core.IconAtom.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
   });
   cv.ui.manager.core.IconAtom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconAtom.js.map?dt=1660800144434
+//# sourceMappingURL=IconAtom.js.map?dt=1664297868056

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -20,7 +20,7 @@
       },
       "cv.data.Model": {},
       "cv.util.Tree": {},
-      "cv.TemplateEngine": {},
+      "cv.Application": {},
       "qx.event.message.Bus": {
         "defer": "runtime"
       }
@@ -55,7 +55,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.PageJump', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.HasChildren, cv.ui.common.HasAnimatedButton],
 
     /*
@@ -70,7 +70,7 @@
         props.bindClickToWidget = true;
       }
 
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
 
     /*
@@ -180,10 +180,10 @@
         var target = this.getTarget();
 
         if (this.getTargetPath() !== null) {
-          target = cv.TemplateEngine.getInstance().getPageIdByPath(target, this.getTargetPath());
+          target = cv.Application.structureController.getPageIdByPath(target, this.getTargetPath());
         }
 
-        cv.TemplateEngine.getInstance().scrollToPage(target);
+        cv.Application.structureController.scrollToPage(target);
       }
     },
     defer: function defer(statics) {
@@ -194,4 +194,4 @@
   cv.ui.structure.pure.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1660800148174
+//# sourceMappingURL=PageJump.js.map?dt=1664297871758

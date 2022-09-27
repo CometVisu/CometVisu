@@ -88,7 +88,7 @@
     *****************************************************************************
     */
     members: {
-      __P_341_0: null,
+      __P_361_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -101,7 +101,7 @@
 
         var child, sizes, spacing;
         var spanColumn = this.getSpanColumn();
-        var columnSizes = this.__P_341_0 = [0, 0, 0, 0];
+        var columnSizes = this.__P_361_0 = [0, 0, 0, 0];
         var columnSpacing = this.getColumnSpacing();
         var spanColumnWidth = 0;
         var maxInset = 0; // Compute column sizes and insets
@@ -151,7 +151,7 @@
           columnSizes[3] = this.getArrowColumnWidth();
         }
 
-        var height = qx.ui.menu.Layout.prototype._computeSizeHint.base.call(this).height; // Build hint
+        var height = qx.ui.menu.Layout.superclass.prototype._computeSizeHint.call(this).height; // Build hint
 
 
         return {
@@ -173,7 +173,7 @@
        * @return {Array} List of all column widths
        */
       getColumnSizes: function getColumnSizes() {
-        return this.__P_341_0 || null;
+        return this.__P_361_0 || null;
       }
     },
 
@@ -183,10 +183,10 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__P_341_0 = null;
+      this.__P_361_0 = null;
     }
   });
   qx.ui.menu.Layout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Layout.js.map?dt=1660800170336
+//# sourceMappingURL=Layout.js.map?dt=1664297894247

@@ -1,0 +1,176 @@
+{
+  "className": "cv.ui.structure.tile.MPopup",
+  "packageName": "cv.ui.structure.tile",
+  "name": "MPopup",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 119,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Handles cv-popup children and some general popup tasks, like global registration and close on click outside, modal blocker etc.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "statics": {
+    "openedPopups": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "events": {
+    "closed": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 33
+        }
+      },
+      "name": "closed",
+      "type": "qx.event.type.Event"
+    }
+  },
+  "members": {
+    "_childPopup": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_initPopupChild": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_openPopupChild": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_closePopupChild": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "registerModalPopup": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregisterModalPopup": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onPointerDown": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 115,
+        "column": 12
+      },
+      "end": {
+        "line": 118,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

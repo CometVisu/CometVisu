@@ -57,8 +57,8 @@
     *****************************************************************************
     */
     members: {
-      __P_206_0: null,
-      __P_206_1: null,
+      __P_226_0: null,
+      __P_226_1: null,
 
       /**
        * Initialize the fields of the event. The event must be initialized before
@@ -69,9 +69,9 @@
        * @return {qx.event.type.Orientation} The initialized event instance
        */
       init: function init(orientation, mode) {
-        qx.event.type.Orientation.prototype.init.base.call(this, false, false);
-        this.__P_206_0 = orientation;
-        this.__P_206_1 = mode;
+        qx.event.type.Orientation.superclass.prototype.init.call(this, false, false);
+        this.__P_226_0 = orientation;
+        this.__P_226_1 = mode;
         return this;
       },
 
@@ -86,9 +86,9 @@
        * @return {qx.event.type.Orientation} a copy of this object
        */
       clone: function clone(embryo) {
-        var clone = qx.event.type.Orientation.prototype.clone.base.call(this, embryo);
-        clone.__P_206_0 = this.__P_206_0;
-        clone.__P_206_1 = this.__P_206_1;
+        var clone = qx.event.type.Orientation.superclass.prototype.clone.call(this, embryo);
+        clone.__P_226_0 = this.__P_226_0;
+        clone.__P_226_1 = this.__P_226_1;
         return clone;
       },
 
@@ -105,7 +105,7 @@
        * @return {Integer} The current orientation in degree
        */
       getOrientation: function getOrientation() {
-        return this.__P_206_0;
+        return this.__P_226_0;
       },
 
       /**
@@ -115,7 +115,7 @@
        *     is currently in landscape mode.
        */
       isLandscape: function isLandscape() {
-        return this.__P_206_1 == "landscape";
+        return this.__P_226_1 == "landscape";
       },
 
       /**
@@ -125,11 +125,11 @@
        *     is currently in portrait mode.
        */
       isPortrait: function isPortrait() {
-        return this.__P_206_1 == "portrait";
+        return this.__P_226_1 == "portrait";
       }
     }
   });
   qx.event.type.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1660800159247
+//# sourceMappingURL=Orientation.js.map?dt=1664297883969

@@ -205,7 +205,7 @@
         }
       },
       _addWidgets: function _addWidgets() {
-        cv.ui.manager.tree.VirtualElementItem.prototype._addWidgets.base.call(this);
+        cv.ui.manager.tree.VirtualElementItem.superclass.prototype._addWidgets.call(this);
 
         var open = this.getChildControl('open', true);
 
@@ -253,7 +253,7 @@
             break;
         }
 
-        return control || cv.ui.manager.tree.VirtualElementItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.tree.VirtualElementItem.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       addLabel: function addLabel(text) {
@@ -286,4 +286,4 @@
   cv.ui.manager.tree.VirtualElementItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualElementItem.js.map?dt=1660800147272
+//# sourceMappingURL=VirtualElementItem.js.map?dt=1664297870720

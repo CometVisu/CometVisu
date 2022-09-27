@@ -13,7 +13,7 @@
         "construct": true
       },
       "qx.io.rest.Resource": {},
-      "cv.TemplateEngine": {},
+      "cv.io.BackendConnections": {},
       "qx.data.store.Rest": {},
       "cv.io.openhab.Rest": {},
       "qx.util.Serializer": {},
@@ -132,7 +132,7 @@
           }
         };
         var service = this.__P_21_3 = new qx.io.rest.Resource(serviceDesc);
-        var client = cv.TemplateEngine.getInstance().visu;
+        var client = cv.io.BackendConnections.getClient();
         this._store = new qx.data.store.Rest(service, 'get', {
           configureRequest: function configureRequest(req) {
             req.setRequestHeader('Content-Type', 'application/json');
@@ -179,7 +179,7 @@
           }
         };
         var config = this.__P_21_2 = new qx.io.rest.Resource(description);
-        var client = cv.TemplateEngine.getInstance().visu;
+        var client = cv.io.BackendConnections.getClient();
         config.addListener('getSuccess', function (ev) {
           this._createForm(ev.getRequest().getResponse());
         }, this);
@@ -303,7 +303,7 @@
             break;
         }
 
-        return control || cv.plugins.openhab.Settings.prototype._createChildControlImpl.base.call(this, id, hash);
+        return control || cv.plugins.openhab.Settings.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
       close: function close() {
         this.setVisibility('excluded');
@@ -322,4 +322,4 @@
   cv.plugins.openhab.Settings.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Settings.js.map?dt=1660800143113
+//# sourceMappingURL=Settings.js.map?dt=1664297866766

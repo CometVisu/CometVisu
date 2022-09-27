@@ -116,12 +116,12 @@
      */
     construct: function construct(doc) {
       // Symbolic links
-      this.__P_394_0 = qx.dom.Node.getWindow(doc);
-      this.__P_394_1 = doc; // Base call
+      this.__P_414_0 = qx.dom.Node.getWindow(doc);
+      this.__P_414_1 = doc; // Base call
 
       qx.ui.root.Abstract.constructor.call(this); // Resize handling
 
-      qx.event.Registration.addListener(this.__P_394_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
+      qx.event.Registration.addListener(this.__P_414_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
 
       this._setLayout(new qx.ui.layout.Canvas()); // Directly schedule layout for root element
 
@@ -133,7 +133,7 @@
 
       this.getContentElement().setStyle("-webkit-backface-visibility", "hidden"); // prevent scrolling on touch devices
 
-      this.addListener("touchmove", this.__P_394_2, this); // handle focus for iOS which seems to deny any focus action
+      this.addListener("touchmove", this.__P_414_2, this); // handle focus for iOS which seems to deny any focus action
 
       if (qx.core.Environment.get("os.name") == "ios") {
         this.getContentElement().addListener("tap", function (e) {
@@ -156,8 +156,8 @@
     *****************************************************************************
     */
     members: {
-      __P_394_0: null,
-      __P_394_1: null,
+      __P_414_0: null,
+      __P_414_1: null,
       // overridden
 
       /**
@@ -167,7 +167,7 @@
        * @return {qx.html.Element} The container HTML element
        */
       _createContentElement: function _createContentElement() {
-        var doc = this.__P_394_1;
+        var doc = this.__P_414_1;
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
           // In the "DOMContentLoaded" event of WebKit (Safari, Chrome) no body
@@ -217,8 +217,8 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        var width = qx.bom.Viewport.getWidth(this.__P_394_0);
-        var height = qx.bom.Viewport.getHeight(this.__P_394_0);
+        var width = qx.bom.Viewport.getWidth(this.__P_414_0);
+        var height = qx.bom.Viewport.getHeight(this.__P_414_0);
         return {
           minWidth: width,
           width: width,
@@ -234,7 +234,7 @@
           throw new Error("The root widget does not support 'left', or 'top' paddings!");
         }
 
-        qx.ui.root.Application.prototype._applyPadding.base.call(this, value, old, name);
+        qx.ui.root.Application.superclass.prototype._applyPadding.call(this, value, old, name);
       },
 
       /**
@@ -242,7 +242,7 @@
        * the native page scrolling.
        * @param e {qx.event.type.Touch} The qooxdoo touch event.
        */
-      __P_394_2: function __P_394_2(e) {
+      __P_414_2: function __P_414_2(e) {
         var node = e.getOriginalTarget();
 
         while (node && node.style) {
@@ -267,7 +267,7 @@
         }
 
         qx.dom.Element.remove(this.getContentElement().getDomElement());
-        qx.ui.root.Application.prototype.destroy.base.call(this);
+        qx.ui.root.Application.superclass.prototype.destroy.call(this);
       }
     },
 
@@ -277,10 +277,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_394_0 = this.__P_394_1 = null;
+      this.__P_414_0 = this.__P_414_1 = null;
     }
   });
   qx.ui.root.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1660800173473
+//# sourceMappingURL=Application.js.map?dt=1664297897074

@@ -11,7 +11,7 @@
       },
       "qx.event.message.Bus": {},
       "qx.util.DeferredCall": {},
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "cv.ui.structure.WidgetFactory": {
@@ -163,11 +163,11 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler('diagram', statics);
+      cv.parser.pure.WidgetParser.addHandler('diagram', statics);
       cv.ui.structure.WidgetFactory.registerClass('diagram', statics);
     }
   });
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1660800143002
+//# sourceMappingURL=Diagram.js.map?dt=1664297866659

@@ -5,13 +5,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.HasChildren": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "cv.data.Model": {},
@@ -55,7 +55,7 @@
    * @asset(plugins/mobilemenu/*.css)
    */
   qx.Class.define('cv.plugins.MobileMenu', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.HasChildren],
 
     /*
@@ -75,8 +75,8 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
-        cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+        cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
         return data;
       },
       getWidgetElements: function getWidgetElements(xmlElement, path) {
@@ -167,11 +167,11 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-      cv.parser.WidgetParser.addHandler('mobilemenu', statics);
+      cv.parser.pure.WidgetParser.addHandler('mobilemenu', statics);
       cv.ui.structure.WidgetFactory.registerClass('mobilemenu', statics);
     }
   });
   cv.plugins.MobileMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MobileMenu.js.map?dt=1660800142385
+//# sourceMappingURL=MobileMenu.js.map?dt=1664297866053

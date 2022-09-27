@@ -284,7 +284,7 @@
       },
       // overridden
       _onChangeTheme: function _onChangeTheme() {
-        cv.ui.manager.basic.Image.prototype._onChangeTheme.base.call(this); // restyle source (theme change might have changed the resolved url)
+        cv.ui.manager.basic.Image.superclass.prototype._onChangeTheme.call(this); // restyle source (theme change might have changed the resolved url)
 
 
         this._styleSource();
@@ -312,7 +312,7 @@
       },
       // overridden
       _applyDecorator: function _applyDecorator(value, old) {
-        cv.ui.manager.basic.Image.prototype._applyDecorator.base.call(this, value, old);
+        cv.ui.manager.basic.Image.superclass.prototype._applyDecorator.call(this, value, old);
 
         var source = this.getSource();
         source = qx.util.AliasManager.getInstance().resolve(source);
@@ -342,7 +342,7 @@
       },
       // overridden
       _applyPadding: function _applyPadding(value, old, name) {
-        cv.ui.manager.basic.Image.prototype._applyPadding.base.call(this, value, old, name);
+        cv.ui.manager.basic.Image.superclass.prototype._applyPadding.call(this, value, old, name);
 
         var element = this.getContentElement();
 
@@ -361,7 +361,7 @@
         }
       },
       renderLayout: function renderLayout(left, top, width, height) {
-        cv.ui.manager.basic.Image.prototype.renderLayout.base.call(this, left, top, width, height);
+        cv.ui.manager.basic.Image.superclass.prototype.renderLayout.call(this, left, top, width, height);
         var element = this.getContentElement();
 
         if (this.__P_27_5) {
@@ -381,7 +381,7 @@
       */
       // property apply, overridden
       _applyEnabled: function _applyEnabled(value, old) {
-        cv.ui.manager.basic.Image.prototype._applyEnabled.base.call(this, value, old);
+        cv.ui.manager.basic.Image.superclass.prototype._applyEnabled.call(this, value, old);
 
         if (this.getSource()) {
           this._styleSource();
@@ -854,7 +854,7 @@
         }
       },
       _applyDimension: function _applyDimension() {
-        cv.ui.manager.basic.Image.prototype._applyDimension.base.call(this);
+        cv.ui.manager.basic.Image.superclass.prototype._applyDimension.call(this);
 
         var isFont = this.getSource() && qx.lang.String.startsWith(this.getSource(), '@');
 
@@ -1187,4 +1187,4 @@
   cv.ui.manager.basic.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1660800144080
+//# sourceMappingURL=Image.js.map?dt=1664297867697

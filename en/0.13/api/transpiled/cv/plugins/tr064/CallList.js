@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -15,7 +15,7 @@
       "cv.ui.common.Update": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "qx.event.Timer": {},
@@ -62,7 +62,7 @@
    * @asset(plugins/tr064/*)
    */
   qx.Class.define('cv.plugins.tr064.CallList', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
     /*
@@ -73,7 +73,7 @@
     construct: function construct(props) {
       var _this = this;
 
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this.__P_22_0 = {};
       this.addListenerOnce('domReady', function () {
         _this.refreshCalllist('initial');
@@ -97,10 +97,10 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseFormat(xml, path);
-        cv.parser.WidgetParser.parseAddress(xml, path);
-        cv.parser.WidgetParser.parseRefresh(xml, path);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.parser.pure.WidgetParser.parseFormat(xml, path);
+        cv.parser.pure.WidgetParser.parseAddress(xml, path);
+        cv.parser.pure.WidgetParser.parseRefresh(xml, path);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -547,11 +547,11 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/tr064/tr064.css');
-      cv.parser.WidgetParser.addHandler('calllist', cv.plugins.tr064.CallList);
+      cv.parser.pure.WidgetParser.addHandler('calllist', cv.plugins.tr064.CallList);
       cv.ui.structure.WidgetFactory.registerClass('calllist', statics);
     }
   });
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1660800143237
+//# sourceMappingURL=CallList.js.map?dt=1664297866881

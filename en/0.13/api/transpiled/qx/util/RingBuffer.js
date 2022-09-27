@@ -53,17 +53,17 @@
     },
     members: {
       //Next slot in ringbuffer to use
-      __P_474_0: 0,
+      __P_494_0: 0,
       //Number of elements in ring buffer
-      __P_474_1: 0,
+      __P_494_1: 0,
       //Was a mark set?
-      __P_474_2: false,
+      __P_494_2: false,
       //How many elements were stored since setting of mark?
-      __P_474_3: 0,
+      __P_494_3: 0,
       //ring buffer
-      __P_474_4: null,
+      __P_494_4: null,
       //Maximum number of messages to store. Could be converted to a qx property.
-      __P_474_5: null,
+      __P_494_5: null,
 
       /**
        * Set the maximum number of messages to hold. If null the number of
@@ -74,7 +74,7 @@
        * @param maxEntries {Integer} the maximum number of messages to hold
        */
       setMaxEntries: function setMaxEntries(maxEntries) {
-        this.__P_474_5 = maxEntries;
+        this.__P_494_5 = maxEntries;
         this.clear();
       },
 
@@ -84,7 +84,7 @@
        * @return {Integer}
        */
       getMaxEntries: function getMaxEntries() {
-        return this.__P_474_5;
+        return this.__P_494_5;
       },
 
       /**
@@ -93,18 +93,18 @@
        * @param entry {var} The data to store
        */
       addEntry: function addEntry(entry) {
-        this.__P_474_4[this.__P_474_0] = entry;
-        this.__P_474_0 = this.__P_474_6(this.__P_474_0, 1); //Count # of stored entries
+        this.__P_494_4[this.__P_494_0] = entry;
+        this.__P_494_0 = this.__P_494_6(this.__P_494_0, 1); //Count # of stored entries
 
         var max = this.getMaxEntries();
 
-        if (this.__P_474_1 < max) {
-          this.__P_474_1++;
+        if (this.__P_494_1 < max) {
+          this.__P_494_1++;
         } //Count # of stored elements since last mark call
 
 
-        if (this.__P_474_2 && this.__P_474_3 < max) {
-          this.__P_474_3++;
+        if (this.__P_494_2 && this.__P_494_3 < max) {
+          this.__P_494_3++;
         }
       },
 
@@ -113,7 +113,7 @@
        * @return {Integer}
        */
       getNumEntriesStored: function getNumEntriesStored() {
-        return this.__P_474_1;
+        return this.__P_494_1;
       },
 
       /**
@@ -121,15 +121,15 @@
        *
        */
       mark: function mark() {
-        this.__P_474_2 = true;
-        this.__P_474_3 = 0;
+        this.__P_494_2 = true;
+        this.__P_494_3 = 0;
       },
 
       /**
        * Removes the current mark position
        */
       clearMark: function clearMark() {
-        this.__P_474_2 = false;
+        this.__P_494_2 = false;
       },
 
       /**
@@ -153,29 +153,29 @@
        */
       getEntries: function getEntries(count, startingFromMark) {
         //Trim count so it does not exceed ringbuffer size
-        if (count > this.__P_474_1) {
-          count = this.__P_474_1;
+        if (count > this.__P_494_1) {
+          count = this.__P_494_1;
         } // Trim count so it does not exceed last call to mark (if mark was called
         // and startingFromMark was true)
 
 
-        if (startingFromMark && this.__P_474_2 && count > this.__P_474_3) {
-          count = this.__P_474_3;
+        if (startingFromMark && this.__P_494_2 && count > this.__P_494_3) {
+          count = this.__P_494_3;
         }
 
         if (count > 0) {
-          var indexOfYoungestElementInHistory = this.__P_474_6(this.__P_474_0, -1);
+          var indexOfYoungestElementInHistory = this.__P_494_6(this.__P_494_0, -1);
 
-          var startIndex = this.__P_474_6(indexOfYoungestElementInHistory, -count + 1);
+          var startIndex = this.__P_494_6(indexOfYoungestElementInHistory, -count + 1);
 
           var result;
 
           if (startIndex <= indexOfYoungestElementInHistory) {
             //Requested segment not wrapping around ringbuffer boundary, get in one run
-            result = this.__P_474_4.slice(startIndex, indexOfYoungestElementInHistory + 1);
+            result = this.__P_494_4.slice(startIndex, indexOfYoungestElementInHistory + 1);
           } else {
             //Requested segment wrapping around ringbuffer boundary, get two parts & concat
-            result = this.__P_474_4.slice(startIndex, this.__P_474_1).concat(this.__P_474_4.slice(0, indexOfYoungestElementInHistory + 1));
+            result = this.__P_494_4.slice(startIndex, this.__P_494_1).concat(this.__P_494_4.slice(0, indexOfYoungestElementInHistory + 1));
           }
         } else {
           result = [];
@@ -188,10 +188,10 @@
        * Clears all entries
        */
       clear: function clear() {
-        this.__P_474_4 = new Array(this.getMaxEntries());
-        this.__P_474_1 = 0;
-        this.__P_474_3 = 0;
-        this.__P_474_0 = 0;
+        this.__P_494_4 = new Array(this.getMaxEntries());
+        this.__P_494_1 = 0;
+        this.__P_494_3 = 0;
+        this.__P_494_0 = 0;
       },
 
       /**
@@ -203,7 +203,7 @@
        * @param addMe {Number} The number to add.
        * @return {Number} The new index
        */
-      __P_474_6: function __P_474_6(idx, addMe) {
+      __P_494_6: function __P_494_6(idx, addMe) {
         var max = this.getMaxEntries();
         var result = (idx + addMe) % max; //If negative, wrap up into the ringbuffer space
 
@@ -218,4 +218,4 @@
   qx.util.RingBuffer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RingBuffer.js.map?dt=1660800179161
+//# sourceMappingURL=RingBuffer.js.map?dt=1664297902428

@@ -48,10 +48,10 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_497_0 = {};
-      this.__P_497_1 = {};
-      this.__P_497_2 = {};
-      this.__P_497_3 = {};
+      this.__P_516_0 = {};
+      this.__P_516_1 = {};
+      this.__P_516_2 = {};
+      this.__P_516_3 = {};
     },
 
     /*
@@ -71,35 +71,83 @@
     },
 
     /*
+    ***********************************************
+      PROPERTIES
+    ***********************************************
+    */
+    properties: {
+      defaultBackendName: {
+        check: 'String',
+        init: 'main'
+      }
+    },
+
+    /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_497_0: null,
-      __P_497_1: null,
-      __P_497_2: null,
-      __P_497_3: null,
-      getStateListener: function getStateListener() {
-        return this.__P_497_1;
+      __P_516_0: null,
+      __P_516_1: null,
+      __P_516_2: null,
+      __P_516_3: null,
+
+      /**
+       * @param backendName {String?} name of the backend
+       * @return {Map}
+       */
+      getStateListener: function getStateListener(backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
+
+        return Object.prototype.hasOwnProperty.call(this.__P_516_1, backendName) ? this.__P_516_1 : {};
       },
 
       /**
        * Updates the state of a single address
        *
        * @param address {String} KNX-GA or openHAB item name
-       * @param state {var} new state
+       * @param state {variant} new state
+       * @param backendName {String} name of the backend
        */
-      onUpdate: function onUpdate(address, state) {
-        var initial = !Object.prototype.hasOwnProperty.call(this.__P_497_0, address);
-        var changed = initial || this.__P_497_0[address] !== state;
-        this.__P_497_0[address] = state; // notify listeners
+      onUpdate: function onUpdate(address, state, backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
 
-        if (this.__P_497_1[address]) {
-          this.__P_497_1[address].forEach(function (listener) {
+        if (!Object.prototype.hasOwnProperty.call(this.__P_516_0, backendName)) {
+          this.__P_516_0[backendName] = {};
+        }
+
+        var initial = !Object.prototype.hasOwnProperty.call(this.__P_516_0[backendName], address);
+        var changed = initial || this.__P_516_0[backendName][address] !== state;
+        this.__P_516_0[backendName][address] = state; // notify listeners
+
+        if (Object.prototype.hasOwnProperty.call(this.__P_516_1, backendName) && this.__P_516_1[backendName][address]) {
+          this.__P_516_1[backendName][address].forEach(function (listener) {
             listener[0].call(listener[1], address, state, initial, changed);
           }, this);
         }
+      },
+
+      /**
+       * Changes a state without notifying the listeners about that change.
+       * @param address {String} KNX-GA or openHAB item name
+       * @param state {variant} new state
+       * @param backendName {String} name of the backend
+       */
+      setState: function setState(address, state, backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
+
+        if (!Object.prototype.hasOwnProperty.call(this.__P_516_0, backendName)) {
+          this.__P_516_0[backendName] = {};
+        }
+
+        this.__P_516_0[backendName][address] = state;
       },
 
       /**
@@ -107,26 +155,45 @@
        * @param data {Map} Key/value map of address/state
        */
       update: function update(data) {
+        this.updateFrom(this.getDefaultBackendName(), data);
+      },
+
+      /**
+       * handles incoming data from a specific backend.
+       * @param backendName {String} name of the backend
+       * @param data {Map} Key/value map of address/state
+       */
+      updateFrom: function updateFrom(backendName, data) {
         if (!data) {
           return;
         }
 
-        var addressList = this.__P_497_2;
-        Object.getOwnPropertyNames(data).forEach(function (address) {
-          if (Object.prototype.hasOwnProperty.call(addressList, address)) {
-            this.onUpdate(address, data[address]);
-          }
-        }, this);
+        var addressList = this.__P_516_2[backendName];
+
+        if (addressList) {
+          Object.getOwnPropertyNames(data).forEach(function (address) {
+            if (Object.prototype.hasOwnProperty.call(addressList, address)) {
+              this.onUpdate(address, data[address], backendName);
+            }
+          }, this);
+        } else {
+          this.warn('no addresses registered for backend "' + backendName + '", skipping update');
+        }
       },
 
       /**
        * Get the current state of an address.
        *
        * @param address {String} KNX-GA or openHAB item name
-       * @return {var}
+       * @param backendName {String} name of the backend
+       * @return {variant}
        */
-      getState: function getState(address) {
-        return this.__P_497_0[address];
+      getState: function getState(address, backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
+
+        return Object.prototype.hasOwnProperty.call(this.__P_516_0, backendName) ? this.__P_516_0[backendName][address] : undefined;
       },
 
       /**
@@ -135,13 +202,22 @@
        * @param address {String} KNX-GA or openHAB item name
        * @param callback {Function} called on updates
        * @param context {Object} context of the callback
+       * @param backendName {String} name of the backend
        */
-      addUpdateListener: function addUpdateListener(address, callback, context) {
-        if (!this.__P_497_1[address]) {
-          this.__P_497_1[address] = [];
+      addUpdateListener: function addUpdateListener(address, callback, context, backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
         }
 
-        this.__P_497_1[address].push([callback, context]);
+        if (!Object.prototype.hasOwnProperty.call(this.__P_516_1, backendName)) {
+          this.__P_516_1[backendName] = {};
+        }
+
+        if (!this.__P_516_1[backendName][address]) {
+          this.__P_516_1[backendName][address] = [];
+        }
+
+        this.__P_516_1[backendName][address].push([callback, context]);
       },
 
       /**
@@ -150,25 +226,32 @@
        * @param address {String} KNX-GA or openHAB item name
        * @param callback {Function} called on updates
        * @param context {Object} context of the callback
+       * @param backendName {String} name of the backend
        */
-      removeUpdateListener: function removeUpdateListener(address, callback, context) {
-        if (this.__P_497_1[address]) {
-          var removeIndex = -1;
+      removeUpdateListener: function removeUpdateListener(address, callback, context, backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
 
-          this.__P_497_1[address].some(function (entry, i) {
-            if (entry[0] === callback && entry[1] === context) {
-              removeIndex = i;
-              return true;
-            }
+        if (Object.prototype.hasOwnProperty.call(this.__P_516_1, backendName)) {
+          if (this.__P_516_1[backendName][address]) {
+            var removeIndex = -1;
 
-            return false;
-          });
+            this.__P_516_1[backendName][address].some(function (entry, i) {
+              if (entry[0] === callback && entry[1] === context) {
+                removeIndex = i;
+                return true;
+              }
 
-          if (removeIndex >= 0) {
-            this.__P_497_1[address].splice(removeIndex, 1);
+              return false;
+            });
 
-            if (this.__P_497_1[address].length === 0) {
-              delete this.__P_497_1[address];
+            if (removeIndex >= 0) {
+              this.__P_516_1[backendName][address].splice(removeIndex, 1);
+
+              if (this.__P_516_1[backendName][address].length === 0) {
+                delete this.__P_516_1[backendName][address];
+              }
             }
           }
         }
@@ -178,9 +261,18 @@
        * Add an Address -> Path mapping to the addressList
        * @param address {String} KNX-GA or openHAB item name
        * @param id {String} path to the widget
+       * @param backendName {String?} optional backend name for this address
        */
-      addAddress: function addAddress(address, id) {
-        var list = this.__P_497_2;
+      addAddress: function addAddress(address, id, backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
+
+        if (!Object.prototype.hasOwnProperty.call(this.__P_516_2, backendName)) {
+          this.__P_516_2[backendName] = {};
+        }
+
+        var list = this.__P_516_2[backendName];
 
         if (address in list) {
           list[address].push(id);
@@ -191,34 +283,42 @@
 
       /**
        * Get the addresses as Array.
-       * @return {Map} Address -> path mapping
+       * @param backendName {String?} optional backend name for this address
+       * @return {Array<String>} list of addresses
        */
-      getAddresses: function getAddresses() {
-        return Object.keys(this.__P_497_2);
+      getAddresses: function getAddresses(backendName) {
+        if (!backendName) {
+          backendName = this.getDefaultBackendName();
+        }
+
+        return Object.prototype.hasOwnProperty.call(this.__P_516_2, backendName) ? Object.keys(this.__P_516_2[backendName]) : [];
       },
 
       /**
        * Setter for address list.
        * @param value {Map} Address -> path mapping
+       * @param backendName {String?} optional backend name for this address
        */
-      setAddressList: function setAddressList(value) {
-        this.__P_497_2 = value;
+      setAddressList: function setAddressList(value, backendName) {
+        this.__P_516_2[backendName || this.getDefaultBackendName()] = value;
       },
 
       /**
        * Getter for the address list.
+       * @param backendName {String?} optional backend name for this address
        * @return {Map} Address -> path mapping
        */
-      getAddressList: function getAddressList() {
-        return this.__P_497_2;
+      getAddressList: function getAddressList(backendName) {
+        return this.__P_516_2[backendName || this.getDefaultBackendName()];
       },
 
       /**
        * Clears the current address list.
+       * @param backendName {String?} optional backend name for this address
        * @internal
        */
-      resetAddressList: function resetAddressList() {
-        this.__P_497_2 = {};
+      resetAddressList: function resetAddressList(backendName) {
+        this.__P_516_2[backendName || this.getDefaultBackendName()] = {};
       },
 
       /**
@@ -227,7 +327,7 @@
        * @return {Map} widget data map
        */
       getWidgetData: function getWidgetData(path) {
-        return this.__P_497_3[path] || (this.__P_497_3[path] = {});
+        return this.__P_516_3[path] || (this.__P_516_3[path] = {});
       },
 
       /**
@@ -266,7 +366,7 @@
        * @param value {Map} path -> widget data map
        */
       setWidgetDataModel: function setWidgetDataModel(value) {
-        this.__P_497_3 = value;
+        this.__P_516_3 = value;
       },
 
       /**
@@ -274,7 +374,7 @@
        * @return {Map} path -> widget data map
        */
       getWidgetDataModel: function getWidgetDataModel() {
-        return this.__P_497_3;
+        return this.__P_516_3;
       },
 
       /**
@@ -282,7 +382,7 @@
        * @internal
        */
       resetWidgetDataModel: function resetWidgetDataModel() {
-        this.__P_497_3 = {};
+        this.__P_516_3 = {};
       },
 
       /**
@@ -290,14 +390,14 @@
        * @internal
        */
       clear: function clear() {
-        this.__P_497_2 = {};
-        this.__P_497_3 = {};
-        this.__P_497_0 = {};
-        this.__P_497_1 = {};
+        this.__P_516_2 = {};
+        this.__P_516_3 = {};
+        this.__P_516_0 = {};
+        this.__P_516_1 = {};
       }
     }
   });
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1660800180987
+//# sourceMappingURL=Model.js.map?dt=1664297904205

@@ -172,7 +172,7 @@
             break;
         }
 
-        return control || qx.ui.groupbox.GroupBox.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.groupbox.GroupBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /**
@@ -276,4 +276,4 @@
   qx.ui.groupbox.GroupBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GroupBox.js.map?dt=1660800169424
+//# sourceMappingURL=GroupBox.js.map?dt=1664297893296

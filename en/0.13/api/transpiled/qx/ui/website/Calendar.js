@@ -289,16 +289,16 @@
       "rendered": ""
     },
     members: {
-      __P_452_0: null,
+      __P_472_0: null,
       _value: null,
       _shownValue: null,
       // overridden
       init: function init() {
-        if (!qx.ui.website.Calendar.prototype.init.base.call(this)) {
+        if (!qx.ui.website.Calendar.superclass.prototype.init.call(this)) {
           return false;
         }
 
-        this.__P_452_0 = [];
+        this.__P_472_0 = [];
         var today = new Date();
         today = this._getNormalizedDate(today);
         this.showValue(today);
@@ -369,8 +369,8 @@
             }
           }
         } else if (this.getConfig("selectionMode") == "range") {
-          if (!this.__P_452_0) {
-            this.__P_452_0 = value.map(function (val) {
+          if (!this.__P_472_0) {
+            this.__P_472_0 = value.map(function (val) {
               return val.toDateString();
             });
           }
@@ -463,14 +463,14 @@
         var newValue = new Date(newStr);
 
         if (this.getConfig("selectionMode") == "range") {
-          var range = this.__P_452_0.slice(0);
+          var range = this.__P_472_0.slice(0);
 
           if (range.length == 2) {
             range = [];
           }
 
           range.push(newStr);
-          this.__P_452_0 = range;
+          this.__P_472_0 = range;
           range = range.map(function (item) {
             return new Date(item);
           });
@@ -623,7 +623,7 @@
                 cssClasses += " " + cssPrefix + "-selected";
               }
             } else {
-              var range = this.__P_452_0;
+              var range = this.__P_472_0;
 
               if (this._value) {
                 value = this.getConfig("selectionMode") == "range" ? new Date(range[range.length - 1]) : this._value;
@@ -874,7 +874,7 @@
         this.find("." + cssPrefix + "-day").off("tap", this._selectDay, this);
         this.off("focus", this._onFocus, this, true).off("blur", this._onBlur, this, true).off("keydown", this._onKeyDown, this);
         this.setHtml("");
-        return qx.ui.website.Calendar.prototype.dispose.base.call(this);
+        return qx.ui.website.Calendar.superclass.prototype.dispose.call(this);
       }
     },
     defer: function defer(statics) {
@@ -886,4 +886,4 @@
   qx.ui.website.Calendar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Calendar.js.map?dt=1660800177860
+//# sourceMappingURL=Calendar.js.map?dt=1664297901188

@@ -152,11 +152,11 @@
             break;
         }
 
-        return control || qx.ui.table.headerrenderer.HeaderCell.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.table.headerrenderer.HeaderCell.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
   });
   qx.ui.table.headerrenderer.HeaderCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HeaderCell.js.map?dt=1660800174685
+//# sourceMappingURL=HeaderCell.js.map?dt=1664297898188

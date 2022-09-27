@@ -173,7 +173,7 @@
       },
       // overridden
       _applySelectable: function _applySelectable(value) {
-        qx.ui.embed.Html.prototype._applySelectable.base.call(this, value);
+        qx.ui.embed.Html.superclass.prototype._applySelectable.call(this, value);
         /*
          * We have to set the value to "text" in Webkit for the content element
          */
@@ -218,4 +218,4 @@
   qx.ui.embed.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1660800167593
+//# sourceMappingURL=Html.js.map?dt=1664297891559

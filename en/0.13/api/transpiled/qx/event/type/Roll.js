@@ -45,7 +45,7 @@
       },
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        var clone = qx.event.type.Roll.prototype._cloneNativeEvent.base.call(this, nativeEvent, clone);
+        var clone = qx.event.type.Roll.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
 
         clone.delta = nativeEvent.delta;
         clone.momentum = nativeEvent.momentum;
@@ -85,4 +85,4 @@
   qx.event.type.Roll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roll.js.map?dt=1660800159328
+//# sourceMappingURL=Roll.js.map?dt=1664297884041

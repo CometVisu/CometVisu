@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -55,7 +55,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton, cv.ui.common.HandleLongpress],
 
     /*
@@ -173,7 +173,7 @@
           qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
         }, this);
       },
-      __P_57_0: function __P_57_0(element) {
+      __P_60_0: function __P_60_0(element) {
         while (!element.classList.contains('actor')) {
           element = element.parentNode;
 
@@ -186,12 +186,12 @@
         return element;
       },
       _onLongTap: function _onLongTap(event) {
-        this.__P_57_1(false, this.__P_57_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_60_1(false, this.__P_60_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
       _action: function _action(event) {
-        this.__P_57_1(true, this.__P_57_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_60_1(true, this.__P_60_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
-      __P_57_1: function __P_57_1(isShort, isDown) {
+      __P_60_1: function __P_60_1(isShort, isDown) {
         var value;
 
         if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
@@ -235,4 +235,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1660800147991
+//# sourceMappingURL=InfoTrigger.js.map?dt=1664297871593

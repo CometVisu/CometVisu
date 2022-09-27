@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 247,
+        "line": 312,
         "column": 3
       }
     },
@@ -72,7 +72,7 @@
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 76,
           "column": 5
         }
       },
@@ -103,17 +103,56 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "includeScript": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Include a JS file with module support</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "src {String} Href value",
+            "paramName": "src",
+            "description": " Href value",
+            "type": "cv.util.String"
+          },
+          {
+            "name": "@param",
+            "body": "type {string?} Content of the type attribute",
+            "paramName": "type",
+            "description": " Content of the type attribute",
+            "optional": true,
+            "type": "string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     }
   },
   "properties": {
     "allQueued": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 109,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 114,
           "column": 5
         }
       },
@@ -121,6 +160,24 @@
       "propertyType": "new",
       "event": "changeAllQueued",
       "apply": "_checkQueue",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "finished": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 5
+        }
+      },
+      "name": "finished",
+      "propertyType": "new",
+      "event": "changeFinished",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -162,25 +219,39 @@
     "finished": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 128,
           "column": 37
         }
       },
       "name": "finished",
       "type": "qx.event.type.Event"
     },
-    "designError": {
+    "stylesLoaded": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 129,
+          "column": 41
+        }
+      },
+      "name": "stylesLoaded",
+      "type": "qx.event.type.Event"
+    },
+    "designError": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
           "column": 39
         }
       },
@@ -192,11 +263,11 @@
     "__scriptQueue": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 102,
+          "line": 139,
           "column": 23
         }
       },
@@ -206,11 +277,11 @@
     "__loaders": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 140,
           "column": 19
         }
       },
@@ -220,11 +291,11 @@
     "__listener": {
       "location": {
         "start": {
-          "line": 104,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 104,
+          "line": 141,
           "column": 21
         }
       },
@@ -234,11 +305,11 @@
     "__markedAsLoaded": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 142,
           "column": 26
         }
       },
@@ -248,11 +319,11 @@
     "addStyles": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 181,
           "column": 5
         }
       },
@@ -262,11 +333,11 @@
     "markAsLoaded": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 188,
           "column": 5
         }
       },
@@ -276,11 +347,11 @@
     "isMarkedAsLoaded": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 192,
           "column": 5
         }
       },
@@ -290,11 +361,11 @@
     "addScripts": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 194,
           "column": 4
         },
         "end": {
-          "line": 167,
+          "line": 230,
           "column": 5
         }
       },
@@ -304,11 +375,11 @@
     "__loadSingleScript": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 249,
           "column": 5
         }
       },
@@ -335,11 +406,11 @@
     "_onLoaded": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 256,
           "column": 5
         }
       },
@@ -349,11 +420,11 @@
     "_onFailed": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 258,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 283,
           "column": 5
         }
       },
@@ -363,11 +434,11 @@
     "_checkQueue": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 286,
           "column": 4
         },
         "end": {
-          "line": 245,
+          "line": 310,
           "column": 5
         }
       },
@@ -600,6 +671,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allQueued</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allQueued}."
+          }
+        ]
+      }
+    },
+    "getFinished": {
+      "type": "function",
+      "name": "getFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>finished</code>.\n\nFor further details take a look at the property definition: {@link #finished}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for finished"
+          }
+        ]
+      }
+    },
+    "isFinished": {
+      "type": "function",
+      "name": "isFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>finished</code>.\n\nFor further details take a look at the property definition: {@link #finished}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for finished"
+          }
+        ]
+      }
+    },
+    "setFinished": {
+      "type": "function",
+      "name": "setFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>finished</code>.\n\nFor further details take a look at the property definition: {@link #finished}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for finished"
+          }
+        ]
+      }
+    },
+    "resetFinished": {
+      "type": "function",
+      "name": "resetFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>finished</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #finished}."
           }
         ]
       }

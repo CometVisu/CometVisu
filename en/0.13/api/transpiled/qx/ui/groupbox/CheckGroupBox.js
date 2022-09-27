@@ -95,11 +95,11 @@
 
         }
 
-        return control || qx.ui.groupbox.CheckGroupBox.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.groupbox.CheckGroupBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
-        qx.ui.groupbox.CheckGroupBox.prototype._applyEnabled.base.call(this, value, old);
+        qx.ui.groupbox.CheckGroupBox.superclass.prototype._applyEnabled.call(this, value, old);
 
         this.getChildrenContainer().setEnabled(value && this.getValue());
       },
@@ -179,4 +179,4 @@
   qx.ui.groupbox.CheckGroupBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckGroupBox.js.map?dt=1660800169394
+//# sourceMappingURL=CheckGroupBox.js.map?dt=1664297893268

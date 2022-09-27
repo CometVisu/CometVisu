@@ -64,7 +64,7 @@
       // overridden
       main: function main() {
         // Call super class
-        qxl.apiviewer.Application.prototype.main.base.call(this); // Add log appenders
+        qxl.apiviewer.Application.superclass.prototype.main.call(this); // Add log appenders
 
         qx.Class.include(qx.ui.core.Widget, qxl.apiviewer.MWidgetRegistry);
         this.viewer = new qxl.apiviewer.Viewer();
@@ -76,7 +76,7 @@
       },
       // overridden
       finalize: function finalize() {
-        qxl.apiviewer.Application.prototype.finalize.base.call(this); // Finally load the data
+        qxl.apiviewer.Application.superclass.prototype.finalize.call(this); // Finally load the data
 
         this.viewer._searchView.apiindex = qxl.$$apiviewer.apiindex;
         this.controller.load(qxl.$$apiviewer.classes);
@@ -89,4 +89,4 @@
   qxl.apiviewer.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1660800180009
+//# sourceMappingURL=Application.js.map?dt=1664297903362

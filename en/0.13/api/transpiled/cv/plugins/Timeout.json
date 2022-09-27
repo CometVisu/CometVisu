@@ -2,7 +2,7 @@
   "className": "cv.plugins.Timeout",
   "packageName": "cv.plugins",
   "name": "Timeout",
-  "superClass": "cv.ui.structure.AbstractBasicWidget",
+  "superClass": "cv.ui.structure.pure.AbstractBasicWidget",
   "interfaces": [],
   "mixins": [],
   "functionName": null,

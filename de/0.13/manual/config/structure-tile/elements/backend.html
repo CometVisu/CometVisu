@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konfiguration der Backend Verbindung &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/elements/backend.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../search.html" />
+    <link rel="next" title="Mapping" href="mapping.html" />
+    <link rel="prev" title="Grundsätzlicher Aufbau" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-struktur">Pure-Struktur</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#meta-bereich">Meta-Bereich</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
+      <li>Konfiguration der Backend Verbindung</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="konfiguration-der-backend-verbindung">
+<span id="tile-element-backend"></span><h1>Konfiguration der Backend Verbindung<a class="headerlink" href="#konfiguration-der-backend-verbindung" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Tile-Struktur unterstützt die gleichzeitige Verbindung zu beliebig vielen Backends. So ist es z.B. möglich
+neben dem Default-Backend eine Verbindung zu einem MQTT-Broker aufzubauen und dieses parallel zu nutzen.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p>cv-backend</p></td>
+<td><p><abbr title="Pflichtangabe">type</abbr></p></td>
+<td><p><em>knxd</em>, <em>openhab</em>, <em>mqtt</em> oder <em>simulated</em></p></td>
+<td><p>Typ des Backends: <code class="docutils literal notranslate"><span class="pre">knxd</span></code> = KNXD, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> = openHAB Server, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code> = MQTT-Broker, <code class="docutils literal notranslate"><span class="pre">simulated</span></code> = Simuliertes Backend zu Testzwecken.</p></td>
+</tr>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>token</p></td>
+<td><p>Optionaler Name dieser Backend-Verbindung (default=main).</p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Diese Verbindung als Standard nehmen, alle cv-address Elemente ohne „name“-Attribut nutzen diese Verbindung.</p></td>
+</tr>
+<tr class="row-even"><td><p>uri</p></td>
+<td><p>anyURI</p></td>
+<td><p>URL für die Verbindung zum Backend.</p></td>
+</tr>
+<tr class="row-odd"><td><p>username</p></td>
+<td><p>Text</p></td>
+<td><p>Benutzername für Anfragen an das Backend (kann auch ein Token sein).</p></td>
+</tr>
+<tr class="row-even"><td><p>password</p></td>
+<td><p>Text</p></td>
+<td><p>Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird, ist ein Passwort nicht erforderlich).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Es müssen ein paar Regeln beachtet werden, wenn mehrere Backends benutzt werden:</p>
+<ol class="arabic simple">
+<li><p>Es muss mindestens ein Backend in der Konfigurationsdatei definiert werden ansonsten findet keine Kommunikation statt.</p></li>
+<li><p>Es darf es keine zwei cv-backend Element mit dem gleichen Namen geben. Der Standard-Name eines Backend ist „main“,
+d.h. das <code class="docutils literal notranslate"><span class="pre">&lt;cv-backend&gt;</span></code>-Element ohne <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut erhält den Namen „main“ (und es darf daher auch nur eine cv-backend
+Element ohne Namen geben)</p></li>
+</ol>
+<p><strong>Wie der Name eines Backend bestimmt wird</strong></p>
+<p>Sofern kein <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut existiert wird der Name des Backends nach folgenden Regeln bestimmt:
+Der oberste <cite>cv-backend`</cite>-Eintrag ohne <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut erhält den Namen „main“, bei den folgenden Einträgen
+entspricht der Name dem Wert des <code class="docutils literal notranslate"><span class="pre">type</span></code>-Attributs.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Der Name <code class="docutils literal notranslate"><span class="pre">system</span></code> ist für das interne <a class="reference internal" href="#tile-backend-system"><span class="std std-ref">System-Backend</span></a> reserviert und darf nicht benutzt werden.</p>
+</div>
+<p>Beispiel für die gleichzeitige Nutzung des KNXD und MQTT Backends:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;default&quot;</span> <span class="na">uri=</span><span class="s">&quot;/cgi-bin/l&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>In diesem Fall nutzen alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente ohne <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut (oder mit <code class="docutils literal notranslate"><span class="pre">name=&quot;main&quot;</span></code> das default-Backend
+und alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente <code class="docutils literal notranslate"><span class="pre">name=&quot;mqtt&quot;</span></code>.</p>
+<section id="verbindung-zum-knxd-eibd">
+<h2>Verbindung zum KNXD / EIBD<a class="headerlink" href="#verbindung-zum-knxd-eibd" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;default&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Der KNXD/EIBD benötigt bisher keine Zugangsdaten, daher werden die Attribute <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> hier nicht
+benötigt. Sofern man die CometVisu in dem offiziellen Docker Container benutzt muss man auch das <code class="docutils literal notranslate"><span class="pre">uri</span></code>-Attribut
+nicht angeben, da dieser Wert dort anderweitig bestimmt wird.</p>
+</section>
+<section id="verbindung-zu-openhab">
+<h2>Verbindung zu openHAB<a class="headerlink" href="#verbindung-zu-openhab" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Für das openHAB Backend wird ein API-Token benötigt, dieses kann man sich in openHAB UI selbst erzeugen:
+<a class="reference external" href="https://www.openhab.org/docs/configuration/apitokens.html">https://www.openhab.org/docs/configuration/apitokens.html</a>.
+Sofern man die CometVisu in dem offiziellen Docker Container benutzt muss man auch das <code class="docutils literal notranslate"><span class="pre">uri</span></code>-Attribut
+nicht angeben, da dieser Wert dort anderweitig bestimmt wird.
+Wenn man die CometVisu mit einem eigenen Webserver ausliefert muss dieser als Proxy für die Verbindung
+zum openHAB-Server dienen. Wird z.B. eine Apache-HTTP-Server benutzt so muss folgendes in dessen
+Konfigurationsdatei eingetragen werden:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://openhab:8080/rest<span class="w"></span>
+<span class="nb">ProxyPassReverse</span><span class="w"> </span>http://openhab:8888/rest<span class="w"> </span><span class="sx">/rest</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Für die Verbindung zu openHAB muss dann folgender Eintrag benutzt werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span> <span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="verbindung-zu-einem-mqtt-broker">
+<h2>Verbindung zu einem MQTT-Broker<a class="headerlink" href="#verbindung-zu-einem-mqtt-broker" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Der MQTT-Broker muss Websocket Verbindungen unterstützen, damit die CometVisu damit kommunizieren kann.
+Sofern der Broker Zugangsdaten benötigt können diese über die <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> Attribute angegeben werden.</p>
+</section>
+<section id="zugriff-auf-interne-stati-und-funktionen">
+<span id="tile-backend-system"></span><h2>Zugriff auf interne Stati und Funktionen<a class="headerlink" href="#zugriff-auf-interne-stati-und-funktionen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ein spezielles Backend, welches immer vorhanden ist und nicht extra konfiguriert werden muss, ist das System-Backend.</p>
+<section id="backend-verbindungen">
+<h3>Backend-Verbindungen<a class="headerlink" href="#backend-verbindungen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Mit diesem Backend kann man sich z.B. einen Schalter bauen der den Verbindungsstatus zu einem Backend anzeigt und
+beim Klick darauf die Verbindung neu startet.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;Connected&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-link-unlink-m<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-link-m<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-mapping&gt;</span>
+    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;RedActive&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-styling&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+...
+<span class="nt">&lt;cv-switch</span> <span class="na">mapping=</span><span class="s">&quot;Connected&quot;</span> <span class="na">styling=</span><span class="s">&quot;RedActive&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">value=</span><span class="s">&quot;restart&quot;</span><span class="nt">&gt;</span>backend:main<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>backend:main:connected<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Verbindung<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>openHAB<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/cv-switch&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="browser-aktionen">
+<h3>Browser-Aktionen<a class="headerlink" href="#browser-aktionen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Als weitere Alternative kann ein Neu-laden des Browserfensters angestoßen werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">value=</span><span class="s">&quot;reload&quot;</span><span class="nt">&gt;</span>browser<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;cv-icon</span> <span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-refresh-line<span class="nt">&lt;/cv-icon&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Neu laden<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/cv-switch&gt;</span>
+</pre></div>
+</div>
+<p>Alternativ kann mit <code class="docutils literal notranslate"><span class="pre">value=&quot;forced-reload&quot;</span></code> sichergestellt werden, dass die CometVisu Dateien wirklich neu geladen
+werden und der Browser-Cache umgangen wird.</p>
+</section>
+<section id="seitennavigation">
+<h3>Seitennavigation<a class="headerlink" href="#seitennavigation" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Ebenso bietet diese Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
+Navigation zu einer bestimmten Seite möglich ist.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch</span> <span class="na">styling=</span><span class="s">&quot;tile-button&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">value=</span><span class="s">&quot;floorplan&quot;</span><span class="nt">&gt;</span>nav:current-page<span class="nt">&lt;/cv-address&gt;</span>
+  <span class="nt">&lt;cv-icon</span> <span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-external-link-line<span class="nt">&lt;/cv-icon&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Räume<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/cv-switch&gt;</span>
+</pre></div>
+</div>
+<p>Beim Klick auf dieses Widget wird die Seite mit der id „floorplan“ (<code class="docutils literal notranslate"><span class="pre">&lt;page</span> <span class="pre">id=&quot;floorplan&quot;&gt;</span></code>) geöffnet.</p>
+</section>
+<section id="http-requests-auslosen">
+<h3>HTTP-Requests auslösen<a class="headerlink" href="#http-requests-auslosen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Es können einfache HTTP Requests ausgelöst werden, um z.B. Aktionen in externen Systemen zu starten.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button</span> <span class="na">size=</span><span class="s">&quot;small&quot;</span> <span class="na">style=</span><span class="s">&quot;position: absolute; top: 0; right: 0; color: red&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>https://somewhere/delete?this<span class="nt">&lt;/cv-address&gt;</span>
+  <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;ri-delete-bin-line&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-button&gt;</span>
+</pre></div>
+</div>
+<p>Oft kommt es beim Aufrufen von URLs von externen Webseiten zu einen CORS Fehler, da das Aufrufen von externen Seiten
+ein Sicherheitsrisiko darstellt. Dies kann umgangen werden, indem die interne Proxy-Funktion der CometVisu benutzt wird.
+Dazu müssen die aufzurufenden URLs mit „:proxy“ erweitert werden. Für das o.g. Beispiel würde aus
+<code class="docutils literal notranslate"><span class="pre">https://somewhere/delete?this</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">https:proxy://somewhere/delete?this</span></code>.</p>
+</section>
+<section id="light-dark-theme">
+<h3>Light- /Dark-Theme<a class="headerlink" href="#light-dark-theme" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Sofern das Design Light &amp; Dark-Themes unterstützt, kann über das System Backend auch das Theme gewechselt werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;LightTheme&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;dark&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-styling&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+...
+<span class="nt">&lt;cv-switch</span> <span class="na">on-value=</span><span class="s">&quot;light&quot;</span> <span class="na">off-value=</span><span class="s">&quot;dark&quot;</span> <span class="na">mapping=</span><span class="s">&quot;&quot;</span> <span class="na">styling=</span><span class="s">&quot;LightTheme&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>theme<span class="nt">&lt;/cv-address&gt;</span>
+  <span class="nt">&lt;cv-icon</span> <span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-sun-line<span class="nt">&lt;/cv-icon&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Light-Theme<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/cv-switch&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="interne-stati">
+<h3>Interne Stati<a class="headerlink" href="#interne-stati" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Man kann das System Backend auch benutzen um interne Stati zu schreiben und damit Aktionen innerhalb der
+Visualisierung per Mausklick auszulösen. Damit kann man sich z.B. einen Button erzeugen der beim Klick einen Refresh
+eines <a class="reference internal" href="../components/image.html#tile-component-image"><span class="std std-ref">Bilds</span></a> oder eines <a class="reference internal" href="../components/list.html#tile-component-list"><span class="std std-ref">Listen-Modells</span></a> auslöst.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button&gt;</span>
+  <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>state:refresh-image<span class="nt">&lt;/cv-address&gt;</span>
+  <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;ri-refresh-line&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-button&gt;</span>
+
+<span class="nt">&lt;cv-image</span> <span class="na">src=</span><span class="s">&quot;http://webcam/snapshot.jpeg&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">target=</span><span class="s">&quot;refresh&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>state:refresh-image<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;/cv-image&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Grundsätzlicher Aufbau" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mapping.html" class="btn btn-neutral float-right" title="Mapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

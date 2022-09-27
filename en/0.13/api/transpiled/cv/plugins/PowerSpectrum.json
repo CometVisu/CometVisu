@@ -2,7 +2,7 @@
   "className": "cv.plugins.PowerSpectrum",
   "packageName": "cv.plugins",
   "name": "PowerSpectrum",
-  "superClass": "cv.ui.structure.AbstractWidget",
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
   "interfaces": [],
   "mixins": [
     "cv.ui.common.Update"
@@ -683,9 +683,9 @@
       },
       "type": "function",
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
       "appearsIn": [
-        "cv.ui.structure.AbstractWidget"
+        "cv.ui.structure.pure.AbstractWidget"
       ],
       "jsdoc": {
         "@return": [
@@ -711,9 +711,9 @@
       },
       "type": "function",
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
       "appearsIn": [
-        "cv.ui.structure.AbstractWidget"
+        "cv.ui.structure.pure.AbstractWidget"
       ]
     },
     "_update": {

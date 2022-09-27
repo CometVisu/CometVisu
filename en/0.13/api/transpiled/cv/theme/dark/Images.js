@@ -90,7 +90,8 @@
         'copy': '@MaterialIcons/content_copy',
         'paste': '@MaterialIcons/content_paste',
         'help': '@MaterialIcons/help',
-        'code': '@MaterialIcons/code'
+        'code': '@MaterialIcons/code',
+        'convert': '@MaterialIcons/swap_horizontal_circle'
       },
       getIcon: function getIcon(name, size) {
         return Object.prototype.hasOwnProperty.call(this.ICONS, name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
@@ -100,4 +101,4 @@
   cv.theme.dark.Images.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Images.js.map?dt=1660800181970
+//# sourceMappingURL=Images.js.map?dt=1664297905021

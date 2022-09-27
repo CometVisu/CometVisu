@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 401,
+        "line": 416,
         "column": 3
       }
     },
@@ -366,7 +366,7 @@
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 199,
           "column": 5
         }
       },
@@ -376,11 +376,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 232,
           "column": 5
         }
       },
@@ -390,11 +390,11 @@
     "_onCompareWith": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 241,
           "column": 5
         }
       },
@@ -404,11 +404,11 @@
     "_onOpenWith": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 243,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 251,
           "column": 5
         }
       },
@@ -418,11 +418,11 @@
     "_onRename": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 253,
           "column": 4
         },
         "end": {
-          "line": 269,
+          "line": 271,
           "column": 5
         }
       },
@@ -432,11 +432,11 @@
     "_onDownload": {
       "location": {
         "start": {
-          "line": 271,
+          "line": 273,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 277,
           "column": 5
         }
       },
@@ -446,11 +446,11 @@
     "_onRestore": {
       "location": {
         "start": {
-          "line": 277,
+          "line": 279,
           "column": 4
         },
         "end": {
-          "line": 281,
+          "line": 283,
           "column": 5
         }
       },
@@ -460,11 +460,11 @@
     "_onValidate": {
       "location": {
         "start": {
-          "line": 283,
+          "line": 285,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 289,
           "column": 5
         }
       },
@@ -474,11 +474,25 @@
     "_onClone": {
       "location": {
         "start": {
-          "line": 289,
+          "line": 291,
           "column": 4
         },
         "end": {
-          "line": 295,
+          "line": 297,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onConvert": {
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4
+        },
+        "end": {
+          "line": 305,
           "column": 5
         }
       },
@@ -488,11 +502,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 388,
+          "line": 403,
           "column": 5
         }
       },
@@ -9717,11 +9731,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 396,
+        "line": 411,
         "column": 12
       },
       "end": {
-        "line": 400,
+        "line": 415,
         "column": 3
       }
     },

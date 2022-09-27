@@ -176,7 +176,7 @@
             break;
         }
 
-        return control || qx.ui.indicator.ProgressBar.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.indicator.ProgressBar.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /**
@@ -206,4 +206,4 @@
   qx.ui.indicator.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1660800169477
+//# sourceMappingURL=ProgressBar.js.map?dt=1664297893342

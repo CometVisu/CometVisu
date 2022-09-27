@@ -5,17 +5,17 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
       "cv.ui.common.Update": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
-      "cv.ui.layout.ResizeHandler": {},
+      "cv.ui.structure.pure.layout.ResizeHandler": {},
       "cv.Transform": {},
       "cv.util.ScriptLoader": {
         "defer": "runtime"
@@ -58,7 +58,7 @@
    * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
    */
   qx.Class.define('cv.plugins.PowerSpectrum', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
 
     /*
@@ -79,7 +79,7 @@
         props.name3 = 'L3';
       }
 
-      cv.ui.structure.AbstractWidget.constructor.call(this, props); // some initializations
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props); // some initializations
 
       this.setSpectrum(this.isSinglePhase() ? [this.setupSpectrum()] : [this.setupSpectrum(-0.26), this.setupSpectrum(0), this.setupSpectrum(0.26)]);
       this.setCurve(this.isSinglePhase() ? [this.setupCurve()] : [this.setupCurve(), this.setupCurve(), this.setupCurve()]);
@@ -119,9 +119,9 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseFormat(xml, path);
-        cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.parser.pure.WidgetParser.parseFormat(xml, path);
+        cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -270,7 +270,7 @@
         return actor;
       },
       _onDomReady: function _onDomReady() {
-        cv.plugins.PowerSpectrum.prototype._onDomReady.base.call(this);
+        cv.plugins.PowerSpectrum.superclass.prototype._onDomReady.call(this);
 
         var colors = [this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3()];
         var diagramCurve = this.isShowCurve() && $('#' + this.getPath() + ' .actor div.curve').empty();
@@ -318,8 +318,8 @@
         }.bind(this); // check if sizes are set yet, otherwise wait some time
 
 
-        if (cv.ui.layout.ResizeHandler.states.isPageSizeInvalid()) {
-          cv.ui.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
+        if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
+          cv.ui.structure.pure.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
         } else {
           init();
         }
@@ -496,7 +496,7 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addScripts(['plugins/diagram/dep/flot/jquery.flot.min.js', 'plugins/diagram/dep/flot/jquery.flot.canvas.min.js', 'plugins/diagram/dep/flot/jquery.flot.resize.min.js', 'plugins/diagram/dep/flot/jquery.flot.navigate.min.js']);
-      cv.parser.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
+      cv.parser.pure.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
       cv.ui.structure.WidgetFactory.registerClass('powerspectrum', statics); // init
 
       statics.limitEN50160_1999.forEach(statics.fixLimits);
@@ -516,4 +516,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1660800142503
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1664297866165

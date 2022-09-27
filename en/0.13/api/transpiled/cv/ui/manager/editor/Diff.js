@@ -176,7 +176,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var handlerOptions = this.getHandlerOptions();
 
         if (this.getFile() instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
-          cv.ui.manager.editor.Diff.prototype.save.base.call(this, callback, 'ignore');
+          cv.ui.manager.editor.Diff.superclass.prototype.save.call(this, callback, 'ignore');
         }
       },
       _loadFile: function _loadFile(file, old) {
@@ -269,4 +269,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Diff.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diff.js.map?dt=1660800144669
+//# sourceMappingURL=Diff.js.map?dt=1664297868287

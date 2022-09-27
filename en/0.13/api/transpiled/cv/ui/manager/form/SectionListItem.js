@@ -279,7 +279,7 @@
             break;
         }
 
-        return control || cv.ui.manager.form.SectionListItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.form.SectionListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -295,4 +295,4 @@
   cv.ui.manager.form.SectionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SectionListItem.js.map?dt=1660800146012
+//# sourceMappingURL=SectionListItem.js.map?dt=1664297869649

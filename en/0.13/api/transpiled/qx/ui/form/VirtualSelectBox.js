@@ -86,19 +86,19 @@
 
       this.addListener("pointerover", this._onPointerOver, this);
       this.addListener("pointerout", this._onPointerOut, this);
-      this.__P_325_0 = [];
+      this.__P_345_0 = [];
       this.initSelection(this.getChildControl("dropdown").getSelection());
-      this.__P_325_1 = new qx.event.Timer(500);
+      this.__P_345_1 = new qx.event.Timer(500);
 
-      this.__P_325_1.addListener("interval", this.__P_325_2, this);
+      this.__P_345_1.addListener("interval", this.__P_345_2, this);
 
       this.getSelection().addListener("change", this._updateSelectionValue, this);
 
       if (this.isIncrementalSearch()) {
-        this.__P_325_3();
+        this.__P_345_3();
       }
 
-      this.initHtmlMarkers(['<span style="' + this.__P_325_4() + '">', '</span>']);
+      this.initHtmlMarkers(['<span style="' + this.__P_345_4() + '">', '</span>']);
     },
     properties: {
       // overridden
@@ -125,7 +125,7 @@
        * Array of non-HTML strings for opening an closing marker for incremental search highlighting
        */
       plainMarkers: {
-        apply: "__P_325_5",
+        apply: "__P_345_5",
         init: ['|', '|'],
         check: "Array"
       },
@@ -135,7 +135,7 @@
        * Initialized from 'list-search-highlight' theme if not set explicitly.
        */
       htmlMarkers: {
-        apply: "__P_325_5",
+        apply: "__P_345_5",
         deferredInit: true,
         check: "Array"
       },
@@ -188,15 +188,15 @@
     },
     members: {
       /** @type {String} The search value to {@link #__preselect} an item. */
-      __P_325_6: "",
+      __P_345_6: "",
 
       /**
        * @type {qx.event.Timer} The time which triggers the search for pre-selection.
        */
-      __P_325_1: null,
+      __P_345_1: null,
 
       /** @type {Array} Contains the id from all bindings. */
-      __P_325_0: null,
+      __P_345_0: null,
 
       /**
        * @param selected {var|null} Item to select as value.
@@ -268,7 +268,7 @@
             break;
         }
 
-        return control || qx.ui.form.VirtualSelectBox.prototype._createChildControlImpl.base.call(this, id, hash);
+        return control || qx.ui.form.VirtualSelectBox.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
       // overridden
       _getAction: function _getAction(event) {
@@ -282,7 +282,7 @@
         } else if (isOpen && event.isPrintable()) {
           return "search";
         } else {
-          return qx.ui.form.VirtualSelectBox.prototype._getAction.base.call(this, event);
+          return qx.ui.form.VirtualSelectBox.superclass.prototype._getAction.call(this, event);
         }
       },
 
@@ -297,20 +297,20 @@
 
         var id = this.bind(modelPath, atom, "model", null);
 
-        this.__P_325_0.push(id);
+        this.__P_345_0.push(id);
 
         var labelSourcePath = this._getBindPath("selection", this.getLabelPath());
 
         id = this.bind(labelSourcePath, atom, "label", this.getLabelOptions());
 
-        this.__P_325_0.push(id);
+        this.__P_345_0.push(id);
 
         if (this.getIconPath() != null) {
           var iconSourcePath = this._getBindPath("selection", this.getIconPath());
 
           id = this.bind(iconSourcePath, atom, "icon", this.getIconOptions());
 
-          this.__P_325_0.push(id);
+          this.__P_345_0.push(id);
         }
       },
 
@@ -319,8 +319,8 @@
        * widget. For e.q. remove the bound drop-down selection.
        */
       _removeBindings: function _removeBindings() {
-        while (this.__P_325_0.length > 0) {
-          var id = this.__P_325_0.pop();
+        while (this.__P_345_0.length > 0) {
+          var id = this.__P_345_0.pop();
 
           this.removeBinding(id);
         }
@@ -338,7 +338,7 @@
       },
       // overridden
       _handlePointer: function _handlePointer(event) {
-        qx.ui.form.VirtualSelectBox.prototype._handlePointer.base.call(this, event);
+        qx.ui.form.VirtualSelectBox.superclass.prototype._handlePointer.call(this, event);
 
         var type = event.getType();
 
@@ -353,15 +353,15 @@
         switch (action) {
           case "search":
             if (!this.isIncrementalSearch()) {
-              this.__P_325_6 += this.__P_325_7(event.getKeyIdentifier());
+              this.__P_345_6 += this.__P_345_7(event.getKeyIdentifier());
 
-              this.__P_325_1.restart();
+              this.__P_345_1.restart();
             }
 
             break;
 
           default:
-            qx.ui.form.VirtualSelectBox.prototype._handleKeyboard.base.call(this, event);
+            qx.ui.form.VirtualSelectBox.superclass.prototype._handleKeyboard.call(this, event);
 
             break;
         }
@@ -436,10 +436,10 @@
        * Preselects an item in the drop-down, when item starts with the
        * __searchValue value.
        */
-      __P_325_2: function __P_325_2() {
-        this.__P_325_1.stop();
+      __P_345_2: function __P_345_2() {
+        this.__P_345_1.stop();
 
-        var searchValue = this.__P_325_6;
+        var searchValue = this.__P_345_6;
 
         if (searchValue === null || searchValue === "") {
           return;
@@ -485,7 +485,7 @@
           }
         }
 
-        this.__P_325_6 = "";
+        this.__P_345_6 = "";
       },
 
       /**
@@ -495,7 +495,7 @@
        * @param keyIdentifier {String} The keyIdentifier to convert.
        * @return {String} The converted keyIdentifier.
        */
-      __P_325_7: function __P_325_7(keyIdentifier) {
+      __P_345_7: function __P_345_7(keyIdentifier) {
         if (keyIdentifier === "Space") {
           return " ";
         } else {
@@ -519,16 +519,16 @@
         INCREMENTAL SEARCH
       ---------------------------------------------------------------------------
       */
-      __P_325_8: null,
-      __P_325_9: '',
+      __P_345_8: null,
+      __P_345_9: '',
       // prevent recursion problems when deleting unsucessful filtering
-      __P_325_10: 0,
-      __P_325_11: null,
-      __P_325_12: null,
+      __P_345_10: 0,
+      __P_345_11: null,
+      __P_345_12: null,
       _highlightFilterValueFunction: null,
       _searchRegExp: null,
-      __P_325_13: function __P_325_13() {
-        var input = this.__P_325_11 = new qx.ui.form.TextField().set({
+      __P_345_13: function __P_345_13() {
+        var input = this.__P_345_11 = new qx.ui.form.TextField().set({
           appearance: 'widget',
           liveUpdate: true,
           height: 0,
@@ -559,12 +559,12 @@
           this.close();
         }, this);
         input.addListener('changeValue', function (e) {
-          if (this.__P_325_10 === 0) {
-            this.__P_325_14();
+          if (this.__P_345_10 === 0) {
+            this.__P_345_14();
           }
         }, this);
       },
-      __P_325_4: function __P_325_4() {
+      __P_345_4: function __P_345_4() {
         var highlightAppearance = qx.theme.manager.Appearance.getInstance().styleFrom("list-search-highlight"); // default style        
 
         if (!highlightAppearance) {
@@ -596,13 +596,13 @@
       // highlight plain
       _highlightFilterValuePlainFunction: function _highlightFilterValuePlainFunction(parts) {
         // the array elements will contain '' if empty
-        return parts[1] + this.__P_325_12[0] + parts[2] + this.__P_325_12[1] + parts[3];
+        return parts[1] + this.__P_345_12[0] + parts[2] + this.__P_345_12[1] + parts[3];
       },
       // htmlEscape all label parts
       _highlightFilterValueHtmlFunction: function _highlightFilterValueHtmlFunction(parts) {
         // the array elements will contain '' if empty
         // the markers will be HTML strings
-        return qx.module.util.String.escapeHtml(parts[1]) + this.__P_325_12[0] + qx.module.util.String.escapeHtml(parts[2]) + this.__P_325_12[1] + qx.module.util.String.escapeHtml(parts[3]);
+        return qx.module.util.String.escapeHtml(parts[1]) + this.__P_345_12[0] + qx.module.util.String.escapeHtml(parts[2]) + this.__P_345_12[1] + qx.module.util.String.escapeHtml(parts[3]);
       },
       _configureItemRich: function _configureItemRich(item) {
         item.setRich(true);
@@ -610,10 +610,10 @@
       _configureItemPlain: function _configureItemPlain(item) {
         item.setRich(false);
       },
-      __P_325_14: function __P_325_14(lastFilterValue) {
-        this.__P_325_10++;
-        var filterValue = lastFilterValue !== undefined ? lastFilterValue : this.__P_325_11.getValue();
-        this.__P_325_8 = filterValue; // _searchRegExp is used in default _searchMatch function to avoid recreation of regexp object
+      __P_345_14: function __P_345_14(lastFilterValue) {
+        this.__P_345_10++;
+        var filterValue = lastFilterValue !== undefined ? lastFilterValue : this.__P_345_11.getValue();
+        this.__P_345_8 = filterValue; // _searchRegExp is used in default _searchMatch function to avoid recreation of regexp object
         // for each list item
 
         var filterValueEscaped = filterValue != null ? qx.module.util.String.escapeRegexpChars(filterValue) : '';
@@ -644,29 +644,29 @@
         var item = this.getModel().getItem(this.getChildControl('dropdown').getChildControl('list')._lookup(0));
 
         if (item) {
-          this.__P_325_9 = filterValue;
+          this.__P_345_9 = filterValue;
           this.getSelection().setItem(0, item);
         } else {
           var len = filterValue.length;
-          var last = len > this.__P_325_9.length + 1 ? this.__P_325_11.getValue().charAt(len - 1) : '';
-          filterValue = this.__P_325_9 + last;
+          var last = len > this.__P_345_9.length + 1 ? this.__P_345_11.getValue().charAt(len - 1) : '';
+          filterValue = this.__P_345_9 + last;
 
-          this.__P_325_14(filterValue);
+          this.__P_345_14(filterValue);
         } // make sure length of dropdown is updated
 
 
-        this.__P_325_10--;
+        this.__P_345_10--;
       },
-      __P_325_3: function __P_325_3() {
+      __P_345_3: function __P_345_3() {
         // add search input field
-        this.__P_325_13(); // set label converter
+        this.__P_345_13(); // set label converter
 
 
         var that = this;
         var labelOptions = this.getLabelOptions() || {};
 
         labelOptions.converter = function (data, model, source, target) {
-          var filterValue = that.__P_325_8;
+          var filterValue = that.__P_345_8;
 
           if (filterValue && data && that._highlightFilterValueFunction) {
             var match = that._searchMatch(data, filterValue);
@@ -692,7 +692,7 @@
           value.configureItem = this._configureItemRich;
         }
 
-        qx.ui.form.VirtualSelectBox.prototype._applyDelegate.base.call(this, value, old);
+        qx.ui.form.VirtualSelectBox.superclass.prototype._applyDelegate.call(this, value, old);
       },
       _applyRich: function _applyRich(value, old) {
         if (!value && this.getHighlightMode() == 'html') {
@@ -712,12 +712,12 @@
             // set rich item labels
             this.setRich(true);
             this._highlightFilterValueFunction = this._highlightFilterValueHtmlFunction;
-            this.__P_325_12 = this.getHtmlMarkers();
+            this.__P_345_12 = this.getHtmlMarkers();
             break;
 
           case 'plain':
             this._highlightFilterValueFunction = this._highlightFilterValuePlainFunction;
-            this.__P_325_12 = this.getPlainMarkers();
+            this.__P_345_12 = this.getPlainMarkers();
             break;
 
           default:
@@ -725,27 +725,27 @@
             break;
         }
       },
-      __P_325_5: function __P_325_5(value, old) {
-        this.__P_325_12 = value; // make sure we have strings for both markers
+      __P_345_5: function __P_345_5(value, old) {
+        this.__P_345_12 = value; // make sure we have strings for both markers
 
         if (value.length < 1) {
-          this.__P_325_12[0] = '';
+          this.__P_345_12[0] = '';
         } // this most likely won't work for HTML highlighting
 
 
         if (value.length < 2) {
-          this.__P_325_12[1] = this.__P_325_12[0];
+          this.__P_345_12[1] = this.__P_345_12[0];
         }
       },
       _applyIncrementalSearch: function _applyIncrementalSearch(value, old) {
         if (value) {
-          this.__P_325_1.stop();
+          this.__P_345_1.stop();
 
-          this.__P_325_1.setEnabled(false);
+          this.__P_345_1.setEnabled(false);
 
-          this.__P_325_3();
+          this.__P_345_3();
         } else {
-          this.__P_325_1.setEnabled(true);
+          this.__P_345_1.setEnabled(true);
         }
       }
     },
@@ -754,14 +754,14 @@
 
       this.getSelection().removeListener("change", this._updateSelectionValue, this);
 
-      this.__P_325_1.removeListener("interval", this.__P_325_2, this);
+      this.__P_345_1.removeListener("interval", this.__P_345_2, this);
 
-      this.__P_325_1.dispose();
+      this.__P_345_1.dispose();
 
-      this.__P_325_1 = null;
+      this.__P_345_1 = null;
     }
   });
   qx.ui.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1660800169069
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1664297892949

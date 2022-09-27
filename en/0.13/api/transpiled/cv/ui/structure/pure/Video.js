@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       }
     }
@@ -38,7 +38,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.Video', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
 
     /*
     ******************************************************
@@ -111,4 +111,4 @@
   cv.ui.structure.pure.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1660800148571
+//# sourceMappingURL=Video.js.map?dt=1664297872130

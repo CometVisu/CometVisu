@@ -140,13 +140,13 @@
     *****************************************************************************
     */
     members: {
-      __P_266_0: 1e5,
-      __P_266_1: null,
-      __P_266_2: null,
-      __P_266_3: null,
-      __P_266_4: null,
-      __P_266_5: "recent",
-      __P_266_6: 12,
+      __P_286_0: 1e5,
+      __P_286_1: null,
+      __P_286_2: null,
+      __P_286_3: null,
+      __P_286_4: null,
+      __P_286_5: "recent",
+      __P_286_6: 12,
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
@@ -203,7 +203,7 @@
             break;
         }
 
-        return control || qx.ui.control.ColorPopup.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.control.ColorPopup.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /*
@@ -216,7 +216,7 @@
        * Creates the GroupBoxes containing the colored fields.
        */
       _createBoxes: function _createBoxes() {
-        this.__P_266_1 = {};
+        this.__P_286_1 = {};
         var tables = this._tables;
         var table, box, field;
         var j = 0;
@@ -225,10 +225,10 @@
           table = tables[tableId];
           box = new qx.ui.groupbox.GroupBox(table.label);
           box.setLayout(new qx.ui.layout.HBox());
-          this.__P_266_1[tableId] = box;
+          this.__P_286_1[tableId] = box;
           this.add(box);
 
-          for (var i = 0; i < this.__P_266_6; i++) {
+          for (var i = 0; i < this.__P_286_6; i++) {
             field = this.getChildControl("field#" + j++);
             field.setBackgroundColor(table.values[i] || null);
             box.add(field);
@@ -240,27 +240,27 @@
        * Creates the ColorSelector and adds buttons.
        */
       _createColorSelector: function _createColorSelector() {
-        if (this.__P_266_3) {
+        if (this.__P_286_3) {
           return;
         }
 
         var win = new qx.ui.window.Window(this.tr("Color Selector"));
-        this.__P_266_2 = win;
+        this.__P_286_2 = win;
         win.setLayout(new qx.ui.layout.VBox(16));
         win.setResizable(false);
         win.moveTo(20, 20);
-        this.__P_266_3 = new qx.ui.control.ColorSelector();
-        win.add(this.__P_266_3);
-        this.__P_266_4 = new qx.ui.container.Composite(new qx.ui.layout.HBox(8, "right"));
-        win.add(this.__P_266_4);
+        this.__P_286_3 = new qx.ui.control.ColorSelector();
+        win.add(this.__P_286_3);
+        this.__P_286_4 = new qx.ui.container.Composite(new qx.ui.layout.HBox(8, "right"));
+        win.add(this.__P_286_4);
 
         var btnCancel = this._createChildControl("colorselector-cancelbutton");
 
         var btnOk = this._createChildControl("colorselector-okbutton");
 
-        this.__P_266_4.add(btnCancel);
+        this.__P_286_4.add(btnCancel);
 
-        this.__P_266_4.add(btnOk);
+        this.__P_286_4.add(btnOk);
       },
 
       /*
@@ -296,8 +296,8 @@
           return;
         }
 
-        var vRecentTable = this._tables[this.__P_266_5].values;
-        var vRecentBox = this.__P_266_1[this.__P_266_5];
+        var vRecentTable = this._tables[this.__P_286_5].values;
+        var vRecentBox = this.__P_286_1[this.__P_286_5];
 
         if (!vRecentTable) {
           return;
@@ -314,7 +314,7 @@
 
         if (vIndex != -1) {
           qx.lang.Array.removeAt(vRecentTable, vIndex);
-        } else if (vRecentTable.length == this.__P_266_6) {
+        } else if (vRecentTable.length == this.__P_286_6) {
           vRecentTable.shift();
         }
 
@@ -404,13 +404,13 @@
           blue = 255;
         }
 
-        this.__P_266_3.setRed(red);
+        this.__P_286_3.setRed(red);
 
-        this.__P_266_3.setGreen(green);
+        this.__P_286_3.setGreen(green);
 
-        this.__P_266_3.setBlue(blue);
+        this.__P_286_3.setBlue(blue);
 
-        this.__P_266_2.open();
+        this.__P_286_2.open();
       },
 
       /**
@@ -418,10 +418,10 @@
        * Hides the ColorPopup and sets it's color value to the selected color.
        */
       _onColorSelectorOk: function _onColorSelectorOk() {
-        var sel = this.__P_266_3;
+        var sel = this.__P_286_3;
         this.setValue(qx.util.ColorUtil.rgbToRgbString([sel.getRed(), sel.getGreen(), sel.getBlue()]));
 
-        this.__P_266_2.close();
+        this.__P_286_2.close();
       },
 
       /**
@@ -429,7 +429,7 @@
        * Hides the ColorPopup.
        */
       _onColorSelectorCancel: function _onColorSelectorCancel() {
-        this.__P_266_2.close();
+        this.__P_286_2.close();
       },
 
       /**
@@ -476,18 +476,18 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__P_266_2) {
-        this.__P_266_2.destroy();
+      if (this.__P_286_2) {
+        this.__P_286_2.destroy();
 
-        this.__P_266_3.destroy();
+        this.__P_286_3.destroy();
 
-        this.__P_266_4.destroy();
+        this.__P_286_4.destroy();
       }
 
-      this._tables = this.__P_266_1 = null;
+      this._tables = this.__P_286_1 = null;
     }
   });
   qx.ui.control.ColorPopup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorPopup.js.map?dt=1660800165233
+//# sourceMappingURL=ColorPopup.js.map?dt=1664297889374

@@ -124,11 +124,11 @@
             break;
         }
 
-        return control || cv.ui.manager.viewer.AbstractViewer.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.viewer.AbstractViewer.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
   });
   cv.ui.manager.viewer.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1660800147428
+//# sourceMappingURL=AbstractViewer.js.map?dt=1664297870867

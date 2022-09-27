@@ -12,7 +12,7 @@
       "cv.ui.common.Update": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "cv.ui.structure.WidgetFactory": {
@@ -71,8 +71,8 @@
        */
       parse: function parse(xml, path, flavour, pageType) {
         var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
-        cv.parser.WidgetParser.parseAddress(xml, path);
-        cv.parser.WidgetParser.parseFormat(xml, path);
+        cv.parser.pure.WidgetParser.parseAddress(xml, path);
+        cv.parser.pure.WidgetParser.parseFormat(xml, path);
         return data;
       }
     },
@@ -96,11 +96,11 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler('diagram_info', statics);
+      cv.parser.pure.WidgetParser.addHandler('diagram_info', statics);
       cv.ui.structure.WidgetFactory.registerClass('diagram_info', statics);
     }
   });
   cv.plugins.diagram.Info.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Info.js.map?dt=1660800143024
+//# sourceMappingURL=Info.js.map?dt=1664297866678

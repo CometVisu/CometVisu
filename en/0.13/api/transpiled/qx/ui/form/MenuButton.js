@@ -91,7 +91,7 @@
       */
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.form.MenuButton.prototype._applyVisibility.base.call(this, value, old); // hide the menu too
+        qx.ui.form.MenuButton.superclass.prototype._applyVisibility.call(this, value, old); // hide the menu too
 
 
         var menu = this.getMenu();
@@ -169,7 +169,7 @@
       // overridden
       _onPointerDown: function _onPointerDown(e) {
         // call the base function to get into the capture phase [BUG #4340]
-        qx.ui.form.MenuButton.prototype._onPointerDown.base.call(this, e); // only open on left clicks [BUG #5125]
+        qx.ui.form.MenuButton.superclass.prototype._onPointerDown.call(this, e); // only open on left clicks [BUG #5125]
 
 
         if (e.getButton() != "left") {
@@ -193,7 +193,7 @@
       // overridden
       _onPointerUp: function _onPointerUp(e) {
         // call base for firing the execute event
-        qx.ui.form.MenuButton.prototype._onPointerUp.base.call(this, e); // Just stop propagation to stop menu manager
+        qx.ui.form.MenuButton.superclass.prototype._onPointerUp.call(this, e); // Just stop propagation to stop menu manager
         // from getting the event
 
 
@@ -237,4 +237,4 @@
   qx.ui.form.MenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuButton.js.map?dt=1660800168406
+//# sourceMappingURL=MenuButton.js.map?dt=1664297892318

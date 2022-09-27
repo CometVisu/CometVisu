@@ -61,11 +61,11 @@
             break;
         }
 
-        return control || cv.ui.manager.form.VirtualSelectBox.prototype._createChildControlImpl.base.call(this, id, hash);
+        return control || cv.ui.manager.form.VirtualSelectBox.superclass.prototype._createChildControlImpl.call(this, id, hash);
       }
     }
   });
   cv.ui.manager.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1660800146079
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1664297869701

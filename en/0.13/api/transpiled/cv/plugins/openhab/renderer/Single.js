@@ -133,7 +133,7 @@
             }
         }
 
-        return control || cv.plugins.openhab.renderer.Single.prototype._createChildControlImpl.base.call(this, id, hash);
+        return control || cv.plugins.openhab.renderer.Single.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
 
       /**
@@ -251,4 +251,4 @@
   cv.plugins.openhab.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1660800143158
+//# sourceMappingURL=Single.js.map?dt=1664297866808

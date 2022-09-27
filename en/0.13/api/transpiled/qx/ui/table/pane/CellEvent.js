@@ -94,7 +94,7 @@
       },
       // overridden
       clone: function clone(embryo) {
-        var clone = qx.ui.table.pane.CellEvent.prototype.clone.base.call(this, embryo);
+        var clone = qx.ui.table.pane.CellEvent.superclass.prototype.clone.call(this, embryo);
         clone.set({
           row: this.getRow(),
           column: this.getColumn()
@@ -106,4 +106,4 @@
   qx.ui.table.pane.CellEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellEvent.js.map?dt=1660800174939
+//# sourceMappingURL=CellEvent.js.map?dt=1664297898419

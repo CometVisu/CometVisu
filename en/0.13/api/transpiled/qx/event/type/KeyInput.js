@@ -56,13 +56,13 @@
        * @return {qx.event.type.KeyInput} The initialized key event instance
        */
       init: function init(domEvent, target, charCode) {
-        qx.event.type.KeyInput.prototype.init.base.call(this, domEvent, target, null, true, true);
+        qx.event.type.KeyInput.superclass.prototype.init.call(this, domEvent, target, null, true, true);
         this._charCode = charCode;
         return this;
       },
       // overridden
       clone: function clone(embryo) {
-        var clone = qx.event.type.KeyInput.prototype.clone.base.call(this, embryo);
+        var clone = qx.event.type.KeyInput.superclass.prototype.clone.call(this, embryo);
         clone._charCode = this._charCode;
         return clone;
       },
@@ -89,4 +89,4 @@
   qx.event.type.KeyInput.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeyInput.js.map?dt=1660800159134
+//# sourceMappingURL=KeyInput.js.map?dt=1664297883865

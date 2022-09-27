@@ -52,26 +52,26 @@
 <li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html">Bedienbare Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#darstellende-widgets">Darstellende Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#sonstige-widgets">Sonstige Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Adressen - die Kommunikation mit dem Backend</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transform">Transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mode">Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pure-struktur">Pure-Struktur</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xml-format.html">XML-Struktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#navigationselemente-in-der-pure-struktur">Navigationselemente in der Pure-Struktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung">Elemente für Konvertierung und Formatierung</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#widgets-in-der-pure-struktur">Widgets in der Pure-Struktur</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Adressen - die Kommunikation mit dem Backend</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#pure-struktur-beispiele">Pure-Struktur - Beispiele</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tile-struktur">Tile-Struktur</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
@@ -630,22 +630,36 @@ Datentyp geschrieben. Die für das jeweilige Backend gültigen Werte sind:</p>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>OH:rollershutter</p></td>
+<tr class="row-odd"><td><p>OH:playPause</p></td>
+<td><p>OH_PlayPause</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>OH:rollershutter</p></td>
 <td><p>OH_RollerShutter</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>OH:string</p></td>
+<tr class="row-odd"><td><p>OH:string</p></td>
 <td><p>OH_String</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>OH:switch</p></td>
+<tr class="row-even"><td><p>OH:switch</p></td>
 <td><p>OH_Switch</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>OH:thing-status</p></td>
+<td><p>OH_Thing</p></td>
 <td></td>
 <td></td>
 <td></td>
@@ -863,7 +877,7 @@ JSON wie</p>
 </pre></div>
 </div>
 <p>übertragen wird, müsste das <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code>-Element aussehen wie:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span> <span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span> <span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span> <span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span> <span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/address&gt;</span>
 </pre></div>
 </div>
 </section>

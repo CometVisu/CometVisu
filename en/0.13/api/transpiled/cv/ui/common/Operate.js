@@ -7,7 +7,7 @@
       },
       "cv.data.Model": {},
       "cv.Transform": {},
-      "cv.TemplateEngine": {},
+      "cv.io.BackendConnections": {},
       "qx.locale.Manager": {},
       "cv.core.notifications.Router": {}
     }
@@ -108,7 +108,7 @@
                   var encodedValue = cv.Transform.encodeBusAndRaw(address, value);
 
                   if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                    cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
+                    cv.io.BackendConnections.getClient().write(id, encodedValue.bus, address);
                   }
 
                   encodedValues[encoding] = encodedValue.raw;
@@ -137,4 +137,4 @@
   cv.ui.common.Operate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Operate.js.map?dt=1660800181564
+//# sourceMappingURL=Operate.js.map?dt=1664297904697

@@ -2,7 +2,7 @@
   "className": "cv.plugins.MobileMenu",
   "packageName": "cv.plugins",
   "name": "MobileMenu",
-  "superClass": "cv.ui.structure.AbstractWidget",
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
   "interfaces": [],
   "mixins": [
     "cv.ui.common.HasChildren"
@@ -166,10 +166,10 @@
       "jsdoc": {},
       "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
       "appearsIn": [
-        "cv.ui.structure.AbstractWidget",
-        "cv.ui.structure.AbstractBasicWidget"
+        "cv.ui.structure.pure.AbstractWidget",
+        "cv.ui.structure.pure.AbstractBasicWidget"
       ]
     },
     "_onDomReady": {
@@ -185,9 +185,9 @@
       },
       "type": "function",
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
       "appearsIn": [
-        "cv.ui.structure.AbstractWidget"
+        "cv.ui.structure.pure.AbstractWidget"
       ]
     },
     "_action": {
@@ -262,6 +262,31 @@
             "body": "{string} HTML code",
             "type": "string",
             "description": " HTML code"
+          }
+        ]
+      }
+    },
+    "getChildrenDom": {
+      "type": "function",
+      "name": "getChildrenDom",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.HasChildren",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a collection of html elements of the children</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{DocumentFragment}",
+            "type": "DocumentFragment",
+            "description": ""
           }
         ]
       }

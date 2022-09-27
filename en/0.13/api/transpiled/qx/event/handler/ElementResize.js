@@ -70,11 +70,11 @@
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__P_186_0 = manager;
-      this.__P_186_1 = {};
-      this.__P_186_2 = new qx.event.Timer(200);
+      this.__P_206_0 = manager;
+      this.__P_206_1 = {};
+      this.__P_206_2 = new qx.event.Timer(200);
 
-      this.__P_186_2.addListener("interval", this._onInterval, this);
+      this.__P_206_2.addListener("interval", this._onInterval, this);
     },
 
     /*
@@ -104,9 +104,9 @@
     *****************************************************************************
     */
     members: {
-      __P_186_1: null,
-      __P_186_0: null,
-      __P_186_2: null,
+      __P_206_1: null,
+      __P_206_0: null,
+      __P_206_2: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -120,7 +120,7 @@
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target);
-        var elements = this.__P_186_1;
+        var elements = this.__P_206_1;
 
         if (!elements[hash]) {
           elements[hash] = {
@@ -129,19 +129,19 @@
             height: qx.bom.element.Dimension.getHeight(target)
           };
 
-          this.__P_186_2.start();
+          this.__P_206_2.start();
         }
       },
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target);
-        var elements = this.__P_186_1;
+        var elements = this.__P_206_1;
 
         if (elements[hash]) {
           delete elements[hash];
 
           if (qx.lang.Object.isEmpty(elements)) {
-            this.__P_186_2.stop();
+            this.__P_206_2.stop();
           }
         }
       },
@@ -153,7 +153,7 @@
        * @param e {qx.event.type.Data} The incoming data event
        */
       _onInterval: function _onInterval(e) {
-        var elements = this.__P_186_1;
+        var elements = this.__P_206_1;
 
         for (var key in elements) {
           var data = elements[key];
@@ -181,9 +181,9 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_186_0 = this.__P_186_1 = null;
+      this.__P_206_0 = this.__P_206_1 = null;
 
-      this._disposeObjects("__P_186_2");
+      this._disposeObjects("__P_206_2");
     },
 
     /*
@@ -198,4 +198,4 @@
   qx.event.handler.ElementResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementResize.js.map?dt=1660800158032
+//# sourceMappingURL=ElementResize.js.map?dt=1664297882818

@@ -222,9 +222,9 @@
           var element = this.getChildControl('iframe').getContentElement().getDomElement();
 
           if (element && element.contentWindow.cv) {
-            var otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
-            var pageId = path ? otherEngine.getPageIdByPath(page, path) : page;
-            otherEngine.scrollToPage(pageId, 0);
+            var otherController = element.contentWindow.cv.Application.structureController;
+            var pageId = path ? otherController.getPageIdByPath(page, path) : page;
+            otherController.scrollToPage(pageId, 0);
           }
         }
       },
@@ -290,7 +290,7 @@
             break;
         }
 
-        return control || cv.ui.manager.viewer.Config.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.viewer.Config.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -306,4 +306,4 @@
   cv.ui.manager.viewer.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1660800147476
+//# sourceMappingURL=Config.js.map?dt=1664297870907

@@ -83,11 +83,11 @@
           }
         }
 
-        qx.ui.treevirtual.pane.Scroller.prototype._onDbltapPane.base.call(this, e);
+        qx.ui.treevirtual.pane.Scroller.superclass.prototype._onDbltapPane.call(this, e);
       }
     }
   });
   qx.ui.treevirtual.pane.Scroller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroller.js.map?dt=1660800176727
+//# sourceMappingURL=Scroller.js.map?dt=1664297900108

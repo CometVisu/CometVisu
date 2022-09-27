@@ -103,7 +103,7 @@
     statics: {
       /** @type {Boolean} Result of {@link #hasPhp}. Stored as class member to avoid
        * repeating the check. */
-      __P_166_0: null
+      __P_186_0: null
     },
 
     /*
@@ -127,8 +127,8 @@
        * @return {Boolean} <code>true</code> if PHP is supported by the backend
        */
       hasPhp: function hasPhp() {
-        if (qx.dev.unit.MRequirements.__P_166_0 != null) {
-          return qx.dev.unit.MRequirements.__P_166_0;
+        if (qx.dev.unit.MRequirements.__P_186_0 != null) {
+          return qx.dev.unit.MRequirements.__P_186_0;
         }
 
         var url = qx.util.ResourceManager.getInstance().toUri("qx/test/xmlhttp/php_version.php");
@@ -136,23 +136,23 @@
         req.onload = qx.lang.Function.bind(function () {
           try {
             qx.lang.Json.parse(req.responseText);
-            qx.dev.unit.MRequirements.__P_166_0 = true;
+            qx.dev.unit.MRequirements.__P_186_0 = true;
           } catch (ex) {
-            qx.dev.unit.MRequirements.__P_166_0 = false;
+            qx.dev.unit.MRequirements.__P_186_0 = false;
           }
         }, this);
         req.onerror = req.abort = qx.lang.Function.bind(function () {
-          qx.dev.unit.MRequirements.__P_166_0 = false;
+          qx.dev.unit.MRequirements.__P_186_0 = false;
         }, this);
         req.open("POST", url, false);
 
         try {
           req.send();
         } catch (ex) {
-          qx.dev.unit.MRequirements.__P_166_0 = false;
+          qx.dev.unit.MRequirements.__P_186_0 = false;
         }
 
-        return qx.dev.unit.MRequirements.__P_166_0;
+        return qx.dev.unit.MRequirements.__P_186_0;
       },
 
       /**
@@ -309,4 +309,4 @@
   qx.dev.unit.MRequirements.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRequirements.js.map?dt=1660800156261
+//# sourceMappingURL=MRequirements.js.map?dt=1664297881155

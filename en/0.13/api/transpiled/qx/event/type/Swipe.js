@@ -45,7 +45,7 @@
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        var clone = qx.event.type.Swipe.prototype._cloneNativeEvent.base.call(this, nativeEvent, clone);
+        var clone = qx.event.type.Swipe.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
 
         clone.swipe = nativeEvent.swipe;
         return clone;
@@ -111,4 +111,4 @@
   qx.event.type.Swipe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Swipe.js.map?dt=1660800159362
+//# sourceMappingURL=Swipe.js.map?dt=1664297884073

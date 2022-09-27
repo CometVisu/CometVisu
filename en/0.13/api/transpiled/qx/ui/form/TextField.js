@@ -102,7 +102,7 @@
       },
       // overridden
       _createContentElement: function _createContentElement() {
-        var el = qx.ui.form.TextField.prototype._createContentElement.base.call(this);
+        var el = qx.ui.form.TextField.superclass.prototype._createContentElement.call(this);
 
         var deviceType = qx.core.Environment.get("device.type");
 
@@ -140,4 +140,4 @@
   qx.ui.form.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1660800168913
+//# sourceMappingURL=TextField.js.map?dt=1664297892797

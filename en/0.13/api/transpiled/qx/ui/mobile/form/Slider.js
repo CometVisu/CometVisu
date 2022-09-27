@@ -163,7 +163,7 @@
       _containerElementWidth: null,
       _containerElementLeft: null,
       _pixelPerStep: null,
-      __P_365_0: 0,
+      __P_385_0: 0,
 
       /**
        * Increments the current value.
@@ -180,7 +180,7 @@
       },
       // overridden
       _createContainerElement: function _createContainerElement() {
-        var container = qx.ui.mobile.form.Slider.prototype._createContainerElement.base.call(this);
+        var container = qx.ui.mobile.form.Slider.superclass.prototype._createContainerElement.call(this);
 
         container.appendChild(this._createKnobElement());
         return container;
@@ -303,7 +303,7 @@
        * @param value {Integer} the new value of the slider
        */
       _setValue: function _setValue(value) {
-        this.__P_365_0 = value;
+        this.__P_385_0 = value;
         qx.bom.AnimationFrame.request(this._refresh, this);
       },
 
@@ -313,7 +313,7 @@
        * @return {Integer} the value of the slider
        */
       _getValue: function _getValue() {
-        return this.__P_365_0;
+        return this.__P_385_0;
       },
 
       /**
@@ -443,4 +443,4 @@
   qx.ui.mobile.form.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1660800171955
+//# sourceMappingURL=Slider.js.map?dt=1664297895774

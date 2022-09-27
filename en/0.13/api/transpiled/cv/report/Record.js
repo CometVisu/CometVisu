@@ -60,15 +60,15 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_491_0 = [];
-      this.__P_491_1 = {};
-      this.__P_491_2 = Date.now();
-      this.__P_491_3 = {
+      this.__P_510_0 = [];
+      this.__P_510_1 = {};
+      this.__P_510_2 = Date.now();
+      this.__P_510_3 = {
         response: [],
         request: []
       };
-      this.__P_491_4 = {};
-      this.__P_491_5 = {};
+      this.__P_510_4 = {};
+      this.__P_510_5 = {};
     },
 
     /*
@@ -222,55 +222,55 @@
     ******************************************************
     */
     members: {
-      __P_491_2: null,
-      __P_491_0: null,
-      __P_491_3: null,
-      __P_491_1: null,
-      __P_491_4: null,
-      __P_491_6: 50,
-      __P_491_7: 1,
-      __P_491_8: 50,
-      __P_491_5: null,
-      __P_491_9: 0,
+      __P_510_2: null,
+      __P_510_0: null,
+      __P_510_3: null,
+      __P_510_1: null,
+      __P_510_4: null,
+      __P_510_6: 50,
+      __P_510_7: 1,
+      __P_510_8: 50,
+      __P_510_5: null,
+      __P_510_9: 0,
       record: function record(category, path, data, options) {
         switch (category) {
           case cv.report.Record.XHR:
             if (path === 'response') {
-              this.__P_491_10(category, data);
+              this.__P_510_10(category, data);
             }
 
             data.t = Date.now();
 
-            this.__P_491_3[path].push(data);
+            this.__P_510_3[path].push(data);
 
             break;
 
           case cv.report.Record.CACHE:
           case cv.report.Record.RUNTIME:
-            this.__P_491_4[category] = data;
+            this.__P_510_4[category] = data;
             break;
 
           case cv.report.Record.STORAGE:
-            if (!Object.prototype.hasOwnProperty.call(this.__P_491_4, category)) {
-              this.__P_491_4[category] = {};
+            if (!Object.prototype.hasOwnProperty.call(this.__P_510_4, category)) {
+              this.__P_510_4[category] = {};
             }
 
-            this.__P_491_4[category][path] = data;
+            this.__P_510_4[category][path] = data;
             break;
 
           default:
-            this.__P_491_0.push({
+            this.__P_510_0.push({
               c: category,
               t: Date.now(),
               i: path,
               d: data,
               o: options,
-              ID: this.__P_491_9
+              ID: this.__P_510_9
             });
 
         }
 
-        this.__P_491_9++;
+        this.__P_510_9++;
       },
 
       /**
@@ -279,7 +279,7 @@
        * @param data {Object} recorded content
        * @private
        */
-      __P_491_10: function __P_491_10(category, data) {
+      __P_510_10: function __P_510_10(category, data) {
         if (category === cv.report.Record.XHR) {
           if (data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') && data.body) {
             try {
@@ -318,7 +318,7 @@
        * Extract useful data we need from every event
        * @param nativeEvent {Event}
        */
-      __P_491_11: function __P_491_11(nativeEvent) {
+      __P_510_11: function __P_510_11(nativeEvent) {
         var data = {
           eventClass: nativeEvent.constructor.name,
           'native': {
@@ -326,8 +326,8 @@
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
             clientY: Math.round(nativeEvent.clientY),
-            currentTarget: nativeEvent.currentTarget ? this.__P_491_12(nativeEvent.currentTarget) : undefined,
-            relatedTarget: nativeEvent.relatedTarget ? this.__P_491_12(nativeEvent.relatedTarget) : undefined,
+            currentTarget: nativeEvent.currentTarget ? this.__P_510_12(nativeEvent.currentTarget) : undefined,
+            relatedTarget: nativeEvent.relatedTarget ? this.__P_510_12(nativeEvent.relatedTarget) : undefined,
             pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
             pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
             returnValue: nativeEvent.returnValue,
@@ -395,29 +395,29 @@
           return;
         }
 
-        ev.$$RID = this.__P_491_9;
+        ev.$$RID = this.__P_510_9;
 
         if (ev.type.endsWith('down') || ev.type.endsWith('start')) {
-          this.__P_491_6 = this.__P_491_7;
+          this.__P_510_6 = this.__P_510_7;
         } else if (ev.type.endsWith('up') || ev.type.endsWith('end')) {
-          this.__P_491_6 = this.__P_491_8;
+          this.__P_510_6 = this.__P_510_8;
         }
 
         if (/.+(move|over|out)/.test(ev.type)) {
-          if (!this.__P_491_5[ev.type]) {
-            this.__P_491_5[ev.type] = {
+          if (!this.__P_510_5[ev.type]) {
+            this.__P_510_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           } else {
-            var lastDelta = this.__P_491_5[ev.type];
+            var lastDelta = this.__P_510_5[ev.type];
 
-            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_491_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_491_6) {
+            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_510_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_510_6) {
               // below delta -> skip this event
               return;
             }
 
-            this.__P_491_5[ev.type] = {
+            this.__P_510_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
@@ -425,7 +425,7 @@
         } // get path
 
 
-        var path = this.__P_491_12(ev.target);
+        var path = this.__P_510_12(ev.target);
 
         if (!path) {
           return;
@@ -433,7 +433,7 @@
 
         this.debug('recording ' + ev.type + ' on ' + path);
 
-        var data = this.__P_491_11(ev);
+        var data = this.__P_510_11(ev);
 
         this.record(cv.report.Record.USER, path, data);
       },
@@ -448,7 +448,7 @@
         };
         this.record(cv.report.Record.USER, 'scroll', data);
       },
-      __P_491_12: function __P_491_12(el) {
+      __P_510_12: function __P_510_12(el) {
         if (el === window) {
           return 'Window';
         } else if (el === document) {
@@ -493,10 +493,10 @@
         }
 
         return {
-          data: this.__P_491_4,
-          start: this.__P_491_2,
-          xhr: this.__P_491_3,
-          log: this.__P_491_0,
+          data: this.__P_510_4,
+          start: this.__P_510_2,
+          xhr: this.__P_510_3,
+          log: this.__P_510_0,
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
         };
@@ -532,4 +532,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1660800180531
+//# sourceMappingURL=Record.js.map?dt=1664297903808

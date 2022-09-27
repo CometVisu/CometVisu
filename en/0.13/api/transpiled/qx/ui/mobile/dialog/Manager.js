@@ -131,11 +131,11 @@
             }
           };
 
-          var button = this.__P_357_0(button);
+          var button = this.__P_377_0(button);
 
           return navigator.notification.alert(text, callback, title, button);
         } else {
-          return this.__P_357_1(title, text, handler, scope, [button], qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
+          return this.__P_377_1(title, text, handler, scope, [button], qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
         }
       },
 
@@ -161,11 +161,11 @@
             handler.call(scope, index - 1);
           };
 
-          var buttons = this.__P_357_0(buttons);
+          var buttons = this.__P_377_0(buttons);
 
           return navigator.notification.confirm(text, callback, title, buttons);
         } else {
-          return this.__P_357_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
+          return this.__P_377_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
         }
       },
 
@@ -184,7 +184,7 @@
        * @lint ignoreDeprecated(confirm)
        */
       input: function input(title, text, handler, scope, buttons) {
-        return this.__P_357_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.INPUT_DIALOG);
+        return this.__P_377_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.INPUT_DIALOG);
       },
 
       /**
@@ -210,11 +210,11 @@
             }
           };
 
-          var button = this.__P_357_0(button);
+          var button = this.__P_377_0(button);
 
           return navigator.notification.alert(text, callback, title, button);
         } else {
-          return this.__P_357_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.ERROR_DIALOG);
+          return this.__P_377_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.ERROR_DIALOG);
         }
       },
 
@@ -241,11 +241,11 @@
             }
           };
 
-          var button = this.__P_357_0(button);
+          var button = this.__P_377_0(button);
 
           return navigator.notification.alert(text, callback, title, button);
         } else {
-          return this.__P_357_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.WARNING_DIALOG);
+          return this.__P_377_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.WARNING_DIALOG);
         }
       },
 
@@ -264,7 +264,7 @@
        * @lint ignoreDeprecated(confirm)
        */
       wait: function wait(title, text, handler, scope, buttons) {
-        return this.__P_357_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.WAITING_DIALOG);
+        return this.__P_377_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.WAITING_DIALOG);
       },
 
       /**
@@ -274,7 +274,7 @@
        *     its title
        * @return {String} The concatenated, PhoneGap compatible, button string
        */
-      __P_357_0: function __P_357_0(buttons) {
+      __P_377_0: function __P_377_0(buttons) {
         if (buttons) {
           if (buttons instanceof Array) {
             buttons = buttons.join(",");
@@ -300,7 +300,7 @@
        * @return {qx.ui.mobile.dialog.Popup} The dialog widget
        * @param dialogType {Integer} One of the static dialog types.
        */
-      __P_357_1: function __P_357_1(title, text, handler, scope, buttons, dialogType) {
+      __P_377_1: function __P_377_1(title, text, handler, scope, buttons, dialogType) {
         var widget = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox().set({
           alignY: "middle"
         }));
@@ -393,4 +393,4 @@
   qx.ui.mobile.dialog.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1660800171452
+//# sourceMappingURL=Manager.js.map?dt=1664297895313

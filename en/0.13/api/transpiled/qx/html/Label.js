@@ -49,7 +49,7 @@
     *****************************************************************************
     */
     members: {
-      __P_215_0: null,
+      __P_235_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -58,7 +58,7 @@
       */
       // overridden
       _applyProperty: function _applyProperty(name, value) {
-        qx.html.Label.prototype._applyProperty.base.call(this, name, value);
+        qx.html.Label.superclass.prototype._applyProperty.call(this, name, value);
 
         if (name == "value") {
           var element = this.getDomElement();
@@ -67,7 +67,7 @@
       },
       // overridden
       _createDomElement: function _createDomElement() {
-        var rich = this.__P_215_0;
+        var rich = this.__P_235_0;
         var el = qx.bom.Label.create(this._content, rich);
         el.style.overflow = 'hidden';
         return el;
@@ -75,7 +75,7 @@
       // overridden
       // be sure that style attributes are merged and not overwritten
       _copyData: function _copyData(fromMarkup) {
-        return qx.html.Label.prototype._copyData.base.call(this, true);
+        return qx.html.Label.superclass.prototype._copyData.call(this, true);
       },
 
       /*
@@ -99,11 +99,11 @@
 
         value = !!value;
 
-        if (this.__P_215_0 == value) {
+        if (this.__P_235_0 == value) {
           return this;
         }
 
-        this.__P_215_0 = value;
+        this.__P_235_0 = value;
         return this;
       },
 
@@ -141,4 +141,4 @@
   qx.html.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1660800159924
+//# sourceMappingURL=Label.js.map?dt=1664297884592

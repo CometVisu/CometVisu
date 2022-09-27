@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 305,
+        "line": 361,
         "column": 3
       }
     },
@@ -34,7 +34,7 @@
         "column": 13
       },
       "end": {
-        "line": 42,
+        "line": 43,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "__CACHE": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 51,
           "column": 15
         }
       },
@@ -58,11 +58,11 @@
     "getInstance": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 58,
           "column": 5
         }
       },
@@ -74,11 +74,11 @@
     "loaded": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 71,
           "column": 5
         }
       },
@@ -88,6 +88,25 @@
       "init": false,
       "check": "Boolean",
       "defaultValue": false
+    },
+    "structure": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 5
+        }
+      },
+      "name": "structure",
+      "propertyType": "new",
+      "apply": "_applyStructure",
+      "possibleValues": [
+        "pure",
+        "tile"
+      ]
     },
     "qxOwner": {
       "type": "property",
@@ -126,11 +145,11 @@
     "__filename": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 85,
           "column": 20
         }
       },
@@ -140,11 +159,11 @@
     "__xsd": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 90,
           "column": 15
         }
       },
@@ -168,11 +187,11 @@
     "__allowedRootElements": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 96,
           "column": 31
         }
       },
@@ -196,11 +215,11 @@
     "__referencedNodeCache": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 102,
           "column": 31
         }
       },
@@ -224,11 +243,11 @@
     "__typeNodeCache": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 102,
+          "line": 108,
           "column": 25
         }
       },
@@ -252,11 +271,11 @@
     "__textNodeSchemaElement": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 114,
           "column": 33
         }
       },
@@ -280,11 +299,11 @@
     "__commentNodeSchemaElement": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 120,
           "column": 36
         }
       },
@@ -308,11 +327,11 @@
     "_widgetNames": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 125,
           "column": 22
         }
       },
@@ -333,14 +352,115 @@
       "type": "variable",
       "access": "protected"
     },
-    "onLoaded": {
+    "__rootElementName": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 130,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__pageParentElementName": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__pageElementName": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_applyStructure": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "structure"
+      ]
+    },
+    "onLoaded": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 159,
           "column": 5
         }
       },
@@ -350,11 +470,11 @@
     "_cacheXSD": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 182,
           "column": 5
         }
       },
@@ -372,11 +492,11 @@
     "_parseXSD": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 194,
           "column": 5
         }
       },
@@ -394,11 +514,11 @@
     "getElementNode": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 196,
           "column": 4
         },
         "end": {
-          "line": 169,
+          "line": 201,
           "column": 5
         }
       },
@@ -408,11 +528,11 @@
     "getReferencedNode": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 248,
           "column": 5
         }
       },
@@ -426,11 +546,15 @@
         "@param": [
           {
             "name": "@param",
-            "body": "type    string  Type of the node (e.g. element, attributeGroup, ...)"
+            "body": "type       string  Type of the node (e.g. element, attributeGroup, ...)"
           },
           {
             "name": "@param",
-            "body": "refName string  Name as per the ref-attribute"
+            "body": "refName    string  Name as per the ref-attribute"
+          },
+          {
+            "name": "@param",
+            "body": "noFallback boolean Don't look up other types as fallback, if the requested type is not found"
           }
         ],
         "@return": [
@@ -446,11 +570,11 @@
     "getTypeNode": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 257,
           "column": 4
         },
         "end": {
-          "line": 231,
+          "line": 275,
           "column": 5
         }
       },
@@ -478,11 +602,11 @@
     "getTextNodeSchemaElement": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 282,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 292,
           "column": 5
         }
       },
@@ -506,11 +630,11 @@
     "getCommentNodeSchemaElement": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 311,
           "column": 5
         }
       },
@@ -534,11 +658,11 @@
     "getSchemaDOM": {
       "location": {
         "start": {
-          "line": 274,
+          "line": 318,
           "column": 4
         },
         "end": {
-          "line": 276,
+          "line": 320,
           "column": 5
         }
       },
@@ -562,11 +686,11 @@
     "getWidgetNames": {
       "location": {
         "start": {
-          "line": 282,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 337,
           "column": 5
         }
       },
@@ -585,6 +709,34 @@
             "description": ""
           }
         ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isRoot": {
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4
+        },
+        "end": {
+          "line": 341,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isPage": {
+      "location": {
+        "start": {
+          "line": 343,
+          "column": 4
+        },
+        "end": {
+          "line": 345,
+          "column": 5
+        }
       },
       "type": "function",
       "access": "public"
@@ -3887,16 +4039,82 @@
           }
         ]
       }
+    },
+    "getStructure": {
+      "type": "function",
+      "name": "getStructure",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>structure</code>.\n\nFor further details take a look at the property definition: {@link #structure}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for structure"
+          }
+        ]
+      }
+    },
+    "setStructure": {
+      "type": "function",
+      "name": "setStructure",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>structure</code>.\n\nFor further details take a look at the property definition: {@link #structure}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for structure"
+          }
+        ]
+      }
+    },
+    "resetStructure": {
+      "type": "function",
+      "name": "resetStructure",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>structure</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #structure}."
+          }
+        ]
+      }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 297,
+        "line": 353,
         "column": 12
       },
       "end": {
-        "line": 304,
+        "line": 360,
         "column": 3
       }
     },

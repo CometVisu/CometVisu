@@ -1,0 +1,469 @@
+{
+  "className": "cv.ui.structure.pure.layout.ResizeHandler",
+  "packageName": "cv.ui.structure.pure.layout",
+  "name": "ResizeHandler",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 367,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Manager for all resizing issues. It ensures that the real resizing\n calculations are only done as often as really necessary.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "states": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 52
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "$pageSize": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "$navbarTop": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "$navbarBottom": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 12
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 13
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__initial": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__backdropRetries": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "validationQueue": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__request": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getPageSize": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNavbarTop": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNavbarBottom": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "queueJob": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "flush": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "makeAllSizesValid": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "makeBackdropValid": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__makeBackdropValid": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4
+        },
+        "end": {
+          "line": 243,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "makeNavbarValid": {
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4
+        },
+        "end": {
+          "line": 247,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__makeNavbarValid": {
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4
+        },
+        "end": {
+          "line": 256,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "makePagesizeValid": {
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4
+        },
+        "end": {
+          "line": 266,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__makePagesizeValid": {
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4
+        },
+        "end": {
+          "line": 287,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "makeRowspanValid": {
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__makeRowspanValid": {
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4
+        },
+        "end": {
+          "line": 306,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__updateRowHeight": {
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4
+        },
+        "end": {
+          "line": 335,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "invalidateBackdrop": {
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4
+        },
+        "end": {
+          "line": 341,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "invalidateNavbar": {
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4
+        },
+        "end": {
+          "line": 347,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "invalidateRowspan": {
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 4
+        },
+        "end": {
+          "line": 351,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "invalidateScreensize": {
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4
+        },
+        "end": {
+          "line": 361,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 364,
+        "column": 9
+      },
+      "end": {
+        "line": 366,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

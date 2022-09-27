@@ -181,7 +181,7 @@
           return this._shortcut.toString();
         }
 
-        return qx.ui.command.Command.prototype.toString.base.call(this);
+        return qx.ui.command.Command.superclass.prototype.toString.call(this);
       }
     },
     destruct: function destruct() {
@@ -193,4 +193,4 @@
   qx.ui.command.Command.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Command.js.map?dt=1660800164995
+//# sourceMappingURL=Command.js.map?dt=1664297889162

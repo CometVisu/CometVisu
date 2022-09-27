@@ -66,11 +66,11 @@
             break;
         }
 
-        return control || cv.ui.manager.form.ListItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.form.ListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
   });
   cv.ui.manager.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1660800145910
+//# sourceMappingURL=ListItem.js.map?dt=1664297869552

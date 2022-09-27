@@ -108,11 +108,11 @@
           qx.core.Init.getApplication().getRoot().add(this);
         }
 
-        qx.ui.popup.Popup.prototype.show.base.call(this);
+        qx.ui.popup.Popup.superclass.prototype.show.call(this);
       },
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.popup.Popup.prototype._applyVisibility.base.call(this, value, old);
+        qx.ui.popup.Popup.superclass.prototype._applyVisibility.call(this, value, old);
 
         var mgr = qx.ui.popup.Manager.getInstance();
         value === "visible" ? mgr.add(this) : mgr.remove(this);
@@ -133,4 +133,4 @@
   qx.ui.popup.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1660800172923
+//# sourceMappingURL=Popup.js.map?dt=1664297896562

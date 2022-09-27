@@ -76,7 +76,7 @@
       parse: function parse() {
         var _this = this;
 
-        cv.ui.manager.model.schema.Any.prototype.parse.base.call(this);
+        cv.ui.manager.model.schema.Any.superclass.prototype.parse.call(this);
         var schema = this.getSchema();
         var group = this.getNode();
 
@@ -129,4 +129,4 @@
   cv.ui.manager.model.schema.Any.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Any.js.map?dt=1660800146752
+//# sourceMappingURL=Any.js.map?dt=1664297870232

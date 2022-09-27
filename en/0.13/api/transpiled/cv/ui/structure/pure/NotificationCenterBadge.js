@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -52,7 +52,7 @@
    * @since 0.11.0
    */
   qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
 
     /*
     ******************************************************
@@ -70,7 +70,7 @@
         props.classes = classes.join(' ');
       }
 
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
 
     /*
@@ -96,9 +96,9 @@
      ******************************************************
      */
     members: {
-      __P_58_0: null,
+      __P_61_0: null,
       _onDomReady: function _onDomReady() {
-        cv.ui.structure.pure.NotificationCenterBadge.prototype._onDomReady.base.call(this);
+        cv.ui.structure.pure.NotificationCenterBadge.superclass.prototype._onDomReady.call(this);
 
         var center = cv.ui.NotificationCenter.getInstance();
         center.getMessages().addListener('changeLength', this._onChangeCounter, this);
@@ -120,15 +120,15 @@
 
         cv.ui.NotificationCenter.getInstance().toggleVisibility();
       },
-      __P_58_1: function __P_58_1() {
-        if (!this.__P_58_0) {
-          this.__P_58_0 = this.getDomElement().querySelector('.badge');
+      __P_61_1: function __P_61_1() {
+        if (!this.__P_61_0) {
+          this.__P_61_0 = this.getDomElement().querySelector('.badge');
         }
 
-        return this.__P_58_0;
+        return this.__P_61_0;
       },
       _onChangeGlobalSeverity: function _onChangeGlobalSeverity(ev) {
-        var classList = this.__P_58_1().classList;
+        var classList = this.__P_61_1().classList;
 
         classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
 
@@ -138,10 +138,10 @@
       },
       _onChangeCounter: function _onChangeCounter() {
         var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
-        this.__P_58_1().innerHTML = '' + messages;
+        this.__P_61_1().innerHTML = '' + messages;
 
         if (this.isHideWhenEmpty()) {
-          this.__P_58_1().style.display = messages === 0 ? 'none' : 'block';
+          this.__P_61_1().style.display = messages === 0 ? 'none' : 'block';
         }
       },
       // overridden
@@ -173,4 +173,4 @@
   cv.ui.structure.pure.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1660800148099
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1664297871688

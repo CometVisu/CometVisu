@@ -377,7 +377,7 @@
       },
       // overridden
       _createContainerElement: function _createContainerElement() {
-        var element = qx.ui.mobile.container.Scroll.prototype._createContainerElement.base.call(this);
+        var element = qx.ui.mobile.container.Scroll.superclass.prototype._createContainerElement.call(this);
 
         var scrollElement = this._createScrollElement();
 
@@ -389,7 +389,7 @@
       },
       // overridden
       _getContentElement: function _getContentElement() {
-        var contentElement = qx.ui.mobile.container.Scroll.prototype._getContentElement.base.call(this);
+        var contentElement = qx.ui.mobile.container.Scroll.superclass.prototype._getContentElement.call(this);
 
         var scrollContentElement = this._getScrollContentElement();
 
@@ -566,4 +566,4 @@
   qx.ui.mobile.container.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1660800171030
+//# sourceMappingURL=Scroll.js.map?dt=1664297894908

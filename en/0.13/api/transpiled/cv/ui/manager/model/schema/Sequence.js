@@ -83,7 +83,7 @@
       parse: function parse() {
         var _this = this;
 
-        cv.ui.manager.model.schema.Sequence.prototype.parse.base.call(this);
+        cv.ui.manager.model.schema.Sequence.superclass.prototype.parse.call(this);
         var schema = this.getSchema(); // for a sequence, we need to keep the order of the elements
         // so we have to use a 'mixed' approach in reading them
 
@@ -266,4 +266,4 @@
   cv.ui.manager.model.schema.Sequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sequence.js.map?dt=1660800147080
+//# sourceMappingURL=Sequence.js.map?dt=1664297870541

@@ -75,7 +75,7 @@
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.Button.prototype._applyVisibility.base.call(this, value, old); // trigger a appearance recalculation of the parent
+        qx.ui.toolbar.Button.superclass.prototype._applyVisibility.call(this, value, old); // trigger a appearance recalculation of the parent
 
 
         var parent = this.getLayoutParent();
@@ -89,4 +89,4 @@
   qx.ui.toolbar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1660800175573
+//# sourceMappingURL=Button.js.map?dt=1664297899012

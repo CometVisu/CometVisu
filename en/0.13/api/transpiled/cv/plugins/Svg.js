@@ -5,13 +5,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Update": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "qx.io.request.Xhr": {},
@@ -49,7 +49,7 @@
    * @asset(plugins/svg/rollo.svg)
    */
   qx.Class.define('cv.plugins.Svg', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
 
     /*
@@ -69,9 +69,9 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
-        cv.parser.WidgetParser.parseFormat(xml, path);
-        cv.parser.WidgetParser.parseAddress(xml, path);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+        cv.parser.pure.WidgetParser.parseFormat(xml, path);
+        cv.parser.pure.WidgetParser.parseAddress(xml, path);
         return data;
       }
     },
@@ -86,7 +86,7 @@
         return '<div class="actor"></div>';
       },
       _onDomReady: function _onDomReady() {
-        cv.plugins.Svg.prototype._onDomReady.base.call(this);
+        cv.plugins.Svg.superclass.prototype._onDomReady.call(this);
 
         var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
         ajaxRequest.set({
@@ -126,11 +126,11 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler('svg', cv.plugins.Svg);
+      cv.parser.pure.WidgetParser.addHandler('svg', cv.plugins.Svg);
       cv.ui.structure.WidgetFactory.registerClass('svg', statics);
     }
   });
   cv.plugins.Svg.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Svg.js.map?dt=1660800142734
+//# sourceMappingURL=Svg.js.map?dt=1664297866390

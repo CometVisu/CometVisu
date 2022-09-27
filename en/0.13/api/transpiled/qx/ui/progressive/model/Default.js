@@ -38,10 +38,10 @@
     extend: qx.ui.progressive.model.Abstract,
     construct: function construct() {
       qx.ui.progressive.model.Abstract.constructor.call(this);
-      this.__P_384_0 = [];
+      this.__P_404_0 = [];
     },
     members: {
-      __P_384_0: null,
+      __P_404_0: null,
 
       /**
        * Add elements to be progressively rendered.  Each element must be an
@@ -53,9 +53,9 @@
        */
       addElements: function addElements(elems) {
         // Add the new elements to our elements queue.
-        this.__P_384_0 = this.__P_384_0.concat(elems); // Tell Progressive that data is available
+        this.__P_404_0 = this.__P_404_0.concat(elems); // Tell Progressive that data is available
 
-        this.fireDataEvent("dataAvailable", this.__P_384_0.length);
+        this.fireDataEvent("dataAvailable", this.__P_404_0.length);
       },
 
       /**
@@ -68,23 +68,23 @@
        */
       addElement: function addElement(elem) {
         // Add the new elements to our elements queue.
-        this.__P_384_0.push(elem); // Tell Progressive that data is available
+        this.__P_404_0.push(elem); // Tell Progressive that data is available
 
 
-        this.fireDataEvent("dataAvailable", this.__P_384_0.length);
+        this.fireDataEvent("dataAvailable", this.__P_404_0.length);
       },
       // overridden
       getElementCount: function getElementCount() {
-        return this.__P_384_0.length;
+        return this.__P_404_0.length;
       },
       // overridden
       getNextElement: function getNextElement() {
         // Do we have any remaining elements?
-        if (this.__P_384_0.length > 0) {
+        if (this.__P_404_0.length > 0) {
           // Yup.  Give 'em the first one and remove it from our queue.
           return {
-            element: this.__P_384_0.shift(),
-            remaining: this.__P_384_0.length
+            element: this.__P_404_0.shift(),
+            remaining: this.__P_404_0.length
           };
         }
 
@@ -92,10 +92,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_384_0 = null;
+      this.__P_404_0 = null;
     }
   });
   qx.ui.progressive.model.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1660800173088
+//# sourceMappingURL=Default.js.map?dt=1664297896716

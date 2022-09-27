@@ -71,8 +71,8 @@
       var displayFnParameters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
       qx.core.Object.constructor.call(this);
       this.setDisplayFn(displayFn);
-      this.__P_514_0 = context;
-      this.__P_514_1 = displayFnParameters;
+      this.__P_531_0 = context;
+      this.__P_531_1 = displayFnParameters;
     },
 
     /*
@@ -81,9 +81,9 @@
     ******************************************************
     */
     destruct: function destruct() {
-      if (this.__P_514_2 !== undefined) {
-        window.cancelAnimationFrame(this.__P_514_2);
-        this.__P_514_2 = undefined;
+      if (this.__P_531_2 !== undefined) {
+        window.cancelAnimationFrame(this.__P_531_2);
+        this.__P_531_2 = undefined;
       }
     },
 
@@ -120,11 +120,11 @@
     ******************************************************
     */
     members: {
-      __P_514_2: undefined,
-      __P_514_0: undefined,
-      __P_514_1: undefined,
-      __P_514_3: undefined,
-      __P_514_4: undefined,
+      __P_531_2: undefined,
+      __P_531_0: undefined,
+      __P_531_1: undefined,
+      __P_531_3: undefined,
+      __P_531_4: undefined,
 
       /**
        * Set animation speed by defining the (typical) maximal range.
@@ -158,14 +158,14 @@
         var instant = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         var show = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
         var now = performance.now();
-        this.__P_514_4 = targetValue;
+        this.__P_531_4 = targetValue;
 
-        if (instant || this.__P_514_3 === undefined) {
-          this.__P_514_3 = targetValue;
+        if (instant || this.__P_531_3 === undefined) {
+          this.__P_531_3 = targetValue;
         }
 
-        if (this.__P_514_2 === undefined && show) {
-          this.__P_514_5(now, now - 10);
+        if (this.__P_531_2 === undefined && show) {
+          this.__P_531_5(now, now - 10);
         }
       },
 
@@ -175,36 +175,36 @@
        * @param {DOMHighResTimeStamp} lasttime
        * @private
        */
-      __P_514_5: function __P_514_5(thistime, lasttime) {
+      __P_531_5: function __P_531_5(thistime, lasttime) {
         var _this = this;
 
-        var isNumber = typeof this.__P_514_3 === 'number';
+        var isNumber = typeof this.__P_531_3 === 'number';
         var dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
 
         var maxLinearDelta = this.getLinearRateLimit() * dt;
         var alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
-        var nextValue = isNumber ? this.__P_514_4 * alpha + this.__P_514_3 * (1 - alpha) : this.__P_514_3.blend(this.__P_514_4, alpha);
-        var delta = isNumber ? nextValue - this.__P_514_3 : this.__P_514_3.delta(nextValue);
+        var nextValue = isNumber ? this.__P_531_4 * alpha + this.__P_531_3 * (1 - alpha) : this.__P_531_3.blend(this.__P_531_4, alpha);
+        var delta = isNumber ? nextValue - this.__P_531_3 : this.__P_531_3.delta(nextValue);
         var notFinished = true;
 
         if (Math.abs(delta) > maxLinearDelta) {
-          nextValue = isNumber ? this.__P_514_3 + Math.sign(delta) * maxLinearDelta : this.__P_514_3.blend(this.__P_514_4, alpha * maxLinearDelta / delta);
+          nextValue = isNumber ? this.__P_531_3 + Math.sign(delta) * maxLinearDelta : this.__P_531_3.blend(this.__P_531_4, alpha * maxLinearDelta / delta);
         }
 
-        if (isNumber && Math.abs(nextValue - this.__P_514_4) < this.getEpsilon() || !isNumber && nextValue.delta(this.__P_514_4) < this.getEpsilon()) {
-          nextValue = this.__P_514_4;
+        if (isNumber && Math.abs(nextValue - this.__P_531_4) < this.getEpsilon() || !isNumber && nextValue.delta(this.__P_531_4) < this.getEpsilon()) {
+          nextValue = this.__P_531_4;
           notFinished = false;
         }
 
-        this.__P_514_3 = isNumber ? nextValue : nextValue.copy();
-        this.getDisplayFn().call(this.__P_514_0, this.__P_514_3, this.__P_514_1);
+        this.__P_531_3 = isNumber ? nextValue : nextValue.copy();
+        this.getDisplayFn().call(this.__P_531_0, this.__P_531_3, this.__P_531_1);
 
         if (notFinished) {
-          this.__P_514_2 = window.requestAnimationFrame(function (time) {
-            _this.__P_514_5(time, thistime);
+          this.__P_531_2 = window.requestAnimationFrame(function (time) {
+            _this.__P_531_5(time, thistime);
           });
         } else {
-          this.__P_514_2 = undefined;
+          this.__P_531_2 = undefined;
         }
       }
     }
@@ -212,4 +212,4 @@
   cv.util.LimitedRateUpdateAnimator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LimitedRateUpdateAnimator.js.map?dt=1660800183174
+//# sourceMappingURL=LimitedRateUpdateAnimator.js.map?dt=1664297906170

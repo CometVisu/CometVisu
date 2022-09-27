@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 90,
+        "line": 91,
         "column": 3
       }
     },
@@ -38,7 +38,7 @@
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 85,
           "column": 5
         }
       },
@@ -48,11 +48,11 @@
     "getIcon": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 89,
           "column": 5
         }
       },

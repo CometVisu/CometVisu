@@ -7,11 +7,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
-      "cv.parser.WidgetParser": {},
-      "cv.TemplateEngine": {},
+      "cv.parser.pure.WidgetParser": {},
+      "cv.Application": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       }
@@ -46,7 +46,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @since 0.10.0 (2017)
    */
   qx.Class.define('cv.ui.structure.pure.PageLink', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
 
     /*
      ******************************************************
@@ -82,7 +82,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // overridden
       getDomString: function getDomString() {
         var layout = this.getLayout();
-        var style = _typeof(layout) === 'object' ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
+        var style = _typeof(layout) === 'object' ? '' : 'style="' + cv.parser.pure.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
         var ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
         ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';
         ret_val += '</div>';
@@ -90,7 +90,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // overridden
       action: function action() {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getPath() + '_');
+        cv.Application.structureController.scrollToPage(this.getPath() + '_');
       }
     },
     defer: function defer(statics) {
@@ -100,4 +100,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.structure.pure.PageLink.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageLink.js.map?dt=1660800148195
+//# sourceMappingURL=PageLink.js.map?dt=1664297871779

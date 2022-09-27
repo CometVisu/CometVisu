@@ -52,33 +52,26 @@
 <li class="toctree-l2"><a class="reference internal" href="../../editor.html">Grafischer Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Versteckte Konfigurationen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../index.html">Bedienbare Widgets</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html#darstellende-widgets">Darstellende Widgets</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../image/index.html">Das Image Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../info/index.html">Das Info Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../line/index.html">Das Line Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../rgb/index.html">Das RGB Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../roundbar/index.html">Das Roundbar Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../text/index.html">Das Text Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../video/index.html">Das Video Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../web/index.html">Das Web Widget</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Das WG_Plugin_Info Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#pure-struktur">Pure-Struktur</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../xml-format.html">XML-Struktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#navigationselemente-in-der-pure-struktur">Navigationselemente in der Pure-Struktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#elemente-fur-konvertierung-und-formatierung">Elemente für Konvertierung und Formatierung</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-in-der-pure-struktur">Widgets in der Pure-Struktur</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#sonstige-widgets">Sonstige Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#pure-struktur-beispiele">Pure-Struktur - Beispiele</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#sonstiges">sonstiges</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../index.html#sonstiges">sonstiges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
@@ -134,7 +127,7 @@ anzeigen kann, die unter dem plugin_info-Hash abgelegt sind.</p>
 <section id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
-Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Grundsätzliches</span></a>.</p>
 <p>Das Verhalten und Aussehen des wgplugin_info-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente.</p>
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können

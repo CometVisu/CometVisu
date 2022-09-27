@@ -5,13 +5,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.HasChildren": {
         "require": true
       },
-      "cv.TemplateEngine": {},
+      "cv.Application": {},
       "qx.core.Init": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
@@ -50,7 +50,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.NavBar', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.HasChildren,
 
     /*
@@ -132,7 +132,7 @@
         var content = document.body.querySelector('#centerContainer');
         content.addEventListener('touchstart', function (evt) {
           var touches = evt.touches[0];
-          var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          var pPH = cv.Application.structureController.pagePartsHandler;
 
           if (pPH.navbars.left.dynamic === false || !qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true || pPH.navbars.left.fadeVisible && !evt.composedPath().some(function (i) {
             return i.id === 'navbarLeft';
@@ -166,7 +166,7 @@
 
           if (horizontal && enoughDistance) {
             evt.preventDefault();
-            var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+            var pPH = cv.Application.structureController.pagePartsHandler;
 
             if (toRight) {
               self._touchX = touches.clientX - necessaryDistance;
@@ -244,4 +244,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1660800148069
+//# sourceMappingURL=NavBar.js.map?dt=1664297871664

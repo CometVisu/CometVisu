@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Styling.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "cv",
+    "ui",
+    "structure",
+    "tile",
+    "elements",
+    "Mapping",
+    "members",
+    "_applyConnected",
+    "value",
+    "oldValue",
+    "name",
+    "Application",
+    "structureController",
+    "addStyling",
+    "_element",
+    "getAttribute",
+    "removeStyling",
+    "defer",
+    "Clazz",
+    "customElements",
+    "Controller",
+    "PREFIX",
+    "QxConnector",
+    "Styling"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uCAAhB,EAAyD;AACvDC,IAAAA,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBC,QAArB,CAA8BC,OADiB;;AAGvD;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,eADO,2BACSC,KADT,EACgBC,QADhB,EAC0BC,IAD1B,EACgC;AACrC,8FAAqBF,KAArB,EAA4BC,QAA5B,EAAsCC,IAAtC;;AACA,YAAIF,KAAJ,EAAW;AACTR,UAAAA,EAAE,CAACW,WAAH,CAAeC,mBAAf,CAAmCC,UAAnC,CAA8C,KAAKC,QAAL,CAAcC,YAAd,CAA2B,MAA3B,CAA9C,EAAkF,IAAlF;AACD,SAFD,MAEO;AACLf,UAAAA,EAAE,CAACW,WAAH,CAAeC,mBAAf,CAAmCI,aAAnC,CAAiD,KAAKF,QAAL,CAAcC,YAAd,CAA2B,MAA3B,CAAjD;AACD;AACF;AARM,KAR8C;AAkBvDE,IAAAA,KAlBuD,iBAkBjDC,KAlBiD,EAkB1C;AACXC,MAAAA,cAAc,CAACrB,MAAf,CAAsBE,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBiB,UAArB,CAAgCC,MAAhC,GAAyC,SAA/D;AAAA;;AAAA;;AAAA;;AACE,0BAAc;AAAA;;AAAA,mCACNH,KADM;AAEb;;AAHH;AAAA,QAAwFI,WAAxF;AAKD;AAxBsD,GAAzD;AAxBAtB,EAAAA,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBC,QAArB,CAA8BmB,OAA9B,CAAsC3B,aAAtC,GAAsDA,aAAtD",
+  "sourcesContent": [
+    "/* Styling.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Styling maps a value to another value that can be used to style a component\n * @author Tobias Bräutigam\n * @since 2022\n */\nqx.Class.define('cv.ui.structure.tile.elements.Styling', {\n  extend: cv.ui.structure.tile.elements.Mapping,\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _applyConnected(value, oldValue, name) {\n      this.base(arguments, value, oldValue, name);\n      if (value) {\n        cv.Application.structureController.addStyling(this._element.getAttribute('name'), this);\n      } else {\n        cv.Application.structureController.removeStyling(this._element.getAttribute('name'));\n      }\n    }\n  },\n  defer(Clazz) {\n    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'styling', class extends QxConnector {\n      constructor() {\n        super(Clazz);\n      }\n    });\n  }\n});\n"
+  ]
+}

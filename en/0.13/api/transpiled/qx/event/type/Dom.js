@@ -83,7 +83,7 @@
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        var clone = qx.event.type.Dom.prototype._cloneNativeEvent.base.call(this, nativeEvent, clone);
+        var clone = qx.event.type.Dom.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
 
         clone.shiftKey = nativeEvent.shiftKey;
         clone.ctrlKey = nativeEvent.ctrlKey;
@@ -243,4 +243,4 @@
   qx.event.type.Dom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dom.js.map?dt=1660800159004
+//# sourceMappingURL=Dom.js.map?dt=1664297883740

@@ -789,8 +789,10 @@ of the <code class="docutils literal notranslate"><span class="pre">&#64;author<
 to the name of the source code file without file extension, e.g.
 for <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">Switch</span></code>
 (case-sensitive). For plugins, the folder name of the plugin
-must be specified, e.g. for <code class="docutils literal notranslate"><span class="pre">plugins/clock/</span></code> you
-take <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">clock</span></code></p>
+must be specified, e.g. for <code class="docutils literal notranslate"><span class="pre">plugins/clock/</span></code> you use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">clock</span></code>.
+For widgets of other structures or any other source code files the full name must be used as it is defined in
+<code class="docutils literal notranslate"><span class="pre">qx.Class.define</span></code>, e.g. for <code class="docutils literal notranslate"><span class="pre">qx.Class.define('cv.ui.structure.tile.Controller',...</span></code> you use
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">cv.ui.structure.tile.Controller</span></code>.</p>
 </div>
 <p>Example for the Switch-Widget:</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch

@@ -72,6 +72,20 @@
             return string === 'ON' || parseInt(string) > 0 ? 1 : 0;
           }
         },
+        'playPause': {
+          name: 'OH_PlayPause',
+          encode: function encode(phy) {
+            // using == comparisons to make sure that e.g. 1 equals "1"
+            return phy == 1 ? 'PLAY' : 'PAUSE'; // jshint ignore:line
+          },
+          decode: function decode(string) {
+            if (cv.transforms.OpenHab.isUndefined(string)) {
+              return 0;
+            }
+
+            return string === 'PLAY' || parseInt(string) > 0 ? 1 : 0;
+          }
+        },
         'contact': {
           name: 'OH_Contact',
           encode: function encode(phy) {
@@ -91,25 +105,32 @@
           encode: function encode(phy) {
             // using == comparisons to make sure that e.g. 1 equals "1"
             // noinspection EqualityComparisonWithCoercionJS
-            if (phy == 1) {
-              return 'DOWN'; // eslint-disable-next-line no-else-return
-            } else {
-              // noinspection EqualityComparisonWithCoercionJS
-              if (phy == 0) {
-                // eslint-disable-line no-lonely-if
-                return 'UP';
-              }
+            if (phy == -1) {
+              return 'STOP';
+            } // noinspection EqualityComparisonWithCoercionJS
+
+
+            if (phy == 1 || phy == 100) {
+              return 'DOWN';
+            } // noinspection EqualityComparisonWithCoercionJS
+
+
+            if (phy == 0) {
+              // eslint-disable-line no-lonely-if
+              return 'UP';
             }
 
             return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
+              return undefined;
+            } else if (str === 'UP' || str === '0') {
               return 0;
-            } else if (str === 'UP') {
-              return 0;
-            } else if (str === 'DOWN') {
-              return 1;
+            } else if (str === 'DOWN' || str === '100') {
+              return 100;
+            } else if (str === 'STOP') {
+              return -1;
             }
 
             return str;
@@ -160,6 +181,7 @@
         },
         'datetime': {
           name: 'OH_DateTime',
+          applyInTestMode: true,
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleDateString();
@@ -177,6 +199,7 @@
         },
         'time': {
           name: 'OH_Time',
+          applyInTestMode: true,
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleTimeString();
@@ -204,17 +227,39 @@
               return '0, 0, 0';
             }
 
-            var rgb = [phy.get('r') || 0, phy.get('g') || 0, phy.get('b') || 0];
-            return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
+            if (phy.has('h') && phy.has('s') && phy.has('v')) {
+              var hsv = [phy.get('h') || 0, phy.get('s') || 0, phy.get('v') || 0];
+              return hsv.join(', ');
+            } else if (phy.has('r') && phy.has('g') && phy.has('b')) {
+              var rgb = [phy.get('r') || 0, phy.get('g') || 0, phy.get('b') || 0];
+              return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
+            }
+
+            return '0, 0, 0';
           },
-          decode: function decode(hsbString) {
+          decode: function decode(hsbString, variant) {
             if (cv.transforms.OpenHab.isUndefined(hsbString)) {
-              return new Map([['r', 0], ['g', 0], ['b', 0]]);
+              return variant === 'rgb' ? new Map([['r', 0], ['g', 0], ['b', 0]]) : new Map([['h', 0], ['s', 0], ['v', 0]]);
             } // decode HSV/HSB to RGB
 
 
-            var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
-            return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
+            if (variant === 'rgb') {
+              // decode HSV/HSB to RGB
+              var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
+              return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
+            }
+
+            var hsv = hsbString.split(',').map(parseFloat);
+            return new Map([['h', hsv[0]], ['s', hsv[1]], ['v', hsv[2]]]);
+          }
+        },
+        'thing-status': {
+          name: 'OH_Thing',
+          encode: function encode(val) {
+            return val ? 'ONLINE' : 'OFFLINE';
+          },
+          decode: function decode(val) {
+            return val === 'ONLINE';
           }
         }
       });
@@ -223,4 +268,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1660800143506
+//# sourceMappingURL=OpenHab.js.map?dt=1664297867142

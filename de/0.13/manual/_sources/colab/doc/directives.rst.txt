@@ -202,7 +202,10 @@ Momentan sind das die Werte der ``@author`` und ``@since`` Angaben.
     Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
     entspricht, also z.B. für ``structure/pure/Switch.js`` nimmt man ``.. api-doc:: Switch``
     (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
-    z.B. für ``plugins/clock/`` nimmt man ``.. api-doc:: clock``
+    z.B. für ``plugins/clock/`` nimmt man ``.. api-doc:: clock``.
+    Für Widgets von anderen Strukturen oder beliebige andere Source-Code Dateien muss man den vollen
+    Namen der Klasse angeben wie sie in ``qx.Class.define`` angegeben ist also z.B. für
+    ``qx.Class.define('cv.ui.structure.tile.Controller',...`` nimmt man ``.. api-doc:: cv.ui.structure.tile.Controller``.
 
 Beispiel für das Switch-Widget:
 

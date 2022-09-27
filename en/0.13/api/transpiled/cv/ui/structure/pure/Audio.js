@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Update": {
@@ -57,7 +57,7 @@
    * @since 0.8.4 (2014)
    */
   qx.Class.define('cv.ui.structure.pure.Audio', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Update,
 
     /*
@@ -154,4 +154,4 @@
   cv.ui.structure.pure.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1660800147630
+//# sourceMappingURL=Audio.js.map?dt=1664297871132

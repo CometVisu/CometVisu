@@ -127,7 +127,7 @@
             break;
         }
 
-        return control || qx.ui.splitpane.Splitter.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.splitpane.Splitter.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // property apply
       _applyKnobVisible: function _applyKnobVisible(value, old) {
@@ -138,4 +138,4 @@
   qx.ui.splitpane.Splitter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Splitter.js.map?dt=1660800173681
+//# sourceMappingURL=Splitter.js.map?dt=1664297897264

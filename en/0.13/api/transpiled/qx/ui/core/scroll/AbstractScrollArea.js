@@ -295,7 +295,7 @@
             break;
         }
 
-        return control || qx.ui.core.scroll.AbstractScrollArea.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.core.scroll.AbstractScrollArea.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /*
@@ -644,4 +644,4 @@
   qx.ui.core.scroll.AbstractScrollArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractScrollArea.js.map?dt=1660800166705
+//# sourceMappingURL=AbstractScrollArea.js.map?dt=1664297890735

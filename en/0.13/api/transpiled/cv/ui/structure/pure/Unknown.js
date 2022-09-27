@@ -77,7 +77,7 @@
         init: 'text'
       },
       parentWidget: {
-        check: 'cv.ui.structure.AbstractBasicWidget',
+        check: 'cv.ui.structure.pure.AbstractBasicWidget',
         init: null
       }
     },
@@ -111,4 +111,4 @@
   cv.ui.structure.pure.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1660800148534
+//# sourceMappingURL=Unknown.js.map?dt=1664297872095

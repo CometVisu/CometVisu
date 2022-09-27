@@ -48,7 +48,7 @@
        * @return {qx.event.type.Event} The initialized event instance
        */
       init: function init(target, relatedTarget, canBubble) {
-        qx.event.type.Focus.prototype.init.base.call(this, canBubble, false);
+        qx.event.type.Focus.superclass.prototype.init.call(this, canBubble, false);
         this._target = target;
         this._relatedTarget = relatedTarget;
         return this;
@@ -58,4 +58,4 @@
   qx.event.type.Focus.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Focus.js.map?dt=1660800159094
+//# sourceMappingURL=Focus.js.map?dt=1664297883832

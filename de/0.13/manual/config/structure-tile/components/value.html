@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Value &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/components/value.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../search.html" />
+    <link rel="next" title="Image" href="image.html" />
+    <link rel="prev" title="Button" href="button.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-struktur">Pure-Struktur</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
+      <li>Value</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="value">
+<span id="tile-component-value"></span><h1>Value<a class="headerlink" href="#value" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
+<div class="line"><strong>Verfügbar seit Version</strong>: 2022</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<section id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Value-Komponente stellt einen Wert dar. Sie ist eine rein passive Komponente und sendet selbst keine Werte zum Backend.
+Für die Darstellung der Werte stehen unterschiedliche Arten zur Verfügung, von einfachem Text über Icons
+bis hin zu Fortschrittsbalken.</p>
+<section id="text">
+<h3>Text<a class="headerlink" href="#text" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die einfachste Variante ist es den Wert einfach als Text anzuzeigen.</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-value-label.png" src="../../../_images/cv-value-label.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-value</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;value secondary&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-value&gt;</span>
+</pre></div>
+</div>
+<p>Über das <code class="docutils literal notranslate"><span class="pre">format</span></code>-Attribut kann der Wert <a class="reference internal" href="../../format.html#format"><span class="std std-ref">formatiert</span></a> werden. Die Textfarbe kann über einen
+zusätzlichen Eintrag in das <code class="docutils literal notranslate"><span class="pre">class</span></code>-Attribut des <code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code>-Elements beeinflusst werden. Es stehen hier
+eine Primäre und eine Sekundäre Textfarbe zur Verfügung. Um welche Farben es sich dabei konkret handelt ist
+abhängig vom jeweiligen Design. In dem Beispiel oben wurde die sekundäre Textfarbe verwendet <code class="docutils literal notranslate"><span class="pre">class=&quot;secondary&quot;</span></code>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Der <code class="docutils literal notranslate"><span class="pre">value</span></code>-Eintrag im <code class="docutils literal notranslate"><span class="pre">class</span></code>-Attribut des <code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code>-Elements ist zwingend erforderlich, da hierüber
+der Value-Komponente mitgeteilt wird wo der Wert hineingeschrieben werden soll. Fehlt dieser Eintrag wird
+kein Wert angezeigt.</p>
+</div>
+<p>Um die Primärfarbe zu nutzen muss das <code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code> folgendermaßen aussehen.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;value primary&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../../_images/cv-value-label-primary.png" src="../../../_images/cv-value-label-primary.png" />
+</figure>
+<p>Zusätzlich kann man die Text-Größe einstellen, ebenfalls über einen zusätzlichen Eintrag in das <code class="docutils literal notranslate"><span class="pre">class</span></code>-Attribut.
+Es stehen folgende Möglichkeiten zur Verfügung: <code class="docutils literal notranslate"><span class="pre">medium</span></code> und <code class="docutils literal notranslate"><span class="pre">large</span></code>. Wobei medium kleiner als die Standardgröße ist
+und large größer.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;value large&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../../_images/cv-value-label-large.png" src="../../../_images/cv-value-label-large.png" />
+</figure>
+</section>
+<section id="icon">
+<h3>Icon<a class="headerlink" href="#icon" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Wird ein <a class="reference internal" href="icon.html#tile-component-icon"><span class="std std-ref">Icon</span></a> als <code class="docutils literal notranslate"><span class="pre">class=&quot;value&quot;</span></code> benutzt, kann das Icon über ein Mapping und dessen Farbe über Styling
+Wert-abhängig beeinflusst werden.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Hier darf das <code class="docutils literal notranslate"><span class="pre">cv-value</span></code>-Element kein <code class="docutils literal notranslate"><span class="pre">format</span></code> benutzen, da sonst das Mapping und das Styling nicht mehr
+funktionieren würden.</p>
+</div>
+<table class="image-float docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default">
+<img alt="../../../_images/cv-value-icon-off.png" src="../../../_images/cv-value-icon-off.png" />
+</figure>
+</td>
+<td><figure class="align-default">
+<img alt="../../../_images/cv-value-icon-on.png" src="../../../_images/cv-value-icon-on.png" />
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;cv-meta&gt;</span>
+    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-mapping&gt;</span>
+    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/cv-styling&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+...
+<span class="nt">&lt;cv-value</span> <span class="na">mapping=</span><span class="s">&quot;light&quot;</span> <span class="na">styling=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-value&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="fortschrittsbalken">
+<h3>Fortschrittsbalken<a class="headerlink" href="#fortschrittsbalken" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um einen Fortschritt anzuzeigen gibt es zwei Darstellungsmöglichkeiten: einen horizontalen Fortschrittsbalken oder
+eine runden oder halb-runden Fortschrittsbalken.</p>
+<figure class="align-default" id="id1">
+<img alt="horizontaler Fortschrittsbalken" src="../../../_images/cv-value-progress.png" />
+<figcaption>
+<p><span class="caption-text">horizontaler Fortschrittsbalken</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-value&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;meter</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-value&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id2">
+<img alt="runder Fortschrittsbalken" src="../../../_images/cv-value-progress-round.png" />
+<figcaption>
+<p><span class="caption-text">runder Fortschrittsbalken</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-value</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;cv-round-progress</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-value&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id3">
+<img alt="halb-runder Fortschrittsbalken" src="../../../_images/cv-value-progress-semi-round.png" />
+<figcaption>
+<p><span class="caption-text">halb-runder Fortschrittsbalken</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-value</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+    <span class="nt">&lt;cv-round-progress</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span> <span class="na">type=</span><span class="s">&quot;semiCircle&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-value&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="erlaubte-attribute">
+<h3>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><p>cv-value</p></td>
+<td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="erlaubte-kind-elemente-und-deren-attribute">
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="13"><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>transform</p></td>
+<td><p>Text</p></td>
+<td><p>Legt den Datentyp im Backend fest, z.B. DPT:1.001 für den KNX Datenpunkttyp 1.001.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>Legt fest, ob auf dieser Adresse nur gelesen <code class="docutils literal notranslate"><span class="pre">read</span></code>, geschrieben <code class="docutils literal notranslate"><span class="pre">write</span></code>, beides <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> oder nichts davon <code class="docutils literal notranslate"><span class="pre">disable</span></code> werden soll</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td><p>Fixer Wert welcher an diese Adresse gesendet wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>on</p></td>
+<td><p><em>click</em>, <em>down</em> oder <em>up</em></p></td>
+<td><p>Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit <code class="docutils literal notranslate"><span class="pre">value</span></code> und mode=``read`` oder <code class="docutils literal notranslate"><span class="pre">readwrite</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>Text</p></td>
+<td><p>Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</p></td>
+</tr>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>backend</p></td>
+<td><p>Text</p></td>
+<td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
+</tr>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>delay</p></td>
+<td><p>positiveInteger</p></td>
+<td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
+</tr>
+<tr class="row-odd"><td><p>send-mode</p></td>
+<td><p><em>on-change</em> oder <em>always</em></p></td>
+<td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>p</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="6"><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>p</p></li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
+</tr>
+<tr class="row-even"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>p</p></li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>p</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>label</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>value-size</p></td>
+<td><p><em>small</em>, <em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
+<td><p>Legt die Schriftgröße fest.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="4"><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>meter</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>cv-icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>size</p></td>
+<td><p><em>large</em>, <em>x-large</em>, <em>xx-large</em> oder <em>xxx-large</em></p></td>
+<td><p>Legt die Größe des Icons fest.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icons.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>cv-icon</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-value</dt><dd><ul class="simple">
+<li><p>cv-round-progress</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>radius</p></td>
+<td><p>integer</p></td>
+<td><p>Radius des Kreises.</p></td>
+</tr>
+<tr class="row-even"><td><p>stroke</p></td>
+<td><p>integer</p></td>
+<td><p>Randbreite des Kreises.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p><em>circle</em> oder <em>semiCircle</em></p></td>
+<td><p>Darstellungsart (Kreis: <code class="docutils literal notranslate"><span class="pre">circle</span></code> (default) oder Halbkreis: <code class="docutils literal notranslate"><span class="pre">semiCircle</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="button.html" class="btn btn-neutral float-left" title="Button" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="image.html" class="btn btn-neutral float-right" title="Image" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

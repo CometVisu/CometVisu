@@ -80,7 +80,7 @@
     *****************************************************************************
     */
     members: {
-      __P_223_0: null,
+      __P_243_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -89,7 +89,7 @@
       */
       // overridden
       clone: function clone(embryo) {
-        var clone = qx.io.remote.Response.prototype.clone.base.call(this, embryo);
+        var clone = qx.io.remote.Response.superclass.prototype.clone.call(this, embryo);
         clone.setType(this.getType());
         clone.setState(this.getState());
         clone.setStatusCode(this.getStatusCode());
@@ -104,8 +104,8 @@
        * @return {Object | null} The header value or null;
        */
       getResponseHeader: function getResponseHeader(vHeader) {
-        if (this.__P_223_0) {
-          return this.__P_223_0[vHeader.toLowerCase()] || null;
+        if (this.__P_243_0) {
+          return this.__P_243_0[vHeader.toLowerCase()] || null;
         }
 
         return null;
@@ -125,7 +125,7 @@
           Object.keys(value).forEach(function (key) {
             lowerHeaders[key.toLowerCase()] = value[key];
           });
-          this.__P_223_0 = lowerHeaders;
+          this.__P_243_0 = lowerHeaders;
         }
       }
     }
@@ -133,4 +133,4 @@
   qx.io.remote.Response.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Response.js.map?dt=1660800160284
+//# sourceMappingURL=Response.js.map?dt=1664297884934

@@ -45,7 +45,7 @@
        *
        * @attach {qxWeb}
        */
-      __P_249_0: function __P_249_0(el) {
+      __P_269_0: function __P_269_0(el) {
         var tag = el.tagName ? el.tagName.toLowerCase() : null;
         return tag === "input" || tag === "textarea";
       },
@@ -58,7 +58,7 @@
        *
        * @attach {qxWeb}
        */
-      __P_249_1: function __P_249_1(el) {
+      __P_269_1: function __P_269_1(el) {
         for (var i = 0, l = el.childNodes.length; i < l; i++) {
           if (el.childNodes[i].nodeType === 3) {
             return el.childNodes[i];
@@ -78,8 +78,8 @@
         var el = this[0];
 
         if (el) {
-          if (!qx.module.TextSelection.__P_249_0(el)) {
-            el = qx.module.TextSelection.__P_249_1(el);
+          if (!qx.module.TextSelection.__P_269_0(el)) {
+            el = qx.module.TextSelection.__P_269_1(el);
           }
 
           return el ? qx.bom.Selection.get(el) : null;
@@ -100,8 +100,8 @@
         var el = this[0];
 
         if (el) {
-          if (!qx.module.TextSelection.__P_249_0(el)) {
-            el = qx.module.TextSelection.__P_249_1(el);
+          if (!qx.module.TextSelection.__P_269_0(el)) {
+            el = qx.module.TextSelection.__P_269_1(el);
           }
 
           return el ? qx.bom.Selection.getLength(el) : null;
@@ -121,8 +121,8 @@
         var el = this[0];
 
         if (el) {
-          if (!qx.module.TextSelection.__P_249_0(el)) {
-            el = qx.module.TextSelection.__P_249_1(el);
+          if (!qx.module.TextSelection.__P_269_0(el)) {
+            el = qx.module.TextSelection.__P_269_1(el);
           }
 
           return el ? qx.bom.Selection.getStart(el) : null;
@@ -142,8 +142,8 @@
         var el = this[0];
 
         if (el) {
-          if (!qx.module.TextSelection.__P_249_0(el)) {
-            el = qx.module.TextSelection.__P_249_1(el);
+          if (!qx.module.TextSelection.__P_269_0(el)) {
+            el = qx.module.TextSelection.__P_269_1(el);
           }
 
           return el ? qx.bom.Selection.getEnd(el) : null;
@@ -167,8 +167,8 @@
         var el = this[0];
 
         if (el) {
-          if (!qx.module.TextSelection.__P_249_0(el)) {
-            el = qx.module.TextSelection.__P_249_1(el);
+          if (!qx.module.TextSelection.__P_269_0(el)) {
+            el = qx.module.TextSelection.__P_269_1(el);
           }
 
           if (el) {
@@ -188,8 +188,8 @@
        */
       clearTextSelection: function clearTextSelection() {
         this._forEachElement(function (el) {
-          if (!qx.module.TextSelection.__P_249_0(el)) {
-            el = qx.module.TextSelection.__P_249_1(el);
+          if (!qx.module.TextSelection.__P_269_0(el)) {
+            el = qx.module.TextSelection.__P_269_1(el);
           }
 
           if (el) {
@@ -207,4 +207,4 @@
   qx.module.TextSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextSelection.js.map?dt=1660800162513
+//# sourceMappingURL=TextSelection.js.map?dt=1664297887011

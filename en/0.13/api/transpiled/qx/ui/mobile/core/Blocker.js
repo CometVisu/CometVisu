@@ -66,7 +66,7 @@
       }
     },
     members: {
-      __P_350_0: 0,
+      __P_370_0: 0,
 
       /**
        * Shows the blocker. When the show method is called a counter is incremented.
@@ -74,15 +74,15 @@
        * method. This behavior is useful, when you want to show a loading indicator.
        */
       show: function show() {
-        if (this.__P_350_0 == 0) {
+        if (this.__P_370_0 == 0) {
           this._updateSize();
 
-          this.__P_350_1();
+          this.__P_370_1();
 
-          qx.ui.mobile.core.Blocker.prototype.show.base.call(this);
+          qx.ui.mobile.core.Blocker.superclass.prototype.show.call(this);
         }
 
-        this.__P_350_0++;
+        this.__P_370_0++;
       },
 
       /**
@@ -90,12 +90,12 @@
        * is called as many times as the {@link #show} method.
        */
       hide: function hide() {
-        this.__P_350_0--;
+        this.__P_370_0--;
 
-        if (this.__P_350_0 <= 0) {
-          this.__P_350_0 = 0;
+        if (this.__P_370_0 <= 0) {
+          this.__P_370_0 = 0;
 
-          this.__P_350_2();
+          this.__P_370_2();
 
           this.exclude();
         }
@@ -106,7 +106,7 @@
        * zero.
        */
       forceHide: function forceHide() {
-        this.__P_350_0 = 0;
+        this.__P_370_0 = 0;
         this.hide();
       },
 
@@ -115,7 +115,7 @@
        * @return {Boolean} <code>true</code> if the blocker is shown
        */
       isShown: function isShown() {
-        return this.__P_350_0 > 0;
+        return this.__P_370_0 > 0;
       },
 
       /**
@@ -146,7 +146,7 @@
       /**
        * Registers all needed event listener.
        */
-      __P_350_1: function __P_350_1() {
+      __P_370_1: function __P_370_1() {
         qx.event.Registration.addListener(window, "resize", this._updateSize, this);
         qx.event.Registration.addListener(window, "scroll", this._onScroll, this);
         this.addListener("pointerdown", qx.bom.Event.preventDefault, this);
@@ -156,7 +156,7 @@
       /**
        * Unregisters all needed event listener.
        */
-      __P_350_2: function __P_350_2() {
+      __P_370_2: function __P_370_2() {
         qx.event.Registration.removeListener(window, "resize", this._updateSize, this);
         qx.event.Registration.removeListener(window, "scroll", this._onScroll, this);
         this.removeListener("pointerdown", qx.bom.Event.preventDefault, this);
@@ -166,10 +166,10 @@
     destruct: function destruct() {
       qx.ui.mobile.core.Blocker.ROOT.remove(this);
 
-      this.__P_350_2();
+      this.__P_370_2();
     }
   });
   qx.ui.mobile.core.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1660800171101
+//# sourceMappingURL=Blocker.js.map?dt=1664297894974

@@ -261,7 +261,7 @@
             break;
         }
 
-        return control || qx.ui.tabview.TabButton.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.tabview.TabButton.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /*
@@ -305,4 +305,4 @@
   qx.ui.tabview.TabButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabButton.js.map?dt=1660800175496
+//# sourceMappingURL=TabButton.js.map?dt=1664297898937

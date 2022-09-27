@@ -210,7 +210,7 @@
       verifyLayoutProperty: null,
       // overridden
       connectToWidget: function connectToWidget(widget) {
-        qx.ui.layout.Flow.prototype.connectToWidget.base.call(this, widget); // Necessary to be able to calculate the lines for the flow layout.
+        qx.ui.layout.Flow.superclass.prototype.connectToWidget.call(this, widget); // Necessary to be able to calculate the lines for the flow layout.
         // Otherwise the layout calculates the needed width and height by using
         // only one line of items which is leading to the wrong height. This
         // wrong height does e.g. suppress scrolling since the scroll pane does
@@ -246,7 +246,7 @@
         while (lineCalculator.hasMoreLines()) {
           var line = lineCalculator.computeNextLine(availWidth);
 
-          this.__P_332_0(line, lineTop, availWidth, padding);
+          this.__P_352_0(line, lineTop, availWidth, padding);
 
           lineTop += line.height + this.getSpacingY();
         }
@@ -262,7 +262,7 @@
        * @param padding {Map} Map containing the padding values. Keys:
        * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>
        */
-      __P_332_0: function __P_332_0(line, lineTop, availWidth, padding) {
+      __P_352_0: function __P_352_0(line, lineTop, availWidth, padding) {
         var util = qx.ui.layout.Util;
         var left = padding.left;
 
@@ -292,7 +292,7 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        return this.__P_332_1(Infinity);
+        return this.__P_352_1(Infinity);
       },
       // overridden
       hasHeightForWidth: function hasHeightForWidth() {
@@ -300,7 +300,7 @@
       },
       // overridden
       getHeightForWidth: function getHeightForWidth(width) {
-        return this.__P_332_1(width).height;
+        return this.__P_352_1(width).height;
       },
 
       /**
@@ -325,7 +325,7 @@
        * @param availWidth {Integer} The available width
        * @return {Map} Map containing the preferred height and width of the layout
        */
-      __P_332_1: function __P_332_1(availWidth) {
+      __P_352_1: function __P_352_1(availWidth) {
         var lineCalculator = new qx.ui.layout.LineSizeIterator(this._getLayoutChildren(), this.getSpacingX());
         var height = 0;
         var width = 0;
@@ -348,4 +348,4 @@
   qx.ui.layout.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1660800169719
+//# sourceMappingURL=Flow.js.map?dt=1664297893666

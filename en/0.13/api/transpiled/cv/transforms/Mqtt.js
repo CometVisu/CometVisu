@@ -93,6 +93,7 @@
         },
         'timestring': {
           name: 'MQTT_timestring',
+          applyInTestMode: true,
           lname: {
             'de': 'Uhrzeit-String',
             'en': 'time string'
@@ -117,6 +118,7 @@
             'de': 'ISO 8601 Zeit-String',
             'en': 'ISO 8601 time string'
           },
+          applyInTestMode: true,
           example: '"2022-01-01T16:30:00.000Z"',
           unit: '-',
           encode: function encode(phy) {
@@ -128,6 +130,7 @@
         },
         'color_xy': {
           name: 'MQTT_color_xy',
+          applyInTestMode: true,
           lname: {
             'de': 'xy-Farbe',
             'en': 'xy color'
@@ -147,6 +150,7 @@
         },
         'color_xyY': {
           name: 'MQTT_color_xyY',
+          applyInTestMode: true,
           lname: {
             'de': 'xyY-Farbe',
             'en': 'xyY color'
@@ -167,6 +171,7 @@
         },
         'color_hsv': {
           name: 'MQTT_color_hsv',
+          applyInTestMode: true,
           lname: {
             'de': 'HSV-Farbe als Zeichenkette',
             'en': 'HSV color as string'
@@ -187,6 +192,7 @@
         },
         'color_h_s_v': {
           name: 'MQTT_color_h_s_v',
+          applyInTestMode: true,
           lname: {
             'de': 'HSV-Farbe',
             'en': 'HSV color'
@@ -211,6 +217,7 @@
         },
         'color_hsl': {
           name: 'MQTT_color_hsl',
+          applyInTestMode: true,
           lname: {
             'de': 'HSL-Farbe als Zeichenkette',
             'en': 'HSL color as string'
@@ -231,6 +238,7 @@
         },
         'color_h_s_l': {
           name: 'MQTT_color_h_s_l',
+          applyInTestMode: true,
           lname: {
             'de': 'HSL-Farbe',
             'en': 'HSL color'
@@ -255,6 +263,7 @@
         },
         'color_rgb': {
           name: 'MQTT_color_rgb',
+          applyInTestMode: true,
           lname: {
             'de': 'RGB-Farbe als Zeichenkette',
             'en': 'RGB color as string'
@@ -275,6 +284,7 @@
         },
         'color_r_g_b': {
           name: 'MQTT_color_r_g_b',
+          applyInTestMode: true,
           lname: {
             'de': 'RGB-Farbe',
             'en': 'RGB color'
@@ -299,6 +309,7 @@
         },
         'color_rgbw': {
           name: 'MQTT_color_rgbw',
+          applyInTestMode: true,
           lname: {
             'de': 'RGBW-Farbe als Zeichenkette',
             'en': 'RGBW color as string'
@@ -319,6 +330,7 @@
         },
         'color_r_g_b_w': {
           name: 'MQTT_color_r_g_b_w',
+          applyInTestMode: true,
           lname: {
             'de': 'RGBW-Farbe',
             'en': 'RGBW color'
@@ -344,6 +356,7 @@
         },
         'color_rgb_hex': {
           name: 'MQTT_color_rgb_hex',
+          applyInTestMode: true,
           lname: {
             'de': 'RGB-Farbe',
             'en': 'RGB color'
@@ -365,6 +378,7 @@
         },
         'color_rgbw_hex': {
           name: 'MQTT_color_rgbw_hex',
+          applyInTestMode: true,
           lname: {
             'de': 'RGBW-Farbe',
             'en': 'RGBW color'
@@ -390,4 +404,4 @@
   cv.transforms.Mqtt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mqtt.js.map?dt=1660800143469
+//# sourceMappingURL=Mqtt.js.map?dt=1664297867090

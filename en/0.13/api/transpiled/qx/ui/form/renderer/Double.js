@@ -67,7 +67,7 @@
 
         this._row = 0;
 
-        qx.ui.form.renderer.Double.prototype._onFormChange.base.call(this);
+        qx.ui.form.renderer.Double.superclass.prototype._onFormChange.call(this);
       },
 
       /**
@@ -230,4 +230,4 @@
   qx.ui.form.renderer.Double.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Double.js.map?dt=1660800169233
+//# sourceMappingURL=Double.js.map?dt=1664297893112

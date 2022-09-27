@@ -182,7 +182,7 @@
             break;
         }
 
-        return control || cv.ui.manager.snackbar.Message.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.snackbar.Message.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -198,4 +198,4 @@
   cv.ui.manager.snackbar.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1660800147190
+//# sourceMappingURL=Message.js.map?dt=1664297870641

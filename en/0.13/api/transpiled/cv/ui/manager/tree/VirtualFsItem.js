@@ -105,7 +105,7 @@
       },
       // overridden
       _applyModel: function _applyModel(value, old) {
-        cv.ui.manager.tree.VirtualFsItem.prototype._applyModel.base.call(this, value, old);
+        cv.ui.manager.tree.VirtualFsItem.superclass.prototype._applyModel.call(this, value, old);
 
         if (old) {
           old.removeRelatedBindings(this);
@@ -194,11 +194,11 @@
             break;
         }
 
-        return control || cv.ui.manager.tree.VirtualFsItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.tree.VirtualFsItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
   });
   cv.ui.manager.tree.VirtualFsItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualFsItem.js.map?dt=1660800147300
+//# sourceMappingURL=VirtualFsItem.js.map?dt=1664297870752

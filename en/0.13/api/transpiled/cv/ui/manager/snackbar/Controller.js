@@ -169,7 +169,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             break;
         }
 
-        return control || cv.ui.manager.snackbar.Controller.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.snackbar.Controller.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -187,4 +187,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.manager.snackbar.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1660800147158
+//# sourceMappingURL=Controller.js.map?dt=1664297870614

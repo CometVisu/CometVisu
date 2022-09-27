@@ -70,7 +70,7 @@
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.MenuButton.prototype._applyVisibility.base.call(this, value, old); // hide the menu too
+        qx.ui.toolbar.MenuButton.superclass.prototype._applyVisibility.call(this, value, old); // hide the menu too
 
 
         var menu = this.getMenu();
@@ -100,7 +100,7 @@
             break;
         }
 
-        return control || qx.ui.toolbar.MenuButton.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.toolbar.MenuButton.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // property apply routine
       _applyShowArrow: function _applyShowArrow(value, old) {
@@ -115,4 +115,4 @@
   qx.ui.toolbar.MenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuButton.js.map?dt=1660800175609
+//# sourceMappingURL=MenuButton.js.map?dt=1664297899046

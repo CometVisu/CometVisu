@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 266,
+        "line": 272,
         "column": 3
       }
     },
@@ -222,7 +222,7 @@
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 177,
           "column": 5
         }
       },
@@ -236,7 +236,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object"
+            "body": "{{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
@@ -261,11 +261,11 @@
     "encode": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 188,
           "column": 5
         }
       },
@@ -304,11 +304,11 @@
     "decode": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 196,
           "column": 4
         },
         "end": {
-          "line": 241,
+          "line": 247,
           "column": 5
         }
       },
@@ -322,7 +322,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object"
+            "body": "{{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
@@ -347,11 +347,11 @@
     "__getFirstElement": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 254,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 270,
           "column": 5
         }
       },

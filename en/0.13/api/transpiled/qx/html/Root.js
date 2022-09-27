@@ -79,7 +79,7 @@
        */
       useElement: function useElement(elem) {
         // Base call
-        qx.html.Root.prototype.useElement.base.call(this, elem); // Mark as root
+        qx.html.Root.superclass.prototype.useElement.call(this, elem); // Mark as root
 
         this.setRoot(true); // Register for synchronization
 
@@ -90,4 +90,4 @@
   qx.html.Root.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Root.js.map?dt=1660800159940
+//# sourceMappingURL=Root.js.map?dt=1664297884612

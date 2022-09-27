@@ -72,8 +72,8 @@
       this._setLayout(new qx.ui.layout.HBox()); // initialize the overflow handling
 
 
-      this.__P_423_0 = [];
-      this.__P_423_1 = [];
+      this.__P_443_0 = [];
+      this.__P_443_1 = [];
     },
 
     /*
@@ -155,12 +155,12 @@
         OVERFLOW HANDLING
       ---------------------------------------------------------------------------
       */
-      __P_423_0: null,
-      __P_423_1: null,
+      __P_443_0: null,
+      __P_443_1: null,
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         // get the original hint
-        var hint = qx.ui.toolbar.ToolBar.prototype._computeSizeHint.base.call(this);
+        var hint = qx.ui.toolbar.ToolBar.superclass.prototype._computeSizeHint.call(this);
 
         if (true && this.getOverflowHandling()) {
           var minWidth = 0; // if an overflow widget is given, use its width + spacing as min width
@@ -235,7 +235,7 @@
             margins = Math.max(margins, this.getSpacing());
             var childWidth = childToHide.getSizeHint().width + margins;
 
-            this.__P_423_2(childToHide); // new width is the requiredWidth - the removed childs width
+            this.__P_443_2(childToHide); // new width is the requiredWidth - the removed childs width
 
 
             requiredWidth -= childWidth; // show the overflowWidgetWidth
@@ -250,9 +250,9 @@
             }
           } while (requiredWidth > width); // if we can possibly show something
 
-        } else if (this.__P_423_0.length > 0) {
+        } else if (this.__P_443_0.length > 0) {
           do {
-            var removedChild = this.__P_423_0[0]; // if we have something we can show
+            var removedChild = this.__P_443_0[0]; // if we have something we can show
 
             if (removedChild) {
               // get the margins or spacing
@@ -272,7 +272,7 @@
 
               var fits = false; // if we can remove the overflow widget if its available
 
-              if (this.__P_423_0.length == 1 && overflowWidgetWidth > 0) {
+              if (this.__P_443_0.length == 1 && overflowWidgetWidth > 0) {
                 var addedMargin = margins - this.getSpacing();
                 var wouldRequiredWidth = requiredWidth - overflowWidgetWidth + removedChildWidth + addedMargin;
                 fits = width > wouldRequiredWidth;
@@ -280,18 +280,18 @@
 
 
               if (width > requiredWidth + removedChildWidth + margins || fits) {
-                this.__P_423_3(removedChild);
+                this.__P_443_3(removedChild);
 
                 requiredWidth += removedChildWidth; // check if we need to remove the overflow widget
 
-                if (overflowWidget && this.__P_423_0.length == 0) {
+                if (overflowWidget && this.__P_443_0.length == 0) {
                   overflowWidget.setVisibility("excluded");
                 }
               } else {
                 return;
               }
             }
-          } while (width >= requiredWidth && this.__P_423_0.length > 0);
+          } while (width >= requiredWidth && this.__P_443_0.length > 0);
         }
       },
 
@@ -300,10 +300,10 @@
        *
        * @param child {qx.ui.core.Widget} The widget to show.
        */
-      __P_423_3: function __P_423_3(child) {
+      __P_443_3: function __P_443_3(child) {
         child.setVisibility("visible");
 
-        this.__P_423_0.shift();
+        this.__P_443_0.shift();
 
         this.fireDataEvent("showItem", child);
       },
@@ -313,13 +313,13 @@
        *
        * @param child {qx.ui.core.Widget} The widget to exclude.
        */
-      __P_423_2: function __P_423_2(child) {
+      __P_443_2: function __P_443_2(child) {
         // ignore the call if no child is given
         if (!child) {
           return;
         }
 
-        this.__P_423_0.unshift(child);
+        this.__P_443_0.unshift(child);
 
         child.setVisibility("excluded");
         this.fireDataEvent("hideItem", child);
@@ -335,8 +335,8 @@
        */
       _getNextToHide: function _getNextToHide() {
         // get the elements by priority
-        for (var i = this.__P_423_1.length - 1; i >= 0; i--) {
-          var item = this.__P_423_1[i]; // maybe a priority is left out and spacers don't have the visibility
+        for (var i = this.__P_443_1.length - 1; i >= 0; i--) {
+          var item = this.__P_443_1[i]; // maybe a priority is left out and spacers don't have the visibility
 
           if (item && item.getVisibility && item.getVisibility() == "visible") {
             return item;
@@ -376,11 +376,11 @@
        */
       setRemovePriority: function setRemovePriority(item, priority, override) {
         // security check for overriding priorities
-        if (!override && this.__P_423_1[priority] != undefined) {
+        if (!override && this.__P_443_1[priority] != undefined) {
           throw new Error("Priority already in use!");
         }
 
-        this.__P_423_1[priority] = item;
+        this.__P_443_1[priority] = item;
       },
       // property apply
       _applyOverflowHandling: function _applyOverflowHandling(value, old) {
@@ -413,13 +413,13 @@
           } // set all buttons back to visible
 
 
-          for (var i = 0; i < this.__P_423_0.length; i++) {
-            this.__P_423_0[i].setVisibility("visible");
+          for (var i = 0; i < this.__P_443_0.length; i++) {
+            this.__P_443_0[i].setVisibility("visible");
           }
 
           ; // reset the removed items
 
-          this.__P_423_0 = [];
+          this.__P_443_0 = [];
         }
       },
       // property apply
@@ -444,7 +444,7 @@
         MENU OPEN
       ---------------------------------------------------------------------------
       */
-      __P_423_4: false,
+      __P_443_4: false,
 
       /**
        * Indicate if a menu could be opened on hover or not.
@@ -454,7 +454,7 @@
        *    <code>false</code> otherwise.
        */
       _setAllowMenuOpenHover: function _setAllowMenuOpenHover(value) {
-        this.__P_423_4 = value;
+        this.__P_443_4 = value;
       },
 
       /**
@@ -465,7 +465,7 @@
        *    <code>false</code> otherwise.
        */
       _isAllowMenuOpenHover: function _isAllowMenuOpenHover() {
-        return this.__P_423_4;
+        return this.__P_443_4;
       },
 
       /*
@@ -499,7 +499,7 @@
       */
       // overridden
       _add: function _add(child, options) {
-        qx.ui.toolbar.ToolBar.prototype._add.base.call(this, child, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
+        qx.ui.toolbar.ToolBar.superclass.prototype._add.call(this, child, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
 
 
         if (child.setShow && !qx.util.PropertyUtil.getUserValue(child, "show")) {
@@ -512,7 +512,7 @@
       },
       // overridden
       _addAt: function _addAt(child, index, options) {
-        qx.ui.toolbar.ToolBar.prototype._addAt.base.call(this, child, index, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
+        qx.ui.toolbar.ToolBar.superclass.prototype._addAt.call(this, child, index, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
 
 
         if (child.setShow && !qx.util.PropertyUtil.getUserValue(child, "show")) {
@@ -525,7 +525,7 @@
       },
       // overridden
       _addBefore: function _addBefore(child, before, options) {
-        qx.ui.toolbar.ToolBar.prototype._addBefore.base.call(this, child, before, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
+        qx.ui.toolbar.ToolBar.superclass.prototype._addBefore.call(this, child, before, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
 
 
         if (child.setShow && !qx.util.PropertyUtil.getUserValue(child, "show")) {
@@ -538,7 +538,7 @@
       },
       // overridden
       _addAfter: function _addAfter(child, after, options) {
-        qx.ui.toolbar.ToolBar.prototype._addAfter.base.call(this, child, after, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
+        qx.ui.toolbar.ToolBar.superclass.prototype._addAfter.call(this, child, after, options); // sync the show property (bug #6743) - but only if show wasn't explicitly set for the child (bug #6823)
 
 
         if (child.setShow && !qx.util.PropertyUtil.getUserValue(child, "show")) {
@@ -551,7 +551,7 @@
       },
       // overridden
       _remove: function _remove(child) {
-        qx.ui.toolbar.ToolBar.prototype._remove.base.call(this, child);
+        qx.ui.toolbar.ToolBar.superclass.prototype._remove.call(this, child);
 
         var newWidth = this.getSizeHint().width - child.getSizeHint().width - 2 * this.getSpacing();
 
@@ -561,7 +561,7 @@
       _removeAt: function _removeAt(index) {
         var child = this._getChildren()[index];
 
-        qx.ui.toolbar.ToolBar.prototype._removeAt.base.call(this, index);
+        qx.ui.toolbar.ToolBar.superclass.prototype._removeAt.call(this, index);
 
         var newWidth = this.getSizeHint().width - child.getSizeHint().width - 2 * this.getSpacing();
 
@@ -571,7 +571,7 @@
       },
       // overridden
       _removeAll: function _removeAll() {
-        var children = qx.ui.toolbar.ToolBar.prototype._removeAll.base.call(this);
+        var children = qx.ui.toolbar.ToolBar.superclass.prototype._removeAll.call(this);
 
         this._recalculateOverflow(null, 0);
 
@@ -641,4 +641,4 @@
   qx.ui.toolbar.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1660800175767
+//# sourceMappingURL=ToolBar.js.map?dt=1664297899192

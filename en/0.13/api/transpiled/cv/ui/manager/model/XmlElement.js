@@ -77,8 +77,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       if (node) {
         this._node.$$widget = this;
-        this.initName(node.nodeName);
         this.setSchemaElement(schemaElement);
+        this.initName(node.nodeName);
+
+        this._updateShowEditButton();
 
         if (this.hasChildren()) {
           // we have to add a fake node to the children to show the tree that this node has children
@@ -141,7 +143,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: 'String',
         deferredInit: true,
         event: 'changeName',
-        apply: '_updateDisplayName'
+        apply: 'updateDisplayName'
       },
       displayName: {
         check: 'String',
@@ -262,6 +264,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _initialTextContent: null,
       __P_44_0: false,
       __P_44_1: null,
+      _structure: null,
       _maintainStatus: function _maintainStatus() {
         if (this._node.nodeType === Node.COMMENT_NODE) {
           this.setStatus('comment');
@@ -927,8 +930,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (this._node) {
             if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
               this._node.nodeValue = value;
-
-              this._updateDisplayName();
+              this.updateDisplayName();
             } else if (this._node.nodeType === Node.ELEMENT_NODE) {
               this._node.textContent = value;
             }
@@ -998,7 +1000,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 }
 
                 if (name === 'name') {
-                  this._updateDisplayName();
+                  this.updateDisplayName();
 
                   if (this.getName() === 'icon') {
                     this._maintainIcon();
@@ -1132,13 +1134,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.updateModified();
       },
       _applySchemaElement: function _applySchemaElement(schemaElement) {
+        if (schemaElement) {
+          this._structure = schemaElement.getSchema().getStructure();
+        } else {
+          this._structure = null;
+        }
+
         schemaElement.bind('sortable', this, 'sortable', {
           converter: function (value) {
             return this.isEditable() && value;
           }.bind(this)
         });
-
-        this._updateShowEditButton();
       },
       _onOpen: function _onOpen(value) {
         if (value && !this.isLoaded()) {
@@ -1148,9 +1154,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this._maintainIcon();
       },
       _applyModified: function _applyModified() {
-        this._updateDisplayName();
+        this.updateDisplayName();
       },
-      _updateDisplayName: function _updateDisplayName() {
+      updateDisplayName: function updateDisplayName() {
         var displayName = this.getName();
 
         if (this._node) {
@@ -1159,7 +1165,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               var nameAttr = this._node.getAttribute('name');
 
               displayName += ' "' + nameAttr + '"';
-            } else if (this.getName() === 'pages' && this._node.hasAttribute('design')) {
+            } else if (this.getSchemaElement().getSchema().isRoot(this.getName()) && this._node.hasAttribute('design')) {
               var designAttr = this._node.getAttribute('design');
 
               displayName += ' "' + designAttr + '"';
@@ -1397,12 +1403,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       _currentChildNames: function _currentChildNames() {
         var names = [];
+        var name;
+        var widget;
 
         for (var i = 0; i < this._node.childNodes.length; i++) {
           var childNode = this._node.childNodes.item(i);
 
           if (childNode.nodeType === Node.ELEMENT_NODE) {
-            names.push(childNode.nodeName);
+            widget = this._node.$$widget;
+            name = widget ? widget.getDisplayName() : childNode.nodeName;
+            names.push(name);
           } else if ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim()) {
             names.push(childNode.nodeName);
           }
@@ -1430,7 +1440,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           return '';
         }
 
-        var widgets = this.getSchemaElement().getSchema().getWidgetNames();
+        var schema = this.getSchemaElement().getSchema();
+        var widgets = schema.getWidgetNames();
         var current = this;
 
         while (current && !widgets.includes(current.getName())) {
@@ -1441,34 +1452,62 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           return '';
         }
 
-        if (current.getName() === 'navbar') {
-          return 'navbar' + qx.lang.String.firstUp(current.getAttribute('position'));
-        }
-
-        var ids = [];
-        var c = current;
-
-        while (c) {
-          var parent = c.getParent();
-
-          if (parent.getName() === 'pages') {
-            ids.unshift('id');
-            break;
+        if (this._structure === 'pure') {
+          if (current.getName() === 'navbar') {
+            return 'navbar' + qx.lang.String.firstUp(current.getAttribute('position'));
           }
 
-          var id = parent.getChildren().filter(function (child) {
-            return child.getNode().nodeType === Node.ELEMENT_NODE && child.getName() !== 'layout';
-          }).indexOf(c);
-          ids.unshift(id);
-          c = parent;
+          var ids = [];
+          var c = current;
+
+          while (c) {
+            var parent = c.getParent();
+
+            if (parent.getName() === 'pages') {
+              ids.unshift('id');
+              break;
+            }
+
+            var id = parent.getChildren().filter(function (child) {
+              return child.getNode().nodeType === Node.ELEMENT_NODE && child.getName() !== 'layout';
+            }).indexOf(c);
+            ids.unshift(id);
+            c = parent;
+          }
+
+          if (current.getName() === 'page') {
+            // make sure that the join ends with '_'
+            ids.push('');
+          }
+
+          return '#' + ids.join('_');
+        } else if (this._structure === 'tile') {
+          var _c = current.getNode();
+
+          var index = 0;
+          var selector = '';
+
+          while (_c) {
+            var _parent = _c.parentElement;
+
+            if (_c.hasAttribute('id')) {
+              selector = selector ? "#".concat(_c.getAttribute('id'), " > ").concat(selector) : "#".concat(_c.getAttribute('id'));
+              break;
+            } else if (_c.nodeName.toLowerCase() === 'config') {
+              selector = selector ? "config > ".concat(selector) : 'config';
+              break;
+            } else {
+              index = Array.prototype.indexOf.call(_parent.children, _c) + 1;
+              selector = selector ? "*:nth-child(".concat(index, ") > ").concat(selector) : "*:nth-child(".concat(index, ")");
+            }
+
+            _c = _parent;
+          }
+
+          return selector;
         }
 
-        if (current.getName() === 'page') {
-          // make sure that the join ends with '_'
-          ids.push('');
-        }
-
-        return ids.join('_');
+        return '';
       },
       // overridden
       clone: function clone() {
@@ -1493,4 +1532,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1660800146607
+//# sourceMappingURL=XmlElement.js.map?dt=1664297870175

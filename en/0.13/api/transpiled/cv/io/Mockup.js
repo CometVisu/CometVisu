@@ -67,7 +67,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      cv.io.Client.CLIENTS.push(this); // make some functions accessible for the protactor runner
+      cv.io.Client.CLIENTS.push(this); // make some functions accessible for the protractor runner
 
       window._receive = this.receive.bind(this);
       var model = cv.data.Model.getInstance();
@@ -77,7 +77,7 @@
       var testMode = false;
 
       if (typeof testMode === 'string' && testMode !== 'true') {
-        this.__P_486_0();
+        this.__P_506_0();
       }
 
       this.addresses = [];
@@ -112,28 +112,31 @@
     members: {
       backendName: 'mockup',
       addresses: null,
-      __P_486_1: null,
-      __P_486_2: null,
-      __P_486_3: 0,
-      __P_486_4: null,
-      __P_486_0: function __P_486_0() {
+      __P_506_1: null,
+      __P_506_2: null,
+      __P_506_3: 0,
+      __P_506_4: null,
+      getType: function getType() {
+        return this.backendName;
+      },
+      __P_506_0: function __P_506_0() {
         // load the demo data to fill the visu with some values
         var r = new qx.io.request.Xhr(false);
         r.addListener('success', function (e) {
           cv.Config.initialDemoData = e.getTarget().getResponse();
 
-          this.__P_486_5();
+          this.__P_506_5();
         }, this);
         r.send();
       },
-      __P_486_5: function __P_486_5() {
-        this.__P_486_1 = cv.Config.initialDemoData.xhr; // we need to adjust the timestamps of the chart data
+      __P_506_5: function __P_506_5() {
+        this.__P_506_1 = cv.Config.initialDemoData.xhr; // we need to adjust the timestamps of the chart data
 
         var now = Date.now();
 
-        for (var url in this.__P_486_1) {
+        for (var url in this.__P_506_1) {
           if (url.startsWith('rrd')) {
-            this.__P_486_1[url].forEach(function (d) {
+            this.__P_506_1[url].forEach(function (d) {
               var data = d.body;
               var offset = now - data[data.length - 1][0];
               data.forEach(function (entry) {
@@ -141,7 +144,7 @@
               });
             });
           } else if (url.startsWith('resource/plugin/rsslog.php')) {
-            this.__P_486_1[url].forEach(function (d) {
+            this.__P_506_1[url].forEach(function (d) {
               var data = d.body.responseData.feed.entries;
               var date = new Date();
               date.setDate(date.getDate() - 1);
@@ -216,17 +219,17 @@
             }
           }
 
-          if (!this.__P_486_1[url] || this.__P_486_1[url].length === 0) {
+          if (!this.__P_506_1[url] || this.__P_506_1[url].length === 0) {
             qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
           } else {
             qx.log.Logger.debug(this, 'faking response for ' + url);
             var response = '';
 
-            if (this.__P_486_1[url].length === 1) {
-              response = this.__P_486_1[url][0];
+            if (this.__P_506_1[url].length === 1) {
+              response = this.__P_506_1[url][0];
             } else {
               // multiple responses recorded use them as LIFO stack
-              response = this.__P_486_1[url].shift();
+              response = this.__P_506_1[url].shift();
             }
 
             if (request.readyState === 4 && request.status === 404) {
@@ -321,36 +324,36 @@
         }
       },
       _registerSimulations: function _registerSimulations(simulations) {
-        this.__P_486_4 = {};
+        this.__P_506_4 = {};
         Object.keys(simulations).forEach(function (mainAddress) {
           var simulation = simulations[mainAddress];
-          this.__P_486_4[mainAddress] = simulation;
+          this.__P_506_4[mainAddress] = simulation;
 
           if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
             simulation.additionalAddresses.forEach(function (addr) {
-              this.__P_486_4[addr] = simulation;
+              this.__P_506_4[addr] = simulation;
             }, this);
           }
         }, this);
       },
       _startSequence: function _startSequence() {
-        if (this.__P_486_2.length <= this.__P_486_3) {
+        if (this.__P_506_2.length <= this.__P_506_3) {
           // start again
-          this.__P_486_3 = 0;
+          this.__P_506_3 = 0;
         }
 
         qx.event.Timer.once(function () {
           this.receive({
             i: new Date().getTime(),
-            d: this.__P_486_2[this.__P_486_3].data
+            d: this.__P_506_2[this.__P_506_3].data
           });
-          this.__P_486_3++;
+          this.__P_506_3++;
 
           this._startSequence();
-        }, this, this.__P_486_2[this.__P_486_3].delay);
+        }, this, this.__P_506_2[this.__P_506_3].delay);
       },
       _processSimulation: function _processSimulation(address, value) {
-        var simulation = this.__P_486_4[address];
+        var simulation = this.__P_506_4[address];
 
         if (!simulation) {
           return;
@@ -462,7 +465,7 @@
           ts: ts
         });
 
-        if (this.__P_486_4 && Object.prototype.hasOwnProperty.call(this.__P_486_4, address)) {
+        if (this.__P_506_4 && Object.prototype.hasOwnProperty.call(this.__P_506_4, address)) {
           this._processSimulation(address, value);
         } else {
           // send update
@@ -470,6 +473,15 @@
             i: ts,
             d: {}
           };
+
+          if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
+            if (value.length === 2) {
+              value = "" + (parseInt(value, 16) & 63);
+            } else {
+              value = value.substring(2);
+            }
+          }
+
           answer.d[address] = value;
           this.debug('sending value: ' + value + ' to address: ' + address);
           this.receive(answer);
@@ -517,4 +529,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1660800180219
+//# sourceMappingURL=Mockup.js.map?dt=1664297903557

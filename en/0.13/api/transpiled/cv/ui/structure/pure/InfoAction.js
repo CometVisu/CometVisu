@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.HasChildren": {
@@ -86,7 +86,7 @@
    * @since 0.10.0 (as widget), 0.9.2 (as plugin)
    */
   qx.Class.define('cv.ui.structure.pure.InfoAction', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.HasChildren,
 
     /*
@@ -119,4 +119,4 @@
   cv.ui.structure.pure.InfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoAction.js.map?dt=1660800147962
+//# sourceMappingURL=InfoAction.js.map?dt=1664297871559

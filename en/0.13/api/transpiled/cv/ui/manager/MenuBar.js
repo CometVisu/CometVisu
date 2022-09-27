@@ -381,7 +381,7 @@
             break;
         }
 
-        return control || cv.ui.manager.MenuBar.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.MenuBar.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -397,4 +397,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1660800143791
+//# sourceMappingURL=MenuBar.js.map?dt=1664297867420

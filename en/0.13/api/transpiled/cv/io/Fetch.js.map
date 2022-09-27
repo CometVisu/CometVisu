@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/Fetch.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "fetch",
+    "resource",
+    "options",
+    "proxy",
+    "client",
+    "undefined",
+    "url",
+    "URL",
+    "cv",
+    "io",
+    "rest",
+    "Client",
+    "getBaseUrl",
+    "window",
+    "location",
+    "origin",
+    "searchParams",
+    "set",
+    "Promise",
+    "resolve",
+    "reject",
+    "xhr",
+    "request",
+    "Xhr",
+    "authorize",
+    "addListener",
+    "ev",
+    "getTarget",
+    "getResponse",
+    "send",
+    "proxyFetch",
+    "Fetch"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,aAAhB,EAA+B;AAC7BC,IAAAA,IAAI,EAAE,QADuB;;AAG7B;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,KATO,iBASDC,QATC,EAS0D;AAAA;;AAAA,YAAjDC,OAAiD,uEAAvC,EAAuC;AAAA,YAAnCC,KAAmC,uEAA3B,KAA2B;AAAA,YAApBC,MAAoB,uEAAXC,SAAW;;AAC/D,YAAIF,KAAJ,EAAW;AACT,cAAMG,GAAG,GAAG,IAAIC,GAAJ,CAAQC,EAAE,CAACC,EAAH,CAAMC,IAAN,CAAWC,MAAX,CAAkBC,UAAlB,KAAiC,QAAzC,EAAmDC,MAAM,CAACC,QAAP,CAAgBC,MAAnE,CAAZ;AACAT,UAAAA,GAAG,CAACU,YAAJ,CAAiBC,GAAjB,CAAqB,KAArB,EAA4BhB,QAA5B;AACAA,UAAAA,QAAQ,GAAGK,GAAX;AACD;;AACD,eAAO,IAAIY,OAAJ,CAAY,UAACC,OAAD,EAAUC,MAAV,EAAqB;AACtC,cAAMC,GAAG,GAAG,IAAI7B,EAAE,CAACiB,EAAH,CAAMa,OAAN,CAAcC,GAAlB,CAAsB,KAAKtB,QAA3B,CAAZ;AACAoB,UAAAA,GAAG,CAACJ,GAAJ,CAAQf,OAAR;;AACA,cAAIE,MAAJ,EAAY;AACVA,YAAAA,MAAM,CAACoB,SAAP,CAAiBH,GAAjB;AACD;;AACDA,UAAAA,GAAG,CAACI,WAAJ,CAAgB,SAAhB,EAA2B,UAASC,EAAT,EAAa;AACtC,gBAAMJ,OAAO,GAAGI,EAAE,CAACC,SAAH,EAAhB;AACAR,YAAAA,OAAO,CAACG,OAAO,CAACM,WAAR,EAAD,CAAP;AACD,WAHD,EAGG,KAHH;AAIAP,UAAAA,GAAG,CAACI,WAAJ,CAAgB,aAAhB,EAA+B,UAASC,EAAT,EAAa;AAC1C,gBAAMJ,OAAO,GAAGI,EAAE,CAACC,SAAH,EAAhB;AACAP,YAAAA,MAAM,CAACE,OAAO,CAACM,WAAR,EAAD,CAAN;AACD,WAHD,EAGG,KAHH;AAIAP,UAAAA,GAAG,CAACQ,IAAJ;AACD,SAfM,CAAP;AAgBD,OA/BM;;AAiCP;AACJ;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,UAxCO,sBAwCI7B,QAxCJ,EAwCcC,OAxCd,EAwCuBE,MAxCvB,EAwC+B;AACpC,eAAO,KAAKJ,KAAL,CAAWC,QAAX,EAAqBC,OAArB,EAA8B,IAA9B,EAAoCE,MAApC,CAAP;AACD;AA1CM;AARoB,GAA/B;AAtBAI,EAAAA,EAAE,CAACC,EAAH,CAAMsB,KAAN,CAAYpC,aAAZ,GAA4BA,aAA5B",
+  "sourcesContent": [
+    "/* Fetch.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * native fetch replacement that supports the internal recording mechanism for replay file.\n */\nqx.Class.define('cv.io.Fetch', {\n  type: 'static',\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    /**\n     *\n     * @param resource {URL|string}\n     * @param options {object}\n     * @param proxy {boolean}\n     * @param client {cv.io.IClient}\n     * @returns {Promise<Response>}\n     */\n    fetch(resource, options = {}, proxy = false, client = undefined) {\n      if (proxy) {\n        const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);\n        url.searchParams.set('url', resource);\n        resource = url;\n      }\n      return new Promise((resolve, reject) => {\n        const xhr = new qx.io.request.Xhr('' + resource);\n        xhr.set(options);\n        if (client) {\n          client.authorize(xhr);\n        }\n        xhr.addListener('success', function(ev) {\n          const request = ev.getTarget();\n          resolve(request.getResponse());\n        }, this);\n        xhr.addListener('statusError', function(ev) {\n          const request = ev.getTarget();\n          reject(request.getResponse());\n        }, this);\n        xhr.send();\n      });\n    },\n\n    /**\n     *\n     * @param resource {URL|string}\n     * @param options {object}\n     * @param client {cv.io.IClient}\n     * @returns {Promise<Response>}\n     */\n    proxyFetch(resource, options, client) {\n      return this.fetch(resource, options, true, client);\n    }\n  }\n});\n"
+  ]
+}

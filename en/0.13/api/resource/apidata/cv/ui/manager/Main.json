@@ -18,7 +18,7 @@
         "column": 0
       },
       "end": {
-        "line": 1092,
+        "line": 1109,
         "column": 3
       }
     },
@@ -443,7 +443,7 @@
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 226,
           "column": 5
         }
       },
@@ -468,11 +468,11 @@
     "_doClose": {
       "location": {
         "start": {
-          "line": 227,
+          "line": 228,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 236,
           "column": 5
         }
       },
@@ -482,11 +482,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 238,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 345,
           "column": 5
         }
       },
@@ -518,11 +518,11 @@
     "_onBeforeUnload": {
       "location": {
         "start": {
-          "line": 324,
+          "line": 347,
           "column": 4
         },
         "end": {
-          "line": 332,
+          "line": 355,
           "column": 5
         }
       },
@@ -532,11 +532,11 @@
     "configureButton": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 357,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 357,
           "column": 41
         }
       },
@@ -568,11 +568,11 @@
     "unConfigureButton": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 358,
           "column": 43
         }
       },
@@ -601,11 +601,11 @@
     "_handleFileEvent": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 360,
           "column": 4
         },
         "end": {
-          "line": 355,
+          "line": 378,
           "column": 5
         }
       },
@@ -619,11 +619,11 @@
     "__findConfigFile": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 380,
           "column": 4
         },
         "end": {
-          "line": 383,
+          "line": 406,
           "column": 5
         }
       },
@@ -633,11 +633,11 @@
     "_onManagerEvent": {
       "location": {
         "start": {
-          "line": 385,
+          "line": 408,
           "column": 4
         },
         "end": {
-          "line": 408,
+          "line": 431,
           "column": 5
         }
       },
@@ -647,11 +647,11 @@
     "_onChangeTreeSelection": {
       "location": {
         "start": {
-          "line": 415,
+          "line": 438,
           "column": 4
         },
         "end": {
-          "line": 432,
+          "line": 455,
           "column": 5
         }
       },
@@ -683,11 +683,11 @@
     "__openSelectedFile": {
       "location": {
         "start": {
-          "line": 434,
+          "line": 457,
           "column": 4
         },
         "end": {
-          "line": 443,
+          "line": 466,
           "column": 5
         }
       },
@@ -697,11 +697,11 @@
     "_applyCurrentFolder": {
       "location": {
         "start": {
-          "line": 445,
+          "line": 468,
           "column": 4
         },
         "end": {
-          "line": 454,
+          "line": 477,
           "column": 5
         }
       },
@@ -714,11 +714,11 @@
     "_applyCurrentSelection": {
       "location": {
         "start": {
-          "line": 456,
+          "line": 479,
           "column": 4
         },
         "end": {
-          "line": 470,
+          "line": 493,
           "column": 5
         }
       },
@@ -731,11 +731,11 @@
     "_onChangeFileSelection": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 495,
           "column": 4
         },
         "end": {
-          "line": 507,
+          "line": 524,
           "column": 5
         }
       },
@@ -745,11 +745,11 @@
     "openFile": {
       "location": {
         "start": {
-          "line": 516,
+          "line": 533,
           "column": 4
         },
         "end": {
-          "line": 574,
+          "line": 591,
           "column": 5
         }
       },
@@ -803,11 +803,11 @@
     "checkUnsavedChanged": {
       "location": {
         "start": {
-          "line": 581,
+          "line": 598,
           "column": 4
         },
         "end": {
-          "line": 634,
+          "line": 651,
           "column": 5
         }
       },
@@ -845,11 +845,11 @@
     "closeFile": {
       "location": {
         "start": {
-          "line": 636,
+          "line": 653,
           "column": 4
         },
         "end": {
-          "line": 702,
+          "line": 719,
           "column": 5
         }
       },
@@ -859,11 +859,11 @@
     "closeCurrentFile": {
       "location": {
         "start": {
-          "line": 704,
+          "line": 721,
           "column": 4
         },
         "end": {
-          "line": 709,
+          "line": 726,
           "column": 5
         }
       },
@@ -873,11 +873,11 @@
     "_onCloseFile": {
       "location": {
         "start": {
-          "line": 711,
+          "line": 728,
           "column": 4
         },
         "end": {
-          "line": 713,
+          "line": 730,
           "column": 5
         }
       },
@@ -887,11 +887,11 @@
     "__getRoot": {
       "location": {
         "start": {
-          "line": 715,
+          "line": 732,
           "column": 4
         },
         "end": {
-          "line": 725,
+          "line": 742,
           "column": 5
         }
       },
@@ -901,11 +901,11 @@
     "__initCommands": {
       "location": {
         "start": {
-          "line": 727,
+          "line": 744,
           "column": 4
         },
         "end": {
-          "line": 757,
+          "line": 774,
           "column": 5
         }
       },
@@ -915,11 +915,11 @@
     "_onDelete": {
       "location": {
         "start": {
-          "line": 759,
+          "line": 776,
           "column": 4
         },
         "end": {
-          "line": 764,
+          "line": 781,
           "column": 5
         }
       },
@@ -929,11 +929,11 @@
     "_onChangeStackSelection": {
       "location": {
         "start": {
-          "line": 766,
+          "line": 783,
           "column": 4
         },
         "end": {
-          "line": 780,
+          "line": 797,
           "column": 5
         }
       },
@@ -943,11 +943,11 @@
     "__getFileNamePrompt": {
       "location": {
         "start": {
-          "line": 782,
+          "line": 799,
           "column": 4
         },
         "end": {
-          "line": 793,
+          "line": 810,
           "column": 5
         }
       },
@@ -957,11 +957,11 @@
     "_onCreate": {
       "location": {
         "start": {
-          "line": 795,
+          "line": 812,
           "column": 4
         },
         "end": {
-          "line": 882,
+          "line": 899,
           "column": 5
         }
       },
@@ -971,11 +971,11 @@
     "__findDroppable": {
       "location": {
         "start": {
-          "line": 892,
+          "line": 909,
           "column": 4
         },
         "end": {
-          "line": 902,
+          "line": 919,
           "column": 5
         }
       },
@@ -1010,11 +1010,11 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 905,
+          "line": 922,
           "column": 4
         },
         "end": {
-          "line": 1041,
+          "line": 1058,
           "column": 5
         }
       },
@@ -1025,11 +1025,11 @@
     "_showAbout": {
       "location": {
         "start": {
-          "line": 1043,
+          "line": 1060,
           "column": 4
         },
         "end": {
-          "line": 1060,
+          "line": 1077,
           "column": 5
         }
       },
@@ -4807,11 +4807,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1068,
+        "line": 1085,
         "column": 12
       },
       "end": {
-        "line": 1091,
+        "line": 1108,
         "column": 3
       }
     },

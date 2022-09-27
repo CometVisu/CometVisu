@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 615,
+        "line": 616,
         "column": 3
       }
     },
@@ -139,11 +139,11 @@
     "getDesigns": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 189,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 209,
           "column": 5
         }
       },
@@ -166,13 +166,20 @@
             "body": "config",
             "paramName": "config",
             "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "structure {String} pure (default) or tile",
+            "paramName": "structure",
+            "description": " pure (default) or tile",
+            "type": "String"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Promise<Array>} suggestions",
-            "type": "Promise<Array>",
+            "body": "{Array} suggestions",
+            "type": "Array",
             "description": " suggestions"
           }
         ]
@@ -183,11 +190,11 @@
     "__getData": {
       "location": {
         "start": {
-          "line": 221,
+          "line": 222,
           "column": 4
         },
         "end": {
-          "line": 253,
+          "line": 254,
           "column": 5
         }
       },
@@ -269,11 +276,11 @@
     "__getFromUrl": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 256,
           "column": 4
         },
         "end": {
-          "line": 285,
+          "line": 286,
           "column": 5
         }
       },
@@ -283,11 +290,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 287,
+          "line": 288,
           "column": 4
         },
         "end": {
-          "line": 296,
+          "line": 297,
           "column": 5
         }
       },
@@ -297,11 +304,11 @@
     "getRrds": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 307,
+          "line": 308,
           "column": 5
         }
       },
@@ -311,11 +318,11 @@
     "getInfluxDBs": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 310,
           "column": 4
         },
         "end": {
-          "line": 312,
+          "line": 313,
           "column": 5
         }
       },
@@ -325,11 +332,11 @@
     "__getInfluxArgs": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 315,
           "column": 4
         },
         "end": {
-          "line": 332,
+          "line": 333,
           "column": 5
         }
       },
@@ -339,11 +346,11 @@
     "getInfluxDBFields": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 342,
           "column": 5
         }
       },
@@ -353,11 +360,11 @@
     "__getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 344,
           "column": 4
         },
         "end": {
-          "line": 350,
+          "line": 351,
           "column": 5
         }
       },
@@ -367,11 +374,11 @@
     "getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 352,
+          "line": 353,
           "column": 4
         },
         "end": {
-          "line": 367,
+          "line": 368,
           "column": 5
         }
       },
@@ -381,11 +388,11 @@
     "getInfluxDBValues": {
       "location": {
         "start": {
-          "line": 369,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 390,
+          "line": 391,
           "column": 5
         }
       },
@@ -395,11 +402,11 @@
     "_parseDpResponseForMonaco": {
       "location": {
         "start": {
-          "line": 392,
+          "line": 393,
           "column": 4
         },
         "end": {
-          "line": 394,
+          "line": 395,
           "column": 5
         }
       },
@@ -409,11 +416,11 @@
     "_parseDpResponseForEditor": {
       "location": {
         "start": {
-          "line": 396,
+          "line": 397,
           "column": 4
         },
         "end": {
-          "line": 398,
+          "line": 399,
           "column": 5
         }
       },
@@ -423,11 +430,11 @@
     "__parseDpResponse": {
       "location": {
         "start": {
-          "line": 400,
+          "line": 401,
           "column": 4
         },
         "end": {
-          "line": 414,
+          "line": 415,
           "column": 5
         }
       },
@@ -437,11 +444,11 @@
     "getMediaFiles": {
       "location": {
         "start": {
-          "line": 416,
+          "line": 417,
           "column": 4
         },
         "end": {
-          "line": 430,
+          "line": 431,
           "column": 5
         }
       },
@@ -451,11 +458,11 @@
     "getTransforms": {
       "location": {
         "start": {
-          "line": 438,
+          "line": 439,
           "column": 4
         },
         "end": {
-          "line": 473,
+          "line": 474,
           "column": 5
         }
       },
@@ -495,11 +502,11 @@
     "getPlugins": {
       "location": {
         "start": {
-          "line": 481,
+          "line": 482,
           "column": 4
         },
         "end": {
-          "line": 514,
+          "line": 515,
           "column": 5
         }
       },
@@ -539,11 +546,11 @@
     "getIcons": {
       "location": {
         "start": {
-          "line": 523,
+          "line": 524,
           "column": 4
         },
         "end": {
-          "line": 604,
+          "line": 605,
           "column": 5
         }
       },
@@ -3793,11 +3800,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 612,
+        "line": 613,
         "column": 12
       },
       "end": {
-        "line": 614,
+        "line": 615,
         "column": 3
       }
     },

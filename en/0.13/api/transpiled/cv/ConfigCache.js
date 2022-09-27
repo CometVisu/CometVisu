@@ -58,12 +58,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _parseCacheData: null,
       _valid: null,
       replayCache: null,
-      __P_490_0: null,
+      __P_509_0: null,
       failed: null,
       DB: null,
       init: function init() {
-        if (!this.__P_490_0) {
-          this.__P_490_0 = new Promise(function (resolve, reject) {
+        if (!this.__P_509_0) {
+          this.__P_509_0 = new Promise(function (resolve, reject) {
             if (!cv.ConfigCache.DB && !cv.ConfigCache.failed) {
               var request = indexedDB.open('cvCache', 1);
 
@@ -105,7 +105,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
 
-        return this.__P_490_0;
+        return this.__P_509_0;
       },
       dump: function dump(xml, hash) {
         var model = cv.data.Model.getInstance();
@@ -192,8 +192,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
               });
             }, _this);
-          }
+          } // hide body to prevent flickering
 
+
+          body.style.visibility = 'hidden';
           body.innerHTML = cache.body;
           qx.log.Logger.debug(_this, 'content restored from cache');
         });
@@ -328,7 +330,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (!cachedHash) {
                     this._valid = false;
                   } else {
-                    if (!hash) {
+                    if (!hash && xml) {
                       hash = this.toHash(xml);
                     }
 
@@ -400,4 +402,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1660800180457
+//# sourceMappingURL=ConfigCache.js.map?dt=1664297903736

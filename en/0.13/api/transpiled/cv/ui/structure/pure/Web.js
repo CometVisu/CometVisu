@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Update": {
@@ -14,7 +14,7 @@
       "cv.ui.common.Refresh": {
         "require": true
       },
-      "cv.TemplateEngine": {},
+      "cv.io.BackendConnections": {},
       "cv.Transform": {}
     }
   };
@@ -46,7 +46,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.Web', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Refresh],
 
     /*
@@ -141,7 +141,7 @@
           var iframe = this.getDomElement().querySelector('iframe');
           this.refreshAction(iframe, iframe.getAttribute('src')); // reset the value
 
-          cv.TemplateEngine.getInstance().visu.write(address, cv.Transform.encode(addr, 0));
+          cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
         }
       }
     }
@@ -149,4 +149,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1660800148595
+//# sourceMappingURL=Web.js.map?dt=1664297872152

@@ -57,14 +57,14 @@
        * @return {qx.event.type.KeySequence} The initialized key event instance
        */
       init: function init(domEvent, target, identifier) {
-        qx.event.type.KeySequence.prototype.init.base.call(this, domEvent, target, null, true, true);
+        qx.event.type.KeySequence.superclass.prototype.init.call(this, domEvent, target, null, true, true);
         this._keyCode = domEvent.keyCode;
         this._identifier = identifier;
         return this;
       },
       // overridden
       clone: function clone(embryo) {
-        var clone = qx.event.type.KeySequence.prototype.clone.base.call(this, embryo);
+        var clone = qx.event.type.KeySequence.superclass.prototype.clone.call(this, embryo);
         clone._keyCode = this._keyCode;
         clone._identifier = this._identifier;
         return clone;
@@ -156,4 +156,4 @@
   qx.event.type.KeySequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeySequence.js.map?dt=1660800159151
+//# sourceMappingURL=KeySequence.js.map?dt=1664297883882

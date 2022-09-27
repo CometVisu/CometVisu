@@ -44,7 +44,7 @@
     */
     members: {
       _createWidgetContent: function _createWidgetContent() {
-        cv.ui.manager.dialog.Prompt.prototype._createWidgetContent.base.call(this);
+        cv.ui.manager.dialog.Prompt.superclass.prototype._createWidgetContent.call(this);
 
         this._textField.setLiveUpdate(true);
       }
@@ -53,4 +53,4 @@
   cv.ui.manager.dialog.Prompt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prompt.js.map?dt=1660800144470
+//# sourceMappingURL=Prompt.js.map?dt=1664297868094

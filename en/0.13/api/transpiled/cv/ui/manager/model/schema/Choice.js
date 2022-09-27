@@ -78,7 +78,7 @@
       parse: function parse() {
         var _this = this;
 
-        cv.ui.manager.model.schema.Choice.prototype.parse.base.call(this);
+        cv.ui.manager.model.schema.Choice.superclass.prototype.parse.call(this);
         var node = this.getNode();
         var schema = this.getSchema();
         var subElements = Array.from(node.querySelectorAll(':scope > element'));
@@ -219,4 +219,4 @@
   cv.ui.manager.model.schema.Choice.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Choice.js.map?dt=1660800146861
+//# sourceMappingURL=Choice.js.map?dt=1664297870336

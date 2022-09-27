@@ -6,8 +6,8 @@
         "require": true
       },
       "qx.log.Logger": {},
-      "qx.event.message.Bus": {},
-      "cv.Application": {}
+      "cv.Application": {},
+      "cv.util.ScriptLoader": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -329,7 +329,9 @@
        * @param {(HTMLCanvasElement|SVGElement)} icon
        */
       fillRecoloredIcon: function fillRecoloredIcon(icon) {
-        var parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
+        var parameters = Array.prototype.filter.call(icon.classList, function (name) {
+          return name !== 'icon';
+        });
 
         if (parameters.length === 2) {
           var cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
@@ -350,21 +352,8 @@
       svgKUF: function svgKUF(iconID) {
         if (!this.preloadedKUFicons) {
           this.preloadedKUFicons = true;
-          qx.event.message.Bus.subscribe('setup.dom.finished.before', function () {
-            // use relative path here, otherwise it won't work in replay mode
-            var iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
-            window.fetch(iconPath).then(function (r) {
-              return r.text();
-            }).then(function (text) {
-              var div = document.createElement('div');
-              div.innerHTML = text;
-              var svg = div.firstChild;
-              svg.setAttribute('style', 'display:none');
-              document.body.appendChild(svg);
-            })["catch"](function (err) {
-              qx.log.Logger.debug(cv.util.IconTools, err);
-            });
-          });
+          var iconPath = cv.Application.getRelativeResourcePath() + 'icons/fonts/knx-uf-iconset.css';
+          cv.util.ScriptLoader.includeStylesheet(iconPath);
         }
         /**
          * @param {string} color - color in CSS style, i.e. #rrggbb
@@ -378,10 +367,8 @@
 
         return function (color, styling, classes, asText) {
           var forceRemote = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-          // use relative path here, otherwise it won't work in replay mode
-          var iconPath = forceRemote ? cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg' : '';
-          var iconLink = iconPath + '#kuf-' + iconID;
 
+          // use relative path here, otherwise it won't work in replay mode
           if (color in cv.util.IconTools.colorMapping) {
             color = cv.util.IconTools.colorMapping[color];
           }
@@ -397,20 +384,22 @@
               style = ' style="' + style + '"';
             }
 
-            return '<svg' + style + ' class="' + classes + '"><use xlink:href="' + iconLink + '"></use></svg>';
+            return '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"></i>';
           }
 
-          var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-          svg.setAttribute('class', classes);
+          var icon = document.createElement('i');
+
+          if (classes) {
+            icon.setAttribute('class', classes);
+          }
+
+          icon.classList.add('knxuf-' + iconID);
 
           if (style) {
-            svg.setAttribute('style', style);
+            icon.setAttribute('style', style);
           }
 
-          var use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-          use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', iconLink);
-          svg.appendChild(use);
-          return svg;
+          return icon;
         };
       }
     },
@@ -423,4 +412,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1660800181780
+//# sourceMappingURL=IconTools.js.map?dt=1664297904868

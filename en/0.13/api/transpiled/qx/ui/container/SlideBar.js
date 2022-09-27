@@ -205,7 +205,7 @@
             break;
         }
 
-        return control || qx.ui.container.SlideBar.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.container.SlideBar.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
 
@@ -264,7 +264,7 @@
       */
       // overridden
       _applyEnabled: function _applyEnabled(value, old, name) {
-        qx.ui.container.SlideBar.prototype._applyEnabled.base.call(this, value, old, name);
+        qx.ui.container.SlideBar.superclass.prototype._applyEnabled.call(this, value, old, name);
 
         this._updateArrowsEnabled();
       },
@@ -472,4 +472,4 @@
   qx.ui.container.SlideBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SlideBar.js.map?dt=1660800165146
+//# sourceMappingURL=SlideBar.js.map?dt=1664297889297

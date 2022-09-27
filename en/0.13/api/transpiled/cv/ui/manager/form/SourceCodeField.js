@@ -256,7 +256,7 @@
       },
       // overridden
       _getContentHint: function _getContentHint() {
-        var hint = cv.ui.manager.form.SourceCodeField.prototype._getContentHint.base.call(this);
+        var hint = cv.ui.manager.form.SourceCodeField.superclass.prototype._getContentHint.call(this);
 
         if (this.isAutoSize()) {
           hint.height = this.__P_40_1 || hint.height;
@@ -284,4 +284,4 @@
   cv.ui.manager.form.SourceCodeField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SourceCodeField.js.map?dt=1660800146063
+//# sourceMappingURL=SourceCodeField.js.map?dt=1664297869686

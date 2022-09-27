@@ -45,7 +45,7 @@
       qx.ui.container.Composite.constructor.call(this, new qx.ui.layout.HBox());
     },
     members: {
-      __P_381_0: null,
+      __P_401_0: null,
 
       /**
        * Join this header/footer to a Progressive.  This makes the Progressive
@@ -56,14 +56,14 @@
        *
        */
       join: function join(progressive) {
-        this.__P_381_0 = progressive;
+        this.__P_401_0 = progressive;
       }
     },
     destruct: function destruct() {
-      this.__P_381_0 = null;
+      this.__P_401_0 = null;
     }
   });
   qx.ui.progressive.headfoot.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1660800172994
+//# sourceMappingURL=Abstract.js.map?dt=1664297896628

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -20,7 +20,7 @@
       "cv.ui.common.Update": {
         "require": true
       },
-      "cv.parser.WidgetParser": {},
+      "cv.parser.pure.WidgetParser": {},
       "qx.util.Uri": {},
       "qx.util.ResourceManager": {},
       "cv.ui.structure.WidgetFactory": {
@@ -100,7 +100,7 @@
    * @since 0.8.0 (2012)
    */
   qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.Refresh, cv.ui.common.Update],
 
     /*
@@ -146,7 +146,7 @@
         var style = '';
 
         if (Object.keys(this.getLayout()).length === 0) {
-          style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
+          style += cv.parser.pure.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
         }
 
         if (this.getHeight()) {
@@ -160,7 +160,7 @@
         var actor = '<div class="actor">';
 
         if (this.getUpdateType() === 'show') {
-          actor += '<img src="' + this.__P_56_0(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
+          actor += '<img src="' + this.__P_59_0(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
         } else {
           actor += '<img src=""' + style + ' />';
         }
@@ -175,14 +175,14 @@
           if (value === 0) {
             imageChild.style.display = 'none';
           } else {
-            imageChild.setAttribute('src', this.__P_56_0(this.getSrc() + '.' + this.getSuffix()));
+            imageChild.setAttribute('src', this.__P_59_0(this.getSrc() + '.' + this.getSuffix()));
             imageChild.style.display = 'block';
           }
         } else if (this.getUpdateType() === 'select') {
           if (value === 0) {
             imageChild.style.display = 'none';
           } else {
-            imageChild.setAttribute('src', this.__P_56_0(this.getSrc() + value + '.' + this.getSuffix()));
+            imageChild.setAttribute('src', this.__P_59_0(this.getSrc() + value + '.' + this.getSuffix()));
             imageChild.style.display = 'block';
           }
         } //TODO: add value if mapping exists
@@ -191,7 +191,7 @@
         //TODO: add SVG-magics
 
       },
-      __P_56_0: function __P_56_0(url) {
+      __P_59_0: function __P_59_0(url) {
         var parsedUri = qx.util.Uri.parseUri(url);
 
         if (!parsedUri.protocol && !url.startsWith('/')) {
@@ -216,4 +216,4 @@
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1660800147923
+//# sourceMappingURL=ImageTrigger.js.map?dt=1664297871528

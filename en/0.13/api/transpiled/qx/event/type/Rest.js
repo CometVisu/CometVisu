@@ -82,7 +82,7 @@
        * @return {qx.event.type.Data} The initialized instance.
        */
       init: function init(data, old, cancelable, request, action, phase) {
-        qx.event.type.Rest.prototype.init.base.call(this, data, old, cancelable);
+        qx.event.type.Rest.superclass.prototype.init.call(this, data, old, cancelable);
         this.setRequest(request);
         this.setAction(action);
         this.setPhase(phase);
@@ -100,7 +100,7 @@
        * @return {qx.event.type.Data} A copy of this object.
        */
       clone: function clone(embryo) {
-        var clone = qx.event.type.Rest.prototype.clone.base.call(this, embryo);
+        var clone = qx.event.type.Rest.superclass.prototype.clone.call(this, embryo);
         clone.setAction(this.getAction());
         clone.setPhase(this.getPhase());
         clone.setRequest(this.getRequest());
@@ -111,4 +111,4 @@
   qx.event.type.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1660800159312
+//# sourceMappingURL=Rest.js.map?dt=1664297884026

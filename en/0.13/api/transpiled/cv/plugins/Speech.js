@@ -13,11 +13,11 @@
         "require": true
       },
       "qx.log.Logger": {},
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "cv.data.Model": {},
-      "cv.TemplateEngine": {},
+      "cv.io.BackendConnections": {},
       "cv.core.notifications.SpeechHandler": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
@@ -110,7 +110,7 @@
           return null;
         }
 
-        var address = cv.parser.WidgetParser.makeAddressList(element, path);
+        var address = cv.parser.pure.WidgetParser.makeAddressList(element, path);
         return cv.data.Model.getInstance().setWidgetData(path, {
           'path': path,
           'language': element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : null,
@@ -151,7 +151,7 @@
         init: -1
       },
       parentWidget: {
-        check: 'cv.ui.structure.AbstractBasicWidget',
+        check: 'cv.ui.structure.pure.AbstractBasicWidget',
         init: null
       }
     },
@@ -173,7 +173,7 @@
         return this.applyMapping(value);
       },
       handleUpdate: function handleUpdate(text, address) {
-        if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
+        if (!cv.io.BackendConnections.getClient().getDataReceived()) {
           // first call -> skipping
           this.__P_14_0[address] = {
             text: text,
@@ -213,11 +213,11 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler('speech', cv.plugins.Speech);
+      cv.parser.pure.WidgetParser.addHandler('speech', cv.plugins.Speech);
       cv.ui.structure.WidgetFactory.registerClass('speech', statics);
     }
   });
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1660800142677
+//# sourceMappingURL=Speech.js.map?dt=1664297866330

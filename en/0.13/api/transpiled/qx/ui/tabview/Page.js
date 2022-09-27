@@ -162,7 +162,7 @@
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
-        qx.ui.tabview.Page.prototype._applyEnabled.base.call(this, value, old); // delegate to non-child widget button
+        qx.ui.tabview.Page.superclass.prototype._applyEnabled.call(this, value, old); // delegate to non-child widget button
         // since enabled is inheritable value may be null
 
 
@@ -189,7 +189,7 @@
             break;
         }
 
-        return control || qx.ui.tabview.Page.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.tabview.Page.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /*
@@ -236,4 +236,4 @@
   qx.ui.tabview.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1660800175464
+//# sourceMappingURL=Page.js.map?dt=1664297898906

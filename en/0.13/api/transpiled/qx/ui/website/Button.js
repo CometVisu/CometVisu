@@ -99,7 +99,7 @@
     members: {
       // overridden
       init: function init() {
-        if (!qx.ui.website.Button.prototype.init.base.call(this)) {
+        if (!qx.ui.website.Button.superclass.prototype.init.call(this)) {
           return false;
         }
 
@@ -188,4 +188,4 @@
   qx.ui.website.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1660800177772
+//# sourceMappingURL=Button.js.map?dt=1664297901104

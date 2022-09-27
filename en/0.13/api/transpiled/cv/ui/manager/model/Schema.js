@@ -55,6 +55,7 @@
       }
 
       this.__filename = filename;
+      this.setStructure(filename.endsWith('visu_config_tile.xsd') ? 'tile' : 'pure');
       this.__P_43_0 = {};
       this.__P_43_1 = {};
       this.__P_43_2 = {};
@@ -88,6 +89,10 @@
         check: 'Boolean',
         init: false,
         event: 'changeLoaded'
+      },
+      structure: {
+        check: ['pure', 'tile'],
+        apply: '_applyStructure'
       }
     },
 
@@ -139,6 +144,31 @@
        * @var {Array<String>}
        */
       _widgetNames: null,
+
+      /**
+       * @var {String}
+       */
+      __P_43_7: null,
+
+      /**
+       * @var {String}
+       */
+      __P_43_8: null,
+
+      /**
+       * @var {String}
+       */
+      __P_43_9: null,
+      _applyStructure: function _applyStructure(structure) {
+        if (structure === 'tile') {
+          this.__P_43_7 = 'config';
+          this.__P_43_8 = 'main';
+          this.__P_43_9 = 'cv-page';
+        } else {
+          this.__P_43_7 = 'pages';
+          this.__P_43_9 = 'page';
+        }
+      },
       onLoaded: function onLoaded(callback, context) {
         if (this.isLoaded()) {
           callback.call(context);
@@ -198,21 +228,36 @@
        * Do so recursively.
        * referenced nodes can be top-level-nodes only!
        *
-       * @param   type    string  Type of the node (e.g. element, attributeGroup, ...)
-       * @param   refName string  Name as per the ref-attribute
+       * @param   type       string  Type of the node (e.g. element, attributeGroup, ...)
+       * @param   refName    string  Name as per the ref-attribute
+       * @param   noFallback boolean Don't look up other types as fallback, if the requested type is not found
        * @return  object          jQuery-object of the ref'ed element
        */
-      getReferencedNode: function getReferencedNode(type, refName) {
+      getReferencedNode: function getReferencedNode(type, refName, noFallback) {
         if (Object.prototype.hasOwnProperty.call(this.__P_43_1, type) && Object.prototype.hasOwnProperty.call(this.__P_43_1[type], refName)) {
           return this.__P_43_1[type][refName];
+        }
+
+        var fallbackType = type === 'simpleType' ? 'complexType' : 'simpleType';
+
+        if (!noFallback) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_43_1, fallbackType) && Object.prototype.hasOwnProperty.call(this.__P_43_1[fallbackType], refName)) {
+            return this.__P_43_1[fallbackType][refName];
+          }
         }
 
         var selector = 'schema > ' + type + '[name="' + refName + '"]';
 
         var ref = this.__P_43_4.querySelector(selector);
 
+        if (!ref && !noFallback) {
+          try {
+            ref = this.getReferencedNode(fallbackType, refName, true);
+          } catch (e) {}
+        }
+
         if (!ref) {
-          throw new Error('schema/xsd appears to be invalid, reference ' + type + '"' + refName + '" can not be found');
+          throw new Error('schema/xsd appears to be invalid, reference ' + type + ' "' + refName + '" can not be found');
         }
 
         if (ref.hasAttribute('ref')) {
@@ -308,14 +353,26 @@
        */
       getWidgetNames: function getWidgetNames() {
         if (!this._widgetNames) {
-          var pages = this.getElementNode('pages');
-          var page = pages.getSchemaElementForElementName('page');
+          var root = this.getElementNode(this.__P_43_7);
+          var pageParent = root;
+
+          if (this.__P_43_8) {
+            pageParent = root.getSchemaElementForElementName(this.__P_43_8);
+          }
+
+          var page = pageParent.getSchemaElementForElementName(this.__P_43_9);
           this._widgetNames = Object.keys(page.getAllowedElements()).filter(function (name) {
             return !name.startsWith('#') && name !== 'layout';
           });
         }
 
         return this._widgetNames;
+      },
+      isRoot: function isRoot(name) {
+        return name === this.__P_43_7;
+      },
+      isPage: function isPage(name) {
+        return name = this.__P_43_9;
       }
     },
 
@@ -339,4 +396,4 @@
   cv.ui.manager.model.Schema.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Schema.js.map?dt=1660800146362
+//# sourceMappingURL=Schema.js.map?dt=1664297869960

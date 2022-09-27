@@ -125,10 +125,10 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_130_0 = [];
-      this.__P_130_1 = {};
-      this.__P_130_2 = [];
-      this.__P_130_3 = this.getPreferredFormats();
+      this.__P_150_0 = [];
+      this.__P_150_1 = {};
+      this.__P_150_2 = [];
+      this.__P_150_3 = this.getPreferredFormats();
     },
 
     /*
@@ -155,12 +155,12 @@
     *****************************************************************************
     */
     members: {
-      __P_130_0: null,
-      __P_130_4: null,
-      __P_130_1: null,
-      __P_130_3: null,
-      __P_130_2: null,
-      __P_130_5: null,
+      __P_150_0: null,
+      __P_150_4: null,
+      __P_150_1: null,
+      __P_150_3: null,
+      __P_150_2: null,
+      __P_150_5: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -205,19 +205,19 @@
 
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && (parseInt(qx.core.Environment.get("engine.version")) < 9 || qx.core.Environment.get("browser.documentmode") < 9)) {
-          if (!this.__P_130_5) {
-            this.__P_130_5 = new qx.event.Timer(100);
+          if (!this.__P_150_5) {
+            this.__P_150_5 = new qx.event.Timer(100);
 
-            this.__P_130_5.addListener("interval", this.__P_130_6, this);
+            this.__P_150_5.addListener("interval", this.__P_150_6, this);
           }
 
-          if (!this.__P_130_5.isEnabled()) {
-            this.__P_130_5.start();
+          if (!this.__P_150_5.isEnabled()) {
+            this.__P_150_5.start();
           }
 
-          this.__P_130_2.push([familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context]);
+          this.__P_150_2.push([familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context]);
         } else {
-          this.__P_130_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context);
+          this.__P_150_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context);
         }
       },
 
@@ -231,28 +231,28 @@
        * @param fontStyle {String} the font-style.
        */
       remove: function remove(familyName, fontWeight, fontStyle) {
-        var fontLookupKey = this.__P_130_8(familyName, fontWeight, fontStyle);
+        var fontLookupKey = this.__P_150_8(familyName, fontWeight, fontStyle);
 
         var index = null;
 
-        for (var i = 0, l = this.__P_130_0.length; i < l; i++) {
-          if (this.__P_130_0[i] == fontLookupKey) {
+        for (var i = 0, l = this.__P_150_0.length; i < l; i++) {
+          if (this.__P_150_0[i] == fontLookupKey) {
             index = i;
 
-            this.__P_130_9(familyName, fontWeight, fontStyle);
+            this.__P_150_9(familyName, fontWeight, fontStyle);
 
             break;
           }
         }
 
         if (index !== null) {
-          qx.lang.Array.removeAt(this.__P_130_0, index);
+          qx.lang.Array.removeAt(this.__P_150_0, index);
         }
 
-        if (fontLookupKey in this.__P_130_1) {
-          this.__P_130_1[fontLookupKey].dispose();
+        if (fontLookupKey in this.__P_150_1) {
+          this.__P_150_1[fontLookupKey].dispose();
 
-          delete this.__P_130_1[fontLookupKey];
+          delete this.__P_150_1[fontLookupKey];
         }
       },
 
@@ -301,13 +301,13 @@
        * font-families
        */
       removeStyleSheet: function removeStyleSheet() {
-        this.__P_130_0 = [];
+        this.__P_150_0 = [];
 
-        if (this.__P_130_4) {
-          qx.bom.Stylesheet.removeSheet(this.__P_130_4);
+        if (this.__P_150_4) {
+          qx.bom.Stylesheet.removeSheet(this.__P_150_4);
         }
 
-        this.__P_130_4 = null;
+        this.__P_150_4 = null;
       },
 
       /*
@@ -323,7 +323,7 @@
        * @param fontStyle {String} the font-style.
        * @return {string} the font lookup key
        */
-      __P_130_8: function __P_130_8(familyName, fontWeight, fontStyle) {
+      __P_150_8: function __P_150_8(familyName, fontWeight, fontStyle) {
         var lookupKey = familyName + "_" + (fontWeight ? fontWeight : "normal") + "_" + (fontStyle ? fontStyle : "normal");
         return lookupKey;
       },
@@ -346,59 +346,59 @@
        * applied correctly.
        * @param context {Object?} Optional context for the callback function
        */
-      __P_130_7: function __P_130_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context) {
-        var fontLookupKey = this.__P_130_8(familyName, fontWeight, fontStyle);
+      __P_150_7: function __P_150_7(familyName, sources, fontWeight, fontStyle, comparisonString, version, callback, context) {
+        var fontLookupKey = this.__P_150_8(familyName, fontWeight, fontStyle);
 
-        if (!this.__P_130_0.includes(fontLookupKey)) {
-          var sourcesMap = this.__P_130_10(sources);
+        if (!this.__P_150_0.includes(fontLookupKey)) {
+          var sourcesMap = this.__P_150_10(sources);
 
-          var rule = this.__P_130_11(familyName, fontWeight, fontStyle, sourcesMap, version);
+          var rule = this.__P_150_11(familyName, fontWeight, fontStyle, sourcesMap, version);
 
           if (!rule) {
             throw new Error("Couldn't create @font-face rule for WebFont " + familyName + "!");
           }
 
-          if (!this.__P_130_4) {
-            this.__P_130_4 = qx.bom.Stylesheet.createElement();
+          if (!this.__P_150_4) {
+            this.__P_150_4 = qx.bom.Stylesheet.createElement();
           }
 
           try {
-            this.__P_130_12(rule);
+            this.__P_150_12(rule);
           } catch (ex) {}
 
-          this.__P_130_0.push(fontLookupKey);
+          this.__P_150_0.push(fontLookupKey);
         }
 
-        if (!this.__P_130_1[fontLookupKey]) {
-          this.__P_130_1[fontLookupKey] = new qx.bom.webfonts.Validator(familyName, comparisonString, fontWeight, fontStyle);
+        if (!this.__P_150_1[fontLookupKey]) {
+          this.__P_150_1[fontLookupKey] = new qx.bom.webfonts.Validator(familyName, comparisonString, fontWeight, fontStyle);
 
-          this.__P_130_1[fontLookupKey].setTimeout(qx.bom.webfonts.Manager.VALIDATION_TIMEOUT);
+          this.__P_150_1[fontLookupKey].setTimeout(qx.bom.webfonts.Manager.VALIDATION_TIMEOUT);
 
-          this.__P_130_1[fontLookupKey].addListenerOnce("changeStatus", this.__P_130_13, this);
+          this.__P_150_1[fontLookupKey].addListenerOnce("changeStatus", this.__P_150_13, this);
         }
 
         if (callback) {
           var cbContext = context || window;
 
-          this.__P_130_1[fontLookupKey].addListenerOnce("changeStatus", callback, cbContext);
+          this.__P_150_1[fontLookupKey].addListenerOnce("changeStatus", callback, cbContext);
         }
 
-        this.__P_130_1[fontLookupKey].validate();
+        this.__P_150_1[fontLookupKey].validate();
       },
 
       /**
        * Processes the next item in the queue
        */
-      __P_130_6: function __P_130_6() {
-        if (this.__P_130_2.length == 0) {
-          this.__P_130_5.stop();
+      __P_150_6: function __P_150_6() {
+        if (this.__P_150_2.length == 0) {
+          this.__P_150_5.stop();
 
           return;
         }
 
-        var next = this.__P_130_2.shift();
+        var next = this.__P_150_2.shift();
 
-        this.__P_130_7.apply(this, next);
+        this.__P_150_7.apply(this, next);
       },
 
       /**
@@ -406,7 +406,7 @@
        *
        * @param ev {qx.event.type.Data} qx.bom.webfonts.Validator#changeStatus
        */
-      __P_130_13: function __P_130_13(ev) {
+      __P_150_13: function __P_150_13(ev) {
         var result = ev.getData();
 
         if (result.valid === false) {
@@ -424,7 +424,7 @@
        * @param sources {String[]} Array of source URLs
        * @return {Map} Map of formats and URLs
        */
-      __P_130_10: function __P_130_10(sources) {
+      __P_150_10: function __P_150_10(sources) {
         var formats = qx.bom.webfonts.Manager.FONT_FORMATS;
         var sourcesMap = {};
         var reg = new RegExp("\.(" + formats.join("|") + ")");
@@ -453,15 +453,15 @@
        * @param version {String?} Optional version to be appended to the URL
        * @return {String} The computed CSS rule
        */
-      __P_130_11: function __P_130_11(familyName, fontWeight, fontStyle, sourcesMap, version) {
+      __P_150_11: function __P_150_11(familyName, fontWeight, fontStyle, sourcesMap, version) {
         var rules = [];
-        var formatList = this.__P_130_3.length > 0 ? this.__P_130_3 : qx.bom.webfonts.Manager.FONT_FORMATS;
+        var formatList = this.__P_150_3.length > 0 ? this.__P_150_3 : qx.bom.webfonts.Manager.FONT_FORMATS;
 
         for (var i = 0, l = formatList.length; i < l; i++) {
           var format = formatList[i];
 
           if (sourcesMap[format]) {
-            rules.push(this.__P_130_14(format, sourcesMap[format], version));
+            rules.push(this.__P_150_14(format, sourcesMap[format], version));
           }
         }
 
@@ -479,7 +479,7 @@
        * @param version {String?} Optional version to be appended to the URL
        * @return {String} The src directive
        */
-      __P_130_14: function __P_130_14(format, url, version) {
+      __P_150_14: function __P_150_14(format, url, version) {
         if (version) {
           url += "?" + version;
         }
@@ -510,16 +510,16 @@
        *
        * @param rule {String} The body of the CSS rule
        */
-      __P_130_12: function __P_130_12(rule) {
+      __P_150_12: function __P_150_12(rule) {
         var completeRule = "@font-face {" + rule + "}\n";
 
         if (qx.core.Environment.get("browser.name") == "ie" && qx.core.Environment.get("browser.documentmode") < 9) {
-          var cssText = this.__P_130_15(this.__P_130_4.cssText);
+          var cssText = this.__P_150_15(this.__P_150_4.cssText);
 
           cssText += completeRule;
-          this.__P_130_4.cssText = cssText;
+          this.__P_150_4.cssText = cssText;
         } else {
-          this.__P_130_4.insertRule(completeRule, this.__P_130_4.cssRules.length);
+          this.__P_150_4.insertRule(completeRule, this.__P_150_4.cssRules.length);
         }
       },
 
@@ -531,7 +531,7 @@
        * @param fontWeight {String} fontWeight font-weight.
        * @param fontStyle {String} fontStyle font-style.
        */
-      __P_130_9: function __P_130_9(familyName, fontWeight, fontStyle) {
+      __P_150_9: function __P_150_9(familyName, fontWeight, fontStyle) {
         // In IE and edge even if the rule was added with font-style first
         // and font-weight second, it is not guaranteed that the attributes
         // remain in that order. Therefore we check for both version,
@@ -545,7 +545,7 @@
 
           if (sheet.cssText) {
             var cssText = sheet.cssText.replace(/\n/g, "").replace(/\r/g, "");
-            cssText = this.__P_130_15(cssText);
+            cssText = this.__P_150_15(cssText);
 
             if (reg.exec(cssText)) {
               cssText = cssText.replace(reg, "");
@@ -557,7 +557,7 @@
               var cssText = sheet.cssRules[j].cssText.replace(/\n/g, "").replace(/\r/g, "");
 
               if (reg.exec(cssText)) {
-                this.__P_130_4.deleteRule(j);
+                this.__P_150_4.deleteRule(j);
 
                 return;
               }
@@ -574,7 +574,7 @@
        * @param cssText {String} CSS text
        * @return {String} Fixed CSS text
        */
-      __P_130_15: function __P_130_15(cssText) {
+      __P_150_15: function __P_150_15(cssText) {
         return cssText.replace("'eot)", "'eot')").replace("('embedded-opentype)", "('embedded-opentype')");
       }
     },
@@ -585,17 +585,17 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__P_130_5) {
-        this.__P_130_5.stop();
+      if (this.__P_150_5) {
+        this.__P_150_5.stop();
 
-        this.__P_130_5.dispose();
+        this.__P_150_5.dispose();
       }
 
-      delete this.__P_130_0;
+      delete this.__P_150_0;
       this.removeStyleSheet();
 
-      for (var prop in this.__P_130_1) {
-        this.__P_130_1[prop].dispose();
+      for (var prop in this.__P_150_1) {
+        this.__P_150_1[prop].dispose();
       }
 
       qx.bom.webfonts.Validator.removeDefaultHelperElements();
@@ -604,4 +604,4 @@
   qx.bom.webfonts.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1660800154047
+//# sourceMappingURL=Manager.js.map?dt=1664297879171

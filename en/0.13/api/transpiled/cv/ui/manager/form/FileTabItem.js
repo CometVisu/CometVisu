@@ -262,7 +262,7 @@
             break;
         }
 
-        return control || cv.ui.manager.form.FileTabItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.form.FileTabItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -279,4 +279,4 @@
   cv.ui.manager.form.FileTabItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileTabItem.js.map?dt=1660800145888
+//# sourceMappingURL=FileTabItem.js.map?dt=1664297869535

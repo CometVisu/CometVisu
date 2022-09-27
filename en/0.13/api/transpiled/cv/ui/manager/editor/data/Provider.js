@@ -25,10 +25,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         "construct": true
       },
       "qx.lang.Function": {},
+      "cv.Config": {},
       "qx.log.Logger": {},
       "qx.lang.Type": {},
       "qx.io.request.Xhr": {},
-      "cv.TemplateEngine": {},
+      "cv.io.BackendConnections": {},
       "cv.Transform": {},
       "qx.locale.Manager": {},
       "qx.io.PartLoader": {},
@@ -232,31 +233,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * Returns the available design names as array of suggestions.
        * @param format
        * @param config
-       * @returns {Promise<Array>} suggestions
+       * @param structure {String} pure (default) or tile
+       * @returns {Array} suggestions
        */
-      getDesigns: function getDesigns(format, config) {
-        if (!config) {
-          config = {
-            cache: true
-          };
+      getDesigns: function getDesigns(format, config, structure) {
+        if (!structure) {
+          structure = 'pure';
         }
 
-        return this.__P_35_2('designs', 'designsSync', null, [], format === 'dp' ? function (res) {
-          return res.map(function (designName) {
+        var designs = cv.Config.designStructureMap[structure] || [];
+
+        if (format === 'dp') {
+          return designs.map(function (designName) {
             return {
               label: designName,
               value: designName
             };
           });
-        } : function (res) {
-          return res.map(function (designName) {
-            return {
-              label: designName,
-              insertText: designName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember
-            };
-          });
-        }, this, config.cache);
+        }
+
+        return designs.map(function (designName) {
+          return {
+            label: designName,
+            insertText: designName,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          };
+        });
       },
 
       /**
@@ -323,7 +325,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var _this = this;
 
           var xhr = new qx.io.request.Xhr(url);
-          var client = cv.TemplateEngine.getClient();
+          var client = cv.io.BackendConnections.getClient();
 
           if (client) {
             client.authorize(xhr);
@@ -350,7 +352,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }.bind(this));
       },
       getAddresses: function getAddresses(format, config) {
-        var client = cv.TemplateEngine.getClient();
+        var client = cv.io.BackendConnections.getClient();
 
         if (!config) {
           config = {
@@ -365,7 +367,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         return this.__P_35_2('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
       getRrds: function getRrds(format, config) {
-        var client = cv.TemplateEngine.getClient();
+        var client = cv.io.BackendConnections.getClient();
 
         if (!config) {
           config = {
@@ -726,4 +728,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1660800145476
+//# sourceMappingURL=Provider.js.map?dt=1664297869073

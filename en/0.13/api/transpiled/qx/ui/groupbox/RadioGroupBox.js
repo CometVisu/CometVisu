@@ -115,11 +115,11 @@
 
         }
 
-        return control || qx.ui.groupbox.RadioGroupBox.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.groupbox.RadioGroupBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
-        qx.ui.groupbox.RadioGroupBox.prototype._applyEnabled.base.call(this, value, old);
+        qx.ui.groupbox.RadioGroupBox.superclass.prototype._applyEnabled.call(this, value, old);
 
         this.getChildrenContainer().setEnabled(value && this.getValue());
       },
@@ -230,4 +230,4 @@
   qx.ui.groupbox.RadioGroupBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroupBox.js.map?dt=1660800169449
+//# sourceMappingURL=RadioGroupBox.js.map?dt=1664297893319

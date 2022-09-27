@@ -58,7 +58,7 @@
         }
       },
       _applyValue: function _applyValue(value, old) {
-        cv.ui.manager.form.CheckBox.prototype._applyValue.base.call(this, value, old);
+        cv.ui.manager.form.CheckBox.superclass.prototype._applyValue.call(this, value, old);
 
         if (value === null) {
           this.setLabel(' - ' + this.tr('not set') + ' - ');
@@ -71,4 +71,4 @@
   cv.ui.manager.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1660800145493
+//# sourceMappingURL=CheckBox.js.map?dt=1664297869088

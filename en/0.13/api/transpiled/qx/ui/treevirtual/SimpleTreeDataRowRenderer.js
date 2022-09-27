@@ -74,11 +74,11 @@
         } // Now call our superclass
 
 
-        qx.ui.treevirtual.SimpleTreeDataRowRenderer.prototype.updateDataRowElement.base.call(this, rowInfo, rowElem);
+        qx.ui.treevirtual.SimpleTreeDataRowRenderer.superclass.prototype.updateDataRowElement.call(this, rowInfo, rowElem);
       }
     }
   });
   qx.ui.treevirtual.SimpleTreeDataRowRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataRowRenderer.js.map?dt=1660800176621
+//# sourceMappingURL=SimpleTreeDataRowRenderer.js.map?dt=1664297899999

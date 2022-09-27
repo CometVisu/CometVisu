@@ -187,11 +187,11 @@
           this.resetReversed();
         }
 
-        qx.ui.mobile.layout.AbstractBox.prototype.connectToWidget.base.call(this, widget);
+        qx.ui.mobile.layout.AbstractBox.superclass.prototype.connectToWidget.call(this, widget);
       },
       // overridden
       disconnectFromChildWidget: function disconnectFromChildWidget(widget) {
-        qx.ui.mobile.layout.AbstractBox.prototype.disconnectFromChildWidget.base.call(this);
+        qx.ui.mobile.layout.AbstractBox.superclass.prototype.disconnectFromChildWidget.call(this);
 
         for (var i = 0; i <= 6; i++) {
           widget.removeCssClass("qx-flex" + i);
@@ -232,4 +232,4 @@
   qx.ui.mobile.layout.AbstractBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBox.js.map?dt=1660800172297
+//# sourceMappingURL=AbstractBox.js.map?dt=1664297895984

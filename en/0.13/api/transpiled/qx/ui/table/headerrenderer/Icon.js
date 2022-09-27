@@ -87,7 +87,7 @@
     members: {
       // overridden
       updateHeaderCell: function updateHeaderCell(cellInfo, cellWidget) {
-        qx.ui.table.headerrenderer.Icon.prototype.updateHeaderCell.base.call(this, cellInfo, cellWidget);
+        qx.ui.table.headerrenderer.Icon.superclass.prototype.updateHeaderCell.call(this, cellInfo, cellWidget);
         cellWidget.setIcon(this.getIconUrl());
       }
     }
@@ -95,4 +95,4 @@
   qx.ui.table.headerrenderer.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1660800174700
+//# sourceMappingURL=Icon.js.map?dt=1664297898203

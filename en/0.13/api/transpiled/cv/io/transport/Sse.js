@@ -50,7 +50,7 @@
      */
     construct: function construct(client) {
       this.client = client;
-      this.__P_521_0 = {};
+      this.__P_538_0 = {};
     },
 
     /*
@@ -63,7 +63,7 @@
       sessionId: null,
       client: null,
       eventSource: null,
-      __P_521_0: null,
+      __P_538_0: null,
 
       /**
        * This function gets called once the communication is established
@@ -98,7 +98,7 @@
         this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
         this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
 
-        Object.getOwnPropertyNames(this.__P_521_0).forEach(this.__P_521_1, this);
+        Object.getOwnPropertyNames(this.__P_538_0).forEach(this.__P_538_1, this);
 
         this.eventSource.onerror = function () {
           this.error('connection lost');
@@ -125,8 +125,8 @@
       dispatchTopicMessage: function dispatchTopicMessage(topic, message) {
         this.client.record(topic, message);
 
-        if (this.__P_521_0[topic]) {
-          this.__P_521_0[topic].forEach(function (entry) {
+        if (this.__P_538_0[topic]) {
+          this.__P_538_0[topic].forEach(function (entry) {
             entry[0].call(entry[1], message);
           });
         }
@@ -139,17 +139,17 @@
        * @param context {Object}
        */
       subscribe: function subscribe(topic, callback, context) {
-        if (!this.__P_521_0[topic]) {
-          this.__P_521_0[topic] = [];
+        if (!this.__P_538_0[topic]) {
+          this.__P_538_0[topic] = [];
         }
 
-        this.__P_521_0[topic].push([callback, context]);
+        this.__P_538_0[topic].push([callback, context]);
 
         if (this.isConnectionRunning()) {
-          this.__P_521_1(topic);
+          this.__P_538_1(topic);
         }
       },
-      __P_521_1: function __P_521_1(topic) {
+      __P_538_1: function __P_538_1(topic) {
         this.debug('subscribing to topic ' + topic);
         this.eventSource.addEventListener(topic, function (e) {
           this.dispatchTopicMessage(topic, e);
@@ -204,4 +204,4 @@
   cv.io.transport.Sse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sse.js.map?dt=1660800183665
+//# sourceMappingURL=Sse.js.map?dt=1664297906675

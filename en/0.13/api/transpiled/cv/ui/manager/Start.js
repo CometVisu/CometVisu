@@ -372,7 +372,7 @@
             break;
         }
 
-        return control || cv.ui.manager.Start.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.Start.superclass.prototype._createChildControlImpl.call(this, id);
       },
       __P_25_0: function __P_25_0(folderWidget) {
         if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
@@ -424,4 +424,4 @@
   cv.ui.manager.Start.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Start.js.map?dt=1660800143863
+//# sourceMappingURL=Start.js.map?dt=1664297867490

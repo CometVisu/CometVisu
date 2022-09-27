@@ -54,18 +54,18 @@
 
         switch (id) {
           case "knob":
-            control = qx.ui.core.scroll.ScrollSlider.prototype._createChildControlImpl.base.call(this, id);
+            control = qx.ui.core.scroll.ScrollSlider.superclass.prototype._createChildControlImpl.call(this, id);
             control.addListener("dblclick", function (e) {
               e.stopPropagation();
             });
         }
 
-        return control || qx.ui.core.scroll.ScrollSlider.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.core.scroll.ScrollSlider.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       getSizeHint: function getSizeHint(compute) {
         // get the original size hint
-        var hint = qx.ui.core.scroll.ScrollSlider.prototype.getSizeHint.base.call(this); // set the width or height to 0 depending on the orientation.
+        var hint = qx.ui.core.scroll.ScrollSlider.superclass.prototype.getSizeHint.call(this); // set the width or height to 0 depending on the orientation.
         // this is necessary to prevent the ScrollSlider to change the size
         // hint of its parent, which can cause errors on outer flex layouts
         // [BUG #3279]
@@ -83,4 +83,4 @@
   qx.ui.core.scroll.ScrollSlider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollSlider.js.map?dt=1660800166934
+//# sourceMappingURL=ScrollSlider.js.map?dt=1664297890945

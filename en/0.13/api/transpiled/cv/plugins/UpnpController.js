@@ -5,13 +5,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Refresh": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "qx.event.Registration": {},
@@ -55,7 +55,7 @@
    * @asset(plugins/upnpcontroller/*.php)
    */
   qx.Class.define('cv.plugins.UpnpController', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh],
 
     /*
@@ -75,8 +75,8 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseRefresh(xml, path);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.parser.pure.WidgetParser.parseRefresh(xml, path);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -152,7 +152,7 @@
         return ret_val + controller;
       },
       _onDomReady: function _onDomReady() {
-        cv.plugins.UpnpController.prototype._onDomReady.base.call(this);
+        cv.plugins.UpnpController.superclass.prototype._onDomReady.call(this);
 
         this.refreshUpnpcontroller();
       },
@@ -407,11 +407,11 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/upnpcontroller/upnpcontroller.css');
-      cv.parser.WidgetParser.addHandler('upnpcontroller', cv.plugins.UpnpController);
+      cv.parser.pure.WidgetParser.addHandler('upnpcontroller', cv.plugins.UpnpController);
       cv.ui.structure.WidgetFactory.registerClass('upnpcontroller', statics);
     }
   });
   cv.plugins.UpnpController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UpnpController.js.map?dt=1660800142844
+//# sourceMappingURL=UpnpController.js.map?dt=1664297866490

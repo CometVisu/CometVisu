@@ -59,8 +59,8 @@
     *****************************************************************************
     */
     members: {
-      __P_213_0: null,
-      __P_213_1: null,
+      __P_233_0: null,
+      __P_233_1: null,
       // this member variable is only used for IE browsers to be able
       // to the tag name which will be set. This is heavily connected to the runtime
       // change of decorators and the use of external (=unmanaged images). It is
@@ -76,8 +76,8 @@
        * @param paddingTop {Integer} top padding value
        */
       setPadding: function setPadding(paddingLeft, paddingTop) {
-        this.__P_213_1 = paddingLeft;
-        this.__P_213_0 = paddingTop;
+        this.__P_233_1 = paddingLeft;
+        this.__P_233_0 = paddingTop;
 
         if (this.getNodeName() == "div") {
           this.setStyle("backgroundPosition", paddingLeft + "px " + paddingTop + "px");
@@ -91,7 +91,7 @@
       */
       // overridden
       _applyProperty: function _applyProperty(name, value) {
-        qx.html.Image.prototype._applyProperty.base.call(this, name, value);
+        qx.html.Image.superclass.prototype._applyProperty.call(this, name, value);
 
         if (name === "source") {
           var elem = this.getDomElement(); // To prevent any wrong background-position or -repeat it is necessary
@@ -115,8 +115,8 @@
           if (source != null) {
             // Normalize "" to null
             source = source || null;
-            styles.paddingTop = this.__P_213_0;
-            styles.paddingLeft = this.__P_213_1;
+            styles.paddingTop = this.__P_233_0;
+            styles.paddingLeft = this.__P_233_1;
             qx.bom.element.Decoration.update(elem, source, repeat, styles);
           }
         }
@@ -150,12 +150,12 @@
           this.setNodeName(qx.bom.element.Decoration.getTagName(repeat));
         }
 
-        return qx.html.Image.prototype._createDomElement.base.call(this);
+        return qx.html.Image.superclass.prototype._createDomElement.call(this);
       },
       // overridden
       // be sure that style attributes are merged and not overwritten
       _copyData: function _copyData(fromMarkup) {
-        return qx.html.Image.prototype._copyData.base.call(this, true);
+        return qx.html.Image.superclass.prototype._copyData.call(this, true);
       },
 
       /*
@@ -227,4 +227,4 @@
   qx.html.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1660800159874
+//# sourceMappingURL=Image.js.map?dt=1664297884548

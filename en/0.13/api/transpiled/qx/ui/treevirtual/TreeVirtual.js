@@ -761,7 +761,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           evt.stopPropagation();
         } else {
           // It's not one of ours.  Let our superclass handle this event
-          qx.ui.treevirtual.TreeVirtual.prototype._onKeyDown.base.call(this, evt);
+          qx.ui.treevirtual.TreeVirtual.superclass.prototype._onKeyDown.call(this, evt);
         }
       },
 
@@ -785,7 +785,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Call the superclass method
 
 
-        qx.ui.treevirtual.TreeVirtual.prototype._onSelectionChanged.base.call(this, evt);
+        qx.ui.treevirtual.TreeVirtual.superclass.prototype._onSelectionChanged.call(this, evt);
       },
 
       /**
@@ -840,4 +840,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.ui.treevirtual.TreeVirtual.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TreeVirtual.js.map?dt=1660800176691
+//# sourceMappingURL=TreeVirtual.js.map?dt=1664297900074

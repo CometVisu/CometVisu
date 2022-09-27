@@ -58,8 +58,8 @@
      */
     members: {
       _widget: null,
-      __P_369_0: null,
-      __P_369_1: null,
+      __P_389_0: null,
+      __P_389_1: null,
 
       /**
        * Returns the css classes in an array that the layout is using.
@@ -133,14 +133,14 @@
         if (widget) {
           widget.addCssClasses(this._getCssClasses());
 
-          if (this.__P_369_0) {
-            for (var property in this.__P_369_0) {
+          if (this.__P_389_0) {
+            for (var property in this.__P_389_0) {
               this.reset(property);
-              this.set(property, this.__P_369_0[property]);
+              this.set(property, this.__P_389_0[property]);
             }
           }
         } else {
-          this.__P_369_0 = null;
+          this.__P_389_0 = null;
         }
       },
 
@@ -183,11 +183,11 @@
        * @param value {var} The value of the property to add
        */
       _addCachedProperty: function _addCachedProperty(property, value) {
-        if (!this.__P_369_0) {
-          this.__P_369_0 = {};
+        if (!this.__P_389_0) {
+          this.__P_389_0 = {};
         }
 
-        this.__P_369_0[property] = value;
+        this.__P_389_0[property] = value;
       },
 
       /**
@@ -198,7 +198,7 @@
        * @return {var} The value of the given property
        */
       _getChildLayoutPropertyValue: function _getChildLayoutPropertyValue(widget, property) {
-        var cache = this.__P_369_2(widget);
+        var cache = this.__P_389_2(widget);
 
         return cache[property];
       },
@@ -212,7 +212,7 @@
        * @param value {var} The value of the property to add
        */
       _addPropertyToChildLayoutCache: function _addPropertyToChildLayoutCache(widget, property, value) {
-        var cache = this.__P_369_2(widget);
+        var cache = this.__P_389_2(widget);
 
         if (value == null) {
           delete cache[property];
@@ -228,12 +228,12 @@
        * @return {Map} The child layout property cache for the given widget.
        *     Key / value pairs.
        */
-      __P_369_2: function __P_369_2(widget) {
-        if (!this.__P_369_1) {
-          this.__P_369_1 = {};
+      __P_389_2: function __P_389_2(widget) {
+        if (!this.__P_389_1) {
+          this.__P_389_1 = {};
         }
 
-        var cache = this.__P_369_1;
+        var cache = this.__P_389_1;
         var hash = widget.toHashCode();
 
         if (!cache[hash]) {
@@ -256,4 +256,4 @@
   qx.ui.mobile.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1660800172268
+//# sourceMappingURL=Abstract.js.map?dt=1664297895957

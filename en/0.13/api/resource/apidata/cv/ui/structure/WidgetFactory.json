@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 86,
+        "line": 85,
         "column": 3
       }
     },
@@ -95,7 +95,7 @@
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 57,
           "column": 5
         }
       },
@@ -105,11 +105,11 @@
     "getInstanceById": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 68,
           "column": 5
         }
       },
@@ -119,11 +119,11 @@
     "getInstanceByElement": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 79,
           "column": 5
         }
       },
@@ -133,11 +133,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 83,
           "column": 5
         }
       },

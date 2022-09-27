@@ -9,7 +9,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -25,7 +25,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "cv.util.LimitedRateUpdateAnimator": {
         "construct": true
       },
-      "cv.ui.layout.ResizeHandler": {
+      "cv.ui.structure.pure.layout.ResizeHandler": {
         "construct": true
       },
       "cv.util.Function": {},
@@ -82,7 +82,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.ColorChooser', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
 
     /*
@@ -136,20 +136,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(props) {
       var _this = this;
 
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       var base = this.getBaseColors();
-      this.__P_54_0 = new cv.util.Color(base.r, base.g, base.b, base.w);
-      this.__P_54_1 = new cv.util.LimitedRateUpdateAnimator(this.__P_54_2, this);
+      this.__P_56_0 = new cv.util.Color(base.r, base.g, base.b, base.w);
+      this.__P_56_1 = new cv.util.LimitedRateUpdateAnimator(this.__P_56_2, this);
 
-      this.__P_54_1.setAnimationSpeed(100, 0.5);
+      this.__P_56_1.setAnimationSpeed(100, 0.5);
 
-      this.__P_54_3 = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
-        _this.__P_54_4();
+      this.__P_56_3 = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
+        _this.__P_56_4();
       });
-      this.__P_54_5 = new Set(Object.entries(this.getAddress()).map(function (v) {
+      this.__P_56_5 = new Set(Object.entries(this.getAddress()).map(function (v) {
         return v[1].variantInfo;
       }));
-      this.__P_54_6 = {};
+      this.__P_56_6 = {};
     },
 
     /*
@@ -158,9 +158,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     ***********************************************
     */
     destruct: function destruct() {
-      cv.ui.layout.ResizeHandler.states.removeListenerById(this.__P_54_3);
-      this.__P_54_3 = null;
-      this.__P_54_7 = null;
+      cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__P_56_3);
+      this.__P_56_3 = null;
+      this.__P_56_7 = null;
     },
 
     /*
@@ -187,31 +187,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     ******************************************************
     */
     members: {
-      __P_54_8: '',
-      __P_54_9: undefined,
+      __P_56_8: '',
+      __P_56_9: undefined,
       // the color where the animation started
-      __P_54_10: undefined,
+      __P_56_10: undefined,
       // the current color of the running animation
-      __P_54_0: undefined,
+      __P_56_0: undefined,
       // the current color of the widget, also the target for the animation
-      __P_54_6: undefined,
+      __P_56_6: undefined,
       // initialize with empty object in the constructor to prevent object being shared between instances
-      __P_54_1: null,
-      __P_54_7: undefined,
+      __P_56_1: null,
+      __P_56_7: undefined,
       // cache for DOM element
-      __P_54_11: undefined,
+      __P_56_11: undefined,
       // cache for DOM element
-      __P_54_12: undefined,
-      __P_54_3: undefined,
-      __P_54_5: undefined,
+      __P_56_12: undefined,
+      __P_56_3: undefined,
+      __P_56_5: undefined,
       // set of all color components required to send
-      __P_54_13: false,
+      __P_56_13: false,
       // is the handle currently dragged?
-      __P_54_14: undefined,
+      __P_56_14: undefined,
       // minimal screen coordinate of slider
-      __P_54_15: 2000,
+      __P_56_15: 2000,
       // minimal color temperature to show in slider
-      __P_54_16: 12500,
+      __P_56_16: 12500,
       // maximal color temperature to show in slider
       // overridden
       _getInnerDomString: function _getInnerDomString() {
@@ -269,10 +269,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                 if (parts[0] === 'T') {
                   var temperatures = (parts[1] || '-').split('-');
-                  self.__P_54_15 = Math.max(1667, Math.min(temperatures[0] || 2500, 25000));
-                  self.__P_54_16 = Math.max(1667, Math.min(temperatures[1] || 9000, 25000));
-                  var rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_54_15));
-                  var rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_54_16));
+                  self.__P_56_15 = Math.max(1667, Math.min(temperatures[0] || 2500, 25000));
+                  self.__P_56_16 = Math.max(1667, Math.min(temperatures[1] || 9000, 25000));
+                  var rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_56_15));
+                  var rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_56_16));
 
                   var disp = function disp(c) {
                     return [Math.round(255 * c.r), Math.round(255 * c.g), Math.round(255 * c.b)].join(',');
@@ -290,9 +290,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _onDomReady: function _onDomReady() {
         var _this2 = this;
 
-        cv.ui.structure.pure.ColorChooser.prototype._onDomReady.base.call(this);
+        cv.ui.structure.pure.ColorChooser.superclass.prototype._onDomReady.call(this);
 
-        this.__P_54_17 = cv.util.Function.throttle(this.__P_54_18, 250, {
+        this.__P_56_17 = cv.util.Function.throttle(this.__P_56_18, 250, {
           trailing: true
         }, this);
         this.getDomElement().querySelectorAll('.actor').forEach(function (actor) {
@@ -323,6 +323,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         switch (variant) {
           case 'h':
+            if (!Number.isFinite(value)) {
+              showInvalidDataErrorMessage();
+              return;
+            }
+
+            value /= 360;
+            variantType = 'hsv-single';
+            break;
+
           case 's':
           case 'v':
             if (!Number.isFinite(value)) {
@@ -459,23 +468,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             break;
         }
 
-        if (this.__P_54_13 || this.__P_54_6[variantType] && this.__P_54_6[variantType][variant] && this.__P_54_6[variantType][variant][transform] === data) {
+        if (this.__P_56_13 || this.__P_56_6[variantType] && this.__P_56_6[variantType][variant] && this.__P_56_6[variantType][variant][transform] === data) {
           // slider in use -> ignore value from bus
           // internal state unchanged -> also do nothing
           return;
         }
 
-        var notKnown = this.__P_54_6[variantType] === undefined;
+        var notKnown = this.__P_56_6[variantType] === undefined;
 
         if (notKnown) {
-          this.__P_54_6[variantType] = {};
+          this.__P_56_6[variantType] = {};
         } // forget all other transforms as they might not be valid anymore
 
 
-        this.__P_54_6 = _defineProperty({}, variantType, this.__P_54_6[variantType]);
-        this.__P_54_6[variantType][variant] = _defineProperty({}, transform, data); // animate when visible, otherwise jump to the target value
+        this.__P_56_6 = _defineProperty({}, variantType, this.__P_56_6[variantType]);
+        this.__P_56_6[variantType][variant] = _defineProperty({}, transform, data); // animate when visible, otherwise jump to the target value
 
-        this.__P_54_19(value, variant, !this.isVisible() || notKnown);
+        this.__P_56_19(value, variant, !this.isVisible() || notKnown);
       },
 
       /**
@@ -485,22 +494,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param {boolean} instant Animate or instant change
        * @private
        */
-      __P_54_19: function __P_54_19(value, variant, instant) {
-        this.__P_54_9 = this.__P_54_10 === undefined ? this.__P_54_0.copy() : this.__P_54_10.copy();
+      __P_56_19: function __P_56_19(value, variant, instant) {
+        this.__P_56_9 = this.__P_56_10 === undefined ? this.__P_56_0.copy() : this.__P_56_10.copy();
 
-        this.__P_54_0.changeComponent(variant, value);
+        this.__P_56_0.changeComponent(variant, value);
 
-        instant = instant || this.__P_54_0.delta(this.__P_54_9) < 0.5;
+        instant = instant || this.__P_56_0.delta(this.__P_56_9) < 0.5;
 
         if (!instant) {
-          this.__P_54_1.setTo(this.__P_54_9, true, false);
+          this.__P_56_1.setTo(this.__P_56_9, true, false);
         }
 
-        this.__P_54_1.setTo(this.__P_54_0, instant);
+        this.__P_56_1.setTo(this.__P_56_0, instant);
       },
-      __P_54_2: function __P_54_2(newColor) {
+      __P_56_2: function __P_56_2(newColor) {
         // check cache
-        if (this.__P_54_12 === undefined) {
+        if (this.__P_56_12 === undefined) {
           var actors = {};
           var actorStyle;
           this.getDomElement().querySelectorAll('.actor').forEach(function (actor) {
@@ -548,13 +557,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 }
             }
           });
-          this.__P_54_12 = actors;
+          this.__P_56_12 = actors;
         }
 
-        this.__P_54_10 = newColor; // move handles
+        this.__P_56_10 = newColor; // move handles
 
-        for (var type in this.__P_54_12) {
-          var actor = this.__P_54_12[type];
+        for (var type in this.__P_56_12) {
+          var actor = this.__P_56_12[type];
 
           if (type === 'wheel') {
             var Bt = 75;
@@ -566,7 +575,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             var angle = void 0;
 
             if (actor.isLCh) {
-              var LCh = this.__P_54_10.getComponent('LCh');
+              var LCh = this.__P_56_10.getComponent('LCh');
 
               var r = cv.util.Color.curve(LCh.h, [246, 255, 46, 0, 246], 1);
               var g = cv.util.Color.curve(LCh.h, [27, 224, 255, 136, 27], 1);
@@ -578,7 +587,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               actor.handle.style.left = LCh.L * WSl + (1 - LCh.L) * Bl + '%';
               actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb(' + [r, g, b].join(',') + ')';
             } else {
-              var hsv = this.__P_54_10.getComponent('hsv');
+              var hsv = this.__P_56_10.getComponent('hsv');
 
               angle = hsv.h * 360 + 'deg';
 
@@ -596,7 +605,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             var _angle = void 0;
 
             if (actor.isLCh) {
-              var _LCh = this.__P_54_10.getComponent('LCh');
+              var _LCh = this.__P_56_10.getComponent('LCh');
 
               var _r = cv.util.Color.curve(_LCh.h, [246, 255, 46, 0, 246], 1);
 
@@ -609,7 +618,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               actor.handle.style.left = (1 - _LCh.C) * 100 + '%';
               actor.inner.style.background = 'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,rgb(' + [_r, _g, _b].join(',') + '), #808080 100%)';
             } else {
-              var _hsv = this.__P_54_10.getComponent('hsv');
+              var _hsv = this.__P_56_10.getComponent('hsv');
 
               _angle = _hsv.h * 360 + 'deg';
               actor.handle.style.top = (1 - _hsv.v) * 100 + '%';
@@ -620,10 +629,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             actor.handle_hue.style.transform = 'rotate(' + _angle + ')';
             actor.handle_hue.style.transformOrigin = actor.handle_hueWidth / 2 + 'px ' + (actor.width / 2 - actor.handle_hueTop) + 'px'; //calc(195px / 2 - 3px)';
           } else {
-            var ratioComponent = this.__P_54_10.getComponent(type);
+            var ratioComponent = this.__P_56_10.getComponent(type);
 
             if (type === 'T') {
-              ratioComponent = (ratioComponent - this.__P_54_15) / (this.__P_54_16 - this.__P_54_15);
+              ratioComponent = (ratioComponent - this.__P_56_15) / (this.__P_56_16 - this.__P_56_15);
             }
 
             var length = Math.max(0, Math.min(ratioComponent, 1)) * actor.width;
@@ -632,10 +641,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
       },
-      __P_54_4: function __P_54_4() {
-        this.__P_54_12 = undefined; // invalidate cached values
+      __P_56_4: function __P_56_4() {
+        this.__P_56_12 = undefined; // invalidate cached values
 
-        this.__P_54_1.setTo(this.__P_54_0, true
+        this.__P_56_1.setTo(this.__P_56_0, true
         /* tmp */
         );
       },
@@ -648,17 +657,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           case 'pointerdown':
             {
               var actorType = event.currentTarget.className.replace(/.*cc_([^ ]*).*/, '$1');
-              actor = this.__P_54_12[actorType];
+              actor = this.__P_56_12[actorType];
               var boundingRect = event.currentTarget.getBoundingClientRect();
               var computedStyle = window.getComputedStyle(event.currentTarget);
-              this.__P_54_20 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-              this.__P_54_21 = boundingRect.top;
-              relCoordX = (event.clientX - this.__P_54_20) / actor.width;
-              relCoordY = (event.clientY - this.__P_54_21) / actor.height;
+              this.__P_56_20 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
+              this.__P_56_21 = boundingRect.top;
+              relCoordX = (event.clientX - this.__P_56_20) / actor.width;
+              relCoordY = (event.clientY - this.__P_56_21) / actor.height;
 
               if (actorType === 'wheel') {
                 var radius = actor !== undefined ? 0.5 * actor.innerRadius / actor.outerRadius : 1;
-                var sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_54_0.getComponent(actor.isLCh ? 'LCh' : 'hsv').h, radius);
+                var sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_56_0.getComponent(actor.isLCh ? 'LCh' : 'hsv').h, radius);
                 var distSqrd = Math.pow(relCoordX - 0.5, 2) + Math.pow(relCoordY - 0.5, 2);
 
                 if (distSqrd < Math.pow(0.535, 2)) {
@@ -669,17 +678,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   var closeToTriangleCorners = sv[1] < 0.01 || sv[0] < 0.01 && sv[1] > 0.99 || sv[0] > 0.99 && sv[1] > 0.99;
 
                   if (clearlyOnWheel || closeToInerior && !closeToTriangleCorners) {
-                    this.__P_54_8 = 'wheel_h';
+                    this.__P_56_8 = 'wheel_h';
 
-                    this.__P_54_0.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+                    this.__P_56_0.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
 
-                    this.__P_54_13 = true;
+                    this.__P_56_13 = true;
                   } else {
-                    this.__P_54_8 = 'wheel_sv';
+                    this.__P_56_8 = 'wheel_sv';
 
-                    this.__P_54_0.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
+                    this.__P_56_0.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
 
-                    this.__P_54_13 = true;
+                    this.__P_56_13 = true;
                   }
                 }
               } else if (actorType === 'box') {
@@ -689,37 +698,37 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 var _sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
 
                 if (Math.abs(x) < boxSize && Math.abs(y) < boxSize) {
-                  this.__P_54_8 = 'box_sv';
+                  this.__P_56_8 = 'box_sv';
 
-                  this.__P_54_0.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', _sv);
+                  this.__P_56_0.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', _sv);
 
-                  this.__P_54_13 = true;
+                  this.__P_56_13 = true;
                 } else {
-                  this.__P_54_8 = 'box_h';
+                  this.__P_56_8 = 'box_h';
 
-                  this.__P_54_0.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
+                  this.__P_56_0.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
 
-                  this.__P_54_13 = true;
+                  this.__P_56_13 = true;
                 }
               } else {
                 var ratio = relCoordX;
 
                 if (actorType === 'T') {
-                  ratio = this.__P_54_15 + ratio * (this.__P_54_16 - this.__P_54_15);
+                  ratio = this.__P_56_15 + ratio * (this.__P_56_16 - this.__P_56_15);
                 }
 
-                this.__P_54_8 = actorType;
+                this.__P_56_8 = actorType;
 
-                this.__P_54_0.changeComponent(actorType, ratio);
+                this.__P_56_0.changeComponent(actorType, ratio);
 
-                this.__P_54_13 = true;
+                this.__P_56_13 = true;
               }
 
-              if (this.__P_54_13) {
+              if (this.__P_56_13) {
                 document.addEventListener('pointermove', this);
                 document.addEventListener('pointerup', this);
               } else {
-                this.__P_54_8 = undefined;
+                this.__P_56_8 = undefined;
               }
 
               break;
@@ -727,56 +736,56 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           case 'pointermove':
             {
-              if (!this.__P_54_13) {
+              if (!this.__P_56_13) {
                 return;
               }
 
               if (event.buttons === 0) {
                 // move with no button could only happen during debug sessions
-                this.__P_54_13 = false;
+                this.__P_56_13 = false;
                 document.removeEventListener('pointermove', this);
                 document.removeEventListener('pointerup', this);
               }
 
-              var type = this.__P_54_8.split('_')[0]; // clamp "wheel_*" to "wheel"
+              var type = this.__P_56_8.split('_')[0]; // clamp "wheel_*" to "wheel"
 
 
-              actor = this.__P_54_12[type];
-              relCoordX = (event.clientX - this.__P_54_20) / actor.width;
-              relCoordY = (event.clientY - this.__P_54_21) / actor.height;
+              actor = this.__P_56_12[type];
+              relCoordX = (event.clientX - this.__P_56_20) / actor.width;
+              relCoordY = (event.clientY - this.__P_56_21) / actor.height;
               break;
             }
 
           case 'pointerup':
             {
-              this.__P_54_13 = false;
+              this.__P_56_13 = false;
               document.removeEventListener('pointermove', this);
               document.removeEventListener('pointerup', this);
 
-              var _type = this.__P_54_8.split('_')[0]; // clamp "wheel_*" to "wheel"
+              var _type = this.__P_56_8.split('_')[0]; // clamp "wheel_*" to "wheel"
 
 
-              actor = this.__P_54_12[_type];
-              relCoordX = (event.clientX - this.__P_54_20) / actor.width;
-              relCoordY = (event.clientY - this.__P_54_21) / actor.height;
+              actor = this.__P_56_12[_type];
+              relCoordX = (event.clientX - this.__P_56_20) / actor.width;
+              relCoordY = (event.clientY - this.__P_56_21) / actor.height;
               break;
             }
         }
 
         if (event.type !== 'pointerdown') {
-          var _type2 = this.__P_54_8.split('_')[0]; // clamp "wheel_*" to "wheel"
+          var _type2 = this.__P_56_8.split('_')[0]; // clamp "wheel_*" to "wheel"
 
 
-          var _actor = this.__P_54_12[_type2];
+          var _actor = this.__P_56_12[_type2];
 
-          switch (this.__P_54_8) {
+          switch (this.__P_56_8) {
             case 'wheel_sv':
               {
                 var _radius = _actor !== undefined ? 0.5 * _actor.innerRadius / _actor.outerRadius : 1;
 
-                var _sv2 = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_54_0.getComponent(_actor.isLCh ? 'LCh' : 'hsv').h, _radius);
+                var _sv2 = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_56_0.getComponent(_actor.isLCh ? 'LCh' : 'hsv').h, _radius);
 
-                this.__P_54_0.changeComponent(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv2[0], 0), 1), Math.min(Math.max(_sv2[1], 0), 1)]);
+                this.__P_56_0.changeComponent(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv2[0], 0), 1), Math.min(Math.max(_sv2[1], 0), 1)]);
 
                 break;
               }
@@ -791,39 +800,39 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                 var _sv3 = [-_x / _boxSize / 2 + 0.5, -_y / _boxSize / 2 + 0.5];
 
-                this.__P_54_0.changeComponent(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv3[0], 0), 1), Math.min(Math.max(_sv3[1], 0), 1)]);
+                this.__P_56_0.changeComponent(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv3[0], 0), 1), Math.min(Math.max(_sv3[1], 0), 1)]);
 
                 break;
               }
 
             case 'wheel_h':
             case 'box_h':
-              this.__P_54_0.changeComponent(_actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+              this.__P_56_0.changeComponent(_actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
 
               break;
 
             case 'T':
-              this.__P_54_0.changeComponent('T', this.__P_54_15 + Math.max(0, Math.min(relCoordX, 1)) * (this.__P_54_16 - this.__P_54_15));
+              this.__P_56_0.changeComponent('T', this.__P_56_15 + Math.max(0, Math.min(relCoordX, 1)) * (this.__P_56_16 - this.__P_56_15));
 
               break;
 
             default:
-              this.__P_54_0.changeComponent(this.__P_54_8, relCoordX);
+              this.__P_56_0.changeComponent(this.__P_56_8, relCoordX);
 
           }
         }
 
-        this.__P_54_1.setTo(this.__P_54_0, true);
+        this.__P_56_1.setTo(this.__P_56_0, true);
 
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_54_17.call();
+          this.__P_56_17.call();
         }
       },
-      __P_54_18: function __P_54_18() {
+      __P_56_18: function __P_56_18() {
         var _this3 = this;
 
-        this.__P_54_5.forEach(function (type) {
-          var value = _this3.__P_54_0.getComponent(['xyY', 'x', 'y'].includes(type) ? 'xy' : type);
+        this.__P_56_5.forEach(function (type) {
+          var value = _this3.__P_56_0.getComponent(['xyY', 'x', 'y'].includes(type) ? 'xy' : type);
 
           var typeCategory;
           var base;
@@ -881,7 +890,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             case 'xyY':
               {
-                var Y = _this3.__P_54_0.getComponent('Y');
+                var Y = _this3.__P_56_0.getComponent('Y');
 
                 value = new Map([['x', value.x], ['y', value.y], ['Y', Y]]);
                 typeCategory = 'xyY';
@@ -899,13 +908,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               break;
           }
 
-          if (_this3.__P_54_6[typeCategory] === undefined) {
-            _this3.__P_54_6[typeCategory] = {};
+          if (_this3.__P_56_6[typeCategory] === undefined) {
+            _this3.__P_56_6[typeCategory] = {};
           }
 
-          _this3.__P_54_6[typeCategory][type] = _this3.sendToBackend(value, function (t) {
+          _this3.__P_56_6[typeCategory][type] = _this3.sendToBackend(value, function (t) {
             return t.variantInfo === type;
-          }, _this3.__P_54_6[typeCategory][type]);
+          }, _this3.__P_56_6[typeCategory][type]);
         });
       }
     },
@@ -916,4 +925,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.structure.pure.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1660800147817
+//# sourceMappingURL=ColorChooser.js.map?dt=1664297871304

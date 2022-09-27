@@ -246,8 +246,8 @@
     *****************************************************************************
     */
     members: {
-      __P_343_0: null,
-      __P_343_1: null,
+      __P_363_0: null,
+      __P_363_1: null,
 
       /** @type {qx.ui.core.Blocker} blocker for background blocking */
       _blocker: null,
@@ -266,7 +266,7 @@
           var isPlaced = this.placeToWidget(this.getOpener(), true);
 
           if (isPlaced) {
-            this.__P_343_2();
+            this.__P_363_2();
 
             this.show();
             this._placementTarget = this.getOpener();
@@ -286,7 +286,7 @@
       openAtPointer: function openAtPointer(e) {
         this.placeToPointer(e);
 
-        this.__P_343_2();
+        this.__P_363_2();
 
         this.show();
         this._placementTarget = {
@@ -304,7 +304,7 @@
       openAtPoint: function openAtPoint(point) {
         this.placeToPoint(point);
 
-        this.__P_343_2();
+        this.__P_363_2();
 
         this.show();
         this._placementTarget = point;
@@ -367,7 +367,7 @@
       },
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.menu.Menu.prototype._applyVisibility.base.call(this, value, old);
+        qx.ui.menu.Menu.superclass.prototype._applyVisibility.call(this, value, old);
 
         var mgr = qx.ui.menu.Manager.getInstance();
 
@@ -395,13 +395,13 @@
           this.resetSelectedButton();
         }
 
-        this.__P_343_3();
+        this.__P_363_3();
       },
 
       /**
        * Updates the blocker's visibility
        */
-      __P_343_3: function __P_343_3() {
+      __P_363_3: function __P_363_3() {
         if (this.isVisible()) {
           if (this.getBlockBackground()) {
             var zIndex = this.getZIndex();
@@ -505,7 +505,7 @@
             break;
         }
 
-        return control || qx.ui.menu.Menu.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.menu.Menu.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /**
@@ -547,11 +547,11 @@
        * Updates the visibility of the slidebar based on the menu's current size
        * and position.
        */
-      __P_343_2: function __P_343_2() {
+      __P_363_2: function __P_363_2() {
         var menuBounds = this._getMenuBounds();
 
         if (!menuBounds) {
-          this.addListenerOnce("resize", this.__P_343_2, this);
+          this.addListenerOnce("resize", this.__P_363_2, this);
           return;
         }
 
@@ -588,17 +588,17 @@
           return callback.call(this);
         }
 
-        this.__P_343_1 = callback;
+        this.__P_363_1 = callback;
         qx.ui.core.queue.Widget.add(this);
       },
       // overridden
       syncWidget: function syncWidget(jobs) {
         this.getChildControl("slidebar");
 
-        if (this.__P_343_1) {
-          this.__P_343_1.call(this);
+        if (this.__P_363_1) {
+          this.__P_363_1.call(this);
 
-          delete this.__P_343_1;
+          delete this.__P_363_1;
         }
       },
 
@@ -625,7 +625,7 @@
             throw new Error("Unknown target: " + target);
           }
 
-          this.__P_343_2();
+          this.__P_363_2();
         }
       },
 
@@ -652,7 +652,7 @@
 
             mgr.scheduleOpen(subMenu); // Remember scheduled menu for opening
 
-            this.__P_343_0 = subMenu;
+            this.__P_363_0 = subMenu;
           } else {
             var opened = this.getOpenedButton();
 
@@ -660,9 +660,9 @@
               mgr.scheduleClose(opened.getMenu());
             }
 
-            if (this.__P_343_0) {
-              mgr.cancelOpen(this.__P_343_0);
-              this.__P_343_0 = null;
+            if (this.__P_363_0) {
+              mgr.cancelOpen(this.__P_363_0);
+              this.__P_363_0 = null;
             }
           }
         } else if (!this.getOpenedButton()) {
@@ -696,8 +696,8 @@
           // all pending requests to open any other sub menu
 
 
-          if (this.__P_343_0) {
-            mgr.cancelOpen(this.__P_343_0);
+          if (this.__P_363_0) {
+            mgr.cancelOpen(this.__P_363_0);
           }
         }
       }
@@ -722,4 +722,4 @@
   qx.ui.menu.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1660800170471
+//# sourceMappingURL=Menu.js.map?dt=1664297894380

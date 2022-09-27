@@ -18,8 +18,8 @@
       },
       "cv.ui.manager.core.IconAtom": {},
       "qx.data.controller.List": {},
-      "cv.IconConfig": {},
-      "qx.lang.Type": {}
+      "cv.IconHandler": {},
+      "cv.IconConfig": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -82,14 +82,14 @@
             return new cv.ui.manager.core.IconAtom();
           },
           bindItem: function bindItem(controller, item, index) {
-            controller.bindProperty('', 'label', null, item, index);
+            controller.bindProperty('', 'model', null, item, index);
           }
         };
       },
       _onFilter: function _onFilter() {
         var filterString = this.getChildControl('filter').getValue();
-        var filtered = this.getModel().filter(function (name) {
-          return name.includes(filterString);
+        var filtered = this.getModel().filter(function (entry) {
+          return entry[0].includes(filterString);
         });
 
         this._controller.setModel(filtered);
@@ -104,14 +104,12 @@
             this._controller.setDelegate(this._getDelegate());
           }
 
-          var model = this.getModel(); // as the file is just a fake file, we do not really care about it
+          var model = this.getModel();
+          var handler = cv.IconHandler.getInstance(); // as the file is just a fake file, we do not really care about it
 
-          Object.keys(cv.IconConfig.DB).filter(function (name) {
-            var entry = cv.IconConfig.DB[name];
-            return entry['*'] && entry['*']['*'] && qx.lang.Type.isFunction(entry['*']['*']['*']);
-          }).forEach(function (name) {
-            model.push(name);
-          }, this);
+          Object.keys(cv.IconConfig.DB).forEach(function (name) {
+            model.push([name, handler.getIconSource(name, 'icon-preview')]);
+          });
 
           if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
             this._onFilter();
@@ -127,4 +125,4 @@
   cv.ui.manager.viewer.Icons.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icons.js.map?dt=1660800147561
+//# sourceMappingURL=Icons.js.map?dt=1664297870993

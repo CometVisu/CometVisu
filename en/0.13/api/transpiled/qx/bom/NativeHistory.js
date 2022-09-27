@@ -73,39 +73,39 @@
     construct: function construct() {
       qx.bom.History.constructor.call(this);
 
-      this.__P_87_0();
+      this.__P_107_0();
     },
     members: {
-      __P_87_1: null,
+      __P_107_1: null,
 
       /**
        * Attach hash change listeners
        */
-      __P_87_0: function __P_87_0() {
+      __P_107_0: function __P_107_0() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          var boundFunc = qx.lang.Function.bind(this.__P_87_2, this);
-          this.__P_87_1 = qx.event.GlobalError.observeMethod(boundFunc);
-          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_87_1);
+          var boundFunc = qx.lang.Function.bind(this.__P_107_2, this);
+          this.__P_107_1 = qx.event.GlobalError.observeMethod(boundFunc);
+          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_107_1);
         } else {
-          qx.event.Idle.getInstance().addListener("interval", this.__P_87_2, this);
+          qx.event.Idle.getInstance().addListener("interval", this.__P_107_2, this);
         }
       },
 
       /**
        * Remove hash change listeners
        */
-      __P_87_3: function __P_87_3() {
+      __P_107_3: function __P_107_3() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_87_1);
+          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_107_1);
         } else {
-          qx.event.Idle.getInstance().removeListener("interval", this.__P_87_2, this);
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_107_2, this);
         }
       },
 
       /**
        * hash change event handler
        */
-      __P_87_2: function __P_87_2() {
+      __P_107_2: function __P_107_2() {
         var currentState = this._readState();
 
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
@@ -139,10 +139,10 @@
       })
     },
     destruct: function destruct() {
-      this.__P_87_3();
+      this.__P_107_3();
     }
   });
   qx.bom.NativeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeHistory.js.map?dt=1660800150983
+//# sourceMappingURL=NativeHistory.js.map?dt=1664297876216

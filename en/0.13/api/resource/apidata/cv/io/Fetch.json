@@ -1,0 +1,128 @@
+{
+  "className": "cv.io.Fetch",
+  "packageName": "cv.io",
+  "name": "Fetch",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 75,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>native fetch replacement that supports the internal recording mechanism for replay file.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "fetch": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resource {URL|string}"
+          },
+          {
+            "name": "@param",
+            "body": "options {object}"
+          },
+          {
+            "name": "@param",
+            "body": "proxy {boolean}"
+          },
+          {
+            "name": "@param",
+            "body": "client {cv.io.IClient}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Response>}",
+            "type": "Promise<Response>",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "proxyFetch": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resource {URL|string}"
+          },
+          {
+            "name": "@param",
+            "body": "options {object}"
+          },
+          {
+            "name": "@param",
+            "body": "client {cv.io.IClient}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Response>}",
+            "type": "Promise<Response>",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

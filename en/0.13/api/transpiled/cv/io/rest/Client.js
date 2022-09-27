@@ -52,10 +52,10 @@
     */
     statics: {
       BASE_URL: null,
-      __P_499_0: null,
-      __P_499_1: null,
-      __P_499_2: null,
-      __P_499_3: {},
+      __P_519_0: null,
+      __P_519_1: null,
+      __P_519_2: null,
+      __P_519_3: {},
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
           var path = '';
@@ -74,7 +74,7 @@
         return this.BASE_URL;
       },
       getConfigClient: function getConfigClient() {
-        if (!this.__P_499_0) {
+        if (!this.__P_519_0) {
           var config = {
             get: {
               method: 'GET',
@@ -97,11 +97,11 @@
               url: '/config/hidden'
             }
           };
-          this.__P_499_0 = new qx.io.rest.Resource(config);
+          this.__P_519_0 = new qx.io.rest.Resource(config);
 
-          this.__P_499_0.setBaseUrl(this.getBaseUrl());
+          this.__P_519_0.setBaseUrl(this.getBaseUrl());
 
-          this.__P_499_0.configureRequest(function (req, action) {
+          this.__P_519_0.configureRequest(function (req, action) {
             if (cv.Config.transactionId) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             }
@@ -113,13 +113,13 @@
             req.setAccept('application/json');
           });
 
-          this._enableSync(this.__P_499_0, config);
+          this._enableSync(this.__P_519_0, config);
         }
 
-        return this.__P_499_0;
+        return this.__P_519_0;
       },
       getFsClient: function getFsClient() {
-        if (!this.__P_499_1) {
+        if (!this.__P_519_1) {
           var config = {
             read: {
               method: 'GET',
@@ -146,11 +146,11 @@
               url: '/fs/check'
             }
           };
-          this.__P_499_1 = new qx.io.rest.Resource(config);
+          this.__P_519_1 = new qx.io.rest.Resource(config);
 
-          this.__P_499_1.setBaseUrl(this.getBaseUrl());
+          this.__P_519_1.setBaseUrl(this.getBaseUrl());
 
-          this.__P_499_1.configureRequest(function (req, action, params) {
+          this.__P_519_1.configureRequest(function (req, action, params) {
             if (cv.Config.transactionId) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             }
@@ -178,22 +178,22 @@
             }
           });
 
-          this._enableSync(this.__P_499_1, config); // general listeners
+          this._enableSync(this.__P_519_1, config); // general listeners
 
 
-          this.__P_499_1.addListener('updateSuccess', this._onSaveSuccess, this);
+          this.__P_519_1.addListener('updateSuccess', this._onSaveSuccess, this);
 
-          this.__P_499_1.addListener('createSuccess', this._onSaveSuccess, this);
+          this.__P_519_1.addListener('createSuccess', this._onSaveSuccess, this);
 
-          this.__P_499_1.addListener('updateError', this._onSaveError, this);
+          this.__P_519_1.addListener('updateError', this._onSaveError, this);
 
-          this.__P_499_1.addListener('createError', this._onSaveError, this);
+          this.__P_519_1.addListener('createError', this._onSaveError, this);
         }
 
-        return this.__P_499_1;
+        return this.__P_519_1;
       },
       getDataProviderClient: function getDataProviderClient() {
-        if (!this.__P_499_2) {
+        if (!this.__P_519_2) {
           var config = {
             designs: {
               method: 'GET',
@@ -220,20 +220,20 @@
               url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
             }
           };
-          this.__P_499_2 = new qx.io.rest.Resource(config);
+          this.__P_519_2 = new qx.io.rest.Resource(config);
 
-          this.__P_499_2.setBaseUrl(this.getBaseUrl());
+          this.__P_519_2.setBaseUrl(this.getBaseUrl());
 
           if (cv.Config.transactionId) {
-            this.__P_499_2.configureRequest(function (req, action, params) {
+            this.__P_519_2.configureRequest(function (req, action, params) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             });
           }
 
-          this._enableSync(this.__P_499_2, config);
+          this._enableSync(this.__P_519_2, config);
         }
 
-        return this.__P_499_2;
+        return this.__P_519_2;
       },
       _enableSync: function _enableSync(client, config) {
         // install the callback calls
@@ -250,7 +250,7 @@
               callback = args.pop();
             }
 
-            this.__P_499_3[client[callName].apply(client, args)] = callback.bind(context);
+            this.__P_519_3[client[callName].apply(client, args)] = callback.bind(context);
           }.bind(this);
         }, this); // add the general listeners
 
@@ -258,17 +258,17 @@
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
 
-          if (Object.prototype.hasOwnProperty.call(this.__P_499_3, id)) {
-            this.__P_499_3[id](null, ev.getData());
+          if (Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
+            this.__P_519_3[id](null, ev.getData());
 
-            delete this.__P_499_3[id];
+            delete this.__P_519_3[id];
           }
         }, this);
         client.addListener('error', function (ev) {
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
 
-          if (Object.prototype.hasOwnProperty.call(this.__P_499_3, id)) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
             var data = ev.getData();
             var error;
 
@@ -283,9 +283,9 @@
 
             qx.log.Logger.error(this, error);
 
-            this.__P_499_3[id](error, null);
+            this.__P_519_3[id](error, null);
 
-            delete this.__P_499_3[id];
+            delete this.__P_519_3[id];
           }
 
           if (req.getPhase() === 'load') {
@@ -298,7 +298,7 @@
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
 
-        if (!Object.prototype.hasOwnProperty.call(this.__P_499_3, id)) {
+        if (!Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
           cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been saved'));
         }
       },
@@ -306,7 +306,7 @@
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
 
-        if (!Object.prototype.hasOwnProperty.call(this.__P_499_3, id)) {
+        if (!Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
           cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Error saving file'));
         }
       }
@@ -315,4 +315,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1660800181050
+//# sourceMappingURL=Client.js.map?dt=1664297904320

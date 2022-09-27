@@ -159,7 +159,7 @@
             break;
         }
 
-        return control || qx.ui.form.AbstractSelectBox.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.form.AbstractSelectBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /*
@@ -324,4 +324,4 @@
   qx.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1660800167831
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1664297891783

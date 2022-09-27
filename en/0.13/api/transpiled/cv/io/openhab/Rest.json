@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 394,
+        "line": 457,
         "column": 3
       }
     },
@@ -127,7 +127,7 @@
       "type": "variable",
       "access": "private"
     },
-    "_backendName": {
+    "_type": {
       "location": {
         "start": {
           "line": 69,
@@ -135,7 +135,7 @@
         },
         "end": {
           "line": 69,
-          "column": 22
+          "column": 15
         }
       },
       "type": "variable",
@@ -197,14 +197,28 @@
       "type": "variable",
       "access": "private"
     },
-    "getBackend": {
+    "__subscribedAddresses": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 74,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getBackend": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 78,
           "column": 5
         }
       },
@@ -225,14 +239,42 @@
         ]
       }
     },
-    "setInitialAddresses": {
+    "getType": {
       "location": {
         "start": {
           "line": 80,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 82,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.IClient",
+      "appearsIn": [
+        "cv.io.IClient"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string} e.g. openhab, mqtt or knxd",
+            "type": "string",
+            "description": " e.g. openhab, mqtt or knxd"
+          }
+        ]
+      }
+    },
+    "setInitialAddresses": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
           "column": 5
         }
       },
@@ -247,11 +289,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 135,
           "column": 5
         }
       },
@@ -292,11 +334,11 @@
     "__convertTimes": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 138,
+          "line": 146,
           "column": 5
         }
       },
@@ -306,11 +348,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 150,
           "column": 5
         }
       },
@@ -334,11 +376,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 165,
           "column": 5
         }
       },
@@ -360,11 +402,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 176,
           "column": 5
         }
       },
@@ -398,11 +440,11 @@
     "createAuthorizedRequest": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 188,
           "column": 5
         }
       },
@@ -444,11 +486,11 @@
     "__isActive": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 214,
           "column": 5
         }
       },
@@ -458,11 +500,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 256,
+          "line": 296,
           "column": 5
         }
       },
@@ -496,11 +538,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 258,
+          "line": 298,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 304,
           "column": 5
         }
       },
@@ -514,11 +556,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 306,
           "column": 4
         },
         "end": {
-          "line": 295,
+          "line": 351,
           "column": 5
         }
       },
@@ -528,11 +570,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 297,
+          "line": 353,
           "column": 4
         },
         "end": {
-          "line": 302,
+          "line": 358,
           "column": 5
         }
       },
@@ -571,11 +613,11 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 360,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 362,
           "column": 5
         }
       },
@@ -585,11 +627,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 308,
+          "line": 364,
           "column": 4
         },
         "end": {
-          "line": 324,
+          "line": 380,
           "column": 5
         }
       },
@@ -635,11 +677,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 382,
           "column": 4
         },
         "end": {
-          "line": 328,
+          "line": 384,
           "column": 5
         }
       },
@@ -663,11 +705,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 385,
           "column": 4
         },
         "end": {
-          "line": 331,
+          "line": 394,
           "column": 5
         }
       },
@@ -691,11 +733,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 333,
+          "line": 396,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 396,
           "column": 29
         }
       },
@@ -719,11 +761,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 397,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 397,
           "column": 35
         }
       },
@@ -738,11 +780,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 398,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 398,
           "column": 47
         }
       },
@@ -780,11 +822,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 400,
           "column": 4
         },
         "end": {
-          "line": 339,
+          "line": 402,
           "column": 5
         }
       },
@@ -814,11 +856,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 340,
+          "line": 403,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 412,
           "column": 5
         }
       },
@@ -850,11 +892,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 350,
+          "line": 413,
           "column": 4
         },
         "end": {
-          "line": 392,
+          "line": 455,
           "column": 5
         }
       },

@@ -251,13 +251,13 @@
     */
     members: {
       /** Saved last value in case invalid text is entered */
-      __P_321_0: null,
+      __P_341_0: null,
 
       /** Whether the page-up button has been pressed */
-      __P_321_1: false,
+      __P_341_1: false,
 
       /** Whether the page-down button has been pressed */
-      __P_321_2: false,
+      __P_341_2: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -312,7 +312,7 @@
             break;
         }
 
-        return control || qx.ui.form.Spinner.prototype._createChildControlImpl.base.call(this, id);
+        return control || qx.ui.form.Spinner.superclass.prototype._createChildControlImpl.call(this, id);
       },
 
       /**
@@ -407,7 +407,7 @@
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
-        qx.ui.form.Spinner.prototype._applyEnabled.base.call(this, value, old);
+        qx.ui.form.Spinner.superclass.prototype._applyEnabled.call(this, value, old);
 
         this._updateButtons();
       },
@@ -445,7 +445,7 @@
         this._updateButtons(); // save the last valid value of the spinner
 
 
-        this.__P_321_0 = value; // write the value of the spinner to the textfield
+        this.__P_341_0 = value; // write the value of the spinner to the textfield
 
         if (value !== null) {
           if (this.getNumberFormat()) {
@@ -506,7 +506,7 @@
           numberFormat.addListener("changeNumberFormat", this._onChangeNumberFormat, this);
         }
 
-        this._applyValue(this.__P_321_0, undefined);
+        this._applyValue(this.__P_341_0, undefined);
       },
 
       /**
@@ -573,7 +573,7 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             // mark that the spinner is in page mode and process further
-            this.__P_321_1 = true;
+            this.__P_341_1 = true;
             this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
             this.getChildControl("upbutton").press();
             break;
@@ -585,7 +585,7 @@
 
           case "PageDown":
             // mark that the spinner is in page mode and process further
-            this.__P_321_2 = true;
+            this.__P_341_2 = true;
             this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
             this.getChildControl("downbutton").press();
             break;
@@ -615,7 +615,7 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             this.getChildControl("upbutton").release();
-            this.__P_321_1 = false;
+            this.__P_341_1 = false;
             break;
 
           case "Up":
@@ -624,7 +624,7 @@
 
           case "PageDown":
             this.getChildControl("downbutton").release();
-            this.__P_321_2 = false;
+            this.__P_341_2 = false;
             break;
 
           case "Down":
@@ -694,14 +694,14 @@
           } // If value is the same than before, call directly _applyValue()
 
 
-          if (value === this.__P_321_0) {
-            this._applyValue(this.__P_321_0);
+          if (value === this.__P_341_0) {
+            this._applyValue(this.__P_341_0);
           } else {
             this.setValue(value);
           }
         } else {
           // otherwise, reset the last valid value
-          this._applyValue(this.__P_321_0, undefined);
+          this._applyValue(this.__P_341_0, undefined);
         }
       },
 
@@ -742,7 +742,7 @@
        *
        */
       _countUp: function _countUp() {
-        if (this.__P_321_1) {
+        if (this.__P_341_1) {
           var newValue = this.getValue() + this.getPageStep();
         } else {
           var newValue = this.getValue() + this.getSingleStep();
@@ -765,7 +765,7 @@
        *
        */
       _countDown: function _countDown() {
-        if (this.__P_321_2) {
+        if (this.__P_341_2) {
           var newValue = this.getValue() - this.getPageStep();
         } else {
           var newValue = this.getValue() - this.getSingleStep();
@@ -794,7 +794,7 @@
       },
       // overridden
       focus: function focus() {
-        qx.ui.form.Spinner.prototype.focus.base.call(this);
+        qx.ui.form.Spinner.superclass.prototype.focus.call(this);
         this.getChildControl("textfield").getFocusElement().focus();
       }
     },
@@ -813,4 +813,4 @@
   qx.ui.form.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1660800168808
+//# sourceMappingURL=Spinner.js.map?dt=1664297892695

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Refresh": {
@@ -56,7 +56,7 @@
    * @asset(qx/static/blank.gif)
    */
   qx.Class.define('cv.ui.structure.pure.Image', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
     /*
@@ -99,7 +99,7 @@
     ******************************************************
     */
     members: {
-      __P_55_0: null,
+      __P_58_0: null,
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
@@ -133,7 +133,7 @@
           imgStyle += 'object-position:0% ' + top + ';' + bottom;
         }
 
-        var src = this.__P_55_1();
+        var src = this.__P_58_1();
 
         if (!src) {
           switch (this.getPlaceholder()) {
@@ -157,8 +157,8 @@
       /**
        * Return the real src value
        */
-      __P_55_1: function __P_55_1() {
-        if (!this.__P_55_0) {
+      __P_58_1: function __P_58_1() {
+        if (!this.__P_58_0) {
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
 
@@ -167,10 +167,10 @@
             src = qx.util.ResourceManager.getInstance().toUri(src);
           }
 
-          this.__P_55_0 = src || '';
+          this.__P_58_0 = src || '';
         }
 
-        return this.__P_55_0;
+        return this.__P_58_0;
       },
       handleUpdate: function handleUpdate(text, address) {
         var valueElem = this.getValueElement();
@@ -178,7 +178,7 @@
         if (!text) {
           switch (this.getPlaceholder()) {
             case 'src':
-              text = this.__P_55_1();
+              text = this.__P_58_1();
               valueElem.style.display = 'inline';
               break;
 
@@ -210,7 +210,7 @@
         }
 
         if (value === true) {
-          valueElem.setAttribute('src', this.__P_55_1());
+          valueElem.setAttribute('src', this.__P_58_1());
         } else {
           valueElem.setAttribute('src', '');
         }
@@ -223,4 +223,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1660800147898
+//# sourceMappingURL=Image.js.map?dt=1664297871497

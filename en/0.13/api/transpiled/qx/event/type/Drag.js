@@ -63,7 +63,7 @@
        * @return {qx.event.type.Event} The initialized event instance
        */
       init: function init(cancelable, originalEvent) {
-        qx.event.type.Drag.prototype.init.base.call(this, true, cancelable);
+        qx.event.type.Drag.superclass.prototype.init.call(this, true, cancelable);
 
         if (originalEvent) {
           this._native = originalEvent.getNativeEvent() || null;
@@ -77,7 +77,7 @@
       },
       // overridden
       clone: function clone(embryo) {
-        var clone = qx.event.type.Drag.prototype.clone.base.call(this, embryo);
+        var clone = qx.event.type.Drag.superclass.prototype.clone.call(this, embryo);
         clone._native = this._native;
         return clone;
       },
@@ -307,4 +307,4 @@
   qx.event.type.Drag.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Drag.js.map?dt=1660800159040
+//# sourceMappingURL=Drag.js.map?dt=1664297883776

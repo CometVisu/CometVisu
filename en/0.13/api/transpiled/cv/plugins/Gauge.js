@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Update": {
@@ -14,11 +14,11 @@
       "cv.ui.common.Operate": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "cv.data.Model": {},
-      "cv.TemplateEngine": {},
+      "cv.Application": {},
       "cv.util.ScriptLoader": {
         "defer": "runtime"
       },
@@ -60,7 +60,7 @@
    * @asset(plugins/gauge/dep/tween.js)
   */
   qx.Class.define('cv.plugins.Gauge', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Operate],
 
     /*
@@ -205,9 +205,9 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseFormat(xml, path);
-        cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.parser.pure.WidgetParser.parseFormat(xml, path);
+        cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -326,7 +326,7 @@
         var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
         this.__P_9_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
 
-        cv.plugins.Gauge.prototype._onDomReady.base.call(this);
+        cv.plugins.Gauge.superclass.prototype._onDomReady.call(this);
       },
       // overridden
       getValueElement: function getValueElement() {
@@ -429,7 +429,7 @@
       // overridden
       _action: function _action() {
         if (this.getPagejumpTarget()) {
-          cv.TemplateEngine.getInstance().scrollToPage(this.getPagejumpTarget());
+          cv.Application.structureController.scrollToPage(this.getPagejumpTarget());
         }
       }
     },
@@ -437,11 +437,11 @@
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/gauge/gauge.css');
       loader.addScripts(['plugins/gauge/dep/tween.js', 'plugins/gauge/dep/steelseries.js']);
-      cv.parser.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
+      cv.parser.pure.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
       cv.ui.structure.WidgetFactory.registerClass('gauge', statics);
     }
   });
   cv.plugins.Gauge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gauge.js.map?dt=1660800142329
+//# sourceMappingURL=Gauge.js.map?dt=1664297866003

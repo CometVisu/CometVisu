@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -76,7 +76,7 @@
    * @since 0.8.0 (2012)
    */
   qx.Class.define('cv.ui.structure.pure.Switch', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
 
     /*
@@ -135,4 +135,4 @@
   cv.ui.structure.pure.Switch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Switch.js.map?dt=1660800148462
+//# sourceMappingURL=Switch.js.map?dt=1664297872026

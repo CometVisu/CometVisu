@@ -37,7 +37,7 @@
    */
 
   /**
-   * Helper methods for the widget tree
+   * Helper methods for the widget/dom tree
    */
   qx.Class.define('cv.util.Tree', {
     type: 'static',
@@ -48,6 +48,20 @@
     ******************************************************
     */
     statics: {
+      /**
+       * Checks if child is a child of parent
+       * @param child {Node}
+       * @param parent {Node}
+       * @return {boolean}
+       */
+      isChildOf: function isChildOf(child, parent) {
+        while (child && child !== parent) {
+          child = child.parentNode;
+        }
+
+        return !!child;
+      },
+
       /*
        * *********************************************************
        * Widget tree helper functions
@@ -62,9 +76,9 @@
       /**
        * Get the parent widget with optional type filter
        *
-       * @param widget {cv.ui.structure.AbstractWidget} start traversing up the with this widget
+       * @param widget {cv.ui.structure.pure.AbstractWidget} start traversing up the with this widget
        * @param type {String?} only return parent of this type
-       * @return {cv.ui.structure.AbstractWidget|null}
+       * @return {cv.ui.structure.pure.AbstractWidget|null}
        */
       getParentWidget: function getParentWidget(widget, type) {
         var parent = widget.getParentWidget();
@@ -239,4 +253,4 @@
   cv.util.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1660800181691
+//# sourceMappingURL=Tree.js.map?dt=1664297904816

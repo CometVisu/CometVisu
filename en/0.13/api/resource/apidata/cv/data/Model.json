@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 284,
+        "line": 371,
         "column": 3
       }
     },
@@ -113,15 +113,66 @@
       "access": "public"
     }
   },
-  "members": {
-    "__states": {
+  "properties": {
+    "defaultBackendName": {
       "location": {
         "start": {
           "line": 68,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 71,
+          "column": 5
+        }
+      },
+      "name": "defaultBackendName",
+      "propertyType": "new",
+      "init": "main",
+      "check": "String",
+      "defaultValue": "main"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "__states": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
           "column": 19
         }
       },
@@ -131,11 +182,11 @@
     "__stateListeners": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 81,
           "column": 26
         }
       },
@@ -145,11 +196,11 @@
     "__addressList": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 82,
           "column": 24
         }
       },
@@ -159,11 +210,11 @@
     "__widgetData": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 71,
+          "line": 83,
           "column": 22
         }
       },
@@ -173,13 +224,39 @@
     "getStateListener": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 94,
           "column": 5
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String?} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map",
+            "description": ""
+          }
+        ]
       },
       "type": "function",
       "access": "public"
@@ -187,11 +264,11 @@
     "onUpdate": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 103,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 119,
           "column": 5
         }
       },
@@ -212,10 +289,62 @@
           },
           {
             "name": "@param",
-            "body": "state {var} new state",
+            "body": "state {variant} new state",
             "paramName": "state",
             "description": " new state",
-            "type": "var"
+            "type": "variant"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setState": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Changes a state without notifying the listeners about that change.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "state {variant} new state",
+            "paramName": "state",
+            "description": " new state",
+            "type": "variant"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "String"
           }
         ]
       },
@@ -225,11 +354,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 109,
+          "line": 143,
           "column": 5
         }
       },
@@ -253,14 +382,52 @@
       "type": "function",
       "access": "public"
     },
-    "getState": {
+    "updateFrom": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 164,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>handles incoming data from a specific backend.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {Map} Key/value map of address/state",
+            "paramName": "data",
+            "description": " Key/value map of address/state",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getState": {
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
           "column": 5
         }
       },
@@ -278,13 +445,20 @@
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
             "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "String"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{var}",
-            "type": "var",
+            "body": "{variant}",
+            "type": "variant",
             "description": ""
           }
         ]
@@ -295,11 +469,11 @@
     "addUpdateListener": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 200,
           "column": 5
         }
       },
@@ -331,6 +505,13 @@
             "paramName": "context",
             "description": " context of the callback",
             "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "String"
           }
         ]
       },
@@ -340,11 +521,11 @@
     "removeUpdateListener": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 159,
+          "line": 232,
           "column": 5
         }
       },
@@ -376,6 +557,13 @@
             "paramName": "context",
             "description": " context of the callback",
             "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "String"
           }
         ]
       },
@@ -385,11 +573,11 @@
     "addAddress": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 240,
           "column": 4
         },
         "end": {
-          "line": 173,
+          "line": 253,
           "column": 5
         }
       },
@@ -414,6 +602,14 @@
             "paramName": "id",
             "description": " path to the widget",
             "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String?} optional backend name for this address",
+            "paramName": "backendName",
+            "description": " optional backend name for this address",
+            "optional": true,
+            "type": "String"
           }
         ]
       },
@@ -423,11 +619,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 260,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 265,
           "column": 5
         }
       },
@@ -438,12 +634,22 @@
             "body": "<p>Get the addresses as Array.</p>"
           }
         ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String?} optional backend name for this address",
+            "paramName": "backendName",
+            "description": " optional backend name for this address",
+            "optional": true,
+            "type": "String"
+          }
+        ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} Address -> path mapping",
-            "type": "Map",
-            "description": " Address -> path mapping"
+            "body": "{Array<String>} list of addresses",
+            "type": "Array<String>",
+            "description": " list of addresses"
           }
         ]
       },
@@ -453,11 +659,11 @@
     "setAddressList": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 272,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 274,
           "column": 5
         }
       },
@@ -475,6 +681,14 @@
             "paramName": "value",
             "description": " Address -> path mapping",
             "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "backendName {String?} optional backend name for this address",
+            "paramName": "backendName",
+            "description": " optional backend name for this address",
+            "optional": true,
+            "type": "String"
           }
         ]
       },
@@ -484,11 +698,11 @@
     "getAddressList": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 281,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 283,
           "column": 5
         }
       },
@@ -497,6 +711,16 @@
           {
             "name": "@description",
             "body": "<p>Getter for the address list.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String?} optional backend name for this address",
+            "paramName": "backendName",
+            "description": " optional backend name for this address",
+            "optional": true,
+            "type": "String"
           }
         ],
         "@return": [
@@ -514,11 +738,11 @@
     "resetAddressList": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 290,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 292,
           "column": 5
         }
       },
@@ -527,6 +751,16 @@
           {
             "name": "@description",
             "body": "<p>Clears the current address list.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String?} optional backend name for this address",
+            "paramName": "backendName",
+            "description": " optional backend name for this address",
+            "optional": true,
+            "type": "String"
           }
         ],
         "@internal": [
@@ -542,11 +776,11 @@
     "getWidgetData": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 301,
           "column": 5
         }
       },
@@ -581,11 +815,11 @@
     "getWidgetDataByElement": {
       "location": {
         "start": {
-          "line": 222,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 317,
           "column": 5
         }
       },
@@ -620,11 +854,11 @@
     "setWidgetData": {
       "location": {
         "start": {
-          "line": 239,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 246,
+          "line": 333,
           "column": 5
         }
       },
@@ -666,11 +900,11 @@
     "setWidgetDataModel": {
       "location": {
         "start": {
-          "line": 252,
+          "line": 339,
           "column": 4
         },
         "end": {
-          "line": 254,
+          "line": 341,
           "column": 5
         }
       },
@@ -697,11 +931,11 @@
     "getWidgetDataModel": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 347,
           "column": 4
         },
         "end": {
-          "line": 262,
+          "line": 349,
           "column": 5
         }
       },
@@ -727,11 +961,11 @@
     "resetWidgetDataModel": {
       "location": {
         "start": {
-          "line": 268,
+          "line": 355,
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 357,
           "column": 5
         }
       },
@@ -755,11 +989,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 276,
+          "line": 363,
           "column": 4
         },
         "end": {
-          "line": 281,
+          "line": 368,
           "column": 5
         }
       },
@@ -912,6 +1146,72 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getDefaultBackendName": {
+      "type": "function",
+      "name": "getDefaultBackendName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>defaultBackendName</code>.\n\nFor further details take a look at the property definition: {@link #defaultBackendName}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for defaultBackendName"
+          }
+        ]
+      }
+    },
+    "setDefaultBackendName": {
+      "type": "function",
+      "name": "setDefaultBackendName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>defaultBackendName</code>.\n\nFor further details take a look at the property definition: {@link #defaultBackendName}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for defaultBackendName"
+          }
+        ]
+      }
+    },
+    "resetDefaultBackendName": {
+      "type": "function",
+      "name": "resetDefaultBackendName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>defaultBackendName</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultBackendName}."
           }
         ]
       }

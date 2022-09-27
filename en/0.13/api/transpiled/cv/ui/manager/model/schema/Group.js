@@ -75,7 +75,7 @@
        * We do all of those (except for 'all')
        */
       parse: function parse() {
-        cv.ui.manager.model.schema.Group.prototype.parse.base.call(this);
+        cv.ui.manager.model.schema.Group.superclass.prototype.parse.call(this);
         var schema = this.getSchema();
         var group = this.getNode();
 
@@ -192,4 +192,4 @@
   cv.ui.manager.model.schema.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1660800146987
+//# sourceMappingURL=Group.js.map?dt=1664297870458

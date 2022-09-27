@@ -72,9 +72,9 @@
     *****************************************************************************
     */
     construct: function construct() {
-      this.__P_348_0();
+      this.__P_368_0();
 
-      this.__P_348_1();
+      this.__P_368_1();
     },
 
     /*
@@ -83,7 +83,7 @@
     *****************************************************************************
     */
     members: {
-      __P_348_2: null,
+      __P_368_2: null,
 
       /**
        * Mixin method. Creates the scroll element.
@@ -160,8 +160,8 @@
             x = lowerLimitX;
           }
 
-          if (this.__P_348_2) {
-            this.__P_348_2.scrollTo(-x, -y, time);
+          if (this.__P_368_2) {
+            this.__P_368_2.scrollTo(-x, -y, time);
           } else {
             // Case when iScroll is not loaded yet, but user tries
             // to set a different scroll position. Position is applied on "__onScrollLoaded".
@@ -177,19 +177,19 @@
        *
        * @ignore(iScroll)
        */
-      __P_348_0: function __P_348_0() {
+      __P_368_0: function __P_368_0() {
         if (!window.iScroll) {
           {
             var resource = "qx/mobile/js/iscroll.min.js";
           }
           var path = qx.util.ResourceManager.getInstance().toUri(resource);
           var loader = new qx.bom.request.Script();
-          loader.on("load", this.__P_348_3, this);
+          loader.on("load", this.__P_368_3, this);
           loader.open("GET", path);
           loader.send();
         } else {
           this.addListenerOnce("appear", function () {
-            this._setScroll(this.__P_348_4());
+            this._setScroll(this.__P_368_4());
           }, this);
         }
       },
@@ -200,7 +200,7 @@
        * @return {Object} The iScroll instance
        * @ignore(iScroll)
        */
-      __P_348_4: function __P_348_4() {
+      __P_368_4: function __P_368_4() {
         var defaultScrollProperties = this._getDefaultScrollProperties();
 
         var customScrollProperties = {};
@@ -285,7 +285,7 @@
       /**
        * Registers all needed event listener.
        */
-      __P_348_1: function __P_348_1() {
+      __P_368_1: function __P_368_1() {
         qx.event.Registration.addListener(window, "orientationchange", this._refresh, this);
         qx.event.Registration.addListener(window, "resize", this._refresh, this);
         this.addListener("touchmove", qx.bom.Event.stopPropagation);
@@ -295,7 +295,7 @@
       /**
        * Unregisters all needed event listener.
        */
-      __P_348_5: function __P_348_5() {
+      __P_368_5: function __P_368_5() {
         qx.event.Registration.removeListener(window, "orientationchange", this._refresh, this);
         qx.event.Registration.removeListener(window, "resize", this._refresh, this);
         this.removeListener("touchmove", qx.bom.Event.stopPropagation);
@@ -307,10 +307,10 @@
        *
        * @param request {qx.bom.request.Script} The Script request object
        */
-      __P_348_3: function __P_348_3(request) {
+      __P_368_3: function __P_368_3(request) {
         if (request.status < 400) {
           if (!this.isDisposed()) {
-            this._setScroll(this.__P_348_4());
+            this._setScroll(this.__P_368_4());
 
             this._scrollTo(this._currentX, this._currentY);
           }
@@ -323,7 +323,7 @@
        * @param scroll {Object} iScroll instance.
        */
       _setScroll: function _setScroll(scroll) {
-        this.__P_348_2 = scroll;
+        this.__P_368_2 = scroll;
       },
 
       /**
@@ -331,8 +331,8 @@
        * Prevents any further scrolling of this container.
        */
       disable: function disable() {
-        if (this.__P_348_2) {
-          this.__P_348_2.disable();
+        if (this.__P_368_2) {
+          this.__P_368_2.disable();
         }
       },
 
@@ -340,8 +340,8 @@
        * Delegation method for iScroll. Enables the iScroll object.
        */
       enable: function enable() {
-        if (this.__P_348_2) {
-          this.__P_348_2.enable();
+        if (this.__P_368_2) {
+          this.__P_368_2.enable();
         }
       },
 
@@ -350,8 +350,8 @@
        * scrolling container.
        */
       _refresh: function _refresh() {
-        if (this.__P_348_2) {
-          this.__P_348_2.refresh();
+        if (this.__P_368_2) {
+          this.__P_368_2.refresh();
         }
       }
     },
@@ -362,17 +362,17 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_348_5(); // Cleanup iScroll
+      this.__P_368_5(); // Cleanup iScroll
 
 
-      if (this.__P_348_2) {
-        this.__P_348_2.destroy();
+      if (this.__P_368_2) {
+        this.__P_368_2.destroy();
       }
 
-      this.__P_348_2 = null;
+      this.__P_368_2 = null;
     }
   });
   qx.ui.mobile.container.MIScroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MIScroll.js.map?dt=1660800170893
+//# sourceMappingURL=MIScroll.js.map?dt=1664297894780

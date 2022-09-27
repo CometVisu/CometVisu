@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractBasicWidget": {
+      "cv.ui.structure.pure.AbstractBasicWidget": {
         "require": true
       },
       "cv.ui.structure.WidgetFactory": {
@@ -46,7 +46,7 @@
    * @since 0.8.0 (2012)
    */
   qx.Class.define('cv.ui.structure.pure.Break', {
-    extend: cv.ui.structure.AbstractBasicWidget,
+    extend: cv.ui.structure.pure.AbstractBasicWidget,
 
     /*
      ******************************************************
@@ -66,4 +66,4 @@
   cv.ui.structure.pure.Break.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Break.js.map?dt=1660800147648
+//# sourceMappingURL=Break.js.map?dt=1664297871150

@@ -109,9 +109,9 @@
     *****************************************************************************
     */
     members: {
-      __P_403_0: 16,
-      __P_403_1: 16,
-      __P_403_2: null,
+      __P_423_0: 16,
+      __P_423_1: 16,
+      __P_423_2: null,
 
       /**
        * Identifies the Image to show. This is a template method, which must be
@@ -165,7 +165,7 @@
 
 
         if (!imageData.imageWidth || !imageData.imageHeight) {
-          var sizes = this.__P_403_3(imageData.url);
+          var sizes = this.__P_423_3(imageData.url);
 
           imageData.imageWidth = sizes.width;
           imageData.imageHeight = sizes.height;
@@ -186,7 +186,7 @@
        * @return {Map} A map containing the image's <code>width</code> and
        *    <code>height</code>
        */
-      __P_403_3: function __P_403_3(source) {
+      __P_423_3: function __P_423_3(source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var ImageLoader = qx.io.ImageLoader;
         var width, height; // Detect if the image registry knows this image
@@ -198,8 +198,8 @@
           width = ImageLoader.getWidth(source);
           height = ImageLoader.getHeight(source);
         } else {
-          width = this.__P_403_0;
-          height = this.__P_403_1;
+          width = this.__P_423_0;
+          height = this.__P_423_1;
         }
 
         return {
@@ -209,36 +209,36 @@
       },
       // overridden
       createDataCellHtml: function createDataCellHtml(cellInfo, htmlArr) {
-        this.__P_403_2 = this._getImageInfos(cellInfo);
-        return qx.ui.table.cellrenderer.AbstractImage.prototype.createDataCellHtml.base.call(this, cellInfo, htmlArr);
+        this.__P_423_2 = this._getImageInfos(cellInfo);
+        return qx.ui.table.cellrenderer.AbstractImage.superclass.prototype.createDataCellHtml.call(this, cellInfo, htmlArr);
       },
       // overridden
       _getCellClass: function _getCellClass(cellInfo) {
-        return qx.ui.table.cellrenderer.AbstractImage.prototype._getCellClass.base.call(this) + " qooxdoo-table-cell-icon";
+        return qx.ui.table.cellrenderer.AbstractImage.superclass.prototype._getCellClass.call(this) + " qooxdoo-table-cell-icon";
       },
       // overridden
       _getContentHtml: function _getContentHtml(cellInfo) {
         var content = "<div></div>"; // set image
 
-        if (this.__P_403_2.url) {
-          var srcUrl = this.__P_403_2.url;
-          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_403_2.url);
+        if (this.__P_423_2.url) {
+          var srcUrl = this.__P_423_2.url;
+          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_423_2.url);
 
           if (highResolutionSource) {
             srcUrl = highResolutionSource;
           }
 
           var style = {
-            width: this.__P_403_2.width + "px",
-            height: this.__P_403_2.height + "px",
+            width: this.__P_423_2.width + "px",
+            height: this.__P_423_2.height + "px",
             display: qx.core.Environment.get("css.inlineblock"),
             verticalAlign: "middle",
             position: "static"
           };
 
-          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_403_2.url) === "") {
+          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_423_2.url) === "") {
             // background size is critical for high-resolution images but breaks combined images
-            style["background-size"] = this.__P_403_2.width + "px " + this.__P_403_2.height + "px";
+            style["background-size"] = this.__P_423_2.width + "px " + this.__P_423_2.height + "px";
           }
 
           content = qx.bom.element.Decoration.create(srcUrl, this.getRepeat(), style);
@@ -248,7 +248,7 @@
       },
       // overridden
       _getCellAttributes: function _getCellAttributes(cellInfo) {
-        var tooltip = this.__P_403_2.tooltip;
+        var tooltip = this.__P_423_2.tooltip;
 
         if (tooltip) {
           return "title='" + tooltip + "'";
@@ -264,10 +264,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_403_2 = null;
+      this.__P_423_2 = null;
     }
   });
   qx.ui.table.cellrenderer.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1660800174219
+//# sourceMappingURL=AbstractImage.js.map?dt=1664297897762

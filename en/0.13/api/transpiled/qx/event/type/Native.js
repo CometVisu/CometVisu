@@ -58,7 +58,7 @@
        * @return {qx.event.type.Event} The initialized event instance
        */
       init: function init(nativeEvent, target, relatedTarget, canBubble, cancelable) {
-        qx.event.type.Native.prototype.init.base.call(this, canBubble, cancelable);
+        qx.event.type.Native.superclass.prototype.init.call(this, canBubble, cancelable);
         this._target = target || qx.bom.Event.getTarget(nativeEvent);
         this._relatedTarget = relatedTarget || qx.bom.Event.getRelatedTarget(nativeEvent);
 
@@ -72,7 +72,7 @@
       },
       // overridden
       clone: function clone(embryo) {
-        var clone = qx.event.type.Native.prototype.clone.base.call(this, embryo);
+        var clone = qx.event.type.Native.superclass.prototype.clone.call(this, embryo);
         var nativeClone = {};
         clone._native = this._cloneNativeEvent(this._native, nativeClone);
         clone._returnValue = this._returnValue;
@@ -96,7 +96,7 @@
        * Prevent browser default behavior, e.g. opening the context menu, ...
        */
       preventDefault: function preventDefault() {
-        qx.event.type.Native.prototype.preventDefault.base.call(this);
+        qx.event.type.Native.superclass.prototype.preventDefault.call(this);
         qx.bom.Event.preventDefault(this._native);
       },
 
@@ -134,4 +134,4 @@
   qx.event.type.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1660800159230
+//# sourceMappingURL=Native.js.map?dt=1664297883952

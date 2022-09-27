@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 107,
+        "line": 124,
         "column": 3
       }
     },
@@ -126,6 +126,36 @@
             "body": "{string} HTML code",
             "type": "string",
             "description": " HTML code"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getChildrenDom": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 122,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a collection of html elements of the children</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{DocumentFragment}",
+            "type": "DocumentFragment",
+            "description": ""
           }
         ]
       },

@@ -41,7 +41,7 @@
     */
     members: {
       add: function add(page) {
-        qxl.apiviewer.DetailFrameTabView.prototype.add.base.call(this, page);
+        qxl.apiviewer.DetailFrameTabView.superclass.prototype.add.call(this, page);
 
         if (this.getChildren().length == 1) {
           this.getChildren()[0].setShowCloseButton(false);
@@ -53,7 +53,7 @@
       },
       remove: function remove(page) {
         if (this.getChildren().length > 1) {
-          qxl.apiviewer.DetailFrameTabView.prototype.remove.base.call(this, page);
+          qxl.apiviewer.DetailFrameTabView.superclass.prototype.remove.call(this, page);
 
           if (this.getChildren().length == 1) {
             this.getChildren()[0].setShowCloseButton(false);
@@ -65,4 +65,4 @@
   qxl.apiviewer.DetailFrameTabView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DetailFrameTabView.js.map?dt=1660800184763
+//# sourceMappingURL=DetailFrameTabView.js.map?dt=1664297907564

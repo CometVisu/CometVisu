@@ -63,9 +63,9 @@
 
       var dropdown = this.getChildControl("dropdown");
       dropdown.getChildControl("list").setSelectionMode("single");
-      this.__P_324_0 = dropdown.getSelection();
+      this.__P_344_0 = dropdown.getSelection();
 
-      this.__P_324_0.addListener("change", this.__P_324_1, this);
+      this.__P_344_0.addListener("change", this.__P_344_1, this);
 
       this.bind("value", textField, "value");
       textField.bind("value", this, "value"); // forward the focusin and focusout events to the textfield. The textfield
@@ -126,16 +126,16 @@
     },
     members: {
       /** @type {var} Binding id between local value and text field value. */
-      __P_324_2: null,
+      __P_344_2: null,
 
       /** @type {var} Binding id between text field value and local value. */
-      __P_324_3: null,
+      __P_344_3: null,
 
       /** @type {qx.data.Array} the drop-down selection. */
-      __P_324_0: null,
+      __P_344_0: null,
 
       /** @type {Boolean} Indicator to ignore selection changes from the list. */
-      __P_324_4: null,
+      __P_344_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -206,7 +206,7 @@
       },
       // overridden
       focus: function focus() {
-        qx.ui.form.VirtualComboBox.prototype.focus.base.call(this);
+        qx.ui.form.VirtualComboBox.superclass.prototype.focus.call(this);
         this.getChildControl("textfield").getFocusElement().focus();
       },
 
@@ -243,11 +243,11 @@
             break;
         }
 
-        return control || qx.ui.form.VirtualComboBox.prototype._createChildControlImpl.base.call(this, id, hash);
+        return control || qx.ui.form.VirtualComboBox.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
       // overridden
       _beforeOpen: function _beforeOpen() {
-        this.__P_324_5();
+        this.__P_344_5();
       },
       // overridden
       _handleKeyboard: function _handleKeyboard(event) {
@@ -259,7 +259,7 @@
             break;
 
           default:
-            qx.ui.form.VirtualComboBox.prototype._handleKeyboard.base.call(this, event);
+            qx.ui.form.VirtualComboBox.superclass.prototype._handleKeyboard.call(this, event);
 
             break;
         }
@@ -274,7 +274,7 @@
         if (!isOpen && !isModifierPressed && keyIdentifier === "Enter") {
           return "select";
         } else {
-          return qx.ui.form.VirtualComboBox.prototype._getAction.base.call(this, event);
+          return qx.ui.form.VirtualComboBox.superclass.prototype._getAction.call(this, event);
         }
       },
 
@@ -285,7 +285,7 @@
       */
       // overridden
       _handlePointer: function _handlePointer(event) {
-        qx.ui.form.VirtualComboBox.prototype._handlePointer.base.call(this, event);
+        qx.ui.form.VirtualComboBox.superclass.prototype._handlePointer.call(this, event);
 
         var type = event.getType();
 
@@ -301,15 +301,15 @@
        *
        * @param event {qx.event.type.Data} The change event from the qx.data.Array.
        */
-      __P_324_1: function __P_324_1(event) {
-        if (this.__P_324_4 == true) {
+      __P_344_1: function __P_344_1(event) {
+        if (this.__P_344_4 == true) {
           return;
         }
 
-        var selected = this.__P_324_0.getItem(0);
+        var selected = this.__P_344_0.getItem(0);
 
         if (selected) {
-          selected = this.__P_324_6(selected);
+          selected = this.__P_344_6(selected);
           this.setValue(selected);
         }
       },
@@ -333,19 +333,19 @@
       /**
        * Selects the first list item that starts with the text field's value.
        */
-      __P_324_5: function __P_324_5() {
+      __P_344_5: function __P_344_5() {
         var value = this.getValue();
         var dropdown = this.getChildControl("dropdown");
         var selection = dropdown.getSelection();
         var selected = selection.getItem(0); // try to preselect the matching item even if there is no current selection
 
-        if (selected === undefined || this.__P_324_6(selected) !== value) {
+        if (selected === undefined || this.__P_344_6(selected) !== value) {
           // only reset the old selection if there is one
           if (selected !== undefined) {
             // reset the old selection
-            this.__P_324_4 = true;
+            this.__P_344_4 = true;
             selection.removeAll();
-            this.__P_324_4 = false;
+            this.__P_344_4 = false;
           } // No calculation is needed when the value is empty
 
 
@@ -360,7 +360,7 @@
           for (var i = 0, l = lookupTable.length; i < l; i++) {
             var modelItem = model.getItem(lookupTable[i]);
 
-            var itemLabel = this.__P_324_6(modelItem);
+            var itemLabel = this.__P_344_6(modelItem);
 
             if (itemLabel && itemLabel.indexOf(value) == 0) {
               dropdown.setPreselected(modelItem);
@@ -376,7 +376,7 @@
        * @param modelItem {var} The model item to convert.
        * @return {String} The converted value.
        */
-      __P_324_6: function __P_324_6(modelItem) {
+      __P_344_6: function __P_344_6(modelItem) {
         var labelOptions = this.getLabelOptions();
         var formatter = this.getDefaultFormat();
         var labelPath = this.getLabelPath();
@@ -406,12 +406,12 @@
       this.removeAllBindings();
       textField.removeAllBindings();
 
-      this.__P_324_0.removeListener("change", this.__P_324_1, this);
+      this.__P_344_0.removeListener("change", this.__P_344_1, this);
 
-      this.__P_324_0 = null;
+      this.__P_344_0 = null;
     }
   });
   qx.ui.form.VirtualComboBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualComboBox.js.map?dt=1660800168993
+//# sourceMappingURL=VirtualComboBox.js.map?dt=1664297892872

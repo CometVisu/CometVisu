@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/InfoTrigger.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "parse",
+    "xml",
+    "path",
+    "flavour",
+    "pageType",
+    "data",
+    "cv",
+    "parser",
+    "pure",
+    "WidgetParser",
+    "parseElement",
+    "getAttributeToPropertyMappings",
+    "parseFormat",
+    "parseAddress",
+    "makeAddressListFn",
+    "target",
+    "transform",
+    "parseFloat",
+    "value",
+    "includes",
+    "src",
+    "mode",
+    "variant",
+    "defer",
+    "addHandler",
+    "widgets",
+    "InfoTrigger"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* InfoTrigger.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n *\n */\nqx.Class.define('cv.parser.pure.widgets.InfoTrigger', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    /**\n     * Parses the widgets XML configuration and extracts the given information\n     * to a simple key/value map.\n     *\n     * @param xml {Element} XML-Element\n     * @param path {String} internal path of the widget\n     * @param flavour {String} Flavour of the widget\n     * @param pageType {String} Page type (2d, 3d, ...)\n     */\n    parse: function (xml, path, flavour, pageType) {\n      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());\n      cv.parser.pure.WidgetParser.parseFormat(xml, path);\n      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);\n      return data;\n    },\n\n    getAttributeToPropertyMappings: function () {\n      return {\n        'downvalue': {target: 'downValue', transform: parseFloat, 'default': 0},\n        'shortdownvalue': {target: 'shortDownValue', transform: function (value) {\n            return value ? parseFloat(value) : null;\n          }},\n        'downlabel': {target: 'downLabel'},\n        'upvalue': {target: 'upValue', transform: parseFloat, 'default': 0},\n        'shortupvalue': {target: 'shortUpValue', transform: function (value) {\n          return value ? parseFloat(value) : null;\n         }},\n        'uplabel': {target: 'upLabel'},\n        'shorttime': {target: 'shortThreshold', transform: parseFloat, 'default': -1},\n        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {\n            return value ? value === 'true' : true;\n         }},\n        'change': {\n          target: 'isAbsolute', transform: function (value) {\n            return (value || 'relative') === 'absolute';\n          }\n        },\n        'min': {transform: parseFloat, 'default': 0},\n        'max': {transform: parseFloat, 'default': 255},\n        'infoposition': {\n          target: 'infoPosition',\n          'default': 'left',\n          transform: function (value) {\n            return ['middle', 'right'].includes(value) ? value : 'left';\n          }\n        }\n      };\n    },\n\n    makeAddressListFn: function (src, transform, mode, variant) {\n      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button\n      return [true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1 | 2)];\n    }\n  },\n\n  defer: function (statics) {\n    // register the parser\n    cv.parser.pure.WidgetParser.addHandler('infotrigger', statics);\n  }\n});\n"
+  ]
+}

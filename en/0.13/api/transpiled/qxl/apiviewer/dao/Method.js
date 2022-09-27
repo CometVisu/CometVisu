@@ -89,7 +89,7 @@
       * @Override
       */
       isDeprecated: function isDeprecated() {
-        return qxl.apiviewer.dao.Method.prototype.isDeprecated.base.call(this) || this.getFromProperty() && this.getFromProperty().isDeprecated();
+        return qxl.apiviewer.dao.Method.superclass.prototype.isDeprecated.call(this) || this.getFromProperty() && this.getFromProperty().isDeprecated();
       },
       getParams: function getParams() {
         return this._params;
@@ -122,4 +122,4 @@
   qxl.apiviewer.dao.Method.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Method.js.map?dt=1660800185381
+//# sourceMappingURL=Method.js.map?dt=1664297908135

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -18,7 +18,7 @@
       "cv.util.LimitedRateUpdateAnimator": {
         "construct": true
       },
-      "cv.ui.layout.ResizeHandler": {
+      "cv.ui.structure.pure.layout.ResizeHandler": {
         "construct": true
       },
       "cv.util.Function": {},
@@ -56,7 +56,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.Slide', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
 
     /*
@@ -67,12 +67,12 @@
     construct: function construct(props) {
       var _this = this;
 
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      this.__P_61_0 = new cv.util.LimitedRateUpdateAnimator(this.__P_61_1, this);
-      this.__P_61_2 = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
-        _this.__P_61_3();
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
+      this.__P_64_0 = new cv.util.LimitedRateUpdateAnimator(this.__P_64_1, this);
+      this.__P_64_2 = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
+        _this.__P_64_3();
       });
-      this.__P_61_4 = {};
+      this.__P_64_4 = {};
     },
 
     /*
@@ -81,9 +81,9 @@
     ***********************************************
     */
     destruct: function destruct() {
-      cv.ui.layout.ResizeHandler.states.removeListenerById(this.__P_61_2);
-      this.__P_61_2 = null;
-      this.__P_61_5 = null;
+      cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__P_64_2);
+      this.__P_64_2 = null;
+      this.__P_64_5 = null;
     },
 
     /*
@@ -120,18 +120,18 @@
     ******************************************************
     */
     members: {
-      __P_61_4: null,
-      __P_61_0: null,
-      __P_61_5: undefined,
+      __P_64_4: null,
+      __P_64_0: null,
+      __P_64_5: undefined,
       // cache for DOM element
-      __P_61_6: undefined,
+      __P_64_6: undefined,
       // cache for DOM element
-      __P_61_7: undefined,
-      __P_61_8: undefined,
-      __P_61_2: undefined,
-      __P_61_9: false,
+      __P_64_7: undefined,
+      __P_64_8: undefined,
+      __P_64_2: undefined,
+      __P_64_9: false,
       // is the handle currently dragged?
-      __P_61_10: undefined,
+      __P_64_10: undefined,
       // minimal screen coordinate of slider
       // overridden
       _getInnerDomString: function _getInnerDomString() {
@@ -140,9 +140,9 @@
       },
       // overridden
       _onDomReady: function _onDomReady() {
-        cv.ui.structure.pure.Slide.prototype._onDomReady.base.call(this);
+        cv.ui.structure.pure.Slide.superclass.prototype._onDomReady.call(this);
 
-        this.__P_61_11 = cv.util.Function.throttle(this.__P_61_12, 250, {
+        this.__P_64_11 = cv.util.Function.throttle(this.__P_64_12, 250, {
           trailing: true
         }, this);
         this.getActor().addEventListener('pointerdown', this);
@@ -150,18 +150,18 @@
       _update: function _update(address, data) {
         var transform = this.getAddress()[address].transform;
 
-        if (this.__P_61_9 || this.__P_61_4[transform] === data) {
+        if (this.__P_64_9 || this.__P_64_4[transform] === data) {
           // slider in use -> ignore value from bus
           // internal state unchanged -> also do nothing
           return;
         }
 
-        this.__P_61_4 = {}; // forget all other transforms as they might not be valid anymore
+        this.__P_64_4 = {}; // forget all other transforms as they might not be valid anymore
 
-        this.__P_61_4[transform] = data;
+        this.__P_64_4[transform] = data;
         var value = cv.Transform.decode(this.getAddress()[address], data); // animate when visible, otherwise jump to the target value
 
-        this.__P_61_13(value, !this.isVisible());
+        this.__P_64_13(value, !this.isVisible());
       },
 
       /**
@@ -172,7 +172,7 @@
        *   to give visual feedback that something does happen during interaction
        * @private
        */
-      __P_61_13: function __P_61_13(value, instant) {
+      __P_64_13: function __P_64_13(value, instant) {
         var relaxDisplay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
         var min = this.getMin();
         var max = this.getMax();
@@ -222,42 +222,42 @@
           this.defaultValue2DOM(displayValue, button);
         }
 
-        this.__P_61_0.setTo(ratio, instant);
+        this.__P_64_0.setTo(ratio, instant);
       },
-      __P_61_1: function __P_61_1(ratio) {
-        if (this.__P_61_5 === undefined) {
+      __P_64_1: function __P_64_1(ratio) {
+        if (this.__P_64_5 === undefined) {
           var element = this.getDomElement();
-          this.__P_61_5 = element.querySelector('button');
-          this.__P_61_6 = element.querySelector('.ui-slider-range');
+          this.__P_64_5 = element.querySelector('button');
+          this.__P_64_6 = element.querySelector('.ui-slider-range');
         }
 
-        if (this.__P_61_5 === null) {
+        if (this.__P_64_5 === null) {
           // most likely reason: the widget / DOM tree was deleted (e.g. due to
           // browsing to a new page or during unit tests)
-          this._disposeObjects("__P_61_0");
+          this._disposeObjects("__P_64_0");
 
           return;
         }
 
-        if (this.__P_61_7 === undefined || this.__P_61_8 === undefined) {
+        if (this.__P_64_7 === undefined || this.__P_64_8 === undefined) {
           var actor = this.getDomElement().querySelector('.actor');
           var actorStyles = window.getComputedStyle(actor);
-          this.__P_61_7 = parseFloat(actorStyles.getPropertyValue('width'));
-          this.__P_61_8 = parseFloat(window.getComputedStyle(this.__P_61_5).getPropertyValue('width'));
-          this.__P_61_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
-          this.__P_61_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
+          this.__P_64_7 = parseFloat(actorStyles.getPropertyValue('width'));
+          this.__P_64_8 = parseFloat(window.getComputedStyle(this.__P_64_5).getPropertyValue('width'));
+          this.__P_64_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+          this.__P_64_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
         }
 
-        var length = ratio * this.__P_61_7;
-        this.__P_61_5.style.transform = 'translate3d(' + (length - this.__P_61_8 / 2) + 'px, 0px, 0px)';
-        this.__P_61_6.style.width = length + 'px';
+        var length = ratio * this.__P_64_7;
+        this.__P_64_5.style.transform = 'translate3d(' + (length - this.__P_64_8 / 2) + 'px, 0px, 0px)';
+        this.__P_64_6.style.width = length + 'px';
       },
-      __P_61_3: function __P_61_3() {
+      __P_64_3: function __P_64_3() {
         var min = this.getMin();
         var max = this.getMax();
-        this.__P_61_7 = undefined; // invalidate cached values
+        this.__P_64_7 = undefined; // invalidate cached values
 
-        this.__P_61_0.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
+        this.__P_64_0.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
       },
       handleEvent: function handleEvent(event) {
         var newRatio = 0;
@@ -265,29 +265,29 @@
         switch (event.type) {
           case 'pointerdown':
             {
-              this.__P_61_9 = true;
+              this.__P_64_9 = true;
               document.addEventListener('pointermove', this);
               document.addEventListener('pointerup', this);
               var boundingRect = event.currentTarget.getBoundingClientRect();
               var computedStyle = window.getComputedStyle(event.currentTarget);
-              this.__P_61_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-              newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+              this.__P_64_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
+              newRatio = (event.clientX - this.__P_64_10) / this.__P_64_7;
               break;
             }
 
           case 'pointermove':
-            if (!this.__P_61_9) {
+            if (!this.__P_64_9) {
               return;
             }
 
-            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+            newRatio = (event.clientX - this.__P_64_10) / this.__P_64_7;
             break;
 
           case 'pointerup':
-            this.__P_61_9 = false;
+            this.__P_64_9 = false;
             document.removeEventListener('pointermove', this);
             document.removeEventListener('pointerup', this);
-            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+            newRatio = (event.clientX - this.__P_64_10) / this.__P_64_7;
             break;
         }
 
@@ -295,14 +295,14 @@
 
         var newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
 
-        this.__P_61_13(newValue, this.__P_61_9, this.__P_61_9);
+        this.__P_64_13(newValue, this.__P_64_9, this.__P_64_9);
 
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_61_11.call(newValue);
+          this.__P_64_11.call(newValue);
         }
       },
-      __P_61_12: function __P_61_12(value) {
-        this.__P_61_4 = this.sendToBackend(value, false, this.__P_61_4);
+      __P_64_12: function __P_64_12(value) {
+        this.__P_64_4 = this.sendToBackend(value, false, this.__P_64_4);
       }
     },
     defer: function defer(statics) {
@@ -312,4 +312,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1660800148445
+//# sourceMappingURL=Slide.js.map?dt=1664297872003

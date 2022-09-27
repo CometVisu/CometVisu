@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       }
     }
@@ -44,7 +44,7 @@
    * @since 0.8.0 (2012)
    */
   qx.Class.define('cv.ui.structure.pure.Line', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
 
     /*
     ******************************************************
@@ -61,4 +61,4 @@
   cv.ui.structure.pure.Line.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Line.js.map?dt=1660800148005
+//# sourceMappingURL=Line.js.map?dt=1664297871605

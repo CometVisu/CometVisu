@@ -511,7 +511,7 @@
             break;
         }
 
-        return control || cv.ui.manager.viewer.Folder.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.viewer.Folder.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -530,4 +530,4 @@
   cv.ui.manager.viewer.Folder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Folder.js.map?dt=1660800147537
+//# sourceMappingURL=Folder.js.map?dt=1664297870967

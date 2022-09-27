@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "construct": true,
         "require": true
       },
@@ -64,7 +64,7 @@
    * @since 0.5.3 (2010)
    */
   qx.Class.define('cv.ui.structure.pure.DesignToggle', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
 
     /*
@@ -73,7 +73,7 @@
      ******************************************************
      */
     construct: function construct(props) {
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
       store.addListener('loaded', function (ev) {
         this.setAvailableDesigns(ev.getData());
@@ -146,4 +146,4 @@
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1660800147843
+//# sourceMappingURL=DesignToggle.js.map?dt=1664297871447

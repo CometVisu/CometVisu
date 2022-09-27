@@ -2,7 +2,7 @@
   "className": "cv.plugins.diagram.AbstractDiagram",
   "packageName": "cv.plugins.diagram",
   "name": "AbstractDiagram",
-  "superClass": "cv.ui.structure.AbstractWidget",
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
   "interfaces": [],
   "mixins": [
     "cv.ui.common.Operate",

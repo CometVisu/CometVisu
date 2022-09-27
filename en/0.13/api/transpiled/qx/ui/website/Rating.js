@@ -147,7 +147,7 @@
     members: {
       // overridden
       init: function init() {
-        if (!qx.ui.website.Rating.prototype.init.base.call(this)) {
+        if (!qx.ui.website.Rating.superclass.prototype.init.call(this)) {
           return false;
         }
 
@@ -274,7 +274,7 @@
         this.off("focus", this._onFocus, this).off("blur", this._onBlur, this);
         this.getChildren("span").off("tap", this._onTap, this);
         this.setHtml("");
-        return qx.ui.website.Rating.prototype.dispose.base.call(this);
+        return qx.ui.website.Rating.superclass.prototype.dispose.call(this);
       }
     },
     defer: function defer(statics) {
@@ -286,4 +286,4 @@
   qx.ui.website.Rating.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rating.js.map?dt=1660800178012
+//# sourceMappingURL=Rating.js.map?dt=1664297901340

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -49,7 +49,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.Toggle', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
     /*
@@ -75,4 +75,4 @@
   cv.ui.structure.pure.Toggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Toggle.js.map?dt=1660800148490
+//# sourceMappingURL=Toggle.js.map?dt=1664297872058

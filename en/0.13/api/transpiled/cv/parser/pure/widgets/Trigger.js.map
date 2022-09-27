@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Trigger.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "parse",
+    "xml",
+    "path",
+    "flavour",
+    "pageType",
+    "data",
+    "cv",
+    "parser",
+    "pure",
+    "WidgetParser",
+    "parseElement",
+    "getAttributeToPropertyMappings",
+    "parseFormat",
+    "parseAddress",
+    "makeAddressListFn",
+    "target",
+    "transform",
+    "parseFloat",
+    "value",
+    "src",
+    "mode",
+    "variant",
+    "defer",
+    "addHandler",
+    "widgets",
+    "Trigger"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EAAkD;AAChDC,IAAAA,IAAI,EAAE,QAD0C;;AAGhD;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,KAAK,EAAE,eAAUC,GAAV,EAAeC,IAAf,EAAqBC,OAArB,EAA8BC,QAA9B,EAAwC;AAC7C,YAAMC,IAAI,GAAGC,EAAE,CAACC,MAAH,CAAUC,IAAV,CAAeC,YAAf,CAA4BC,YAA5B,CAAyC,IAAzC,EAA+CT,GAA/C,EAAoDC,IAApD,EAA0DC,OAA1D,EAAmEC,QAAnE,EAA6E,KAAKO,8BAAL,EAA7E,CAAb;AACAL,QAAAA,EAAE,CAACC,MAAH,CAAUC,IAAV,CAAeC,YAAf,CAA4BG,WAA5B,CAAwCX,GAAxC,EAA6CC,IAA7C;AACAI,QAAAA,EAAE,CAACC,MAAH,CAAUC,IAAV,CAAeC,YAAf,CAA4BI,YAA5B,CAAyCZ,GAAzC,EAA8CC,IAA9C,EAAoD,KAAKY,iBAAzD;AACA,eAAOT,IAAP;AACD,OAfM;AAiBPM,MAAAA,8BAA8B,EAAE,0CAAY;AAC1C,eAAO;AACL,mBAAe;AAAEI,YAAAA,MAAM,EAAE,WAAV;AAAuB,uBAAW;AAAlC,WADV;AAEL,uBAAe;AAAEA,YAAAA,MAAM,EAAE,gBAAV;AAA4B,uBAAW,CAAC,CAAxC;AAA2CC,YAAAA,SAAS,EAAEC;AAAtD,WAFV;AAGL,wBAAe;AAAEF,YAAAA,MAAM,EAAE,YAAV;AAAwB,uBAAW;AAAnC,WAHV;AAIL,kCAAyB;AAACA,YAAAA,MAAM,EAAE,mBAAT;AAA8BC,YAAAA,SAAS,EAAE,mBAAUE,KAAV,EAAiB;AAC/E,qBAAOA,KAAK,GAAGA,KAAK,KAAK,MAAb,GAAsB,IAAlC;AACH;AAFwB;AAJpB,SAAP;AAQD,OA1BM;AA4BPJ,MAAAA,iBAAiB,EAAE,2BAASK,GAAT,EAAcH,SAAd,EAAyBI,IAAzB,EAA+BC,OAA/B,EAAwC;AACzD;AACA,eAAO,CAAE,IAAF,EAAQA,OAAO,KAAK,OAAZ,GAAsB,CAAtB,GAA2BA,OAAO,KAAK,QAAZ,GAAuB,CAAvB,GAA2B,IAAE,CAAhE,CAAP;AACD;AA/BM,KARuC;AA0ChDC,IAAAA,KAAK,EAAE,eAASvB,OAAT,EAAkB;AACvB;AACAO,MAAAA,EAAE,CAACC,MAAH,CAAUC,IAAV,CAAeC,YAAf,CAA4Bc,UAA5B,CAAuC,SAAvC,EAAkDxB,OAAlD;AACD;AA7C+C,GAAlD;AAvBAO,EAAAA,EAAE,CAACC,MAAH,CAAUC,IAAV,CAAegB,OAAf,CAAuBC,OAAvB,CAA+B9B,aAA/B,GAA+CA,aAA/C",
+  "sourcesContent": [
+    "/* Trigger.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n *\n */\nqx.Class.define('cv.parser.pure.widgets.Trigger', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    /**\n     * Parses the widgets XML configuration and extracts the given information\n     * to a simple key/value map.\n     *\n     * @param xml {Element} XML-Element\n     * @param path {String} internal path of the widget\n     * @param flavour {String} Flavour of the widget\n     * @param pageType {String} Page type (2d, 3d, ...)\n     */\n    parse: function (xml, path, flavour, pageType) {\n      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());\n      cv.parser.pure.WidgetParser.parseFormat(xml, path);\n      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);\n      return data;\n    },\n\n    getAttributeToPropertyMappings: function () {\n      return {\n        'value'      : { target: 'sendValue', 'default': '0' },\n        'shorttime'  : { target: 'shortThreshold', 'default': -1, transform: parseFloat},\n        'shortvalue' : { target: 'shortValue', 'default': '0' },\n        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {\n            return value ? value === 'true' : true;\n        }}\n      };\n    },\n\n    makeAddressListFn: function(src, transform, mode, variant) {\n      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button\n      return [ true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1|2) ];\n    }\n  },\n\n  defer: function(statics) {\n    // register the parser\n    cv.parser.pure.WidgetParser.addHandler('trigger', statics);\n  }\n});\n"
+  ]
+}

@@ -74,7 +74,7 @@
       /**
         * Flag to keep the show/hidden state of the toolbar
         */
-      __P_378_0: false,
+      __P_398_0: false,
 
       /**
         * Adds a new child widget.
@@ -90,11 +90,11 @@
           }, false);
         }
 
-        qx.ui.mobile.toolbar.ToolBar.prototype.add.base.call(this, child, layoutProperties);
+        qx.ui.mobile.toolbar.ToolBar.superclass.prototype.add.call(this, child, layoutProperties);
       }
     }
   });
   qx.ui.mobile.toolbar.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1660800172877
+//# sourceMappingURL=ToolBar.js.map?dt=1664297896522

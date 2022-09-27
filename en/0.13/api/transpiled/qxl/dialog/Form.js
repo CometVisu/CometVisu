@@ -48,11 +48,11 @@
        * @return {qx.ui.form.Button}
        */
       _createOkButton: function _createOkButton() {
-        return qxl.dialog.Form.prototype._createOkButton.base.call(this, true);
+        return qxl.dialog.Form.superclass.prototype._createOkButton.call(this, true);
       }
     }
   });
   qxl.dialog.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1660800183009
+//# sourceMappingURL=Form.js.map?dt=1664297905994

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -53,7 +53,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.Trigger', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate, cv.ui.common.HandleLongpress],
 
     /*
@@ -80,7 +80,7 @@
     members: {
       // overridden
       _onDomReady: function _onDomReady() {
-        cv.ui.structure.pure.Trigger.prototype._onDomReady.base.call(this);
+        cv.ui.structure.pure.Trigger.superclass.prototype._onDomReady.call(this);
 
         this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
       },
@@ -113,4 +113,4 @@
   cv.ui.structure.pure.Trigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Trigger.js.map?dt=1660800148517
+//# sourceMappingURL=Trigger.js.map?dt=1664297872075

@@ -74,7 +74,7 @@
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.CheckBox.prototype._applyVisibility.base.call(this, value, old); // trigger a appearance recalculation of the parent
+        qx.ui.toolbar.CheckBox.superclass.prototype._applyVisibility.call(this, value, old); // trigger a appearance recalculation of the parent
 
 
         var parent = this.getLayoutParent();
@@ -88,4 +88,4 @@
   qx.ui.toolbar.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1660800175588
+//# sourceMappingURL=CheckBox.js.map?dt=1664297899026

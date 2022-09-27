@@ -199,7 +199,7 @@
       "name": "name",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_1",
+      "transform": "__P_501_1",
       "allowNull": true
     },
     "onentry": {
@@ -224,7 +224,7 @@
       "name": "onentry",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_2",
+      "transform": "__P_501_2",
       "allowNull": true
     },
     "onexit": {
@@ -249,7 +249,7 @@
       "name": "onexit",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_3",
+      "transform": "__P_501_3",
       "allowNull": true
     },
     "autoActionsBeforeOnentry": {
@@ -274,7 +274,7 @@
       "name": "autoActionsBeforeOnentry",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_4",
+      "transform": "__P_501_4",
       "allowNull": true
     },
     "autoActionsAfterOnentry": {
@@ -299,7 +299,7 @@
       "name": "autoActionsAfterOnentry",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_5",
+      "transform": "__P_501_5",
       "allowNull": true
     },
     "autoActionsBeforeOnexit": {
@@ -324,7 +324,7 @@
       "name": "autoActionsBeforeOnexit",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_6",
+      "transform": "__P_501_6",
       "allowNull": true
     },
     "autoActionsAfterOnexit": {
@@ -349,7 +349,7 @@
       "name": "autoActionsAfterOnexit",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_7",
+      "transform": "__P_501_7",
       "allowNull": true
     },
     "events": {
@@ -374,7 +374,7 @@
       "name": "events",
       "propertyType": "new",
       "nullable": true,
-      "transform": "__P_481_8",
+      "transform": "__P_501_8",
       "allowNull": true
     },
     "qxOwner": {

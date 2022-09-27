@@ -304,7 +304,7 @@
           control = this._createMDragUploadChildControlImpl(id);
         }
 
-        return control || cv.ui.manager.tree.FileSystem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.tree.FileSystem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -322,4 +322,4 @@
   cv.ui.manager.tree.FileSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSystem.js.map?dt=1660800147230
+//# sourceMappingURL=FileSystem.js.map?dt=1664297870685

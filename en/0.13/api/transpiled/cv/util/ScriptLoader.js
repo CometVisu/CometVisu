@@ -14,6 +14,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "qx.data.Array": {
         "construct": true
       },
+      "qx.log.Logger": {},
       "cv.Config": {},
       "qx.util.ResourceManager": {},
       "qx.util.DynamicScriptLoader": {},
@@ -52,10 +53,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_496_0 = new qx.data.Array();
-      this.__P_496_1 = new qx.data.Array();
-      this.__P_496_2 = new qx.data.Array();
-      this.__P_496_3 = [];
+      this.__P_515_0 = new qx.data.Array();
+      this.__P_515_1 = new qx.data.Array();
+      this.__P_515_2 = new qx.data.Array();
+      this.__P_515_3 = [];
     },
 
     /*
@@ -78,17 +79,56 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param media {string?} Content of the media attribute
        */
       includeStylesheet: function includeStylesheet(href, media) {
-        var el = document.createElement('link');
-        el.type = 'text/css';
-        el.rel = 'stylesheet';
-        el.href = href;
+        var _this = this;
 
-        if (media) {
-          el.media = media;
-        }
+        return new Promise(function (res, rej) {
+          var el = document.createElement('link');
+          el.type = 'text/css';
+          el.rel = 'stylesheet';
+          el.href = href;
 
-        var head = document.getElementsByTagName('head')[0];
-        head.appendChild(el);
+          if (media) {
+            el.media = media;
+          }
+
+          el.onload = res;
+
+          el.onerror = function () {
+            qx.log.Logger.error(_this, 'error loading ' + href); // always resolve
+
+            res();
+          };
+
+          var head = document.getElementsByTagName('head')[0];
+          head.appendChild(el);
+        });
+      },
+
+      /**
+       * Include a JS file with module support
+       *
+       * @param src {String} Href value
+       * @param type {string?} Content of the type attribute
+       */
+      includeScript: function includeScript(src, type) {
+        return new Promise(function (res, rej) {
+          var head = document.getElementsByTagName('head')[0];
+
+          if (!head.querySelector(":scope > script[src='".concat(src, "']"))) {
+            var el = document.createElement('script');
+
+            if (type) {
+              el.type = type;
+            }
+
+            el.onload = res;
+            el.onerror = rej;
+            el.src = src;
+            head.appendChild(el);
+          } else {
+            res();
+          }
+        });
       }
     },
 
@@ -103,6 +143,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         init: false,
         apply: '_checkQueue',
         event: 'changeAllQueued'
+      },
+      finished: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeFinished'
       }
     },
 
@@ -113,6 +158,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     events: {
       'finished': 'qx.event.type.Event',
+      'stylesLoaded': 'qx.event.type.Event',
       'designError': 'qx.event.type.Data'
     },
 
@@ -122,32 +168,65 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     ******************************************************
     */
     members: {
-      __P_496_0: null,
-      __P_496_1: null,
-      __P_496_4: null,
-      __P_496_3: null,
+      __P_515_0: null,
+      __P_515_1: null,
+      __P_515_4: null,
+      __P_515_3: null,
       addStyles: function addStyles(styleArr) {
+        var _this2 = this;
+
         var queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
+        var promises = [];
         queue.forEach(function (style) {
+          var media;
+          var src;
+
           if (typeof style === 'string') {
-            cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
+            src = style;
           } else if (_typeof(style) === 'object') {
-            cv.util.ScriptLoader.includeStylesheet(qx.util.ResourceManager.getInstance().toUri(style.uri) + suffix, style.media);
+            src = style.uri;
+            media = style.media;
           } else {
             this.error('unknown style parameter type', _typeof(style));
           }
+
+          if (src) {
+            var resPath = qx.util.ResourceManager.getInstance().toUri(src);
+
+            if (resPath === src) {
+              // this file is unknown to the resource manager, might be a scss source
+              var scssStyle = src.replace(/\.css$/, '.scss');
+              var scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
+
+              if (scssStyle !== scssPath) {
+                resPath = scssPath.replace(/\.scss$/, '.css');
+              }
+            }
+
+            promises.push(cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media));
+          }
         }, this);
+        Promise.all(promises).then(function () {
+          _this2.debug('styles have been loaded');
+
+          _this2.fireEvent('stylesLoaded');
+        })["catch"](function (reason) {
+          _this2.error('error loading styles', reason); // fire this event anyways, because a non loaded CSS file is no blocker
+
+
+          _this2.fireEvent('stylesLoaded');
+        });
       },
       markAsLoaded: function markAsLoaded(path) {
-        if (!this.__P_496_3.includes(path)) {
+        if (!this.__P_515_3.includes(path)) {
           this.debug('marking ' + path + ' as loaded');
 
-          this.__P_496_3.push(path);
+          this.__P_515_3.push(path);
         }
       },
       isMarkedAsLoaded: function isMarkedAsLoaded(path) {
-        return this.__P_496_3.includes(path);
+        return this.__P_515_3.includes(path);
       },
       addScripts: function addScripts(scriptArr, order) {
         var queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr; // make sure that no cached scripts are loaded
@@ -158,7 +237,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var l = queue.length;
 
         for (; i < l; i++) {
-          if (!this.__P_496_3.includes(queue[i])) {
+          if (!this.__P_515_3.includes(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
         }
@@ -168,8 +247,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         this.debug('queueing ' + realQueue.length + ' scripts');
+        this.resetFinished();
 
-        this.__P_496_0.append(realQueue);
+        this.__P_515_0.append(realQueue);
 
         if (order) {
           var processQueue = function () {
@@ -177,11 +257,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var loadIndex = order.shift();
               var script = realQueue.splice(loadIndex, 1)[0];
 
-              var loader = this.__P_496_5(script);
+              var loader = this.__P_515_5(script);
 
               loader.addListener('ready', processQueue, this);
             } else {
-              realQueue.forEach(this.__P_496_5, this);
+              realQueue.forEach(this.__P_515_5, this);
             }
           }.bind(this);
 
@@ -190,7 +270,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // use an extra DynamicScriptLoader for every single script because loading errors stop the process
           // and the loader would not try to load the other scripts
           // queue.forEach(this.__loadSingleScript, this);
-          this.__P_496_5(realQueue);
+          this.__P_515_5(realQueue);
         }
       },
 
@@ -199,15 +279,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param script {String} path to script
        */
-      __P_496_5: function __P_496_5(script) {
+      __P_515_5: function __P_515_5(script) {
         var loader = new qx.util.DynamicScriptLoader(script);
 
-        this.__P_496_1.push(loader);
+        this.__P_515_1.push(loader);
 
         loader.addListener('loaded', this._onLoaded, this);
         loader.addListener('failed', this._onFailed, this);
         loader.addListenerOnce('ready', function () {
-          this.__P_496_1.remove(loader);
+          this.__P_515_1.remove(loader);
 
           loader.removeListener('loaded', this._onLoaded, this);
           loader.removeListener('failed', this._onFailed, this);
@@ -218,7 +298,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _onLoaded: function _onLoaded(ev) {
         var data = ev.getData();
 
-        this.__P_496_0.remove(data.script);
+        this.__P_515_0.remove(data.script);
 
         this.debug(data.script + ' loaded');
 
@@ -227,7 +307,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _onFailed: function _onFailed(ev) {
         var data = ev.getData();
 
-        this.__P_496_0.remove(data.script);
+        this.__P_515_0.remove(data.script);
 
         if (data.script.startsWith('design')) {
           var failedDesign = data.script.split('/')[1];
@@ -256,26 +336,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       // property apply
       _checkQueue: function _checkQueue() {
-        if (this.__P_496_0.length === 0) {
+        if (this.__P_515_0.length === 0) {
           if (this.isAllQueued()) {
             this.debug('script loader finished');
             this.fireEvent('finished');
-          } else if (!this.__P_496_4) {
+            this.setFinished(true);
+          } else if (!this.__P_515_4) {
             this.debug('script loader waiting for all scripts beeing queued');
-            this.__P_496_4 = this.addListener('changeAllQueued', function (ev) {
+            this.__P_515_4 = this.addListener('changeAllQueued', function (ev) {
               if (ev.getData() === true) {
-                if (this.__P_496_0.length === 0) {
+                if (this.__P_515_0.length === 0) {
                   this.debug('script loader finished');
                   this.fireEvent('finished');
+                  this.setFinished(true);
                 }
 
-                this.removeListenerById(this.__P_496_4);
-                this.__P_496_4 = null;
+                this.removeListenerById(this.__P_515_4);
+                this.__P_515_4 = null;
               }
             }, this);
           }
         } else {
-          this.debug(this.__P_496_0.length + ' scripts remaining');
+          this.debug(this.__P_515_0.length + ' scripts remaining');
         }
       }
     }
@@ -283,4 +365,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.util.ScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScriptLoader.js.map?dt=1660800180955
+//# sourceMappingURL=ScriptLoader.js.map?dt=1664297904160

@@ -28,10 +28,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "cv.Config": {},
       "qx.io.request.Xhr": {},
       "qx.core.Init": {},
-      "qx.xml.Document": {},
       "cv.Version": {},
       "qx.util.Request": {},
       "qx.util.LibraryManager": {},
+      "qx.xml.Document": {},
       "qx.locale.Manager": {},
       "cv.core.notifications.Router": {}
     }
@@ -74,7 +74,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_495_0 = new qx.data.Array();
+      this.__P_514_0 = new qx.data.Array();
     },
 
     /*
@@ -83,10 +83,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ******************************************************
     */
     members: {
-      __P_495_0: null,
-      __P_495_1: null,
-      __P_495_2: null,
-      __P_495_3: null,
+      __P_514_0: null,
+      __P_514_1: null,
+      __P_514_2: null,
+      __P_514_3: null,
 
       /**
        * Load a config file
@@ -94,8 +94,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param context
        */
       load: function load(callback, context) {
-        this.__P_495_1 = callback;
-        this.__P_495_2 = context; // get the data once the page was loaded
+        this.__P_514_1 = callback;
+        this.__P_514_2 = context; // get the data once the page was loaded
 
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
 
@@ -110,7 +110,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.debug('Requesting ' + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
-        this.__P_495_0.push(uri);
+        this.__P_514_0.push(uri);
 
         ajaxRequest.set({
           accept: 'application/xml',
@@ -120,35 +120,52 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         ajaxRequest.addListenerOnce('success', function (e) {
           qx.core.Init.getApplication().block(false);
           var req = e.getTarget();
-          cv.Config.configServer = req.getResponseHeader('Server'); // Response parsed according to the server's response content type
+          cv.Config.configServer = req.getResponseHeader('Server');
+          var isTileStructure = /<config/m.test(req.getResponseText()); // Response parsed according to the server's response content type
 
           var xml = req.getResponse();
 
           if (xml && typeof xml === 'string') {
-            xml = qx.xml.Document.fromString(xml);
+            var parser = new DOMParser();
+
+            if (isTileStructure) {
+              xml = xml.replace('<config', '<config xmlns="http://www.w3.org/1999/xhtml"');
+            }
+
+            xml = parser.parseFromString(xml, 'text/xml');
           }
-
-          this.__P_495_3 = xml;
-          xml.querySelectorAll('include').forEach(this.loadInclude, this);
-
-          this.__P_495_0.remove(ajaxRequest.getUrl());
 
           if (!xml || !xml.documentElement || xml.getElementsByTagName('parsererror').length) {
             this.configError('parsererror');
           } else {
-            // check the library version
-            var xmlLibVersion = xml.querySelector('pages').getAttribute('lib_version');
+            if (isTileStructure && !xml.documentElement.xmlns) {
+              // wrong namespace
+              var rawContent = req.getResponseText().replace('<config', '<config xmlns="http://www.w3.org/1999/xhtml"');
 
-            if (xmlLibVersion === undefined) {
+              var _parser = new DOMParser();
+
+              xml = _parser.parseFromString(rawContent, 'text/xml');
+            }
+
+            this.__P_514_3 = xml;
+            xml.querySelectorAll('include').forEach(this.loadInclude, this);
+
+            this.__P_514_0.remove(ajaxRequest.getUrl());
+
+            var systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE; // check the library version
+
+            var xmlLibVersion = isTileStructure ? xml.documentElement.getAttribute('version') : xml.documentElement.getAttribute('lib_version');
+
+            if (xmlLibVersion === undefined || xmlLibVersion === null) {
               xmlLibVersion = -1;
             } else if (xmlLibVersion === '0') {
               // special wildcard mode used in screenshot generation fixtures
-              xmlLibVersion = cv.Version.LIBRARY_VERSION;
+              xmlLibVersion = systemLibVersion;
             } else {
               xmlLibVersion = parseInt(xmlLibVersion);
             }
 
-            if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
+            if (cv.Config.libraryCheck && xmlLibVersion < systemLibVersion) {
               this.configError('libraryerror');
             } else {
               cv.Config.server = {};
@@ -213,12 +230,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             ajaxRequest.setUserData('noDemo', false);
             ajaxRequest.setUserData('origUrl', ajaxRequest.getUrl());
 
-            this.__P_495_0.remove(ajaxRequest.getUrl());
+            this.__P_514_0.remove(ajaxRequest.getUrl());
 
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
 
-            this.__P_495_0.push(demoUrl);
+            this.__P_514_0.push(demoUrl);
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
@@ -241,7 +258,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
 
-        this.__P_495_0.push(url);
+        this.__P_514_0.push(url);
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
@@ -253,7 +270,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
           includeElem.replaceWith.apply(includeElem, _toConsumableArray(xml.firstChild.childNodes));
 
-          this.__P_495_0.remove(url);
+          this.__P_514_0.remove(url);
 
           this._checkQueue();
         }, this);
@@ -274,8 +291,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__P_495_0.length === 0) {
-          this.__P_495_1.call(this.__P_495_2, this.__P_495_3);
+        if (this.__P_514_0.length === 0) {
+          this.__P_514_1.call(this.__P_514_2, this.__P_514_3);
 
           this.dispose();
         }
@@ -361,12 +378,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     destruct: function destruct() {
       // remove references
-      this.__P_495_3 = null;
-      this.__P_495_1 = null;
-      this.__P_495_2 = null;
+      this.__P_514_3 = null;
+      this.__P_514_1 = null;
+      this.__P_514_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1660800180910
+//# sourceMappingURL=ConfigLoader.js.map?dt=1664297904110

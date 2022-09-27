@@ -53,14 +53,14 @@
       qx.ui.table.cellrenderer.AbstractImage.constructor.call(this);
 
       if (width) {
-        this.__P_406_0 = width;
+        this.__P_426_0 = width;
       }
 
       if (height) {
-        this.__P_406_1 = height;
+        this.__P_426_1 = height;
       }
 
-      this.__P_406_2 = qx.util.AliasManager.getInstance();
+      this.__P_426_2 = qx.util.AliasManager.getInstance();
     },
 
     /*
@@ -69,20 +69,20 @@
     *****************************************************************************
     */
     members: {
-      __P_406_2: null,
-      __P_406_1: 16,
-      __P_406_0: 16,
+      __P_426_2: null,
+      __P_426_1: 16,
+      __P_426_0: 16,
       // overridden
       _identifyImage: function _identifyImage(cellInfo) {
         var imageHints = {
-          imageWidth: this.__P_406_0,
-          imageHeight: this.__P_406_1
+          imageWidth: this.__P_426_0,
+          imageHeight: this.__P_426_1
         };
 
         if (cellInfo.value == "") {
           imageHints.url = null;
         } else {
-          imageHints.url = this.__P_406_2.resolve(cellInfo.value);
+          imageHints.url = this.__P_426_2.resolve(cellInfo.value);
         }
 
         imageHints.tooltip = cellInfo.tooltip;
@@ -96,10 +96,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_406_2 = null;
+      this.__P_426_2 = null;
     }
   });
   qx.ui.table.cellrenderer.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1660800174381
+//# sourceMappingURL=Image.js.map?dt=1664297897910

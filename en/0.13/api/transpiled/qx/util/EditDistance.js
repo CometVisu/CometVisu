@@ -48,7 +48,7 @@
        * @param dataB {Array} incoming target data
        * @return {Integer[][]} outgoing matrix
        */
-      __P_469_0: function __P_469_0(dataA, dataB) {
+      __P_489_0: function __P_489_0(dataA, dataB) {
         // distance is dataA table with dataA.length+1 rows and dataB.length+1 columns
         var distance = []; // posA and posB are used to iterate over str1 and str2
 
@@ -89,7 +89,7 @@
        * @param dataB {Array} incoming target data
        * @return {Map[]} Array of maps describing the operations needed
        */
-      __P_469_1: function __P_469_1(distance, dataA, dataB) {
+      __P_489_1: function __P_489_1(distance, dataA, dataB) {
         var operations = [];
         var posA = dataA.length;
         var posB = dataB.length;
@@ -166,9 +166,9 @@
        * @return {Map[]} Array of maps describing the operations needed
        */
       getEditOperations: function getEditOperations(dataA, dataB) {
-        var distance = this.__P_469_0(dataA, dataB);
+        var distance = this.__P_489_0(dataA, dataB);
 
-        var operations = this.__P_469_1(distance, dataA, dataB);
+        var operations = this.__P_489_1(distance, dataA, dataB);
 
         return operations;
       }
@@ -177,4 +177,4 @@
   qx.util.EditDistance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EditDistance.js.map?dt=1660800178904
+//# sourceMappingURL=EditDistance.js.map?dt=1664297902180

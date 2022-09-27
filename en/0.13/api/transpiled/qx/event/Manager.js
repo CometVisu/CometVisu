@@ -76,9 +76,9 @@
      */
     construct: function construct(win, registration) {
       // Assign window object
-      this.__P_176_0 = win;
-      this.__P_176_1 = qx.core.ObjectRegistry.toHashCode(win);
-      this.__P_176_2 = registration; // Register to the page unload event.
+      this.__P_196_0 = win;
+      this.__P_196_1 = qx.core.ObjectRegistry.toHashCode(win);
+      this.__P_196_2 = registration; // Register to the page unload event.
       // Only for iframes and other secondary documents.
 
       if (win.qx !== qx) {
@@ -95,15 +95,15 @@
       } // Registry for event listeners
 
 
-      this.__P_176_3 = {}; // The handler and dispatcher instances
+      this.__P_196_3 = {}; // The handler and dispatcher instances
 
-      this.__P_176_4 = {};
-      this.__P_176_5 = {};
-      this.__P_176_6 = {};
-      this.__P_176_7 = new qx.util.DeferredCall(function () {
-        this.__P_176_8 = null;
+      this.__P_196_4 = {};
+      this.__P_196_5 = {};
+      this.__P_196_6 = {};
+      this.__P_196_7 = new qx.util.DeferredCall(function () {
+        this.__P_196_8 = null;
       }, this);
-      this.__P_176_7.$$blackListCleaner = true;
+      this.__P_196_7.$$blackListCleaner = true;
     },
 
     /*
@@ -113,7 +113,7 @@
     */
     statics: {
       /** @type {Integer} Last used ID for an event */
-      __P_176_9: 0,
+      __P_196_9: 0,
 
       /**
        * Returns an unique ID which may be used in combination with a target and
@@ -122,13 +122,13 @@
        * @return {String} The next free identifier (auto-incremented)
        */
       getNextUniqueId: function getNextUniqueId() {
-        return this.__P_176_9++ + "";
+        return this.__P_196_9++ + "";
       },
 
       /**
        * @type {Array} private list of global event monitor functions
        */
-      __P_176_10: [],
+      __P_196_10: [],
 
       /**
        * Adds a global event monitor function which is called for each event fired
@@ -144,7 +144,7 @@
         qx.core.Assert.assertFunction(fn);
         fn.$$context = context;
 
-        this.__P_176_10.push(fn);
+        this.__P_196_10.push(fn);
       },
 
       /**
@@ -154,14 +154,14 @@
        */
       removeGlobalEventMonitor: function removeGlobalEventMonitor(fn) {
         qx.core.Assert.assertFunction(fn);
-        qx.lang.Array.remove(this.__P_176_10, fn);
+        qx.lang.Array.remove(this.__P_196_10, fn);
       },
 
       /**
        * Remove all registered event monitors
        */
       resetGlobalEventMonitors: function resetGlobalEventMonitors() {
-        qx.event.Manager.__P_176_10 = [];
+        qx.event.Manager.__P_196_10 = [];
       },
 
       /**
@@ -172,7 +172,7 @@
        * @return {Function?} the global monitor function
        */
       getGlobalEventMonitor: function getGlobalEventMonitor() {
-        return this.__P_176_10[0];
+        return this.__P_196_10[0];
       },
 
       /**
@@ -185,7 +185,7 @@
        */
       setGlobalEventMonitor: function setGlobalEventMonitor(fn) {
         qx.core.Assert.assertFunction(fn);
-        this.__P_176_10[0] = fn;
+        this.__P_196_10[0] = fn;
       }
     },
 
@@ -195,16 +195,16 @@
     *****************************************************************************
     */
     members: {
-      __P_176_2: null,
-      __P_176_3: null,
-      __P_176_5: null,
-      __P_176_11: null,
-      __P_176_4: null,
-      __P_176_6: null,
-      __P_176_0: null,
-      __P_176_1: null,
-      __P_176_8: null,
-      __P_176_7: null,
+      __P_196_2: null,
+      __P_196_3: null,
+      __P_196_5: null,
+      __P_196_11: null,
+      __P_196_4: null,
+      __P_196_6: null,
+      __P_196_0: null,
+      __P_196_1: null,
+      __P_196_8: null,
+      __P_196_7: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -218,7 +218,7 @@
        * @return {Window} DOM window instance
        */
       getWindow: function getWindow() {
-        return this.__P_176_0;
+        return this.__P_196_0;
       },
 
       /**
@@ -227,7 +227,7 @@
        * @return {String} The window's hashcode
        */
       getWindowId: function getWindowId() {
-        return this.__P_176_1;
+        return this.__P_196_1;
       },
 
       /**
@@ -237,13 +237,13 @@
        * @return {Object} The instance used by this manager
        */
       getHandler: function getHandler(clazz) {
-        var handler = this.__P_176_4[clazz.classname];
+        var handler = this.__P_196_4[clazz.classname];
 
         if (handler) {
           return handler;
         }
 
-        return this.__P_176_4[clazz.classname] = new clazz(this);
+        return this.__P_196_4[clazz.classname] = new clazz(this);
       },
 
       /**
@@ -253,13 +253,13 @@
        * @return {Object} The instance used by this manager
        */
       getDispatcher: function getDispatcher(clazz) {
-        var dispatcher = this.__P_176_5[clazz.classname];
+        var dispatcher = this.__P_196_5[clazz.classname];
 
         if (dispatcher) {
           return dispatcher;
         }
 
-        return this.__P_176_5[clazz.classname] = new clazz(this, this.__P_176_2);
+        return this.__P_196_5[clazz.classname] = new clazz(this, this.__P_196_2);
       },
 
       /*
@@ -284,7 +284,7 @@
        */
       getListeners: function getListeners(target, type, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (!targetMap) {
           return null;
@@ -303,7 +303,7 @@
        * @return {Map} All registered listeners. The key is the hash code form an object.
        */
       getAllListeners: function getAllListeners() {
-        return this.__P_176_3;
+        return this.__P_196_3;
       },
 
       /**
@@ -315,7 +315,7 @@
        */
       serializeListeners: function serializeListeners(target) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
         var result = [];
 
         if (targetMap) {
@@ -357,7 +357,7 @@
        */
       toggleAttachedEvents: function toggleAttachedEvents(target, enable) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (targetMap) {
           var indexOf, type, capture, entryList;
@@ -370,9 +370,9 @@
             entryList = targetMap[entryKey];
 
             if (enable) {
-              this.__P_176_12(target, type, capture);
+              this.__P_196_12(target, type, capture);
             } else {
-              this.__P_176_13(target, type, capture);
+              this.__P_196_13(target, type, capture);
             }
           }
         }
@@ -390,7 +390,7 @@
        */
       hasListener: function hasListener(target, type, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -418,7 +418,7 @@
        */
       importListeners: function importListeners(target, list) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey] = {};
+        var targetMap = this.__P_196_3[targetKey] = {};
         var clazz = qx.event.Manager;
 
         for (var listKey in list) {
@@ -431,14 +431,14 @@
             // Inform the event handler about the new event
             // they perform the event registration at DOM level if needed
 
-            this.__P_176_12(target, item.type, item.capture);
+            this.__P_196_12(target, item.type, item.capture);
           } // Append listener to list
 
 
           entryList.push({
             handler: item.listener,
             context: item.self,
-            unique: item.unique || clazz.__P_176_9++ + ""
+            unique: item.unique || clazz.__P_196_9++ + ""
           });
         }
       },
@@ -465,10 +465,10 @@
        */
       addListener: function addListener(target, type, listener, self, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (!targetMap) {
-          targetMap = this.__P_176_3[targetKey] = {};
+          targetMap = this.__P_196_3[targetKey] = {};
         }
 
         var entryKey = type + (capture ? "|capture" : "|bubble");
@@ -482,11 +482,11 @@
 
 
         if (entryList.length === 0) {
-          this.__P_176_12(target, type, capture);
+          this.__P_196_12(target, type, capture);
         } // Append listener to list
 
 
-        var unique = qx.event.Manager.__P_176_9++ + "";
+        var unique = qx.event.Manager.__P_196_9++ + "";
         var entry = {
           handler: listener,
           context: self,
@@ -520,7 +520,7 @@
         } // Please note:
         // Identical operator does not work in IE (as of version 7) because
         // document.parentWindow is not identical to window. Crazy stuff.
-        else if (target == this.__P_176_0) {
+        else if (target == this.__P_196_0) {
             isWindow = true;
             key = "WIN_" + type;
           } else if (target.classname) {
@@ -530,13 +530,13 @@
             key = "UNKNOWN_" + target + "_" + type;
           }
 
-        var cache = this.__P_176_6;
+        var cache = this.__P_196_6;
 
         if (cache[key]) {
           return cache[key];
         }
 
-        var classes = this.__P_176_2.getHandlers();
+        var classes = this.__P_196_2.getHandlers();
 
         var IEventHandler = qx.event.IEventHandler;
         var clazz, instance, supportedTypes, targetCheck;
@@ -593,7 +593,7 @@
        *         capturing phase or the bubbling phase of the event.
        * @throws {Error} if there is no handler for the event
        */
-      __P_176_12: function __P_176_12(target, type, capture) {
+      __P_196_12: function __P_196_12(target, type, capture) {
         var handler = this.findHandler(target, type);
 
         if (handler) {
@@ -617,7 +617,7 @@
        */
       removeListener: function removeListener(target, type, listener, self, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -638,10 +638,10 @@
           if (entry.handler === listener && entry.context === self) {
             qx.lang.Array.removeAt(entryList, i);
 
-            this.__P_176_14(entry.unique);
+            this.__P_196_14(entry.unique);
 
             if (entryList.length == 0) {
-              this.__P_176_13(target, type, capture);
+              this.__P_196_13(target, type, capture);
             }
 
             return true;
@@ -666,7 +666,7 @@
 
         var unique = split[2];
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -687,10 +687,10 @@
           if (entry.unique === unique) {
             qx.lang.Array.removeAt(entryList, i);
 
-            this.__P_176_14(entry.unique);
+            this.__P_196_14(entry.unique);
 
             if (entryList.length == 0) {
-              this.__P_176_13(target, type, capture);
+              this.__P_196_13(target, type, capture);
             }
 
             return true;
@@ -708,7 +708,7 @@
        */
       removeAllListeners: function removeAllListeners(target) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_176_3[targetKey];
+        var targetMap = this.__P_196_3[targetKey];
 
         if (!targetMap) {
           return false;
@@ -722,16 +722,16 @@
             // This is quite expensive, see bug #1283
             split = entryKey.split("|");
             targetMap[entryKey].forEach(function (entry) {
-              this.__P_176_14(entry.unique);
+              this.__P_196_14(entry.unique);
             }, this);
             type = split[0];
             capture = split[1] === "capture";
 
-            this.__P_176_13(target, type, capture);
+            this.__P_196_13(target, type, capture);
           }
         }
 
-        delete this.__P_176_3[targetKey];
+        delete this.__P_196_3[targetKey];
         return true;
       },
 
@@ -745,7 +745,7 @@
        * @internal
        */
       deleteAllListeners: function deleteAllListeners(targetKey) {
-        delete this.__P_176_3[targetKey];
+        delete this.__P_196_3[targetKey];
       },
 
       /**
@@ -759,7 +759,7 @@
        *         capturing phase or the bubbling phase of the event.
        * @throws {Error} if there is no handler for the event
        */
-      __P_176_13: function __P_176_13(target, type, capture) {
+      __P_196_13: function __P_196_13(target, type, capture) {
         var handler = this.findHandler(target, type);
 
         if (handler) {
@@ -790,7 +790,7 @@
        */
       dispatchEvent: function dispatchEvent(target, event) {
         // Show the decentrally fired events to one or more global monitor functions
-        var monitors = qx.event.Manager.__P_176_10;
+        var monitors = qx.event.Manager.__P_196_10;
 
         if (monitors.length) {
           for (var i = 0; i < monitors.length; i++) {
@@ -824,7 +824,7 @@
         } // Interacion data
 
 
-        var classes = this.__P_176_2.getDispatchers();
+        var classes = this.__P_196_2.getDispatchers();
 
         var instance; // Loop through the dispatchers
 
@@ -859,13 +859,13 @@
        */
       dispose: function dispose() {
         // Remove from manager list
-        this.__P_176_2.removeManager(this);
+        this.__P_196_2.removeManager(this);
 
-        qx.util.DisposeUtil.disposeMap(this, "__P_176_4");
-        qx.util.DisposeUtil.disposeMap(this, "__P_176_5"); // Dispose data fields
+        qx.util.DisposeUtil.disposeMap(this, "__P_196_4");
+        qx.util.DisposeUtil.disposeMap(this, "__P_196_5"); // Dispose data fields
 
-        this.__P_176_3 = this.__P_176_0 = this.__P_176_11 = null;
-        this.__P_176_2 = this.__P_176_6 = null;
+        this.__P_196_3 = this.__P_196_0 = this.__P_196_11 = null;
+        this.__P_196_2 = this.__P_196_6 = null;
       },
 
       /**
@@ -873,14 +873,14 @@
        *
        * @param uid {number} unique event id
        */
-      __P_176_14: function __P_176_14(uid) {
-        if (this.__P_176_8 === null) {
-          this.__P_176_8 = {};
+      __P_196_14: function __P_196_14(uid) {
+        if (this.__P_196_8 === null) {
+          this.__P_196_8 = {};
 
-          this.__P_176_7.schedule();
+          this.__P_196_7.schedule();
         }
 
-        this.__P_176_8[uid] = true;
+        this.__P_196_8[uid] = true;
       },
 
       /**
@@ -890,11 +890,11 @@
        * @return {boolean}
        */
       isBlacklisted: function isBlacklisted(uid) {
-        return this.__P_176_8 !== null && this.__P_176_8[uid] === true;
+        return this.__P_196_8 !== null && this.__P_196_8[uid] === true;
       }
     }
   });
   qx.event.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1660800157516
+//# sourceMappingURL=Manager.js.map?dt=1664297882338

@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Update": {
@@ -42,7 +42,7 @@
    * @since 2014
    */
   qx.Class.define('cv.ui.structure.pure.Reload', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
 
     /*
@@ -71,4 +71,4 @@
   cv.ui.structure.pure.Reload.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Reload.js.map?dt=1660800148249
+//# sourceMappingURL=Reload.js.map?dt=1664297871825

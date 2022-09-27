@@ -5,17 +5,17 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractBasicWidget": {
+      "cv.ui.structure.pure.AbstractBasicWidget": {
         "construct": true,
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "qx.event.Timer": {},
       "qx.event.Registration": {},
       "qx.event.message.Bus": {},
-      "cv.TemplateEngine": {},
+      "cv.Application": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       }
@@ -49,7 +49,7 @@
    * @since 2012
    */
   qx.Class.define('cv.plugins.Timeout', {
-    extend: cv.ui.structure.AbstractBasicWidget,
+    extend: cv.ui.structure.pure.AbstractBasicWidget,
 
     /*
     ******************************************************
@@ -57,7 +57,7 @@
     ******************************************************
     */
     construct: function construct(props) {
-      cv.ui.structure.AbstractBasicWidget.constructor.call(this, props);
+      cv.ui.structure.pure.AbstractBasicWidget.constructor.call(this, props);
       this.__P_16_0 = 0;
 
       this.__P_16_1();
@@ -80,7 +80,7 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
@@ -175,21 +175,21 @@
 
         if (this.__P_16_0 >= 10) {
           this.__P_16_0 = 0;
-          var templateEngine = cv.TemplateEngine.getInstance();
+          var pageNavigationHandler = cv.Application.structureController;
 
           if (this.__P_16_2 !== this.__P_16_4 && this.__P_16_3 !== this.__P_16_4) {
             if (this.isDebug()) {
               this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__P_16_4);
             }
 
-            templateEngine.scrollToPage(this.__P_16_4);
-            templateEngine.getCurrentPage().getDomElement().scrollTop = 0; //templateEngine.updateTopNavigation();
+            pageNavigationHandler.scrollToPage(this.__P_16_4);
+            pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0; //templateEngine.updateTopNavigation();
           } else {
             if (this.isDebug()) {
               this.debug('TIMEOUT: Already on page ' + this.__P_16_4);
             }
 
-            templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
+            pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
           }
         }
       }
@@ -204,11 +204,11 @@
       this._disposeObjects("__P_16_5");
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
+      cv.parser.pure.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
       cv.ui.structure.WidgetFactory.registerClass('timeout', statics);
     }
   });
   cv.plugins.Timeout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timeout.js.map?dt=1660800142762
+//# sourceMappingURL=Timeout.js.map?dt=1664297866420

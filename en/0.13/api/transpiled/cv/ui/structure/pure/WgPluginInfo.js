@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Update": {
@@ -50,7 +50,7 @@
    * @since 2012
    */
   qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Update,
 
     /*
@@ -72,28 +72,28 @@
     ******************************************************
     */
     members: {
-      __P_63_0: null,
+      __P_66_0: null,
       // property apply
       _applyVariable: function _applyVariable(value) {
         if (value) {
-          if (!this.__P_63_0) {
+          if (!this.__P_66_0) {
             // create the request
-            this.__P_63_0 = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
+            this.__P_66_0 = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
 
-            this.__P_63_0.set({
+            this.__P_66_0.set({
               accept: 'application/json'
             });
 
-            this.__P_63_0.addListener('success', this._onSuccess, this);
+            this.__P_66_0.addListener('success', this._onSuccess, this);
           } else {
-            this.__P_63_0.setUrl('/wg-plugindb.php?name=' + value);
+            this.__P_66_0.setUrl('/wg-plugindb.php?name=' + value);
           }
 
-          cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__P_63_0.send, this.__P_63_0);
+          cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__P_66_0.send, this.__P_66_0);
         }
       },
       getRequest: function getRequest() {
-        return this.__P_63_0;
+        return this.__P_66_0;
       },
 
       /**
@@ -114,8 +114,8 @@
        * Triggers an {@link qx.io.request.Xhr} request to query the plugin value
        */
       handleUpdate: function handleUpdate() {
-        if (this.__P_63_0) {
-          this.__P_63_0.send();
+        if (this.__P_66_0) {
+          this.__P_66_0.send();
         }
       }
     },
@@ -126,7 +126,7 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_63_0");
+      this._disposeObjects("__P_66_0");
     },
     defer: function defer(statics) {
       cv.ui.structure.WidgetFactory.registerClass('wgplugin_info', statics);
@@ -135,4 +135,4 @@
   cv.ui.structure.pure.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1660800148615
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1664297872169

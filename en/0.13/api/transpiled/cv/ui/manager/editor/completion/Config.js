@@ -12,6 +12,7 @@
       "cv.ui.manager.editor.data.Provider": {
         "construct": true
       },
+      "cv.ui.manager.model.Schema": {},
       "qx.xml.Document": {},
       "qx.locale.Manager": {}
     }
@@ -54,13 +55,25 @@
 
     /**
      *
-     * @param schema {cv.ui.manager.model.Schema}
      */
-    construct: function construct(schema) {
+    construct: function construct() {
       qx.core.Object.constructor.call(this);
       this.__P_34_0 = {};
-      this._schema = schema;
+      this.__P_34_1 = {};
       this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
+    },
+
+    /*
+    ***********************************************
+      PROPERTIES
+    ***********************************************
+    */
+    properties: {
+      currentPath: {
+        check: 'String',
+        nullable: true,
+        apply: '_applyCurrentPath'
+      }
     },
 
     /*
@@ -69,9 +82,45 @@
     ***********************************************
     */
     members: {
+      _schemas: null,
+      __P_34_2: null,
       __P_34_0: null,
-      __P_34_1: null,
+      __P_34_3: null,
       _dataProvider: null,
+      __P_34_4: null,
+      __P_34_5: null,
+      _getSuggestions: null,
+      _applyCurrentPath: function _applyCurrentPath() {
+        this.__P_34_2 = null;
+        this.__P_34_4 = '';
+      },
+      setStructure: function setStructure(name) {
+        var loaded = Object.prototype.hasOwnProperty.call(this.__P_34_1, name);
+
+        switch (name) {
+          case 'pure':
+            if (!loaded) {
+              this.__P_34_1.pure = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
+            }
+
+            this.__P_34_2 = this.__P_34_1.pure;
+            this.__P_34_4 = 'pages';
+            this.__P_34_5 = 'meta';
+            this._getSuggestions = this.providePureCompletionItems;
+            break;
+
+          case 'tile':
+            if (!loaded) {
+              this.__P_34_1.tile = cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
+            }
+
+            this.__P_34_2 = this.__P_34_1.tile;
+            this.__P_34_4 = 'config';
+            this.__P_34_5 = 'cv-meta';
+            this._getSuggestions = this.provideTileCompletionItems;
+            break;
+        }
+      },
       getLastOpenedTag: function getLastOpenedTag(text) {
         // get all tags inside of the content
         var tags = text.match(/<\/*(?=\S*)([a-zA-Z-]+)/g);
@@ -131,7 +180,7 @@
         return null;
       },
       findElements: function findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-        var cache = inMeta === true ? this.__P_34_1 : this.__P_34_0;
+        var cache = inMeta === true ? this.__P_34_3 : this.__P_34_0;
 
         if (elementName in cache) {
           return cache[elementName];
@@ -142,7 +191,7 @@
         }
 
         if (!parent) {
-          parent = this._schema.getElementNode('pages');
+          parent = this.__P_34_2.getElementNode(this.__P_34_4);
         }
 
         if (currentDepth === undefined) {
@@ -158,7 +207,7 @@
         }
 
         for (var element in allowedElements) {
-          if (inMeta !== true && element === 'meta') {
+          if (inMeta !== true && element === this.__P_34_5) {
             continue;
           }
 
@@ -288,322 +337,564 @@
 
         return availableItems;
       },
+      detectSchema: function detectSchema(completeText) {
+        var match = /:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
+
+        if (match && match[1].endsWith('visu_config_tile.xsd')) {
+          this.setStructure('tile');
+        } else {
+          this.setStructure('pure');
+        }
+      },
       getProvider: function getProvider() {
         return {
           triggerCharacters: ['<', '"'],
           provideCompletionItems: function (model, position) {
-            // get editor content before the pointer
-            var textUntilPosition = model.getValueInRange({
-              startLineNumber: 1,
-              startColumn: 1,
-              endLineNumber: position.lineNumber,
-              endColumn: position.column
-            }); // parse mappings
-
+            this.setCurrentPath(model.uri.toString());
             var completeText = model.getValue();
-            var metaEndPos = completeText.indexOf('</meta>');
-            var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
-            var mappingNames = [];
-            var stylingNames = [];
-            var templates = {};
-            var map;
-            var vmap;
-            var regex = /<mapping name="([^"]+)"/gm;
 
-            while ((map = regex.exec(textMeta)) !== null) {
-              mappingNames.push(map[1]);
+            if (!this.__P_34_2) {
+              this.detectSchema(completeText);
             }
 
-            regex = /<styling name="([^"]+)"/gm;
-
-            while ((map = regex.exec(textMeta)) !== null) {
-              stylingNames.push(map[1]);
+            if (this._getSuggestions) {
+              return this._getSuggestions(model, position);
             }
 
-            var templatesStart = textMeta.indexOf('<templates>');
+            return {
+              suggestions: []
+            };
+          }.bind(this)
+        };
+      },
+      providePureCompletionItems: function providePureCompletionItems(model, position) {
+        // get editor content before the pointer
+        var textUntilPosition = model.getValueInRange({
+          startLineNumber: 1,
+          startColumn: 1,
+          endLineNumber: position.lineNumber,
+          endColumn: position.column
+        }); // parse mappings
 
-            if (templatesStart >= 0) {
-              var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
-              templatesString.split('</template>').forEach(function (rawTemplate) {
-                var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate); // search for variables
+        var completeText = model.getValue();
+        var metaEndPos = completeText.indexOf('</meta>');
+        var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+        var mappingNames = [];
+        var stylingNames = [];
+        var templates = {};
+        var map;
+        var vmap;
+        var regex = /<mapping name="([^"]+)"/gm;
 
-                var variables = [];
-                var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+        while ((map = regex.exec(textMeta)) !== null) {
+          mappingNames.push(map[1]);
+        }
 
-                while ((vmap = vregex.exec(rawTemplate)) !== null) {
-                  variables.push(vmap[1]);
+        regex = /<styling name="([^"]+)"/gm;
+
+        while ((map = regex.exec(textMeta)) !== null) {
+          stylingNames.push(map[1]);
+        }
+
+        var templatesStart = textMeta.indexOf('<templates>');
+
+        if (templatesStart >= 0) {
+          var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
+          templatesString.split('</template>').forEach(function (rawTemplate) {
+            var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate); // search for variables
+
+            var variables = [];
+            var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+
+            while ((vmap = vregex.exec(rawTemplate)) !== null) {
+              variables.push(vmap[1]);
+            }
+
+            templates[nameMatch[1]] = variables;
+          }, this);
+        } // if we want suggestions, inside of which tag are we?
+
+
+        var lastOpenedTag = this.getLastOpenedTag(textUntilPosition); // console.log(lastOpenedTag);
+        // get opened tags to see what tag we should look for in the XSD schema
+
+        var openedTags = []; // attrobutes of the ancestors
+
+        var openedAttributes = []; // get the elements/attributes that are already mentioned in the element we're in
+
+        var usedItems = [];
+        var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
+        var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
+        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch; // no need to calculate the position in the XSD schema if we are in the root element
+
+        var parts;
+
+        if (lastOpenedTag) {
+          // try to create a valid XML document
+          parts = lastOpenedTag.text.split(' ');
+          parts.shift();
+          var cleanedText = textUntilPosition;
+
+          if (parts.length) {
+            cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
+          } // parse the content (not cleared text) into an xml document
+
+
+          var xmlDoc = qx.xml.Document.fromString(cleanedText);
+          var lastChild = xmlDoc.lastElementChild;
+          var i;
+          var lastFound = false;
+
+          while (lastChild && lastChild.tagName.toLowerCase() !== 'parsererror') {
+            openedTags.push(lastChild.tagName);
+            openedAttributes.push(lastChild.attributes); // if we found our last opened tag
+
+            if (lastChild.tagName === lastOpenedTag.tagName) {
+              lastFound = true; // if we are looking for attributes, then used items should
+              // be the attributes we already used
+
+              if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
+                var attrs = lastChild.attributes;
+
+                for (i = 0; i < attrs.length; i++) {
+                  usedItems.push(attrs[i].nodeName);
                 }
+              } else {
+                // if we are looking for child elements, then used items
+                // should be the elements that were already used
+                var children = lastChild.children;
 
-                templates[nameMatch[1]] = variables;
-              }, this);
-            } // if we want suggestions, inside of which tag are we?
+                for (i = 0; i < children.length; i++) {
+                  if (children[i].tagName.toLowerCase() !== 'parsererror') {
+                    usedItems.push(children[i].tagName);
+                  }
+                }
+              }
+
+              break;
+            } // we haven't found the last opened tag yet, so we move to
+            // the next element
 
 
-            var lastOpenedTag = this.getLastOpenedTag(textUntilPosition); // console.log(lastOpenedTag);
-            // get opened tags to see what tag we should look for in the XSD schema
+            lastChild = lastChild.lastElementChild;
+          }
 
-            var openedTags = []; // attributes of the ancestors
+          if (!lastFound) {
+            // fallback -> parse string
+            if (isAttributeSearch || isContentSearch) {
+              parts = lastOpenedTag.text.split(' '); // skip tag name
 
-            var openedAttributes = []; // get the elements/attributes that are already mentioned in the element we're in
-
-            var usedItems = [];
-            var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
-            var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
-            var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch; // no need to calculate the position in the XSD schema if we are in the root element
-
-            var parts;
-
-            if (lastOpenedTag) {
-              // try to create a valid XML document
-              parts = lastOpenedTag.text.split(' ');
               parts.shift();
-              var cleanedText = textUntilPosition;
-
-              if (parts.length) {
-                cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
-              } // parse the content (not cleared text) into an xml document
-
-
-              var xmlDoc = qx.xml.Document.fromString(cleanedText);
-              var lastChild = xmlDoc.lastElementChild;
-              var i;
-              var lastFound = false;
-
-              while (lastChild && lastChild.tagName.toLowerCase() !== 'parsererror') {
-                openedTags.push(lastChild.tagName);
-                openedAttributes.push(lastChild.attributes); // if we found our last opened tag
-
-                if (lastChild.tagName === lastOpenedTag.tagName) {
-                  lastFound = true; // if we are looking for attributes, then used items should
-                  // be the attributes we already used
-
-                  if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
-                    var attrs = lastChild.attributes;
-
-                    for (i = 0; i < attrs.length; i++) {
-                      usedItems.push(attrs[i].nodeName);
-                    }
-                  } else {
-                    // if we are looking for child elements, then used items
-                    // should be the elements that were already used
-                    var children = lastChild.children;
-
-                    for (i = 0; i < children.length; i++) {
-                      if (children[i].tagName.toLowerCase() !== 'parsererror') {
-                        usedItems.push(children[i].tagName);
-                      }
-                    }
-                  }
-
-                  break;
-                } // we haven't found the last opened tag yet, so we move to
-                // the next element
-
-
-                lastChild = lastChild.lastElementChild;
-              }
-
-              if (!lastFound) {
-                // fallback -> parse string
-                if (isAttributeSearch || isContentSearch) {
-                  parts = lastOpenedTag.text.split(' '); // skip tag name
-
-                  parts.shift();
-                  parts.forEach(function (entry) {
-                    usedItems.push(entry.split('=').shift());
-                  });
-                }
-              }
-            }
-
-            var res = [];
-            var match; // find the last opened tag in the schema to see what elements/attributes it can have
-
-            var searchedElement = openedTags[openedTags.length - 1];
-
-            if (isContentSearch) {
-              // handle data providers if the is one relevant
-              if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
-                return this._dataProvider.getDesigns().then(function (sugg) {
-                  return {
-                    suggestions: sugg
-                  };
-                });
-              } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
-                return {
-                  suggestions: this._dataProvider.getTransforms()
-                };
-              } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
-                return {
-                  suggestions: this._dataProvider.getPlugins()
-                };
-              } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
-                return {
-                  suggestions: this._dataProvider.getIcons('monaco', {
-                    cache: false
-                  }, completeText)
-                };
-              } else if (lastOpenedTag.tagName === 'influx') {
-                if (lastOpenedTag.currentAttribute === 'measurement') {
-                  return this._dataProvider.getInfluxDBs().then(function (suggestions) {
-                    return {
-                      suggestions: suggestions
-                    };
-                  });
-                } else if (lastOpenedTag.currentAttribute === 'field') {
-                  match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
-
-                  if (match) {
-                    return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
-                      return {
-                        suggestions: suggestions
-                      };
-                    });
-                  }
-                }
-              } else if (lastOpenedTag.tagName === 'tag' && (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') && openedTags.includes('influx')) {
-                var influxAttributes = openedAttributes[openedTags.indexOf('influx')];
-                var attr = influxAttributes.getNamedItem('measurement');
-
-                if (attr) {
-                  if (lastOpenedTag.currentAttribute === 'key') {
-                    return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
-                      return {
-                        suggestions: suggestions
-                      };
-                    });
-                  } else if (lastOpenedTag.currentAttribute === 'value') {
-                    match = /key="([^"]+)"/.exec(lastOpenedTag.text);
-
-                    if (match) {
-                      return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
-                        return {
-                          suggestions: suggestions
-                        };
-                      });
-                    }
-                  }
-                }
-              } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && openedTags.includes('meta')) {
-                res = Object.keys(templates).map(function (name) {
-                  return {
-                    label: name,
-                    insertText: name,
-                    kind: window.monaco.languages.CompletionItemKind.EnumMember
-                  };
-                }, this);
-                return {
-                  suggestions: res
-                };
-              } else if (lastOpenedTag.tagName === 'value' && lastOpenedTag.currentAttribute === 'name' && !openedTags.includes('meta') && openedTags.includes('template')) {
-                // TODO: find out template name
-                var templateNames = Object.keys(templates);
-                templateNames.forEach(function (name) {
-                  templates[name].forEach(function (variableName) {
-                    res.push({
-                      label: variableName,
-                      insertText: variableName,
-                      detail: qx.locale.Manager.tr('Variable from template %1', name),
-                      kind: window.monaco.languages.CompletionItemKind.Variable
-                    });
-                  }, this);
-                }, this);
-                return {
-                  suggestions: res
-                };
-              } else if (lastOpenedTag.currentAttribute === 'mapping') {
-                res = mappingNames.map(function (mappingName) {
-                  return {
-                    label: mappingName,
-                    insertText: mappingName,
-                    kind: window.monaco.languages.CompletionItemKind.EnumMember
-                  };
-                }, this);
-                return {
-                  suggestions: res
-                };
-              } else if (lastOpenedTag.currentAttribute === 'styling') {
-                res = stylingNames.map(function (stylingName) {
-                  return {
-                    label: stylingName,
-                    insertText: stylingName,
-                    kind: window.monaco.languages.CompletionItemKind.EnumMember
-                  };
-                }, this);
-                return {
-                  suggestions: res
-                };
-              } // TODO: completions that have to be retrieved from the backend
-              // * rrds
-              // * Influx: dbs, tags fields
-              // * media files
-
-
-              searchedElement = lastOpenedTag.tagName;
-            } else if (!isAttributeSearch && filteredElementSearch) {
-              searchedElement = openedTags[openedTags.length - 2];
-            } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
-              return this._dataProvider.getAddresses('monaco').then(function (res) {
-                return {
-                  suggestions: res
-                };
+              parts.forEach(function (entry) {
+                usedItems.push(entry.split('=').shift());
               });
             }
+          }
+        }
 
-            if (searchedElement === 'rrd') {
-              return this._dataProvider.getRrds('monaco').then(function (res) {
-                return {
-                  suggestions: res
-                };
-              });
-            } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
-              match = /type="([^"]+)"/.exec(lastOpenedTag.text);
-              var typeFilter = match ? match[1] : null;
-              return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+        var res = [];
+        var match; // find the last opened tag in the schema to see what elements/attributes it can have
+
+        var searchedElement = openedTags[openedTags.length - 1];
+
+        if (isContentSearch) {
+          // handle data providers if the is one relevant
+          if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
+            return this._dataProvider.getDesigns().then(function (sugg) {
+              return {
+                suggestions: sugg
+              };
+            });
+          } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
+            return {
+              suggestions: this._dataProvider.getTransforms()
+            };
+          } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
+            return {
+              suggestions: this._dataProvider.getPlugins()
+            };
+          } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
+            return {
+              suggestions: this._dataProvider.getIcons('monaco', {
+                cache: false
+              }, completeText)
+            };
+          } else if (lastOpenedTag.tagName === 'influx') {
+            if (lastOpenedTag.currentAttribute === 'measurement') {
+              return this._dataProvider.getInfluxDBs().then(function (suggestions) {
                 return {
                   suggestions: suggestions
                 };
               });
+            } else if (lastOpenedTag.currentAttribute === 'field') {
+              match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
+
+              if (match) {
+                return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
+                  return {
+                    suggestions: suggestions
+                  };
+                });
+              }
             }
+          } else if (lastOpenedTag.tagName === 'tag' && (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') && openedTags.includes('influx')) {
+            var influxAttributes = openedAttributes[openedTags.indexOf('influx')];
+            var attr = influxAttributes.getNamedItem('measurement');
 
-            var currentItem = this.findElements(this._schema.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
-            // array if it doesn't
+            if (attr) {
+              if (lastOpenedTag.currentAttribute === 'key') {
+                return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
+                  return {
+                    suggestions: suggestions
+                  };
+                });
+              } else if (lastOpenedTag.currentAttribute === 'value') {
+                match = /key="([^"]+)"/.exec(lastOpenedTag.text);
 
-            if (isContentSearch) {
-              var currentAttribute = usedItems[usedItems.length - 1];
-
-              if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
-                var attribute = currentItem.getAllowedAttributes()[currentAttribute];
-                var type = attribute.getTypeString();
-                attribute.getEnumeration().forEach(function (entry) {
-                  res.push({
-                    label: entry,
-                    kind: window.monaco.languages.CompletionItemKind.Value,
-                    detail: type,
-                    documentation: attribute.getDocumentation().join('\n')
+                if (match) {
+                  return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
+                    return {
+                      suggestions: suggestions
+                    };
                   });
-                });
-              }
-            } else if (isAttributeSearch) {
-              // get attributes completions
-              res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
-            } else {
-              // get elements completions
-              // eslint-disable-next-line no-lonely-if
-              if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
-                res.push({
-                  label: lastOpenedTag.tagName,
-                  kind: window.monaco.languages.CompletionItemKind.Field
-                });
-              } else {
-                res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
+                }
               }
             }
-
+          } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && openedTags.includes('meta')) {
+            res = Object.keys(templates).map(function (name) {
+              return {
+                label: name,
+                insertText: name,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }, this);
             return {
               suggestions: res
             };
-          }.bind(this)
+          } else if (lastOpenedTag.tagName === 'value' && lastOpenedTag.currentAttribute === 'name' && !openedTags.includes('meta') && openedTags.includes('template')) {
+            // TODO: find out template name
+            var templateNames = Object.keys(templates);
+            templateNames.forEach(function (name) {
+              templates[name].forEach(function (variableName) {
+                res.push({
+                  label: variableName,
+                  insertText: variableName,
+                  detail: qx.locale.Manager.tr('Variable from template %1', name),
+                  kind: window.monaco.languages.CompletionItemKind.Variable
+                });
+              }, this);
+            }, this);
+            return {
+              suggestions: res
+            };
+          } else if (lastOpenedTag.currentAttribute === 'mapping') {
+            res = mappingNames.map(function (mappingName) {
+              return {
+                label: mappingName,
+                insertText: mappingName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }, this);
+            return {
+              suggestions: res
+            };
+          } else if (lastOpenedTag.currentAttribute === 'styling') {
+            res = stylingNames.map(function (stylingName) {
+              return {
+                label: stylingName,
+                insertText: stylingName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }, this);
+            return {
+              suggestions: res
+            };
+          } // TODO: completions that have to be retrieved from the backend
+          // * rrds
+          // * Influx: dbs, tags fields
+          // * media files
+
+
+          searchedElement = lastOpenedTag.tagName;
+        } else if (!isAttributeSearch && filteredElementSearch) {
+          searchedElement = openedTags[openedTags.length - 2];
+        } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
+          return this._dataProvider.getAddresses('monaco').then(function (res) {
+            return {
+              suggestions: res
+            };
+          });
+        }
+
+        if (searchedElement === 'rrd') {
+          return this._dataProvider.getRrds('monaco').then(function (res) {
+            return {
+              suggestions: res
+            };
+          });
+        } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
+          match = /type="([^"]+)"/.exec(lastOpenedTag.text);
+          var typeFilter = match ? match[1] : null;
+          return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+            return {
+              suggestions: suggestions
+            };
+          });
+        }
+
+        var currentItem = this.findElements(this.__P_34_2.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
+        // array if it doesn't
+
+        if (isContentSearch) {
+          var currentAttribute = usedItems[usedItems.length - 1];
+
+          if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+            var attribute = currentItem.getAllowedAttributes()[currentAttribute];
+            var type = attribute.getTypeString();
+            attribute.getEnumeration().forEach(function (entry) {
+              res.push({
+                label: entry,
+                insertText: entry,
+                kind: window.monaco.languages.CompletionItemKind.Value,
+                detail: type,
+                documentation: attribute.getDocumentation().join('\n')
+              });
+            });
+          }
+        } else if (isAttributeSearch) {
+          // get attributes completions
+          res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
+        } else {
+          // get elements completions
+          // eslint-disable-next-line no-lonely-if
+          if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
+            res.push({
+              label: lastOpenedTag.tagName,
+              insertText: lastOpenedTag.tagName,
+              kind: window.monaco.languages.CompletionItemKind.Field
+            });
+          } else {
+            res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
+          }
+        }
+
+        return {
+          suggestions: res
+        };
+      },
+      provideTileCompletionItems: function provideTileCompletionItems(model, position) {
+        // get editor content before the pointer
+        var textUntilPosition = model.getValueInRange({
+          startLineNumber: 1,
+          startColumn: 1,
+          endLineNumber: position.lineNumber,
+          endColumn: position.column
+        }); // parse mappings
+
+        var completeText = model.getValue();
+        var metaEndPos = completeText.indexOf('</cv-meta>');
+        var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+        var mappingNames = [];
+        var stylingNames = [];
+        var map;
+        var regex = /<cv-mapping name="([^"]+)"/gm;
+
+        while ((map = regex.exec(textMeta)) !== null) {
+          mappingNames.push(map[1]);
+        }
+
+        regex = /<cv-styling name="([^"]+)"/gm;
+
+        while ((map = regex.exec(textMeta)) !== null) {
+          stylingNames.push(map[1]);
+        } // if we want suggestions, inside of which tag are we?
+
+
+        var lastOpenedTag = this.getLastOpenedTag(textUntilPosition); // console.log(lastOpenedTag);
+        // get opened tags to see what tag we should look for in the XSD schema
+
+        var openedTags = []; // attrobutes of the ancestors
+
+        var openedAttributes = []; // get the elements/attributes that are already mentioned in the element we're in
+
+        var usedItems = [];
+        var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
+        var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
+        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch; // no need to calculate the position in the XSD schema if we are in the root element
+
+        var parts;
+
+        if (lastOpenedTag) {
+          // try to create a valid XML document
+          parts = lastOpenedTag.text.split(' ');
+          parts.shift();
+          var cleanedText = textUntilPosition;
+
+          if (parts.length) {
+            cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
+          } // parse the content (not cleared text) into an xml document
+
+
+          var xmlDoc = qx.xml.Document.fromString(cleanedText);
+          var lastChild = xmlDoc.lastElementChild;
+          var i;
+          var lastFound = false;
+
+          while (lastChild) {
+            openedTags.push(lastChild.tagName);
+            openedAttributes.push(lastChild.attributes); // if we found our last opened tag
+
+            if (lastChild.tagName === lastOpenedTag.tagName) {
+              lastFound = true; // if we are looking for attributes, then used items should
+              // be the attributes we already used
+
+              if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
+                var attrs = lastChild.attributes;
+
+                for (i = 0; i < attrs.length; i++) {
+                  usedItems.push(attrs[i].nodeName);
+                }
+              } else {
+                // if we are looking for child elements, then used items
+                // should be the elements that were already used
+                var children = lastChild.children;
+
+                for (i = 0; i < children.length; i++) {
+                  if (children[i].tagName.toLowerCase() !== 'parsererror') {
+                    usedItems.push(children[i].tagName);
+                  }
+                }
+              }
+
+              break;
+            } // we haven't found the last opened tag yet, so we move to
+            // the next element
+
+
+            lastChild = lastChild.lastElementChild;
+          }
+
+          if (!lastFound) {
+            // fallback -> parse string
+            if (isAttributeSearch || isContentSearch) {
+              parts = lastOpenedTag.text.split(' '); // skip tag name
+
+              parts.shift();
+              parts.forEach(function (entry) {
+                usedItems.push(entry.split('=').shift());
+              });
+            }
+          }
+        }
+
+        var res = [];
+        var match; // find the last opened tag in the schema to see what elements/attributes it can have
+
+        var searchedElement = openedTags[openedTags.length - 1];
+
+        if (isContentSearch) {
+          // handle data providers if the is one relevant
+          if (lastOpenedTag.tagName === 'config' && lastOpenedTag.currentAttribute === 'design') {
+            var suggestions = this._dataProvider.getDesigns(null, null, 'tile');
+
+            return {
+              suggestions: suggestions
+            };
+          } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === 'transform') {
+            return {
+              suggestions: this._dataProvider.getTransforms()
+            };
+          } else if (lastOpenedTag.tagName === 'cv-icon' && lastOpenedTag.currentAttribute === 'name') {
+            return {
+              suggestions: this._dataProvider.getIcons()
+            };
+          } else if (lastOpenedTag.currentAttribute === 'mapping') {
+            res = mappingNames.map(function (mappingName) {
+              return {
+                label: mappingName,
+                insertText: mappingName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }, this);
+            return {
+              suggestions: res
+            };
+          } else if (lastOpenedTag.currentAttribute === 'styling') {
+            res = stylingNames.map(function (stylingName) {
+              return {
+                label: stylingName,
+                insertText: stylingName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }, this);
+            return {
+              suggestions: res
+            };
+          }
+
+          searchedElement = lastOpenedTag.tagName;
+        } else if (!isAttributeSearch && filteredElementSearch) {
+          searchedElement = openedTags[openedTags.length - 2];
+        } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === null) {
+          return this._dataProvider.getAddresses('monaco').then(function (res) {
+            return {
+              suggestions: res
+            };
+          });
+        } else if (lastOpenedTag.tagName === 'cv-chart' && lastOpenedTag.currentAttribute === 'src') {
+          return this._dataProvider.getRrds('monaco').then(function (res) {
+            return {
+              suggestions: res
+            };
+          });
+        } else if (lastOpenedTag.tagName === 'cv-loader' && lastOpenedTag.currentAttribute === 'src') {
+          match = /type="([^"]+)"/.exec(lastOpenedTag.text);
+          var typeFilter = match ? match[1] : null;
+          return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+            return {
+              suggestions: suggestions
+            };
+          });
+        }
+
+        var currentItem = this.findElements(this.__P_34_2.getElementNode('config'), searchedElement, openedTags.length, openedTags.includes('cv-meta')); // return available elements/attributes if the tag exists in the schema, or an empty
+        // array if it doesn't
+
+        if (isContentSearch) {
+          var currentAttribute = lastOpenedTag.currentAttribute;
+
+          if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+            var attribute = currentItem.getAllowedAttributes()[currentAttribute];
+            var type = attribute.getTypeString();
+            attribute.getEnumeration().forEach(function (entry) {
+              res.push({
+                label: entry,
+                insertText: entry,
+                kind: window.monaco.languages.CompletionItemKind.Value,
+                detail: type,
+                documentation: attribute.getDocumentation().join('\n')
+              });
+            });
+          }
+        } else if (isAttributeSearch) {
+          // get attributes completions
+          res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
+        } else {
+          // get elements completions
+          // eslint-disable-next-line no-lonely-if
+          if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
+            res.push({
+              label: lastOpenedTag.tagName,
+              insertText: lastOpenedTag.tagName,
+              kind: window.monaco.languages.CompletionItemKind.Field
+            });
+          } else {
+            res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
+          }
+        }
+
+        return {
+          suggestions: res
         };
       }
     },
@@ -622,4 +913,4 @@
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1660800145357
+//# sourceMappingURL=Config.js.map?dt=1664297868976

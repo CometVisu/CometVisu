@@ -237,7 +237,7 @@
             break;
         }
 
-        return control || cv.ui.manager.form.OptionListItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.form.OptionListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -253,4 +253,4 @@
   cv.ui.manager.form.OptionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionListItem.js.map?dt=1660800145971
+//# sourceMappingURL=OptionListItem.js.map?dt=1664297869609

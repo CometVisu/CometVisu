@@ -1,3 +1,15 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -44,6 +56,7 @@
       "cv.ui.manager.model.FileItem": {},
       "cv.util.ConfigLoader": {},
       "qxl.dialog.Confirm": {},
+      "cv.util.ConfigUpgrader": {},
       "cv.ui.manager.model.Preferences": {},
       "cv.ui.manager.control.FileHandlerRegistry": {},
       "cv.ui.manager.editor.AbstractEditor": {},
@@ -305,6 +318,7 @@
           actions.push('delete');
           actions.push('upload');
           actions.push('clone');
+          actions.push('convertToTile');
         }
 
         if (cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
@@ -396,6 +410,37 @@
                 this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
               } else {
                 this._onCreate('file', res);
+              }
+            }, this);
+            break;
+
+          case 'convertToTile':
+            cv.io.rest.Client.getFsClient().readSync({
+              path: data.file.getFullPath()
+            }, function (err, res) {
+              if (err) {
+                cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
+              } else if (data.file.isConfigFile()) {
+                var converter = new cv.util.ConfigUpgrader();
+
+                var _converter$convertPur = converter.convertPureToTile(res),
+                    _converter$convertPur2 = _slicedToArray(_converter$convertPur, 2),
+                    _err = _converter$convertPur2[0],
+                    convertedContent = _converter$convertPur2[1];
+
+                if (_err) {
+                  cv.ui.manager.snackbar.Controller.error(_err);
+                } else {
+                  var suggestedName = 'tile';
+                  var match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(data.file.getName());
+
+                  if (match) {
+                    suggestedName = 'tile-' + match[1];
+                  } // config files need to be cloned in the root folder
+
+
+                  this._onCreate('config', convertedContent, cv.ui.manager.model.FileItem.ROOT, 'cv.ui.manager.editor.Source', suggestedName);
+                }
               }
             }, this);
             break;
@@ -604,13 +649,7 @@
             editorConfig.instance = new editorConfig.Clazz();
           }
 
-          if (!editorConfig.instance.isReady()) {
-            editorConfig.instance.addListenerOnce('changeReady', function () {
-              editorConfig.instance.setFile(file);
-            }, this);
-          } else {
-            editorConfig.instance.setFile(file);
-          }
+          editorConfig.instance.setFile(file);
 
           if (this._stack.indexOf(editorConfig.instance) < 0) {
             this._stack.add(editorConfig.instance);
@@ -946,7 +985,7 @@
         prompt.show();
         return prompt;
       },
-      _onCreate: function _onCreate(type, content, folder) {
+      _onCreate: function _onCreate(type, content, folder, handlerId, suggestedName) {
         var currentFolder = folder || this.getCurrentFolder();
 
         if (!currentFolder) {
@@ -1041,12 +1080,12 @@
 
             if (type !== 'dir') {
               // open the file in an editor
-              this.openFile(item, false, null, 'edit');
+              this.openFile(item, false, handlerId, 'edit');
             }
           }
         };
 
-        this.__P_23_7(message, handlePrompt, this);
+        this.__P_23_7(message, handlePrompt, this, suggestedName);
       },
 
       /**
@@ -1258,4 +1297,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1660800143733
+//# sourceMappingURL=Main.js.map?dt=1664297867363

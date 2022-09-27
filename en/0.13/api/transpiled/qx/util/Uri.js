@@ -125,10 +125,10 @@
 
             if (value instanceof Array) {
               for (var i = 0; i < value.length; i++) {
-                this.__P_477_0(key, value[i], parts, post);
+                this.__P_497_0(key, value[i], parts, post);
               }
             } else {
-              this.__P_477_0(key, value, parts, post);
+              this.__P_497_0(key, value, parts, post);
             }
           }
         }
@@ -144,7 +144,7 @@
        * @param parts {Array} Array to push to.
        * @param post {Boolean} Whether spaces should be encoded with "+".
        */
-      __P_477_0: function __P_477_0(key, value, parts, post) {
+      __P_497_0: function __P_497_0(key, value, parts, post) {
         var encode = window.encodeURIComponent;
 
         if (post) {
@@ -170,4 +170,4 @@
   qx.util.Uri.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Uri.js.map?dt=1660800179334
+//# sourceMappingURL=Uri.js.map?dt=1664297902580

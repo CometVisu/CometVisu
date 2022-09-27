@@ -143,6 +143,7 @@
           }
 
           this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() && !isBackup ? 'visible' : 'excluded');
+          this.getChildControl('convert-file-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded');
           this.getChildControl('delete-button').setLabel(file.isTrash() ? this.tr('Clear') : this.tr('Delete')); // create compare menu
 
           if (!this._noCompare) {
@@ -245,6 +246,7 @@
         }
 
         this.add(this.getChildControl('clone-file-button'));
+        this.add(this.getChildControl('convert-file-button'));
 
         if (!this._noNew) {
           this.add(this.getChildControl('new-folder-button'));
@@ -328,6 +330,13 @@
       _onClone: function _onClone() {
         if (this._selectedNode && this.isActive()) {
           qx.event.message.Bus.dispatchByName('cv.manager.action.clone', {
+            file: this._selectedNode
+          });
+        }
+      },
+      _onConvert: function _onConvert() {
+        if (this._selectedNode && this.isActive()) {
+          qx.event.message.Bus.dispatchByName('cv.manager.action.convertToTile', {
             file: this._selectedNode
           });
         }
@@ -423,9 +432,14 @@
           case 'open-with-menu':
             control = new qx.ui.menu.Menu();
             break;
+
+          case 'convert-file-button':
+            control = new qx.ui.menu.Button(this.tr('Convert to tile structure'), cv.theme.dark.Images.getIcon('convert', 18));
+            control.addListener('execute', this._onConvert, this);
+            break;
         }
 
-        return control || cv.ui.manager.contextmenu.FileItem.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.contextmenu.FileItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
 
@@ -444,4 +458,4 @@
   cv.ui.manager.contextmenu.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1660800144201
+//# sourceMappingURL=FileItem.js.map?dt=1664297867816

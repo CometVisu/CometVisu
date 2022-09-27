@@ -3877,6 +3877,17 @@
             "mounted": false
           },
           {
+            "type": "file",
+            "name": "visu_config_tile.xml",
+            "hasChildren": false,
+            "parentFolder": "",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": false
+          },
+          {
             "name": "demo",
             "type": "dir",
             "mounted": true,
@@ -3951,6 +3962,17 @@
           {
             "type": "file",
             "name": "visu_config_2d3d.xml",
+            "hasChildren": false,
+            "parentFolder": "demo",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          },
+          {
+            "type": "file",
+            "name": "visu_config_demo-tile.xml",
             "hasChildren": false,
             "parentFolder": "demo",
             "readable": true,

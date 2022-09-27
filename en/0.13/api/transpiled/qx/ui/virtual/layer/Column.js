@@ -91,7 +91,7 @@
       },
       // overridden
       setColor: function setColor(index, color) {
-        qx.ui.virtual.layer.Column.prototype.setColor.base.call(this, index, color);
+        qx.ui.virtual.layer.Column.superclass.prototype.setColor.call(this, index, color);
         var firstColumn = this.getFirstColumn();
         var lastColumn = firstColumn + this.getColumnSizes().length - 1;
 
@@ -104,4 +104,4 @@
   qx.ui.virtual.layer.Column.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Column.js.map?dt=1660800177372
+//# sourceMappingURL=Column.js.map?dt=1664297900719

@@ -61,7 +61,7 @@
     members: {
       // overridden
       main: function main() {
-        qx.dev.unit.TestLoader.prototype.main.base.call(this); // Dependencies to loggers
+        qx.dev.unit.TestLoader.superclass.prototype.main.call(this); // Dependencies to loggers
 
         qx.log.appender.Console;
 
@@ -91,4 +91,4 @@
   qx.dev.unit.TestLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestLoader.js.map?dt=1660800157064
+//# sourceMappingURL=TestLoader.js.map?dt=1664297881904

@@ -2,13 +2,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.core.Environment": {
-        "defer": "load",
-        "require": true
-      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -37,7 +39,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.io.openhab.Rest": {},
       "cv.io.mqtt.Client": {},
       "qx.bom.Blocker": {},
-      "cv.ui.layout.ResizeHandler": {},
       "cv.ConfigCache": {},
       "qx.event.GlobalError": {},
       "cv.report.Record": {},
@@ -65,21 +66,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.util.ConfigLoader": {},
       "cv.util.ScriptLoader": {},
       "cv.data.Model": {},
+      "cv.io.BackendConnections": {},
       "cv.ui.structure.WidgetFactory": {},
       "qx.Part": {},
-      "qx.bom.client.Html": {
-        "require": true
-      },
       "cv.io.rest.Client": {},
       "qx.io.request.Xhr": {}
-    },
-    "environment": {
-      "provided": [],
-      "required": {
-        "html.storage.local": {
-          "className": "qx.bom.client.Html"
-        }
-      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -111,8 +102,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    * @asset(icons/*)
    * @asset(sentry/bundle.min.js)
    * @asset(sentry/bundle.tracing.min.js)
-   * @asset(sentry/bundle.min.js.map)
-   * @asset(sentry/bundle.tracing.min.js.map)
    * @asset(test/*)
    *
    * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -135,8 +124,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         qx.io.PartLoader.require([lang]);
       }
 
-      qx.bom.PageVisibility.getInstance().addListener('change', function () {
-        this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === 'visible');
+      var pageVis = qx.bom.PageVisibility.getInstance();
+      pageVis.addListener('change', function () {
+        this.setActive(pageVis.getVisibilityState() === 'visible');
       }, this); // install global shortcut for opening the manager
 
       if (window.parent && typeof window.parent.showManager === 'function') {
@@ -158,9 +148,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      ******************************************************
      */
     statics: {
-      HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
       consoleCommands: [],
       __P_2_1: null,
+
+      /**
+       * Controller from the loaded structure injects itself here when loaded
+       */
+      structureController: null,
       _relResourcePath: null,
       _fullResourcePath: null,
       getRelativeResourcePath: function getRelativeResourcePath(fullPath) {
@@ -192,13 +186,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           args[_key] = arguments[_key];
         }
 
-        if (cv.Config.testMode === true || window.cvTestMode === true) {
+        if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
           Client = cv.io.Mockup;
         } else if (args[0] === 'openhab') {
           Client = cv.io.openhab.Rest;
 
-          if (!cv.Config.pluginsToLoad.includes('plugin-openhab')) {
-            cv.Config.pluginsToLoad.push('plugin-openhab');
+          if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+            cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
           }
 
           if (args[1] && args[1].endsWith('/cv/l/')) {
@@ -209,12 +203,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           Client = cv.io.mqtt.Client;
         }
 
-        args.unshift(null);
-        return new (Function.prototype.bind.apply(Client, args))(); // jshint ignore:line
+        return _construct(Client, args);
       },
 
       /**
-       * Register shortcuts to usefull commands the user can execute in the browser console
+       * Register shortcuts to useful commands the user can execute in the browser console
        * @param shortcutName {String} command name used to install the command in the global namespace
        * @param command {Function} command to execute
        * @param help {String} some documentation about the command
@@ -244,7 +237,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       structureLoaded: {
         check: 'Boolean',
         init: false,
-        event: 'changeStructureLoaded'
+        event: 'changeStructureLoaded',
+        apply: '_applyStructureLoaded'
       },
       commandManager: {
         check: 'qx.ui.command.GroupManager',
@@ -294,6 +288,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     members: {
       _blocker: null,
       __P_2_0: null,
+      _isCached: null,
 
       /**
        * Toggle the {@link qx.bom.Blocker} visibility
@@ -321,10 +316,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         } else if (!value && document.body.classList.contains('mobile')) {
           document.body.classList.remove('mobile');
         }
-
-        if (this.__P_2_0) {
-          cv.ui.layout.ResizeHandler.invalidateNavbar();
-        }
       },
       _applyManagerChecked: function _applyManagerChecked(value) {
         if (value && cv.Config.loadManager) {
@@ -344,6 +335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this._checkBackend();
 
         qx.event.GlobalError.setErrorHandler(this.__P_2_2, this);
+        document.body.classList.add('loading');
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributers.\n' + ' Version: ' + cv.Version.VERSION + '\n';
 
@@ -362,7 +354,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, this);
         this.registerServiceWorker();
         // Call super class
-        cv.Application.prototype.main.base.call(this);
+        cv.Application.superclass.prototype.main.call(this);
         this.block(true); // run svg4everybody to support SVG sprites in older browsers
 
         svg4everybody(); // support native logging capabilities, e.g. Firebug for Firefox
@@ -414,7 +406,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           };
           cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
         } else {
-          qx.io.PartLoader.require(['manager'], function () {
+          qx.io.PartLoader.require(['manager'], function (states) {
             // break dependency
             var ManagerMain = cv.ui['manager']['Main'];
             var firstCall = !ManagerMain.constructor.$$instance;
@@ -439,6 +431,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _applyInManager: function _applyInManager(value) {
         if (value) {
           qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+          this.block(false);
+
+          if (document.body.classList.contains('loading')) {
+            document.body.classList.remove('loading');
+          }
         } else {
           qx.bom.History.getInstance().addToHistory('', 'CometVisu');
         }
@@ -703,13 +700,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       throwError: function throwError() {
         window.onerror(new Error('test error'));
       },
-      _onResize: function _onResize(ev, init) {
+      _onResize: function _onResize() {
         if (cv.Config.mobileDevice === undefined) {
           this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
         }
+      },
+      _applyStructureLoaded: function _applyStructureLoaded() {
+        if (!cv.Config.cacheUsed) {
+          var body = document.querySelector('body'); // load empty HTML structure
 
-        if (!init && this.__P_2_0) {
-          cv.ui.layout.ResizeHandler.invalidateScreensize();
+          body.innerHTML = cv.Application.structureController.getHtmlStructure();
         }
       },
 
@@ -717,124 +717,121 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * Internal initialization method
        */
       __P_2_3: function __P_2_3() {
-        qx.event.Registration.addListener(window, 'unload', function () {
-          cv.io.Client.stopAll();
-        }, this);
-        qx.bom.Lifecycle.onReady( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-          var body, isCached, configLoader;
-          return regeneratorRuntime.wrap(function _callee$(_context) {
+        var _this3 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+          return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
-              switch (_context.prev = _context.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
-                  // init notification router
-                  cv.core.notifications.Router.getInstance();
-                  body = document.querySelector('body');
-                  isCached = false;
+                  qx.event.Registration.addListener(window, 'unload', function () {
+                    cv.io.Client.stopAll();
+                  }, _this3);
+                  qx.bom.Lifecycle.onReady( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                    var configLoader;
+                    return regeneratorRuntime.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            // init notification router
+                            cv.core.notifications.Router.getInstance();
+                            _this3._isCached = false;
 
-                  if (!cv.Config.enableCache) {
-                    _context.next = 7;
-                    break;
-                  }
+                            if (!cv.Config.enableCache) {
+                              _context.next = 6;
+                              break;
+                            }
 
-                  _context.next = 6;
-                  return cv.ConfigCache.isCached();
+                            _context.next = 5;
+                            return cv.ConfigCache.isCached();
 
-                case 6:
-                  isCached = _context.sent;
+                          case 5:
+                            _this3._isCached = _context.sent;
 
-                case 7:
-                  if (isCached) {
-                    // load settings
-                    this.debug('using cache');
-                    cv.ConfigCache.restore(); // initialize NotificationCenter
+                          case 6:
+                            if (_this3._isCached) {
+                              // load settings
+                              _this3.debug('using cache');
 
-                    cv.ui.NotificationCenter.getInstance();
-                    cv.ui.ToastManager.getInstance();
-                  } else {
-                    // load empty HTML structure
-                    body.innerHTML = cv.Application.HTML_STRUCT; // initialize NotificationCenter
+                              cv.ConfigCache.restore();
+                            } // initialize NotificationCenter
 
-                    cv.ui.NotificationCenter.getInstance();
-                    cv.ui.ToastManager.getInstance();
-                  }
 
-                  if (!cv.Config.loadManager) {
-                    configLoader = new cv.util.ConfigLoader();
-                    configLoader.load(this.bootstrap, this);
-                  }
+                            cv.ui.NotificationCenter.getInstance();
+                            cv.ui.ToastManager.getInstance();
 
-                case 9:
+                            if (!window.cvTestMode && !cv.Config.loadManager) {
+                              configLoader = new cv.util.ConfigLoader();
+                              configLoader.load(_this3.bootstrap, _this3);
+                            }
+
+                          case 10:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee);
+                  }))); // reaction on browser back button
+
+                  qx.bom.History.getInstance().addListener('request', function (e) {
+                    var anchor = e.getData();
+
+                    if (this.isInManager() && anchor !== 'manager') {
+                      this.hideManager();
+                    } else if (!this.isInManager() && anchor === 'manager') {
+                      this.showManager();
+                    } else if (cv.Application.structureController) {
+                      cv.Application.structureController.onHistoryRequest(anchor);
+                    }
+                  }, _this3);
+
+                case 3:
                 case "end":
-                  return _context.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee, this);
-        })), this); // reaction on browser back button
-
-        qx.bom.History.getInstance().addListener('request', function (e) {
-          var anchor = e.getData();
-
-          if (this.isInManager() && anchor !== 'manager') {
-            this.hideManager();
-          } else if (!this.isInManager() && anchor === 'manager') {
-            this.showManager();
-          } else if (anchor) {
-            cv.TemplateEngine.getInstance().scrollToPage(anchor, 0, true);
-          }
-        }, this);
+          }, _callee2);
+        }))();
       },
 
       /**
        * Initialize the content
        * @param xml {Document} XML configuration retrieved from backend
        */
-      bootstrap: function () {
-        var _bootstrap = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(xml) {
-          var engine, loader, isCached, xmlHash, cacheValid, structure, styles, scripts;
-          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      bootstrap: function bootstrap(xml) {
+        var _this4 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+          var engine, loader, cacheValid, structure, styles, scripts, _engine;
+
+          return regeneratorRuntime.wrap(function _callee4$(_context4) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context4.prev = _context4.next) {
                 case 0:
-                  this.debug('bootstrapping');
+                  _this4.debug('bootstrapping');
+
                   engine = cv.TemplateEngine.getInstance();
                   loader = cv.util.ScriptLoader.getInstance();
-                  engine.xml = xml;
-                  loader.addListenerOnce('finished', function () {
-                    engine.setScriptsLoaded(true);
-                  }, this);
-                  isCached = false;
+                  engine.setConfigSource(xml);
+                  loader.bind('finished', engine, 'scriptsLoaded');
 
-                  if (!cv.Config.enableCache) {
-                    _context2.next = 11;
+                  if (!_this4._isCached) {
+                    _context4.next = 10;
                     break;
                   }
 
-                  _context2.next = 9;
-                  return cv.ConfigCache.isCached();
+                  _context4.next = 8;
+                  return cv.ConfigCache.isValid(null, engine.getConfigHash());
 
-                case 9:
-                  isCached = _context2.sent;
-                  xmlHash = cv.ConfigCache.toHash(xml);
-
-                case 11:
-                  if (!isCached) {
-                    _context2.next = 16;
-                    break;
-                  }
-
-                  _context2.next = 14;
-                  return cv.ConfigCache.isValid(null, xmlHash);
-
-                case 14:
-                  cacheValid = _context2.sent;
+                case 8:
+                  cacheValid = _context4.sent;
 
                   if (!cacheValid) {
-                    this.debug('cache is invalid re-parse xml'); // cache invalid
+                    _this4.debug('cache is invalid re-parse xml'); // cache invalid
+
 
                     cv.Config.cacheUsed = false;
-                    cv.ConfigCache.clear(); // load empty HTML structure
-
-                    document.body.innerHTML = cv.Application.HTML_STRUCT; //empty model
+                    cv.ConfigCache.clear(); //empty model
 
                     cv.data.Model.getInstance().resetWidgetDataModel();
                     cv.data.Model.getInstance().resetAddressList();
@@ -843,88 +840,98 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cv.report.Record.logCache();
                     cv.Config.cacheUsed = true;
                     cv.Config.lazyLoading = true;
-                    engine.initBackendClient();
-
-                    this.__P_2_4(); // load part for structure
-
+                    cv.io.BackendConnections.initBackendClient(); // load part for structure
 
                     structure = cv.Config.getStructure();
-                    this.debug('loading structure ' + structure);
-                    engine.loadParts([structure], function (states) {
-                      if (states === 'complete') {
-                        this.debug(structure + ' has been loaded');
-                        this.setStructureLoaded(true);
-                      } else {
-                        this.error(structure + ' could not be loaded');
-                        this.setStructureLoaded(false);
-                      }
-                    }, this);
-                    engine.addListenerOnce('changeReady', function () {
-                      // create the objects
-                      cv.Config.treePath = cv.Config.initialPage;
-                      var data = cv.data.Model.getInstance().getWidgetData('id_');
-                      cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-                    }, this); // check if the current design settings overrides the cache one
 
-                    this.loadPlugins();
+                    _this4.debug('loading structure ' + structure);
+
+                    engine.loadParts([structure]).then(function () {
+                      _this4.loadPlugins();
+                    });
+                    engine.addListenerOnce('changeReady', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+                      var data;
+                      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                        while (1) {
+                          switch (_context3.prev = _context3.next) {
+                            case 0:
+                              _context3.next = 2;
+                              return cv.Application.structureController.getInitialPageId();
+
+                            case 2:
+                              cv.Config.treePath = _context3.sent;
+                              data = cv.data.Model.getInstance().getWidgetData('id_');
+                              cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+
+                            case 5:
+                            case "end":
+                              return _context3.stop();
+                          }
+                        }
+                      }, _callee3);
+                    })), _this4); // check if the current design settings overrides the cache one
 
                     if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
                       // we have to replace the cached design scripts styles to load
                       styles = [];
                       cv.Config.configSettings.stylesToLoad.forEach(function (style) {
                         styles.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
-                      }, this);
-                      this.loadStyles(styles);
+                      }, _this4);
+
+                      _this4.loadStyles(styles);
+
                       scripts = [];
                       cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
                         scripts.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
-                      }, this);
-                      this.loadScripts(scripts);
+                      }, _this4);
+
+                      _this4.loadScripts(scripts);
                     } else {
-                      this.loadStyles();
-                      this.loadScripts();
+                      _this4.loadStyles();
+
+                      _this4.loadScripts();
                     }
                   }
 
-                case 16:
-                  if (!cv.Config.cacheUsed) {
-                    this.debug('starting');
-
-                    this.__P_2_4();
-
-                    engine.parseXML(xml, function () {
-                      this.loadPlugins();
-                      this.loadStyles();
-                      this.loadScripts();
-                      this.debug('done');
-
-                      if (cv.Config.enableCache) {
-                        // cache dom + data when everything is ready
-                        qx.event.message.Bus.subscribe('setup.dom.finished', function () {
-                          cv.ConfigCache.dump(xml, xmlHash);
-                        }, this);
-                      }
-
-                      this.__P_2_0 = true;
-                    }.bind(this));
-                  } else {
-                    this.__P_2_0 = true;
+                case 10:
+                  if (cv.Config.cacheUsed) {
+                    _context4.next = 20;
+                    break;
                   }
 
-                case 17:
+                  _this4.debug('start parsing config file');
+
+                  _engine = cv.TemplateEngine.getInstance();
+                  _context4.next = 15;
+                  return _engine.parse();
+
+                case 15:
+                  _this4.loadPlugins();
+
+                  _this4.loadStyles();
+
+                  _this4.loadScripts();
+
+                  _this4.debug('done');
+
+                  if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
+                    // cache dom + data when everything is ready
+                    qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+                      cv.ConfigCache.dump(xml, _engine.getConfigHash());
+                    }, _this4);
+                  }
+
+                case 20:
+                  _this4.__P_2_0 = true;
+
+                case 21:
                 case "end":
-                  return _context2.stop();
+                  return _context4.stop();
               }
             }
-          }, _callee2, this);
-        }));
-
-        function bootstrap(_x) {
-          return _bootstrap.apply(this, arguments);
-        }
-
-        return bootstrap;
-      }(),
+          }, _callee4);
+        }))();
+      },
 
       /**
        * Load CSS styles
@@ -936,7 +943,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
 
         if (styles.length) {
-          cv.util.ScriptLoader.getInstance().addStyles(styles);
+          document.body.classList.add('loading-styles');
+          var loader = cv.util.ScriptLoader.getInstance();
+          loader.addListenerOnce('stylesLoaded', function () {
+            document.body.classList.remove('loading');
+            document.body.classList.remove('loading-styles');
+          });
+          loader.addStyles(styles);
         }
       },
 
@@ -967,22 +980,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         if (plugins.length > 0) {
           var standalonePlugins = [];
-          var partsLoaded = false;
+          var engine = cv.TemplateEngine.getInstance();
+          var partsLoaded = engine.getPartsLoaded();
           var allPluginsQueued = false;
           this.debug('loading plugins');
-          var engine = cv.TemplateEngine.getInstance();
-          engine.addListener('changePartsLoaded', function (ev) {
-            if (ev.getData() === true) {
-              this.debug('plugins loaded');
-              partsLoaded = true;
 
-              if (allPluginsQueued) {
-                qx.event.Timer.once(function () {
-                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
-                }, this, 0);
+          if (!partsLoaded) {
+            engine.addListener('changePartsLoaded', function (ev) {
+              if (ev.getData() === true) {
+                this.debug('plugins loaded');
+                partsLoaded = true;
+
+                if (allPluginsQueued) {
+                  qx.event.Timer.once(function () {
+                    cv.util.ScriptLoader.getInstance().setAllQueued(true);
+                  }, this, 0);
+                }
               }
-            }
-          }, this);
+            }, this);
+          }
+
           var parts = qx.Part.getInstance().getParts();
           var partPlugins = [];
           var path = cv.Application.getRelativeResourcePath();
@@ -1001,7 +1018,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           if (standalonePlugins.length > 0) {
             // load standalone plugins after the structure parts has been loaded
-            // because they use need the classes provided by it
+            // because they need the classes provided by it
             if (this.getStructureLoaded()) {
               cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
             } else {
@@ -1021,50 +1038,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           } else {
             allPluginsQueued = true;
+            qx.event.Timer.once(function () {
+              cv.util.ScriptLoader.getInstance().setAllQueued(true);
+            }, this, 0);
           }
         } else {
           this.debug('no plugins to load => all scripts queued');
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
         }
       },
-      __P_2_4: function __P_2_4() {
-        var startpage = 'id_';
-
-        if (cv.Config.startpage) {
-          startpage = cv.Config.startpage;
-
-          if (qx.core.Environment.get('html.storage.local') === true) {
-            if (startpage === 'remember') {
-              startpage = localStorage.getItem('lastpage');
-              cv.Config.rememberLastPage = true;
-
-              if (typeof startpage !== 'string' || startpage.substr(0, 3) !== 'id_') {
-                startpage = 'id_'; // fix obvious wrong data
-              }
-            } else if (startpage === 'noremember') {
-              localStorage.removeItem('lastpage');
-              startpage = 'id_';
-              cv.Config.rememberLastPage = false;
-            }
-          }
-        } else {
-          var req = qx.util.Uri.parseUri(window.location.href);
-
-          if (req.anchor && req.anchor.substring(0, 3) === 'id_') {
-            startpage = req.anchor;
-          }
-        }
-
-        if (startpage.match(/^id_[0-9_]*$/) !== null) {
-          cv.Config.initialPage = startpage;
-        } else {
-          // wait for DOM to be ready and detect the page id then
-          qx.event.message.Bus.subscribe('setup.dom.finished.before', function () {
-            cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || 'id_';
-          });
-        }
-      },
-      __P_2_5: function __P_2_5(serverVersionId, constraint) {
+      __P_2_4: function __P_2_4(serverVersionId, constraint) {
         var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
 
         if (match) {
@@ -1125,7 +1108,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       },
       _checkBackend: function _checkBackend() {
-        var _this4 = this;
+        var _this6 = this;
 
         if (cv.Config.testMode === true) {
           this.setManagerChecked(true);
@@ -1137,7 +1120,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             accept: 'application/json'
           });
           xhr.addListenerOnce('success', function (e) {
-            var _this3 = this;
+            var _this5 = this;
 
             var req = e.getTarget();
             var env = req.getResponse();
@@ -1151,7 +1134,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }); // pass when no failed andPart has been found
 
               return !andParts.some(function (constraint) {
-                return _this3.__P_2_5(serverVersionId, constraint);
+                return _this5.__P_2_4(serverVersionId, constraint);
               });
             }); // one of the OR constraints need to pass
 
@@ -1186,14 +1169,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }, this);
           xhr.addListener('statusError', function (e) {
-            _this4.setManagerChecked(true);
+            _this6.setManagerChecked(true);
           });
           xhr.send();
         }
       },
       close: function close() {
         this.setActive(false);
-        var client = cv.TemplateEngine.getClient();
+        var client = cv.io.BackendConnections.getClient();
 
         if (client) {
           client.terminate();
@@ -1241,4 +1224,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1660800140478
+//# sourceMappingURL=Application.js.map?dt=1664297864263

@@ -5,13 +5,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.Refresh": {
         "require": true
       },
-      "cv.parser.WidgetParser": {
+      "cv.parser.pure.WidgetParser": {
         "defer": "runtime"
       },
       "qx.event.Timer": {},
@@ -59,7 +59,7 @@
    * @asset(plugins/rss/rss-parser.min.js)
    */
   qx.Class.define('cv.plugins.Rss', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh],
 
     /*
@@ -79,8 +79,8 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseRefresh(xml, path);
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.parser.pure.WidgetParser.parseRefresh(xml, path);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -186,7 +186,7 @@
         return '<div class="actor"><ul class="rss_inline" style="' + rssstyle + '"></ul>';
       },
       _onDomReady: function _onDomReady() {
-        cv.plugins.Rss.prototype._onDomReady.base.call(this);
+        cv.plugins.Rss.superclass.prototype._onDomReady.call(this);
 
         this._parser = new RSSParser();
         this.refreshRSS();
@@ -310,11 +310,11 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addScripts('plugins/rss/rss-parser.min.js');
-      cv.parser.WidgetParser.addHandler('rss', cv.plugins.Rss);
+      cv.parser.pure.WidgetParser.addHandler('rss', cv.plugins.Rss);
       cv.ui.structure.WidgetFactory.registerClass('rss', statics);
     }
   });
   cv.plugins.Rss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rss.js.map?dt=1660800142544
+//# sourceMappingURL=Rss.js.map?dt=1664297866211

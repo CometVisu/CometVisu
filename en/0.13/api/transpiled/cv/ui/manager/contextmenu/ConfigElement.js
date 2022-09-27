@@ -209,7 +209,7 @@
             break;
         }
 
-        return control || cv.ui.manager.contextmenu.ConfigElement.prototype._createChildControlImpl.base.call(this, id);
+        return control || cv.ui.manager.contextmenu.ConfigElement.superclass.prototype._createChildControlImpl.call(this, id);
       },
       __P_28_0: function __P_28_0(action, title, icon, command, menu) {
         var button = new qx.ui.menu.Button(title, icon, command, menu);
@@ -235,4 +235,4 @@
   cv.ui.manager.contextmenu.ConfigElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigElement.js.map?dt=1660800144119
+//# sourceMappingURL=ConfigElement.js.map?dt=1664297867738

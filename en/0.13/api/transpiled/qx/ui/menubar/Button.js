@@ -105,7 +105,7 @@
       },
       // overridden
       open: function open(selectFirst) {
-        qx.ui.menubar.Button.prototype.open.base.call(this, selectFirst);
+        qx.ui.menubar.Button.superclass.prototype.open.call(this, selectFirst);
         var menubar = this.getMenuBar();
 
         if (menubar) {
@@ -146,7 +146,7 @@
       },
       // overridden
       _onPointerUp: function _onPointerUp(e) {
-        qx.ui.menubar.Button.prototype._onPointerUp.base.call(this, e); // Set state 'pressed' to visualize that the menu is open.
+        qx.ui.menubar.Button.superclass.prototype._onPointerUp.call(this, e); // Set state 'pressed' to visualize that the menu is open.
 
 
         var menu = this.getMenu();
@@ -186,4 +186,4 @@
   qx.ui.menubar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1660800170542
+//# sourceMappingURL=Button.js.map?dt=1664297894448

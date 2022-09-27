@@ -117,14 +117,14 @@
      */
     construct: function construct(source) {
       if (source != null) {
-        this.__P_305_0 = source;
+        this.__P_325_0 = source;
       }
 
       qx.ui.embed.AbstractIframe.constructor.call(this, source);
       qx.event.Registration.addListener(document.body, "pointerdown", this.block, this, true);
       qx.event.Registration.addListener(document.body, "pointerup", this.release, this, true);
       qx.event.Registration.addListener(document.body, "losecapture", this.release, this, true);
-      this.__P_305_1 = this._createBlockerElement();
+      this.__P_325_1 = this._createBlockerElement();
 
       if (qx.core.Environment.get("ecmascript.mutationobserver")) {
         this.addListenerOnce("appear", function () {
@@ -223,15 +223,15 @@
     *****************************************************************************
     */
     members: {
-      __P_305_0: null,
-      __P_305_1: null,
+      __P_325_0: null,
+      __P_325_1: null,
       // overridden
       renderLayout: function renderLayout(left, top, width, height) {
-        qx.ui.embed.Iframe.prototype.renderLayout.base.call(this, left, top, width, height);
+        qx.ui.embed.Iframe.superclass.prototype.renderLayout.call(this, left, top, width, height);
         var pixel = "px";
         var insets = this.getInsets();
 
-        this.__P_305_1.setStyles({
+        this.__P_325_1.setStyles({
           "left": left + insets.left + pixel,
           "top": top + insets.top + pixel,
           "width": width - insets.left - insets.right + pixel,
@@ -240,7 +240,7 @@
       },
       // overridden
       _createContentElement: function _createContentElement() {
-        var iframe = new qx.html.Iframe(this.__P_305_0);
+        var iframe = new qx.html.Iframe(this.__P_325_0);
         iframe.addListener("load", this._onIframeLoad, this);
         return iframe;
       },
@@ -289,7 +289,7 @@
        *
        */
       block: function block() {
-        this.__P_305_1.setStyle("display", "block");
+        this.__P_325_1.setStyle("display", "block");
       },
 
       /**
@@ -297,7 +297,7 @@
        *
        */
       release: function release() {
-        this.__P_305_1.setStyle("display", "none");
+        this.__P_325_1.setStyle("display", "none");
       },
 
       /*
@@ -399,10 +399,10 @@
       },
       // overridden
       setLayoutParent: function setLayoutParent(parent) {
-        qx.ui.embed.Iframe.prototype.setLayoutParent.base.call(this, parent);
+        qx.ui.embed.Iframe.superclass.prototype.setLayoutParent.call(this, parent);
 
         if (parent) {
-          this.getLayoutParent().getContentElement().add(this.__P_305_1);
+          this.getLayoutParent().getContentElement().add(this.__P_325_1);
         }
       }
     },
@@ -413,11 +413,11 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.getLayoutParent() && this.__P_305_1.getParent()) {
-        this.getLayoutParent().getContentElement().remove(this.__P_305_1);
+      if (this.getLayoutParent() && this.__P_325_1.getParent()) {
+        this.getLayoutParent().getContentElement().remove(this.__P_325_1);
       }
 
-      this._disposeObjects("__P_305_1");
+      this._disposeObjects("__P_325_1");
 
       qx.event.Registration.removeListener(document.body, "pointerdown", this.block, this, true);
       qx.event.Registration.removeListener(document.body, "pointerup", this.release, this, true);
@@ -427,4 +427,4 @@
   qx.ui.embed.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1660800167642
+//# sourceMappingURL=Iframe.js.map?dt=1664297891600

@@ -48,6 +48,12 @@
       getBackend: function getBackend() {},
 
       /**
+       * Returns the backend type
+       * @return {string} e.g. openhab, mqtt or knxd
+       */
+      getType: function getType() {},
+
+      /**
        * Returns true, when the backend provides a special data provider for this kins of data
        * @param name {String}
        * @return {Boolean}
@@ -179,4 +185,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1660800183590
+//# sourceMappingURL=IClient.js.map?dt=1664297906607

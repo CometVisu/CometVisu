@@ -37,7 +37,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       "qx.util.LibraryManager": {},
       "qx.util.DynamicScriptLoader": {},
       "cv.ui.manager.editor.completion.Config": {},
-      "cv.ui.manager.model.Schema": {},
       "cv.ui.manager.editor.completion.CometVisu": {},
       "qx.log.Logger": {},
       "cv.ui.manager.editor.Worker": {},
@@ -170,18 +169,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           });
 
-          var noCacheSuffix = '?' + Math.random();
-
-          window.require(['xml!./resource/visu_config.xsd' + noCacheSuffix, 'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
-          'vs/editor/editor.main'], function (schema, qxLib) {
-            this.__P_32_0 = schema;
+          window.require(['xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
+          'vs/editor/editor.main'], function (qxLib) {
             callback.apply(context);
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-            var completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance('visu_config.xsd'));
+            var completionProvider = new cv.ui.manager.editor.completion.Config();
             var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
-            window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
             window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
-          }.bind(this));
+            window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
+          });
         }, this);
         loader.addListener('failed', function (ev) {
           qx.log.Logger.error(this, ev.getData());
@@ -196,7 +192,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     ***********************************************
     */
     members: {
-      __P_32_0: null,
       _editor: null,
       _workerWrapper: null,
       _currentDecorations: null,
@@ -307,7 +302,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               break;
 
             default:
-              cv.ui.manager.editor.Source.prototype.handleAction.base.call(this, actionName);
+              cv.ui.manager.editor.Source.superclass.prototype.handleAction.call(this, actionName);
               break;
           }
         }
@@ -343,9 +338,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (this._editor) {
           if (file && file.getType() === 'file' && this.isSupported(file)) {
-            cv.ui.manager.editor.Source.prototype._loadFile.base.call(this, file, old);
+            cv.ui.manager.editor.Source.superclass.prototype._loadFile.call(this, file, old);
           } else {
-            cv.ui.manager.editor.Source.prototype._loadFile.base.call(this, null, old);
+            cv.ui.manager.editor.Source.superclass.prototype._loadFile.call(this, null, old);
           }
         }
       },
@@ -366,7 +361,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             key: '*'
           });
         } else {
-          cv.ui.manager.editor.Source.prototype._loadFromFs.base.call(this);
+          cv.ui.manager.editor.Source.superclass.prototype._loadFromFs.call(this);
         }
       },
       save: function save(callback, overrideHash) {
@@ -377,17 +372,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             // ask user if he really want to save a file with warnings
             qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
               if (confirmed) {
-                this.__P_32_1();
+                this.__P_32_0();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_32_1();
+            this.__P_32_0();
           }
         } else {
-          cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
+          cv.ui.manager.editor.Source.superclass.prototype.save.call(this, callback, overrideHash);
         }
       },
-      __P_32_1: function __P_32_1() {
+      __P_32_0: function __P_32_0() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -619,4 +614,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1660800144795
+//# sourceMappingURL=Source.js.map?dt=1664297868392

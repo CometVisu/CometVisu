@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 35,
+        "line": 33,
         "column": 0
       },
       "end": {
-        "line": 1059,
+        "line": 1018,
         "column": 3
       }
     },
@@ -47,14 +47,6 @@
         },
         {
           "name": "@asset",
-          "body": "sentry/bundle.min.js.map"
-        },
-        {
-          "name": "@asset",
-          "body": "sentry/bundle.tracing.min.js.map"
-        },
-        {
-          "name": "@asset",
           "body": "test/*"
         }
       ],
@@ -70,39 +62,25 @@
   "construct": {
     "location": {
       "start": {
-        "line": 44,
+        "line": 42,
         "column": 13
       },
       "end": {
-        "line": 68,
+        "line": 66,
         "column": 3
       }
     },
     "jsdoc": {}
   },
   "statics": {
-    "HTML_STRUCT": {
-      "location": {
-        "start": {
-          "line": 76,
-          "column": 4
-        },
-        "end": {
-          "line": 76,
-          "column": 570
-        }
-      },
-      "type": "variable",
-      "access": "public"
-    },
     "consoleCommands": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 74,
           "column": 23
         }
       },
@@ -112,18 +90,18 @@
     "__commandManager": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 78,
+          "line": 75,
           "column": 26
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "_relResourcePath": {
+    "structureController": {
       "location": {
         "start": {
           "line": 79,
@@ -131,6 +109,28 @@
         },
         "end": {
           "line": 79,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controller from the loaded structure injects itself here when loaded</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "_relResourcePath": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
           "column": 26
         }
       },
@@ -140,11 +140,11 @@
     "_fullResourcePath": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 81,
           "column": 27
         }
       },
@@ -154,11 +154,11 @@
     "getRelativeResourcePath": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 95,
           "column": 5
         }
       },
@@ -168,7 +168,7 @@
     "createClient": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 102,
           "column": 4
         },
         "end": {
@@ -216,7 +216,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Register shortcuts to usefull commands the user can execute in the browser console</p>"
+            "body": "<p>Register shortcuts to useful commands the user can execute in the browser console</p>"
           }
         ],
         "@param": [
@@ -271,7 +271,7 @@
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 154,
           "column": 5
         }
       },
@@ -286,6 +286,7 @@
       "name": "structureLoaded",
       "propertyType": "new",
       "event": "changeStructureLoaded",
+      "apply": "_applyStructureLoaded",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -293,11 +294,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 158,
+          "line": 159,
           "column": 5
         }
       },
@@ -308,11 +309,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 164,
+          "line": 165,
           "column": 5
         }
       },
@@ -326,11 +327,11 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 171,
           "column": 5
         }
       },
@@ -344,11 +345,11 @@
     "managerDisabled": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 173,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 177,
           "column": 5
         }
       },
@@ -362,11 +363,11 @@
     "managerDisabledReason": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 182,
           "column": 5
         }
       },
@@ -379,11 +380,11 @@
     "managerChecked": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 187,
           "column": 5
         }
       },
@@ -397,11 +398,11 @@
     "mobile": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 196,
           "column": 5
         }
       },
@@ -458,11 +459,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 208,
           "column": 18
         }
       },
@@ -472,25 +473,39 @@
     "__appReady": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 209,
           "column": 20
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "block": {
+    "_isCached": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 210,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "block": {
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4
+        },
+        "end": {
+          "line": 227,
           "column": 5
         }
       },
@@ -514,11 +529,11 @@
     "_applyMobile": {
       "location": {
         "start": {
-          "line": 227,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 237,
+          "line": 236,
           "column": 5
         }
       },
@@ -531,11 +546,11 @@
     "_applyManagerChecked": {
       "location": {
         "start": {
-          "line": 239,
+          "line": 238,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 242,
           "column": 5
         }
       },
@@ -548,11 +563,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 248,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 325,
           "column": 5
         }
       },
@@ -575,11 +590,11 @@
     "hideManager": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 335,
           "column": 5
         }
       },
@@ -589,11 +604,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 341,
           "column": 4
         },
         "end": {
-          "line": 371,
+          "line": 373,
           "column": 5
         }
       },
@@ -630,11 +645,11 @@
     "_applyInManager": {
       "location": {
         "start": {
-          "line": 373,
+          "line": 375,
           "column": 4
         },
         "end": {
-          "line": 379,
+          "line": 385,
           "column": 5
         }
       },
@@ -647,11 +662,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 381,
+          "line": 387,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 407,
           "column": 5
         }
       },
@@ -661,11 +676,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 403,
+          "line": 409,
           "column": 4
         },
         "end": {
-          "line": 466,
+          "line": 472,
           "column": 5
         }
       },
@@ -675,11 +690,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 468,
+          "line": 474,
           "column": 4
         },
         "end": {
-          "line": 612,
+          "line": 618,
           "column": 5
         }
       },
@@ -689,11 +704,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 614,
+          "line": 620,
           "column": 4
         },
         "end": {
-          "line": 619,
+          "line": 625,
           "column": 6
         }
       },
@@ -703,25 +718,42 @@
     "_onResize": {
       "location": {
         "start": {
-          "line": 621,
+          "line": 627,
           "column": 4
         },
         "end": {
-          "line": 628,
+          "line": 631,
           "column": 5
         }
       },
       "type": "function",
       "access": "protected"
     },
-    "__init": {
+    "_applyStructureLoaded": {
       "location": {
         "start": {
           "line": 633,
           "column": 4
         },
         "end": {
-          "line": 676,
+          "line": 639,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "structureLoaded"
+      ]
+    },
+    "__init": {
+      "location": {
+        "start": {
+          "line": 644,
+          "column": 4
+        },
+        "end": {
+          "line": 681,
           "column": 5
         }
       },
@@ -739,11 +771,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 682,
+          "line": 687,
           "column": 4
         },
         "end": {
-          "line": 781,
+          "line": 762,
           "column": 5
         }
       },
@@ -770,11 +802,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 787,
+          "line": 768,
           "column": 4
         },
         "end": {
-          "line": 794,
+          "line": 781,
           "column": 5
         }
       },
@@ -798,11 +830,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 800,
+          "line": 787,
           "column": 4
         },
         "end": {
-          "line": 807,
+          "line": 794,
           "column": 5
         }
       },
@@ -826,11 +858,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 812,
+          "line": 799,
           "column": 4
         },
         "end": {
-          "line": 877,
+          "line": 869,
           "column": 5
         }
       },
@@ -845,28 +877,14 @@
       "type": "function",
       "access": "public"
     },
-    "__detectInitialPage": {
-      "location": {
-        "start": {
-          "line": 879,
-          "column": 4
-        },
-        "end": {
-          "line": 910,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "private"
-    },
     "__constraintFails": {
       "location": {
         "start": {
-          "line": 912,
+          "line": 871,
           "column": 4
         },
         "end": {
-          "line": 958,
+          "line": 917,
           "column": 5
         }
       },
@@ -876,11 +894,11 @@
     "_checkBackend": {
       "location": {
         "start": {
-          "line": 960,
+          "line": 919,
           "column": 4
         },
         "end": {
-          "line": 1011,
+          "line": 970,
           "column": 5
         }
       },
@@ -890,11 +908,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 1013,
+          "line": 972,
           "column": 4
         },
         "end": {
-          "line": 1019,
+          "line": 978,
           "column": 5
         }
       },
@@ -909,11 +927,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 1024,
+          "line": 983,
           "column": 4
         },
         "end": {
-          "line": 1057,
+          "line": 1016,
           "column": 5
         }
       },

@@ -5,13 +5,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.AbstractWidget": {
+      "cv.ui.structure.pure.AbstractWidget": {
         "require": true
       },
       "cv.ui.common.HasChildren": {
         "require": true
       },
-      "cv.TemplateEngine": {},
+      "cv.Application": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       }
@@ -89,7 +89,7 @@
    * @since 0.8.0 (2012)
    */
   qx.Class.define('cv.ui.structure.pure.Group', {
-    extend: cv.ui.structure.AbstractWidget,
+    extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.HasChildren,
 
     /*
@@ -127,7 +127,7 @@
        */
       action: function action(event) {
         if (this.getTarget()) {
-          cv.TemplateEngine.getInstance().scrollToPage(this.getTarget());
+          cv.Application.structureController.scrollToPage(this.getTarget());
 
           if (event.getBubbles()) {
             event.stopPropagation();
@@ -140,7 +140,7 @@
       },
       // overridden
       _onDomReady: function _onDomReady() {
-        cv.ui.structure.pure.Group.prototype._onDomReady.base.call(this);
+        cv.ui.structure.pure.Group.superclass.prototype._onDomReady.call(this);
 
         this.getDomElement().style['z-index'] = 1;
       },
@@ -171,4 +171,4 @@
   cv.ui.structure.pure.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1660800147863
+//# sourceMappingURL=Group.js.map?dt=1664297871469

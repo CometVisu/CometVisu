@@ -227,9 +227,9 @@
       "changeSelected": "Number"
     },
     members: {
-      __P_457_0: null,
+      __P_477_0: null,
       init: function init() {
-        if (!qx.ui.website.Tabs.prototype.init.base.call(this)) {
+        if (!qx.ui.website.Tabs.superclass.prototype.init.call(this)) {
           return false;
         }
 
@@ -272,7 +272,7 @@
             page.addClass(this.getCssPrefix() + "-page");
 
             if (orientation == "vertical") {
-              this.__P_457_1(page);
+              this.__P_477_1(page);
 
               if (q.getNodeName(page[0]) == "div") {
                 var li = q.create("<li>").addClass(this.getCssPrefix() + "-page").setAttribute("id", page.getAttribute("id")).insertAfter(button[0]);
@@ -300,7 +300,7 @@
 
           this._showPage(null, button);
 
-          this.__P_457_2(page);
+          this.__P_477_2(page);
         }.bind(this));
 
         if (orientation == "vertical" && container.length == 1 && container.getChildren().length === 0) {
@@ -325,11 +325,11 @@
         if (active.length > 0) {
           var activePage = this._getPage(active);
 
-          this.__P_457_1(activePage);
+          this.__P_477_1(activePage);
 
           this._showPage(active, null);
 
-          this.__P_457_2(activePage);
+          this.__P_477_2(activePage);
         }
 
         this.getChildren("ul").getFirst().on("keydown", this._onKeyDown, this);
@@ -364,11 +364,11 @@
        * media query matches, "vertical" if it doesn't
        */
       _initMediaQueryListener: function _initMediaQueryListener(mediaQuery) {
-        var mql = this.__P_457_0;
+        var mql = this.__P_477_0;
 
         if (!mql) {
           mql = q.matchMedia(mediaQuery);
-          this.__P_457_0 = mql;
+          this.__P_477_0 = mql;
           mql.on("change", function (query) {
             this.render();
           }.bind(this));
@@ -442,7 +442,7 @@
             return;
           }
 
-          this.__P_457_1(page);
+          this.__P_477_1(page);
 
           if (q.getNodeName(page[0]) == "div") {
             var li = q.create("<li>").addClass(this.getCssPrefix() + "-page").setAttribute("id", page.getAttribute("id"));
@@ -460,7 +460,7 @@
             this._switchPages(page, null);
           }
 
-          this.__P_457_2(page);
+          this.__P_477_2(page);
         }.bind(this));
 
         this.setEnabled(this.getEnabled());
@@ -792,7 +792,7 @@
        *
        * @param elem {qxWeb} Element
        */
-      __P_457_1: function __P_457_1(elem) {
+      __P_477_1: function __P_477_1(elem) {
         var transition = elem.getStyles(["transitionDelay", "transitionDuration", "transitionProperty", "transitionTimingFunction"]);
 
         if (transition.transitionProperty.indexOf("none") == -1) {
@@ -806,7 +806,7 @@
        *
        * @param elem {qxWeb} Element
        */
-      __P_457_2: function __P_457_2(elem) {
+      __P_477_2: function __P_477_2(elem) {
         var transition = elem.getProperty("__qxtransition");
         var style = elem.getStyle("transitionProperty");
 
@@ -816,13 +816,13 @@
         }
       },
       dispose: function dispose() {
-        this.__P_457_0 = undefined;
+        this.__P_477_0 = undefined;
         var cssPrefix = this.getCssPrefix();
         qxWeb(window).off("resize", this._onResize, this);
         this.find("> ul > ." + this.getCssPrefix() + "-button").off("tap", this._onTap, this);
         this.getChildren("ul").getFirst().off("keydown", this._onKeyDown, this).setHtml("");
         this.setHtml("").removeClasses([cssPrefix, "qx-flex-ready"]);
-        return qx.ui.website.Tabs.prototype.dispose.base.call(this);
+        return qx.ui.website.Tabs.superclass.prototype.dispose.call(this);
       }
     },
     defer: function defer(statics) {
@@ -834,4 +834,4 @@
   qx.ui.website.Tabs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tabs.js.map?dt=1660800178334
+//# sourceMappingURL=Tabs.js.map?dt=1664297901637

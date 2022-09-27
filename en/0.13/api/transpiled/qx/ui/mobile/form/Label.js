@@ -162,7 +162,7 @@
     *****************************************************************************
     */
     members: {
-      __P_361_0: null,
+      __P_381_0: null,
       // overridden
       _getTagName: function _getTagName() {
         return "label";
@@ -204,16 +204,16 @@
        *
        */
       setLabelFor: function setLabelFor(elementId) {
-        if (this.__P_361_0) {
-          this.__P_361_0.removeListener("changeEnabled", this._changeEnabled, this);
+        if (this.__P_381_0) {
+          this.__P_381_0.removeListener("changeEnabled", this._changeEnabled, this);
         }
 
-        this.__P_361_0 = qx.ui.mobile.core.Widget.getWidgetById(elementId);
+        this.__P_381_0 = qx.ui.mobile.core.Widget.getWidgetById(elementId);
 
-        if (this.__P_361_0) {
-          this.__P_361_0.addListener("changeEnabled", this._changeEnabled, this);
+        if (this.__P_381_0) {
+          this.__P_381_0.addListener("changeEnabled", this._changeEnabled, this);
 
-          this.setEnabled(this.__P_361_0.getEnabled());
+          this.setEnabled(this.__P_381_0.getEnabled());
         }
 
         this._setAttribute("for", elementId);
@@ -224,8 +224,8 @@
        * @param evt {qx.event.type.Pointer} The tap event.
        */
       _onTap: function _onTap(evt) {
-        if (this.__P_361_0 && qx.core.Environment.get("event.dispatchevent")) {
-          var target = this.__P_361_0.getContentElement();
+        if (this.__P_381_0 && qx.core.Environment.get("event.dispatchevent")) {
+          var target = this.__P_381_0.getContentElement();
 
           qx.event.Registration.fireEvent(target, "tap", qx.event.type.Tap, [evt.getNativeEvent(), target, null, true, true]);
         }
@@ -248,10 +248,10 @@
     destruct: function destruct() {
       this.removeListener("tap", this._onTap, this);
 
-      if (this.__P_361_0) {
-        this.__P_361_0.removeListener("changeEnabled", this._changeEnabled, this);
+      if (this.__P_381_0) {
+        this.__P_381_0.removeListener("changeEnabled", this._changeEnabled, this);
 
-        this.__P_361_0 = null;
+        this.__P_381_0 = null;
       }
 
       {
@@ -262,4 +262,4 @@
   qx.ui.mobile.form.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1660800171725
+//# sourceMappingURL=Label.js.map?dt=1664297895562
