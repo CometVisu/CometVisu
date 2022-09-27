@@ -45,10 +45,8 @@ function resizeTiles() {
       style.setProperty('--tileCellWidth', '64px');
     } else {
       const minWidth = 168;
-      const columns = Math.floor(availableWidth / minWidth);
+      const columns = Math.max(1, Math.floor(availableWidth / minWidth));
       if (columns === 1) {
-        // only one column, we can afford some more space around the tiles
-        spacing *= 2;
         availableWidth -= spacing;
         style.setProperty('--spacing', spacing + 'px');
       } else if (spacing > 8) {
