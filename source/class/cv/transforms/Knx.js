@@ -485,7 +485,6 @@ qx.Class.define('cv.transforms.Knx', {
 
       '10.001': {
         name: 'DPT_TimeOfDay',
-        applyInTestMode: true,
         lname: {
           'de': 'Zeit',
           'en': 'time'
@@ -518,7 +517,6 @@ qx.Class.define('cv.transforms.Knx', {
 
       '11.001': {
         name: 'DPT_Date',
-        applyInTestMode: true,
         lname: {
           'de': 'Datum',
           'en': 'date'

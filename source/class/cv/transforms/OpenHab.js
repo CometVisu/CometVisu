@@ -156,7 +156,6 @@ qx.Class.define('cv.transforms.OpenHab', {
       },
       'datetime': {
         name: 'OH_DateTime',
-        applyInTestMode: true,
         encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleDateString();
@@ -172,7 +171,6 @@ qx.Class.define('cv.transforms.OpenHab', {
       },
       'time': {
         name: 'OH_Time',
-        applyInTestMode: true,
         encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleTimeString();

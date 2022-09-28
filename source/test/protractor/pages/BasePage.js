@@ -193,7 +193,7 @@ class BasePage {
   }
 
   /**
-   * Get the last message that has been send to the backend (aka write message)
+   * Get the last message that has been sent to the backend (aka write message)
    * @return {Map}
    */
   // eslint-disable-next-line class-methods-use-this
@@ -204,7 +204,7 @@ class BasePage {
   }
 
   /**
-   * Get the complete list of write messages, which have been send to the backend
+   * Get the complete list of write messages, which have been sent to the backend
    * @return {Promise<Array>}
    */
   // eslint-disable-next-line class-methods-use-this
@@ -238,6 +238,20 @@ class BasePage {
       qx.locale.Manager.getInstance().setLocale(locale);
       callback();
     }, locale);
+  }
+
+  decode(address, value) {
+    return browser.executeAsyncScript(function (address, value, callback) {
+      const transformedValue = cv.Transform.decode(address, value);
+      callback(transformedValue);
+    }, address, value);
+  }
+
+  encode(address, value) {
+    return browser.executeAsyncScript(function (address, value, callback) {
+      const transformedValue = cv.Transform.encodeBusAndRaw(address, value);
+      callback(transformedValue.raw);
+    }, address, value);
   }
 
   /**

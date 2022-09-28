@@ -415,11 +415,11 @@ qx.Class.define('cv.io.Mockup', {
       }
       const ts = new Date().getTime();
       // store in window, to make it accessible for protractor
-      window.writeHistory.push({
+      const lastWrite = {
         address: address,
         value: value,
         ts: ts
-      });
+      };
 
       if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
         this._processSimulation(address, value);
@@ -430,16 +430,21 @@ qx.Class.define('cv.io.Mockup', {
           d: {}
         };
         if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
-          if (value.length === 2) {
-            value = "" + (parseInt(value, 16) & 63);
-          } else {
-            value = value.substring(2);
+          if (/^[\da-fA-F]+$/.test(value)) {
+            if (value.length <= 2) {
+              value = '' + (parseInt(value, 16) & 63);
+            } else {
+              value = value.substring(2);
+            }
+            lastWrite.transformedValue = value;
           }
         }
         answer.d[address] = value;
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
       }
+      // store in window, to make it accessible for protractor
+      window.writeHistory.push(lastWrite);
     },
 
     restart: function() {},

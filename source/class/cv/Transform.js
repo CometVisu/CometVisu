@@ -138,12 +138,6 @@ qx.Class.define('cv.Transform', {
      */
     encodeBusAndRaw: function (address, value) {
       const {transform} = address;
-      // some transforms must be executed even in testMode (the ones that convert into objects)
-      if (cv.Config.testMode === true && (transform in cv.Transform.registry && (
-        !Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') ||
-        cv.Transform.registry[transform].applyInTestMode === false))) {
-        return {bus: value, raw: value};
-      }
       let {selector, variantInfo} = address;
       let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
@@ -195,13 +189,6 @@ qx.Class.define('cv.Transform', {
      */
     decode: function (address, value) {
       const {transform, ignoreError} = address;
-      // some transforms must be executed even in testMode (the ones that convert into objects)
-      if (cv.Config.testMode === true && (transform in cv.Transform.registry && (
-        !Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') ||
-        cv.Transform.registry[transform].applyInTestMode === false))) {
-        return value;
-      }
-
       let {selector, variantInfo} = address;
       const basetrans = transform.split('.')[0];
 
