@@ -19,7 +19,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         "usage": "dynamic",
         "require": true
       },
-      "cv.Config": {},
       "qx.locale.Manager": {},
       "cv.core.notifications.Router": {}
     }
@@ -176,15 +175,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @return {*} object with both encoded values
        */
       encodeBusAndRaw: function encodeBusAndRaw(address, value) {
-        var transform = address.transform; // some transforms must be executed even in testMode (the ones that convert into objects)
-
-        if (cv.Config.testMode === true && transform in cv.Transform.registry && (!Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') || cv.Transform.registry[transform].applyInTestMode === false)) {
-          return {
-            bus: value,
-            raw: value
-          };
-        }
-
+        var transform = address.transform;
         var selector = address.selector,
             variantInfo = address.variantInfo;
         var basetrans = transform.split('.')[0];
@@ -244,12 +235,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        */
       decode: function decode(address, value) {
         var transform = address.transform,
-            ignoreError = address.ignoreError; // some transforms must be executed even in testMode (the ones that convert into objects)
-
-        if (cv.Config.testMode === true && transform in cv.Transform.registry && (!Object.prototype.hasOwnProperty.call(cv.Transform.registry[transform], 'applyInTestMode') || cv.Transform.registry[transform].applyInTestMode === false)) {
-          return value;
-        }
-
+            ignoreError = address.ignoreError;
         var selector = address.selector,
             variantInfo = address.variantInfo;
         var basetrans = transform.split('.')[0];
@@ -346,4 +332,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1664297904376
+//# sourceMappingURL=Transform.js.map?dt=1664441238975

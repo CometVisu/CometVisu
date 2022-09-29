@@ -181,7 +181,6 @@
         },
         'datetime': {
           name: 'OH_DateTime',
-          applyInTestMode: true,
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleDateString();
@@ -199,7 +198,6 @@
         },
         'time': {
           name: 'OH_Time',
-          applyInTestMode: true,
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleTimeString();
@@ -268,4 +266,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1664297867142
+//# sourceMappingURL=OpenHab.js.map?dt=1664441184833

@@ -501,7 +501,6 @@
         },
         '10.001': {
           name: 'DPT_TimeOfDay',
-          applyInTestMode: true,
           lname: {
             'de': 'Zeit',
             'en': 'time'
@@ -536,7 +535,6 @@
         },
         '11.001': {
           name: 'DPT_Date',
-          applyInTestMode: true,
           lname: {
             'de': 'Datum',
             'en': 'date'
@@ -1053,4 +1051,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1664297867028
+//# sourceMappingURL=Knx.js.map?dt=1664441184668

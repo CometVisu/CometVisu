@@ -16,6 +16,24 @@
       "visu_config_tile.xsd": {
         "resourcePath": "resourcePath"
       },
+      "config/.gitignore": {
+        "resourcePath": "resourcePath"
+      },
+      "config/.htaccess": {
+        "resourcePath": "resourcePath"
+      },
+      "config/hidden.php": {
+        "resourcePath": "resourcePath"
+      },
+      "config/structure_custom.js": {
+        "resourcePath": "resourcePath"
+      },
+      "config/visu_config.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "config/visu_config_tile.xml": {
+        "resourcePath": "resourcePath"
+      },
       "demo/floorplan_demo.xml": {
         "resourcePath": "resourcePath"
       },
@@ -56,24 +74,6 @@
         "resourcePath": "resourcePath"
       },
       "designs/tile-globals.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "config/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
-      "config/.htaccess": {
-        "resourcePath": "resourcePath"
-      },
-      "config/structure_custom.js": {
-        "resourcePath": "resourcePath"
-      },
-      "config/visu_config.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "config/visu_config_tile.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "config/hidden.php": {
         "resourcePath": "resourcePath"
       },
       "icons/COPYING": {
@@ -167,15 +167,15 @@
         "width": 16,
         "height": 6
       },
-      "icons/comet_16_ffffff.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 6
-      },
       "icons/comet_16x16_000000.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
+      },
+      "icons/comet_16_ffffff.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 6
       },
       "icons/comet_16x16_ff0000.png": {
         "resourcePath": "resourcePath",
@@ -372,15 +372,15 @@
         "width": 128,
         "height": 128
       },
-      "icons/comet_webapp_icon_android_144.png": {
-        "resourcePath": "resourcePath",
-        "width": 144,
-        "height": 144
-      },
       "icons/comet_webapp_icon_android_152.png": {
         "resourcePath": "resourcePath",
         "width": 152,
         "height": 152
+      },
+      "icons/comet_webapp_icon_android_144.png": {
+        "resourcePath": "resourcePath",
+        "width": 144,
+        "height": 144
       },
       "icons/comet_webapp_icon_android_16.png": {
         "resourcePath": "resourcePath",
@@ -427,6 +427,11 @@
         "width": 78,
         "height": 78
       },
+      "icons/comet_webapp_icon_android_96.png": {
+        "resourcePath": "resourcePath",
+        "width": 96,
+        "height": 96
+      },
       "icons/cometvisu_icon_opt.svg": {
         "resourcePath": "resourcePath",
         "width": 488,
@@ -437,12 +442,19 @@
         "width": 756,
         "height": 756
       },
-      "icons/comet_webapp_icon_android_96.png": {
-        "resourcePath": "resourcePath",
-        "width": 96,
-        "height": 96
-      },
       "icons/iconlist.html": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/crc32.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/worker.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/xml.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/xmllint.js": {
         "resourcePath": "resourcePath"
       },
       "libs/COPYING": {
@@ -499,21 +511,6 @@
       "libs/svg4everybody.js": {
         "resourcePath": "resourcePath"
       },
-      "manager/crc32.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/worker.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/xml.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/xmllint.js": {
-        "resourcePath": "resourcePath"
-      },
-      "test/l": {
-        "resourcePath": "resourcePath"
-      },
       "sentry/bundle.min.js": {
         "resourcePath": "resourcePath"
       },
@@ -526,12 +523,21 @@
       "sentry/bundle.tracing.min.js.map": {
         "resourcePath": "resourcePath"
       },
+      "test/l": {
+        "resourcePath": "resourcePath"
+      },
+      "config/backup/.gitignore": {
+        "resourcePath": "resourcePath"
+      },
+      "config/media/.gitignore": {
+        "resourcePath": "resourcePath"
+      },
       "demo/media/arrow.png": {
         "resourcePath": "resourcePath",
         "width": 100,
         "height": 50
       },
-      "demo/media/demo_2d_backdrop_floorplan.png": {
+      "demo/media/demo_2d_backdrop_floorplan_inkscape.svg": {
         "resourcePath": "resourcePath",
         "width": 994,
         "height": 633
@@ -541,15 +547,15 @@
         "width": 994,
         "height": 633
       },
-      "demo/media/demo_2d_backdrop_floorplan_inkscape.svg": {
-        "resourcePath": "resourcePath",
-        "width": 994,
-        "height": 633
-      },
       "demo/media/demo_2d_backdrop_nikolaushaus.png": {
         "resourcePath": "resourcePath",
         "width": 337,
         "height": 498
+      },
+      "demo/media/demo_2d_backdrop_floorplan.png": {
+        "resourcePath": "resourcePath",
+        "width": 994,
+        "height": 633
       },
       "demo/media/demo_2d_backdrop_nikolaushaus.svg": {
         "resourcePath": "resourcePath",
@@ -736,12 +742,6 @@
       "designs/tile/mobile.scss": {
         "resourcePath": "resourcePath"
       },
-      "config/backup/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
-      "config/media/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
       "icons/fonts/knx-uf-iconset.css": {
         "resourcePath": "resourcePath"
       },
@@ -825,9 +825,6 @@
       "plugins/upnpcontroller/volume.php": {
         "resourcePath": "resourcePath"
       },
-      "structures/tile/templates.xml": {
-        "resourcePath": "resourcePath"
-      },
       "plugins/clock/clock_full.svg": {
         "resourcePath": "resourcePath",
         "width": 120,
@@ -842,6 +839,9 @@
         "resourcePath": "resourcePath",
         "width": 120,
         "height": 120
+      },
+      "structures/tile/templates.xml": {
+        "resourcePath": "resourcePath"
       },
       "designs/alaska/fonts/LICENSE.txt": {
         "resourcePath": "resourcePath"
@@ -960,6 +960,30 @@
         "width": 64,
         "height": 6
       },
+      "designs/discreet_slim/fonts/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/ChangeLog": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/License.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/README": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/TODO": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/liberationsans-bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_slim/fonts/liberationsans-regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
       "designs/discreet_slim/images/button_bg.png": {
         "resourcePath": "resourcePath",
         "width": 9,
@@ -989,30 +1013,6 @@
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 8
-      },
-      "designs/discreet_slim/fonts/AUTHORS": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/ChangeLog": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/License.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/README": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/TODO": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/liberationsans-bold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/liberationsans-regular.ttf": {
-        "resourcePath": "resourcePath"
       },
       "designs/metal/fonts/Dosis-Medium.ttf": {
         "resourcePath": "resourcePath"
@@ -1395,44 +1395,6 @@
       },
       "plugins/diagram/dep/flot/jquery.flot.touch.min.js": {
         "resourcePath": "resourcePath"
-      }
-    },
-    "cv.io": {
-      "lib/jquery.js": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "qxl.versionlabel": {
-      "dummy.txt": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "com.zenesis.qx.upload": {
-      "FileSaver.js": {
-        "resourcePath": "resourcePath"
-      },
-      "jszip.js": {
-        "resourcePath": "resourcePath"
-      },
-      "com/zenesis/qx/upload/banner-bg.png": {
-        "resourcePath": "resourcePath",
-        "width": 2,
-        "height": 81
-      },
-      "com/zenesis/qx/upload/banner.png": {
-        "resourcePath": "resourcePath",
-        "width": 241,
-        "height": 81
-      },
-      "com/zenesis/qx/upload/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "com/zenesis/qx/upload/test.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
       }
     },
     "qxl.apiviewer": {
@@ -2149,10 +2111,10 @@
       "iconfont/material/MaterialIcons-Regular.md": {
         "resourcePath": "resourcePath"
       },
-      "iconfont/material/MaterialIcons-Regular.woff": {
+      "iconfont/material/MaterialIcons-Regular.ttf": {
         "resourcePath": "resourcePath"
       },
-      "iconfont/material/MaterialIcons-Regular.ttf": {
+      "iconfont/material/MaterialIcons-Regular.woff": {
         "resourcePath": "resourcePath"
       },
       "iconfont/material/MaterialIcons-Regular.woff2": {
@@ -2233,6 +2195,16 @@
         "resourcePath": "resourcePath"
       }
     },
+    "cv.io": {
+      "lib/jquery.js": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "qxl.versionlabel": {
+      "dummy.txt": {
+        "resourcePath": "resourcePath"
+      }
+    },
     "qxl.dialog": {
       "qxl/dialog/logo.gif": {
         "resourcePath": "resourcePath",
@@ -2265,6 +2237,34 @@
         "height": 16
       }
     },
+    "com.zenesis.qx.upload": {
+      "FileSaver.js": {
+        "resourcePath": "resourcePath"
+      },
+      "jszip.js": {
+        "resourcePath": "resourcePath"
+      },
+      "com/zenesis/qx/upload/banner-bg.png": {
+        "resourcePath": "resourcePath",
+        "width": 2,
+        "height": 81
+      },
+      "com/zenesis/qx/upload/banner.png": {
+        "resourcePath": "resourcePath",
+        "width": 241,
+        "height": 81
+      },
+      "com/zenesis/qx/upload/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "com/zenesis/qx/upload/test.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      }
+    },
     "qx": {
       "source/readme.txt": {
         "resourcePath": "resourcePath"
@@ -2282,6 +2282,35 @@
         "resourcePath": "resourcePath"
       },
       "qx/scss/_shared.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/static/blank.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qx/static/blank.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/static/blank.png": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qx/static/drawer.png": {
+        "resourcePath": "resourcePath",
+        "width": 23,
+        "height": 23
+      },
+      "qx/static/drawer@2x.png": {
+        "resourcePath": "resourcePath",
+        "width": 45,
+        "height": 45
+      },
+      "qx/static/ellipsis.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/static/empty.pdf": {
         "resourcePath": "resourcePath"
       },
       "qx/test/UnitTestFlash.mxml": {
@@ -2337,35 +2366,6 @@
         "resourcePath": "resourcePath"
       },
       "qx/website/.npmignore": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/static/blank.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qx/static/blank.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/static/blank.png": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qx/static/drawer.png": {
-        "resourcePath": "resourcePath",
-        "width": 23,
-        "height": 23
-      },
-      "qx/static/drawer@2x.png": {
-        "resourcePath": "resourcePath",
-        "width": 45,
-        "height": 45
-      },
-      "qx/static/ellipsis.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/static/empty.pdf": {
         "resourcePath": "resourcePath"
       },
       "source/Modern/Assets.psd": {
@@ -2595,15 +2595,15 @@
         "width": 45,
         "height": 2
       },
-      "source/Modern/menu-gradient.png": {
-        "resourcePath": "resourcePath",
-        "width": 49,
-        "height": 49
-      },
       "source/Modern/menubar-gradient.png": {
         "resourcePath": "resourcePath",
         "width": 40,
         "height": 20
+      },
+      "source/Modern/menu-gradient.png": {
+        "resourcePath": "resourcePath",
+        "width": 49,
+        "height": 49
       },
       "source/Modern/pane.png": {
         "resourcePath": "resourcePath",
@@ -2785,6 +2785,11 @@
         "width": 92,
         "height": 84
       },
+      "source/Modern/tabs-41.png": {
+        "resourcePath": "resourcePath",
+        "width": 111,
+        "height": 4
+      },
       "source/Modern/tabs-42.png": {
         "resourcePath": "resourcePath",
         "width": 24,
@@ -2794,11 +2799,6 @@
         "resourcePath": "resourcePath",
         "width": 42,
         "height": 80
-      },
-      "source/Modern/tabs-41.png": {
-        "resourcePath": "resourcePath",
-        "width": 111,
-        "height": 4
       },
       "source/Modern/tabs-46.png": {
         "resourcePath": "resourcePath",
@@ -2875,15 +2875,15 @@
         "width": 69,
         "height": 21
       },
-      "source/Modern/window-statusbar.png": {
-        "resourcePath": "resourcePath",
-        "width": 369,
-        "height": 15
-      },
       "source/Modern/window-captionbar-inactive.png": {
         "resourcePath": "resourcePath",
         "width": 69,
         "height": 21
+      },
+      "source/Modern/window-statusbar.png": {
+        "resourcePath": "resourcePath",
+        "width": 369,
+        "height": 15
       },
       "qx/decoration/Classic/arrows-combined.gif": {
         "resourcePath": "resourcePath",
@@ -7851,6 +7851,56 @@
         "width": 20,
         "height": 20
       },
+      "qx/decoration/Modern/groupbox/groupbox-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 51
+      },
+      "qx/decoration/Modern/groupbox/groupbox-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 51
+      },
+      "qx/decoration/Modern/groupbox/groupbox-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 51
+      },
+      "qx/decoration/Modern/groupbox/groupbox-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox.png": {
+        "resourcePath": "resourcePath",
+        "width": 255,
+        "height": 59
+      },
       "qx/decoration/Modern/form/button-b.png": {
         "resourcePath": "resourcePath",
         "width": 4,
@@ -8605,56 +8655,6 @@
         "resourcePath": "resourcePath",
         "width": 6,
         "height": 2
-      },
-      "qx/decoration/Modern/groupbox/groupbox-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 51
-      },
-      "qx/decoration/Modern/groupbox/groupbox-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 51
-      },
-      "qx/decoration/Modern/groupbox/groupbox-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 51
-      },
-      "qx/decoration/Modern/groupbox/groupbox-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox.png": {
-        "resourcePath": "resourcePath",
-        "width": 255,
-        "height": 59
       },
       "qx/decoration/Modern/menu/background.png": {
         "resourcePath": "resourcePath",
@@ -10391,12 +10391,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-receive.png": {
+      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
+      "qx/icon/Oxygen/128/actions/mail-receive.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10916,22 +10916,17 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/devices/media-flash.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/devices/media-optical.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/devices/multimedia-player.png": {
+      "qx/icon/Oxygen/128/devices/media-flash.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/devices/network-wired.png": {
+      "qx/icon/Oxygen/128/devices/multimedia-player.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10942,6 +10937,11 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/devices/pda.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/devices/network-wired.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11051,17 +11051,17 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/mimetypes/office-contact.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/mimetypes/office-document.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/mimetypes/office-illustration.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/mimetypes/office-contact.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11436,12 +11436,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/go-top.png": {
+      "qx/icon/Oxygen/16/actions/go-up.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/go-up.png": {
+      "qx/icon/Oxygen/16/actions/go-top.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11531,11 +11531,6 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/mail-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
       "qx/icon/Oxygen/16/actions/media-eject.png": {
         "resourcePath": "resourcePath",
         "width": 16,
@@ -11557,6 +11552,11 @@
         "height": 16
       },
       "qx/icon/Oxygen/16/actions/media-record.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-send.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11851,12 +11851,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/preferences-wallpaper.png": {
+      "qx/icon/Oxygen/16/apps/utilities-archiver.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/utilities-archiver.png": {
+      "qx/icon/Oxygen/16/apps/preferences-wallpaper.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11901,12 +11901,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/utilities-network-manager.png": {
+      "qx/icon/Oxygen/16/apps/utilities-notes.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/utilities-notes.png": {
+      "qx/icon/Oxygen/16/apps/utilities-network-manager.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12331,12 +12331,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/bookmark-new.png": {
+      "qx/icon/Oxygen/22/actions/check-spelling.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/check-spelling.png": {
+      "qx/icon/Oxygen/22/actions/bookmark-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12436,12 +12436,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/edit-find.png": {
+      "qx/icon/Oxygen/22/actions/edit-paste.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/edit-paste.png": {
+      "qx/icon/Oxygen/22/actions/edit-find.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12486,12 +12486,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/format-justify-left.png": {
+      "qx/icon/Oxygen/22/actions/format-justify-right.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/format-justify-right.png": {
+      "qx/icon/Oxygen/22/actions/format-justify-left.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12906,12 +12906,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/office-spreadsheet.png": {
+      "qx/icon/Oxygen/22/apps/office-web.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/office-web.png": {
+      "qx/icon/Oxygen/22/apps/office-spreadsheet.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12936,12 +12936,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/preferences-font.png": {
+      "qx/icon/Oxygen/22/apps/preferences-keyboard.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/preferences-keyboard.png": {
+      "qx/icon/Oxygen/22/apps/preferences-font.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12986,17 +12986,17 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/apps/utilities-calculator.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Oxygen/22/apps/utilities-character-map.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
       "qx/icon/Oxygen/22/apps/utilities-color-chooser.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Oxygen/22/apps/utilities-calculator.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -13171,12 +13171,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/media-optical.png": {
+      "qx/icon/Oxygen/22/devices/multimedia-player.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/devices/multimedia-player.png": {
+      "qx/icon/Oxygen/22/devices/media-optical.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -13721,12 +13721,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/actions/insert-text.png": {
+      "qx/icon/Oxygen/32/actions/list-add.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/actions/list-add.png": {
+      "qx/icon/Oxygen/32/actions/insert-text.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14021,17 +14021,17 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/apps/office-presentation.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
       "qx/icon/Oxygen/32/apps/office-project.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
       "qx/icon/Oxygen/32/apps/office-spreadsheet.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Oxygen/32/apps/office-presentation.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14346,12 +14346,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emotes/face-angel.png": {
+      "qx/icon/Oxygen/32/emotes/face-embarrassed.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emotes/face-embarrassed.png": {
+      "qx/icon/Oxygen/32/emotes/face-angel.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14371,12 +14371,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emotes/face-raspberry.png": {
+      "qx/icon/Oxygen/32/emotes/face-sad.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emotes/face-sad.png": {
+      "qx/icon/Oxygen/32/emotes/face-raspberry.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14406,12 +14406,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/mimetypes/media-audio.png": {
+      "qx/icon/Oxygen/32/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/mimetypes/media-image.png": {
+      "qx/icon/Oxygen/32/mimetypes/media-audio.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14516,12 +14516,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/status/dialog-password.png": {
+      "qx/icon/Oxygen/32/status/dialog-warning.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/status/dialog-warning.png": {
+      "qx/icon/Oxygen/32/status/dialog-password.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14771,12 +14771,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/actions/format-text-underline.png": {
+      "qx/icon/Oxygen/48/actions/go-bottom.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/actions/go-bottom.png": {
+      "qx/icon/Oxygen/48/actions/format-text-underline.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15506,12 +15506,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/emotes/face-smile-big.png": {
+      "qx/icon/Oxygen/48/emotes/face-smile.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/emotes/face-smile.png": {
+      "qx/icon/Oxygen/48/emotes/face-smile-big.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15641,12 +15641,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/status/dialog-password.png": {
+      "qx/icon/Oxygen/48/status/dialog-warning.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/status/dialog-warning.png": {
+      "qx/icon/Oxygen/48/status/dialog-password.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -15786,12 +15786,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/document-send.png": {
+      "qx/icon/Oxygen/64/actions/edit-clear.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/edit-clear.png": {
+      "qx/icon/Oxygen/64/actions/document-send.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16001,12 +16001,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/mail-mark-read.png": {
+      "qx/icon/Oxygen/64/actions/mail-mark-unread.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/mail-mark-unread.png": {
+      "qx/icon/Oxygen/64/actions/mail-mark-read.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16096,12 +16096,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/object-rotate-right.png": {
+      "qx/icon/Oxygen/64/actions/process-stop.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/process-stop.png": {
+      "qx/icon/Oxygen/64/actions/object-rotate-right.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16116,12 +16116,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/system-search.png": {
+      "qx/icon/Oxygen/64/actions/system-shutdown.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/system-shutdown.png": {
+      "qx/icon/Oxygen/64/actions/system-search.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16136,12 +16136,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/view-restore.png": {
+      "qx/icon/Oxygen/64/actions/view-sort-ascending.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/view-sort-ascending.png": {
+      "qx/icon/Oxygen/64/actions/view-restore.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16261,12 +16261,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/apps/office-graphics.png": {
+      "qx/icon/Oxygen/64/apps/office-layout.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/apps/office-layout.png": {
+      "qx/icon/Oxygen/64/apps/office-graphics.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16331,12 +16331,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/apps/preferences-security.png": {
+      "qx/icon/Oxygen/64/apps/preferences-sound.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/apps/preferences-sound.png": {
+      "qx/icon/Oxygen/64/apps/preferences-security.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16446,12 +16446,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/categories/games.png": {
+      "qx/icon/Oxygen/64/categories/graphics.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/categories/graphics.png": {
+      "qx/icon/Oxygen/64/categories/games.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -18876,12 +18876,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/emotes/face-smile-big.png": {
+      "qx/icon/Tango/16/emotes/face-smile.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/emotes/face-smile.png": {
+      "qx/icon/Tango/16/emotes/face-smile-big.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -19071,12 +19071,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/appointment-new.png": {
+      "qx/icon/Tango/22/actions/bookmark-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/bookmark-new.png": {
+      "qx/icon/Tango/22/actions/appointment-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19176,17 +19176,17 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/edit-delete.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Tango/22/actions/edit-find.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
       "qx/icon/Tango/22/actions/edit-paste.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/actions/edit-delete.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19336,12 +19336,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/insert-link.png": {
+      "qx/icon/Tango/22/actions/insert-text.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/insert-text.png": {
+      "qx/icon/Tango/22/actions/insert-link.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19506,12 +19506,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/view-restore.png": {
+      "qx/icon/Tango/22/actions/view-sort-ascending.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/view-sort-ascending.png": {
+      "qx/icon/Tango/22/actions/view-restore.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19556,17 +19556,17 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/apps/internet-download-manager.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Tango/22/apps/internet-feed-reader.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
       "qx/icon/Tango/22/apps/internet-mail.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/apps/internet-download-manager.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19706,17 +19706,17 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/apps/preferences-sound.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Tango/22/apps/preferences-theme.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
       "qx/icon/Tango/22/apps/preferences-users.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/apps/preferences-sound.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19791,12 +19791,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/apps/utilities-terminal.png": {
+      "qx/icon/Tango/22/apps/utilities-text-editor.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/apps/utilities-text-editor.png": {
+      "qx/icon/Tango/22/apps/utilities-terminal.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22

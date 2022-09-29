@@ -459,11 +459,11 @@
 
         var ts = new Date().getTime(); // store in window, to make it accessible for protractor
 
-        window.writeHistory.push({
+        var lastWrite = {
           address: address,
           value: value,
           ts: ts
-        });
+        };
 
         if (this.__P_506_4 && Object.prototype.hasOwnProperty.call(this.__P_506_4, address)) {
           this._processSimulation(address, value);
@@ -475,17 +475,24 @@
           };
 
           if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
-            if (value.length === 2) {
-              value = "" + (parseInt(value, 16) & 63);
-            } else {
-              value = value.substring(2);
+            if (/^[\da-fA-F]+$/.test(value)) {
+              if (value.length <= 2) {
+                value = '' + (parseInt(value, 16) & 63);
+              } else {
+                value = value.substring(2);
+              }
+
+              lastWrite.transformedValue = value;
             }
           }
 
           answer.d[address] = value;
           this.debug('sending value: ' + value + ' to address: ' + address);
           this.receive(answer);
-        }
+        } // store in window, to make it accessible for protractor
+
+
+        window.writeHistory.push(lastWrite);
       },
       restart: function restart() {},
       stop: function stop() {},
@@ -529,4 +536,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1664297903557
+//# sourceMappingURL=Mockup.js.map?dt=1664441237832
