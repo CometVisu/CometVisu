@@ -152,6 +152,11 @@
         "width": 16,
         "height": 6
       },
+      "icons/comet_16_d00055.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 6
+      },
       "icons/comet_16_ff0000.png": {
         "resourcePath": "resourcePath",
         "width": 16,
@@ -163,11 +168,6 @@
         "height": 6
       },
       "icons/comet_16_ffffff.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 6
-      },
-      "icons/comet_16_d00055.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 6
@@ -382,15 +382,15 @@
         "width": 152,
         "height": 152
       },
-      "icons/comet_webapp_icon_android_16.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
       "icons/comet_webapp_icon_android_192.png": {
         "resourcePath": "resourcePath",
         "width": 192,
         "height": 192
+      },
+      "icons/comet_webapp_icon_android_16.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
       },
       "icons/comet_webapp_icon_android_32.png": {
         "resourcePath": "resourcePath",
@@ -505,10 +505,10 @@
       "manager/worker.js": {
         "resourcePath": "resourcePath"
       },
-      "manager/xml.js": {
+      "manager/xmllint.js": {
         "resourcePath": "resourcePath"
       },
-      "manager/xmllint.js": {
+      "manager/xml.js": {
         "resourcePath": "resourcePath"
       },
       "sentry/bundle.min.js": {
@@ -517,10 +517,10 @@
       "sentry/bundle.min.js.map": {
         "resourcePath": "resourcePath"
       },
-      "sentry/bundle.tracing.min.js": {
+      "sentry/bundle.tracing.min.js.map": {
         "resourcePath": "resourcePath"
       },
-      "sentry/bundle.tracing.min.js.map": {
+      "sentry/bundle.tracing.min.js": {
         "resourcePath": "resourcePath"
       },
       "test/l": {
@@ -712,10 +712,10 @@
       "designs/planet/custom.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/planet/design_setup.js": {
+      "designs/planet/mobile.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/planet/mobile.css": {
+      "designs/planet/design_setup.js": {
         "resourcePath": "resourcePath"
       },
       "designs/pure/basic.css": {
@@ -751,22 +751,10 @@
       "manager/completion-libs/qooxdoo.d.ts": {
         "resourcePath": "resourcePath"
       },
-      "plugins/clock/clock_full.svg": {
-        "resourcePath": "resourcePath",
-        "width": 120,
-        "height": 120
-      },
-      "plugins/clock/clock_pure.svg": {
-        "resourcePath": "resourcePath",
-        "width": 120,
-        "height": 120
-      },
-      "plugins/clock/clock_simple.svg": {
-        "resourcePath": "resourcePath",
-        "width": 120,
-        "height": 120
-      },
       "plugins/diagram/influxfetch.php": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/gauge.css": {
         "resourcePath": "resourcePath"
       },
       "plugins/mobilemenu/mobilemenu.css": {
@@ -837,10 +825,22 @@
       "plugins/upnpcontroller/volume.php": {
         "resourcePath": "resourcePath"
       },
-      "structures/tile/templates.xml": {
-        "resourcePath": "resourcePath"
+      "plugins/clock/clock_full.svg": {
+        "resourcePath": "resourcePath",
+        "width": 120,
+        "height": 120
       },
-      "plugins/gauge/gauge.css": {
+      "plugins/clock/clock_pure.svg": {
+        "resourcePath": "resourcePath",
+        "width": 120,
+        "height": 120
+      },
+      "plugins/clock/clock_simple.svg": {
+        "resourcePath": "resourcePath",
+        "width": 120,
+        "height": 120
+      },
+      "structures/tile/templates.xml": {
         "resourcePath": "resourcePath"
       },
       "designs/alaska/fonts/LICENSE.txt": {
@@ -1195,6 +1195,30 @@
       "designs/tile/fonts/remixicon.woff2": {
         "resourcePath": "resourcePath"
       },
+      "plugins/gauge/dep/ChangeLog.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/README.md": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/demoExtras.html": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/steelseries-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/steelseries-min.js.map": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/steelseries.js": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/tween-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/gauge/dep/tween.js": {
+        "resourcePath": "resourcePath"
+      },
       "plugins/openweathermap/font/COPYING": {
         "resourcePath": "resourcePath"
       },
@@ -1220,30 +1244,6 @@
         "resourcePath": "resourcePath"
       },
       "qxl/apiviewer/lib/sunlight.xml-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/ChangeLog.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/README.md": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/demoExtras.html": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/steelseries-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/steelseries-min.js.map": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/steelseries.js": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/tween-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/gauge/dep/tween.js": {
         "resourcePath": "resourcePath"
       },
       "designs/planet/fonts/OSP/OSP-DIN.ttf": {
@@ -1433,109 +1433,6 @@
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
-      }
-    },
-    "iconfont.fontawesome5": {
-      "iconfont/fontawesome5/CHANGELOG.md": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-map-convert.js": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/icons.yml": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/update.sh": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "qxl.dialog": {
-      "qxl/dialog/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
       }
     },
     "qxl.apiviewer": {
@@ -2083,35 +1980,6 @@
         }
       }
     },
-    "iconfont.material": {
-      "iconfont/material/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.md": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/fetch-urls.sh": {
-        "resourcePath": "resourcePath"
-      }
-    },
     "osparc.theme": {
       "widgetbrowser/blank.html": {
         "resourcePath": "resourcePath"
@@ -2262,6 +2130,138 @@
         "resourcePath": "resourcePath"
       },
       "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "iconfont.material": {
+      "iconfont/material/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.md": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/fetch-urls.sh": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "qxl.dialog": {
+      "qxl/dialog/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      }
+    },
+    "iconfont.fontawesome5": {
+      "iconfont/fontawesome5/CHANGELOG.md": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-map-convert.js": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/icons.yml": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/update.sh": {
         "resourcePath": "resourcePath"
       }
     },
@@ -9161,6 +9161,11 @@
         "width": 5,
         "height": 37
       },
+      "qx/decoration/Modern/tabview/tab-button-right-active-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
       "qx/decoration/Modern/tabview/tab-button-right-active-tl.png": {
         "resourcePath": "resourcePath",
         "width": 5,
@@ -9175,11 +9180,6 @@
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 47
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
       },
       "qx/decoration/Modern/tabview/tab-button-right-inactive-b.png": {
         "resourcePath": "resourcePath",
@@ -16196,6 +16196,11 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Oxygen/64/apps/internet-mail.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Oxygen/64/apps/internet-messenger.png": {
         "resourcePath": "resourcePath",
         "width": 64,
@@ -17550,11 +17555,6 @@
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
-      },
-      "qx/icon/Oxygen/64/apps/internet-mail.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
       },
       "qx/icon/Tango/128/categories/accessories.png": {
         "resourcePath": "resourcePath",
