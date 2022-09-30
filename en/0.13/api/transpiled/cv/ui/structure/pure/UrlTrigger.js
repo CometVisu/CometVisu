@@ -142,4 +142,4 @@
   cv.ui.structure.pure.UrlTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UrlTrigger.js.map?dt=1664557330053
+//# sourceMappingURL=UrlTrigger.js.map?dt=1664560746106
