@@ -172,4 +172,4 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 git add doc/**/*.json
 git add doc/**/*.png
 git commit -q -m "Add generated files: ${SHA}"
-git push
+git push "$PUSH_REPO"
