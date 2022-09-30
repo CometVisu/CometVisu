@@ -32,7 +32,16 @@ jobs:
     if: github.repository == 'CometVisu/CometVisu'
     runs-on: ubuntu-latest
     steps:
+     - name: 🔍 GH_TOKEN
+        if: env.GH_TOKEN == ''
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: main
+          token: ${{ env.GH_TOKEN }}
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
