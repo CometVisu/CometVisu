@@ -166,6 +166,9 @@ git push "$PUSH_REPO" $TARGET_BRANCH
 
 # Commit generated screenshots and shot-index files into this repo
 cd ..
+git config user.name "$COMMIT_AUTHOR_NAME"
+git config user.email "$COMMIT_AUTHOR_EMAIL"
+
 git add doc/**/*.json
 git add doc/**/*.png
 git commit -q -m "Add generated files: ${SHA}"
