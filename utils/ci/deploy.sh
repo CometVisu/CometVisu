@@ -163,3 +163,10 @@ git commit -q -m "Deploy to GitHub Pages: ${SHA}"
 # Now that we're all set up, we can push.
 echo "pushing changes to remote repository"
 git push "$PUSH_REPO" $TARGET_BRANCH
+
+# Commit generated screenshots and shot-index files into this repo
+cd ..
+git add doc/**/*.json
+git add doc/**/*.png
+git commit -q -m "Add generated files: ${SHA}"
+git push
