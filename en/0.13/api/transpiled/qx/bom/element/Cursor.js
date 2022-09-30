@@ -127,4 +127,4 @@
   qx.bom.element.Cursor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cursor.js.map?dt=1664441200933
+//# sourceMappingURL=Cursor.js.map?dt=1664548972836
