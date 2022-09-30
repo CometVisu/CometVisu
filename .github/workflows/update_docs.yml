@@ -32,7 +32,7 @@ jobs:
     if: github.repository == 'CometVisu/CometVisu'
     runs-on: ubuntu-latest
     steps:
-     - name: 🔍 GH_TOKEN
+      - name: 🔍 GH_TOKEN
         if: env.GH_TOKEN == ''
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
