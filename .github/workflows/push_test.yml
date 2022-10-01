@@ -1,0 +1,25 @@
+name: "Push rights test"
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  NODE_VERSION: '14.15'
+jobs:
+  test:
+    name: "Generate and publish manual and API-viewer"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test push to protected branch
+        run: |
+          date > change
+          git config user.name "$COMMIT_AUTHOR_NAME"
+          git config user.email "$COMMIT_AUTHOR_EMAIL"
+          git add change
+          git push "https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" develop
+        env:
+          COMMIT_AUTHOR_NAME: CometVisu-CI
+          COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
