@@ -1,7 +1,7 @@
-/* OptionListItem.js 
- * 
+/* OptionListItem.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,11 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This widgets shows and editable config option in a list.
  */
-qx.Class.define('cv.ui.manager.form.OptionListItem', {
+qx.Class.define("cv.ui.manager.form.OptionListItem", {
   extend: qx.ui.core.Widget,
 
   /*
@@ -29,15 +28,15 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this._setLayout(new qx.ui.layout.HBox(8));
-    this._createChildControl('key');
-    this._createChildControl('value');
-    this._createChildControl('key-title');
-    this._createChildControl('value-title');
-    this._createChildControl('delete');
-    this._createChildControl('add');
+    this._createChildControl("key");
+    this._createChildControl("value");
+    this._createChildControl("key-title");
+    this._createChildControl("value-title");
+    this._createChildControl("delete");
+    this._createChildControl("add");
   },
 
   /*
@@ -48,20 +47,20 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
   properties: {
     appearance: {
       refine: true,
-      init: 'cv-editor-config-option'
+      init: "cv-editor-config-option",
     },
 
     model: {
-      check: 'cv.ui.manager.model.config.Option',
+      check: "cv.ui.manager.model.config.Option",
       nullable: true,
-      apply: '_applyModel'
+      apply: "_applyModel",
     },
 
     readOnly: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeReadOnly'
-    }
+      event: "changeReadOnly",
+    },
   },
 
   /*
@@ -70,8 +69,8 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
   ***********************************************
   */
   events: {
-    'delete': 'qx.event.type.Data',
-    'add': 'qx.event.type.Event'
+    delete: "qx.event.type.Data",
+    add: "qx.event.type.Event",
   },
 
   /*
@@ -81,45 +80,43 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
   */
   members: {
     // list controller with allowNull calls setLabel
-    setLabel: function (label) {
-
-    },
+    setLabel(label) {},
 
     // list controller with allowNull calls setIcon
-    setIcon: function () {},
+    setIcon() {},
 
-    _applyModel: function (value, old) {
-      const keyField = this.getChildControl('key');
-      const valueField = this.getChildControl('value');
-      const keyTitleField = this.getChildControl('key-title');
-      const valueTitleField = this.getChildControl('value-title');
+    _applyModel(value, old) {
+      const keyField = this.getChildControl("key");
+      const valueField = this.getChildControl("value");
+      const keyTitleField = this.getChildControl("key-title");
+      const valueTitleField = this.getChildControl("value-title");
       this.__unbindModel(old);
       if (value) {
         // bi-directional bind
-        value.bind('key', keyField, 'value');
-        value.bind('value', valueField, 'value');
-        keyField.bind('value', value, 'key');
-        valueField.bind('value', value, 'value');
+        value.bind("key", keyField, "value");
+        value.bind("value", valueField, "value");
+        keyField.bind("value", value, "key");
+        valueField.bind("value", value, "value");
         keyField.show();
         valueField.show();
         keyTitleField.exclude();
         valueTitleField.exclude();
-        this.getChildControl('delete').show();
-        this.getChildControl('add').show();
+        this.getChildControl("delete").show();
+        this.getChildControl("add").show();
       } else {
         keyField.exclude();
         valueField.exclude();
         keyTitleField.show();
         valueTitleField.show();
-        this.getChildControl('delete').hide();
-        this.getChildControl('add').hide();
+        this.getChildControl("delete").hide();
+        this.getChildControl("add").hide();
       }
     },
 
-    __unbindModel: function (model) {
+    __unbindModel(model) {
       if (model) {
-        const keyField = this.getChildControl('key');
-        const valueField = this.getChildControl('value');
+        const keyField = this.getChildControl("key");
+        const valueField = this.getChildControl("value");
         if (model) {
           model.removeRelatedBindings(keyField);
           model.removeRelatedBindings(valueField);
@@ -130,72 +127,82 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
     },
 
     // overridden
-    _createChildControlImpl : function(id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
-         case 'key':
-           control = new qx.ui.form.TextField();
-           control.set({
-             liveUpdate: true,
-             required: true
-           });
-           this.bind('readOnly', control, 'readOnly');
-           this._add(control, {width: '40%'});
-           break;
+        case "key":
+          control = new qx.ui.form.TextField();
+          control.set({
+            liveUpdate: true,
+            required: true,
+          });
 
-         case 'value':
-           control = new qx.ui.form.TextField();
-           control.set({
-             liveUpdate: true
-           });
-           this.bind('readOnly', control, 'readOnly');
-           this._add(control, {width: '40%'});
-           break;
+          this.bind("readOnly", control, "readOnly");
+          this._add(control, { width: "40%" });
+          break;
 
-         case 'delete':
-           control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 22));
-           control.setToolTipText(this.tr('Delete option'));
-           control.addListener('execute', function() {
-             this.fireDataEvent('delete', this.getModel());
-           }, this);
-           this.bind('readOnly', control, 'visibility', {
-             converter: function (value) {
-               return value ? 'hidden' : 'visible';
-             }
-           });
-           this._add(control);
-           break;
+        case "value":
+          control = new qx.ui.form.TextField();
+          control.set({
+            liveUpdate: true,
+          });
 
-         case 'add':
-           control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('add', 18));
-           control.setToolTipText(this.tr('Add option'));
-           control.addListener('execute', function() {
-             this.fireEvent('add');
-           }, this);
-           this.bind('readOnly', control, 'visibility', {
-             converter: function (value) {
-               return value ? 'hidden' : 'visible';
-             }
-           });
-           this._add(control);
-           break;
+          this.bind("readOnly", control, "readOnly");
+          this._add(control, { width: "40%" });
+          break;
 
-         case 'key-title':
-           control = new qx.ui.basic.Label(this.tr('Key'));
-           control.exclude();
-           this._add(control, {width: '40%'});
-           break;
+        case "delete":
+          control = new qx.ui.form.Button(
+            null,
+            cv.theme.dark.Images.getIcon("delete", 22)
+          );
+          control.setToolTipText(this.tr("Delete option"));
+          control.addListener("execute", () => {
+            this.fireDataEvent("delete", this.getModel());
+          });
+          this.bind("readOnly", control, "visibility", {
+            converter(value) {
+              return value ? "hidden" : "visible";
+            },
+          });
 
-         case 'value-title':
-           control = new qx.ui.basic.Label(this.tr('Value'));
-           control.exclude();
-           this._add(control, {width: '40%'});
-           break;
-       }
+          this._add(control);
+          break;
 
-       return control || this.base(arguments, id);
-    }
+        case "add":
+          control = new qx.ui.form.Button(
+            null,
+            cv.theme.dark.Images.getIcon("add", 18)
+          );
+          control.setToolTipText(this.tr("Add option"));
+          control.addListener("execute", () => {
+            this.fireEvent("add");
+          });
+          this.bind("readOnly", control, "visibility", {
+            converter(value) {
+              return value ? "hidden" : "visible";
+            },
+          });
+
+          this._add(control);
+          break;
+
+        case "key-title":
+          control = new qx.ui.basic.Label(this.tr("Key"));
+          control.exclude();
+          this._add(control, { width: "40%" });
+          break;
+
+        case "value-title":
+          control = new qx.ui.basic.Label(this.tr("Value"));
+          control.exclude();
+          this._add(control, { width: "40%" });
+          break;
+      }
+
+      return control || super._createChildControlImpl(id);
+    },
   },
 
   /*
@@ -203,7 +210,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this.__unbindModel(this.getModel());
-  }
+  },
 });

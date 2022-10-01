@@ -1,7 +1,7 @@
-/* System.js 
- * 
+/* System.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -26,7 +26,7 @@
  * - reload the browser
  * - trigger HTTP requests
  */
-qx.Class.define('cv.io.System', {
+qx.Class.define("cv.io.System", {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -35,179 +35,178 @@ qx.Class.define('cv.io.System', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this.addresses = [];
-    qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+    qx.event.message.Bus.subscribe(
+      "cv.ui.structure.tile.currentPage",
+      this._onPageChange,
+      this
+    );
   },
   /*
- ***********************************************
+  ***********************************************
    PROPERTIES
- ***********************************************
- */
+  ***********************************************
+  */
   properties: {
-
     connected: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeConnected'
+      event: "changeConnected",
     },
 
     /**
      * The server the client is currently speaking to
      */
     server: {
-      check: 'String',
+      check: "String",
       nullable: true,
-      event: 'changedServer'
-    }
+      event: "changedServer",
+    },
   },
+
   /*
   ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
-    backendName: 'system',
+    backendName: "system",
     addresses: null,
 
     _onPageChange(ev) {
       const page = ev.getData();
       const data = {};
-      data['nav:current-page'] = page.getAttribute('id');
-      cv.data.Model.getInstance().updateFrom('system', data);
+      data["nav:current-page"] = page.getAttribute("id");
+      cv.data.Model.getInstance().updateFrom("system", data);
     },
 
     getType() {
       return this.backendName;
     },
 
-    receive: function (json) {
-    },
+    receive(json) {},
 
-    login: function (loginOnly, credentials, callback, context) {
+    login(loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
       }
     },
 
-    subscribe: function (addresses, filters) {
+    subscribe(addresses, filters) {
       this.addresses = addresses ? addresses : [];
     },
 
-    write: function (address, value, options) {
+    write(address, value, options) {
       if (address) {
-        const parts = address.split(':');
+        const parts = address.split(":");
         const target = parts.shift();
-        if (target === 'backend') {
+        if (target === "backend") {
           const name = parts.shift();
-          const backend = name === 'system' ? this : cv.io.BackendConnections.getClient(name);
+          const backend =
+            name === "system" ? this : cv.io.BackendConnections.getClient(name);
           if (backend) {
             switch (value) {
-              case 'restart':
+              case "restart":
                 backend.restart(true);
                 break;
 
               default:
-                this.warn('unhandled backend action:', value);
+                this.warn("unhandled backend action:", value);
             }
           }
-        } else if (target === 'browser') {
+        } else if (target === "browser") {
           let url;
           switch (value) {
-            case 'reload':
+            case "reload":
               window.location.reload();
               break;
 
-            case 'forced-reload':
+            case "forced-reload":
               url = new URL(window.location.href);
-              url.searchParams.set('forceReload', 'true');
+              url.searchParams.set("forceReload", "true");
               window.location.replace(url.toString());
               break;
 
             default:
-              this.warn('unhandled browser action:', value);
+              this.warn("unhandled browser action:", value);
           }
-        } else if (target === 'nav') {
+        } else if (target === "nav") {
           const action = parts.shift();
           switch (action) {
-            case 'current-page':
+            case "current-page":
               cv.Application.structureController.scrollToPage(value);
               break;
           }
-        } else if (target === 'theme') {
+        } else if (target === "theme") {
           const theme = value;
-          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.setAttribute("data-theme", theme);
           const model = cv.data.Model.getInstance();
-          model.onUpdate('theme', theme, 'system');
-        } else if (target === 'http' || target === 'https') {
+          model.onUpdate("theme", theme, "system");
+        } else if (target === "http" || target === "https") {
           // send HTTP request, ignore the answer
-          if (parts.length >= 2 && parts[0] === 'proxy') {
-            const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-            url.searchParams.set('url', target + ':' + parts[1]);
+          if (parts.length >= 2 && parts[0] === "proxy") {
+            const url = new URL(
+              cv.io.rest.Client.getBaseUrl() + "/proxy",
+              window.location.origin
+            );
+            url.searchParams.set("url", target + ":" + parts[1]);
             address = url.toString();
           }
           const xhr = new qx.io.request.Xhr(address);
           xhr.send();
-        } else if (target === 'state') {
+        } else if (target === "state") {
           // just write the value to the states to update Listeners
-          cv.data.Model.getInstance().onUpdate(address, value, 'system');
+          cv.data.Model.getInstance().onUpdate(address, value, "system");
         }
       }
     },
 
-    restart: function () {
-    },
+    restart() {},
 
-    stop: function () {
-    },
+    stop() {},
 
-    getResourcePath: function (name, params) {
-      if (name === 'charts') {
+    getResourcePath(name, params) {
+      if (name === "charts") {
         return null;
       }
       return name;
     },
 
-    getLastError: function () {
+    getLastError() {
       return null;
     },
 
-    getBackend: function () {
+    getBackend() {
       return new Map();
     },
 
-    authorize: function (req) {
-    },
+    authorize(req) {},
 
-    terminate: function () {
-    },
+    terminate() {},
 
-    update: function (json) {
-    },
-    record: function (type, data) {
-    },
-    showError: function (type, message, args) {
-    },
+    update(json) {},
+    record(type, data) {},
+    showError(type, message, args) {},
 
     // not used / needed in this client
-    setInitialAddresses: function (addresses) {
-    },
+    setInitialAddresses(addresses) {},
 
-    hasCustomChartsDataProcessor: function () {
+    hasCustomChartsDataProcessor() {
       return false;
     },
-    processChartsData: function (data) {
+    processChartsData(data) {
       return data;
     },
-    hasProvider: function (name) {
+    hasProvider(name) {
       return false;
     },
-    getProviderUrl: function (name) {
+    getProviderUrl(name) {
       return null;
     },
-    getProviderConvertFunction: function (name, format) {
+    getProviderConvertFunction(name, format) {
       return null;
-    }
-  }
+    },
+  },
 });

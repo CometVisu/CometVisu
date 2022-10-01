@@ -1,7 +1,7 @@
-/* Single.js 
- * 
+/* Single.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * {@link qx.ui.form.renderer.Single} with right column flexed.
  *
@@ -25,7 +24,7 @@
  * @since 0.11.0
  */
 
-qx.Class.define('cv.plugins.openhab.renderer.Single', {
+qx.Class.define("cv.plugins.openhab.renderer.Single", {
   extend: qx.ui.form.renderer.AbstractRenderer,
 
   /*
@@ -33,11 +32,11 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(form) {
+  construct(form) {
     const layout = new qx.ui.layout.VBox(6);
     this._setLayout(layout);
 
-    this.base(arguments, form);
+    super(form);
   },
 
   /*
@@ -47,10 +46,10 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
   */
   properties: {
     bottomText: {
-      check: 'String',
+      check: "String",
       nullable: true,
-      apply: '_applyBottomText'
-    }
+      apply: "_applyBottomText",
+    },
   },
 
   /*
@@ -59,10 +58,9 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
   ******************************************************
   */
   members: {
-
     // property apply
-    _applyBottomText: function(value) {
-      const control = this.getChildControl('bottom-text');
+    _applyBottomText(value) {
+      const control = this.getChildControl("bottom-text");
       if (value) {
         control.setValue(value);
         control.show();
@@ -72,20 +70,21 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
     },
 
     // overridden
-    _createChildControlImpl : function(id, hash) {
+    _createChildControlImpl(id, hash) {
       let control;
       switch (id) {
-        case 'content':
+        case "content":
           control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
           this._addAt(control, 1);
           break;
 
-        case 'bottom-text':
+        case "bottom-text":
           control = new qx.ui.basic.Label(this.getBottomText());
           control.set({
             rich: true,
-            wrap: true
+            wrap: true,
           });
+
           this._addAt(control, 2);
           if (this.getBottomText()) {
             control.show();
@@ -94,16 +93,17 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
           }
           break;
 
-        case 'button-container': {
+        case "button-container": {
           const hbox = new qx.ui.layout.HBox();
-          hbox.setAlignX('right');
+          hbox.setAlignX("right");
           hbox.setSpacing(5);
           control = new qx.ui.container.Composite(hbox);
           this._addAt(control, 3);
           break;
         }
       }
-      return control || this.base(arguments, id, hash);
+
+      return control || super._createChildControlImpl(id, hash);
     },
 
     /**
@@ -116,13 +116,13 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
      * @param names {String[]} An array of names for the form items.
      * @param title {String?} A title of the group you are adding.
      */
-    addItems : function(items, names, title) {
+    addItems(items, names, title) {
       // add the header
       if (title !== null) {
-        this.getChildControl('content').add(this._createHeader(title));
+        this.getChildControl("content").add(this._createHeader(title));
       }
 
-      const container = this.getChildControl('content');
+      const container = this.getChildControl("content");
 
       // add the items
       for (let i = 0; i < items.length; i++) {
@@ -133,8 +133,8 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
         if (item instanceof qx.ui.form.CheckBox) {
           // label + checkbox in one line
           const box = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-          box.add(label, {width: '50%'});
-          box.add(item, {width: '50%'});
+          box.add(label, { width: "50%" });
+          box.add(item, { width: "50%" });
           container.add(box);
         } else {
           container.add(label);
@@ -144,8 +144,8 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
         this._connectVisibility(item, label);
 
         // store the names for translation
-        if (qx.core.Environment.get('qx.dynlocale')) {
-          this._names.push({name: names[i], label: label, item: items[i]});
+        if (qx.core.Environment.get("qx.dynlocale")) {
+          this._names.push({ name: names[i], label: label, item: items[i] });
         }
       }
     },
@@ -156,9 +156,9 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
      *
      * @param button {qx.ui.form.Button} The button to add.
      */
-    addButton : function(button) {
+    addButton(button) {
       // add the button
-      this.getChildControl('button-container').add(button);
+      this.getChildControl("button-container").add(button);
     },
 
     /**
@@ -166,7 +166,7 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
      *
      * @return {qx.ui.layout.Grid} The grid layout of the widget.
      */
-    getLayout : function() {
+    getLayout() {
       return this._getLayout();
     },
 
@@ -178,15 +178,14 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
      * @param item {qx.ui.core.Widget} The item, which has the required state.
      * @return {qx.ui.basic.Label} The label for the given item.
      */
-    _createLabel : function(name, item) {
+    _createLabel(name, item) {
       const label = new qx.ui.basic.Label(this._createLabelText(name, item));
       // store labels for disposal
       this._labels.push(label);
       label.setRich(true);
-      label.setAppearance('form-renderer-label');
+      label.setAppearance("form-renderer-label");
       return label;
     },
-
 
     /**
      * Creates a header label for the form groups.
@@ -194,16 +193,16 @@ qx.Class.define('cv.plugins.openhab.renderer.Single', {
      * @param title {String} Creates a header label.
      * @return {qx.ui.basic.Label} The header for the form groups.
      */
-    _createHeader : function(title) {
+    _createHeader(title) {
       const header = new qx.ui.basic.Label(title);
       // store labels for disposal
       this._labels.push(header);
-      header.setFont('bold');
+      header.setFont("bold");
       if (this._row != 0) {
         header.setMarginTop(10);
       }
-      header.setAlignX('left');
+      header.setAlignX("left");
       return header;
-    }
-  }
+    },
+  },
 });

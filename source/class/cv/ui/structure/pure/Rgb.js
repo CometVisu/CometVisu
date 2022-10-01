@@ -1,7 +1,7 @@
-/* Rgb.js 
- * 
+/* Rgb.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,17 +17,15 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * With the RGB widget you can display a colour in the visu.
  *
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Rgb', {
+qx.Class.define("cv.ui.structure.pure.Rgb", {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update],
-
 
   /*
    ******************************************************
@@ -36,7 +34,7 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
    */
   members: {
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       return '<div class="actor"><div class="value"></div></div>';
     },
 
@@ -46,7 +44,7 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
      * @param address {String} KNX-GA or openHAB item name
      * @param data {var} incoming data
      */
-    _update: function(address, data) {
+    _update(address, data) {
       if (data === undefined || address === undefined) {
         return;
       }
@@ -54,26 +52,31 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
 
       const value = cv.Transform.decode(this.getAddress()[address], data);
 
-      let bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
+      let bg = window
+        .getComputedStyle(valElem)
+        ["background-color"].replace(/[a-zA-Z()\s]/g, "")
+        .split(/,/);
       if (bg.length !== 3) {
         bg = [0, 0, 0];
       }
       switch (this.getAddress()[address].variantInfo) {
-        case 'r':
+        case "r":
           bg[0] = value;
           break;
-        case 'g':
+        case "g":
           bg[1] = value;
           break;
-        case 'b':
+        case "b":
           bg[2] = value;
           break;
       }
-      valElem.style['background-color'] = 'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
-    }
+
+      valElem.style["background-color"] =
+        "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
+    },
   },
 
-  defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass('rgb', statics);
-  }
+  defer(statics) {
+    cv.ui.structure.WidgetFactory.registerClass("rgb", statics);
+  },
 });

@@ -1,7 +1,7 @@
-/* OptionGroup.js 
- * 
+/* OptionGroup.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,14 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Shows a group of checkboxes in the actions to allow some boolean settings.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define('cv.core.notifications.actions.OptionGroup', {
+qx.Class.define("cv.core.notifications.actions.OptionGroup", {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -33,8 +32,8 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-    this.base(arguments);
+  construct(props) {
+    super();
     this.set(props);
   },
 
@@ -45,13 +44,14 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
   */
   properties: {
     title: {
-      check: 'String',
-      nullable: true
+      check: "String",
+      nullable: true,
     },
+
     options: {
-      check: 'Array',
-      nullable: true
-    }
+      check: "Array",
+      nullable: true,
+    },
   },
 
   /*
@@ -60,31 +60,39 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
   *****************************************************************************
   */
   members: {
-
-    handleAction: function(ev) {
+    handleAction(ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
       }
     },
 
-    getDomElement: function() {
+    getDomElement() {
       if (this.getOptions().length === 0) {
         return null;
       }
-      const content = this.getTitle() + ' ';
-      const container = qx.dom.Element.create('div', {
+      const content = this.getTitle() + " ";
+      const container = qx.dom.Element.create("div", {
         style: this.getStyle(),
-        html: content
+        html: content,
       });
+
       this.getOptions().forEach(function (option) {
-        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
+        container.appendChild(
+          cv.core.notifications.ActionRegistry.createActionElement(
+            "option",
+            option
+          )
+        );
       });
       return container;
-    }
+    },
   },
 
-  defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler('optionGroup', cv.core.notifications.actions.OptionGroup);
-  }
+  defer() {
+    cv.core.notifications.ActionRegistry.registerActionHandler(
+      "optionGroup",
+      cv.core.notifications.actions.OptionGroup
+    );
+  },
 });

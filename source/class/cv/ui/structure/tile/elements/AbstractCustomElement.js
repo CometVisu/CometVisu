@@ -1,7 +1,7 @@
-/* AbstractCustomElement.js 
- * 
+/* AbstractCustomElement.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -20,16 +20,16 @@
 /**
  *
  */
-qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
+qx.Class.define("cv.ui.structure.tile.elements.AbstractCustomElement", {
   extend: qx.core.Object,
-  type: 'abstract',
+  type: "abstract",
 
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (element) {
+  construct(element) {
     this._element = element;
   },
 
@@ -40,11 +40,11 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   */
   properties: {
     connected: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyConnected',
-      event: 'changeConnected'
-    }
+      apply: "_applyConnected",
+      event: "changeConnected",
+    },
   },
 
   /*
@@ -75,7 +75,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
 
     getElement() {
       return this._element;
-    }
+    },
   },
 
   /*
@@ -83,25 +83,33 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._element = null;
-  }
+  },
 });
 
 // eslint-disable-next-line no-unused-vars
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();
-    if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
+    if (
+      qx.Class.isSubClassOf(
+        QxClass,
+        cv.ui.structure.tile.elements.AbstractCustomElement
+      )
+    ) {
       this._instance = new QxClass(this);
     } else {
-      throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');
+      throw Error(
+        QxClass +
+          " must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement"
+      );
     }
-    if (this.hasAttribute('colspan')) {
-      this.classList.add('colspan-' + this.getAttribute('colspan'));
+    if (this.hasAttribute("colspan")) {
+      this.classList.add("colspan-" + this.getAttribute("colspan"));
     }
-    if (this.hasAttribute('rowspan')) {
-      this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+    if (this.hasAttribute("rowspan")) {
+      this.classList.add("rowspan-" + this.getAttribute("rowspan"));
     }
   }
 
@@ -122,7 +130,10 @@ class QxConnector extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
+    if (
+      this._instance &&
+      qx.Class.hasProperty(this._instance.constructor, name)
+    ) {
       this._instance.set(name, newValue);
     }
   }

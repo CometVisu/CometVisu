@@ -1,7 +1,7 @@
-/* IEditor.js 
- * 
+/* IEditor.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,11 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Interface all file editors must implement.
  */
-qx.Interface.define('cv.ui.manager.editor.IEditor', {
+qx.Interface.define("cv.ui.manager.editor.IEditor", {
   /*
   ***********************************************
     PROPERTIES
@@ -29,27 +28,27 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
   */
   properties: {
     file: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: '_loadFile'
+      apply: "_loadFile",
     },
 
     /**
      * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
      */
     external: {
-      check: 'Boolean',
-      init: false
+      check: "Boolean",
+      init: false,
     },
 
     /**
      * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready
      */
     ready: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeReady'
-    }
+      event: "changeReady",
+    },
   },
 
   /*
@@ -58,7 +57,7 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
   ***********************************************
   */
   statics: {
-    TITLE: ''
+    TITLE: "",
   },
 
   /*
@@ -67,8 +66,8 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
   ***********************************************
   */
   members: {
-    save: function () {},
+    save() {},
 
-    getCurrentContent: function () {}
-  }
+    getCurrentContent() {},
+  },
 });

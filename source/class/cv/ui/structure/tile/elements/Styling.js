@@ -1,7 +1,7 @@
-/* Styling.js 
- * 
+/* Styling.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -22,7 +22,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.elements.Styling', {
+qx.Class.define("cv.ui.structure.tile.elements.Styling", {
   extend: cv.ui.structure.tile.elements.Mapping,
 
   /*
@@ -32,19 +32,28 @@ qx.Class.define('cv.ui.structure.tile.elements.Styling', {
   */
   members: {
     _applyConnected(value, oldValue, name) {
-      this.base(arguments, value, oldValue, name);
+      super._applyConnected(value, oldValue, name);
       if (value) {
-        cv.Application.structureController.addStyling(this._element.getAttribute('name'), this);
+        cv.Application.structureController.addStyling(
+          this._element.getAttribute("name"),
+          this
+        );
       } else {
-        cv.Application.structureController.removeStyling(this._element.getAttribute('name'));
+        cv.Application.structureController.removeStyling(
+          this._element.getAttribute("name")
+        );
       }
-    }
+    },
   },
+
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'styling', class extends QxConnector {
-      constructor() {
-        super(Clazz);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "styling",
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
       }
-    });
-  }
+    );
+  },
 });

@@ -1,7 +1,7 @@
-/* Controller.js 
- * 
+/* Controller.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -39,9 +39,9 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.Controller', {
+qx.Class.define("cv.ui.structure.tile.Controller", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
   implement: cv.ui.structure.IController,
 
   /*
@@ -49,10 +49,15 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
-    this.__HTML_STRUCT = '';
-    qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
+  construct() {
+    super();
+    this.__HTML_STRUCT = "";
+    qx.bom.Stylesheet.includeFile(
+      qx.util.ResourceManager.getInstance()
+        .toUri("designs/tile-globals.scss")
+        .replace(".scss", ".css") +
+        (cv.Config.forceReload === true ? "?" + Date.now() : "")
+    );
   },
 
   /*
@@ -62,7 +67,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   */
   statics: {
     // prefix for all custom components uses/provided by this structure
-    PREFIX: 'cv-',
+    PREFIX: "cv-",
     __MAP: {},
     __I: {},
     register(webComponentName, qxClass) {
@@ -78,9 +83,12 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         }
         this.__I[name].push(new QxClass(element));
       } else {
-        qx.log.Logger.error(this, 'no QxClass registered for custom element ' + name);
+        qx.log.Logger.error(
+          this,
+          "no QxClass registered for custom element " + name
+        );
       }
-    }
+    },
   },
 
   /*
@@ -93,17 +101,17 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * The target this structure should be inserted into
      */
     renderTarget: {
-      check: 'Element',
-      init: document.body
+      check: "Element",
+      init: document.body,
     },
 
     /**
      * Namespace for path ids
      */
     namespace: {
-      check: 'String',
-      init: ''
-    }
+      check: "String",
+      init: "",
+    },
   },
 
   /*
@@ -124,8 +132,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       return false;
     },
 
-    initLayout() {
-    },
+    initLayout() {},
 
     __gotoStartPage() {
       // open first page
@@ -146,47 +153,53 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       if (!pageId) {
         return;
       }
-      const page = document.querySelector('#' + pageId);
+      const page = document.querySelector("#" + pageId);
       if (page) {
-        if (!page.classList.contains('active')) {
-          for (let oldPage of document.querySelectorAll('cv-page.active')) {
-            oldPage.classList.remove('active');
+        if (!page.classList.contains("active")) {
+          for (let oldPage of document.querySelectorAll("cv-page.active")) {
+            oldPage.classList.remove("active");
           }
-          for (let oldPage of document.querySelectorAll('cv-page.sub-active')) {
-            oldPage.classList.remove('sub-active');
+          for (let oldPage of document.querySelectorAll("cv-page.sub-active")) {
+            oldPage.classList.remove("sub-active");
           }
-          page.classList.add('active');
+          page.classList.add("active");
           // mark parent pages that there is a active subpage
           let parentElement = page.parentElement;
-          while (parentElement && parentElement.nodeName.toLowerCase() !== 'main') {
-            if (parentElement.nodeName.toLowerCase() === 'cv-page') {
-              parentElement.classList.add('sub-active');
+          while (
+            parentElement &&
+            parentElement.nodeName.toLowerCase() !== "main"
+          ) {
+            if (parentElement.nodeName.toLowerCase() === "cv-page") {
+              parentElement.classList.add("sub-active");
             }
             parentElement = parentElement.parentElement;
           }
 
           if (skipHistory === undefined) {
-            const headline = page.getAttribute('name');
-            let pageTitle = 'CometVisu';
+            const headline = page.getAttribute("name");
+            let pageTitle = "CometVisu";
             if (headline) {
-              pageTitle = headline + ' - '+pageTitle;
+              pageTitle = headline + " - " + pageTitle;
             }
             qx.bom.History.getInstance().addToHistory(pageId, pageTitle);
           }
-          qx.event.message.Bus.dispatchByName('cv.ui.structure.tile.currentPage', page);
+          qx.event.message.Bus.dispatchByName(
+            "cv.ui.structure.tile.currentPage",
+            page
+          );
         }
       } else {
-        this.warn('no page with id', pageId, 'found');
+        this.warn("no page with id", pageId, "found");
       }
     },
 
     // not needed, backend parse/init themselves
     parseBackendSettings(xml) {
-      if (xml.querySelectorAll('cv-backend').length === 0) {
+      if (xml.querySelectorAll("cv-backend").length === 0) {
         // no backends defined, use the default one;
         const client = cv.io.BackendConnections.initBackendClient();
         client.login(true, cv.Config.configSettings.credentials, () => {
-          this.debug('logged in');
+          this.debug("logged in");
           cv.io.BackendConnections.startInitialRequest();
         });
       }
@@ -198,32 +211,39 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param config {XMLDocument} loaded config
      */
     parseSettings(config) {
-      document.body.classList.add('loading-structure');
+      document.body.classList.add("loading-structure");
       const settings = cv.Config.configSettings;
       const configElement = config.documentElement;
-      settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
+      settings.bindClickToWidget =
+        configElement.getAttribute("bind_click_to_widget") === "true";
       this.translate(config);
 
       if (!cv.Config.cacheUsed) {
-        const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
+        const templates = qx.util.ResourceManager.getInstance().toUri(
+          "structures/tile/templates.xml"
+        );
         const ajaxRequest = new qx.io.request.Xhr(templates);
         ajaxRequest.set({
-          accept: 'application/xml',
-          cache: !cv.Config.forceReload
+          accept: "application/xml",
+          cache: !cv.Config.forceReload,
         });
-        ajaxRequest.addListenerOnce('success', e => {
+
+        ajaxRequest.addListenerOnce("success", (e) => {
           let content = e.getTarget().getResponse();
           const target = this.getRenderTarget();
-          this.debug('creating pages');
+          this.debug("creating pages");
           // register custom elements for templates in this document
           this.registerTemplates(content);
           let child;
           // we need the documents to be in HTML namespace
           if (!content.documentElement.xmlns) {
             let text = e.getTarget().getResponseText();
-            text = text.replace('<templates', '<templates xmlns="http://www.w3.org/1999/xhtml"');
+            text = text.replace(
+              "<templates",
+              '<templates xmlns="http://www.w3.org/1999/xhtml"'
+            );
             const parser = new DOMParser();
-            content = parser.parseFromString(text, 'text/xml');
+            content = parser.parseFromString(text, "text/xml");
           }
           while ((child = content.documentElement.firstElementChild)) {
             target.appendChild(child);
@@ -232,22 +252,22 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           while ((child = configElement.firstElementChild)) {
             target.appendChild(child);
           }
-          document.body.classList.remove('loading-structure');
-          this.debug('finalizing');
-          qx.event.message.Bus.dispatchByName('setup.dom.append');
-          this.debug('pages created');
+          document.body.classList.remove("loading-structure");
+          this.debug("finalizing");
+          qx.event.message.Bus.dispatchByName("setup.dom.append");
+          this.debug("pages created");
           this.__gotoStartPage();
-          this.debug('setup.dom.finished');
-          qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+          this.debug("setup.dom.finished");
+          qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
           cv.TemplateEngine.getInstance().setDomFinished(true);
         });
-        ajaxRequest.addListener('statusError', function (e) {
+        ajaxRequest.addListener("statusError", (e) => {
           const status = e.getTarget().getTransport().status;
           if (!qx.util.Request.isSuccessful(status)) {
-            this.error('filenotfound', templates);
+            this.error("filenotfound", templates);
           }
-          document.body.classList.remove('loading-structure');
-        }, this);
+          document.body.classList.remove("loading-structure");
+        });
 
         ajaxRequest.send();
       }
@@ -258,13 +278,19 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     registerTemplates(xml) {
-      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
-        customElements.define(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'), class extends TemplatedElement {
-          constructor() {
-            super(template.getAttribute('id'));
-          }
+      xml
+        .querySelectorAll("templates[structure='tile'] > template")
+        .forEach((template) => {
+          customElements.define(
+            cv.ui.structure.tile.Controller.PREFIX +
+              template.getAttribute("id"),
+            class extends TemplatedElement {
+              constructor() {
+                super(template.getAttribute("id"));
+              }
+            }
+          );
         });
-      });
     },
 
     /**
@@ -272,27 +298,34 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     async preParse(xml) {
-      if (xml.documentElement.hasAttribute('theme')) {
-        let theme = xml.documentElement.getAttribute('theme');
+      if (xml.documentElement.hasAttribute("theme")) {
+        let theme = xml.documentElement.getAttribute("theme");
         const data = {};
-        if (theme === 'system') {
+        if (theme === "system") {
           if (window.matchMedia) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-            data['theme'] = theme;
-            cv.data.Model.getInstance().updateFrom('system', data);
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-              document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-              data['theme'] = e.matches ? 'dark' : 'light';
-              cv.data.Model.getInstance().updateFrom('system', data);
-            });
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+            document.documentElement.setAttribute("data-theme", theme);
+            data["theme"] = theme;
+            cv.data.Model.getInstance().updateFrom("system", data);
+            window
+              .matchMedia("(prefers-color-scheme: dark)")
+              .addEventListener("change", (e) => {
+                document.documentElement.setAttribute(
+                  "data-theme",
+                  e.matches ? "dark" : "light"
+                );
+                data["theme"] = e.matches ? "dark" : "light";
+                cv.data.Model.getInstance().updateFrom("system", data);
+              });
           } else {
-            this.error('system theme detection not possible in this browser');
+            this.error("system theme detection not possible in this browser");
           }
         } else {
-          document.documentElement.setAttribute('data-theme', theme);
-          data['theme'] = theme;
-          cv.data.Model.getInstance().updateFrom('system', data);
+          document.documentElement.setAttribute("data-theme", theme);
+          data["theme"] = theme;
+          cv.data.Model.getInstance().updateFrom("system", data);
         }
       }
       return true;
@@ -302,34 +335,46 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * Generate the UI code from the config file
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
-    createUI(config) {
-    },
+    createUI(config) {},
 
     translate(doc) {
-      for (const attr of ['name', 'label']) {
+      for (const attr of ["name", "label"]) {
         for (const trNameElement of doc.querySelectorAll(`*[${attr}^="tr("]`)) {
-          const match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
+          const match = /^tr\('([^']+)'\)$/.exec(
+            trNameElement.getAttribute(attr)
+          );
           if (!match) {
-            this.warn('attribute content no valid translation string', trNameElement.getAttribute(attr));
+            this.warn(
+              "attribute content no valid translation string",
+              trNameElement.getAttribute(attr)
+            );
             continue;
           }
           const key = match[1];
-          const translation = doc.querySelector(`cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`);
+          const translation = doc.querySelector(
+            `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
+          );
           if (translation) {
             trNameElement.setAttribute(attr, translation.textContent.trim());
           } else {
             trNameElement.setAttribute(attr, key);
-            this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+            this.warn(
+              `[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`
+            );
           }
         }
       }
       for (const trTextElement of doc.querySelectorAll('*[tr="true"]')) {
         const key = trTextElement.textContent.trim();
-        const translation = doc.querySelector(`cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`);
+        const translation = doc.querySelector(
+          `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
+        );
         if (translation) {
           trTextElement.textContent = translation.textContent.trim();
         } else {
-          this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+          this.warn(
+            `[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`
+          );
         }
       }
     },
@@ -356,8 +401,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @returns {String} widget path like 'id_'...
      */
     getInitialPageId() {
-      const firstPage = document.querySelector('cv-page');
-      return firstPage ? firstPage.id : '';
+      const firstPage = document.querySelector("cv-page");
+      return firstPage ? firstPage.id : "";
     },
 
     /**
@@ -379,7 +424,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     mapValue(mappingName, value, store) {
-      if (this.__mappings && Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
+      if (
+        this.__mappings &&
+        Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)
+      ) {
         return this.__mappings[mappingName].mapValue(value, store);
       }
       return value;
@@ -403,18 +451,22 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     styleValue(stylingName, value, store) {
-      if (this.__stylings && Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
+      if (
+        this.__stylings &&
+        Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)
+      ) {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
-    }
+    },
   },
-  defer: function (statics) {
+
+  defer(statics) {
     if (!window.cvTestMode) {
       // do not apply ourselves automatically in test mode
       cv.Application.structureController = statics.getInstance();
     }
-  }
+  },
 });
 
 class TemplatedElement extends HTMLElement {
@@ -423,13 +475,17 @@ class TemplatedElement extends HTMLElement {
     const controller = cv.ui.structure.tile.Controller.getInstance();
     let template = document.getElementById(templateId);
     if (template) {
-      const slotAttributes = ['name', 'replaces', 'parent-scope'];
+      const slotAttributes = ["name", "replaces", "parent-scope"];
       const content = template.content.cloneNode(true);
       // move slots into template
-      for (let slot of content.querySelectorAll('slot')) {
-        const slotName = slot.getAttribute('name');
-        const replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
-        const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
+      for (let slot of content.querySelectorAll("slot")) {
+        const slotName = slot.getAttribute("name");
+        const replacementSelector = slot.hasAttribute("replaces")
+          ? slot.getAttribute("replaces")
+          : "";
+        const slotParentScope = slot.hasAttribute("parent-scope")
+          ? parseInt(slot.getAttribute("parent-scope"))
+          : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
@@ -438,36 +494,48 @@ class TemplatedElement extends HTMLElement {
           }
         }
         if (slotContents.length > 0) {
-          Array.from(slotContents).forEach(slotContent => {
+          Array.from(slotContents).forEach((slotContent) => {
             const newNode = slotContent.cloneNode(true);
-            Object.keys(attrs).forEach(attrName => {
+            Object.keys(attrs).forEach((attrName) => {
               if (newNode.hasAttribute(attrName)) {
-                if (attrName === 'class') {
+                if (attrName === "class") {
                   // append it
                   newNode.classList.add(attrs[attrName]);
                 } else {
-                  qx.log.Logger.debug(controller, '['+templateId+'] attribute', attrName, 'already set, skipping');
+                  qx.log.Logger.debug(
+                    controller,
+                    "[" + templateId + "] attribute",
+                    attrName,
+                    "already set, skipping"
+                  );
                 }
               } else {
                 newNode.setAttribute(attrName, attrs[attrName]);
               }
             });
-            newNode.removeAttribute('slot');
+            newNode.removeAttribute("slot");
             slot.parentNode.insertBefore(newNode, slot);
           });
           slot.remove();
           if (replacementSelector) {
-            content.querySelectorAll(replacementSelector).forEach(replaced => {
-              replaced.remove();
-            });
+            content
+              .querySelectorAll(replacementSelector)
+              .forEach((replaced) => {
+                replaced.remove();
+              });
           }
         } else {
-          qx.log.Logger.debug(controller, '['+templateId+'] no content for slot', slotName, ' removing');
+          qx.log.Logger.debug(
+            controller,
+            "[" + templateId + "] no content for slot",
+            slotName,
+            " removing"
+          );
 
           let parentNode = slot.parentNode;
           if (slotParentScope > 0) {
             // got slotParentScope elements up and remove that one
-            let i = slotParentScope-1;
+            let i = slotParentScope - 1;
             while (i > 0) {
               parentNode = parentNode.parentNode;
               i--;
@@ -486,57 +554,75 @@ class TemplatedElement extends HTMLElement {
       }
       // transfer attribute slots
       const attributes = this.getAttributeNames();
-      attributes.forEach(name => {
+      attributes.forEach((name) => {
         let value = this.getAttribute(name);
-        const targets = content.querySelectorAll('[slot-'+name+']');
+        const targets = content.querySelectorAll("[slot-" + name + "]");
         let targetName = name;
         // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
-        if (name.endsWith('-mapping')) {
-          targetName = 'mapping';
-        } else if (name.endsWith('-styling')) {
-          targetName = 'styling';
-        } else if (name.endsWith('-format')) {
-          targetName = 'format';
+        if (name.endsWith("-mapping")) {
+          targetName = "mapping";
+        } else if (name.endsWith("-styling")) {
+          targetName = "styling";
+        } else if (name.endsWith("-format")) {
+          targetName = "format";
         }
-        targets.forEach(target => {
-          if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            target.setAttribute(name, value || target.getAttribute('slot-'+name));
-            target.removeAttribute('slot-'+name);
+        targets.forEach((target) => {
+          if (targetName !== name && target.hasAttribute("slot-" + name)) {
+            target.setAttribute(
+              name,
+              value || target.getAttribute("slot-" + name)
+            );
+            target.removeAttribute("slot-" + name);
           } else {
-            target.setAttribute(targetName, value || target.getAttribute('slot-'+targetName));
-            target.removeAttribute('slot-'+targetName);
+            target.setAttribute(
+              targetName,
+              value || target.getAttribute("slot-" + targetName)
+            );
+            target.removeAttribute("slot-" + targetName);
           }
         });
         if (targets.length > 0) {
           this.removeAttribute(name);
         }
       });
-      content.querySelectorAll('*')
-        .forEach(elem => {
-          [...elem.attributes].forEach(attr => {
-            if (attr.name.startsWith('slot-')) {
-              let targetName = attr.name.substring(5);
-              // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
-              if (attr.name.endsWith('-mapping') && elem.hasAttribute('slot-mapping')) {
-                targetName = 'mapping';
-              } else if (attr.name.endsWith('-styling') && elem.hasAttribute('slot-styling')) {
-                targetName = 'styling';
-              } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
-                targetName = 'format';
-              }
-              if (attr.value) {
-                elem.setAttribute(targetName, attr.value);
-              }
-              elem.removeAttribute(attr.name);
+      content.querySelectorAll("*").forEach((elem) => {
+        [...elem.attributes].forEach((attr) => {
+          if (attr.name.startsWith("slot-")) {
+            let targetName = attr.name.substring(5);
+            // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
+            if (
+              attr.name.endsWith("-mapping") &&
+              elem.hasAttribute("slot-mapping")
+            ) {
+              targetName = "mapping";
+            } else if (
+              attr.name.endsWith("-styling") &&
+              elem.hasAttribute("slot-styling")
+            ) {
+              targetName = "styling";
+            } else if (
+              attr.name.endsWith("-format") &&
+              elem.hasAttribute("slot-format")
+            ) {
+              targetName = "format";
             }
-          });
+            if (attr.value) {
+              elem.setAttribute(targetName, attr.value);
+            }
+            elem.removeAttribute(attr.name);
+          }
         });
-      
+      });
+
       // clear content
-      this.innerHTML = '';
+      this.innerHTML = "";
       this.appendChild(content);
     } else {
-      qx.log.Logger.error(controller, '['+templateId+'] no template found for id', templateId);
+      qx.log.Logger.error(
+        controller,
+        "[" + templateId + "] no template found for id",
+        templateId
+      );
     }
   }
 }

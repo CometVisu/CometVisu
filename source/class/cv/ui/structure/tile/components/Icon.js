@@ -1,7 +1,7 @@
-/* Icon.js 
- * 
+/* Icon.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -20,7 +20,7 @@
 /**
  *
  */
-qx.Class.define('cv.ui.structure.tile.components.Icon', {
+qx.Class.define("cv.ui.structure.tile.components.Icon", {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
@@ -28,8 +28,8 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (element) {
-    this.base(arguments, element);
+  construct(element) {
+    super(element);
     this._idRegex = /^[^\s]+$/;
   },
 
@@ -40,18 +40,18 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
   */
   properties: {
     id: {
-      check: 'String',
+      check: "String",
       nullable: true,
-      apply: '_applyId',
+      apply: "_applyId",
       // the id is used as 'class' property and therefore must not have spaces
-      transform: '_transformId'
+      transform: "_transformId",
     },
 
     color: {
-      check: 'String',
+      check: "String",
       nullable: true,
-      apply: '_applyColor'
-    }
+      apply: "_applyColor",
+    },
   },
 
   /*
@@ -67,12 +67,12 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
       if (this._idRegex.test(value)) {
         return value;
       }
-      this.error('invalid icon id:', value);
+      this.error("invalid icon id:", value);
       return null;
     },
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       if (element.textContent.trim()) {
         this.__initialized = true;
@@ -80,7 +80,7 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
       } else {
         const it = element.classList.values();
         for (let name of it) {
-          if (name.startsWith('ri-') || name.startsWith('knxuf-')) {
+          if (name.startsWith("ri-") || name.startsWith("knxuf-")) {
             this.setId(name);
             break;
           }
@@ -99,7 +99,7 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
           // default is an icon font that uses CSS classes
           element.classList.add(value);
           if (element.textContent) {
-            element.textContent = '';
+            element.textContent = "";
           }
         }
       }
@@ -113,18 +113,21 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
       if (value) {
         element.classList.add(value);
       }
-    }
+    },
   },
 
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'icon', class extends QxConnector {
-      constructor() {
-        super(Clazz);
-      }
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "icon",
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
 
-      static get observedAttributes() {
-        return ['color'];
+        static get observedAttributes() {
+          return ["color"];
+        }
       }
-    });
-  }
+    );
+  },
 });

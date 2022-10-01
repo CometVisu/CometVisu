@@ -1,7 +1,7 @@
-/* DesignToggle.js 
- * 
+/* DesignToggle.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Parse &lt;designtoggle;gt; config elements
  */
-qx.Class.define('cv.parser.pure.widgets.DesignToggle', {
-  type: 'static',
+qx.Class.define("cv.parser.pure.widgets.DesignToggle", {
+  type: "static",
 
   /*
    ******************************************************
@@ -30,17 +29,23 @@ qx.Class.define('cv.parser.pure.widgets.DesignToggle', {
    ******************************************************
    */
   statics: {
-    parse: function (xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+    parse(xml, path, flavour, pageType) {
+      return cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType
+      );
     },
 
-    getDefaultClasses: function() {
-      return 'widget clearfix toggle';
-    }
+    getDefaultClasses() {
+      return "widget clearfix toggle";
+    },
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler('designtoggle', statics);
-  }
+    cv.parser.pure.WidgetParser.addHandler("designtoggle", statics);
+  },
 });

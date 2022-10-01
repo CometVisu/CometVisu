@@ -1,7 +1,7 @@
-/* Section.js 
- * 
+/* Section.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,11 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.ui.manager.model.config.Section', {
+qx.Class.define("cv.ui.manager.model.config.Section", {
   extend: qx.core.Object,
 
   /*
@@ -29,8 +28,8 @@ qx.Class.define('cv.ui.manager.model.config.Section', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (name) {
-    this.base(arguments);
+  construct(name) {
+    super();
     this.setName(name);
     this.initOptions(new qx.data.Array());
   },
@@ -42,16 +41,16 @@ qx.Class.define('cv.ui.manager.model.config.Section', {
   */
   properties: {
     name: {
-      check: 'String',
-      event: 'changeName',
-      init: ''
+      check: "String",
+      event: "changeName",
+      init: "",
     },
 
     options: {
-      check: 'qx.data.Array',
+      check: "qx.data.Array",
       deferredInit: true,
-      event: 'changeOptions'
-    }
+      event: "changeOptions",
+    },
   },
 
   /*
@@ -60,7 +59,7 @@ qx.Class.define('cv.ui.manager.model.config.Section', {
   ***********************************************
   */
   members: {
-    addOption: function(key, value) {
+    addOption(key, value) {
       const options = this.getOptions();
       const found = options.some(function (option) {
         if (option.getKey() === key) {
@@ -72,6 +71,6 @@ qx.Class.define('cv.ui.manager.model.config.Section', {
       if (!found) {
         options.push(new cv.ui.manager.model.config.Option(key, value));
       }
-    }
-  }
+    },
+  },
 });

@@ -1,7 +1,7 @@
-/* Video.js 
- * 
+/* Video.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.parser.pure.widgets.Video', {
-  type: 'static',
+qx.Class.define("cv.parser.pure.widgets.Video", {
+  type: "static",
 
   /*
   ******************************************************
@@ -39,24 +38,34 @@ qx.Class.define('cv.parser.pure.widgets.Video', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      return cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'width'       :   {},
-        'height'      :   {},
-        'src'         :   {},
-        'autoplay'    :   { target: 'autoplay', transform: function(value) {
-          return value === 'true';
-        }}
+        width: {},
+        height: {},
+        src: {},
+        autoplay: {
+          target: "autoplay",
+          transform(value) {
+            return value === "true";
+          },
+        },
       };
-    }
+    },
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler('video', statics);
-  }
+    cv.parser.pure.WidgetParser.addHandler("video", statics);
+  },
 });

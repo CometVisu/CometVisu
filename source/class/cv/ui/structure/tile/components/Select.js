@@ -1,7 +1,7 @@
-/* Select.js 
- * 
+/* Select.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -20,7 +20,7 @@
 /**
  * Allows the selection of one element out of a list of <cv-option> elements
  */
-qx.Class.define('cv.ui.structure.tile.components.Select', {
+qx.Class.define("cv.ui.structure.tile.components.Select", {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
@@ -34,39 +34,39 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     __popup: null,
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       this.__options = new Map();
 
-      const popup = this.__popup = document.createElement('div');
-      popup.classList.add('popup');
-      element.querySelectorAll(':scope > cv-option').forEach((option, i) => {
+      const popup = (this.__popup = document.createElement("div"));
+      popup.classList.add("popup");
+      element.querySelectorAll(":scope > cv-option").forEach((option, i) => {
         popup.appendChild(option);
-        if (!option.hasAttribute('key')) {
-          option.setAttribute('key', '' + i);
+        if (!option.hasAttribute("key")) {
+          option.setAttribute("key", "" + i);
         }
-        this.__options.set(option.getAttribute('key'), option);
+        this.__options.set(option.getAttribute("key"), option);
       });
-      const value = this.__value = document.createElement('span');
-      value.classList.add('value');
+      const value = (this.__value = document.createElement("span"));
+      value.classList.add("value");
       element.appendChild(value);
       element.appendChild(popup);
-      const handle = document.createElement('cv-icon');
-      handle.classList.add('dropdown');
-      handle.classList.add('ri-arrow-down-s-line');
+      const handle = document.createElement("cv-icon");
+      handle.classList.add("dropdown");
+      handle.classList.add("ri-arrow-down-s-line");
       element.appendChild(handle);
 
       if (this._writeAddresses.length > 0) {
-        element.addEventListener('click', ev => this.onClicked(ev));
+        element.addEventListener("click", (ev) => this.onClicked(ev));
       }
     },
 
     onClicked(ev) {
       const style = getComputedStyle(this.__popup);
       for (let target of ev.path) {
-        if (target.tagName.toLowerCase() === 'cv-option') {
+        if (target.tagName.toLowerCase() === "cv-option") {
           // select this option
-          this._sendSelection(target.getAttribute('key'), true);
+          this._sendSelection(target.getAttribute("key"), true);
           break;
         }
         if (target === ev.currentTarget) {
@@ -74,21 +74,27 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
         }
       }
       // open popup
-      if (style.getPropertyValue('display') === 'none') {
-        this.__popup.style.display = 'block';
+      if (style.getPropertyValue("display") === "none") {
+        this.__popup.style.display = "block";
       } else {
-        this.__popup.style.display ='none';
+        this.__popup.style.display = "none";
       }
     },
 
     _sendSelection(key, predictive) {
-      const ev = new CustomEvent('sendState', {
+      const ev = new CustomEvent("sendState", {
         detail: {
           value: key,
-          source: this
-        }
+          source: this,
+        },
       });
-      this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
+
+      this._writeAddresses
+        .filter(
+          (addr) =>
+            !addr.hasAttribute("on") || addr.getAttribute("on") === "click"
+        )
+        .forEach((address) => address.dispatchEvent(ev));
       if (predictive === true) {
         this.setValue(key);
       }
@@ -96,7 +102,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
 
     _updateValue(mappedValue, value) {
       if (this.__options.has(mappedValue)) {
-        this.__value.innerHTML = '';
+        this.__value.innerHTML = "";
         const current = this.__options.get(mappedValue);
         if (current.children.length > 0) {
           // if we have non text children, we only use them (only icons no text)
@@ -107,14 +113,17 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
           this.__value.innerHTML = current.innerHTML;
         }
       }
-    }
+    },
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'select', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "select",
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
-  }
+    );
+  },
 });

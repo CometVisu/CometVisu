@@ -1,7 +1,7 @@
-/* Popup.js 
- * 
+/* Popup.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
+qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: cv.ui.structure.tile.MPopup,
 
@@ -33,7 +33,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
   ***********************************************
   */
   statics: {
-    openedPopups: []
+    openedPopups: [],
   },
 
   /*
@@ -42,39 +42,48 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
    ******************************************************
    */
   members: {
-
     _init() {
-      this.base(arguments);
+      super._init();
       const popup = this._element;
-      const closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
+      const closeable =
+        !popup.hasAttribute("closeable") ||
+        popup.getAttribute("closeable") === "true";
       if (closeable) {
-        this._closeButton = document.createElement('button');
-        this._closeButton.classList.add('close');
-        const icon = document.createElement('i');
-        icon.classList.add('ri-close-line');
+        this._closeButton = document.createElement("button");
+        this._closeButton.classList.add("close");
+        const icon = document.createElement("i");
+        icon.classList.add("ri-close-line");
         this._closeButton.appendChild(icon);
         popup.insertBefore(this._closeButton, popup.firstChild);
-        this._closeButton.addEventListener('click', () => this.close());
+        this._closeButton.addEventListener("click", () => this.close());
       }
-      if (popup.hasAttribute('auto-close-timeout')) {
-        const timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));
+      if (popup.hasAttribute("auto-close-timeout")) {
+        const timeoutSeconds = parseInt(
+          popup.getAttribute("auto-close-timeout")
+        );
         if (!isNaN(timeoutSeconds)) {
           this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
-          this._autoCloseTimer.addListener('interval', () => {
+          this._autoCloseTimer.addListener("interval", () => {
             this._autoCloseTimer.stop();
             this.close();
           });
         } else {
-          this.error('invalid auto-close-timeout value:', popup.getAttribute('auto-close-timeout'));
+          this.error(
+            "invalid auto-close-timeout value:",
+            popup.getAttribute("auto-close-timeout")
+          );
         }
       }
     },
 
     open() {
       const popup = this._element;
-      if (!popup.hasAttribute('open')) {
-        popup.setAttribute('open', '');
-        if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
+      if (!popup.hasAttribute("open")) {
+        popup.setAttribute("open", "");
+        if (
+          popup.hasAttribute("modal") &&
+          popup.getAttribute("modal") === "true"
+        ) {
           this.registerModalPopup();
         }
         if (this._autoCloseTimer) {
@@ -86,17 +95,19 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     close() {
       const popup = this._element;
       if (popup) {
-        popup.removeAttribute('open');
-        if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
+        popup.removeAttribute("open");
+        if (
+          popup.hasAttribute("modal") &&
+          popup.getAttribute("modal") === "true"
+        ) {
           this.unregisterModalPopup();
         }
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
-        popup.dispatchEvent(new CustomEvent('closed'));
+        popup.dispatchEvent(new CustomEvent("closed"));
       }
     },
-
 
     /**
      * Handles the incoming data from the backend for this widget.
@@ -108,15 +119,15 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
      * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
      */
     onStateUpdate(ev) {
-      if (!this.base(arguments, ev)) {
+      if (!super.onStateUpdate(ev)) {
         switch (ev.detail.target) {
-          case 'open':
+          case "open":
             if (ev.detail.state) {
               this.open();
             }
             break;
 
-          case 'open-close':
+          case "open-close":
             if (ev.detail.state) {
               this.open();
             } else {
@@ -124,18 +135,18 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
             }
             break;
 
-          case 'close':
+          case "close":
             if (!ev.detail.state) {
               this.close();
             }
             break;
 
           default:
-            this.debug('unhandled address target', ev.detail.target);
+            this.debug("unhandled address target", ev.detail.target);
             break;
         }
       }
-    }
+    },
   },
 
   /*
@@ -143,19 +154,22 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
-    this._disposeObjects('_autoCloseTimer');
+  destruct() {
+    this._disposeObjects("_autoCloseTimer");
     if (this._closeButton) {
       this._closeButton.remove();
       this._closeButton = null;
     }
   },
 
-  defer: function(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'popup', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+  defer(QxClass) {
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "popup",
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
-  }
+    );
+  },
 });

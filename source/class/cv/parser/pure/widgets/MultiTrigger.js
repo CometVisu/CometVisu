@@ -1,7 +1,7 @@
-/* MultiTrigger.js 
- * 
+/* MultiTrigger.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.parser.pure.widgets.MultiTrigger', {
-  type: 'static',
+qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
+  type: "static",
 
   /*
   ******************************************************
@@ -39,13 +38,24 @@ qx.Class.define('cv.parser.pure.widgets.MultiTrigger', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      cv.parser.pure.WidgetParser.parseAddress(
+        xml,
+        path,
+        this.makeAddressListFn
+      );
       const buttonRegex = /^button([\d]+)(label|value)$/;
       const buttonConfig = {};
-      for (var i=0; i<xml.attributes.length; i++) {
+      for (var i = 0; i < xml.attributes.length; i++) {
         const attrib = xml.attributes[i];
         const match = buttonRegex.exec(attrib.name);
         if (match) {
@@ -57,39 +67,42 @@ qx.Class.define('cv.parser.pure.widgets.MultiTrigger', {
       }
 
       // parse buttons
-      const buttons = xml.querySelectorAll('buttons > button');
+      const buttons = xml.querySelectorAll("buttons > button");
       for (i = 0; i < buttons.length; i++) {
         buttonConfig[i + 1] = {
-          value: buttons[i].textContent
+          value: buttons[i].textContent,
         };
-        if (buttons[i].hasAttribute('label')) {
-          buttonConfig[i + 1].label = buttons[i].getAttribute('label');
+
+        if (buttons[i].hasAttribute("label")) {
+          buttonConfig[i + 1].label = buttons[i].getAttribute("label");
         }
       }
       data.buttonConfiguration = buttonConfig;
       return data;
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
         showstatus: {
-          transform: function (value) {
-            return value === 'true';
-          }
+          transform(value) {
+            return value === "true";
+          },
         },
+
         elementsPerLine: {
-          transform: parseInt, 'default': 2
-        }
+          transform: parseInt,
+          default: 2,
+        },
       };
     },
 
-    makeAddressListFn: function (src, transform, mode, variant) {
+    makeAddressListFn(src, transform, mode, variant) {
       return [true, variant];
-    }
+    },
   },
 
-  defer: function (statics) {
+  defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler('multitrigger', statics);
-  }
+    cv.parser.pure.WidgetParser.addHandler("multitrigger", statics);
+  },
 });

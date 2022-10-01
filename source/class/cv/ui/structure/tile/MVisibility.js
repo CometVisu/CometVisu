@@ -1,7 +1,7 @@
-/* MVisibility.js 
- * 
+/* MVisibility.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -21,14 +21,13 @@
  * Detects dom elements visibility
  * @ignore(IntersectionObserver)
  */
-qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
-
+qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
+  construct() {
     this._observeVisibility();
   },
 
@@ -39,12 +38,12 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
   */
   statics: {
     observer: new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.target._instance) {
           entry.target._instance.setVisible(entry.intersectionRatio > 0);
         }
       });
-    })
+    }),
   },
 
   /*
@@ -54,10 +53,10 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
   */
   properties: {
     visible: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyVisible'
-    }
+      apply: "_applyVisible",
+    },
   },
 
   /*
@@ -70,8 +69,8 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
       if (this._element) {
         cv.ui.structure.tile.MVisibility.observer.observe(this._element);
       } else {
-        this.warn('no element to observe defined');
+        this.warn("no element to observe defined");
       }
-    }
-  }
+    },
+  },
 });

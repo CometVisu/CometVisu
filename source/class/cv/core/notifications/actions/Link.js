@@ -1,7 +1,7 @@
-/* Link.js 
- * 
+/* Link.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,14 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Opens a link in a new window.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define('cv.core.notifications.actions.Link', {
+qx.Class.define("cv.core.notifications.actions.Link", {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -33,8 +32,8 @@ qx.Class.define('cv.core.notifications.actions.Link', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-    this.base(arguments);
+  construct(props) {
+    super();
     this.set(props);
   },
 
@@ -45,26 +44,30 @@ qx.Class.define('cv.core.notifications.actions.Link', {
   */
   properties: {
     title: {
-      check: 'String',
-      nullable: true
-    },
-    url: {
-      check: 'String',
-      nullable: true
-    },
-    type: {
-      check: 'String',
-      init: ''
-    },
-    action: {
-      check: 'Function',
+      check: "String",
       nullable: true,
-      transform: '_transformAction'
     },
+
+    url: {
+      check: "String",
+      nullable: true,
+    },
+
+    type: {
+      check: "String",
+      init: "",
+    },
+
+    action: {
+      check: "Function",
+      nullable: true,
+      transform: "_transformAction",
+    },
+
     hidden: {
-      check: 'Boolean',
-      init: false
-    }
+      check: "Boolean",
+      init: false,
+    },
   },
 
   /*
@@ -73,23 +76,23 @@ qx.Class.define('cv.core.notifications.actions.Link', {
   *****************************************************************************
   */
   members: {
-
-    _transformAction: function(value) {
-      if (typeof value === 'function') {
+    _transformAction(value) {
+      if (typeof value === "function") {
         return value;
       }
       switch (value) {
-        case 'reload':
-        case 'restart':
+        case "reload":
+        case "restart":
           return cv.util.Location.reload;
       }
+
       if (value) {
-        this.error('Unknown action: ' + value);
+        this.error("Unknown action: " + value);
       }
       return null;
     },
 
-    handleAction: function(ev) {
+    handleAction(ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
@@ -103,28 +106,37 @@ qx.Class.define('cv.core.notifications.actions.Link', {
           const req = new qx.io.request.Xhr(this.getUrl());
           req.send();
         } else {
-          cv.util.Location.open(this.getUrl(), '_blank');
+          cv.util.Location.open(this.getUrl(), "_blank");
         }
       }
       if (this.isDeleteMessageAfterExecution) {
-        this.fireEvent('close');
+        this.fireEvent("close");
       }
     },
 
-    getDomElement: function() {
-      const actionButton = qx.dom.Element.create('button', {
-        'class': 'action ' + this.getType(),
-        'text': this.getTitle(),
-        'style': this.getStyle()
+    getDomElement() {
+      const actionButton = qx.dom.Element.create("button", {
+        class: "action " + this.getType(),
+        text: this.getTitle(),
+        style: this.getStyle(),
       });
+
       actionButton.$$handler = this;
 
-      qx.event.Registration.addListener(actionButton, 'tap', this.handleAction, this);
+      qx.event.Registration.addListener(
+        actionButton,
+        "tap",
+        this.handleAction,
+        this
+      );
       return actionButton;
-    }
+    },
   },
 
-  defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler('link', cv.core.notifications.actions.Link);
-  }
+  defer() {
+    cv.core.notifications.ActionRegistry.registerActionHandler(
+      "link",
+      cv.core.notifications.actions.Link
+    );
+  },
 });

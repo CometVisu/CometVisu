@@ -1,7 +1,7 @@
-/* Audio.js 
- * 
+/* Audio.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * The audio widget embeds an audio file, which can be automatically played by incoming data
@@ -37,75 +36,84 @@
  * @author Markus Damman
  * @since 0.8.4 (2014)
  */
-  qx.Class.define('cv.ui.structure.pure.Audio', {
-    extend: cv.ui.structure.pure.AbstractWidget,
+qx.Class.define("cv.ui.structure.pure.Audio", {
+  extend: cv.ui.structure.pure.AbstractWidget,
 
-    include: cv.ui.common.Update,
+  include: cv.ui.common.Update,
 
-    /*
-    ******************************************************
-      PROPERTIES
-    ******************************************************
-    */
-    properties: {
-      src: { check: 'String', nullable: true },
-      id: { check: 'String', nullable: true },
-      width: { check: 'String', nullable: true },
-      height: { check: 'String', nullable: true },
-      autoplay: { check: 'Boolean', init: false },
-      loop: { check: 'Boolean', init: false },
-      thresholdValue: { check: 'Number', init: 1 }
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    src: { check: "String", nullable: true },
+    id: { check: "String", nullable: true },
+    width: { check: "String", nullable: true },
+    height: { check: "String", nullable: true },
+    autoplay: { check: "Boolean", init: false },
+    loop: { check: "Boolean", init: false },
+    thresholdValue: { check: "Number", init: 1 },
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    // overridden
+    _getInnerDomString() {
+      // create the main structure
+      // create the actor
+      let style = "";
+      if (this.getWidth()) {
+        style += "width:" + this.getWidth() + ";";
+      }
+      if (this.getHeight()) {
+        style += "height:" + this.getHeight() + ";";
+      }
+      if (style !== "") {
+        style = 'style="' + style + '"';
+      }
+      const autoplay = this.isAutoplay() ? " autoplay " : "";
+      const loop = this.isLoop() ? " loop " : "";
+      return (
+        '<div class="actor"><audio id="' +
+        this.getId() +
+        '" ' +
+        autoplay +
+        loop +
+        style +
+        ' controls> <source src="' +
+        this.getSrc() +
+        '" > </audio> </div>'
+      );
     },
 
-    /*
-    ******************************************************
-      MEMBERS
-    ******************************************************
-    */
-    members: {
+    // overridden
+    getActor() {
+      return this.getDomElement().querySelector(".actor audio");
+    },
 
-      // overridden
-      _getInnerDomString: function () {
-        // create the main structure
-        // create the actor
-        let style = '';
-        if (this.getWidth()) {
- style += 'width:' + this.getWidth() + ';'; 
-}
-        if (this.getHeight()) {
- style += 'height:' + this.getHeight() + ';'; 
-}
-        if (style !== '') {
- style = 'style="' + style + '"'; 
-}
-        const autoplay = (this.isAutoplay()) ? ' autoplay ' : '';
-        const loop = (this.isLoop()) ? ' loop ' : '';
-        return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
-      },
-
-      // overridden
-      getActor: function() {
-        return this.getDomElement().querySelector('.actor audio');
-      },
-
-      /**
-       * Handles updates of incoming data for this widget
-       *
-       * @param address {String} Source address of the incoming data
-       * @param value {String} Incoming data
-       */
-      _update: function (address, value) {
-        const on = this.applyMapping(this.getThresholdValue());
-        if (value >= on) {
-          const audioWidget = this.getActor();
-          if (audioWidget.paused === true) {
-            audioWidget.play();
-          }
+    /**
+     * Handles updates of incoming data for this widget
+     *
+     * @param address {String} Source address of the incoming data
+     * @param value {String} Incoming data
+     */
+    _update(address, value) {
+      const on = this.applyMapping(this.getThresholdValue());
+      if (value >= on) {
+        const audioWidget = this.getActor();
+        if (audioWidget.paused === true) {
+          audioWidget.play();
         }
       }
     },
+  },
 
-    defer: function(statics) {
-      cv.ui.structure.WidgetFactory.registerClass('audio', statics);
-    }
-  });
+  defer(statics) {
+    cv.ui.structure.WidgetFactory.registerClass("audio", statics);
+  },
+});

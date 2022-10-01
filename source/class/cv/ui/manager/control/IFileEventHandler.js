@@ -1,7 +1,7 @@
-/* IFileEventHandler.js 
- * 
+/* IFileEventHandler.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,17 +17,16 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Interface.define('cv.ui.manager.control.IFileEventHandler', {
+qx.Interface.define("cv.ui.manager.control.IFileEventHandler", {
   /*
   ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
-    _handleFileEvent: function (ev) {}
-  }
+    _handleFileEvent(ev) {},
+  },
 });

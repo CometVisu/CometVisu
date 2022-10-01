@@ -1,7 +1,7 @@
-/* AbstractViewer.js 
- * 
+/* AbstractViewer.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,25 +17,22 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Abstract base class for all widgets that can display file items.
  */
-qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
+qx.Class.define("cv.ui.manager.viewer.AbstractViewer", {
   extend: qx.ui.core.Widget,
-  implement: [
-    cv.ui.manager.editor.IEditor,
-    cv.ui.manager.IActionHandler
-  ],
-  type: 'abstract',
+  implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
+
+  type: "abstract",
 
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this._setLayout(new qx.ui.layout.Grow());
   },
 
@@ -46,25 +43,25 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
   */
   properties: {
     file: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: '_applyFile',
-      event: 'changeFile'
+      apply: "_applyFile",
+      event: "changeFile",
     },
 
     /**
      * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
      */
     external: {
-      check: 'Boolean',
-      init: false
+      check: "Boolean",
+      init: false,
     },
 
     ready: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeReady'
-    }
+      event: "changeReady",
+    },
   },
 
   /*
@@ -73,37 +70,39 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
   ***********************************************
   */
   members: {
-    canHandleAction: function () {
+    canHandleAction() {
       return false;
     },
-    handleAction: function () {},
-    configureButton: function (button) {},
-    unConfigureButton: function (button) {},
-    save: function () {},
-    getCurrentContent: function () {},
+    handleAction() {},
+    configureButton(button) {},
+    unConfigureButton(button) {},
+    save() {},
+    getCurrentContent() {},
 
-    _applyFile: function (file, old) {
+    _applyFile(file, old) {
       // show icon for file type
     },
 
     // overridden
-    _createChildControlImpl : function (id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
-        case 'scroll':
+        case "scroll":
           control = new qx.ui.container.Scroll();
           this._add(control);
           break;
 
-        case 'image':
+        case "image":
           control = new qx.ui.basic.Atom();
-          this.getChildControl('scroll').add(control);
-          control.getChildControl('icon').addListener('resize', this._scaleImage, this);
+          this.getChildControl("scroll").add(control);
+          control
+            .getChildControl("icon")
+            .addListener("resize", this._scaleImage, this);
           break;
       }
 
-      return control || this.base(arguments, id);
-    }
-  }
+      return control || super._createChildControlImpl(id);
+    },
+  },
 });

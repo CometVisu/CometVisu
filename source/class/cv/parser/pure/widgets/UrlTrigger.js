@@ -1,7 +1,7 @@
-/* UrlTrigger.js 
- * 
+/* UrlTrigger.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.parser.pure.widgets.UrlTrigger', {
-  type: 'static',
+qx.Class.define("cv.parser.pure.widgets.UrlTrigger", {
+  type: "static",
 
   /*
   ******************************************************
@@ -39,28 +38,35 @@ qx.Class.define('cv.parser.pure.widgets.UrlTrigger', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'value' : { target: 'sendValue', 'default': '0' },
-        'params'  : { 'default': '' },
-        'url': { }
+        value: { target: "sendValue", default: "0" },
+        params: { default: "" },
+        url: {},
       };
     },
-    getDefaultClasses: function(type) {
+    getDefaultClasses(type) {
       // additional trigger class
-      return 'widget clearfix trigger '+type.toLowerCase();
-    }
+      return "widget clearfix trigger " + type.toLowerCase();
+    },
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler('urltrigger', statics);
-  }
+    cv.parser.pure.WidgetParser.addHandler("urltrigger", statics);
+  },
 });

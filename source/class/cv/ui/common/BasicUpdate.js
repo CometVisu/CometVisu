@@ -1,7 +1,7 @@
-/* BasicUpdate.js 
- * 
+/* BasicUpdate.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This role provides the basic update methods
  *
  */
-qx.Mixin.define('cv.ui.common.BasicUpdate', {
+qx.Mixin.define("cv.ui.common.BasicUpdate", {
   include: cv.ui.common.HasAddress,
 
   /*
@@ -37,7 +36,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
     value: {
       nullable: true,
       init: null,
-      event: 'changeValue'
+      event: "changeValue",
     },
 
     /**
@@ -45,17 +44,17 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      */
     basicValue: {
       nullable: true,
-      init: null
+      init: null,
     },
 
     /**
      * Format to apply to incoming values
      */
     format: {
-      check: 'String',
-      init: '',
-      nullable: true
-    }
+      check: "String",
+      init: "",
+      nullable: true,
+    },
   },
 
   /*
@@ -71,7 +70,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param {string} mappingName - mapping name, if not set the <code>mapping</code> property value is used
      * @return {*} the mapped value
      */
-    applyMapping: function (value, mappingName) {
+    applyMapping(value, mappingName) {
       if (mappingName && cv.Config.hasMapping(mappingName)) {
         const mapping = cv.Config.getMapping(mappingName);
 
@@ -97,9 +96,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
               } // check max
               return range[min][1];
             }
-          } else if (mapping['*']) {
+          } else if (mapping["*"]) {
             // catchall mapping
-            return mapping['*'];
+            return mapping["*"];
           }
           return v; // pass through when nothing was found
         };
@@ -112,9 +111,8 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
         }
       }
       return value;
-    }
+    },
   },
-
 
   /*
   ******************************************************
@@ -122,7 +120,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
   ******************************************************
   */
   members: {
-    formatValueCache : null,
+    formatValueCache: null,
     /**
      * Decode the given data with the addresses transform
      *
@@ -130,7 +128,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param data {var} value to be decoded
      * @return {var}
      */
-    applyTransform: function (address, data) {
+    applyTransform(address, data) {
       if (address) {
         // transform the raw value to a JavaScript type
         return cv.Transform.decode(this.getAddress()[address], data);
@@ -145,7 +143,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used
      * @return {var} the mapped value
      */
-    applyMapping: function (value, mappingName) {
+    applyMapping(value, mappingName) {
       if (!mappingName) {
         mappingName = this.getMapping();
       }
@@ -160,10 +158,10 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param this_map {String} mapping name
      * @return {var} the next mapped value
      */
-    getNextMappedValue: function (value, this_map) {
+    getNextMappedValue(value, this_map) {
       if (this_map && cv.Config.hasMapping(this_map)) {
         const keys = Object.keys(cv.Config.getMapping(this_map));
-        return keys[(keys.indexOf('' + value) + 1) % keys.length];
+        return keys[(keys.indexOf("" + value) + 1) % keys.length];
       }
       return value;
     },
@@ -176,13 +174,16 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param value {var} value to be formatted
      * @return {var} the formatted value
      */
-    applyFormat: function (address, value) {
+    applyFormat(address, value) {
       if (this.getFormat()) {
         if (!this.formatValueCache) {
           this.formatValueCache = [this.getFormat()];
         }
 
-        const argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address].formatPos : 1;
+        const argListPos =
+          this.getAddress() && this.getAddress()[address]
+            ? this.getAddress()[address].formatPos
+            : 1;
 
         this.formatValueCache[argListPos] = value;
 
@@ -199,7 +200,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param {*} data - value to be processes
      * @return {*} the processed value
      */
-    defaultValueHandling: function (address, data) {
+    defaultValueHandling(address, data) {
       // #1: transform the raw value to a JavaScript type
       let value = this.applyTransform(address, data);
 
@@ -218,17 +219,19 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
       }
 
       if (value && value.constructor === Date) {
-        switch (this.getAddress()[address].transform) { // special case for KNX
-          case 'DPT:10.001':
+        switch (
+          this.getAddress()[address].transform // special case for KNX
+        ) {
+          case "DPT:10.001":
             value = value.toLocaleTimeString();
             break;
-          case 'DPT:11.001':
+          case "DPT:11.001":
             value = value.toLocaleDateString();
             break;
-          case 'OH:datetime':
+          case "OH:datetime":
             value = value.toLocaleDateString();
             break;
-          case 'OH:time':
+          case "OH:time":
             value = value.toLocaleTimeString();
             break;
         }
@@ -250,9 +253,9 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param {HTMLElement} targetElement - the element where `value` will be added to
      * @param {Function?} modifyFn - callback function that modifies the DOM
      */
-    defaultValue2DOM: function (value, targetElement, modifyFn = this._applyValueToDom) {
+    defaultValue2DOM(value, targetElement, modifyFn = this._applyValueToDom) {
       if (Array.isArray(value)) {
-        value.forEach(v => this.defaultValue2DOM(v, targetElement, modifyFn));
+        value.forEach((v) => this.defaultValue2DOM(v, targetElement, modifyFn));
         return;
       }
       if (value instanceof Node) {
@@ -274,7 +277,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param {HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used
      * @return {*} - value
      */
-    defaultUpdate: function (ga, data, passedElement) {
+    defaultUpdate(ga, data, passedElement) {
       const element = passedElement || this.getDomElement();
       const value = this.defaultValueHandling(ga, data);
 
@@ -283,12 +286,14 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
       if (this.getAlign()) {
         element.classList.add(this.getAlign());
       }
-      const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
+      const valueElement = this.getValueElement
+        ? this.getValueElement()
+        : element.querySelector(".value");
       if (undefined !== value) {
         valueElement.replaceChildren(); // delete anything inside
         this.defaultValue2DOM(value, valueElement);
       } else {
-        valueElement.textContent = '-';
+        valueElement.textContent = "-";
       }
       return value;
     },
@@ -298,17 +303,17 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @param {HTMLElement} targetElement - element to update
      * @param {*} value - value to add to the element
      */
-    _applyValueToDom: function(targetElement, value) {
+    _applyValueToDom(targetElement, value) {
       if (value === undefined || value === null) {
         return;
       }
       if (value instanceof Node) {
         targetElement.appendChild(value);
-      } else if (typeof value === 'number' || typeof value === 'string') {
+      } else if (typeof value === "number" || typeof value === "string") {
         targetElement.appendChild(document.createTextNode(value));
       } else {
         targetElement.innerHTML += value;
       }
-    }
-  }
+    },
+  },
 });

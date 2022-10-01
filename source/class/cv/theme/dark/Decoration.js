@@ -1,7 +1,7 @@
-/* Decoration.js 
- * 
+/* Decoration.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,90 +17,90 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+qx.Theme.define("cv.theme.dark.Decoration", {
+  extend: osparc.theme.common.Decoration,
 
-qx.Theme.define('cv.theme.dark.Decoration', {
-  extend : osparc.theme.common.Decoration,
+  decorations: {
+    "window-caption-active": {},
 
-  decorations : {
-    'window-caption-active': {
-    },
-
-    'cv-editor-config-section': {
+    "cv-editor-config-section": {
       style: {
         width: 1,
-        color: 'material-textfield'
-      }
+        color: "material-textfield",
+      },
     },
 
-    'cv-snackbar-msg': {
+    "cv-snackbar-msg": {
       style: {
-        backgroundColor: 'button'
-      }
+        backgroundColor: "button",
+      },
     },
 
-    'cv-snackbar-msg-error': {
+    "cv-snackbar-msg-error": {
       style: {
-        backgroundColor: 'material-textfield-invalid'
-      }
+        backgroundColor: "material-textfield-invalid",
+      },
     },
 
-    'cv-toolbar': {
+    "cv-toolbar": {
       style: {
         width: [1, 0, 1, 0],
-        color: 'background-main'
-      }
+        color: "background-main",
+      },
     },
 
-    'file-action-button': {
+    "file-action-button": {
       style: {
         width: 1,
-        color: 'text'
-      }
+        color: "text",
+      },
     },
 
-    'cv-start-section-title': {
+    "cv-start-section-title": {
       style: {
         width: [1, 0, 0, 0],
-        color: 'text-placeholder'
-      }
+        color: "text-placeholder",
+      },
     },
-    'open-file-tabs': {
+
+    "open-file-tabs": {
       style: {
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
         shadowVerticalLength: 1,
-        shadowColor: 'rgba(255, 255, 255, 0.1)'
-      }
+        shadowColor: "rgba(255, 255, 255, 0.1)",
+      },
     },
 
-    'cv-file-item-add-file': {
+    "cv-file-item-add-file": {
       style: {
         width: 1,
-        color: 'text',
-        style: 'dashed'
-      }
+        color: "text",
+        style: "dashed",
+      },
     },
 
-    'round-button': {
+    "round-button": {
       style: {
         width: 2,
         radius: 32,
-        color: 'button-border',
-        backgroundColor: 'button',
+        color: "button-border",
+        backgroundColor: "button",
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
         shadowVerticalLength: 1,
-        shadowColor: 'rgba(255, 255, 255, 0.1)'
-      }
+        shadowColor: "rgba(255, 255, 255, 0.1)",
+      },
     },
-    'round-button-hovered': {
-      include: 'round-button',
+
+    "round-button-hovered": {
+      include: "round-button",
       style: {
         width: 4,
-        color: 'button-border-hovered'
-      }
-    }
-  }
+        color: "button-border-hovered",
+      },
+    },
+  },
 });

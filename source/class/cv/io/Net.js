@@ -1,7 +1,7 @@
-/* Net.js 
- * 
+/* Net.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define('cv.io.Net', {
-  type: 'static',
+qx.Class.define("cv.io.Net", {
+  type: "static",
 
   /*
   ***********************************************
@@ -38,26 +38,28 @@ qx.Class.define('cv.io.Net', {
      * @return {Promise<unknown>}
      */
     fetch(url) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         const xhr = new qx.io.request.Xhr(url);
-        xhr.addListenerOnce('success', function (e) {
+        xhr.addListenerOnce("success", (e) => {
           const req = e.getTarget();
           const response = new Response(req.getResponse(), {
             status: req.getStatus(),
-            statusText: req.getStatusText()
+            statusText: req.getStatusText(),
           });
+
           resolve(response);
-        }, this);
-        xhr.addListenerOnce('error', function (e) {
+        });
+        xhr.addListenerOnce("error", (e) => {
           const req = e.getTarget();
           const response = new Response(req.getResponse(), {
             status: req.getStatus(),
-            statusText: req.getStatusText()
+            statusText: req.getStatusText(),
           });
+
           resolve(response);
-        }, this);
+        });
         xhr.send();
       });
-    }
-  }
+    },
+  },
 });

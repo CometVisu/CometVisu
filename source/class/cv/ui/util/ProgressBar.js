@@ -1,7 +1,7 @@
-/* ProgressBar.js 
- * 
+/* ProgressBar.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,14 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Shows a progressbar to visualize a state that is completed by x %
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define('cv.ui.util.ProgressBar', {
+qx.Class.define("cv.ui.util.ProgressBar", {
   extend: qx.core.Object,
 
   /*
@@ -32,8 +31,8 @@ qx.Class.define('cv.ui.util.ProgressBar', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
-    this.base(arguments);
+  construct() {
+    super();
     this._createDomElement();
   },
 
@@ -44,10 +43,10 @@ qx.Class.define('cv.ui.util.ProgressBar', {
   */
   properties: {
     value: {
-      check: 'Integer',
+      check: "Integer",
       init: 0,
-      apply: '_applyValue'
-    }
+      apply: "_applyValue",
+    },
   },
 
   /*
@@ -59,22 +58,27 @@ qx.Class.define('cv.ui.util.ProgressBar', {
     __domElement: null,
     __progressElement: null,
 
-    _applyValue: function(value) {
+    _applyValue(value) {
       const rect = this.__domElement.getBoundingClientRect();
       const totalWidth = Math.round(rect.right - rect.left);
-      this.__progressElement.style.width = Math.round(totalWidth * value / 100) + 'px';
+      this.__progressElement.style.width =
+        Math.round((totalWidth * value) / 100) + "px";
     },
 
-    getDomElement: function() {
+    getDomElement() {
       return this.__domElement;
     },
 
-    _createDomElement: function() {
-      const container = this.__domElement = qx.dom.Element.create('div', {'class': 'progressbar'});
+    _createDomElement() {
+      const container = (this.__domElement = qx.dom.Element.create("div", {
+        class: "progressbar",
+      }));
       this.__domElement.$$widget = this;
-      const progress = this.__progressElement = qx.dom.Element.create('div', {'class': 'completed'});
+      const progress = (this.__progressElement = qx.dom.Element.create("div", {
+        class: "completed",
+      }));
       container.appendChild(progress);
       return container;
-    }
-  }
+    },
+  },
 });

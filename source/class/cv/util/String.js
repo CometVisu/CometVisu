@@ -1,7 +1,7 @@
-/* String.js 
- * 
+/* String.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,9 +17,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
-qx.Class.define('cv.util.String', {
-  type: 'static',
+qx.Class.define("cv.util.String", {
+  type: "static",
 
   /*
   ******************************************************
@@ -34,9 +33,9 @@ qx.Class.define('cv.util.String', {
      * @param str {String} string to decode
      * @return {String}
      */
-    decodeHtmlEntities: function (str) {
+    decodeHtmlEntities(str) {
       if (!this.__elem) {
-        this.__elem = document.createElement('span');
+        this.__elem = document.createElement("span");
       }
       this.__elem.innerHTML = str;
       return this.__elem.innerText;
@@ -47,10 +46,10 @@ qx.Class.define('cv.util.String', {
      * @param str {String} string to decode
      * @return {Element}
      */
-    htmlStringToDomElement: function (str) {
+    htmlStringToDomElement(str) {
       //var widget = qx.bom.Html.clean([res[1]])[0];
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
-      const div = document.createElement('div');
+      const div = document.createElement("div");
       div.innerHTML = str;
       return div.children[0];
     },
@@ -62,16 +61,15 @@ qx.Class.define('cv.util.String', {
      * is shown on the console.
      * @return {String}
      */
-    sprintf: function() {
+    sprintf() {
       const args = Array.prototype.slice.call(arguments);
-      let string = '-';
+      let string = "-";
       try {
         string = sprintf.apply(this, args);
       } catch (err) {
-        qx.log.Logger.warn(this, err + ', ' + JSON.stringify(args));
+        qx.log.Logger.warn(this, err + ", " + JSON.stringify(args));
       }
       return string;
-    }
-  }
-
+    },
+  },
 });

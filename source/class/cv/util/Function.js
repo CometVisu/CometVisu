@@ -1,7 +1,7 @@
-/* Function.js 
- * 
+/* Function.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Utility module to give some support to work with functions.
  */
-qx.Class.define('cv.util.Function', {
-
+qx.Class.define("cv.util.Function", {
   statics: {
     /**
      * Like qx.util.Function.throttle with additional support to abort the throttling.
@@ -34,8 +32,8 @@ qx.Class.define('cv.util.Function', {
      * @return {object} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function
      * <code>abort</code> abort throttling and skip the trailing value
      */
-    throttle: function (callback, interval, options, context) {
-      if (typeof options === 'undefined') {
+    throttle(callback, interval, options, context) {
+      if (typeof options === "undefined") {
         options = {};
       }
 
@@ -51,13 +49,13 @@ qx.Class.define('cv.util.Function', {
       };
 
       return {
-        abort: function () {
+        abort() {
           if (timeout) {
             window.clearTimeout(timeout);
             timeout = null;
           }
         },
-        call: function () {
+        call() {
           const now = new Date();
           if (!previous && options.leading === false) {
             previous = now;
@@ -74,8 +72,8 @@ qx.Class.define('cv.util.Function', {
             timeout = window.setTimeout(later, remaining);
           }
           return result;
-        }
+        },
       };
-    }
-  }
+    },
+  },
 });

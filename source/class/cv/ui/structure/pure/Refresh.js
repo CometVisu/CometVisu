@@ -1,7 +1,7 @@
-/* Refresh.js 
- * 
+/* Refresh.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,16 +17,19 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data.
  *
  * @author Christian Mayer
  * @since 2014
  */
-qx.Class.define('cv.ui.structure.pure.Refresh', {
+qx.Class.define("cv.ui.structure.pure.Refresh", {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
+  include: [
+    cv.ui.common.Operate,
+    cv.ui.common.HasAnimatedButton,
+    cv.ui.common.BasicUpdate,
+  ],
 
   /*
   ******************************************************
@@ -34,7 +37,7 @@ qx.Class.define('cv.ui.structure.pure.Refresh', {
   ******************************************************
   */
   properties: {
-    sendValue: { check: 'String', nullable: true }
+    sendValue: { check: "String", nullable: true },
   },
 
   /*
@@ -44,18 +47,18 @@ qx.Class.define('cv.ui.structure.pure.Refresh', {
   */
   members: {
     // overridden
-    _onDomReady: function() {
-      this.base(arguments);
+    _onDomReady() {
+      super._onDomReady();
       this.defaultUpdate(undefined, this.getSendValue());
     },
 
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
-    _action: function() {
+    _action() {
       cv.io.BackendConnections.getClient().restart(true);
-    }
-  }
+    },
+  },
 });

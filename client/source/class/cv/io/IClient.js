@@ -1,29 +1,29 @@
 /**
  * Interface all CometVisu-Client must implement.
  */
-qx.Interface.define('cv.io.IClient', {
+qx.Interface.define("cv.io.IClient", {
   /*
   ***********************************************
     PROPERTIES
   ***********************************************
   */
   properties: {
-
     connected: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeConnected'
+      event: "changeConnected",
     },
 
     /**
      * The server the client is currently speaking to
      */
     server: {
-      check: 'String',
+      check: "String",
       nullable: true,
-      event: 'changedServer'
-    }
+      event: "changedServer",
+    },
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -34,34 +34,34 @@ qx.Interface.define('cv.io.IClient', {
      * Returns the current backend configuration
      * @return {Map}
      */
-    getBackend: function() { },
+    getBackend() {},
 
     /**
      * Returns the backend type
      * @return {string} e.g. openhab, mqtt or knxd
      */
-    getType: function () {},
+    getType() {},
 
     /**
      * Returns true, when the backend provides a special data provider for this kins of data
      * @param name {String}
      * @return {Boolean}
      */
-    hasProvider: function (name) {},
+    hasProvider(name) {},
 
     /**
      * URL to the provided data
      * @param name
      * @return {String}
      */
-    getProviderUrl: function (name) {},
+    getProviderUrl(name) {},
 
     /**
      * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
      * @param name {String}
      * @param format {String} 'monaco' for texteditor and 'dp' for Tree editor
      */
-    getProviderConvertFunction : function (name, format) { },
+    getProviderConvertFunction(name, format) {},
 
     /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
@@ -69,7 +69,7 @@ qx.Interface.define('cv.io.IClient', {
      * subset of addresses to the backend and send the rest later.
      * @param addresses {Array}
      */
-    setInitialAddresses: function(addresses) { },
+    setInitialAddresses(addresses) {},
 
     /**
      * Subscribe to the addresses in the parameter. The second parameter
@@ -79,7 +79,7 @@ qx.Interface.define('cv.io.IClient', {
      * @param filters {Array?} Filters
      *
      */
-    subscribe : function (addresses, filters) { },
+    subscribe(addresses, filters) {},
 
     /**
      * This function starts the communication by a login and then runs the
@@ -92,13 +92,13 @@ qx.Interface.define('cv.io.IClient', {
      * @param context {Object} context for the callback (this)
      *
      */
-    login : function (loginOnly, credentials, callback, context) {},
+    login(loginOnly, credentials, callback, context) {},
 
     /**
      * Authorize a Request by adding the necessary headers.
      * @param req {qx.io.request.Xhr}
      */
-    authorize: function (req) {},
+    authorize(req) {},
 
     /**
      * return the relative path to a resource on the currently used backend
@@ -107,19 +107,19 @@ qx.Interface.define('cv.io.IClient', {
      * @param params {Map?} optional data needed to generate the resource path
      * @return {String|null} relative path to the resource, returns `null` when the backend does not provide that resource
      */
-    getResourcePath : function (name, params) {},
+    getResourcePath(name, params) {},
 
     /**
      * This client provides an own processor for charts data
      * @return {Boolean}
      */
-    hasCustomChartsDataProcessor : function () {},
+    hasCustomChartsDataProcessor() {},
 
     /**
      * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
      * @param data {var}
      */
-    processChartsData : function (data) {},
+    processChartsData(data) {},
 
     /**
      * This function sends a value
@@ -128,38 +128,38 @@ qx.Interface.define('cv.io.IClient', {
      * @param options {Object} optional options, depending on backend
      *
      */
-    write : function (address, value, options) {},
+    write(address, value, options) {},
 
     /**
      * Get the last recorded error
      *
      * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
      */
-    getLastError: function() {},
+    getLastError() {},
 
     /**
      * Restart the connection
      * @param full
      */
-    restart: function(full) {},
+    restart(full) {},
 
     /**
      * Called directly before the page gets unloaded. Can be used to disconnect correctly.
      */
-    terminate: function () {},
+    terminate() {},
     /**
      * Handle the incoming state updates. This method is not implemented by the client itself.
      * It is injected by the project using the client.
      * @param json
      */
-    update: function(json) {},
+    update(json) {},
 
     /**
      * Can be overridden to record client communication with backend
      * @param type {String} type of event to record
      * @param data {Object} data to record
      */
-    record: function(type, data) {},
+    record(type, data) {},
 
     /**
      * Can be overridden to provide an error handler for client errors
@@ -167,6 +167,6 @@ qx.Interface.define('cv.io.IClient', {
      * @param message {String} detailed error message
      * @param args
      */
-    showError: function(type, message, args) {}
-  }
+    showError(type, message, args) {},
+  },
 });

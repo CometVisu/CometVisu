@@ -1,7 +1,7 @@
-/* IPage.js 
- * 
+/* IPage.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * IPage
  *
@@ -28,8 +27,7 @@
 /**
  * Interface that all structure page widgets must implement
  */
-qx.Interface.define('cv.ui.structure.IPage', {
-
+qx.Interface.define("cv.ui.structure.IPage", {
   /*
   ******************************************************
     PROPERTIES
@@ -48,9 +46,8 @@ qx.Interface.define('cv.ui.structure.IPage', {
      */
     pageType: {},
     backdropAlign: {},
-    backdropType: {}
+    backdropType: {},
   },
-
 
   /*
   ******************************************************
@@ -58,11 +55,10 @@ qx.Interface.define('cv.ui.structure.IPage', {
   ******************************************************
   */
   members: {
-
     /**
      * Return the widgets DOM element
      * @return {Element}
      */
-    getDomElement: function() {}
-  }
+    getDomElement() {},
+  },
 });

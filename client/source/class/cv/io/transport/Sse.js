@@ -1,7 +1,7 @@
-/* Sse.js 
- * 
+/* Sse.js
+ *
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -20,7 +20,7 @@
 /**
  * @ignore(EventSource)
  */
-qx.Class.define('cv.io.transport.Sse', {
+qx.Class.define("cv.io.transport.Sse", {
   extend: qx.core.Object,
 
   /*
@@ -32,7 +32,7 @@ qx.Class.define('cv.io.transport.Sse', {
    *
    * @param client {cv.io.Client}
    */
-  construct: function(client) {
+  construct(client) {
     this.client = client;
     this.__additionalTopics = {};
   },
@@ -43,7 +43,6 @@ qx.Class.define('cv.io.transport.Sse', {
    ******************************************************
    */
   members: {
-
     running: false,
     sessionId: null,
     client: null,
@@ -56,13 +55,17 @@ qx.Class.define('cv.io.transport.Sse', {
      * @param args {Array} arguments from the XHR response callback
      * @param connect {Boolean} whether to start the connection or not
      */
-    handleSession: function (args, connect) {
+    handleSession(args, connect) {
       var json = this.client.getResponse(args);
       this.sessionId = json.s;
-      this.version = json.v.split('.', 3);
+      this.version = json.v.split(".", 3);
 
       if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
-        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+        this.error(
+          "ERROR CometVisu Client: too new protocol version (" +
+            json.v +
+            ") used!"
+        );
       }
       if (connect) {
         this.connect();
@@ -72,25 +75,39 @@ qx.Class.define('cv.io.transport.Sse', {
     /**
      * Establish the SSE connection
      */
-    connect: function () {
+    connect() {
       // send first request
       this.running = true;
       this.client.setDataReceived(false);
-      this.eventSource = new EventSource(qx.util.Uri.appendParamsToUrl(
-        this.client.getResourcePath('read'),
-        this.client.buildRequest(null, true))
+      this.eventSource = new EventSource(
+        qx.util.Uri.appendParamsToUrl(
+          this.client.getResourcePath("read"),
+          this.client.buildRequest(null, true)
+        )
       );
+
       // add default listeners
-      this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-      this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+      this.eventSource.addEventListener(
+        "message",
+        this.handleMessage.bind(this),
+        false
+      );
+      this.eventSource.addEventListener(
+        "error",
+        this.handleError.bind(this),
+        false
+      );
       // add additional listeners
-      Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+      Object.getOwnPropertyNames(this.__additionalTopics).forEach(
+        this.__addRecordedEventListener,
+        this
+      );
       this.eventSource.onerror = function () {
-        this.error('connection lost');
+        this.error("connection lost");
         this.client.setConnected(false);
       }.bind(this);
       this.eventSource.onopen = function () {
-        this.debug('connection established');
+        this.debug("connection established");
         this.client.setConnected(true);
       }.bind(this);
     },
@@ -99,18 +116,18 @@ qx.Class.define('cv.io.transport.Sse', {
      * Handle messages send from server as Server-Sent-Event
      * @param e
      */
-    handleMessage: function (e) {
-      this.client.record('read', e.data);
+    handleMessage(e) {
+      this.client.record("read", e.data);
       var json = JSON.parse(e.data);
       var data = json.d;
       this.client.update(data);
       this.client.setDataReceived(true);
     },
 
-    dispatchTopicMessage: function(topic, message) {
+    dispatchTopicMessage(topic, message) {
       this.client.record(topic, message);
       if (this.__additionalTopics[topic]) {
-        this.__additionalTopics[topic].forEach(function(entry) {
+        this.__additionalTopics[topic].forEach(function (entry) {
           entry[0].call(entry[1], message);
         });
       }
@@ -122,7 +139,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * @param callback {Function}
      * @param context {Object}
      */
-    subscribe: function(topic, callback, context) {
+    subscribe(topic, callback, context) {
       if (!this.__additionalTopics[topic]) {
         this.__additionalTopics[topic] = [];
       }
@@ -132,18 +149,22 @@ qx.Class.define('cv.io.transport.Sse', {
       }
     },
 
-    __addRecordedEventListener: function(topic) {
-      this.debug('subscribing to topic '+topic);
-      this.eventSource.addEventListener(topic, function(e) {
-        this.dispatchTopicMessage(topic, e);
-      }.bind(this), false);
+    __addRecordedEventListener(topic) {
+      this.debug("subscribing to topic " + topic);
+      this.eventSource.addEventListener(
+        topic,
+        function (e) {
+          this.dispatchTopicMessage(topic, e);
+        }.bind(this),
+        false
+      );
     },
 
     /**
      * Handle errors
      * @param e
      */
-    handleError: function (e) {
+    handleError(e) {
       if (e.readyState === EventSource.CLOSED) {
         // Connection was closed.
         this.running = false;
@@ -157,15 +178,17 @@ qx.Class.define('cv.io.transport.Sse', {
      *
      * @return {Boolean}
      */
-    isConnectionRunning: function () {
-      return this.eventSource && this.eventSource.readyState === EventSource.OPEN;
+    isConnectionRunning() {
+      return (
+        this.eventSource && this.eventSource.readyState === EventSource.OPEN
+      );
     },
 
     /**
      * Restart the read request
      * @param doFullReload
      */
-    restart: function (doFullReload) {
+    restart(doFullReload) {
       if (doFullReload || this.eventSource.readyState === EventSource.CLOSED) {
         this.abort();
         this.connect();
@@ -177,10 +200,10 @@ qx.Class.define('cv.io.transport.Sse', {
      *
      *
      */
-    abort: function () {
+    abort() {
       if (this.isConnectionRunning() === true) {
         this.eventSource.close();
       }
-    }
-  }
+    },
+  },
 });

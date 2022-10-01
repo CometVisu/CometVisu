@@ -1,7 +1,7 @@
-/* Base.js 
- * 
+/* Base.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,13 +17,12 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.ui.manager.model.schema.Base', {
+qx.Class.define("cv.ui.manager.model.schema.Base", {
   extend: qx.core.Object,
-  type: 'abstract',
+  type: "abstract",
 
   /*
   ***********************************************
@@ -34,14 +33,15 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
    * @param   node    {Node} the group-node
    * @param   schema  {cv.ui.manager.model.Schema}  the corresponding schema
    */
-  construct: function (node, schema) {
-    this.base(arguments);
+  construct(node, schema) {
+    super();
     this.setNode(node);
     this.setSchema(schema);
     this._bounds = {
       min: undefined,
-      max: undefined
+      max: undefined,
     };
+
     this._allowedElements = {};
     this._sortedContent = [];
     this._subGroupings = [];
@@ -58,29 +58,34 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @var string
      */
     type: {
-      check: 'String',
-      init: 'unknown'
+      check: "String",
+      init: "unknown",
     },
+
     elementsHaveOrder: {
-      check: 'Boolean',
-      init: false
+      check: "Boolean",
+      init: false,
     },
+
     schema: {
-      check: 'cv.ui.manager.model.Schema',
-      nullable: false
+      check: "cv.ui.manager.model.Schema",
+      nullable: false,
     },
+
     node: {
-      check: 'Node',
-      nullable: false
+      check: "Node",
+      nullable: false,
     },
+
     /**
      * array of sub-choices, -sequences, -groups that are defined
      * @var array
      */
     subGroupings: {
-      check: 'Array'
-    }
+      check: "Array",
+    },
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -118,13 +123,13 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
     _subGroupings: null,
 
     /// needs to be implemented by the inheriting classes
-    parse: function () {
+    parse() {
       const n = this.getNode();
-      let min = n.hasAttribute('minOccurs') ? n.getAttribute('minOccurs') : 1; // default is 1
-      let max = n.hasAttribute('maxOccurs') ? n.getAttribute('maxOccurs') : 1; // default is 1
+      let min = n.hasAttribute("minOccurs") ? n.getAttribute("minOccurs") : 1; // default is 1
+      let max = n.hasAttribute("maxOccurs") ? n.getAttribute("maxOccurs") : 1; // default is 1
       this._bounds = {
         min: parseInt(min),
-        max: max === 'unbounded' ? Number.POSITIVE_INFINITY : parseInt(max)
+        max: max === "unbounded" ? Number.POSITIVE_INFINITY : parseInt(max),
       };
     },
 
@@ -136,8 +141,8 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   element string  the element we check for
      * @return  boolean         is it allowed?
      */
-    isElementAllowed: function (element) {
-      if (typeof this._allowedElements[element] !== 'undefined') {
+    isElementAllowed(element) {
+      if (typeof this._allowedElements[element] !== "undefined") {
         // this element is immediately allowed
         return true;
       }
@@ -159,8 +164,8 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   elementName string  name of the element to find the SchemaElement for
      * @return  object              SchemaElement-object, or undefined if none is found
      */
-    getSchemaElementForElementName: function (elementName) {
-      if (typeof this._allowedElements[elementName] != 'undefined') {
+    getSchemaElementForElementName(elementName) {
+      if (typeof this._allowedElements[elementName] != "undefined") {
         // this element is immediately allowed
         return this._allowedElements[elementName];
       }
@@ -169,14 +174,15 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       for (let i = 0; i < this._subGroupings.length; ++i) {
         if (this._subGroupings[i].isElementAllowed(elementName) === true) {
           // this element is allowed
-          return this._subGroupings[i].getSchemaElementForElementName(elementName);
+          return this._subGroupings[i].getSchemaElementForElementName(
+            elementName
+          );
         }
       }
 
       // can not find any reason why elementName is allowed with us...
       return undefined;
     },
-
 
     /**
      * get a list of required elements.
@@ -185,7 +191,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      *
      * @return  array   list of required elements
      */
-    getRequiredElements: function () {
+    getRequiredElements() {
       // we do know what we require. might not be too easy to find out, but ok
 
       // if we have no lower bounds, then nothing is required
@@ -205,7 +211,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       }
 
       // elements of our sub-groupings, if any
-      this._subGroupings.forEach(grouping => {
+      this._subGroupings.forEach((grouping) => {
         const subRequiredElements = grouping.getRequiredElements();
 
         if (subRequiredElements.length > 0) {
@@ -223,7 +229,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      *
      * @return  object      list of allowed elements, key is the name
      */
-    getAllowedElements: function () {
+    getAllowedElements() {
       const myAllowedElements = {};
 
       for (const [name, item] of Object.entries(this._allowedElements)) {
@@ -231,7 +237,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       }
 
       // also the elements allowed by our sub-choices etc.
-      this._subGroupings.forEach(grouping => {
+      this._subGroupings.forEach((grouping) => {
         Object.assign(myAllowedElements, grouping.getAllowedElements());
       });
 
@@ -243,7 +249,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   sortNumber  integer the sort number of a parent (only used when recursive)
      * @return  object              list of allowed elements, with their sort-number as value
      */
-    getAllowedElementsSorting: function (sortNumber) {
+    getAllowedElementsSorting(sortNumber) {
       return {};
     },
 
@@ -254,10 +260,9 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    getRegex: function (separator, nocapture) {
-      return '';
+    getRegex(separator, nocapture) {
+      return "";
     },
-
 
     /**
      * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
@@ -265,20 +270,18 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      *
      * @return  boolean does it?
      */
-    hasMultiLevelBounds: function () {
+    hasMultiLevelBounds() {
       return this._subGroupings.length > 0;
     },
-
 
     /**
      * get the bounds of this very grouping
      *
      * @return  object  like {min: x, max: y}
      */
-    getBounds: function () {
+    getBounds() {
       return this._bounds;
     },
-
 
     /**
      * get bounds for a specific element.
@@ -287,7 +290,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   childName   string  name of the child-to-be
      * @return  object              {max: x, min: y}, or undefined if none found
      */
-    getBoundsForElementName: function (childName) {
+    getBoundsForElementName(childName) {
       return this._bounds;
     },
 
@@ -300,12 +303,12 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   modifiers   string  modifiers, if any
      * @return  object              RegExp-object
      */
-    regexFromString: function (input, modifiers) {
+    regexFromString(input, modifiers) {
       if (modifiers === undefined) {
-        modifiers = '';
+        modifiers = "";
       }
 
       return new RegExp(input, modifiers);
-    }
-  }
+    },
+  },
 });

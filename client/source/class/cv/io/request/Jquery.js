@@ -8,7 +8,7 @@
  * @asset(lib/jquery.js)
  */
 
-qx.Class.define('cv.io.request.Jquery', {
+qx.Class.define("cv.io.request.Jquery", {
   extend: qx.core.Object,
 
   /*
@@ -16,7 +16,7 @@ qx.Class.define('cv.io.request.Jquery', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(config) {
+  construct(config) {
     this.__lastRequest = config;
   },
 
@@ -27,12 +27,11 @@ qx.Class.define('cv.io.request.Jquery', {
   */
   properties: {
     requestData: {
-      check: 'Object',
+      check: "Object",
       init: {},
-      apply: '_applyRequestData'
-    }
+      apply: "_applyRequestData",
+    },
   },
-
 
   /*
   ******************************************************
@@ -44,25 +43,25 @@ qx.Class.define('cv.io.request.Jquery', {
     __xhr: null,
 
     // property apply
-    _applyRequestData: function(value) {
+    _applyRequestData(value) {
       if (!this.__lastRequest) {
-        this.__lastRequest['data'] = value;
+        this.__lastRequest["data"] = value;
       }
     },
 
-    removeListener: function(eventName) {
+    removeListener(eventName) {
       delete this.__lastRequest[eventName];
     },
 
-    addListener: function(eventName, callback, context) {
+    addListener(eventName, callback, context) {
       this.__lastRequest[eventName] = callback.bind(context);
     },
 
-    send: function() {
+    send() {
       if (this.__lastRequest) {
         $.ajax(this.__lastRequest);
       } else {
-        this.error('no request settings found, skipping');
+        this.error("no request settings found, skipping");
       }
     },
 
@@ -72,17 +71,17 @@ qx.Class.define('cv.io.request.Jquery', {
     ***********************************************************
     */
 
-    abort: function() {
+    abort() {
       if (this.__xhr && this.__xhr.abort) {
         this.__xhr.abort();
       }
     },
 
-    getResponseHeader: function(headerName) {
+    getResponseHeader(headerName) {
       if (this.__xhr) {
         return this.__xhr.getResponseHeader(headerName);
-      } 
-        return null;
-    }
-  }
+      }
+      return null;
+    },
+  },
 });

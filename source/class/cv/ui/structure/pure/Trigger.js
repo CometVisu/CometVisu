@@ -1,7 +1,7 @@
-/* Trigger.js 
- * 
+/* Trigger.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Adds a button to the visu with which exactly a defined value for a short,
  * as well as a defined value for a long key pressure, can be sent to the BUS,
@@ -27,13 +26,13 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Trigger', {
+qx.Class.define("cv.ui.structure.pure.Trigger", {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,
     cv.ui.common.BasicUpdate,
-    cv.ui.common.HandleLongpress
+    cv.ui.common.HandleLongpress,
   ],
 
   /*
@@ -42,8 +41,8 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
   ******************************************************
   */
   properties: {
-    sendValue: { check: 'String', init: '0' },
-    shortValue: { check: 'String', init: '0' }
+    sendValue: { check: "String", init: "0" },
+    shortValue: { check: "String", init: "0" },
   },
 
   /*
@@ -53,13 +52,13 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
   */
   members: {
     // overridden
-    _onDomReady: function() {
-      this.base(arguments);
+    _onDomReady() {
+      super._onDomReady();
       this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
     },
 
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
@@ -67,9 +66,12 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
      * Handle a short tap event and send the value for short pressing the trigger to the backend.
      * If there is no short threshold set, this send the value for long presses to the backend.
      */
-    _action: function() {
-      const value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
-      this.sendToBackend(value, function(address) {
+    _action() {
+      const value =
+        this.getShortThreshold() > 0 || this.isShortDefault()
+          ? this.getShortValue()
+          : this.getSendValue();
+      this.sendToBackend(value, function (address) {
         return !!(address.variantInfo & 1);
       });
     },
@@ -77,10 +79,10 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
     /**
      * Handle a long tap event and send the value for long pressing the trigger to the backend.
      */
-    _onLongTap: function() {
-      this.sendToBackend(this.getSendValue(), function(address) {
+    _onLongTap() {
+      this.sendToBackend(this.getSendValue(), function (address) {
         return !!(address.variantInfo & 2);
       });
-    }
-  }
+    },
+  },
 });

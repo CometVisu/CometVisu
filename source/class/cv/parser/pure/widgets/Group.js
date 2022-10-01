@@ -1,7 +1,7 @@
-/* Group.js 
- * 
+/* Group.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Parse group config elements
  */
-qx.Class.define('cv.parser.pure.widgets.Group', {
-  type: 'static',
+qx.Class.define("cv.parser.pure.widgets.Group", {
+  type: "static",
 
   /*
   ******************************************************
@@ -39,33 +38,43 @@ qx.Class.define('cv.parser.pure.widgets.Group', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
       if (data.target) {
-        data.classes += ' clickable';
+        data.classes += " clickable";
         data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
       }
       if (data.noWidget === true) {
-        data.classes = data.classes.replace('widget ', '');
+        data.classes = data.classes.replace("widget ", "");
       }
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'nowidget': {
-          target: 'noWidget', 'default': false, transform: function (value) {
-            return value === 'true';
-          }
+        nowidget: {
+          target: "noWidget",
+          default: false,
+          transform(value) {
+            return value === "true";
+          },
         },
-        'name': { 'default': '' },
-        'target': { 'default': '' }
+
+        name: { default: "" },
+        target: { default: "" },
       };
-    }
+    },
   },
 
-  defer: function(statics) {
-    cv.parser.pure.WidgetParser.addHandler('group', statics);
-  }
+  defer(statics) {
+    cv.parser.pure.WidgetParser.addHandler("group", statics);
+  },
 });

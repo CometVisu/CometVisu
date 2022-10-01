@@ -1,7 +1,7 @@
-/* TemplateEngine.js 
- * 
+/* TemplateEngine.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,26 +17,25 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.TemplateEngine', {
+qx.Class.define("cv.TemplateEngine", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
 
-  construct: function() {
+  construct() {
     // this.base(arguments);
-    this.lazyPlugins = ['plugin-openhab'];
+    this.lazyPlugins = ["plugin-openhab"];
 
     this.__partQueue = new qx.data.Array();
     this._domFinishedQueue = [];
-    this.__partQueue.addListener('changeLength', function(ev) {
+    this.__partQueue.addListener("changeLength", (ev) => {
       this.setPartsLoaded(ev.getData() === 0);
-    }, this);
+    });
     this.__clients = {};
 
-    this.defaults = {widget: {}, plugin: {}};
+    this.defaults = { widget: {}, plugin: {} };
     const group = new qx.ui.command.Group();
     this.setCommands(group);
     const app = qx.core.Init.getApplication();
@@ -49,24 +48,23 @@ qx.Class.define('cv.TemplateEngine', {
   },
 
   properties: {
-
     /**
      * Shows the loading state of the parts
      */
     partsLoaded: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyLoaded',
-      event: 'changePartsLoaded'
+      apply: "_applyLoaded",
+      event: "changePartsLoaded",
     },
 
     /**
      * Shows the loading state of the scripts
      */
     scriptsLoaded: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyLoaded'
+      apply: "_applyLoaded",
     },
 
     /**
@@ -74,47 +72,47 @@ qx.Class.define('cv.TemplateEngine', {
      * external stuff (parts, scripts, etc.) has been loaded.
      */
     ready: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeReady',
-      apply: '_applyReady'
+      event: "changeReady",
+      apply: "_applyReady",
     },
 
     currentPage: {
-      check: 'cv.ui.structure.IPage',
+      check: "cv.ui.structure.IPage",
       nullable: true,
-      event: 'changeCurrentPage'
+      event: "changeCurrentPage",
     },
 
     domFinished: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyDomFinished',
-      event: 'changeDomFinished'
+      apply: "_applyDomFinished",
+      event: "changeDomFinished",
     },
 
     commands: {
-      check: 'qx.ui.command.Group',
-      nullable: true
+      check: "qx.ui.command.Group",
+      nullable: true,
     },
 
     // highlight a widget
     highlightedWidget: {
-      check: 'String',
+      check: "String",
       nullable: true,
-      apply: '_applyHighlightedWidget'
+      apply: "_applyHighlightedWidget",
     },
 
     configSource: {
-      check: 'XMLDocument',
+      check: "XMLDocument",
       nullable: true,
-      apply: '_applyConfigSource'
+      apply: "_applyConfigSource",
     },
 
     configHash: {
-      check: 'Number',
-      nullable: true
-    }
+      check: "Number",
+      nullable: true,
+    },
   },
 
   /*
@@ -131,9 +129,9 @@ qx.Class.define('cv.TemplateEngine', {
      *
      * Usage: this.defaults.plugin.foo = {bar: 'baz'};
      */
-    defaults : null,
+    defaults: null,
 
-    pluginsToLoadCount : 0,
+    pluginsToLoadCount: 0,
 
     __partQueue: null,
     _domFinishedQueue: null,
@@ -154,7 +152,7 @@ qx.Class.define('cv.TemplateEngine', {
      *
      * @param parts {String[]|String} parts to load
      */
-    loadParts: function(parts) {
+    loadParts(parts) {
       if (!Array.isArray(parts)) {
         parts = [parts];
       }
@@ -162,49 +160,57 @@ qx.Class.define('cv.TemplateEngine', {
         return parts.indexOf(part) >= 0;
       });
       if (loadLazyParts.length) {
-        parts = parts.filter(function(p) {
+        parts = parts.filter(function (p) {
           return !loadLazyParts.includes(p);
         });
       }
       this.__partQueue.append(parts);
       const waitingFor = new qx.data.Array(parts);
-      qx.io.PartLoader.require(parts, function(states) {
-        parts.forEach(function(part, idx) {
-          if (states[idx] === 'complete') {
-            this.__partQueue.remove(part);
-            this.debug('successfully loaded part '+part);
-            if (part.startsWith('structure-')) {
-              if (!cv.Config.loadedStructure) {
-                cv.Config.loadedStructure = part.substring(10);
+      qx.io.PartLoader.require(
+        parts,
+        function (states) {
+          parts.forEach(function (part, idx) {
+            if (states[idx] === "complete") {
+              this.__partQueue.remove(part);
+              this.debug("successfully loaded part " + part);
+              if (part.startsWith("structure-")) {
+                if (!cv.Config.loadedStructure) {
+                  cv.Config.loadedStructure = part.substring(10);
+                }
+                qx.core.Init.getApplication().setStructureLoaded(true);
               }
-              qx.core.Init.getApplication().setStructureLoaded(true);
+              this.__partQueue.remove(part);
+              waitingFor.remove(part);
+            } else {
+              this.error("error loading part " + part);
             }
-            this.__partQueue.remove(part);
-            waitingFor.remove(part);
-          } else {
-            this.error('error loading part '+part);
-          }
-        }, this);
-      }, this);
+          }, this);
+        },
+        this
+      );
 
       // load the lazy plugins no one needs to wait for
-      qx.io.PartLoader.require(loadLazyParts, function(states) {
-        loadLazyParts.forEach(function(part, idx) {
-          if (states[idx] === 'complete') {
-            this.debug('successfully loaded lazy part '+part);
-            waitingFor.remove(part);
-          } else {
-            this.error('error loading lazy part '+part);
-          }
-        }, this);
-      }, this);
+      qx.io.PartLoader.require(
+        loadLazyParts,
+        function (states) {
+          loadLazyParts.forEach(function (part, idx) {
+            if (states[idx] === "complete") {
+              this.debug("successfully loaded lazy part " + part);
+              waitingFor.remove(part);
+            } else {
+              this.error("error loading lazy part " + part);
+            }
+          }, this);
+        },
+        this
+      );
       return new Promise((resolve, reject) => {
         const timer = setTimeout(reject, 2000);
         if (waitingFor.getLength() === 0) {
           resolve();
           clearTimeout(timer);
         } else {
-          waitingFor.addListener('changeLength', ev => {
+          waitingFor.addListener("changeLength", (ev) => {
             if (ev.getData() === 0) {
               resolve();
               clearTimeout(timer);
@@ -215,27 +221,27 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     // property apply
-    _applyReady: function(value) {
+    _applyReady(value) {
       if (value === true) {
         this.setupUI();
       }
     },
 
     // property apply
-    _applyLoaded: function(value, old, name) {
-      this.debug(name+' is '+value+' now');
+    _applyLoaded(value, old, name) {
+      this.debug(name + " is " + value + " now");
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
         this.setReady(true);
       }
     },
 
     // property apply
-    _applyDomFinished: function(value) {
+    _applyDomFinished(value) {
       if (value) {
-        document.body.style.visibility = '';
-        qx.event.message.Bus.dispatchByName('setup.dom.finished');
+        document.body.style.visibility = "";
+        qx.event.message.Bus.dispatchByName("setup.dom.finished");
         // flush the queue
-        this._domFinishedQueue.forEach(function(entry) {
+        this._domFinishedQueue.forEach(function (entry) {
           const callback = entry.shift();
           const context = entry.shift();
           callback.apply(context, entry);
@@ -249,7 +255,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @param callback {Function}
      * @param context {Object}
      */
-    executeWhenDomFinished: function(callback, context) {
+    executeWhenDomFinished(callback, context) {
       if (!this.isDomFinished()) {
         // queue callback
         this._domFinishedQueue.push(Array.prototype.slice.call(arguments));
@@ -273,15 +279,15 @@ qx.Class.define('cv.TemplateEngine', {
 
       const xml = this.getConfigSource();
 
-      let predefinedDesign = rootNode.getAttribute('design');
+      let predefinedDesign = rootNode.getAttribute("design");
       if (!predefinedDesign) {
         switch (rootNode.tagName.toLowerCase()) {
-          case 'config':
-            predefinedDesign = 'tile';
+          case "config":
+            predefinedDesign = "tile";
             break;
 
-          case 'pages':
-            predefinedDesign = 'pure';
+          case "pages":
+            predefinedDesign = "pure";
             break;
         }
       }
@@ -300,25 +306,39 @@ qx.Class.define('cv.TemplateEngine', {
       settings.stylesToLoad = [];
       const design = cv.Config.getDesign();
       if (design) {
-        let baseUri = 'designs/' + design;
-        settings.stylesToLoad.push(baseUri + '/basic.css');
-        settings.stylesToLoad.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`});
-        settings.stylesToLoad.push(baseUri + '/custom.css');
-        settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
+        let baseUri = "designs/" + design;
+        settings.stylesToLoad.push(baseUri + "/basic.css");
+        settings.stylesToLoad.push({
+          uri: baseUri + "/mobile.css",
+          media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`,
+        });
+        settings.stylesToLoad.push(baseUri + "/custom.css");
+        settings.scriptsToLoad.push("designs/" + design + "/design_setup.js");
 
         const loader = cv.util.ScriptLoader.getInstance();
-        loader.addListenerOnce('designError', function (ev) {
+        loader.addListenerOnce("designError", (ev) => {
           if (ev.getData() === design) {
-            this.error('Failed to load "' + design + '" design! Falling back to simplified "' + cv.Config.loadedStructure + '"');
+            this.error(
+              'Failed to load "' +
+                design +
+                '" design! Falling back to simplified "' +
+                cv.Config.loadedStructure +
+                '"'
+            );
 
-            baseUri = 'designs/' + cv.Config.loadedStructure;
-            const alternativeStyles = [baseUri + '/basic.css'];
-            alternativeStyles.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`});
-            alternativeStyles.push(baseUri+'/custom.css');
+            baseUri = "designs/" + cv.Config.loadedStructure;
+            const alternativeStyles = [baseUri + "/basic.css"];
+            alternativeStyles.push({
+              uri: baseUri + "/mobile.css",
+              media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`,
+            });
+            alternativeStyles.push(baseUri + "/custom.css");
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
-            cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
+            cv.util.ScriptLoader.getInstance().addScripts(
+              baseUri + "/design_setup.js"
+            );
           }
-        }, this);
+        });
       }
       // load structure-part
       await this.loadParts([cv.Config.getStructure()]);
@@ -332,13 +352,13 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Main setup to get everything running and show the initial UI page.
      */
-    setupUI: function () {
+    setupUI() {
       // and now setup the UI
-      this.debug('setup');
+      this.debug("setup");
       cv.Application.structureController.createUI(this.getConfigSource());
       this.resetConfigSource(); // not needed anymore - free the space
       this.startScreensaver();
-      if (qx.core.Environment.get('qx.aspects')) {
+      if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.showResults(50);
       }
@@ -347,116 +367,154 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Start the screensaver if a screensave time is set
      */
-    startScreensaver: function() {
-      if (typeof cv.Config.configSettings.screensave_time === 'number') {
-        this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
-        this.screensave.addListener('interval', cv.Application.structureController.doScreenSave, cv.Application.structureController);
+    startScreensaver() {
+      if (typeof cv.Config.configSettings.screensave_time === "number") {
+        this.screensave = new qx.event.Timer(
+          cv.Config.configSettings.screensave_time * 1000
+        );
+        this.screensave.addListener(
+          "interval",
+          cv.Application.structureController.doScreenSave,
+          cv.Application.structureController
+        );
         this.screensave.start();
-        qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
+        qx.event.Registration.addListener(
+          window,
+          "useraction",
+          this.screensave.restart,
+          this.screensave
+        );
       }
     },
 
-    _applyHighlightedWidget: function (value, old) {
+    _applyHighlightedWidget(value, old) {
       if (old) {
         const oldElement = document.querySelector(old);
         if (oldElement) {
-          oldElement.classList.remove('highlightedWidget');
+          oldElement.classList.remove("highlightedWidget");
         }
       }
       if (value) {
         const element = document.querySelector(value);
         if (element) {
-          element.classList.add('highlightedWidget');
+          element.classList.add("highlightedWidget");
         }
       }
     },
 
-    selectDesign: function () {
-      const body = document.querySelector('body');
+    selectDesign() {
+      const body = document.querySelector("body");
 
-      document.querySelectorAll('body > *').forEach(function(elem) {
-        elem.style.display = 'none';
+      document.querySelectorAll("body > *").forEach(function (elem) {
+        elem.style.display = "none";
       }, this);
-      body.style['background-color'] = 'black';
+      body.style["background-color"] = "black";
 
-
-      const div = qx.dom.Element.create('div', {id: 'designSelector'});
+      const div = qx.dom.Element.create("div", { id: "designSelector" });
       Object.entries({
-        background: '#808080',
-        width: '400px',
-        color: 'white',
-        margin: 'auto',
-        padding: '0.5em'
-      }).forEach(function(key_value) {
-        body.style[key_value[0]]=key_value[1];
+        background: "#808080",
+        width: "400px",
+        color: "white",
+        margin: "auto",
+        padding: "0.5em",
+      }).forEach(function (key_value) {
+        body.style[key_value[0]] = key_value[1];
       });
-      div.innerHTML = 'Loading ...';
+      div.innerHTML = "Loading ...";
 
       body.appendChild(div);
 
-      const store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri('designs/get_designs.php'));
+      const store = new qx.data.store.Json(
+        qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php")
+      );
 
-      store.addListener('loaded', function () {
-        let html = '<h1>Please select design</h1>';
-        html += '<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>';
+      store.addListener("loaded", function () {
+        let html = "<h1>Please select design</h1>";
+        html +=
+          "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
 
         div.innerHTML = html;
 
-        store.getModel().forEach(function(element) {
-          const myDiv = qx.dom.Element.create('div', {
-            cursor: 'pointer',
-            padding: '0.5em 1em',
-            borderBottom: '1px solid black',
-            margin: 'auto',
-            width: '262px',
-            position: 'relative'
+        store.getModel().forEach(function (element) {
+          const myDiv = qx.dom.Element.create("div", {
+            cursor: "pointer",
+            padding: "0.5em 1em",
+            borderBottom: "1px solid black",
+            margin: "auto",
+            width: "262px",
+            position: "relative",
           });
 
-          myDiv.innerHTML = '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' + element + '</div>';
-          myDiv.innerHTML += '<iframe src="'+qx.util.ResourceManager.getInstance().toUri('designs/design_preview.html')+'?design=' + element + '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
-          myDiv.innerHTML += '<img width="60" height="30" src="'+qx.util.ResourceManager.getInstance().toUri('demo/media/arrow.png')+'" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
+          myDiv.innerHTML =
+            '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' +
+            element +
+            "</div>";
+          myDiv.innerHTML +=
+            '<iframe src="' +
+            qx.util.ResourceManager.getInstance().toUri(
+              "designs/design_preview.html"
+            ) +
+            "?design=" +
+            element +
+            '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
+          myDiv.innerHTML +=
+            '<img width="60" height="30" src="' +
+            qx.util.ResourceManager.getInstance().toUri(
+              "demo/media/arrow.png"
+            ) +
+            '" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
 
           div.appendChild(myDiv);
 
-
-          const tDiv = qx.dom.Element.create('div', {
-            background: 'transparent',
-            position: 'absolute',
-            height: '90px',
-            width: '160px',
-            zIndex: 2
+          const tDiv = qx.dom.Element.create("div", {
+            background: "transparent",
+            position: "absolute",
+            height: "90px",
+            width: "160px",
+            zIndex: 2,
           });
-          const pos = document.querySelector('iframe').getBoundingClientRect();
+
+          const pos = document.querySelector("iframe").getBoundingClientRect();
           Object.entries({
-            left: pos.left + 'px',
-            top: pos.top + 'px'
-          }).forEach(function(key_value) {
-            tDiv.style[key_value[0]]=key_value[1];
+            left: pos.left + "px",
+            top: pos.top + "px",
+          }).forEach(function (key_value) {
+            tDiv.style[key_value[0]] = key_value[1];
           });
           myDiv.appendChild(tDiv);
 
-          qx.event.Registration.addListener(myDiv, 'pointerover', function() {
-            myDiv.style.background = '#bbbbbb';
-          }, this);
+          qx.event.Registration.addListener(
+            myDiv,
+            "pointerover",
+            function () {
+              myDiv.style.background = "#bbbbbb";
+            },
+            this
+          );
 
-          qx.event.Registration.addListener(myDiv, 'pointerout', function() {
-            myDiv.style.background = 'transparent';
-          }, this);
+          qx.event.Registration.addListener(
+            myDiv,
+            "pointerout",
+            function () {
+              myDiv.style.background = "transparent";
+            },
+            this
+          );
 
-          qx.event.Registration.addListener(myDiv, 'tap', function() {
+          qx.event.Registration.addListener(myDiv, "tap", function () {
             let href = document.location.href;
             if (document.location.hash) {
-              href = href.split('#')[0];
+              href = href.split("#")[0];
             }
-            if (document.location.search === '') {
-              document.location.href = href + '?design=' + element;
+            if (document.location.search === "") {
+              document.location.href = href + "?design=" + element;
             } else {
-              document.location.href = href + '&design=' + element;
+              document.location.href = href + "&design=" + element;
             }
           });
         });
       });
-    }
+    },
   },
 
   /*
@@ -464,7 +522,7 @@ qx.Class.define('cv.TemplateEngine', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
-    this._disposeObjects('__activeChangedTimer');
-  }
+  destruct() {
+    this._disposeObjects("__activeChangedTimer");
+  },
 });

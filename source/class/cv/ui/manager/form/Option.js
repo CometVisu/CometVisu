@@ -1,7 +1,7 @@
-/* Option.js 
- * 
+/* Option.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,11 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Option model for a VirtualComboBox / -SelectBox
  */
-qx.Class.define('cv.ui.manager.form.Option', {
+qx.Class.define("cv.ui.manager.form.Option", {
   extend: qx.core.Object,
 
   /*
@@ -29,8 +28,8 @@ qx.Class.define('cv.ui.manager.form.Option', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (label, icon, value, hints) {
-    this.base(arguments);
+  construct(label, icon, value, hints) {
+    super();
     if (label) {
       this.setLabel(label);
     }
@@ -52,26 +51,30 @@ qx.Class.define('cv.ui.manager.form.Option', {
   */
   properties: {
     type: {
-      check: ['default', 'group', 'state', 'error'],
-      init: 'default',
-      event: 'changeType'
+      check: ["default", "group", "state", "error"],
+      init: "default",
+      event: "changeType",
     },
+
     label: {
-      check: 'String',
-      event: 'changeLabel'
+      check: "String",
+      event: "changeLabel",
     },
+
     icon: {
-      event: 'changeIcon',
-      nullable: true
+      event: "changeIcon",
+      nullable: true,
     },
+
     value: {
-      check: 'String',
-      event: 'changeValue',
-      nullable: true
+      check: "String",
+      event: "changeValue",
+      nullable: true,
     },
+
     hints: {
-      check: 'Object',
-      nullable: true
-    }
-  }
+      check: "Object",
+      nullable: true,
+    },
+  },
 });

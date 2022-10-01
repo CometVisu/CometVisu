@@ -1,7 +1,7 @@
-/* Watchdog.js 
- * 
+/* Watchdog.js
+ *
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -21,7 +21,7 @@
  * The Watchdog observes the backend communication and restarts the connection, if
  * the client received to data from the backend within a defined timeout.
  */
-qx.Class.define('cv.io.Watchdog', {
+qx.Class.define("cv.io.Watchdog", {
   extend: qx.core.Object,
 
   /*
@@ -29,7 +29,7 @@ qx.Class.define('cv.io.Watchdog', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
+  construct() {
     this.last = Date.now();
   },
 
@@ -40,12 +40,11 @@ qx.Class.define('cv.io.Watchdog', {
   */
   properties: {
     client: {
-      check: 'cv.io.Client',
+      check: "cv.io.Client",
       nullable: true,
-      init: null
-    }
+      init: null,
+    },
   },
-
 
   /*
   ******************************************************
@@ -57,38 +56,48 @@ qx.Class.define('cv.io.Watchdog', {
     hardLast: null,
     __id: null,
 
-    aliveCheckFunction: function () {
+    aliveCheckFunction() {
       var now = new Date();
-      if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning()) {
+      if (
+        now - this.last < this.getClient().getBackend().maxConnectionAge &&
+        this.getClient().getCurrentTransport().isConnectionRunning()
+      ) {
         return;
       }
-      this.getClient().getCurrentTransport().restart(now - this.hardLast > this.getClient().getBackend().maxDataAge);
+      this.getClient()
+        .getCurrentTransport()
+        .restart(
+          now - this.hardLast > this.getClient().getBackend().maxDataAge
+        );
       this.last = now;
     },
 
-    start: function (watchdogTimer) {
+    start(watchdogTimer) {
       if (this.__id) {
         this.stop();
       }
-      this.__id = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+      this.__id = setInterval(
+        this.aliveCheckFunction.bind(this),
+        watchdogTimer * 1000
+      );
     },
 
-    stop: function() {
+    stop() {
       if (this.__id) {
         clearInterval(this.__id);
         this.__id = null;
       }
     },
 
-    isActive: function() {
+    isActive() {
       return !!this.__id;
     },
 
-    ping: function (fullReload) {
+    ping(fullReload) {
       this.last = new Date();
       if (fullReload) {
         this.hardLast = this.last;
       }
-    }
-  }
+    },
+  },
 });

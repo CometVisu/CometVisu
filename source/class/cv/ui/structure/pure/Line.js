@@ -1,7 +1,7 @@
-/* Line.js 
- * 
+/* Line.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * A line tag is used to display a horizontal line in the browser to allow for a grouped and thereby tidy display of
  * elements on one page. To specify the width of the line an optional &lt;layout/&gt;-child can be added.
@@ -30,7 +29,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define('cv.ui.structure.pure.Line', {
+qx.Class.define("cv.ui.structure.pure.Line", {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
@@ -40,8 +39,12 @@ qx.Class.define('cv.ui.structure.pure.Line', {
   */
   members: {
     // overridden
-    getDomString: function () {
-      return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
-    }
-  }
+    getDomString() {
+      return (
+        "<hr " +
+        (this.getClasses() ? 'class="' + this.getClasses() + '"' : "") +
+        "/>"
+      );
+    },
+  },
 });

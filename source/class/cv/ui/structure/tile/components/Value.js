@@ -1,7 +1,7 @@
-/* Value.js 
- * 
+/* Value.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -22,7 +22,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.components.Value', {
+qx.Class.define("cv.ui.structure.tile.components.Value", {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MResize],
   /*
@@ -35,13 +35,16 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
     _debouncedDetectOverflow: null,
 
     _init() {
-      this.base(arguments);
-      this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
-      const target = this._element.querySelector('.value');
-      if (target && target.tagName.toLowerCase() === 'label') {
+      super._init();
+      this._debouncedDetectOverflow = qx.util.Function.debounce(
+        this._detectOverflow,
+        20
+      );
+      const target = this._element.querySelector(".value");
+      if (target && target.tagName.toLowerCase() === "label") {
         // check for overflowing text, when labels parent gets resized
         this.setResizeTarget(this._element);
-        this.addListener('resized', this._debouncedDetectOverflow, this);
+        this.addListener("resized", this._debouncedDetectOverflow, this);
       }
     },
 
@@ -51,21 +54,21 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
           this._debouncedDetectOverflow();
         }
       } else {
-        const target = this._element.querySelector('.value');
-        if (target && target.classList.contains('scroll')) {
-          target.classList.remove('scroll');
+        const target = this._element.querySelector(".value");
+        if (target && target.classList.contains("scroll")) {
+          target.classList.remove("scroll");
         }
       }
     },
 
     _detectOverflow() {
-      const target = this._element.querySelector('.value');
+      const target = this._element.querySelector(".value");
       if (this.isVisible()) {
         this._queuedOverflowDetection = false;
         if (target.clientWidth > target.parentElement.clientWidth) {
-          target.classList.add('scroll');
+          target.classList.add("scroll");
         } else {
-          target.classList.remove('scroll');
+          target.classList.remove("scroll");
         }
       } else {
         this._queuedOverflowDetection = true;
@@ -73,43 +76,50 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
     },
 
     _updateValue(mappedValue, value) {
-      const target = this._element.querySelector('.value');
-      let styleClass = '';
+      const target = this._element.querySelector(".value");
+      let styleClass = "";
       if (target) {
         const tagName = target.tagName.toLowerCase();
         switch (tagName) {
-          case 'cv-icon':
+          case "cv-icon":
             target._instance.setId(mappedValue);
-            if (this._element.hasAttribute('styling')) {
-              styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__store);
+            if (this._element.hasAttribute("styling")) {
+              styleClass = cv.Application.structureController.styleValue(
+                this._element.getAttribute("styling"),
+                value,
+                this.__store
+              );
             }
             target._instance.setStyleClass(styleClass);
             break;
-          case 'meter':
-            target.setAttribute('value', mappedValue);
-            target.innerHTML = '' + mappedValue;
+          case "meter":
+            target.setAttribute("value", mappedValue);
+            target.innerHTML = "" + mappedValue;
             break;
-          case 'cv-round-progress':
-            if (typeof value === 'string') {
+          case "cv-round-progress":
+            if (typeof value === "string") {
               value = parseInt(value);
             }
             target._instance.setProgress(value);
-            target._instance.setText('' + mappedValue);
+            target._instance.setText("" + mappedValue);
             break;
-          case 'label':
+          case "label":
             target.innerHTML = mappedValue;
             this._debouncedDetectOverflow();
             break;
         }
       }
-    }
+    },
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'value', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "value",
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
-  }
+    );
+  },
 });

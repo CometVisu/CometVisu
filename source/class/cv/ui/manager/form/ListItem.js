@@ -1,7 +1,7 @@
-/* ListItem.js 
- * 
+/* ListItem.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,11 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * ListItem that uses cv.ui.manager.basic.Image
  */
-qx.Class.define('cv.ui.manager.form.ListItem', {
+qx.Class.define("cv.ui.manager.form.ListItem", {
   extend: qx.ui.form.ListItem,
   /*
   ***********************************************
@@ -30,25 +29,26 @@ qx.Class.define('cv.ui.manager.form.ListItem', {
   */
   members: {
     // overridden
-    _createChildControlImpl : function(id, hash) {
+    _createChildControlImpl(id, hash) {
       let control;
 
       switch (id) {
-        case 'icon':
+        case "icon":
           control = new cv.ui.manager.basic.Image(this.getIcon());
           control.set({
             anonymous: true,
             scale: true,
-            maxHeight: 64
+            maxHeight: 64,
           });
+
           this._addAt(control, 0);
-          if (this.getIcon() === null || this.getShow() === 'label') {
+          if (this.getIcon() === null || this.getShow() === "label") {
             control.exclude();
           }
           break;
       }
 
-      return control || this.base(arguments, id);
-    }
-  }
+      return control || super._createChildControlImpl(id);
+    },
+  },
 });

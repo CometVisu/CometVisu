@@ -1,7 +1,7 @@
-/* Web.js 
- * 
+/* Web.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,19 +17,15 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Adds an area to the visu, where external websites can be displayed.
  *
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Web', {
+qx.Class.define("cv.ui.structure.pure.Web", {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Update,
-    cv.ui.common.Refresh
-  ],
+  include: [cv.ui.common.Update, cv.ui.common.Refresh],
 
   /*
   ******************************************************
@@ -37,31 +33,35 @@ qx.Class.define('cv.ui.structure.pure.Web', {
   ******************************************************
   */
   properties: {
-
     width: {
-      check: 'String',
-      nullable: true
+      check: "String",
+      nullable: true,
     },
+
     height: {
-      check: 'String',
-      nullable: true
+      check: "String",
+      nullable: true,
     },
+
     frameborder: {
-      check: 'Boolean',
-      init: false
+      check: "Boolean",
+      init: false,
     },
+
     background: {
-      check: 'String',
-      nullable: true
+      check: "String",
+      nullable: true,
     },
+
     scrolling: {
-      check: ['auto', 'yes', 'no'],
-      nullable: true
+      check: ["auto", "yes", "no"],
+      nullable: true,
     },
+
     src: {
-      check: 'String',
-      nullable: true
-    }
+      check: "String",
+      nullable: true,
+    },
   },
 
   /*
@@ -71,31 +71,39 @@ qx.Class.define('cv.ui.structure.pure.Web', {
   */
   members: {
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       let webStyle = this.getStyle();
       if (this.getWidth()) {
-        webStyle += 'width:' + this.getWidth() + ';';
-      } else { // default width is 100% of widget space (fix bug #3175343 part 1)
-        webStyle += 'width: 100%;';
+        webStyle += "width:" + this.getWidth() + ";";
+      } else {
+        // default width is 100% of widget space (fix bug #3175343 part 1)
+        webStyle += "width: 100%;";
       }
       if (this.getHeight()) {
-        webStyle += 'height:' + this.getHeight() + ';';
+        webStyle += "height:" + this.getHeight() + ";";
       }
       if (this.getFrameborder() === false) {
-        webStyle += 'border: 0px ;';
+        webStyle += "border: 0px ;";
       }
       if (this.getBackground()) {
-        webStyle += 'background-color:' + this.getBackground() + ';';
+        webStyle += "background-color:" + this.getBackground() + ";";
       }
-      if (webStyle !== '') {
+      if (webStyle !== "") {
         webStyle = 'style="' + webStyle + '"';
       }
 
-      let scrolling = '';
+      let scrolling = "";
       if (this.getScrolling()) {
         scrolling = 'scrolling="' + this.getScrolling() + '"';
       } // add scrolling parameter to iframe
-      return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
+      return (
+        '<div class="actor"><iframe src="' +
+        this.getSrc() +
+        '" ' +
+        webStyle +
+        scrolling +
+        "></iframe></div>"
+      );
     },
 
     /**
@@ -104,18 +112,20 @@ qx.Class.define('cv.ui.structure.pure.Web', {
      * @param address {String} KNX-GA or openHAB item name
      * @param data {var} incoming data (already transformed + mapped)
      */
-    _update: function(address, data) {
+    _update(address, data) {
       let addr = this.getAddress()[address];
       if (!addr) {
         return;
       }
       if (data === 1) {
-        const iframe = this.getDomElement().querySelector('iframe');
-        this.refreshAction(iframe, iframe.getAttribute('src'));
+        const iframe = this.getDomElement().querySelector("iframe");
+        this.refreshAction(iframe, iframe.getAttribute("src"));
         // reset the value
-        cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
+        cv.io.BackendConnections.getClient().write(
+          address,
+          cv.Transform.encode(addr, 0)
+        );
       }
-    }
-  }
+    },
+  },
 });
-

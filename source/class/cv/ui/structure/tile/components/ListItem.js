@@ -1,7 +1,7 @@
-/* ListItem.js 
- * 
+/* ListItem.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -20,14 +20,17 @@
 /**
  * Shows an item in a list.
  */
-qx.Class.define('cv.ui.structure.tile.components.ListItem', {
+qx.Class.define("cv.ui.structure.tile.components.ListItem", {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'listitem', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "listitem",
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
-  }
+    );
+  },
 });

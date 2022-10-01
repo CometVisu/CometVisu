@@ -1,7 +1,7 @@
-/* Controller.js 
- * 
+/* Controller.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,9 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define('cv.ui.structure.pure.Controller', {
+qx.Class.define("cv.ui.structure.pure.Controller", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
   implement: cv.ui.structure.IController,
 
   /*
@@ -27,14 +27,19 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
-    this.__HTML_STRUCT = '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
+  construct() {
+    super();
+    this.__HTML_STRUCT =
+      '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
     this.__supportedFeatures = {
-      cache: true
+      cache: true,
     };
+
     // load basic CSS rules shared by all designs that support this structure
-    qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
+    qx.bom.Stylesheet.includeFile(
+      qx.util.ResourceManager.getInstance().toUri("designs/designglobals.css") +
+        (cv.Config.forceReload === true ? "?" + Date.now() : "")
+    );
   },
 
   /*
@@ -44,22 +49,23 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
   */
   properties: {
     currentPage: {
-      check: 'cv.ui.structure.pure.Page',
+      check: "cv.ui.structure.pure.Page",
       nullable: true,
-      event: 'changeCurrentPage'
+      event: "changeCurrentPage",
     },
+
     renderTarget: {
-      check: 'String',
-      init: '#pages'
+      check: "String",
+      init: "#pages",
     },
 
     /**
      * Namespace for path ids
      */
     namespace: {
-      check: 'String',
-      init: ''
-    }
+      check: "String",
+      init: "",
+    },
   },
 
   /*
@@ -70,8 +76,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
   members: {
     __supportedFeatures: null,
     __HTML_STRUCT: null,
-    main_scroll : null,
-    old_scroll : '',
+    main_scroll: null,
+    old_scroll: "",
     pagePartsHandler: null,
 
     getHtmlStructure() {
@@ -81,38 +87,42 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     parseBackendSettings(xml) {
       const settings = cv.Config.configSettings;
       const pagesElement = xml.documentElement;
-      if (pagesElement.getAttribute('backend') !== null) {
-        settings.backend = pagesElement.getAttribute('backend');
+      if (pagesElement.getAttribute("backend") !== null) {
+        settings.backend = pagesElement.getAttribute("backend");
       }
-      if (pagesElement.getAttribute('backend-url') !== null) {
-        settings.backendUrl = pagesElement.getAttribute('backend-url');
-        this.error('The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.');
+      if (pagesElement.getAttribute("backend-url") !== null) {
+        settings.backendUrl = pagesElement.getAttribute("backend-url");
+        this.error(
+          'The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.'
+        );
       }
-      if (pagesElement.getAttribute('backend-knxd-url') !== null) {
-        settings.backendKnxdUrl = pagesElement.getAttribute('backend-knxd-url');
+      if (pagesElement.getAttribute("backend-knxd-url") !== null) {
+        settings.backendKnxdUrl = pagesElement.getAttribute("backend-knxd-url");
       }
-      if (pagesElement.getAttribute('backend-mqtt-url') !== null) {
-        settings.backendMQTTUrl = pagesElement.getAttribute('backend-mqtt-url');
+      if (pagesElement.getAttribute("backend-mqtt-url") !== null) {
+        settings.backendMQTTUrl = pagesElement.getAttribute("backend-mqtt-url");
       }
-      if (pagesElement.getAttribute('backend-openhab-url') !== null) {
-        settings.backendOpenHABUrl = pagesElement.getAttribute('backend-openhab-url');
+      if (pagesElement.getAttribute("backend-openhab-url") !== null) {
+        settings.backendOpenHABUrl = pagesElement.getAttribute(
+          "backend-openhab-url"
+        );
       }
-      if (pagesElement.getAttribute('token') !== null) {
-        settings.credentials.token = pagesElement.getAttribute('token');
+      if (pagesElement.getAttribute("token") !== null) {
+        settings.credentials.token = pagesElement.getAttribute("token");
       }
-      if (pagesElement.getAttribute('username') !== null) {
-        settings.credentials.username = pagesElement.getAttribute('username');
+      if (pagesElement.getAttribute("username") !== null) {
+        settings.credentials.username = pagesElement.getAttribute("username");
       }
-      if (pagesElement.getAttribute('password') !== null) {
-        settings.credentials.password = pagesElement.getAttribute('password');
+      if (pagesElement.getAttribute("password") !== null) {
+        settings.credentials.password = pagesElement.getAttribute("password");
       }
       return true;
     },
 
     login() {
-      const client = cv.io.BackendConnections.getClient('main');
+      const client = cv.io.BackendConnections.getClient("main");
       client.login(true, cv.Config.configSettings.credentials, () => {
-        this.debug('logged in');
+        this.debug("logged in");
         cv.io.BackendConnections.startInitialRequest();
       });
     },
@@ -120,33 +130,38 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     parseSettings(xml, done) {
       const settings = cv.Config.configSettings;
       const pagesElement = xml.documentElement;
-      settings.screensave_time = pagesElement.getAttribute('screensave_time');
+      settings.screensave_time = pagesElement.getAttribute("screensave_time");
       if (settings.screensave_time) {
         settings.screensave_time = parseInt(settings.screensave_time, 10);
       }
-      settings.screensave_page = pagesElement.getAttribute('screensave_page');
+      settings.screensave_page = pagesElement.getAttribute("screensave_page");
 
-      if (pagesElement.getAttribute('max_mobile_screen_width') !== null) {
-        settings.maxMobileScreenWidth = pagesElement.getAttribute('max_mobile_screen_width');
+      if (pagesElement.getAttribute("max_mobile_screen_width") !== null) {
+        settings.maxMobileScreenWidth = pagesElement.getAttribute(
+          "max_mobile_screen_width"
+        );
         // override config setting
         cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
       }
 
-      const globalClass = pagesElement.getAttribute('class');
+      const globalClass = pagesElement.getAttribute("class");
       if (globalClass !== null) {
-        document.querySelector('body').classList.add(globalClass);
+        document.querySelector("body").classList.add(globalClass);
       }
-      if (pagesElement.getAttribute('scroll_speed') === null) {
+      if (pagesElement.getAttribute("scroll_speed") === null) {
         settings.scrollSpeed = 400;
       } else {
-        settings.scrollSpeed = parseInt(pagesElement.getAttribute('scroll_speed'));
+        settings.scrollSpeed = parseInt(
+          pagesElement.getAttribute("scroll_speed")
+        );
       }
-      settings.bindClickToWidget = pagesElement.getAttribute('bind_click_to_widget') === 'true';
-      if (pagesElement.getAttribute('default_columns') !== null) {
-        settings.defaultColumns = pagesElement.getAttribute('default_columns');
+      settings.bindClickToWidget =
+        pagesElement.getAttribute("bind_click_to_widget") === "true";
+      if (pagesElement.getAttribute("default_columns") !== null) {
+        settings.defaultColumns = pagesElement.getAttribute("default_columns");
       }
-      if (pagesElement.getAttribute('min_column_width') !== null) {
-        settings.minColumnWidth = pagesElement.getAttribute('min_column_width');
+      if (pagesElement.getAttribute("min_column_width") !== null) {
+        settings.minColumnWidth = pagesElement.getAttribute("min_column_width");
       }
     },
 
@@ -155,10 +170,12 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       const metaParser = new cv.parser.pure.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(xml));
+      settings.pluginsToLoad = settings.pluginsToLoad.concat(
+        metaParser.parsePlugins(xml)
+      );
       // and then the rest
       await metaParser.parse(xml);
-      this.debug('pre parsing done');
+      this.debug("pre parsing done");
     },
 
     /**
@@ -167,16 +184,16 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      */
     createUI(xml) {
       if (!cv.Config.cacheUsed) {
-        this.debug('creating pages');
-        const page = xml.querySelector('pages > page'); // only one page element allowed...
+        this.debug("creating pages");
+        const page = xml.querySelector("pages > page"); // only one page element allowed...
 
-        this._createPages(page, 'id');
-        this.debug('finalizing');
-        qx.event.message.Bus.dispatchByName('setup.dom.append');
-        this.debug('pages created');
+        this._createPages(page, "id");
+        this.debug("finalizing");
+        qx.event.message.Bus.dispatchByName("setup.dom.append");
+        this.debug("pages created");
       }
-      this.debug('setup.dom.finished');
-      qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+      this.debug("setup.dom.finished");
+      qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
       cv.TemplateEngine.getInstance().setDomFinished(true);
 
       this.login();
@@ -191,9 +208,14 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      * @param flavour {String} inherited flavour
      * @param type {String} page type (text, 2d, 3d)
      */
-    _createPages: function (page, path, flavour, type) {
+    _createPages(page, path, flavour, type) {
       cv.parser.pure.WidgetParser.renderTemplates(page);
-      let parsedData = cv.parser.pure.WidgetParser.parse(page, path, flavour, type);
+      let parsedData = cv.parser.pure.WidgetParser.parse(
+        page,
+        path,
+        flavour,
+        type
+      );
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];
       }
@@ -201,7 +223,10 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       const l = parsedData.length;
       for (; i < l; i++) {
         const data = parsedData[i];
-        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+        const widget = cv.ui.structure.WidgetFactory.createInstance(
+          data.$$type,
+          data
+        );
 
         // trigger DOM generation
         if (widget) {
@@ -219,32 +244,47 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      */
     parseLabel(label, flavour, labelClass, style) {
       if (!label) {
-        return '';
+        return "";
       }
-      let ret_val = '<div class="' + (labelClass !== undefined ? labelClass : 'label') + '"' +
-        (style ? (' style="' + style + '"') : '') + '>';
+      let ret_val =
+        '<div class="' +
+        (labelClass !== undefined ? labelClass : "label") +
+        '"' +
+        (style ? ' style="' + style + '"' : "") +
+        ">";
 
       Array.prototype.forEach.call(label.childNodes, function (elem) {
-        if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
+        if (
+          elem.nodeType === Node.ELEMENT_NODE &&
+          elem.nodeName.toLowerCase() === "icon"
+        ) {
           ret_val += cv.IconHandler.getInstance().getIconElement(
-            elem.getAttribute('name'),
-            elem.getAttribute('type'),
-            elem.getAttribute('flavour') || flavour,
-            elem.getAttribute('color'),
-            elem.getAttribute('styling'),
-            '',
-            true);
+            elem.getAttribute("name"),
+            elem.getAttribute("type"),
+            elem.getAttribute("flavour") || flavour,
+            elem.getAttribute("color"),
+            elem.getAttribute("styling"),
+            "",
+            true
+          );
         } else if (elem.nodeType === Node.TEXT_NODE) {
           ret_val += elem.textContent;
         }
       });
-      return ret_val + '</div>';
+      return ret_val + "</div>";
     },
     supports(feature, subfeature) {
-      if (Object.prototype.hasOwnProperty.call(this.__supportedFeatures, feature)) {
+      if (
+        Object.prototype.hasOwnProperty.call(this.__supportedFeatures, feature)
+      ) {
         if (this.__supportedFeatures[feature] === true) {
           if (subfeature) {
-            return Object.prototype.hasOwnProperty.call(this.__supportedFeatures[feature], subfeature) && this.__supportedFeatures[feature][subfeature] === true;
+            return (
+              Object.prototype.hasOwnProperty.call(
+                this.__supportedFeatures[feature],
+                subfeature
+              ) && this.__supportedFeatures[feature][subfeature] === true
+            );
           }
           return true;
         }
@@ -254,8 +294,10 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
     getInitialAddresses() {
       const startPageAddresses = {};
-      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
-      pageWidget.getChildWidgets().forEach(function(child) {
+      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(
+        cv.Config.initialPage
+      );
+      pageWidget.getChildWidgets().forEach(function (child) {
         const address = child.getAddress ? child.getAddress() : {};
         for (let addr in address) {
           if (Object.prototype.hasOwnProperty.call(address, addr)) {
@@ -268,7 +310,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
     initPagePartsHandler() {
       if (!this.pagePartsHandler) {
-        this.pagePartsHandler = new cv.ui.structure.pure.navigation.PagePartsHandler();
+        this.pagePartsHandler =
+          new cv.ui.structure.pure.navigation.PagePartsHandler();
       }
     },
 
@@ -277,32 +320,39 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (!cv.Config.initialPage) {
         this.__detectInitialPage();
       }
-      let currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+      let currentPage = cv.ui.structure.WidgetFactory.getInstanceById(
+        cv.Config.initialPage
+      );
       if (currentPage) {
         this.setCurrentPage(currentPage);
       } else {
         // this page does not exist, fallback to start page
-        cv.Config.initialPage = 'id_';
-        currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        cv.Config.initialPage = "id_";
+        currentPage = cv.ui.structure.WidgetFactory.getInstanceById(
+          cv.Config.initialPage
+        );
       }
 
       cv.ui.structure.pure.layout.Manager.adjustColumns();
-      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths(
+        "#" + cv.Config.initialPage,
+        true
+      );
 
       this.main_scroll = new cv.ui.structure.pure.navigation.PageHandler();
       if (this.scrollSpeed !== undefined) {
         this.main_scroll.setSpeed(this.scrollSpeed);
       }
 
-      new qx.util.DeferredCall(function() {
+      new qx.util.DeferredCall(function () {
         this.scrollToPage(cv.Config.initialPage, 0);
       }, this).schedule();
 
       // run the Trick-O-Matic scripts for great SVG backdrops
-      document.querySelectorAll('embed').forEach(function(elem) {
-        if (typeof elem.getSVGDocument === 'function') {
+      document.querySelectorAll("embed").forEach(function (elem) {
+        if (typeof elem.getSVGDocument === "function") {
           const svg = elem.getSVGDocument();
-          if (svg === null || svg.readyState !== 'complete') {
+          if (svg === null || svg.readyState !== "complete") {
             elem.onload = cv.ui.TrickOMatic.run;
           } else {
             cv.ui.TrickOMatic.run.call(elem);
@@ -310,12 +360,18 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         }
       });
 
-      document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
-      document.querySelectorAll('.loading').forEach(function(elem) {
-        elem.classList.remove('loading');
+      document
+        .querySelectorAll(".icon")
+        .forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
+      document.querySelectorAll(".loading").forEach(function (elem) {
+        elem.classList.remove("loading");
       }, this);
 
-      qx.core.Init.getApplication().addListener('changeMobile', this._onMobileChanged, this);
+      qx.core.Init.getApplication().addListener(
+        "changeMobile",
+        this._onMobileChanged,
+        this
+      );
     },
 
     doScreenSave() {
@@ -328,7 +384,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
     },
 
-    scrollToPage (target, speed, skipHistory) {
+    scrollToPage(target, speed, skipHistory) {
       if (undefined === target) {
         target = cv.Config.configSettings.screensave_page;
       }
@@ -346,16 +402,19 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (cv.Config.rememberLastPage && qx.core.Environment.get('html.storage.local')) {
+      if (
+        cv.Config.rememberLastPage &&
+        qx.core.Environment.get("html.storage.local")
+      ) {
         localStorage.lastpage = page_id;
       }
 
       // push new state to history
       if (skipHistory === undefined) {
-        const headline = document.querySelectorAll('#' + page_id + ' h1');
-        let pageTitle = 'CometVisu';
+        const headline = document.querySelectorAll("#" + page_id + " h1");
+        let pageTitle = "CometVisu";
         if (headline.length) {
-          pageTitle = headline[0].textContent+ ' - '+pageTitle;
+          pageTitle = headline[0].textContent + " - " + pageTitle;
         }
         qx.bom.History.getInstance().addToHistory(page_id, pageTitle);
       }
@@ -379,21 +438,21 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         switch (this.pagePartsHandler.navbars.left.dynamic) {
           case null:
           case true:
-            this.pagePartsHandler.fadeNavbar('Left', 'out', 0);
+            this.pagePartsHandler.fadeNavbar("Left", "out", 0);
             break;
 
           case false:
-            this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
+            this.pagePartsHandler.fadeNavbar("Left", "in", 0);
         }
       } else {
-        this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
+        this.pagePartsHandler.fadeNavbar("Left", "in", 0);
       }
     },
 
     /**
      * Reset some values related to the current page
      */
-    resetPageValues: function () {
+    resetPageValues() {
       this.resetCurrentPage();
       cv.ui.structure.pure.layout.Manager.currentPageUnavailableWidth = -1;
       cv.ui.structure.pure.layout.Manager.currentPageUnavailableHeight = -1;
@@ -408,25 +467,28 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     },
 
     async __detectInitialPage() {
-      let startpage = 'id_';
+      let startpage = "id_";
       if (cv.Config.startpage) {
         startpage = cv.Config.startpage;
-        if (qx.core.Environment.get('html.storage.local') === true) {
-          if (startpage === 'remember') {
-            startpage = localStorage.getItem('lastpage');
+        if (qx.core.Environment.get("html.storage.local") === true) {
+          if (startpage === "remember") {
+            startpage = localStorage.getItem("lastpage");
             cv.Config.rememberLastPage = true;
-            if (typeof (startpage) !== 'string' || startpage.substr(0, 3) !== 'id_') {
-              startpage = 'id_'; // fix obvious wrong data
+            if (
+              typeof startpage !== "string" ||
+              startpage.substr(0, 3) !== "id_"
+            ) {
+              startpage = "id_"; // fix obvious wrong data
             }
-          } else if (startpage === 'noremember') {
-            localStorage.removeItem('lastpage');
-            startpage = 'id_';
+          } else if (startpage === "noremember") {
+            localStorage.removeItem("lastpage");
+            startpage = "id_";
             cv.Config.rememberLastPage = false;
           }
         }
       } else {
         const req = qx.util.Uri.parseUri(window.location.href);
-        if (req.anchor && req.anchor.substring(0, 3) === 'id_') {
+        if (req.anchor && req.anchor.substring(0, 3) === "id_") {
           startpage = req.anchor;
         }
       }
@@ -435,9 +497,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         return startpage;
       }
       // wait for DOM to be ready and detect the page id then
-      return new Promise(resolve => {
-        qx.event.message.Bus.subscribe('setup.dom.finished.before', () => {
-          cv.Config.initialPage = this.getPageIdByPath(startpage) || 'id_';
+      return new Promise((resolve) => {
+        qx.event.message.Bus.subscribe("setup.dom.finished.before", () => {
+          cv.Config.initialPage = this.getPageIdByPath(startpage) || "id_";
           resolve(cv.Config.initialPage);
         });
       });
@@ -449,7 +511,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      * @param path {String}
      * @return {String}
      */
-    getPageIdByPath: function (page_name, path) {
+    getPageIdByPath(page_name, path) {
       if (page_name === null) {
         return null;
       }
@@ -461,7 +523,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         const scope = this.traversePath(path);
         if (scope === null) {
           // path is wrong
-          this.error('path \'' + path + '\' could not be traversed, no page found');
+          this.error(
+            "path '" + path + "' could not be traversed, no page found"
+          );
           return null;
         }
         return this.getPageIdByName(page_name, scope);
@@ -469,13 +533,13 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return this.getPageIdByName(page_name);
     },
 
-    traversePath: function (path, root_page_id) {
+    traversePath(path, root_page_id) {
       let path_scope = null;
-      let index = path.indexOf('/');
+      let index = path.indexOf("/");
       if (index >= 1) {
         // skip escaped slashes like \/
-        while (path.substr(index - 1, 1) === '\\') {
-          const next = path.indexOf('/', index + 1);
+        while (path.substr(index - 1, 1) === "\\") {
+          const next = path.indexOf("/", index + 1);
           if (next >= 0) {
             index = next;
           }
@@ -496,7 +560,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return path_scope;
     },
 
-    getPageIdByName: function (page_name, scope) {
+    getPageIdByName(page_name, scope) {
       let page_id = null;
       if (page_name.match(/^id_[0-9_]*$/) !== null) {
         // already a page_id
@@ -506,12 +570,15 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       // decode html code (e.g. like &apos; => ')
       page_name = cv.util.String.decodeHtmlEntities(page_name);
       // remove escaped slashes
-      page_name = decodeURI(page_name.replace('\\\/', '/'));
+      page_name = decodeURI(page_name.replace("\\/", "/"));
 
       //      console.log("Page: "+page_name+", Scope: "+scope);
-      const selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1' : '.page h1';
+      const selector =
+        scope !== undefined && scope !== null
+          ? '.page[id^="' + scope + '"] h1'
+          : ".page h1";
       let pages = document.querySelectorAll(selector);
-      pages = Array.from(pages).filter(function(h) {
+      pages = Array.from(pages).filter(function (h) {
         return h.textContent === page_name;
       });
       if (pages.length > 1 && this.getCurrentPage() !== null) {
@@ -519,9 +586,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         // More than one Page found -> search in the current pages descendants first
         let fallback = true;
         pages.some(function (page) {
-          const p = cv.util.Tree.getClosest(page, '.page');
+          const p = cv.util.Tree.getClosest(page, ".page");
           if (page.innerText === page_name) {
-            const pid = p.getAttribute('id');
+            const pid = p.getAttribute("id");
             if (pid.length < currentPageId.length) {
               // found pages path is shorter the the current pages -> must be an ancestor
               if (currentPageId.indexOf(pid) === 0) {
@@ -545,7 +612,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
           // take the first page that fits (old behaviour)
           pages.some(function (page) {
             if (page.innerText === page_name) {
-              page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id');
+              page_id = cv.util.Tree.getClosest(page, ".page").getAttribute(
+                "id"
+              );
               // break loop
               return true;
             }
@@ -555,7 +624,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       } else {
         pages.some(function (page) {
           if (page.innerText === page_name) {
-            page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id');
+            page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
             // break loop
             return true;
           }
@@ -568,7 +637,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
       // not found
       return null;
-    }
+    },
   },
 
   /*
@@ -576,11 +645,15 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
-    qx.core.Init.getApplication().removeListener('changeMobile', this._onMobileChanged, this);
+  destruct() {
+    qx.core.Init.getApplication().removeListener(
+      "changeMobile",
+      this._onMobileChanged,
+      this
+    );
   },
 
-  defer: function (statics) {
+  defer(statics) {
     cv.Application.structureController = statics.getInstance();
-  }
+  },
 });

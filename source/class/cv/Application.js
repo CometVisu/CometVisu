@@ -1,7 +1,7 @@
-/* Application.js 
- * 
+/* Application.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This is the main application class of the CometVisu.
  *
@@ -30,17 +29,16 @@
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
  */
-qx.Class.define('cv.Application',
-{
-  extend : qx.application.Native,
+qx.Class.define("cv.Application", {
+  extend: qx.application.Native,
 
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this.__appReady = false;
     this.initCommandManager(new qx.ui.command.GroupManager());
     const lang = qx.locale.Manager.getInstance().getLanguage();
@@ -48,17 +46,17 @@ qx.Class.define('cv.Application',
       qx.io.PartLoader.require([lang]);
     }
     const pageVis = qx.bom.PageVisibility.getInstance();
-    pageVis.addListener('change', function () {
-      this.setActive(pageVis.getVisibilityState() === 'visible');
-    }, this);
+    pageVis.addListener("change", () => {
+      this.setActive(pageVis.getVisibilityState() === "visible");
+    });
 
     // install global shortcut for opening the manager
-    if (window.parent && typeof window.parent.showManager === 'function') {
+    if (window.parent && typeof window.parent.showManager === "function") {
       window.showManager = window.parent.showManager;
     } else {
       window.showManager = this.showManager.bind(this);
     }
-    if (window.parent && typeof window.parent.showConfigErrors === 'function') {
+    if (window.parent && typeof window.parent.showConfigErrors === "function") {
       window.showConfigErrors = window.parent.showConfigErrors;
     } else {
       window.showConfigErrors = this.showConfigErrors.bind(this);
@@ -82,12 +80,20 @@ qx.Class.define('cv.Application',
 
     getRelativeResourcePath(fullPath) {
       if (!this._relResourcePath) {
-        const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
-        this._relResourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(baseUrl.length+1) + '/';
+        const baseUrl =
+          window.location.origin +
+          window.location.pathname.split("/").slice(0, -1).join("/");
+        this._relResourcePath =
+          qx.util.Uri.getAbsolute(
+            qx.util.LibraryManager.getInstance().get("cv", "resourceUri")
+          ).substring(baseUrl.length + 1) + "/";
       }
       if (fullPath === true) {
         if (!this._fullResourcePath) {
-          this._fullResourcePath = window.location.pathname.split('/').slice(0, -1).join('/') + '/' + this._relResourcePath;
+          this._fullResourcePath =
+            window.location.pathname.split("/").slice(0, -1).join("/") +
+            "/" +
+            this._relResourcePath;
         }
         return this._fullResourcePath;
       }
@@ -99,20 +105,27 @@ qx.Class.define('cv.Application',
      * @param {...any} args
      * @return {cv.io.Client|cv.io.Mockup}
      */
-    createClient: function(...args) {
+    createClient(...args) {
       let Client = cv.io.Client;
-      if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
+      if (
+        cv.Config.testMode === true ||
+        window.cvTestMode === true ||
+        args[0] === "simulated"
+      ) {
         Client = cv.io.Mockup;
-      } else if (args[0] === 'openhab') {
+      } else if (args[0] === "openhab") {
         Client = cv.io.openhab.Rest;
-        if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
-          cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
+        if (
+          cv.Config.getStructure() === "structure-pure" &&
+          !cv.Config.pluginsToLoad.includes("plugin-openhab")
+        ) {
+          cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
         }
-        if (args[1] && args[1].endsWith('/cv/l/')) {
+        if (args[1] && args[1].endsWith("/cv/l/")) {
           // we only need the rest path not the login resource
-          args[1] = args[1].substring(0, args[1].indexOf('cv/'));
+          args[1] = args[1].substring(0, args[1].indexOf("cv/"));
         }
-      } else if (args[0] === 'mqtt') {
+      } else if (args[0] === "mqtt") {
         Client = cv.io.mqtt.Client;
       }
       return new Client(...args);
@@ -124,13 +137,13 @@ qx.Class.define('cv.Application',
      * @param command {Function} command to execute
      * @param help {String} some documentation about the command
      */
-    registerConsoleCommand: function(shortcutName, command, help) {
+    registerConsoleCommand(shortcutName, command, help) {
       // install command
       if (!(shortcutName in window)) {
         window[shortcutName] = command;
-        this.consoleCommands.push(shortcutName + '() - ' + help);
+        this.consoleCommands.push(shortcutName + "() - " + help);
       }
-    }
+    },
   },
 
   /*
@@ -140,62 +153,63 @@ qx.Class.define('cv.Application',
   */
   properties: {
     root: {
-      nullable: true
+      nullable: true,
     },
 
     /**
      * true when structure part has been loaded
      */
     structureLoaded: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeStructureLoaded',
-      apply: '_applyStructureLoaded'
+      event: "changeStructureLoaded",
+      apply: "_applyStructureLoaded",
     },
 
     commandManager: {
-      check: 'qx.ui.command.GroupManager',
-      deferredInit: true
+      check: "qx.ui.command.GroupManager",
+      deferredInit: true,
     },
 
     active: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeActive'
+      event: "changeActive",
     },
 
     inManager: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyInManager'
+      apply: "_applyInManager",
     },
 
     managerDisabled: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeManagerDisabled'
+      event: "changeManagerDisabled",
     },
 
     managerDisabledReason: {
-      check: 'String',
-      nullable: true
+      check: "String",
+      nullable: true,
     },
+
     managerChecked: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyManagerChecked'
+      apply: "_applyManagerChecked",
     },
+
     /**
      * Mobile device detection (small screen)
      */
     mobile: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeMobile',
-      apply: '_applyMobile'
-    }
+      event: "changeMobile",
+      apply: "_applyMobile",
+    },
   },
-
 
   /*
   *****************************************************************************
@@ -203,8 +217,7 @@ qx.Class.define('cv.Application',
   *****************************************************************************
   */
 
-  members :
-  {
+  members: {
     _blocker: null,
     __appReady: null,
     _isCached: null,
@@ -213,12 +226,12 @@ qx.Class.define('cv.Application',
      * Toggle the {@link qx.bom.Blocker} visibility
      * @param val {Boolean}
      */
-    block: function(val) {
+    block(val) {
       if (val) {
         if (!this._blocker) {
           this._blocker = new qx.bom.Blocker();
-          this._blocker.setBlockerColor('#000000');
-          this._blocker.setBlockerOpacity('0.2');
+          this._blocker.setBlockerColor("#000000");
+          this._blocker.setBlockerOpacity("0.2");
         }
         this._blocker.block();
       } else if (this._blocker) {
@@ -226,18 +239,21 @@ qx.Class.define('cv.Application',
       }
     },
 
-    _applyMobile: function (value) {
+    _applyMobile(value) {
       // maintain old value for compatibility
-      if (value && !document.body.classList.contains('mobile')) {
-        document.body.classList.add('mobile');
-      } else if (!value && document.body.classList.contains('mobile')) {
-        document.body.classList.remove('mobile');
+      if (value && !document.body.classList.contains("mobile")) {
+        document.body.classList.add("mobile");
+      } else if (!value && document.body.classList.contains("mobile")) {
+        document.body.classList.remove("mobile");
       }
     },
 
-    _applyManagerChecked: function(value) {
+    _applyManagerChecked(value) {
       if (value && cv.Config.loadManager) {
-        this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
+        this.showManager(
+          cv.Config.managerOptions.action,
+          cv.Config.managerOptions.data
+        );
       }
     },
 
@@ -245,53 +261,63 @@ qx.Class.define('cv.Application',
      * This method contains the initial application code and gets called
      * during startup of the application
      */
-    main : function() {
+    main() {
       cv.ConfigCache.init();
       this._checkBackend();
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
-      if (qx.core.Environment.get('qx.debug')) {
-        if (typeof replayLog !== 'undefined' && replayLog) {
+      if (qx.core.Environment.get("qx.debug")) {
+        if (typeof replayLog !== "undefined" && replayLog) {
           cv.report.Replay.prepare(replayLog);
         }
       }
 
-      document.body.classList.add('loading');
+      document.body.classList.add("loading");
 
       cv.report.Record.prepare();
 
-      let info = '\n' +
-        '  _____                     ___      ___\n' +
-        ' / ____|                   | \\ \\    / (_)\n' +
-        '| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n' +
-        '| |    / _ \\| \'_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n' +
-        '| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n' +
-        ' \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n' +
-        '-----------------------------------------------------------\n' +
-        ' ©2010-' + (new Date().getFullYear()) + ' Christian Mayer and the CometVisu contributers.\n' +
-        ' Version: ' + cv.Version.VERSION + '\n';
+      let info =
+        "\n" +
+        "  _____                     ___      ___\n" +
+        " / ____|                   | \\ \\    / (_)\n" +
+        "| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n" +
+        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n" +
+        "| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n" +
+        " \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n" +
+        "-----------------------------------------------------------\n" +
+        " ©2010-" +
+        new Date().getFullYear() +
+        " Christian Mayer and the CometVisu contributers.\n" +
+        " Version: " +
+        cv.Version.VERSION +
+        "\n";
 
       if (cv.Application.consoleCommands.length) {
-        info += '\n Available commands:\n'+
-          '    '+cv.Application.consoleCommands.join('\n    ')+'\n';
+        info +=
+          "\n Available commands:\n" +
+          "    " +
+          cv.Application.consoleCommands.join("\n    ") +
+          "\n";
       }
 
-      info += '-----------------------------------------------------------\n\n';
+      info += "-----------------------------------------------------------\n\n";
 
       // eslint-disable-next-line no-console
       console.log(info);
 
       // add command to load and open the manager
-      const manCommand = new qx.ui.command.Command('Ctrl+M');
-      cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
-      manCommand.addListener('execute', () => this.showManager(), this);
+      const manCommand = new qx.ui.command.Command("Ctrl+M");
+      cv.TemplateEngine.getInstance()
+        .getCommands()
+        .add("open-manager", manCommand);
+      manCommand.addListener("execute", () => this.showManager());
       this.registerServiceWorker();
 
-      if (qx.core.Environment.get('qx.aspects')) {
+      if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
       }
       // Call super class
-      this.base(arguments);
+      super.main();
       this.block(true);
 
       // run svg4everybody to support SVG sprites in older browsers
@@ -302,7 +328,7 @@ qx.Class.define('cv.Application',
       cv.log.appender.Native;
 
       // Enable logging in debug variant
-      if (qx.core.Environment.get('qx.debug')) {
+      if (qx.core.Environment.get("qx.debug")) {
         // support additional cross-browser console. Press F7 to toggle visibility
         //noinspection BadExpressionStatementJS,JSHint
         qx.log.appender.Console;
@@ -314,19 +340,23 @@ qx.Class.define('cv.Application',
        -------------------------------------------------------------------------
        */
       // in debug mode load the uncompressed unobfuscated scripts
-      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
+      qx.bom.Stylesheet.includeFile(
+        qx.util.ResourceManager.getInstance().toUri(
+          "designs/designglobals.css"
+        ) + (cv.Config.forceReload === true ? "?" + Date.now() : "")
+      );
 
       this.__init();
-      if (typeof cv.Config.mobileDevice === 'boolean') {
+      if (typeof cv.Config.mobileDevice === "boolean") {
         this.setMobile(cv.Config.mobileDevice);
       }
       this._onResize(null, true);
-      qx.event.Registration.addListener(window, 'resize', this._onResize, this);
+      qx.event.Registration.addListener(window, "resize", this._onResize, this);
     },
 
-    hideManager: function () {
-      if (Object.prototype.hasOwnProperty.call(cv.ui, 'manager')) {
-        const ManagerMain = cv.ui['manager']['Main'];
+    hideManager() {
+      if (Object.prototype.hasOwnProperty.call(cv.ui, "manager")) {
+        const ManagerMain = cv.ui["manager"]["Main"];
         // only do something when the singleton is already created
         if (ManagerMain.constructor.$$instance) {
           ManagerMain.getInstance().setVisible(false);
@@ -338,164 +368,226 @@ qx.Class.define('cv.Application',
      * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
      * @param data {String|Map} path of file that action should executed on or a Map of options
      */
-    showManager: function (action, data) {
+    showManager(action, data) {
       if (this.isManagerDisabled()) {
         const notification = {
-          topic: 'cv.manager.error',
-          target: 'popup',
-          title: qx.locale.Manager.tr('Manager is not available'),
+          topic: "cv.manager.error",
+          target: "popup",
+          title: qx.locale.Manager.tr("Manager is not available"),
           message: this.getManagerDisabledReason(),
-          severity: 'high',
-          deletable: true
+          severity: "high",
+          deletable: true,
         };
-        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
-      } else {
-        qx.io.PartLoader.require(['manager'], function (states) {
-          // break dependency
-          const ManagerMain = cv.ui['manager']['Main'];
-          const firstCall = !ManagerMain.constructor.$$instance;
-          const manager = ManagerMain.getInstance();
-          if (!firstCall) {
-            manager.setVisible(!manager.getVisible());
-          } else {
-            // initially bind manager visibility
-            manager.bind('visible', this, 'inManager');
-          }
 
-          if (manager.getVisible() && action && data) {
-            // delay this a little bit, give the manager some time to settle
-            qx.event.Timer.once(() => {
-              qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
-            }, this, 1000);
-          }
-        }, this);
+        cv.core.notifications.Router.dispatchMessage(
+          notification.topic,
+          notification
+        );
+      } else {
+        qx.io.PartLoader.require(
+          ["manager"],
+          function (states) {
+            // break dependency
+            const ManagerMain = cv.ui["manager"]["Main"];
+            const firstCall = !ManagerMain.constructor.$$instance;
+            const manager = ManagerMain.getInstance();
+            if (!firstCall) {
+              manager.setVisible(!manager.getVisible());
+            } else {
+              // initially bind manager visibility
+              manager.bind("visible", this, "inManager");
+            }
+
+            if (manager.getVisible() && action && data) {
+              // delay this a little bit, give the manager some time to settle
+              qx.event.Timer.once(
+                () => {
+                  qx.event.message.Bus.dispatchByName(
+                    "cv.manager." + action,
+                    data
+                  );
+                },
+                this,
+                1000
+              );
+            }
+          },
+          this
+        );
       }
     },
 
-    _applyInManager: function (value) {
+    _applyInManager(value) {
       if (value) {
-        qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
+        qx.bom.History.getInstance().addToHistory(
+          "manager",
+          qx.locale.Manager.tr("Manager") + " - CometVisu"
+        );
         this.block(false);
-        if (document.body.classList.contains('loading')) {
-          document.body.classList.remove('loading');
+        if (document.body.classList.contains("loading")) {
+          document.body.classList.remove("loading");
         }
       } else {
-        qx.bom.History.getInstance().addToHistory('', 'CometVisu');
+        qx.bom.History.getInstance().addToHistory("", "CometVisu");
       }
     },
 
-    showConfigErrors: function(configName, options) {
-      configName = configName ? 'visu_config_'+configName+'.xml' : 'visu_config.xml';
-      const handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
+    showConfigErrors(configName, options) {
+      configName = configName
+        ? "visu_config_" + configName + ".xml"
+        : "visu_config.xml";
+      const handlerId =
+        options && options.upgradeVersion
+          ? "cv.ui.manager.editor.Diff"
+          : "cv.ui.manager.editor.Source";
       const data = {
         file: configName,
         handler: handlerId,
-        handlerOptions: Object.assign({
-          jumpToError: true
-        }, options ? options : {})
+        handlerOptions: Object.assign(
+          {
+            jumpToError: true,
+          },
+          options ? options : {}
+        ),
       };
+
       if (this.isInManager()) {
-        qx.event.message.Bus.dispatchByName('cv.manager.openWith', data);
+        qx.event.message.Bus.dispatchByName("cv.manager.openWith", data);
       } else {
-        this.showManager('openWith', data);
+        this.showManager("openWith", data);
       }
       // remove any config error messages shown
-      cv.core.notifications.Router.dispatchMessage('cv.config.error', {
-        topic: 'cv.config.error',
-        condition: false
+      cv.core.notifications.Router.dispatchMessage("cv.config.error", {
+        topic: "cv.config.error",
+        condition: false,
       });
     },
 
-    validateConfig: function (configName) {
+    validateConfig(configName) {
       const worker = cv.data.FileWorker.getInstance();
       let displayConfigName = configName;
       if (configName) {
-        configName = '_' + configName;
+        configName = "_" + configName;
       } else {
-        configName = '';
-        displayConfigName = 'default';
+        configName = "";
+        displayConfigName = "default";
       }
       let notification = {
-        topic: 'cv.config.validation',
-        severity: 'normal',
+        topic: "cv.config.validation",
+        severity: "normal",
         deletable: true,
-        unique: true
+        unique: true,
       };
-      cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
-        target: 'toast',
-        message: qx.locale.Manager.tr('Validating configuration file...')
-      }));
+
+      cv.core.notifications.Router.dispatchMessage(
+        notification.topic,
+        Object.assign({}, notification, {
+          target: "toast",
+          message: qx.locale.Manager.tr("Validating configuration file..."),
+        })
+      );
+
       const res = qx.util.ResourceManager.getInstance();
       let configPath = `config/visu_config${configName}.xml`;
-      let url = '';
-      if (!res.has(configPath) && res.has(`demo/visu_config${configName}.xml`)) {
+      let url = "";
+      if (
+        !res.has(configPath) &&
+        res.has(`demo/visu_config${configName}.xml`)
+      ) {
         url = res.toUri(`demo/visu_config${configName}.xml`);
       }
       if (!url) {
         url = res.toUri(configPath);
       }
-      worker.validateConfig(url).then(res => {
-        // remove the toast information
-        cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
-          target: 'toast',
-          condition: false
-        }));
-        if (res === true) {
-          // show result message as dialog
-          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
-            target: 'popup',
-            message: qx.locale.Manager.tr('The %1 configuration has no errors!', displayConfigName),
-            icon: 'message_ok'
-          }));
-        } else {
-          // show result message as dialog
-          qx.log.Logger.error(this, res);
-          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
-            target: 'popup',
-            message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
-            actions: {
-              link: [
-                {
-                  title: qx.locale.Manager.tr('Show errors'),
-                  action: function () {
-                    qx.core.Init.getApplication().showConfigErrors(configName);
-                  }
-                }]
-            },
-            severity: 'high',
-            icon: 'message_attention'
-          }));
-        }
-      }).catch(err => {
-        this.error(err);
-      });
+      worker
+        .validateConfig(url)
+        .then((res) => {
+          // remove the toast information
+          cv.core.notifications.Router.dispatchMessage(
+            notification.topic,
+            Object.assign({}, notification, {
+              target: "toast",
+              condition: false,
+            })
+          );
+
+          if (res === true) {
+            // show result message as dialog
+            cv.core.notifications.Router.dispatchMessage(
+              notification.topic,
+              Object.assign({}, notification, {
+                target: "popup",
+                message: qx.locale.Manager.tr(
+                  "The %1 configuration has no errors!",
+                  displayConfigName
+                ),
+                icon: "message_ok",
+              })
+            );
+          } else {
+            // show result message as dialog
+            qx.log.Logger.error(this, res);
+            cv.core.notifications.Router.dispatchMessage(
+              notification.topic,
+              Object.assign({}, notification, {
+                target: "popup",
+                message: qx.locale.Manager.tr(
+                  "The %1 configuration has %2 errors!",
+                  displayConfigName,
+                  res.length
+                ),
+                actions: {
+                  link: [
+                    {
+                      title: qx.locale.Manager.tr("Show errors"),
+                      action() {
+                        qx.core.Init.getApplication().showConfigErrors(
+                          configName
+                        );
+                      },
+                    },
+                  ],
+                },
+
+                severity: "high",
+                icon: "message_attention",
+              })
+            );
+          }
+        })
+        .catch((err) => {
+          this.error(err);
+        });
     },
 
-    __globalErrorHandler: function(ex) {
+    __globalErrorHandler(ex) {
       // connect client data for Bug-Report
-      let exString = '';
+      let exString = "";
       const maxTraceLength = 2000;
       if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       } else if (ex instanceof qx.core.WindowError) {
-        exString = ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
+        exString =
+          ex.toString() + "\nin " + ex.getUri() + " line " + ex.getLineNumber();
       }
       if (!exString) {
-        exString = ex.name + ': ' + ex.message;
+        exString = ex.name + ": " + ex.message;
         if (ex.fileName) {
-          exString += '\n in file ' + ex.fileName;
+          exString += "\n in file " + ex.fileName;
         }
         if (ex.lineNumber) {
-          exString += '\n line ' + ex.lineNumber;
+          exString += "\n line " + ex.lineNumber;
         }
         if (ex.description) {
-          exString += '\n Description: ' + ex.description;
+          exString += "\n Description: " + ex.description;
         }
         try {
-          let lastLine = '';
+          let lastLine = "";
           let repeated = 0;
-          let nStack = '';
-          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
+          let nStack = "";
+          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (
+            entry
+          ) {
             if (lastLine === entry) {
               if (repeated === 0) {
                 // count first occurance too
@@ -504,135 +596,149 @@ qx.Class.define('cv.Application',
                 repeated++;
               }
             } else if (repeated > 0) {
-              nStack += ' [repeated ' + repeated + ' times]';
-              nStack += '\n\t' + entry;
+              nStack += " [repeated " + repeated + " times]";
+              nStack += "\n\t" + entry;
               repeated = 0;
             } else {
-              nStack += '\n\t' + entry;
+              nStack += "\n\t" + entry;
               lastLine = entry;
             }
-          }, this);
+          },
+          this);
           if (repeated > 0) {
-            nStack += ' [repeated ' + repeated + ' times]';
+            nStack += " [repeated " + repeated + " times]";
           }
           if (nStack) {
-            exString += '\nNormalized Stack: ' + nStack.substring(0, maxTraceLength) + '\n';
+            exString +=
+              "\nNormalized Stack: " +
+              nStack.substring(0, maxTraceLength) +
+              "\n";
             if (nStack.length > maxTraceLength) {
-              exString += 'Stacktrace has been cut off\n';
+              exString += "Stacktrace has been cut off\n";
             }
           }
           if (exString.length + ex.stack.length < maxTraceLength) {
-            exString += '\nOriginal Stack: ' + ex.stack + '\n';
+            exString += "\nOriginal Stack: " + ex.stack + "\n";
           }
         } catch (exc) {
           if (ex.stack) {
-            exString += '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
+            exString +=
+              "\nStack: " + ex.stack.substring(0, maxTraceLength) + "\n";
             if (ex.stack.length > maxTraceLength) {
-              exString += 'Stacktrace has been cut off\n';
+              exString += "Stacktrace has been cut off\n";
             }
           }
         }
       }
 
       const notification = {
-        topic: 'cv.error',
+        topic: "cv.error",
         target: cv.ui.PopupHandler,
-        title: qx.locale.Manager.tr('An error occured'),
-        message: '<pre>' + (exString || ex.stack) + '</pre>',
-        severity: 'urgent',
+        title: qx.locale.Manager.tr("An error occured"),
+        message: "<pre>" + (exString || ex.stack) + "</pre>",
+        severity: "urgent",
         deletable: false,
         actions: {
           optionGroup: {
-            title: qx.locale.Manager.tr('Enable on reload:'),
-            options: []
+            title: qx.locale.Manager.tr("Enable on reload:"),
+            options: [],
           },
+
           link: [
             {
-              title: qx.locale.Manager.tr('Reload'),
-              type: 'reload',
-              action: function (ev) {
+              title: qx.locale.Manager.tr("Reload"),
+              type: "reload",
+              action(ev) {
                 let parent = ev.getTarget().parentNode;
                 while (parent) {
-                  if (parent.id === 'notification-center' || parent.classList.contains('popup')) {
+                  if (
+                    parent.id === "notification-center" ||
+                    parent.classList.contains("popup")
+                  ) {
                     break;
                   }
                   parent = parent.parentNode;
                 }
-                let box = parent.querySelector('#enableReporting');
-                let url = window.location.href.split('#').shift();
+                let box = parent.querySelector("#enableReporting");
+                let url = window.location.href.split("#").shift();
                 if (box && box.checked) {
                   // reload with reporting enabled
-                  url = qx.util.Uri.appendParamsToUrl(url, 'reporting=true');
+                  url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
-                box = parent.querySelector('#reportErrors');
+                box = parent.querySelector("#reportErrors");
                 if (box && box.checked) {
                   // reload with automatic error reporting enabled
-                  url = qx.util.Uri.appendParamsToUrl(url, 'reportErrors=true');
+                  url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
                 }
                 cv.util.Location.setHref(url);
               },
-              needsConfirmation: false
-            }
-          ]
-        }
+              needsConfirmation: false,
+            },
+          ],
+        },
       };
+
       // reload with reporting checkbox
-      let link = '';
+      let link = "";
       if (!cv.Config.reporting) {
-        if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-          link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+        if (qx.locale.Manager.getInstance().getLanguage() === "de") {
+          link =
+            ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.actions.optionGroup.options.push({
-          title: qx.locale.Manager.tr('Action recording') + link,
-          name: 'enableReporting'
+          title: qx.locale.Manager.tr("Action recording") + link,
+          name: "enableReporting",
         });
       }
 
-      if (qx.core.Environment.get('cv.sentry')) {
+      if (qx.core.Environment.get("cv.sentry")) {
         if (window.Sentry) {
           // Sentry has been loaded -> add option to send the error
-          notification.actions.link.push(
-            {
-              title: qx.locale.Manager.tr('Send error to sentry.io'),
-              type: 'sentry',
-              action: function () {
-                Sentry.captureException(ex);
-              },
-              needsConfirmation: false,
-              deleteMessageAfterExecution: true
-            }
-          );
+          notification.actions.link.push({
+            title: qx.locale.Manager.tr("Send error to sentry.io"),
+            type: "sentry",
+            action() {
+              Sentry.captureException(ex);
+            },
+            needsConfirmation: false,
+            deleteMessageAfterExecution: true,
+          });
         } else {
-          link = '';
-          if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
-            link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+          link = "";
+          if (qx.locale.Manager.getInstance().getLanguage() === "de") {
+            link =
+              ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
           notification.actions.optionGroup.options.push({
-            title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
-            name: 'reportErrors',
-            style: 'margin-left: 18px'
+            title:
+              qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
+            name: "reportErrors",
+            style: "margin-left: 18px",
           });
         }
       }
-      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      cv.core.notifications.Router.dispatchMessage(
+        notification.topic,
+        notification
+      );
     },
 
-    throwError: qx.core.Environment.select('qx.globalErrorHandling', {
-      'true':  function () {
-        window.onerror(new Error('test error'));
+    throwError: qx.core.Environment.select("qx.globalErrorHandling", {
+      true() {
+        window.onerror(new Error("test error"));
       },
-      'false': null
+      false: null,
     }),
 
-    _onResize: function () {
+    _onResize() {
       if (cv.Config.mobileDevice === undefined) {
         this.setMobile(window.innerWidth < cv.Config.maxMobileScreenWidth);
       }
     },
 
-    _applyStructureLoaded () {
+    _applyStructureLoaded() {
       if (!cv.Config.cacheUsed) {
-        let body = document.querySelector('body');
+        let body = document.querySelector("body");
         // load empty HTML structure
         body.innerHTML = cv.Application.structureController.getHtmlStructure();
       }
@@ -642,9 +748,14 @@ qx.Class.define('cv.Application',
      * Internal initialization method
      */
     async __init() {
-      qx.event.Registration.addListener(window, 'unload', function () {
-        cv.io.Client.stopAll();
-      }, this);
+      qx.event.Registration.addListener(
+        window,
+        "unload",
+        function () {
+          cv.io.Client.stopAll();
+        },
+        this
+      );
       qx.bom.Lifecycle.onReady(async () => {
         // init notification router
         cv.core.notifications.Router.getInstance();
@@ -655,7 +766,7 @@ qx.Class.define('cv.Application',
         }
         if (this._isCached) {
           // load settings
-          this.debug('using cache');
+          this.debug("using cache");
           cv.ConfigCache.restore();
         }
         // initialize NotificationCenter
@@ -668,16 +779,16 @@ qx.Class.define('cv.Application',
       });
 
       // reaction on browser back button
-      qx.bom.History.getInstance().addListener('request', function(e) {
+      qx.bom.History.getInstance().addListener("request", (e) => {
         const anchor = e.getData();
-        if (this.isInManager() && anchor !== 'manager') {
+        if (this.isInManager() && anchor !== "manager") {
           this.hideManager();
-        } else if (!this.isInManager() && anchor === 'manager') {
+        } else if (!this.isInManager() && anchor === "manager") {
           this.showManager();
         } else if (cv.Application.structureController) {
           cv.Application.structureController.onHistoryRequest(anchor);
         }
-      }, this);
+      });
     },
 
     /**
@@ -685,18 +796,21 @@ qx.Class.define('cv.Application',
      * @param xml {Document} XML configuration retrieved from backend
      */
     async bootstrap(xml) {
-      this.debug('bootstrapping');
+      this.debug("bootstrapping");
       const engine = cv.TemplateEngine.getInstance();
       const loader = cv.util.ScriptLoader.getInstance();
 
       engine.setConfigSource(xml);
-      loader.bind('finished', engine, 'scriptsLoaded');
+      loader.bind("finished", engine, "scriptsLoaded");
 
       if (this._isCached) {
         // check if cache is still valid
-        const cacheValid = await cv.ConfigCache.isValid(null, engine.getConfigHash());
+        const cacheValid = await cv.ConfigCache.isValid(
+          null,
+          engine.getConfigHash()
+        );
         if (!cacheValid) {
-          this.debug('cache is invalid re-parse xml');
+          this.debug("cache is invalid re-parse xml");
           // cache invalid
           cv.Config.cacheUsed = false;
           cv.ConfigCache.clear();
@@ -712,28 +826,42 @@ qx.Class.define('cv.Application',
 
           // load part for structure
           const structure = cv.Config.getStructure();
-          this.debug('loading structure '+structure);
+          this.debug("loading structure " + structure);
           engine.loadParts([structure]).then(() => {
             this.loadPlugins();
           });
-          engine.addListenerOnce('changeReady', async () => {
+          engine.addListenerOnce("changeReady", async () => {
             // create the objects
-            cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
-            const data = cv.data.Model.getInstance().getWidgetData('id_');
+            cv.Config.treePath =
+              await cv.Application.structureController.getInitialPageId();
+            const data = cv.data.Model.getInstance().getWidgetData("id_");
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-          }, this);
+          });
           // check if the current design settings overrides the cache one
-          if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
+          if (
+            cv.Config.clientDesign &&
+            cv.Config.clientDesign !== cv.Config.configSettings.clientDesign
+          ) {
             // we have to replace the cached design scripts styles to load
             const styles = [];
-            cv.Config.configSettings.stylesToLoad.forEach(function(style) {
-              styles.push(style.replace('designs/'+cv.Config.configSettings.clientDesign, 'designs/'+cv.Config.clientDesign));
+            cv.Config.configSettings.stylesToLoad.forEach(function (style) {
+              styles.push(
+                style.replace(
+                  "designs/" + cv.Config.configSettings.clientDesign,
+                  "designs/" + cv.Config.clientDesign
+                )
+              );
             }, this);
             this.loadStyles(styles);
 
             const scripts = [];
-            cv.Config.configSettings.scriptsToLoad.forEach(function(style) {
-              scripts.push(style.replace('designs/'+cv.Config.configSettings.clientDesign, 'designs/'+cv.Config.clientDesign));
+            cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
+              scripts.push(
+                style.replace(
+                  "designs/" + cv.Config.configSettings.clientDesign,
+                  "designs/" + cv.Config.clientDesign
+                )
+              );
             }, this);
             this.loadScripts(scripts);
           } else {
@@ -743,19 +871,26 @@ qx.Class.define('cv.Application',
         }
       }
       if (!cv.Config.cacheUsed) {
-        this.debug('start parsing config file');
+        this.debug("start parsing config file");
         const engine = cv.TemplateEngine.getInstance();
         await engine.parse();
         this.loadPlugins();
         this.loadStyles();
         this.loadScripts();
-        this.debug('done');
+        this.debug("done");
 
-        if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
+        if (
+          cv.Config.enableCache &&
+          cv.Application.structureController.supports("cache")
+        ) {
           // cache dom + data when everything is ready
-          qx.event.message.Bus.subscribe('setup.dom.finished', function () {
-            cv.ConfigCache.dump(xml, engine.getConfigHash());
-          }, this);
+          qx.event.message.Bus.subscribe(
+            "setup.dom.finished",
+            function () {
+              cv.ConfigCache.dump(xml, engine.getConfigHash());
+            },
+            this
+          );
         }
       }
       this.__appReady = true;
@@ -765,16 +900,16 @@ qx.Class.define('cv.Application',
      * Load CSS styles
      * @param styles {Array?}
      */
-    loadStyles: function(styles) {
+    loadStyles(styles) {
       if (!styles) {
         styles = cv.Config.configSettings.stylesToLoad;
       }
       if (styles.length) {
-        document.body.classList.add('loading-styles');
+        document.body.classList.add("loading-styles");
         const loader = cv.util.ScriptLoader.getInstance();
-        loader.addListenerOnce('stylesLoaded', () => {
-          document.body.classList.remove('loading');
-          document.body.classList.remove('loading-styles');
+        loader.addListenerOnce("stylesLoaded", () => {
+          document.body.classList.remove("loading");
+          document.body.classList.remove("loading-styles");
         });
         loader.addStyles(styles);
       }
@@ -784,7 +919,7 @@ qx.Class.define('cv.Application',
      * Load Javascript source files
      * @param scripts {Array?}
      */
-    loadScripts: function(scripts) {
+    loadScripts(scripts) {
       if (!scripts) {
         scripts = cv.Config.configSettings.scriptsToLoad;
       }
@@ -796,9 +931,9 @@ qx.Class.define('cv.Application',
     /**
      * Load plugins
      */
-    loadPlugins: function() {
+    loadPlugins() {
       const plugins = cv.Config.configSettings.pluginsToLoad.slice();
-      cv.Config.pluginsToLoad.forEach(name => {
+      cv.Config.pluginsToLoad.forEach((name) => {
         if (!plugins.includes(name)) {
           plugins.push(name);
         }
@@ -808,31 +943,37 @@ qx.Class.define('cv.Application',
         const engine = cv.TemplateEngine.getInstance();
         let partsLoaded = engine.getPartsLoaded();
         let allPluginsQueued = false;
-        this.debug('loading plugins');
+        this.debug("loading plugins");
         if (!partsLoaded) {
-          engine.addListener('changePartsLoaded', function (ev) {
+          engine.addListener("changePartsLoaded", (ev) => {
             if (ev.getData() === true) {
-              this.debug('plugins loaded');
+              this.debug("plugins loaded");
               partsLoaded = true;
               if (allPluginsQueued) {
-                qx.event.Timer.once(function () {
-                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
-                }, this, 0);
+                qx.event.Timer.once(
+                  function () {
+                    cv.util.ScriptLoader.getInstance().setAllQueued(true);
+                  },
+                  this,
+                  0
+                );
               }
             }
-          }, this);
+          });
         }
         const parts = qx.Part.getInstance().getParts();
         const partPlugins = [];
         const path = cv.Application.getRelativeResourcePath();
-        plugins.forEach(function(plugin) {
+        plugins.forEach(function (plugin) {
           if (Object.prototype.hasOwnProperty.call(parts, plugin)) {
             partPlugins.push(plugin);
-          } else if (!plugin.startsWith('plugin-')) {
+          } else if (!plugin.startsWith("plugin-")) {
             // a real path
             standalonePlugins.push(plugin);
           } else {
-            standalonePlugins.push(path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js');
+            standalonePlugins.push(
+              path + "/plugins/" + plugin.replace("plugin-", "") + "/index.js"
+            );
           }
         });
         // load part plugins
@@ -844,31 +985,37 @@ qx.Class.define('cv.Application',
           if (this.getStructureLoaded()) {
             cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
           } else {
-            const lid = this.addListener('changeStructureLoaded', function (ev) {
+            const lid = this.addListener("changeStructureLoaded", (ev) => {
               if (ev.getData() === true) {
                 allPluginsQueued = true;
-                this.debug('loading standalone plugins');
-                cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+                this.debug("loading standalone plugins");
+                cv.util.ScriptLoader.getInstance().addScripts(
+                  standalonePlugins
+                );
                 if (partsLoaded) {
                   cv.util.ScriptLoader.getInstance().setAllQueued(true);
                 }
                 this.removeListenerById(lid);
               }
-            }, this);
+            });
           }
         } else {
           allPluginsQueued = true;
-          qx.event.Timer.once(function () {
-            cv.util.ScriptLoader.getInstance().setAllQueued(true);
-          }, this, 0);
+          qx.event.Timer.once(
+            function () {
+              cv.util.ScriptLoader.getInstance().setAllQueued(true);
+            },
+            this,
+            0
+          );
         }
       } else {
-        this.debug('no plugins to load => all scripts queued');
+        this.debug("no plugins to load => all scripts queued");
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
       }
     },
 
-    __constraintFails: function (serverVersionId, constraint) {
+    __constraintFails(serverVersionId, constraint) {
       const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
       if (match) {
         const operator = match[1];
@@ -877,37 +1024,49 @@ qx.Class.define('cv.Application',
         const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
         const hasPatchVersion = match[4] !== undefined;
         const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-        const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-        const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
+        const constraintId =
+          10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+        const maxId =
+          10000 * majorConstraint +
+          (hasMinorVersion ? 100 * minorConstraint : 999) +
+          (hasPatchVersion ? patchConstraint : 99);
         // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
         switch (operator) {
-          case '>=':
+          case ">=":
             if (serverVersionId < constraintId) {
               return true;
             }
             break;
-          case '>':
+          case ">":
             if (serverVersionId <= constraintId) {
               return true;
             }
             break;
-          case '<=':
+          case "<=":
             if (serverVersionId > maxId) {
               return true;
             }
             break;
-          case '<':
+          case "<":
             if (serverVersionId >= maxId) {
               return true;
             }
             break;
-          case '^':
-            if (serverVersionId < constraintId || serverVersionId > 10000 *(majorConstraint+1)) {
+          case "^":
+            if (
+              serverVersionId < constraintId ||
+              serverVersionId > 10000 * (majorConstraint + 1)
+            ) {
               return true;
             }
             break;
-          case '~':
-            if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint+1) : serverVersionId > (10000 *(majorConstraint) + 100 * (patchConstraint+1))) {
+          case "~":
+            if (
+              serverVersionId < constraintId || hasPatchVersion
+                ? serverVersionId > 10000 * (majorConstraint + 1)
+                : serverVersionId >
+                  10000 * majorConstraint + 100 * (patchConstraint + 1)
+            ) {
               return true;
             }
             break;
@@ -916,60 +1075,79 @@ qx.Class.define('cv.Application',
       return false;
     },
 
-    _checkBackend: function () {
+    _checkBackend() {
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
       } else {
-        const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+        const url =
+          cv.io.rest.Client.getBaseUrl().split("/").slice(0, -1).join("/") +
+          "/environment.php";
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
-          method: 'GET',
-          accept: 'application/json'
+          method: "GET",
+          accept: "application/json",
         });
 
-        xhr.addListenerOnce('success', function (e) {
+        xhr.addListenerOnce("success", (e) => {
           const req = e.getTarget();
           const env = req.getResponse();
           const serverVersionId = env.PHP_VERSION_ID;
-          const orParts = env.required_php_version.split('||').map(e => e.trim());
-          const passed = orParts.map(orConstraint => {
-            const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
+          const orParts = env.required_php_version
+            .split("||")
+            .map((e) => e.trim());
+          const passed = orParts.map((orConstraint) => {
+            const andParts = orConstraint
+              .split(/(\s+|&{2})/)
+              .map((e) => e.trim());
             // pass when no failed andPart has been found
-            return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
+            return !andParts.some((constraint) =>
+              this.__constraintFails(serverVersionId, constraint)
+            );
           });
           // one of the OR constraints need to pass
-          const enable = passed.some(res => res === true);
+          const enable = passed.some((res) => res === true);
           if (enable) {
-            this.info('Manager available for PHP version', env.phpversion);
+            this.info("Manager available for PHP version", env.phpversion);
           } else {
-            this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+            this.error(
+              "Disabling manager due to PHP version mismatch. Installed:",
+              env.phpversion,
+              "required:",
+              env.required_php_version
+            );
             this.setManagerDisabled(true);
-            this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+            this.setManagerDisabledReason(
+              qx.locale.Manager.tr(
+                "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2",
+                env.phpversion,
+                env.required_php_version
+              )
+            );
           }
           this.setManagerChecked(true);
 
           if (window.Sentry) {
             Sentry.configureScope(function (scope) {
-              if ('server_release' in env) {
-                scope.setTag('server.release', env.server_release);
+              if ("server_release" in env) {
+                scope.setTag("server.release", env.server_release);
               }
-              if ('server_branch' in env) {
-                scope.setTag('server.branch', env.server_branch);
+              if ("server_branch" in env) {
+                scope.setTag("server.branch", env.server_branch);
               }
-              if ('server_id' in env) {
-                scope.setTag('server.id', env.server_id);
+              if ("server_id" in env) {
+                scope.setTag("server.id", env.server_id);
               }
             });
           }
-        }, this);
-        xhr.addListener('statusError', e => {
+        });
+        xhr.addListener("statusError", (e) => {
           this.setManagerChecked(true);
         });
         xhr.send();
       }
     },
 
-    close: function () {
+    close() {
       this.setActive(false);
       const client = cv.io.BackendConnections.getClient();
       if (client) {
@@ -980,39 +1158,50 @@ qx.Class.define('cv.Application',
     /**
      * Install the service-worker if possible
      */
-    registerServiceWorker: function() {
+    registerServiceWorker() {
       if (cv.Config.useServiceWorker === true) {
-        const workerFile = 'ServiceWorker.js';
-        navigator.serviceWorker.register(workerFile).then(function(reg) {
-          this.debug('ServiceWorker successfully registered for scope '+reg.scope);
+        const workerFile = "ServiceWorker.js";
+        navigator.serviceWorker
+          .register(workerFile)
+          .then(
+            function (reg) {
+              this.debug(
+                "ServiceWorker successfully registered for scope " + reg.scope
+              );
 
-          // configure service worker
-          var configMessage = {
-            'command': 'configure',
-            'message': {
-              forceReload: cv.Config.forceReload,
-              debug: qx.core.Environment.get('qx.debug')
-            }
-          };
+              // configure service worker
+              var configMessage = {
+                command: "configure",
+                message: {
+                  forceReload: cv.Config.forceReload,
+                  debug: qx.core.Environment.get("qx.debug"),
+                },
+              };
 
-          if (reg.active) {
-            reg.active.postMessage(configMessage);
-          } else {
-            navigator.serviceWorker.ready.then(function(ev) {
-              ev.active.postMessage(configMessage);
-            });
-          }
-        }.bind(this)).catch(function(err) {
-          this.error('Error registering service-worker: ', err);
-        }.bind(this));
+              if (reg.active) {
+                reg.active.postMessage(configMessage);
+              } else {
+                navigator.serviceWorker.ready.then(function (ev) {
+                  ev.active.postMessage(configMessage);
+                });
+              }
+            }.bind(this)
+          )
+          .catch(
+            function (err) {
+              this.error("Error registering service-worker: ", err);
+            }.bind(this)
+          );
       } else if (navigator.serviceWorker) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-          this.debug('unregistering existing service workers');
-          registrations.forEach(function (registration) {
-            registration.unregister();
-          });
-        }.bind(this));
+        navigator.serviceWorker.getRegistrations().then(
+          function (registrations) {
+            this.debug("unregistering existing service workers");
+            registrations.forEach(function (registration) {
+              registration.unregister();
+            });
+          }.bind(this)
+        );
       }
-    }
-  }
+    },
+  },
 });

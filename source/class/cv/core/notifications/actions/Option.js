@@ -1,7 +1,7 @@
-/* Option.js 
- * 
+/* Option.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,14 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Shows a checkbox in the actions to allow some boolean settings.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define('cv.core.notifications.actions.Option', {
+qx.Class.define("cv.core.notifications.actions.Option", {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -33,8 +32,8 @@ qx.Class.define('cv.core.notifications.actions.Option', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-    this.base(arguments);
+  construct(props) {
+    super();
     this.set(props);
   },
 
@@ -45,13 +44,14 @@ qx.Class.define('cv.core.notifications.actions.Option', {
   */
   properties: {
     title: {
-      check: 'String',
-      nullable: true
+      check: "String",
+      nullable: true,
     },
+
     name: {
-      check: 'String',
-      init: ''
-    }
+      check: "String",
+      init: "",
+    },
   },
 
   /*
@@ -60,34 +60,40 @@ qx.Class.define('cv.core.notifications.actions.Option', {
   *****************************************************************************
   */
   members: {
-
-    handleAction: function(ev) {
+    handleAction(ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
       }
     },
 
-    getDomElement: function() {
-      const container = qx.dom.Element.create('span', {
-        style: this.getStyle()
+    getDomElement() {
+      const container = qx.dom.Element.create("span", {
+        style: this.getStyle(),
       });
 
-      const checkbox = qx.dom.Element.create('input', {
-        'class': 'action',
-        'type': 'checkbox',
-        'value': 'true',
-        'id': this.getName()
+      const checkbox = qx.dom.Element.create("input", {
+        class: "action",
+        type: "checkbox",
+        value: "true",
+        id: this.getName(),
       });
+
       container.appendChild(checkbox);
-      container.appendChild(qx.dom.Element.create('span', {
-        html: this.getTitle()
-      }));
+      container.appendChild(
+        qx.dom.Element.create("span", {
+          html: this.getTitle(),
+        })
+      );
+
       return container;
-    }
+    },
   },
 
-  defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler('option', cv.core.notifications.actions.Option);
-  }
+  defer() {
+    cv.core.notifications.ActionRegistry.registerActionHandler(
+      "option",
+      cv.core.notifications.actions.Option
+    );
+  },
 });

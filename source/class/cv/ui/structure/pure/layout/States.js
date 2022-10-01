@@ -1,7 +1,7 @@
-/* States.js 
- * 
+/* States.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,13 +17,12 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This class holds all states that are maintained by the {@link cv.ui.structure.pure.layout.ResizeHandler}.
  * Other classes can use the instance of this class {@link cv.ui.structure.pure.layout.ResizeHandler.states} to listen to changes
  * to the states.
  */
-qx.Class.define('cv.ui.structure.pure.layout.States', {
+qx.Class.define("cv.ui.structure.pure.layout.States", {
   extend: qx.core.Object,
 
   /*
@@ -33,28 +32,28 @@ qx.Class.define('cv.ui.structure.pure.layout.States', {
   */
   properties: {
     pageSizeInvalid: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changePageSizeInvalid'
+      event: "changePageSizeInvalid",
     },
 
     backdropInvalid: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeBackdropInvalid'
+      event: "changeBackdropInvalid",
     },
 
     navbarInvalid: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeNavbarInvalid'
+      event: "changeNavbarInvalid",
     },
 
     rowspanInvalid: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeRowspanInvalid'
-    }
+      event: "changeRowspanInvalid",
+    },
   },
 
   /*
@@ -63,8 +62,13 @@ qx.Class.define('cv.ui.structure.pure.layout.States', {
   ***********************************************
   */
   members: {
-    resetAll: function () {
-      ['pageSizeInvalid', 'backdropInvalid', 'navbarInvalid', 'rowspanInvalid'].forEach(this.reset, this);
-    }
-  }
+    resetAll() {
+      [
+        "pageSizeInvalid",
+        "backdropInvalid",
+        "navbarInvalid",
+        "rowspanInvalid",
+      ].forEach(this.reset, this);
+    },
+  },
 });

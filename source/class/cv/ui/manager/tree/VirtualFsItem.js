@@ -1,7 +1,7 @@
-/* VirtualFsItem.js 
- * 
+/* VirtualFsItem.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,11 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Widget for filesystem items in a virtual tree.
  */
-qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
+qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
   extend: qx.ui.tree.VirtualTreeItem,
 
   /*
@@ -32,32 +31,32 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
   properties: {
     appearance: {
       refine: true,
-      init: 'fs-tree-item'
+      init: "fs-tree-item",
     },
 
     editing: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyEditing'
+      apply: "_applyEditing",
     },
 
     name: {
-      check: 'String',
-      init: '',
-      event: 'changeName'
+      check: "String",
+      init: "",
+      event: "changeName",
     },
 
     temporary: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyTemporary'
+      apply: "_applyTemporary",
     },
 
     status: {
-      check: ['valid', 'error'],
+      check: ["valid", "error"],
       nullable: true,
-      apply: '_applyStatus'
-    }
+      apply: "_applyStatus",
+    },
   },
 
   /*
@@ -66,70 +65,72 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
   ***********************************************
   */
   members: {
-
-    _applyEditing: function (value, old) {
+    _applyEditing(value, old) {
       if (value !== old) {
-        const field = this.getChildControl('edit');
+        const field = this.getChildControl("edit");
         if (value) {
           field.setValue(this.getLabel());
           field.show();
-          qx.event.message.Bus.dispatchByName('cv.manager.tree.enable', false);
+          qx.event.message.Bus.dispatchByName("cv.manager.tree.enable", false);
         } else {
-          qx.event.message.Bus.dispatchByName('cv.manager.tree.enable', true);
+          qx.event.message.Bus.dispatchByName("cv.manager.tree.enable", true);
           field.exclude();
           // save new name
           if (field.getValue() !== this.getName()) {
-            cv.ui.manager.control.FileController.getInstance().rename(this.getModel(), field.getValue());
+            cv.ui.manager.control.FileController.getInstance().rename(
+              this.getModel(),
+              field.getValue()
+            );
           }
         }
       }
     },
-    _applyTemporary: function (value) {
+    _applyTemporary(value) {
       if (value) {
-        this.addState('temporary');
+        this.addState("temporary");
       } else {
-        this.removeState('temporary');
+        this.removeState("temporary");
       }
     },
 
     // overridden
-    _applyModel : function(value, old) {
-      this.base(arguments, value, old);
+    _applyModel(value, old) {
+      super._applyModel(value, old);
       if (old) {
         old.removeRelatedBindings(this);
       }
       if (value) {
         if (value.isTrash()) {
-          this.setLabel(this.tr('Trash'));
+          this.setLabel(this.tr("Trash"));
         } else {
-          value.bind('name', this, 'label');
-          value.bind('valid', this, 'status', {
-            converter: function (value) {
-              return value === true ? 'valid' : 'error';
-            }
+          value.bind("name", this, "label");
+          value.bind("valid", this, "status", {
+            converter(value) {
+              return value === true ? "valid" : "error";
+            },
           });
         }
-        value.bind('temporary', this, 'temporary');
-        if (value.getType() === 'dir') {
+        value.bind("temporary", this, "temporary");
+        if (value.getType() === "dir") {
           this.setDroppable(true);
-          this.addListener('drop', this._onDrop, this);
+          this.addListener("drop", this._onDrop, this);
         } else {
           this.setDroppable(false);
-          this.removeListener('drop', this._onDrop, this);
+          this.removeListener("drop", this._onDrop, this);
         }
       }
     },
 
-    _applyStatus: function (value) {
-      const control = this.getChildControl('icon');
+    _applyStatus(value) {
+      const control = this.getChildControl("icon");
       if (value) {
         switch (value) {
-          case 'valid':
-            control.removeState('error');
+          case "valid":
+            control.removeState("error");
             break;
 
-          case 'error':
-            control.addState('error');
+          case "error":
+            control.addState("error");
             break;
         }
       }
@@ -140,47 +141,47 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
      * @param ev {Event}
      * @private
      */
-    _onDrop: function (ev) {
+    _onDrop(ev) {
       this.info(ev.getRelatedTarget());
     },
 
-    __cancelEditing: function () {
-      this.getChildControl('edit').setValue(this.getName());
+    __cancelEditing() {
+      this.getChildControl("edit").setValue(this.getName());
       this.setEditing(false);
     },
 
-    _onKeypress: function (ev) {
-      if (ev.getKeyIdentifier() === 'Enter') {
+    _onKeypress(ev) {
+      if (ev.getKeyIdentifier() === "Enter") {
         this.setEditing(false);
-      } else if (ev.getKeyIdentifier() === 'Esc') {
+      } else if (ev.getKeyIdentifier() === "Esc") {
         this.__cancelEditing();
       }
     },
 
     // overridden
-    _createChildControlImpl : function(id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
-         case 'edit':
-           control = new qx.ui.form.TextField();
-           control.addListener('keypress', this._onKeypress, this);
-           control.exclude();
-           control.addListener('changeVisibility', function (ev) {
-              if (ev.getData() === 'visible') {
-                this.getChildControl('label').exclude();
-              } else {
-                this.getChildControl('label').show();
-              }
-           }, this);
-           control.addListener('blur', function () {
-             this.setEditing(false);
-           }, this);
-           this._add(control);
-           break;
-       }
+        case "edit":
+          control = new qx.ui.form.TextField();
+          control.addListener("keypress", this._onKeypress, this);
+          control.exclude();
+          control.addListener("changeVisibility", (ev) => {
+            if (ev.getData() === "visible") {
+              this.getChildControl("label").exclude();
+            } else {
+              this.getChildControl("label").show();
+            }
+          });
+          control.addListener("blur", () => {
+            this.setEditing(false);
+          });
+          this._add(control);
+          break;
+      }
 
-       return control || this.base(arguments, id);
-    }
-  }
+      return control || super._createChildControlImpl(id);
+    },
+  },
 });

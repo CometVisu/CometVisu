@@ -1,7 +1,7 @@
-/* Operate.js 
- * 
+/* Operate.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,26 +17,23 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Provides methods for widgets that can be controlled by the user.
  * Usually this operation includes sending values to the backend.
  */
-qx.Mixin.define('cv.ui.common.Operate', {
-
+qx.Mixin.define("cv.ui.common.Operate", {
   /*
   ******************************************************
     MEMBERS
   ******************************************************
   */
   members: {
-
     /**
      * Action performed when the widget got clicked, sends data to the backend
      *
      * @param event {Event} tap event
      */
-    action: function (event) {
+    action(event) {
       if (event && this._skipNextEvent === event.getType()) {
         this._skipNextEvent = null;
         return;
@@ -44,8 +41,8 @@ qx.Mixin.define('cv.ui.common.Operate', {
       if (this._action) {
         this._action(event);
       } else if (this.getActionValue) {
-          this.sendToBackend(this.getActionValue(event));
-        }
+        this.sendToBackend(this.getActionValue(event));
+      }
       if (event && event.getBubbles()) {
         event.stopPropagation();
       }
@@ -55,7 +52,7 @@ qx.Mixin.define('cv.ui.common.Operate', {
      * Handles pointerdown events
      * @param event {Event} pointerdown event
      */
-    downaction: function(event) {
+    downaction(event) {
       if (this._downaction) {
         this._downaction(event);
       }
@@ -71,37 +68,59 @@ qx.Mixin.define('cv.ui.common.Operate', {
      * @param filter {Function} optional filter function for addresses
      * @param currentBusValues {Object} optional: the (assumed) last encoded values
      *          that were sent on the bus. When the encoding of the new value
-     *          to send is equal to the currentBusValues a transmission will 
+     *          to send is equal to the currentBusValues a transmission will
      *          be suppressed. The object is a hash with the encoding as a key
      *          for the encoded value
      * @return the object/hash of encoded values that were sent last time
      */
-    sendToBackend: function (value, filter, currentBusValues) {
+    sendToBackend(value, filter, currentBusValues) {
       const encodedValues = {};
       if (this.getAddress) {
         const list = this.getAddress();
         for (let id in list) {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
-            if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
+            if (
+              cv.data.Model.isWriteAddress(address) &&
+              (!filter || filter(address))
+            ) {
               try {
                 const encoding = address.transform;
-                const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
-                if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                  cv.io.BackendConnections.getClient().write(id, encodedValue.bus, address);
+                const encodedValue = cv.Transform.encodeBusAndRaw(
+                  address,
+                  value
+                );
+                if (
+                  !currentBusValues ||
+                  encodedValue.raw !== currentBusValues[encoding]
+                ) {
+                  cv.io.BackendConnections.getClient().write(
+                    id,
+                    encodedValue.bus,
+                    address
+                  );
                 }
                 encodedValues[encoding] = encodedValue.raw;
               } catch (e) {
                 if (!address.ignoreError) {
                   const message = {
-                    topic: 'cv.transform.encode',
-                    title: qx.locale.Manager.tr('Transform encode error'),
-                    severity: 'urgent',
+                    topic: "cv.transform.encode",
+                    title: qx.locale.Manager.tr("Transform encode error"),
+                    severity: "urgent",
                     unique: false,
                     deletable: true,
-                    message: qx.locale.Manager.tr('Encode error: %1; selector: "%2"; value: %3', e, address.selector, JSON.stringify(value))
+                    message: qx.locale.Manager.tr(
+                      'Encode error: %1; selector: "%2"; value: %3',
+                      e,
+                      address.selector,
+                      JSON.stringify(value)
+                    ),
                   };
-                  cv.core.notifications.Router.dispatchMessage(message.topic, message);
+
+                  cv.core.notifications.Router.dispatchMessage(
+                    message.topic,
+                    message
+                  );
                 }
               }
             }
@@ -109,6 +128,6 @@ qx.Mixin.define('cv.ui.common.Operate', {
         }
       }
       return encodedValues;
-    }
-  }
+    },
+  },
 });

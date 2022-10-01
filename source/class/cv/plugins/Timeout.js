@@ -1,7 +1,7 @@
-/* Timeout.js 
- * 
+/* Timeout.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,14 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This plugins jumps back to a defined page after a given timeout period
  *
  * @author Carsten Tschach (Carsten@Tschach.com)
  * @since 2012
  */
-qx.Class.define('cv.plugins.Timeout', {
+qx.Class.define("cv.plugins.Timeout", {
   extend: cv.ui.structure.pure.AbstractBasicWidget,
 
   /*
@@ -32,12 +31,11 @@ qx.Class.define('cv.plugins.Timeout', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-    this.base(arguments, props);
+  construct(props) {
+    super(props);
     this.__timeoutIdleCount = 0;
     this.__initialize();
   },
-
 
   /*
   ******************************************************
@@ -55,22 +53,29 @@ qx.Class.define('cv.plugins.Timeout', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} extracted data from config element as key/value map
      */
-    parse: function (xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      return cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
     },
 
-    getAttributeToPropertyMappings: function() {
+    getAttributeToPropertyMappings() {
       return {
-        'target': { 'default': 'id_' },
-        'time': { 'default': 600, transform: parseFloat },
-        'debug': {
-          'default': false,
-          transform: function(value) {
-            return value === 'true';
-          }
-        }
+        target: { default: "id_" },
+        time: { default: 600, transform: parseFloat },
+        debug: {
+          default: false,
+          transform(value) {
+            return value === "true";
+          },
+        },
       };
-    }
+    },
   },
 
   /*
@@ -80,19 +85,20 @@ qx.Class.define('cv.plugins.Timeout', {
    */
   properties: {
     target: {
-      check: 'String',
-      init: 'id_'
+      check: "String",
+      init: "id_",
     },
-    time: {
-      check: 'Number',
-      init: 600
-    },
-    debug: {
-      check: 'Boolean',
-      init: false
-    }
-  },
 
+    time: {
+      check: "Number",
+      init: 600,
+    },
+
+    debug: {
+      check: "Boolean",
+      init: false,
+    },
+  },
 
   /*
   ******************************************************
@@ -106,44 +112,54 @@ qx.Class.define('cv.plugins.Timeout', {
     __timeoutTargetPage: null,
     __timer: null,
 
-    __initialize: function () {
+    __initialize() {
       if (this.isDebug()) {
-        this.debug('Timeout Set to : ' + this.getTime());
-        this.debug('Target Page: ' + this.getTarget());
+        this.debug("Timeout Set to : " + this.getTime());
+        this.debug("Target Page: " + this.getTarget());
       }
 
       const deltaT = this.getTime() * 100;
       this.__timer = new qx.event.Timer(deltaT);
-      this.__timer.addListener('interval', this.timeoutTrigger, this);
+      this.__timer.addListener("interval", this.timeoutTrigger, this);
       this.__timer.start();
 
       // Reset Counter on every interaction
-      qx.event.Registration.addListener(window, 'useraction', this._onUserAction, this);
+      qx.event.Registration.addListener(
+        window,
+        "useraction",
+        this._onUserAction,
+        this
+      );
 
       // Keep track of current page
-      qx.event.message.Bus.subscribe('path.pageChanged', function (ev) {
-        const path = ev.getData();
-        this.__timeoutCurrentPage = path;
-        this.__timeoutCurrentPageTitle = document.querySelector('#' + path+ ' div > h1').innerText;
-        this.__timeoutIdleCount = 0;
-        /* We could trun on and off the above binds if we are already on the right page
-
-         if (timeoutCurrentPage === timeoutTargetPage) {
+      qx.event.message.Bus.subscribe(
+        "path.pageChanged",
+        function (ev) {
+          const path = ev.getData();
+          this.__timeoutCurrentPage = path;
+          this.__timeoutCurrentPageTitle = document.querySelector(
+            "#" + path + " div > h1"
+          ).innerText;
+          this.__timeoutIdleCount = 0;
+          /* We could trun on and off the above binds if we are already on the right page
+          if (timeoutCurrentPage === timeoutTargetPage) {
          console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
          } else {
          console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
          }
          */
-      }, this);
+        },
+        this
+      );
     },
 
-    _onUserAction: function() {
+    _onUserAction() {
       this.__timeoutIdleCount = 0;
     },
 
-    timeoutTrigger: function () {
+    timeoutTrigger() {
       if (this.isDebug()) {
-        this.debug('TIMEOUT: Got Trigger (' + this.__timeoutIdleCount + ')');
+        this.debug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
       }
       this.__timeoutIdleCount++;
       this.__timeoutTargetPage = this.getTarget();
@@ -151,21 +167,26 @@ qx.Class.define('cv.plugins.Timeout', {
         this.__timeoutIdleCount = 0;
         const pageNavigationHandler = cv.Application.structureController;
 
-        if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
+        if (
+          this.__timeoutCurrentPage !== this.__timeoutTargetPage &&
+          this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage
+        ) {
           if (this.isDebug()) {
-            this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__timeoutTargetPage);
+            this.debug(
+              "TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage
+            );
           }
           pageNavigationHandler.scrollToPage(this.__timeoutTargetPage);
           pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
           //templateEngine.updateTopNavigation();
         } else {
           if (this.isDebug()) {
-            this.debug('TIMEOUT: Already on page ' + this.__timeoutTargetPage);
+            this.debug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
           }
           pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
         }
       }
-    }
+    },
   },
 
   /*
@@ -173,15 +194,12 @@ qx.Class.define('cv.plugins.Timeout', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
-    this._disposeObjects('__timer');
+  destruct() {
+    this._disposeObjects("__timer");
   },
 
-
-  defer: function(statics) {
-    cv.parser.pure.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
-    cv.ui.structure.WidgetFactory.registerClass('timeout', statics);
-  }
-
+  defer(statics) {
+    cv.parser.pure.WidgetParser.addHandler("timeout", cv.plugins.Timeout);
+    cv.ui.structure.WidgetFactory.registerClass("timeout", statics);
+  },
 });
-

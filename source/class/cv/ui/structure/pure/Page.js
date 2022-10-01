@@ -1,7 +1,7 @@
-/* Page.js 
- * 
+/* Page.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,57 +17,69 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Creates a new sub page and adds a corresponding link to the current page.
  *
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Page', {
+qx.Class.define("cv.ui.structure.pure.Page", {
   extend: cv.ui.structure.pure.AbstractWidget,
 
-  include: [
-    cv.ui.common.HasChildren,
-    cv.ui.common.Update
-  ],
+  include: [cv.ui.common.HasChildren, cv.ui.common.Update],
 
   /*
   ******************************************************
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-    this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
-    this.base(arguments, props);
+  construct(props) {
+    this.__waitForProperties = [
+      "showNavbarTop",
+      "showNavbarBottom",
+      "showNavbarLeft",
+      "showNavbarRight",
+    ];
+    super(props);
 
-    this.addListener('changeVisible', this._onChangeVisible, this);
+    this.addListener("changeVisible", this._onChangeVisible, this);
 
     // break out of the constructor
-    new qx.util.DeferredCall(function() {
+    new qx.util.DeferredCall(function () {
       const parentPage = this.getParentPage();
       if (!parentPage) {
         this.__waitForProperties = [];
       } else {
-        this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
+        this.debug(
+          "binding navbar visibility from " +
+            parentPage.getPath() +
+            " to " +
+            this.getPath()
+        );
       }
       [
-        ['showTopNavigation', true],
-        ['showFooter', true],
-        ['showNavbarTop', false],
-        ['showNavbarBottom', false],
-        ['showNavbarLeft', false],
-        ['showNavbarRight', false]
+        ["showTopNavigation", true],
+        ["showFooter", true],
+        ["showNavbarTop", false],
+        ["showNavbarBottom", false],
+        ["showNavbarLeft", false],
+        ["showNavbarRight", false],
       ].forEach(function (tuple) {
         const property = tuple[0];
         const defaultValue = tuple[1];
-        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
+        if (
+          this[
+            "get" + property.charAt(0).toUpperCase() + property.substr(1)
+          ]() === null
+        ) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
+            this["set" + property.charAt(0).toUpperCase() + property.substr(1)](
+              defaultValue
+            );
           }
         }
         if (!parentPage) {
@@ -87,19 +99,22 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   ******************************************************
   */
   statics: {
-    allPages : '',
+    allPages: "",
 
     /**
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
-    createFinal: function() { // special function - only for pages!
+    createFinal() {
+      // special function - only for pages!
       const target = cv.Application.structureController.getRenderTarget();
       document.querySelector(target).innerHTML = this.allPages;
-      qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
-    }
-
+      qx.event.message.Bus.unsubscribe(
+        "setup.dom.append",
+        this.createFinal,
+        this
+      );
+    },
   },
-
 
   /*
    ******************************************************
@@ -108,61 +123,71 @@ qx.Class.define('cv.ui.structure.pure.Page', {
    */
   properties: {
     initialized: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeInitialized'
+      event: "changeInitialized",
     },
 
-    anonymous : {
+    anonymous: {
       refine: true,
-      init: true
+      init: true,
     },
+
     name: {
-      check: 'String',
-      init: '', nullable: true
-    },
-    showTopNavigation : {
-      check: 'Boolean',
+      check: "String",
+      init: "",
       nullable: true,
-      event: 'changeShowTopNavigation'
     },
-    showFooter        : {
-      check: 'Boolean',
+
+    showTopNavigation: {
+      check: "Boolean",
       nullable: true,
-      event: 'changeShowFooter'
+      event: "changeShowTopNavigation",
     },
-    showNavbarTop : {
-      check: 'Boolean',
+
+    showFooter: {
+      check: "Boolean",
       nullable: true,
-      event: 'changeShowNavbarTop',
-      apply: '_applyNavbarVisibility'
+      event: "changeShowFooter",
     },
-    showNavbarBottom : {
-      check: 'Boolean',
+
+    showNavbarTop: {
+      check: "Boolean",
       nullable: true,
-      event: 'changeShowNavbarBottom',
-      apply: '_applyNavbarVisibility'
+      event: "changeShowNavbarTop",
+      apply: "_applyNavbarVisibility",
     },
-    showNavbarLeft : {
-      check: 'Boolean',
+
+    showNavbarBottom: {
+      check: "Boolean",
       nullable: true,
-      event: 'changeShowNavbarLeft',
-      apply: '_applyNavbarVisibility'
+      event: "changeShowNavbarBottom",
+      apply: "_applyNavbarVisibility",
     },
-    showNavbarRight : {
-      check: 'Boolean',
+
+    showNavbarLeft: {
+      check: "Boolean",
       nullable: true,
-      event: 'changeShowNavbarRight',
-      apply: '_applyNavbarVisibility'
+      event: "changeShowNavbarLeft",
+      apply: "_applyNavbarVisibility",
     },
-    backdropAlign     : {
-      init: '50% 50%',
-      nullable: true
+
+    showNavbarRight: {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowNavbarRight",
+      apply: "_applyNavbarVisibility",
     },
-    backdropType      : { check: 'String', nullable: true },
-    linkVisible       : { check: 'Boolean', init: true, nullable: true },
-    size              : { check: 'String', nullable: true },
-    backdrop          : { check: 'String', nullable: true }
+
+    backdropAlign: {
+      init: "50% 50%",
+      nullable: true,
+    },
+
+    backdropType: { check: "String", nullable: true },
+    linkVisible: { check: "Boolean", init: true, nullable: true },
+    size: { check: "String", nullable: true },
+    backdrop: { check: "String", nullable: true },
   },
 
   /*
@@ -175,7 +200,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     __colspanClass: null,
     __normalizedDomId: null,
 
-    _applyNavbarVisibility: function(value, old, name) {
+    _applyNavbarVisibility(value, old, name) {
       if (value !== null) {
         const i_name = this.__waitForProperties.indexOf(name);
         if (i_name !== -1) {
@@ -191,9 +216,12 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * If the page gets visible the colspan sized must be checked
      * @param ev {Event}
      */
-    _onChangeVisible: function(ev) {
+    _onChangeVisible(ev) {
       if (ev.getData()) {
-        if (this.__colspanClass !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
+        if (
+          this.__colspanClass !==
+          cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS
+        ) {
           this.applyColumnWidths();
         }
         if (this.getBackdrop()) {
@@ -205,33 +233,44 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     /**
      * Set children column widths
      */
-    applyColumnWidths: function() {
-      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
+    applyColumnWidths() {
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths(
+        "#" + this.getPath(),
+        false
+      );
       this.__colspanClass = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
     },
 
     // overridden
-    getDomString: function() {
+    getDomString() {
       const pageType = this.getPageType();
 
-      const subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
-      let subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
-      let container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
+      const subpageClass = this.getFlavour()
+        ? " flavour_" + this.getFlavour()
+        : "";
+      let subpage =
+        '<div class="page type_' +
+        pageType +
+        subpageClass +
+        '" id="' +
+        this.getPath() +
+        '">';
+      let container = '<div class="clearfix"><h1>' + this.getName() + "</h1>";
 
-      if (pageType === '2d') {
-        let size = 'width:100%;height:100%;';
+      if (pageType === "2d") {
+        let size = "width:100%;height:100%;";
         switch (this.getSize()) {
-          case 'fixed':
-            size += 'object-fit:none;';
+          case "fixed":
+            size += "object-fit:none;";
             if (this.getBackdropAlign()) {
-              size += 'object-position:' + this.getBackdropAlign() + ';';
+              size += "object-position:" + this.getBackdropAlign() + ";";
             }
             break;
 
-          case 'contained':
-            size += 'object-fit:contain;';
+          case "contained":
+            size += "object-fit:contain;";
             if (this.getBackdropAlign()) {
-              size += 'object-position:' + this.getBackdropAlign() + ';';
+              size += "object-position:" + this.getBackdropAlign() + ";";
             }
             break;
 
@@ -240,54 +279,62 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
         const backdrop = this.getBackdrop();
         if (backdrop) {
-          container += '<' + this.getBackdropType() + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
+          container +=
+            "<" +
+            this.getBackdropType() +
+            ' src="' +
+            qx.util.ResourceManager.getInstance().toUri(backdrop) +
+            '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' +
+            size +
+            '"/>';
         }
       } /* ---Disable 3D for 0.8---
       else if (pageType === "3d" && false) {
-         var floorplan = JSFloorPlan3D( container, backdrop );
-         floorplan.moveToRoom( 'Underground', false, true, false );
-         container.data( 'JSFloorPlan3D', floorplan );
-         container.find('canvas').css({position: 'absolute', top: '0px', left: '0px', 'z-index':'-1', width:'100%',height:'100%'});
-         subpage.click( {JSFloorPlan3D:floorplan,callback:function(event){
-         var j = this.JSFloorPlan3D;
-         j.moveToRoom( j.getState('showFloor'), event.room.room, true, true, function(){
-         container.trigger( 'update3d', j );
-         });
-         }}, floorplan.translateMouseEvent );
-         $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
-         if (page.getAttribute('azimut')) {
-         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('azimut'), path + '_' );
-         address[ page.getAttribute('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
-         }
-         if (page.getAttribute('elevation')) {
-         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('elevation'), path + '_' );
-         address[ page.getAttribute('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
-         };
-         if (page.getAttribute('floor')) {
-         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('floor'), path + '_' );
-         address[ page.getAttribute('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
-         };
-
-         $( childs ).each( function(i,a){
-         if( this.tagName === 'filter' )
-         {
-         var floorFilter = $(this).attr('floor');
-         var roomFilter  = $(this).attr('room');
-         childs.splice( i, 1 );                 // remove filter element
-         $(this).children().each( function(j){  // and add it's children
-         $(this).find('layout').attr({floorFilter:floorFilter,roomFilter:roomFilter});
-         childs.splice( i+j, 0, this );
-         });
-         }
-         });
+      var floorplan = JSFloorPlan3D( container, backdrop );
+      floorplan.moveToRoom( 'Underground', false, true, false );
+      container.data( 'JSFloorPlan3D', floorplan );
+      container.find('canvas').css({position: 'absolute', top: '0px', left: '0px', 'z-index':'-1', width:'100%',height:'100%'});
+      subpage.click( {JSFloorPlan3D:floorplan,callback:function(event){
+      var j = this.JSFloorPlan3D;
+      j.moveToRoom( j.getState('showFloor'), event.room.room, true, true, function(){
+      container.trigger( 'update3d', j );
+      });
+      }}, floorplan.translateMouseEvent );
+      $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
+      if (page.getAttribute('azimut')) {
+      cv.TemplateEngine.getInstance().addAddress( page.getAttribute('azimut'), path + '_' );
+      address[ page.getAttribute('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
+      }
+      if (page.getAttribute('elevation')) {
+      cv.TemplateEngine.getInstance().addAddress( page.getAttribute('elevation'), path + '_' );
+      address[ page.getAttribute('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
+      };
+      if (page.getAttribute('floor')) {
+      cv.TemplateEngine.getInstance().addAddress( page.getAttribute('floor'), path + '_' );
+      address[ page.getAttribute('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
+      };
+      $( childs ).each( function(i,a){
+      if( this.tagName === 'filter' )
+      {
+      var floorFilter = $(this).attr('floor');
+      var roomFilter  = $(this).attr('room');
+      childs.splice( i, 1 );                 // remove filter element
+      $(this).children().each( function(j){  // and add it's children
+      $(this).find('layout').attr({floorFilter:floorFilter,roomFilter:roomFilter});
+      childs.splice( i+j, 0, this );
+      });
+      }
+      });
       } */
+
       container += this.getChildrenDomString();
-      subpage += container + '</div></div>';
-      cv.ui.structure.pure.Page.allPages = subpage + cv.ui.structure.pure.Page.allPages;
+      subpage += container + "</div></div>";
+      cv.ui.structure.pure.Page.allPages =
+        subpage + cv.ui.structure.pure.Page.allPages;
       return undefined;
     },
 
-    _update: function(ga, data) {
+    _update(ga, data) {
       // widgetData  = cv.data.Model.getInstance().getWidgetDataByElement( element );
       // var value = this.defaultValueHandling( ga, data, widgetData );
       // var type = widgetData.address[ ga ][2];
@@ -313,27 +360,34 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       // TODO: data comparision has to be refactored to use DPT and a value
       if (parseInt(data) === 1) {
         cv.Application.structureController.scrollToPage(this.getPath());
-        this.sendToBackend('0');
+        this.sendToBackend("0");
       }
       // }
     },
 
-    sendToBackend: function (value) {
+    sendToBackend(value) {
       if (this.getAddress) {
         const list = this.getAddress();
         for (let id in list) {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
             if (cv.data.Model.isWriteAddress(address)) {
-              cv.io.BackendConnections.getClient().write(id, cv.Transform.encode(address, value));
+              cv.io.BackendConnections.getClient().write(
+                id,
+                cv.Transform.encode(address, value)
+              );
             }
           }
         }
       }
-    }
+    },
   },
 
-  defer: function(statics) {
-    qx.event.message.Bus.subscribe('setup.dom.append', statics.createFinal, statics);
-  }
+  defer(statics) {
+    qx.event.message.Bus.subscribe(
+      "setup.dom.append",
+      statics.createFinal,
+      statics
+    );
+  },
 });

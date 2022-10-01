@@ -1,7 +1,7 @@
-/* Native.js 
- * 
+/* Native.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /* ************************************************************************
 
@@ -43,46 +42,41 @@
  * @require(qx.log.appender.Util)
  * @require(qx.bom.client.Html)
  */
-qx.Bootstrap.define('cv.log.appender.Native',
-  {
-    /*
-     *****************************************************************************
-     STATICS
-     *****************************************************************************
-     */
+qx.Bootstrap.define("cv.log.appender.Native", {
+  /*
+   *****************************************************************************
+   STATICS
+   *****************************************************************************
+   */
 
-    statics :
-      {
-        /**
-         * Processes a single log entry
-         *
-         * @param entry {Map} The entry to process
-         */
-        process : function(entry) {
-          if (cv.Config.enableLogging) {
-            // Firefox 4's Web Console doesn't support "debug"
-            // eslint-disable-next-line no-console
-            const level = console[entry.level] ? entry.level : 'log';
-            // eslint-disable-next-line no-console
-            if (console[level]) {
-              const args = qx.log.appender.Util.toText(entry);
-              // eslint-disable-next-line no-console
-              console[level](args);
-            }
-          }
+  statics: {
+    /**
+     * Processes a single log entry
+     *
+     * @param entry {Map} The entry to process
+     */
+    process(entry) {
+      if (cv.Config.enableLogging) {
+        // Firefox 4's Web Console doesn't support "debug"
+        // eslint-disable-next-line no-console
+        const level = console[entry.level] ? entry.level : "log";
+        // eslint-disable-next-line no-console
+        if (console[level]) {
+          const args = qx.log.appender.Util.toText(entry);
+          // eslint-disable-next-line no-console
+          console[level](args);
         }
-      },
+      }
+    },
+  },
 
+  /*
+   *****************************************************************************
+   DEFER
+   *****************************************************************************
+   */
 
-
-
-    /*
-     *****************************************************************************
-     DEFER
-     *****************************************************************************
-     */
-
-    defer : function(statics) {
-      qx.log.Logger.register(statics);
-    }
-  });
+  defer(statics) {
+    qx.log.Logger.register(statics);
+  },
+});

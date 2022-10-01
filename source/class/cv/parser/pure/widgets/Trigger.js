@@ -1,7 +1,7 @@
-/* Trigger.js 
- * 
+/* Trigger.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,12 +17,11 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
-qx.Class.define('cv.parser.pure.widgets.Trigger', {
-  type: 'static',
+qx.Class.define("cv.parser.pure.widgets.Trigger", {
+  type: "static",
 
   /*
   ******************************************************
@@ -39,32 +38,50 @@ qx.Class.define('cv.parser.pure.widgets.Trigger', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      cv.parser.pure.WidgetParser.parseAddress(
+        xml,
+        path,
+        this.makeAddressListFn
+      );
       return data;
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'value'      : { target: 'sendValue', 'default': '0' },
-        'shorttime'  : { target: 'shortThreshold', 'default': -1, transform: parseFloat},
-        'shortvalue' : { target: 'shortValue', 'default': '0' },
-        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {
-            return value ? value === 'true' : true;
-        }}
+        value: { target: "sendValue", default: "0" },
+        shorttime: {
+          target: "shortThreshold",
+          default: -1,
+          transform: parseFloat,
+        },
+        shortvalue: { target: "shortValue", default: "0" },
+        "send-long-on-release": {
+          target: "sendLongOnRelease",
+          transform(value) {
+            return value ? value === "true" : true;
+          },
+        },
       };
     },
 
-    makeAddressListFn: function(src, transform, mode, variant) {
+    makeAddressListFn(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [ true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1|2) ];
-    }
+      return [true, variant === "short" ? 1 : variant === "button" ? 2 : 1 | 2];
+    },
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler('trigger', statics);
-  }
+    cv.parser.pure.WidgetParser.addHandler("trigger", statics);
+  },
 });

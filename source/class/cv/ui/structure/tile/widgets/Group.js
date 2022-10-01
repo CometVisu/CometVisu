@@ -1,7 +1,7 @@
-/* Group.js 
- * 
+/* Group.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define('cv.ui.structure.tile.widgets.Group', {
+qx.Class.define("cv.ui.structure.tile.widgets.Group", {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
@@ -33,53 +33,59 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
    */
   members: {
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       let label = null;
       let summary = null;
-      const needsSummary = element.hasAttribute('name') || element.hasAttribute('icon');
+      const needsSummary =
+        element.hasAttribute("name") || element.hasAttribute("icon");
       if (needsSummary) {
-        summary = element.querySelector(':scope > summary');
+        summary = element.querySelector(":scope > summary");
         if (!summary) {
-          summary = document.createElement('summary');
+          summary = document.createElement("summary");
           element.insertBefore(summary, element.firstChild);
         }
-        if (element.hasAttribute('name')) {
-          label = element.querySelector(':scope > summary > label.title');
+        if (element.hasAttribute("name")) {
+          label = element.querySelector(":scope > summary > label.title");
           if (!label) {
-            label = document.createElement('label');
-            label.classList.add('title');
+            label = document.createElement("label");
+            label.classList.add("title");
             summary.insertBefore(label, summary.firstChild);
           }
-          label.classList.add('last-of-title');
-          label.textContent = element.getAttribute('name');
+          label.classList.add("last-of-title");
+          label.textContent = element.getAttribute("name");
         }
-        if (element.hasAttribute('icon')) {
-          let icon = element.querySelector(':scope > summary > cv-icon.title');
+        if (element.hasAttribute("icon")) {
+          let icon = element.querySelector(":scope > summary > cv-icon.title");
           if (!icon) {
-            icon = document.createElement('cv-icon');
-            icon.classList.add('title');
+            icon = document.createElement("cv-icon");
+            icon.classList.add("title");
             summary.insertBefore(icon, summary.firstChild);
           }
           if (!label) {
-            icon.classList.add('last-of-title');
+            icon.classList.add("last-of-title");
           }
-          icon.classList.add(element.getAttribute('icon'));
+          icon.classList.add(element.getAttribute("icon"));
         }
       }
-      const empty = !element.querySelector(':scope > *:not(summary)');
+      const empty = !element.querySelector(":scope > *:not(summary)");
       if (empty) {
-        element.classList.add('empty');
+        element.classList.add("empty");
       } else if (summary) {
-        qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
+        qx.event.Registration.addListener(
+          summary,
+          "click",
+          this._toggleOpen,
+          this
+        );
       }
     },
 
     _toggleOpen() {
-      if (this._element.hasAttribute('open')) {
-        this._element.removeAttribute('open');
+      if (this._element.hasAttribute("open")) {
+        this._element.removeAttribute("open");
       } else {
-        this._element.setAttribute('open', 'true');
+        this._element.setAttribute("open", "true");
       }
     },
 
@@ -89,28 +95,33 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
      * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      */
     onStateUpdate(ev) {
-      if (!this.base(arguments, ev)) {
-        if (ev.detail.target === 'summary') {
-          let target = this._element.querySelector(':scope > summary > label.value');
+      if (!super.onStateUpdate(ev)) {
+        if (ev.detail.target === "summary") {
+          let target = this._element.querySelector(
+            ":scope > summary > label.value"
+          );
           if (!target) {
-            target = document.createElement('label');
-            target.classList.add('value');
-            const summary = this._element.querySelector(':scope > summary');
+            target = document.createElement("label");
+            target.classList.add("value");
+            const summary = this._element.querySelector(":scope > summary");
             summary.appendChild(target);
           }
           target.textContent = ev.detail.state;
         } else {
-          this.debug('unhandled address target', ev.detail.target);
+          this.debug("unhandled address target", ev.detail.target);
         }
       }
-    }
+    },
   },
 
-  defer: function(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'group', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+  defer(QxClass) {
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + "group",
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
-  }
+    );
+  },
 });

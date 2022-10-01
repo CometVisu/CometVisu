@@ -1,7 +1,7 @@
-/* MAnnotation.js 
- * 
+/* MAnnotation.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,20 +17,19 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute
  */
-qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
-
+qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.__linkRegex = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
-    this.__language = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
+  construct() {
+    this.__linkRegex = new RegExp(":ref:[`'](.+?)[`']", "g");
+    this.__language =
+      qx.locale.Manager.getInstance().getLanguage() === "de" ? "de" : "en";
   },
 
   /*
@@ -53,20 +52,28 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
      */
     __documentationCache: null,
 
-    __getTextNodesByXPath: function (node, xpath) {
+    __getTextNodesByXPath(node, xpath) {
       const texts = [];
       const doc = node.ownerDocument;
       const nsResolver = doc.createNSResolver(doc.documentElement);
-      let iterator = doc.evaluate(xpath, node, nsResolver, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+      let iterator = doc.evaluate(
+        xpath,
+        node,
+        nsResolver,
+        XPathResult.UNORDERED_NODE_ITERATOR_TYPE,
+        null
+      );
       try {
         let thisNode = iterator.iterateNext();
 
         while (thisNode) {
-          texts.push(thisNode.textContent.replaceAll(/``([^`]+)``/g, '<code>$1</code>'));
+          texts.push(
+            thisNode.textContent.replaceAll(/``([^`]+)``/g, "<code>$1</code>")
+          );
           thisNode = iterator.iterateNext();
         }
       } catch (e) {
-        this.error('Error: Document tree modified during iteration ' + e);
+        this.error("Error: Document tree modified during iteration " + e);
       }
       return texts;
     },
@@ -76,26 +83,36 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
      *
      * @return  array   list of texts, or empty list if none
      */
-    getAppinfo: function () {
+    getAppinfo() {
       if (this.__appInfoCache !== null) {
         return this.__appInfoCache;
       }
       const node = this.getNode();
-      const appInfo = this.__getTextNodesByXPath(node, 'xsd:annotation/xsd:appinfo');
+      const appInfo = this.__getTextNodesByXPath(
+        node,
+        "xsd:annotation/xsd:appinfo"
+      );
       const type = this.getType();
-      if (type === 'element') {
+      if (type === "element") {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
-        if (node.querySelectorAll(':scope > complexType').length === 0) {
-          appInfo.push(...this.__getTextNodesByXPath(this._type, 'xsd:annotation/xsd:appinfo'));
+        if (node.querySelectorAll(":scope > complexType").length === 0) {
+          appInfo.push(
+            ...this.__getTextNodesByXPath(
+              this._type,
+              "xsd:annotation/xsd:appinfo"
+            )
+          );
         }
-      } else if (type === 'attribute') {
-        if (node.hasAttribute('ref')) {
+      } else if (type === "attribute") {
+        if (node.hasAttribute("ref")) {
           // the attribute is a reference, so take appinfo from there, too
 
-          const refName = node.getAttribute('ref');
-          const ref = this.getSchema().getReferencedNode('attribute', refName);
+          const refName = node.getAttribute("ref");
+          const ref = this.getSchema().getReferencedNode("attribute", refName);
 
-          appInfo.push(...this.__getTextNodesByXPath(ref, 'xsd:annotation/xsd:appinfo'));
+          appInfo.push(
+            ...this.__getTextNodesByXPath(ref, "xsd:annotation/xsd:appinfo")
+          );
         }
       }
 
@@ -110,34 +127,39 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
      *
      * @return  array   list of texts, or empty list if none
      */
-    getDocumentation: function () {
+    getDocumentation() {
       if (this.__documentationCache !== null) {
         return this.__documentationCache;
       }
       const node = this.getNode();
 
       const lang = qx.locale.Manager.getInstance().getLanguage();
-      const selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']';
+      const selector =
+        "xsd:annotation/xsd:documentation[@xml:lang='" + lang + "']";
 
       // any appinfo this element itself might carry
       let documentation = this.__getTextNodesByXPath(node, selector);
 
       const type = this.getType();
-      if (type === 'element') {
+      if (type === "element") {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
-        if (node.querySelectorAll(':scope > complexType').length === 0) {
-          documentation.push(...this.__getTextNodesByXPath(this._type, selector));
+        if (node.querySelectorAll(":scope > complexType").length === 0) {
+          documentation.push(
+            ...this.__getTextNodesByXPath(this._type, selector)
+          );
         }
-      } else if (type === 'attribute') {
-        if (node.hasAttribute('ref')) {
+      } else if (type === "attribute") {
+        if (node.hasAttribute("ref")) {
           // the attribute is a reference, so take appinfo from there, too
 
-          const refName = node.getAttribute('ref');
-          const ref = this.getSchema().getReferencedNode('attribute', refName);
+          const refName = node.getAttribute("ref");
+          const ref = this.getSchema().getReferencedNode("attribute", refName);
 
           documentation.push(...this.__getTextNodesByXPath(ref, selector));
 
-          documentation = documentation.map(entry => this.createDocumentationWebLinks(entry));
+          documentation = documentation.map((entry) =>
+            this.createDocumentationWebLinks(entry)
+          );
         }
       }
       this.__documentationCache = documentation;
@@ -145,26 +167,33 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       return documentation;
     },
 
-
     /**
      * Transform documentation text to link to the online documentation when it
      * contains a reference.
      * @param text
      * @return string The transformed input string.
      */
-    createDocumentationWebLinks: function (text) {
+    createDocumentationWebLinks(text) {
       const language = this.__language;
-      return text.replace(this.__linkRegex, function(match, contents) {
+      return text.replace(this.__linkRegex, function (match, contents) {
         const reference = contents.match(/^(.*?) *<([^<]*)>$/);
         const label = reference ? reference[1] : contents;
         const key = reference ? reference[2] : contents;
         const link = cv.ui.manager.model.schema.DocumentationMapping.MAP[key];
         if (link) {
-          return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + link + '">' + label + '</a>';
+          return (
+            '<a class="doclink" target="_blank" href="' +
+            cv.ui.manager.model.schema.DocumentationMapping.MAP._base +
+            language +
+            link +
+            '">' +
+            label +
+            "</a>"
+          );
         }
         return label;
       });
-    }
+    },
   },
 
   /*
@@ -172,9 +201,9 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this.__appInfoCache = null;
     this.__documentationCache = null;
     this.__linkRegex = null;
-  }
+  },
 });

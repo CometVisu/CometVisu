@@ -1,7 +1,7 @@
-/* IHandler.js 
- * 
+/* IHandler.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,14 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Interface for notification handlers.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Interface.define('cv.core.notifications.IHandler', {
+qx.Interface.define("cv.core.notifications.IHandler", {
   /*
   ******************************************************
     MEMBERS
@@ -36,6 +35,6 @@ qx.Interface.define('cv.core.notifications.IHandler', {
      * @param message {Map}
      * @param config {Map?} optional configuration of this message for the handler
      */
-    handleMessage: function(message, config) {} // jshint ignore:line
-  }
+    handleMessage(message, config) {},
+  },
 });

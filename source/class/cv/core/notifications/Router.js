@@ -1,7 +1,7 @@
-/* Router.js 
- * 
+/* Router.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Global notification handler that routes messages topic-dependent to different {@link cv.core.notifications.IHandler}
  * (e.g. NotificationCenter, Dialog, Toast, console.log, native notification, internal message bus ...)
@@ -25,22 +24,26 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define('cv.core.notifications.Router', {
+qx.Class.define("cv.core.notifications.Router", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
 
   /*
   ******************************************************
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
-    this.base(arguments);
+  construct() {
+    super();
     this.__routes = {};
-    this.debug('new router');
+    this.debug("new router");
 
-    this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('short'));
-    this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
+    this.__dateFormat = new qx.util.format.DateFormat(
+      qx.locale.Date.getDateFormat("short")
+    );
+    this.__timeFormat = new qx.util.format.DateFormat(
+      qx.locale.Date.getTimeFormat("short")
+    );
   },
 
   /*
@@ -54,16 +57,19 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param message {Map}
      * @returns {Boolean}
      */
-    evaluateCondition: function(message) {
-      if (!Object.prototype.hasOwnProperty.call(message, 'condition')) {
+    evaluateCondition(message) {
+      if (!Object.prototype.hasOwnProperty.call(message, "condition")) {
         // nothing to evaluate
         return true;
-      } else if (typeof message.condition === 'boolean') {
+      } else if (typeof message.condition === "boolean") {
         return message.condition;
-      } else if (typeof message.condition === 'function') {
+      } else if (typeof message.condition === "function") {
         return message.condition();
-      } 
-      qx.log.Logger.error(this, 'unhandled message condition type: '+message.condition);
+      }
+      qx.log.Logger.error(
+        this,
+        "unhandled message condition type: " + message.condition
+      );
       return false;
     },
 
@@ -73,7 +79,7 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param message
      * @param target
      */
-    dispatchMessage: function(topic, message, target) {
+    dispatchMessage(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
     },
 
@@ -83,26 +89,29 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param name {String} target name, e.g. popup, notificationCenter, etc.
      * @return {Object|Function|null} the target that can handle messages
      */
-    getTarget: function(name) {
+    getTarget(name) {
       switch (name) {
-        case 'popup':
+        case "popup":
           return cv.ui.PopupHandler;
-        case 'notificationCenter':
+        case "notificationCenter":
           return cv.ui.NotificationCenter.getInstance();
-        case 'speech':
+        case "speech":
           if (!window.speechSynthesis) {
             // not supported
-            qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
+            qx.log.Logger.warn(
+              this,
+              "this browser does not support the Web Speech API"
+            );
             return null;
           }
           return cv.core.notifications.SpeechHandler.getInstance();
-        case 'toast':
+        case "toast":
           return cv.ui.ToastManager.getInstance();
       }
-      return null;
-    }
-  },
 
+      return null;
+    },
+  },
 
   /*
   *****************************************************************************
@@ -115,7 +124,7 @@ qx.Class.define('cv.core.notifications.Router', {
     __dateFormat: null,
     __timeFormat: null,
 
-    getStateMessageConfig: function () {
+    getStateMessageConfig() {
       return this.__stateMessageConfig;
     },
 
@@ -143,20 +152,31 @@ qx.Class.define('cv.core.notifications.Router', {
      *
      * @param config {Map}
      */
-    registerStateUpdateHandler: function(config) {
+    registerStateUpdateHandler(config) {
       this.__stateMessageConfig = config;
-      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
-        cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
-      }, this);
+      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function (
+        address
+      ) {
+        cv.data.Model.getInstance().addUpdateListener(
+          address,
+          this._onIncomingData,
+          this
+        );
+      },
+      this);
     },
 
     /**
      * Unregister state update listeners for a list of addresses
      * @param addresses {Array}
      */
-    unregisterStateUpdatehandler: function(addresses) {
-      addresses.forEach(function(address) {
-        cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
+    unregisterStateUpdatehandler(addresses) {
+      addresses.forEach(function (address) {
+        cv.data.Model.getInstance().removeUpdateListener(
+          address,
+          this._onIncomingData,
+          this
+        );
         if (this.__stateMessageConfig[address]) {
           delete this.__stateMessageConfig[address];
         }
@@ -168,25 +188,25 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param handler {cv.core.notifications.IHandler}
      * @param topics {Map} map of topics as key and configuration-maps as values
      */
-    registerMessageHandler: function(handler, topics) {
-      Object.getOwnPropertyNames(topics).forEach(function(topic) {
-        const segments = topic.split('.');
+    registerMessageHandler(handler, topics) {
+      Object.getOwnPropertyNames(topics).forEach(function (topic) {
+        const segments = topic.split(".");
         const firstSegment = segments.shift();
         let currentSegment = this.__routes[firstSegment];
         if (!currentSegment) {
-          this.__routes[firstSegment] = {__handlers__: []};
+          this.__routes[firstSegment] = { __handlers__: [] };
           currentSegment = this.__routes[firstSegment];
         }
-        segments.forEach(function(segment) {
+        segments.forEach(function (segment) {
           if (!currentSegment[segment]) {
-            currentSegment[segment] = {__handlers__: []};
+            currentSegment[segment] = { __handlers__: [] };
           }
           currentSegment = currentSegment[segment];
         }, this);
 
         currentSegment.__handlers__.push({
           handler: handler,
-          config: topics[topic]
+          config: topics[topic],
         });
       }, this);
     },
@@ -199,7 +219,7 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param changed {Boolean} true if the incoming state update differs from the last one
      * @protected
      */
-    _onIncomingData: function(address, state, initial, changed) {
+    _onIncomingData(address, state, initial, changed) {
       if (!this.__stateMessageConfig[address]) {
         return;
       }
@@ -208,8 +228,11 @@ qx.Class.define('cv.core.notifications.Router', {
       const formattedDate = this.__dateFormat.format(now);
       const formattedTime = this.__timeFormat.format(now);
 
-      this.__stateMessageConfig[address].forEach(function(config) {
-        if (initial === true && config.skipInitial === true || changed === false) {
+      this.__stateMessageConfig[address].forEach(function (config) {
+        if (
+          (initial === true && config.skipInitial === true) ||
+          changed === false
+        ) {
           // do not handle the first update
           return;
         }
@@ -221,28 +244,50 @@ qx.Class.define('cv.core.notifications.Router', {
           address: address,
           value: state,
           date: formattedDate,
-          time: formattedTime
+          time: formattedTime,
         };
 
         // transform the raw value to a JavaScript type
-        templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
+        templateData.value = cv.Transform.decode(
+          config.addressConfig,
+          templateData.value
+        );
         if (config.valueMapping) {
           // apply mapping
-          templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
+          templateData.value = cv.ui.common.BasicUpdate.applyMapping(
+            templateData.value,
+            config.valueMapping
+          );
         }
         if (config.addressMapping) {
-          templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
+          templateData.address = cv.ui.common.BasicUpdate.applyMapping(
+            templateData.address,
+            config.addressMapping
+          );
         }
 
         const message = {
-          topic: Object.prototype.hasOwnProperty.call(config, 'topic') ? config.topic : 'cv.state.update.' + address,
-          title: qx.bom.Template.render('' + config.titleTemplate, templateData),
-          message: qx.bom.Template.render('' + config.messageTemplate, templateData),
-          deletable: Object.prototype.hasOwnProperty.call(config, 'deletable') ? config.deletable : true,
-          unique: Object.prototype.hasOwnProperty.call(config, 'unique') ? config.unique : false,
-          severity: config.severity
+          topic: Object.prototype.hasOwnProperty.call(config, "topic")
+            ? config.topic
+            : "cv.state.update." + address,
+          title: qx.bom.Template.render(
+            "" + config.titleTemplate,
+            templateData
+          ),
+          message: qx.bom.Template.render(
+            "" + config.messageTemplate,
+            templateData
+          ),
+          deletable: Object.prototype.hasOwnProperty.call(config, "deletable")
+            ? config.deletable
+            : true,
+          unique: Object.prototype.hasOwnProperty.call(config, "unique")
+            ? config.unique
+            : false,
+          severity: config.severity,
         };
-        if (Object.prototype.hasOwnProperty.call(config, 'condition')) {
+
+        if (Object.prototype.hasOwnProperty.call(config, "condition")) {
           message.condition = state == config.condition; // jshint ignore:line
         }
         if (config.icon) {
@@ -255,9 +300,9 @@ qx.Class.define('cv.core.notifications.Router', {
       }, this);
     },
 
-    __collectHandlers: function(topic) {
+    __collectHandlers(topic) {
       const handlers = new qx.data.Array();
-      const segments = topic.split('.');
+      const segments = topic.split(".");
       const firstSegment = segments.shift();
       let currentSegment = this.__routes[firstSegment];
       const last = segments.length - 1;
@@ -265,13 +310,13 @@ qx.Class.define('cv.core.notifications.Router', {
         if (!currentSegment) {
           // segment does not exists, stop searching
           return true;
-        } else if (segmentName === '*') {
+        } else if (segmentName === "*") {
           // collect all
           this.__collectAllFromSegment(currentSegment, handlers);
           return true;
         }
-        if (currentSegment['*']) {
-          handlers.append(currentSegment['*'].__handlers__);
+        if (currentSegment["*"]) {
+          handlers.append(currentSegment["*"].__handlers__);
         }
         if (currentSegment[segmentName]) {
           if (idx === last) {
@@ -287,35 +332,37 @@ qx.Class.define('cv.core.notifications.Router', {
       return handlers;
     },
 
-    __collectAllFromSegment: function(segment, handlers) {
+    __collectAllFromSegment(segment, handlers) {
       handlers.append(segment.__handlers__);
-      Object.getOwnPropertyNames(segment).forEach(function(segmentName) {
-        if (segmentName !== '__handlers__') {
+      Object.getOwnPropertyNames(segment).forEach(function (segmentName) {
+        if (segmentName !== "__handlers__") {
           this.__collectAllFromSegment(segment[segmentName], handlers);
         }
       }, this);
       return handlers;
     },
 
-    dispatchMessage: function(topic, message, target) {
+    dispatchMessage(topic, message, target) {
       if (message.target && !target) {
         target = cv.core.notifications.Router.getTarget(message.target);
       }
       if (target && target.handleMessage) {
-        this.debug('dispatching \'' + topic + '\' message to handler: ' + target);
+        this.debug("dispatching '" + topic + "' message to handler: " + target);
         target.handleMessage(message, {});
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
-          this.debug('dispatching \'' + topic + '\' message to handler: ' + entry.handler);
+          this.debug(
+            "dispatching '" + topic + "' message to handler: " + entry.handler
+          );
           entry.handler.handleMessage(message, entry.config);
         }, this);
       }
     },
 
-    clear: function() {
+    clear() {
       this.__routes = {};
       this.__stateMessageConfig = {};
-    }
+    },
   },
 
   /*
@@ -323,8 +370,8 @@ qx.Class.define('cv.core.notifications.Router', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
+  destruct() {
     this.clear();
-    this._disposeObjects('__dateFormat', '__timeFormat');
-  }
+    this._disposeObjects("__dateFormat", "__timeFormat");
+  },
 });
