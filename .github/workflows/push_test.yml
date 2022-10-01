@@ -18,6 +18,7 @@ jobs:
           git config user.name "$COMMIT_AUTHOR_NAME"
           git config user.email "$COMMIT_AUTHOR_EMAIL"
           git add change
+          git commit -m "new change"
           git push "https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" develop
         env:
           COMMIT_AUTHOR_NAME: CometVisu-CI
