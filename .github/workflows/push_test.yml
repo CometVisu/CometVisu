@@ -23,7 +23,7 @@ jobs:
           git config --local user.name "$COMMIT_AUTHOR_NAME"
           git config --local user.email "$COMMIT_AUTHOR_EMAIL"
           git add change
-          git commit -m "new change"
+          git commit -m "[skip ci] new change"
           git remote -v
           git push origin develop
         env:
