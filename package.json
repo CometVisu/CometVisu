@@ -16,7 +16,7 @@
     "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
-    "lint": "qx lint source/class/cv/ client/source/class/cv/",
+    "lint": "qx lint",
     "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
@@ -42,7 +42,6 @@
     "@babel/polyfill": "^7.8.7",
     "@openapitools/openapi-generator-cli": "^2.4.25",
     "@prettier/plugin-php": "^0.17.6",
-    "@qooxdoo/compiler": "^1.0.5",
     "@qooxdoo/eslint-config-qx": "^2.0.1",
     "@qooxdoo/eslint-plugin-qx": "^1.2.22",
     "chmodr": "^1.2.0",
@@ -93,6 +92,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
+    "@qooxdoo/framework": "^7.2.1",
     "@sentry/browser": "^6.19.6",
     "@sentry/tracing": "^6.19.6",
     "crc-32": "^1.2.2",
@@ -124,10 +124,6 @@
             ":": "before"
           }
         }
-      ],
-      "quotes": [
-        "error",
-        "single"
       ],
       "no-multi-spaces": "off",
       "protractor/no-shadowing": "off",

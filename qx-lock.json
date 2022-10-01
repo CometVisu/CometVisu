@@ -2,59 +2,43 @@
   "libraries": [
     {
       "library_name": "versionlabel",
-      "library_version": "1.0.5",
-      "path": "qx_packages/qooxdoo_qxl_versionlabel_v1_0_5",
+      "library_version": "2.0.0",
+      "path": "qx_packages/qooxdoo_qxl_versionlabel_v2_0_0",
       "uri": "qooxdoo/qxl.versionlabel",
       "repo_name": "qooxdoo/qxl.versionlabel",
-      "repo_tag": "v1.0.5"
+      "repo_tag": "v2.0.0"
     },
     {
       "library_name": "UploadMgr",
-      "library_version": "1.0.5",
-      "path": "qx_packages/johnspackman_UploadMgr_v1_0_5",
+      "library_version": "2.0.0",
+      "path": "qx_packages/johnspackman_UploadMgr_v2_0_0",
       "uri": "johnspackman/UploadMgr",
       "repo_name": "johnspackman/UploadMgr",
-      "repo_tag": "v1.0.5"
+      "repo_tag": "v2.0.0"
     },
     {
       "library_name": "Qooxdoo API Viewer",
-      "library_version": "1.0.18",
-      "path": "qx_packages/qooxdoo_qxl_apiviewer_v1_0_18",
+      "library_version": "2.0.0",
+      "path": "qx_packages/qooxdoo_qxl_apiviewer_v2_0_0",
       "uri": "qooxdoo/qxl.apiviewer",
       "repo_name": "qooxdoo/qxl.apiviewer",
-      "repo_tag": "v1.0.18"
-    },
-    {
-      "library_name": "qx-osparc-theme",
-      "library_version": "0.6.0",
-      "path": "qx_packages/ITISFoundation_qx-osparc-theme_v0_6_0",
-      "uri": "ITISFoundation/qx-osparc-theme",
-      "repo_name": "ITISFoundation/qx-osparc-theme",
-      "repo_tag": "v0.6.0"
-    },
-    {
-      "library_name": "qx-iconfont-material",
-      "library_version": "0.1.7",
-      "path": "qx_packages/ITISFoundation_qx-iconfont-material_v0_1_7",
-      "uri": "ITISFoundation/qx-iconfont-material",
-      "repo_name": "ITISFoundation/qx-iconfont-material",
-      "repo_tag": "v0.1.7"
-    },
-    {
-      "library_name": "qx-iconfont-fontawesome5",
-      "library_version": "0.2.2",
-      "path": "qx_packages/ITISFoundation_qx-iconfont-fontawesome5_v0_2_2",
-      "uri": "ITISFoundation/qx-iconfont-fontawesome5",
-      "repo_name": "ITISFoundation/qx-iconfont-fontawesome5",
-      "repo_tag": "v0.2.2"
+      "repo_tag": "v2.0.0"
     },
     {
       "library_name": "qxl.dialog",
-      "library_version": "3.2.0",
-      "path": "qx_packages/qooxdoo_qxl_dialog_v3_2_0",
+      "library_version": "5.0.0",
+      "path": "qx_packages/qooxdoo_qxl_dialog_v5_0_0",
       "uri": "qooxdoo/qxl.dialog",
       "repo_name": "qooxdoo/qxl.dialog",
-      "repo_tag": "v3.2.0"
+      "repo_tag": "v5.0.0"
+    },
+    {
+      "library_name": "deprecated.qx.io.remote",
+      "library_version": "1.0.2",
+      "path": "qx_packages/qooxdoo_deprecated_qx_io_remote_v1_0_2",
+      "uri": "qooxdoo/deprecated.qx.io.remote",
+      "repo_name": "qooxdoo/deprecated.qx.io.remote",
+      "repo_tag": "v1.0.2"
     }
   ],
   "version": "2.1.0"
