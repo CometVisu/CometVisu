@@ -61,7 +61,7 @@ dock                    Nur im `<footer>` möglich, Aussehen wie bei "icons" jed
 .. widget-example::
 
       <settings design="tile" selector="nav">
-            <screenshot name="tile-nav-menu-icons" clickpath="cv-menu > ul > li:first-child > details" waitfor="cv-menu > ul > li:first-child > details > ul" margin="0 -800 200 0">
+            <screenshot name="tile-nav-menu-icons" clickpath="cv-menu > ul > li:first-child > .details" waitfor="cv-menu > ul > li:first-child > .details > ul" margin="0 -800 200 0">
                 <caption>Icons Darstellungsart</caption>
             </screenshot>
         </settings>

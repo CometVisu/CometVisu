@@ -10,6 +10,7 @@ const easyimg = require('easyimage');
 const CometVisuMockup = require('../source/test/protractor/pages/Mock');
 const cvMockup = new CometVisuMockup(browser.target || 'source');
 const CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
+const cvDemo = require('../source/test/protractor/pages/Demo');
 const editorMockup = new CometVisuEditorMockup(browser.target || 'source');
 let devicePixelRatio = 1;
 const stats = {
@@ -388,27 +389,19 @@ describe('generation screenshots from jsdoc examples', function () {
             let shotWidget = widget;
             changeBrowserWidth(setting.screenWidth > 0 ? setting.screenWidth : defaultWidth);
             if (setting.data && Array.isArray(setting.data)) {
-              setting.data.forEach(function (data) {
-                var value = data.value;
-                if (data.type) {
-                  switch (data.type) {
-                    case 'float':
-                      value = parseFloat(value);
-                      break;
-                    case 'int':
-                      value = parseInt(value);
-                      break;
-                    case 'json':
-                      try {
-                        value = JSON.parse(value);
-                      } catch (e) {
-                        console.error('error parsing JSON data', e.message);
-                      }
-                      break;
+              for (let data of setting.data) {
+                let value = data.value;
+                if (data.transform) {
+                  value = await cvDemo.encode({transform: data.transform}, value);
+                } else if (data.type === 'json') {
+                  try {
+                    value = JSON.parse(value);
+                  } catch (e) {
+                    console.error('error parsing JSON data', e.message);
                   }
                 }
                 cvMockup.sendUpdate(data.address, value);
-              });
+              }
             }
             if (setting.clickPath) {
               var actor = element.all(by.css(setting.clickPath)).first();

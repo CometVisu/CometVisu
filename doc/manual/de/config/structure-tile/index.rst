@@ -146,7 +146,7 @@ jedoch der Header oder Footer Bereich an).
     :hide-source: true
 
         <settings design="tile" selector="nav">
-            <screenshot name="tile-nav-menu" clickpath="cv-menu > ul > li > details" waitfor="cv-menu > ul > li > details > ul" margin="0 -800 200 0"/>
+            <screenshot name="tile-nav-menu" clickpath="cv-menu > ul > li > .details" waitfor="cv-menu > ul > li > .details > ul" margin="0 -800 200 0"/>
         </settings>
         <header>
             <nav>
