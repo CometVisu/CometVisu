@@ -60,13 +60,13 @@ describe('switch widget testing', function () {
 
     expect(actor.element(by.css('.value')).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual('0');
+      expect(lastWrite.value).toEqual('80');
     });
     actor.click();
 
     expect(actor.element(by.css('.value')).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual('1');
+      expect(lastWrite.value).toEqual('81');
     });
 
     // send update via backend
@@ -100,7 +100,7 @@ describe('switch widget testing', function () {
 
     expect(actor.element(by.css('.value')).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual('0');
+      expect(lastWrite.value).toEqual('80');
     });
 
     // we have to move the mouse somewhere where the actor is not, before clicking it
@@ -108,7 +108,7 @@ describe('switch widget testing', function () {
 
     expect(actor.element(by.css('.value')).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual('1');
+      expect(lastWrite.value).toEqual('81');
     });
 
     // send update via backend
@@ -126,7 +126,7 @@ describe('switch widget testing', function () {
     '<page visible="false">'+
     '<switch on_value="turn_on" off_value="turn_off">'+
     '<label>Test switch</label>'+
-    '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
+    '<address transform="raw" mode="readwrite">12/7/37</address>'+
     '</switch>'+
     '</page>'+configParts.end);
 
@@ -184,7 +184,7 @@ describe('switch widget testing', function () {
     expect(actor.element(by.css('.value')).getText()).toEqual('Off');
     expect(actor.getAttribute('class')).toMatch('red');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual('0');
+      expect(lastWrite.value).toEqual('80');
     });
 
     actor.click();
@@ -192,7 +192,7 @@ describe('switch widget testing', function () {
     expect(actor.element(by.css('.value')).getText()).toEqual('On');
     expect(actor.getAttribute('class')).toMatch('green');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual('1');
+      expect(lastWrite.value).toEqual('81');
     });
 
     // send update via backend

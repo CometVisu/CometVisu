@@ -65,4 +65,4 @@
   qx.data.store.IStoreDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IStoreDelegate.js.map?dt=1664613619315
+//# sourceMappingURL=IStoreDelegate.js.map?dt=1664617294426
