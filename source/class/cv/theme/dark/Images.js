@@ -79,14 +79,13 @@ qx.Class.define("cv.theme.dark.Images", {
       copy: "@MaterialIcons/content_copy",
       paste: "@MaterialIcons/content_paste",
       help: "@MaterialIcons/help",
-      code: "@MaterialIcons/code",
-      convert: "@MaterialIcons/swap_horizontal_circle",
+      code: "@MaterialIcons/code"
     },
 
     getIcon(name, size) {
       return Object.prototype.hasOwnProperty.call(this.ICONS, name)
         ? this.ICONS[name] + "/" + size
         : "@MaterialIcons/" + name + "/" + size;
-    },
-  },
+    }
+  }
 });

@@ -18,7 +18,7 @@
  */
 
 qx.Theme.define("cv.theme.dark.Decoration", {
-  extend: osparc.theme.common.Decoration,
+  extend: qx.theme.tangible.Decoration,
 
   decorations: {
     "window-caption-active": {},
@@ -26,41 +26,41 @@ qx.Theme.define("cv.theme.dark.Decoration", {
     "cv-editor-config-section": {
       style: {
         width: 1,
-        color: "material-textfield",
-      },
+        color: "primary-focused"
+      }
     },
 
     "cv-snackbar-msg": {
       style: {
-        backgroundColor: "button",
-      },
+        backgroundColor: "button"
+      }
     },
 
     "cv-snackbar-msg-error": {
       style: {
-        backgroundColor: "material-textfield-invalid",
-      },
+        backgroundColor: "error-focused"
+      }
     },
 
     "cv-toolbar": {
       style: {
         width: [1, 0, 1, 0],
-        color: "background-main",
-      },
+        color: "background-main"
+      }
     },
 
     "file-action-button": {
       style: {
         width: 1,
-        color: "text",
-      },
+        color: "text-on-primary"
+      }
     },
 
     "cv-start-section-title": {
       style: {
         width: [1, 0, 0, 0],
-        color: "text-placeholder",
-      },
+        color: "text-on-secondary"
+      }
     },
 
     "open-file-tabs": {
@@ -69,16 +69,16 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
         shadowVerticalLength: 1,
-        shadowColor: "rgba(255, 255, 255, 0.1)",
-      },
+        shadowColor: "rgba(255, 255, 255, 0.1)"
+      }
     },
 
     "cv-file-item-add-file": {
       style: {
         width: 1,
-        color: "text",
-        style: "dashed",
-      },
+        color: "text-on-primary",
+        style: "dashed"
+      }
     },
 
     "round-button": {
@@ -91,16 +91,16 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
         shadowVerticalLength: 1,
-        shadowColor: "rgba(255, 255, 255, 0.1)",
-      },
+        shadowColor: "rgba(255, 255, 255, 0.1)"
+      }
     },
 
     "round-button-hovered": {
       include: "round-button",
       style: {
         width: 4,
-        color: "button-border-hovered",
-      },
-    },
-  },
+        color: "primary-hovered"
+      }
+    }
+  }
 });

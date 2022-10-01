@@ -41,7 +41,6 @@ qx.Class.define("cv.ui.manager.Main", {
   */
   construct() {
     super();
-    iconfont.material.Load;
     cv.ui.manager.model.BackupFolder.getInstance();
     this._checkEnvironment();
     this.initOpenFiles(new qx.data.Array());

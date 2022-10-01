@@ -18,17 +18,25 @@
  */
 
 qx.Theme.define("cv.theme.dark.Appearance", {
-  extend: osparc.theme.common.Appearance,
+  extend: qx.theme.tangible.Appearance,
 
   appearances: {
+    menubar: {
+      style(states) {
+        return {
+          backgroundColor: "primary",
+          padding: [4, 2]
+        };
+      }
+    },
     "cv-start": "widget",
     "cv-start/configs-header": {
       style() {
         return {
           margin: [20, 10, 0, 10],
-          decorator: "cv-start-section-title",
+          decorator: "cv-start-section-title"
         };
-      },
+      }
     },
 
     "cv-start/configs-title": {
@@ -37,15 +45,15 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           iconPosition: "right",
           font: "title",
           marginLeft: 10,
-          allowGrowX: true,
+          allowGrowX: true
         };
-      },
+      }
     },
 
     "cv-start/configs-toolbar": {
       style() {
         return {};
-      },
+      }
     },
 
     "cv-start/misc-title": {
@@ -57,9 +65,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           paddingTop: 5,
           cursor: "pointer",
           allowGrowX: true,
-          decorator: "cv-start-section-title",
+          decorator: "cv-start-section-title"
         };
-      },
+      }
     },
 
     "cv-start/demo-configs-title": "cv-start/misc-title",
@@ -77,11 +85,12 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           show: states.list ? "label" : "both",
           font: states.list ? "default" : "small",
           width: states.list ? 500 : 160,
+          textColor: "text-on-surface",
           backgroundColor: states.hovered
             ? "rgba(255, 255, 255, 0.1)"
-            : "transparent",
+            : "transparent"
         };
-      },
+      }
     },
 
     "cv-file-item/atom/label": {
@@ -89,9 +98,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style() {
         return {
           alignY: "middle",
-          allowGrowY: true,
+          allowGrowY: true
         };
-      },
+      }
     },
 
     "cv-file-item/atom/icon": {
@@ -100,9 +109,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           width: 70,
           height: 70,
-          scale: true,
+          scale: true
         };
-      },
+      }
     },
 
     "cv-file-item/action-menu": "menu",
@@ -113,9 +122,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style() {
         return {
           height: 30,
-          show: "icon",
+          show: "icon"
         };
-      },
+      }
     },
 
     "cv-file-item/action-button": "cv-file-item/download-button",
@@ -127,9 +136,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style() {
         return {
           width: 70,
-          height: 70,
+          height: 70
         };
-      },
+      }
     },
 
     "cv-file-item-add-file": {
@@ -140,9 +149,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           decorator: "cv-file-item-add-file",
           opacity: states.hovered ? 1.0 : 0.5,
-          cursor: "pointer",
+          cursor: "pointer"
         };
-      },
+      }
     },
 
     "open-file-item": {
@@ -157,16 +166,16 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           padding[2] -= 1;
         }
 
-        let backgroundColor;
+        let backgroundColor = "primary";
         if (states.selected) {
-          backgroundColor = "background-selected";
+          backgroundColor += "-selected";
           if (states.disabled) {
-            backgroundColor += "-disabled";
+            backgroundColor += "_disabled";
           }
         }
         return {
           backgroundColor: backgroundColor,
-          textColor: states.selected ? "text-selected" : undefined,
+          textColor: "text-on-primary",
           decorator: states.lead
             ? "lead-item"
             : states.dragover
@@ -175,9 +184,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           opacity: states.drag ? 0.5 : undefined,
           height: 26,
           padding: padding,
-          margin: 0,
+          margin: 0
         };
-      },
+      }
     },
 
     "open-file-item/label": {
@@ -185,9 +194,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style() {
         return {
-          alignY: "middle",
+          alignY: "middle"
         };
-      },
+      }
     },
 
     "open-file-item/icon": {
@@ -195,9 +204,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style() {
         return {
           alignY: "middle",
-          padding: [0, 8],
+          padding: [0, 8]
         };
-      },
+      }
     },
 
     "open-file-item/close": {
@@ -205,9 +214,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           padding: 8,
           cursor: "pointer",
-          alignY: "middle",
+          alignY: "middle"
         };
-      },
+      }
     },
 
     "open-with-button": {
@@ -216,25 +225,25 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style(states) {
         return {
-          font: states.default ? "bold" : "default",
+          font: states.default ? "bold" : "default"
         };
-      },
+      }
     },
 
     list: {
       style() {
         return {
-          decorator: null,
+          decorator: null
         };
-      },
+      }
     },
 
     "cv-editor-config": {
       style() {
         return {
-          padding: 10,
+          padding: 10
         };
-      },
+      }
     },
 
     "cv-editor-config-section": {
@@ -242,17 +251,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           padding: 10,
           decorator: "cv-editor-config-section",
-          marginBottom: 10,
+          marginBottom: 10
         };
-      },
+      }
     },
 
     "cv-editor-config-option": {
       style() {
         return {
-          marginBottom: 10,
+          marginBottom: 10
         };
-      },
+      }
     },
 
     "cv-config-textfield": {
@@ -261,18 +270,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style() {
         return {
-          minWidth: 300,
+          minWidth: 300
         };
-      },
+      }
     },
 
     "cv-editor-config-section/section-title": {
       style() {
         return {
           font: "title",
-          marginRight: 20,
+          marginRight: 20
         };
-      },
+      }
     },
 
     "cv-editor-config-section/options-title":
@@ -284,18 +293,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style() {
         return {
-          height: null,
+          height: null
         };
-      },
+      }
     },
 
     "cv-editor-config-option/value-title": {
       style() {
         return {
           allowGrowX: true,
-          font: "subtitle",
+          font: "subtitle"
         };
-      },
+      }
     },
 
     "cv-editor-config-option/key-title": "cv-editor-config-option/value-title",
@@ -304,9 +313,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     "cv-snackbar": {
       style() {
         return {
-          zIndex: 1000,
+          zIndex: 1000
         };
-      },
+      }
     },
 
     "cv-snackbar/list": {
@@ -314,9 +323,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           height: null,
           width: 400,
-          minWidth: 300,
+          minWidth: 300
         };
-      },
+      }
     },
 
     "cv-snackbar-msg": {
@@ -324,49 +333,31 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           marginTop: 10,
           padding: 10,
-          textColor: "text",
-          decorator: "cv-snackbar-msg",
+          textColor: "text-on-primary",
+          decorator: "cv-snackbar-msg"
         };
-      },
+      }
     },
 
     "cv-snackbar-msg/content": {
       style() {
         return {
-          allowGrowX: true,
+          allowGrowX: true
         };
-      },
+      }
     },
 
     "cv-snackbar-msg/close": {
       style() {
         return {
-          cursor: "pointer",
+          cursor: "pointer"
         };
-      },
+      }
     },
 
-    "cv-toolbar": {
-      include: "toolbar",
-      alias: "toolbar",
+    "cv-toolbar": "toolbar",
 
-      style() {
-        return {
-          // decorator: 'cv-toolbar'
-        };
-      },
-    },
-
-    "cv-toolbar-button": {
-      include: "toolbar-button",
-      alias: "toolbar-button",
-
-      style() {
-        return {
-          // margin: 1
-        };
-      },
-    },
+    "cv-toolbar-button": "toolbar-button",
 
     "image-viewer": {},
     "image-viewer/scroll": "scrollarea",
@@ -378,16 +369,16 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           iconPosition: "top",
           gap: 10,
-          center: true,
+          center: true
         };
       },
       "image-viewer/image/label": {
         style() {
           return {
-            margin: 10,
+            margin: 10
           };
-        },
-      },
+        }
+      }
     },
 
     "fs-tree-item": {
@@ -396,9 +387,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style(states) {
         return {
-          font: states.temporary ? "italic" : "default",
+          font: states.temporary ? "italic" : "default"
         };
-      },
+      }
     },
 
     "fs-tree-item/icon": {
@@ -408,12 +399,12 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style(states) {
         return {
           textColor: states.comment
-            ? "text-disabled"
+            ? "text-on-surface"
             : states.error
             ? "invalid-color"
-            : null,
+            : null
         };
-      },
+      }
     },
 
     "element-tree-item": {
@@ -421,9 +412,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       alias: "fs-tree-item",
       style(states) {
         return {
-          indent: states.touch ? 24 : 19,
+          indent: states.touch ? 24 : 19
         };
-      },
+      }
     },
 
     "element-tree-item/label": {
@@ -431,11 +422,11 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style(states) {
         return {
-          textColor: states.comment ? "text-disabled" : null,
+          textColor: states.comment ? "text-on-surface" : null,
           allowGrowX: true,
-          maxWidth: 250,
+          maxWidth: 250
         };
-      },
+      }
     },
 
     "element-tree-item/open": {
@@ -446,9 +437,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           // width must not be greater the the indentation
           width: states.touch ? 24 : 16,
           height: states.touch ? 32 : 16,
-          scale: true,
+          scale: true
         };
-      },
+      }
     },
 
     "cv-file-contextmenu": "menu",
@@ -460,26 +451,26 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           height: 34,
           padding: 0,
           marginBottom: 5,
-          decorator: "open-file-tabs",
+          decorator: "open-file-tabs"
         };
-      },
+      }
     },
 
     helptext: {
       style() {
         return {
           font: "small",
-          textColor: "text-disabled",
+          textColor: "text-on-secondary"
         };
-      },
+      }
     },
 
     "checkbox/label": {
       style(states) {
         return {
-          textColor: states.undetermined ? "text-disabled" : "text",
+          textColor: states.undetermined ? "text-on-secondary" : "text-on-primary"
         };
-      },
+      }
     },
 
     "toolbar-separator": {
@@ -487,28 +478,28 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           backgroundColor: "border-separator",
           margin: [7, 0],
-          width: 1,
+          width: 1
         };
-      },
+      }
     },
 
     iframe: {
       style() {
         return {
           backgroundColor: null,
-          decorator: "main-dark",
+          decorator: "main-dark"
         };
-      },
+      }
     },
 
     "state-option": {
       style(states) {
         return {
-          textColor: states.error ? "warning-color" : "text-disabled",
+          textColor: states.error ? "warning-color" : "text-on-secondary",
           font: "italic",
-          height: 25,
+          height: 25
         };
-      },
+      }
     },
 
     "error-option": {
@@ -516,42 +507,42 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           textColor: "warning-color",
           font: "italic",
-          height: 25,
+          height: 25
         };
-      },
+      }
     },
 
     "selectbox/atom": {
       style(states) {
         let font = "default";
-        let textColor = "text";
+        let textColor = "text-on-primary";
         if (states.error || states.loading) {
           font = "italic";
-          textColor = states.error ? "warning-color" : "text-disabled";
+          textColor = states.error ? "warning-color" : "text-on-secondary";
         }
         return {
           textColor: textColor,
-          font: font,
+          font: font
         };
-      },
+      }
     },
 
     optiongroup: {
       style() {
         return {
-          textColor: "text-disabled",
-          height: 25,
+          textColor: "text-on-secondary",
+          height: 25
         };
-      },
+      }
     },
 
     "optiongroup/label": {
       style() {
         return {
           allowGrowX: true,
-          textAlign: "center",
+          textAlign: "center"
         };
-      },
+      }
     },
 
     "round-button": {
@@ -562,11 +553,11 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           decorator: states.hovered ? "round-button-hovered" : "round-button",
           width: 48,
           height: 48,
-          textColor: "text",
+          textColor: "text-on-primary",
           show: "icon",
-          center: true,
+          center: true
         };
-      },
+      }
     },
 
     "round-button/icon": {
@@ -575,9 +566,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style(states) {
         return {
           width: 32,
-          height: 32,
+          height: 32
         };
-      },
+      }
     },
 
     "dragdrop-cursor": {
@@ -597,11 +588,11 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         }
 
         return {
-          source: osparc.theme.common.Image.URLS["cursor-" + icon],
+          source: qx.theme.tangible.Image.URLS["cursor-" + icon],
           position: "left-middle",
-          offset: [2, leftOffset, 2, 6],
+          offset: [2, leftOffset, 2, 6]
         };
-      },
+      }
     },
 
     "element-tree-item/menu-button": {
@@ -610,10 +601,10 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style() {
         return {
           padding: [2, 4],
-          icon: osparc.theme.common.Image.URLS["arrow-down"],
-          show: "icon",
+          icon: qx.theme.tangible.Image.URLS["arrow-down"],
+          show: "icon"
         };
-      },
+      }
     },
 
     "tree-editor": "widget",
@@ -625,9 +616,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           padding: [4, 8],
           iconPosition: "left",
           gap: 8,
-          center: true,
+          center: true
         };
-      },
+      }
     },
 
     "tree-editor/preview-sync-hint/icon": {
@@ -640,9 +631,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           color = "warning-color";
         }
         return {
-          textColor: color,
+          textColor: color
         };
-      },
-    },
-  },
+      }
+    }
+  }
 });

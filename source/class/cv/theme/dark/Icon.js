@@ -19,11 +19,12 @@
 
 qx.Theme.define("cv.theme.dark.Icon", {
   aliases: {
+    icon: "qx/icon/Oxygen",
     "qxl.dialog.icon.cancel": "@MaterialIcons/cancel/18",
     "qxl.dialog.icon.ok": "@MaterialIcons/check/18",
     "qxl.dialog.icon.info": "@MaterialIcons/info/18",
     "qxl.dialog.icon.error": "@MaterialIcons/error/18",
     "qxl.dialog.icon.warning": "@MaterialIcons/warning/18",
-    "qxl.dialog.icon.delete": "@MaterialIcons/delete_forever/18",
-  },
+    "qxl.dialog.icon.delete": "@MaterialIcons/delete_forever/18"
+  }
 });

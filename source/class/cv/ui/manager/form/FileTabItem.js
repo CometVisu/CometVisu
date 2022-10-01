@@ -18,7 +18,7 @@
  */
 
 /**
- *
+ * @asset(decoration/tabview/close.gif)
  */
 qx.Class.define("cv.ui.manager.form.FileTabItem", {
   extend: qx.ui.core.Widget,

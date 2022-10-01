@@ -18,11 +18,17 @@
  */
 
 qx.Theme.define("cv.theme.dark.Color", {
-  extend: osparc.theme.osparcdark.Color,
+  extend: qx.theme.tangible.ColorDark,
 
   colors: {
+    // theme colors
+    primary: "#444444",
+    secondary: "#646464",
+    surface: "#202020",
+    error: "#b00020",
+
     "valid-color": "#22822d",
-    "invalid-color": "material-textfield-invalid",
-    "warning-color": "#a85500",
-  },
+    "invalid-color": "error-focused",
+    "warning-color": "#a85500"
+  }
 });
