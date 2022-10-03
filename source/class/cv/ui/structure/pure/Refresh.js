@@ -28,7 +28,7 @@ qx.Class.define("cv.ui.structure.pure.Refresh", {
   include: [
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,
-    cv.ui.common.BasicUpdate,
+    cv.ui.common.BasicUpdate
   ],
 
   /*
@@ -37,7 +37,7 @@ qx.Class.define("cv.ui.structure.pure.Refresh", {
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", nullable: true },
+    sendValue: { check: "String", nullable: true }
   },
 
   /*
@@ -54,11 +54,11 @@ qx.Class.define("cv.ui.structure.pure.Refresh", {
 
     // overridden
     _getInnerDomString() {
-      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
     },
 
     _action() {
       cv.io.BackendConnections.getClient().restart(true);
-    },
-  },
+    }
+  }
 });

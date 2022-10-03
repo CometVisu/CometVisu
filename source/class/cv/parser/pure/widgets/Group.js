@@ -65,16 +65,16 @@ qx.Class.define("cv.parser.pure.widgets.Group", {
           default: false,
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         name: { default: "" },
-        target: { default: "" },
+        target: { default: "" }
       };
-    },
+    }
   },
 
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("group", statics);
-  },
+  }
 });

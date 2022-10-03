@@ -110,7 +110,7 @@ qx.Class.define("cv.core.notifications.Router", {
       }
 
       return null;
-    },
+    }
   },
 
   /*
@@ -206,7 +206,7 @@ qx.Class.define("cv.core.notifications.Router", {
 
         currentSegment.__handlers__.push({
           handler: handler,
-          config: topics[topic],
+          config: topics[topic]
         });
       }, this);
     },
@@ -244,7 +244,7 @@ qx.Class.define("cv.core.notifications.Router", {
           address: address,
           value: state,
           date: formattedDate,
-          time: formattedTime,
+          time: formattedTime
         };
 
         // transform the raw value to a JavaScript type
@@ -284,7 +284,7 @@ qx.Class.define("cv.core.notifications.Router", {
           unique: Object.prototype.hasOwnProperty.call(config, "unique")
             ? config.unique
             : false,
-          severity: config.severity,
+          severity: config.severity
         };
 
         if (Object.prototype.hasOwnProperty.call(config, "condition")) {
@@ -362,7 +362,7 @@ qx.Class.define("cv.core.notifications.Router", {
     clear() {
       this.__routes = {};
       this.__stateMessageConfig = {};
-    },
+    }
   },
 
   /*
@@ -373,5 +373,5 @@ qx.Class.define("cv.core.notifications.Router", {
   destruct() {
     this.clear();
     this._disposeObjects("__dateFormat", "__timeFormat");
-  },
+  }
 });

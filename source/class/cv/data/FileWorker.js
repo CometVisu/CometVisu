@@ -45,7 +45,7 @@ qx.Class.define("cv.data.FileWorker", {
   ***********************************************
   */
   events: {
-    message: "qx.event.type.Data",
+    message: "qx.event.type.Data"
   },
 
   /*
@@ -76,8 +76,8 @@ qx.Class.define("cv.data.FileWorker", {
             this._worker.postMessage([
               "validateConfig",
               {
-                path: url,
-              },
+                path: url
+              }
             ]);
           } else {
             this._validationCallbacks[url].push(resolve);
@@ -120,9 +120,9 @@ qx.Class.define("cv.data.FileWorker", {
       this.fireDataEvent("message", {
         topic: topic,
         data: data,
-        path: path,
+        path: path
       });
-    },
+    }
   },
 
   /*
@@ -132,5 +132,5 @@ qx.Class.define("cv.data.FileWorker", {
   */
   destruct() {
     this._worker = null;
-  },
+  }
 });

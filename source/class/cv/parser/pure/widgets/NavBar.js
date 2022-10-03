@@ -71,7 +71,7 @@ qx.Class.define("cv.parser.pure.widgets.NavBar", {
           scope: cv.parser.pure.widgets.NavBar._transformScope(
             n.getAttribute("scope")
           ),
-          width: n.getAttribute("width"),
+          width: n.getAttribute("width")
         }
       );
 
@@ -80,7 +80,7 @@ qx.Class.define("cv.parser.pure.widgets.NavBar", {
         {
           path: path,
           classes: classes,
-          $$type: widgetType,
+          $$type: widgetType
         }
       );
     },
@@ -109,17 +109,17 @@ qx.Class.define("cv.parser.pure.widgets.NavBar", {
       return {
         scope: {
           default: -1,
-          transform: cv.parser.pure.widgets.NavBar._transformScope,
+          transform: cv.parser.pure.widgets.NavBar._transformScope
         },
         name: {},
         dynamic: { transform: cv.parser.pure.widgets.NavBar._transformDynamic },
         width: { default: "300" },
-        position: { default: "left" },
+        position: { default: "left" }
       };
-    },
+    }
   },
 
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("navbar", statics);
-  },
+  }
 });

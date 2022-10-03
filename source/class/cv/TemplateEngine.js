@@ -30,7 +30,7 @@ qx.Class.define("cv.TemplateEngine", {
 
     this.__partQueue = new qx.data.Array();
     this._domFinishedQueue = [];
-    this.__partQueue.addListener("changeLength", (ev) => {
+    this.__partQueue.addListener("changeLength", ev => {
       this.setPartsLoaded(ev.getData() === 0);
     });
     this.__clients = {};
@@ -55,7 +55,7 @@ qx.Class.define("cv.TemplateEngine", {
       check: "Boolean",
       init: false,
       apply: "_applyLoaded",
-      event: "changePartsLoaded",
+      event: "changePartsLoaded"
     },
 
     /**
@@ -64,7 +64,7 @@ qx.Class.define("cv.TemplateEngine", {
     scriptsLoaded: {
       check: "Boolean",
       init: false,
-      apply: "_applyLoaded",
+      apply: "_applyLoaded"
     },
 
     /**
@@ -75,44 +75,44 @@ qx.Class.define("cv.TemplateEngine", {
       check: "Boolean",
       init: false,
       event: "changeReady",
-      apply: "_applyReady",
+      apply: "_applyReady"
     },
 
     currentPage: {
       check: "cv.ui.structure.IPage",
       nullable: true,
-      event: "changeCurrentPage",
+      event: "changeCurrentPage"
     },
 
     domFinished: {
       check: "Boolean",
       init: false,
       apply: "_applyDomFinished",
-      event: "changeDomFinished",
+      event: "changeDomFinished"
     },
 
     commands: {
       check: "qx.ui.command.Group",
-      nullable: true,
+      nullable: true
     },
 
     // highlight a widget
     highlightedWidget: {
       check: "String",
       nullable: true,
-      apply: "_applyHighlightedWidget",
+      apply: "_applyHighlightedWidget"
     },
 
     configSource: {
       check: "XMLDocument",
       nullable: true,
-      apply: "_applyConfigSource",
+      apply: "_applyConfigSource"
     },
 
     configHash: {
       check: "Number",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -210,7 +210,7 @@ qx.Class.define("cv.TemplateEngine", {
           resolve();
           clearTimeout(timer);
         } else {
-          waitingFor.addListener("changeLength", (ev) => {
+          waitingFor.addListener("changeLength", ev => {
             if (ev.getData() === 0) {
               resolve();
               clearTimeout(timer);
@@ -310,27 +310,27 @@ qx.Class.define("cv.TemplateEngine", {
         settings.stylesToLoad.push(baseUri + "/basic.css");
         settings.stylesToLoad.push({
           uri: baseUri + "/mobile.css",
-          media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`,
+          media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`
         });
         settings.stylesToLoad.push(baseUri + "/custom.css");
         settings.scriptsToLoad.push("designs/" + design + "/design_setup.js");
 
         const loader = cv.util.ScriptLoader.getInstance();
-        loader.addListenerOnce("designError", (ev) => {
+        loader.addListenerOnce("designError", ev => {
           if (ev.getData() === design) {
             this.error(
-              'Failed to load "' +
+              "Failed to load \"" +
                 design +
-                '" design! Falling back to simplified "' +
+                "\" design! Falling back to simplified \"" +
                 cv.Config.loadedStructure +
-                '"'
+                "\""
             );
 
             baseUri = "designs/" + cv.Config.loadedStructure;
             const alternativeStyles = [baseUri + "/basic.css"];
             alternativeStyles.push({
               uri: baseUri + "/mobile.css",
-              media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`,
+              media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`
             });
             alternativeStyles.push(baseUri + "/custom.css");
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
@@ -416,7 +416,7 @@ qx.Class.define("cv.TemplateEngine", {
         width: "400px",
         color: "white",
         margin: "auto",
-        padding: "0.5em",
+        padding: "0.5em"
       }).forEach(function (key_value) {
         body.style[key_value[0]] = key_value[1];
       });
@@ -442,27 +442,27 @@ qx.Class.define("cv.TemplateEngine", {
             borderBottom: "1px solid black",
             margin: "auto",
             width: "262px",
-            position: "relative",
+            position: "relative"
           });
 
           myDiv.innerHTML =
-            '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' +
+            "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " +
             element +
             "</div>";
           myDiv.innerHTML +=
-            '<iframe src="' +
+            "<iframe src=\"" +
             qx.util.ResourceManager.getInstance().toUri(
               "designs/design_preview.html"
             ) +
             "?design=" +
             element +
-            '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
+            "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
           myDiv.innerHTML +=
-            '<img width="60" height="30" src="' +
+            "<img width=\"60\" height=\"30\" src=\"" +
             qx.util.ResourceManager.getInstance().toUri(
               "demo/media/arrow.png"
             ) +
-            '" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
+            "\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
 
           div.appendChild(myDiv);
 
@@ -471,13 +471,13 @@ qx.Class.define("cv.TemplateEngine", {
             position: "absolute",
             height: "90px",
             width: "160px",
-            zIndex: 2,
+            zIndex: 2
           });
 
           const pos = document.querySelector("iframe").getBoundingClientRect();
           Object.entries({
             left: pos.left + "px",
-            top: pos.top + "px",
+            top: pos.top + "px"
           }).forEach(function (key_value) {
             tDiv.style[key_value[0]] = key_value[1];
           });
@@ -514,7 +514,7 @@ qx.Class.define("cv.TemplateEngine", {
           });
         });
       });
-    },
+    }
   },
 
   /*
@@ -524,5 +524,5 @@ qx.Class.define("cv.TemplateEngine", {
   */
   destruct() {
     this._disposeObjects("__activeChangedTimer");
-  },
+  }
 });

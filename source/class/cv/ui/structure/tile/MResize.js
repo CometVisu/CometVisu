@@ -30,7 +30,7 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
   construct() {
     this._observer = new ResizeObserver((entries, observer) => {
       const element = this.getResizeTarget();
-      entries.some((entry) => {
+      entries.some(entry => {
         if (entry.target === element) {
           this.fireDataEvent("resized", entry);
           return true;
@@ -46,7 +46,7 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
   ***********************************************
   */
   events: {
-    resized: "qx.event.type.Data",
+    resized: "qx.event.type.Data"
   },
 
   /*
@@ -58,8 +58,8 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
     resizeTarget: {
       check: "Element",
       nullable: true,
-      apply: "_applyResizeTarget",
-    },
+      apply: "_applyResizeTarget"
+    }
   },
 
   /*
@@ -80,7 +80,7 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
       if (element) {
         this._observer.observe(element);
       }
-    },
+    }
   },
 
   /*
@@ -91,5 +91,5 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
   destruct() {
     this._observer.disconnect();
     this._observer = null;
-  },
+  }
 });

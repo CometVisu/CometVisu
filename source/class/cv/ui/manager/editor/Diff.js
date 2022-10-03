@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
   statics: {
     COUNTER: 0,
     TITLE: qx.locale.Manager.tr("File compare"),
-    ICON: cv.theme.dark.Images.getIcon("compare", 18),
+    ICON: cv.theme.dark.Images.getIcon("compare", 18)
   },
 
   /*
@@ -53,20 +53,20 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
     originalContent: {
       check: "String",
       init: "",
-      apply: "_applyContent",
+      apply: "_applyContent"
     },
 
     modifiedContent: {
       check: "String",
       init: "",
-      apply: "_applyContent",
+      apply: "_applyContent"
     },
 
     editable: {
       check: "Boolean",
       init: false,
-      apply: "_applyEditable",
-    },
+      apply: "_applyEditable"
+    }
   },
 
   /*
@@ -97,7 +97,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
             autoIndent: true,
             automaticLayout: true,
             theme: "vs-dark",
-            readOnly: !this.getEditable(),
+            readOnly: !this.getEditable()
           });
 
           if (this.getFile()) {
@@ -132,7 +132,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
         modifiedModel.updateOptions(this._getDefaultModelOptions());
         this._editor.setModel({
           original: originalModel,
-          modified: modifiedModel,
+          modified: modifiedModel
         });
       }
     },
@@ -182,7 +182,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
           if (!file.isWriteable()) {
             cv.ui.manager.snackbar.Controller.error(
               this.tr(
-                '"%1" is not writable. Upgrading not possible.',
+                "\"%1\" is not writable. Upgrading not possible.",
                 this.getFile().getFullPath()
               )
             );
@@ -243,12 +243,12 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
                     changesText +
                     "<div>" +
                     qx.locale.Manager.tr(
-                      'Click "Apply" if you want to save the changes and reload the browser.'
+                      "Click \"Apply\" if you want to save the changes and reload the browser."
                     ) +
                     "</div>" +
                     "<div>" +
                     qx.locale.Manager.tr(
-                      'Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.'
+                      "Click \"Check\" if you want to check the changes. You have to save the changes and reload your browser yourself in this case."
                     ) +
                     "</div>";
                   const d = qxl.dialog.Dialog.confirm(
@@ -268,7 +268,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
                   d.set({
                     width: Math.min(qx.bom.Viewport.getWidth(), 600),
                     yesButtonLabel: qx.locale.Manager.tr("Apply"),
-                    noButtonLabel: qx.locale.Manager.tr("Check"),
+                    noButtonLabel: qx.locale.Manager.tr("Check")
                   });
 
                   file.setModified(true);
@@ -311,6 +311,6 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
           this.resetModifiedContent();
         }
       }
-    },
-  },
+    }
+  }
 });

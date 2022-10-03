@@ -36,23 +36,23 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
     name: {
       check: "String",
       init: "",
-      nullable: true,
+      nullable: true
     },
 
     wstyle: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     address: {
       check: "Object",
-      init: {},
+      init: {}
     },
 
     bindClickToWidget: {
       refine: true,
-      init: true,
-    },
+      init: true
+    }
   },
 
   /*
@@ -68,23 +68,23 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
       const style =
         typeof layout === "object"
           ? ""
-          : 'style="' +
+          : "style=\"" +
             cv.parser.pure.WidgetParser.extractLayout(
               layout,
               this.getPageType()
             ) +
-            '"';
+            "\"";
 
       let ret_val =
-        '<div class="widget clearfix link pagelink ' +
+        "<div class=\"widget clearfix link pagelink " +
         this.getClasses() +
-        '" ' +
+        "\" " +
         style +
         ">";
       ret_val +=
-        '<div class="actor" ' +
+        "<div class=\"actor\" " +
         this.getWstyle() +
-        '><a href="javascript:void(0)">' +
+        "><a href=\"javascript:void(0)\">" +
         this.getName() +
         "</a></div>";
       ret_val += "</div>";
@@ -94,10 +94,10 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
     // overridden
     action() {
       cv.Application.structureController.scrollToPage(this.getPath() + "_");
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("pagelink", statics);
-  },
+  }
 });

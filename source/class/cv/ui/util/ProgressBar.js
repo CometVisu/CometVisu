@@ -45,8 +45,8 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     value: {
       check: "Integer",
       init: 0,
-      apply: "_applyValue",
-    },
+      apply: "_applyValue"
+    }
   },
 
   /*
@@ -71,14 +71,14 @@ qx.Class.define("cv.ui.util.ProgressBar", {
 
     _createDomElement() {
       const container = (this.__domElement = qx.dom.Element.create("div", {
-        class: "progressbar",
+        class: "progressbar"
       }));
       this.__domElement.$$widget = this;
       const progress = (this.__progressElement = qx.dom.Element.create("div", {
-        class: "completed",
+        class: "completed"
       }));
       container.appendChild(progress);
       return container;
-    },
-  },
+    }
+  }
 });

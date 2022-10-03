@@ -16,7 +16,7 @@
     "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
-    "lint": "qx lint",
+    "lint": "qx lint --use-eslintrc=false",
     "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
@@ -48,10 +48,11 @@
     "coffeescript": "^2.6.1",
     "csso": "^4.2.0",
     "easyimage": "^3.1.1",
-    "eslint": "^8.13.0",
+    "eslint": "8.22.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-custom-elements": "^0.0.6",
     "eslint-plugin-jasmine": "^4.1.3",
+    "eslint-plugin-jsdoc": "^15.12.2",
     "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
@@ -102,6 +103,7 @@
     "update": "^0.7.4"
   },
   "eslintConfig": {
+    "root": true,
     "extends": [
       "@qooxdoo/qx/browser",
       "plugin:jasmine/recommended",
@@ -243,7 +245,10 @@
       "indexedDB": "readonly",
       "URL": "readonly",
       "sinon": "readonly",
-      "RSSParser": "readonly"
+      "RSSParser": "readonly",
+      "QxConnector": "readonly",
+      "InstallTrigger": "readonly",
+      "d3": "readonly"
     }
   }
 }

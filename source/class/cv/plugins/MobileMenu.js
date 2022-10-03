@@ -56,9 +56,9 @@ qx.Class.define("cv.plugins.MobileMenu", {
 
     getWidgetElements(xmlElement, path) {
       cv.data.Model.getInstance().setWidgetData(path + "_0", {
-        containerClass: "actor",
+        containerClass: "actor"
       });
-    },
+    }
   },
 
   /*
@@ -91,12 +91,12 @@ qx.Class.define("cv.plugins.MobileMenu", {
         });
 
         return (
-          '<div class="clearfix mobilemenuTrigger">' +
+          "<div class=\"clearfix mobilemenuTrigger\">" +
           this.getChildrenDomString() +
           "</div>"
         );
       }
-      return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
+      return "<div class=\"clearfix mobilemenuTrigger\" style=\"display: none\"></div>";
     },
 
     _onDomReady() {
@@ -153,7 +153,7 @@ qx.Class.define("cv.plugins.MobileMenu", {
         }
       }
       return this.__isTouchDevice;
-    },
+    }
   },
 
   // VisuDesign_Custom.prototype.addCreator("mobilemenu", {
@@ -169,5 +169,5 @@ qx.Class.define("cv.plugins.MobileMenu", {
     loader.addStyles("plugins/mobilemenu/mobilemenu.css");
     cv.parser.pure.WidgetParser.addHandler("mobilemenu", statics);
     cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
-  },
+  }
 });

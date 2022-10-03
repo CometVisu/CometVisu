@@ -70,6 +70,6 @@ qx.Class.define("cv.util.String", {
         qx.log.Logger.warn(this, err + ", " + JSON.stringify(args));
       }
       return string;
-    },
-  },
+    }
+  }
 });

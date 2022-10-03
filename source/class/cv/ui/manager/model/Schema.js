@@ -60,7 +60,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         );
       }
       return this.__CACHE[schemaFile];
-    },
+    }
   },
 
   /*
@@ -72,13 +72,13 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     loaded: {
       check: "Boolean",
       init: false,
-      event: "changeLoaded",
+      event: "changeLoaded"
     },
 
     structure: {
       check: ["pure", "tile"],
-      apply: "_applyStructure",
-    },
+      apply: "_applyStructure"
+    }
   },
 
   /*
@@ -169,10 +169,10 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     _cacheXSD() {
       const ajaxRequest = new qx.io.request.Xhr(this.__filename);
       ajaxRequest.set({
-        accept: "application/xml",
+        accept: "application/xml"
       });
 
-      ajaxRequest.addListenerOnce("success", (e) => {
+      ajaxRequest.addListenerOnce("success", e => {
         const req = e.getTarget();
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
@@ -192,7 +192,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
      */
     _parseXSD() {
       // make a list of root-level elements
-      this.__xsd.querySelectorAll("schema > element").forEach((element) => {
+      this.__xsd.querySelectorAll("schema > element").forEach(element => {
         const name = element.getAttribute("name");
         this.__allowedRootElements[name] =
           new cv.ui.manager.model.schema.Element(element, this);
@@ -252,7 +252,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         }
       }
 
-      const selector = "schema > " + type + '[name="' + refName + '"]';
+      const selector = "schema > " + type + "[name=\"" + refName + "\"]";
       let ref = this.__xsd.querySelector(selector);
       if (!ref && !noFallback) {
         try {
@@ -263,9 +263,9 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         throw new Error(
           "schema/xsd appears to be invalid, reference " +
             type +
-            ' "' +
+            " \"" +
             refName +
-            '" can not be found'
+            "\" can not be found"
         );
       }
 
@@ -300,16 +300,16 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         return this.__typeNodeCache[type][name];
       }
       let typeNode = this.__xsd.querySelector(
-        type + 'Type[name="' + name + '"]'
+        type + "Type[name=\"" + name + "\"]"
       );
 
       if (!typeNode) {
         throw new Error(
           "schema/xsd appears to be invalid, " +
             type +
-            'Type "' +
+            "Type \"" +
             name +
-            '" can not be found'
+            "\" can not be found"
         );
       }
 
@@ -389,7 +389,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
           this.__pageElementName
         );
         this._widgetNames = Object.keys(page.getAllowedElements()).filter(
-          (name) => !name.startsWith("#") && name !== "layout"
+          name => !name.startsWith("#") && name !== "layout"
         );
       }
       return this._widgetNames;
@@ -401,7 +401,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
 
     isPage(name) {
       return (name = this.__pageElementName);
-    },
+    }
   },
 
   /*
@@ -419,5 +419,5 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     this.__referencedNodeCache = null;
     this.__typeNodeCache = null;
     this._widgetNames = null;
-  },
+  }
 });

@@ -110,11 +110,11 @@ qx.Mixin.define("cv.ui.common.Operate", {
                     unique: false,
                     deletable: true,
                     message: qx.locale.Manager.tr(
-                      'Encode error: %1; selector: "%2"; value: %3',
+                      "Encode error: %1; selector: \"%2\"; value: %3",
                       e,
                       address.selector,
                       JSON.stringify(value)
-                    ),
+                    )
                   };
 
                   cv.core.notifications.Router.dispatchMessage(
@@ -128,6 +128,6 @@ qx.Mixin.define("cv.ui.common.Operate", {
         }
       }
       return encodedValues;
-    },
-  },
+    }
+  }
 });

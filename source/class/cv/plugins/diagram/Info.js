@@ -56,7 +56,7 @@ qx.Class.define("cv.plugins.diagram.Info", {
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       return data;
-    },
+    }
   },
 
   /*
@@ -66,7 +66,7 @@ qx.Class.define("cv.plugins.diagram.Info", {
    */
   members: {
     _getInnerDomString() {
-      return '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor clickable switchUnpressed\"><div class=\"value\">-</div></div>";
     },
     _update(address, data) {
       if (address !== undefined && data !== undefined) {
@@ -79,12 +79,12 @@ qx.Class.define("cv.plugins.diagram.Info", {
         );
       }
       return null;
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("diagram_info", statics);
     cv.ui.structure.WidgetFactory.registerClass("diagram_info", statics);
-  },
+  }
 });

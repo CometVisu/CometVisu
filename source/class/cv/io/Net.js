@@ -38,28 +38,28 @@ qx.Class.define("cv.io.Net", {
      * @return {Promise<unknown>}
      */
     fetch(url) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         const xhr = new qx.io.request.Xhr(url);
-        xhr.addListenerOnce("success", (e) => {
+        xhr.addListenerOnce("success", e => {
           const req = e.getTarget();
           const response = new Response(req.getResponse(), {
             status: req.getStatus(),
-            statusText: req.getStatusText(),
+            statusText: req.getStatusText()
           });
 
           resolve(response);
         });
-        xhr.addListenerOnce("error", (e) => {
+        xhr.addListenerOnce("error", e => {
           const req = e.getTarget();
           const response = new Response(req.getResponse(), {
             status: req.getStatus(),
-            statusText: req.getStatusText(),
+            statusText: req.getStatusText()
           });
 
           resolve(response);
         });
         xhr.send();
       });
-    },
-  },
+    }
+  }
 });

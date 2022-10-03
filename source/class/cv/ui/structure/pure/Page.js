@@ -38,7 +38,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       "showNavbarTop",
       "showNavbarBottom",
       "showNavbarLeft",
-      "showNavbarRight",
+      "showNavbarRight"
     ];
     super(props);
 
@@ -63,7 +63,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         ["showNavbarTop", false],
         ["showNavbarBottom", false],
         ["showNavbarLeft", false],
-        ["showNavbarRight", false],
+        ["showNavbarRight", false]
       ].forEach(function (tuple) {
         const property = tuple[0];
         const defaultValue = tuple[1];
@@ -113,7 +113,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         this.createFinal,
         this
       );
-    },
+    }
   },
 
   /*
@@ -125,69 +125,69 @@ qx.Class.define("cv.ui.structure.pure.Page", {
     initialized: {
       check: "Boolean",
       init: false,
-      event: "changeInitialized",
+      event: "changeInitialized"
     },
 
     anonymous: {
       refine: true,
-      init: true,
+      init: true
     },
 
     name: {
       check: "String",
       init: "",
-      nullable: true,
+      nullable: true
     },
 
     showTopNavigation: {
       check: "Boolean",
       nullable: true,
-      event: "changeShowTopNavigation",
+      event: "changeShowTopNavigation"
     },
 
     showFooter: {
       check: "Boolean",
       nullable: true,
-      event: "changeShowFooter",
+      event: "changeShowFooter"
     },
 
     showNavbarTop: {
       check: "Boolean",
       nullable: true,
       event: "changeShowNavbarTop",
-      apply: "_applyNavbarVisibility",
+      apply: "_applyNavbarVisibility"
     },
 
     showNavbarBottom: {
       check: "Boolean",
       nullable: true,
       event: "changeShowNavbarBottom",
-      apply: "_applyNavbarVisibility",
+      apply: "_applyNavbarVisibility"
     },
 
     showNavbarLeft: {
       check: "Boolean",
       nullable: true,
       event: "changeShowNavbarLeft",
-      apply: "_applyNavbarVisibility",
+      apply: "_applyNavbarVisibility"
     },
 
     showNavbarRight: {
       check: "Boolean",
       nullable: true,
       event: "changeShowNavbarRight",
-      apply: "_applyNavbarVisibility",
+      apply: "_applyNavbarVisibility"
     },
 
     backdropAlign: {
       init: "50% 50%",
-      nullable: true,
+      nullable: true
     },
 
     backdropType: { check: "String", nullable: true },
     linkVisible: { check: "Boolean", init: true, nullable: true },
     size: { check: "String", nullable: true },
-    backdrop: { check: "String", nullable: true },
+    backdrop: { check: "String", nullable: true }
   },
 
   /*
@@ -249,13 +249,13 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         ? " flavour_" + this.getFlavour()
         : "";
       let subpage =
-        '<div class="page type_' +
+        "<div class=\"page type_" +
         pageType +
         subpageClass +
-        '" id="' +
+        "\" id=\"" +
         this.getPath() +
-        '">';
-      let container = '<div class="clearfix"><h1>' + this.getName() + "</h1>";
+        "\">";
+      let container = "<div class=\"clearfix\"><h1>" + this.getName() + "</h1>";
 
       if (pageType === "2d") {
         let size = "width:100%;height:100%;";
@@ -282,11 +282,11 @@ qx.Class.define("cv.ui.structure.pure.Page", {
           container +=
             "<" +
             this.getBackdropType() +
-            ' src="' +
+            " src=\"" +
             qx.util.ResourceManager.getInstance().toUri(backdrop) +
-            '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' +
+            "\" style=\"position: absolute; top: 0px; left: 0px;z-index:-1;" +
             size +
-            '"/>';
+            "\"/>";
         }
       } /* ---Disable 3D for 0.8---
       else if (pageType === "3d" && false) {
@@ -380,7 +380,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
           }
         }
       }
-    },
+    }
   },
 
   defer(statics) {
@@ -389,5 +389,5 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       statics.createFinal,
       statics
     );
-  },
+  }
 });

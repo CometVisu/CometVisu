@@ -30,7 +30,7 @@ qx.Class.define("cv.Config", {
      */
     Maturity: {
       release: 0,
-      development: 1,
+      development: 1
     },
 
     /**
@@ -159,10 +159,10 @@ qx.Class.define("cv.Config", {
        */
       credentials: {
         username: null,
-        password: null,
+        password: null
       },
 
-      bindClickToWidget: false,
+      bindClickToWidget: false
     },
 
     /**
@@ -190,9 +190,9 @@ qx.Class.define("cv.Config", {
         "metal",
         "pitchblack",
         "planet",
-        "pure",
+        "pure"
       ],
-      tile: ["tile"],
+      tile: ["tile"]
     },
 
     /**
@@ -305,7 +305,7 @@ qx.Class.define("cv.Config", {
 
     getDesign() {
       return this.clientDesign || this.configSettings.clientDesign;
-    },
+    }
   },
 
   defer(statics) {
@@ -403,7 +403,7 @@ qx.Class.define("cv.Config", {
       action: cv.Config.request.queryKey.open ? "open" : "",
       data: cv.Config.request.queryKey.open
         ? cv.Config.request.queryKey.open
-        : undefined,
+        : undefined
     };
 
     // "Bug"-Fix for ID: 3204682 "Caching on web server"
@@ -452,5 +452,5 @@ qx.Class.define("cv.Config", {
         cv.Config.useServiceWorker = req.queryKey.worker === "true";
       }
     }
-  },
+  }
 });

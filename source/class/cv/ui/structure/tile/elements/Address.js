@@ -62,7 +62,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
         }
         if (mode !== "read") {
           // listen for sendState events
-          element.addEventListener("sendState", (ev) => {
+          element.addEventListener("sendState", ev => {
             let value = null;
             if (Object.prototype.hasOwnProperty.call(ev.detail, "value")) {
               value = ev.detail.value;
@@ -172,8 +172,8 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
             source: this,
             variant: this._element.hasAttribute("variant")
               ? this._element.getAttribute("variant")
-              : null,
-          },
+              : null
+          }
         });
 
         this.__transformedValue = transformedState;
@@ -189,7 +189,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
 
     getValue() {
       return this.__transformedValue;
-    },
+    }
   },
 
   defer(Clazz) {
@@ -201,5 +201,5 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
         }
       }
     );
-  },
+  }
 });

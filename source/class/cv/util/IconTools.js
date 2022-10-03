@@ -49,7 +49,7 @@ qx.Class.define("cv.util.IconTools", {
       purple: "#ff44ff",
       yellow: "#ffff00",
       grey: "#777777",
-      black: "#000000",
+      black: "#000000"
     },
 
     /**
@@ -130,7 +130,7 @@ qx.Class.define("cv.util.IconTools", {
      * @returns {string}
      */
     createCanvas(iconId, styling = "", classes = "") {
-      return '<canvas class="' + iconId + " " + classes + '" ' + styling + "/>";
+      return "<canvas class=\"" + iconId + " " + classes + "\" " + styling + "/>";
     },
     /**
      * Fill the canvas with the ImageData. Also resize the
@@ -216,9 +216,9 @@ qx.Class.define("cv.util.IconTools", {
         if (!cv.util.IconTools.hexColorRegEx.test(color)) {
           qx.log.Logger.error(
             this,
-            'Error! "' +
+            "Error! \"" +
               color +
-              '" is not a valid color for icon recoloring! It must have a shape like "#rrggbb".'
+              "\" is not a valid color for icon recoloring! It must have a shape like \"#rrggbb\"."
           );
         }
         const r = parseInt(color.substr(1, 2), 16);
@@ -279,7 +279,7 @@ qx.Class.define("cv.util.IconTools", {
             icon: thisIcon, // the original Image() of the icon
             id: cv.util.IconTools.iconCacheMap.length, // the unique ID for this icon
             colors: {}, // cache all the transformed ImageDatas
-            toFill: [], // all the icon colors to fill once the image was loaded
+            toFill: [] // all the icon colors to fill once the image was loaded
           };
           cv.util.IconTools.iconCacheMap.push(url);
         }
@@ -332,7 +332,7 @@ qx.Class.define("cv.util.IconTools", {
     fillRecoloredIcon(icon) {
       const parameters = Array.prototype.filter.call(
         icon.classList,
-        (name) => name !== "icon"
+        name => name !== "icon"
       );
       if (parameters.length === 2) {
         const cacheEntry =
@@ -386,10 +386,10 @@ qx.Class.define("cv.util.IconTools", {
         }
         if (asText) {
           if (style) {
-            style = ' style="' + style + '"';
+            style = " style=\"" + style + "\"";
           }
           return (
-            "<i" + style + ' class="knxuf-' + iconID + " " + classes + '"></i>'
+            "<i" + style + " class=\"knxuf-" + iconID + " " + classes + "\"></i>"
           );
         }
         let icon = document.createElement("i");
@@ -402,12 +402,12 @@ qx.Class.define("cv.util.IconTools", {
         }
         return icon;
       };
-    },
+    }
   },
 
   defer() {
     const canvas = document.createElement("canvas");
     this.defer.self.tmpCanvas = canvas;
     this.defer.self.tmpCtx = canvas.getContext("2d");
-  },
+  }
 });

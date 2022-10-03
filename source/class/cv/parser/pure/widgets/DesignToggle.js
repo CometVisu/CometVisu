@@ -41,11 +41,11 @@ qx.Class.define("cv.parser.pure.widgets.DesignToggle", {
 
     getDefaultClasses() {
       return "widget clearfix toggle";
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("designtoggle", statics);
-  },
+  }
 });

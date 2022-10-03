@@ -67,7 +67,7 @@ qx.Class.define("cv.ui.manager.model.schema.Attribute", {
       }
 
       return "unknown";
-    },
+    }
   },
 
   /*
@@ -78,23 +78,23 @@ qx.Class.define("cv.ui.manager.model.schema.Attribute", {
   properties: {
     type: {
       refine: true,
-      init: "attribute",
+      init: "attribute"
     },
 
     name: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     optional: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     defaultValue: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -163,7 +163,7 @@ qx.Class.define("cv.ui.manager.model.schema.Attribute", {
      */
     getEnumeration() {
       return this._type.getEnumeration();
-    },
+    }
   },
 
   /*
@@ -174,5 +174,5 @@ qx.Class.define("cv.ui.manager.model.schema.Attribute", {
   destruct() {
     this.__appInfoCache = null;
     this.__documentationCache = null;
-  },
+  }
 });

@@ -71,7 +71,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       cv.ui.manager.editor.Tree,
       {
         preview: false,
-        type: "edit",
+        type: "edit"
       }
     );
 
@@ -82,7 +82,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
     );
 
     this.registerFileHandler("hidden.php", cv.ui.manager.editor.Config, {
-      type: "edit",
+      type: "edit"
     });
 
     cv.ui.manager.model.Preferences.getInstance().addListener(
@@ -117,7 +117,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       const config = Object.assign(
         {
           Clazz: clazz,
-          instance: null,
+          instance: null
         },
         options || {}
       );
@@ -236,7 +236,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
         regex: selector,
         clazz: clazz,
         noTemporaryFiles: noTemporaryFiles,
-        noReadOnlyFiles: noReadOnlyFiles,
+        noReadOnlyFiles: noReadOnlyFiles
       };
     },
 
@@ -299,7 +299,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
         .map(function (key) {
           return this.__registry[key];
         }, this);
-    },
+    }
   },
 
   /*
@@ -321,5 +321,5 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       this._onChangesDefaultConfigEditor,
       this
     );
-  },
+  }
 });

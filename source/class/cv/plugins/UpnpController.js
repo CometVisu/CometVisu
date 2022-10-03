@@ -63,7 +63,7 @@ qx.Class.define("cv.plugins.UpnpController", {
           target: "traceFlag",
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         label: {},
@@ -72,15 +72,15 @@ qx.Class.define("cv.plugins.UpnpController", {
           target: "playerPort",
           transform(value) {
             return value ? parseInt(value) : 1440;
-          },
-        },
+          }
+        }
       };
     },
 
     uniqid() {
       const newDate = new Date();
       return newDate.getTime();
-    },
+    }
   },
 
   /*
@@ -91,18 +91,18 @@ qx.Class.define("cv.plugins.UpnpController", {
   properties: {
     traceFlag: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     playerIp: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     playerPort: {
       check: "Number",
-      init: 1440,
-    },
+      init: 1440
+    }
   },
 
   /*
@@ -118,7 +118,7 @@ qx.Class.define("cv.plugins.UpnpController", {
       const id = "upnpcontroller_" + this.self(arguments).uniqid();
       this.upnpcontroller_uid = id;
       const ret_val =
-        '<div class="actor"><div class="upnpcontroller" id="' + id + '">';
+        "<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">";
       let controller = "<div>";
       controller +=
         "<div id='" +
@@ -348,13 +348,13 @@ qx.Class.define("cv.plugins.UpnpController", {
       }
       data = Object.assign(data, {
         player_ip_addr: this.getPlayerIp(),
-        port: this.getPlayerPort(),
+        port: this.getPlayerPort()
       });
 
       req.set({
         requestData: data,
         accept: "application/json",
-        method: "GET",
+        method: "GET"
       });
 
       req.addListener("success", callback, this);
@@ -539,7 +539,7 @@ qx.Class.define("cv.plugins.UpnpController", {
       if (this.isTraceFlag()) {
         this.debug(msg);
       }
-    },
+    }
   },
 
   defer(statics) {
@@ -550,5 +550,5 @@ qx.Class.define("cv.plugins.UpnpController", {
       cv.plugins.UpnpController
     );
     cv.ui.structure.WidgetFactory.registerClass("upnpcontroller", statics);
-  },
+  }
 });

@@ -79,18 +79,18 @@ qx.Class.define("cv.ui.structure.pure.Group", {
   properties: {
     noWidget: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     name: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     target: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -131,10 +131,10 @@ qx.Class.define("cv.ui.structure.pure.Group", {
       // heading style
       let hstyle = "";
       if (this.getAlign()) {
-        hstyle += 'style="text-align:' + this.getAlign() + '"';
+        hstyle += "style=\"text-align:" + this.getAlign() + "\"";
       }
 
-      let container = '<div class="clearfix">';
+      let container = "<div class=\"clearfix\">";
       if (this.getName()) {
         container += "<h2 " + hstyle + ">" + this.getName() + "</h2>";
       }
@@ -143,18 +143,18 @@ qx.Class.define("cv.ui.structure.pure.Group", {
       container += "</div>";
 
       return (
-        '<div class="' +
+        "<div class=\"" +
         this.getClasses() +
-        '" ' +
+        "\" " +
         this.getStyle() +
         ">" +
         container +
         "</div>"
       );
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("group", statics);
-  },
+  }
 });

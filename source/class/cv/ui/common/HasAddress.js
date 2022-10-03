@@ -32,7 +32,7 @@ qx.Mixin.define("cv.ui.common.HasAddress", {
      */
     address: {
       check: "Object",
-      init: {},
-    },
-  },
+      init: {}
+    }
+  }
 });

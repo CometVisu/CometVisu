@@ -48,6 +48,6 @@ qx.Class.define("cv.ui.structure.pure.Reload", {
       if (value > 0) {
         cv.util.Location.reload(true);
       }
-    },
-  },
+    }
+  }
 });

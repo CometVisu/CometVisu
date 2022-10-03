@@ -76,7 +76,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       // add element structure to notification-center
       const settingsRoot = qx.dom.Element.create("section", {
         id: "qxsettings",
-        html: "<div></div>",
+        html: "<div></div>"
       });
       qx.dom.Element.insertAfter(
         settingsRoot,
@@ -95,7 +95,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
           "",
           true
         ),
-        style: "float: left;",
+        style: "float: left;"
       });
 
       this._openSettings = new qx.ui.command.Command("Ctrl+S");
@@ -151,7 +151,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
         json.topic || "cv.backend",
         json
       );
-    },
+    }
   },
 
   /*
@@ -167,5 +167,5 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
   defer(statics) {
     // initialize on load but delay the call
     qx.event.Timer.once(statics.getInstance, statics, 1000);
-  },
+  }
 });

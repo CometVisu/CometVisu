@@ -30,7 +30,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
   include: [
     cv.ui.common.Operate,
     cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton,
+    cv.ui.common.HasAnimatedButton
   ],
 
   /*
@@ -41,18 +41,18 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
   properties: {
     showstatus: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     elementsPerLine: {
       check: "Number",
-      init: 2,
+      init: 2
     },
 
     buttonConfiguration: {
       check: "Object",
-      nullable: false,
-    },
+      nullable: false
+    }
   },
 
   /*
@@ -64,7 +64,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
     // overridden
     _getInnerDomString() {
       // create the actor
-      let ret_val = '<div class="actor_container" style="float:left">';
+      let ret_val = "<div class=\"actor_container\" style=\"float:left\">";
       const mapping = this.getMapping();
       const elementsPerLine = this.getElementsPerLine();
 
@@ -88,7 +88,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
 
         if (label) {
           ret_val +=
-            '<div class="actor switchUnpressed"><div class="value">' +
+            "<div class=\"actor switchUnpressed\"><div class=\"value\">" +
             label +
             "</div></div>";
         }
@@ -162,10 +162,10 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
           this
         );
       }, this);
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("multitrigger", statics);
-  },
+  }
 });

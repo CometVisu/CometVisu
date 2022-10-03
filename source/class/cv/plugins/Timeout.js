@@ -72,10 +72,10 @@ qx.Class.define("cv.plugins.Timeout", {
           default: false,
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   /*
@@ -86,18 +86,18 @@ qx.Class.define("cv.plugins.Timeout", {
   properties: {
     target: {
       check: "String",
-      init: "id_",
+      init: "id_"
     },
 
     time: {
       check: "Number",
-      init: 600,
+      init: 600
     },
 
     debug: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -186,7 +186,7 @@ qx.Class.define("cv.plugins.Timeout", {
           pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
         }
       }
-    },
+    }
   },
 
   /*
@@ -201,5 +201,5 @@ qx.Class.define("cv.plugins.Timeout", {
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("timeout", cv.plugins.Timeout);
     cv.ui.structure.WidgetFactory.registerClass("timeout", statics);
-  },
+  }
 });

@@ -31,32 +31,32 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "fs-tree-item",
+      init: "fs-tree-item"
     },
 
     editing: {
       check: "Boolean",
       init: false,
-      apply: "_applyEditing",
+      apply: "_applyEditing"
     },
 
     name: {
       check: "String",
       init: "",
-      event: "changeName",
+      event: "changeName"
     },
 
     temporary: {
       check: "Boolean",
       init: false,
-      apply: "_applyTemporary",
+      apply: "_applyTemporary"
     },
 
     status: {
       check: ["valid", "error"],
       nullable: true,
-      apply: "_applyStatus",
-    },
+      apply: "_applyStatus"
+    }
   },
 
   /*
@@ -107,7 +107,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
           value.bind("valid", this, "status", {
             converter(value) {
               return value === true ? "valid" : "error";
-            },
+            }
           });
         }
         value.bind("temporary", this, "temporary");
@@ -167,7 +167,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
           control = new qx.ui.form.TextField();
           control.addListener("keypress", this._onKeypress, this);
           control.exclude();
-          control.addListener("changeVisibility", (ev) => {
+          control.addListener("changeVisibility", ev => {
             if (ev.getData() === "visible") {
               this.getChildControl("label").exclude();
             } else {
@@ -182,6 +182,6 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
-  },
+    }
+  }
 });

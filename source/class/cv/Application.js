@@ -143,7 +143,7 @@ qx.Class.define("cv.Application", {
         window[shortcutName] = command;
         this.consoleCommands.push(shortcutName + "() - " + help);
       }
-    },
+    }
   },
 
   /*
@@ -153,7 +153,7 @@ qx.Class.define("cv.Application", {
   */
   properties: {
     root: {
-      nullable: true,
+      nullable: true
     },
 
     /**
@@ -163,41 +163,41 @@ qx.Class.define("cv.Application", {
       check: "Boolean",
       init: false,
       event: "changeStructureLoaded",
-      apply: "_applyStructureLoaded",
+      apply: "_applyStructureLoaded"
     },
 
     commandManager: {
       check: "qx.ui.command.GroupManager",
-      deferredInit: true,
+      deferredInit: true
     },
 
     active: {
       check: "Boolean",
       init: true,
-      event: "changeActive",
+      event: "changeActive"
     },
 
     inManager: {
       check: "Boolean",
       init: false,
-      apply: "_applyInManager",
+      apply: "_applyInManager"
     },
 
     managerDisabled: {
       check: "Boolean",
       init: false,
-      event: "changeManagerDisabled",
+      event: "changeManagerDisabled"
     },
 
     managerDisabledReason: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     managerChecked: {
       check: "Boolean",
       init: false,
-      apply: "_applyManagerChecked",
+      apply: "_applyManagerChecked"
     },
 
     /**
@@ -207,8 +207,8 @@ qx.Class.define("cv.Application", {
       check: "Boolean",
       init: false,
       event: "changeMobile",
-      apply: "_applyMobile",
-    },
+      apply: "_applyMobile"
+    }
   },
 
   /*
@@ -376,7 +376,7 @@ qx.Class.define("cv.Application", {
           title: qx.locale.Manager.tr("Manager is not available"),
           message: this.getManagerDisabledReason(),
           severity: "high",
-          deletable: true,
+          deletable: true
         };
 
         cv.core.notifications.Router.dispatchMessage(
@@ -445,10 +445,10 @@ qx.Class.define("cv.Application", {
         handler: handlerId,
         handlerOptions: Object.assign(
           {
-            jumpToError: true,
+            jumpToError: true
           },
           options ? options : {}
-        ),
+        )
       };
 
       if (this.isInManager()) {
@@ -459,7 +459,7 @@ qx.Class.define("cv.Application", {
       // remove any config error messages shown
       cv.core.notifications.Router.dispatchMessage("cv.config.error", {
         topic: "cv.config.error",
-        condition: false,
+        condition: false
       });
     },
 
@@ -476,14 +476,14 @@ qx.Class.define("cv.Application", {
         topic: "cv.config.validation",
         severity: "normal",
         deletable: true,
-        unique: true,
+        unique: true
       };
 
       cv.core.notifications.Router.dispatchMessage(
         notification.topic,
         Object.assign({}, notification, {
           target: "toast",
-          message: qx.locale.Manager.tr("Validating configuration file..."),
+          message: qx.locale.Manager.tr("Validating configuration file...")
         })
       );
 
@@ -501,13 +501,13 @@ qx.Class.define("cv.Application", {
       }
       worker
         .validateConfig(url)
-        .then((res) => {
+        .then(res => {
           // remove the toast information
           cv.core.notifications.Router.dispatchMessage(
             notification.topic,
             Object.assign({}, notification, {
               target: "toast",
-              condition: false,
+              condition: false
             })
           );
 
@@ -521,7 +521,7 @@ qx.Class.define("cv.Application", {
                   "The %1 configuration has no errors!",
                   displayConfigName
                 ),
-                icon: "message_ok",
+                icon: "message_ok"
               })
             );
           } else {
@@ -544,18 +544,18 @@ qx.Class.define("cv.Application", {
                         qx.core.Init.getApplication().showConfigErrors(
                           configName
                         );
-                      },
-                    },
-                  ],
+                      }
+                    }
+                  ]
                 },
 
                 severity: "high",
-                icon: "message_attention",
+                icon: "message_attention"
               })
             );
           }
         })
-        .catch((err) => {
+        .catch(err => {
           this.error(err);
         });
     },
@@ -641,7 +641,7 @@ qx.Class.define("cv.Application", {
         actions: {
           optionGroup: {
             title: qx.locale.Manager.tr("Enable on reload:"),
-            options: [],
+            options: []
           },
 
           link: [
@@ -672,10 +672,10 @@ qx.Class.define("cv.Application", {
                 }
                 cv.util.Location.setHref(url);
               },
-              needsConfirmation: false,
-            },
-          ],
-        },
+              needsConfirmation: false
+            }
+          ]
+        }
       };
 
       // reload with reporting checkbox
@@ -683,11 +683,11 @@ qx.Class.define("cv.Application", {
       if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === "de") {
           link =
-            ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+            " <a href=\"https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen\" target=\"_blank\" title=\"Hilfe\">(?)</a>";
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr("Action recording") + link,
-          name: "enableReporting",
+          name: "enableReporting"
         });
       }
 
@@ -701,19 +701,19 @@ qx.Class.define("cv.Application", {
               Sentry.captureException(ex);
             },
             needsConfirmation: false,
-            deleteMessageAfterExecution: true,
+            deleteMessageAfterExecution: true
           });
         } else {
           link = "";
           if (qx.locale.Manager.getInstance().getLanguage() === "de") {
             link =
-              ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+              " <a href=\"https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors\" target=\"_blank\" title=\"Hilfe\">(?)</a>";
           }
           notification.actions.optionGroup.options.push({
             title:
               qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
             name: "reportErrors",
-            style: "margin-left: 18px",
+            style: "margin-left: 18px"
           });
         }
       }
@@ -727,7 +727,7 @@ qx.Class.define("cv.Application", {
       true() {
         window.onerror(new Error("test error"));
       },
-      false: null,
+      false: null
     }),
 
     _onResize() {
@@ -779,7 +779,7 @@ qx.Class.define("cv.Application", {
       });
 
       // reaction on browser back button
-      qx.bom.History.getInstance().addListener("request", (e) => {
+      qx.bom.History.getInstance().addListener("request", e => {
         const anchor = e.getData();
         if (this.isInManager() && anchor !== "manager") {
           this.hideManager();
@@ -933,7 +933,7 @@ qx.Class.define("cv.Application", {
      */
     loadPlugins() {
       const plugins = cv.Config.configSettings.pluginsToLoad.slice();
-      cv.Config.pluginsToLoad.forEach((name) => {
+      cv.Config.pluginsToLoad.forEach(name => {
         if (!plugins.includes(name)) {
           plugins.push(name);
         }
@@ -945,7 +945,7 @@ qx.Class.define("cv.Application", {
         let allPluginsQueued = false;
         this.debug("loading plugins");
         if (!partsLoaded) {
-          engine.addListener("changePartsLoaded", (ev) => {
+          engine.addListener("changePartsLoaded", ev => {
             if (ev.getData() === true) {
               this.debug("plugins loaded");
               partsLoaded = true;
@@ -985,7 +985,7 @@ qx.Class.define("cv.Application", {
           if (this.getStructureLoaded()) {
             cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
           } else {
-            const lid = this.addListener("changeStructureLoaded", (ev) => {
+            const lid = this.addListener("changeStructureLoaded", ev => {
               if (ev.getData() === true) {
                 allPluginsQueued = true;
                 this.debug("loading standalone plugins");
@@ -1085,27 +1085,27 @@ qx.Class.define("cv.Application", {
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
           method: "GET",
-          accept: "application/json",
+          accept: "application/json"
         });
 
-        xhr.addListenerOnce("success", (e) => {
+        xhr.addListenerOnce("success", e => {
           const req = e.getTarget();
           const env = req.getResponse();
           const serverVersionId = env.PHP_VERSION_ID;
           const orParts = env.required_php_version
             .split("||")
-            .map((e) => e.trim());
-          const passed = orParts.map((orConstraint) => {
+            .map(e => e.trim());
+          const passed = orParts.map(orConstraint => {
             const andParts = orConstraint
               .split(/(\s+|&{2})/)
-              .map((e) => e.trim());
+              .map(e => e.trim());
             // pass when no failed andPart has been found
-            return !andParts.some((constraint) =>
+            return !andParts.some(constraint =>
               this.__constraintFails(serverVersionId, constraint)
             );
           });
           // one of the OR constraints need to pass
-          const enable = passed.some((res) => res === true);
+          const enable = passed.some(res => res === true);
           if (enable) {
             this.info("Manager available for PHP version", env.phpversion);
           } else {
@@ -1140,7 +1140,7 @@ qx.Class.define("cv.Application", {
             });
           }
         });
-        xhr.addListener("statusError", (e) => {
+        xhr.addListener("statusError", e => {
           this.setManagerChecked(true);
         });
         xhr.send();
@@ -1174,8 +1174,8 @@ qx.Class.define("cv.Application", {
                 command: "configure",
                 message: {
                   forceReload: cv.Config.forceReload,
-                  debug: qx.core.Environment.get("qx.debug"),
-                },
+                  debug: qx.core.Environment.get("qx.debug")
+                }
               };
 
               if (reg.active) {
@@ -1202,6 +1202,6 @@ qx.Class.define("cv.Application", {
           }.bind(this)
         );
       }
-    },
-  },
+    }
+  }
 });

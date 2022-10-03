@@ -34,23 +34,23 @@ qx.Class.define("cv.plugins.Link", {
   properties: {
     cssClass: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     text: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     href: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     newWindow: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -89,10 +89,10 @@ qx.Class.define("cv.plugins.Link", {
           default: false,
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   /*
@@ -106,26 +106,26 @@ qx.Class.define("cv.plugins.Link", {
       if (this.getCssClass()) {
         classes += " " + this.getCssClass();
       }
-      const href = this.getHref() ? ' href="' + this.getHref() + '"' : "";
+      const href = this.getHref() ? " href=\"" + this.getHref() + "\"" : "";
       let attributes = "";
       if (this.isNewWindow()) {
-        attributes += ' target="_blank"';
+        attributes += " target=\"_blank\"";
       }
       return (
-        '<a class="' +
+        "<a class=\"" +
         classes +
-        '"' +
+        "\"" +
         href +
         attributes +
         ">" +
         this.getText() +
         "</a>"
       );
-    },
+    }
   },
 
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("link", cv.plugins.Link);
     cv.ui.structure.WidgetFactory.registerClass("link", statics);
-  },
+  }
 });

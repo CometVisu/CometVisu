@@ -99,6 +99,6 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
       }
       const actionHandler = new this.__handlers[type](config);
       return actionHandler.getDomElement();
-    },
-  },
+    }
+  }
 });

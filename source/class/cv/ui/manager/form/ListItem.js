@@ -38,7 +38,7 @@ qx.Class.define("cv.ui.manager.form.ListItem", {
           control.set({
             anonymous: true,
             scale: true,
-            maxHeight: 64,
+            maxHeight: 64
           });
 
           this._addAt(control, 0);
@@ -49,6 +49,6 @@ qx.Class.define("cv.ui.manager.form.ListItem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
-  },
+    }
+  }
 });

@@ -43,49 +43,49 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "element-tree-item",
+      init: "element-tree-item"
     },
 
     name: {
       check: "String",
       init: "",
       event: "changeName",
-      apply: "_applyName",
+      apply: "_applyName"
     },
 
     temporary: {
       check: "Boolean",
       init: false,
-      apply: "_applyTemporary",
+      apply: "_applyTemporary"
     },
 
     status: {
       check: ["valid", "error", "comment"],
       nullable: true,
-      apply: "_applyStatus",
+      apply: "_applyStatus"
     },
 
     editable: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     sortable: {
       check: "Boolean",
       init: false,
-      apply: "_applySortable",
+      apply: "_applySortable"
     },
 
     droppable: {
       refine: true,
-      init: true,
+      init: true
     },
 
     dragging: {
       check: "Boolean",
       init: false,
-      apply: "_applyDragging",
-    },
+      apply: "_applyDragging"
+    }
   },
 
   /*
@@ -95,7 +95,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
   */
   events: {
     edit: "qx.event.type.Data",
-    action: "qx.event.type.Data",
+    action: "qx.event.type.Data"
   },
 
   /*
@@ -103,15 +103,15 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
     MEMBERS
   ***********************************************
   */
+  /* eslint-disable @qooxdoo/qx/no-refs-in-members */
   members: {
-    // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
      */
     _forwardStates: {
       selected: true,
-      touch: true,
+      touch: true
     },
 
     __labelAdded: false,
@@ -194,7 +194,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
             anonymous: true,
             source: this.getIcon(),
             maxWidth: 22,
-            maxHeight: 22,
+            maxHeight: 22
           });
 
           break;
@@ -227,7 +227,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
             ),
             new cv.ui.manager.contextmenu.ConfigElement()
           );
-          control.getMenu().addListener("action", (ev) => {
+          control.getMenu().addListener("action", ev => {
             this.fireDataEvent("action", ev.getData());
           });
           this.getChildControl("buttons").addAt(control, 1);
@@ -256,6 +256,6 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
       const buttons = this.getChildControl("buttons");
       this._add(buttons);
       this.__labelAdded = true;
-    },
-  },
+    }
+  }
 });

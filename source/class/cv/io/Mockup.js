@@ -58,19 +58,19 @@ qx.Class.define("cv.io.Mockup", {
   properties: {
     dataReceived: {
       check: "Boolean",
-      init: true,
+      init: true
     },
 
     server: {
       check: "String",
-      init: "Mockup",
+      init: "Mockup"
     },
 
     connected: {
       check: "Boolean",
       init: true,
-      event: "changeConnected",
-    },
+      event: "changeConnected"
+    }
   },
 
   /*
@@ -93,7 +93,7 @@ qx.Class.define("cv.io.Mockup", {
     __loadTestData() {
       // load the demo data to fill the visu with some values
       const r = new qx.io.request.Xhr(qx.core.Environment.get("cv.testMode"));
-      r.addListener("success", (e) => {
+      r.addListener("success", e => {
         cv.Config.initialDemoData = e.getTarget().getResponse();
         this.__applyTestData();
       });
@@ -107,17 +107,17 @@ qx.Class.define("cv.io.Mockup", {
       const now = Date.now();
       for (let url in this.__xhr) {
         if (url.startsWith("rrd")) {
-          this.__xhr[url].forEach((d) => {
+          this.__xhr[url].forEach(d => {
             const data = d.body;
             const offset = now - data[data.length - 1][0];
-            data.forEach((entry) => (entry[0] += offset));
+            data.forEach(entry => (entry[0] += offset));
           });
         } else if (url.startsWith("resource/plugin/rsslog.php")) {
-          this.__xhr[url].forEach((d) => {
+          this.__xhr[url].forEach(d => {
             const data = d.body.responseData.feed.entries;
             let date = new Date();
             date.setDate(date.getDate() - 1);
-            data.forEach((entry) => {
+            data.forEach(entry => {
               entry.publishedDate = date.toUTCString();
               date.setTime(date.getTime() + 60 * 60 * 1000);
             });
@@ -239,7 +239,7 @@ qx.Class.define("cv.io.Mockup", {
         "getAllResponseHeaders",
         "addEventListener",
         "overrideMimeType",
-        "removeEventListener",
+        "removeEventListener"
       ].forEach(function (method) {
         fakeXhr[method] = function () {
           return xhr[method].apply(xhr, arguments);
@@ -308,7 +308,7 @@ qx.Class.define("cv.io.Mockup", {
           if (cv.Config.initialDemoData) {
             this.receive({
               i: new Date().getTime(),
-              d: cv.Config.initialDemoData.states,
+              d: cv.Config.initialDemoData.states
             });
 
             if (cv.Config.initialDemoData.sequence) {
@@ -351,7 +351,7 @@ qx.Class.define("cv.io.Mockup", {
         function () {
           this.receive({
             i: new Date().getTime(),
-            d: this.__sequence[this.__sequenceIndex].data,
+            d: this.__sequence[this.__sequenceIndex].data
           });
 
           this.__sequenceIndex++;
@@ -417,7 +417,7 @@ qx.Class.define("cv.io.Mockup", {
               }
               const update = {
                 i: new Date().getTime(),
-                d: {},
+                d: {}
               };
 
               update.d[simulation.targetAddress] = newValue;
@@ -460,7 +460,7 @@ qx.Class.define("cv.io.Mockup", {
       const lastWrite = {
         address: address,
         value: value,
-        ts: ts,
+        ts: ts
       };
 
       if (
@@ -472,7 +472,7 @@ qx.Class.define("cv.io.Mockup", {
         // send update
         const answer = {
           i: ts,
-          d: {},
+          d: {}
         };
 
         if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
@@ -537,6 +537,6 @@ qx.Class.define("cv.io.Mockup", {
     },
     getProviderConvertFunction(name, format) {
       return null;
-    },
-  },
+    }
+  }
 });

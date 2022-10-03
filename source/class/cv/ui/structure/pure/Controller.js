@@ -30,9 +30,9 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
   construct() {
     super();
     this.__HTML_STRUCT =
-      '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
+      "<div id=\"top\" class=\"loading\"><div class=\"nav_path\">-</div></div><div id=\"navbarTop\" class=\"loading\"></div><div id=\"centerContainer\" class=\"clearfix\"><div id=\"navbarLeft\" class=\"loading page\"></div><div id=\"main\" style=\"position:relative; overflow: hidden;\" class=\"loading\"><div id=\"pages\" style=\"position:relative;clear:both;\"><!-- all pages will be inserted here --></div></div><div id=\"navbarRight\" class=\"loading page\"></div></div><div id=\"navbarBottom\" class=\"loading\"></div><div id=\"bottom\" class=\"loading\"><hr /><div class=\"footer\"></div></div>";
     this.__supportedFeatures = {
-      cache: true,
+      cache: true
     };
 
     // load basic CSS rules shared by all designs that support this structure
@@ -51,12 +51,12 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
     currentPage: {
       check: "cv.ui.structure.pure.Page",
       nullable: true,
-      event: "changeCurrentPage",
+      event: "changeCurrentPage"
     },
 
     renderTarget: {
       check: "String",
-      init: "#pages",
+      init: "#pages"
     },
 
     /**
@@ -64,8 +64,8 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
      */
     namespace: {
       check: "String",
-      init: "",
-    },
+      init: ""
+    }
   },
 
   /*
@@ -93,7 +93,7 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
       if (pagesElement.getAttribute("backend-url") !== null) {
         settings.backendUrl = pagesElement.getAttribute("backend-url");
         this.error(
-          'The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.'
+          "The useage of \"backend-url\" is deprecated. Please use \"backend-knxd-url\", \"backend-mqtt-url\" or \"backend-openhab-url\" instead."
         );
       }
       if (pagesElement.getAttribute("backend-knxd-url") !== null) {
@@ -247,10 +247,10 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
         return "";
       }
       let ret_val =
-        '<div class="' +
+        "<div class=\"" +
         (labelClass !== undefined ? labelClass : "label") +
-        '"' +
-        (style ? ' style="' + style + '"' : "") +
+        "\"" +
+        (style ? " style=\"" + style + "\"" : "") +
         ">";
 
       Array.prototype.forEach.call(label.childNodes, function (elem) {
@@ -497,7 +497,7 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
         return startpage;
       }
       // wait for DOM to be ready and detect the page id then
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         qx.event.message.Bus.subscribe("setup.dom.finished.before", () => {
           cv.Config.initialPage = this.getPageIdByPath(startpage) || "id_";
           resolve(cv.Config.initialPage);
@@ -575,7 +575,7 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
       //      console.log("Page: "+page_name+", Scope: "+scope);
       const selector =
         scope !== undefined && scope !== null
-          ? '.page[id^="' + scope + '"] h1'
+          ? ".page[id^=\"" + scope + "\"] h1"
           : ".page h1";
       let pages = document.querySelectorAll(selector);
       pages = Array.from(pages).filter(function (h) {
@@ -637,7 +637,7 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
       }
       // not found
       return null;
-    },
+    }
   },
 
   /*
@@ -655,5 +655,5 @@ qx.Class.define("cv.ui.structure.pure.Controller", {
 
   defer(statics) {
     cv.Application.structureController = statics.getInstance();
-  },
+  }
 });

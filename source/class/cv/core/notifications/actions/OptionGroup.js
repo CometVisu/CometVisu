@@ -45,13 +45,13 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
   properties: {
     title: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     options: {
       check: "Array",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -74,7 +74,7 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
       const content = this.getTitle() + " ";
       const container = qx.dom.Element.create("div", {
         style: this.getStyle(),
-        html: content,
+        html: content
       });
 
       this.getOptions().forEach(function (option) {
@@ -86,7 +86,7 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
         );
       });
       return container;
-    },
+    }
   },
 
   defer() {
@@ -94,5 +94,5 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
       "optionGroup",
       cv.core.notifications.actions.OptionGroup
     );
-  },
+  }
 });

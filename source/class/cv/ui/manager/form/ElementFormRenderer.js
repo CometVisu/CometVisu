@@ -33,7 +33,7 @@ qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
         this._add(this._createHeader(title), {
           row: this._row,
           column: 0,
-          colSpan: 2,
+          colSpan: 2
         });
 
         this._row++;
@@ -57,25 +57,25 @@ qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
           this._add(label, {
             row: this._row,
             column: 0,
-            colSpan: 2,
+            colSpan: 2
           });
         } else if (!names[i]) {
           this._add(widget, {
             row: this._row,
             column: 0,
-            colSpan: 2,
+            colSpan: 2
           });
         } else {
           label = this._createLabel(names[i], item);
           label.setRich(true);
           this._add(label, {
             row: this._row,
-            column: 0,
+            column: 0
           });
 
           this._add(widget, {
             row: this._row,
-            column: 1,
+            column: 1
           });
         }
         this._row++;
@@ -85,7 +85,7 @@ qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
           label.setAppearance("helptext");
           this._add(label, {
             row: this._row,
-            column: 1,
+            column: 1
           });
 
           this._row++;
@@ -93,7 +93,7 @@ qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
         this._add(new qx.ui.menu.Separator(), {
           row: this._row,
           column: 0,
-          colSpan: 2,
+          colSpan: 2
         });
 
         this._row++;
@@ -101,6 +101,6 @@ qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
           widget.focus();
         }
       }
-    },
-  },
+    }
+  }
 });

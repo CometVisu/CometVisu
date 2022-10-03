@@ -27,11 +27,11 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
   ***********************************************
   */
   statics: {
-    openedPopups: [],
+    openedPopups: []
   },
 
   events: {
-    closed: "qx.event.type.Event",
+    closed: "qx.event.type.Event"
   },
 
   /*
@@ -121,7 +121,7 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
         this.close();
         ev.preventDefault();
       }
-    },
+    }
   },
 
   /*
@@ -137,5 +137,5 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
       this
     );
     this._childPopup = null;
-  },
+  }
 });

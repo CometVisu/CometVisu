@@ -44,28 +44,28 @@ qx.Class.define("cv.ui.structure.pure.Unknown", {
   properties: {
     path: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     $$type: {
       check: "String",
-      init: "Unknown",
+      init: "Unknown"
     },
 
     unknownType: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     pageType: {
       check: ["text", "2d", "3d"],
-      init: "text",
+      init: "text"
     },
 
     parentWidget: {
       check: "cv.ui.structure.pure.AbstractBasicWidget",
-      init: null,
-    },
+      init: null
+    }
   },
 
   /*
@@ -88,14 +88,14 @@ qx.Class.define("cv.ui.structure.pure.Unknown", {
      */
     getDomString() {
       return (
-        '<div class="widget clearfix"><pre>' +
+        "<div class=\"widget clearfix\"><pre>" +
         qx.locale.Manager.tr("unknown: %1", this.getUnknownType()) +
         "</pre></div>"
       );
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("unknown", statics);
-  },
+  }
 });

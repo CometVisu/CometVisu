@@ -60,17 +60,17 @@ qx.Class.define("cv.parser.pure.widgets.ImageTrigger", {
         type: { target: "updateType", default: "" },
         src: {},
         suffix: {},
-        sendValue: { default: "" },
+        sendValue: { default: "" }
       };
     },
     getDefaultClasses(type) {
       // additional image class
       return "widget clearfix image " + type.toLowerCase();
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("imagetrigger", statics);
-  },
+  }
 });

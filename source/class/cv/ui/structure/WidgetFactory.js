@@ -93,6 +93,6 @@ qx.Class.define("cv.ui.structure.WidgetFactory", {
 
     clear() {
       this.registry = {};
-    },
-  },
+    }
+  }
 });

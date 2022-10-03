@@ -44,7 +44,7 @@ qx.Class.define("cv.ui.structure.pure.DesignToggle", {
     const store = new qx.data.store.Json(
       cv.io.rest.Client.getBaseUrl() + "/data/designs"
     );
-    store.addListener("loaded", (ev) => {
+    store.addListener("loaded", ev => {
       this.setAvailableDesigns(ev.getData());
     });
   },
@@ -55,7 +55,7 @@ qx.Class.define("cv.ui.structure.pure.DesignToggle", {
    ******************************************************
    */
   properties: {
-    availableDesigns: { check: "Array", init: [] },
+    availableDesigns: { check: "Array", init: [] }
   },
 
   /*
@@ -67,7 +67,7 @@ qx.Class.define("cv.ui.structure.pure.DesignToggle", {
     // overridden
     _getInnerDomString() {
       return (
-        '<div class="actor switchUnpressed"><div class="value">' +
+        "<div class=\"actor switchUnpressed\"><div class=\"value\">" +
         cv.Config.getDesign() +
         "</div></div>"
       );
@@ -101,17 +101,17 @@ qx.Class.define("cv.ui.structure.pure.DesignToggle", {
       } else {
         const parts = cv.util.Location.getHref().split("#");
         let req = qx.util.Uri.appendParamsToUrl(parts[0], {
-          design: newDesign,
+          design: newDesign
         });
         if (parts.length > 1) {
           req += "#" + parts[1];
         }
         cv.util.Location.setHref(req);
       }
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("designtoggle", statics);
-  },
+  }
 });

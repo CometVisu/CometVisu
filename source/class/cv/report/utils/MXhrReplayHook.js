@@ -59,6 +59,6 @@ qx.Mixin.define("cv.report.utils.MXhrReplayHook", {
           cv.report.utils.FakeServer.unqueueResponse(this._getConfiguredUrl());
         }
       }
-    },
-  },
+    }
+  }
 });

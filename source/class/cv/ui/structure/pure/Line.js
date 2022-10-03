@@ -42,9 +42,9 @@ qx.Class.define("cv.ui.structure.pure.Line", {
     getDomString() {
       return (
         "<hr " +
-        (this.getClasses() ? 'class="' + this.getClasses() + '"' : "") +
+        (this.getClasses() ? "class=\"" + this.getClasses() + "\"" : "") +
         "/>"
       );
-    },
-  },
+    }
+  }
 });

@@ -144,7 +144,7 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       this.__olid = null;
       this.__ilid = null;
       this.__downTarget = null;
-    },
+    }
   },
 
   /*
@@ -159,5 +159,5 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       this.buttonReleased,
       this
     );
-  },
+  }
 });

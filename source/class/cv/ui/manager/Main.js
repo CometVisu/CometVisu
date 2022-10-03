@@ -31,7 +31,7 @@ qx.Class.define("cv.ui.manager.Main", {
 
   implement: [
     cv.ui.manager.IActionHandler,
-    cv.ui.manager.control.IFileEventHandler,
+    cv.ui.manager.control.IFileEventHandler
   ],
 
   /*
@@ -57,7 +57,7 @@ qx.Class.define("cv.ui.manager.Main", {
     qx.ui.tooltip.Manager.getInstance();
 
     //qx.event.Registration.addListener(window, 'beforeunload', this._onBeforeUnload, this);
-    window.addEventListener("beforeunload", (event) => {
+    window.addEventListener("beforeunload", event => {
       this._onBeforeUnload(event);
     });
   },
@@ -68,7 +68,7 @@ qx.Class.define("cv.ui.manager.Main", {
   ***********************************************
   */
   statics: {
-    ROOT: null,
+    ROOT: null
   },
 
   /*
@@ -79,7 +79,7 @@ qx.Class.define("cv.ui.manager.Main", {
   properties: {
     openFiles: {
       check: "qx.data.Array",
-      deferredInit: true,
+      deferredInit: true
     },
 
     /**
@@ -88,41 +88,41 @@ qx.Class.define("cv.ui.manager.Main", {
     writeableFolder: {
       check: "Boolean",
       init: false,
-      event: "changeWriteableFolder",
+      event: "changeWriteableFolder"
     },
 
     currentFolder: {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
       apply: "_applyCurrentFolder",
-      event: "changeCurrentFolder",
+      event: "changeCurrentFolder"
     },
 
     currentSelection: {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
       apply: "_applyCurrentSelection",
-      event: "changeCurrentSelection",
+      event: "changeCurrentSelection"
     },
 
     deleteableSelection: {
       check: "Boolean",
       init: false,
-      event: "changeDeleteableSelection",
+      event: "changeDeleteableSelection"
     },
 
     renameableSelection: {
       check: "Boolean",
       init: false,
-      event: "changeRenameableSelection",
+      event: "changeRenameableSelection"
     },
 
     visible: {
       check: "Boolean",
       init: true,
       event: "changeVisible",
-      apply: "_applyVisible",
-    },
+      apply: "_applyVisible"
+    }
   },
 
   /*
@@ -266,7 +266,7 @@ qx.Class.define("cv.ui.manager.Main", {
           break;
 
         case "quit":
-          unsavedFiles = this.getOpenFiles().filter((openFile) =>
+          unsavedFiles = this.getOpenFiles().filter(openFile =>
             openFile.getFile().isModified()
           );
 
@@ -277,7 +277,7 @@ qx.Class.define("cv.ui.manager.Main", {
               ),
               callback(confirmed) {
                 if (confirmed) {
-                  unsavedFiles.forEach((openFile) => {
+                  unsavedFiles.forEach(openFile => {
                     openFile.save();
                   });
                 }
@@ -288,7 +288,7 @@ qx.Class.define("cv.ui.manager.Main", {
               caption: qx.locale.Manager.tr("Unsaved changes"),
               yesButtonLabel: qx.locale.Manager.tr("Save & quit"),
               noButtonLabel: qx.locale.Manager.tr("Quit without saving"),
-              useBlocker: true,
+              useBlocker: true
             });
 
             dialog.show();
@@ -404,7 +404,7 @@ qx.Class.define("cv.ui.manager.Main", {
     },
 
     _onBeforeUnload(ev) {
-      const unsavedFiles = this.getOpenFiles().filter((openFile) =>
+      const unsavedFiles = this.getOpenFiles().filter(openFile =>
         openFile.getFile().isModified()
       );
       if (unsavedFiles.length > 0) {
@@ -444,7 +444,7 @@ qx.Class.define("cv.ui.manager.Main", {
     __findConfigFile(name) {
       let file = null;
       let demoFolder = null;
-      cv.ui.manager.model.FileItem.ROOT.getChildren().some((child) => {
+      cv.ui.manager.model.FileItem.ROOT.getChildren().some(child => {
         if (child.getName() === "demo") {
           demoFolder = child;
         } else if (child.getName() === name) {
@@ -458,7 +458,7 @@ qx.Class.define("cv.ui.manager.Main", {
           name = name.substr(5);
         }
         // check demo configs
-        demoFolder.getChildren().some((child) => {
+        demoFolder.getChildren().some(child => {
           if (child.getName() === name) {
             file = child;
             return true;
@@ -559,7 +559,7 @@ qx.Class.define("cv.ui.manager.Main", {
         value.bind("inTrash", this, "renameableSelection", {
           converter(value) {
             return !value;
-          },
+          }
         });
       } else {
         this.resetDeleteableSelection();
@@ -626,7 +626,7 @@ qx.Class.define("cv.ui.manager.Main", {
         if (!handlerConf) {
           // no handler
           cv.ui.manager.snackbar.Controller.info(
-            qx.locale.Manager.tr('Cannot open file: "%1"', file.getName())
+            qx.locale.Manager.tr("Cannot open file: \"%1\"", file.getName())
           );
           return;
         }
@@ -721,7 +721,7 @@ qx.Class.define("cv.ui.manager.Main", {
         }
         const dialog = new qxl.dialog.Confirm({
           message: message,
-          callback: (confirmed) => {
+          callback: confirmed => {
             if (confirmed === true) {
               openFile.save();
               this.closeFile(openFile, true);
@@ -730,7 +730,7 @@ qx.Class.define("cv.ui.manager.Main", {
               if (file.isTemporary()) {
                 qx.event.message.Bus.dispatchByName("cv.manager.file", {
                   action: "deleted",
-                  path: file.getFullPath(),
+                  path: file.getFullPath()
                 });
               }
               this.closeFile(openFile, true);
@@ -745,7 +745,7 @@ qx.Class.define("cv.ui.manager.Main", {
           noButtonLabel: qx.locale.Manager.tr("Discard & close"),
           noButtonIcon: "qxl.dialog.icon.delete",
           useBlocker: true,
-          allowCancel: true,
+          allowCancel: true
         });
 
         dialog.show();
@@ -861,7 +861,7 @@ qx.Class.define("cv.ui.manager.Main", {
       if (!this.__root) {
         this.__root = qx.dom.Element.create("div", {
           id: "manager",
-          style: "position: absolute; top: 0; left: 0; right: 0; bottom: 0;",
+          style: "position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
         });
 
         qx.dom.Element.insertEnd(this.__root, document.body);
@@ -937,7 +937,7 @@ qx.Class.define("cv.ui.manager.Main", {
         context: context || null,
         value: value || null,
         caption: caption || "",
-        filter: /[\w\d_\-\.\s]/,
+        filter: /[\w\d_\-\.\s]/
       });
 
       prompt.show();
@@ -953,7 +953,7 @@ qx.Class.define("cv.ui.manager.Main", {
       let existsMessage;
       if (type === "config") {
         message = qx.locale.Manager.tr(
-          'Please enter the name of the new configuration (without "visu_config_" at the beginning and ".xml" at the end)'
+          "Please enter the name of the new configuration (without \"visu_config_\" at the beginning and \".xml\" at the end)"
         );
         existsMessage = qx.locale.Manager.tr(
           "A configuration with this name already exists."
@@ -1005,7 +1005,7 @@ qx.Class.define("cv.ui.manager.Main", {
             modified: true,
             temporary: true,
             parentFolder: currentFolder.getFullPath(),
-            content: content || "",
+            content: content || ""
           });
 
           if (type === "dir") {
@@ -1013,7 +1013,7 @@ qx.Class.define("cv.ui.manager.Main", {
             cv.io.rest.Client.getFsClient().createSync(
               {
                 path: item.getFullPath(),
-                type: type,
+                type: type
               },
               null,
               function (err) {
@@ -1025,14 +1025,14 @@ qx.Class.define("cv.ui.manager.Main", {
                   );
                   item.set({
                     modified: false,
-                    temporary: false,
+                    temporary: false
                   });
 
                   qx.event.message.Bus.dispatchByName(item.getBusTopic(), {
                     type: "created",
                     file: item,
                     data: "",
-                    source: this,
+                    source: this
                   });
                 }
               },
@@ -1081,7 +1081,7 @@ qx.Class.define("cv.ui.manager.Main", {
       this.bind("visible", root, "visibility", {
         converter(visible) {
           return visible ? "visible" : "excluded";
-        },
+        }
       });
 
       root.addListenerOnce("appear", () => {
@@ -1112,7 +1112,7 @@ qx.Class.define("cv.ui.manager.Main", {
       const snackbar = cv.ui.manager.snackbar.Controller.getInstance();
       root.add(snackbar, {
         bottom: 10,
-        left: 200,
+        left: 200
       });
 
       /**
@@ -1122,7 +1122,7 @@ qx.Class.define("cv.ui.manager.Main", {
         const bounds = root.getBounds();
         snackbar.setLayoutProperties({
           bottom: 10,
-          left: Math.round(bounds.width / 2) - 150,
+          left: Math.round(bounds.width / 2) - 150
         });
 
         snackbar.setMaxHeight(bounds.height - 40);
@@ -1157,7 +1157,7 @@ qx.Class.define("cv.ui.manager.Main", {
         readable: true,
         open: true,
         fakeChildren: [fakeIconFile],
-        icon: cv.theme.dark.Images.getIcon("home", 18),
+        icon: cv.theme.dark.Images.getIcon("home", 18)
       });
 
       this.setCurrentFolder(rootFolder);
@@ -1199,7 +1199,7 @@ qx.Class.define("cv.ui.manager.Main", {
         {
           converter(value) {
             return value ? "visible" : "excluded";
-          },
+          }
         }
       );
 
@@ -1240,7 +1240,7 @@ qx.Class.define("cv.ui.manager.Main", {
           );
           controller.bindProperty("icon", "icon", null, item, index);
           controller.bindProperty("closeable", "closeable", null, item, index);
-        },
+        }
       });
 
       list.addListener("changeSelection", this._onChangeFileSelection, this);
@@ -1285,10 +1285,10 @@ qx.Class.define("cv.ui.manager.Main", {
      "Library version"
    )}: </label><span id="lib-version">${cv.Version.LIBRARY_VERSION}</span>
  </div>
-</div>`,
+</div>`
       };
       new cv.ui.manager.dialog.BigAlert(dialogConf).show();
-    },
+    }
   },
 
   /*
@@ -1328,5 +1328,5 @@ qx.Class.define("cv.ui.manager.Main", {
 
     // destroy the singleton instance
     delete cv.ui.manager.Main.$$instance;
-  },
+  }
 });

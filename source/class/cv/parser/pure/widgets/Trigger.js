@@ -62,26 +62,26 @@ qx.Class.define("cv.parser.pure.widgets.Trigger", {
         shorttime: {
           target: "shortThreshold",
           default: -1,
-          transform: parseFloat,
+          transform: parseFloat
         },
         shortvalue: { target: "shortValue", default: "0" },
         "send-long-on-release": {
           target: "sendLongOnRelease",
           transform(value) {
             return value ? value === "true" : true;
-          },
-        },
+          }
+        }
       };
     },
 
     makeAddressListFn(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [true, variant === "short" ? 1 : variant === "button" ? 2 : 1 | 2];
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("trigger", statics);
-  },
+  }
 });

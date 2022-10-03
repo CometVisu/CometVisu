@@ -27,6 +27,6 @@ qx.Interface.define("cv.ui.manager.control.IFileEventHandler", {
   ***********************************************
   */
   members: {
-    _handleFileEvent(ev) {},
-  },
+    _handleFileEvent(ev) {}
+  }
 });

@@ -65,6 +65,6 @@ qx.Class.define("cv.util.Location", {
      */
     open(url, target) {
       window.open(url, target);
-    },
-  },
+    }
+  }
 });

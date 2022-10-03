@@ -53,6 +53,6 @@ qx.Interface.define("cv.ui.manager.IActionHandler", {
      * @param actionId {String} ID of the action that button triggers
      * @param button {Widget}
      */
-    unConfigureButton(actionId, button) {},
-  },
+    unConfigureButton(actionId, button) {}
+  }
 });

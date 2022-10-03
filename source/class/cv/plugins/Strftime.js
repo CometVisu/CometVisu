@@ -35,13 +35,13 @@ qx.Class.define("cv.plugins.Strftime", {
   properties: {
     format: {
       check: "String",
-      init: "%c",
+      init: "%c"
     },
 
     locale: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -77,7 +77,7 @@ qx.Class.define("cv.plugins.Strftime", {
     getAttributeToPropertyMappings() {
       return {
         lang: { target: "locale" },
-        format: { default: "%c" },
+        format: { default: "%c" }
       };
     },
 
@@ -92,7 +92,7 @@ qx.Class.define("cv.plugins.Strftime", {
       if (!this.__timer.isEnabled()) {
         this.__timer.start();
       }
-    },
+    }
   },
 
   /*
@@ -105,7 +105,7 @@ qx.Class.define("cv.plugins.Strftime", {
     __valueElement: null,
 
     _getInnerDomString() {
-      return '<div class="strftime_value"></div>';
+      return "<div class=\"strftime_value\"></div>";
     },
 
     // overridden
@@ -128,7 +128,7 @@ qx.Class.define("cv.plugins.Strftime", {
       const d = new Date();
       d.locale = this.getLocale();
       elem.innerText = d.strftime(this.getFormat());
-    },
+    }
   },
 
   /*
@@ -160,7 +160,7 @@ qx.Class.define("cv.plugins.Strftime", {
         "Mittwoch",
         "Donnerstag",
         "Freitag",
-        "Samstag",
+        "Samstag"
       ],
       b: [
         "Jan",
@@ -174,7 +174,7 @@ qx.Class.define("cv.plugins.Strftime", {
         "Sep",
         "Okt",
         "Nov",
-        "Dez",
+        "Dez"
       ],
       B: [
         "Januar",
@@ -188,13 +188,13 @@ qx.Class.define("cv.plugins.Strftime", {
         "September",
         "Oktober",
         "November",
-        "Dezember",
+        "Dezember"
       ],
       c: "%a %d %b %Y %T %Z",
       p: ["", ""],
       P: ["", ""],
       x: "%d.%m.%Y",
-      X: "%T",
+      X: "%T"
     };
 
     Date.ext.locales.fr = {
@@ -206,7 +206,7 @@ qx.Class.define("cv.plugins.Strftime", {
         "mercredi",
         "jeudi",
         "vendredi",
-        "samedi",
+        "samedi"
       ],
       b: [
         "jan",
@@ -220,7 +220,7 @@ qx.Class.define("cv.plugins.Strftime", {
         "sep",
         "oct",
         "nov",
-        "déc",
+        "déc"
       ],
       B: [
         "janvier",
@@ -234,13 +234,13 @@ qx.Class.define("cv.plugins.Strftime", {
         "septembre",
         "octobre",
         "novembre",
-        "décembre",
+        "décembre"
       ],
       c: "%a %d %b %Y %T %Z",
       p: ["", ""],
       P: ["", ""],
       x: "%d.%m.%Y",
-      X: "%T",
+      X: "%T"
     };
-  },
+  }
 });

@@ -54,7 +54,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
     info(message) {
       const msg = new cv.ui.manager.model.Message();
       msg.set({
-        title: message,
+        title: message
       });
 
       qx.event.message.Bus.dispatchByName("cv.manager.msg.snackbar", msg);
@@ -71,11 +71,11 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
       msg.set({
         title: message,
         type: "error",
-        sticky: true,
+        sticky: true
       });
 
       qx.event.message.Bus.dispatchByName("cv.manager.msg.snackbar", msg);
-    },
+    }
   },
 
   /*
@@ -86,14 +86,14 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-snackbar",
+      init: "cv-snackbar"
     },
 
     messages: {
       check: "qx.data.Array",
       deferredInit: true,
-      event: "changeMessages",
-    },
+      event: "changeMessages"
+    }
   },
 
   /*
@@ -130,7 +130,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
 
         bindItem(controller, item, index) {
           controller.bindProperty("", "model", null, item, index);
-        },
+        }
       });
     },
 
@@ -146,7 +146,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -161,5 +161,5 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
       this
     );
     this._disposeObjects("_listController");
-  },
+  }
 });

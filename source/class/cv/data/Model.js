@@ -55,7 +55,7 @@ qx.Class.define("cv.data.Model", {
 
     isWriteAddress(address) {
       return !!(address.mode & cv.data.Model.WRITE);
-    },
+    }
   },
 
   /*
@@ -66,8 +66,8 @@ qx.Class.define("cv.data.Model", {
   properties: {
     defaultBackendName: {
       check: "String",
-      init: "main",
-    },
+      init: "main"
+    }
   },
 
   /*
@@ -176,9 +176,9 @@ qx.Class.define("cv.data.Model", {
         }, this);
       } else {
         this.warn(
-          'no addresses registered for backend "' +
+          "no addresses registered for backend \"" +
             backendName +
-            '", skipping update'
+            "\", skipping update"
         );
       }
     },
@@ -400,6 +400,6 @@ qx.Class.define("cv.data.Model", {
       this.__widgetData = {};
       this.__states = {};
       this.__stateListeners = {};
-    },
-  },
+    }
+  }
 });

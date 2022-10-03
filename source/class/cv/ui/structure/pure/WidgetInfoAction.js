@@ -35,10 +35,10 @@ qx.Class.define("cv.ui.structure.pure.WidgetInfoAction", {
   properties: {
     anonymous: {
       refine: true,
-      init: true,
+      init: true
     },
 
-    childObjects: { check: "Array", init: [] },
+    childObjects: { check: "Array", init: [] }
   },
 
   /*
@@ -50,11 +50,11 @@ qx.Class.define("cv.ui.structure.pure.WidgetInfoAction", {
     // overridden
     getDomString() {
       return this.getChildrenDomString();
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("widgetinfo", statics);
     cv.ui.structure.WidgetFactory.registerClass("widgetaction", statics);
-  },
+  }
 });

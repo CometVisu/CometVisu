@@ -117,6 +117,6 @@ qx.Mixin.define("cv.ui.common.Update", {
           data.buildingProperties.floorNames[l.floorFilter];
       }
       ev.data.element.css("display", floorFilter ? "" : "none");
-    },
-  },
+    }
+  }
 });

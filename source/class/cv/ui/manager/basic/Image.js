@@ -100,7 +100,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
       event: "changeSource",
       apply: "_applySource",
       themeable: true,
-      transform: "_transformSource",
+      transform: "_transformSource"
     },
 
     /**
@@ -114,12 +114,12 @@ qx.Class.define("cv.ui.manager.basic.Image", {
       init: false,
       event: "changeScale",
       themeable: true,
-      apply: "_applyScale",
+      apply: "_applyScale"
     },
 
     forceScale: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     /**
@@ -129,7 +129,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
     forceRatio: {
       init: "auto",
       check: ["disabled", "height", "width", "auto"],
-      apply: "_applyDimension",
+      apply: "_applyDimension"
     },
 
     /**
@@ -138,38 +138,38 @@ qx.Class.define("cv.ui.manager.basic.Image", {
     allowScaleUp: {
       init: false,
       check: "Boolean",
-      apply: "_applyDimension",
+      apply: "_applyDimension"
     },
 
     // overridden
     appearance: {
       refine: true,
-      init: "image",
+      init: "image"
     },
 
     // overridden
     allowShrinkX: {
       refine: true,
-      init: false,
+      init: false
     },
 
     // overridden
     allowShrinkY: {
       refine: true,
-      init: false,
+      init: false
     },
 
     // overridden
     allowGrowX: {
       refine: true,
-      init: false,
+      init: false
     },
 
     // overridden
     allowGrowY: {
       refine: true,
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -192,12 +192,12 @@ qx.Class.define("cv.ui.manager.basic.Image", {
     loaded: "qx.event.type.Event",
 
     /** Fired when the pending request has been aborted. */
-    aborted: "qx.event.type.Event",
+    aborted: "qx.event.type.Event"
   },
 
   statics: {
     PLACEHOLDER_IMAGE:
-      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
   },
 
   /*
@@ -258,7 +258,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
     _getContentHint() {
       return {
         width: this.__width || 0,
-        height: this.__height || 0,
+        height: this.__height || 0
       };
     },
 
@@ -302,12 +302,12 @@ qx.Class.define("cv.ui.manager.basic.Image", {
       if (this.__wrapper) {
         element.getChild(0).setStyles({
           top: this.getPaddingTop() || 0,
-          left: this.getPaddingLeft() || 0,
+          left: this.getPaddingLeft() || 0
         });
       } else if (this.__getMode() === "font") {
         element.setStyles({
           top: this.getPaddingTop() || 0,
-          left: this.getPaddingLeft() || 0,
+          left: this.getPaddingLeft() || 0
         });
       } else if (element instanceof qx.html.Image) {
         element.setPadding(
@@ -332,7 +332,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
             (this.getPaddingTop() || 0) -
             (this.getPaddingBottom() || 0),
           top: this.getPaddingTop() || 0,
-          left: this.getPaddingLeft() || 0,
+          left: this.getPaddingLeft() || 0
         });
       }
     },
@@ -454,7 +454,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
       element.setStyles({
         overflowX: "hidden",
         overflowY: "hidden",
-        boxSizing: "border-box",
+        boxSizing: "border-box"
       });
 
       if (mode === "font") {
@@ -663,7 +663,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
         this.__checkForContentElementReplacement(
           this.__getSuitableContentElement()
         );
-      },
+      }
     }),
 
     /**
@@ -1046,7 +1046,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
             const combinedStyles = {
               backgroundImage: attr.style.backgroundImage,
               backgroundPosition: attr.style.backgroundPosition || "0 0",
-              backgroundRepeat: attr.style.backgroundRepeat || "no-repeat",
+              backgroundRepeat: attr.style.backgroundRepeat || "no-repeat"
             };
 
             if (hasBackground) {
@@ -1207,7 +1207,7 @@ qx.Class.define("cv.ui.manager.basic.Image", {
         return true;
       }
       return false;
-    },
+    }
   },
 
   /*
@@ -1229,5 +1229,5 @@ qx.Class.define("cv.ui.manager.basic.Image", {
     }
 
     this._disposeMap("__contentElements");
-  },
+  }
 });

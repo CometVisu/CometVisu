@@ -34,7 +34,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     this.getContentElement().setAttribute("contentEditable", "true");
     this.set({
       droppable: false,
-      focusable: true,
+      focusable: true
     });
 
     this.addListener("dragover", function (ev) {
@@ -105,14 +105,14 @@ qx.Class.define("cv.ui.manager.editor.Source", {
       );
       const loader = new qx.util.DynamicScriptLoader([
         sourcePath + "node_modules/monaco-editor/" + version + "/vs/loader.js",
-        "manager/xml.js",
+        "manager/xml.js"
       ]);
 
       loader.addListener("ready", () => {
         window.require.config({
           paths: {
-            vs: sourcePath + "node_modules/monaco-editor/" + version + "/vs",
-          },
+            vs: sourcePath + "node_modules/monaco-editor/" + version + "/vs"
+          }
         });
 
         window.require.config({
@@ -121,15 +121,15 @@ qx.Class.define("cv.ui.manager.editor.Source", {
               "*":
                 qx.locale.Manager.getInstance().getLanguage() !== "en"
                   ? qx.locale.Manager.getInstance().getLanguage()
-                  : "",
-            },
-          },
+                  : ""
+            }
+          }
         });
 
         window.require(
           [
             "xml!*./resource/manager/completion-libs/qooxdoo.d.ts", // the xml loader can load any file by adding * before the path,
-            "vs/editor/editor.main",
+            "vs/editor/editor.main"
           ],
           function (qxLib) {
             callback.apply(context);
@@ -152,11 +152,11 @@ qx.Class.define("cv.ui.manager.editor.Source", {
           }
         );
       });
-      loader.addListener("failed", (ev) => {
+      loader.addListener("failed", ev => {
         qx.log.Logger.error(this, ev.getData());
       });
       loader.start();
-    },
+    }
   },
 
   /*
@@ -180,7 +180,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
       return {
         tabSize: 2,
         indentSize: 2,
-        insertSpaces: true,
+        insertSpaces: true
       };
     },
 
@@ -202,10 +202,10 @@ qx.Class.define("cv.ui.manager.editor.Source", {
             formatOnType: true,
             renderValidationDecorations: "on",
             minimap: {
-              enabled: true,
+              enabled: true
             },
 
-            theme: "vs-dark",
+            theme: "vs-dark"
           });
 
           const baseVersion = cv.Version.VERSION.split("-")[0];
@@ -214,10 +214,10 @@ qx.Class.define("cv.ui.manager.editor.Source", {
           );
           xhr.set({
             method: "GET",
-            accept: "application/json",
+            accept: "application/json"
           });
 
-          xhr.addListenerOnce("success", (e) => {
+          xhr.addListenerOnce("success", e => {
             const req = e.getTarget();
             const schema = req.getResponse();
             window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
@@ -230,9 +230,9 @@ qx.Class.define("cv.ui.manager.editor.Source", {
                     baseVersion +
                     "/hidden-schema.json",
                   fileMatch: ["hidden.php"],
-                  schema: schema,
-                },
-              ],
+                  schema: schema
+                }
+              ]
             });
           });
           xhr.send();
@@ -311,7 +311,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
           identifier: id,
           range: selection,
           text: cv.ui.manager.editor.AbstractEditor.CLIPBOARD,
-          forceMoveMarkers: true,
+          forceMoveMarkers: true
         };
 
         this._editor.executeEdits("clipboard", [op]);
@@ -335,7 +335,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
       if (this.getFile().getName() === "hidden.php") {
         if (!this._configClient) {
           this._configClient = cv.io.rest.Client.getConfigClient();
-          this._configClient.addListener("getSuccess", (ev) => {
+          this._configClient.addListener("getSuccess", ev => {
             this.setContent(JSON.stringify(ev.getData(), null, 2));
           });
           this._configClient.addListener("updateSuccess", this._onSaved, this);
@@ -427,7 +427,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
           monaco.editor
             .getModelMarkers({
               owner: newModel.getLanguageId(),
-              resource: id,
+              resource: id
             })
             .some(function (marker) {
               if (marker.severity === monaco.MarkerSeverity.Warning) {
@@ -473,7 +473,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
 
     _convertToString(xml) {
       return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
         xml.documentElement.outerHTML
       );
     },
@@ -486,7 +486,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
         }
         cv.ui.manager.snackbar.Controller.error(
           this.tr(
-            '"%1" is not writable. Upgrading not possible.',
+            "\"%1\" is not writable. Upgrading not possible.",
             this.getFile().getFullPath()
           )
         );
@@ -543,7 +543,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
             endLineNumber: error.line,
             message: error.message,
             startColumn: error.startColumn,
-            endColumn: error.endColumn,
+            endColumn: error.endColumn
           });
         });
       }
@@ -606,7 +606,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
           return type;
         }
       }
-    },
+    }
   },
 
   /*
@@ -622,5 +622,5 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     }
     this._configClient = null;
     qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(true);
-  },
+  }
 });

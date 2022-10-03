@@ -35,8 +35,8 @@ qx.Class.define("cv.ui.structure.tile.widgets.Page", {
   properties: {
     visibility: {
       refine: true,
-      init: "excluded",
-    },
+      init: "excluded"
+    }
   },
 
   /*
@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Page", {
           }
           break;
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -107,5 +107,5 @@ qx.Class.define("cv.ui.structure.tile.widgets.Page", {
         }
       }
     );
-  },
+  }
 });

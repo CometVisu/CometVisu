@@ -69,7 +69,7 @@ qx.Class.define("cv.report.Replay", {
       if (cv.report.Record.REPLAYING === true) {
         cv.report.Replay.getInstance().start();
       }
-    },
+    }
   },
 
   /*
@@ -113,7 +113,7 @@ qx.Class.define("cv.report.Replay", {
       }
       if (log.data.storage) {
         const store = qx.bom.Storage.getLocal();
-        Object.keys(log.data.storage).forEach((name) => {
+        Object.keys(log.data.storage).forEach(name => {
           store.setItem(name, log.data.storage[name]);
         });
       }
@@ -284,7 +284,7 @@ qx.Class.define("cv.report.Replay", {
       if (!this.__cursor) {
         this.__cursor = qx.dom.Element.create("span", {
           style:
-            "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000",
+            "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000"
         });
 
         this.__cursor.innerHTML = "&uarr;";
@@ -292,7 +292,7 @@ qx.Class.define("cv.report.Replay", {
       }
       Object.entries({
         top: record.d.native.clientY - 10 + "px",
-        left: record.d.native.clientX - 10 + "px",
+        left: record.d.native.clientX - 10 + "px"
       }).forEach(function (key_value) {
         this.__cursor.style[key_value[0]] = key_value[1];
       }, this);
@@ -344,6 +344,6 @@ qx.Class.define("cv.report.Replay", {
         this.__client = cv.io.BackendConnections.getClient();
       }
       return this.__client;
-    },
-  },
+    }
+  }
 });

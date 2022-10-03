@@ -106,9 +106,9 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
         detailItems: {},
         showSunrise: {},
         appid: {},
-        description: {},
+        description: {}
       };
-    },
+    }
   },
 
   /*
@@ -119,73 +119,73 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
   properties: {
     cssClass: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     lang: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     owID: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     q: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     lat: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     lon: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     units: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     type: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     forecast24hItems: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     forecastDailyhItems: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     showSunrise: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     detailItems: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     appid: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     description: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -202,11 +202,11 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
         classes += " " + this.getCssClass();
       }
       return (
-        '<div class="' +
+        "<div class=\"" +
         classes +
-        '"><div id="owm_' +
+        "\"><div id=\"owm_" +
         this.getPath() +
-        '" class="openweathermap_value"></div></div>'
+        "\" class=\"openweathermap_value\"></div></div>"
       );
     },
 
@@ -221,7 +221,7 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
     _refreshAction() {
       const elem = $(this.getDomElement());
       elem.openweathermap(this.__options);
-    },
+    }
   },
 
   defer(statics) {
@@ -235,5 +235,5 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
       cv.plugins.OpenweatherMap
     );
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);
-  },
+  }
 });

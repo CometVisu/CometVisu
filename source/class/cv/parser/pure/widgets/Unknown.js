@@ -38,13 +38,13 @@ qx.Class.define("cv.parser.pure.widgets.Unknown", {
         path: path,
         unknownType: xml.nodeName.toLowerCase(),
         $$type: "unknown",
-        pageType: pageType,
+        pageType: pageType
       });
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("unknown", statics);
-  },
+  }
 });

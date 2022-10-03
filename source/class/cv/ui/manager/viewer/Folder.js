@@ -28,7 +28,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     qx.ui.core.MSingleSelectionHandling,
     qx.ui.core.MRemoteChildrenHandling,
     qx.ui.form.MModelSelection,
-    cv.ui.manager.control.MFileEventHandler,
+    cv.ui.manager.control.MFileEventHandler
   ],
 
   /*
@@ -56,7 +56,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
       loaded: true,
       icon: cv.theme.dark.Images.getIcon("upload"),
       displayName: this.tr("Upload file"),
-      special: "add-file",
+      special: "add-file"
     });
 
     this._debouncedOnFilter = qx.util.Function.debounce(
@@ -81,7 +81,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
       return item.getType() === "dir";
     },
     TITLE: qx.locale.Manager.tr("Show folder"),
-    ICON: cv.theme.dark.Images.getIcon("folder", 18),
+    ICON: cv.theme.dark.Images.getIcon("folder", 18)
   },
 
   /*
@@ -102,7 +102,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
      * The {@link qx.event.type.Data#getData} method of the event returns the
      * removed item.
      */
-    removeItem: "qx.event.type.Data",
+    removeItem: "qx.event.type.Data"
   },
 
   /*
@@ -113,37 +113,37 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
   properties: {
     model: {
       check: "qx.data.Array",
-      deferredInit: true,
+      deferredInit: true
     },
 
     permanentFilter: {
       check: "Function",
       nullable: true,
-      apply: "_onFilter",
+      apply: "_onFilter"
     },
 
     showTextFilter: {
       check: "Boolean",
       init: true,
-      apply: "_applyShowTextFilter",
+      apply: "_applyShowTextFilter"
     },
 
     labelConverter: {
       check: "Function",
-      nullable: true,
+      nullable: true
     },
 
     disableScrolling: {
       check: "Boolean",
       init: false,
-      apply: "_applyDisableScrolling",
+      apply: "_applyDisableScrolling"
     },
 
     viewMode: {
       check: ["list", "preview"],
       init: "list",
-      event: "changeViewMode",
-    },
+      event: "changeViewMode"
+    }
   },
 
   /*
@@ -181,7 +181,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
       const converter = {
         converter: labelConverter
           ? labelConverter
-          : this._defaultLabelConverter.bind(this),
+          : this._defaultLabelConverter.bind(this)
       };
 
       return {
@@ -227,12 +227,12 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
                   parts.pop();
                 }
                 return parts.join("/");
-              }.bind(this),
+              }.bind(this)
             },
             item,
             index
           );
-        }.bind(this),
+        }.bind(this)
       };
     },
 
@@ -421,7 +421,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
             "new-file",
             "new-folder",
             "upload",
-            "reload",
+            "reload"
           ]);
           this.bind("file", control, "folder");
           control.addListener("reload", () => {
@@ -435,7 +435,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
           control.set({
             placeholder: this.tr("Filter by name..."),
             liveUpdate: true,
-            margin: 8,
+            margin: 8
           });
 
           if (!this.isShowTextFilter()) {
@@ -465,7 +465,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -477,5 +477,5 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     this._disposeObjects("_controller");
     this._isImageRegex = null;
     cv.ui.manager.model.Preferences.getInstance().removeRelatedBindings(this);
-  },
+  }
 });

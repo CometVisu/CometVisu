@@ -47,14 +47,14 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
      * Internal path to the widget
      */
     path: {
-      check: "String",
+      check: "String"
     },
 
     /**
      * The widget type
      */
     $$type: {
-      check: "String",
+      check: "String"
     },
 
     /**
@@ -62,8 +62,8 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
      */
     pageType: {
       check: ["text", "2d", "3d"],
-      init: "text",
-    },
+      init: "text"
+    }
   },
 
   /*
@@ -152,6 +152,6 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
         parent = parent.getParentWidget();
       }
       return null;
-    },
-  },
+    }
+  }
 });

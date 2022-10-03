@@ -47,19 +47,19 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
       check: "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
       nullable: true,
       apply: "_loadFile",
-      event: "changeFile",
+      event: "changeFile"
     },
 
     content: {
       nullable: true,
       event: "changeContent",
-      apply: "_applyContent",
+      apply: "_applyContent"
     },
 
     handlerOptions: {
       check: "Map",
       nullable: true,
-      apply: "_applyHandlerOptions",
+      apply: "_applyHandlerOptions"
     },
 
     /**
@@ -67,14 +67,14 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
      */
     external: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     ready: {
       check: "Boolean",
       init: true,
-      event: "changeReady",
-    },
+      event: "changeReady"
+    }
   },
 
   /*
@@ -84,7 +84,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
   */
   statics: {
     // fake clipboard data when native clipboard is not supported
-    CLIPBOARD: null,
+    CLIPBOARD: null
   },
 
   /*
@@ -198,7 +198,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
             type: type,
             file: file,
             data: this.getCurrentContent(),
-            source: this,
+            source: this
           });
         }
       }
@@ -212,7 +212,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
             {
               path: file.getFullPath(),
               hash: overrideHash || file.getHash(),
-              type: "file",
+              type: "file"
             },
             this.getCurrentContent(),
             callback ||
@@ -223,7 +223,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
           this._client.updateSync(
             {
               path: file.getFullPath(),
-              hash: overrideHash || file.getHash(),
+              hash: overrideHash || file.getHash()
             },
             this.getCurrentContent(),
             callback ||
@@ -246,7 +246,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
     },
 
     showErrors(path, errorList) {},
-    showDecorations(path, decorators) {},
+    showDecorations(path, decorators) {}
   },
 
   /*
@@ -258,5 +258,5 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
     if (this._client) {
       this._client = null;
     }
-  },
+  }
 });

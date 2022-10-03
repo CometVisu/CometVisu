@@ -50,11 +50,11 @@ qx.Class.define("cv.parser.pure.widgets.Line", {
 
     getDefaultClasses() {
       return "";
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("line", statics);
-  },
+  }
 });

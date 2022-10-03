@@ -36,28 +36,28 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
   properties: {
     progress: {
       check: "Number",
-      apply: "_applyProgress",
+      apply: "_applyProgress"
     },
 
     text: {
       check: "String",
-      apply: "_applyText",
+      apply: "_applyText"
     },
 
     type: {
       check: ["circle", "semiCircle"],
-      init: "circle",
+      init: "circle"
     },
 
     min: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     max: {
       check: "Number",
-      init: 100,
-    },
+      init: 100
+    }
   },
 
   /*
@@ -139,7 +139,7 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
         }
         this.__start = {
           x: strokeWidth / 2,
-          y: radius,
+          y: radius
         };
 
         code += `<path class="bar" d="M ${
@@ -156,7 +156,7 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
       if (!hasFixedRadius) {
         qx.event.message.Bus.subscribe(
           "cv.design.tile.cellWidthChanged",
-          (ev) => {
+          ev => {
             this.__radius = ev.getData();
             this.__normalizedRadius = this.__radius - strokeWidth / 2;
             this.__circumference = this.__normalizedRadius * 2 * Math.PI;
@@ -167,7 +167,7 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
             if (type === "circle") {
               this._element
                 .querySelectorAll(":scope > svg > circle")
-                .forEach((circle) => {
+                .forEach(circle => {
                   circle.setAttribute("r", "" + this.__normalizedRadius);
                   if (circle.classList.contains("bar")) {
                     circle.setAttribute(
@@ -206,7 +206,7 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
       const angleRad = angle * (Math.PI / 180.0);
       return {
         x: this.__radius - this.__normalizedRadius * Math.cos(angleRad),
-        y: this.__radius - this.__normalizedRadius * Math.sin(angleRad),
+        y: this.__radius - this.__normalizedRadius * Math.sin(angleRad)
       };
     },
 
@@ -248,7 +248,7 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
                 0,
                 1,
                 end.x,
-                end.y,
+                end.y
               ].join(" ")
             );
             break;
@@ -304,7 +304,7 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
           this._fitText();
         }
       }
-    },
+    }
   },
 
   /*
@@ -325,5 +325,5 @@ qx.Class.define("cv.ui.structure.tile.components.RoundProgress", {
         }
       }
     );
-  },
+  }
 });

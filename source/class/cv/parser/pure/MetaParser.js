@@ -56,7 +56,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
     parseFiles(xml) {
       const files = {
         css: [],
-        js: [],
+        js: []
       };
 
       xml.querySelectorAll("meta > files file").forEach(function (elem) {
@@ -158,7 +158,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
           }
           mapping.range[parseFloat(subElem.getAttribute("range_min"))] = [
             parseFloat(subElem.getAttribute("range_max")),
-            value,
+            value
           ];
           if (isDefaultValue) {
             mapping.defaultValue = parseFloat(
@@ -199,7 +199,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
           }
           styling.range[parseFloat(subElem.getAttribute("range_min"))] = [
             parseFloat(subElem.getAttribute("range_max")),
-            subElem.textContent,
+            subElem.textContent
           ];
           if (isDefaultValue) {
             styling.defaultValue = parseFloat(
@@ -260,12 +260,12 @@ qx.Class.define("cv.parser.pure.MetaParser", {
             return "%" + c.charCodeAt(0).toString(16);
           });
         }
-        matches.forEach((match) => {
+        matches.forEach(match => {
           switch (match[1]) {
             case "manager.php":
               text = text.replace(
                 match[0],
-                'href="?manager=1" onclick="showManager(); return false;"'
+                "href=\"?manager=1\" onclick=\"showManager(); return false;\""
               );
               handled = true;
               break;
@@ -273,7 +273,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
             case "check_config.php":
               text = text.replace(
                 match[0],
-                'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' +
+                "href=\"#\" onclick=\"qx.core.Init.getApplication().validateConfig('" +
                   search +
                   "')\""
               );
@@ -285,7 +285,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
               const suffix = search ? "_" + search : "";
               text = text.replace(
                 match[0],
-                'href="' +
+                "href=\"" +
                   window.location.pathname +
                   "?config=" +
                   search +
@@ -331,7 +331,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
             search = search.replace(/.*config=([^&]*).*|.*/, "$1");
             const match = /cv-action="([\w]+)"/.exec(text);
             if (match) {
-              let replacement = 'href="#" ';
+              let replacement = "href=\"#\" ";
               switch (match[1]) {
                 case "validate":
                   replacement +=
@@ -345,7 +345,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
                     ? "visu_config_" + search + ".xml"
                     : "visu_config.xml";
                   replacement =
-                    'href="' +
+                    "href=\"" +
                     window.location.pathname +
                     "?config=" +
                     search +
@@ -382,7 +382,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
     },
 
     __parseIconDefinition(elem) {
-      const nullIsUndefined = (x) => (x === null ? undefined : x);
+      const nullIsUndefined = x => (x === null ? undefined : x);
 
       return {
         name: nullIsUndefined(elem.getAttribute("name")),
@@ -393,7 +393,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
         styling: nullIsUndefined(elem.getAttribute("styling")),
         dynamic: nullIsUndefined(elem.getAttribute("dynamic")),
         class: nullIsUndefined(elem.getAttribute("class")),
-        source: "config",
+        source: "config"
       };
     },
 
@@ -416,7 +416,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
             deletable: elem.getAttribute("deletable") !== "false",
             unique: elem.getAttribute("unique") === "true",
             valueMapping: addressContainer.getAttribute("value-mapping"),
-            addressMapping: addressContainer.getAttribute("address-mapping"),
+            addressMapping: addressContainer.getAttribute("address-mapping")
           };
 
           const name = elem.getAttribute("name");
@@ -497,10 +497,10 @@ qx.Class.define("cv.parser.pure.MetaParser", {
               qx.log.Logger.debug(this, "loading template from file:", ref);
               areq.set({
                 accept: "text/plain",
-                cache: !cv.Config.forceReload,
+                cache: !cv.Config.forceReload
               });
 
-              areq.addListenerOnce("success", (e) => {
+              areq.addListenerOnce("success", e => {
                 const req = e.getTarget();
                 cv.parser.pure.WidgetParser.addTemplate(
                   templateName,
@@ -526,7 +526,7 @@ qx.Class.define("cv.parser.pure.MetaParser", {
                     "Template '%1' could not be loaded from '%2'.",
                     templateName,
                     ref
-                  ),
+                  )
                 };
 
                 cv.core.notifications.Router.dispatchMessage(
@@ -548,6 +548,6 @@ qx.Class.define("cv.parser.pure.MetaParser", {
           check();
         }
       });
-    },
-  },
+    }
+  }
 });

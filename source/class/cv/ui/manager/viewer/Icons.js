@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
   statics: {
     SUPPORTED_FILES: /^CometVisu-Icons$/i,
     TITLE: qx.locale.Manager.tr("Show icons"),
-    ICON: cv.theme.dark.Images.getIcon("icons", 18),
+    ICON: cv.theme.dark.Images.getIcon("icons", 18)
   },
 
   /*
@@ -58,7 +58,7 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
 
         bindItem(controller, item, index) {
           controller.bindProperty("", "model", null, item, index);
-        },
+        }
       };
     },
 
@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
         const model = this.getModel();
         const handler = cv.IconHandler.getInstance();
         // as the file is just a fake file, we do not really care about it
-        Object.keys(cv.IconConfig.DB).forEach((name) => {
+        Object.keys(cv.IconConfig.DB).forEach(name => {
           model.push([name, handler.getIconSource(name, "icon-preview")]);
         });
         if (
@@ -94,6 +94,6 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
       } else if (this._controller) {
         this._controller.resetModel();
       }
-    },
-  },
+    }
+  }
 });

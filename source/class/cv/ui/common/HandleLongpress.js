@@ -33,7 +33,7 @@ qx.Mixin.define("cv.ui.common.HandleLongpress", {
      */
     sendLongOnRelease: {
       check: "Boolean",
-      init: true,
-    },
-  },
+      init: true
+    }
+  }
 });

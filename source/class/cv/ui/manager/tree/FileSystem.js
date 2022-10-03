@@ -55,7 +55,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
       "text/css": "css",
       "image/png": "png",
       "image/svg+xml": "svg",
-      "text/plain": "",
+      "text/plain": ""
     },
 
     getMimetypeFromSuffix(suffix) {
@@ -66,7 +66,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
 
     isAccepted(mimetype) {
       return Object.prototype.hasOwnProperty.call(this.MIMETYPES, mimetype);
-    },
+    }
   },
 
   /*
@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
   ***********************************************
   */
   events: {
-    changeSelection: "qx.event.type.Data",
+    changeSelection: "qx.event.type.Data"
   },
 
   /*
@@ -91,14 +91,14 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
 
     rootFolder: {
       check: "cv.ui.manager.model.FileItem",
-      apply: "_applyRootFolder",
+      apply: "_applyRootFolder"
     },
 
     selectedNode: {
       check: "cv.ui.manager.model.FileItem",
       apply: "_applySelectedNode",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -173,7 +173,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
         if (sel.getType() === "file") {
           this.fireDataEvent("changeSelection", {
             node: sel,
-            mode: "dbltap",
+            mode: "dbltap"
           });
         }
       }
@@ -197,7 +197,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
             function () {
               this.fireDataEvent("changeSelection", {
                 node: this.getSelectedNode(),
-                mode: "tap",
+                mode: "tap"
               });
 
               this.__selectionTimer = null;
@@ -208,7 +208,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
         } else {
           this.fireDataEvent("changeSelection", {
             node: node,
-            mode: "tap",
+            mode: "tap"
           });
         }
       } else {
@@ -228,7 +228,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
           this.setSelectedNode(node);
           this.fireDataEvent("changeSelection", {
             node: node,
-            mode: "contextmenu",
+            mode: "contextmenu"
           });
 
           this.__ignoreSelectionChange = false;
@@ -255,7 +255,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
           control.set({
             selectionMode: "single",
             minWidth: 250,
-            showTopLevelOpenCloseIcons: true,
+            showTopLevelOpenCloseIcons: true
           });
 
           cv.ui.manager.model.Preferences.getInstance().bind(
@@ -265,7 +265,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
             {
               converter(value) {
                 return value ? "tap" : "dbltap";
-              },
+              }
             }
           );
 
@@ -285,7 +285,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
               controller.bindProperty("readable", "enabled", null, item, index);
               controller.bindProperty("icon", "icon", null, item, index);
               controller.bindProperty("editing", "editing", null, item, index);
-            },
+            }
           });
 
           control
@@ -300,7 +300,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -316,5 +316,5 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
     );
 
     this._disposeObjects("_dateFormat", "_timeFormat", "_replacementManager");
-  },
+  }
 });

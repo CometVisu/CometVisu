@@ -50,7 +50,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
     maxEntries: {
       check: "Number",
       init: 50,
-      event: "_applyMaxEntries",
+      event: "_applyMaxEntries"
     },
 
     /**
@@ -59,7 +59,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
     counter: {
       check: "Number",
       init: 0,
-      event: "changedCounter",
+      event: "changedCounter"
     },
 
     /**
@@ -68,7 +68,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
     globalSeverity: {
       check: ["low", "normal", "high", "urgent"],
       init: "normal",
-      event: "changedGlobalSeverity",
+      event: "changedGlobalSeverity"
     },
 
     /**
@@ -76,7 +76,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
      */
     rootElementId: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     /**
@@ -85,13 +85,13 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
      */
     messageElementId: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     delegate: {
       check: "Object",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -363,7 +363,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
           }
         }, this);
       }, this);
-    },
+    }
   },
 
   /*
@@ -373,5 +373,5 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
   */
   destruct() {
     this._disposeObjects("_messages");
-  },
+  }
 });

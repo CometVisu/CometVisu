@@ -31,13 +31,13 @@ qx.Class.define("cv.ui.structure.tile.components.Spinner", {
   properties: {
     stepWidth: {
       check: "Number",
-      init: 1.0,
+      init: 1.0
     },
 
     mode: {
       check: ["relative", "absolute"],
-      init: "absolute",
-    },
+      init: "absolute"
+    }
   },
 
   /*
@@ -110,16 +110,16 @@ qx.Class.define("cv.ui.structure.tile.components.Spinner", {
       const ev = new CustomEvent("sendState", {
         detail: {
           value: value,
-          source: this,
-        },
+          source: this
+        }
       });
 
       this._writeAddresses
         .filter(
-          (addr) => !addr.hasAttribute("on") || addr.getAttribute("on") === on
+          addr => !addr.hasAttribute("on") || addr.getAttribute("on") === on
         )
-        .forEach((address) => address.dispatchEvent(ev));
-    },
+        .forEach(address => address.dispatchEvent(ev));
+    }
   },
 
   defer(QxClass) {
@@ -131,5 +131,5 @@ qx.Class.define("cv.ui.structure.tile.components.Spinner", {
         }
       }
     );
-  },
+  }
 });

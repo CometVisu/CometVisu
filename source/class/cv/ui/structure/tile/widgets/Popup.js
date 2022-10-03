@@ -33,7 +33,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
   ***********************************************
   */
   statics: {
-    openedPopups: [],
+    openedPopups: []
   },
 
   /*
@@ -146,7 +146,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
             break;
         }
       }
-    },
+    }
   },
 
   /*
@@ -171,5 +171,5 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
         }
       }
     );
-  },
+  }
 });

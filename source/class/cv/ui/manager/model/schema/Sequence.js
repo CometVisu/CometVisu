@@ -42,13 +42,13 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
   properties: {
     type: {
       refine: true,
-      init: "sequence",
+      init: "sequence"
     },
 
     elementsHaveOrder: {
       refine: true,
-      init: true,
-    },
+      init: true
+    }
   },
 
   /*
@@ -70,7 +70,7 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
       // so we have to use a 'mixed' approach in reading them
       const subNodes = Array.from(this.getNode().children);
 
-      subNodes.forEach((subNode) => {
+      subNodes.forEach(subNode => {
         let subObject;
 
         switch (subNode.nodeName) {
@@ -135,7 +135,7 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
       const elementRegexes = [];
 
       // this goes over ALL elements AND sub-groupings
-      this._sortedContent.forEach((element) => {
+      this._sortedContent.forEach(element => {
         elementRegexes.push(element.getRegex(separator, nocapture));
       });
 
@@ -168,7 +168,7 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
 
         const resultBounds = {
           min: 1,
-          max: 1,
+          max: 1
         };
 
         // if it is bounded, we must duplicate element and sequence bounds
@@ -250,6 +250,6 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
       });
 
       return namesWithSorting;
-    },
-  },
+    }
+  }
 });

@@ -48,14 +48,14 @@ qx.Class.define("cv.io.openhab.Rest", {
     connected: {
       check: "Boolean",
       init: false,
-      event: "changeConnected",
+      event: "changeConnected"
     },
 
     server: {
       check: "String",
       nullable: true,
-      event: "changedServer",
-    },
+      event: "changedServer"
+    }
   },
 
   /*
@@ -217,7 +217,7 @@ qx.Class.define("cv.io.openhab.Rest", {
       const req = this.createAuthorizedRequest(
         "items?fields=name,state,members,type,label&recursive=true"
       );
-      req.addListener("success", (e) => {
+      req.addListener("success", e => {
         const req = e.getTarget();
 
         const res = req.getResponse();
@@ -227,13 +227,13 @@ qx.Class.define("cv.io.openhab.Rest", {
             // this is a group
             let active = 0;
             const map = {};
-            entry.members.forEach((obj) => {
+            entry.members.forEach(obj => {
               map[obj.name] = {
                 type: obj.type.toLowerCase(),
                 state: obj.state,
                 label: obj.label,
                 name: obj.name,
-                active: false,
+                active: false
               };
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
@@ -253,7 +253,7 @@ qx.Class.define("cv.io.openhab.Rest", {
             });
             this.__groups[entry.name] = {
               members: map,
-              active: active,
+              active: active
             };
 
             update["number:" + entry.name] = active;
@@ -270,16 +270,16 @@ qx.Class.define("cv.io.openhab.Rest", {
       // create sse session
       this.running = true;
       if (!cv.report.Record.REPLAYING) {
-        const things = addresses.filter((addr) => addr.split(":").length > 3);
+        const things = addresses.filter(addr => addr.split(":").length > 3);
         let topic = "openhab/items/*/statechanged";
         if (things.length > 0) {
           topic = "openhab/*/*/*changed";
           // request current states
           const thingsReq = this.createAuthorizedRequest("things?summary=true");
-          thingsReq.addListener("success", (e) => {
+          thingsReq.addListener("success", e => {
             const res = e.getTarget().getResponse();
             const update = {};
-            res.forEach((entry) => {
+            res.forEach(entry => {
               if (things.includes(entry.UID)) {
                 update[entry.UID] = entry.statusInfo.status;
               }
@@ -342,11 +342,11 @@ qx.Class.define("cv.io.openhab.Rest", {
           // check if this Item is part of any group
           if (Object.prototype.hasOwnProperty.call(this.__memberLookup, item)) {
             const groupNames = this.__memberLookup[item];
-            groupNames.forEach((groupName) => {
+            groupNames.forEach(groupName => {
               const group = this.__groups[groupName];
               let active = 0;
               group.members[item].state = change.value;
-              Object.keys(group.members).forEach((memberName) => {
+              Object.keys(group.members).forEach(memberName => {
                 const member = group.members[memberName];
                 if (this.__isActive(member.type, member.state)) {
                   active++;
@@ -396,7 +396,7 @@ qx.Class.define("cv.io.openhab.Rest", {
       }
       // no login needed we just do a request to the if the backend is reachable
       const req = this.createAuthorizedRequest();
-      req.addListener("success", (e) => {
+      req.addListener("success", e => {
         const req = e.getTarget();
         this.setServer(req.getResponseHeader("Server"));
         if (callback) {
@@ -444,27 +444,27 @@ qx.Class.define("cv.io.openhab.Rest", {
           return function (result) {
             let data;
             if (format === "monaco") {
-              return result.map((entry) => ({
+              return result.map(entry => ({
                 label: entry.name,
                 insertText: entry.name,
                 detail: entry.type,
-                kind: window.monaco.languages.CompletionItemKind.Value,
+                kind: window.monaco.languages.CompletionItemKind.Value
               }));
             }
             data = {};
-            result.forEach((element) => {
+            result.forEach(element => {
               const type = element.type ? element.type.split(":")[0] : "";
               if (!Object.prototype.hasOwnProperty.call(data, type)) {
                 data[type] = [];
               }
               const entry = {
                 value: element.name,
-                label: element.label || "",
+                label: element.label || ""
               };
 
               if (type) {
                 entry.hints = {
-                  transform: "OH:" + type.toLowerCase(),
+                  transform: "OH:" + type.toLowerCase()
                 };
               }
               data[type].push(entry);
@@ -474,20 +474,20 @@ qx.Class.define("cv.io.openhab.Rest", {
         case "rrd":
           return function (result) {
             if (format === "monaco") {
-              return result.map((element) => ({
+              return result.map(element => ({
                 insertText: element,
                 label: element,
-                kind: window.monaco.languages.CompletionItemKind.EnumMember,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
               }));
             }
-            return result.map((element) => ({
+            return result.map(element => ({
               value: element,
-              label: element,
+              label: element
             }));
           };
         default:
           return null;
       }
-    },
-  },
+    }
+  }
 });

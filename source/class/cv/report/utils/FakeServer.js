@@ -38,13 +38,13 @@ qx.Class.define("cv.report.utils.FakeServer", {
 
       const urlMapping = {
         "/resource/": cv.Application.getRelativeResourcePath(true),
-        "/rest/manager/index.php": cv.io.rest.Client.getBaseUrl(),
+        "/rest/manager/index.php": cv.io.rest.Client.getBaseUrl()
       };
 
       // split by URI
       log.response.forEach(function (entry) {
         let url = entry.url;
-        Object.keys(urlMapping).some((pattern) => {
+        Object.keys(urlMapping).some(pattern => {
           const index = url.indexOf(pattern);
           if (index >= 0) {
             url = urlMapping[pattern] + url.substr(index + pattern.length);
@@ -119,6 +119,6 @@ qx.Class.define("cv.report.utils.FakeServer", {
         return cv.report.utils.FakeServer._xhr[url].shift();
       }
       return null;
-    },
-  },
+    }
+  }
 });

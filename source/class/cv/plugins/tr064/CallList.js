@@ -82,7 +82,7 @@ qx.Class.define("cv.plugins.tr064.CallList", {
         max: {
           transform(value) {
             return +value;
-          },
+          }
         },
 
         columns: { default: "type;date;nameOrCaller;tam" },
@@ -107,9 +107,9 @@ qx.Class.define("cv.plugins.tr064.CallList", {
         typeActiveOutgoing: { default: "phone_ring_out" },
         typeActiveOutgoingColor: { default: "" },
         typeUnknown: { default: "text_question_mark" },
-        typeUnknownColor: { default: "" },
+        typeUnknownColor: { default: "" }
       };
-    },
+    }
   },
 
   /*
@@ -118,7 +118,7 @@ qx.Class.define("cv.plugins.tr064.CallList", {
   ***********************************************
   */
   events: {
-    tr064ListRefreshed: "qx.event.type.Event", // event to support unit test
+    tr064ListRefreshed: "qx.event.type.Event" // event to support unit test
   },
 
   /*
@@ -129,12 +129,12 @@ qx.Class.define("cv.plugins.tr064.CallList", {
   properties: {
     device: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     max: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     columns: { check: "String" },
@@ -159,7 +159,7 @@ qx.Class.define("cv.plugins.tr064.CallList", {
     typeActiveOutgoing: { check: "String" },
     typeActiveOutgoingColor: { check: "String" },
     typeUnknown: { check: "String" },
-    typeUnknownColor: { check: "String" },
+    typeUnknownColor: { check: "String" }
   },
 
   /*
@@ -179,7 +179,7 @@ qx.Class.define("cv.plugins.tr064.CallList", {
     __TAMeventAttached: null,
 
     _getInnerDomString() {
-      return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
+      return "<div class=\"actor\"><table class=\"TR064_calllist\"><tr><td>Loading TR-064...</td></tr></table></div>";
     },
     _setupRefreshAction() {
       this._timer = new qx.event.Timer(this.getRefresh());
@@ -211,16 +211,16 @@ qx.Class.define("cv.plugins.tr064.CallList", {
         3: { name: this.getTypeOutgoing(), color: this.getTypeOutgoingColor() },
         9: {
           name: this.getTypeActiveIncoming(),
-          color: this.getTypeActiveIncomingColor(),
+          color: this.getTypeActiveIncomingColor()
         },
         10: {
           name: this.getTypeRejectedIncoming(),
-          color: this.getTypeRejectedIncomingColor(),
+          color: this.getTypeRejectedIncomingColor()
         },
         11: {
           name: this.getTypeActiveOutgoing(),
-          color: this.getTypeActiveOutgoingColor(),
-        },
+          color: this.getTypeActiveOutgoingColor()
+        }
       };
 
       this.__calllistList.forEach(function (cl) {
@@ -229,16 +229,16 @@ qx.Class.define("cv.plugins.tr064.CallList", {
 
         if (cl.Path) {
           audio =
-            '<audio preload="none">' +
-            '<source src="resource/plugins/tr064/proxy.php?device=' +
+            "<audio preload=\"none\">" +
+            "<source src=\"resource/plugins/tr064/proxy.php?device=" +
             self.getDevice() +
             "&uri=" +
             cl.Path +
             "%26sid=" +
             sid +
-            '">' +
+            "\">" +
             "</audio>" +
-            '<div class="tam clickable">' +
+            "<div class=\"tam clickable\">" +
             cv.IconHandler.getInstance().getIconElement(
               self.getTAM(),
               "*",
@@ -331,11 +331,11 @@ qx.Class.define("cv.plugins.tr064.CallList", {
             title: qx.locale.Manager.tr("TR-064 communication error"),
             severity: "urgent",
             message: qx.locale.Manager.tr(
-              'Reading URL "%1" failed with status "%2": "%2"',
+              "Reading URL \"%1\" failed with status \"%2\": \"%2\"",
               response.url,
               response.status,
               response.statusText
-            ),
+            )
           });
 
           self.__calllistUri = "<fail>";
@@ -352,10 +352,10 @@ qx.Class.define("cv.plugins.tr064.CallList", {
               ),
               severity: "urgent",
               message: qx.locale.Manager.tr(
-                'Reading URL "%1" failed with content: "%2"',
+                "Reading URL \"%1\" failed with content: \"%2\"",
                 url,
                 JSON.stringify(data)
-              ),
+              )
             });
 
             self.__calllistUri = "<fail>";
@@ -395,11 +395,11 @@ qx.Class.define("cv.plugins.tr064.CallList", {
             title: qx.locale.Manager.tr("TR-064 communication error"),
             severity: "urgent",
             message: qx.locale.Manager.tr(
-              'Reading URL "%1" failed with status "%2": "%2"',
+              "Reading URL \"%1\" failed with status \"%2\": \"%2\"",
               response.url,
               response.status,
               response.statusText
-            ),
+            )
           });
 
           return "<xml/>";
@@ -427,9 +427,9 @@ qx.Class.define("cv.plugins.tr064.CallList", {
             title: qx.locale.Manager.tr("TR-064 communication error"),
             severity: "urgent",
             message: qx.locale.Manager.tr(
-              'refreshCalllist() error: "%1"',
+              "refreshCalllist() error: \"%1\"",
               JSON.stringify(error)
-            ),
+            )
           });
 
           self.error("TR-064 refreshCalllist() error:", error);
@@ -508,7 +508,7 @@ qx.Class.define("cv.plugins.tr064.CallList", {
         "",
         true
       );
-    },
+    }
   },
 
   defer(statics) {
@@ -519,5 +519,5 @@ qx.Class.define("cv.plugins.tr064.CallList", {
       cv.plugins.tr064.CallList
     );
     cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
-  },
+  }
 });

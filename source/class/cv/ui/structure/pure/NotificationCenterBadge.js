@@ -62,13 +62,13 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
     counter: {
       check: "Number",
       init: 0,
-      apply: "_applyCounter",
+      apply: "_applyCounter"
     },
 
     hideWhenEmpty: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -139,12 +139,12 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
     _getInnerDomString() {
       let style = "";
       if (this.isHideWhenEmpty() && this.getCounter() === 0) {
-        style = ' style="display: none;"';
+        style = " style=\"display: none;\"";
       }
       return (
-        '<div class="actor badge"' + style + ">" + this.getCounter() + "</div>"
+        "<div class=\"actor badge\"" + style + ">" + this.getCounter() + "</div>"
       );
-    },
+    }
   },
 
   /*
@@ -169,5 +169,5 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
       "notificationcenterbadge",
       statics
     );
-  },
+  }
 });

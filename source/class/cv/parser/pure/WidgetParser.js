@@ -121,7 +121,7 @@ qx.Class.define("cv.parser.pure.WidgetParser", {
       return this.model.setWidgetData(path, {
         path: path,
         $$type: cv.parser.pure.WidgetParser.getElementType(element),
-        pageType: pageType,
+        pageType: pageType
       });
     },
 
@@ -224,7 +224,7 @@ qx.Class.define("cv.parser.pure.WidgetParser", {
       const style =
         Object.keys(layout).length === 0
           ? ""
-          : 'style="' + this.extractLayout(layout, pageType) + '"';
+          : "style=\"" + this.extractLayout(layout, pageType) + "\"";
       let classes = handler.getDefaultClasses
         ? handler.getDefaultClasses(widgetType)
         : this.getDefaultClasses(widgetType);
@@ -243,7 +243,7 @@ qx.Class.define("cv.parser.pure.WidgetParser", {
         element
           .getAttribute("class")
           .split(" ")
-          .forEach((className) => {
+          .forEach(className => {
             classes += " custom_" + className;
           });
       }
@@ -261,7 +261,7 @@ qx.Class.define("cv.parser.pure.WidgetParser", {
       const data = {
         path: path,
         $$type: widgetType.toLowerCase(),
-        pageType: pageType,
+        pageType: pageType
       };
 
       data.bindClickToWidget = bindClickToWidget;
@@ -646,6 +646,6 @@ qx.Class.define("cv.parser.pure.WidgetParser", {
         default:
           return path;
       }
-    },
-  },
+    }
+  }
 });

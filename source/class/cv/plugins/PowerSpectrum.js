@@ -56,7 +56,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
         : [
             this.setupSpectrum(-0.26),
             this.setupSpectrum(0),
-            this.setupSpectrum(0.26),
+            this.setupSpectrum(0.26)
           ]
     );
     this.setCurve(
@@ -99,7 +99,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
       [22, 0.005],
       [23, 0.015],
       [24, 0.005],
-      [25, 0.015],
+      [25, 0.015]
     ],
     // limit for voltage in ratio
     limitEN61000_3_2: [
@@ -126,7 +126,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
       [22, 0.127],
       [23, 0.15],
       [24, 0.117],
-      [25, 0.139],
+      [25, 0.139]
     ],
     // limit for current in Ampere
     referenceSin: [[], [], []],
@@ -176,19 +176,19 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
             return value === "current"
               ? cv.plugins.PowerSpectrum.CURRENT
               : cv.plugins.PowerSpectrum.VOLTAGE;
-          },
+          }
         },
 
         singlephase: {
           target: "singlePhase",
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         limitname: {
           target: "limitName",
-          default: "limit",
+          default: "limit"
         },
 
         name1: {},
@@ -198,31 +198,31 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
           target: "showCurve",
           transform(value) {
             return value !== "true";
-          },
+          }
         },
 
         showlegend: {
           target: "showLegend",
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         limitcolor: {
           target: "limitColor",
-          default: "#edc240", // default directly from flot code
+          default: "#edc240" // default directly from flot code
         },
         color1: {
-          default: "#afd8f8",
+          default: "#afd8f8"
         },
 
         color2: {
-          default: "#cb4b4b",
+          default: "#cb4b4b"
         },
 
         color3: {
-          default: "#4da74d",
-        },
+          default: "#4da74d"
+        }
       };
     },
 
@@ -231,7 +231,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
         variant = "spectrum"; // the default
       }
       return [true, variant];
-    },
+    }
   },
 
   /*
@@ -242,78 +242,78 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
   properties: {
     displayType: {
       check: [0, 1],
-      init: 1,
+      init: 1
     },
 
     singlePhase: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     spectrum: {
       check: "Array",
-      init: [],
+      init: []
     },
 
     limitName: {
       check: "String",
-      init: "limit",
+      init: "limit"
     },
 
     name1: {
       check: "String",
-      init: "L1",
+      init: "L1"
     },
 
     name2: {
       check: "String",
-      init: "L2",
+      init: "L2"
     },
 
     name3: {
       check: "String",
-      init: "L3",
+      init: "L3"
     },
 
     curve: {
       check: "Array",
-      init: [],
+      init: []
     },
 
     showCurve: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     showLegend: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     current: {
       check: "Array",
-      init: [],
+      init: []
     },
 
     limitColor: {
       check: "Color",
-      init: "#edc240",
+      init: "#edc240"
     },
 
     color1: {
       check: "Color",
-      init: "#afd8f8",
+      init: "#afd8f8"
     },
 
     color2: {
       check: "Color",
-      init: "#cb4b4b",
+      init: "#cb4b4b"
     },
 
     color3: {
       check: "Color",
-      init: "#4da74d",
-    },
+      init: "#4da74d"
+    }
   },
 
   /*
@@ -327,11 +327,11 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
 
     _getInnerDomString() {
       // create the actor
-      let actor = '<div class="actor clickable">';
+      let actor = "<div class=\"actor clickable\">";
       if (this.isShowCurve()) {
-        actor += '<div class="diagram_inline curve">loading...</div>';
+        actor += "<div class=\"diagram_inline curve\">loading...</div>";
       }
-      actor += '<div class="diagram_inline spectrum">loading...</div></div>';
+      actor += "<div class=\"diagram_inline spectrum\">loading...</div></div>";
       return actor;
     },
 
@@ -341,7 +341,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
         this.getLimitColor(),
         this.getColor1(),
         this.getColor2(),
-        this.getColor3(),
+        this.getColor3()
       ];
 
       const diagramCurve =
@@ -350,16 +350,16 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
       const optionsCurve = this.isShowCurve() && {
         colors: colors,
         legend: {
-          show: this.isShowLegend(),
+          show: this.isShowLegend()
         },
 
         xaxis: {
-          show: false,
+          show: false
         },
 
         yaxis: {
-          show: false,
-        },
+          show: false
+        }
       };
 
       const diagramSpectrum = $(
@@ -372,26 +372,26 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
             show: true,
             fill: 1,
             fillColor: null,
-            lineWidth: 0,
-          },
+            lineWidth: 0
+          }
         },
 
         bars: {
           align: "center",
-          barWidth: this.isSinglePhase() ? 0.75 : 0.25,
+          barWidth: this.isSinglePhase() ? 0.75 : 0.25
         },
 
         legend: {
-          show: this.isShowLegend(),
+          show: this.isShowLegend()
         },
 
         xaxis: {
-          show: false,
+          show: false
         },
 
         yaxis: {
-          show: false,
-        },
+          show: false
+        }
       };
 
       const init = function () {
@@ -514,7 +514,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
         [18.4, 0],
         [18.8, 0],
         [19.2, 0],
-        [19.6, 0],
+        [19.6, 0]
       ];
     },
     setupSpectrum(offset) {
@@ -562,29 +562,29 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
             {
               label: null,
               data: this.self(arguments).referenceSin[0],
-              color: 13,
+              color: 13
             }, // trick flot to automatically make color darker
-            { label: "L", data: this.getCurve()[0], color: 1 },
+            { label: "L", data: this.getCurve()[0], color: 1 }
           ]
         : [
             {
               label: null,
               data: this.self(arguments).referenceSin[0],
-              color: 13,
+              color: 13
             },
             {
               label: null,
               data: this.self(arguments).referenceSin[1],
-              color: 14,
+              color: 14
             },
             {
               label: null,
               data: this.self(arguments).referenceSin[2],
-              color: 15,
+              color: 15
             },
             { label: "L1", data: this.getCurve()[0], color: 1 },
             { label: "L2", data: this.getCurve()[1], color: 2 },
-            { label: "L3", data: this.getCurve()[2], color: 3 },
+            { label: "L3", data: this.getCurve()[2], color: 3 }
           ];
     },
 
@@ -602,9 +602,9 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
                   : this.self(arguments).limitEN61000_3_2,
               bars: { show: false },
               lines: { steps: true },
-              color: 0,
+              color: 0
             },
-            { label: this.getName1(), data: this.getSpectrum()[0], color: 1 },
+            { label: this.getName1(), data: this.getSpectrum()[0], color: 1 }
           ]
         : [
             {
@@ -615,13 +615,13 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
                   : this.self(arguments).limitEN61000_3_2,
               bars: { show: false },
               lines: { steps: true },
-              color: 0,
+              color: 0
             },
             { label: this.getName1(), data: this.getSpectrum()[0], color: 1 },
             { label: this.getName2(), data: this.getSpectrum()[1], color: 2 },
-            { label: this.getName3(), data: this.getSpectrum()[2], color: 3 },
+            { label: this.getName3(), data: this.getSpectrum()[2], color: 3 }
           ];
-    },
+    }
   },
 
   defer(statics) {
@@ -630,7 +630,7 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
       "plugins/diagram/dep/flot/jquery.flot.min.js",
       "plugins/diagram/dep/flot/jquery.flot.canvas.min.js",
       "plugins/diagram/dep/flot/jquery.flot.resize.min.js",
-      "plugins/diagram/dep/flot/jquery.flot.navigate.min.js",
+      "plugins/diagram/dep/flot/jquery.flot.navigate.min.js"
     ]);
 
     cv.parser.pure.WidgetParser.addHandler(
@@ -656,12 +656,12 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
       statics.referenceSin[0].push([time, Math.sin((phi * Math.PI) / 25)]);
       statics.referenceSin[1].push([
         time,
-        Math.sin(((phi + 50 / 3) * Math.PI) / 25),
+        Math.sin(((phi + 50 / 3) * Math.PI) / 25)
       ]);
       statics.referenceSin[2].push([
         time,
-        Math.sin(((phi + 100 / 3) * Math.PI) / 25),
+        Math.sin(((phi + 100 / 3) * Math.PI) / 25)
       ]);
     }
-  },
+  }
 });

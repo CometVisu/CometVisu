@@ -255,10 +255,10 @@ qx.Class.define("cv.io.Reflection", {
     focus(path) {
       document.querySelector(".focused").classList.remove("focused");
       this.lookupWidget(path).classList.add("focused");
-    },
+    }
   },
 
   defer() {
     window.addEventListener("message", cv.io.Reflection.handleMessage, false);
-  },
+  }
 });

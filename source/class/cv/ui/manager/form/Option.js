@@ -53,28 +53,28 @@ qx.Class.define("cv.ui.manager.form.Option", {
     type: {
       check: ["default", "group", "state", "error"],
       init: "default",
-      event: "changeType",
+      event: "changeType"
     },
 
     label: {
       check: "String",
-      event: "changeLabel",
+      event: "changeLabel"
     },
 
     icon: {
       event: "changeIcon",
-      nullable: true,
+      nullable: true
     },
 
     value: {
       check: "String",
       event: "changeValue",
-      nullable: true,
+      nullable: true
     },
 
     hints: {
       check: "Object",
-      nullable: true,
-    },
-  },
+      nullable: true
+    }
+  }
 });

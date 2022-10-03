@@ -30,7 +30,7 @@ qx.Class.define("cv.ui.structure.pure.Toggle", {
   include: [
     cv.ui.common.Operate,
     cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton,
+    cv.ui.common.HasAnimatedButton
   ],
 
   /*
@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.structure.pure.Toggle", {
   members: {
     // overridden
     _getInnerDomString() {
-      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
     },
 
     /**
@@ -50,6 +50,6 @@ qx.Class.define("cv.ui.structure.pure.Toggle", {
      */
     getActionValue() {
       return this.getNextMappedValue(this.getBasicValue(), this.getMapping());
-    },
-  },
+    }
+  }
 });

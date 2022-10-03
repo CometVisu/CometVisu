@@ -35,25 +35,25 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
     appearance: {
       check: ["text", "icons", "dock"],
       init: "text",
-      apply: "_applyAppearance",
+      apply: "_applyAppearance"
     },
 
     depth: {
       check: "!isNaN(value) && value >= -1 && value <= 100",
       init: -1,
-      apply: "_applyDepth",
+      apply: "_applyDepth"
     },
 
     domReady: {
       check: "Boolean",
       init: false,
-      apply: "_generateMenu",
+      apply: "_generateMenu"
     },
 
     showLabels: {
       check: "Boolean",
-      init: true,
-    },
+      init: true
+    }
   },
 
   /*
@@ -231,7 +231,7 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
         return;
       }
       let pages = parentElement.querySelectorAll(
-        ':scope > cv-page:not([menu="false"])'
+        ":scope > cv-page:not([menu=\"false\"])"
       );
       for (let page of pages.values()) {
         const pageId = page.getAttribute("id");
@@ -261,21 +261,21 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
         const depth = this.getDepth();
         if (
           (depth < 0 || depth > currentLevel) &&
-          page.querySelectorAll(':scope > cv-page:not([menu="false"])').length >
+          page.querySelectorAll(":scope > cv-page:not([menu=\"false\"])").length >
             0
         ) {
           const details = document.createElement("div");
           details.classList.add("details");
           const summary = document.createElement("div");
           summary.classList.add("summary");
-          summary.addEventListener("click", (ev) => {
+          summary.addEventListener("click", ev => {
             if (details.hasAttribute("open")) {
               details.removeAttribute("open");
             } else {
               details.setAttribute("open", "");
             }
           });
-          a.addEventListener("click", (ev) => {
+          a.addEventListener("click", ev => {
             // only stop propagation if we are not close to the right border
             if (
               ev.pointerType !== "touch" ||
@@ -337,7 +337,7 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
           parent = parent.parentElement;
         }
       }
-    },
+    }
   },
 
   /*
@@ -371,5 +371,5 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
         }
       }
     );
-  },
+  }
 });

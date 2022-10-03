@@ -50,6 +50,6 @@ qx.Class.define("cv.ui.manager.form.CheckBox", {
       } else {
         this.setLabel("");
       }
-    },
-  },
+    }
+  }
 });

@@ -76,25 +76,25 @@ qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
     linearRateLimit: {
       // in ratio/second
       check: "Number",
-      init: 2,
+      init: 2
     },
 
     expDampTimeConstant: {
       // time constant for exponential dampening
       check: "Number",
-      init: 0.01,
+      init: 0.01
     },
 
     epsilon: {
       // a difference between current and target value smaller than the epsilon
       // will be immediately closed
       check: "Number",
-      init: 0.001,
+      init: 0.001
     },
 
     displayFn: {
-      check: "Function",
-    },
+      check: "Function"
+    }
   },
 
   /*
@@ -193,12 +193,12 @@ qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
       );
 
       if (notFinished) {
-        this.__animationFrame = window.requestAnimationFrame((time) => {
+        this.__animationFrame = window.requestAnimationFrame(time => {
           this.__animate(time, thistime);
         });
       } else {
         this.__animationFrame = undefined;
       }
-    },
-  },
+    }
+  }
 });

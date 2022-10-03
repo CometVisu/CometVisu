@@ -98,6 +98,6 @@ qx.Class.define("cv.ui.BodyBlocker", {
         this.__body = document.querySelector("body");
       }
       return this.__body;
-    },
-  },
+    }
+  }
 });

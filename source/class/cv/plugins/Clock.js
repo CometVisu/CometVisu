@@ -43,61 +43,61 @@ qx.Class.define("cv.plugins.Clock", {
   */
   properties: {
     src: {
-      check: "String",
+      check: "String"
     },
 
     srcPopup: {
-      check: "String",
+      check: "String"
     },
 
     titlePopup: {
-      check: "String",
+      check: "String"
     },
 
     hide24h: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hide24hPopup: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hideAMPM: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hideAMPMPopup: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hideDigits: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hideDigitsPopup: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hideSeconds: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     hideSecondsPopup: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     sendOnFinish: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -137,72 +137,72 @@ qx.Class.define("cv.plugins.Clock", {
 
       return {
         src: {
-          default: "plugins/clock/clock_pure.svg",
+          default: "plugins/clock/clock_pure.svg"
         },
 
         src_popup: {
           target: "srcPopup",
-          default: "",
+          default: ""
         },
 
         title_popup: {
           target: "titlePopup",
-          default: "",
+          default: ""
         },
 
         hide_24h: {
           target: "hide24h",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_24h_popup: {
           target: "hide24hPopup",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_am_pm: {
           target: "hideAMPM",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_am_pm_popup: {
           target: "hideAMPMPopup",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_digits: {
           target: "hideDigits",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_digits_popup: {
           target: "hideDigitsPopup",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_seconds: {
           target: "hideSeconds",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         hide_seconds_popup: {
           target: "hideSecondsPopup",
           default: false,
-          transform: transformValueTrue,
+          transform: transformValueTrue
         },
 
         send_on_finish: {
           target: "sendOnFinish",
           default: false,
-          transform: transformValueTrue,
-        },
+          transform: transformValueTrue
+        }
       };
     },
 
@@ -214,7 +214,7 @@ qx.Class.define("cv.plugins.Clock", {
         second: svg.querySelector("#Second"),
         am: svg.querySelector("#AM"),
         pm: svg.querySelector("#PM"),
-        digits: svg.querySelector("#Digits"),
+        digits: svg.querySelector("#Digits")
       };
 
       let tspan;
@@ -247,7 +247,7 @@ qx.Class.define("cv.plugins.Clock", {
       }
 
       return elements;
-    },
+    }
   },
 
   /*
@@ -266,7 +266,7 @@ qx.Class.define("cv.plugins.Clock", {
     __valueIsString: false,
 
     _getInnerDomString() {
-      return '<div class="actor" style="width:100%;height:100%"></div>';
+      return "<div class=\"actor\" style=\"width:100%;height:100%\"></div>";
     },
 
     _onDomReady() {
@@ -287,17 +287,17 @@ qx.Class.define("cv.plugins.Clock", {
         promises.push(window.fetch(uriPopup));
       }
       Promise.all(promises)
-        .then((responses) => {
+        .then(responses => {
           let result = [];
           if (!responses[0].ok) {
-            throw new Error('Not 2xx response for URI "' + uri + '"');
+            throw new Error("Not 2xx response for URI \"" + uri + "\"");
           } else {
             result.push(responses[0].text());
           }
           if (uriPopup !== "") {
             if (!responses[1].ok) {
               throw new Error(
-                'Not 2xx response for popup URI "' + uriPopup + '"'
+                "Not 2xx response for popup URI \"" + uriPopup + "\""
               );
             } else {
               result.push(responses[1].text());
@@ -305,7 +305,7 @@ qx.Class.define("cv.plugins.Clock", {
           }
           return Promise.all(result);
         })
-        .then((texts) => {
+        .then(texts => {
           let actor = this.getActor();
           actor.innerHTML = texts[0];
           let svg = actor.firstElementChild;
@@ -326,7 +326,7 @@ qx.Class.define("cv.plugins.Clock", {
               this.getHideAMPM(),
               this.getHideDigits(),
               this.getHideSeconds()
-            ),
+            )
           ];
 
           if (texts.length > 1) {
@@ -341,7 +341,7 @@ qx.Class.define("cv.plugins.Clock", {
             svg.addEventListener("click", function () {
               cv.ui.PopupHandler.showPopup("clock", {
                 title: title,
-                content: popup,
+                content: popup
               });
             });
             svg = popup.firstElementChild;
@@ -384,7 +384,7 @@ qx.Class.define("cv.plugins.Clock", {
           this.__svg = svg;
           this._updateHands();
         })
-        .catch((error) => {
+        .catch(error => {
           this.error(
             "There has been a problem with the reading of the clock SVG:",
             error
@@ -405,7 +405,7 @@ qx.Class.define("cv.plugins.Clock", {
         this.__timeToShow = [
           value.getHours(),
           value.getMinutes(),
-          value.getSeconds(),
+          value.getSeconds()
         ];
         this.setValue(value);
       } else {
@@ -441,7 +441,7 @@ qx.Class.define("cv.plugins.Clock", {
         none: 0,
         hour: 1,
         minute: 2,
-        second: 3,
+        second: 3
       };
 
       switch (event.type) {
@@ -501,7 +501,7 @@ qx.Class.define("cv.plugins.Clock", {
         none: 0,
         hour: 1,
         minute: 2,
-        second: 3,
+        second: 3
       };
 
       let CTM = this.__svg.getScreenCTM(); // get the Current Transformation Matrix
@@ -577,7 +577,7 @@ qx.Class.define("cv.plugins.Clock", {
       this.__timeToShow = [
         time.getHours(),
         time.getMinutes(),
-        time.getSeconds(),
+        time.getSeconds()
       ];
       this._updateHands();
     },
@@ -596,7 +596,7 @@ qx.Class.define("cv.plugins.Clock", {
     _updateHands() {
       const [hour, minute, second] = this.__timeToShow;
       Array.isArray(this.__Elements) &&
-        this.__Elements.forEach((e) => {
+        this.__Elements.forEach(e => {
           let showSeconds = true;
           if (e.hour !== null) {
             if (showSeconds) {
@@ -663,11 +663,11 @@ qx.Class.define("cv.plugins.Clock", {
             }
           }
         });
-    },
+    }
   },
 
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("clock", cv.plugins.Clock);
     cv.ui.structure.WidgetFactory.registerClass("clock", statics);
-  },
+  }
 });

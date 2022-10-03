@@ -42,8 +42,8 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
   properties: {
     type: {
       refine: true,
-      init: "group",
-    },
+      init: "group"
+    }
   },
 
   /*
@@ -106,7 +106,7 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
     getAllowedElementsSorting(sortNumber) {
       const namesWithSorting = {};
       const allowedElements = this.getAllowedElements();
-      Object.keys(allowedElements).forEach((name) => {
+      Object.keys(allowedElements).forEach(name => {
         const item = allowedElements[name];
         let mySortNumber = "x"; // for a group, sortNumber is always the same
         if (sortNumber !== undefined) {
@@ -142,7 +142,7 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
 
       // collect the regex for each and every grouping we might have;
       // 'each and every' means 'the only ONE'
-      this._subGroupings.forEach((grouping) => {
+      this._subGroupings.forEach(grouping => {
         regexString = "(";
         if (nocapture) {
           regexString += "?:";
@@ -171,6 +171,6 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
       // we are a group. we have no saying of ourselves
       // (@FIXME: by definition we do, but we do not take that into account)
       return this._subGroupings[0].getBoundsForElementName(childName);
-    },
-  },
+    }
+  }
 });

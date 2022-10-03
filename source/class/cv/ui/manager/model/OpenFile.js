@@ -47,18 +47,18 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
       check: "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
       nullable: true,
       event: "changeFile",
-      apply: "_applyFile",
+      apply: "_applyFile"
     },
 
     handlerId: {
       check: "!!qx.Class.getByName(value)",
       nullable: true,
-      apply: "_maintainIcon",
+      apply: "_maintainIcon"
     },
 
     handlerOptions: {
       check: "Map",
-      nullable: true,
+      nullable: true
     },
 
     /**
@@ -69,7 +69,7 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
     permanent: {
       check: "Boolean",
       init: false,
-      event: "changePermanent",
+      event: "changePermanent"
     },
 
     /**
@@ -78,14 +78,14 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
     icon: {
       check: "String",
       init: "",
-      event: "changeIcon",
+      event: "changeIcon"
     },
 
     closeable: {
       check: "Boolean",
       init: true,
-      event: "changeCloseable",
-    },
+      event: "changeCloseable"
+    }
   },
 
   /*
@@ -161,6 +161,6 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
           fileHandler.instance.save(callback, overrideHash);
         }
       }
-    },
-  },
+    }
+  }
 });

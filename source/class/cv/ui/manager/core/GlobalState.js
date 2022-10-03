@@ -34,8 +34,8 @@ qx.Class.define("cv.ui.manager.core.GlobalState", {
       check: "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
       nullable: true,
       event: "changeOpenedFocusedFile",
-      apply: "_applyFile",
-    },
+      apply: "_applyFile"
+    }
   },
 
   /*
@@ -46,6 +46,6 @@ qx.Class.define("cv.ui.manager.core.GlobalState", {
   members: {
     _applyFile() {
       cv.ui.manager.control.ActionDispatcher.getInstance().updateBarButtons();
-    },
-  },
+    }
+  }
 });

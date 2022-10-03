@@ -338,7 +338,7 @@ qx.Class.define("cv.ui.structure.pure.layout.ResizeHandler", {
         elem = qx.dom.Element.create("div", {
           class: "clearfix",
           id: "calcrowspan",
-          html: '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>',
+          html: "<div id=\"containerDiv\" class=\"widget_container\"><div class=\"widget clearfix text\" id=\"innerDiv\"></div>"
         });
 
         document.body.appendChild(elem);
@@ -402,11 +402,11 @@ qx.Class.define("cv.ui.structure.pure.layout.ResizeHandler", {
         pageSizeInvalid: true,
         rowspanInvalid: true,
         navbarInvalid: true,
-        backdropInvalid: true,
+        backdropInvalid: true
       });
 
       this.makeAllSizesValid();
-    },
+    }
   },
 
   defer(statics) {
@@ -416,5 +416,5 @@ qx.Class.define("cv.ui.structure.pure.layout.ResizeHandler", {
       statics.invalidateScreensize,
       statics
     );
-  },
+  }
 });

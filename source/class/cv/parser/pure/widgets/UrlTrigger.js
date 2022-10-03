@@ -56,17 +56,17 @@ qx.Class.define("cv.parser.pure.widgets.UrlTrigger", {
       return {
         value: { target: "sendValue", default: "0" },
         params: { default: "" },
-        url: {},
+        url: {}
       };
     },
     getDefaultClasses(type) {
       // additional trigger class
       return "widget clearfix trigger " + type.toLowerCase();
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("urltrigger", statics);
-  },
+  }
 });

@@ -43,6 +43,6 @@ qx.Class.define("cv.ui.structure.pure.Text", {
     // overridden
     _getInnerDomString() {
       return "";
-    },
-  },
+    }
+  }
 });

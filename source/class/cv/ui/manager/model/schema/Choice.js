@@ -42,8 +42,8 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
   properties: {
     type: {
       refine: true,
-      init: "choice",
-    },
+      init: "choice"
+    }
   },
 
   /*
@@ -62,7 +62,7 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
       const node = this.getNode();
       const schema = this.getSchema();
       const subElements = Array.from(node.querySelectorAll(":scope > element"));
-      subElements.forEach((elem) => {
+      subElements.forEach(elem => {
         const subElement = new cv.ui.manager.model.schema.Element(elem, schema);
         subElement.setSortable(true);
         this._allowedElements[subElement.getName()] = subElement;
@@ -72,7 +72,7 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
 
       // choices
       Array.from(node.querySelectorAll(":scope > choice")).forEach(
-        (grouping) => {
+        grouping => {
           this._subGroupings.push(
             new cv.ui.manager.model.schema.Choice(grouping, schema)
           );
@@ -81,7 +81,7 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
 
       // sequences
       Array.from(node.querySelectorAll(":scope > sequence")).forEach(
-        (grouping) => {
+        grouping => {
           this._subGroupings.push(
             new cv.ui.manager.model.schema.Sequence(grouping, schema)
           );
@@ -90,7 +90,7 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
 
       // groups
       Array.from(node.querySelectorAll(":scope > group")).forEach(
-        (grouping) => {
+        grouping => {
           this._subGroupings.push(
             new cv.ui.manager.model.schema.Group(grouping, schema)
           );
@@ -131,7 +131,7 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
       }
 
       // also collect the regex for each and every grouping we might have
-      this._subGroupings.forEach((grouping) => {
+      this._subGroupings.forEach(grouping => {
         elementRegexes.push(grouping.getRegex(separator, nocapture));
       });
 
@@ -213,6 +213,6 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
         }
       }, this);
       return namesWithSorting;
-    },
-  },
+    }
+  }
 });

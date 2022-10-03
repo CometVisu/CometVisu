@@ -46,11 +46,11 @@ qx.Class.define("cv.parser.pure.widgets.Text", {
         flavour,
         pageType
       );
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("text", statics);
-  },
+  }
 });

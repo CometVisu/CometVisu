@@ -74,6 +74,17 @@ qx.Class.define("cv.util.Color", {
      * @returns {number[]}
      */
     solve3d(A00, A10, A20, A01, A11, A21, A02, A12, A22, y0, y1, y2) {
+      /**
+       * @param A00
+       * @param A10
+       * @param A20
+       * @param A01
+       * @param A11
+       * @param A21
+       * @param A02
+       * @param A12
+       * @param A22
+       */
       function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
         // eslint-disable-line
         return (
@@ -113,7 +124,7 @@ qx.Class.define("cv.util.Color", {
       return {
         x: p3.x + factors[0] * x34,
         y: p3.y + factors[0] * y34,
-        factors: factors,
+        factors: factors
       };
     },
 
@@ -162,7 +173,7 @@ qx.Class.define("cv.util.Color", {
             ? ((-1.1063814 * x - 1.3481102) * x + 2.18555832) * x - 0.20219683
             : T <= 4000
             ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867
-            : ((3.081758 * x - 5.8733867) * x + 3.75112997) * x - 0.37001483, // eslint-disable-line space-in-parens
+            : ((3.081758 * x - 5.8733867) * x + 3.75112997) * x - 0.37001483 // eslint-disable-line space-in-parens
       };
     },
 
@@ -180,12 +191,12 @@ qx.Class.define("cv.util.Color", {
       const G = -0.969266 * X + 1.8760108 * Y + 0.041556 * Z;
       const B = 0.0556434 * X - 0.2040259 * Y + 1.0572252 * Z;
       const scale = 1 / Math.max(1, R, G, B); // very simple gamut mapping
-      const gamma = (u) =>
+      const gamma = u =>
         u <= 0.0031308 ? 12.92 * u : 1.055 * u ** (1 / 2.4) - 0.055;
       return {
         r: gamma(Math.max(R * scale, 0)),
         g: gamma(Math.max(G * scale, 0)),
-        b: gamma(Math.max(B * scale, 0)),
+        b: gamma(Math.max(B * scale, 0))
       };
     },
 
@@ -248,7 +259,7 @@ qx.Class.define("cv.util.Color", {
       }
       // otherwise: table conversion
       let normalized = value / scale;
-      let higher = curve.findIndex((x) => x > normalized);
+      let higher = curve.findIndex(x => x > normalized);
       if (higher < 0) {
         // nothing found -> limit to highest index
         higher = curve.length - 1;
@@ -259,7 +270,7 @@ qx.Class.define("cv.util.Color", {
       }
       let ratio = (normalized - curve[lower]) / (curve[higher] - curve[lower]);
       return Math.min((lower + ratio) / (curve.length - 1), 1);
-    },
+    }
   },
 
   /*
@@ -322,7 +333,7 @@ qx.Class.define("cv.util.Color", {
       this.__W = {
         X: this.__R.X + this.__G.X + this.__B.X,
         Y: this.__R.Y + this.__G.Y + this.__B.Y,
-        Z: this.__R.Z + this.__G.Z + this.__B.Z,
+        Z: this.__R.Z + this.__G.Z + this.__B.Z
       };
 
       this.__W.x = this.__W.X / (this.__W.X + this.__W.Y + this.__W.Z);
@@ -413,7 +424,7 @@ qx.Class.define("cv.util.Color", {
       return {
         X: this.__x * (this.__Y / Math.max(0.001, this.__y)),
         Y: this.__Y,
-        Z: (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y)),
+        Z: (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y))
       };
     },
     /**
@@ -442,7 +453,7 @@ qx.Class.define("cv.util.Color", {
       // is x-y on the same side of the R-G axis as the white point?
       let iRG = cv.util.Color.intersect(this.__R, this.__G, this.__W, {
         x: x,
-        y: y,
+        y: y
       });
       if (iRG.factors[0] >= 0 && iRG.factors[0] <= 1) {
         // no -> move it to be on the line
@@ -452,7 +463,7 @@ qx.Class.define("cv.util.Color", {
       // is x-y on the same side of the G-B axis as the white point?
       let iGB = cv.util.Color.intersect(this.__G, this.__B, this.__W, {
         x: x,
-        y: y,
+        y: y
       });
       if (iGB.factors[0] >= 0 && iGB.factors[0] <= 1) {
         // no -> move it to be on the line
@@ -462,7 +473,7 @@ qx.Class.define("cv.util.Color", {
       // is x-y on the same side of the B-R axis as the white point?
       let iBR = cv.util.Color.intersect(this.__B, this.__R, this.__W, {
         x: x,
-        y: y,
+        y: y
       });
       if (iBR.factors[0] >= 0 && iBR.factors[0] <= 1) {
         // no -> move it to be on the line
@@ -554,7 +565,7 @@ qx.Class.define("cv.util.Color", {
         const thisXYZ = {
           X: (this.__x * this.__Y) / this.__y,
           Y: this.__Y,
-          Z: ((1 - this.__x - this.__y) * this.__Y) / this.__y,
+          Z: ((1 - this.__x - this.__y) * this.__Y) / this.__y
         };
 
         if (
@@ -628,7 +639,7 @@ qx.Class.define("cv.util.Color", {
             this.__hsv = {
               h: (2 * i + 1) / 6 + fac2[0] / 6,
               s: fac2[1],
-              v: fac2[2],
+              v: fac2[2]
             };
             this.__HSV_h_last = this.__hsv.h;
             break;
@@ -757,7 +768,7 @@ qx.Class.define("cv.util.Color", {
         this.__Lab = {
           L: 116 * f(Y / Yn) - 16,
           a: 500 * (f(X / Xn) - f(Y / Yn)),
-          b: 200 * (f(Y / Yn) - f(Z / Zn)),
+          b: 200 * (f(Y / Yn) - f(Z / Zn))
         };
       }
     },
@@ -768,7 +779,7 @@ qx.Class.define("cv.util.Color", {
         this.__LCh = {
           L: this.__Lab.L / 100, // map to 0...1
           C: Math.sqrt(this.__Lab.a ** 2 + this.__Lab.b ** 2) / 150, // map to 0...1
-          h: (Math.atan2(this.__Lab.b, this.__Lab.a) / (2 * Math.PI) + 1) % 1, // map angle to 0...1
+          h: (Math.atan2(this.__Lab.b, this.__Lab.a) / (2 * Math.PI) + 1) % 1 // map angle to 0...1
         };
         if (this.__LCh.C < 1e-5) {
           this.__LCh.h = this.__LCh_h_last;
@@ -785,7 +796,7 @@ qx.Class.define("cv.util.Color", {
      * @param {string} [keep2]
      */
     __invalidateBut(keep, keep2 = "") {
-      ["__rgb", "__rgbw", "__hsv", "__Lab", "__LCh", "__T"].forEach((cache) => {
+      ["__rgb", "__rgbw", "__hsv", "__Lab", "__LCh", "__T"].forEach(cache => {
         if (cache !== keep && cache !== keep2) {
           this[cache] = undefined;
         }
@@ -935,7 +946,7 @@ qx.Class.define("cv.util.Color", {
       this.__Lab = {
         L: this.__LCh.L * 100,
         a: this.__LCh.C * Math.cos(this.__LCh.h * 2 * Math.PI) * 150,
-        b: this.__LCh.C * Math.sin(this.__LCh.h * 2 * Math.PI) * 150,
+        b: this.__LCh.C * Math.sin(this.__LCh.h * 2 * Math.PI) * 150
       };
 
       this.__syncLab2xy(true);
@@ -986,7 +997,7 @@ qx.Class.define("cv.util.Color", {
           this.__hsv = {
             h: clamp(value.h),
             s: clamp(value.s),
-            v: clamp(value.v),
+            v: clamp(value.v)
           };
 
           this.__syncHSV2xy();
@@ -1004,7 +1015,7 @@ qx.Class.define("cv.util.Color", {
           this.__rgb = {
             r: clamp(value.r),
             g: clamp(value.g),
-            b: clamp(value.b),
+            b: clamp(value.b)
           };
 
           this.__syncRGB2xy();
@@ -1024,7 +1035,7 @@ qx.Class.define("cv.util.Color", {
             r: clamp(value.r),
             g: clamp(value.g),
             b: clamp(value.b),
-            w: clamp(value.w),
+            w: clamp(value.w)
           };
 
           this.__syncRGBW2xy();
@@ -1134,7 +1145,7 @@ qx.Class.define("cv.util.Color", {
           return {
             x: clamp(0, this.__x, 1),
             y: clamp(0, this.__y, 1),
-            Y: clamp(0, this.__Y, 1),
+            Y: clamp(0, this.__Y, 1)
           };
 
         case "h":
@@ -1148,7 +1159,7 @@ qx.Class.define("cv.util.Color", {
           return {
             h: clamp(0, this.__hsv.h, 1),
             s: clamp(0, this.__hsv.s, 1),
-            v: clamp(0, this.__hsv.v, 1),
+            v: clamp(0, this.__hsv.v, 1)
           };
 
         case "RGB-r":
@@ -1169,7 +1180,7 @@ qx.Class.define("cv.util.Color", {
           return {
             r: map * this.__rgb.r,
             g: map * this.__rgb.g,
-            b: map * this.__rgb.b,
+            b: map * this.__rgb.b
           };
         }
 
@@ -1207,7 +1218,7 @@ qx.Class.define("cv.util.Color", {
             r: map * this.__rgbw.r,
             g: map * this.__rgbw.g,
             b: map * this.__rgbw.b,
-            w: map * this.__rgbw.w,
+            w: map * this.__rgbw.w
           };
         }
 
@@ -1230,7 +1241,7 @@ qx.Class.define("cv.util.Color", {
           return {
             L: clamp(0, this.__LCh.L, 1),
             C: clamp(0, this.__LCh.C, 1),
-            h: clamp(0, this.__LCh.h, 1),
+            h: clamp(0, this.__LCh.h, 1)
           };
       }
 
@@ -1284,10 +1295,10 @@ qx.Class.define("cv.util.Color", {
       c._forceLCh({
         h: b(c1.h + s, c2.h + e) % 1, // handle 360° === 0° to always take shortest distance
         L: b(c1.L, c2.L),
-        C: b(c1.C, c2.C),
+        C: b(c1.C, c2.C)
       });
 
       return c;
-    },
-  },
+    }
+  }
 });

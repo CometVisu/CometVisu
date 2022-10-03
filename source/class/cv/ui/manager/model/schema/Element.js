@@ -146,7 +146,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
         // if nothing else matched, then they are treated equal
         return 0;
       };
-    },
+    }
   },
 
   /*
@@ -157,29 +157,29 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
   properties: {
     type: {
       refine: true,
-      init: "element",
+      init: "element"
     },
 
     name: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     defaultValue: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     sortable: {
       check: "Boolean",
       init: false,
-      event: "changeSortable",
+      event: "changeSortable"
     },
 
     mixed: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -231,7 +231,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
 
       const allowedContent = {
         _grouping: undefined,
-        _text: false,
+        _text: false
       };
 
       // allowed sub-elements
@@ -306,7 +306,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
       const children = Array.from(
         this._type.querySelectorAll(":scope > element")
       );
-      children.forEach((sub) => {
+      children.forEach(sub => {
         const subElement = new cv.ui.manager.model.schema.Element(sub, schema);
         allowedContent[subElement.getName()] = subElement;
       });
@@ -339,7 +339,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
           )
         );
 
-        attributeGroups.forEach((aGroup) => {
+        attributeGroups.forEach(aGroup => {
           // get get group itself, by reference if necessary
           // then extract all attributes, and add them to the list of already know attributes
 
@@ -356,13 +356,13 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
 
           Array.from(
             attributeGroup.querySelectorAll(":scope > attribute")
-          ).forEach((child) => {
+          ).forEach(child => {
             attributes.push(child);
           });
         });
 
         // convert all allowed attributes to a more object-oriented approach
-        attributes.forEach((attr) => {
+        attributes.forEach(attr => {
           const attribute = new cv.ui.manager.model.schema.Attribute(
             attr,
             this.getSchema()
@@ -466,7 +466,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
       const allowedSorting = this.getAllowedElementsSorting();
       if (allowedSorting) {
         // we only care about the first level here
-        Object.keys(allowedSorting).forEach((name) => {
+        Object.keys(allowedSorting).forEach(name => {
           let sort = allowedSorting[name];
           if (typeof sort === "string") {
             sort = parseInt(sort.split(".")[0]);
@@ -725,7 +725,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
       }
 
       return allowedContent._grouping.getRegex(separator, nocapture);
-    },
+    }
   },
 
   /*
@@ -737,5 +737,5 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
     this._disposeMap("__allowedAttributes");
     this._disposeMap("__allowedContent");
     this._disposeObjects("__textNodeSchemaElement");
-  },
+  }
 });

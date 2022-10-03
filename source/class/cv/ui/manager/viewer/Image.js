@@ -32,8 +32,8 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
   properties: {
     appearance: {
       refine: true,
-      init: "image-viewer",
-    },
+      init: "image-viewer"
+    }
   },
 
   /*
@@ -57,21 +57,21 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
         return {
           width: data[0],
           height: data[1],
-          aspectRatio: data[0] / data[1],
+          aspectRatio: data[0] / data[1]
         };
       }
       data = qx.io.ImageLoader.getSize(source);
       if (data && data.width && data.height) {
         return Object.assign(
           {
-            aspectRatio: data.width / data.height,
+            aspectRatio: data.width / data.height
           },
           data
         );
       }
 
       return null;
-    },
+    }
   },
 
   /*
@@ -126,8 +126,8 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
       icon.set({
         width: width,
         height: height,
-        scale: true,
+        scale: true
       });
-    },
-  },
+    }
+  }
 });

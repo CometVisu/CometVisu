@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.Popup", {
       "#navbarTop",
       "#centerContainer",
       "#navbarBottom",
-      "#bottom",
+      "#bottom"
     ];
     this.__elementMap = {};
   },
@@ -46,7 +46,7 @@ qx.Class.define("cv.ui.Popup", {
   ******************************************************
   */
   events: {
-    close: "qx.event.type.Event",
+    close: "qx.event.type.Event"
   },
 
   /*
@@ -57,8 +57,8 @@ qx.Class.define("cv.ui.Popup", {
   properties: {
     type: {
       check: "String",
-      init: "",
-    },
+      init: ""
+    }
   },
 
   /*
@@ -104,7 +104,7 @@ qx.Class.define("cv.ui.Popup", {
           id: "popup_" + this.__counter,
           class: classes.join(" "),
           style: "visibility:hidden",
-          html: closable ? '<div class="popup_close">X</div>' : "",
+          html: closable ? "<div class=\"popup_close\">X</div>" : ""
         });
 
         body.appendChild(ret_val);
@@ -117,7 +117,7 @@ qx.Class.define("cv.ui.Popup", {
         if (closable && !this.__elementMap.close) {
           this.__domElement.close = qx.dom.Element.create("div", {
             class: "popup_close",
-            html: "X",
+            html: "X"
           });
           qx.dom.Element.insertBegin(this.__domElement.close, body);
           addCloseListeners = true;
@@ -132,7 +132,7 @@ qx.Class.define("cv.ui.Popup", {
       if (attributes.title) {
         if (!this.__elementMap.title) {
           this.__elementMap.title = qx.dom.Element.create("div", {
-            class: "head",
+            class: "head"
           });
           ret_val.appendChild(this.__elementMap.title);
         }
@@ -147,7 +147,7 @@ qx.Class.define("cv.ui.Popup", {
       if (attributes.content || attributes.icon || attributes.progress) {
         if (!this.__elementMap.content) {
           this.__elementMap.content = qx.dom.Element.create("div", {
-            class: "main",
+            class: "main"
           });
           ret_val.appendChild(this.__elementMap.content);
         }
@@ -155,7 +155,7 @@ qx.Class.define("cv.ui.Popup", {
         if (attributes.content) {
           if (!this.__elementMap.messageContent) {
             this.__elementMap.messageContent = qx.dom.Element.create("div", {
-              class: "message",
+              class: "message"
             });
             qx.dom.Element.insertBegin(
               this.__elementMap.messageContent,
@@ -187,7 +187,7 @@ qx.Class.define("cv.ui.Popup", {
                 "icon" + iconClasses,
                 true,
                 true
-              ),
+              )
             });
             qx.dom.Element.insertBegin(
               this.__elementMap.icon,
@@ -226,7 +226,7 @@ qx.Class.define("cv.ui.Popup", {
       ) {
         if (!this.__elementMap.actions) {
           this.__elementMap.actions = qx.dom.Element.create("div", {
-            class: "actions",
+            class: "actions"
           });
           ret_val.appendChild(this.__elementMap.actions);
         } else {
@@ -329,11 +329,11 @@ qx.Class.define("cv.ui.Popup", {
         anchor,
         {
           w: Math.round(ret_valRect.right - ret_valRect.left),
-          h: Math.round(ret_valRect.bottom - ret_valRect.top),
+          h: Math.round(ret_valRect.bottom - ret_valRect.top)
         },
         {
           w: document.documentElement.clientWidth,
-          h: document.documentElement.clientHeight,
+          h: document.documentElement.clientHeight
         },
         align
       );
@@ -343,8 +343,8 @@ qx.Class.define("cv.ui.Popup", {
 
       if (!closable && ret_val.querySelector(".reload") === null) {
         const reload =
-          '<div class="reload">' +
-          '<a href="javascript:location.reload(true);">' +
+          "<div class=\"reload\">" +
+          "<a href=\"javascript:location.reload(true);\">" +
           qx.locale.Manager.tr("Reload").toString() +
           "</a>" +
           "</div>";
@@ -406,7 +406,7 @@ qx.Class.define("cv.ui.Popup", {
 
     isClosed() {
       return this.__domElement === null;
-    },
+    }
   },
 
   /*
@@ -416,5 +416,5 @@ qx.Class.define("cv.ui.Popup", {
   */
   destruct() {
     this.close();
-  },
+  }
 });

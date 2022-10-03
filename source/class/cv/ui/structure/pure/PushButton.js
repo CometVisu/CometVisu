@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
   */
   properties: {
     downValue: { check: "String", init: "1" },
-    upValue: { check: "String", init: "0" },
+    upValue: { check: "String", init: "0" }
   },
 
   /*
@@ -46,7 +46,7 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
   members: {
     // overridden
     _getInnerDomString() {
-      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
     },
 
     // overridden
@@ -95,10 +95,10 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
       this.sendToBackend(sendValue, function (address) {
         return !address.variantInfo || address.variantInfo === "down";
       });
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("pushbutton", statics);
-  },
+  }
 });

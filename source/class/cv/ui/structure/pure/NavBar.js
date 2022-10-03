@@ -36,39 +36,39 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
   properties: {
     anonymous: {
       refine: true,
-      init: true,
+      init: true
     },
 
     name: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     scope: {
       check: "Number",
-      init: -1,
+      init: -1
     },
 
     width: {
       check: "String",
-      init: "300",
+      init: "300"
     },
 
     position: {
       check: ["top", "left", "right", "bottom"],
-      init: "left",
+      init: "left"
     },
 
     dynamic: {
       check: "Boolean",
       nullable: true,
-      init: null,
+      init: null
     },
 
     visible: {
       refine: true,
-      init: true,
-    },
+      init: true
+    }
   },
 
   /*
@@ -122,7 +122,7 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
             (!qx.core.Init.getApplication().getMobile() &&
               pPH.navbars.left.dynamic !== true) ||
             (pPH.navbars.left.fadeVisible &&
-              !evt.composedPath().some((i) => i.id === "navbarLeft")) || // left navbar is visible, but the touch is somewhere else
+              !evt.composedPath().some(i => i.id === "navbarLeft")) || // left navbar is visible, but the touch is somewhere else
             (!pPH.navbars.left.fadeVisible && touches.clientX > 20)
           ) {
             // left navbar is not visible but the finger isn't on the left end -> not relevant
@@ -177,7 +177,7 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
         },
         { passive: false }
       );
-    },
+    }
   },
 
   /*
@@ -198,11 +198,11 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
     // overridden
     getDomString() {
       let container =
-        '<div class="' +
+        "<div class=\"" +
         this.getClasses() +
-        '" id="' +
+        "\" id=\"" +
         this.getGlobalPath() +
-        '">';
+        "\">";
       if (this.getName()) {
         container += "<h2>" + this.getName() + "</h2>";
       }
@@ -230,7 +230,7 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
       }
 
       return "";
-    },
+    }
   },
 
   defer(statics) {
@@ -240,5 +240,5 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
       statics.initializeNavbars,
       statics
     );
-  },
+  }
 });

@@ -59,7 +59,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         r: { x: 0.64, y: 0.33, Y: 0.2126 },
         g: { x: 0.3, y: 0.6, Y: 0.7152 },
         b: { x: 0.15, y: 0.06, Y: 0.0722 },
-        w: { x: 0.3127, y: 0.329, Y: 1 },
+        w: { x: 0.3127, y: 0.329, Y: 1 }
       };
 
       let r_x = xml.getAttribute("r_x");
@@ -118,7 +118,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         default:
           data.baseColors.r.curve = r_curve
             .split(";")
-            .map((x) => parseFloat(x));
+            .map(x => parseFloat(x));
       }
 
       if (g_wavelength) {
@@ -153,7 +153,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         default:
           data.baseColors.g.curve = g_curve
             .split(";")
-            .map((x) => parseFloat(x));
+            .map(x => parseFloat(x));
       }
 
       if (b_wavelength) {
@@ -188,7 +188,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         default:
           data.baseColors.b.curve = b_curve
             .split(";")
-            .map((x) => parseFloat(x));
+            .map(x => parseFloat(x));
       }
 
       if (w_x) {
@@ -218,7 +218,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         default:
           data.baseColors.w.curve = w_curve
             .split(";")
-            .map((x) => parseFloat(x));
+            .map(x => parseFloat(x));
       }
 
       return data;
@@ -227,7 +227,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
     makeAddressListFn(src, transform, mode, variant) {
       return [
         true,
-        new Set(["r", "g", "b"]).has(variant) ? "RGB-" + variant : variant,
+        new Set(["r", "g", "b"]).has(variant) ? "RGB-" + variant : variant
       ];
     },
 
@@ -239,14 +239,14 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
           default: false,
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("colorchooser", statics);
-  },
+  }
 });

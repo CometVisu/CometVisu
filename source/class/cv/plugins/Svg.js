@@ -53,7 +53,7 @@ qx.Class.define("cv.plugins.Svg", {
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
-    },
+    }
   },
 
   /*
@@ -63,7 +63,7 @@ qx.Class.define("cv.plugins.Svg", {
   */
   members: {
     _getInnerDomString() {
-      return '<div class="actor"></div>';
+      return "<div class=\"actor\"></div>";
     },
 
     _onDomReady() {
@@ -73,10 +73,10 @@ qx.Class.define("cv.plugins.Svg", {
       );
       ajaxRequest.set({
         accept: "text/plain",
-        cache: !cv.Config.forceReload,
+        cache: !cv.Config.forceReload
       });
 
-      ajaxRequest.addListenerOnce("success", (e) => {
+      ajaxRequest.addListenerOnce("success", e => {
         const req = e.getTarget();
         const actor = this.getActor();
         actor.innerHTML = req.getResponseText();
@@ -110,12 +110,12 @@ qx.Class.define("cv.plugins.Svg", {
         line.setAttribute("y1", 9);
         line.setAttribute("y2", 9);
       }
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("svg", cv.plugins.Svg);
     cv.ui.structure.WidgetFactory.registerClass("svg", statics);
-  },
+  }
 });

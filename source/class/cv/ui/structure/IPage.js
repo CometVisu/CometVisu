@@ -46,7 +46,7 @@ qx.Interface.define("cv.ui.structure.IPage", {
      */
     pageType: {},
     backdropAlign: {},
-    backdropType: {},
+    backdropType: {}
   },
 
   /*
@@ -59,6 +59,6 @@ qx.Interface.define("cv.ui.structure.IPage", {
      * Return the widgets DOM element
      * @return {Element}
      */
-    getDomElement() {},
-  },
+    getDomElement() {}
+  }
 });

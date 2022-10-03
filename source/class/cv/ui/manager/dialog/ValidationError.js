@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
     this._errors = errors;
     super(
       Object.assign(properties || {}, {
-        useBlocker: true,
+        useBlocker: true
       })
     );
 
@@ -60,7 +60,7 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
   ***********************************************
   */
   events: {
-    action: "qx.event.type.Data",
+    action: "qx.event.type.Data"
   },
 
   /*
@@ -79,9 +79,9 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
     _file: null,
 
     highlight() {
-      Array.from(document.querySelectorAll("pre.highlight")).forEach((elem) => {
+      Array.from(document.querySelectorAll("pre.highlight")).forEach(elem => {
         monaco.editor.colorizeElement(elem, {
-          theme: "vs-dark",
+          theme: "vs-dark"
         });
       });
     },
@@ -95,10 +95,10 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
       container.add(vbox);
 
       let prologue = this.tr(
-        '<h3>Config Errors</h3>\
-<p>The validation of "%1" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because \
+        "<h3>Config Errors</h3>\
+<p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because \
 it can break the file completely. Please open this file in the text editor and fix the errors there. \
-Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>',
+Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>",
         this._file.getFullPath()
       );
 
@@ -114,7 +114,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       const labelOptions = {
         rich: true,
         width: Math.min(qx.bom.Viewport.getWidth() - 32, 750),
-        allowGrowX: true,
+        allowGrowX: true
       };
 
       const message = new qx.ui.basic.Label(prologue);
@@ -126,7 +126,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       const errorScroll = new qx.ui.container.Scroll(errorBox);
       errorScroll.set({
         padding: [0, 0, 8, 8],
-        decorator: "cv-editor-config-section",
+        decorator: "cv-editor-config-section"
       });
 
       errorScroll.setMinHeight(100);
@@ -140,7 +140,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
         });
       vbox.add(errorScroll, { flex: 1 });
       const errorLabels = new Map();
-      this._errors.forEach((error) => {
+      this._errors.forEach(error => {
         const errorId = error.line + error.element + error.attribute;
         let label;
         if (!errorLabels.has(errorId)) {
@@ -160,7 +160,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
             minIndent = 0;
           }
           codeSnippet = codeSnippet.map(
-            (line) =>
+            line =>
               line[0] + ": " + qx.xml.String.escape(line[1].substr(minIndent))
           );
           const headline = this.tr("Line %1", error.line);
@@ -211,7 +211,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
 
       container.add(buttonPane);
       this.add(container);
-    },
+    }
   },
 
   /*
@@ -229,5 +229,5 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
         .removeListenerById(this._rootListenerId);
       this._rootListenerId = null;
     }
-  },
+  }
 });

@@ -51,12 +51,12 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
             insertText:
               "/**\n * TODO: Add documentation\n * \n * @since " +
               cv.Version.VERSION.replace("-dev", "") +
-              ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.$0", {\n  extend: qx.core.Object,\n\n  \n});\n',
+              " ($CURRENT_YEAR)\n */\nqx.Class.define(\"cv.$0\", {\n  extend: qx.core.Object,\n\n  \n});\n",
             insertTextRules:
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvwidget",
@@ -66,12 +66,12 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
             insertText:
               "/**\n * TODO: Add documentation\n * \n * @since " +
               cv.Version.VERSION.replace("-dev", "") +
-              ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.ui.structure.pure.$0", {\n  extend: cv.ui.structure.pure.AbstractWidget,\n\n  \n});\n',
+              " ($CURRENT_YEAR)\n */\nqx.Class.define(\"cv.ui.structure.pure.$0\", {\n  extend: cv.ui.structure.pure.AbstractWidget,\n\n  \n});\n",
             insertTextRules:
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvinterface",
@@ -81,12 +81,12 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
             insertText:
               "/**\n * TODO: Add documentation\n * \n * @since " +
               cv.Version.VERSION.replace("-dev", "") +
-              ' ($CURRENT_YEAR)\n */\nqx.Interface.define("cv.$0", {\n  \n});\n',
+              " ($CURRENT_YEAR)\n */\nqx.Interface.define(\"cv.$0\", {\n  \n});\n",
             insertTextRules:
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvmixin",
@@ -96,12 +96,12 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
             insertText:
               "/**\n * TODO: Add documentation\n * \n * @since " +
               cv.Version.VERSION.replace("-dev", "") +
-              ' ($CURRENT_YEAR)\n */\nqx.Mixin.define("cv.$0", {\n  \n});\n',
+              " ($CURRENT_YEAR)\n */\nqx.Mixin.define(\"cv.$0\", {\n  \n});\n",
             insertTextRules:
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvmembers",
@@ -114,7 +114,7 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvproperties",
@@ -127,7 +127,7 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvstatics",
@@ -140,7 +140,7 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvevents",
@@ -153,7 +153,7 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvconstructor",
@@ -166,7 +166,7 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
+                .KeepWhitespace
           },
           {
             filterText: "cvdestructor",
@@ -179,8 +179,8 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
               window.monaco.languages.CompletionItemInsertTextRule
                 .InsertAsSnippet |
               window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace,
-          },
+                .KeepWhitespace
+          }
         ];
 
         // load plugin template from backend
@@ -206,7 +206,7 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
                       window.monaco.languages.CompletionItemInsertTextRule
                         .InsertAsSnippet |
                       window.monaco.languages.CompletionItemInsertTextRule
-                        .KeepWhitespace,
+                        .KeepWhitespace
                   });
 
                   resolve(this.TEMPLATES);
@@ -228,8 +228,8 @@ qx.Class.define("cv.ui.manager.editor.completion.CometVisu", {
           return this.getTemplates().then(function (sugg) {
             return { suggestions: sugg };
           });
-        }.bind(this),
+        }.bind(this)
       };
-    },
-  },
+    }
+  }
 });

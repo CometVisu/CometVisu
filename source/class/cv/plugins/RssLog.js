@@ -36,68 +36,68 @@ qx.Class.define("cv.plugins.RssLog", {
       check: "String",
       nullable: true,
       transform: "normalizeUrl",
-      apply: "_applySrc",
+      apply: "_applySrc"
     },
 
     database: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     delay: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     filter: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     datetime: {
       check: "Boolean",
-      init: true,
+      init: true
     },
 
     mode: {
       check: "String",
-      init: "last",
+      init: "last"
     },
 
     limit: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     timeformat: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     itemoffset: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     itemack: {
       check: ["modify", "display", "disable"],
-      init: "modify",
+      init: "modify"
     },
 
     future: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     width: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     height: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -146,7 +146,7 @@ qx.Class.define("cv.plugins.RssLog", {
               return value;
             }
             return value === "true";
-          },
+          }
         },
 
         mode: { default: "last" },
@@ -154,9 +154,9 @@ qx.Class.define("cv.plugins.RssLog", {
         timeformat: {},
         itemack: { default: "modify" }, // allowed: modify, display, disable
         future: {},
-        query: {},
+        query: {}
       };
-    },
+    }
   },
 
   /*
@@ -217,11 +217,11 @@ qx.Class.define("cv.plugins.RssLog", {
       }
 
       return (
-        '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' +
+        "<div class=\"actor rsslogBody\"><div class=\"rsslog_inline\" id=\"rss_" +
         this.getPath() +
-        '" style="' +
+        "\" style=\"" +
         style +
-        '"></div></div>'
+        "\"></div></div>"
       );
     },
 
@@ -241,7 +241,7 @@ qx.Class.define("cv.plugins.RssLog", {
           this.refreshRSSlog,
           this
         );
-        this.__html = '<span class="mappedValue"></span><span>{text}</span>';
+        this.__html = "<span class=\"mappedValue\"></span><span>{text}</span>";
         if (this.getDatetime()) {
           this.__html = "{date}: " + this.__html;
         }
@@ -259,13 +259,13 @@ qx.Class.define("cv.plugins.RssLog", {
 
     _action() {
       const brss = cv.util.String.htmlStringToDomElement(
-        '<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>'
+        "<div class=\"rsslog_popup\" id=\"rss_" + this.getPath() + "_big\"/>"
       );
       const label = document.querySelector("#" + this.getPath() + " .label");
       const title = label ? label.innerText || "" : "";
       const popup = cv.ui.PopupHandler.showPopup("rsslog", {
         title: title,
-        content: brss,
+        content: brss
       });
       const parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
       Object.entries({ height: "90%", width: "90%", margin: "auto" }).forEach(
@@ -373,11 +373,11 @@ qx.Class.define("cv.plugins.RssLog", {
       this.__request.set({
         accept: "application/json",
         requestData: requestData,
-        method: "GET",
+        method: "GET"
       });
 
       this.__request.addListener("success", this.__updateRssContent, this);
-      this.__request.addListener("error", (ev) => {
+      this.__request.addListener("error", ev => {
         this.error(
           "C: #rss_%s, Error: %s, Feed: %s",
           this.getPath(),
@@ -394,7 +394,7 @@ qx.Class.define("cv.plugins.RssLog", {
 
       // get height of one entry, calc max num of display items in widget
       let displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
-      ul.innerHTML = '<li class="rsslogRow odd" id="dummydiv">.</li>';
+      ul.innerHTML = "<li class=\"rsslogRow odd\" id=\"dummydiv\">.</li>";
       const dummyDiv = c.querySelector("#dummydiv");
       const rect = dummyDiv.getBoundingClientRect();
       const itemheight = Math.round(rect.bottom - rect.top);
@@ -493,7 +493,7 @@ qx.Class.define("cv.plugins.RssLog", {
         const itemHtml = this.__getItemHtml(item, isBig);
 
         const rowElem = qx.dom.Element.create("li", {
-          class: "rsslogRow " + row,
+          class: "rsslogRow " + row
         });
         rowElem.innerHTML = itemHtml;
 
@@ -527,7 +527,7 @@ qx.Class.define("cv.plugins.RssLog", {
         if (item.tags) {
           const tmp = rowElem.querySelector("span");
           if (Array.isArray(item.tags)) {
-            const tags = item.tags.filter((x) => x !== "");
+            const tags = item.tags.filter(x => x !== "");
             if (tags.length > 0) {
               tmp.classList.add.apply(tmp.classList, item.tags);
             }
@@ -580,9 +580,9 @@ qx.Class.define("cv.plugins.RssLog", {
       } else {
         if (isBig) {
           return (
-            '<b><a href="' +
+            "<b><a href=\"" +
             item.getLink() +
-            '">' +
+            "\">" +
             item.getTitle() +
             "</a></b><br/>" +
             item.getDescription()
@@ -612,14 +612,14 @@ qx.Class.define("cv.plugins.RssLog", {
         method: "GET",
         requestData: Object.assign({}, this.__fixedRequestData, {
           u: id,
-          state: state,
+          state: state
         }),
 
-        accept: "application/json",
+        accept: "application/json"
       });
 
       req.send();
-    },
+    }
   },
 
   defer(statics) {
@@ -627,5 +627,5 @@ qx.Class.define("cv.plugins.RssLog", {
     loader.addStyles("plugins/rsslog/rsslog.css");
     cv.parser.pure.WidgetParser.addHandler("rsslog", cv.plugins.RssLog);
     cv.ui.structure.WidgetFactory.registerClass("rsslog", statics);
-  },
+  }
 });

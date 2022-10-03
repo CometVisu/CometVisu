@@ -31,23 +31,23 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
   properties: {
     labelColumnWidth: {
       refine: true,
-      init: 300,
+      init: 300
     },
 
     useBlocker: {
       refine: true,
-      init: true,
+      init: true
     },
 
     blockerOpacity: {
       refine: true,
-      init: 0.9,
+      init: 0.9
     },
 
     blockerColor: {
       refine: true,
-      init: "#585858",
-    },
+      init: "#585858"
+    }
   },
 
   /*
@@ -63,7 +63,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
     _applyFormData(formData, old) {
       this.__mappedKeys = {
         map: {},
-        inverse: {},
+        inverse: {}
       };
 
       let firstWidget;
@@ -179,11 +179,11 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                 });
               } else if (typeof options === "object") {
                 // grouped options
-                Object.keys(options).forEach((groupName) => {
+                Object.keys(options).forEach(groupName => {
                   let groupItem = new qx.ui.form.ListItem(groupName);
                   groupItem.set({
                     anonymous: true,
-                    appearance: "optiongroup",
+                    appearance: "optiongroup"
                   });
 
                   formElement.add(groupItem);
@@ -201,12 +201,12 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             if (fieldData.options instanceof Promise) {
               formElement.setPlaceholder(this.tr("Loading..."));
               elementModelReady = fieldData.options
-                .then((options) => {
+                .then(options => {
                   formElement.setPlaceholder(fieldData.placeholder);
                   parseComboOptions(options);
                   return true;
                 }, this)
-                .catch((err) => {
+                .catch(err => {
                   this.error(err);
                   formElement.setPlaceholder(
                     this.tr(
@@ -223,7 +223,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             formElement = new qx.ui.form.VirtualComboBox();
             formElement.set({
               iconPath: "icon",
-              labelPath: "value",
+              labelPath: "value"
             });
 
             if (fieldData.validation) {
@@ -232,7 +232,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             const selection = formElement
               .getChildControl("dropdown")
               .getSelection();
-            selection.addListener("change", (ev) => {
+            selection.addListener("change", ev => {
               const selected = selection.getItem(0);
               if (selected && selected instanceof cv.ui.manager.form.Option) {
                 this.__hints = selected.getHints();
@@ -243,7 +243,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             elementModel = new qx.data.Array();
             const parseVComboOptions = function (options) {
               if (Array.isArray(options)) {
-                options.forEach((item) => {
+                options.forEach(item => {
                   elementModel.push(
                     new cv.ui.manager.form.Option(
                       item.label + (item.value ? ` (${item.value})` : ""),
@@ -254,7 +254,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                   );
                 });
               } else if (typeof options === "object") {
-                Object.keys(options).forEach((groupName) => {
+                Object.keys(options).forEach(groupName => {
                   const groupModel = new cv.ui.manager.form.Option(groupName);
                   groupModel.setType("group");
                   elementModel.push(groupModel);
@@ -274,11 +274,11 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             if (fieldData.options instanceof Promise) {
               formElement.setPlaceholder(this.tr("Loading..."));
               fieldData.options
-                .then((options) => {
+                .then(options => {
                   formElement.setPlaceholder(fieldData.placeholder);
                   parseVComboOptions(options);
                 }, this)
-                .catch((err) => {
+                .catch(err => {
                   this.error(err);
                   formElement.setPlaceholder(
                     this.tr(
@@ -312,7 +312,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                         default:
                           return "listitem";
                       }
-                    },
+                    }
                   },
                   item,
                   index
@@ -323,12 +323,12 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                   {
                     converter(value) {
                       return value === "group";
-                    },
+                    }
                   },
                   item,
                   index
                 );
-              },
+              }
             });
 
             formElement.setModel(elementModel);
@@ -342,7 +342,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
               atom.setLabel(this.tr("Loading..."));
               atom.addState("loading");
               elementModelReady = fieldData.options
-                .then((options) => {
+                .then(options => {
                   const atom = formElement.getChildControl("atom");
                   atom.resetLabel();
                   atom.removeState("loading");
@@ -354,7 +354,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                   );
                   return true;
                 }, this)
-                .catch((err) => {
+                .catch(err => {
                   this.error(err);
                   const atom = formElement.getChildControl("atom");
                   atom.setLabel(
@@ -385,11 +385,11 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                 atom.setLabel(this.tr("Loading..."));
                 atom.addState("loading");
                 elementModelReady = fieldData.options
-                  .then((options) => {
+                  .then(options => {
                     const atom = formElement.getChildControl("atom");
                     atom.resetLabel();
                     atom.removeState("loading");
-                    options.forEach((item) => {
+                    options.forEach(item => {
                       elementModel.push(
                         new cv.ui.manager.form.Option(
                           item.label,
@@ -400,7 +400,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                     });
                     return true;
                   })
-                  .catch((err) => {
+                  .catch(err => {
                     this.error(err);
                     const atom = formElement.getChildControl("atom");
                     atom.setLabel(
@@ -412,7 +412,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                     atom.addState("error");
                   }, this);
               } else {
-                fieldData.options.forEach((item) => {
+                fieldData.options.forEach(item => {
                   elementModel.push(
                     new cv.ui.manager.form.Option(
                       item.label,
@@ -430,7 +430,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
               bindItem(controller, item, index) {
                 controller.bindDefaultProperties(item, index);
                 controller.bindProperty("value", "model", null, item, index);
-              },
+              }
             });
 
             formElement.set({
@@ -442,10 +442,10 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                     return value().trim();
                   }
                   return value;
-                },
+                }
               },
 
-              model: elementModel,
+              model: elementModel
             });
 
             break;
@@ -524,7 +524,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                   // just validate when the value has changed
                   this.getValidationManager().validate();
                   return value;
-                }.bind(this._form),
+                }.bind(this._form)
               };
 
               break;
@@ -533,7 +533,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                 converter: function (value) {
                   if (typeof value === "string") {
                     let option;
-                    this.getModel().some((item) => {
+                    this.getModel().some(item => {
                       if (item.getValue() === value) {
                         option = item;
                         return true;
@@ -543,14 +543,14 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                     return option;
                   }
                   return value;
-                }.bind(formElement),
+                }.bind(formElement)
               };
 
               reverseOptions = {
                 converter: function (option) {
                   this.getValidationManager().validate();
                   return option ? option.getValue() : null;
-                }.bind(this._form),
+                }.bind(this._form)
               };
 
               break;
@@ -578,12 +578,12 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                       return [selectables[0]];
                     }
                     return [selected];
-                  }.bind(formElement),
+                  }.bind(formElement)
                 },
                 {
                   converter(selection) {
                     return selection[0].getModel().getValue();
-                  },
+                  }
                 }
               );
 
@@ -603,13 +603,13 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                     }, this);
                   }
                   return selection;
-                }.bind(formElement),
+                }.bind(formElement)
               };
 
               reverseOptions = {
                 converter(selection) {
                   return selection[0].getUserData("value");
-                },
+                }
               };
 
               break;
@@ -770,7 +770,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
       view.getLayout().setColumnMaxWidth(0, this.getLabelColumnWidth());
       view.getLayout().setColumnFlex(1, 1);
       view.getLayout().set({
-        spacingX: 8,
+        spacingX: 8
       });
 
       view.setAllowGrowX(true);
@@ -802,7 +802,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
       if (this.getCallback()) {
         const data = qx.util.Serializer.toNativeObject(this.getModel());
         const mappedNames = Object.keys(this.__mappedKeys.map);
-        mappedNames.forEach((mappedKey) => {
+        mappedNames.forEach(mappedKey => {
           if (Object.prototype.hasOwnProperty.call(data, mappedKey)) {
             data[this.__mappedKeys.map[mappedKey]] = data[mappedKey];
             delete data[mappedKey];
@@ -810,13 +810,13 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
         });
         if (this.__hints) {
           Object.keys(this.__hints).forEach(
-            (name) => (data[name] = this.__hints[name])
+            name => (data[name] = this.__hints[name])
           );
         }
         this.getCallback().call(this.getContext(), data);
       }
       this.resetCallback();
-    },
+    }
   },
 
   /*
@@ -831,5 +831,5 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
         .removeListenerById(this._rootListenerId);
       this._rootListenerId = null;
     }
-  },
+  }
 });

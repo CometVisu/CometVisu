@@ -96,7 +96,7 @@ qx.Class.define("cv.util.ScriptLoader", {
           res();
         }
       });
-    },
+    }
   },
 
   /*
@@ -109,14 +109,14 @@ qx.Class.define("cv.util.ScriptLoader", {
       check: "Boolean",
       init: false,
       apply: "_checkQueue",
-      event: "changeAllQueued",
+      event: "changeAllQueued"
     },
 
     finished: {
       check: "Boolean",
       init: false,
-      event: "changeFinished",
-    },
+      event: "changeFinished"
+    }
   },
 
   /*
@@ -127,7 +127,7 @@ qx.Class.define("cv.util.ScriptLoader", {
   events: {
     finished: "qx.event.type.Event",
     stylesLoaded: "qx.event.type.Event",
-    designError: "qx.event.type.Data",
+    designError: "qx.event.type.Data"
   },
 
   /*
@@ -178,7 +178,7 @@ qx.Class.define("cv.util.ScriptLoader", {
           this.debug("styles have been loaded");
           this.fireEvent("stylesLoaded");
         })
-        .catch((reason) => {
+        .catch(reason => {
           this.error("error loading styles", reason);
           // fire this event anyways, because a non loaded CSS file is no blocker
           this.fireEvent("stylesLoaded");
@@ -272,13 +272,13 @@ qx.Class.define("cv.util.ScriptLoader", {
         const match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
         if (match) {
           cv.core.notifications.Router.dispatchMessage("cv.loading.error", {
-            title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
+            title: qx.locale.Manager.tr("Error loading plugin \"%1\"", match[1]),
             message: qx.locale.Manager.tr(
               "File %1 could not be loaded.",
               data.script
             ),
             severity: "high",
-            deletable: true,
+            deletable: true
           });
         }
       } else {
@@ -289,7 +289,7 @@ qx.Class.define("cv.util.ScriptLoader", {
             data.script
           ),
           severity: "high",
-          deletable: true,
+          deletable: true
         });
       }
       this._checkQueue();
@@ -305,7 +305,7 @@ qx.Class.define("cv.util.ScriptLoader", {
         } else if (!this.__listener) {
           this.debug("script loader waiting for all scripts beeing queued");
 
-          this.__listener = this.addListener("changeAllQueued", (ev) => {
+          this.__listener = this.addListener("changeAllQueued", ev => {
             if (ev.getData() === true) {
               if (this.__scriptQueue.length === 0) {
                 this.debug("script loader finished");
@@ -320,6 +320,6 @@ qx.Class.define("cv.util.ScriptLoader", {
       } else {
         this.debug(this.__scriptQueue.length + " scripts remaining");
       }
-    },
-  },
+    }
+  }
 });

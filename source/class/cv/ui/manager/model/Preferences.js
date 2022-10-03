@@ -44,14 +44,14 @@ qx.Class.define("cv.ui.manager.model.Preferences", {
       check: ["source", "xml"],
       init: "source",
       event: "changeDefaultConfigEditor",
-      apply: "_savePreferences",
+      apply: "_savePreferences"
     },
 
     quickPreview: {
       check: "Boolean",
       init: false,
       event: "changeQuickPreview",
-      apply: "_savePreferences",
+      apply: "_savePreferences"
     },
 
     /**
@@ -61,7 +61,7 @@ qx.Class.define("cv.ui.manager.model.Preferences", {
       check: "Boolean",
       init: false,
       event: "changeExpertMode",
-      apply: "_savePreferences",
+      apply: "_savePreferences"
     },
 
     /**
@@ -71,8 +71,8 @@ qx.Class.define("cv.ui.manager.model.Preferences", {
       check: ["list", "preview"],
       init: "preview",
       event: "changeStartViewMode",
-      apply: "_savePreferences",
-    },
+      apply: "_savePreferences"
+    }
   },
 
   /*
@@ -103,6 +103,6 @@ qx.Class.define("cv.ui.manager.model.Preferences", {
       }
       this.set(preferences);
       this._skipSaving = false;
-    },
-  },
+    }
+  }
 });

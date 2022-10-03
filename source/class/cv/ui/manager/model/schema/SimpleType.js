@@ -47,12 +47,12 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
   properties: {
     type: {
       refine: true,
-      init: "simpleType",
+      init: "simpleType"
     },
 
     optional: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     /**
@@ -61,8 +61,8 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
      */
     baseType: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -125,7 +125,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
         )
       );
 
-      subNodes.forEach((subNode) => {
+      subNodes.forEach(subNode => {
         const baseType = subNode.getAttribute("base");
 
         if (!baseType.match(/^xsd:/)) {
@@ -136,13 +136,13 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
           this.setBaseType(baseType);
         }
         Array.from(subNode.querySelectorAll(":scope > pattern")).forEach(
-          (patternNode) => {
+          patternNode => {
             this.__pattern.push(patternNode.getAttribute("value"));
           }
         );
 
         Array.from(subNode.querySelectorAll(":scope > enumeration")).forEach(
-          (enumerationNode) => {
+          enumerationNode => {
             this.__enumerations.push(enumerationNode.getAttribute("value"));
           }
         );
@@ -234,7 +234,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
         // start with assuming it's valid
         let boolValid = true;
 
-        this.__pattern.forEach((item) => {
+        this.__pattern.forEach(item => {
           if (!Object.prototype.hasOwnProperty.call(this.__regexCache, item)) {
             // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
             // so for our purpose, we need to add them for every branch (that is not inside [])
@@ -269,7 +269,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
               branchIndices.push([start, item.length - start]);
             }
             const branches = branchIndices.map(
-              (entry) =>
+              entry =>
                 `^${item
                   .substr(entry[0], entry[1])
                   .replace(/\\([\s\S])|(\$)/g, "\\$1$2")}$`
@@ -306,7 +306,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
       }
 
       return this.__enumerations;
-    },
+    }
   },
 
   /*
@@ -316,5 +316,5 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
   */
   destruct() {
     this.__regexCache = null;
-  },
+  }
 });

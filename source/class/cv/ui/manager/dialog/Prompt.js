@@ -31,6 +31,6 @@ qx.Class.define("cv.ui.manager.dialog.Prompt", {
     _createWidgetContent() {
       super._createWidgetContent();
       this._textField.setLiveUpdate(true);
-    },
-  },
+    }
+  }
 });

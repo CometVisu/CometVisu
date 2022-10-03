@@ -58,14 +58,14 @@ qx.Class.define("cv.parser.pure.widgets.Video", {
           target: "autoplay",
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("video", statics);
-  },
+  }
 });

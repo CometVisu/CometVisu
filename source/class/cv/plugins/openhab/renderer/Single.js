@@ -48,8 +48,8 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
     bottomText: {
       check: "String",
       nullable: true,
-      apply: "_applyBottomText",
-    },
+      apply: "_applyBottomText"
+    }
   },
 
   /*
@@ -82,7 +82,7 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
           control = new qx.ui.basic.Label(this.getBottomText());
           control.set({
             rich: true,
-            wrap: true,
+            wrap: true
           });
 
           this._addAt(control, 2);
@@ -203,6 +203,6 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
       }
       header.setAlignX("left");
       return header;
-    },
-  },
+    }
+  }
 });

@@ -49,7 +49,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
     close: "qx.event.type.Data",
 
     /** (Fired by {@link qx.ui.form.List}) */
-    action: "qx.event.type.Event",
+    action: "qx.event.type.Event"
   },
 
   /*
@@ -60,14 +60,14 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "open-file-item",
+      init: "open-file-item"
     },
 
     model: {
       nullable: true,
       event: "changeModel",
       apply: "_applyModel",
-      dereference: true,
+      dereference: true
     },
 
     label: {
@@ -75,38 +75,38 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
       nullable: true,
       transform: "_transformFilename",
       event: "changeLabel",
-      apply: "_applyLabel",
+      apply: "_applyLabel"
     },
 
     icon: {
       check: "String",
       nullable: true,
-      apply: "_applyIcon",
+      apply: "_applyIcon"
     },
 
     permanent: {
       check: "Boolean",
       init: false,
-      apply: "_applyPermanent",
+      apply: "_applyPermanent"
     },
 
     modified: {
       check: "Boolean",
       init: false,
-      apply: "_applyLabel",
+      apply: "_applyLabel"
     },
 
     closeable: {
       check: "Boolean",
       init: true,
-      apply: "_applyCloseable",
+      apply: "_applyCloseable"
     },
 
     writeable: {
       check: "Boolean",
       init: true,
-      apply: "_applyLabel",
-    },
+      apply: "_applyLabel"
+    }
   },
 
   /*
@@ -114,8 +114,8 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
     MEMBERS
   ***********************************************
   */
+  /* eslint-disable @qooxdoo/qx/no-refs-in-members */
   members: {
-    // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
@@ -124,7 +124,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
       focused: true,
       hovered: true,
       selected: true,
-      dragover: true,
+      dragover: true
     },
 
     /**
@@ -243,7 +243,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -254,5 +254,5 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
   destruct() {
     this.removeListener("pointerover", this._onPointerOver, this);
     this.removeListener("pointerout", this._onPointerOut, this);
-  },
+  }
 });

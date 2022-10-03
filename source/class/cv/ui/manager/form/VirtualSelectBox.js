@@ -44,6 +44,6 @@ qx.Class.define("cv.ui.manager.form.VirtualSelectBox", {
       }
 
       return control || super._createChildControlImpl(id, hash);
-    },
-  },
+    }
+  }
 });

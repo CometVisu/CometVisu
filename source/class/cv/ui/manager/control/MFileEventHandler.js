@@ -49,7 +49,7 @@ qx.Mixin.define("cv.ui.manager.control.MFileEventHandler", {
   ***********************************************
   */
   members: {
-    _disableFileEvents: false,
+    _disableFileEvents: false
   },
 
   /*
@@ -63,5 +63,5 @@ qx.Mixin.define("cv.ui.manager.control.MFileEventHandler", {
       this._handleFileEvent,
       this
     );
-  },
+  }
 });

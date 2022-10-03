@@ -93,7 +93,7 @@ qx.Class.define("cv.io.BackendConnections", {
 
     addBackendClient(name, type, backendUrl, source) {
       if (name === "system") {
-        throw Error('"system" is not allowed as a backend name');
+        throw Error("\"system\" is not allowed as a backend name");
       }
       if (this.__clients[name]) {
         this.__clients[name].dispose();
@@ -105,14 +105,14 @@ qx.Class.define("cv.io.BackendConnections", {
       }
       this.__clients[name] = client;
       const model = cv.data.Model.getInstance();
-      client.addListener("changeConnected", (ev) => {
+      client.addListener("changeConnected", ev => {
         const data = {};
         // convert to internal state used for boolean values
         data[`backend:${name}:connected`] = ev.getData() ? 1 : 0;
         // this is a value the system backend
         model.updateFrom("system", data);
       });
-      client.update = (data) => model.updateFrom(name, data); // override clients update function
+      client.update = data => model.updateFrom(name, data); // override clients update function
       if (cv.Config.reporting) {
         const recordInstance = cv.report.Record.getInstance();
         client.record = function (p, d) {
@@ -200,7 +200,7 @@ qx.Class.define("cv.io.BackendConnections", {
       if (qx.core.Environment.get("qx.debug")) {
         cv.report.Replay.start();
       }
-      Object.getOwnPropertyNames(this.__clients).forEach((name) => {
+      Object.getOwnPropertyNames(this.__clients).forEach(name => {
         const client = this.getClient(name);
         if (cv.Config.enableAddressQueue) {
           // identify addresses on startpage
@@ -219,7 +219,7 @@ qx.Class.define("cv.io.BackendConnections", {
     _onActiveChanged() {
       const app = qx.core.Init.getApplication();
       if (app.isActive()) {
-        Object.getOwnPropertyNames(this.__clients).forEach((backendName) => {
+        Object.getOwnPropertyNames(this.__clients).forEach(backendName => {
           const client = this.__clients[backendName];
           if (!client.isConnected() && this.__hasBeenConnected) {
             // reconnect
@@ -265,7 +265,7 @@ qx.Class.define("cv.io.BackendConnections", {
         condition:
           !connected &&
           this.__hasBeenConnected &&
-          qx.core.Init.getApplication().isActive(),
+          qx.core.Init.getApplication().isActive()
       };
 
       const lastError = client.getLastError();
@@ -279,7 +279,7 @@ qx.Class.define("cv.io.BackendConnections", {
           );
         } else {
           message.message = qx.locale.Manager.tr(
-            'Connection to backend "%1" is lost.',
+            "Connection to backend \"%1\" is lost.",
             name
           );
         }
@@ -289,9 +289,9 @@ qx.Class.define("cv.io.BackendConnections", {
               title: qx.locale.Manager.tr("Restart connection"),
               action() {
                 client.restart();
-              },
-            },
-          ],
+              }
+            }
+          ]
         };
       } else {
         this.__hasBeenConnected = true;
@@ -325,7 +325,7 @@ qx.Class.define("cv.io.BackendConnections", {
             message:
               qx.locale.Manager.tr(
                 "The backend did send an invalid response to the %1Login%2 request: missing protocol version.",
-                '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+                "<a href=\"https://github.com/CometVisu/CometVisu/wiki/Protocol#Login\" target=\"_blank\">",
                 "</a>"
               ) +
               "<br/>" +
@@ -339,7 +339,7 @@ qx.Class.define("cv.io.BackendConnections", {
               "</pre></div>",
             severity: "urgent",
             unique: true,
-            deletable: false,
+            deletable: false
           };
 
           break;
@@ -350,8 +350,8 @@ qx.Class.define("cv.io.BackendConnections", {
             title: qx.locale.Manager.tr("CometVisu protocol error"),
             message:
               qx.locale.Manager.tr(
-                'The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
-                '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+                "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value.",
+                "<a href=\"https://github.com/CometVisu/CometVisu/wiki/Protocol#Login\" target=\"_blank\">",
                 "</a>"
               ) +
               "<br/>" +
@@ -365,7 +365,7 @@ qx.Class.define("cv.io.BackendConnections", {
               "</pre></div>",
             severity: "urgent",
             unique: true,
-            deletable: false,
+            deletable: false
           };
 
           break;
@@ -377,6 +377,6 @@ qx.Class.define("cv.io.BackendConnections", {
           notification
         );
       }
-    },
-  },
+    }
+  }
 });

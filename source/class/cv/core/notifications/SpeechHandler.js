@@ -54,7 +54,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
       if (config.skipInitial && !this.__lastSpeech[message.topic]) {
         this.__lastSpeech[message.topic] = {
           text: text,
-          time: Date.now(),
+          time: Date.now()
         };
 
         return;
@@ -90,7 +90,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
 
         this.__lastSpeech[message.topic] = {
           text: text,
-          time: Date.now(),
+          time: Date.now()
         };
 
         this.say(text);
@@ -141,6 +141,6 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
       utterThis.voice = selectedVoice;
       this.debug("saying '" + text + "' in voice " + selectedVoice.name);
       synth.speak(utterThis);
-    },
-  },
+    }
+  }
 });

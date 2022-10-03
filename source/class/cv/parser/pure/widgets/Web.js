@@ -90,18 +90,18 @@ qx.Class.define("cv.parser.pure.widgets.Web", {
         frameborder: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         background: {},
         src: {},
-        scrolling: {},
+        scrolling: {}
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("web", statics);
-  },
+  }
 });

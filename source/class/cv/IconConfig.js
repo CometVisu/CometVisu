@@ -53,8 +53,8 @@ qx.Class.define("cv.IconConfig", {
             "00ff11": { uri: "icons/comet_16_00ff11.png" },
             ff0000: { uri: "icons/comet_16_ff0000.png" },
             d00055: { uri: "icons/comet_16_d00055.png" },
-            ff8000: { uri: "icons/comet_16_ff8000.png" },
-          },
+            ff8000: { uri: "icons/comet_16_ff8000.png" }
+          }
         },
 
         32: {
@@ -73,8 +73,8 @@ qx.Class.define("cv.IconConfig", {
             "00ff11": { uri: "icons/comet_32_00ff11.png" },
             ff0000: { uri: "icons/comet_32_ff0000.png" },
             d00055: { uri: "icons/comet_32_d00055.png" },
-            ff8000: { uri: "icons/comet_32_ff8000.png" },
-          },
+            ff8000: { uri: "icons/comet_32_ff8000.png" }
+          }
         },
 
         64: {
@@ -93,8 +93,8 @@ qx.Class.define("cv.IconConfig", {
             "00ff11": { uri: "icons/comet_64_00ff11.png" },
             ff0000: { uri: "icons/comet_64_ff0000.png" },
             d00055: { uri: "icons/comet_64_d00055.png" },
-            ff8000: { uri: "icons/comet_64_ff8000.png" },
-          },
+            ff8000: { uri: "icons/comet_64_ff8000.png" }
+          }
         },
 
         128: {
@@ -113,9 +113,9 @@ qx.Class.define("cv.IconConfig", {
             "00ff11": { uri: "icons/comet_128_00ff11.png" },
             ff0000: { uri: "icons/comet_128_ff0000.png" },
             d00055: { uri: "icons/comet_128_d00055.png" },
-            ff8000: { uri: "icons/comet_128_ff8000.png" },
-          },
-        },
+            ff8000: { uri: "icons/comet_128_ff8000.png" }
+          }
+        }
       },
 
       // Do not remove this line: Dynamic Icons Start
@@ -129,8 +129,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_audio") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_audio") }
+        }
       },
       audio_desync: {
         "*": {
@@ -141,8 +141,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_desync") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_desync") }
+        }
       },
       audio_eject: {
         "*": {
@@ -153,8 +153,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_eject") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_eject") }
+        }
       },
       audio_eq: {
         "*": {
@@ -165,8 +165,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_eq") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_eq") }
+        }
       },
       audio_fade: {
         "*": {
@@ -177,8 +177,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_fade") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_fade") }
+        }
       },
       audio_ff: {
         "*": {
@@ -189,8 +189,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_ff") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_ff") }
+        }
       },
       audio_headphone: {
         "*": {
@@ -201,8 +201,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_headphone") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_headphone") }
+        }
       },
       audio_loudness: {
         "*": {
@@ -213,8 +213,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_loudness") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_loudness") }
+        }
       },
       audio_ls_51_center: {
         "*": {
@@ -225,8 +225,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_center") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_center") }
+        }
       },
       audio_ls_51_front: {
         "*": {
@@ -237,8 +237,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_front") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_front") }
+        }
       },
       audio_ls_51_rear: {
         "*": {
@@ -249,8 +249,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_rear") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_rear") }
+        }
       },
       audio_ls_51_sub: {
         "*": {
@@ -261,8 +261,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_sub") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51_sub") }
+        }
       },
       audio_ls_51: {
         "*": {
@@ -273,8 +273,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_ls_51") }
+        }
       },
       audio_mic_mute: {
         "*": {
@@ -285,8 +285,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_mic_mute") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_mic_mute") }
+        }
       },
       audio_mic: {
         "*": {
@@ -297,8 +297,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_mic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_mic") }
+        }
       },
       audio_pause: {
         "*": {
@@ -309,8 +309,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_pause") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_pause") }
+        }
       },
       audio_play: {
         "*": {
@@ -321,8 +321,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_play") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_play") }
+        }
       },
       audio_playlist: {
         "*": {
@@ -333,8 +333,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_playlist") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_playlist") }
+        }
       },
       audio_rec: {
         "*": {
@@ -345,8 +345,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_rec") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_rec") }
+        }
       },
       audio_repeat: {
         "*": {
@@ -357,8 +357,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_repeat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_repeat") }
+        }
       },
       audio_rew: {
         "*": {
@@ -369,8 +369,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_rew") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_rew") }
+        }
       },
       audio_shuffle: {
         "*": {
@@ -381,8 +381,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_shuffle") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_shuffle") }
+        }
       },
       audio_sound: {
         "*": {
@@ -393,8 +393,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_sound") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_sound") }
+        }
       },
       audio_stop: {
         "*": {
@@ -405,8 +405,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_stop") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_stop") }
+        }
       },
       audio_sync: {
         "*": {
@@ -417,8 +417,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_sync") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_sync") }
+        }
       },
       audio_volume_high: {
         "*": {
@@ -429,8 +429,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_high") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_high") }
+        }
       },
       audio_volume_low: {
         "*": {
@@ -441,8 +441,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_low") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_low") }
+        }
       },
       audio_volume_mid: {
         "*": {
@@ -453,8 +453,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_mid") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_mid") }
+        }
       },
       audio_volume_mute: {
         "*": {
@@ -465,8 +465,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_mute") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("audio_volume_mute") }
+        }
       },
       control_1: {
         "*": {
@@ -477,8 +477,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_1") }
+        }
       },
       control_2: {
         "*": {
@@ -489,8 +489,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_2") }
+        }
       },
       control_3: {
         "*": {
@@ -501,8 +501,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3") }
+        }
       },
       control_3dot_hor_e: {
         "*": {
@@ -513,8 +513,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_hor_e") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_hor_e") }
+        }
       },
       control_3dot_hor_f: {
         "*": {
@@ -525,8 +525,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_hor_f") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_hor_f") }
+        }
       },
       control_3dot_hor_s: {
         "*": {
@@ -537,8 +537,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_hor_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_hor_s") }
+        }
       },
       control_3dot_vert_e: {
         "*": {
@@ -549,8 +549,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_vert_e") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_vert_e") }
+        }
       },
       control_3dot_vert_f: {
         "*": {
@@ -561,8 +561,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_vert_f") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_vert_f") }
+        }
       },
       control_3dot_vert_s: {
         "*": {
@@ -573,8 +573,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_vert_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_3dot_vert_s") }
+        }
       },
       control_4: {
         "*": {
@@ -585,8 +585,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_4") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_4") }
+        }
       },
       control_all_on_off: {
         "*": {
@@ -597,8 +597,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_all_on_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_all_on_off") }
+        }
       },
       control_arrow_down_left: {
         "*": {
@@ -609,8 +609,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_down_left") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_down_left") }
+        }
       },
       control_arrow_down_right: {
         "*": {
@@ -621,8 +621,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_down_right") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_down_right") }
+        }
       },
       control_arrow_down: {
         "*": {
@@ -633,8 +633,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_down") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_down") }
+        }
       },
       control_arrow_downward: {
         "*": {
@@ -645,8 +645,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_downward") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_downward") }
+        }
       },
       control_arrow_left: {
         "*": {
@@ -657,8 +657,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_left") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_left") }
+        }
       },
       control_arrow_leftward: {
         "*": {
@@ -669,8 +669,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_leftward") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_leftward") }
+        }
       },
       control_arrow_right: {
         "*": {
@@ -681,8 +681,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_right") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_right") }
+        }
       },
       control_arrow_rightward: {
         "*": {
@@ -693,8 +693,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_rightward") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_rightward") }
+        }
       },
       control_arrow_turn_left: {
         "*": {
@@ -705,8 +705,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_turn_left") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_turn_left") }
+        }
       },
       control_arrow_turn_right: {
         "*": {
@@ -717,8 +717,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_turn_right") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_turn_right") }
+        }
       },
       control_arrow_up_left: {
         "*": {
@@ -729,8 +729,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_up_left") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_up_left") }
+        }
       },
       control_arrow_up_right: {
         "*": {
@@ -741,8 +741,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_up_right") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_up_right") }
+        }
       },
       control_arrow_up: {
         "*": {
@@ -753,8 +753,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_up") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_up") }
+        }
       },
       control_arrow_upward: {
         "*": {
@@ -765,8 +765,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_upward") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_arrow_upward") }
+        }
       },
       control_building_2_s_all: {
         "*": {
@@ -777,8 +777,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_all") }
+        }
       },
       control_building_2_s_dg: {
         "*": {
@@ -789,8 +789,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_dg") }
+        }
       },
       control_building_2_s_eg: {
         "*": {
@@ -801,8 +801,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_eg") }
+        }
       },
       control_building_2_s_int_all: {
         "*": {
@@ -814,9 +814,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_2_s_int_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_2_s_int_all")
+          }
+        }
       },
       control_building_2_s_int_dg: {
         "*": {
@@ -827,8 +827,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_int_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_int_dg") }
+        }
       },
       control_building_2_s_int_eg: {
         "*": {
@@ -839,8 +839,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_int_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_int_eg") }
+        }
       },
       control_building_2_s_int_kg: {
         "*": {
@@ -851,8 +851,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_int_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_int_kg") }
+        }
       },
       control_building_2_s_kg: {
         "*": {
@@ -863,8 +863,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_2_s_kg") }
+        }
       },
       control_building_all: {
         "*": {
@@ -875,8 +875,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_all") }
+        }
       },
       control_building_control: {
         "*": {
@@ -887,8 +887,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_control") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_control") }
+        }
       },
       control_building_dg: {
         "*": {
@@ -899,8 +899,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_dg") }
+        }
       },
       control_building_edg_all: {
         "*": {
@@ -911,8 +911,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_all") }
+        }
       },
       control_building_edg_dg: {
         "*": {
@@ -923,8 +923,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_dg") }
+        }
       },
       control_building_edg_eg: {
         "*": {
@@ -935,8 +935,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_eg") }
+        }
       },
       control_building_edg_int_all: {
         "*": {
@@ -948,9 +948,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_edg_int_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_edg_int_all")
+          }
+        }
       },
       control_building_edg_int_dg: {
         "*": {
@@ -961,8 +961,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_int_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_int_dg") }
+        }
       },
       control_building_edg_int_eg: {
         "*": {
@@ -973,8 +973,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_int_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_int_eg") }
+        }
       },
       control_building_edg_int_kg: {
         "*": {
@@ -985,8 +985,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_int_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_int_kg") }
+        }
       },
       control_building_edg_kg: {
         "*": {
@@ -997,8 +997,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_edg_kg") }
+        }
       },
       control_building_eg: {
         "*": {
@@ -1009,8 +1009,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_eg") }
+        }
       },
       control_building_empty: {
         "*": {
@@ -1021,8 +1021,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_empty") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_empty") }
+        }
       },
       control_building_filled: {
         "*": {
@@ -1033,8 +1033,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_filled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_filled") }
+        }
       },
       control_building_flat_filled: {
         "*": {
@@ -1046,9 +1046,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_filled"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_filled")
+          }
+        }
       },
       control_building_flat_okg_all: {
         "*": {
@@ -1060,9 +1060,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_okg_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_okg_all")
+          }
+        }
       },
       control_building_flat_okg_eg: {
         "*": {
@@ -1074,9 +1074,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_okg_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_okg_eg")
+          }
+        }
       },
       control_building_flat_okg_og: {
         "*": {
@@ -1088,9 +1088,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_okg_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_okg_og")
+          }
+        }
       },
       control_building_flat_s_filled: {
         "*": {
@@ -1102,9 +1102,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_filled"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_filled")
+          }
+        }
       },
       control_building_flat_s_mkg_all: {
         "*": {
@@ -1116,9 +1116,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_all")
+          }
+        }
       },
       control_building_flat_s_mkg_eg: {
         "*": {
@@ -1130,9 +1130,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_eg")
+          }
+        }
       },
       control_building_flat_s_mkg_kg: {
         "*": {
@@ -1144,9 +1144,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_kg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_kg")
+          }
+        }
       },
       control_building_flat_s_mkg_og: {
         "*": {
@@ -1158,9 +1158,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg_og")
+          }
+        }
       },
       control_building_flat_s_mkg: {
         "*": {
@@ -1171,8 +1171,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_flat_s_mkg") }
+        }
       },
       control_building_flat_s_okg_all: {
         "*": {
@@ -1184,9 +1184,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_okg_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_okg_all")
+          }
+        }
       },
       control_building_flat_s_okg_eg: {
         "*": {
@@ -1198,9 +1198,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_okg_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_okg_eg")
+          }
+        }
       },
       control_building_flat_s_okg_og: {
         "*": {
@@ -1212,9 +1212,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_flat_s_okg_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_flat_s_okg_og")
+          }
+        }
       },
       control_building_flat_s: {
         "*": {
@@ -1225,8 +1225,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_flat_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_flat_s") }
+        }
       },
       control_building_flat: {
         "*": {
@@ -1237,8 +1237,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_flat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_flat") }
+        }
       },
       control_building_int_all: {
         "*": {
@@ -1249,8 +1249,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_all") }
+        }
       },
       control_building_int_dg: {
         "*": {
@@ -1261,8 +1261,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_dg") }
+        }
       },
       control_building_int_eg: {
         "*": {
@@ -1273,8 +1273,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_eg") }
+        }
       },
       control_building_int_kg: {
         "*": {
@@ -1285,8 +1285,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_kg") }
+        }
       },
       control_building_int_og: {
         "*": {
@@ -1297,8 +1297,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_og") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_int_og") }
+        }
       },
       control_building_kg: {
         "*": {
@@ -1309,8 +1309,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_kg") }
+        }
       },
       control_building_modern_s_2og_all: {
         "*": {
@@ -1322,9 +1322,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_all")
+          }
+        }
       },
       control_building_modern_s_2og_dg: {
         "*": {
@@ -1336,9 +1336,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_dg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_dg")
+          }
+        }
       },
       control_building_modern_s_2og_eg: {
         "*": {
@@ -1350,9 +1350,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_eg")
+          }
+        }
       },
       control_building_modern_s_2og_int_all: {
         "*": {
@@ -1366,9 +1366,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_2og_int_all"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_2og_int_dg: {
         "*": {
@@ -1382,9 +1382,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_2og_int_dg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_2og_int_eg: {
         "*": {
@@ -1398,9 +1398,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_2og_int_eg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_2og_int_kg: {
         "*": {
@@ -1414,9 +1414,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_2og_int_kg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_2og_int_og1: {
         "*": {
@@ -1430,9 +1430,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_2og_int_og1"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_2og_int_og2: {
         "*": {
@@ -1446,9 +1446,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_2og_int_og2"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_2og_kg: {
         "*": {
@@ -1460,9 +1460,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_kg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_kg")
+          }
+        }
       },
       control_building_modern_s_2og_og1: {
         "*": {
@@ -1474,9 +1474,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_og1"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_og1")
+          }
+        }
       },
       control_building_modern_s_2og_og2: {
         "*": {
@@ -1488,9 +1488,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_og2"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_2og_og2")
+          }
+        }
       },
       control_building_modern_s_all: {
         "*": {
@@ -1502,9 +1502,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_all")
+          }
+        }
       },
       control_building_modern_s_dg: {
         "*": {
@@ -1516,9 +1516,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_dg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_dg")
+          }
+        }
       },
       control_building_modern_s_eg: {
         "*": {
@@ -1530,9 +1530,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_eg")
+          }
+        }
       },
       control_building_modern_s_int_all: {
         "*": {
@@ -1544,9 +1544,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_all")
+          }
+        }
       },
       control_building_modern_s_int_dg: {
         "*": {
@@ -1558,9 +1558,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_dg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_dg")
+          }
+        }
       },
       control_building_modern_s_int_eg: {
         "*": {
@@ -1572,9 +1572,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_eg")
+          }
+        }
       },
       control_building_modern_s_int_kg: {
         "*": {
@@ -1586,9 +1586,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_kg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_kg")
+          }
+        }
       },
       control_building_modern_s_int_og: {
         "*": {
@@ -1600,9 +1600,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_int_og")
+          }
+        }
       },
       control_building_modern_s_kg: {
         "*": {
@@ -1614,9 +1614,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_kg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_kg")
+          }
+        }
       },
       control_building_modern_s_og: {
         "*": {
@@ -1628,9 +1628,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_og")
+          }
+        }
       },
       control_building_modern_s_okg_all: {
         "*": {
@@ -1642,9 +1642,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_all")
+          }
+        }
       },
       control_building_modern_s_okg_dg: {
         "*": {
@@ -1656,9 +1656,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_dg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_dg")
+          }
+        }
       },
       control_building_modern_s_okg_eg: {
         "*": {
@@ -1670,9 +1670,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_eg")
+          }
+        }
       },
       control_building_modern_s_okg_int_all: {
         "*": {
@@ -1686,9 +1686,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_okg_int_all"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_okg_int_dg: {
         "*": {
@@ -1702,9 +1702,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_okg_int_dg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_okg_int_eg: {
         "*": {
@@ -1718,9 +1718,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_okg_int_eg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_okg_int_og: {
         "*": {
@@ -1734,9 +1734,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern_s_okg_int_og"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern_s_okg_og: {
         "*": {
@@ -1748,9 +1748,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern_s_okg_og")
+          }
+        }
       },
       control_building_modern02_okg_all: {
         "*": {
@@ -1762,9 +1762,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_all")
+          }
+        }
       },
       control_building_modern02_okg_dg: {
         "*": {
@@ -1776,9 +1776,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_dg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_dg")
+          }
+        }
       },
       control_building_modern02_okg_eg: {
         "*": {
@@ -1790,9 +1790,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_eg")
+          }
+        }
       },
       control_building_modern02_okg_int_all: {
         "*": {
@@ -1806,9 +1806,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern02_okg_int_all"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern02_okg_int_dg: {
         "*": {
@@ -1822,9 +1822,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern02_okg_int_dg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern02_okg_int_eg: {
         "*": {
@@ -1838,9 +1838,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern02_okg_int_eg"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern02_okg_int_og: {
         "*": {
@@ -1854,9 +1854,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_building_modern02_okg_int_og"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_building_modern02_okg_og: {
         "*": {
@@ -1868,9 +1868,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_modern02_okg_og")
+          }
+        }
       },
       control_building_og: {
         "*": {
@@ -1881,8 +1881,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_og") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_og") }
+        }
       },
       control_building_outside: {
         "*": {
@@ -1893,8 +1893,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_outside") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_outside") }
+        }
       },
       control_building_s_all: {
         "*": {
@@ -1905,8 +1905,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_all") }
+        }
       },
       control_building_s_dg: {
         "*": {
@@ -1917,8 +1917,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_dg") }
+        }
       },
       control_building_s_eg: {
         "*": {
@@ -1929,8 +1929,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_eg") }
+        }
       },
       control_building_s_int_all: {
         "*": {
@@ -1941,8 +1941,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_all") }
+        }
       },
       control_building_s_int_dg: {
         "*": {
@@ -1953,8 +1953,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_dg") }
+        }
       },
       control_building_s_int_eg: {
         "*": {
@@ -1965,8 +1965,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_eg") }
+        }
       },
       control_building_s_int_kg: {
         "*": {
@@ -1977,8 +1977,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_kg") }
+        }
       },
       control_building_s_int_og: {
         "*": {
@@ -1989,8 +1989,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_og") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_int_og") }
+        }
       },
       control_building_s_kg: {
         "*": {
@@ -2001,8 +2001,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_kg") }
+        }
       },
       control_building_s_og: {
         "*": {
@@ -2013,8 +2013,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_og") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_og") }
+        }
       },
       control_building_s_okg_all: {
         "*": {
@@ -2025,8 +2025,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_all") }
+        }
       },
       control_building_s_okg_dg: {
         "*": {
@@ -2037,8 +2037,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_dg") }
+        }
       },
       control_building_s_okg_eg: {
         "*": {
@@ -2049,8 +2049,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_eg") }
+        }
       },
       control_building_s_okg_int_all: {
         "*": {
@@ -2062,9 +2062,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_all"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_all")
+          }
+        }
       },
       control_building_s_okg_int_dg: {
         "*": {
@@ -2076,9 +2076,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_dg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_dg")
+          }
+        }
       },
       control_building_s_okg_int_eg: {
         "*": {
@@ -2090,9 +2090,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_eg"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_eg")
+          }
+        }
       },
       control_building_s_okg_int_og: {
         "*": {
@@ -2104,9 +2104,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_og"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_building_s_okg_int_og")
+          }
+        }
       },
       control_building_s_okg_og: {
         "*": {
@@ -2117,8 +2117,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_og") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_building_s_okg_og") }
+        }
       },
       control_cancel: {
         "*": {
@@ -2129,8 +2129,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_cancel") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_cancel") }
+        }
       },
       control_centr_arrow_down_left: {
         "*": {
@@ -2142,9 +2142,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_centr_arrow_down_left"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_centr_arrow_down_left")
+          }
+        }
       },
       control_centr_arrow_down_right: {
         "*": {
@@ -2156,9 +2156,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_centr_arrow_down_right"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_centr_arrow_down_right")
+          }
+        }
       },
       control_centr_arrow_down: {
         "*": {
@@ -2169,8 +2169,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_down") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_down") }
+        }
       },
       control_centr_arrow_left: {
         "*": {
@@ -2181,8 +2181,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_left") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_left") }
+        }
       },
       control_centr_arrow_right: {
         "*": {
@@ -2193,8 +2193,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_right") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_right") }
+        }
       },
       control_centr_arrow_up_left: {
         "*": {
@@ -2205,8 +2205,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_up_left") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_up_left") }
+        }
       },
       control_centr_arrow_up_right: {
         "*": {
@@ -2218,9 +2218,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("control_centr_arrow_up_right"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("control_centr_arrow_up_right")
+          }
+        }
       },
       control_centr_arrow_up: {
         "*": {
@@ -2231,8 +2231,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_up") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_centr_arrow_up") }
+        }
       },
       control_circuit_breaker_off: {
         "*": {
@@ -2243,8 +2243,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_circuit_breaker_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_circuit_breaker_off") }
+        }
       },
       control_circuit_breaker_on: {
         "*": {
@@ -2255,8 +2255,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_circuit_breaker_on") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_circuit_breaker_on") }
+        }
       },
       control_clear: {
         "*": {
@@ -2267,8 +2267,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_clear") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_clear") }
+        }
       },
       control_fault_current_circuit_breaker_off: {
         "*": {
@@ -2282,9 +2282,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_fault_current_circuit_breaker_off"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_fault_current_circuit_breaker_on: {
         "*": {
@@ -2298,9 +2298,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "control_fault_current_circuit_breaker_on"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       control_hamburger_e: {
         "*": {
@@ -2311,8 +2311,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_hamburger_e") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_hamburger_e") }
+        }
       },
       control_hamburger_f: {
         "*": {
@@ -2323,8 +2323,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_hamburger_f") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_hamburger_f") }
+        }
       },
       control_hamburger_s: {
         "*": {
@@ -2335,8 +2335,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_hamburger_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_hamburger_s") }
+        }
       },
       control_home: {
         "*": {
@@ -2347,8 +2347,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_home") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_home") }
+        }
       },
       control_minus: {
         "*": {
@@ -2359,8 +2359,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_minus") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_minus") }
+        }
       },
       control_ok: {
         "*": {
@@ -2371,8 +2371,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_ok") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_ok") }
+        }
       },
       control_on_off: {
         "*": {
@@ -2383,8 +2383,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_on_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_on_off") }
+        }
       },
       control_outside_on_off: {
         "*": {
@@ -2395,8 +2395,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_outside_on_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_outside_on_off") }
+        }
       },
       control_plus: {
         "*": {
@@ -2407,8 +2407,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_plus") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_plus") }
+        }
       },
       control_reboot: {
         "*": {
@@ -2419,8 +2419,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_reboot") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_reboot") }
+        }
       },
       control_reload: {
         "*": {
@@ -2431,8 +2431,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_reload") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_reload") }
+        }
       },
       control_reset: {
         "*": {
@@ -2443,8 +2443,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_reset") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_reset") }
+        }
       },
       control_return: {
         "*": {
@@ -2455,8 +2455,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_return") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_return") }
+        }
       },
       control_standby: {
         "*": {
@@ -2467,8 +2467,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_standby") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_standby") }
+        }
       },
       control_switch_1: {
         "*": {
@@ -2479,8 +2479,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_switch_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_switch_1") }
+        }
       },
       control_switch_3: {
         "*": {
@@ -2491,8 +2491,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_switch_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_switch_3") }
+        }
       },
       control_switch_m_4: {
         "*": {
@@ -2503,8 +2503,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_switch_m_4") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_switch_m_4") }
+        }
       },
       control_switch_m_8: {
         "*": {
@@ -2515,8 +2515,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_switch_m_8") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_switch_m_8") }
+        }
       },
       control_x: {
         "*": {
@@ -2527,8 +2527,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_x") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_x") }
+        }
       },
       control_zoom_in: {
         "*": {
@@ -2539,8 +2539,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_zoom_in") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_zoom_in") }
+        }
       },
       control_zoom_out: {
         "*": {
@@ -2551,8 +2551,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("control_zoom_out") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("control_zoom_out") }
+        }
       },
       edit_collapse: {
         "*": {
@@ -2563,8 +2563,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_collapse") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_collapse") }
+        }
       },
       edit_copy: {
         "*": {
@@ -2575,8 +2575,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_copy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_copy") }
+        }
       },
       edit_cut: {
         "*": {
@@ -2587,8 +2587,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_cut") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_cut") }
+        }
       },
       edit_delete: {
         "*": {
@@ -2599,8 +2599,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_delete") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_delete") }
+        }
       },
       edit_expand: {
         "*": {
@@ -2611,8 +2611,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_expand") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_expand") }
+        }
       },
       edit_favorites: {
         "*": {
@@ -2623,8 +2623,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_favorites") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_favorites") }
+        }
       },
       edit_input_numeric: {
         "*": {
@@ -2635,8 +2635,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_input_numeric") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_input_numeric") }
+        }
       },
       edit_numeric_0: {
         "*": {
@@ -2647,8 +2647,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_0") }
+        }
       },
       edit_numeric_1: {
         "*": {
@@ -2659,8 +2659,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_1") }
+        }
       },
       edit_numeric_2: {
         "*": {
@@ -2671,8 +2671,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_2") }
+        }
       },
       edit_numeric_3: {
         "*": {
@@ -2683,8 +2683,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_3") }
+        }
       },
       edit_numeric_4: {
         "*": {
@@ -2695,8 +2695,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_4") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_4") }
+        }
       },
       edit_numeric_5: {
         "*": {
@@ -2707,8 +2707,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_5") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_5") }
+        }
       },
       edit_numeric_6: {
         "*": {
@@ -2719,8 +2719,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_6") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_6") }
+        }
       },
       edit_numeric_7: {
         "*": {
@@ -2731,8 +2731,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_7") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_7") }
+        }
       },
       edit_numeric_8: {
         "*": {
@@ -2743,8 +2743,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_8") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_8") }
+        }
       },
       edit_numeric_9: {
         "*": {
@@ -2755,8 +2755,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_9") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_numeric_9") }
+        }
       },
       edit_open: {
         "*": {
@@ -2767,8 +2767,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_open") }
+        }
       },
       edit_paste: {
         "*": {
@@ -2779,8 +2779,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_paste") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_paste") }
+        }
       },
       edit_save: {
         "*": {
@@ -2791,8 +2791,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_save") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_save") }
+        }
       },
       edit_settings: {
         "*": {
@@ -2803,8 +2803,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_settings") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_settings") }
+        }
       },
       edit_sort: {
         "*": {
@@ -2815,8 +2815,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("edit_sort") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("edit_sort") }
+        }
       },
       fts_awning: {
         "*": {
@@ -2827,8 +2827,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_awning") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_awning") }
+        }
       },
       fts_balcony: {
         "*": {
@@ -2839,8 +2839,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_balcony") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_balcony") }
+        }
       },
       "fts_blade_arc_-10": {
         "*": {
@@ -2851,8 +2851,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-10") }
+        }
       },
       "fts_blade_arc_-20": {
         "*": {
@@ -2863,8 +2863,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-20") }
+        }
       },
       "fts_blade_arc_-30": {
         "*": {
@@ -2875,8 +2875,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-30") }
+        }
       },
       "fts_blade_arc_-40": {
         "*": {
@@ -2887,8 +2887,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-40") }
+        }
       },
       "fts_blade_arc_-50": {
         "*": {
@@ -2899,8 +2899,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-50") }
+        }
       },
       "fts_blade_arc_-60": {
         "*": {
@@ -2911,8 +2911,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-60") }
+        }
       },
       "fts_blade_arc_-70": {
         "*": {
@@ -2923,8 +2923,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_-70") }
+        }
       },
       fts_blade_arc_00: {
         "*": {
@@ -2935,8 +2935,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_00") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_00") }
+        }
       },
       fts_blade_arc_10: {
         "*": {
@@ -2947,8 +2947,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_10") }
+        }
       },
       fts_blade_arc_100: {
         "*": {
@@ -2959,8 +2959,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_100") }
+        }
       },
       fts_blade_arc_20: {
         "*": {
@@ -2971,8 +2971,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_20") }
+        }
       },
       fts_blade_arc_30: {
         "*": {
@@ -2983,8 +2983,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_30") }
+        }
       },
       fts_blade_arc_40: {
         "*": {
@@ -2995,8 +2995,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_40") }
+        }
       },
       fts_blade_arc_50: {
         "*": {
@@ -3007,8 +3007,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_50") }
+        }
       },
       fts_blade_arc_60: {
         "*": {
@@ -3019,8 +3019,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_60") }
+        }
       },
       fts_blade_arc_70: {
         "*": {
@@ -3031,8 +3031,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_70") }
+        }
       },
       fts_blade_arc_80: {
         "*": {
@@ -3043,8 +3043,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_80") }
+        }
       },
       fts_blade_arc_90: {
         "*": {
@@ -3055,8 +3055,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_90") }
+        }
       },
       fts_blade_arc_automatic: {
         "*": {
@@ -3067,8 +3067,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_automatic") }
+        }
       },
       fts_blade_arc_close_00: {
         "*": {
@@ -3079,8 +3079,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_close_00") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_close_00") }
+        }
       },
       fts_blade_arc_close_100: {
         "*": {
@@ -3091,8 +3091,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_close_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_close_100") }
+        }
       },
       fts_blade_arc_close_50: {
         "*": {
@@ -3103,8 +3103,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_close_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_close_50") }
+        }
       },
       fts_blade_arc_sun: {
         "*": {
@@ -3115,8 +3115,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_sun") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc_sun") }
+        }
       },
       fts_blade_arc: {
         "*": {
@@ -3127,8 +3127,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_arc") }
+        }
       },
       fts_blade_s_00: {
         "*": {
@@ -3139,8 +3139,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_00") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_00") }
+        }
       },
       fts_blade_s_10: {
         "*": {
@@ -3151,8 +3151,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_10") }
+        }
       },
       fts_blade_s_100: {
         "*": {
@@ -3163,8 +3163,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_100") }
+        }
       },
       fts_blade_s_20: {
         "*": {
@@ -3175,8 +3175,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_20") }
+        }
       },
       fts_blade_s_30: {
         "*": {
@@ -3187,8 +3187,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_30") }
+        }
       },
       fts_blade_s_40: {
         "*": {
@@ -3199,8 +3199,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_40") }
+        }
       },
       fts_blade_s_50: {
         "*": {
@@ -3211,8 +3211,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_50") }
+        }
       },
       fts_blade_s_60: {
         "*": {
@@ -3223,8 +3223,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_60") }
+        }
       },
       fts_blade_s_70: {
         "*": {
@@ -3235,8 +3235,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_70") }
+        }
       },
       fts_blade_s_80: {
         "*": {
@@ -3247,8 +3247,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_80") }
+        }
       },
       fts_blade_s_90: {
         "*": {
@@ -3259,8 +3259,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_90") }
+        }
       },
       fts_blade_s_automatic: {
         "*": {
@@ -3271,8 +3271,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_automatic") }
+        }
       },
       fts_blade_s_sun: {
         "*": {
@@ -3283,8 +3283,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_sun") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s_sun") }
+        }
       },
       fts_blade_s: {
         "*": {
@@ -3295,8 +3295,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_s") }
+        }
       },
       fts_blade_z_00: {
         "*": {
@@ -3307,8 +3307,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_00") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_00") }
+        }
       },
       fts_blade_z_10: {
         "*": {
@@ -3319,8 +3319,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_10") }
+        }
       },
       fts_blade_z_100: {
         "*": {
@@ -3331,8 +3331,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_100") }
+        }
       },
       fts_blade_z_20: {
         "*": {
@@ -3343,8 +3343,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_20") }
+        }
       },
       fts_blade_z_30: {
         "*": {
@@ -3355,8 +3355,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_30") }
+        }
       },
       fts_blade_z_40: {
         "*": {
@@ -3367,8 +3367,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_40") }
+        }
       },
       fts_blade_z_50: {
         "*": {
@@ -3379,8 +3379,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_50") }
+        }
       },
       fts_blade_z_60: {
         "*": {
@@ -3391,8 +3391,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_60") }
+        }
       },
       fts_blade_z_70: {
         "*": {
@@ -3403,8 +3403,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_70") }
+        }
       },
       fts_blade_z_80: {
         "*": {
@@ -3415,8 +3415,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_80") }
+        }
       },
       fts_blade_z_90: {
         "*": {
@@ -3427,8 +3427,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_90") }
+        }
       },
       fts_blade_z_automatic: {
         "*": {
@@ -3439,8 +3439,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_automatic") }
+        }
       },
       fts_blade_z_sun: {
         "*": {
@@ -3451,8 +3451,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_sun") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z_sun") }
+        }
       },
       fts_blade_z: {
         "*": {
@@ -3463,8 +3463,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_blade_z") }
+        }
       },
       fts_door_locked: {
         "*": {
@@ -3475,8 +3475,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_locked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_locked") }
+        }
       },
       fts_door_open: {
         "*": {
@@ -3487,8 +3487,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_open") }
+        }
       },
       fts_door_opener_key: {
         "*": {
@@ -3499,8 +3499,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_opener_key") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_opener_key") }
+        }
       },
       fts_door_slide_2w_open_l: {
         "*": {
@@ -3511,8 +3511,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w_open_l") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w_open_l") }
+        }
       },
       fts_door_slide_2w_open_lr: {
         "*": {
@@ -3523,8 +3523,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w_open_lr") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w_open_lr") }
+        }
       },
       fts_door_slide_2w_open_r: {
         "*": {
@@ -3535,8 +3535,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w_open_r") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w_open_r") }
+        }
       },
       fts_door_slide_2w: {
         "*": {
@@ -3547,8 +3547,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_2w") }
+        }
       },
       fts_door_slide_m: {
         "*": {
@@ -3559,8 +3559,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_m") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_m") }
+        }
       },
       fts_door_slide_open_m: {
         "*": {
@@ -3571,8 +3571,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_open_m") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_open_m") }
+        }
       },
       fts_door_slide_open: {
         "*": {
@@ -3583,8 +3583,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide_open") }
+        }
       },
       fts_door_slide: {
         "*": {
@@ -3595,8 +3595,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_slide") }
+        }
       },
       fts_door_tilt: {
         "*": {
@@ -3607,8 +3607,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_tilt") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_tilt") }
+        }
       },
       fts_door_unlocked: {
         "*": {
@@ -3619,8 +3619,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door_unlocked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door_unlocked") }
+        }
       },
       fts_door: {
         "*": {
@@ -3631,8 +3631,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_door") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_door") }
+        }
       },
       fts_entrance_boom_closed: {
         "*": {
@@ -3643,8 +3643,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_entrance_boom_closed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_entrance_boom_closed") }
+        }
       },
       fts_entrance_boom_open: {
         "*": {
@@ -3655,8 +3655,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_entrance_boom_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_entrance_boom_open") }
+        }
       },
       fts_frontdoor: {
         "*": {
@@ -3667,8 +3667,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_frontdoor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_frontdoor") }
+        }
       },
       fts_garage_door_10: {
         "*": {
@@ -3679,8 +3679,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_10") }
+        }
       },
       fts_garage_door_100: {
         "*": {
@@ -3691,8 +3691,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_100") }
+        }
       },
       fts_garage_door_20: {
         "*": {
@@ -3703,8 +3703,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_20") }
+        }
       },
       fts_garage_door_30: {
         "*": {
@@ -3715,8 +3715,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_30") }
+        }
       },
       fts_garage_door_40: {
         "*": {
@@ -3727,8 +3727,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_40") }
+        }
       },
       fts_garage_door_50: {
         "*": {
@@ -3739,8 +3739,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_50") }
+        }
       },
       fts_garage_door_60: {
         "*": {
@@ -3751,8 +3751,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_60") }
+        }
       },
       fts_garage_door_70: {
         "*": {
@@ -3763,8 +3763,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_70") }
+        }
       },
       fts_garage_door_80: {
         "*": {
@@ -3775,8 +3775,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_80") }
+        }
       },
       fts_garage_door_90: {
         "*": {
@@ -3787,8 +3787,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_door_90") }
+        }
       },
       fts_garage_motorbike: {
         "*": {
@@ -3799,8 +3799,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_motorbike") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage_motorbike") }
+        }
       },
       fts_garage: {
         "*": {
@@ -3811,8 +3811,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_garage") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_garage") }
+        }
       },
       fts_light_dome_open: {
         "*": {
@@ -3823,8 +3823,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_light_dome_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_light_dome_open") }
+        }
       },
       fts_light_dome: {
         "*": {
@@ -3835,8 +3835,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_light_dome") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_light_dome") }
+        }
       },
       fts_shutter_10: {
         "*": {
@@ -3847,8 +3847,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_10") }
+        }
       },
       fts_shutter_100: {
         "*": {
@@ -3859,8 +3859,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_100") }
+        }
       },
       fts_shutter_20: {
         "*": {
@@ -3871,8 +3871,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_20") }
+        }
       },
       fts_shutter_30: {
         "*": {
@@ -3883,8 +3883,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_30") }
+        }
       },
       fts_shutter_40: {
         "*": {
@@ -3895,8 +3895,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_40") }
+        }
       },
       fts_shutter_50: {
         "*": {
@@ -3907,8 +3907,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_50") }
+        }
       },
       fts_shutter_60: {
         "*": {
@@ -3919,8 +3919,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_60") }
+        }
       },
       fts_shutter_70: {
         "*": {
@@ -3931,8 +3931,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_70") }
+        }
       },
       fts_shutter_80: {
         "*": {
@@ -3943,8 +3943,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_80") }
+        }
       },
       fts_shutter_90: {
         "*": {
@@ -3955,8 +3955,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_90") }
+        }
       },
       fts_shutter_attention: {
         "*": {
@@ -3967,8 +3967,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_attention") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_attention") }
+        }
       },
       fts_shutter_automatic: {
         "*": {
@@ -3979,8 +3979,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_automatic") }
+        }
       },
       fts_shutter_down: {
         "*": {
@@ -3991,8 +3991,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_down") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_down") }
+        }
       },
       fts_shutter_jam: {
         "*": {
@@ -4003,8 +4003,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_jam") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_jam") }
+        }
       },
       fts_shutter_locked: {
         "*": {
@@ -4015,8 +4015,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_locked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_locked") }
+        }
       },
       fts_shutter_manual: {
         "*": {
@@ -4027,8 +4027,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_manual") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_manual") }
+        }
       },
       fts_shutter_stop: {
         "*": {
@@ -4039,8 +4039,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_stop") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_stop") }
+        }
       },
       fts_shutter_unlocked: {
         "*": {
@@ -4051,8 +4051,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_unlocked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_unlocked") }
+        }
       },
       fts_shutter_up: {
         "*": {
@@ -4063,8 +4063,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_up") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_up") }
+        }
       },
       fts_shutter_vert_10: {
         "*": {
@@ -4075,8 +4075,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_10") }
+        }
       },
       fts_shutter_vert_100: {
         "*": {
@@ -4087,8 +4087,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_100") }
+        }
       },
       fts_shutter_vert_20: {
         "*": {
@@ -4099,8 +4099,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_20") }
+        }
       },
       fts_shutter_vert_30: {
         "*": {
@@ -4111,8 +4111,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_30") }
+        }
       },
       fts_shutter_vert_40: {
         "*": {
@@ -4123,8 +4123,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_40") }
+        }
       },
       fts_shutter_vert_50: {
         "*": {
@@ -4135,8 +4135,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_50") }
+        }
       },
       fts_shutter_vert_60: {
         "*": {
@@ -4147,8 +4147,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_60") }
+        }
       },
       fts_shutter_vert_70: {
         "*": {
@@ -4159,8 +4159,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_70") }
+        }
       },
       fts_shutter_vert_80: {
         "*": {
@@ -4171,8 +4171,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_80") }
+        }
       },
       fts_shutter_vert_90: {
         "*": {
@@ -4183,8 +4183,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_90") }
+        }
       },
       fts_shutter_vert_automatic: {
         "*": {
@@ -4195,8 +4195,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_automatic") }
+        }
       },
       fts_shutter_vert_blade_00: {
         "*": {
@@ -4207,8 +4207,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_00") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_00") }
+        }
       },
       fts_shutter_vert_blade_10: {
         "*": {
@@ -4219,8 +4219,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_10") }
+        }
       },
       fts_shutter_vert_blade_100: {
         "*": {
@@ -4231,8 +4231,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_100") }
+        }
       },
       fts_shutter_vert_blade_20: {
         "*": {
@@ -4243,8 +4243,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_20") }
+        }
       },
       fts_shutter_vert_blade_30: {
         "*": {
@@ -4255,8 +4255,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_30") }
+        }
       },
       fts_shutter_vert_blade_40: {
         "*": {
@@ -4267,8 +4267,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_40") }
+        }
       },
       fts_shutter_vert_blade_50: {
         "*": {
@@ -4279,8 +4279,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_50") }
+        }
       },
       fts_shutter_vert_blade_60: {
         "*": {
@@ -4291,8 +4291,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_60") }
+        }
       },
       fts_shutter_vert_blade_70: {
         "*": {
@@ -4303,8 +4303,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_70") }
+        }
       },
       fts_shutter_vert_blade_80: {
         "*": {
@@ -4315,8 +4315,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_80") }
+        }
       },
       fts_shutter_vert_blade_90: {
         "*": {
@@ -4327,8 +4327,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_blade_90") }
+        }
       },
       fts_shutter_vert_down: {
         "*": {
@@ -4339,8 +4339,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_down") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_down") }
+        }
       },
       fts_shutter_vert_manual: {
         "*": {
@@ -4351,8 +4351,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_manual") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_manual") }
+        }
       },
       fts_shutter_vert_up: {
         "*": {
@@ -4363,8 +4363,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_up") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert_up") }
+        }
       },
       fts_shutter_vert: {
         "*": {
@@ -4375,8 +4375,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter_vert") }
+        }
       },
       fts_shutter: {
         "*": {
@@ -4387,8 +4387,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_shutter") }
+        }
       },
       fts_sliding_gate_closed: {
         "*": {
@@ -4399,8 +4399,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_closed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_closed") }
+        }
       },
       fts_sliding_gate_l_closed: {
         "*": {
@@ -4411,8 +4411,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_l_closed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_l_closed") }
+        }
       },
       fts_sliding_gate_l_open: {
         "*": {
@@ -4423,8 +4423,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_l_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_l_open") }
+        }
       },
       fts_sliding_gate_l: {
         "*": {
@@ -4435,8 +4435,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_l") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_l") }
+        }
       },
       fts_sliding_gate_open: {
         "*": {
@@ -4447,8 +4447,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate_open") }
+        }
       },
       fts_sliding_gate: {
         "*": {
@@ -4459,8 +4459,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sliding_gate") }
+        }
       },
       fts_sunblind_closed: {
         "*": {
@@ -4471,8 +4471,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sunblind_closed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sunblind_closed") }
+        }
       },
       fts_sunblind_volant: {
         "*": {
@@ -4483,8 +4483,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sunblind_volant") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sunblind_volant") }
+        }
       },
       fts_sunblind: {
         "*": {
@@ -4495,8 +4495,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_sunblind") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_sunblind") }
+        }
       },
       fts_umbrella_offset_closed: {
         "*": {
@@ -4507,8 +4507,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_umbrella_offset_closed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_umbrella_offset_closed") }
+        }
       },
       fts_umbrella_offset_open: {
         "*": {
@@ -4519,8 +4519,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_umbrella_offset_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_umbrella_offset_open") }
+        }
       },
       fts_window_1w_locked: {
         "*": {
@@ -4531,8 +4531,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_locked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_locked") }
+        }
       },
       fts_window_1w_open: {
         "*": {
@@ -4543,8 +4543,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_open") }
+        }
       },
       fts_window_1w_tilt: {
         "*": {
@@ -4555,8 +4555,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_tilt") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_tilt") }
+        }
       },
       fts_window_1w_unlocked: {
         "*": {
@@ -4567,8 +4567,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_unlocked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w_unlocked") }
+        }
       },
       fts_window_1w: {
         "*": {
@@ -4579,8 +4579,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_1w") }
+        }
       },
       fts_window_2w_open_l_tilt_r: {
         "*": {
@@ -4591,8 +4591,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_l_tilt_r") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_l_tilt_r") }
+        }
       },
       fts_window_2w_open_l: {
         "*": {
@@ -4603,8 +4603,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_l") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_l") }
+        }
       },
       fts_window_2w_open_lr: {
         "*": {
@@ -4615,8 +4615,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_lr") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_lr") }
+        }
       },
       fts_window_2w_open_r: {
         "*": {
@@ -4627,8 +4627,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_r") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open_r") }
+        }
       },
       fts_window_2w_open: {
         "*": {
@@ -4639,8 +4639,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_open") }
+        }
       },
       fts_window_2w_tilt_l_open_r: {
         "*": {
@@ -4651,8 +4651,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_l_open_r") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_l_open_r") }
+        }
       },
       fts_window_2w_tilt_l: {
         "*": {
@@ -4663,8 +4663,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_l") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_l") }
+        }
       },
       fts_window_2w_tilt_lr: {
         "*": {
@@ -4675,8 +4675,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_lr") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_lr") }
+        }
       },
       fts_window_2w_tilt_r: {
         "*": {
@@ -4687,8 +4687,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_r") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt_r") }
+        }
       },
       fts_window_2w_tilt: {
         "*": {
@@ -4699,8 +4699,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w_tilt") }
+        }
       },
       fts_window_2w: {
         "*": {
@@ -4711,8 +4711,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_2w") }
+        }
       },
       fts_window_louvre_open: {
         "*": {
@@ -4723,8 +4723,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_louvre_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_louvre_open") }
+        }
       },
       fts_window_louvre: {
         "*": {
@@ -4735,8 +4735,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_louvre") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_louvre") }
+        }
       },
       fts_window_roof_open_1: {
         "*": {
@@ -4747,8 +4747,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_open_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_open_1") }
+        }
       },
       fts_window_roof_open_2: {
         "*": {
@@ -4759,8 +4759,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_open_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_open_2") }
+        }
       },
       fts_window_roof_shutter_10: {
         "*": {
@@ -4771,8 +4771,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_10") }
+        }
       },
       fts_window_roof_shutter_100: {
         "*": {
@@ -4783,8 +4783,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_100") }
+        }
       },
       fts_window_roof_shutter_20: {
         "*": {
@@ -4795,8 +4795,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_20") }
+        }
       },
       fts_window_roof_shutter_30: {
         "*": {
@@ -4807,8 +4807,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_30") }
+        }
       },
       fts_window_roof_shutter_40: {
         "*": {
@@ -4819,8 +4819,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_40") }
+        }
       },
       fts_window_roof_shutter_50: {
         "*": {
@@ -4831,8 +4831,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_50") }
+        }
       },
       fts_window_roof_shutter_60: {
         "*": {
@@ -4843,8 +4843,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_60") }
+        }
       },
       fts_window_roof_shutter_70: {
         "*": {
@@ -4855,8 +4855,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_70") }
+        }
       },
       fts_window_roof_shutter_80: {
         "*": {
@@ -4867,8 +4867,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_80") }
+        }
       },
       fts_window_roof_shutter_90: {
         "*": {
@@ -4879,8 +4879,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter_90") }
+        }
       },
       fts_window_roof_shutter: {
         "*": {
@@ -4891,8 +4891,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof_shutter") }
+        }
       },
       fts_window_roof: {
         "*": {
@@ -4903,8 +4903,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_window_roof") }
+        }
       },
       fts_yard_gate_2w_open: {
         "*": {
@@ -4915,8 +4915,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_yard_gate_2w_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_yard_gate_2w_open") }
+        }
       },
       fts_yard_gate_2w: {
         "*": {
@@ -4927,8 +4927,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("fts_yard_gate_2w") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("fts_yard_gate_2w") }
+        }
       },
       info_ack: {
         "*": {
@@ -4939,8 +4939,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_ack") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_ack") }
+        }
       },
       info_attention: {
         "*": {
@@ -4951,8 +4951,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_attention") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_attention") }
+        }
       },
       info_bug: {
         "*": {
@@ -4963,8 +4963,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_bug") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_bug") }
+        }
       },
       info_catastrophe: {
         "*": {
@@ -4975,8 +4975,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_catastrophe") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_catastrophe") }
+        }
       },
       info_error: {
         "*": {
@@ -4987,8 +4987,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_error") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_error") }
+        }
       },
       info_info: {
         "*": {
@@ -4999,8 +4999,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_info") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_info") }
+        }
       },
       info_no_state: {
         "*": {
@@ -5011,8 +5011,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_no_state") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_no_state") }
+        }
       },
       info_ok: {
         "*": {
@@ -5023,8 +5023,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_ok") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_ok") }
+        }
       },
       info_warning: {
         "*": {
@@ -5035,8 +5035,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("info_warning") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("info_warning") }
+        }
       },
       it_av_receiver: {
         "*": {
@@ -5047,8 +5047,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_av_receiver") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_av_receiver") }
+        }
       },
       it_camera: {
         "*": {
@@ -5059,8 +5059,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_camera") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_camera") }
+        }
       },
       it_fax: {
         "*": {
@@ -5071,8 +5071,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_fax") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_fax") }
+        }
       },
       it_internet: {
         "*": {
@@ -5083,8 +5083,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_internet") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_internet") }
+        }
       },
       it_media_player: {
         "*": {
@@ -5095,8 +5095,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_media_player") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_media_player") }
+        }
       },
       it_nas: {
         "*": {
@@ -5107,8 +5107,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_nas") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_nas") }
+        }
       },
       it_net: {
         "*": {
@@ -5119,8 +5119,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_net") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_net") }
+        }
       },
       it_network: {
         "*": {
@@ -5131,8 +5131,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_network") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_network") }
+        }
       },
       it_pc: {
         "*": {
@@ -5143,8 +5143,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_pc") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_pc") }
+        }
       },
       it_radio: {
         "*": {
@@ -5155,8 +5155,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_radio") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_radio") }
+        }
       },
       it_remote: {
         "*": {
@@ -5167,8 +5167,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_remote") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_remote") }
+        }
       },
       it_router: {
         "*": {
@@ -5179,8 +5179,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_router") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_router") }
+        }
       },
       it_satellite_dish_heating: {
         "*": {
@@ -5191,8 +5191,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_satellite_dish_heating") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_satellite_dish_heating") }
+        }
       },
       it_satellite_dish: {
         "*": {
@@ -5203,8 +5203,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_satellite_dish") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_satellite_dish") }
+        }
       },
       it_server: {
         "*": {
@@ -5215,8 +5215,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_server") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_server") }
+        }
       },
       it_smartphone: {
         "*": {
@@ -5227,8 +5227,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_smartphone") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_smartphone") }
+        }
       },
       it_telephone: {
         "*": {
@@ -5239,8 +5239,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_telephone") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_telephone") }
+        }
       },
       it_television: {
         "*": {
@@ -5251,8 +5251,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_television") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_television") }
+        }
       },
       it_ups_attention: {
         "*": {
@@ -5263,8 +5263,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_ups_attention") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_ups_attention") }
+        }
       },
       it_ups_battery_empty: {
         "*": {
@@ -5275,8 +5275,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_ups_battery_empty") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_ups_battery_empty") }
+        }
       },
       it_ups_charging: {
         "*": {
@@ -5287,8 +5287,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_ups_charging") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_ups_charging") }
+        }
       },
       it_ups_on_battery: {
         "*": {
@@ -5299,8 +5299,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_ups_on_battery") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_ups_on_battery") }
+        }
       },
       it_ups_standby: {
         "*": {
@@ -5311,8 +5311,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_ups_standby") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_ups_standby") }
+        }
       },
       it_ups: {
         "*": {
@@ -5323,8 +5323,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_ups") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_ups") }
+        }
       },
       it_wifi_2: {
         "*": {
@@ -5335,8 +5335,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_wifi_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_wifi_2") }
+        }
       },
       it_wifi: {
         "*": {
@@ -5347,8 +5347,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_wifi") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_wifi") }
+        }
       },
       it_wireless_dcf77: {
         "*": {
@@ -5359,8 +5359,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("it_wireless_dcf77") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("it_wireless_dcf77") }
+        }
       },
       light_ball: {
         "*": {
@@ -5371,8 +5371,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_ball") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_ball") }
+        }
       },
       light_bar_table: {
         "*": {
@@ -5383,8 +5383,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_bar_table") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_bar_table") }
+        }
       },
       light_bedside: {
         "*": {
@@ -5395,8 +5395,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_bedside") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_bedside") }
+        }
       },
       light_bollard_1: {
         "*": {
@@ -5407,8 +5407,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_bollard_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_bollard_1") }
+        }
       },
       light_bollard_2: {
         "*": {
@@ -5419,8 +5419,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_bollard_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_bollard_2") }
+        }
       },
       light_cabinet: {
         "*": {
@@ -5431,8 +5431,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_cabinet") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_cabinet") }
+        }
       },
       light_ceiling_infrared: {
         "*": {
@@ -5443,8 +5443,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_ceiling_infrared") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_ceiling_infrared") }
+        }
       },
       light_ceiling_light: {
         "*": {
@@ -5455,8 +5455,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_ceiling_light") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_ceiling_light") }
+        }
       },
       light_ceiling_spots: {
         "*": {
@@ -5467,8 +5467,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_ceiling_spots") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_ceiling_spots") }
+        }
       },
       light_control: {
         "*": {
@@ -5479,8 +5479,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_control") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_control") }
+        }
       },
       light_corridor: {
         "*": {
@@ -5491,8 +5491,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_corridor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_corridor") }
+        }
       },
       light_cube: {
         "*": {
@@ -5503,8 +5503,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_cube") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_cube") }
+        }
       },
       light_diffused: {
         "*": {
@@ -5515,8 +5515,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_diffused") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_diffused") }
+        }
       },
       light_dinner_table: {
         "*": {
@@ -5527,8 +5527,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_dinner_table") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_dinner_table") }
+        }
       },
       light_disco_ball_on: {
         "*": {
@@ -5539,8 +5539,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_disco_ball_on") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_disco_ball_on") }
+        }
       },
       light_disco_ball: {
         "*": {
@@ -5551,8 +5551,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_disco_ball") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_disco_ball") }
+        }
       },
       light_downlight: {
         "*": {
@@ -5563,8 +5563,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_downlight") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_downlight") }
+        }
       },
       light_dressing_room: {
         "*": {
@@ -5575,8 +5575,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_dressing_room") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_dressing_room") }
+        }
       },
       light_fairy_lights: {
         "*": {
@@ -5587,8 +5587,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_fairy_lights") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_fairy_lights") }
+        }
       },
       light_floor_lamp_2: {
         "*": {
@@ -5599,8 +5599,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_floor_lamp_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_floor_lamp_2") }
+        }
       },
       light_floor_lamp: {
         "*": {
@@ -5611,8 +5611,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_floor_lamp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_floor_lamp") }
+        }
       },
       light_fountain_indoor: {
         "*": {
@@ -5623,8 +5623,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_fountain_indoor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_fountain_indoor") }
+        }
       },
       light_garage: {
         "*": {
@@ -5635,8 +5635,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_garage") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_garage") }
+        }
       },
       light_indoor_dg: {
         "*": {
@@ -5647,8 +5647,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_dg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_dg") }
+        }
       },
       light_indoor_eg: {
         "*": {
@@ -5659,8 +5659,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_eg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_eg") }
+        }
       },
       light_indoor_kg: {
         "*": {
@@ -5671,8 +5671,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_kg") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_kg") }
+        }
       },
       light_indoor_og_1: {
         "*": {
@@ -5683,8 +5683,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_og_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_og_1") }
+        }
       },
       light_indoor_og_2: {
         "*": {
@@ -5695,8 +5695,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_og_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_og_2") }
+        }
       },
       light_indoor_og: {
         "*": {
@@ -5707,8 +5707,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_og") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_og") }
+        }
       },
       light_indoor_ug: {
         "*": {
@@ -5719,8 +5719,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_ug") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor_ug") }
+        }
       },
       light_indoor: {
         "*": {
@@ -5731,8 +5731,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_indoor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_indoor") }
+        }
       },
       light_kitchen_hood: {
         "*": {
@@ -5743,8 +5743,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_kitchen_hood") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_kitchen_hood") }
+        }
       },
       light_led_stripe_rgb: {
         "*": {
@@ -5755,8 +5755,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_led_stripe_rgb") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_led_stripe_rgb") }
+        }
       },
       light_led_stripe: {
         "*": {
@@ -5767,8 +5767,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_led_stripe") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_led_stripe") }
+        }
       },
       light_led: {
         "*": {
@@ -5779,8 +5779,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_led") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_led") }
+        }
       },
       light_light_dim_00: {
         "*": {
@@ -5791,8 +5791,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_00") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_00") }
+        }
       },
       light_light_dim_10: {
         "*": {
@@ -5803,8 +5803,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_10") }
+        }
       },
       light_light_dim_100: {
         "*": {
@@ -5815,8 +5815,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_100") }
+        }
       },
       light_light_dim_20: {
         "*": {
@@ -5827,8 +5827,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_20") }
+        }
       },
       light_light_dim_30: {
         "*": {
@@ -5839,8 +5839,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_30") }
+        }
       },
       light_light_dim_40: {
         "*": {
@@ -5851,8 +5851,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_40") }
+        }
       },
       light_light_dim_50: {
         "*": {
@@ -5863,8 +5863,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_50") }
+        }
       },
       light_light_dim_60: {
         "*": {
@@ -5875,8 +5875,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_60") }
+        }
       },
       light_light_dim_70: {
         "*": {
@@ -5887,8 +5887,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_70") }
+        }
       },
       light_light_dim_80: {
         "*": {
@@ -5899,8 +5899,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_80") }
+        }
       },
       light_light_dim_90: {
         "*": {
@@ -5911,8 +5911,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light_dim_90") }
+        }
       },
       light_light: {
         "*": {
@@ -5923,8 +5923,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_light") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_light") }
+        }
       },
       light_mirror: {
         "*": {
@@ -5935,8 +5935,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_mirror") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_mirror") }
+        }
       },
       light_mirrored_wardrobe: {
         "*": {
@@ -5947,8 +5947,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_mirrored_wardrobe") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_mirrored_wardrobe") }
+        }
       },
       light_office_desk: {
         "*": {
@@ -5959,8 +5959,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_office_desk") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_office_desk") }
+        }
       },
       light_office: {
         "*": {
@@ -5971,8 +5971,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_office") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_office") }
+        }
       },
       light_outdoor: {
         "*": {
@@ -5983,8 +5983,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_outdoor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_outdoor") }
+        }
       },
       light_painting: {
         "*": {
@@ -5995,8 +5995,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_painting") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_painting") }
+        }
       },
       light_party: {
         "*": {
@@ -6007,8 +6007,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_party") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_party") }
+        }
       },
       light_pendant_light_round: {
         "*": {
@@ -6019,8 +6019,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_pendant_light_round") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_pendant_light_round") }
+        }
       },
       light_pendant_light: {
         "*": {
@@ -6031,8 +6031,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_pendant_light") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_pendant_light") }
+        }
       },
       light_plant_spot: {
         "*": {
@@ -6043,8 +6043,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_plant_spot") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_plant_spot") }
+        }
       },
       light_plant: {
         "*": {
@@ -6055,8 +6055,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_plant") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_plant") }
+        }
       },
       light_pool_rgb: {
         "*": {
@@ -6067,8 +6067,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_pool_rgb") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_pool_rgb") }
+        }
       },
       light_pool: {
         "*": {
@@ -6079,8 +6079,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_pool") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_pool") }
+        }
       },
       light_rgb: {
         "*": {
@@ -6091,8 +6091,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_rgb") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_rgb") }
+        }
       },
       light_showcase: {
         "*": {
@@ -6103,8 +6103,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_showcase") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_showcase") }
+        }
       },
       light_stairs: {
         "*": {
@@ -6115,8 +6115,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_stairs") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_stairs") }
+        }
       },
       light_starlit_sky: {
         "*": {
@@ -6127,8 +6127,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_starlit_sky") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_starlit_sky") }
+        }
       },
       light_table_lamp: {
         "*": {
@@ -6139,8 +6139,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_table_lamp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_table_lamp") }
+        }
       },
       light_television_backlight: {
         "*": {
@@ -6151,8 +6151,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_television_backlight") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_television_backlight") }
+        }
       },
       light_uplight: {
         "*": {
@@ -6163,8 +6163,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_uplight") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_uplight") }
+        }
       },
       light_wall_1: {
         "*": {
@@ -6175,8 +6175,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_wall_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_wall_1") }
+        }
       },
       light_wall_2: {
         "*": {
@@ -6187,8 +6187,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_wall_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_wall_2") }
+        }
       },
       light_wall_3: {
         "*": {
@@ -6199,8 +6199,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_wall_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_wall_3") }
+        }
       },
       light_wall_4: {
         "*": {
@@ -6211,8 +6211,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_wall_4") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_wall_4") }
+        }
       },
       light_waterfall: {
         "*": {
@@ -6223,8 +6223,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_waterfall") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_waterfall") }
+        }
       },
       light_window: {
         "*": {
@@ -6235,8 +6235,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_window") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_window") }
+        }
       },
       light_wire_system_1: {
         "*": {
@@ -6247,8 +6247,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_wire_system_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_wire_system_1") }
+        }
       },
       light_wire_system_2: {
         "*": {
@@ -6259,8 +6259,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_wire_system_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_wire_system_2") }
+        }
       },
       "light_x-mas_candle_arch": {
         "*": {
@@ -6271,8 +6271,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_candle_arch") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_candle_arch") }
+        }
       },
       "light_x-mas_manger": {
         "*": {
@@ -6283,8 +6283,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_manger") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_manger") }
+        }
       },
       "light_x-mas_star_1": {
         "*": {
@@ -6295,8 +6295,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_star_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_star_1") }
+        }
       },
       "light_x-mas_star_2": {
         "*": {
@@ -6307,8 +6307,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_star_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_star_2") }
+        }
       },
       "light_x-mas_tree": {
         "*": {
@@ -6319,8 +6319,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_tree") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("light_x-mas_tree") }
+        }
       },
       measure_battery_0: {
         "*": {
@@ -6331,8 +6331,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_0") }
+        }
       },
       measure_battery_100: {
         "*": {
@@ -6343,8 +6343,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_100") }
+        }
       },
       measure_battery_25: {
         "*": {
@@ -6355,8 +6355,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_25") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_25") }
+        }
       },
       measure_battery_50: {
         "*": {
@@ -6367,8 +6367,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_50") }
+        }
       },
       measure_battery_75: {
         "*": {
@@ -6379,8 +6379,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_75") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_battery_75") }
+        }
       },
       measure_cistern_0: {
         "*": {
@@ -6391,8 +6391,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_0") }
+        }
       },
       measure_cistern_10: {
         "*": {
@@ -6403,8 +6403,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_10") }
+        }
       },
       measure_cistern_100: {
         "*": {
@@ -6415,8 +6415,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_100") }
+        }
       },
       measure_cistern_20: {
         "*": {
@@ -6427,8 +6427,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_20") }
+        }
       },
       measure_cistern_30: {
         "*": {
@@ -6439,8 +6439,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_30") }
+        }
       },
       measure_cistern_40: {
         "*": {
@@ -6451,8 +6451,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_40") }
+        }
       },
       measure_cistern_50: {
         "*": {
@@ -6463,8 +6463,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_50") }
+        }
       },
       measure_cistern_60: {
         "*": {
@@ -6475,8 +6475,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_60") }
+        }
       },
       measure_cistern_70: {
         "*": {
@@ -6487,8 +6487,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_70") }
+        }
       },
       measure_cistern_80: {
         "*": {
@@ -6499,8 +6499,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_80") }
+        }
       },
       measure_cistern_90: {
         "*": {
@@ -6511,8 +6511,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_cistern_90") }
+        }
       },
       measure_current: {
         "*": {
@@ -6523,8 +6523,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_current") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_current") }
+        }
       },
       measure_globe_lat: {
         "*": {
@@ -6535,8 +6535,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_globe_lat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_globe_lat") }
+        }
       },
       measure_globe_long: {
         "*": {
@@ -6547,8 +6547,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_globe_long") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_globe_long") }
+        }
       },
       measure_globe: {
         "*": {
@@ -6559,8 +6559,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_globe") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_globe") }
+        }
       },
       measure_ph_value: {
         "*": {
@@ -6571,8 +6571,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_ph_value") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_ph_value") }
+        }
       },
       measure_photovoltaic_inst: {
         "*": {
@@ -6583,8 +6583,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_photovoltaic_inst") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_photovoltaic_inst") }
+        }
       },
       measure_pond_0: {
         "*": {
@@ -6595,8 +6595,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_0") }
+        }
       },
       measure_pond_10: {
         "*": {
@@ -6607,8 +6607,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_10") }
+        }
       },
       measure_pond_100: {
         "*": {
@@ -6619,8 +6619,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_100") }
+        }
       },
       measure_pond_20: {
         "*": {
@@ -6631,8 +6631,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_20") }
+        }
       },
       measure_pond_30: {
         "*": {
@@ -6643,8 +6643,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_30") }
+        }
       },
       measure_pond_40: {
         "*": {
@@ -6655,8 +6655,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_40") }
+        }
       },
       measure_pond_50: {
         "*": {
@@ -6667,8 +6667,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_50") }
+        }
       },
       measure_pond_60: {
         "*": {
@@ -6679,8 +6679,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_60") }
+        }
       },
       measure_pond_70: {
         "*": {
@@ -6691,8 +6691,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_70") }
+        }
       },
       measure_pond_80: {
         "*": {
@@ -6703,8 +6703,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_80") }
+        }
       },
       measure_pond_90: {
         "*": {
@@ -6715,8 +6715,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pond_90") }
+        }
       },
       measure_power_meter: {
         "*": {
@@ -6727,8 +6727,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_power_meter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_power_meter") }
+        }
       },
       measure_power: {
         "*": {
@@ -6739,8 +6739,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_power") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_power") }
+        }
       },
       measure_pressure_bar: {
         "*": {
@@ -6751,8 +6751,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_pressure_bar") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_pressure_bar") }
+        }
       },
       measure_radioactivity: {
         "*": {
@@ -6763,8 +6763,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_radioactivity") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_radioactivity") }
+        }
       },
       measure_voltage: {
         "*": {
@@ -6775,8 +6775,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_voltage") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_voltage") }
+        }
       },
       measure_water_meter: {
         "*": {
@@ -6787,8 +6787,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("measure_water_meter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("measure_water_meter") }
+        }
       },
       message_achtung: {
         "*": {
@@ -6799,8 +6799,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_achtung") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_achtung") }
+        }
       },
       message_attention_2: {
         "*": {
@@ -6811,8 +6811,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_attention_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_attention_2") }
+        }
       },
       message_attention: {
         "*": {
@@ -6823,8 +6823,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_attention") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_attention") }
+        }
       },
       message_bell_door_disabled: {
         "*": {
@@ -6835,8 +6835,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_bell_door_disabled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_bell_door_disabled") }
+        }
       },
       message_bell_door: {
         "*": {
@@ -6847,8 +6847,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_bell_door") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_bell_door") }
+        }
       },
       message_bell: {
         "*": {
@@ -6859,8 +6859,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_bell") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_bell") }
+        }
       },
       message_bug_filled: {
         "*": {
@@ -6871,8 +6871,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_bug_filled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_bug_filled") }
+        }
       },
       message_bug: {
         "*": {
@@ -6883,8 +6883,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_bug") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_bug") }
+        }
       },
       message_caution: {
         "*": {
@@ -6895,8 +6895,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_caution") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_caution") }
+        }
       },
       message_empty: {
         "*": {
@@ -6907,8 +6907,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_empty") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_empty") }
+        }
       },
       message_error: {
         "*": {
@@ -6919,8 +6919,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_error") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_error") }
+        }
       },
       message_garbage_2: {
         "*": {
@@ -6931,8 +6931,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_2") }
+        }
       },
       message_garbage_3: {
         "*": {
@@ -6943,8 +6943,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_3") }
+        }
       },
       message_garbage_4: {
         "*": {
@@ -6955,8 +6955,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_4") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_4") }
+        }
       },
       message_garbage_collection: {
         "*": {
@@ -6967,8 +6967,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_collection") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_garbage_collection") }
+        }
       },
       message_garbage: {
         "*": {
@@ -6979,8 +6979,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_garbage") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_garbage") }
+        }
       },
       message_help: {
         "*": {
@@ -6991,8 +6991,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_help") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_help") }
+        }
       },
       message_info: {
         "*": {
@@ -7003,8 +7003,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_info") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_info") }
+        }
       },
       message_light_barrier_open: {
         "*": {
@@ -7015,8 +7015,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_light_barrier_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_light_barrier_open") }
+        }
       },
       message_light_barrier: {
         "*": {
@@ -7027,8 +7027,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_light_barrier") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_light_barrier") }
+        }
       },
       message_light_intensity: {
         "*": {
@@ -7039,8 +7039,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_light_intensity") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_light_intensity") }
+        }
       },
       message_mail_open: {
         "*": {
@@ -7051,8 +7051,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_mail_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_mail_open") }
+        }
       },
       message_mail: {
         "*": {
@@ -7063,8 +7063,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_mail") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_mail") }
+        }
       },
       message_medicine: {
         "*": {
@@ -7075,8 +7075,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_medicine") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_medicine") }
+        }
       },
       message_notice: {
         "*": {
@@ -7087,8 +7087,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_notice") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_notice") }
+        }
       },
       message_ok: {
         "*": {
@@ -7099,8 +7099,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_ok") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_ok") }
+        }
       },
       message_postbox_mail: {
         "*": {
@@ -7111,8 +7111,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_postbox_mail") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_postbox_mail") }
+        }
       },
       message_postbox: {
         "*": {
@@ -7123,8 +7123,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_postbox") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_postbox") }
+        }
       },
       message_presence_active: {
         "*": {
@@ -7135,8 +7135,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_presence_active") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_presence_active") }
+        }
       },
       message_presence_disabled: {
         "*": {
@@ -7147,8 +7147,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_presence_disabled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_presence_disabled") }
+        }
       },
       message_presence_geo_active: {
         "*": {
@@ -7159,8 +7159,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_presence_geo_active") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_presence_geo_active") }
+        }
       },
       message_presence_geo_inactive: {
         "*": {
@@ -7172,9 +7172,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("message_presence_geo_inactive"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("message_presence_geo_inactive")
+          }
+        }
       },
       message_presence_inactive: {
         "*": {
@@ -7185,8 +7185,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_presence_inactive") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_presence_inactive") }
+        }
       },
       message_presence: {
         "*": {
@@ -7197,8 +7197,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_presence") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_presence") }
+        }
       },
       message_service: {
         "*": {
@@ -7209,8 +7209,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_service") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_service") }
+        }
       },
       message_socket_ch_3: {
         "*": {
@@ -7221,8 +7221,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_socket_ch_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_socket_ch_3") }
+        }
       },
       message_socket_ch_on_off: {
         "*": {
@@ -7233,8 +7233,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_socket_ch_on_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_socket_ch_on_off") }
+        }
       },
       message_socket_ch: {
         "*": {
@@ -7245,8 +7245,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_socket_ch") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_socket_ch") }
+        }
       },
       message_socket_on_off: {
         "*": {
@@ -7257,8 +7257,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_socket_on_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_socket_on_off") }
+        }
       },
       message_socket: {
         "*": {
@@ -7269,8 +7269,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_socket") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_socket") }
+        }
       },
       message_stop: {
         "*": {
@@ -7281,8 +7281,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_stop") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_stop") }
+        }
       },
       message_street_sweeper: {
         "*": {
@@ -7293,8 +7293,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_street_sweeper") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_street_sweeper") }
+        }
       },
       message_tendency_downward: {
         "*": {
@@ -7305,8 +7305,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_tendency_downward") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_tendency_downward") }
+        }
       },
       message_tendency_steady: {
         "*": {
@@ -7317,8 +7317,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_tendency_steady") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_tendency_steady") }
+        }
       },
       message_tendency_upward: {
         "*": {
@@ -7329,8 +7329,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("message_tendency_upward") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("message_tendency_upward") }
+        }
       },
       phone_answering: {
         "*": {
@@ -7341,8 +7341,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_answering") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_answering") }
+        }
       },
       phone_call_end_in: {
         "*": {
@@ -7353,8 +7353,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_call_end_in") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_call_end_in") }
+        }
       },
       phone_call_end_out: {
         "*": {
@@ -7365,8 +7365,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_call_end_out") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_call_end_out") }
+        }
       },
       phone_call_end: {
         "*": {
@@ -7377,8 +7377,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_call_end") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_call_end") }
+        }
       },
       phone_call_in: {
         "*": {
@@ -7389,8 +7389,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_call_in") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_call_in") }
+        }
       },
       phone_call_out: {
         "*": {
@@ -7401,8 +7401,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_call_out") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_call_out") }
+        }
       },
       phone_call: {
         "*": {
@@ -7413,8 +7413,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_call") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_call") }
+        }
       },
       phone_dial: {
         "*": {
@@ -7425,8 +7425,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_dial") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_dial") }
+        }
       },
       phone_missed_in: {
         "*": {
@@ -7437,8 +7437,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_missed_in") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_missed_in") }
+        }
       },
       phone_missed_out: {
         "*": {
@@ -7449,8 +7449,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_missed_out") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_missed_out") }
+        }
       },
       phone_remote_trans_disabled: {
         "*": {
@@ -7461,8 +7461,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_remote_trans_disabled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_remote_trans_disabled") }
+        }
       },
       phone_ring_in: {
         "*": {
@@ -7473,8 +7473,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_ring_in") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_ring_in") }
+        }
       },
       phone_ring_out: {
         "*": {
@@ -7485,8 +7485,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_ring_out") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_ring_out") }
+        }
       },
       phone_ring: {
         "*": {
@@ -7497,8 +7497,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("phone_ring") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("phone_ring") }
+        }
       },
       sani_boiler_temp: {
         "*": {
@@ -7509,8 +7509,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_boiler_temp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_boiler_temp") }
+        }
       },
       sani_buffer_temp_all: {
         "*": {
@@ -7521,8 +7521,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_buffer_temp_all") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_buffer_temp_all") }
+        }
       },
       sani_buffer_temp_down: {
         "*": {
@@ -7533,8 +7533,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_buffer_temp_down") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_buffer_temp_down") }
+        }
       },
       sani_buffer_temp_up: {
         "*": {
@@ -7545,8 +7545,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_buffer_temp_up") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_buffer_temp_up") }
+        }
       },
       sani_central_vacuum_cleaner_dust_cont: {
         "*": {
@@ -7560,9 +7560,9 @@ qx.Class.define("cv.IconConfig", {
           "*": {
             "*": cv.util.IconTools.svgKUF(
               "sani_central_vacuum_cleaner_dust_cont"
-            ),
-          },
-        },
+            )
+          }
+        }
       },
       sani_central_vacuum_cleaner_filter: {
         "*": {
@@ -7574,9 +7574,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("sani_central_vacuum_cleaner_filter"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("sani_central_vacuum_cleaner_filter")
+          }
+        }
       },
       sani_central_vacuum_cleaner: {
         "*": {
@@ -7587,8 +7587,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_central_vacuum_cleaner") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_central_vacuum_cleaner") }
+        }
       },
       sani_cogeneration: {
         "*": {
@@ -7599,8 +7599,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_cogeneration") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_cogeneration") }
+        }
       },
       sani_cooling_automatic: {
         "*": {
@@ -7611,8 +7611,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling_automatic") }
+        }
       },
       sani_cooling_manual: {
         "*": {
@@ -7623,8 +7623,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling_manual") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling_manual") }
+        }
       },
       sani_cooling_temp: {
         "*": {
@@ -7635,8 +7635,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling_temp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling_temp") }
+        }
       },
       sani_cooling: {
         "*": {
@@ -7647,8 +7647,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_cooling") }
+        }
       },
       sani_domestic_waterworks: {
         "*": {
@@ -7659,8 +7659,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_domestic_waterworks") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_domestic_waterworks") }
+        }
       },
       sani_earth_source_heat_pump: {
         "*": {
@@ -7671,8 +7671,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_earth_source_heat_pump") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_earth_source_heat_pump") }
+        }
       },
       sani_floor_heating: {
         "*": {
@@ -7683,8 +7683,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_floor_heating") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_floor_heating") }
+        }
       },
       sani_garden_pump: {
         "*": {
@@ -7695,8 +7695,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_garden_pump") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_garden_pump") }
+        }
       },
       sani_heating_automatic: {
         "*": {
@@ -7707,8 +7707,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_heating_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_heating_automatic") }
+        }
       },
       sani_heating_manual: {
         "*": {
@@ -7719,8 +7719,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_heating_manual") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_heating_manual") }
+        }
       },
       sani_heating_temp: {
         "*": {
@@ -7731,8 +7731,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_heating_temp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_heating_temp") }
+        }
       },
       sani_heating: {
         "*": {
@@ -7743,8 +7743,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_heating") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_heating") }
+        }
       },
       sani_irrigation_automatic: {
         "*": {
@@ -7755,8 +7755,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_automatic") }
+        }
       },
       sani_irrigation_manual: {
         "*": {
@@ -7767,8 +7767,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_manual") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_manual") }
+        }
       },
       sani_irrigation_pop_up_off: {
         "*": {
@@ -7779,8 +7779,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_pop_up_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_pop_up_off") }
+        }
       },
       sani_irrigation_pop_up_on: {
         "*": {
@@ -7791,8 +7791,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_pop_up_on") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_pop_up_on") }
+        }
       },
       sani_irrigation_water_plug: {
         "*": {
@@ -7803,8 +7803,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_water_plug") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation_water_plug") }
+        }
       },
       sani_irrigation: {
         "*": {
@@ -7815,8 +7815,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_irrigation") }
+        }
       },
       sani_leakage: {
         "*": {
@@ -7827,8 +7827,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_leakage") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_leakage") }
+        }
       },
       sani_pool_filter_pump: {
         "*": {
@@ -7839,8 +7839,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_pool_filter_pump") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_pool_filter_pump") }
+        }
       },
       sani_pump: {
         "*": {
@@ -7851,8 +7851,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_pump") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_pump") }
+        }
       },
       sani_return_temp: {
         "*": {
@@ -7863,8 +7863,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_return_temp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_return_temp") }
+        }
       },
       sani_solar_temp: {
         "*": {
@@ -7875,8 +7875,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_solar_temp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_solar_temp") }
+        }
       },
       sani_solar: {
         "*": {
@@ -7887,8 +7887,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_solar") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_solar") }
+        }
       },
       sani_sprinkling: {
         "*": {
@@ -7899,8 +7899,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_sprinkling") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_sprinkling") }
+        }
       },
       sani_supply_temp: {
         "*": {
@@ -7911,8 +7911,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_supply_temp") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_supply_temp") }
+        }
       },
       sani_towel_rad: {
         "*": {
@@ -7923,8 +7923,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_towel_rad") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_towel_rad") }
+        }
       },
       sani_valve_0: {
         "*": {
@@ -7935,8 +7935,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_0") }
+        }
       },
       sani_valve_10: {
         "*": {
@@ -7947,8 +7947,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_10") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_10") }
+        }
       },
       sani_valve_100: {
         "*": {
@@ -7959,8 +7959,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_100") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_100") }
+        }
       },
       sani_valve_20: {
         "*": {
@@ -7971,8 +7971,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_20") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_20") }
+        }
       },
       sani_valve_30: {
         "*": {
@@ -7983,8 +7983,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_30") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_30") }
+        }
       },
       sani_valve_40: {
         "*": {
@@ -7995,8 +7995,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_40") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_40") }
+        }
       },
       sani_valve_50: {
         "*": {
@@ -8007,8 +8007,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_50") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_50") }
+        }
       },
       sani_valve_60: {
         "*": {
@@ -8019,8 +8019,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_60") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_60") }
+        }
       },
       sani_valve_70: {
         "*": {
@@ -8031,8 +8031,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_70") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_70") }
+        }
       },
       sani_valve_80: {
         "*": {
@@ -8043,8 +8043,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_80") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_80") }
+        }
       },
       sani_valve_90: {
         "*": {
@@ -8055,8 +8055,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_90") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_valve_90") }
+        }
       },
       sani_water_cold: {
         "*": {
@@ -8067,8 +8067,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_water_cold") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_water_cold") }
+        }
       },
       sani_water_hot: {
         "*": {
@@ -8079,8 +8079,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_water_hot") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_water_hot") }
+        }
       },
       sani_water_softening_unit: {
         "*": {
@@ -8091,8 +8091,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_water_softening_unit") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_water_softening_unit") }
+        }
       },
       sani_water_tap: {
         "*": {
@@ -8103,8 +8103,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_water_tap") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_water_tap") }
+        }
       },
       sani_well_pump: {
         "*": {
@@ -8115,8 +8115,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("sani_well_pump") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("sani_well_pump") }
+        }
       },
       scene_3d_printer: {
         "*": {
@@ -8127,8 +8127,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_3d_printer") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_3d_printer") }
+        }
       },
       scene_aquarium: {
         "*": {
@@ -8139,8 +8139,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_aquarium") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_aquarium") }
+        }
       },
       scene_baby: {
         "*": {
@@ -8151,8 +8151,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_baby") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_baby") }
+        }
       },
       scene_baking_oven: {
         "*": {
@@ -8163,8 +8163,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_baking_oven") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_baking_oven") }
+        }
       },
       scene_bath: {
         "*": {
@@ -8175,8 +8175,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_bath") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_bath") }
+        }
       },
       scene_bathroom: {
         "*": {
@@ -8187,8 +8187,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_bathroom") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_bathroom") }
+        }
       },
       scene_beer: {
         "*": {
@@ -8199,8 +8199,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_beer") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_beer") }
+        }
       },
       scene_birthday: {
         "*": {
@@ -8211,8 +8211,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_birthday") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_birthday") }
+        }
       },
       scene_bumper_car: {
         "*": {
@@ -8223,8 +8223,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_bumper_car") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_bumper_car") }
+        }
       },
       scene_cat: {
         "*": {
@@ -8235,8 +8235,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cat") }
+        }
       },
       scene_childs_room: {
         "*": {
@@ -8247,8 +8247,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_childs_room") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_childs_room") }
+        }
       },
       scene_cinema: {
         "*": {
@@ -8259,8 +8259,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cinema") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cinema") }
+        }
       },
       scene_cleaning: {
         "*": {
@@ -8271,8 +8271,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cleaning") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cleaning") }
+        }
       },
       scene_clothes_dryer: {
         "*": {
@@ -8283,8 +8283,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_clothes_dryer") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_clothes_dryer") }
+        }
       },
       scene_cockle_stove: {
         "*": {
@@ -8295,8 +8295,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cockle_stove") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cockle_stove") }
+        }
       },
       scene_coffee_maker_automatic: {
         "*": {
@@ -8308,9 +8308,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_coffee_maker_automatic"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_coffee_maker_automatic")
+          }
+        }
       },
       scene_cooking_alternat: {
         "*": {
@@ -8321,8 +8321,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cooking_alternat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cooking_alternat") }
+        }
       },
       scene_cooking_hob: {
         "*": {
@@ -8333,8 +8333,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cooking_hob") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cooking_hob") }
+        }
       },
       scene_cooking: {
         "*": {
@@ -8345,8 +8345,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cooking") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cooking") }
+        }
       },
       scene_corridor: {
         "*": {
@@ -8357,8 +8357,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_corridor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_corridor") }
+        }
       },
       scene_cubby: {
         "*": {
@@ -8369,8 +8369,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_cubby") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_cubby") }
+        }
       },
       scene_day: {
         "*": {
@@ -8381,8 +8381,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_day") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_day") }
+        }
       },
       scene_deckchair: {
         "*": {
@@ -8393,8 +8393,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_deckchair") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_deckchair") }
+        }
       },
       scene_dinner: {
         "*": {
@@ -8405,8 +8405,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_dinner") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_dinner") }
+        }
       },
       scene_dishwasher: {
         "*": {
@@ -8417,8 +8417,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_dishwasher") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_dishwasher") }
+        }
       },
       scene_dog: {
         "*": {
@@ -8429,8 +8429,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_dog") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_dog") }
+        }
       },
       scene_dressing_room_alternat: {
         "*": {
@@ -8442,9 +8442,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_dressing_room_alternat"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_dressing_room_alternat")
+          }
+        }
       },
       scene_dressing_room: {
         "*": {
@@ -8455,8 +8455,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_dressing_room") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_dressing_room") }
+        }
       },
       scene_drink_hot: {
         "*": {
@@ -8467,8 +8467,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_drink_hot") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_drink_hot") }
+        }
       },
       scene_drink: {
         "*": {
@@ -8479,8 +8479,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_drink") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_drink") }
+        }
       },
       scene_dump_truck: {
         "*": {
@@ -8491,8 +8491,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_dump_truck") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_dump_truck") }
+        }
       },
       scene_fitness_2: {
         "*": {
@@ -8503,8 +8503,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_fitness_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_fitness_2") }
+        }
       },
       scene_fitness: {
         "*": {
@@ -8515,8 +8515,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_fitness") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_fitness") }
+        }
       },
       scene_flash: {
         "*": {
@@ -8527,8 +8527,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_flash") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_flash") }
+        }
       },
       scene_football: {
         "*": {
@@ -8539,8 +8539,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_football") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_football") }
+        }
       },
       scene_fountain_indoor: {
         "*": {
@@ -8551,8 +8551,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_fountain_indoor") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_fountain_indoor") }
+        }
       },
       scene_fountain: {
         "*": {
@@ -8563,8 +8563,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_fountain") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_fountain") }
+        }
       },
       scene_freezer: {
         "*": {
@@ -8575,8 +8575,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_freezer") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_freezer") }
+        }
       },
       scene_gaming_2: {
         "*": {
@@ -8587,8 +8587,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_gaming_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_gaming_2") }
+        }
       },
       scene_gaming_3: {
         "*": {
@@ -8599,8 +8599,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_gaming_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_gaming_3") }
+        }
       },
       scene_gaming: {
         "*": {
@@ -8611,8 +8611,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_gaming") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_gaming") }
+        }
       },
       scene_garden: {
         "*": {
@@ -8623,8 +8623,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_garden") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_garden") }
+        }
       },
       scene_gas_station: {
         "*": {
@@ -8635,8 +8635,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_gas_station") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_gas_station") }
+        }
       },
       scene_hall_alternat: {
         "*": {
@@ -8647,8 +8647,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_hall_alternat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_hall_alternat") }
+        }
       },
       scene_hall: {
         "*": {
@@ -8659,8 +8659,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_hall") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_hall") }
+        }
       },
       scene_horse: {
         "*": {
@@ -8671,8 +8671,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_horse") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_horse") }
+        }
       },
       scene_ironing: {
         "*": {
@@ -8683,8 +8683,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_ironing") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_ironing") }
+        }
       },
       scene_jukebox: {
         "*": {
@@ -8695,8 +8695,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_jukebox") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_jukebox") }
+        }
       },
       scene_keyboard: {
         "*": {
@@ -8707,8 +8707,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_keyboard") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_keyboard") }
+        }
       },
       scene_kitchen_hood: {
         "*": {
@@ -8719,8 +8719,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_kitchen_hood") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_kitchen_hood") }
+        }
       },
       scene_kitchen_sink: {
         "*": {
@@ -8731,8 +8731,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_kitchen_sink") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_kitchen_sink") }
+        }
       },
       scene_laundry_room_fem: {
         "*": {
@@ -8743,8 +8743,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_laundry_room_fem") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_laundry_room_fem") }
+        }
       },
       scene_laundry_room: {
         "*": {
@@ -8755,8 +8755,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_laundry_room") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_laundry_room") }
+        }
       },
       scene_living: {
         "*": {
@@ -8767,8 +8767,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_living") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_living") }
+        }
       },
       scene_livingroom: {
         "*": {
@@ -8779,8 +8779,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_livingroom") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_livingroom") }
+        }
       },
       scene_making_love_clean: {
         "*": {
@@ -8791,8 +8791,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_making_love_clean") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_making_love_clean") }
+        }
       },
       scene_making_love: {
         "*": {
@@ -8803,8 +8803,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_making_love") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_making_love") }
+        }
       },
       scene_massage_jet: {
         "*": {
@@ -8815,8 +8815,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_massage_jet") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_massage_jet") }
+        }
       },
       scene_microwave_oven: {
         "*": {
@@ -8827,8 +8827,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_microwave_oven") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_microwave_oven") }
+        }
       },
       scene_minion: {
         "*": {
@@ -8839,8 +8839,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_minion") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_minion") }
+        }
       },
       scene_multicooker: {
         "*": {
@@ -8851,8 +8851,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_multicooker") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_multicooker") }
+        }
       },
       scene_night: {
         "*": {
@@ -8863,8 +8863,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_night") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_night") }
+        }
       },
       scene_office: {
         "*": {
@@ -8875,8 +8875,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_office") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_office") }
+        }
       },
       scene_party: {
         "*": {
@@ -8887,8 +8887,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_party") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_party") }
+        }
       },
       scene_pet: {
         "*": {
@@ -8899,8 +8899,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_pet") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_pet") }
+        }
       },
       scene_plant: {
         "*": {
@@ -8911,8 +8911,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_plant") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_plant") }
+        }
       },
       scene_pool: {
         "*": {
@@ -8923,8 +8923,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_pool") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_pool") }
+        }
       },
       scene_power_grid: {
         "*": {
@@ -8935,8 +8935,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_power_grid") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_power_grid") }
+        }
       },
       scene_power_inverter: {
         "*": {
@@ -8947,8 +8947,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_power_inverter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_power_inverter") }
+        }
       },
       scene_princess: {
         "*": {
@@ -8959,8 +8959,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_princess") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_princess") }
+        }
       },
       scene_projector_closed_on_off: {
         "*": {
@@ -8972,9 +8972,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_projector_closed_on_off"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_projector_closed_on_off")
+          }
+        }
       },
       scene_projector_closed: {
         "*": {
@@ -8985,8 +8985,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_projector_closed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_projector_closed") }
+        }
       },
       scene_projector_open_on_off: {
         "*": {
@@ -8997,8 +8997,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_projector_open_on_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_projector_open_on_off") }
+        }
       },
       scene_projector_open: {
         "*": {
@@ -9009,8 +9009,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_projector_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_projector_open") }
+        }
       },
       scene_robo_lawnmower_active: {
         "*": {
@@ -9021,8 +9021,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_active") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_active") }
+        }
       },
       scene_robo_lawnmower_attention: {
         "*": {
@@ -9034,9 +9034,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_attention"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_attention")
+          }
+        }
       },
       scene_robo_lawnmower_charging: {
         "*": {
@@ -9048,9 +9048,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_charging"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_charging")
+          }
+        }
       },
       scene_robo_lawnmower_paused: {
         "*": {
@@ -9061,8 +9061,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_paused") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower_paused") }
+        }
       },
       scene_robo_lawnmower: {
         "*": {
@@ -9073,8 +9073,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_lawnmower") }
+        }
       },
       scene_robo_vac_cleaner_active: {
         "*": {
@@ -9086,9 +9086,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_active"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_active")
+          }
+        }
       },
       scene_robo_vac_cleaner_attention: {
         "*": {
@@ -9100,9 +9100,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_attention"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_attention")
+          }
+        }
       },
       scene_robo_vac_cleaner_charging: {
         "*": {
@@ -9114,9 +9114,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_charging"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_charging")
+          }
+        }
       },
       scene_robo_vac_cleaner_paused: {
         "*": {
@@ -9128,9 +9128,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_paused"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner_paused")
+          }
+        }
       },
       scene_robo_vac_cleaner: {
         "*": {
@@ -9141,8 +9141,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_robo_vac_cleaner") }
+        }
       },
       scene_sauna: {
         "*": {
@@ -9153,8 +9153,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sauna") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sauna") }
+        }
       },
       scene_scene_teach_in: {
         "*": {
@@ -9165,8 +9165,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_scene_teach_in") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_scene_teach_in") }
+        }
       },
       scene_scene: {
         "*": {
@@ -9177,8 +9177,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_scene") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_scene") }
+        }
       },
       scene_shower: {
         "*": {
@@ -9189,8 +9189,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_shower") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_shower") }
+        }
       },
       scene_sleeping_alternat: {
         "*": {
@@ -9201,8 +9201,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_alternat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_alternat") }
+        }
       },
       scene_sleeping_twin_0_0: {
         "*": {
@@ -9213,8 +9213,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_0_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_0_0") }
+        }
       },
       scene_sleeping_twin_0_1: {
         "*": {
@@ -9225,8 +9225,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_0_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_0_1") }
+        }
       },
       scene_sleeping_twin_1_0: {
         "*": {
@@ -9237,8 +9237,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_1_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_1_0") }
+        }
       },
       scene_sleeping_twin_1_1: {
         "*": {
@@ -9249,8 +9249,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_1_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping_twin_1_1") }
+        }
       },
       scene_sleeping: {
         "*": {
@@ -9261,8 +9261,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_sleeping") }
+        }
       },
       scene_solar_panel: {
         "*": {
@@ -9273,8 +9273,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_solar_panel") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_solar_panel") }
+        }
       },
       scene_stairs: {
         "*": {
@@ -9285,8 +9285,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_stairs") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_stairs") }
+        }
       },
       scene_storeroom: {
         "*": {
@@ -9297,8 +9297,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_storeroom") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_storeroom") }
+        }
       },
       scene_stove: {
         "*": {
@@ -9309,8 +9309,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_stove") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_stove") }
+        }
       },
       scene_stream_course: {
         "*": {
@@ -9321,8 +9321,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_stream_course") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_stream_course") }
+        }
       },
       scene_summerhouse: {
         "*": {
@@ -9333,8 +9333,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_summerhouse") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_summerhouse") }
+        }
       },
       scene_swimming: {
         "*": {
@@ -9345,8 +9345,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_swimming") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_swimming") }
+        }
       },
       scene_teens_room: {
         "*": {
@@ -9357,8 +9357,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_teens_room") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_teens_room") }
+        }
       },
       scene_terrace: {
         "*": {
@@ -9369,8 +9369,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_terrace") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_terrace") }
+        }
       },
       scene_toilet_alternat: {
         "*": {
@@ -9381,8 +9381,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_toilet_alternat") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_toilet_alternat") }
+        }
       },
       scene_toilet: {
         "*": {
@@ -9393,8 +9393,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_toilet") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_toilet") }
+        }
       },
       scene_unicorn: {
         "*": {
@@ -9405,8 +9405,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_unicorn") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_unicorn") }
+        }
       },
       scene_visit_guests: {
         "*": {
@@ -9417,8 +9417,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_visit_guests") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_visit_guests") }
+        }
       },
       scene_washing_machine: {
         "*": {
@@ -9429,8 +9429,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_washing_machine") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_washing_machine") }
+        }
       },
       scene_waterfall: {
         "*": {
@@ -9441,8 +9441,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_waterfall") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_waterfall") }
+        }
       },
       scene_wine_cellar: {
         "*": {
@@ -9453,8 +9453,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_wine_cellar") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_wine_cellar") }
+        }
       },
       scene_workshop: {
         "*": {
@@ -9465,8 +9465,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_workshop") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_workshop") }
+        }
       },
       "scene_x-mas": {
         "*": {
@@ -9477,8 +9477,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("scene_x-mas") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("scene_x-mas") }
+        }
       },
       secur_alarm_alarm: {
         "*": {
@@ -9489,8 +9489,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_alarm") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_alarm") }
+        }
       },
       secur_alarm_disabled: {
         "*": {
@@ -9501,8 +9501,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_disabled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_disabled") }
+        }
       },
       secur_alarm_enabled: {
         "*": {
@@ -9513,8 +9513,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_enabled") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_enabled") }
+        }
       },
       secur_alarm_test: {
         "*": {
@@ -9525,8 +9525,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_test") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm_test") }
+        }
       },
       secur_alarm: {
         "*": {
@@ -9537,8 +9537,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_alarm") }
+        }
       },
       secur_breakage_glass: {
         "*": {
@@ -9549,8 +9549,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_breakage_glass") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_breakage_glass") }
+        }
       },
       secur_burglary: {
         "*": {
@@ -9561,8 +9561,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_burglary") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_burglary") }
+        }
       },
       secur_encoding: {
         "*": {
@@ -9573,8 +9573,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_encoding") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_encoding") }
+        }
       },
       secur_fingerprint_reader: {
         "*": {
@@ -9585,8 +9585,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_fingerprint_reader") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_fingerprint_reader") }
+        }
       },
       secur_frost_protection: {
         "*": {
@@ -9597,8 +9597,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_frost_protection") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_frost_protection") }
+        }
       },
       secur_heat_protection: {
         "*": {
@@ -9609,8 +9609,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_heat_protection") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_heat_protection") }
+        }
       },
       secur_locked: {
         "*": {
@@ -9621,8 +9621,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_locked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_locked") }
+        }
       },
       secur_open: {
         "*": {
@@ -9633,8 +9633,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_open") }
+        }
       },
       secur_sabotage: {
         "*": {
@@ -9645,8 +9645,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_sabotage") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_sabotage") }
+        }
       },
       secur_smoke_detector: {
         "*": {
@@ -9657,8 +9657,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("secur_smoke_detector") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("secur_smoke_detector") }
+        }
       },
       status_automatic: {
         "*": {
@@ -9669,8 +9669,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_automatic") }
+        }
       },
       status_available: {
         "*": {
@@ -9681,8 +9681,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_available") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_available") }
+        }
       },
       status_away_1: {
         "*": {
@@ -9693,8 +9693,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_away_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_away_1") }
+        }
       },
       status_away_2: {
         "*": {
@@ -9705,8 +9705,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_away_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_away_2") }
+        }
       },
       status_child_boy: {
         "*": {
@@ -9717,8 +9717,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_child_boy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_child_boy") }
+        }
       },
       status_child_girl: {
         "*": {
@@ -9729,8 +9729,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_child_girl") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_child_girl") }
+        }
       },
       status_comfort: {
         "*": {
@@ -9741,8 +9741,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_comfort") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_comfort") }
+        }
       },
       status_economy: {
         "*": {
@@ -9753,8 +9753,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_economy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_economy") }
+        }
       },
       status_frost: {
         "*": {
@@ -9765,8 +9765,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_frost") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_frost") }
+        }
       },
       status_light_high: {
         "*": {
@@ -9777,8 +9777,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_light_high") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_light_high") }
+        }
       },
       status_light_low: {
         "*": {
@@ -9789,8 +9789,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_light_low") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_light_low") }
+        }
       },
       status_light_max: {
         "*": {
@@ -9801,8 +9801,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_light_max") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_light_max") }
+        }
       },
       status_light_off: {
         "*": {
@@ -9813,8 +9813,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_light_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_light_off") }
+        }
       },
       status_locked: {
         "*": {
@@ -9825,8 +9825,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_locked") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_locked") }
+        }
       },
       status_man: {
         "*": {
@@ -9837,8 +9837,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_man") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_man") }
+        }
       },
       status_night: {
         "*": {
@@ -9849,8 +9849,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_night") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_night") }
+        }
       },
       status_not_available: {
         "*": {
@@ -9861,8 +9861,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_not_available") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_not_available") }
+        }
       },
       status_open: {
         "*": {
@@ -9873,8 +9873,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_open") }
+        }
       },
       status_presence_simulation_rec: {
         "*": {
@@ -9886,9 +9886,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("status_presence_simulation_rec"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("status_presence_simulation_rec")
+          }
+        }
       },
       status_presence_simulation_run: {
         "*": {
@@ -9900,9 +9900,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("status_presence_simulation_run"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("status_presence_simulation_run")
+          }
+        }
       },
       status_presence_simulation: {
         "*": {
@@ -9913,8 +9913,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_presence_simulation") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_presence_simulation") }
+        }
       },
       status_protection: {
         "*": {
@@ -9925,8 +9925,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_protection") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_protection") }
+        }
       },
       status_standby: {
         "*": {
@@ -9937,8 +9937,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_standby") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_standby") }
+        }
       },
       status_vacation: {
         "*": {
@@ -9949,8 +9949,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_vacation") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_vacation") }
+        }
       },
       status_woman: {
         "*": {
@@ -9961,8 +9961,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("status_woman") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("status_woman") }
+        }
       },
       temp_control: {
         "*": {
@@ -9973,8 +9973,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_control") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_control") }
+        }
       },
       temp_dew_point: {
         "*": {
@@ -9985,8 +9985,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_dew_point") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_dew_point") }
+        }
       },
       temp_frost: {
         "*": {
@@ -9997,8 +9997,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_frost") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_frost") }
+        }
       },
       temp_inside: {
         "*": {
@@ -10009,8 +10009,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_inside") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_inside") }
+        }
       },
       temp_outside: {
         "*": {
@@ -10021,8 +10021,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_outside") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_outside") }
+        }
       },
       temp_soil: {
         "*": {
@@ -10033,8 +10033,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_soil") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_soil") }
+        }
       },
       temp_temperature_max: {
         "*": {
@@ -10045,8 +10045,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_temperature_max") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_temperature_max") }
+        }
       },
       temp_temperature_min: {
         "*": {
@@ -10057,8 +10057,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_temperature_min") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_temperature_min") }
+        }
       },
       temp_temperature: {
         "*": {
@@ -10069,8 +10069,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_temperature") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_temperature") }
+        }
       },
       temp_windchill: {
         "*": {
@@ -10081,8 +10081,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("temp_windchill") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("temp_windchill") }
+        }
       },
       text_exclamation_mark: {
         "*": {
@@ -10093,8 +10093,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("text_exclamation_mark") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("text_exclamation_mark") }
+        }
       },
       text_max: {
         "*": {
@@ -10105,8 +10105,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("text_max") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("text_max") }
+        }
       },
       text_min: {
         "*": {
@@ -10117,8 +10117,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("text_min") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("text_min") }
+        }
       },
       text_na: {
         "*": {
@@ -10129,8 +10129,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("text_na") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("text_na") }
+        }
       },
       text_question_mark: {
         "*": {
@@ -10141,8 +10141,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("text_question_mark") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("text_question_mark") }
+        }
       },
       time_alarm_clock_alarm_off: {
         "*": {
@@ -10153,8 +10153,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock_alarm_off") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock_alarm_off") }
+        }
       },
       time_alarm_clock_alarm_on: {
         "*": {
@@ -10165,8 +10165,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock_alarm_on") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock_alarm_on") }
+        }
       },
       time_alarm_clock_snooze: {
         "*": {
@@ -10177,8 +10177,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock_snooze") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock_snooze") }
+        }
       },
       time_alarm_clock: {
         "*": {
@@ -10189,8 +10189,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_alarm_clock") }
+        }
       },
       time_automatic: {
         "*": {
@@ -10201,8 +10201,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_automatic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_automatic") }
+        }
       },
       time_calendar: {
         "*": {
@@ -10213,8 +10213,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_calendar") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_calendar") }
+        }
       },
       time_clock: {
         "*": {
@@ -10225,8 +10225,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_clock") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_clock") }
+        }
       },
       time_eco_mode: {
         "*": {
@@ -10237,8 +10237,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_eco_mode") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_eco_mode") }
+        }
       },
       time_graph: {
         "*": {
@@ -10249,8 +10249,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_graph") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_graph") }
+        }
       },
       time_manual_mode: {
         "*": {
@@ -10261,8 +10261,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_manual_mode") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_manual_mode") }
+        }
       },
       time_note: {
         "*": {
@@ -10273,8 +10273,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_note") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_note") }
+        }
       },
       time_sandglass: {
         "*": {
@@ -10285,8 +10285,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_sandglass") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_sandglass") }
+        }
       },
       time_statistic: {
         "*": {
@@ -10297,8 +10297,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_statistic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_statistic") }
+        }
       },
       time_timer_switch: {
         "*": {
@@ -10309,8 +10309,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_timer_switch") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_timer_switch") }
+        }
       },
       time_timer: {
         "*": {
@@ -10321,8 +10321,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("time_timer") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("time_timer") }
+        }
       },
       user_available: {
         "*": {
@@ -10333,8 +10333,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("user_available") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("user_available") }
+        }
       },
       user_away: {
         "*": {
@@ -10345,8 +10345,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("user_away") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("user_away") }
+        }
       },
       user_ext_away: {
         "*": {
@@ -10357,8 +10357,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("user_ext_away") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("user_ext_away") }
+        }
       },
       user_n_a: {
         "*": {
@@ -10369,8 +10369,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("user_n_a") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("user_n_a") }
+        }
       },
       vent_air_filter_full: {
         "*": {
@@ -10381,8 +10381,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_air_filter_full") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_air_filter_full") }
+        }
       },
       vent_air_filter: {
         "*": {
@@ -10393,8 +10393,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_air_filter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_air_filter") }
+        }
       },
       vent_ambient_air: {
         "*": {
@@ -10405,8 +10405,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ambient_air") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ambient_air") }
+        }
       },
       vent_bypass_open: {
         "*": {
@@ -10417,8 +10417,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_bypass_open") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_bypass_open") }
+        }
       },
       vent_bypass: {
         "*": {
@@ -10429,8 +10429,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_bypass") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_bypass") }
+        }
       },
       vent_error: {
         "*": {
@@ -10441,8 +10441,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_error") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_error") }
+        }
       },
       vent_exhaust_air: {
         "*": {
@@ -10453,8 +10453,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_exhaust_air") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_exhaust_air") }
+        }
       },
       vent_humidifier: {
         "*": {
@@ -10465,8 +10465,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_humidifier") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_humidifier") }
+        }
       },
       vent_low_pressure_protection_unit: {
         "*": {
@@ -10478,9 +10478,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("vent_low_pressure_protection_unit"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("vent_low_pressure_protection_unit")
+          }
+        }
       },
       vent_low_pressure_warning: {
         "*": {
@@ -10491,8 +10491,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_low_pressure_warning") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_low_pressure_warning") }
+        }
       },
       vent_stop: {
         "*": {
@@ -10503,8 +10503,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_stop") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_stop") }
+        }
       },
       vent_supply_air: {
         "*": {
@@ -10515,8 +10515,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_supply_air") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_supply_air") }
+        }
       },
       vent_used_air: {
         "*": {
@@ -10527,8 +10527,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_used_air") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_used_air") }
+        }
       },
       vent_ventilation_control: {
         "*": {
@@ -10539,8 +10539,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_control") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_control") }
+        }
       },
       vent_ventilation_level_0: {
         "*": {
@@ -10551,8 +10551,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_0") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_0") }
+        }
       },
       vent_ventilation_level_1: {
         "*": {
@@ -10563,8 +10563,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_1") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_1") }
+        }
       },
       vent_ventilation_level_2: {
         "*": {
@@ -10575,8 +10575,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_2") }
+        }
       },
       vent_ventilation_level_3: {
         "*": {
@@ -10587,8 +10587,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_3") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation_level_3") }
+        }
       },
       vent_ventilation_level_automatic: {
         "*": {
@@ -10600,9 +10600,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("vent_ventilation_level_automatic"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("vent_ventilation_level_automatic")
+          }
+        }
       },
       vent_ventilation_level_manual_m: {
         "*": {
@@ -10614,9 +10614,9 @@ qx.Class.define("cv.IconConfig", {
           potassium: "*/purple",
           sodium: "*/orange",
           "*": {
-            "*": cv.util.IconTools.svgKUF("vent_ventilation_level_manual_m"),
-          },
-        },
+            "*": cv.util.IconTools.svgKUF("vent_ventilation_level_manual_m")
+          }
+        }
       },
       vent_ventilation: {
         "*": {
@@ -10627,8 +10627,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("vent_ventilation") }
+        }
       },
       weather_barometric_pressure: {
         "*": {
@@ -10639,8 +10639,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_barometric_pressure") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_barometric_pressure") }
+        }
       },
       weather_cloudy_heavy: {
         "*": {
@@ -10651,8 +10651,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_cloudy_heavy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_cloudy_heavy") }
+        }
       },
       weather_cloudy_light: {
         "*": {
@@ -10663,8 +10663,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_cloudy_light") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_cloudy_light") }
+        }
       },
       weather_cloudy: {
         "*": {
@@ -10675,8 +10675,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_cloudy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_cloudy") }
+        }
       },
       weather_directions_n: {
         "*": {
@@ -10687,8 +10687,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_n") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_n") }
+        }
       },
       weather_directions_no: {
         "*": {
@@ -10699,8 +10699,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_no") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_no") }
+        }
       },
       weather_directions_nw: {
         "*": {
@@ -10711,8 +10711,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_nw") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_nw") }
+        }
       },
       weather_directions_o: {
         "*": {
@@ -10723,8 +10723,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_o") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_o") }
+        }
       },
       weather_directions_s: {
         "*": {
@@ -10735,8 +10735,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_s") }
+        }
       },
       weather_directions_so: {
         "*": {
@@ -10747,8 +10747,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_so") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_so") }
+        }
       },
       weather_directions_sw: {
         "*": {
@@ -10759,8 +10759,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_sw") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_sw") }
+        }
       },
       weather_directions_w: {
         "*": {
@@ -10771,8 +10771,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_w") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions_w") }
+        }
       },
       weather_directions: {
         "*": {
@@ -10783,8 +10783,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_directions") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_directions") }
+        }
       },
       weather_fog_heavy: {
         "*": {
@@ -10795,8 +10795,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_fog_heavy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_fog_heavy") }
+        }
       },
       weather_fog: {
         "*": {
@@ -10807,8 +10807,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_fog") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_fog") }
+        }
       },
       weather_frost: {
         "*": {
@@ -10819,8 +10819,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_frost") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_frost") }
+        }
       },
       weather_humidity_abs: {
         "*": {
@@ -10831,8 +10831,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity_abs") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity_abs") }
+        }
       },
       weather_humidity_rel: {
         "*": {
@@ -10843,8 +10843,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity_rel") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity_rel") }
+        }
       },
       weather_humidity_soil: {
         "*": {
@@ -10855,8 +10855,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity_soil") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity_soil") }
+        }
       },
       weather_humidity: {
         "*": {
@@ -10867,8 +10867,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_humidity") }
+        }
       },
       weather_light_meter: {
         "*": {
@@ -10879,8 +10879,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_light_meter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_light_meter") }
+        }
       },
       weather_moon_phases_1_new: {
         "*": {
@@ -10891,8 +10891,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_1_new") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_1_new") }
+        }
       },
       weather_moon_phases_2: {
         "*": {
@@ -10903,8 +10903,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_2") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_2") }
+        }
       },
       weather_moon_phases_3_half: {
         "*": {
@@ -10915,8 +10915,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_3_half") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_3_half") }
+        }
       },
       weather_moon_phases_4: {
         "*": {
@@ -10927,8 +10927,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_4") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_4") }
+        }
       },
       weather_moon_phases_5_full: {
         "*": {
@@ -10939,8 +10939,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_5_full") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_5_full") }
+        }
       },
       weather_moon_phases_6: {
         "*": {
@@ -10951,8 +10951,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_6") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_6") }
+        }
       },
       weather_moon_phases_7_half: {
         "*": {
@@ -10963,8 +10963,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_7_half") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_7_half") }
+        }
       },
       weather_moon_phases_8: {
         "*": {
@@ -10975,8 +10975,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_8") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moon_phases_8") }
+        }
       },
       weather_moonrise: {
         "*": {
@@ -10987,8 +10987,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moonrise") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moonrise") }
+        }
       },
       weather_moonset: {
         "*": {
@@ -10999,8 +10999,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_moonset") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_moonset") }
+        }
       },
       weather_night_cloudy: {
         "*": {
@@ -11011,8 +11011,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_night_cloudy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_night_cloudy") }
+        }
       },
       weather_night_fog: {
         "*": {
@@ -11023,8 +11023,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_night_fog") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_night_fog") }
+        }
       },
       weather_night_starry: {
         "*": {
@@ -11035,8 +11035,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_night_starry") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_night_starry") }
+        }
       },
       weather_pollen: {
         "*": {
@@ -11047,8 +11047,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_pollen") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_pollen") }
+        }
       },
       weather_rain_gauge: {
         "*": {
@@ -11059,8 +11059,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_gauge") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_gauge") }
+        }
       },
       weather_rain_heavy: {
         "*": {
@@ -11071,8 +11071,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_heavy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_heavy") }
+        }
       },
       weather_rain_light: {
         "*": {
@@ -11083,8 +11083,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_light") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_light") }
+        }
       },
       weather_rain_meter: {
         "*": {
@@ -11095,8 +11095,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_meter") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_rain_meter") }
+        }
       },
       weather_rain: {
         "*": {
@@ -11107,8 +11107,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_rain") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_rain") }
+        }
       },
       weather_sleet: {
         "*": {
@@ -11119,8 +11119,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_sleet") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_sleet") }
+        }
       },
       weather_snow_heavy: {
         "*": {
@@ -11131,8 +11131,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_snow_heavy") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_snow_heavy") }
+        }
       },
       weather_snow_ice_warning: {
         "*": {
@@ -11143,8 +11143,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_snow_ice_warning") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_snow_ice_warning") }
+        }
       },
       weather_snow_light: {
         "*": {
@@ -11155,8 +11155,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_snow_light") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_snow_light") }
+        }
       },
       weather_snow: {
         "*": {
@@ -11167,8 +11167,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_snow") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_snow") }
+        }
       },
       weather_station_generic: {
         "*": {
@@ -11179,8 +11179,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_station_generic") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_station_generic") }
+        }
       },
       weather_station_quadra: {
         "*": {
@@ -11191,8 +11191,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_station_quadra") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_station_quadra") }
+        }
       },
       weather_station: {
         "*": {
@@ -11203,8 +11203,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_station") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_station") }
+        }
       },
       weather_storm: {
         "*": {
@@ -11215,8 +11215,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_storm") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_storm") }
+        }
       },
       weather_summer: {
         "*": {
@@ -11227,8 +11227,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_summer") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_summer") }
+        }
       },
       weather_sun: {
         "*": {
@@ -11239,8 +11239,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_sun") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_sun") }
+        }
       },
       weather_sunrise: {
         "*": {
@@ -11251,8 +11251,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_sunrise") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_sunrise") }
+        }
       },
       weather_sunset: {
         "*": {
@@ -11263,8 +11263,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_sunset") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_sunset") }
+        }
       },
       weather_thunderstorm: {
         "*": {
@@ -11275,8 +11275,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_thunderstorm") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_thunderstorm") }
+        }
       },
       weather_wind_directions_e: {
         "*": {
@@ -11287,8 +11287,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_e") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_e") }
+        }
       },
       weather_wind_directions_n: {
         "*": {
@@ -11299,8 +11299,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_n") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_n") }
+        }
       },
       weather_wind_directions_ne: {
         "*": {
@@ -11311,8 +11311,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_ne") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_ne") }
+        }
       },
       weather_wind_directions_nw: {
         "*": {
@@ -11323,8 +11323,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_nw") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_nw") }
+        }
       },
       weather_wind_directions_s: {
         "*": {
@@ -11335,8 +11335,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_s") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_s") }
+        }
       },
       weather_wind_directions_se: {
         "*": {
@@ -11347,8 +11347,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_se") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_se") }
+        }
       },
       weather_wind_directions_sw: {
         "*": {
@@ -11359,8 +11359,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_sw") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_sw") }
+        }
       },
       weather_wind_directions_w: {
         "*": {
@@ -11371,8 +11371,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_w") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_directions_w") }
+        }
       },
       weather_wind_no_wind: {
         "*": {
@@ -11383,8 +11383,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_no_wind") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_no_wind") }
+        }
       },
       weather_wind_speed_bft: {
         "*": {
@@ -11395,8 +11395,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_speed_bft") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_speed_bft") }
+        }
       },
       weather_wind_speed_ms: {
         "*": {
@@ -11407,8 +11407,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_speed_ms") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_speed_ms") }
+        }
       },
       weather_wind_speed: {
         "*": {
@@ -11419,8 +11419,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_speed") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind_speed") }
+        }
       },
       weather_wind: {
         "*": {
@@ -11431,8 +11431,8 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_wind") },
-        },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_wind") }
+        }
       },
       weather_winter: {
         "*": {
@@ -11443,11 +11443,11 @@ qx.Class.define("cv.IconConfig", {
           lithium: "*/red",
           potassium: "*/purple",
           sodium: "*/orange",
-          "*": { "*": cv.util.IconTools.svgKUF("weather_winter") },
-        },
-      },
+          "*": { "*": cv.util.IconTools.svgKUF("weather_winter") }
+        }
+      }
 
       // Do not remove this line: Dynamic Icons End
-    },
-  },
+    }
+  }
 });

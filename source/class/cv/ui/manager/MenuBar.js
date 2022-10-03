@@ -68,9 +68,9 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("New file"),
             cv.theme.dark.Images.getIcon("new-file", 18),
-            this._commandGroup.get("new-file"),
+            this._commandGroup.get("new-file")
           ],
-          enabled: true,
+          enabled: true
         },
 
         "new-folder": {
@@ -78,16 +78,16 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("New folder"),
             cv.theme.dark.Images.getIcon("new-folder", 18),
-            this._commandGroup.get("new-folder"),
+            this._commandGroup.get("new-folder")
           ],
           enabled: true,
-          separator: "after",
+          separator: "after"
         },
 
         "new-config-file": {
           menu: "new-menu",
           args: [this.tr("New config file")],
-          enabled: true,
+          enabled: true
         },
 
         upload: {
@@ -95,10 +95,10 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           clazz: com.zenesis.qx.upload.UploadMenuButton,
           args: [
             this.tr("Upload file"),
-            cv.theme.dark.Images.getIcon("upload", 18),
+            cv.theme.dark.Images.getIcon("upload", 18)
           ],
           enabled: true,
-          separator: "before",
+          separator: "before"
         },
 
         save: {
@@ -106,10 +106,10 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Save"),
             cv.theme.dark.Images.getIcon("save", 18),
-            this._commandGroup.get("save"),
+            this._commandGroup.get("save")
           ],
           enabled: false,
-          separator: "before",
+          separator: "before"
         },
 
         "save-as": {
@@ -117,19 +117,19 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Save as..."),
             null,
-            this._commandGroup.get("save-as"),
+            this._commandGroup.get("save-as")
           ],
-          enabled: false,
+          enabled: false
         },
 
         delete: {
           args: [
             this.tr("Delete"),
             cv.theme.dark.Images.getIcon("delete", 18),
-            this._commandGroup.get("delete"),
+            this._commandGroup.get("delete")
           ],
           enabled: false,
-          hidden: true,
+          hidden: true
         },
 
         quit: {
@@ -137,10 +137,10 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Quit"),
             cv.theme.dark.Images.getIcon("quit", 18),
-            this._commandGroup.get("quit"),
+            this._commandGroup.get("quit")
           ],
           enabled: true,
-          separator: "before",
+          separator: "before"
         },
 
         // edit menu basics
@@ -149,9 +149,9 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Undo"),
             cv.theme.dark.Images.getIcon("undo", 18),
-            this._commandGroup.get("undo"),
+            this._commandGroup.get("undo")
           ],
-          enabled: true,
+          enabled: true
         },
 
         redo: {
@@ -159,9 +159,9 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Redo"),
             cv.theme.dark.Images.getIcon("redo", 18),
-            this._commandGroup.get("redo"),
+            this._commandGroup.get("redo")
           ],
-          enabled: true,
+          enabled: true
         },
 
         cut: {
@@ -169,10 +169,10 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Cut"),
             cv.theme.dark.Images.getIcon("cut", 18),
-            this._commandGroup.get("cut"),
+            this._commandGroup.get("cut")
           ],
           enabled: false,
-          separator: "before",
+          separator: "before"
         },
 
         copy: {
@@ -180,9 +180,9 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Copy"),
             cv.theme.dark.Images.getIcon("copy", 18),
-            this._commandGroup.get("copy"),
+            this._commandGroup.get("copy")
           ],
-          enabled: false,
+          enabled: false
         },
 
         paste: {
@@ -190,9 +190,9 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Paste"),
             cv.theme.dark.Images.getIcon("paste", 18),
-            this._commandGroup.get("paste"),
+            this._commandGroup.get("paste")
           ],
-          enabled: false,
+          enabled: false
         },
 
         // preferences
@@ -204,8 +204,8 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           enabled: true,
           properties: {
             model: "source",
-            group: editorGroup,
-          },
+            group: editorGroup
+          }
         },
 
         "xml-editor": {
@@ -216,8 +216,8 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           enabled: true,
           properties: {
             model: "xml",
-            group: editorGroup,
-          },
+            group: editorGroup
+          }
         },
 
         "quick-preview": {
@@ -226,7 +226,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [this.tr("Enable quick preview")],
           general: true,
           enabled: true,
-          separator: "before",
+          separator: "before"
         },
 
         "expert-mode": {
@@ -234,7 +234,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           clazz: qx.ui.menu.CheckBox,
           args: [this.tr("Expert mode")],
           general: true,
-          enabled: true,
+          enabled: true
         },
 
         help: {
@@ -242,16 +242,16 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           args: [
             this.tr("Help"),
             cv.theme.dark.Images.getIcon("help", 18),
-            this._commandGroup.get("help"),
+            this._commandGroup.get("help")
           ],
-          enabled: false,
+          enabled: false
         },
 
         about: {
           menu: "help-menu",
           args: [this.tr("About")],
-          enabled: false,
-        },
+          enabled: false
+        }
       };
 
       this.maintainButtons();
@@ -261,7 +261,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
       prefs.bind("defaultConfigEditor", editorGroup, "modelSelection", {
         converter(value) {
           return [value];
-        },
+        }
       });
 
       editorGroup.getModelSelection().addListener("change", () => {
@@ -438,7 +438,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -448,5 +448,5 @@ qx.Class.define("cv.ui.manager.MenuBar", {
   */
   destruct() {
     this._commandGroup = null;
-  },
+  }
 });

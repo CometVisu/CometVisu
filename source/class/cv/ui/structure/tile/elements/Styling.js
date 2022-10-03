@@ -43,7 +43,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Styling", {
           this._element.getAttribute("name")
         );
       }
-    },
+    }
   },
 
   defer(Clazz) {
@@ -55,5 +55,5 @@ qx.Class.define("cv.ui.structure.tile.elements.Styling", {
         }
       }
     );
-  },
+  }
 });

@@ -74,22 +74,22 @@ qx.Class.define("cv.parser.pure.widgets.Audio", {
         autoplay: {
           transform(value) {
             return value === "autoplay" || value === "true";
-          },
+          }
         },
 
         loop: {
           transform(value) {
             return value === "loop" || value === "true";
-          },
+          }
         },
 
-        thresholdValue: { default: 1 },
+        thresholdValue: { default: 1 }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("audio", statics);
-  },
+  }
 });

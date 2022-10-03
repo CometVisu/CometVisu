@@ -44,14 +44,14 @@ qx.Class.define("cv.ui.structure.tile.components.Icon", {
       nullable: true,
       apply: "_applyId",
       // the id is used as 'class' property and therefore must not have spaces
-      transform: "_transformId",
+      transform: "_transformId"
     },
 
     color: {
       check: "String",
       nullable: true,
-      apply: "_applyColor",
-    },
+      apply: "_applyColor"
+    }
   },
 
   /*
@@ -113,7 +113,7 @@ qx.Class.define("cv.ui.structure.tile.components.Icon", {
       if (value) {
         element.classList.add(value);
       }
-    },
+    }
   },
 
   defer(Clazz) {
@@ -129,5 +129,5 @@ qx.Class.define("cv.ui.structure.tile.components.Icon", {
         }
       }
     );
-  },
+  }
 });

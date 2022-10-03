@@ -109,7 +109,7 @@ qx.Class.define("cv.IconHandler", {
       } else {
         this.__db[name][type][flavour][color] = {
           uri: uri,
-          styling: styling,
+          styling: styling
         };
       }
     },
@@ -234,20 +234,20 @@ qx.Class.define("cv.IconHandler", {
             styling += ";color:" + color;
           }
           let icon = /\.svg#.*?$/.test(i.uri) // SVG with fragment identifier?
-            ? '<svg class="' +
+            ? "<svg class=\"" +
               classes +
-              '" style="' +
+              "\" style=\"" +
               (styling ? styling : "") +
-              '"><use href="' +
+              "\"><use href=\"" +
               qx.util.ResourceManager.getInstance().toUri(i.uri) +
-              '"></use></svg>'
-            : '<img class="' +
+              "\"></use></svg>"
+            : "<img class=\"" +
               classes +
-              '" src="' +
+              "\" src=\"" +
               qx.util.ResourceManager.getInstance().toUri(i.uri) +
-              '" style="' +
+              "\" style=\"" +
               (styling ? styling : "") +
-              '"/>';
+              "\"/>";
           if (asText) {
             return icon;
           }
@@ -282,11 +282,11 @@ qx.Class.define("cv.IconHandler", {
         }
         if (/\.svg#.*?$/.test(i.uri)) {
           return (
-            '<svg class="' +
+            "<svg class=\"" +
             classes +
-            '"><use href="' +
+            "\"><use href=\"" +
             qx.util.ResourceManager.getInstance().toUri(i.uri) +
-            '"></use></svg>'
+            "\"></use></svg>"
           );
         }
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
@@ -322,6 +322,6 @@ qx.Class.define("cv.IconHandler", {
      */
     debug() {
       return this.__db;
-    },
-  },
+    }
+  }
 });

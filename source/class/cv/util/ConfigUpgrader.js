@@ -69,7 +69,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
               version
             ),
             source,
-            this.__log,
+            this.__log
           ];
         }
       }
@@ -81,7 +81,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
       let c = 0;
       source
         .querySelectorAll("plugins > plugin[name='gweather']")
-        .forEach((node) => {
+        .forEach(node => {
           const parent = node.parentNode;
           const indentNode = node.previousSibling;
           parent.removeChild(node);
@@ -102,7 +102,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
     from8to9Pure(source) {
       let c = 0;
       const singleIndent = "".padEnd(this.__indentation, " ");
-      source.querySelectorAll("multitrigger").forEach((node) => {
+      source.querySelectorAll("multitrigger").forEach(node => {
         let level = this.__getLevel(node);
         level++;
         const indent = "".padEnd(this.__indentation * level, " ");
@@ -119,11 +119,11 @@ qx.Class.define("cv.util.ConfigUpgrader", {
             attributesToDelete.push(node.attributes[i]);
           }
         }
-        attributesToDelete.forEach((attr) => node.removeAttributeNode(attr));
+        attributesToDelete.forEach(attr => node.removeAttributeNode(attr));
         const buttonIds = Object.keys(buttonConf).sort();
         if (buttonIds.length > 0) {
           const buttons = source.createElement("buttons");
-          buttonIds.forEach((bid) => {
+          buttonIds.forEach(bid => {
             const button = source.createElement("button");
             button.textContent = buttonConf[bid].value;
             if (buttonConf[bid].label) {
@@ -224,7 +224,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
         qx.locale.Manager.tr(
           "This is no pure-structure config, root element pages not found"
         ),
-        "",
+        ""
       ];
     },
 
@@ -304,14 +304,14 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   "cv-" + child.tagName
                 );
                 // copy mappings
-                child.querySelectorAll("mappings > mapping").forEach((node) => {
+                child.querySelectorAll("mappings > mapping").forEach(node => {
                   const mapping =
                     target.ownerDocument.createElement("cv-mapping");
                   this._copyAttributes(node, mapping);
                   this._copyChildren(node, mapping);
                   clonedChild.appendChild(mapping);
                 });
-                child.querySelectorAll("stylings > styling").forEach((node) => {
+                child.querySelectorAll("stylings > styling").forEach(node => {
                   const styling =
                     target.ownerDocument.createElement("cv-styling");
                   this._copyAttributes(node, styling);
@@ -319,7 +319,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   clonedChild.appendChild(styling);
                 });
                 // convert files to loader
-                child.querySelectorAll("file").forEach((fileNode) => {
+                child.querySelectorAll("file").forEach(fileNode => {
                   const loader =
                     target.ownerDocument.createElement("cv-loader");
                   loader.setAttribute("type", fileNode.getAttribute("type"));
@@ -327,7 +327,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   clonedChild.appendChild(loader);
                 });
                 // prefix all icons with knxuf-
-                clonedChild.querySelectorAll("icon").forEach((icon) => {
+                clonedChild.querySelectorAll("icon").forEach(icon => {
                   // there is no real check if this is an KNXUF icon, so we only check for '_' in string
                   let name = icon.getAttribute("name");
                   if (name.indexOf("_") >= 0) {
@@ -337,7 +337,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   icon.remove();
                 });
 
-                clonedChild.querySelectorAll("entry").forEach((entry) => {
+                clonedChild.querySelectorAll("entry").forEach(entry => {
                   if (entry.hasAttribute("range_min")) {
                     entry.setAttribute(
                       "range-min",
@@ -448,7 +448,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                 // and we want to used the default ones in the first place
                 this._copyAttributes(child, clonedChild, {
                   on_value: "on-value",
-                  off_value: "off-value",
+                  off_value: "off-value"
                 });
 
                 if (child.getAttribute("bind_click_to_widget") === "false") {
@@ -471,7 +471,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
               case "trigger":
                 clonedChild = target.ownerDocument.createElement("cv-switch");
                 this._copyAttributes(child, clonedChild, {
-                  format: true,
+                  format: true
                 });
 
                 value = child.getAttribute("value");
@@ -480,7 +480,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   clonedChild,
                   "address",
                   null,
-                  (address) => {
+                  address => {
                     address.setAttribute("mode", "write");
                     address.setAttribute("value", value);
                   }
@@ -496,12 +496,12 @@ qx.Class.define("cv.util.ConfigUpgrader", {
               case "pushbutton":
                 clonedChild = target.ownerDocument.createElement("cv-switch");
                 this._copyAttributes(child, clonedChild, {
-                  format: true,
+                  format: true
                 });
 
                 value = {
                   down: child.getAttribute("downValue"),
-                  up: child.getAttribute("upValue"),
+                  up: child.getAttribute("upValue")
                 };
 
                 this._copyAddresses(
@@ -509,7 +509,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   clonedChild,
                   "address",
                   null,
-                  (address) => {
+                  address => {
                     if (!address.hasAttribute("variant")) {
                       address.setAttribute("value", value.down);
                       address.setAttribute("on", "down");
@@ -545,9 +545,9 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                 if (
                   child.hasAttribute("mapping") &&
                   child.ownerDocument.querySelector(
-                    'mapping[name="' +
+                    "mapping[name=\"" +
                       child.getAttribute("mapping") +
-                      '"] > entry > icon'
+                      "\"] > entry > icon"
                   )
                 ) {
                   clonedChild = target.ownerDocument.createElement("cv-tile");
@@ -571,7 +571,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   this._copyAttributes(child, value, {
                     mapping: true,
                     styling: true,
-                    format: true,
+                    format: true
                   });
 
                   const icon = target.ownerDocument.createElement("cv-icon");
@@ -601,7 +601,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
                   this._copyAttributes(child, clonedChild, {
                     mapping: true,
                     styling: true,
-                    format: true,
+                    format: true
                   });
                 }
                 target.appendChild(clonedChild);
@@ -692,7 +692,7 @@ ${
     },
 
     _copyAddresses(addresses, target, slotName, converters, callback) {
-      addresses.forEach((e) => {
+      addresses.forEach(e => {
         let address = target.ownerDocument.createElement("cv-address");
         if (slotName) {
           address.setAttribute("slot", slotName);
@@ -742,6 +742,6 @@ ${
       for (let i = 0; i < source.childNodes.length; i++) {
         target.appendChild(source.childNodes[i].cloneNode(true));
       }
-    },
-  },
+    }
+  }
 });

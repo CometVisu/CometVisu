@@ -87,13 +87,13 @@ qx.Class.define("cv.ui.manager.model.BackupFolder", {
                 parseInt(match[1].substring(12, 14))
               ),
 
-              file: backupFile,
+              file: backupFile
             });
           }
         }, this);
       }
       return files;
-    },
+    }
   },
 
   /*
@@ -107,5 +107,5 @@ qx.Class.define("cv.ui.manager.model.BackupFolder", {
       this._onFilesSystemMessage,
       this
     );
-  },
+  }
 });

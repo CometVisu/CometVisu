@@ -36,7 +36,7 @@ qx.Class.define("cv.util.Prettifier", {
      */
     xml(xml) {
       return (
-        '<?xml version="1.0" encoding="UTF-8"?>\n' +
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
         this._prettifyNode(xml.documentElement, 0)
       );
     },
@@ -99,7 +99,7 @@ qx.Class.define("cv.util.Prettifier", {
 
       let hasTextChild = Array.prototype.some.call(
         node.childNodes,
-        (child) => child.nodeType === Node.TEXT_NODE && child.textContent.trim()
+        child => child.nodeType === Node.TEXT_NODE && child.textContent.trim()
       );
       if (!noFormat && !hasTextChild) {
         output += newLine;
@@ -117,6 +117,6 @@ qx.Class.define("cv.util.Prettifier", {
         `</${node.tagName}>` +
         (!noFormat ? newLine : "")
       );
-    },
-  },
+    }
+  }
 });

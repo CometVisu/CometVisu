@@ -50,19 +50,19 @@ qx.Mixin.define("cv.ui.common.Refresh", {
   properties: {
     refresh: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     cachecontrol: {
       check: "String",
-      init: "full",
+      init: "full"
     },
 
     restartOnVisible: {
       check: "Boolean",
       init: false,
-      apply: "_applyRestartOnVisible",
-    },
+      apply: "_applyRestartOnVisible"
+    }
   },
 
   /*
@@ -221,7 +221,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           }
         }
       }
-    },
+    }
   },
 
   /*
@@ -249,8 +249,8 @@ qx.Mixin.define("cv.ui.common.Refresh", {
         .then(() =>
           document.body
             .querySelectorAll(`img[src='${src}']`)
-            .forEach((img) => (img.src = src))
+            .forEach(img => (img.src = src))
         );
-    },
-  },
+    }
+  }
 });

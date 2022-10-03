@@ -40,10 +40,10 @@ qx.Class.define("cv.ui.structure.pure.Break", {
     // overridden
     getDomString() {
       return "<br/>";
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("break", statics);
-  },
+  }
 });

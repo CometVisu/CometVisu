@@ -54,13 +54,13 @@ qx.Class.define("cv.parser.pure.widgets.Refresh", {
 
     getAttributeToPropertyMappings() {
       return {
-        value: { target: "sendValue" },
+        value: { target: "sendValue" }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("refresh", statics);
-  },
+  }
 });

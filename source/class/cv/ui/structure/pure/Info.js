@@ -47,7 +47,7 @@ qx.Class.define("cv.ui.structure.pure.Info", {
   members: {
     // overridden
     _getInnerDomString() {
-      return '<div class="actor"><div class="value">-</div></div>';
-    },
-  },
+      return "<div class=\"actor\"><div class=\"value\">-</div></div>";
+    }
+  }
 });

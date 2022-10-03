@@ -64,14 +64,14 @@ qx.Class.define("cv.parser.pure.widgets.Image", {
           target: "widthFit",
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("image", statics);
-  },
+  }
 });

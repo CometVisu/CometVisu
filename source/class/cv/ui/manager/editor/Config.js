@@ -42,7 +42,7 @@ qx.Class.define("cv.ui.manager.editor.Config", {
   ***********************************************
   */
   statics: {
-    TITLE: qx.locale.Manager.tr("Hidden configuration"),
+    TITLE: qx.locale.Manager.tr("Hidden configuration")
   },
 
   /*
@@ -53,8 +53,8 @@ qx.Class.define("cv.ui.manager.editor.Config", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-editor-config",
-    },
+      init: "cv-editor-config"
+    }
   },
 
   /*
@@ -152,7 +152,7 @@ qx.Class.define("cv.ui.manager.editor.Config", {
         } else {
           valid = false;
           cv.ui.manager.snackbar.Controller.error(
-            qx.locale.Manager.tr('Section name duplicate: "%1".', key)
+            qx.locale.Manager.tr("Section name duplicate: \"%1\".", key)
           );
         }
         // check for key duplicates in this sections options
@@ -165,7 +165,7 @@ qx.Class.define("cv.ui.manager.editor.Config", {
             valid = false;
             cv.ui.manager.snackbar.Controller.error(
               qx.locale.Manager.tr(
-                'Option key duplicate: "%1" in section "%2".',
+                "Option key duplicate: \"%1\" in section \"%2\".",
                 optionKey,
                 key
               )
@@ -242,9 +242,9 @@ qx.Class.define("cv.ui.manager.editor.Config", {
               this.bind("file.writeable", item, "readOnly", {
                 converter(value) {
                   return !value;
-                },
+                }
               });
-            }.bind(this),
+            }.bind(this)
           });
 
           this._add(control, { flex: 1 });
@@ -266,7 +266,7 @@ qx.Class.define("cv.ui.manager.editor.Config", {
           this.bind("file.writeable", control, "visibility", {
             converter(value) {
               return value ? "visible" : "excluded";
-            },
+            }
           });
 
           this.getChildControl("buttons").add(control);
@@ -274,7 +274,7 @@ qx.Class.define("cv.ui.manager.editor.Config", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -284,5 +284,5 @@ qx.Class.define("cv.ui.manager.editor.Config", {
   */
   destruct() {
     this._disposeObjects("_model", "_listController");
-  },
+  }
 });

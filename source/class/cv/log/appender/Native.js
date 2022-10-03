@@ -67,7 +67,7 @@ qx.Bootstrap.define("cv.log.appender.Native", {
           console[level](args);
         }
       }
-    },
+    }
   },
 
   /*
@@ -78,5 +78,5 @@ qx.Bootstrap.define("cv.log.appender.Native", {
 
   defer(statics) {
     qx.log.Logger.register(statics);
-  },
+  }
 });

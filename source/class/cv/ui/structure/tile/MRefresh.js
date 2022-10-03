@@ -30,8 +30,8 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
     refresh: {
       check: "Number",
       init: 0,
-      apply: "_applyRefresh",
-    },
+      apply: "_applyRefresh"
+    }
   },
 
   /*
@@ -90,7 +90,7 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
       } else {
         this.error("refresh method must be implemented!");
       }
-    },
+    }
   },
 
   /*
@@ -100,5 +100,5 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
   */
   destruct() {
     this._disposeObjects("_refreshTimer");
-  },
+  }
 });

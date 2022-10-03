@@ -45,13 +45,13 @@ qx.Class.define("cv.core.notifications.actions.Option", {
   properties: {
     title: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     name: {
       check: "String",
-      init: "",
-    },
+      init: ""
+    }
   },
 
   /*
@@ -69,25 +69,25 @@ qx.Class.define("cv.core.notifications.actions.Option", {
 
     getDomElement() {
       const container = qx.dom.Element.create("span", {
-        style: this.getStyle(),
+        style: this.getStyle()
       });
 
       const checkbox = qx.dom.Element.create("input", {
         class: "action",
         type: "checkbox",
         value: "true",
-        id: this.getName(),
+        id: this.getName()
       });
 
       container.appendChild(checkbox);
       container.appendChild(
         qx.dom.Element.create("span", {
-          html: this.getTitle(),
+          html: this.getTitle()
         })
       );
 
       return container;
-    },
+    }
   },
 
   defer() {
@@ -95,5 +95,5 @@ qx.Class.define("cv.core.notifications.actions.Option", {
       "option",
       cv.core.notifications.actions.Option
     );
-  },
+  }
 });

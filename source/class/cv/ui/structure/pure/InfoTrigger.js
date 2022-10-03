@@ -30,7 +30,7 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
     cv.ui.common.Operate,
     cv.ui.common.Update,
     cv.ui.common.HasAnimatedButton,
-    cv.ui.common.HandleLongpress,
+    cv.ui.common.HandleLongpress
   ],
 
   /*
@@ -41,53 +41,53 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
   properties: {
     downValue: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     shortDownValue: {
       check: "Number",
-      nullable: true,
+      nullable: true
     },
 
     downLabel: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     upValue: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     shortUpValue: {
       check: "Number",
-      nullable: true,
+      nullable: true
     },
 
     upLabel: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     isAbsolute: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     min: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     max: {
       check: "Number",
-      init: 255,
+      init: 255
     },
 
     infoPosition: {
       check: ["left", "middle", "right"],
-      init: "middle",
-    },
+      init: "middle"
+    }
   },
 
   /*
@@ -99,30 +99,30 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
     // overridden
     _getInnerDomString() {
       // create buttons + info
-      let ret_val = '<div style="float:left;">';
+      let ret_val = "<div style=\"float:left;\">";
 
-      let actordown = '<div class="actor switchUnpressed downlabel" ';
+      let actordown = "<div class=\"actor switchUnpressed downlabel\" ";
       if (this.getAlign()) {
-        actordown += 'style="text-align: ' + this.getAlign() + '" ';
+        actordown += "style=\"text-align: " + this.getAlign() + "\" ";
       }
       actordown += ">";
       actordown +=
-        '<div class="label">' + (this.getDownLabel() || "-") + "</div>";
+        "<div class=\"label\">" + (this.getDownLabel() || "-") + "</div>";
       actordown += "</div>";
 
-      let actorup = '<div class="actor switchUnpressed uplabel" ';
+      let actorup = "<div class=\"actor switchUnpressed uplabel\" ";
       if (this.getAlign()) {
-        actorup += 'style="text-align: ' + this.getAlign() + '" ';
+        actorup += "style=\"text-align: " + this.getAlign() + "\" ";
       }
       actorup += ">";
-      actorup += '<div class="label">' + (this.getUpLabel() || "+") + "</div>";
+      actorup += "<div class=\"label\">" + (this.getUpLabel() || "+") + "</div>";
       actorup += "</div>";
 
-      let actorinfo = '<div class="actor switchInvisible" ';
+      let actorinfo = "<div class=\"actor switchInvisible\" ";
       if (this.getAlign()) {
-        actorinfo += 'style="text-align: ' + this.getAlign() + '" ';
+        actorinfo += "style=\"text-align: " + this.getAlign() + "\" ";
       }
-      actorinfo += '><div class="value">-</div></div>';
+      actorinfo += "><div class=\"value\">-</div></div>";
 
       switch (this.getInfoPosition()) {
         case "middle":
@@ -230,10 +230,10 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
 
     getInfoActor() {
       return this.getDomElement().querySelector(".actor.switchInvisible");
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("infotrigger", statics);
-  },
+  }
 });

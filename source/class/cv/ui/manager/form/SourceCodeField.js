@@ -50,7 +50,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
   */
   events: {
     /** Fired when the value was modified */
-    changeValue: "qx.event.type.Data",
+    changeValue: "qx.event.type.Data"
   },
 
   /*
@@ -62,20 +62,20 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
     type: {
       check: "String",
       init: "xml",
-      apply: "_applyType",
+      apply: "_applyType"
     },
 
     // overridden
     focusable: {
       refine: true,
-      init: true,
+      init: true
     },
 
     autoSize: {
       check: "Boolean",
       init: false,
-      apply: "_autoSize",
-    },
+      apply: "_autoSize"
+    }
   },
 
   /*
@@ -162,10 +162,10 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
             formatOnType: true,
             renderValidationDecorations: "on",
             minimap: {
-              enabled: false,
+              enabled: false
             },
 
-            theme: "vs-dark",
+            theme: "vs-dark"
           });
 
           if (this.getType()) {
@@ -185,7 +185,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
               newModel.updateOptions({
                 tabSize: 2,
                 indentSize: 2,
-                insertSpaces: true,
+                insertSpaces: true
               });
 
               this._editor.setModel(newModel);
@@ -236,7 +236,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
       }
 
       return hint;
-    },
+    }
   },
 
   /*
@@ -250,5 +250,5 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
       this._editor.dispose();
       this._editor = null;
     }
-  },
+  }
 });

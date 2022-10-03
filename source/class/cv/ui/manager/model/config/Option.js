@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.manager.model.config.Option", {
   */
   events: {
     // sent whenever the options key or value has been changed
-    change: "qx.event.type.Event",
+    change: "qx.event.type.Event"
   },
 
   /*
@@ -54,15 +54,15 @@ qx.Class.define("cv.ui.manager.model.config.Option", {
       check: "String",
       init: "",
       event: "changeKey",
-      apply: "_applyChange",
+      apply: "_applyChange"
     },
 
     value: {
       check: "String",
       init: "",
       event: "changeValue",
-      apply: "_applyChange",
-    },
+      apply: "_applyChange"
+    }
   },
 
   /*
@@ -73,6 +73,6 @@ qx.Class.define("cv.ui.manager.model.config.Option", {
   members: {
     _applyChange() {
       this.fireEvent("change");
-    },
-  },
+    }
+  }
 });

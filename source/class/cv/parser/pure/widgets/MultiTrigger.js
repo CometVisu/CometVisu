@@ -70,7 +70,7 @@ qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
       const buttons = xml.querySelectorAll("buttons > button");
       for (i = 0; i < buttons.length; i++) {
         buttonConfig[i + 1] = {
-          value: buttons[i].textContent,
+          value: buttons[i].textContent
         };
 
         if (buttons[i].hasAttribute("label")) {
@@ -86,23 +86,23 @@ qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
         showstatus: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         elementsPerLine: {
           transform: parseInt,
-          default: 2,
-        },
+          default: 2
+        }
       };
     },
 
     makeAddressListFn(src, transform, mode, variant) {
       return [true, variant];
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("multitrigger", statics);
-  },
+  }
 });

@@ -55,12 +55,12 @@ qx.Class.define("cv.ui.structure.tile.elements.Backend", {
         if (element.hasAttribute("username")) {
           credentials = {
             username: element.getAttribute("username"),
-            password: element.getAttribute("password") || "",
+            password: element.getAttribute("password") || ""
           };
         } else if (uri && uri.username) {
           credentials = {
             username: uri.username,
-            password: uri.password,
+            password: uri.password
           };
         }
         const model = cv.data.Model.getInstance();
@@ -107,12 +107,12 @@ qx.Class.define("cv.ui.structure.tile.elements.Backend", {
             topic: "cv.config.error",
             title: qx.locale.Manager.tr("Config error"),
             message: qx.locale.Manager.tr(
-              'There already exists a backend named: "%1"',
+              "There already exists a backend named: \"%1\"",
               name
             ),
             severity: "urgent",
             unique: true,
-            deletable: true,
+            deletable: true
           };
 
           cv.core.notifications.Router.dispatchMessage(
@@ -130,7 +130,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Backend", {
         this._client = client;
         this._name = name;
         this.__applyValues = [];
-        client.update = (data) => model.updateFrom(name, data); // override clients update function
+        client.update = data => model.updateFrom(name, data); // override clients update function
         client.login(true, credentials, () => {
           this.debug(name, "connected");
           if (
@@ -201,7 +201,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Backend", {
         this._client.dispose();
         this._client = null;
       }
-    },
+    }
   },
 
   defer(Clazz) {
@@ -213,5 +213,5 @@ qx.Class.define("cv.ui.structure.tile.elements.Backend", {
         }
       }
     );
-  },
+  }
 });

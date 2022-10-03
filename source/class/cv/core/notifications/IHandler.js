@@ -35,6 +35,6 @@ qx.Interface.define("cv.core.notifications.IHandler", {
      * @param message {Map}
      * @param config {Map?} optional configuration of this message for the handler
      */
-    handleMessage(message, config) {},
-  },
+    handleMessage(message, config) {}
+  }
 });

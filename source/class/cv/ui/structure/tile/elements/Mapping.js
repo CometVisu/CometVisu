@@ -72,7 +72,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Mapping", {
       }
       let mappedValue = "" + val;
       const exactMatch = this._element.querySelector(
-        ':scope > entry[value="' + val + '"]'
+        ":scope > entry[value=\"" + val + "\"]"
       );
       let type = this._element.hasAttribute("type")
         ? this._element.getAttribute("type")
@@ -98,7 +98,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Mapping", {
       const entries = this._element.querySelectorAll(":scope > entry");
       let defaultValue = null;
 
-      const mapped = Array.from(entries).some((entry) => {
+      const mapped = Array.from(entries).some(entry => {
         let matches = false;
         let isDefaultValue =
           entry.hasAttribute("default") &&
@@ -146,7 +146,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Mapping", {
         default:
           return value;
       }
-    },
+    }
   },
 
   /*
@@ -167,5 +167,5 @@ qx.Class.define("cv.ui.structure.tile.elements.Mapping", {
         }
       }
     );
-  },
+  }
 });

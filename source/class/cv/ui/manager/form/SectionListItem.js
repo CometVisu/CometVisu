@@ -47,26 +47,26 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-editor-config-section",
+      init: "cv-editor-config-section"
     },
 
     model: {
       check: "cv.ui.manager.model.config.Section",
       nullable: false,
-      apply: "_applyModel",
+      apply: "_applyModel"
     },
 
     modified: {
       check: "Boolean",
       init: false,
-      event: "changeModified",
+      event: "changeModified"
     },
 
     readOnly: {
       check: "Boolean",
       init: false,
-      event: "changeReadOnly",
-    },
+      event: "changeReadOnly"
+    }
   },
 
   /*
@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
   ***********************************************
   */
   events: {
-    delete: "qx.event.type.Data",
+    delete: "qx.event.type.Data"
   },
 
   /*
@@ -192,7 +192,7 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
           control = new qx.ui.form.TextField();
           control.set({
             liveUpdate: true,
-            required: true,
+            required: true
           });
 
           this.bind("readOnly", control, "readOnly");
@@ -211,7 +211,7 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
           this.bind("readOnly", control, "visibility", {
             converter(value) {
               return value ? "hidden" : "visible";
-            },
+            }
           });
 
           this._add(control, { row: 0, column: 2 });
@@ -234,7 +234,7 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
             }.bind(this),
             bindItem(controller, item, index) {
               controller.bindProperty("", "model", null, item, index);
-            },
+            }
           });
 
           this._add(control, { row: 1, column: 1 });
@@ -242,7 +242,7 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -252,5 +252,5 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
   */
   destruct() {
     this._disposeObjects("_listController");
-  },
+  }
 });

@@ -32,25 +32,25 @@ qx.Class.define("cv.ui.manager.model.Message", {
     title: {
       check: "String",
       init: "",
-      event: "changeTitle",
+      event: "changeTitle"
     },
 
     content: {
       check: "String",
       init: "",
-      event: "changeContent",
+      event: "changeContent"
     },
 
     type: {
       check: ["alert", "hint", "warning", "error"],
       nullable: true,
-      event: "changeType",
+      event: "changeType"
     },
 
     sticky: {
       check: "Boolean",
       init: false,
-      event: "changeSticky",
-    },
-  },
+      event: "changeSticky"
+    }
+  }
 });

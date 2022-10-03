@@ -157,7 +157,7 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
 
           documentation.push(...this.__getTextNodesByXPath(ref, selector));
 
-          documentation = documentation.map((entry) =>
+          documentation = documentation.map(entry =>
             this.createDocumentationWebLinks(entry)
           );
         }
@@ -182,18 +182,18 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
         const link = cv.ui.manager.model.schema.DocumentationMapping.MAP[key];
         if (link) {
           return (
-            '<a class="doclink" target="_blank" href="' +
+            "<a class=\"doclink\" target=\"_blank\" href=\"" +
             cv.ui.manager.model.schema.DocumentationMapping.MAP._base +
             language +
             link +
-            '">' +
+            "\">" +
             label +
             "</a>"
           );
         }
         return label;
       });
-    },
+    }
   },
 
   /*
@@ -205,5 +205,5 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
     this.__appInfoCache = null;
     this.__documentationCache = null;
     this.__linkRegex = null;
-  },
+  }
 });

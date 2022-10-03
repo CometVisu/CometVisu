@@ -50,8 +50,8 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
     currentPath: {
       check: "String",
       nullable: true,
-      apply: "_applyCurrentPath",
-    },
+      apply: "_applyCurrentPath"
+    }
   },
 
   /*
@@ -148,7 +148,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
                 isAttributeSearch:
                   !filteredElementSearch && openedTag && !contentSearch,
                 isContentSearch: contentSearch,
-                text: text,
+                text: text
               };
             }
             // remove the last closed tag
@@ -232,9 +232,9 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
         if (!attribute.isOptional) {
           insertText +=
             attr +
-            '="' +
+            "=\"" +
             (attribute.getDefaultValue() ? attribute.getDefaultValue() : "") +
-            '" ';
+            "\" ";
         }
       });
       // add mandatory children
@@ -281,7 +281,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
         return [];
       }
       Object.getOwnPropertyNames(children)
-        .filter((name) => !name.startsWith("#"))
+        .filter(name => !name.startsWith("#"))
         .forEach(function (name) {
           // get all element attributes
           const childElem = children[name];
@@ -299,7 +299,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
               insertText: this.getElementString(childElem, "", ""),
               kind: window.monaco.languages.CompletionItemKind.Field,
               detail: childElem.getType(),
-              documentation: childElem.getDocumentation().join("\n"),
+              documentation: childElem.getDocumentation().join("\n")
             });
           }
         }, this);
@@ -319,10 +319,10 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
           // mark it as a 'property', and get it's documentation
           availableItems.push({
             label: attr.getName(),
-            insertText: attr.getName() + '=""',
+            insertText: attr.getName() + "=\"\"",
             kind: window.monaco.languages.CompletionItemKind.Property,
             detail: attr.getTypeString(),
-            documentation: attr.getDocumentation().join("\n"),
+            documentation: attr.getDocumentation().join("\n")
           });
         }
       }, this);
@@ -344,7 +344,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
 
     getProvider() {
       return {
-        triggerCharacters: ["<", '"'],
+        triggerCharacters: ["<", "\""],
         provideCompletionItems: function (model, position) {
           this.setCurrentPath(model.uri.toString());
           const completeText = model.getValue();
@@ -355,7 +355,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
             return this._getSuggestions(model, position);
           }
           return { suggestions: [] };
-        }.bind(this),
+        }.bind(this)
       };
     },
 
@@ -365,7 +365,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
         startLineNumber: 1,
         startColumn: 1,
         endLineNumber: position.lineNumber,
-        endColumn: position.column,
+        endColumn: position.column
       });
 
       // parse mappings
@@ -512,7 +512,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
               "monaco",
               { cache: false },
               completeText
-            ),
+            )
           };
         } else if (lastOpenedTag.tagName === "influx") {
           if (lastOpenedTag.currentAttribute === "measurement") {
@@ -567,7 +567,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
             return {
               label: name,
               insertText: name,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           }, this);
           return { suggestions: res };
@@ -585,7 +585,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
                 label: variableName,
                 insertText: variableName,
                 detail: qx.locale.Manager.tr("Variable from template %1", name),
-                kind: window.monaco.languages.CompletionItemKind.Variable,
+                kind: window.monaco.languages.CompletionItemKind.Variable
               });
             }, this);
           }, this);
@@ -595,7 +595,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
             return {
               label: mappingName,
               insertText: mappingName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           }, this);
           return { suggestions: res };
@@ -604,7 +604,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
             return {
               label: stylingName,
               insertText: stylingName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           }, this);
           return { suggestions: res };
@@ -624,12 +624,12 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
       ) {
         return this._dataProvider
           .getAddresses("monaco")
-          .then((res) => ({ suggestions: res }));
+          .then(res => ({ suggestions: res }));
       }
       if (searchedElement === "rrd") {
         return this._dataProvider
           .getRrds("monaco")
-          .then((res) => ({ suggestions: res }));
+          .then(res => ({ suggestions: res }));
       } else if (
         searchedElement === "file" &&
         !isAttributeSearch &&
@@ -669,7 +669,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
               insertText: entry,
               kind: window.monaco.languages.CompletionItemKind.Value,
               detail: type,
-              documentation: attribute.getDocumentation().join("\n"),
+              documentation: attribute.getDocumentation().join("\n")
             });
           });
         }
@@ -685,7 +685,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
           res.push({
             label: lastOpenedTag.tagName,
             insertText: lastOpenedTag.tagName,
-            kind: window.monaco.languages.CompletionItemKind.Field,
+            kind: window.monaco.languages.CompletionItemKind.Field
           });
         } else {
           res = currentItem
@@ -702,7 +702,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
         startLineNumber: 1,
         startColumn: 1,
         endLineNumber: position.lineNumber,
-        endColumn: position.column,
+        endColumn: position.column
       });
 
       // parse mappings
@@ -826,7 +826,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
             return {
               label: mappingName,
               insertText: mappingName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           }, this);
           return { suggestions: res };
@@ -835,7 +835,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
             return {
               label: stylingName,
               insertText: stylingName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           }, this);
           return { suggestions: res };
@@ -849,14 +849,14 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
       ) {
         return this._dataProvider
           .getAddresses("monaco")
-          .then((res) => ({ suggestions: res }));
+          .then(res => ({ suggestions: res }));
       } else if (
         lastOpenedTag.tagName === "cv-chart" &&
         lastOpenedTag.currentAttribute === "src"
       ) {
         return this._dataProvider
           .getRrds("monaco")
-          .then((res) => ({ suggestions: res }));
+          .then(res => ({ suggestions: res }));
       } else if (
         lastOpenedTag.tagName === "cv-loader" &&
         lastOpenedTag.currentAttribute === "src"
@@ -894,7 +894,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
               insertText: entry,
               kind: window.monaco.languages.CompletionItemKind.Value,
               detail: type,
-              documentation: attribute.getDocumentation().join("\n"),
+              documentation: attribute.getDocumentation().join("\n")
             });
           });
         }
@@ -910,7 +910,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
           res.push({
             label: lastOpenedTag.tagName,
             insertText: lastOpenedTag.tagName,
-            kind: window.monaco.languages.CompletionItemKind.Field,
+            kind: window.monaco.languages.CompletionItemKind.Field
           });
         } else {
           res = currentItem
@@ -919,7 +919,7 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
         }
       }
       return { suggestions: res };
-    },
+    }
   },
 
   /*
@@ -931,5 +931,5 @@ qx.Class.define("cv.ui.manager.editor.completion.Config", {
     this.__elementCache = null;
     this._schema = null;
     this._dataProvider = null;
-  },
+  }
 });

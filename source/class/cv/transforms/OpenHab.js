@@ -36,7 +36,7 @@ qx.Class.define("cv.transforms.OpenHab", {
           value
         ) >= 0
       );
-    },
+    }
   },
 
   /**
@@ -56,7 +56,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return 0;
           }
           return string === "ON" || parseInt(string) > 0 ? 1 : 0;
-        },
+        }
       },
 
       playPause: {
@@ -70,7 +70,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return 0;
           }
           return string === "PLAY" || parseInt(string) > 0 ? 1 : 0;
-        },
+        }
       },
 
       contact: {
@@ -84,7 +84,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return 0;
           }
           return string === "OPEN" ? 1 : 0;
-        },
+        }
       },
 
       rollershutter: {
@@ -117,7 +117,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return -1;
           }
           return str;
-        },
+        }
       },
 
       dimmer: {
@@ -134,7 +134,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return 0;
           }
           return parseInt(str);
-        },
+        }
       },
 
       number: {
@@ -147,7 +147,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return 0;
           }
           return parseFloat(str);
-        },
+        }
       },
 
       string: {
@@ -160,7 +160,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return "";
           }
           return str;
-        },
+        }
       },
 
       datetime: {
@@ -176,7 +176,7 @@ qx.Class.define("cv.transforms.OpenHab", {
             return "-";
           }
           return new Date(Date.parse(str));
-        },
+        }
       },
 
       time: {
@@ -197,7 +197,7 @@ qx.Class.define("cv.transforms.OpenHab", {
           date.setMinutes(parseInt(parts[1]));
           date.setSeconds(parseInt(parts[2]));
           return date;
-        },
+        }
       },
 
       color: {
@@ -223,12 +223,12 @@ qx.Class.define("cv.transforms.OpenHab", {
               ? new Map([
                   ["r", 0],
                   ["g", 0],
-                  ["b", 0],
+                  ["b", 0]
                 ])
               : new Map([
                   ["h", 0],
                   ["s", 0],
-                  ["v", 0],
+                  ["v", 0]
                 ]);
           }
           // decode HSV/HSB to RGB
@@ -238,16 +238,16 @@ qx.Class.define("cv.transforms.OpenHab", {
             return new Map([
               ["r", rgb[0]],
               ["g", rgb[1]],
-              ["b", rgb[2]],
+              ["b", rgb[2]]
             ]);
           }
           let hsv = hsbString.split(",").map(parseFloat);
           return new Map([
             ["h", hsv[0]],
             ["s", hsv[1]],
-            ["v", hsv[2]],
+            ["v", hsv[2]]
           ]);
-        },
+        }
       },
 
       "thing-status": {
@@ -257,8 +257,8 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode(val) {
           return val === "ONLINE";
-        },
-      },
+        }
+      }
     });
-  },
+  }
 });

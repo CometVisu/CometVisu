@@ -59,17 +59,17 @@ qx.Class.define("cv.parser.pure.widgets.PushButton", {
     getAttributeToPropertyMappings() {
       return {
         downValue: { target: "downValue", default: "1" },
-        upValue: { default: "0" },
+        upValue: { default: "0" }
       };
     },
 
     makeAddressListFn(src, transform, mode, variant) {
       return [true, variant];
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("pushbutton", statics);
-  },
+  }
 });

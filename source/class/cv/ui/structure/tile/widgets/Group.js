@@ -111,7 +111,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Group", {
           this.debug("unhandled address target", ev.detail.target);
         }
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -123,5 +123,5 @@ qx.Class.define("cv.ui.structure.tile.widgets.Group", {
         }
       }
     );
-  },
+  }
 });

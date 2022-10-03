@@ -67,13 +67,13 @@ qx.Class.define("cv.ui.structure.pure.Switch", {
   properties: {
     onValue: {
       check: "String",
-      init: "1",
+      init: "1"
     },
 
     offValue: {
       check: "String",
-      init: "0",
-    },
+      init: "0"
+    }
   },
 
   /*
@@ -84,7 +84,7 @@ qx.Class.define("cv.ui.structure.pure.Switch", {
   members: {
     // overridden
     _getInnerDomString() {
-      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
     },
 
     /**
@@ -113,6 +113,6 @@ qx.Class.define("cv.ui.structure.pure.Switch", {
       return this.getBasicValue() == this.getOffValue()
         ? this.getOnValue()
         : this.getOffValue(); // jshint ignore:line
-    },
-  },
+    }
+  }
 });

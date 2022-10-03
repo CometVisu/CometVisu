@@ -57,11 +57,11 @@ qx.Class.define("cv.parser.pure.widgets.Rgb", {
 
     makeAddressListFn(src, transform, mode, variant) {
       return [true, variant];
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("rgb", statics);
-  },
+  }
 });

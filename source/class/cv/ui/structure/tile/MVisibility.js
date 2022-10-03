@@ -38,12 +38,12 @@ qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
   */
   statics: {
     observer: new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
+      entries.forEach(entry => {
         if (entry.target._instance) {
           entry.target._instance.setVisible(entry.intersectionRatio > 0);
         }
       });
-    }),
+    })
   },
 
   /*
@@ -55,8 +55,8 @@ qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
     visible: {
       check: "Boolean",
       init: false,
-      apply: "_applyVisible",
-    },
+      apply: "_applyVisible"
+    }
   },
 
   /*
@@ -71,6 +71,6 @@ qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
       } else {
         this.warn("no element to observe defined");
       }
-    },
-  },
+    }
+  }
 });

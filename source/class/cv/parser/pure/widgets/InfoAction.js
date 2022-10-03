@@ -48,11 +48,11 @@ qx.Class.define("cv.parser.pure.widgets.InfoAction", {
       );
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("infoaction", statics);
-  },
+  }
 });

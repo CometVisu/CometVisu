@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       const value = u + v;
       const saturation = Math.abs(value) < 1e-3 ? 0 : v / value;
       return [saturation, value];
-    },
+    }
   },
 
   /*
@@ -106,7 +106,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
         }
       );
     this.__components = new Set(
-      Object.entries(this.getAddress()).map((v) => v[1].variantInfo)
+      Object.entries(this.getAddress()).map(v => v[1].variantInfo)
     );
     this.__lastBusValue = {};
   },
@@ -131,17 +131,17 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
   */
   properties: {
     controls: {
-      check: "String",
+      check: "String"
     },
 
     baseColors: {
-      check: "Object",
+      check: "Object"
     },
 
     sendOnFinish: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -172,7 +172,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       const self = this;
       let retval = "";
       const historicWidth =
-        this.getLayout().colspan === undefined ? ' style="width:195px"' : "";
+        this.getLayout().colspan === undefined ? " style=\"width:195px\"" : "";
       let controls = this.getControls().split(";");
       if (controls[0] === "") {
         controls[0] = "box";
@@ -182,18 +182,18 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           case "box":
           case "LCh-box": {
             let hue_type = control === "box" ? "hsv_hue" : "lch_hue";
-            retval += '<div class="actor cc_box"><div class="hue ' + hue_type;
+            retval += "<div class=\"actor cc_box\"><div class=\"hue " + hue_type;
             retval +=
-              '"></div><div class="handle_hue"></div><div class="sv_box"><div class="inner"></div><div class="handle"></div></div></div>';
+              "\"></div><div class=\"handle_hue\"></div><div class=\"sv_box\"><div class=\"inner\"></div><div class=\"handle\"></div></div></div>";
             break;
           }
 
           case "triangle":
           case "LCh-triangle": {
             let hue_type = control === "triangle" ? "hsv_hue" : "lch_hue";
-            retval += '<div class="actor cc_wheel"><div class="hue ' + hue_type;
+            retval += "<div class=\"actor cc_wheel\"><div class=\"hue " + hue_type;
             retval +=
-              '"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>';
+              "\"></div><div class=\"sv_triangle\"><div class=\"inner\"></div><div class=\"handle_hue\"></div><div class=\"handle\"></div></div></div>";
             break;
           }
 
@@ -212,7 +212,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           case "LCh-h":
           case "Y":
             retval +=
-              '<div class="actor cc_' +
+              "<div class=\"actor cc_" +
               control +
               ` ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
               <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">` +
@@ -240,11 +240,11 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
               const rgbTmax = cv.util.Color.xy2sRGB(
                 cv.util.Color.temperature2xy(self.__Tmax)
               );
-              const disp = (c) =>
+              const disp = c =>
                 [
                   Math.round(255 * c.r),
                   Math.round(255 * c.g),
-                  Math.round(255 * c.b),
+                  Math.round(255 * c.b)
                 ].join(",");
               const colors =
                 "rgb(" + disp(rgbTmin) + "), rgb(" + disp(rgbTmax) + ")";
@@ -262,7 +262,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           }
         }
       });
-      return '<div class="actors"' + historicWidth + ">" + retval + "</div>";
+      return "<div class=\"actors\"" + historicWidth + ">" + retval + "</div>";
     },
 
     // overridden
@@ -278,14 +278,14 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
 
       this.getDomElement()
         .querySelectorAll(".actor")
-        .forEach((actor) => actor.addEventListener("pointerdown", this));
+        .forEach(actor => actor.addEventListener("pointerdown", this));
     },
 
     _update(address, data) {
       const addressObj = this.getAddress()[address];
       const showInvalidDataErrorMessage = function () {
         const message = qx.locale.Manager.tr(
-          'Updating ColorChooser with invalid data<br/>Address: "%1"<br/>transform: "%2"<br/>selector: "%3"<br/>variant: "%4"<br/>data: "%5"',
+          "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\"",
           address,
           addressObj.transform,
           addressObj.selector,
@@ -298,7 +298,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           console.error(message.toString());
         }
         cv.core.notifications.Router.dispatchMessage("cv.config.error", {
-          message,
+          message
         });
       };
 
@@ -337,7 +337,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           value = {
             h: value.get("h") / 360,
             s: value.get("s") / 100,
-            v: value.get("v") / 100,
+            v: value.get("v") / 100
           };
           variantType = "hsv";
           break;
@@ -375,7 +375,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
               value.get("b"),
               base.b.curve,
               base.b.scale
-            ),
+            )
           };
 
           variantType = "rgb";
@@ -420,7 +420,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
               value.get("w"),
               base.w.curve,
               base.w.scale
-            ),
+            )
           };
 
           variantType = "rgbw";
@@ -461,7 +461,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             value = {
               x: value.get("x"),
               y: value.get("y"),
-              Y: value.get("Y"),
+              Y: value.get("Y")
             };
 
             if (variant === "") {
@@ -564,7 +564,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
                   ),
                   outerRadius: parseFloat(
                     window.getComputedStyle(hue).getPropertyValue("width")
-                  ),
+                  )
                 };
 
                 break;
@@ -580,7 +580,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
                   width: parseFloat(actorStyle.getPropertyValue("width")),
                   buttonWidth: parseFloat(
                     window.getComputedStyle(button).getPropertyValue("width")
-                  ),
+                  )
                 };
 
                 range.style.marginLeft =
@@ -822,7 +822,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             );
             this.__color.changeComponent(actor.isLCh ? "LCh-CL" : "sv", [
               Math.min(Math.max(sv[0], 0), 1),
-              Math.min(Math.max(sv[1], 0), 1),
+              Math.min(Math.max(sv[1], 0), 1)
             ]);
             break;
           }
@@ -836,7 +836,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             const sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
             this.__color.changeComponent(actor.isLCh ? "LCh-CL" : "sv", [
               Math.min(Math.max(sv[0], 0), 1),
-              Math.min(Math.max(sv[1], 0), 1),
+              Math.min(Math.max(sv[1], 0), 1)
             ]);
             break;
           }
@@ -866,7 +866,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
     },
 
     __onChangeValue() {
-      this.__components.forEach((type) => {
+      this.__components.forEach(type => {
         let value = this.__color.getComponent(
           ["xyY", "x", "y"].includes(type) ? "xy" : type
         );
@@ -889,7 +889,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             value = new Map([
               ["h", value.h * 360],
               ["s", value.s * 100],
-              ["v", value.v * 100],
+              ["v", value.v * 100]
             ]);
             typeCategory = "hsv";
             break;
@@ -916,7 +916,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             value = new Map([
               ["r", cv.util.Color.curve(value.r, base.r.curve, base.r.scale)],
               ["g", cv.util.Color.curve(value.g, base.g.curve, base.g.scale)],
-              ["b", cv.util.Color.curve(value.b, base.b.curve, base.b.scale)],
+              ["b", cv.util.Color.curve(value.b, base.b.curve, base.b.scale)]
             ]);
 
             typeCategory = "rgb";
@@ -928,7 +928,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
               ["r", cv.util.Color.curve(value.r, base.r.curve, base.r.scale)],
               ["g", cv.util.Color.curve(value.g, base.g.curve, base.g.scale)],
               ["b", cv.util.Color.curve(value.b, base.b.curve, base.b.scale)],
-              ["w", cv.util.Color.curve(value.w, base.w.curve, base.w.scale)],
+              ["w", cv.util.Color.curve(value.w, base.w.curve, base.w.scale)]
             ]);
 
             typeCategory = "rgbw";
@@ -937,7 +937,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           case "xy":
             value = new Map([
               ["x", value.x],
-              ["y", value.y],
+              ["y", value.y]
             ]);
 
             typeCategory = "xyY";
@@ -948,7 +948,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             value = new Map([
               ["x", value.x],
               ["y", value.y],
-              ["Y", Y],
+              ["Y", Y]
             ]);
 
             typeCategory = "xyY";
@@ -971,14 +971,14 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
         }
         this.__lastBusValue[typeCategory][type] = this.sendToBackend(
           value,
-          (t) => t.variantInfo === type,
+          t => t.variantInfo === type,
           this.__lastBusValue[typeCategory][type]
         );
       });
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
-  },
+  }
 });

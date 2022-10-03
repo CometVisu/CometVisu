@@ -213,6 +213,6 @@ qx.Class.define("cv.util.Tree", {
         return null;
       };
       return findClosest(elem);
-    },
-  },
+    }
+  }
 });

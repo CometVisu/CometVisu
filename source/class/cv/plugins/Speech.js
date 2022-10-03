@@ -102,9 +102,9 @@ qx.Class.define("cv.plugins.Speech", {
           : -1,
         $$type: "speech",
         // this widget needs to be initialized when the cache is used, otherwise it wont be available
-        $$initOnCacheLoad: true,
+        $$initOnCacheLoad: true
       });
-    },
+    }
   },
 
   /*
@@ -121,8 +121,8 @@ qx.Class.define("cv.plugins.Speech", {
     repeatTimeout: { check: "Number", init: -1 },
     parentWidget: {
       check: "cv.ui.structure.pure.AbstractBasicWidget",
-      init: null,
-    },
+      init: null
+    }
   },
 
   /*
@@ -150,7 +150,7 @@ qx.Class.define("cv.plugins.Speech", {
         // first call -> skipping
         this.__lastSpeech[address] = {
           text: text,
-          time: Date.now(),
+          time: Date.now()
         };
 
         this.debug("skipping initial TTS for " + text);
@@ -189,19 +189,19 @@ qx.Class.define("cv.plugins.Speech", {
       );
       this.__lastSpeech[address] = {
         text: text,
-        time: Date.now(),
+        time: Date.now()
       };
 
       cv.core.notifications.SpeechHandler.getInstance().say(
         text,
         this.getLanguage()
       );
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("speech", cv.plugins.Speech);
     cv.ui.structure.WidgetFactory.registerClass("speech", statics);
-  },
+  }
 });

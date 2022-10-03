@@ -114,7 +114,7 @@ qx.Class.define("cv.ui.TrickOMatic", {
                 0,
                 low - (offset - high),
                 high,
-                offset - high,
+                offset - high
               ];
             }
             n.style.strokeDashoffset = length % (0.5 * segmentLength);
@@ -204,6 +204,6 @@ qx.Class.define("cv.ui.TrickOMatic", {
       } else {
         pipe_group.classList.toggle("flow_active", false);
       }
-    },
-  },
+    }
+  }
 });

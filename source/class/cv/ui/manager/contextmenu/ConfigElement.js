@@ -45,7 +45,7 @@ qx.Class.define("cv.ui.manager.contextmenu.ConfigElement", {
   ***********************************************
   */
   events: {
-    action: "qx.event.type.Data",
+    action: "qx.event.type.Data"
   },
 
   /*
@@ -57,14 +57,14 @@ qx.Class.define("cv.ui.manager.contextmenu.ConfigElement", {
     element: {
       check: "cv.ui.manager.model.XmlElement",
       nullable: true,
-      apply: "_applyElement",
+      apply: "_applyElement"
     },
 
     editor: {
       check: "cv.ui.manager.editor.Tree",
       nullable: true,
-      apply: "_applyEditor",
-    },
+      apply: "_applyEditor"
+    }
   },
 
   /*
@@ -133,7 +133,7 @@ qx.Class.define("cv.ui.manager.contextmenu.ConfigElement", {
           this.getChildControl("edit-button").exclude();
         }
       } else {
-        ["edit", "delete", "cut", "copy", "paste", "create"].forEach((name) =>
+        ["edit", "delete", "cut", "copy", "paste", "create"].forEach(name =>
           this.getChildControl(name + "-button").setEnabled(false)
         );
       }
@@ -141,11 +141,11 @@ qx.Class.define("cv.ui.manager.contextmenu.ConfigElement", {
     },
 
     _init() {
-      ["view", "edit", "delete"].forEach((name) =>
+      ["view", "edit", "delete"].forEach(name =>
         this.add(this.getChildControl(name + "-button"))
       );
       this.addSeparator();
-      ["cut", "copy", "paste"].forEach((name) =>
+      ["cut", "copy", "paste"].forEach(name =>
         this.add(this.getChildControl(name + "-button"))
       );
       this.addSeparator();
@@ -243,11 +243,11 @@ qx.Class.define("cv.ui.manager.contextmenu.ConfigElement", {
       button.addListener("execute", () => {
         this.fireDataEvent("action", {
           action: action,
-          element: this.getElement(),
+          element: this.getElement()
         });
       });
       return button;
-    },
+    }
   },
 
   /*
@@ -257,5 +257,5 @@ qx.Class.define("cv.ui.manager.contextmenu.ConfigElement", {
   */
   destruct() {
     this._commandGroup = null;
-  },
+  }
 });

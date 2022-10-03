@@ -46,7 +46,7 @@ qx.Class.define("cv.ui.manager.viewer.AbstractViewer", {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
       apply: "_applyFile",
-      event: "changeFile",
+      event: "changeFile"
     },
 
     /**
@@ -54,14 +54,14 @@ qx.Class.define("cv.ui.manager.viewer.AbstractViewer", {
      */
     external: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     ready: {
       check: "Boolean",
       init: true,
-      event: "changeReady",
-    },
+      event: "changeReady"
+    }
   },
 
   /*
@@ -103,6 +103,6 @@ qx.Class.define("cv.ui.manager.viewer.AbstractViewer", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
-  },
+    }
+  }
 });

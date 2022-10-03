@@ -50,23 +50,23 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
   properties: {
     target: {
       check: "String",
-      init: "0",
+      init: "0"
     },
 
     activeScope: {
       check: ["target", "path"],
-      init: "target",
+      init: "target"
     },
 
     name: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     targetPath: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -131,7 +131,7 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
         // recursively find pagejumps for parent pages
         parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
       }
-    },
+    }
   },
 
   /*
@@ -142,13 +142,13 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
   members: {
     // overridden
     _getInnerDomString() {
-      let actor = '<div class="actor switchUnpressed';
+      let actor = "<div class=\"actor switchUnpressed";
       if (this.getAlign()) {
         actor += " " + this.getAlign();
       }
-      actor += '">';
+      actor += "\">";
       if (this.getName()) {
-        actor += '<div class="value">' + this.getName() + "</div>";
+        actor += "<div class=\"value\">" + this.getName() + "</div>";
       }
       actor += "</div>";
       return actor + this.getChildrenDomString();
@@ -164,7 +164,7 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
         );
       }
       cv.Application.structureController.scrollToPage(target);
-    },
+    }
   },
 
   defer(statics) {
@@ -174,5 +174,5 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
       statics._onScrollToPage,
       statics
     );
-  },
+  }
 });

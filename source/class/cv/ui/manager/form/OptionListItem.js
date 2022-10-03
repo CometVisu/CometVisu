@@ -47,20 +47,20 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-editor-config-option",
+      init: "cv-editor-config-option"
     },
 
     model: {
       check: "cv.ui.manager.model.config.Option",
       nullable: true,
-      apply: "_applyModel",
+      apply: "_applyModel"
     },
 
     readOnly: {
       check: "Boolean",
       init: false,
-      event: "changeReadOnly",
-    },
+      event: "changeReadOnly"
+    }
   },
 
   /*
@@ -70,7 +70,7 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
   */
   events: {
     delete: "qx.event.type.Data",
-    add: "qx.event.type.Event",
+    add: "qx.event.type.Event"
   },
 
   /*
@@ -135,7 +135,7 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
           control = new qx.ui.form.TextField();
           control.set({
             liveUpdate: true,
-            required: true,
+            required: true
           });
 
           this.bind("readOnly", control, "readOnly");
@@ -145,7 +145,7 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
         case "value":
           control = new qx.ui.form.TextField();
           control.set({
-            liveUpdate: true,
+            liveUpdate: true
           });
 
           this.bind("readOnly", control, "readOnly");
@@ -164,7 +164,7 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
           this.bind("readOnly", control, "visibility", {
             converter(value) {
               return value ? "hidden" : "visible";
-            },
+            }
           });
 
           this._add(control);
@@ -182,7 +182,7 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
           this.bind("readOnly", control, "visibility", {
             converter(value) {
               return value ? "hidden" : "visible";
-            },
+            }
           });
 
           this._add(control);
@@ -202,7 +202,7 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -212,5 +212,5 @@ qx.Class.define("cv.ui.manager.form.OptionListItem", {
   */
   destruct() {
     this.__unbindModel(this.getModel());
-  },
+  }
 });

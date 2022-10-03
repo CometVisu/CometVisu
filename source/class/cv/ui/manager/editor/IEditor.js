@@ -30,7 +30,7 @@ qx.Interface.define("cv.ui.manager.editor.IEditor", {
     file: {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: "_loadFile",
+      apply: "_loadFile"
     },
 
     /**
@@ -38,7 +38,7 @@ qx.Interface.define("cv.ui.manager.editor.IEditor", {
      */
     external: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     /**
@@ -47,8 +47,8 @@ qx.Interface.define("cv.ui.manager.editor.IEditor", {
     ready: {
       check: "Boolean",
       init: true,
-      event: "changeReady",
-    },
+      event: "changeReady"
+    }
   },
 
   /*
@@ -57,7 +57,7 @@ qx.Interface.define("cv.ui.manager.editor.IEditor", {
   ***********************************************
   */
   statics: {
-    TITLE: "",
+    TITLE: ""
   },
 
   /*
@@ -68,6 +68,6 @@ qx.Interface.define("cv.ui.manager.editor.IEditor", {
   members: {
     save() {},
 
-    getCurrentContent() {},
-  },
+    getCurrentContent() {}
+  }
 });

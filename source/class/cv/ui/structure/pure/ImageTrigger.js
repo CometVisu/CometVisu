@@ -73,7 +73,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,
     cv.ui.common.Refresh,
-    cv.ui.common.Update,
+    cv.ui.common.Update
   ],
 
   /*
@@ -87,7 +87,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
     width: { check: "String", init: "100%" },
     src: { check: "String", nullable: true },
     suffix: { check: "String", nullable: true },
-    sendValue: { check: "String", init: "" },
+    sendValue: { check: "String", init: "" }
   },
 
   /*
@@ -109,19 +109,19 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
         style += "height:" + this.getHeight() + ";";
       }
       if (style.length > 0) {
-        style = ' style="' + style + '"';
+        style = " style=\"" + style + "\"";
       }
 
-      let actor = '<div class="actor">';
+      let actor = "<div class=\"actor\">";
       if (this.getUpdateType() === "show") {
         actor +=
-          '<img src="' +
+          "<img src=\"" +
           this.__getUrl(this.getSrc() + "." + this.getSuffix()) +
-          '"' +
+          "\"" +
           style.trim() +
           " />";
       } else {
-        actor += '<img src=""' + style + " />";
+        actor += "<img src=\"\"" + style + " />";
       }
 
       actor += "</div>";
@@ -172,10 +172,10 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
         return;
       }
       this.sendToBackend(this.getSendValue());
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("imagetrigger", statics);
-  },
+  }
 });

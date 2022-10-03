@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   ***********************************************
   */
   events: {
-    close: "qx.event.type.Data",
+    close: "qx.event.type.Data"
   },
 
   /*
@@ -50,26 +50,26 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-snackbar-msg",
+      init: "cv-snackbar-msg"
     },
 
     model: {
       check: "cv.ui.manager.model.Message",
       nullable: true,
-      apply: "_applyModel",
+      apply: "_applyModel"
     },
 
     timeout: {
       check: "Number",
       init: 5000,
-      apply: "_applyTimeout",
+      apply: "_applyTimeout"
     },
 
     type: {
       check: ["alert", "hint", "warning", "error"],
       nullable: true,
-      apply: "_applyType",
-    },
+      apply: "_applyType"
+    }
   },
 
   /*
@@ -91,7 +91,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
         value.bind("sticky", this, "timeout", {
           converter(value) {
             return value ? 0 : 5000;
-          },
+          }
         });
 
         this.getChildControl("close");
@@ -143,7 +143,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
           control = new qx.ui.basic.Label();
           control.set({
             rich: true,
-            wrap: true,
+            wrap: true
           });
 
           this._addAt(control, 1, { flex: 1 });
@@ -159,7 +159,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -169,5 +169,5 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   */
   destruct() {
     this._disposeObjects("_timer");
-  },
+  }
 });

@@ -42,21 +42,21 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
   */
   properties: {
     element: {
-      check: "cv.ui.manager.model.XmlElement",
+      check: "cv.ui.manager.model.XmlElement"
     },
 
     title: {
-      check: "String",
+      check: "String"
     },
 
     changes: {
-      check: "Array",
+      check: "Array"
     },
 
     changeType: {
       check: ["content", "created", "deleted", "moved"],
-      init: ["content"],
-    },
+      init: ["content"]
+    }
   },
 
   /*
@@ -76,7 +76,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
       if (!element.isDisposed()) {
         switch (this.getChangeType()) {
           case "content":
-            this.getChanges().forEach((change) => {
+            this.getChanges().forEach(change => {
               if (change instanceof cv.ui.manager.model.ElementChange) {
                 change.undo();
               } else {
@@ -130,7 +130,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
       if (!element.isDisposed()) {
         switch (this.getChangeType()) {
           case "content":
-            this.getChanges().forEach((change) => {
+            this.getChanges().forEach(change => {
               if (change instanceof cv.ui.manager.model.ElementChange) {
                 change.redo();
               } else {
@@ -166,6 +166,6 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
         }
       }
       return success;
-    },
-  },
+    }
+  }
 });

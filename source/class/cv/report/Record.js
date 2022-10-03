@@ -86,7 +86,7 @@ qx.Class.define("cv.report.Record", {
           function () {
             this.record(this.SCREEN, "resize", {
               w: document.documentElement.clientWidth,
-              h: document.documentElement.clientHeight,
+              h: document.documentElement.clientHeight
             });
           },
           this
@@ -115,7 +115,7 @@ qx.Class.define("cv.report.Record", {
         // save initial size
         this.record(this.SCREEN, "resize", {
           w: document.documentElement.clientWidth,
-          h: document.documentElement.clientHeight,
+          h: document.documentElement.clientHeight
         });
       }
     },
@@ -142,7 +142,7 @@ qx.Class.define("cv.report.Record", {
         height: document.documentElement.clientHeight,
         anchor: req.anchor,
         query: req.queryKey,
-        path: req.relative,
+        path: req.relative
       };
 
       // save CometVisu build information
@@ -165,7 +165,7 @@ qx.Class.define("cv.report.Record", {
      */
     logCache() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.ConfigCache.getData().then((data) => {
+        cv.ConfigCache.getData().then(data => {
           cv.report.Record.record(
             cv.report.Record.CACHE,
             cv.Config.configSuffix,
@@ -188,12 +188,12 @@ qx.Class.define("cv.report.Record", {
         const parsed = qx.util.Uri.parseUri(qx.util.Uri.getAbsolute(url));
         url = parsed.path;
         const filteredParams = Object.keys(parsed.queryKey).filter(
-          (name) => name !== "nocache" && name !== "ts"
+          name => name !== "nocache" && name !== "ts"
         );
         if (filteredParams.length > 0) {
           url += "?";
           url += filteredParams
-            .map((param) => `${param}=${parsed.queryKey[param]}`)
+            .map(param => `${param}=${parsed.queryKey[param]}`)
             .join("&");
         }
       } catch (e) {
@@ -223,7 +223,7 @@ qx.Class.define("cv.report.Record", {
 
     getFileName() {
       return cv.report.Record.getInstance().getFileName();
-    },
+    }
   },
 
   /*
@@ -272,7 +272,7 @@ qx.Class.define("cv.report.Record", {
             i: path,
             d: data,
             o: options,
-            ID: this.__ID,
+            ID: this.__ID
           });
       }
 
@@ -293,8 +293,8 @@ qx.Class.define("cv.report.Record", {
         ) {
           try {
             const content = JSON.parse(data.body);
-            Object.keys(content).forEach((sectionName) => {
-              Object.keys(content[sectionName]).forEach((optionName) => {
+            Object.keys(content).forEach(sectionName => {
+              Object.keys(content[sectionName]).forEach(optionName => {
                 switch (optionName) {
                   case "uri":
                     content[sectionName][optionName] = "http://127.0.0.1";
@@ -361,8 +361,8 @@ qx.Class.define("cv.report.Record", {
           HORIZONTAL_AXIS: nativeEvent.HORIZONTAL_AXIS,
           type: nativeEvent.type,
           x: nativeEvent.x,
-          y: nativeEvent.y,
-        },
+          y: nativeEvent.y
+        }
       };
 
       if (data.eventClass === "PointerEvent") {
@@ -374,14 +374,14 @@ qx.Class.define("cv.report.Record", {
           tiltX: nativeEvent.tiltX,
           tiltY: nativeEvent.tiltY,
           pointerType: nativeEvent.pointerType,
-          isPrimary: nativeEvent.isPrimary,
+          isPrimary: nativeEvent.isPrimary
         });
       } else if (data.eventClass === "WheelEvent") {
         Object.assign(data.native, {
           deltaX: nativeEvent.deltaX,
           deltaY: nativeEvent.deltaY,
           deltaZ: nativeEvent.deltaZ,
-          deltaMode: nativeEvent.deltaMode,
+          deltaMode: nativeEvent.deltaMode
         });
       } else if (data.eventClass === "KeyboardEvent") {
         Object.assign(data.native, {
@@ -391,7 +391,7 @@ qx.Class.define("cv.report.Record", {
           key: nativeEvent.key,
           keyCode: nativeEvent.keyCode,
           ctrlKey: nativeEvent.ctrlKey,
-          altKey: nativeEvent.altKey,
+          altKey: nativeEvent.altKey
         });
       }
 
@@ -449,7 +449,7 @@ qx.Class.define("cv.report.Record", {
         type: ev.getType(),
         page: path,
         x: page.scrollLeft,
-        y: page.scrollTop,
+        y: page.scrollTop
       };
 
       this.record(cv.report.Record.USER, "scroll", data);
@@ -500,7 +500,7 @@ qx.Class.define("cv.report.Record", {
         xhr: this.__xhr,
         log: this.__log,
         configSuffix: cv.Config.configSuffix,
-        end: Date.now(),
+        end: Date.now()
       };
     },
 
@@ -539,6 +539,6 @@ qx.Class.define("cv.report.Record", {
       // Remove anchor from body
       document.body.removeChild(a);
       return a.download;
-    },
-  },
+    }
+  }
 });

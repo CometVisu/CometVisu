@@ -53,7 +53,7 @@ qx.Class.define("cv.ui.structure.pure.Audio", {
     height: { check: "String", nullable: true },
     autoplay: { check: "Boolean", init: false },
     loop: { check: "Boolean", init: false },
-    thresholdValue: { check: "Number", init: 1 },
+    thresholdValue: { check: "Number", init: 1 }
   },
 
   /*
@@ -74,20 +74,20 @@ qx.Class.define("cv.ui.structure.pure.Audio", {
         style += "height:" + this.getHeight() + ";";
       }
       if (style !== "") {
-        style = 'style="' + style + '"';
+        style = "style=\"" + style + "\"";
       }
       const autoplay = this.isAutoplay() ? " autoplay " : "";
       const loop = this.isLoop() ? " loop " : "";
       return (
-        '<div class="actor"><audio id="' +
+        "<div class=\"actor\"><audio id=\"" +
         this.getId() +
-        '" ' +
+        "\" " +
         autoplay +
         loop +
         style +
-        ' controls> <source src="' +
+        " controls> <source src=\"" +
         this.getSrc() +
-        '" > </audio> </div>'
+        "\" > </audio> </div>"
       );
     },
 
@@ -110,10 +110,10 @@ qx.Class.define("cv.ui.structure.pure.Audio", {
           audioWidget.play();
         }
       }
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("audio", statics);
-  },
+  }
 });

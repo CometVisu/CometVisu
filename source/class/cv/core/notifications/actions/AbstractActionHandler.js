@@ -35,18 +35,18 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
   properties: {
     needsConfirmation: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     deleteMessageAfterExecution: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     style: {
       check: "String",
-      init: "",
-    },
+      init: ""
+    }
   },
 
   /*
@@ -55,6 +55,6 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
   ***********************************************
   */
   events: {
-    close: "qx.event.type.Event",
-  },
+    close: "qx.event.type.Event"
+  }
 });

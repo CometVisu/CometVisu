@@ -62,7 +62,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      */
     children: {
       check: "Array",
-      init: [],
+      init: []
     },
 
     /**
@@ -70,8 +70,8 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      */
     childWidgets: {
       check: "Array",
-      init: [],
-    },
+      init: []
+    }
   },
 
   /*
@@ -98,17 +98,17 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
           container += subelement;
         } else {
           container +=
-            '<div class="widget_container' +
+            "<div class=\"widget_container" +
             (widget.getRowspanClass ? " " + widget.getRowspanClass() : "") +
             (widget.getContainerClass && widget.getContainerClass()
               ? " " + widget.getContainerClass()
               : "") +
             (widget.get$$type() === "break" ? " break_container" : "") + // special case for break widget
-            '" id="' +
+            "\" id=\"" +
             widget.getPath() +
-            '" data-type="' +
+            "\" data-type=\"" +
             widget.get$$type() +
-            '">' +
+            "\">" +
             subelement +
             "</div>";
         }
@@ -131,6 +131,6 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
         }
       }, this);
       return fragment;
-    },
-  },
+    }
+  }
 });

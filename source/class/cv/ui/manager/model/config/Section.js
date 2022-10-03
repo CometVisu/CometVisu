@@ -43,14 +43,14 @@ qx.Class.define("cv.ui.manager.model.config.Section", {
     name: {
       check: "String",
       event: "changeName",
-      init: "",
+      init: ""
     },
 
     options: {
       check: "qx.data.Array",
       deferredInit: true,
-      event: "changeOptions",
-    },
+      event: "changeOptions"
+    }
   },
 
   /*
@@ -71,6 +71,6 @@ qx.Class.define("cv.ui.manager.model.config.Section", {
       if (!found) {
         options.push(new cv.ui.manager.model.config.Option(key, value));
       }
-    },
-  },
+    }
+  }
 });

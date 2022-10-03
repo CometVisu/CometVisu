@@ -78,9 +78,9 @@ qx.Class.define("cv.plugins.Rss", {
         ssl: { default: false },
         linktarget: { default: "_new" },
         link: { default: true },
-        title: { default: true },
+        title: { default: true }
       };
-    },
+    }
   },
 
   /*
@@ -101,7 +101,7 @@ qx.Class.define("cv.plugins.Rss", {
     ssl: { init: false },
     linktarget: { init: "_new" },
     link: { init: true },
-    title: { init: true },
+    title: { init: true }
   },
 
   /*
@@ -120,9 +120,9 @@ qx.Class.define("cv.plugins.Rss", {
           ? "height:" + this.getHeight()
           : "";
       return (
-        '<div class="actor"><ul class="rss_inline" style="' +
+        "<div class=\"actor\"><ul class=\"rss_inline\" style=\"" +
         rssstyle +
-        '"></ul>'
+        "\"></ul>"
       );
     },
 
@@ -170,7 +170,7 @@ qx.Class.define("cv.plugins.Rss", {
         const showDate = this.getDate();
 
         feed.items.some((entry, i) => {
-          let elem = target.querySelector(':scope > li[data-row="' + i + '"]');
+          let elem = target.querySelector(":scope > li[data-row=\"" + i + "\"]");
           let a;
           let content;
           let date;
@@ -221,7 +221,7 @@ qx.Class.define("cv.plugins.Rss", {
           return i >= this.getLimit();
         });
       });
-    },
+    }
   },
 
   destruct() {
@@ -233,5 +233,5 @@ qx.Class.define("cv.plugins.Rss", {
     loader.addScripts("plugins/rss/rss-parser.min.js");
     cv.parser.pure.WidgetParser.addHandler("rss", cv.plugins.Rss);
     cv.ui.structure.WidgetFactory.registerClass("rss", statics);
-  },
+  }
 });

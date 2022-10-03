@@ -50,14 +50,14 @@ qx.Class.define("cv.io.mqtt.Client", {
     connected: {
       check: "Boolean",
       init: false,
-      event: "changeConnected",
+      event: "changeConnected"
     },
 
     server: {
       check: "String",
       nullable: true,
-      event: "changedServer",
-    },
+      event: "changedServer"
+    }
   },
 
   /*
@@ -127,7 +127,7 @@ qx.Class.define("cv.io.mqtt.Client", {
      *
      */
     subscribe(addresses, filters) {
-      addresses.forEach((value) => this._client.subscribe(value));
+      addresses.forEach(value => this._client.subscribe(value));
     },
 
     /**
@@ -167,7 +167,7 @@ qx.Class.define("cv.io.mqtt.Client", {
             message: param.errorMessage + "<br/>\nCode: " + param.errorCode,
             severity: "urgent",
             unique: true,
-            deletable: false,
+            deletable: false
           },
           "popup"
         );
@@ -177,7 +177,7 @@ qx.Class.define("cv.io.mqtt.Client", {
         reconnect: true,
         timeout: 10,
         onSuccess: onConnect,
-        onFailure: onFailure,
+        onFailure: onFailure
       };
 
       if (this._backendUrl.username !== "") {
@@ -217,7 +217,7 @@ qx.Class.define("cv.io.mqtt.Client", {
       } catch (e) {
         onFailure({
           errorMessage: e.toString(),
-          errorCode: "login -> _client.connect(" + this._backendUrl + ")",
+          errorCode: "login -> _client.connect(" + this._backendUrl + ")"
         });
       }
     },
@@ -319,6 +319,6 @@ qx.Class.define("cv.io.mqtt.Client", {
         this._client.disconnect();
       }
       this._client = null;
-    },
-  },
+    }
+  }
 });

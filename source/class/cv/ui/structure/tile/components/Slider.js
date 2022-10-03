@@ -31,32 +31,32 @@ qx.Class.define("cv.ui.structure.tile.components.Slider", {
   properties: {
     stepWidth: {
       check: "Number",
-      init: 5,
+      init: 5
     },
 
     min: {
       check: "Number",
       init: 1,
-      apply: "_applyMin",
+      apply: "_applyMin"
     },
 
     max: {
       check: "Number",
       init: 100,
-      apply: "_applyMax",
+      apply: "_applyMax"
     },
 
     showValue: {
       check: "Boolean",
       init: true,
-      apply: "_applyShowValue",
+      apply: "_applyShowValue"
     },
 
     throttleInterval: {
       check: "Number",
       init: 250,
-      apply: "_applyThrottleInterval",
-    },
+      apply: "_applyThrottleInterval"
+    }
   },
 
   /*
@@ -109,11 +109,11 @@ qx.Class.define("cv.ui.structure.tile.components.Slider", {
 
       const decreaseElement = element.querySelector(":scope > .decrease");
       if (decreaseElement) {
-        decreaseElement.addEventListener("click", (ev) => this.onDecrease());
+        decreaseElement.addEventListener("click", ev => this.onDecrease());
       }
       const increaseElement = element.querySelector(":scope > .increase");
       if (increaseElement) {
-        increaseElement.addEventListener("click", (ev) => this.onIncrease());
+        increaseElement.addEventListener("click", ev => this.onIncrease());
       }
     },
 
@@ -129,7 +129,7 @@ qx.Class.define("cv.ui.structure.tile.components.Slider", {
         // no throttling, direct call
         this.__throttled = {
           call: () => this.onInput(),
-          abort: () => {},
+          abort: () => {}
         };
       }
     },
@@ -187,16 +187,16 @@ qx.Class.define("cv.ui.structure.tile.components.Slider", {
       const ev = new CustomEvent("sendState", {
         detail: {
           value: value,
-          source: this,
-        },
+          source: this
+        }
       });
 
       this._writeAddresses
         .filter(
-          (addr) => !addr.hasAttribute("on") || addr.getAttribute("on") === on
+          addr => !addr.hasAttribute("on") || addr.getAttribute("on") === on
         )
-        .forEach((address) => address.dispatchEvent(ev));
-    },
+        .forEach(address => address.dispatchEvent(ev));
+    }
   },
 
   defer(QxClass) {
@@ -208,5 +208,5 @@ qx.Class.define("cv.ui.structure.tile.components.Slider", {
         }
       }
     );
-  },
+  }
 });

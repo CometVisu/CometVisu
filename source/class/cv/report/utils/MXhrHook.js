@@ -36,7 +36,7 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
   ******************************************************
   */
   statics: {
-    PENDING: {},
+    PENDING: {}
   },
 
   /*
@@ -71,7 +71,7 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
           method: this.getMethod(),
           headers: this._getAllRequestHeaders(),
           requestData: this.getRequestData(),
-          hash: hash,
+          hash: hash
         });
 
         if (!cv.report.utils.MXhrHook.PENDING[hash]) {
@@ -108,7 +108,7 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
             headers: headers,
             body: this.getTransport().responseText,
             hash: hash,
-            phase: "load",
+            phase: "load"
           });
         }
         this.__sendTime = null;
@@ -126,7 +126,7 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
           url: url,
           delay: delay,
           hash: hash,
-          phase: "abort",
+          phase: "abort"
         });
 
         // delete pending request
@@ -135,6 +135,6 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
           delete cv.report.utils.MXhrHook.PENDING[hash];
         }
       }
-    },
-  },
+    }
+  }
 });

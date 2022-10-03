@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
   members: {
     // overridden
     _getInnerDomString() {
-      return '<div class="actor"><div class="value"></div></div>';
+      return "<div class=\"actor\"><div class=\"value\"></div></div>";
     },
 
     /**
@@ -53,8 +53,7 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
       const value = cv.Transform.decode(this.getAddress()[address], data);
 
       let bg = window
-        .getComputedStyle(valElem)
-        ["background-color"].replace(/[a-zA-Z()\s]/g, "")
+        .getComputedStyle(valElem)["background-color"].replace(/[a-zA-Z()\s]/g, "")
         .split(/,/);
       if (bg.length !== 3) {
         bg = [0, 0, 0];
@@ -73,10 +72,10 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
 
       valElem.style["background-color"] =
         "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("rgb", statics);
-  },
+  }
 });

@@ -44,13 +44,13 @@ qx.Class.define("cv.ui.manager.control.ActionDispatcher", {
     focusedWidget: {
       check: "cv.ui.manager.IActionHandler",
       nullable: true,
-      apply: "_applyFocusedWidget",
+      apply: "_applyFocusedWidget"
     },
 
     main: {
       check: "cv.ui.manager.Main",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -121,7 +121,7 @@ qx.Class.define("cv.ui.manager.control.ActionDispatcher", {
       } else {
         this.warn("no action handler found for action: " + actionName);
       }
-    },
+    }
   },
 
   /*
@@ -131,5 +131,5 @@ qx.Class.define("cv.ui.manager.control.ActionDispatcher", {
   */
   destruct() {
     qx.event.message.Bus.subscribe("cv.manager.action.*", this._onAction, this);
-  },
+  }
 });

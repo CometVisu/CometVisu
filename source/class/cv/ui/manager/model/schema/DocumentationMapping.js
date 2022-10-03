@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.model.schema.DocumentationMapping", {
       "tile-element-backend":
         "/0.13/manual/config/structure-tile/elements/backend.html#tile-element-backend",
       "tile-widgets":
-        "/0.13/manual/config/structure-tile/index.html#tile-widgets",
-    },
-  },
+        "/0.13/manual/config/structure-tile/index.html#tile-widgets"
+    }
+  }
 });

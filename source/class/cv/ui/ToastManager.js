@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.ToastManager", {
     super();
     this.set({
       rootElementId: "toast-list",
-      messageElementId: "toast_",
+      messageElementId: "toast_"
     });
 
     this.setDelegate({
@@ -56,7 +56,7 @@ qx.Class.define("cv.ui.ToastManager", {
             message.duration
           );
         }
-      }.bind(this),
+      }.bind(this)
     });
 
     // as the Mixins constructor has not been called yet, the messages array has not been initialized
@@ -77,8 +77,8 @@ qx.Class.define("cv.ui.ToastManager", {
      */
     messageDuration: {
       check: "Number",
-      init: 5000,
-    },
+      init: 5000
+    }
   },
 
   /*
@@ -100,7 +100,7 @@ qx.Class.define("cv.ui.ToastManager", {
         this.__domElement = document.querySelector(this.getRootElementId());
         if (!this.__domElement) {
           this.__domElement = qx.dom.Element.create("div", {
-            id: this.getRootElementId(),
+            id: this.getRootElementId()
           });
         }
       }
@@ -112,9 +112,9 @@ qx.Class.define("cv.ui.ToastManager", {
           id: "ToastTemplate",
           type: "text/template",
           html:
-            '<div class="toast {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="' +
+            "<div class=\"toast {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\"" +
             this.getMessageElementId() +
-            '{{ id }}"><div class="content">{{&message}}</div></div>',
+            "{{ id }}\"><div class=\"content\">{{&message}}</div></div>"
         });
 
         document.body.appendChild(template);
@@ -138,7 +138,7 @@ qx.Class.define("cv.ui.ToastManager", {
       }
       // default is to delete the toast
       return this.deleteMessage(message.id);
-    },
+    }
   },
 
   /*
@@ -155,5 +155,5 @@ qx.Class.define("cv.ui.ToastManager", {
       this.__domElement.parentNode.removeChild(this.__domElement);
       this.__domElement = null;
     }
-  },
+  }
 });

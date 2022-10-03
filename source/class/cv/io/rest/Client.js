@@ -60,28 +60,28 @@ qx.Class.define("cv.io.rest.Client", {
         const config = {
           get: {
             method: "GET",
-            url: "/config/hidden/{section}/{key}",
+            url: "/config/hidden/{section}/{key}"
           },
 
           put: {
             method: "PUT",
-            url: "/config/hidden/{section}/{key}",
+            url: "/config/hidden/{section}/{key}"
           },
 
           post: {
             method: "POST",
-            url: "/config/hidden/{section}/{key}",
+            url: "/config/hidden/{section}/{key}"
           },
 
           delete: {
             method: "DELETE",
-            url: "/config/hidden/{section}/{key}",
+            url: "/config/hidden/{section}/{key}"
           },
 
           save: {
             method: "PUT",
-            url: "/config/hidden",
-          },
+            url: "/config/hidden"
+          }
         };
 
         this.__configFile = new qx.io.rest.Resource(config);
@@ -106,33 +106,33 @@ qx.Class.define("cv.io.rest.Client", {
         const config = {
           read: {
             method: "GET",
-            url: "/fs?path={path}",
+            url: "/fs?path={path}"
           },
 
           update: {
             method: "PUT",
-            url: "/fs?path={path}",
+            url: "/fs?path={path}"
           },
 
           create: {
             method: "POST",
-            url: "/fs?path={path}&type={type}",
+            url: "/fs?path={path}&type={type}"
           },
 
           delete: {
             method: "DELETE",
-            url: "/fs?path={path}&force={force}",
+            url: "/fs?path={path}&force={force}"
           },
 
           move: {
             method: "PUT",
-            url: "/fs/move?src={src}&target={target}",
+            url: "/fs/move?src={src}&target={target}"
           },
 
           checkEnvironment: {
             method: "GET",
-            url: "/fs/check",
-          },
+            url: "/fs/check"
+          }
         };
 
         this.__dirClient = new qx.io.rest.Resource(config);
@@ -185,33 +185,33 @@ qx.Class.define("cv.io.rest.Client", {
         const config = {
           designs: {
             method: "GET",
-            url: "/data/designs",
+            url: "/data/designs"
           },
 
           rrds: {
             method: "GET",
-            url: "/data/rrds",
+            url: "/data/rrds"
           },
 
           addresses: {
             method: "GET",
-            url: "/data/addresses",
+            url: "/data/addresses"
           },
 
           influxdbs: {
             method: "GET",
-            url: "/data/influxdbs?auth={auth}",
+            url: "/data/influxdbs?auth={auth}"
           },
 
           influxdbfields: {
             method: "GET",
-            url: "/data/influxdbfields?auth={auth}&measurement={measurement}",
+            url: "/data/influxdbfields?auth={auth}&measurement={measurement}"
           },
 
           influxdbtags: {
             method: "GET",
-            url: "/data/influxdbtags?auth={auth}&measurement={measurement}",
-          },
+            url: "/data/influxdbtags?auth={auth}&measurement={measurement}"
+          }
         };
 
         this.__dpClient = new qx.io.rest.Resource(config);
@@ -246,7 +246,7 @@ qx.Class.define("cv.io.rest.Client", {
       }, this);
 
       // add the general listeners
-      client.addListener("success", (ev) => {
+      client.addListener("success", ev => {
         const req = ev.getRequest();
         const id = parseInt(req.toHashCode(), 10);
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
@@ -255,7 +255,7 @@ qx.Class.define("cv.io.rest.Client", {
         }
       });
 
-      client.addListener("error", (ev) => {
+      client.addListener("error", ev => {
         const req = ev.getRequest();
         const id = parseInt(req.toHashCode(), 10);
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
@@ -266,7 +266,7 @@ qx.Class.define("cv.io.rest.Client", {
           } else {
             error = {
               status: ev.getRequest().getStatus(),
-              statusText: ev.getRequest().getStatusText(),
+              statusText: ev.getRequest().getStatusText()
             };
           }
           qx.log.Logger.error(this, error);
@@ -302,6 +302,6 @@ qx.Class.define("cv.io.rest.Client", {
           qx.locale.Manager.tr("Error saving file")
         );
       }
-    },
-  },
+    }
+  }
 });

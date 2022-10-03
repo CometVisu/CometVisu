@@ -63,7 +63,7 @@ qx.Class.define("cv.parser.pure.widgets.InfoTrigger", {
           target: "shortDownValue",
           transform(value) {
             return value ? parseFloat(value) : null;
-          },
+          }
         },
         downlabel: { target: "downLabel" },
         upvalue: { target: "upValue", transform: parseFloat, default: 0 },
@@ -71,25 +71,25 @@ qx.Class.define("cv.parser.pure.widgets.InfoTrigger", {
           target: "shortUpValue",
           transform(value) {
             return value ? parseFloat(value) : null;
-          },
+          }
         },
         uplabel: { target: "upLabel" },
         shorttime: {
           target: "shortThreshold",
           transform: parseFloat,
-          default: -1,
+          default: -1
         },
         "send-long-on-release": {
           target: "sendLongOnRelease",
           transform(value) {
             return value ? value === "true" : true;
-          },
+          }
         },
         change: {
           target: "isAbsolute",
           transform(value) {
             return (value || "relative") === "absolute";
-          },
+          }
         },
 
         min: { transform: parseFloat, default: 0 },
@@ -99,19 +99,19 @@ qx.Class.define("cv.parser.pure.widgets.InfoTrigger", {
           default: "left",
           transform(value) {
             return ["middle", "right"].includes(value) ? value : "left";
-          },
-        },
+          }
+        }
       };
     },
 
     makeAddressListFn(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [true, variant === "short" ? 1 : variant === "button" ? 2 : 1 | 2];
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("infotrigger", statics);
-  },
+  }
 });

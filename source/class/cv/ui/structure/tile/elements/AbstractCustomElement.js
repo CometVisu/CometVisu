@@ -43,8 +43,8 @@ qx.Class.define("cv.ui.structure.tile.elements.AbstractCustomElement", {
       check: "Boolean",
       init: false,
       apply: "_applyConnected",
-      event: "changeConnected",
-    },
+      event: "changeConnected"
+    }
   },
 
   /*
@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.structure.tile.elements.AbstractCustomElement", {
 
     getElement() {
       return this._element;
-    },
+    }
   },
 
   /*
@@ -85,10 +85,10 @@ qx.Class.define("cv.ui.structure.tile.elements.AbstractCustomElement", {
   */
   destruct() {
     this._element = null;
-  },
+  }
 });
 
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable-next-line no-redeclare */
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();

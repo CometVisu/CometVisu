@@ -63,14 +63,14 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-file-contextmenu",
+      init: "cv-file-contextmenu"
     },
 
     /* This flag enables the event handling for this menu */
     active: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -104,12 +104,12 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
         } else {
           this.getChildControl("new-file-button").set({
             enabled: folder && !isBackup ? folder.isWriteable() : false,
-            visibility: "visible",
+            visibility: "visible"
           });
 
           this.getChildControl("new-folder-button").set({
             enabled: folder && !isBackup ? folder.isWriteable() : false,
-            visibility: "visible",
+            visibility: "visible"
           });
         }
         this.getChildControl("clone-file-button").setVisibility(
@@ -245,7 +245,7 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
       } else {
         this.getChildControl("delete-button").set({
           label: this.tr("Delete"),
-          enabled: false,
+          enabled: false
         });
 
         this.getChildControl("replace-button").exclude();
@@ -302,7 +302,7 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
         const handlerId = ev.getTarget().getUserData("handlerId");
         qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
           file: this._selectedNode,
-          handler: handlerId,
+          handler: handlerId
         });
       }
     },
@@ -323,7 +323,7 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
             context: this,
             value: this._selectedNode.getName(),
             caption: this.tr("Rename file"),
-            filter: /[\w\d_\-\.\s]/,
+            filter: /[\w\d_\-\.\s]/
           });
         }
         this._renameDialog.show();
@@ -357,7 +357,7 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
     _onClone() {
       if (this._selectedNode && this.isActive()) {
         qx.event.message.Bus.dispatchByName("cv.manager.action.clone", {
-          file: this._selectedNode,
+          file: this._selectedNode
         });
       }
     },
@@ -365,7 +365,7 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
     _onConvert() {
       if (this._selectedNode && this.isActive()) {
         qx.event.message.Bus.dispatchByName("cv.manager.action.convertToTile", {
-          file: this._selectedNode,
+          file: this._selectedNode
         });
       }
     },
@@ -528,7 +528,7 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -540,5 +540,5 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
     this._commandGroup = null;
     this._renameDialog = null;
     this._disposeObjects("_dateFormat", "_timeFormat");
-  },
+  }
 });

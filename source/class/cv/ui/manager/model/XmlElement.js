@@ -68,10 +68,10 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
   statics: {
     entityMap: {
       "&": "&amp;",
-      '"': "&quot;",
+      "\"": "&quot;",
       "'": "&#39;",
-      "`": "&#x60;",
-    },
+      "`": "&#x60;"
+    }
   },
 
   /*
@@ -84,45 +84,45 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
     editor: {
       check: "cv.ui.manager.editor.Tree",
       nullable: true,
-      event: "changeEditor",
+      event: "changeEditor"
     },
 
     schemaElement: {
       check: "cv.ui.manager.model.schema.Element",
-      apply: "_applySchemaElement",
+      apply: "_applySchemaElement"
     },
 
     name: {
       check: "String",
       deferredInit: true,
       event: "changeName",
-      apply: "updateDisplayName",
+      apply: "updateDisplayName"
     },
 
     displayName: {
       check: "String",
       init: "",
-      event: "changeDisplayName",
+      event: "changeDisplayName"
     },
 
     open: {
       check: "Boolean",
       event: "changeOpen",
       init: false,
-      apply: "_onOpen",
+      apply: "_onOpen"
     },
 
     loaded: {
       check: "Boolean",
       event: "changeLoaded",
-      init: false,
+      init: false
     },
 
     children: {
       check: "qx.data.Array",
       event: "changeChildren",
       apply: "_applyEventPropagation",
-      deferredInit: true,
+      deferredInit: true
     },
 
     textContent: {
@@ -130,7 +130,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
       nullable: true,
       apply: "_applyTextContent",
       event: "changeTextContent",
-      validate: "_validateTextContent",
+      validate: "_validateTextContent"
     },
 
     /**
@@ -139,7 +139,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
     temporary: {
       check: "Boolean",
       init: false,
-      event: "changeTemporary",
+      event: "changeTemporary"
     },
 
     /**
@@ -149,32 +149,32 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
       check: "Boolean",
       init: true,
       event: "changeValid",
-      apply: "_applyValid",
+      apply: "_applyValid"
     },
 
     invalidMessage: {
       check: "String",
       init: "",
-      event: "changeInvalidMessage",
+      event: "changeInvalidMessage"
     },
 
     status: {
       check: ["error", "valid", "comment"],
       init: "valid",
-      event: "changeStatus",
+      event: "changeStatus"
     },
 
     editable: {
       check: "Boolean",
       init: true,
       event: "changeEditable",
-      apply: "_applyEditable",
+      apply: "_applyEditable"
     },
 
     sortable: {
       check: "Boolean",
       init: true,
-      event: "changeSortable",
+      event: "changeSortable"
     },
 
     /**
@@ -183,38 +183,38 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
     deletable: {
       check: "Boolean",
       init: true,
-      event: "changeDeletable",
+      event: "changeDeletable"
     },
 
     modified: {
       check: "Boolean",
       init: false,
-      apply: "_applyModified",
+      apply: "_applyModified"
     },
 
     showEditButton: {
       check: "Boolean",
       init: true,
-      event: "changeShowEditButton",
+      event: "changeShowEditButton"
     },
 
     parent: {
       check: "cv.ui.manager.model.XmlElement",
-      nullable: true,
+      nullable: true
     },
 
     // icon to show in the tree
     icon: {
       check: "String",
       nullable: true,
-      event: "changeIcon",
+      event: "changeIcon"
     },
 
     dragging: {
       check: "Boolean",
       init: false,
-      event: "changeDragging",
-    },
+      event: "changeDragging"
+    }
   },
 
   /*
@@ -331,7 +331,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           if (this.getSchemaElement().isTextContentRequired()) {
             const existing = parent
               .getChildren()
-              .filter((child) => child.isTextNode()).length;
+              .filter(child => child.isTextNode()).length;
             this.setDeletable(existing > 1);
           } else {
             this.setDeletable(true);
@@ -348,7 +348,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
               if (bounds) {
                 const existing = parent
                   .getChildren()
-                  .filter((child) => child.getName() === this.getName()).length;
+                  .filter(child => child.getName() === this.getName()).length;
                 // check if we can afford to delete one
                 deletable = bounds.min <= existing - 1;
               } else {
@@ -376,8 +376,8 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           {
             index: parent.getChildren().indexOf(this),
             parent: parent,
-            child: this,
-          },
+            child: this
+          }
         ];
 
         this._node.remove();
@@ -446,8 +446,8 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           parent: targetParent,
           child: this,
           index:
-            targetChildren.indexOf(target) + (position === "after" ? 1 : 0),
-        },
+            targetChildren.indexOf(target) + (position === "after" ? 1 : 0)
+        }
       ];
 
       if (
@@ -495,8 +495,8 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           oldParent: parent,
           parent: newParent,
           child: this,
-          index: index,
-        },
+          index: index
+        }
       ];
 
       // save old target index because we are moving inside the same parent, and the target index might change after removing
@@ -572,7 +572,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           if (!this.isLoaded()) {
             this.load();
           }
-          this.getChildren().forEach((child) => {
+          this.getChildren().forEach(child => {
             if (
               !Object.prototype.hasOwnProperty.call(
                 countExisting,
@@ -584,7 +584,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
             countExisting[child.getName()]++;
           });
 
-          Object.keys(allowed).forEach((elementName) => {
+          Object.keys(allowed).forEach(elementName => {
             if (excludeComment === true && elementName === "#comment") {
               return;
             }
@@ -594,7 +594,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
                   // is a mixed content has only one text child and no other childs, we do not allow another text child -> avoid direct text siblings
                   let textNodes = 0;
                   let otherNodes = 0;
-                  Object.keys(countExisting).forEach((key) => {
+                  Object.keys(countExisting).forEach(key => {
                     if (key === "#text" || key === "#cdata-section") {
                       textNodes += countExisting[key];
                     } else {
@@ -812,8 +812,8 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
               {
                 index: index,
                 parent: this,
-                child: xmlElement,
-              },
+                child: xmlElement
+              }
             ];
 
             const change = new cv.ui.manager.model.ElementChange(
@@ -867,7 +867,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
             if (!allowedAttributes[attr.name].isValueValid(attr.value)) {
               errors.push({
                 attribute: attr.name,
-                error: qx.locale.Manager.tr("Invalid value"),
+                error: qx.locale.Manager.tr("Invalid value")
               });
             }
           } else {
@@ -876,39 +876,39 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
               error: qx.locale.Manager.tr(
                 "Attribute '%1' not allowed",
                 attr.name
-              ),
+              )
             });
           }
         }
         // check for missing required attributes
         Object.keys(allowedAttributes)
-          .filter((name) => !allowedAttributes[name].isOptional())
-          .forEach((name) => {
+          .filter(name => !allowedAttributes[name].isOptional())
+          .forEach(name => {
             if (!this._node.hasAttribute(name)) {
               errors.push({
                 attribute: name,
                 error: qx.locale.Manager.tr(
                   "Attribute '%1' is required but missing",
                   name
-                ),
+                )
               });
             }
           });
         if (schemaElement.isTextContentRequired()) {
           // check if we have at least one non empty #text child
           const found = this.getChildren().some(
-            (child) =>
+            child =>
               child.isTextNode() && child.getNode().nodeValue.trim() !== ""
           );
           if (!found) {
             errors.push({
               attribute: "#text",
-              error: qx.locale.Manager.tr("Text content is missing"),
+              error: qx.locale.Manager.tr("Text content is missing")
             });
           }
         }
         if (schemaElement.isTextContentAllowed()) {
-          this.getChildren().forEach((child) => {
+          this.getChildren().forEach(child => {
             if (child.isTextNode()) {
               child.load();
               child.setValid(schemaElement.isValueValid(child.getText()));
@@ -920,7 +920,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
             }
           });
         }
-        this.setInvalidMessage(errors.map((err) => err.error).join("<br/>"));
+        this.setInvalidMessage(errors.map(err => err.error).join("<br/>"));
         this.setValid(errors.length === 0);
       }
     },
@@ -979,7 +979,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
         changed: changed,
         attribute: nodeName || "#text",
         value: newValue,
-        old: oldValue,
+        old: oldValue
       };
     },
 
@@ -1039,7 +1039,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           changed: changed,
           attribute: name,
           value: newValue,
-          old: oldValue,
+          old: oldValue
         };
       } else if (
         (this._node.nodeType === Node.TEXT_NODE && name === "#text") ||
@@ -1058,7 +1058,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           changed: changed,
           attribute: name,
           value: value,
-          old: oldValue,
+          old: oldValue
         };
       }
       return null;
@@ -1086,7 +1086,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
       const isTextNode =
         this.getName() === "#text" || this.getName() === "#cdata-section";
       const parent = this.getParent();
-      Object.keys(data).forEach((attrName) => {
+      Object.keys(data).forEach(attrName => {
         if (isTextNode && !attrName.startsWith("#")) {
           // special mode for editing text content from a data provider with hints, those hints must be applied to the parent
           change = parent.setAttribute(attrName, data[attrName]);
@@ -1117,7 +1117,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
                 changed: true,
                 attribute: attrName,
                 value: data[attrName],
-                old: oldValue,
+                old: oldValue
               });
 
               this.load(true);
@@ -1130,7 +1130,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
               changed: true,
               attribute: attrName,
               value: data[attrName],
-              old: oldValue,
+              old: oldValue
             });
 
             this.load(true);
@@ -1173,7 +1173,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
       schemaElement.bind("sortable", this, "sortable", {
         converter: function (value) {
           return this.isEditable() && value;
-        }.bind(this),
+        }.bind(this)
       });
     },
 
@@ -1194,13 +1194,13 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
         if (this._node.nodeType === Node.ELEMENT_NODE) {
           if (this._node.hasAttribute("name")) {
             const nameAttr = this._node.getAttribute("name");
-            displayName += ' "' + nameAttr + '"';
+            displayName += " \"" + nameAttr + "\"";
           } else if (
             this.getSchemaElement().getSchema().isRoot(this.getName()) &&
             this._node.hasAttribute("design")
           ) {
             const designAttr = this._node.getAttribute("design");
-            displayName += ' "' + designAttr + '"';
+            displayName += " \"" + designAttr + "\"";
           }
         } else if (
           (this._node.nodeType === Node.TEXT_NODE ||
@@ -1483,7 +1483,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
 
     _updateChildrenDeletableFlags() {
       if (this.isEditable()) {
-        this.getChildren().forEach((child) => {
+        this.getChildren().forEach(child => {
           if (child.isElement() || child.isTextNode()) {
             child.updateDeletable();
           }
@@ -1522,7 +1522,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           let id = parent
             .getChildren()
             .filter(
-              (child) =>
+              child =>
                 child.getNode().nodeType === Node.ELEMENT_NODE &&
                 child.getName() !== "layout"
             )
@@ -1569,7 +1569,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
         this.getSchemaElement(),
         this.getEditor()
       );
-    },
+    }
   },
 
   /*
@@ -1583,5 +1583,5 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
     this._initialAttributes = null;
     this.__addableChildren = null;
     this._disposeObjects("_schemaElement");
-  },
+  }
 });

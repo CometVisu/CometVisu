@@ -49,11 +49,11 @@ qx.Class.define("cv.parser.pure.widgets.WidgetInfoAction", {
       data.containerClass = data.$$type;
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
-    },
+    }
   },
 
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("widgetinfo", statics);
     cv.parser.pure.WidgetParser.addHandler("widgetaction", statics);
-  },
+  }
 });

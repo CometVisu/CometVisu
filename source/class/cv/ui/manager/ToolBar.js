@@ -48,7 +48,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
   ***********************************************
   */
   events: {
-    reload: "qx.event.type.Event",
+    reload: "qx.event.type.Event"
   },
 
   /*
@@ -59,22 +59,22 @@ qx.Class.define("cv.ui.manager.ToolBar", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-toolbar",
+      init: "cv-toolbar"
     },
 
     folder: {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
       apply: "_applyFolder",
-      event: "changeFolder",
+      event: "changeFolder"
     },
 
     file: {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
       apply: "_applyFile",
-      event: "changeFile",
-    },
+      event: "changeFile"
+    }
   },
 
   /*
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
 
       const createPart = new qx.ui.toolbar.Part();
       createPart.set({
-        marginLeft: 0,
+        marginLeft: 0
       });
 
       this.add(createPart);
@@ -128,7 +128,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
               return folder === cv.ui.manager.model.FileItem.ROOT
                 ? "visible"
                 : "excluded";
-            },
+            }
           });
 
           newButton.addListener("execute", () => {
@@ -181,7 +181,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
         this.bind("file", deleteSelection, "enabled", {
           converter(file) {
             return !!file && file.isWriteable() && !file.isFake();
-          },
+          }
         });
 
         this.add(deleteSelection);
@@ -201,7 +201,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
         this.bind("file", download, "enabled", {
           converter(file) {
             return !!file && file.getType() === "file" && !file.isFake();
-          },
+          }
         });
 
         createPart.add(download);
@@ -223,7 +223,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
         this.bind("file", checkConfig, "enabled", {
           converter(file) {
             return !!file && file.isConfigFile();
-          },
+          }
         });
 
         this.add(checkConfig);
@@ -266,7 +266,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
           this._uploadManager.resetFolder();
         }
       }
-    },
+    }
   },
 
   /*
@@ -278,5 +278,5 @@ qx.Class.define("cv.ui.manager.ToolBar", {
     this._menuButtonConfig = null;
     this._uploadManager = null;
     this.__menuBar = null;
-  },
+  }
 });

@@ -83,7 +83,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
      */
     anonymous: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     flavour: { check: "String", init: "", nullable: true },
@@ -103,10 +103,10 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
       check: "Boolean",
       init: false,
       event: "changeVisible",
-      apply: "_applyVisible",
+      apply: "_applyVisible"
     },
 
-    responsive: { check: "Boolean", init: false },
+    responsive: { check: "Boolean", init: false }
   },
 
   /*
@@ -115,7 +115,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
   ******************************************************
   */
   events: {
-    domReady: "qx.event.type.Event",
+    domReady: "qx.event.type.Event"
   },
 
   /*
@@ -305,7 +305,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
 
         this.__pointerDownPoint = {
           x: ev.getDocumentLeft(),
-          y: ev.getDocumentTop(),
+          y: ev.getDocumentTop()
         };
 
         // also listen to move events to detect if the pointer is moved away from the widget (or scrolled)
@@ -446,9 +446,9 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
      */
     getDomString() {
       return (
-        '<div class="' +
+        "<div class=\"" +
         this.getClasses() +
-        '" ' +
+        "\" " +
         this.getStyle() +
         ">" +
         this.getLabel() +
@@ -463,7 +463,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
      */
     _getInnerDomString() {
       return "";
-    },
+    }
   },
 
   /*
@@ -478,5 +478,5 @@ qx.Class.define("cv.ui.structure.pure.AbstractWidget", {
       this._onPointerUp,
       this
     );
-  },
+  }
 });

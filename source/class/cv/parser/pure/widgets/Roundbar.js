@@ -78,7 +78,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
           endarrow: self.deg2rad(data.endarrow), // * Math.PI / 180,
           width: parseFloat(elem.getAttribute("width") || data.width),
           thickness: elem.getAttribute("thickness") || data.thickness,
-          style: elem.getAttribute("style") || "",
+          style: elem.getAttribute("style") || ""
         });
       });
       return data;
@@ -103,7 +103,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
               const startEnd = components.shift().split("...");
               const thisRange = {
                 start: parseFloat(startEnd[0]),
-                end: parseFloat(startEnd[1]),
+                end: parseFloat(startEnd[1])
               };
 
               if (isNaN(thisRange.end)) {
@@ -124,7 +124,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
               retval.push(thisRange);
             });
             return retval;
-          },
+          }
         },
 
         minorradius: { default: 0.0, transform: parseFloat },
@@ -179,12 +179,12 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
                     perpendicular: 2,
                     roundstart: 3,
                     roundmiddle: 4,
-                    roundend: 5,
-                  }[orientation] || 0,
+                    roundend: 5
+                  }[orientation] || 0
               });
             });
             return retval;
-          },
+          }
         },
 
         labelstyle: { default: "" },
@@ -196,7 +196,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
           default: 0,
           transform(t) {
             return { angle: 0, distance: 1 }[t] || 0;
-          },
+          }
         },
 
         spacing: { default: 10.0, transform: parseFloat },
@@ -204,7 +204,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
           default: "true",
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         fontsize: { default: 40, transform: parseFloat },
@@ -224,7 +224,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
                   l: parseFloat(parts[0]),
                   u: parseFloat(parts[0]),
                   r: parseFloat(parts[0]),
-                  d: parseFloat(parts[0]),
+                  d: parseFloat(parts[0])
                 };
 
               case 2: // horizontal;vertical
@@ -232,7 +232,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
                   l: parseFloat(parts[0]),
                   u: parseFloat(parts[1]),
                   r: parseFloat(parts[0]),
-                  d: parseFloat(parts[1]),
+                  d: parseFloat(parts[1])
                 };
 
               case 4: // left;up;right;down
@@ -240,18 +240,18 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
                   l: parseFloat(parts[0]),
                   u: parseFloat(parts[1]),
                   r: parseFloat(parts[2]),
-                  d: parseFloat(parts[3]),
+                  d: parseFloat(parts[3])
                 };
             }
-          },
+          }
         },
 
         debug: {
           default: false,
           transform(v) {
             return v === "true";
-          },
-        },
+          }
+        }
       };
 
       const thisPreset =
@@ -262,7 +262,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
             linespace: 25,
             textanchor: "end",
             textx: 60,
-            texty: 40,
+            texty: 40
           },
 
           B: {
@@ -272,7 +272,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
             linespace: -25,
             textanchor: "end",
             textx: 60,
-            texty: -10,
+            texty: -10
           },
 
           bridge: {
@@ -280,8 +280,8 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
             end: 0,
             textanchor: "middle",
             textx: 0,
-            texty: 0,
-          },
+            texty: 0
+          }
         }[preset] || {};
 
       for (let key in thisPreset) {
@@ -289,11 +289,11 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
       }
 
       return retObj;
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("roundbar", statics);
-  },
+  }
 });

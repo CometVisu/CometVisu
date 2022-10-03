@@ -42,19 +42,19 @@ qx.Class.define("cv.ui.PopupHandler", {
       cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
         "cv.config.error": {
           type: "error",
-          icon: "message_attention",
+          icon: "message_attention"
         },
 
         "cv.error": {
           type: "error",
-          icon: "message_attention",
+          icon: "message_attention"
         },
 
         "cv.client.connection": {
           type: "error",
           icon: "message_attention",
-          deletable: true,
-        },
+          deletable: true
+        }
       });
 
       qx.event.message.Bus.subscribe(
@@ -89,7 +89,7 @@ qx.Class.define("cv.ui.PopupHandler", {
         iconClasses: message.iconClasses,
         actions: message.actions,
         progress: message.progress,
-        type: "notification",
+        type: "notification"
       };
 
       // popups are always unique
@@ -235,11 +235,11 @@ qx.Class.define("cv.ui.PopupHandler", {
       }
 
       return { x: 0, y: 0 }; // sanity return
-    },
+    }
   },
 
   defer(statics) {
     // qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
     statics.init();
-  },
+  }
 });

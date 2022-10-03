@@ -67,7 +67,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
       const ajaxRequest = new qx.io.request.Xhr(uri);
       ajaxRequest.set({
         accept: "application/xml",
-        cache: !cv.Config.forceReload,
+        cache: !cv.Config.forceReload
       });
 
       ajaxRequest.addListenerOnce("success", function (e) {
@@ -79,7 +79,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
           let text = e.getTarget().getResponseText();
           text = text.replace(
             "<templates",
-            '<templates xmlns="http://www.w3.org/1999/xhtml"'
+            "<templates xmlns=\"http://www.w3.org/1999/xhtml\""
           );
           const parser = new DOMParser();
           htmlContent = parser.parseFromString(text, "text/xml");
@@ -91,7 +91,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
         // register custom elements for templates in this document
         cv.Application.structureController.registerTemplates(content);
       });
-      ajaxRequest.addListener("statusError", (e) => {
+      ajaxRequest.addListener("statusError", e => {
         const status = e.getTarget().getTransport().status;
         if (!qx.util.Request.isSuccessful(status)) {
           this.handleError("filenotfound", ajaxRequest.getUrl());
@@ -121,7 +121,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
           break;
         default:
           message = qx.locale.Manager.tr(
-            'Unhandled error of type "%1"',
+            "Unhandled error of type \"%1\"",
             textStatus
           )
             .translate()
@@ -136,7 +136,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
       const notification = {
         topic: "cv.error",
         title: title,
-        message: message,
+        message: message
       };
 
       if (actions) {
@@ -147,7 +147,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
         notification
       );
       this.error(this, message.toString());
-    },
+    }
   },
 
   defer(Clazz) {
@@ -159,5 +159,5 @@ qx.Class.define("cv.ui.structure.tile.elements.Loader", {
         }
       }
     );
-  },
+  }
 });

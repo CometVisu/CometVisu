@@ -152,7 +152,7 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
       this.currentPageUnavailableHeight = 0;
       const emptyRect = {
         top: 0,
-        bottom: 0,
+        bottom: 0
       };
 
       const navbarVisibility = this.getCurrentPageNavbarVisibility();
@@ -268,7 +268,7 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
           "#navbarLeft",
           pageSelector,
           "#navbarRight",
-          "#navbarBottom",
+          "#navbarBottom"
         ];
       } else {
         selectors = [pageSelector];
@@ -360,6 +360,6 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
             break;
         }
       }
-    },
-  },
+    }
+  }
 });

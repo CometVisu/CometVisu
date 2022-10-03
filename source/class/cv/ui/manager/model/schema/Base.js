@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
     this.setSchema(schema);
     this._bounds = {
       min: undefined,
-      max: undefined,
+      max: undefined
     };
 
     this._allowedElements = {};
@@ -59,22 +59,22 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      */
     type: {
       check: "String",
-      init: "unknown",
+      init: "unknown"
     },
 
     elementsHaveOrder: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     schema: {
       check: "cv.ui.manager.model.Schema",
-      nullable: false,
+      nullable: false
     },
 
     node: {
       check: "Node",
-      nullable: false,
+      nullable: false
     },
 
     /**
@@ -82,8 +82,8 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      * @var array
      */
     subGroupings: {
-      check: "Array",
-    },
+      check: "Array"
+    }
   },
 
   /*
@@ -129,7 +129,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
       let max = n.hasAttribute("maxOccurs") ? n.getAttribute("maxOccurs") : 1; // default is 1
       this._bounds = {
         min: parseInt(min),
-        max: max === "unbounded" ? Number.POSITIVE_INFINITY : parseInt(max),
+        max: max === "unbounded" ? Number.POSITIVE_INFINITY : parseInt(max)
       };
     },
 
@@ -211,7 +211,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
       }
 
       // elements of our sub-groupings, if any
-      this._subGroupings.forEach((grouping) => {
+      this._subGroupings.forEach(grouping => {
         const subRequiredElements = grouping.getRequiredElements();
 
         if (subRequiredElements.length > 0) {
@@ -237,7 +237,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
       }
 
       // also the elements allowed by our sub-choices etc.
-      this._subGroupings.forEach((grouping) => {
+      this._subGroupings.forEach(grouping => {
         Object.assign(myAllowedElements, grouping.getAllowedElements());
       });
 
@@ -309,6 +309,6 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
       }
 
       return new RegExp(input, modifiers);
-    },
-  },
+    }
+  }
 });

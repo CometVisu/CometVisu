@@ -45,29 +45,29 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   properties: {
     title: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     url: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     type: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     action: {
       check: "Function",
       nullable: true,
-      transform: "_transformAction",
+      transform: "_transformAction"
     },
 
     hidden: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -118,7 +118,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       const actionButton = qx.dom.Element.create("button", {
         class: "action " + this.getType(),
         text: this.getTitle(),
-        style: this.getStyle(),
+        style: this.getStyle()
       });
 
       actionButton.$$handler = this;
@@ -130,7 +130,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
         this
       );
       return actionButton;
-    },
+    }
   },
 
   defer() {
@@ -138,5 +138,5 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       "link",
       cv.core.notifications.actions.Link
     );
-  },
+  }
 });

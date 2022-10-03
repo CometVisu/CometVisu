@@ -37,7 +37,7 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
   ******************************************************
   */
   properties: {
-    variable: { check: "String", nullable: true, apply: "_applyVariable" },
+    variable: { check: "String", nullable: true, apply: "_applyVariable" }
   },
 
   /*
@@ -57,7 +57,7 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
             "/wg-plugindb.php?name=" + value
           );
           this.__request.set({
-            accept: "application/json",
+            accept: "application/json"
           });
 
           this.__request.addListener("success", this._onSuccess, this);
@@ -91,7 +91,7 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
 
     // overridden
     _getInnerDomString() {
-      return '<div class="actor"><div class="value">-</div></div>';
+      return "<div class=\"actor\"><div class=\"value\">-</div></div>";
     },
 
     /**
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
       if (this.__request) {
         this.__request.send();
       }
-    },
+    }
   },
 
   /*
@@ -115,5 +115,5 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("wgplugin_info", statics);
-  },
+  }
 });

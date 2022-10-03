@@ -36,7 +36,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     value: {
       nullable: true,
       init: null,
-      event: "changeValue",
+      event: "changeValue"
     },
 
     /**
@@ -44,7 +44,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     basicValue: {
       nullable: true,
-      init: null,
+      init: null
     },
 
     /**
@@ -53,8 +53,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     format: {
       check: "String",
       init: "",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -111,7 +111,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
         }
       }
       return value;
-    },
+    }
   },
 
   /*
@@ -255,7 +255,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     defaultValue2DOM(value, targetElement, modifyFn = this._applyValueToDom) {
       if (Array.isArray(value)) {
-        value.forEach((v) => this.defaultValue2DOM(v, targetElement, modifyFn));
+        value.forEach(v => this.defaultValue2DOM(v, targetElement, modifyFn));
         return;
       }
       if (value instanceof Node) {
@@ -314,6 +314,6 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       } else {
         targetElement.innerHTML += value;
       }
-    },
-  },
+    }
+  }
 });

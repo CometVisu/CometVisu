@@ -88,14 +88,14 @@ qx.Class.define("cv.parser.pure.widgets.Slide", {
           default: false,
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("slide", statics);
-  },
+  }
 });

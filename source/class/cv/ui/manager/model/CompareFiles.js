@@ -42,36 +42,36 @@ qx.Class.define("cv.ui.manager.model.CompareFiles", {
   properties: {
     originalFile: {
       check: "cv.ui.manager.model.FileItem",
-      event: "changeOriginal",
+      event: "changeOriginal"
     },
 
     modifiedFile: {
       check: "cv.ui.manager.model.FileItem",
       event: "changeModifiedFile",
-      apply: "_applyModifiedFile",
+      apply: "_applyModifiedFile"
     },
 
     permanent: {
       check: "Boolean",
-      init: true,
+      init: true
     },
 
     name: {
       check: "String",
       init: "",
-      event: "changeName",
+      event: "changeName"
     },
 
     type: {
       check: "String",
-      init: "file",
+      init: "file"
     },
 
     modified: {
       check: "Boolean",
       init: false,
-      event: "changeModified",
-    },
+      event: "changeModified"
+    }
   },
 
   /*
@@ -146,6 +146,6 @@ qx.Class.define("cv.ui.manager.model.CompareFiles", {
         "+" +
         this.getModifiedFile().getFullPath()
       );
-    },
-  },
+    }
+  }
 });

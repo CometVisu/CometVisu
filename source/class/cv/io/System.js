@@ -53,7 +53,7 @@ qx.Class.define("cv.io.System", {
     connected: {
       check: "Boolean",
       init: true,
-      event: "changeConnected",
+      event: "changeConnected"
     },
 
     /**
@@ -62,8 +62,8 @@ qx.Class.define("cv.io.System", {
     server: {
       check: "String",
       nullable: true,
-      event: "changedServer",
-    },
+      event: "changedServer"
+    }
   },
 
   /*
@@ -207,6 +207,6 @@ qx.Class.define("cv.io.System", {
     },
     getProviderConvertFunction(name, format) {
       return null;
-    },
-  },
+    }
+  }
 });

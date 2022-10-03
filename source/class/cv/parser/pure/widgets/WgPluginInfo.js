@@ -57,17 +57,17 @@ qx.Class.define("cv.parser.pure.widgets.WgPluginInfo", {
 
     getAttributeToPropertyMappings() {
       return {
-        variable: {},
+        variable: {}
       };
     },
     getDefaultClasses(type) {
       // additional info class
       return "widget clearfix info " + type.toLowerCase();
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("wgplugin_info", statics);
-  },
+  }
 });

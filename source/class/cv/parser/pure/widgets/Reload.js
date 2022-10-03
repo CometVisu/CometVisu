@@ -48,11 +48,11 @@ qx.Class.define("cv.parser.pure.widgets.Reload", {
       );
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("reload", statics);
-  },
+  }
 });

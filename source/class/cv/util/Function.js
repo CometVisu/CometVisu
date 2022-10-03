@@ -72,8 +72,8 @@ qx.Class.define("cv.util.Function", {
             timeout = window.setTimeout(later, remaining);
           }
           return result;
-        },
+        }
       };
-    },
-  },
+    }
+  }
 });

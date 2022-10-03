@@ -44,13 +44,13 @@ qx.Class.define("cv.ui.manager.viewer.SvgIcon", {
     name: {
       check: "String",
       nullable: true,
-      apply: "_applyName",
+      apply: "_applyName"
     },
 
     appearance: {
       refine: true,
-      init: "cv-svg-icon",
-    },
+      init: "cv-svg-icon"
+    }
   },
 
   /*
@@ -95,7 +95,7 @@ qx.Class.define("cv.ui.manager.viewer.SvgIcon", {
       svgElem.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
       svgElem.add(this.__useElement);
       return svgElem;
-    },
+    }
   },
 
   /*
@@ -105,5 +105,5 @@ qx.Class.define("cv.ui.manager.viewer.SvgIcon", {
   */
   destruct() {
     this.__useElement = null;
-  },
+  }
 });

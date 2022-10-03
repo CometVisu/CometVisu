@@ -45,8 +45,8 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
   properties: {
     editor: {
       check: "cv.ui.manager.editor.AbstractEditor",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -66,9 +66,9 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
           code: qx.xml.Document.isXmlDocument(code)
             ? code.documentElement.outerHTML
             : code,
-          schema: schema,
+          schema: schema
         },
-        features,
+        features
       ]);
       this._files[file.getFullPath()] = file;
     },
@@ -77,8 +77,8 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
       this._worker.postMessage([
         "closeFile",
         {
-          path: file.getFullPath(),
-        },
+          path: file.getFullPath()
+        }
       ]);
 
       delete this._files[file.getFullPath()];
@@ -89,8 +89,8 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
         "contentChange",
         {
           path: file.getFullPath(),
-          code: content,
-        },
+          code: content
+        }
       ]);
     },
 
@@ -151,7 +151,7 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
           }
           break;
       }
-    },
+    }
   },
 
   /*
@@ -162,5 +162,5 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
   destruct() {
     this._worker.terminate();
     this._worker = null;
-  },
+  }
 });

@@ -43,53 +43,53 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
   properties: {
     type: {
       check: ["button", "trigger", "push"],
-      init: "button",
+      init: "button"
     },
 
     on: {
       check: "Boolean",
       init: false,
-      apply: "_applyOn",
+      apply: "_applyOn"
     },
 
     onClass: {
       check: "String",
-      init: "active",
+      init: "active"
     },
 
     offClass: {
       check: "String",
-      init: "inactive",
+      init: "inactive"
     },
 
     onValue: {
       check: "String",
-      init: "1",
+      init: "1"
     },
 
     offValue: {
       check: "String",
-      init: "0",
+      init: "0"
     },
 
     styleClass: {
       check: "String",
       nullable: true,
-      apply: "_applyStyleClass",
+      apply: "_applyStyleClass"
     },
 
     name: {
       check: "String",
       init: "",
-      apply: "_applyName",
+      apply: "_applyName"
     },
 
     progress: {
       check: "Number",
       init: -1,
       apply: "_applyProgress",
-      transform: "_parseInt",
-    },
+      transform: "_parseInt"
+    }
   },
 
   /*
@@ -132,7 +132,7 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       let writeAddresses = [];
       Array.prototype.forEach.call(
         element.querySelectorAll(":scope > cv-address"),
-        (address) => {
+        address => {
           const mode = address.hasAttribute("mode")
             ? address.getAttribute("mode")
             : "readwrite";
@@ -168,7 +168,7 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
             }
           }
         }
-        writeAddresses.forEach((addr) => {
+        writeAddresses.forEach(addr => {
           let event = addr.hasAttribute("on")
             ? addr.getAttribute("on")
             : "click";
@@ -184,14 +184,14 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
               break;
           }
         });
-        Object.getOwnPropertyNames(events).forEach((eventName) =>
-          eventSource.addEventListener(eventName, (ev) => {
+        Object.getOwnPropertyNames(events).forEach(eventName =>
+          eventSource.addEventListener(eventName, ev => {
             events[eventName](ev);
           })
         );
       }
       if (hasReadAddress) {
-        element.addEventListener("stateUpdate", (ev) => {
+        element.addEventListener("stateUpdate", ev => {
           this.onStateUpdate(ev);
           // cancel event here
           ev.stopPropagation();
@@ -202,7 +202,7 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       ) {
         // apply the trigger state
         const triggerAddresses = writeAddresses.filter(
-          (addr) => addr.hasAttribute("value") && !addr.hasAttribute("on")
+          addr => addr.hasAttribute("value") && !addr.hasAttribute("on")
         );
         if (triggerAddresses.length === 1) {
           const value = triggerAddresses[0].getAttribute("value");
@@ -222,7 +222,7 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       if (
         !hasReadAddress &&
         writeAddresses.filter(
-          (addr) => addr.hasAttribute("value") && !addr.hasAttribute("on")
+          addr => addr.hasAttribute("value") && !addr.hasAttribute("on")
         ).length === 1
       ) {
         // only one write address with a fixed value and no special event => simple trigger
@@ -230,7 +230,7 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       } else {
         let hasDown = false;
         let hasUp = false;
-        writeAddresses.some((addr) => {
+        writeAddresses.some(addr => {
           if (addr.hasAttribute("value") && addr.hasAttribute("on")) {
             if (!hasDown) {
               hasDown = addr.getAttribute("on") === "down";
@@ -401,7 +401,7 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       if (!this._writeAddresses) {
         this._writeAddresses = Array.prototype.filter.call(
           this._element.querySelectorAll("addresses > cv-address"),
-          (address) =>
+          address =>
             !address.hasAttribute("mode") ||
             address.getAttribute("mode") !== "read"
         );
@@ -409,8 +409,8 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       const ev = new CustomEvent("sendState", {
         detail: {
           value: this.isOn() ? this.getOffValue() : this.getOnValue(),
-          source: this,
-        },
+          source: this
+        }
       });
 
       if (this.getType() === "trigger") {
@@ -426,26 +426,26 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       }
       this._writeAddresses
         .filter(
-          (addr) =>
+          addr =>
             !addr.hasAttribute("on") || addr.getAttribute("on") === "click"
         )
-        .forEach((address) => address.dispatchEvent(ev));
+        .forEach(address => address.dispatchEvent(ev));
       event.stopPropagation();
     },
 
     onPointerDown() {
       this._writeAddresses
         .filter(
-          (addr) =>
+          addr =>
             addr.getAttribute("on") === "down" && addr.hasAttribute("value")
         )
-        .forEach((address) => {
+        .forEach(address => {
           address.dispatchEvent(
             new CustomEvent("sendState", {
               detail: {
                 value: address.getAttribute("value"),
-                source: this,
-              },
+                source: this
+              }
             })
           );
         });
@@ -454,16 +454,16 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
     onPointerUp() {
       this._writeAddresses
         .filter(
-          (addr) =>
+          addr =>
             addr.getAttribute("on") === "up" && addr.hasAttribute("value")
         )
-        .forEach((address) => {
+        .forEach(address => {
           address.dispatchEvent(
             new CustomEvent("sendState", {
               detail: {
                 value: address.getAttribute("value"),
-                source: this,
-              },
+                source: this
+              }
             })
           );
         });
@@ -493,9 +493,9 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
       // remove old ones
       container
         .querySelectorAll(".ripple")
-        .forEach((ripple) => ripple.remove());
+        .forEach(ripple => ripple.remove());
       container.appendChild(circle);
-    },
+    }
   },
 
   defer(QxClass) {
@@ -507,5 +507,5 @@ qx.Class.define("cv.ui.structure.tile.components.Button", {
         }
       }
     );
-  },
+  }
 });

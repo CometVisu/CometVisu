@@ -35,12 +35,12 @@ qx.Class.define("cv.transforms.Knx", {
         name: "1 bit",
         lname: {
           de: "1 Bit",
-          en: "1 bit",
+          en: "1 bit"
         },
 
         range: {
           min: 0,
-          max: 1,
+          max: 1
         },
 
         unit: "-",
@@ -48,12 +48,12 @@ qx.Class.define("cv.transforms.Knx", {
           phy = +phy; // cast to number
           return {
             bus: phy ? "81" : "80",
-            raw: phy ? "01" : "00",
+            raw: phy ? "01" : "00"
           };
         },
         decode(hex) {
           return parseInt(hex, 16);
-        },
+        }
       },
 
       1.001: {
@@ -61,8 +61,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Switch",
         lname: {
           de: "Aus-An-Schalter",
-          en: "off on switch",
-        },
+          en: "off on switch"
+        }
       },
 
       1.002: {
@@ -70,8 +70,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Bool",
         lname: {
           de: "Boolscher-Wert",
-          en: "boolean value",
-        },
+          en: "boolean value"
+        }
       },
 
       1.003: {
@@ -79,8 +79,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Enable",
         lname: {
           de: "Disable / Enable",
-          en: "disable / enable",
-        },
+          en: "disable / enable"
+        }
       },
 
       1.008: {
@@ -88,8 +88,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_UpDown",
         lname: {
           de: "Hoch-Runter-Schalter",
-          en: "up down switch",
-        },
+          en: "up down switch"
+        }
       },
 
       1.009: {
@@ -97,8 +97,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_OpenClose",
         lname: {
           de: "Auf-Zu-Schalter",
-          en: "open close switch",
-        },
+          en: "open close switch"
+        }
       },
 
       2: {
@@ -106,12 +106,12 @@ qx.Class.define("cv.transforms.Knx", {
         name: "2 bit",
         lname: {
           de: "2 Bit",
-          en: "2 bit",
+          en: "2 bit"
         },
 
         range: {
           min: 0,
-          max: 3,
+          max: 3
         },
 
         unit: "-",
@@ -119,24 +119,24 @@ qx.Class.define("cv.transforms.Knx", {
           const val = cv.Transform.clipInt(0, phy, 3).toString(16);
           return {
             bus: "8" + val,
-            raw: "0" + val.toUpperCase(),
+            raw: "0" + val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16);
-        },
+        }
       },
 
       3: {
         name: "4 bit",
         lname: {
           de: "4 Bit",
-          en: "4 bit",
+          en: "4 bit"
         },
 
         range: {
           min: -100,
-          max: 100,
+          max: 100
         },
 
         unit: "-",
@@ -155,14 +155,14 @@ qx.Class.define("cv.transforms.Knx", {
           const val = (stepCode | (up * 0b1000)).toString(16);
           return {
             bus: "8" + val,
-            raw: "0" + val.toUpperCase(),
+            raw: "0" + val.toUpperCase()
           };
         },
         decode(hex) {
           const val = parseInt(hex, 16);
           const up = (val & 0b1000) > 0;
           return ((up * 2 - 1) * 100) / 2 ** ((val & 0b111) - 1);
-        },
+        }
       },
 
       3.007: {
@@ -170,8 +170,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Control_Dimming",
         lname: {
           de: "Dimmen",
-          en: "dimming",
-        },
+          en: "dimming"
+        }
       },
 
       3.008: {
@@ -179,15 +179,15 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Control_Blinds",
         lname: {
           de: "Beschattungssteuerung",
-          en: "blind control",
-        },
+          en: "blind control"
+        }
       },
 
       4: {
         name: "char",
         lname: {
           de: "Zeichen",
-          en: "char",
+          en: "char"
         },
 
         unit: "-",
@@ -195,29 +195,29 @@ qx.Class.define("cv.transforms.Knx", {
           const val = ("" + phy).charCodeAt(0).toString(16).padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return String.fromCharCode(parseInt(hex, 16));
-        },
+        }
       },
 
       4.001: {
         name: "DPT_Char_ASCII",
-        link: "4",
+        link: "4"
       },
 
       5: {
         name: "8 bit unsigned",
         lname: {
           de: "8 Bit vorzeichenloser Integer",
-          en: "8 bit unsigned integer",
+          en: "8 bit unsigned integer"
         },
 
         range: {
           min: 0,
-          max: 255,
+          max: 255
         },
 
         unit: "-",
@@ -227,24 +227,24 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16);
-        },
+        }
       },
 
       5.001: {
         name: "DPT_Scaling",
         lname: {
           de: "Prozentwert",
-          en: "percentage",
+          en: "percentage"
         },
 
         range: {
           min: 0.0,
-          max: 100.0,
+          max: 100.0
         },
 
         unit: "%",
@@ -254,24 +254,24 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return (parseInt(hex, 16) * 100) / 255.0;
-        },
+        }
       },
 
       5.003: {
         name: "DPT_Angle",
         lname: {
           de: "Winkel",
-          en: "angle",
+          en: "angle"
         },
 
         range: {
           min: 0.0,
-          max: 360.0,
+          max: 360.0
         },
 
         unit: "°",
@@ -281,12 +281,12 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return (parseInt(hex, 16) * 360) / 255.0;
-        },
+        }
       },
 
       5.004: {
@@ -294,10 +294,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Percent_U8",
         lname: {
           de: "Prozentwert",
-          en: "percentage",
+          en: "percentage"
         },
 
-        unit: "%",
+        unit: "%"
       },
 
       "5.010": {
@@ -305,22 +305,22 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_1_Ucount",
         lname: {
           de: "Zähler",
-          en: "counter",
+          en: "counter"
         },
 
-        unit: "-",
+        unit: "-"
       },
 
       6: {
         name: "8 bit signed",
         lname: {
           de: "8 Bit vorzeichenbehafteter Integer",
-          en: "8 bit signed integer",
+          en: "8 bit signed integer"
         },
 
         range: {
           min: -128,
-          max: 127,
+          max: 127
         },
 
         unit: "-",
@@ -330,13 +330,13 @@ qx.Class.define("cv.transforms.Knx", {
           val = val.toString(16).padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           const val = parseInt(hex, 16);
           return val > 127 ? val - 256 : val;
-        },
+        }
       },
 
       6.001: {
@@ -344,10 +344,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Percent_V8",
         lname: {
           de: "Prozentwert mit Vorzeichen",
-          en: "percentage with sign",
+          en: "percentage with sign"
         },
 
-        unit: "%",
+        unit: "%"
       },
 
       "6.010": {
@@ -355,20 +355,20 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_1_Count",
         lname: {
           de: "Zähler mit Vorzeichen",
-          en: "counter with sign",
-        },
+          en: "counter with sign"
+        }
       },
 
       7: {
         name: "2 byte unsigned",
         lname: {
           de: "2 Byte vorzeichenloser Integer",
-          en: "2 byte unsigned integer",
+          en: "2 byte unsigned integer"
         },
 
         range: {
           min: 0,
-          max: 0xffff,
+          max: 0xffff
         },
 
         unit: "-",
@@ -378,35 +378,35 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(4, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16);
-        },
+        }
       },
 
       7.001: {
         link: "7",
-        name: "DPT_Value_2_Ucount",
+        name: "DPT_Value_2_Ucount"
       },
 
       "7.600": {
         link: "7",
         name: "DPT_Absolute_Colour_Temperature",
-        unit: "K",
+        unit: "K"
       },
 
       8: {
         name: "2 byte signed",
         lname: {
           de: "2 Byte vorzeichenbehafteter Integer",
-          en: "2 byte signed integer",
+          en: "2 byte signed integer"
         },
 
         range: {
           min: -0x8000,
-          max: 0x7fff,
+          max: 0x7fff
         },
 
         unit: "-",
@@ -416,30 +416,30 @@ qx.Class.define("cv.transforms.Knx", {
           val = val.toString(16).padStart(4, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           const val = parseInt(hex, 16);
           return val > 32767 ? val - 65536 : val;
-        },
+        }
       },
 
       8.001: {
         link: "8",
-        name: "DPT_Value_2_Count",
+        name: "DPT_Value_2_Count"
       },
 
       9: {
         name: "2 byte float",
         lname: {
           de: "2 Byte Gleitkommazahl",
-          en: "2 byte float value",
+          en: "2 byte float value"
         },
 
         range: {
           min: -671088.64,
-          max: 670433.28,
+          max: 670433.28
         },
 
         unit: "-",
@@ -459,7 +459,7 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(4, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -475,7 +475,7 @@ qx.Class.define("cv.transforms.Knx", {
             mant = -(~(mant - 1) & 0x7ff);
           }
           return (1 << exp) * 0.01 * mant;
-        },
+        }
       },
 
       9.001: {
@@ -483,10 +483,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_Temp",
         lname: {
           de: "Temperatur",
-          en: "temperature",
+          en: "temperature"
         },
 
-        unit: "°C",
+        unit: "°C"
       },
 
       9.004: {
@@ -494,10 +494,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_Lux",
         lname: {
           de: "Beleuchtungsstärke",
-          en: "illuminance",
+          en: "illuminance"
         },
 
-        unit: "Lux",
+        unit: "Lux"
       },
 
       9.007: {
@@ -505,10 +505,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_Humidity",
         lname: {
           de: "Luftfeuchtigkeit",
-          en: "humidity",
+          en: "humidity"
         },
 
-        unit: "%",
+        unit: "%"
       },
 
       9.008: {
@@ -516,10 +516,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_AirQuality",
         lname: {
           de: "Luftqualität",
-          en: "air quality",
+          en: "air quality"
         },
 
-        unit: "ppm",
+        unit: "ppm"
       },
 
       "9.020": {
@@ -527,10 +527,10 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_Volt",
         lname: {
           de: "Spannung",
-          en: "voltage",
+          en: "voltage"
         },
 
-        unit: "mV",
+        unit: "mV"
       },
 
       9.021: {
@@ -538,17 +538,17 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_Value_Curr",
         lname: {
           de: "Strom",
-          en: "current",
+          en: "current"
         },
 
-        unit: "mA",
+        unit: "mA"
       },
 
       10.001: {
         name: "DPT_TimeOfDay",
         lname: {
           de: "Zeit",
-          en: "time",
+          en: "time"
         },
 
         unit: "-",
@@ -560,7 +560,7 @@ qx.Class.define("cv.transforms.Knx", {
           val += phy.getSeconds().toString(16).padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -576,14 +576,14 @@ qx.Class.define("cv.transforms.Knx", {
             date.setDate(date.getDate() + dayShift);
           }
           return date;
-        },
+        }
       },
 
       11.001: {
         name: "DPT_Date",
         lname: {
           de: "Datum",
-          en: "date",
+          en: "date"
         },
 
         unit: "-",
@@ -597,19 +597,19 @@ qx.Class.define("cv.transforms.Knx", {
             (parseInt(hex.substr(2, 2), 16) & 0x0f) - 1,
             parseInt(hex.substr(0, 2), 16) & 0x1f
           );
-        },
+        }
       },
 
       12: {
         name: "4 byte unsigned",
         lname: {
           de: "4 Byte vorzeichenloser Integer",
-          en: "4 byte unsigned integer",
+          en: "4 byte unsigned integer"
         },
 
         range: {
           min: 0,
-          max: 0xffffffff,
+          max: 0xffffffff
         },
 
         unit: "-",
@@ -619,29 +619,29 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(8, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16);
-        },
+        }
       },
 
       12.001: {
         link: "12",
-        name: "DPT_Value_4_Ucount",
+        name: "DPT_Value_4_Ucount"
       },
 
       13: {
         name: "4 byte signed",
         lname: {
           de: "4 Byte vorzeichenbehafteter Integer",
-          en: "4 byte signed integer",
+          en: "4 byte signed integer"
         },
 
         range: {
           min: -0x80000000,
-          max: 0x7fffffff,
+          max: 0x7fffffff
         },
 
         unit: "-",
@@ -651,25 +651,25 @@ qx.Class.define("cv.transforms.Knx", {
           val = Math.round(val).toString(16).padStart(8, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           const val = parseInt(hex, 16);
           return val > 2147483647 ? val - 4294967296 : val;
-        },
+        }
       },
 
       13.001: {
         link: "13",
-        name: "DPT_Value_4_Count",
+        name: "DPT_Value_4_Count"
       },
 
       14: {
         name: "4 byte float",
         lname: {
           de: "4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)",
-          en: "4 byte float IEEE 754 (only decode)",
+          en: "4 byte float IEEE 754 (only decode)"
         },
 
         unit: "-",
@@ -682,19 +682,19 @@ qx.Class.define("cv.transforms.Knx", {
           const exp = ((val & 0x7f800000) >> 23) - 127;
           const mant = (val & 0x007fffff) | 0x00800000;
           return sign * Math.pow(2, exp) * (mant / (1 << 23));
-        },
+        }
       },
 
       14.001: {
         link: "14",
-        name: "DPT_Value_Acceleration_Angular",
+        name: "DPT_Value_Acceleration_Angular"
       },
 
       16: {
         name: "DPT_String_ASCII",
         lname: {
           de: "14 Byte Text ASCII",
-          en: "14 byte text ASCII",
+          en: "14 byte text ASCII"
         },
 
         unit: "-",
@@ -707,7 +707,7 @@ qx.Class.define("cv.transforms.Knx", {
           }
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -720,11 +720,11 @@ qx.Class.define("cv.transforms.Knx", {
             }
           }
           return val;
-        },
+        }
       },
 
       "16.000": {
-        link: "16",
+        link: "16"
       },
 
       16.001: {
@@ -732,8 +732,8 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_String_8859_1",
         lname: {
           de: "14 Byte Text ISO-8859-1",
-          en: "14 byte text ISO-8859-1",
-        },
+          en: "14 byte text ISO-8859-1"
+        }
       },
 
       17: {
@@ -741,31 +741,31 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_SceneNumber",
         lname: {
           en: "Scene Number",
-          de: "Szenen Nummer",
+          de: "Szenen Nummer"
         },
 
         range: {
           min: 1,
-          max: 64,
+          max: 64
         },
 
-        unit: "-",
+        unit: "-"
       },
 
       17.001: {
-        link: "18",
+        link: "18"
       },
 
       18: {
         name: "DPT_SceneControl",
         lname: {
           en: "Scene Number",
-          de: "Szenen Nummer",
+          de: "Szenen Nummer"
         },
 
         range: {
           min: 1,
-          max: 64 + 128,
+          max: 64 + 128
         },
 
         unit: "-",
@@ -775,23 +775,23 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16) + 1;
-        },
+        }
       },
 
       18.001: {
-        link: "18",
+        link: "18"
       },
 
       20.102: {
         name: "DPT_HVACMode",
         lname: {
           de: "KONNEX Betriebsart",
-          en: "HVAC mode",
+          en: "HVAC mode"
         },
 
         range: {
@@ -800,8 +800,8 @@ qx.Class.define("cv.transforms.Knx", {
             "comfort",
             "standby",
             "economy",
-            "building_protection",
-          ],
+            "building_protection"
+          ]
         },
 
         unit: "-",
@@ -832,7 +832,7 @@ qx.Class.define("cv.transforms.Knx", {
           val = val.toString(16).padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -849,7 +849,7 @@ qx.Class.define("cv.transforms.Knx", {
               // actually "case 0:"
               return "auto";
           }
-        },
+        }
       },
 
       /* DPT24.001 is probably not fully correct as it can also hold
@@ -863,7 +863,7 @@ qx.Class.define("cv.transforms.Knx", {
         name: "DPT_VarString_8859_1",
         lname: {
           de: "Variabler String ISO-8859-1",
-          en: "variable String ISO-8859-1",
+          en: "variable String ISO-8859-1"
         },
 
         unit: "-",
@@ -877,7 +877,7 @@ qx.Class.define("cv.transforms.Knx", {
           val += "00";
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -890,19 +890,19 @@ qx.Class.define("cv.transforms.Knx", {
             }
           }
           return val;
-        },
+        }
       },
 
       26: {
         name: "DPT_SceneInfo",
         lname: {
           en: "Scene Number",
-          de: "Szenen Nummer",
+          de: "Szenen Nummer"
         },
 
         range: {
           min: 1.0,
-          max: 64.0 + 64,
+          max: 64.0 + 64
         },
 
         unit: "-",
@@ -912,28 +912,28 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(2, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16) + 1;
-        },
+        }
       },
 
       26.001: {
-        link: "26",
+        link: "26"
       },
 
       225: {
         name: "3 byte unsigned",
         lname: {
           de: "3 Byte vorzeichenloser Integer",
-          en: "3 byte unsigned integer",
+          en: "3 byte unsigned integer"
         },
 
         range: {
           min: 0x0,
-          max: 0xffffff,
+          max: 0xffffff
         },
 
         unit: "-",
@@ -943,19 +943,19 @@ qx.Class.define("cv.transforms.Knx", {
             .padStart(6, "0");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return parseInt(hex, 16);
-        },
+        }
       },
 
       225.001: {
         name: "DPT_ScalingSpeed",
         lname: {
           de: "Skalierungsgeschwindigkeit",
-          en: "scaling speed",
+          en: "scaling speed"
         },
 
         unit: "-",
@@ -968,31 +968,31 @@ qx.Class.define("cv.transforms.Knx", {
               .padStart(4, "0"),
             cv.Transform.clipInt(0, percent, 100, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return new Map([
             ["period", parseInt(hex.substr(0, 4), 16)],
-            ["percent", (parseInt(hex.substr(4, 2), 16) * 100) / 255.0],
+            ["percent", (parseInt(hex.substr(4, 2), 16) * 100) / 255.0]
           ]);
-        },
+        }
       },
 
       232: {
         name: "3xDPT_Scaling",
         lname: {
           de: "Drei Prozentwerte",
-          en: "three percentages",
+          en: "three percentages"
         },
 
         range: {
           min: 0.0,
-          max: 100.0,
+          max: 100.0
         },
 
         unit: "%",
@@ -1006,32 +1006,32 @@ qx.Class.define("cv.transforms.Knx", {
               .padStart(2, "0"),
             cv.Transform.clipInt(0, phy[2], 100, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return [
             (parseInt(hex.substr(0, 2), 16) * 100) / 255.0,
             (parseInt(hex.substr(2, 2), 16) * 100) / 255.0,
-            (parseInt(hex.substr(4, 2), 16) * 100) / 255.0,
+            (parseInt(hex.substr(4, 2), 16) * 100) / 255.0
           ];
-        },
+        }
       },
 
       "232.600": {
         name: "DPT_Colour_RGB",
         lname: {
           de: "RGB-Farbe",
-          en: "rgb color",
+          en: "rgb color"
         },
 
         range: {
           min: 0.0,
-          max: 100.0,
+          max: 100.0
         },
 
         unit: "%",
@@ -1052,27 +1052,27 @@ qx.Class.define("cv.transforms.Knx", {
               .padStart(2, "0"),
             cv.Transform.clipInt(0, b, 100, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return new Map([
             ["r", (parseInt(hex.substr(0, 2), 16) * 100) / 255.0],
             ["g", (parseInt(hex.substr(2, 2), 16) * 100) / 255.0],
-            ["b", (parseInt(hex.substr(4, 2), 16) * 100) / 255.0],
+            ["b", (parseInt(hex.substr(4, 2), 16) * 100) / 255.0]
           ]);
-        },
+        }
       },
 
       "232.600HSV": {
         name: "DPT_Colour_HSV_inofficial",
         lname: {
           de: "HSV-Farbe (inoffiziell)",
-          en: "hsv color (inofficial)",
+          en: "hsv color (inofficial)"
         },
 
         unit: "-",
@@ -1093,27 +1093,27 @@ qx.Class.define("cv.transforms.Knx", {
               .padStart(2, "0"),
             cv.Transform.clipInt(0, v, 100, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
           return new Map([
             ["h", (parseInt(hex.substr(0, 2), 16) * 360) / 255.0],
             ["s", (parseInt(hex.substr(2, 2), 16) * 100) / 255.0],
-            ["v", (parseInt(hex.substr(4, 2), 16) * 100) / 255.0],
+            ["v", (parseInt(hex.substr(4, 2), 16) * 100) / 255.0]
           ]);
-        },
+        }
       },
 
       "242.600": {
         name: "DPT_Colour_xyY",
         lname: {
           de: "xyY-Farbe",
-          en: "xyY color",
+          en: "xyY color"
         },
 
         unit: "-",
@@ -1145,12 +1145,12 @@ qx.Class.define("cv.transforms.Knx", {
             cv.Transform.clipInt(0, Y, 100, 255 / 100)
               .toString(16)
               .padStart(2, "0"),
-            (cValid * 2 + YValid * 1).toString(16).padStart(2, "0"),
+            (cValid * 2 + YValid * 1).toString(16).padStart(2, "0")
           ].join("");
 
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -1160,21 +1160,21 @@ qx.Class.define("cv.transforms.Knx", {
             ["y", parseInt(hex.substr(4, 4), 16) / 65535.0],
             ["Y", (parseInt(hex.substr(8, 2), 16) * 100) / 255.0],
             ["cValid", (valid & 2) > 0],
-            ["YValid", (valid & 1) > 0],
+            ["YValid", (valid & 1) > 0]
           ]);
-        },
+        }
       },
 
       "251.600": {
         name: "DPT_Colour_RGBW",
         lname: {
           de: "RGBW-Farbe",
-          en: "rgbw color",
+          en: "rgbw color"
         },
 
         range: {
           min: 0.0,
-          max: 100.0,
+          max: 100.0
         },
 
         unit: "%",
@@ -1219,12 +1219,12 @@ qx.Class.define("cv.transforms.Knx", {
             "00",
             (rValid * 8 + gValid * 4 + bValid * 2 + wValid * 1)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
 
           return {
             bus: "80" + val,
-            raw: val.toUpperCase(),
+            raw: val.toUpperCase()
           };
         },
         decode(hex) {
@@ -1237,10 +1237,10 @@ qx.Class.define("cv.transforms.Knx", {
             ["rValid", (valid & 8) > 0],
             ["gValid", (valid & 4) > 0],
             ["bValid", (valid & 2) > 0],
-            ["wValid", (valid & 1) > 0],
+            ["wValid", (valid & 1) > 0]
           ]);
-        },
-      },
+        }
+      }
     });
-  },
+  }
 });

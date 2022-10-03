@@ -78,11 +78,11 @@ qx.Class.define("cv.util.ConfigLoader", {
       this.__loadQueue.push(uri);
       ajaxRequest.set({
         accept: "application/xml",
-        cache: !cv.Config.forceReload,
+        cache: !cv.Config.forceReload
       });
 
       ajaxRequest.setUserData("noDemo", true);
-      ajaxRequest.addListenerOnce("success", (e) => {
+      ajaxRequest.addListenerOnce("success", e => {
         qx.core.Init.getApplication().block(false);
         const req = e.getTarget();
         cv.Config.configServer = req.getResponseHeader("Server");
@@ -94,7 +94,7 @@ qx.Class.define("cv.util.ConfigLoader", {
           if (isTileStructure) {
             xml = xml.replace(
               "<config",
-              '<config xmlns="http://www.w3.org/1999/xhtml"'
+              "<config xmlns=\"http://www.w3.org/1999/xhtml\""
             );
           }
           xml = parser.parseFromString(xml, "text/xml");
@@ -113,7 +113,7 @@ qx.Class.define("cv.util.ConfigLoader", {
               .getResponseText()
               .replace(
                 "<config",
-                '<config xmlns="http://www.w3.org/1999/xhtml"'
+                "<config xmlns=\"http://www.w3.org/1999/xhtml\""
               );
             const parser = new DOMParser();
             xml = parser.parseFromString(rawContent, "text/xml");
@@ -147,7 +147,7 @@ qx.Class.define("cv.util.ConfigLoader", {
             }
             if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
               this.error(
-                'The usage of "X-CometVisu-Backend-LoginUrl" is deprecated. Please update the server setup.'
+                "The usage of \"X-CometVisu-Backend-LoginUrl\" is deprecated. Please update the server setup."
               );
               let backendUrl = req.getResponseHeader(
                 "X-CometVisu-Backend-LoginUrl"
@@ -193,7 +193,7 @@ qx.Class.define("cv.util.ConfigLoader", {
         }
       });
 
-      ajaxRequest.addListener("statusError", (e) => {
+      ajaxRequest.addListener("statusError", e => {
         const status = e.getTarget().getTransport().status;
         if (
           !qx.util.Request.isSuccessful(status) &&
@@ -209,7 +209,7 @@ qx.Class.define("cv.util.ConfigLoader", {
         } else if (!qx.util.Request.isSuccessful(status)) {
           this.configError("filenotfound", [
             ajaxRequest.getUserData("origUrl"),
-            ajaxRequest.getUrl(),
+            ajaxRequest.getUrl()
           ]);
         } else {
           this.configError(status, null);
@@ -235,10 +235,10 @@ qx.Class.define("cv.util.ConfigLoader", {
       const xhr = new qx.io.request.Xhr(url);
       xhr.set({
         accept: "text/plain",
-        async: false,
+        async: false
       });
 
-      xhr.addListenerOnce("success", (e) => {
+      xhr.addListenerOnce("success", e => {
         const req = e.getTarget();
         const xml = qx.xml.Document.fromString(
           "<root>" + req.getResponseText() + "</root>"
@@ -247,7 +247,7 @@ qx.Class.define("cv.util.ConfigLoader", {
         this.__loadQueue.remove(url);
         this._checkQueue();
       });
-      xhr.addListener("statusError", (e) => {
+      xhr.addListener("statusError", e => {
         const status = e.getTarget().getTransport().status;
         if (!qx.util.Request.isSuccessful(status)) {
           this.configError("filenotfound", [xhr.getUrl(), ""]);
@@ -321,7 +321,7 @@ qx.Class.define("cv.util.ConfigLoader", {
             "</br>" +
             qx.locale.Manager.tr(
               "Or you can start without upgrading %1with possible configuration problems%2",
-              '<a href="' + link + '">',
+              "<a href=\"" + link + "\">",
               "</a>"
             )
               .translate()
@@ -352,15 +352,15 @@ qx.Class.define("cv.util.ConfigLoader", {
                 action: () => {
                   qx.core.Init.getApplication().showManager();
                 },
-                needsConfirmation: false,
-              },
-            ],
+                needsConfirmation: false
+              }
+            ]
           };
 
           break;
         default:
           message = qx.locale.Manager.tr(
-            'Unhandled error of type "%1"',
+            "Unhandled error of type \"%1\"",
             textStatus
           )
             .translate()
@@ -377,7 +377,7 @@ qx.Class.define("cv.util.ConfigLoader", {
         title: title,
         message: message,
         severity: "urgent",
-        unique: true,
+        unique: true
       };
 
       if (actions) {
@@ -389,7 +389,7 @@ qx.Class.define("cv.util.ConfigLoader", {
       );
       this.error(this, message.toString());
       qx.core.Init.getApplication().block(false);
-    },
+    }
   },
 
   /*
@@ -402,5 +402,5 @@ qx.Class.define("cv.util.ConfigLoader", {
     this.__xml = null;
     this.__doneCallback = null;
     this.__doneCallbackContext = null;
-  },
+  }
 });

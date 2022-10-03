@@ -88,7 +88,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
           "no QxClass registered for custom element " + name
         );
       }
-    },
+    }
   },
 
   /*
@@ -102,7 +102,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
      */
     renderTarget: {
       check: "Element",
-      init: document.body,
+      init: document.body
     },
 
     /**
@@ -110,8 +110,8 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
      */
     namespace: {
       check: "String",
-      init: "",
-    },
+      init: ""
+    }
   },
 
   /*
@@ -225,10 +225,10 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
         const ajaxRequest = new qx.io.request.Xhr(templates);
         ajaxRequest.set({
           accept: "application/xml",
-          cache: !cv.Config.forceReload,
+          cache: !cv.Config.forceReload
         });
 
-        ajaxRequest.addListenerOnce("success", (e) => {
+        ajaxRequest.addListenerOnce("success", e => {
           let content = e.getTarget().getResponse();
           const target = this.getRenderTarget();
           this.debug("creating pages");
@@ -240,7 +240,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
             let text = e.getTarget().getResponseText();
             text = text.replace(
               "<templates",
-              '<templates xmlns="http://www.w3.org/1999/xhtml"'
+              "<templates xmlns=\"http://www.w3.org/1999/xhtml\""
             );
             const parser = new DOMParser();
             content = parser.parseFromString(text, "text/xml");
@@ -261,7 +261,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
           qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
           cv.TemplateEngine.getInstance().setDomFinished(true);
         });
-        ajaxRequest.addListener("statusError", (e) => {
+        ajaxRequest.addListener("statusError", e => {
           const status = e.getTarget().getTransport().status;
           if (!qx.util.Request.isSuccessful(status)) {
             this.error("filenotfound", templates);
@@ -280,7 +280,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
     registerTemplates(xml) {
       xml
         .querySelectorAll("templates[structure='tile'] > template")
-        .forEach((template) => {
+        .forEach(template => {
           customElements.define(
             cv.ui.structure.tile.Controller.PREFIX +
               template.getAttribute("id"),
@@ -311,7 +311,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
             cv.data.Model.getInstance().updateFrom("system", data);
             window
               .matchMedia("(prefers-color-scheme: dark)")
-              .addEventListener("change", (e) => {
+              .addEventListener("change", e => {
                 document.documentElement.setAttribute(
                   "data-theme",
                   e.matches ? "dark" : "light"
@@ -364,7 +364,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
           }
         }
       }
-      for (const trTextElement of doc.querySelectorAll('*[tr="true"]')) {
+      for (const trTextElement of doc.querySelectorAll("*[tr=\"true\"]")) {
         const key = trTextElement.textContent.trim();
         const translation = doc.querySelector(
           `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
@@ -458,7 +458,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
-    },
+    }
   },
 
   defer(statics) {
@@ -466,7 +466,7 @@ qx.Class.define("cv.ui.structure.tile.Controller", {
       // do not apply ourselves automatically in test mode
       cv.Application.structureController = statics.getInstance();
     }
-  },
+  }
 });
 
 class TemplatedElement extends HTMLElement {
@@ -494,9 +494,9 @@ class TemplatedElement extends HTMLElement {
           }
         }
         if (slotContents.length > 0) {
-          Array.from(slotContents).forEach((slotContent) => {
+          Array.from(slotContents).forEach(slotContent => {
             const newNode = slotContent.cloneNode(true);
-            Object.keys(attrs).forEach((attrName) => {
+            Object.keys(attrs).forEach(attrName => {
               if (newNode.hasAttribute(attrName)) {
                 if (attrName === "class") {
                   // append it
@@ -520,7 +520,7 @@ class TemplatedElement extends HTMLElement {
           if (replacementSelector) {
             content
               .querySelectorAll(replacementSelector)
-              .forEach((replaced) => {
+              .forEach(replaced => {
                 replaced.remove();
               });
           }
@@ -554,7 +554,7 @@ class TemplatedElement extends HTMLElement {
       }
       // transfer attribute slots
       const attributes = this.getAttributeNames();
-      attributes.forEach((name) => {
+      attributes.forEach(name => {
         let value = this.getAttribute(name);
         const targets = content.querySelectorAll("[slot-" + name + "]");
         let targetName = name;
@@ -566,7 +566,7 @@ class TemplatedElement extends HTMLElement {
         } else if (name.endsWith("-format")) {
           targetName = "format";
         }
-        targets.forEach((target) => {
+        targets.forEach(target => {
           if (targetName !== name && target.hasAttribute("slot-" + name)) {
             target.setAttribute(
               name,
@@ -585,8 +585,8 @@ class TemplatedElement extends HTMLElement {
           this.removeAttribute(name);
         }
       });
-      content.querySelectorAll("*").forEach((elem) => {
-        [...elem.attributes].forEach((attr) => {
+      content.querySelectorAll("*").forEach(elem => {
+        [...elem.attributes].forEach(attr => {
           if (attr.name.startsWith("slot-")) {
             let targetName = attr.name.substring(5);
             // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute

@@ -41,24 +41,24 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
   properties: {
     appearance: {
       refine: true,
-      init: "config-viewer",
+      init: "config-viewer"
     },
 
     target: {
       check: ["iframe", "window"],
-      init: "window",
+      init: "window"
     },
 
     external: {
       refine: true,
-      init: true,
+      init: true
     },
 
     connectToWindow: {
       check: "Boolean",
       init: false,
-      apply: "_applyConnectToWindow",
-    },
+      apply: "_applyConnectToWindow"
+    }
   },
 
   /*
@@ -69,7 +69,7 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
   statics: {
     SUPPORTED_FILES: /^(demo|\.)?\/?visu_config.*\.xml/,
     TITLE: qx.locale.Manager.tr("Config viewer"),
-    ICON: cv.theme.dark.Images.getIcon("preview", 18),
+    ICON: cv.theme.dark.Images.getIcon("preview", 18)
   },
 
   /*
@@ -249,7 +249,7 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
           );
           control.set({
             center: true,
-            font: "title",
+            font: "title"
           });
 
           control.addListener("tap", () => {
@@ -269,7 +269,7 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
             center: true,
             font: "title",
             iconPosition: "top",
-            backgroundColor: "rgba(0,0,0,0.2)",
+            backgroundColor: "rgba(0,0,0,0.2)"
           });
 
           control.addListener("appear", () => {
@@ -287,7 +287,7 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
+    }
   },
 
   /*
@@ -297,5 +297,5 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
   */
   destruct() {
     this._windowRef = null;
-  },
+  }
 });

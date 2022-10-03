@@ -32,27 +32,27 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
   properties: {
     value: {
       apply: "_applyValue",
-      init: null,
+      init: null
     },
 
     styleClass: {
       check: "String",
       nullable: true,
-      apply: "_applyStyleClass",
+      apply: "_applyStyleClass"
     },
 
     enabled: {
       check: "Boolean",
       init: true,
-      apply: "_applyEnabled",
+      apply: "_applyEnabled"
     },
 
     visibility: {
       check: ["visible", "excluded", "hidden"],
       init: "visible",
       apply: "_applyVisibility",
-      event: "changeVisibility",
-    },
+      event: "changeVisibility"
+    }
   },
 
   /*
@@ -70,7 +70,7 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
       const writeAddresses = [];
       Array.prototype.forEach.call(
         element.querySelectorAll(":scope > cv-address"),
-        (address) => {
+        address => {
           const mode = address.hasAttribute("mode")
             ? address.getAttribute("mode")
             : "readwrite";
@@ -92,7 +92,7 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
       this._writeAddresses = writeAddresses;
 
       if (hasReadAddress) {
-        element.addEventListener("stateUpdate", (ev) => {
+        element.addEventListener("stateUpdate", ev => {
           this.onStateUpdate(ev);
           // cancel event here
           ev.stopPropagation();
@@ -154,15 +154,15 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
         blocker = document.createElement("div");
         blocker.classList.add("blocker");
         this._element.appendChild(blocker);
-        blocker.addEventListener("click", (ev) => {
+        blocker.addEventListener("click", ev => {
           ev.preventDefault();
           ev.stopPropagation();
         });
-        blocker.addEventListener("pointerdown", (ev) => {
+        blocker.addEventListener("pointerdown", ev => {
           ev.preventDefault();
           ev.stopPropagation();
         });
-        blocker.addEventListener("pointerup", (ev) => {
+        blocker.addEventListener("pointerup", ev => {
           ev.preventDefault();
           ev.stopPropagation();
         });
@@ -225,6 +225,6 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
       }
 
       return false;
-    },
-  },
+    }
+  }
 });

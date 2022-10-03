@@ -75,7 +75,7 @@ qx.Class.define("cv.ConfigCache", {
                 qx.log.Logger.error(cv.ConfigCache, "Error loading database.");
               };
               const objectStore = db.createObjectStore("data", {
-                keyPath: "config",
+                keyPath: "config"
               });
               objectStore.createIndex("config", "config", { unique: true });
             };
@@ -98,14 +98,14 @@ qx.Class.define("cv.ConfigCache", {
         configSettings: JSON.stringify(cv.Config.configSettings),
         config:
           cv.Config.configSuffix === null ? "NULL" : cv.Config.configSuffix,
-        body: document.querySelector("body").innerHTML,
+        body: document.querySelector("body").innerHTML
       });
     },
 
     restore() {
       const body = document.querySelector("body");
       const model = cv.data.Model.getInstance();
-      this.getData().then((cache) => {
+      this.getData().then(cache => {
         cv.Config.configSettings = cache.configSettings;
 
         // restore icons
@@ -134,9 +134,9 @@ qx.Class.define("cv.ConfigCache", {
                 "var y;" + mapping.formulaSource + "; return y;"
               ); // jshint ignore:line
             } else {
-              Object.keys(mapping).forEach((key) => {
+              Object.keys(mapping).forEach(key => {
                 if (key === "range") {
-                  Object.keys(mapping.range).forEach((rangeMin) => {
+                  Object.keys(mapping.range).forEach(rangeMin => {
                     mapping.range[rangeMin][1].forEach((valueElement, i) => {
                       const iconDefinition = valueElement.definition;
                       if (iconDefinition) {
@@ -349,6 +349,6 @@ qx.Class.define("cv.ConfigCache", {
         hash &= hash; // Convert to 32bit integer
       }
       return hash;
-    },
-  },
+    }
+  }
 });

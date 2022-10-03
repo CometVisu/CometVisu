@@ -24,7 +24,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
   extend: qx.core.Object,
   include: [
     qx.data.marshal.MEventBubbling,
-    cv.ui.manager.control.MFileEventHandler,
+    cv.ui.manager.control.MFileEventHandler
   ],
 
   implement: [cv.ui.manager.control.IFileEventHandler],
@@ -71,7 +71,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     _hiddenConfigFakeFile: null,
     _acceptedFiles: {
       ".": "*.xml",
-      media: "*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt",
+      media: "*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt"
     },
 
     isConfigFile(path) {
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
           loaded: true,
           hasChildren: false,
           fake: true,
-          icon: cv.theme.dark.Images.getIcon("icons", 18),
+          icon: cv.theme.dark.Images.getIcon("icons", 18)
         });
       }
       return this._fakeIconFile;
@@ -122,7 +122,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
           icon: cv.theme.dark.Images.getIcon("hidden-config", 15),
           type: "file",
           fake: true,
-          displayName: qx.locale.Manager.tr("Hidden configuration"),
+          displayName: qx.locale.Manager.tr("Hidden configuration")
         });
       }
       return this._hiddenConfigFakeFile;
@@ -130,7 +130,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
 
     getAcceptedFiles(folder) {
       return this._acceptedFiles[folder.getFullPath()];
-    },
+    }
   },
 
   /*
@@ -143,42 +143,42 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       check: "Boolean",
       event: "changeOpen",
       apply: "_onOpen",
-      init: false,
+      init: false
     },
 
     loaded: {
       check: "Boolean",
       event: "changeLoaded",
-      init: false,
+      init: false
     },
 
     loading: {
       check: "Boolean",
       event: "changeLoading",
-      init: false,
+      init: false
     },
 
     parent: {
       event: "changeParent",
-      init: null,
+      init: null
     },
 
     children: {
       check: "qx.data.Array",
       event: "changeChildren",
       apply: "_applyEventPropagation",
-      deferredInit: true,
+      deferredInit: true
     },
 
     fakeChildren: {
       check: "Array",
-      nullable: true,
+      nullable: true
     },
 
     displayName: {
       check: "String",
       init: "",
-      event: "changeDisplayName",
+      event: "changeDisplayName"
     },
 
     /**
@@ -187,29 +187,29 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     fake: {
       check: "Boolean",
       init: false,
-      event: "changeFake",
+      event: "changeFake"
     },
 
     overrideIcon: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     icon: {
       check: "String",
       nullable: true,
-      event: "changeIcon",
+      event: "changeIcon"
     },
 
     hash: {
       check: "Number",
-      nullable: true,
+      nullable: true
     },
 
     editing: {
       check: "Boolean",
       init: false,
-      event: "changeEditing",
+      event: "changeEditing"
     },
 
     /**
@@ -219,7 +219,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     special: {
       check: "String",
       nullable: true,
-      event: "changeSpecial",
+      event: "changeSpecial"
     },
 
     /**
@@ -228,7 +228,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     temporary: {
       check: "Boolean",
       init: false,
-      event: "changeTemporary",
+      event: "changeTemporary"
     },
 
     /**
@@ -237,7 +237,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     valid: {
       check: "Boolean",
       init: true,
-      event: "changeValid",
+      event: "changeValid"
     },
 
     /**
@@ -246,7 +246,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     hasWarnings: {
       check: "Boolean",
       init: false,
-      event: "changeHasWarnings",
+      event: "changeHasWarnings"
     },
 
     /**
@@ -255,13 +255,13 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
      */
     content: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     modified: {
       check: "Boolean",
       init: false,
-      event: "changeModified",
+      event: "changeModified"
     },
 
     // Backend properties
@@ -270,57 +270,57 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       check: "Boolean",
       event: "changeHasChildren",
       apply: "_applyHasChildren",
-      init: false,
+      init: false
     },
 
     name: {
       check: "String",
       event: "changeName",
       init: "",
-      apply: "_applyName",
+      apply: "_applyName"
     },
 
     type: {
       check: ["dir", "file"],
       transform: "_toLowerCase",
       nullable: true,
-      apply: "_maintainIcon",
+      apply: "_maintainIcon"
     },
 
     parentFolder: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     readable: {
       check: "Boolean",
       init: false,
-      event: "changeReadable",
+      event: "changeReadable"
     },
 
     writeable: {
       check: "Boolean",
       init: false,
-      event: "changeWriteable",
+      event: "changeWriteable"
     },
 
     mounted: {
       check: "Boolean",
       init: false,
-      event: "changeMounted",
+      event: "changeMounted"
     },
 
     trash: {
       check: "Boolean",
       init: false,
-      event: "changeTrash",
+      event: "changeTrash"
     },
 
     inTrash: {
       check: "Boolean",
       init: false,
-      event: "changeInTrash",
-    },
+      event: "changeInTrash"
+    }
   },
 
   /*
@@ -654,8 +654,8 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
         }
       },
 
-      false: null,
-    }),
+      false: null
+    })
   },
 
   /*
@@ -665,5 +665,5 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
   */
   destruct() {
     this.__fullPath = null;
-  },
+  }
 });

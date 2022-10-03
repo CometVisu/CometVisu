@@ -100,10 +100,10 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
         let request = new XMLHttpRequest();
         request.responseType = "blob";
         request.open("get", this._url.toString(), true);
-        Object.keys(this._headers).forEach((name) => {
+        Object.keys(this._headers).forEach(name => {
           request.setRequestHeader(name, this._headers[name]);
         });
-        request.onreadystatechange = (e) => {
+        request.onreadystatechange = e => {
           if (
             request.readyState === XMLHttpRequest.DONE &&
             request.status === 200
@@ -143,7 +143,7 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
           this.debug("unhandled address target", ev.detail.target);
         }
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -155,5 +155,5 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
         }
       }
     );
-  },
+  }
 });

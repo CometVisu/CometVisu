@@ -78,8 +78,8 @@ qx.Class.define("cv.ui.structure.pure.InfoAction", {
   properties: {
     anonymous: {
       refine: true,
-      init: true,
-    },
+      init: true
+    }
   },
 
   /*
@@ -91,10 +91,10 @@ qx.Class.define("cv.ui.structure.pure.InfoAction", {
     // overridden
     _getInnerDomString() {
       return this.getChildrenDomString();
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("infoaction", statics);
-  },
+  }
 });

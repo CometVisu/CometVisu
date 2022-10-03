@@ -40,6 +40,6 @@ qx.Interface.define("cv.core.notifications.IActionHandler", {
     /**
      * Get a DOM element which usually starts the action
      */
-    getDomElement() {},
-  },
+    getDomElement() {}
+  }
 });

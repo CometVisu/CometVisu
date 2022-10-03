@@ -58,7 +58,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
   */
   events: {
     /** (Fired by {@link qx.ui.form.List}) */
-    action: "qx.event.type.Event",
+    action: "qx.event.type.Event"
   },
 
   /*
@@ -69,7 +69,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-file-item",
+      init: "cv-file-item"
     },
 
     model: {
@@ -77,7 +77,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       event: "changeModel",
       apply: "_applyModel",
       dereference: true,
-      check: "cv.ui.manager.model.FileItem",
+      check: "cv.ui.manager.model.FileItem"
     },
 
     /**
@@ -86,14 +86,14 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     showFileActions: {
       check: "Boolean",
       init: false,
-      apply: "_maintainFileActions",
+      apply: "_maintainFileActions"
     },
 
     /** The label/caption/text of the qx.ui.basic.Atom instance */
     label: {
       nullable: true,
       check: "String",
-      event: "changeLabel",
+      event: "changeLabel"
     },
 
     /** Any URI String supported by qx.ui.basic.Image to display an icon */
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       check: "String",
       nullable: true,
       themeable: true,
-      event: "changeIcon",
+      event: "changeIcon"
     },
 
     /**
@@ -112,7 +112,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       nullable: false,
       event: "changeGap",
       themeable: true,
-      init: 4,
+      init: 4
     },
 
     /**
@@ -124,7 +124,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       check: ["both", "label", "icon"],
       themeable: true,
       inheritable: true,
-      event: "changeShow",
+      event: "changeShow"
     },
 
     /**
@@ -141,10 +141,10 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
         "top-left",
         "bottom-left",
         "top-right",
-        "bottom-right",
+        "bottom-right"
       ],
       themeable: true,
-      event: "changeIconPosition",
+      event: "changeIconPosition"
     },
 
     /**
@@ -160,7 +160,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       init: false,
       check: "Boolean",
       themeable: true,
-      event: "changeCenter",
+      event: "changeCenter"
     },
 
     /**
@@ -169,14 +169,14 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     acceptUpload: {
       init: null,
       nullable: true,
-      check: "String",
+      check: "String"
     },
 
     viewMode: {
       check: ["list", "preview"],
       init: "preview",
-      apply: "_applyViewMode",
-    },
+      apply: "_applyViewMode"
+    }
   },
 
   /*
@@ -184,8 +184,8 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     MEMBERS
   ***********************************************
   */
+  /* eslint-disable @qooxdoo/qx/no-refs-in-members */
   members: {
-    // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     _uploadManager: null,
 
     // overridden
@@ -196,7 +196,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       focused: true,
       selected: true,
       dragover: true,
-      hovered: true,
+      hovered: true
     },
 
     _applyViewMode() {
@@ -207,13 +207,13 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
             left: 10,
             top: 0,
             bottom: 0,
-            right: null,
+            right: null
           });
           this.getChildControl("bottom-bar").setLayoutProperties({
             top: 0,
             bottom: 0,
             right: 0,
-            left: null,
+            left: null
           });
           break;
 
@@ -223,13 +223,13 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
             left: 0,
             top: 0,
             bottom: 34,
-            right: 0,
+            right: 0
           });
           this.getChildControl("bottom-bar").setLayoutProperties({
             left: 0,
             bottom: 0,
             right: 0,
-            top: null,
+            top: null
           });
           break;
       }
@@ -295,7 +295,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
         if (!value.isFake()) {
           const name = value.getName();
           this.getChildControl("atom").setToolTipText(
-            this.tr('Double click to open "%1"', name)
+            this.tr("Double click to open \"%1\"", name)
           );
           let type = name.split(".").pop();
 
@@ -346,7 +346,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       const handlerId = ev.getTarget().getUserData("handlerId");
       qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
         file: this.getModel(),
-        handler: handlerId,
+        handler: handlerId
       });
     },
 
@@ -392,7 +392,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
             enabled: true,
             toolTipText: editorConf.Clazz.TITLE
               ? editorConf.Clazz.TITLE.translate().toString()
-              : "",
+              : ""
           });
 
           editButton.show();
@@ -408,7 +408,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
             enabled: true,
             toolTipText: viewerConf.Clazz.TITLE
               ? viewerConf.Clazz.TITLE.translate().toString()
-              : "",
+              : ""
           });
 
           openButton.show();
@@ -450,7 +450,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
         left: iconBounds.left,
         top: top,
         right: iconBounds.left + iconBounds.width,
-        bottom: top + 18,
+        bottom: top + 18
       });
     },
 
@@ -479,7 +479,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
             font: "title",
             textAlign: "center",
             textColor: "surface",
-            minWidth: 70,
+            minWidth: 70
           });
 
           const icon = this.getChildControl("atom").getChildControl("icon");
@@ -518,13 +518,13 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
           );
           control.setToolTipText(this.tr("Other file actions"));
           this.getChildControl("bottom-bar").add(control);
-          control.addListener("tap", (ev) => {
+          control.addListener("tap", ev => {
             this.fireEvent("action", qx.event.type.Tap, [
               ev.getNativeEvent(),
               this,
               ev.getTarget(),
               false,
-              true,
+              true
             ]);
           });
           break;
@@ -537,7 +537,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
           control.addListener("execute", () => {
             qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
               file: this.getModel(),
-              handler: control.getUserData("handlerId"),
+              handler: control.getUserData("handlerId")
             });
           });
           this.getChildControl("bottom-bar").add(control);
@@ -551,7 +551,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
           control.addListener("execute", () => {
             qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
               file: this.getModel(),
-              handler: control.getUserData("handlerId"),
+              handler: control.getUserData("handlerId")
             });
           });
           this.getChildControl("bottom-bar").add(control);
@@ -579,7 +579,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       if (!this.getFile() || this.getFile().getSpecial() !== "add-file") {
         super.releaseCapture();
       }
-    },
+    }
   },
 
   /*
@@ -597,5 +597,5 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       this._maintainFileActions,
       this
     );
-  },
+  }
 });

@@ -49,8 +49,8 @@ qx.Class.define("cv.ui.structure.pure.Image", {
     widthFit: { check: "Boolean", init: false },
     placeholder: {
       check: ["none", "src", "hide", "exclude"],
-      init: "none",
-    },
+      init: "none"
+    }
   },
 
   /*
@@ -107,11 +107,11 @@ qx.Class.define("cv.ui.structure.pure.Image", {
         }
       }
       return (
-        '<div class="actor"><img src="' +
+        "<div class=\"actor\"><img src=\"" +
         src +
-        '" style="' +
+        "\" style=\"" +
         imgStyle +
-        '" /></div>'
+        "\" /></div>"
       );
     },
 
@@ -173,10 +173,10 @@ qx.Class.define("cv.ui.structure.pure.Image", {
       } else {
         valueElem.setAttribute("src", "");
       }
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("image", statics);
-  },
+  }
 });

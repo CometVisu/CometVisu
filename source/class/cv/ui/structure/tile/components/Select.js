@@ -57,7 +57,7 @@ qx.Class.define("cv.ui.structure.tile.components.Select", {
       element.appendChild(handle);
 
       if (this._writeAddresses.length > 0) {
-        element.addEventListener("click", (ev) => this.onClicked(ev));
+        element.addEventListener("click", ev => this.onClicked(ev));
       }
     },
 
@@ -85,16 +85,16 @@ qx.Class.define("cv.ui.structure.tile.components.Select", {
       const ev = new CustomEvent("sendState", {
         detail: {
           value: key,
-          source: this,
-        },
+          source: this
+        }
       });
 
       this._writeAddresses
         .filter(
-          (addr) =>
+          addr =>
             !addr.hasAttribute("on") || addr.getAttribute("on") === "click"
         )
-        .forEach((address) => address.dispatchEvent(ev));
+        .forEach(address => address.dispatchEvent(ev));
       if (predictive === true) {
         this.setValue(key);
       }
@@ -113,7 +113,7 @@ qx.Class.define("cv.ui.structure.tile.components.Select", {
           this.__value.innerHTML = current.innerHTML;
         }
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -125,5 +125,5 @@ qx.Class.define("cv.ui.structure.tile.components.Select", {
         }
       }
     );
-  },
+  }
 });

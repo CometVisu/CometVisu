@@ -64,8 +64,8 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
   properties: {
     value: {
       refine: true,
-      init: [],
-    },
+      init: []
+    }
   },
 
   /*
@@ -95,14 +95,14 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
         this._filterModel = new Function(
           "item",
           "index",
-          '"use strict"; return ' + model.getAttribute("filter")
+          "\"use strict\"; return " + model.getAttribute("filter")
         );
       }
       if (model.hasAttribute("limit")) {
         this._limit = parseInt(model.getAttribute("limit"));
       }
       const readAddresses = model.querySelectorAll(
-        ':scope > cv-address:not([mode="write"])'
+        ":scope > cv-address:not([mode=\"write\"])"
       );
       if (model.hasAttribute("sort-by")) {
         const sortBy = model.getAttribute("sort-by");
@@ -155,7 +155,7 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
         const data = model.querySelectorAll(":scope > cv-data");
         if (script) {
           this._getModel = new Function(
-            '"use strict";let model = []; ' +
+            "\"use strict\";let model = []; " +
               script.innerText.trim() +
               "; return model"
           );
@@ -169,7 +169,7 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
           this._getModel = () => this._model;
           data.forEach((elem, i) => {
             const d = {
-              index: i,
+              index: i
             };
 
             for (const a of elem.attributes) {
@@ -185,7 +185,7 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
         }
       }
       if (readAddresses.length > 0) {
-        element.addEventListener("stateUpdate", (ev) => this.onStateUpdate(ev));
+        element.addEventListener("stateUpdate", ev => this.onStateUpdate(ev));
       }
       if (!refreshOnUpdate) {
         if (this.isVisible()) {
@@ -263,7 +263,7 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
         }
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(
-            ':scope > template[when="empty"]'
+            ":scope > template[when=\"empty\"]"
           );
           if (
             whenEmptyTemplate &&
@@ -328,7 +328,7 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
       } else {
         this.error("model must be an array", newModel);
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -340,5 +340,5 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
         }
       }
     );
-  },
+  }
 });

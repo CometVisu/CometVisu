@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.structure.pure.Video", {
     width: { check: "String", nullable: true },
     height: { check: "String", nullable: true },
     src: { check: "String", init: "" },
-    autoplay: { check: "Boolean", init: false },
+    autoplay: { check: "Boolean", init: false }
   },
 
   /*
@@ -55,16 +55,16 @@ qx.Class.define("cv.ui.structure.pure.Video", {
         style += "height:" + this.getHeight() + ";";
       }
       if (style !== "") {
-        style = 'style="' + style + '"';
+        style = "style=\"" + style + "\"";
       }
-      const autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : "";
+      const autoplay = this.isAutoplay() ? " autoplay=\"autoplay\"" : "";
       return (
-        '<div class="actor"><video src="' +
+        "<div class=\"actor\"><video src=\"" +
         this.getSrc() +
-        '" ' +
+        "\" " +
         style +
         autoplay +
-        '  controls="controls" /></div>'
+        "  controls=\"controls\" /></div>"
       );
     },
 
@@ -83,6 +83,6 @@ qx.Class.define("cv.ui.structure.pure.Video", {
           video.pause();
         }
       }
-    },
-  },
+    }
+  }
 });

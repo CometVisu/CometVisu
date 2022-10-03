@@ -34,26 +34,26 @@ qx.Class.define("cv.ui.structure.pure.layout.States", {
     pageSizeInvalid: {
       check: "Boolean",
       init: true,
-      event: "changePageSizeInvalid",
+      event: "changePageSizeInvalid"
     },
 
     backdropInvalid: {
       check: "Boolean",
       init: true,
-      event: "changeBackdropInvalid",
+      event: "changeBackdropInvalid"
     },
 
     navbarInvalid: {
       check: "Boolean",
       init: true,
-      event: "changeNavbarInvalid",
+      event: "changeNavbarInvalid"
     },
 
     rowspanInvalid: {
       check: "Boolean",
       init: true,
-      event: "changeRowspanInvalid",
-    },
+      event: "changeRowspanInvalid"
+    }
   },
 
   /*
@@ -67,8 +67,8 @@ qx.Class.define("cv.ui.structure.pure.layout.States", {
         "pageSizeInvalid",
         "backdropInvalid",
         "navbarInvalid",
-        "rowspanInvalid",
+        "rowspanInvalid"
       ].forEach(this.reset, this);
-    },
-  },
+    }
+  }
 });

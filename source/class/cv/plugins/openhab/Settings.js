@@ -38,7 +38,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     this.set({
       padding: 10,
       backgroundColor: "rgba(216, 216, 216, 1.0)",
-      textColor: "rgb(61, 61, 61)",
+      textColor: "rgb(61, 61, 61)"
     });
 
     // override text-shadow setting
@@ -65,8 +65,8 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     modified: {
       check: "Boolean",
       init: false,
-      event: "changeModified",
-    },
+      event: "changeModified"
+    }
   },
 
   /*
@@ -88,7 +88,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       const serviceDesc = {
         get: { method: "GET", url: "/rest/services/" + pid + "/config" },
         delete: { method: "DELETE", url: "/rest/services/" + pid + "/config" },
-        put: { method: "PUT", url: "/rest/services/" + pid + "/config" },
+        put: { method: "PUT", url: "/rest/services/" + pid + "/config" }
       };
 
       const service = (this.__service = new qx.io.rest.Resource(serviceDesc));
@@ -111,7 +111,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
             n.autoDownload = false;
           }
           return n;
-        },
+        }
       });
 
       // load data
@@ -135,14 +135,14 @@ qx.Class.define("cv.plugins.openhab.Settings", {
 
     _initConfigRestClient() {
       const description = {
-        get: { method: "GET", url: "/rest/config-descriptions/" + this.__uri },
+        get: { method: "GET", url: "/rest/config-descriptions/" + this.__uri }
       };
 
       const config = (this.__configDescriptionResource =
         new qx.io.rest.Resource(description));
       const client = cv.io.BackendConnections.getClient();
 
-      config.addListener("getSuccess", (ev) => {
+      config.addListener("getSuccess", ev => {
         this._createForm(ev.getRequest().getResponse());
       });
       config.configureRequest(function (req) {
@@ -200,7 +200,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
           renderer.getChildControl("bottom-text").set({
             padding: 10,
             textAlign: "center",
-            font: "bold",
+            font: "bold"
           });
         }
         renderer.addButton(this.getChildControl("cancel-button"));
@@ -247,7 +247,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
             font: "bold",
             marginBottom: 5,
             allowGrowX: true,
-            decorator: "window-caption",
+            decorator: "window-caption"
           });
 
           this._addAt(control, 0);
@@ -274,7 +274,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
 
     close() {
       this.setVisibility("excluded");
-    },
+    }
   },
 
   /*
@@ -290,5 +290,5 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       "_store",
       "_window"
     );
-  },
+  }
 });

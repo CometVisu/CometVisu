@@ -36,7 +36,7 @@ qx.Class.define("cv.transforms.Mqtt", {
         name: "MQTT_Number",
         lname: {
           de: "Zahl",
-          en: "number",
+          en: "number"
         },
 
         example: "42",
@@ -46,31 +46,31 @@ qx.Class.define("cv.transforms.Mqtt", {
         },
         decode(str) {
           return parseFloat(str);
-        },
+        }
       },
 
       string: {
         name: "MQTT_String",
         lname: {
           de: "Zeichenkette",
-          en: "string",
+          en: "string"
         },
 
-        example: '"abc"',
+        example: "\"abc\"",
         unit: "-",
         encode(phy) {
           return phy.toString();
         },
         decode(str) {
           return str.toString();
-        },
+        }
       },
 
       unixtime: {
         name: "MQTT_unixtime",
         lname: {
           de: "UNIX Zeitstempel",
-          en: "UNIX timestamp",
+          en: "UNIX timestamp"
         },
 
         example: "1641054600",
@@ -80,17 +80,17 @@ qx.Class.define("cv.transforms.Mqtt", {
         },
         decode(str) {
           return new Date(parseFloat(str) * 1000);
-        },
+        }
       },
 
       timestring: {
         name: "MQTT_timestring",
         lname: {
           de: "Uhrzeit-String",
-          en: "time string",
+          en: "time string"
         },
 
-        example: '"16:30:00"',
+        example: "\"16:30:00\"",
         unit: "-",
         encode(phy) {
           return phy.toTimeString().split(" ")[0];
@@ -106,39 +106,39 @@ qx.Class.define("cv.transforms.Mqtt", {
           );
 
           return date;
-        },
+        }
       },
 
       datetime: {
         name: "MQTT_datetime",
         lname: {
           de: "ISO 8601 Zeit-String",
-          en: "ISO 8601 time string",
+          en: "ISO 8601 time string"
         },
 
-        example: '"2022-01-01T16:30:00.000Z"',
+        example: "\"2022-01-01T16:30:00.000Z\"",
         unit: "-",
         encode(phy) {
           return phy.toISOString();
         },
         decode(str) {
           return new Date(str);
-        },
+        }
       },
 
       color_xy: {
         name: "MQTT_color_xy",
         lname: {
           de: "xy-Farbe",
-          en: "xy color",
+          en: "xy color"
         },
 
-        example: '{"x":0.123,"y":0.123}',
+        example: "{\"x\":0.123,\"y\":0.123}",
         unit: "-",
         encode(phy) {
           return {
             x: phy.get("x"),
-            y: phy.get("y"),
+            y: phy.get("y")
           };
         },
         decode(str) {
@@ -146,25 +146,25 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["x", parseFloat(value.x)],
             ["y", parseFloat(value.y)],
-            ["cValid", true],
+            ["cValid", true]
           ]);
-        },
+        }
       },
 
       color_xyY: {
         name: "MQTT_color_xyY",
         lname: {
           de: "xyY-Farbe",
-          en: "xyY color",
+          en: "xyY color"
         },
 
-        example: '{"x":0.123,"y":0.123,"Y":100}',
+        example: "{\"x\":0.123,\"y\":0.123,\"Y\":100}",
         unit: "-",
         encode(phy) {
           return {
             x: phy.get("x"),
             y: phy.get("y"),
-            Y: phy.get("Y"),
+            Y: phy.get("Y")
           };
         },
         decode(str) {
@@ -174,19 +174,19 @@ qx.Class.define("cv.transforms.Mqtt", {
             ["y", parseFloat(value.y)],
             ["Y", parseFloat(value.Y)],
             ["cValid", true],
-            ["YValid", true],
+            ["YValid", true]
           ]);
-        },
+        }
       },
 
       color_hsv: {
         name: "MQTT_color_hsv",
         lname: {
           de: "HSV-Farbe als Zeichenkette",
-          en: "HSV color as string",
+          en: "HSV color as string"
         },
 
-        example: '"360,100,100"',
+        example: "\"360,100,100\"",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -199,19 +199,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["h", parseFloat(value[0])],
             ["s", parseFloat(value[1])],
-            ["v", parseFloat(value[2])],
+            ["v", parseFloat(value[2])]
           ]);
-        },
+        }
       },
 
       color_h_s_v: {
         name: "MQTT_color_h_s_v",
         lname: {
           de: "HSV-Farbe",
-          en: "HSV color",
+          en: "HSV color"
         },
 
-        example: '{"h":360,"s":100,"v":100}',
+        example: "{\"h\":360,\"s\":100,\"v\":100}",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -220,7 +220,7 @@ qx.Class.define("cv.transforms.Mqtt", {
           return {
             h: phy.get("h"),
             s: phy.get("s"),
-            v: phy.get("v"),
+            v: phy.get("v")
           };
         },
         decode(str) {
@@ -228,19 +228,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["h", parseFloat(value.h)],
             ["s", parseFloat(value.s)],
-            ["v", parseFloat(value.v)],
+            ["v", parseFloat(value.v)]
           ]);
-        },
+        }
       },
 
       color_hsl: {
         name: "MQTT_color_hsl",
         lname: {
           de: "HSL-Farbe als Zeichenkette",
-          en: "HSL color as string",
+          en: "HSL color as string"
         },
 
-        example: '"360,100,100"',
+        example: "\"360,100,100\"",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -253,19 +253,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["h", parseFloat(value[0])],
             ["s", parseFloat(value[1])],
-            ["v", parseFloat(value[2])],
+            ["v", parseFloat(value[2])]
           ]);
-        },
+        }
       },
 
       color_h_s_l: {
         name: "MQTT_color_h_s_l",
         lname: {
           de: "HSL-Farbe",
-          en: "HSL color",
+          en: "HSL color"
         },
 
-        example: '{"h":360,"s":100,"l":100}',
+        example: "{\"h\":360,\"s\":100,\"l\":100}",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -274,7 +274,7 @@ qx.Class.define("cv.transforms.Mqtt", {
           return {
             h: phy.get("h"),
             s: phy.get("s"),
-            l: phy.get("v"),
+            l: phy.get("v")
           };
         },
         decode(str) {
@@ -282,19 +282,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["h", parseFloat(value.h)],
             ["s", parseFloat(value.s)],
-            ["v", parseFloat(value.l)],
+            ["v", parseFloat(value.l)]
           ]);
-        },
+        }
       },
 
       color_rgb: {
         name: "MQTT_color_rgb",
         lname: {
           de: "RGB-Farbe als Zeichenkette",
-          en: "RGB color as string",
+          en: "RGB color as string"
         },
 
-        example: '"100,100,100"',
+        example: "\"100,100,100\"",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -307,19 +307,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["r", parseFloat(value[0])],
             ["g", parseFloat(value[1])],
-            ["b", parseFloat(value[2])],
+            ["b", parseFloat(value[2])]
           ]);
-        },
+        }
       },
 
       color_r_g_b: {
         name: "MQTT_color_r_g_b",
         lname: {
           de: "RGB-Farbe",
-          en: "RGB color",
+          en: "RGB color"
         },
 
-        example: '{"r":100,"g":100,"b":100}',
+        example: "{\"r\":100,\"g\":100,\"b\":100}",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -328,7 +328,7 @@ qx.Class.define("cv.transforms.Mqtt", {
           return {
             r: phy.get("r"),
             g: phy.get("g"),
-            b: phy.get("b"),
+            b: phy.get("b")
           };
         },
         decode(str) {
@@ -336,19 +336,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["r", parseFloat(value.r)],
             ["g", parseFloat(value.g)],
-            ["b", parseFloat(value.b)],
+            ["b", parseFloat(value.b)]
           ]);
-        },
+        }
       },
 
       color_rgbw: {
         name: "MQTT_color_rgbw",
         lname: {
           de: "RGBW-Farbe als Zeichenkette",
-          en: "RGBW color as string",
+          en: "RGBW color as string"
         },
 
-        example: '"100,100,100,100"',
+        example: "\"100,100,100,100\"",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -364,19 +364,19 @@ qx.Class.define("cv.transforms.Mqtt", {
             ["r", parseFloat(value[0])],
             ["g", parseFloat(value[1])],
             ["b", parseFloat(value[2])],
-            ["w", parseFloat(value[3])],
+            ["w", parseFloat(value[3])]
           ]);
-        },
+        }
       },
 
       color_r_g_b_w: {
         name: "MQTT_color_r_g_b_w",
         lname: {
           de: "RGBW-Farbe",
-          en: "RGBW color",
+          en: "RGBW color"
         },
 
-        example: '{"r":100,"g":100,"b":100,"w":100}',
+        example: "{\"r\":100,\"g\":100,\"b\":100,\"w\":100}",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -386,7 +386,7 @@ qx.Class.define("cv.transforms.Mqtt", {
             r: phy.get("r"),
             g: phy.get("g"),
             b: phy.get("b"),
-            w: phy.get("w"),
+            w: phy.get("w")
           };
         },
         decode(str) {
@@ -395,19 +395,19 @@ qx.Class.define("cv.transforms.Mqtt", {
             ["r", parseFloat(value.r)],
             ["g", parseFloat(value.g)],
             ["b", parseFloat(value.b)],
-            ["w", parseFloat(value.w)],
+            ["w", parseFloat(value.w)]
           ]);
-        },
+        }
       },
 
       color_rgb_hex: {
         name: "MQTT_color_rgb_hex",
         lname: {
           de: "RGB-Farbe",
-          en: "RGB color",
+          en: "RGB color"
         },
 
-        example: '"#11FF88"',
+        example: "\"#11FF88\"",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -423,7 +423,7 @@ qx.Class.define("cv.transforms.Mqtt", {
               .padStart(2, "0"),
             cv.Transform.clipInt(0, phy.get("b"), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
         },
         decode(str) {
@@ -431,19 +431,19 @@ qx.Class.define("cv.transforms.Mqtt", {
           return new Map([
             ["r", (parseInt(str.substr(1, 2), 16) * 100) / 255.0],
             ["g", (parseInt(str.substr(3, 2), 16) * 100) / 255.0],
-            ["b", (parseInt(str.substr(5, 2), 16) * 100) / 255.0],
+            ["b", (parseInt(str.substr(5, 2), 16) * 100) / 255.0]
           ]);
-        },
+        }
       },
 
       color_rgbw_hex: {
         name: "MQTT_color_rgbw_hex",
         lname: {
           de: "RGBW-Farbe",
-          en: "RGBW color",
+          en: "RGBW color"
         },
 
-        example: '"#11FF88AA"',
+        example: "\"#11FF88AA\"",
         unit: "-",
         encode(phy) {
           if (!(phy instanceof Map)) {
@@ -462,7 +462,7 @@ qx.Class.define("cv.transforms.Mqtt", {
               .padStart(2, "0"),
             cv.Transform.clipInt(0, phy.get("w"), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
+              .padStart(2, "0")
           ].join("");
         },
         decode(str) {
@@ -471,10 +471,10 @@ qx.Class.define("cv.transforms.Mqtt", {
             ["r", (parseInt(str.substr(1, 2), 16) * 100) / 255.0],
             ["g", (parseInt(str.substr(3, 2), 16) * 100) / 255.0],
             ["b", (parseInt(str.substr(5, 2), 16) * 100) / 255.0],
-            ["w", (parseInt(str.substr(7, 2), 16) * 100) / 255.0],
+            ["w", (parseInt(str.substr(7, 2), 16) * 100) / 255.0]
           ]);
-        },
-      },
+        }
+      }
     });
-  },
+  }
 });

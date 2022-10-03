@@ -43,11 +43,11 @@ qx.Class.define("cv.svg.Element", {
     },
     getDomElement() {
       return this.__svgElement;
-    },
+    }
   },
 
   destruct() {
     this.__svgElement.$$widget = null;
     this.__svgElement = null;
-  },
+  }
 });

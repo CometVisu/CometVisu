@@ -66,12 +66,12 @@ qx.Class.define("cv.plugins.Gauge", {
     threshold: {
       check: "Number",
       init: 0,
-      apply: "_applyThreshold",
+      apply: "_applyThreshold"
     },
 
     thresholdVisible: { check: "Boolean", init: false },
     autoScroll: { check: "Boolean", init: false },
-    valuesNumeric: { check: "Boolean", init: false },
+    valuesNumeric: { check: "Boolean", init: false }
   },
 
   /*
@@ -118,7 +118,7 @@ qx.Class.define("cv.plugins.Gauge", {
         unitStringVisible: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         size: { default: 150, transform: parseFloat },
@@ -131,47 +131,47 @@ qx.Class.define("cv.plugins.Gauge", {
         lcdVisible: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         lcdDecimals: { default: 0, transform: parseInt },
         ledVisible: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         valueColor: {},
         trendVisible: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         thresholdRising: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         threshold: { default: 0, transform: parseFloat },
         autoScroll: {
           transform(value) {
             return value === "true";
-          },
+          }
         },
 
         valuesNumeric: {
           transform(value) {
             return value === "true";
-          },
-        },
+          }
+        }
       };
     },
 
     makeAddressListFn(src, transform, mode, variant) {
       return [true, variant];
-    },
+    }
   },
 
   /*
@@ -185,11 +185,11 @@ qx.Class.define("cv.plugins.Gauge", {
 
     _getInnerDomString() {
       return (
-        '<div class="actor' +
+        "<div class=\"actor" +
         (this.getPagejumpTarget() ? "clickable" : "") +
-        '"><canvas id="gauge_' +
+        "\"><canvas id=\"gauge_" +
         this.getPath() +
-        '"></canvas></div>'
+        "\"></canvas></div>"
       );
     },
 
@@ -212,7 +212,7 @@ qx.Class.define("cv.plugins.Gauge", {
         pointerType: steelseries.PointerType.TYPE1,
         pointerColor: steelseries.ColorDef.RED,
         lcdColor: steelseries.LcdColor.STANDARD,
-        ledColor: steelseries.LedColor.RED_LED,
+        ledColor: steelseries.LedColor.RED_LED
       };
 
       const params = Object.assign(
@@ -323,7 +323,7 @@ qx.Class.define("cv.plugins.Gauge", {
           this.getPagejumpTarget()
         );
       }
-    },
+    }
   },
 
   defer(statics) {
@@ -331,10 +331,10 @@ qx.Class.define("cv.plugins.Gauge", {
     loader.addStyles("plugins/gauge/gauge.css");
     loader.addScripts([
       "plugins/gauge/dep/tween.js",
-      "plugins/gauge/dep/steelseries.js",
+      "plugins/gauge/dep/steelseries.js"
     ]);
 
     cv.parser.pure.WidgetParser.addHandler("gauge", cv.plugins.Gauge);
     cv.ui.structure.WidgetFactory.registerClass("gauge", statics);
-  },
+  }
 });

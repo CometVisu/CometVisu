@@ -34,8 +34,8 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
     throttleInterval: {
       check: "Number",
       init: 250,
-      apply: "_applyThrottleInterval",
-    },
+      apply: "_applyThrottleInterval"
+    }
   },
 
   /*
@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
         // no throttling, direct call
         this.__throttled = {
           call: () => this.onInput(),
-          abort: () => {},
+          abort: () => {}
         };
       }
     },
@@ -128,7 +128,7 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
             rgb = qx.util.ColorUtil.hsbToRgb([
               value.get("h"),
               value.get("s"),
-              100,
+              100
             ]);
             alpha = Math.round((value.get("v") / 100) * 255)
               .toString(16)
@@ -149,26 +149,26 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
       const hsvArray = qx.util.ColorUtil.rgbToHsb([
         parseInt(value.substring(1, 3), 16),
         parseInt(value.substring(3, 5), 16),
-        parseInt(value.substring(5, 7), 16),
+        parseInt(value.substring(5, 7), 16)
       ]);
 
       const hsv = new Map([
         ["h", hsvArray[0]],
         ["s", hsvArray[1]],
-        ["v", hsvArray[2]],
+        ["v", hsvArray[2]]
       ]);
 
       const ev = new CustomEvent("sendState", {
         detail: {
           value: hsv,
-          source: this,
-        },
+          source: this
+        }
       });
 
       this._writeAddresses
-        .filter((addr) => addr.getAttribute("variant") === "hsv")
-        .forEach((address) => address.dispatchEvent(ev));
-    },
+        .filter(addr => addr.getAttribute("variant") === "hsv")
+        .forEach(address => address.dispatchEvent(ev));
+    }
   },
 
   defer(QxClass) {
@@ -180,5 +180,5 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
         }
       }
     );
-  },
+  }
 });

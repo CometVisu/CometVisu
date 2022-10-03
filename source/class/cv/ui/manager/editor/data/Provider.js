@@ -48,16 +48,16 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           cache: true,
           userInputAllowed: true,
           grouped: true,
-          method: "getAddresses",
-        },
+          method: "getAddresses"
+        }
       },
 
       rrd: {
         "#text": {
           cache: true,
           userInputAllowed: true,
-          method: "getRrds",
-        },
+          method: "getRrds"
+        }
       },
 
       influx: {
@@ -65,15 +65,15 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBs",
+          method: "getInfluxDBs"
         },
 
         field: {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBFields",
-        },
+          method: "getInfluxDBFields"
+        }
       },
 
       tag: {
@@ -81,15 +81,15 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBTags",
+          method: "getInfluxDBTags"
         },
 
         value: {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBValues",
-        },
+          method: "getInfluxDBValues"
+        }
       },
 
       icon: {
@@ -97,24 +97,24 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getIcons",
-        },
+          method: "getIcons"
+        }
       },
 
       plugin: {
         name: {
           cache: true,
           userInputAllowed: false,
-          method: "getPlugins",
-        },
+          method: "getPlugins"
+        }
       },
 
       pages: {
         design: {
           method: "getDesigns",
           cache: true,
-          userInputAllowed: false,
-        },
+          userInputAllowed: false
+        }
       },
 
       // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
@@ -122,22 +122,22 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         rrd: {
           method: "getRrds",
           cache: true,
-          userInputAllowed: true,
+          userInputAllowed: true
         },
 
         ga: {
           method: "getAddresses",
           cache: true,
           userInputAllowed: true,
-          grouped: true,
+          grouped: true
         },
 
         transform: {
           method: "getTransforms",
           cache: true,
-          userInputAllowed: false,
-        },
-      },
+          userInputAllowed: false
+        }
+      }
     },
 
     get(id, ...args) {
@@ -166,7 +166,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         return Object.assign(conf, config);
       }
       return null;
-    },
+    }
   },
 
   /*
@@ -209,7 +209,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         return designs.map(function (designName) {
           return {
             label: designName,
-            value: designName,
+            value: designName
           };
         });
       }
@@ -217,7 +217,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         return {
           label: designName,
           insertText: designName,
-          kind: window.monaco.languages.CompletionItemKind.EnumMember,
+          kind: window.monaco.languages.CompletionItemKind.EnumMember
         };
       });
     },
@@ -295,10 +295,10 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
             client.authorize(xhr);
           }
           xhr.set({
-            accept: "application/json",
+            accept: "application/json"
           });
 
-          xhr.addListener("success", (ev) => {
+          xhr.addListener("success", ev => {
             let data = ev.getTarget().getResponse();
             if (cache) {
               this._addToCache(url, data);
@@ -444,7 +444,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
             return {
               label: x,
               insertText: x,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           });
         }
@@ -464,14 +464,14 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
             return {
               label: x,
               insertText: x,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           });
         }
         return res[tag].map(function (x) {
           return {
             label: x,
-            value: x,
+            value: x
           };
         });
       });
@@ -492,7 +492,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           target.push({
             label: entry.label,
             insertText: entry.value,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
           });
         }, this);
       } else if (format === "dp") {
@@ -518,7 +518,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
               return {
                 label: path,
                 insertText: path,
-                kind: window.monaco.languages.CompletionItemKind.EnumMember,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
               };
             });
         },
@@ -550,13 +550,13 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         if (format === "dp") {
           suggestion = {
             label: entry.name + " [" + key + "]",
-            value: key,
+            value: key
           };
         } else {
           suggestion = {
             label: key,
             insertText: key,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
           };
 
           if (
@@ -602,13 +602,13 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           if (format === "dp") {
             plugins.push({
               label: pluginName,
-              value: pluginName,
+              value: pluginName
             });
           } else {
             plugins.push({
               label: pluginName,
               insertText: pluginName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             });
           }
         }
@@ -642,13 +642,13 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         // do not use icons from config when we can query them ourselves
         icons = Object.keys(cv.IconConfig.DB)
           .filter(
-            (name) => !element || cv.IconConfig.DB[name].source !== "config"
+            name => !element || cv.IconConfig.DB[name].source !== "config"
           )
           .map(function (iconName) {
             return {
               label: iconName,
               insertText: iconName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           });
       } else if (format === "dp") {
@@ -656,13 +656,13 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         // do not use icons from config when we can query them ourselves
         icons = Object.keys(cv.IconConfig.DB)
           .filter(
-            (name) => !element || cv.IconConfig.DB[name].source !== "config"
+            name => !element || cv.IconConfig.DB[name].source !== "config"
           )
           .map(function (iconName) {
             return {
               label: iconName,
               value: iconName,
-              icon: iconHandler.getIconSource(iconName),
+              icon: iconHandler.getIconSource(iconName)
             };
           });
       }
@@ -670,26 +670,26 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         if (element instanceof Element) {
           element.ownerDocument
             .querySelectorAll("pages > meta > icons > icon-definition")
-            .forEach((icon) => {
+            .forEach(icon => {
               const iconName = icon.getAttribute("name");
               if (format === "monaco") {
                 icons.push({
                   label: iconName,
                   insertText: iconName,
-                  kind: window.monaco.languages.CompletionItemKind.EnumMember,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
                 });
               } else if (format === "dp") {
                 icons.push({
                   label: iconName,
                   value: iconName,
-                  icon: icon.getAttribute("uri"),
+                  icon: icon.getAttribute("uri")
                 });
               }
             });
         } else if (typeof element === "string") {
           const matches = element.match(/<icon-definition.+>/gm);
           const template = document.createElement("template");
-          matches.forEach((match) => {
+          matches.forEach(match => {
             template.innerHTML = match;
             const icon = template.content.firstElementChild;
             const iconName = icon.getAttribute("name");
@@ -697,13 +697,13 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
               icons.push({
                 label: iconName,
                 insertText: iconName,
-                kind: window.monaco.languages.CompletionItemKind.EnumMember,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
               });
             } else if (format === "dp") {
               icons.push({
                 label: iconName,
                 value: iconName,
-                icon: icon.getAttribute("uri"),
+                icon: icon.getAttribute("uri")
               });
             }
           });
@@ -713,7 +713,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         this._addToCache(cacheId, icons);
       }
       return icons;
-    },
+    }
   },
 
   /*
@@ -723,5 +723,5 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
   */
   destruct() {
     this.__cache = null;
-  },
+  }
 });

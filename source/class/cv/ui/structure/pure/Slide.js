@@ -68,28 +68,28 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
   properties: {
     min: {
       check: "Number",
-      init: 0,
+      init: 0
     },
 
     max: {
       check: "Number",
-      init: 100,
+      init: 100
     },
 
     step: {
       check: "Number",
-      init: 0.5,
+      init: 0.5
     },
 
     showInvalidValues: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     sendOnFinish: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   /*
@@ -303,10 +303,10 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
         false,
         this.__lastBusValue
       );
-    },
+    }
   },
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("slide", statics);
-  },
+  }
 });

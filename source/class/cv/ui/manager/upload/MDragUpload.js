@@ -60,13 +60,13 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     uploadMode: {
       check: "Boolean",
       init: false,
-      apply: "__applyUploadMode",
+      apply: "__applyUploadMode"
     },
 
     uploadHint: {
       check: "String",
-      init: "",
-    },
+      init: ""
+    }
   },
 
   /*
@@ -104,7 +104,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       }
       if (folder) {
         folder.set({
-          type: "dir",
+          type: "dir"
         });
 
         const manager = new cv.ui.manager.upload.UploadMgr();
@@ -154,7 +154,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
         }
       }
       return files;
-    },
+    }
   },
 
   /*
@@ -225,7 +225,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           dropBox.set({
             iconPosition: "top",
             rich: true,
-            center: true,
+            center: true
           });
 
           // control.bind('width', dropBox, 'maxWidth');
@@ -302,7 +302,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       if (!element) {
         const lid = this.getChildControl("upload-overlay").addListener(
           "visibility",
-          (ev) => {
+          ev => {
             if (ev.getData() === "visible") {
               this._applyDragListeners();
               this.getChildControl("upload-overlay").removeListenerById(lid);
@@ -380,6 +380,6 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           this.getChildControl("empty-info").show();
         }
       }
-    },
-  },
+    }
+  }
 });

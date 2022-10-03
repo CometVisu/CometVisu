@@ -28,7 +28,7 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
   include: [
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,
-    cv.ui.common.BasicUpdate,
+    cv.ui.common.BasicUpdate
   ],
 
   /*
@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
   properties: {
     sendValue: { check: "String", init: "0" },
     params: { check: "String", init: "" },
-    url: { check: "String", nullable: true, apply: "_applyUrl" },
+    url: { check: "String", nullable: true, apply: "_applyUrl" }
   },
 
   /*
@@ -64,7 +64,7 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
           xhr.set({
             method: "GET",
             accept: "application/html",
-            requestData: this.getParams(),
+            requestData: this.getParams()
           });
 
           this.__xhr = xhr;
@@ -82,11 +82,11 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
 
     // overridden
     _getInnerDomString() {
-      let actor = '<div class="actor switchUnpressed ';
+      let actor = "<div class=\"actor switchUnpressed ";
       if (this.getAlign()) {
         actor += this.getAlign();
       }
-      actor += '"><div class="value"></div></div>';
+      actor += "\"><div class=\"value\"></div></div>";
       return actor;
     },
 
@@ -95,7 +95,7 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
       if (this.__xhr) {
         this.__xhr.send();
       }
-    },
+    }
   },
 
   /*
@@ -109,5 +109,5 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass("urltrigger", statics);
-  },
+  }
 });

@@ -63,12 +63,12 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     this.set({
       rootElementId: "notification-center",
-      messageElementId: "notification_",
+      messageElementId: "notification_"
     });
 
     // register to topics
     cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-      "cv.*": {},
+      "cv.*": {}
     });
 
     this._openCommand = new qx.ui.command.Command("Ctrl+N");
@@ -103,7 +103,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
             true
           );
         }
-      },
+      }
     });
   },
 
@@ -119,13 +119,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
       origin: "bottom center",
       keyFrames: {
         0: {
-          translate: ["0px"],
+          translate: ["0px"]
         },
 
         100: {
-          translate: ["-300px"],
-        },
-      },
+          translate: ["-300px"]
+        }
+      }
     },
 
     BLINK: {
@@ -134,17 +134,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
       origin: "bottom center",
       keyFrames: {
         0: {
-          backgroundColor: ["rgba(61, 61, 61, 0.9)"],
+          backgroundColor: ["rgba(61, 61, 61, 0.9)"]
         },
 
         50: {
-          backgroundColor: ["rgba(255, 121, 0, 0.9)"],
+          backgroundColor: ["rgba(255, 121, 0, 0.9)"]
         },
 
         100: {
-          backgroundColor: ["rgba(61, 61, 61, 0.9)"],
-        },
-      },
+          backgroundColor: ["rgba(61, 61, 61, 0.9)"]
+        }
+      }
     },
 
     /**
@@ -182,7 +182,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      */
     performAction(messageId, ev) {
       this.getInstance().performAction(messageId, ev);
-    },
+    }
   },
 
   /*
@@ -242,7 +242,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       this.__favico = new Favico({
         animation: "fade",
-        bgColor: "#1C391C",
+        bgColor: "#1C391C"
       });
 
       // check if the element is already there (might have been cached)
@@ -256,31 +256,31 @@ qx.Class.define("cv.ui.NotificationCenter", {
           id: this.getRootElementId(),
           style: "visibility: hidden;",
           html:
-            '<div class="badge"></div><header><h3>' +
+            "<div class=\"badge\"></div><header><h3>" +
             qx.locale.Manager.tr("Message center") +
-            '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' +
+            "<div class=\"action hide\"><a href=\"#\" onclick=\"cv.ui.NotificationCenter.hide()\">X</a></div></h3></header><section class=\"messages\"></section><footer><div class=\"action clear\" onclick=\"cv.ui.NotificationCenter.clear()\">" +
             qx.locale.Manager.tr("Delete all") +
-            "<div></div></footer>",
+            "<div></div></footer>"
         });
 
         body.appendChild(elem);
 
         // create the template
         let templateCode =
-          '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="' +
+          "<div class=\"message {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\"" +
           this.getMessageElementId() +
-          '{{ id }}">';
+          "{{ id }}\">";
         templateCode += "{{#icon}}{{ &icon }}{{/icon}}";
         templateCode +=
-          '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
+          "{{#deletable}}<div class=\"action delete\">x</div>{{/deletable}}";
         templateCode +=
           "{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}";
-        templateCode += '<div class="content">{{&message}}</div></div>';
+        templateCode += "<div class=\"content\">{{&message}}</div></div>";
 
         const template = qx.dom.Element.create("script", {
           id: "MessageTemplate",
           type: "text/template",
-          html: templateCode,
+          html: templateCode
         });
 
         body.appendChild(template);
@@ -370,7 +370,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__favico) {
         // update favicon badge
         this.__favico.badge(this.getMessages().getLength(), {
-          bgColor: this.getSeverityColor(severity),
+          bgColor: this.getSeverityColor(severity)
         });
       }
     },
@@ -448,7 +448,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
           this.__blocker.unblock();
         }
       }
-    },
+    }
   },
 
   /*
@@ -476,5 +476,5 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this
     );
     this._disposeObjects("__blocker", "__messagesContainer", "_openCommand");
-  },
+  }
 });

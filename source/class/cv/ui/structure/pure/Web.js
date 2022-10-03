@@ -35,33 +35,33 @@ qx.Class.define("cv.ui.structure.pure.Web", {
   properties: {
     width: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     height: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     frameborder: {
       check: "Boolean",
-      init: false,
+      init: false
     },
 
     background: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     scrolling: {
       check: ["auto", "yes", "no"],
-      nullable: true,
+      nullable: true
     },
 
     src: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -89,17 +89,17 @@ qx.Class.define("cv.ui.structure.pure.Web", {
         webStyle += "background-color:" + this.getBackground() + ";";
       }
       if (webStyle !== "") {
-        webStyle = 'style="' + webStyle + '"';
+        webStyle = "style=\"" + webStyle + "\"";
       }
 
       let scrolling = "";
       if (this.getScrolling()) {
-        scrolling = 'scrolling="' + this.getScrolling() + '"';
+        scrolling = "scrolling=\"" + this.getScrolling() + "\"";
       } // add scrolling parameter to iframe
       return (
-        '<div class="actor"><iframe src="' +
+        "<div class=\"actor\"><iframe src=\"" +
         this.getSrc() +
-        '" ' +
+        "\" " +
         webStyle +
         scrolling +
         "></iframe></div>"
@@ -126,6 +126,6 @@ qx.Class.define("cv.ui.structure.pure.Web", {
           cv.Transform.encode(addr, 0)
         );
       }
-    },
-  },
+    }
+  }
 });

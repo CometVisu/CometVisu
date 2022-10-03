@@ -49,11 +49,11 @@ qx.Class.define("cv.parser.pure.widgets.Info", {
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("info", statics);
-  },
+  }
 });

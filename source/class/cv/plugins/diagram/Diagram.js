@@ -38,13 +38,13 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
   properties: {
     width: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     height: {
       check: "String",
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -77,15 +77,15 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
         width: {
           transform(value) {
             return value ? parseInt(value) + "px" : "100%";
-          },
+          }
         },
         height: {
           transform(value) {
             return value ? parseInt(value) + "px" : null;
-          },
-        },
+          }
+        }
       };
-    },
+    }
   },
 
   /*
@@ -136,7 +136,7 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
             }
           }, this).schedule();
         } else {
-          this.__vlid1 = this.addListener("changeVisible", (ev) => {
+          this.__vlid1 = this.addListener("changeVisible", ev => {
             if (ev.getData()) {
               if (!this._init) {
                 this.loadDiagramData(this.plot, false, false);
@@ -163,18 +163,18 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
         (this.getHeight() ? ";height:" + this.getHeight() : ";height: 100%");
 
       return (
-        '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' +
+        "<div class=\"actor clickable\" style=\"height: 100%; min-height: 40px;\"><div class=\"" +
         classStr +
-        '" style="' +
+        "\" style=\"" +
         styleStr +
-        '">loading...</div></div>'
+        "\">loading...</div></div>"
       );
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("diagram", statics);
     cv.ui.structure.WidgetFactory.registerClass("diagram", statics);
-  },
+  }
 });

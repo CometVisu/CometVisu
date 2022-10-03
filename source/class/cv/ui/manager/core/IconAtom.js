@@ -42,13 +42,13 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-icon",
+      init: "cv-icon"
     },
 
     model: {
       check: "Array",
-      apply: "_applyModel",
-    },
+      apply: "_applyModel"
+    }
   },
 
   /*
@@ -126,7 +126,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
           control.set({
             anonymous: true,
             scale: true,
-            maxHeight: 64,
+            maxHeight: 64
           });
 
           this._addAt(control, 0);
@@ -141,7 +141,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
             anonymous: true,
             rich: true,
             height: 64,
-            width: 64,
+            width: 64
           });
 
           this._addAt(control, 0);
@@ -151,6 +151,6 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
       }
 
       return control || super._createChildControlImpl(id);
-    },
-  },
+    }
+  }
 });

@@ -27,8 +27,8 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
     styling: {
       check: "String",
       init: null,
-      nullable: true,
-    },
+      nullable: true
+    }
   },
 
   /*
@@ -97,6 +97,6 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
       }
 
       return false;
-    },
-  },
+    }
+  }
 });

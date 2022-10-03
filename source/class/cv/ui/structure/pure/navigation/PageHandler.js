@@ -37,24 +37,24 @@ qx.Class.define("cv.ui.structure.pure.navigation.PageHandler", {
     // time in milliseconds
     speed: {
       check: "Number",
-      init: 400,
+      init: 400
     },
 
     // name of the easing function
     easing: {
       check: "string",
-      init: "ease",
+      init: "ease"
     },
 
     currentPath: {
       check: "String",
-      init: "",
+      init: ""
     },
 
     animationType: {
       check: ["slide", "fade", "flip", "pop", "swap", "none"],
-      init: "slide",
-    },
+      init: "slide"
+    }
   },
 
   /*
@@ -123,7 +123,7 @@ qx.Class.define("cv.ui.structure.pure.navigation.PageHandler", {
         // show the new page (because animations do not work on hidden elements) + hide scrollbar
         Object.entries({
           display: "block",
-          overflow: "hidden",
+          overflow: "hidden"
         }).forEach(function (key_value) {
           pageWidget.getDomElement().style[key_value[0]] = key_value[1];
         });
@@ -212,7 +212,7 @@ qx.Class.define("cv.ui.structure.pure.navigation.PageHandler", {
       }
       return {
         enterPage: inAnim,
-        leavePage: outAnim,
+        leavePage: outAnim
       };
     },
 
@@ -266,6 +266,6 @@ qx.Class.define("cv.ui.structure.pure.navigation.PageHandler", {
       Object.entries(styles).forEach(function (key_value) {
         page.style[key_value[0]] = key_value[1];
       });
-    },
-  },
+    }
+  }
 });

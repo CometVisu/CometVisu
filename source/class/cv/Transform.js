@@ -58,7 +58,7 @@ qx.Class.define("cv.Transform", {
         },
         decode(i) {
           return i;
-        },
+        }
       },
 
       int: {
@@ -68,7 +68,7 @@ qx.Class.define("cv.Transform", {
         },
         decode(i) {
           return parseInt(i);
-        },
+        }
       },
 
       float: {
@@ -78,8 +78,8 @@ qx.Class.define("cv.Transform", {
         },
         decode(i) {
           return parseFloat(i);
-        },
-      },
+        }
+      }
     },
 
     /* ***************************************************************************
@@ -220,7 +220,7 @@ qx.Class.define("cv.Transform", {
             } else {
               throw new Error(
                 qx.locale.Manager.tr(
-                  'Sub-selector "%1" does not fit to value %2',
+                  "Sub-selector \"%1\" does not fit to value %2",
                   selector,
                   JSON.stringify(v)
                 )
@@ -228,7 +228,7 @@ qx.Class.define("cv.Transform", {
             }
             if (selector === remainingPart) {
               throw new Error(
-                qx.locale.Manager.tr('Sub-selector error: "%1"', selector)
+                qx.locale.Manager.tr("Sub-selector error: \"%1\"", selector)
               );
             }
             selector = remainingPart;
@@ -243,11 +243,11 @@ qx.Class.define("cv.Transform", {
               unique: false,
               deletable: true,
               message: qx.locale.Manager.tr(
-                'decode: JSON.parse error: %1; selector: "%2"; value: %3',
+                "decode: JSON.parse error: %1; selector: \"%2\"; value: %3",
                 e,
                 selectorOriginal,
                 JSON.stringify(value)
-              ),
+              )
             };
 
             cv.core.notifications.Router.dispatchMessage(
@@ -275,18 +275,18 @@ qx.Class.define("cv.Transform", {
         const [, firstPart, remainingPart] =
           selector.match(/^\[([^\]]*)]\.?(.*)/);
         if (
-          (firstPart[0] === '"' || firstPart[0] === "'") &&
+          (firstPart[0] === "\"" || firstPart[0] === "'") &&
           firstPart[0] === firstPart.substr(-1)
         ) {
           return {
             firstPart: firstPart.substr(1, firstPart.length - 2),
-            remainingPart,
+            remainingPart
           };
         } else if (isFinite(firstPart)) {
           return { firstPart, remainingPart };
         }
         throw qx.locale.Manager.tr(
-          'Sub-selector "%1" has bad first part "%2"',
+          "Sub-selector \"%1\" has bad first part \"%2\"",
           selector,
           firstPart
         );
@@ -295,8 +295,8 @@ qx.Class.define("cv.Transform", {
         if (firstPart.length > 0) {
           return { firstPart, remainingPart };
         }
-        throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
+        throw qx.locale.Manager.tr("Sub-selector error: \"%1\"", selector);
       }
-    },
-  },
+    }
+  }
 });

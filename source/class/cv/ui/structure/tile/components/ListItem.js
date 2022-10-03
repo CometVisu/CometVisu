@@ -32,5 +32,5 @@ qx.Class.define("cv.ui.structure.tile.components.ListItem", {
         }
       }
     );
-  },
+  }
 });

@@ -33,23 +33,23 @@ qx.Class.define("cv.ui.structure.pure.navigation.PagePartsHandler", {
     this.navbars = {
       top: {
         dynamic: null,
-        fadeVisible: true,
+        fadeVisible: true
       },
 
       left: {
         dynamic: null,
-        fadeVisible: true,
+        fadeVisible: true
       },
 
       right: {
         dynamic: null,
-        fadeVisible: true,
+        fadeVisible: true
       },
 
       bottom: {
         dynamic: null,
-        fadeVisible: true,
-      },
+        fadeVisible: true
+      }
     };
   },
 
@@ -70,12 +70,7 @@ qx.Class.define("cv.ui.structure.pure.navigation.PagePartsHandler", {
       let pageTitle = this.getPageTitle(id);
       let nav = document.createElement("a");
       // eslint-disable-next-line no-script-url
-      nav.setAttribute(
-        "href",
-        "javascript:cv.Application.structureController.scrollToPage('" +
-          id +
-          "')"
-      );
+      nav.setAttribute("href", "javascript:cv.Application.structureController.scrollToPage('" + id +"')");
       nav.setAttribute("id", "breadcrump_pagejump_" + id);
       nav.appendChild(document.createTextNode(pageTitle));
       pathNode.appendChild(nav);
@@ -91,12 +86,7 @@ qx.Class.define("cv.ui.structure.pure.navigation.PagePartsHandler", {
           pathNode.appendChild(span);
           nav = document.createElement("a");
           // eslint-disable-next-line no-script-url
-          nav.setAttribute(
-            "href",
-            "javascript:cv.Application.structureController.scrollToPage('" +
-              id +
-              "')"
-          );
+          nav.setAttribute("href", "javascript:cv.Application.structureController.scrollToPage('" +id +"')");
           nav.setAttribute("id", "breadcrump_pagejump_" + id);
           nav.appendChild(document.createTextNode(pageTitle));
           pathNode.appendChild(nav);
@@ -177,7 +167,7 @@ qx.Class.define("cv.ui.structure.pure.navigation.PagePartsHandler", {
         top: page.getShowNavbarTop(),
         bottom: page.getShowNavbarBottom(),
         left: page.getShowNavbarLeft(),
-        right: page.getShowNavbarRight(),
+        right: page.getShowNavbarRight()
       };
     },
 
@@ -304,8 +294,8 @@ qx.Class.define("cv.ui.structure.pure.navigation.PagePartsHandler", {
             keep: 100,
             keyFrames: {
               0: initCss,
-              100: targetCss,
-            },
+              100: targetCss
+            }
           };
 
           const anim = qx.bom.element.Animation.animate(navbar, spec);
@@ -397,6 +387,6 @@ qx.Class.define("cv.ui.structure.pure.navigation.PagePartsHandler", {
             elem.classList.remove("navbarActive");
           }
         });
-    },
-  },
+    }
+  }
 });

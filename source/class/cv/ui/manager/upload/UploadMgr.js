@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
   ***********************************************
   */
   statics: {
-    LAST_ID: 0,
+    LAST_ID: 0
   },
 
   /*
@@ -50,24 +50,24 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
   properties: {
     multiple: {
       refine: true,
-      init: false,
+      init: false
     },
 
     folder: {
       check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: "_updateUploadUrl",
+      apply: "_updateUploadUrl"
     },
 
     filename: {
       check: "String",
-      nullable: true,
+      nullable: true
     },
 
     force: {
       check: "Boolean",
-      init: false,
-    },
+      init: false
+    }
   },
 
   members: {
@@ -79,7 +79,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
     },
 
     _init() {
-      this.addListener("addFile", (evt) => {
+      this.addListener("addFile", evt => {
         const file = evt.getData();
         const filename = this.getFilename();
         if (filename) {
@@ -88,7 +88,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
         if (this.isForce()) {
           file.setParam("force", true);
         }
-        const progressListenerId = file.addListener("changeProgress", (evt) => {
+        const progressListenerId = file.addListener("changeProgress", evt => {
           const file = evt.getTarget();
           const uploadedSize = evt.getData();
 
@@ -105,7 +105,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
           );
         });
 
-        const stateListenerId = file.addListener("changeState", (evt) => {
+        const stateListenerId = file.addListener("changeState", evt => {
           const state = evt.getData();
           const file = evt.getTarget();
 
@@ -166,7 +166,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
               );
               qx.event.message.Bus.dispatchByName("cv.manager.file", {
                 action: "uploaded",
-                path: this.getFolder().getFullPath() + "/" + file.getFilename(),
+                path: this.getFolder().getFullPath() + "/" + file.getFilename()
               });
             }
           } else if (state === "cancelled") {
@@ -203,7 +203,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       );
       newFile.set({
         size: file.getSize(),
-        uploadWidget: file.getUploadWidget(),
+        uploadWidget: file.getUploadWidget()
       });
 
       newFile.setParam("force", true);
@@ -258,6 +258,6 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       if (this.getAutoUpload()) {
         this.getUploadHandler().beginUploads();
       }
-    },
-  },
+    }
+  }
 });

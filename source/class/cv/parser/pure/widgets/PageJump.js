@@ -63,13 +63,13 @@ qx.Class.define("cv.parser.pure.widgets.PageJump", {
         target: { default: "0" },
         active_scope: { target: "activeScope", default: "target" },
         name: {},
-        path: { target: "targetPath" },
+        path: { target: "targetPath" }
       };
-    },
+    }
   },
 
   defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler("pagejump", statics);
-  },
+  }
 });

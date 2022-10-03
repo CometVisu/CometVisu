@@ -66,7 +66,7 @@ qx.Class.define("cv.parser.pure.widgets.Page", {
         top: path === "id" ? false : null,
         bottom: path === "id" ? false : null,
         left: path === "id" ? false : null,
-        right: path === "id" ? false : null,
+        right: path === "id" ? false : null
       };
 
       Array.from(page.children)
@@ -100,7 +100,7 @@ qx.Class.define("cv.parser.pure.widgets.Page", {
         wstyle += "text-align:" + page.getAttribute("align") + ";";
       }
       if (wstyle !== "") {
-        wstyle = 'style="' + wstyle + '"';
+        wstyle = "style=\"" + wstyle + "\"";
       }
 
       const layout = cv.parser.pure.WidgetParser.parseLayout(
@@ -136,7 +136,7 @@ qx.Class.define("cv.parser.pure.widgets.Page", {
         flavour: flavour || null,
         $$type: "page",
         backdrop: backdrop || null,
-        backdropType: backdropType,
+        backdropType: backdropType
       });
 
       cv.parser.pure.WidgetParser.parseAddress(page, path);
@@ -154,16 +154,16 @@ qx.Class.define("cv.parser.pure.widgets.Page", {
           address: addresses,
           pageType: pageType,
           wstyle: wstyle || "",
-          bindClickToWidget: bindClickToWidget,
+          bindClickToWidget: bindClickToWidget
         });
 
         return [data, linkData];
       }
       return data;
-    },
+    }
   },
 
   defer(statics) {
     cv.parser.pure.WidgetParser.addHandler("page", statics);
-  },
+  }
 });

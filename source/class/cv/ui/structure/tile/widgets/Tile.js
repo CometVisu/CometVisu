@@ -33,7 +33,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Tile", {
     backgroundImage: {
       check: "String",
       nullable: true,
-      apply: "_applyBackgroundImage",
+      apply: "_applyBackgroundImage"
     },
 
     /**
@@ -42,8 +42,8 @@ qx.Class.define("cv.ui.structure.tile.widgets.Tile", {
     popup: {
       check: "Boolean",
       init: false,
-      apply: "_applyPopup",
-    },
+      apply: "_applyPopup"
+    }
   },
 
   /*
@@ -168,7 +168,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Tile", {
             this.debug("unhandled address target", ev.detail.target);
         }
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -180,5 +180,5 @@ qx.Class.define("cv.ui.structure.tile.widgets.Tile", {
         }
       }
     );
-  },
+  }
 });

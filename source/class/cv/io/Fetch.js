@@ -52,11 +52,11 @@ qx.Class.define("cv.io.Fetch", {
         if (client) {
           client.authorize(xhr);
         }
-        xhr.addListener("success", (ev) => {
+        xhr.addListener("success", ev => {
           const request = ev.getTarget();
           resolve(request.getResponse());
         });
-        xhr.addListener("statusError", (ev) => {
+        xhr.addListener("statusError", ev => {
           const request = ev.getTarget();
           reject(request.getResponse());
         });
@@ -73,6 +73,6 @@ qx.Class.define("cv.io.Fetch", {
      */
     proxyFetch(resource, options, client) {
       return this.fetch(resource, options, true, client);
-    },
-  },
+    }
+  }
 });

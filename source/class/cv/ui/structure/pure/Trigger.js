@@ -32,7 +32,7 @@ qx.Class.define("cv.ui.structure.pure.Trigger", {
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,
     cv.ui.common.BasicUpdate,
-    cv.ui.common.HandleLongpress,
+    cv.ui.common.HandleLongpress
   ],
 
   /*
@@ -42,7 +42,7 @@ qx.Class.define("cv.ui.structure.pure.Trigger", {
   */
   properties: {
     sendValue: { check: "String", init: "0" },
-    shortValue: { check: "String", init: "0" },
+    shortValue: { check: "String", init: "0" }
   },
 
   /*
@@ -59,7 +59,7 @@ qx.Class.define("cv.ui.structure.pure.Trigger", {
 
     // overridden
     _getInnerDomString() {
-      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
     },
 
     /**
@@ -83,6 +83,6 @@ qx.Class.define("cv.ui.structure.pure.Trigger", {
       this.sendToBackend(this.getSendValue(), function (address) {
         return !!(address.variantInfo & 2);
       });
-    },
-  },
+    }
+  }
 });

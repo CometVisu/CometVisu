@@ -31,7 +31,7 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
         this._image = new qx.ui.basic.Image().set({
           scale: true,
           height: 32,
-          width: 32,
+          width: 32
         });
 
         this._hbox.addAt(this._image, 0);
@@ -64,7 +64,7 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
         this._image = new qx.ui.basic.Image(image).set({
           scale: true,
           height: 32,
-          width: 32,
+          width: 32
         });
 
         hbox.add(this._image);
@@ -74,14 +74,14 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
       hbox.addAt(this._message, 1, {
-        flex: 1,
+        flex: 1
       });
 
       let buttonPane = this._createButtonPane();
       let okButton = this._createOkButton();
       buttonPane.add(okButton);
       container.add(buttonPane);
-    },
+    }
   },
 
   /*
@@ -91,5 +91,5 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
   */
   destruct() {
     this._disposeObjects("_hbox");
-  },
+  }
 });

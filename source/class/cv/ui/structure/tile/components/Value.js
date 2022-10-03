@@ -109,7 +109,7 @@ qx.Class.define("cv.ui.structure.tile.components.Value", {
             break;
         }
       }
-    },
+    }
   },
 
   defer(QxClass) {
@@ -121,5 +121,5 @@ qx.Class.define("cv.ui.structure.tile.components.Value", {
         }
       }
     );
-  },
+  }
 });
