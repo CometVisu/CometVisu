@@ -2220,4 +2220,4 @@
   qx.theme.simple.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1664788516297
+//# sourceMappingURL=Appearance.js.map?dt=1664789591749

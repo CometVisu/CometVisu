@@ -79,4 +79,4 @@
   cv.parser.pure.widgets.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1664788489655
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1664789562722
