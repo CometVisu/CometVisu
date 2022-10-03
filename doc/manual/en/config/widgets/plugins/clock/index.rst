@@ -93,7 +93,7 @@ This example clock plugin is created by the following code:
     <settings>
         <screenshot name="clock_pure_simple" sleep="2000">
             <caption>Clock plugin</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -139,7 +139,7 @@ The CometVisu comes with these clock faces:
     <settings>
         <screenshot name="clock_full" sleep="2000">
             <caption>Clock face "full": plugins/clock/clock_full.svg</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -158,7 +158,7 @@ The CometVisu comes with these clock faces:
     <settings>
         <screenshot name="clock_simple" sleep="2000">
             <caption>Clock face "simple": plugins/clock/clock_simple.svg</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -177,7 +177,7 @@ The CometVisu comes with these clock faces:
     <settings>
         <screenshot name="clock_pure" sleep="2000">
             <caption>Clock face "pure": plugins/clock/clock_pure.svg</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
