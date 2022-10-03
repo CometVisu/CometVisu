@@ -423,7 +423,6 @@ describe('generation screenshots from jsdoc examples', function () {
                 } else if (data.transform && data.transform !== 'raw') {
                   value = await cvDemo.encode({transform: data.transform}, value);
                 }
-                console.log('###', value)
                 cvMockup.sendUpdate(data.address, value);
               }
             }
