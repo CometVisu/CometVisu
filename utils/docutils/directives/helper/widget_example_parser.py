@@ -73,6 +73,7 @@ class WidgetExampleParser:
         global_caption = None
         meta_content = None
         config_example = []
+        addresses = {}
 
         if not name in self.counters:
             self.counters[name] = 0
@@ -84,7 +85,6 @@ class WidgetExampleParser:
             single_widget = True
             for child in xml:
                 if etree.iselement(child):
-
                     if child.tag == "settings":
                         # meta settings
                         settings_node = child
@@ -98,6 +98,14 @@ class WidgetExampleParser:
                             single_widget = False
                         # the config example
                         config_example.append(child)
+
+                        # lookup all addresses in the example and extract the transforms
+                        for address in child.findall(".//address"):
+                            if "transform" in address.attrib:
+                                addresses[address.text.strip()] = address.get("transform")
+                        for address in child.findall(".//cv-address"):
+                            if "transform" in address.attrib:
+                                addresses[address.text.strip()] = address.get("transform")
         except Exception as e:
             print("Parse error: %s" % str(e))
             print("<root>%s</root>" % source)
@@ -183,6 +191,10 @@ class WidgetExampleParser:
                     }
                     if data.get("type"):
                         values['type'] = data.get("type")
+                    if data.get("transform"):
+                        values['transform'] = data.get("transform")
+                    elif values["address"] in addresses:
+                        values['transform'] = addresses[values["address"]]
 
                     shot['data'].append(values)
 
