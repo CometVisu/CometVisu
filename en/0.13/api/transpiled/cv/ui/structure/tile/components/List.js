@@ -399,8 +399,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     break;
                   }
 
-                  while (target.firstChild && target.hasAttribute('data-row')) {
-                    target.removeChild(target.lastChild);
+                  while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
+                    target.removeChild(target.firstElementChild);
                   }
 
                   emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
@@ -496,4 +496,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.structure.tile.components.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1664784615315
+//# sourceMappingURL=List.js.map?dt=1664788498645

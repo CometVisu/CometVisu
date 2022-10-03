@@ -26,9 +26,9 @@ Kanal ist möglich.
     <settings sleep="500">
         <screenshot name="colorchooser_example" sleep="1000">
             <caption>Der ColorChooser</caption>
-            <data address="1/2/59" transform="DPT:5.001">50</data>
-            <data address="1/2/60" transform="DPT:5.001">60</data>
-            <data address="1/2/61" transform="DPT:5.001">100</data>
+            <data address="1/2/59">50</data>
+            <data address="1/2/60">60</data>
+            <data address="1/2/61">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="LCh-box;T:2500-15000;Y">
@@ -90,9 +90,9 @@ Beispiel: RGB-Slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_rgb" sleep="1000">
             <caption>ColorChooser, RGB-Slider</caption>
-            <data address="1/2/59" transform="DPT:5.001">90</data>
-            <data address="1/2/60" transform="DPT:5.001">80</data>
-            <data address="1/2/61" transform="DPT:5.001">100</data>
+            <data address="1/2/59">90</data>
+            <data address="1/2/60">80</data>
+            <data address="1/2/61">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="RGB-r;RGB-g;RGB-b">
@@ -111,10 +111,10 @@ Beispiel: RGBW-Slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_rgbw" sleep="1000">
             <caption>ColorChooser, RGBW-Slider</caption>
-            <data address="1/2/59" transform="DPT:5.001">90</data>
-            <data address="1/2/60" transform="DPT:5.001">100</data>
-            <data address="1/2/61" transform="DPT:5.001">0</data>
-            <data address="1/2/62" transform="DPT:5.001">80</data>
+            <data address="1/2/59">90</data>
+            <data address="1/2/60">100</data>
+            <data address="1/2/61">0</data>
+            <data address="1/2/62">80</data>
         </screenshot>
     </settings>
     <colorchooser controls="RGBW-r;RGBW-g;RGBW-b;RGBW-w">
@@ -134,9 +134,9 @@ Beispiel: HSV-Slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_hsv" sleep="1000">
             <caption>ColorChooser, HSV-Slider</caption>
-            <data address="1/2/59" transform="DPT:5.001">99</data>
-            <data address="1/2/60" transform="DPT:5.001">80</data>
-            <data address="1/2/61" transform="DPT:5.001">90</data>
+            <data address="1/2/59">99</data>
+            <data address="1/2/60">80</data>
+            <data address="1/2/61">90</data>
         </screenshot>
     </settings>
     <colorchooser controls="h;s;v">
@@ -155,9 +155,9 @@ Beispiel: Farbtemperatur- und Helligkeits-Slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_TY" sleep="1000">
             <caption>ColorChooser, Farbtemperatur- und Helligkeits-Slider</caption>
-            <data address="1/2/59" transform="DPT:5.001">45.1</data>
-            <data address="1/2/60" transform="DPT:5.001">68.6</data>
-            <data address="1/2/61" transform="DPT:5.001">100</data>
+            <data address="1/2/59">45.1</data>
+            <data address="1/2/60">68.6</data>
+            <data address="1/2/61">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="T:2000-10000;Y">
@@ -176,9 +176,9 @@ Beispiel: LCh-Slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_LCh" sleep="1000">
             <caption>ColorChooser, LCh-Slider</caption>
-            <data address="1/2/59" transform="DPT:5.001">42.7</data>
-            <data address="1/2/60" transform="DPT:5.001">0</data>
-            <data address="1/2/61" transform="DPT:5.001">100</data>
+            <data address="1/2/59">42.7</data>
+            <data address="1/2/60">0</data>
+            <data address="1/2/61">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="LCh-L;LCh-C;LCh-h">

@@ -142,4 +142,4 @@
   cv.plugins.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1664784605962
+//# sourceMappingURL=Link.js.map?dt=1664788489907
