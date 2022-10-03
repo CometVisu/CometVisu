@@ -240,8 +240,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
           if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
-            while (target.firstChild && target.hasAttribute('data-row')) {
-              target.removeChild(target.lastChild);
+            while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
+              target.removeChild(target.firstElementChild);
             }
             const emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
             emptyModel.classList.add('empty-model');
