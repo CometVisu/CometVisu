@@ -248,10 +248,15 @@ class BasePage {
   }
 
   encode(address, value) {
-    return browser.executeAsyncScript(function (address, value, callback) {
+    const isDate = value instanceof Date;
+    // executeAsyncScript convers Date into string representation, so we need to undo that inside the browser
+    return browser.executeAsyncScript(function (address, value, isDate, callback) {
+      if (isDate) {
+        value = new Date(value);
+      }
       const transformedValue = cv.Transform.encodeBusAndRaw(address, value);
       callback(transformedValue.raw);
-    }, address, value);
+    }, address, value, isDate);
   }
 
   /**

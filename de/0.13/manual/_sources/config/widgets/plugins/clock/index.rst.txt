@@ -24,7 +24,7 @@ erreicht werden.
     <settings>
         <screenshot name="clock_enhanced" sleep="2000">
             <caption>Clock-Plugin Beispiel</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -111,7 +111,7 @@ Hier ein Beispielcode der das Clock Plugin aus dem folgenden Screenshot erzeugt:
     <settings>
         <screenshot name="clock_pure_simple" sleep="2000">
             <caption>Clock-Plugin</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -157,7 +157,7 @@ Mit der CometVisu werden diese Ziffernblätter bereits mitgeliefert:
     <settings>
         <screenshot name="clock_full" sleep="2000">
             <caption>Ziffernblatt "Full": plugins/clock/clock_full.svg</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -176,7 +176,7 @@ Mit der CometVisu werden diese Ziffernblätter bereits mitgeliefert:
     <settings>
         <screenshot name="clock_simple" sleep="2000">
             <caption>Ziffernblatt "Simple": plugins/clock/clock_simple.svg</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -195,7 +195,7 @@ Mit der CometVisu werden diese Ziffernblätter bereits mitgeliefert:
     <settings>
         <screenshot name="clock_pure" sleep="2000">
             <caption>Ziffernblatt "Pure": plugins/clock/clock_pure.svg</caption>
-            <data address="12/7/10">22:10:22</data>
+            <data address="12/7/10" type="time">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
