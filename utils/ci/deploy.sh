@@ -172,5 +172,8 @@ git config --local user.email "$COMMIT_AUTHOR_EMAIL"
 
 git add doc/**/*.json
 git add doc/**/*.png
-git commit -q -m "[skip ci] Add generated files: ${SHA}"
-git push 
+# only commit when there are changes
+if [ `git diff-index --cached HEAD | wc -l` -gt 0 ]; then
+  git commit -q -m "[skip ci] Add generated files: ${SHA}"
+  git push
+fi
