@@ -10,6 +10,7 @@ const easyimg = require('easyimage');
 const CometVisuMockup = require('../source/test/protractor/pages/Mock');
 const cvMockup = new CometVisuMockup(browser.target || 'source');
 const CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
+const cvDemo = require('../source/test/protractor/pages/Demo');
 const editorMockup = new CometVisuEditorMockup(browser.target || 'source');
 let devicePixelRatio = 1;
 const stats = {
@@ -153,8 +154,10 @@ describe('generation screenshots from jsdoc examples', function () {
           console.log(runResult.failed ? '\x1b[31mFailed run\x1b[0m log message:' : '\x1b[32mSuccessful run\x1b[0m log message:');
           // browserLogs is an array of objects with level and message fields
           browserLogs.forEach(function (log) {
-            runResult.browserErrors.push(log.message);
-            console.log(log.level.name_ + ':', log.message.replaceAll('\\"', '"').replaceAll('\\n', '\n').replaceAll('\\\\', '\\'));
+            if (runResult.failed) {
+              runResult.browserErrors.push(log.message);
+            }
+            console.log(log.level.name_ + ':', log.message.replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\\\/g, '\\'));
           });
         });
       }
@@ -388,16 +391,10 @@ describe('generation screenshots from jsdoc examples', function () {
             let shotWidget = widget;
             changeBrowserWidth(setting.screenWidth > 0 ? setting.screenWidth : defaultWidth);
             if (setting.data && Array.isArray(setting.data)) {
-              setting.data.forEach(function (data) {
-                var value = data.value;
+              for (let data of setting.data) {
+                let value = data.value;
                 if (data.type) {
                   switch (data.type) {
-                    case 'float':
-                      value = parseFloat(value);
-                      break;
-                    case 'int':
-                      value = parseInt(value);
-                      break;
                     case 'json':
                       try {
                         value = JSON.parse(value);
@@ -405,10 +402,29 @@ describe('generation screenshots from jsdoc examples', function () {
                         console.error('error parsing JSON data', e.message);
                       }
                       break;
+
+                    case 'time': {
+                      const date = new Date();
+                      const parts = value.split(':').map(v => parseInt(v, 10));
+                      date.setHours(...parts);
+                      value = await cvDemo.encode({transform: data.transform}, date);
+                      break;
+                    }
+
+                    case 'date': {
+                      value = await cvDemo.encode({transform: data.transform}, new Date(value));
+                      break;
+                    }
+
+                    default:
+                      console.error('unhandled data type:', data.type)
+                      break;
                   }
+                } else if (data.transform && data.transform !== 'raw') {
+                  value = await cvDemo.encode({transform: data.transform}, value);
                 }
                 cvMockup.sendUpdate(data.address, value);
-              });
+              }
             }
             if (setting.clickPath) {
               var actor = element.all(by.css(setting.clickPath)).first();
