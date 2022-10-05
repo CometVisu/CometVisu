@@ -126,10 +126,23 @@ qx.Class.define('cv.util.ConfigUpgrader', {
           c++;
         }
       });
-      this.__setVersion(source, 9);
       if (c > 0) {
         this.__log.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
       }
+      c = 0;
+      source.querySelectorAll('plugins > plugin[name=\'colorchooser\']').forEach(node => {
+        const parent = node.parentNode;
+        const indentNode = node.previousSibling;
+        parent.removeChild(node);
+        if (indentNode.nodeType === 3) {
+          parent.removeChild(indentNode);
+        }
+        c++;
+      });
+      if (c > 0) {
+        this.__log.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (colorchooser)');
+      }
+      this.__setVersion(source, 9);
       return 9;
     },
 
