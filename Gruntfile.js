@@ -463,7 +463,7 @@ module.exports = function(grunt) {
       },
       buildicons: {
         command: [
-          './bin/svg-to-ttf --target css --css-namespace knxuf --font-name knx-uf-iconset --glyph-size 800 external/knx-uf-iconset/raw_svg/',
+          './bin/svg-to-ttf --target css --css-namespace knxuf --font-name knx-uf-iconset --glyph-size 1024 external/knx-uf-iconset/raw_svg/',
           'cp knx-uf-iconset.* source/resource/icons/fonts/',
           'rm knx-uf-iconset.*'
         ].join('&&')
