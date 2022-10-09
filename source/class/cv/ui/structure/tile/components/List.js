@@ -137,6 +137,26 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
           return res;
         };
+      } else if (model.hasAttribute('class')) {
+        // initialize internal class instance that implements cv.io.listmodel.IListModel
+        const Clazz = qx.Class.getByName('cv.io.listmodel.' + model.getAttribute('class'));
+        if (Clazz) {
+          const modelInstance = new Clazz();
+          if (model.hasAttribute('parameters')) {
+            const props = {};
+            for (let entry of model.getAttribute('parameters').split(',')) {
+              const [name, value] = entry.split('=').map(n => n.trim());
+              props[name] = value.startsWith('\'') ? value.substring(1, value.length-1) : value
+            }
+            modelInstance.set(props);
+          }
+          this._getModel = async () => {
+            await modelInstance.refresh();
+            return modelInstance.getModel();
+          };
+        } else {
+          this.error(`clazz "cv.io.listmodel.${model.getAttribute('class')}" not found`);
+        }
       } else {
         const script = model.querySelector(':scope > script');
         const data = model.querySelectorAll(':scope > cv-data');
@@ -271,22 +291,57 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           }
         }
 
+        const getValue = (name, entry) => {
+          let index = -1;
+          if (name.endsWith(']')) {
+            // array access
+            index = parseInt(name.substring(name.indexOf('[') + 1, name.length-1));
+            if (isNaN(index)) {
+              this.error('error parsing array index from ' + name, name.substring(name.indexOf('[')+1, name.length-1));
+              return '';
+            }
+            name = name.substring(0, name.indexOf('['));
+          }
+          if (Object.prototype.hasOwnProperty.call(entry, name)) {
+            let val = entry[name];
+            if (index >= 0 && Array.isArray(val)) {
+              return val[index];
+            }
+            return val;
+          }
+          return '';
+        };
+
         newModel.forEach((entry, i) => {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
-          const html = template.innerHTML.replaceAll(/\${([^}\[]+)\[?(\d+)?\]?}/g, (match, p1, p2) => {
-            if (Object.prototype.hasOwnProperty.call(entry, p1)) {
-              let val = entry[p1];
-              if (p2 && Array.isArray(val)) {
-                return val[parseInt(p2)];
-              }
-              return val;
-            } else if (p1 === 'index') {
+          const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, content) => {
+            if (content === 'index') {
               return '' + i;
             }
-            return '';
+            if (content.includes('||')) {
+              // elements are or'ed use the first one with value
+              let val = '';
+              for (let name of content.split('||').map(n => n.trim())) {
+                val = getValue(name, entry);
+                if (val) {
+                  return val;
+                }
+              }
+            }
+            return getValue(content, entry);
           });
 
           itemTemplate.innerHTML = html;
+          // check for elements with when attributes
+          itemTemplate.content.firstElementChild.querySelectorAll('[when]').forEach(elem => {
+            const [leftVal, rightVal] = elem.getAttribute('when').split('=').map(n => n.trim());
+            // noinspection EqualityComparisonWithCoercionJS
+            if (leftVal != rightVal) {
+              elem.parentElement.removeChild(elem);
+            } else {
+              elem.removeAttribute('when');
+            }
+          });
           if (elem) {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;

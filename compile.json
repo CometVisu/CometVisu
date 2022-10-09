@@ -27,7 +27,8 @@
         "cv.transforms.*",
         "cv.plugins.*",
         "cv.parser.*",
-        "cv.core.*"
+        "cv.core.*",
+        "cv.io.listmodel.*"
       ],
       "exclude": [
         "cv.test.*",
@@ -222,6 +223,7 @@
     "HTMLElement",
     "customElements",
     "QxConnector",
-    "RSSParser"
+    "RSSParser",
+    "Response"
   ]
 }
