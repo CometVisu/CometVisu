@@ -767,6 +767,24 @@
               </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="filter" type="xsd:string"/>
+            <xsd:attribute name="class">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Special builtin list models that are included in the CometVisu.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Spezielles Listenmodell, die die CometVisu mitliefert.</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="FritzCallList"/>
+                  <xsd:enumeration value="RssLog"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="parameters" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Parameter for the class list models.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Parameter for die class Listenmodelle.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
