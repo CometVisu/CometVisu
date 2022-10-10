@@ -81,6 +81,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _filterModel: null,
     _sortModel: null,
     _limit: null,
+    _modelInstance: null,
 
     _init() {
       const element = this._element;
@@ -139,14 +140,14 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         };
       } else if (model.hasAttribute('class')) {
         // initialize internal class instance that implements cv.io.listmodel.IListModel
-        const Clazz = qx.Class.getByName('cv.io.listmodel.' + model.getAttribute('class'));
+        const Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
         if (Clazz) {
           const modelInstance = new Clazz();
           if (model.hasAttribute('parameters')) {
             const props = {};
             for (let entry of model.getAttribute('parameters').split(',')) {
               const [name, value] = entry.split('=').map(n => n.trim());
-              props[name] = value.startsWith('\'') ? value.substring(1, value.length-1) : value
+              props[name] = value.startsWith('\'') ? value.substring(1, value.length-1) : value;
             }
             modelInstance.set(props);
           }
@@ -358,6 +359,19 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         this.error('model must be an array', newModel);
       }
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._disposeObjects('_modelInstance', '_timer');
+    this._model = null;
+    this._filterModel = null;
+    this._sortModel = null;
+    this._target = null;
   },
 
   defer(QxClass) {
