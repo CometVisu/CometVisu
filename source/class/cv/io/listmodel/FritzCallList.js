@@ -91,7 +91,7 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
       const model = this.getModel();
       model.removeAll();
       if (this.__calllistUri === '<fail>') {
-        return model; // this problem won't fix anymore during this instance
+        return; // this problem won't fix anymore during this instance
       }
 
       const url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
@@ -109,6 +109,10 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
           }
           model.push(entry);
         }
+      } else if (response.status === 404) {
+        // refresh session id
+        await this._init();
+        await this.refresh();
       } else {
         cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
           title: qx.locale.Manager.tr('TR-064 communication error'),
@@ -117,7 +121,10 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
         });
         model.removeAll();
       }
-      return model;
     }
+  },
+
+  defer(clazz) {
+    cv.io.listmodel.Registry.register(clazz);
   }
 });
