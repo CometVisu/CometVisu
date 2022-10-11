@@ -262,6 +262,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (typeof this._sortModel === 'function') {
           newModel.sort(this._sortModel);
         }
+        console.log(JSON.stringify(newModel));
         if (this._limit) {
           newModel = newModel.slice(0, this._limit);
         }
