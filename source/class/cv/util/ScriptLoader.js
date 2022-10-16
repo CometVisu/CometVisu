@@ -17,9 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define("cv.util.ScriptLoader", {
+qx.Class.define('cv.util.ScriptLoader', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -56,20 +56,20 @@ qx.Class.define("cv.util.ScriptLoader", {
      */
     includeStylesheet(href, media) {
       return new Promise((res, rej) => {
-        const el = document.createElement("link");
-        el.type = "text/css";
-        el.rel = "stylesheet";
+        const el = document.createElement('link');
+        el.type = 'text/css';
+        el.rel = 'stylesheet';
         el.href = href;
         if (media) {
           el.media = media;
         }
         el.onload = res;
         el.onerror = () => {
-          qx.log.Logger.error(this, "error loading " + href);
+          qx.log.Logger.error(this, 'error loading ' + href);
           // always resolve
           res();
         };
-        const head = document.getElementsByTagName("head")[0];
+        const head = document.getElementsByTagName('head')[0];
         head.appendChild(el);
       });
     },
@@ -82,9 +82,9 @@ qx.Class.define("cv.util.ScriptLoader", {
      */
     includeScript(src, type) {
       return new Promise((res, rej) => {
-        const head = document.getElementsByTagName("head")[0];
+        const head = document.getElementsByTagName('head')[0];
         if (!head.querySelector(`:scope > script[src='${src}']`)) {
-          const el = document.createElement("script");
+          const el = document.createElement('script');
           if (type) {
             el.type = type;
           }
@@ -106,16 +106,16 @@ qx.Class.define("cv.util.ScriptLoader", {
   */
   properties: {
     allQueued: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_checkQueue",
-      event: "changeAllQueued"
+      apply: '_checkQueue',
+      event: 'changeAllQueued'
     },
 
     finished: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeFinished"
+      event: 'changeFinished'
     }
   },
 
@@ -125,9 +125,9 @@ qx.Class.define("cv.util.ScriptLoader", {
   ******************************************************
   */
   events: {
-    finished: "qx.event.type.Event",
-    stylesLoaded: "qx.event.type.Event",
-    designError: "qx.event.type.Data"
+    finished: 'qx.event.type.Event',
+    stylesLoaded: 'qx.event.type.Event',
+    designError: 'qx.event.type.Data'
   },
 
   /*
@@ -143,29 +143,29 @@ qx.Class.define("cv.util.ScriptLoader", {
 
     addStyles(styleArr) {
       const queue =
-        typeof styleArr === "string" ? [styleArr] : styleArr.concat();
-      const suffix = cv.Config.forceReload === true ? "?" + Date.now() : "";
+        typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
+      const suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
       let promises = [];
       queue.forEach(function (style) {
         let media;
         let src;
-        if (typeof style === "string") {
+        if (typeof style === 'string') {
           src = style;
-        } else if (typeof style === "object") {
+        } else if (typeof style === 'object') {
           src = style.uri;
           media = style.media;
         } else {
-          this.error("unknown style parameter type", typeof style);
+          this.error('unknown style parameter type', typeof style);
         }
         if (src) {
           let resPath = qx.util.ResourceManager.getInstance().toUri(src);
           if (resPath === src) {
             // this file is unknown to the resource manager, might be a scss source
-            const scssStyle = src.replace(/\.css$/, ".scss");
+            const scssStyle = src.replace(/\.css$/, '.scss');
             const scssPath =
               qx.util.ResourceManager.getInstance().toUri(scssStyle);
             if (scssStyle !== scssPath) {
-              resPath = scssPath.replace(/\.scss$/, ".css");
+              resPath = scssPath.replace(/\.scss$/, '.css');
             }
           }
           promises.push(
@@ -175,19 +175,19 @@ qx.Class.define("cv.util.ScriptLoader", {
       }, this);
       Promise.all(promises)
         .then(() => {
-          this.debug("styles have been loaded");
-          this.fireEvent("stylesLoaded");
+          this.debug('styles have been loaded');
+          this.fireEvent('stylesLoaded');
         })
         .catch(reason => {
-          this.error("error loading styles", reason);
+          this.error('error loading styles', reason);
           // fire this event anyways, because a non loaded CSS file is no blocker
-          this.fireEvent("stylesLoaded");
+          this.fireEvent('stylesLoaded');
         });
     },
 
     markAsLoaded(path) {
       if (!this.__markedAsLoaded.includes(path)) {
-        this.debug("marking " + path + " as loaded");
+        this.debug('marking ' + path + ' as loaded');
         this.__markedAsLoaded.push(path);
       }
     },
@@ -197,9 +197,9 @@ qx.Class.define("cv.util.ScriptLoader", {
     },
 
     addScripts(scriptArr, order) {
-      const queue = typeof scriptArr === "string" ? [scriptArr] : scriptArr;
+      const queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr;
       // make sure that no cached scripts are loaded
-      const suffix = cv.Config.forceReload === true ? "?" + Date.now() : "";
+      const suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
       const realQueue = [];
       let i = 0;
       const l = queue.length;
@@ -213,7 +213,7 @@ qx.Class.define("cv.util.ScriptLoader", {
       if (realQueue.length === 0) {
         return;
       }
-      this.debug("queueing " + realQueue.length + " scripts");
+      this.debug('queueing ' + realQueue.length + ' scripts');
       this.resetFinished();
       this.__scriptQueue.append(realQueue);
       if (order) {
@@ -222,7 +222,7 @@ qx.Class.define("cv.util.ScriptLoader", {
             const loadIndex = order.shift();
             const script = realQueue.splice(loadIndex, 1)[0];
             const loader = this.__loadSingleScript(script);
-            loader.addListener("ready", processQueue, this);
+            loader.addListener('ready', processQueue, this);
           } else {
             realQueue.forEach(this.__loadSingleScript, this);
           }
@@ -244,12 +244,12 @@ qx.Class.define("cv.util.ScriptLoader", {
     __loadSingleScript(script) {
       const loader = new qx.util.DynamicScriptLoader(script);
       this.__loaders.push(loader);
-      loader.addListener("loaded", this._onLoaded, this);
-      loader.addListener("failed", this._onFailed, this);
-      loader.addListenerOnce("ready", () => {
+      loader.addListener('loaded', this._onLoaded, this);
+      loader.addListener('failed', this._onFailed, this);
+      loader.addListenerOnce('ready', () => {
         this.__loaders.remove(loader);
-        loader.removeListener("loaded", this._onLoaded, this);
-        loader.removeListener("failed", this._onFailed, this);
+        loader.removeListener('loaded', this._onLoaded, this);
+        loader.removeListener('failed', this._onFailed, this);
       });
       loader.start();
       return loader;
@@ -258,37 +258,39 @@ qx.Class.define("cv.util.ScriptLoader", {
     _onLoaded(ev) {
       const data = ev.getData();
       this.__scriptQueue.remove(data.script);
-      this.debug(data.script + " loaded");
+      this.debug(data.script + ' loaded');
       this._checkQueue();
     },
 
     _onFailed(ev) {
       const data = ev.getData();
       this.__scriptQueue.remove(data.script);
-      if (data.script.startsWith("design")) {
-        const failedDesign = data.script.split("/")[1];
-        this.fireDataEvent("designError", failedDesign);
-      } else if (data.script.includes("/plugins/")) {
+      if (data.script.startsWith('design')) {
+        const failedDesign = data.script.split('/')[1];
+        this.fireDataEvent('designError', failedDesign);
+      } else if (data.script.includes('/plugins/')) {
         const match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
         if (match) {
-          cv.core.notifications.Router.dispatchMessage("cv.loading.error", {
-            title: qx.locale.Manager.tr("Error loading plugin \"%1\"", match[1]),
+          cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
+            title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
             message: qx.locale.Manager.tr(
-              "File %1 could not be loaded.",
+              'File %1 could not be loaded.',
               data.script
             ),
-            severity: "high",
+
+            severity: 'high',
             deletable: true
           });
         }
       } else {
-        cv.core.notifications.Router.dispatchMessage("cv.loading.error", {
-          title: qx.locale.Manager.tr("File loading error"),
+        cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
+          title: qx.locale.Manager.tr('File loading error'),
           message: qx.locale.Manager.tr(
-            "File %1 could not be loaded.",
+            'File %1 could not be loaded.',
             data.script
           ),
-          severity: "high",
+
+          severity: 'high',
           deletable: true
         });
       }
@@ -299,17 +301,17 @@ qx.Class.define("cv.util.ScriptLoader", {
     _checkQueue() {
       if (this.__scriptQueue.length === 0) {
         if (this.isAllQueued()) {
-          this.debug("script loader finished");
-          this.fireEvent("finished");
+          this.debug('script loader finished');
+          this.fireEvent('finished');
           this.setFinished(true);
         } else if (!this.__listener) {
-          this.debug("script loader waiting for all scripts beeing queued");
+          this.debug('script loader waiting for all scripts beeing queued');
 
-          this.__listener = this.addListener("changeAllQueued", ev => {
+          this.__listener = this.addListener('changeAllQueued', ev => {
             if (ev.getData() === true) {
               if (this.__scriptQueue.length === 0) {
-                this.debug("script loader finished");
-                this.fireEvent("finished");
+                this.debug('script loader finished');
+                this.fireEvent('finished');
                 this.setFinished(true);
               }
               this.removeListenerById(this.__listener);
@@ -318,7 +320,7 @@ qx.Class.define("cv.util.ScriptLoader", {
           });
         }
       } else {
-        this.debug(this.__scriptQueue.length + " scripts remaining");
+        this.debug(this.__scriptQueue.length + ' scripts remaining');
       }
     }
   }

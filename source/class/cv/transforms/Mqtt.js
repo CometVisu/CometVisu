@@ -23,24 +23,24 @@
  * @author Christian Mayer
  * @since 2021
  */
-qx.Class.define("cv.transforms.Mqtt", {
-  type: "static",
+qx.Class.define('cv.transforms.Mqtt', {
+  type: 'static',
 
   /**
    * This class defines the default transforms: encode: transform JavaScript to
    * bus value decode: transform bus to JavaScript value
    */
   defer() {
-    cv.Transform.addTransform("MQTT", {
+    cv.Transform.addTransform('MQTT', {
       number: {
-        name: "MQTT_Number",
+        name: 'MQTT_Number',
         lname: {
-          de: "Zahl",
-          en: "number"
+          de: 'Zahl',
+          en: 'number'
         },
 
-        example: "42",
-        unit: "-",
+        example: '42',
+        unit: '-',
         encode(phy) {
           return parseFloat(phy);
         },
@@ -50,14 +50,14 @@ qx.Class.define("cv.transforms.Mqtt", {
       },
 
       string: {
-        name: "MQTT_String",
+        name: 'MQTT_String',
         lname: {
-          de: "Zeichenkette",
-          en: "string"
+          de: 'Zeichenkette',
+          en: 'string'
         },
 
-        example: "\"abc\"",
-        unit: "-",
+        example: '"abc"',
+        unit: '-',
         encode(phy) {
           return phy.toString();
         },
@@ -67,14 +67,14 @@ qx.Class.define("cv.transforms.Mqtt", {
       },
 
       unixtime: {
-        name: "MQTT_unixtime",
+        name: 'MQTT_unixtime',
         lname: {
-          de: "UNIX Zeitstempel",
-          en: "UNIX timestamp"
+          de: 'UNIX Zeitstempel',
+          en: 'UNIX timestamp'
         },
 
-        example: "1641054600",
-        unit: "-",
+        example: '1641054600',
+        unit: '-',
         encode(phy) {
           return Math.round(phy.getTime() / 1000);
         },
@@ -84,20 +84,20 @@ qx.Class.define("cv.transforms.Mqtt", {
       },
 
       timestring: {
-        name: "MQTT_timestring",
+        name: 'MQTT_timestring',
         lname: {
-          de: "Uhrzeit-String",
-          en: "time string"
+          de: 'Uhrzeit-String',
+          en: 'time string'
         },
 
-        example: "\"16:30:00\"",
-        unit: "-",
+        example: '"16:30:00"',
+        unit: '-',
         encode(phy) {
-          return phy.toTimeString().split(" ")[0];
+          return phy.toTimeString().split(' ')[0];
         },
         decode(str) {
           const date = new Date(); // assume today
-          str += "00000000"; // make sure string is long enough
+          str += '00000000'; // make sure string is long enough
           date.setHours(
             parseInt(str.substr(0, 2)),
             parseInt(str.substr(3, 2)),
@@ -110,14 +110,14 @@ qx.Class.define("cv.transforms.Mqtt", {
       },
 
       datetime: {
-        name: "MQTT_datetime",
+        name: 'MQTT_datetime',
         lname: {
-          de: "ISO 8601 Zeit-String",
-          en: "ISO 8601 time string"
+          de: 'ISO 8601 Zeit-String',
+          en: 'ISO 8601 time string'
         },
 
-        example: "\"2022-01-01T16:30:00.000Z\"",
-        unit: "-",
+        example: '"2022-01-01T16:30:00.000Z"',
+        unit: '-',
         encode(phy) {
           return phy.toISOString();
         },
@@ -127,351 +127,351 @@ qx.Class.define("cv.transforms.Mqtt", {
       },
 
       color_xy: {
-        name: "MQTT_color_xy",
+        name: 'MQTT_color_xy',
         lname: {
-          de: "xy-Farbe",
-          en: "xy color"
+          de: 'xy-Farbe',
+          en: 'xy color'
         },
 
-        example: "{\"x\":0.123,\"y\":0.123}",
-        unit: "-",
+        example: '{"x":0.123,"y":0.123}',
+        unit: '-',
         encode(phy) {
           return {
-            x: phy.get("x"),
-            y: phy.get("y")
+            x: phy.get('x'),
+            y: phy.get('y')
           };
         },
         decode(str) {
-          const value = typeof str === "string" ? JSON.parse(str) : str;
+          const value = typeof str === 'string' ? JSON.parse(str) : str;
           return new Map([
-            ["x", parseFloat(value.x)],
-            ["y", parseFloat(value.y)],
-            ["cValid", true]
+            ['x', parseFloat(value.x)],
+            ['y', parseFloat(value.y)],
+            ['cValid', true]
           ]);
         }
       },
 
       color_xyY: {
-        name: "MQTT_color_xyY",
+        name: 'MQTT_color_xyY',
         lname: {
-          de: "xyY-Farbe",
-          en: "xyY color"
+          de: 'xyY-Farbe',
+          en: 'xyY color'
         },
 
-        example: "{\"x\":0.123,\"y\":0.123,\"Y\":100}",
-        unit: "-",
+        example: '{"x":0.123,"y":0.123,"Y":100}',
+        unit: '-',
         encode(phy) {
           return {
-            x: phy.get("x"),
-            y: phy.get("y"),
-            Y: phy.get("Y")
+            x: phy.get('x'),
+            y: phy.get('y'),
+            Y: phy.get('Y')
           };
         },
         decode(str) {
-          const value = typeof str === "string" ? JSON.parse(str) : str;
+          const value = typeof str === 'string' ? JSON.parse(str) : str;
           return new Map([
-            ["x", parseFloat(value.x)],
-            ["y", parseFloat(value.y)],
-            ["Y", parseFloat(value.Y)],
-            ["cValid", true],
-            ["YValid", true]
+            ['x', parseFloat(value.x)],
+            ['y', parseFloat(value.y)],
+            ['Y', parseFloat(value.Y)],
+            ['cValid', true],
+            ['YValid', true]
           ]);
         }
       },
 
       color_hsv: {
-        name: "MQTT_color_hsv",
+        name: 'MQTT_color_hsv',
         lname: {
-          de: "HSV-Farbe als Zeichenkette",
-          en: "HSV color as string"
+          de: 'HSV-Farbe als Zeichenkette',
+          en: 'HSV color as string'
         },
 
-        example: "\"360,100,100\"",
-        unit: "-",
+        example: '"360,100,100"',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "";
+            return '';
           }
-          return [phy.get("h"), phy.get("s"), phy.get("v")].join(",");
+          return [phy.get('h'), phy.get('s'), phy.get('v')].join(',');
         },
         decode(str) {
-          const value = str.split(",");
+          const value = str.split(',');
           return new Map([
-            ["h", parseFloat(value[0])],
-            ["s", parseFloat(value[1])],
-            ["v", parseFloat(value[2])]
+            ['h', parseFloat(value[0])],
+            ['s', parseFloat(value[1])],
+            ['v', parseFloat(value[2])]
           ]);
         }
       },
 
       color_h_s_v: {
-        name: "MQTT_color_h_s_v",
+        name: 'MQTT_color_h_s_v',
         lname: {
-          de: "HSV-Farbe",
-          en: "HSV color"
+          de: 'HSV-Farbe',
+          en: 'HSV color'
         },
 
-        example: "{\"h\":360,\"s\":100,\"v\":100}",
-        unit: "-",
+        example: '{"h":360,"s":100,"v":100}',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
             return {};
           }
           return {
-            h: phy.get("h"),
-            s: phy.get("s"),
-            v: phy.get("v")
+            h: phy.get('h'),
+            s: phy.get('s'),
+            v: phy.get('v')
           };
         },
         decode(str) {
-          const value = typeof str === "string" ? JSON.parse(str) : str;
+          const value = typeof str === 'string' ? JSON.parse(str) : str;
           return new Map([
-            ["h", parseFloat(value.h)],
-            ["s", parseFloat(value.s)],
-            ["v", parseFloat(value.v)]
+            ['h', parseFloat(value.h)],
+            ['s', parseFloat(value.s)],
+            ['v', parseFloat(value.v)]
           ]);
         }
       },
 
       color_hsl: {
-        name: "MQTT_color_hsl",
+        name: 'MQTT_color_hsl',
         lname: {
-          de: "HSL-Farbe als Zeichenkette",
-          en: "HSL color as string"
+          de: 'HSL-Farbe als Zeichenkette',
+          en: 'HSL color as string'
         },
 
-        example: "\"360,100,100\"",
-        unit: "-",
+        example: '"360,100,100"',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "";
+            return '';
           }
-          return [phy.get("h"), phy.get("s"), phy.get("v")].join(",");
+          return [phy.get('h'), phy.get('s'), phy.get('v')].join(',');
         },
         decode(str) {
-          const value = str.split(",");
+          const value = str.split(',');
           return new Map([
-            ["h", parseFloat(value[0])],
-            ["s", parseFloat(value[1])],
-            ["v", parseFloat(value[2])]
+            ['h', parseFloat(value[0])],
+            ['s', parseFloat(value[1])],
+            ['v', parseFloat(value[2])]
           ]);
         }
       },
 
       color_h_s_l: {
-        name: "MQTT_color_h_s_l",
+        name: 'MQTT_color_h_s_l',
         lname: {
-          de: "HSL-Farbe",
-          en: "HSL color"
+          de: 'HSL-Farbe',
+          en: 'HSL color'
         },
 
-        example: "{\"h\":360,\"s\":100,\"l\":100}",
-        unit: "-",
+        example: '{"h":360,"s":100,"l":100}',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "{}";
+            return '{}';
           }
           return {
-            h: phy.get("h"),
-            s: phy.get("s"),
-            l: phy.get("v")
+            h: phy.get('h'),
+            s: phy.get('s'),
+            l: phy.get('v')
           };
         },
         decode(str) {
-          const value = typeof str === "string" ? JSON.parse(str) : str;
+          const value = typeof str === 'string' ? JSON.parse(str) : str;
           return new Map([
-            ["h", parseFloat(value.h)],
-            ["s", parseFloat(value.s)],
-            ["v", parseFloat(value.l)]
+            ['h', parseFloat(value.h)],
+            ['s', parseFloat(value.s)],
+            ['v', parseFloat(value.l)]
           ]);
         }
       },
 
       color_rgb: {
-        name: "MQTT_color_rgb",
+        name: 'MQTT_color_rgb',
         lname: {
-          de: "RGB-Farbe als Zeichenkette",
-          en: "RGB color as string"
+          de: 'RGB-Farbe als Zeichenkette',
+          en: 'RGB color as string'
         },
 
-        example: "\"100,100,100\"",
-        unit: "-",
+        example: '"100,100,100"',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "";
+            return '';
           }
-          return [phy.get("r"), phy.get("g"), phy.get("b")].join(",");
+          return [phy.get('r'), phy.get('g'), phy.get('b')].join(',');
         },
         decode(str) {
-          const value = str.split(",");
+          const value = str.split(',');
           return new Map([
-            ["r", parseFloat(value[0])],
-            ["g", parseFloat(value[1])],
-            ["b", parseFloat(value[2])]
+            ['r', parseFloat(value[0])],
+            ['g', parseFloat(value[1])],
+            ['b', parseFloat(value[2])]
           ]);
         }
       },
 
       color_r_g_b: {
-        name: "MQTT_color_r_g_b",
+        name: 'MQTT_color_r_g_b',
         lname: {
-          de: "RGB-Farbe",
-          en: "RGB color"
+          de: 'RGB-Farbe',
+          en: 'RGB color'
         },
 
-        example: "{\"r\":100,\"g\":100,\"b\":100}",
-        unit: "-",
+        example: '{"r":100,"g":100,"b":100}',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "{}";
+            return '{}';
           }
           return {
-            r: phy.get("r"),
-            g: phy.get("g"),
-            b: phy.get("b")
+            r: phy.get('r'),
+            g: phy.get('g'),
+            b: phy.get('b')
           };
         },
         decode(str) {
-          const value = typeof str === "string" ? JSON.parse(str) : str;
+          const value = typeof str === 'string' ? JSON.parse(str) : str;
           return new Map([
-            ["r", parseFloat(value.r)],
-            ["g", parseFloat(value.g)],
-            ["b", parseFloat(value.b)]
+            ['r', parseFloat(value.r)],
+            ['g', parseFloat(value.g)],
+            ['b', parseFloat(value.b)]
           ]);
         }
       },
 
       color_rgbw: {
-        name: "MQTT_color_rgbw",
+        name: 'MQTT_color_rgbw',
         lname: {
-          de: "RGBW-Farbe als Zeichenkette",
-          en: "RGBW color as string"
+          de: 'RGBW-Farbe als Zeichenkette',
+          en: 'RGBW color as string'
         },
 
-        example: "\"100,100,100,100\"",
-        unit: "-",
+        example: '"100,100,100,100"',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "";
+            return '';
           }
-          return [phy.get("r"), phy.get("g"), phy.get("b"), phy.get("w")].join(
-            ","
+          return [phy.get('r'), phy.get('g'), phy.get('b'), phy.get('w')].join(
+            ','
           );
         },
         decode(str) {
-          const value = str.split(",");
+          const value = str.split(',');
           return new Map([
-            ["r", parseFloat(value[0])],
-            ["g", parseFloat(value[1])],
-            ["b", parseFloat(value[2])],
-            ["w", parseFloat(value[3])]
+            ['r', parseFloat(value[0])],
+            ['g', parseFloat(value[1])],
+            ['b', parseFloat(value[2])],
+            ['w', parseFloat(value[3])]
           ]);
         }
       },
 
       color_r_g_b_w: {
-        name: "MQTT_color_r_g_b_w",
+        name: 'MQTT_color_r_g_b_w',
         lname: {
-          de: "RGBW-Farbe",
-          en: "RGBW color"
+          de: 'RGBW-Farbe',
+          en: 'RGBW color'
         },
 
-        example: "{\"r\":100,\"g\":100,\"b\":100,\"w\":100}",
-        unit: "-",
+        example: '{"r":100,"g":100,"b":100,"w":100}',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "{}";
+            return '{}';
           }
           return {
-            r: phy.get("r"),
-            g: phy.get("g"),
-            b: phy.get("b"),
-            w: phy.get("w")
+            r: phy.get('r'),
+            g: phy.get('g'),
+            b: phy.get('b'),
+            w: phy.get('w')
           };
         },
         decode(str) {
-          const value = typeof str === "string" ? JSON.parse(str) : str;
+          const value = typeof str === 'string' ? JSON.parse(str) : str;
           return new Map([
-            ["r", parseFloat(value.r)],
-            ["g", parseFloat(value.g)],
-            ["b", parseFloat(value.b)],
-            ["w", parseFloat(value.w)]
+            ['r', parseFloat(value.r)],
+            ['g', parseFloat(value.g)],
+            ['b', parseFloat(value.b)],
+            ['w', parseFloat(value.w)]
           ]);
         }
       },
 
       color_rgb_hex: {
-        name: "MQTT_color_rgb_hex",
+        name: 'MQTT_color_rgb_hex',
         lname: {
-          de: "RGB-Farbe",
-          en: "RGB color"
+          de: 'RGB-Farbe',
+          en: 'RGB color'
         },
 
-        example: "\"#11FF88\"",
-        unit: "-",
+        example: '"#11FF88"',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "#000000";
+            return '#000000';
           }
           return [
-            "#",
-            cv.Transform.clipInt(0, phy.get("r"), 255, 255 / 100)
+            '#',
+            cv.Transform.clipInt(0, phy.get('r'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
-            cv.Transform.clipInt(0, phy.get("g"), 255, 255 / 100)
+              .padStart(2, '0'),
+            cv.Transform.clipInt(0, phy.get('g'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
-            cv.Transform.clipInt(0, phy.get("b"), 255, 255 / 100)
+              .padStart(2, '0'),
+            cv.Transform.clipInt(0, phy.get('b'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0")
-          ].join("");
+              .padStart(2, '0')
+          ].join('');
         },
         decode(str) {
-          str += "00000000"; // make sure string is long enough
+          str += '00000000'; // make sure string is long enough
           return new Map([
-            ["r", (parseInt(str.substr(1, 2), 16) * 100) / 255.0],
-            ["g", (parseInt(str.substr(3, 2), 16) * 100) / 255.0],
-            ["b", (parseInt(str.substr(5, 2), 16) * 100) / 255.0]
+            ['r', (parseInt(str.substr(1, 2), 16) * 100) / 255.0],
+            ['g', (parseInt(str.substr(3, 2), 16) * 100) / 255.0],
+            ['b', (parseInt(str.substr(5, 2), 16) * 100) / 255.0]
           ]);
         }
       },
 
       color_rgbw_hex: {
-        name: "MQTT_color_rgbw_hex",
+        name: 'MQTT_color_rgbw_hex',
         lname: {
-          de: "RGBW-Farbe",
-          en: "RGBW color"
+          de: 'RGBW-Farbe',
+          en: 'RGBW color'
         },
 
-        example: "\"#11FF88AA\"",
-        unit: "-",
+        example: '"#11FF88AA"',
+        unit: '-',
         encode(phy) {
           if (!(phy instanceof Map)) {
-            return "#00000000";
+            return '#00000000';
           }
           return [
-            "#",
-            cv.Transform.clipInt(0, phy.get("r"), 255, 255 / 100)
+            '#',
+            cv.Transform.clipInt(0, phy.get('r'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
-            cv.Transform.clipInt(0, phy.get("g"), 255, 255 / 100)
+              .padStart(2, '0'),
+            cv.Transform.clipInt(0, phy.get('g'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
-            cv.Transform.clipInt(0, phy.get("b"), 255, 255 / 100)
+              .padStart(2, '0'),
+            cv.Transform.clipInt(0, phy.get('b'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0"),
-            cv.Transform.clipInt(0, phy.get("w"), 255, 255 / 100)
+              .padStart(2, '0'),
+            cv.Transform.clipInt(0, phy.get('w'), 255, 255 / 100)
               .toString(16)
-              .padStart(2, "0")
-          ].join("");
+              .padStart(2, '0')
+          ].join('');
         },
         decode(str) {
-          str += "00000000000"; // make sure string is long enough
+          str += '00000000000'; // make sure string is long enough
           return new Map([
-            ["r", (parseInt(str.substr(1, 2), 16) * 100) / 255.0],
-            ["g", (parseInt(str.substr(3, 2), 16) * 100) / 255.0],
-            ["b", (parseInt(str.substr(5, 2), 16) * 100) / 255.0],
-            ["w", (parseInt(str.substr(7, 2), 16) * 100) / 255.0]
+            ['r', (parseInt(str.substr(1, 2), 16) * 100) / 255.0],
+            ['g', (parseInt(str.substr(3, 2), 16) * 100) / 255.0],
+            ['b', (parseInt(str.substr(5, 2), 16) * 100) / 255.0],
+            ['w', (parseInt(str.substr(7, 2), 16) * 100) / 255.0]
           ]);
         }
       }

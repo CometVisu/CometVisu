@@ -20,9 +20,9 @@
 /**
  * User preferences.
  */
-qx.Class.define("cv.ui.manager.model.Preferences", {
+qx.Class.define('cv.ui.manager.model.Preferences', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ***********************************************
@@ -41,37 +41,37 @@ qx.Class.define("cv.ui.manager.model.Preferences", {
   */
   properties: {
     defaultConfigEditor: {
-      check: ["source", "xml"],
-      init: "source",
-      event: "changeDefaultConfigEditor",
-      apply: "_savePreferences"
+      check: ['source', 'xml'],
+      init: 'source',
+      event: 'changeDefaultConfigEditor',
+      apply: '_savePreferences'
     },
 
     quickPreview: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeQuickPreview",
-      apply: "_savePreferences"
+      event: 'changeQuickPreview',
+      apply: '_savePreferences'
     },
 
     /**
      * In export mode the manager looks and behaves like a file explorer.
      */
     expertMode: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeExpertMode",
-      apply: "_savePreferences"
+      event: 'changeExpertMode',
+      apply: '_savePreferences'
     },
 
     /**
      * View mode of the start page
      */
     startViewMode: {
-      check: ["list", "preview"],
-      init: "preview",
-      event: "changeStartViewMode",
-      apply: "_savePreferences"
+      check: ['list', 'preview'],
+      init: 'preview',
+      event: 'changeStartViewMode',
+      apply: '_savePreferences'
     }
   },
 
@@ -87,14 +87,14 @@ qx.Class.define("cv.ui.manager.model.Preferences", {
       if (!this._skipSaving) {
         const store = qx.bom.Storage.getLocal();
         const data = qx.util.Serializer.toNativeObject(this);
-        store.setItem("preferences", data);
-        cv.report.Record.record(cv.report.Record.STORAGE, "preferences", data);
+        store.setItem('preferences', data);
+        cv.report.Record.record(cv.report.Record.STORAGE, 'preferences', data);
       }
     },
 
     _restorePreferences() {
       const store = qx.bom.Storage.getLocal();
-      this.set(store.getItem("preferences"));
+      this.set(store.getItem('preferences'));
     },
 
     setPreferences(preferences, noSave) {

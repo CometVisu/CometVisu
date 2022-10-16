@@ -20,7 +20,7 @@
 /**
  * Handles cv-popup children and some general popup tasks, like global registration and close on click outside, modal blocker etc.
  */
-qx.Mixin.define("cv.ui.structure.tile.MPopup", {
+qx.Mixin.define('cv.ui.structure.tile.MPopup', {
   /*
   ***********************************************
     STATICS
@@ -31,7 +31,7 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
   },
 
   events: {
-    closed: "qx.event.type.Event"
+    closed: 'qx.event.type.Event'
   },
 
   /*
@@ -44,21 +44,22 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
 
     _initPopupChild() {
       const popup = (this._childPopup =
-        this._element.querySelector(":scope > cv-popup"));
+        this._element.querySelector(':scope > cv-popup'));
       if (popup) {
         qx.event.Registration.addListener(
           this._element,
-          "tap",
+          'tap',
           this._openPopupChild,
           this
         );
+
         // we need to tell the parent widget that is inside a group that wen have a popup here
         let parent = popup.parentElement;
         let last;
         while (parent) {
-          if (parent.tagName.toLowerCase() === "cv-group") {
-            last.classList.add("has-popup");
-          } else if (parent.tagName.toLowerCase() === "cv-page") {
+          if (parent.tagName.toLowerCase() === 'cv-group') {
+            last.classList.add('has-popup');
+          } else if (parent.tagName.toLowerCase() === 'cv-page') {
             break;
           }
           last = parent;
@@ -69,15 +70,16 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
 
     _openPopupChild() {
       const popup = this._element.querySelector(
-        ":scope > cv-popup:not([open])"
+        ':scope > cv-popup:not([open])'
       );
+
       if (popup) {
         popup.getInstance().open();
       }
     },
 
     _closePopupChild() {
-      const popup = this._element.querySelector(":scope > cv-popup[open]");
+      const popup = this._element.querySelector(':scope > cv-popup[open]');
       if (popup) {
         popup.getInstance().close();
       }
@@ -86,32 +88,34 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
     registerModalPopup() {
       qx.event.Registration.addListener(
         document,
-        "pointerdown",
+        'pointerdown',
         this._onPointerDown,
         this
       );
-      let blocker = document.body.querySelector(".modal-popup-blocker");
+
+      let blocker = document.body.querySelector('.modal-popup-blocker');
       if (!blocker) {
-        blocker = document.createElement("div");
-        blocker.classList.add("modal-popup-blocker");
+        blocker = document.createElement('div');
+        blocker.classList.add('modal-popup-blocker');
         document.body.appendChild(blocker);
       }
-      blocker.style.display = "block";
+      blocker.style.display = 'block';
       cv.ui.structure.tile.MPopup.openedPopups.push(this);
     },
 
     unregisterModalPopup() {
       qx.event.Registration.removeListener(
         document,
-        "pointerdown",
+        'pointerdown',
         this._onPointerDown,
         this
       );
+
       const index = cv.ui.structure.tile.MPopup.openedPopups.indexOf(this);
       cv.ui.structure.tile.MPopup.openedPopups.splice(index, 1);
-      let blocker = document.body.querySelector(".modal-popup-blocker");
+      let blocker = document.body.querySelector('.modal-popup-blocker');
       if (blocker && cv.ui.structure.tile.MPopup.openedPopups.length === 0) {
-        blocker.style.display = "none";
+        blocker.style.display = 'none';
       }
     },
 
@@ -132,10 +136,11 @@ qx.Mixin.define("cv.ui.structure.tile.MPopup", {
   destruct() {
     qx.event.Registration.removeListener(
       this._element,
-      "tap",
+      'tap',
       this._openPopupChild,
       this
     );
+
     this._childPopup = null;
   }
 });

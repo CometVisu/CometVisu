@@ -23,7 +23,7 @@
  *  @author Tobias Bräutigam
  *  @since 2022
  */
-qx.Class.define("cv.ui.structure.tile.elements.Address", {
+qx.Class.define('cv.ui.structure.tile.elements.Address', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
 
   /*
@@ -40,12 +40,12 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
       const address = element.textContent.trim();
       if (address) {
         const model = cv.data.Model.getInstance();
-        const backendName = element.getAttribute("backend");
-        model.addAddress(address, element.getAttribute("id"), backendName);
-        const mode = element.hasAttribute("mode")
-          ? element.getAttribute("mode")
-          : "readwrite";
-        if (mode !== "write") {
+        const backendName = element.getAttribute('backend');
+        model.addAddress(address, element.getAttribute('id'), backendName);
+        const mode = element.hasAttribute('mode')
+          ? element.getAttribute('mode')
+          : 'readwrite';
+        if (mode !== 'write') {
           // subscribe
           // this is a read address register for updates
           const state = model.getState(address, backendName);
@@ -60,40 +60,41 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
             backendName
           );
         }
-        if (mode !== "read") {
+        if (mode !== 'read') {
           // listen for sendState events
-          element.addEventListener("sendState", ev => {
+          element.addEventListener('sendState', ev => {
             let value = null;
-            if (Object.prototype.hasOwnProperty.call(ev.detail, "value")) {
+            if (Object.prototype.hasOwnProperty.call(ev.detail, 'value')) {
               value = ev.detail.value;
             }
-            if (element.hasAttribute("value")) {
+            if (element.hasAttribute('value')) {
               // address has a fixed value that must be sent
-              value = element.getAttribute("value");
+              value = element.getAttribute('value');
             }
             const allowDuplicates =
               ev.detail.source &&
               ev.detail.source instanceof
                 cv.ui.structure.tile.components.Button &&
-              (ev.detail.source.getType() === "trigger" ||
-                ev.detail.source.getType() === "push");
+              (ev.detail.source.getType() === 'trigger' ||
+                ev.detail.source.getType() === 'push');
             if (value !== null) {
-              const encoding = element.getAttribute("transform") || "raw";
+              const encoding = element.getAttribute('transform') || 'raw';
               const encodedValue = cv.Transform.encodeBusAndRaw(
                 { transform: encoding },
                 value
               );
+
               // noinspection EqualityComparisonWithCoercionJS
               if (
                 allowDuplicates ||
                 !Object.prototype.hasOwnProperty.call(
                   element,
-                  "lastSentValue"
+                  'lastSentValue'
                 ) ||
                 encodedValue.raw !== element.lastSentValue
               ) {
-                if (element.hasAttribute("delay")) {
-                  const delay = parseInt(element.getAttribute("delay"));
+                if (element.hasAttribute('delay')) {
+                  const delay = parseInt(element.getAttribute('delay'));
                   this.debug(`send with delay of ${delay}ms`);
                   qx.event.Timer.once(
                     () => {
@@ -102,6 +103,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
                         encodedValue.bus,
                         element
                       );
+
                       if (!allowDuplicates) {
                         element.lastSentValue = encodedValue.raw;
                       }
@@ -115,6 +117,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
                     encodedValue.bus,
                     element
                   );
+
                   if (!allowDuplicates) {
                     element.lastSentValue = encodedValue.raw;
                   }
@@ -134,44 +137,45 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
     fireStateUpdate(address, state) {
       if (
         this.__lastValue !== state ||
-        this._element.getAttribute("send-mode") === "always"
+        this._element.getAttribute('send-mode') === 'always'
       ) {
-        let transform = this._element.getAttribute("transform") || "raw";
+        let transform = this._element.getAttribute('transform') || 'raw';
         let transformedState = cv.Transform.decode(
           { transform: transform },
           state
         );
-        let mapping = "";
-        if (this._element.hasAttribute("mapping")) {
-          mapping = this._element.getAttribute("mapping");
+
+        let mapping = '';
+        if (this._element.hasAttribute('mapping')) {
+          mapping = this._element.getAttribute('mapping');
           transformedState = cv.Application.structureController.mapValue(
             mapping,
             transformedState
           );
         }
-        if (this._element.hasAttribute("format")) {
+        if (this._element.hasAttribute('format')) {
           transformedState = cv.util.String.sprintf(
-            this._element.getAttribute("format"),
+            this._element.getAttribute('format'),
             transformedState instanceof Date
               ? transformedState.toLocaleString()
               : transformedState
           );
         }
-        const ev = new CustomEvent("stateUpdate", {
+        const ev = new CustomEvent('stateUpdate', {
           bubbles: true,
           cancelable: true,
           detail: {
             address: this._element.textContent.trim(),
             state: transformedState,
-            target: this._element.getAttribute("target") || "",
+            target: this._element.getAttribute('target') || '',
             raw: state,
             mapping: mapping,
-            addressValue: this._element.hasAttribute("value")
-              ? this._element.getAttribute("value")
+            addressValue: this._element.hasAttribute('value')
+              ? this._element.getAttribute('value')
               : null,
             source: this,
-            variant: this._element.hasAttribute("variant")
-              ? this._element.getAttribute("variant")
+            variant: this._element.hasAttribute('variant')
+              ? this._element.getAttribute('variant')
               : null
           }
         });
@@ -194,7 +198,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Address", {
 
   defer(Clazz) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "address",
+      cv.ui.structure.tile.Controller.PREFIX + 'address',
       class extends QxConnector {
         constructor() {
           super(Clazz);

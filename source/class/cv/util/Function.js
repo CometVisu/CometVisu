@@ -20,7 +20,7 @@
 /**
  * Utility module to give some support to work with functions.
  */
-qx.Class.define("cv.util.Function", {
+qx.Class.define('cv.util.Function', {
   statics: {
     /**
      * Like qx.util.Function.throttle with additional support to abort the throttling.
@@ -33,7 +33,7 @@ qx.Class.define("cv.util.Function", {
      * <code>abort</code> abort throttling and skip the trailing value
      */
     throttle(callback, interval, options, context) {
-      if (typeof options === "undefined") {
+      if (typeof options === 'undefined') {
         options = {};
       }
 

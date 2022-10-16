@@ -20,7 +20,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.dialog.Prompt", {
+qx.Class.define('cv.ui.manager.dialog.Prompt', {
   extend: qxl.dialog.Prompt,
   /*
   ***********************************************

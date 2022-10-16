@@ -21,7 +21,7 @@
  * a single sequence.
  * may be recursive
  */
-qx.Class.define("cv.ui.manager.model.schema.Sequence", {
+qx.Class.define('cv.ui.manager.model.schema.Sequence', {
   extend: cv.ui.manager.model.schema.Base,
 
   /*
@@ -42,7 +42,7 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
   properties: {
     type: {
       refine: true,
-      init: "sequence"
+      init: 'sequence'
     },
 
     elementsHaveOrder: {
@@ -74,33 +74,34 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
         let subObject;
 
         switch (subNode.nodeName) {
-          case "xsd:element":
-          case "element":
+          case 'xsd:element':
+          case 'element':
             subObject = new cv.ui.manager.model.schema.Element(subNode, schema);
             // sequences' children are non-sortable
             subObject.setSortable(false);
             this._allowedElements[subObject.getName()] = subObject;
             break;
-          case "xsd:choice":
-          case "choice":
+          case 'xsd:choice':
+          case 'choice':
             subObject = new cv.ui.manager.model.schema.Choice(subNode, schema);
             this._subGroupings.push(subObject);
             break;
-          case "xsd:sequence":
-          case "sequence":
+          case 'xsd:sequence':
+          case 'sequence':
             subObject = new cv.ui.manager.model.schema.Sequence(
               subNode,
               schema
             );
+
             this._subGroupings.push(subObject);
             break;
-          case "xsd:group":
-          case "group":
+          case 'xsd:group':
+          case 'group':
             subObject = new cv.ui.manager.model.schema.Group(subNode, schema);
             this._subGroupings.push(subObject);
             break;
-          case "xsd:any":
-          case "any":
+          case 'xsd:any':
+          case 'any':
             subObject = new cv.ui.manager.model.schema.Any(subNode, schema);
             this._subGroupings.push(subObject);
             break;
@@ -108,7 +109,7 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
 
         this._sortedContent.push(subObject);
       });
-      this._allowedElements["#comment"] =
+      this._allowedElements['#comment'] =
         this.getSchema().getCommentNodeSchemaElement();
     },
 
@@ -125,11 +126,11 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
         return this._regexCache;
       }
 
-      let regexString = "(";
+      let regexString = '(';
 
       // create list of allowed elements
       if (nocapture) {
-        regexString += "?:";
+        regexString += '?:';
       }
 
       const elementRegexes = [];
@@ -139,19 +140,19 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
         elementRegexes.push(element.getRegex(separator, nocapture));
       });
 
-      regexString += elementRegexes.join("");
+      regexString += elementRegexes.join('');
 
-      regexString += ")";
+      regexString += ')';
 
       // append bounds to regex
-      regexString += "{";
+      regexString += '{';
       const bounds = this.getBounds();
       regexString += bounds.min === undefined ? 1 : bounds.min;
-      regexString += ",";
+      regexString += ',';
       if (bounds.max !== Number.POSITIVE_INFINITY) {
         regexString += bounds.max === undefined ? 1 : bounds.max;
       }
-      regexString += "}";
+      regexString += '}';
 
       // fill the cache
       this._regexCache = regexString;
@@ -162,7 +163,7 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
 
     getBoundsForElementName(childName) {
       // we are a sequence-element; there is actually a lot of sayings ...
-      if (typeof this._allowedElements[childName] !== "undefined") {
+      if (typeof this._allowedElements[childName] !== 'undefined') {
         const elementBounds = this._allowedElements[childName].getBounds();
         const sequenceBounds = this.getBounds();
 
@@ -174,12 +175,12 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
         // if it is bounded, we must duplicate element and sequence bounds
         // (an element may appear as often as the number of sequences times the number of elements
         // in each sequence - roughly)
-        if (Object.prototype.hasOwnProperty.call(elementBounds, "min")) {
+        if (Object.prototype.hasOwnProperty.call(elementBounds, 'min')) {
           resultBounds.min = elementBounds.min;
         }
 
         if (
-          Object.prototype.hasOwnProperty.call(sequenceBounds, "min") &&
+          Object.prototype.hasOwnProperty.call(sequenceBounds, 'min') &&
           !isNaN(sequenceBounds.min)
         ) {
           resultBounds.min *= sequenceBounds.min;
@@ -191,12 +192,12 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
         ) {
           resultBounds.max = Number.POSITIVE_INFINITY;
         } else {
-          if (Object.prototype.hasOwnProperty.call(elementBounds, "max")) {
+          if (Object.prototype.hasOwnProperty.call(elementBounds, 'max')) {
             resultBounds.max = elementBounds.max;
           }
 
           if (
-            Object.prototype.hasOwnProperty.call(sequenceBounds, "max") &&
+            Object.prototype.hasOwnProperty.call(sequenceBounds, 'max') &&
             !isNaN(sequenceBounds.max)
           ) {
             resultBounds.max *= sequenceBounds.max;
@@ -236,10 +237,10 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
       this._sortedContent.forEach((item, i) => {
         let mySortNumber = i;
         if (sortNumber !== undefined) {
-          mySortNumber = sortNumber + "." + i;
+          mySortNumber = sortNumber + '.' + i;
         }
 
-        if (item.getType() === "element") {
+        if (item.getType() === 'element') {
           namesWithSorting[item.getName()] = mySortNumber;
         } else {
           // go recursive

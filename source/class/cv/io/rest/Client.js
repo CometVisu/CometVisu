@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.io.rest.Client", {
-  type: "static",
+qx.Class.define('cv.io.rest.Client', {
+  type: 'static',
 
   /*
   ***********************************************
@@ -37,10 +37,10 @@ qx.Class.define("cv.io.rest.Client", {
 
     getBaseUrl() {
       if (!this.BASE_URL) {
-        let path = "";
+        let path = '';
         const engine = cv.TemplateEngine.getInstance();
         const clientBackend =
-          engine.visu && typeof engine.visu.getBackend === "function"
+          engine.visu && typeof engine.visu.getBackend === 'function'
             ? engine.visu.getBackend()
             : {};
         if (clientBackend.resources && clientBackend.resources.rest) {
@@ -48,7 +48,7 @@ qx.Class.define("cv.io.rest.Client", {
         } else {
           path =
             qx.util.Uri.parseUri(window.location.href).directory +
-            "rest/manager/index.php";
+            'rest/manager/index.php';
         }
         this.BASE_URL = path;
       }
@@ -59,28 +59,28 @@ qx.Class.define("cv.io.rest.Client", {
       if (!this.__configFile) {
         const config = {
           get: {
-            method: "GET",
-            url: "/config/hidden/{section}/{key}"
+            method: 'GET',
+            url: '/config/hidden/{section}/{key}'
           },
 
           put: {
-            method: "PUT",
-            url: "/config/hidden/{section}/{key}"
+            method: 'PUT',
+            url: '/config/hidden/{section}/{key}'
           },
 
           post: {
-            method: "POST",
-            url: "/config/hidden/{section}/{key}"
+            method: 'POST',
+            url: '/config/hidden/{section}/{key}'
           },
 
           delete: {
-            method: "DELETE",
-            url: "/config/hidden/{section}/{key}"
+            method: 'DELETE',
+            url: '/config/hidden/{section}/{key}'
           },
 
           save: {
-            method: "PUT",
-            url: "/config/hidden"
+            method: 'PUT',
+            url: '/config/hidden'
           }
         };
 
@@ -88,12 +88,12 @@ qx.Class.define("cv.io.rest.Client", {
         this.__configFile.setBaseUrl(this.getBaseUrl());
         this.__configFile.configureRequest(function (req, action) {
           if (cv.Config.transactionId) {
-            req.setRequestHeader("X-Transaction-ID", cv.Config.transactionId);
+            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
           }
-          if (action === "save") {
-            req.setRequestHeader("Content-Type", "application/json");
+          if (action === 'save') {
+            req.setRequestHeader('Content-Type', 'application/json');
           }
-          req.setAccept("application/json");
+          req.setAccept('application/json');
         });
 
         this._enableSync(this.__configFile, config);
@@ -105,33 +105,33 @@ qx.Class.define("cv.io.rest.Client", {
       if (!this.__dirClient) {
         const config = {
           read: {
-            method: "GET",
-            url: "/fs?path={path}"
+            method: 'GET',
+            url: '/fs?path={path}'
           },
 
           update: {
-            method: "PUT",
-            url: "/fs?path={path}"
+            method: 'PUT',
+            url: '/fs?path={path}'
           },
 
           create: {
-            method: "POST",
-            url: "/fs?path={path}&type={type}"
+            method: 'POST',
+            url: '/fs?path={path}&type={type}'
           },
 
           delete: {
-            method: "DELETE",
-            url: "/fs?path={path}&force={force}"
+            method: 'DELETE',
+            url: '/fs?path={path}&force={force}'
           },
 
           move: {
-            method: "PUT",
-            url: "/fs/move?src={src}&target={target}"
+            method: 'PUT',
+            url: '/fs/move?src={src}&target={target}'
           },
 
           checkEnvironment: {
-            method: "GET",
-            url: "/fs/check"
+            method: 'GET',
+            url: '/fs/check'
           }
         };
 
@@ -139,25 +139,25 @@ qx.Class.define("cv.io.rest.Client", {
         this.__dirClient.setBaseUrl(this.getBaseUrl());
         this.__dirClient.configureRequest(function (req, action, params) {
           if (cv.Config.transactionId) {
-            req.setRequestHeader("X-Transaction-ID", cv.Config.transactionId);
+            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
           }
           if (params.hash) {
-            req.setUrl(req.getUrl() + "&hash=" + params.hash);
+            req.setUrl(req.getUrl() + '&hash=' + params.hash);
           }
-          if (params.recursive === true && action === "read") {
-            req.setUrl(req.getUrl() + "&recursive=true");
+          if (params.recursive === true && action === 'read') {
+            req.setUrl(req.getUrl() + '&recursive=true');
           }
-          if (action === "update" || action === "create") {
-            const parts = params.path.split(".");
+          if (action === 'update' || action === 'create') {
+            const parts = params.path.split('.');
             if (parts.length > 1) {
               const type = parts.pop();
               const mimetype =
                 cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
-              req.setRequestHeader("Content-Type", mimetype || "text/plain");
+              req.setRequestHeader('Content-Type', mimetype || 'text/plain');
             } else {
-              req.setRequestHeader("Content-Type", "text/plain");
+              req.setRequestHeader('Content-Type', 'text/plain');
             }
-            req.setAccept("application/json");
+            req.setAccept('application/json');
           }
         });
 
@@ -165,17 +165,19 @@ qx.Class.define("cv.io.rest.Client", {
 
         // general listeners
         this.__dirClient.addListener(
-          "updateSuccess",
+          'updateSuccess',
           this._onSaveSuccess,
           this
         );
+
         this.__dirClient.addListener(
-          "createSuccess",
+          'createSuccess',
           this._onSaveSuccess,
           this
         );
-        this.__dirClient.addListener("updateError", this._onSaveError, this);
-        this.__dirClient.addListener("createError", this._onSaveError, this);
+
+        this.__dirClient.addListener('updateError', this._onSaveError, this);
+        this.__dirClient.addListener('createError', this._onSaveError, this);
       }
       return this.__dirClient;
     },
@@ -184,33 +186,33 @@ qx.Class.define("cv.io.rest.Client", {
       if (!this.__dpClient) {
         const config = {
           designs: {
-            method: "GET",
-            url: "/data/designs"
+            method: 'GET',
+            url: '/data/designs'
           },
 
           rrds: {
-            method: "GET",
-            url: "/data/rrds"
+            method: 'GET',
+            url: '/data/rrds'
           },
 
           addresses: {
-            method: "GET",
-            url: "/data/addresses"
+            method: 'GET',
+            url: '/data/addresses'
           },
 
           influxdbs: {
-            method: "GET",
-            url: "/data/influxdbs?auth={auth}"
+            method: 'GET',
+            url: '/data/influxdbs?auth={auth}'
           },
 
           influxdbfields: {
-            method: "GET",
-            url: "/data/influxdbfields?auth={auth}&measurement={measurement}"
+            method: 'GET',
+            url: '/data/influxdbfields?auth={auth}&measurement={measurement}'
           },
 
           influxdbtags: {
-            method: "GET",
-            url: "/data/influxdbtags?auth={auth}&measurement={measurement}"
+            method: 'GET',
+            url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
           }
         };
 
@@ -218,7 +220,7 @@ qx.Class.define("cv.io.rest.Client", {
         this.__dpClient.setBaseUrl(this.getBaseUrl());
         if (cv.Config.transactionId) {
           this.__dpClient.configureRequest(function (req, action, params) {
-            req.setRequestHeader("X-Transaction-ID", cv.Config.transactionId);
+            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
           });
         }
 
@@ -230,7 +232,7 @@ qx.Class.define("cv.io.rest.Client", {
     _enableSync(client, config) {
       // install the callback calls
       Object.keys(config).forEach(function (callName) {
-        client[callName + "Sync"] = function () {
+        client[callName + 'Sync'] = function () {
           const args = qx.lang.Array.fromArguments(arguments);
           let callback;
           let context = args.pop();
@@ -246,7 +248,7 @@ qx.Class.define("cv.io.rest.Client", {
       }, this);
 
       // add the general listeners
-      client.addListener("success", ev => {
+      client.addListener('success', ev => {
         const req = ev.getRequest();
         const id = parseInt(req.toHashCode(), 10);
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
@@ -255,7 +257,7 @@ qx.Class.define("cv.io.rest.Client", {
         }
       });
 
-      client.addListener("error", ev => {
+      client.addListener('error', ev => {
         const req = ev.getRequest();
         const id = parseInt(req.toHashCode(), 10);
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
@@ -273,10 +275,10 @@ qx.Class.define("cv.io.rest.Client", {
           this.__callbacks[id](error, null);
           delete this.__callbacks[id];
         }
-        if (req.getPhase() === "load") {
+        if (req.getPhase() === 'load') {
           // error during load phase => backend not reachable
           qxl.dialog.Dialog.error(
-            qx.locale.Manager.tr("Backend does not respond!")
+            qx.locale.Manager.tr('Backend does not respond!')
           );
         }
       });
@@ -288,7 +290,7 @@ qx.Class.define("cv.io.rest.Client", {
       // only handle this events, when there is no callback for it
       if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
         cv.ui.manager.snackbar.Controller.info(
-          qx.locale.Manager.tr("File has been saved")
+          qx.locale.Manager.tr('File has been saved')
         );
       }
     },
@@ -299,7 +301,7 @@ qx.Class.define("cv.io.rest.Client", {
       // only handle this events, when there is no callback for it
       if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
         cv.ui.manager.snackbar.Controller.error(
-          qx.locale.Manager.tr("Error saving file")
+          qx.locale.Manager.tr('Error saving file')
         );
       }
     }

@@ -17,89 +17,89 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Theme.define("cv.theme.dark.Decoration", {
+qx.Theme.define('cv.theme.dark.Decoration', {
   extend: qx.theme.tangible.Decoration,
 
   decorations: {
-    "window-caption-active": {},
+    'window-caption-active': {},
 
-    "cv-editor-config-section": {
+    'cv-editor-config-section': {
       style: {
         width: 1,
-        color: "primary-focused"
+        color: 'primary-focused'
       }
     },
 
-    "cv-snackbar-msg": {
+    'cv-snackbar-msg': {
       style: {
-        backgroundColor: "button"
+        backgroundColor: 'button'
       }
     },
 
-    "cv-snackbar-msg-error": {
+    'cv-snackbar-msg-error': {
       style: {
-        backgroundColor: "error-focused"
+        backgroundColor: 'error-focused'
       }
     },
 
-    "cv-toolbar": {
+    'cv-toolbar': {
       style: {
         width: [1, 0, 1, 0],
-        color: "background-main"
+        color: 'background-main'
       }
     },
 
-    "file-action-button": {
+    'file-action-button': {
       style: {
         width: 1,
-        color: "text-on-primary"
+        color: 'text-on-primary'
       }
     },
 
-    "cv-start-section-title": {
+    'cv-start-section-title': {
       style: {
         width: [1, 0, 0, 0],
-        color: "text-on-secondary"
+        color: 'text-on-secondary'
       }
     },
 
-    "open-file-tabs": {
+    'open-file-tabs': {
       style: {
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
         shadowVerticalLength: 1,
-        shadowColor: "rgba(255, 255, 255, 0.1)"
+        shadowColor: 'rgba(255, 255, 255, 0.1)'
       }
     },
 
-    "cv-file-item-add-file": {
+    'cv-file-item-add-file': {
       style: {
         width: 1,
-        color: "text-on-primary",
-        style: "dashed"
+        color: 'text-on-primary',
+        style: 'dashed'
       }
     },
 
-    "round-button": {
+    'round-button': {
       style: {
         width: 2,
         radius: 32,
-        color: "button-border",
-        backgroundColor: "button",
+        color: 'button-border',
+        backgroundColor: 'button',
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
         shadowVerticalLength: 1,
-        shadowColor: "rgba(255, 255, 255, 0.1)"
+        shadowColor: 'rgba(255, 255, 255, 0.1)'
       }
     },
 
-    "round-button-hovered": {
-      include: "round-button",
+    'round-button-hovered': {
+      include: 'round-button',
       style: {
         width: 4,
-        color: "primary-hovered"
+        color: 'primary-hovered'
       }
     }
   }

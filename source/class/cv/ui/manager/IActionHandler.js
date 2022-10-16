@@ -20,7 +20,7 @@
 /**
  * All Widgets that need to handle actions from the managers action event, need to implement this interface.
  */
-qx.Interface.define("cv.ui.manager.IActionHandler", {
+qx.Interface.define('cv.ui.manager.IActionHandler', {
   /*
   ***********************************************
     MEMBERS

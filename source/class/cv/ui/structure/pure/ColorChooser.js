@@ -39,7 +39,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.ColorChooser", {
+qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -97,17 +97,20 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       this.__updateHandlePosition,
       this
     );
+
     this.__animator.setAnimationSpeed(100, 0.5);
     this.__pageSizeListener =
       cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
-        "changePageSizeInvalid",
+        'changePageSizeInvalid',
         () => {
           this.__invalidateScreensize();
         }
       );
+
     this.__components = new Set(
       Object.entries(this.getAddress()).map(v => v[1].variantInfo)
     );
+
     this.__lastBusValue = {};
   },
 
@@ -120,6 +123,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
     cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(
       this.__pageSizeListener
     );
+
     this.__pageSizeListener = null;
     this.__button = null;
   },
@@ -131,15 +135,15 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
   */
   properties: {
     controls: {
-      check: "String"
+      check: 'String'
     },
 
     baseColors: {
-      check: "Object"
+      check: 'Object'
     },
 
     sendOnFinish: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -150,7 +154,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
   ******************************************************
   */
   members: {
-    __mode: "",
+    __mode: '',
     __colorOld: undefined, // the color where the animation started
     __colorCurrent: undefined, // the current color of the running animation
     __color: undefined, // the current color of the widget, also the target for the animation
@@ -168,51 +172,51 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
 
     // overridden
     _getInnerDomString() {
-      const placeholder = this.getFormat() === "" ? "" : "-";
+      const placeholder = this.getFormat() === '' ? '' : '-';
       const self = this;
-      let retval = "";
+      let retval = '';
       const historicWidth =
-        this.getLayout().colspan === undefined ? " style=\"width:195px\"" : "";
-      let controls = this.getControls().split(";");
-      if (controls[0] === "") {
-        controls[0] = "box";
+        this.getLayout().colspan === undefined ? ' style="width:195px"' : '';
+      let controls = this.getControls().split(';');
+      if (controls[0] === '') {
+        controls[0] = 'box';
       }
       controls.forEach(function (control) {
         switch (control) {
-          case "box":
-          case "LCh-box": {
-            let hue_type = control === "box" ? "hsv_hue" : "lch_hue";
-            retval += "<div class=\"actor cc_box\"><div class=\"hue " + hue_type;
+          case 'box':
+          case 'LCh-box': {
+            let hue_type = control === 'box' ? 'hsv_hue' : 'lch_hue';
+            retval += '<div class="actor cc_box"><div class="hue ' + hue_type;
             retval +=
-              "\"></div><div class=\"handle_hue\"></div><div class=\"sv_box\"><div class=\"inner\"></div><div class=\"handle\"></div></div></div>";
+              '"></div><div class="handle_hue"></div><div class="sv_box"><div class="inner"></div><div class="handle"></div></div></div>';
             break;
           }
 
-          case "triangle":
-          case "LCh-triangle": {
-            let hue_type = control === "triangle" ? "hsv_hue" : "lch_hue";
-            retval += "<div class=\"actor cc_wheel\"><div class=\"hue " + hue_type;
+          case 'triangle':
+          case 'LCh-triangle': {
+            let hue_type = control === 'triangle' ? 'hsv_hue' : 'lch_hue';
+            retval += '<div class="actor cc_wheel"><div class="hue ' + hue_type;
             retval +=
-              "\"></div><div class=\"sv_triangle\"><div class=\"inner\"></div><div class=\"handle_hue\"></div><div class=\"handle\"></div></div></div>";
+              '"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>';
             break;
           }
 
-          case "RGB-r":
-          case "RGB-g":
-          case "RGB-b":
-          case "RGBW-r":
-          case "RGBW-g":
-          case "RGBW-b":
-          case "RGBW-w":
-          case "h":
-          case "s":
-          case "v":
-          case "LCh-L":
-          case "LCh-C":
-          case "LCh-h":
-          case "Y":
+          case 'RGB-r':
+          case 'RGB-g':
+          case 'RGB-b':
+          case 'RGBW-r':
+          case 'RGBW-g':
+          case 'RGBW-b':
+          case 'RGBW-w':
+          case 'h':
+          case 's':
+          case 'v':
+          case 'LCh-L':
+          case 'LCh-C':
+          case 'LCh-h':
+          case 'Y':
             retval +=
-              "<div class=\"actor cc_" +
+              '<div class="actor cc_' +
               control +
               ` ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
               <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">` +
@@ -223,31 +227,35 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             break;
 
           default: {
-            let parts = control.split(":");
-            if (parts[0] === "T") {
-              const temperatures = (parts[1] || "-").split("-");
+            let parts = control.split(':');
+            if (parts[0] === 'T') {
+              const temperatures = (parts[1] || '-').split('-');
               self.__Tmin = Math.max(
                 1667,
                 Math.min(temperatures[0] || 2500, 25000)
               );
+
               self.__Tmax = Math.max(
                 1667,
                 Math.min(temperatures[1] || 9000, 25000)
               );
+
               const rgbTmin = cv.util.Color.xy2sRGB(
                 cv.util.Color.temperature2xy(self.__Tmin)
               );
+
               const rgbTmax = cv.util.Color.xy2sRGB(
                 cv.util.Color.temperature2xy(self.__Tmax)
               );
+
               const disp = c =>
                 [
                   Math.round(255 * c.r),
                   Math.round(255 * c.g),
                   Math.round(255 * c.b)
-                ].join(",");
+                ].join(',');
               const colors =
-                "rgb(" + disp(rgbTmin) + "), rgb(" + disp(rgbTmax) + ")";
+                'rgb(' + disp(rgbTmin) + '), rgb(' + disp(rgbTmax) + ')';
 
               retval +=
                 `<div class="actor cc_T ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
@@ -262,7 +270,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           }
         }
       });
-      return "<div class=\"actors\"" + historicWidth + ">" + retval + "</div>";
+      return '<div class="actors"' + historicWidth + '>' + retval + '</div>';
     },
 
     // overridden
@@ -277,15 +285,15 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       );
 
       this.getDomElement()
-        .querySelectorAll(".actor")
-        .forEach(actor => actor.addEventListener("pointerdown", this));
+        .querySelectorAll('.actor')
+        .forEach(actor => actor.addEventListener('pointerdown', this));
     },
 
     _update(address, data) {
       const addressObj = this.getAddress()[address];
       const showInvalidDataErrorMessage = function () {
         const message = qx.locale.Manager.tr(
-          "Updating ColorChooser with invalid data<br/>Address: \"%1\"<br/>transform: \"%2\"<br/>selector: \"%3\"<br/>variant: \"%4\"<br/>data: \"%5\"",
+          'Updating ColorChooser with invalid data<br/>Address: "%1"<br/>transform: "%2"<br/>selector: "%3"<br/>variant: "%4"<br/>data: "%5"',
           address,
           addressObj.transform,
           addressObj.selector,
@@ -297,7 +305,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           // eslint-disable-next-line no-console
           console.error(message.toString());
         }
-        cv.core.notifications.Router.dispatchMessage("cv.config.error", {
+        cv.core.notifications.Router.dispatchMessage('cv.config.error', {
           message
         });
       };
@@ -310,51 +318,52 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       let base;
 
       switch (variant) {
-        case "h":
+        case 'h':
           if (!Number.isFinite(value)) {
             showInvalidDataErrorMessage();
             return;
           }
           value /= 360;
-          variantType = "hsv-single";
+          variantType = 'hsv-single';
           break;
 
-        case "s":
-        case "v":
+        case 's':
+        case 'v':
           if (!Number.isFinite(value)) {
             showInvalidDataErrorMessage();
             return;
           }
           value /= 100;
-          variantType = "hsv-single";
+          variantType = 'hsv-single';
           break;
 
-        case "hsv":
+        case 'hsv':
           if (value.get === undefined) {
             showInvalidDataErrorMessage();
             return;
           }
           value = {
-            h: value.get("h") / 360,
-            s: value.get("s") / 100,
-            v: value.get("v") / 100
+            h: value.get('h') / 360,
+            s: value.get('s') / 100,
+            v: value.get('v') / 100
           };
-          variantType = "hsv";
+
+          variantType = 'hsv';
           break;
 
-        case "RGB-r":
-        case "RGB-g":
-        case "RGB-b":
+        case 'RGB-r':
+        case 'RGB-g':
+        case 'RGB-b':
           if (!Number.isFinite(value)) {
             showInvalidDataErrorMessage();
             return;
           }
-          base = this.getBaseColors()[variant.split("-")[1]];
+          base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve(value, base.curve, base.scale);
-          variantType = "rgb-single";
+          variantType = 'rgb-single';
           break;
 
-        case "rgb":
+        case 'rgb':
           base = this.getBaseColors();
           if (value.get === undefined) {
             showInvalidDataErrorMessage();
@@ -362,39 +371,41 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           }
           value = {
             r: cv.util.Color.invCurve(
-              value.get("r"),
+              value.get('r'),
               base.r.curve,
               base.r.scale
             ),
+
             g: cv.util.Color.invCurve(
-              value.get("g"),
+              value.get('g'),
               base.g.curve,
               base.g.scale
             ),
+
             b: cv.util.Color.invCurve(
-              value.get("b"),
+              value.get('b'),
               base.b.curve,
               base.b.scale
             )
           };
 
-          variantType = "rgb";
+          variantType = 'rgb';
           break;
 
-        case "RGBW-r":
-        case "RGBW-g":
-        case "RGBW-b":
-        case "RGBW-w":
+        case 'RGBW-r':
+        case 'RGBW-g':
+        case 'RGBW-b':
+        case 'RGBW-w':
           if (!Number.isFinite(value)) {
             showInvalidDataErrorMessage();
             return;
           }
-          base = this.getBaseColors()[variant.split("-")[1]];
+          base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve(value, base.curve, base.scale);
-          variantType = "rgbw-single";
+          variantType = 'rgbw-single';
           break;
 
-        case "rgbw":
+        case 'rgbw':
           base = this.getBaseColors();
           if (value.get === undefined) {
             showInvalidDataErrorMessage();
@@ -402,76 +413,79 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           }
           value = {
             r: cv.util.Color.invCurve(
-              value.get("r"),
+              value.get('r'),
               base.r.curve,
               base.r.scale
             ),
+
             g: cv.util.Color.invCurve(
-              value.get("g"),
+              value.get('g'),
               base.g.curve,
               base.g.scale
             ),
+
             b: cv.util.Color.invCurve(
-              value.get("b"),
+              value.get('b'),
               base.b.curve,
               base.b.scale
             ),
+
             w: cv.util.Color.invCurve(
-              value.get("w"),
+              value.get('w'),
               base.w.curve,
               base.w.scale
             )
           };
 
-          variantType = "rgbw";
+          variantType = 'rgbw';
           break;
 
-        case "x":
-        case "y":
-          variantType = "xyY";
+        case 'x':
+        case 'y':
+          variantType = 'xyY';
           break;
 
-        case "Y":
-          if (value instanceof Map && value.get("YValid") !== false) {
-            value = value.get("Y");
+        case 'Y':
+          if (value instanceof Map && value.get('YValid') !== false) {
+            value = value.get('Y');
           } else if (!Number.isFinite(value)) {
             showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
-          variantType = "xyY";
+          variantType = 'xyY';
           break;
 
-        case "xy":
-          if (value instanceof Map && value.get("cValid") !== false) {
-            value = { x: value.get("x"), y: value.get("y") };
+        case 'xy':
+          if (value instanceof Map && value.get('cValid') !== false) {
+            value = { x: value.get('x'), y: value.get('y') };
           } else if (
-            !(typeof value === "object" && "x" in value && "y" in value)
+            !(typeof value === 'object' && 'x' in value && 'y' in value)
           ) {
             showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
-          variantType = "xyY";
+          variantType = 'xyY';
           break;
 
-        case "xyY":
+        case 'xyY':
           if (value instanceof Map) {
             variant =
-              (value.get("cValid") !== false ? "xy" : "") +
-              (value.get("YValid") !== false ? "Y" : "");
+              (value.get('cValid') !== false ? 'xy' : '') +
+              (value.get('YValid') !== false ? 'Y' : '');
             value = {
-              x: value.get("x"),
-              y: value.get("y"),
-              Y: value.get("Y")
+              x: value.get('x'),
+              y: value.get('y'),
+              Y: value.get('Y')
             };
 
-            if (variant === "") {
+            if (variant === '') {
               return; // no valid data in the value
             }
           } else {
             showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
-          variantType = "xyY";
+          variantType = 'xyY';
           break;
       }
 
@@ -524,46 +538,50 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
         let actors = {};
         let actorStyle;
         this.getDomElement()
-          .querySelectorAll(".actor")
+          .querySelectorAll('.actor')
           .forEach(function (actor) {
-            let type = actor.className.replace(/.*cc_([^ ]*).*/, "$1");
+            let type = actor.className.replace(/.*cc_([^ ]*).*/, '$1');
             switch (type) {
-              case "box":
-              case "wheel": {
+              case 'box':
+              case 'wheel': {
                 actorStyle = window.getComputedStyle(actor);
                 let sv_element =
-                  type === "box"
-                    ? actor.querySelector(".sv_box")
-                    : actor.querySelector(".sv_triangle");
-                let inner = sv_element.querySelector(".inner");
-                let handle = actor.querySelector(".handle");
-                let handle_hue = actor.querySelector(".handle_hue");
-                let hue = actor.querySelector(".hue");
+                  type === 'box'
+                    ? actor.querySelector('.sv_box')
+                    : actor.querySelector('.sv_triangle');
+                let inner = sv_element.querySelector('.inner');
+                let handle = actor.querySelector('.handle');
+                let handle_hue = actor.querySelector('.handle_hue');
+                let hue = actor.querySelector('.hue');
                 actors[type] = {
-                  isLCh: hue.classList.contains("lch_hue"),
+                  isLCh: hue.classList.contains('lch_hue'),
                   sv_element: sv_element,
                   inner: inner,
                   handle: handle,
                   handle_hue: handle_hue,
                   handle_hueTop: parseFloat(
-                    window.getComputedStyle(handle_hue).getPropertyValue("top")
+                    window.getComputedStyle(handle_hue).getPropertyValue('top')
                   ),
+
                   handle_hueWidth: parseFloat(
                     window
                       .getComputedStyle(handle_hue)
-                      .getPropertyValue("width")
+                      .getPropertyValue('width')
                   ),
-                  width: parseFloat(actorStyle.getPropertyValue("width")),
+
+                  width: parseFloat(actorStyle.getPropertyValue('width')),
                   height: parseFloat(
-                    actorStyle.getPropertyValue("padding-top")
+                    actorStyle.getPropertyValue('padding-top')
                   ),
+
                   innerRadius: parseFloat(
                     window
                       .getComputedStyle(sv_element)
-                      .getPropertyValue("width")
+                      .getPropertyValue('width')
                   ),
+
                   outerRadius: parseFloat(
-                    window.getComputedStyle(hue).getPropertyValue("width")
+                    window.getComputedStyle(hue).getPropertyValue('width')
                   )
                 };
 
@@ -572,21 +590,21 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
 
               default: {
                 actorStyle = window.getComputedStyle(actor);
-                let button = actor.querySelector("button");
-                let range = actor.querySelector(".ui-slider-range");
+                let button = actor.querySelector('button');
+                let range = actor.querySelector('.ui-slider-range');
                 actors[type] = {
                   button: button,
                   range: range,
-                  width: parseFloat(actorStyle.getPropertyValue("width")),
+                  width: parseFloat(actorStyle.getPropertyValue('width')),
                   buttonWidth: parseFloat(
-                    window.getComputedStyle(button).getPropertyValue("width")
+                    window.getComputedStyle(button).getPropertyValue('width')
                   )
                 };
 
                 range.style.marginLeft =
-                  "-" + actorStyle.getPropertyValue("padding-left");
+                  '-' + actorStyle.getPropertyValue('padding-left');
                 range.style.borderRadius =
-                  actorStyle.getPropertyValue("border-radius");
+                  actorStyle.getPropertyValue('border-radius');
               }
             }
           });
@@ -597,7 +615,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       // move handles
       for (let type in this.__actors) {
         let actor = this.__actors[type];
-        if (type === "wheel") {
+        if (type === 'wheel') {
           const Bt = 75;
           const St = 0;
           const Wt = 75;
@@ -606,73 +624,73 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           const Wl = 50 + 85 / 2;
           let angle;
           if (actor.isLCh) {
-            let LCh = this.__colorCurrent.getComponent("LCh");
+            let LCh = this.__colorCurrent.getComponent('LCh');
             let r = cv.util.Color.curve(LCh.h, [246, 255, 46, 0, 246], 1);
             let g = cv.util.Color.curve(LCh.h, [27, 224, 255, 136, 27], 1);
             let b = cv.util.Color.curve(LCh.h, [136, 32, 224, 245, 136], 1);
-            angle = LCh.h * 360 + "deg";
+            angle = LCh.h * 360 + 'deg';
             const WSt = LCh.C * St + (1 - LCh.C) * Wt;
             const WSl = LCh.C * Sl + (1 - LCh.C) * Wl;
-            actor.handle.style.top = LCh.L * WSt + (1 - LCh.L) * Bt + "%";
-            actor.handle.style.left = LCh.L * WSl + (1 - LCh.L) * Bl + "%";
+            actor.handle.style.top = LCh.L * WSt + (1 - LCh.L) * Bt + '%';
+            actor.handle.style.left = LCh.L * WSl + (1 - LCh.L) * Bl + '%';
             actor.inner.style.background =
-              "linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb(" +
-              [r, g, b].join(",") +
-              ")";
+              'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb(' +
+              [r, g, b].join(',') +
+              ')';
           } else {
-            let hsv = this.__colorCurrent.getComponent("hsv");
-            angle = hsv.h * 360 + "deg";
+            let hsv = this.__colorCurrent.getComponent('hsv');
+            angle = hsv.h * 360 + 'deg';
             const WSt = hsv.s * St + (1 - hsv.s) * Wt;
             const WSl = hsv.s * Sl + (1 - hsv.s) * Wl;
-            actor.handle.style.top = hsv.v * WSt + (1 - hsv.v) * Bt + "%";
-            actor.handle.style.left = hsv.v * WSl + (1 - hsv.v) * Bl + "%";
+            actor.handle.style.top = hsv.v * WSt + (1 - hsv.v) * Bt + '%';
+            actor.handle.style.left = hsv.v * WSl + (1 - hsv.v) * Bl + '%';
             actor.inner.style.background =
-              "linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl(" +
+              'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl(' +
               angle +
-              " 100% 50%)";
+              ' 100% 50%)';
           }
-          actor.sv_element.style.transform = "rotate(" + angle + ")";
-        } else if (type === "box") {
+          actor.sv_element.style.transform = 'rotate(' + angle + ')';
+        } else if (type === 'box') {
           let angle;
           if (actor.isLCh) {
-            let LCh = this.__colorCurrent.getComponent("LCh");
+            let LCh = this.__colorCurrent.getComponent('LCh');
             let r = cv.util.Color.curve(LCh.h, [246, 255, 46, 0, 246], 1);
             let g = cv.util.Color.curve(LCh.h, [27, 224, 255, 136, 27], 1);
             let b = cv.util.Color.curve(LCh.h, [136, 32, 224, 245, 136], 1);
-            angle = LCh.h * 360 + "deg";
-            actor.handle.style.top = (1 - LCh.L) * 100 + "%";
-            actor.handle.style.left = (1 - LCh.C) * 100 + "%";
+            angle = LCh.h * 360 + 'deg';
+            actor.handle.style.top = (1 - LCh.L) * 100 + '%';
+            actor.handle.style.left = (1 - LCh.C) * 100 + '%';
             actor.inner.style.background =
-              "linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,rgb(" +
-              [r, g, b].join(",") +
-              "), #808080 100%)";
+              'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,rgb(' +
+              [r, g, b].join(',') +
+              '), #808080 100%)';
           } else {
-            let hsv = this.__colorCurrent.getComponent("hsv");
-            angle = hsv.h * 360 + "deg";
-            actor.handle.style.top = (1 - hsv.v) * 100 + "%";
-            actor.handle.style.left = (1 - hsv.s) * 100 + "%";
+            let hsv = this.__colorCurrent.getComponent('hsv');
+            angle = hsv.h * 360 + 'deg';
+            actor.handle.style.top = (1 - hsv.v) * 100 + '%';
+            actor.handle.style.left = (1 - hsv.s) * 100 + '%';
             actor.inner.style.background =
-              "linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,hsl(" +
+              'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,hsl(' +
               angle +
-              " 100% 50%), #808080 100%)";
+              ' 100% 50%), #808080 100%)';
           }
-          actor.handle_hue.style.transform = "rotate(" + angle + ")";
+          actor.handle_hue.style.transform = 'rotate(' + angle + ')';
           actor.handle_hue.style.transformOrigin =
             actor.handle_hueWidth / 2 +
-            "px " +
+            'px ' +
             (actor.width / 2 - actor.handle_hueTop) +
-            "px"; //calc(195px / 2 - 3px)';
+            'px'; //calc(195px / 2 - 3px)';
         } else {
           let ratioComponent = this.__colorCurrent.getComponent(type);
-          if (type === "T") {
+          if (type === 'T') {
             ratioComponent =
               (ratioComponent - this.__Tmin) / (this.__Tmax - this.__Tmin);
           }
           let length = Math.max(0, Math.min(ratioComponent, 1)) * actor.width;
           actor.button.style.transform =
-            "translate3d(" + (length - actor.buttonWidth / 2) + "px, 0px, 0px)";
+            'translate3d(' + (length - actor.buttonWidth / 2) + 'px, 0px, 0px)';
           actor.range.style.clipPath =
-            "inset(0 " + (1 - ratioComponent) * 100 + "% 0 0)";
+            'inset(0 ' + (1 - ratioComponent) * 100 + '% 0 0)';
         }
       }
     },
@@ -688,11 +706,12 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
       let actor;
 
       switch (event.type) {
-        case "pointerdown": {
+        case 'pointerdown': {
           let actorType = event.currentTarget.className.replace(
             /.*cc_([^ ]*).*/,
-            "$1"
+            '$1'
           );
+
           actor = this.__actors[actorType];
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
@@ -701,7 +720,7 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
           this.__coordMinY = boundingRect.top;
           relCoordX = (event.clientX - this.__coordMinX) / actor.width;
           relCoordY = (event.clientY - this.__coordMinY) / actor.height;
-          if (actorType === "wheel") {
+          if (actorType === 'wheel') {
             let radius =
               actor !== undefined
                 ? (0.5 * actor.innerRadius) / actor.outerRadius
@@ -709,9 +728,10 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             let sv = cv.ui.structure.pure.ColorChooser.coord2sv(
               relCoordX,
               relCoordY,
-              this.__color.getComponent(actor.isLCh ? "LCh" : "hsv").h,
+              this.__color.getComponent(actor.isLCh ? 'LCh' : 'hsv').h,
               radius
             );
+
             let distSqrd = (relCoordX - 0.5) ** 2 + (relCoordY - 0.5) ** 2;
             if (distSqrd < (0.5 * 1.07) ** 2) {
               // ignore clicks outside of the wheel, with 7% safety margin on the outside
@@ -725,20 +745,21 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
                 clearlyOnWheel ||
                 (closeToInerior && !closeToTriangleCorners)
               ) {
-                this.__mode = "wheel_h";
+                this.__mode = 'wheel_h';
                 this.__color.changeComponent(
-                  actor.isLCh ? "LCh-h" : "h",
+                  actor.isLCh ? 'LCh-h' : 'h',
                   0.5 +
                     Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI
                 );
+
                 this.__inDrag = true;
               } else {
-                this.__mode = "wheel_sv";
-                this.__color.changeComponent(actor.isLCh ? "LCh-CL" : "sv", sv);
+                this.__mode = 'wheel_sv';
+                this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
                 this.__inDrag = true;
               }
             }
-          } else if (actorType === "box") {
+          } else if (actorType === 'box') {
             let boxSize =
               actor !== undefined
                 ? (0.5 * actor.innerRadius) / actor.outerRadius
@@ -747,20 +768,21 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             let y = relCoordY - 0.5;
             let sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
             if (Math.abs(x) < boxSize && Math.abs(y) < boxSize) {
-              this.__mode = "box_sv";
-              this.__color.changeComponent(actor.isLCh ? "LCh-CL" : "sv", sv);
+              this.__mode = 'box_sv';
+              this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
               this.__inDrag = true;
             } else {
-              this.__mode = "box_h";
+              this.__mode = 'box_h';
               this.__color.changeComponent(
-                actor.isLCh ? "LCh-h" : "h",
+                actor.isLCh ? 'LCh-h' : 'h',
                 0.5 + Math.atan2(-x, y) / 2 / Math.PI
               );
+
               this.__inDrag = true;
             }
           } else {
             let ratio = relCoordX;
-            if (actorType === "T") {
+            if (actorType === 'T') {
               ratio = this.__Tmin + ratio * (this.__Tmax - this.__Tmin);
             }
             this.__mode = actorType;
@@ -768,36 +790,36 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             this.__inDrag = true;
           }
           if (this.__inDrag) {
-            document.addEventListener("pointermove", this);
-            document.addEventListener("pointerup", this);
+            document.addEventListener('pointermove', this);
+            document.addEventListener('pointerup', this);
           } else {
             this.__mode = undefined;
           }
           break;
         }
 
-        case "pointermove": {
+        case 'pointermove': {
           if (!this.__inDrag) {
             return;
           }
           if (event.buttons === 0) {
             // move with no button could only happen during debug sessions
             this.__inDrag = false;
-            document.removeEventListener("pointermove", this);
-            document.removeEventListener("pointerup", this);
+            document.removeEventListener('pointermove', this);
+            document.removeEventListener('pointerup', this);
           }
-          let type = this.__mode.split("_")[0]; // clamp "wheel_*" to "wheel"
+          let type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
           actor = this.__actors[type];
           relCoordX = (event.clientX - this.__coordMinX) / actor.width;
           relCoordY = (event.clientY - this.__coordMinY) / actor.height;
           break;
         }
 
-        case "pointerup": {
+        case 'pointerup': {
           this.__inDrag = false;
-          document.removeEventListener("pointermove", this);
-          document.removeEventListener("pointerup", this);
-          const type = this.__mode.split("_")[0]; // clamp "wheel_*" to "wheel"
+          document.removeEventListener('pointermove', this);
+          document.removeEventListener('pointerup', this);
+          const type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
           actor = this.__actors[type];
           relCoordX = (event.clientX - this.__coordMinX) / actor.width;
           relCoordY = (event.clientY - this.__coordMinY) / actor.height;
@@ -805,11 +827,11 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
         }
       }
 
-      if (event.type !== "pointerdown") {
-        let type = this.__mode.split("_")[0]; // clamp "wheel_*" to "wheel"
+      if (event.type !== 'pointerdown') {
+        let type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
         let actor = this.__actors[type];
         switch (this.__mode) {
-          case "wheel_sv": {
+          case 'wheel_sv': {
             const radius =
               actor !== undefined
                 ? (0.5 * actor.innerRadius) / actor.outerRadius
@@ -817,16 +839,18 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             const sv = cv.ui.structure.pure.ColorChooser.coord2sv(
               relCoordX,
               relCoordY,
-              this.__color.getComponent(actor.isLCh ? "LCh" : "hsv").h,
+              this.__color.getComponent(actor.isLCh ? 'LCh' : 'hsv').h,
               radius
             );
-            this.__color.changeComponent(actor.isLCh ? "LCh-CL" : "sv", [
+
+            this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', [
               Math.min(Math.max(sv[0], 0), 1),
               Math.min(Math.max(sv[1], 0), 1)
             ]);
+
             break;
           }
-          case "box_sv": {
+          case 'box_sv': {
             const boxSize =
               actor !== undefined
                 ? (0.5 * actor.innerRadius) / actor.outerRadius
@@ -834,33 +858,36 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
             const x = relCoordX - 0.5;
             const y = relCoordY - 0.5;
             const sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
-            this.__color.changeComponent(actor.isLCh ? "LCh-CL" : "sv", [
+            this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', [
               Math.min(Math.max(sv[0], 0), 1),
               Math.min(Math.max(sv[1], 0), 1)
             ]);
+
             break;
           }
-          case "wheel_h":
-          case "box_h":
+          case 'wheel_h':
+          case 'box_h':
             this.__color.changeComponent(
-              actor.isLCh ? "LCh-h" : "h",
+              actor.isLCh ? 'LCh-h' : 'h',
               0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI
             );
+
             break;
-          case "T":
+          case 'T':
             this.__color.changeComponent(
-              "T",
+              'T',
               this.__Tmin +
                 Math.max(0, Math.min(relCoordX, 1)) *
                   (this.__Tmax - this.__Tmin)
             );
+
             break;
           default:
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
       this.__animator.setTo(this.__color, true);
-      if (!this.getSendOnFinish() || event.type === "pointerup") {
+      if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
       }
     },
@@ -868,101 +895,103 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
     __onChangeValue() {
       this.__components.forEach(type => {
         let value = this.__color.getComponent(
-          ["xyY", "x", "y"].includes(type) ? "xy" : type
+          ['xyY', 'x', 'y'].includes(type) ? 'xy' : type
         );
+
         let typeCategory;
         let base;
 
         switch (type) {
-          case "h":
+          case 'h':
             value *= 360;
-            typeCategory = "hsv-single";
+            typeCategory = 'hsv-single';
             break;
 
-          case "s":
-          case "v":
+          case 's':
+          case 'v':
             value *= 100;
-            typeCategory = "hsv-single";
+            typeCategory = 'hsv-single';
             break;
 
-          case "hsv":
+          case 'hsv':
             value = new Map([
-              ["h", value.h * 360],
-              ["s", value.s * 100],
-              ["v", value.v * 100]
+              ['h', value.h * 360],
+              ['s', value.s * 100],
+              ['v', value.v * 100]
             ]);
-            typeCategory = "hsv";
+
+            typeCategory = 'hsv';
             break;
 
-          case "RGB-r":
-          case "RGB-g":
-          case "RGB-b":
-            base = this.getBaseColors()[type.split("-")[1]];
+          case 'RGB-r':
+          case 'RGB-g':
+          case 'RGB-b':
+            base = this.getBaseColors()[type.split('-')[1]];
             value = cv.util.Color.curve(value, base.curve, base.scale);
-            typeCategory = "rgb-single";
+            typeCategory = 'rgb-single';
             break;
 
-          case "RGBW-r":
-          case "RGBW-g":
-          case "RGBW-b":
-          case "RGBW-w":
-            base = this.getBaseColors()[type.split("-")[1]];
+          case 'RGBW-r':
+          case 'RGBW-g':
+          case 'RGBW-b':
+          case 'RGBW-w':
+            base = this.getBaseColors()[type.split('-')[1]];
             value = cv.util.Color.curve(value, base.curve, base.scale);
-            typeCategory = "rgbw-single";
+            typeCategory = 'rgbw-single';
             break;
 
-          case "rgb":
+          case 'rgb':
             base = this.getBaseColors();
             value = new Map([
-              ["r", cv.util.Color.curve(value.r, base.r.curve, base.r.scale)],
-              ["g", cv.util.Color.curve(value.g, base.g.curve, base.g.scale)],
-              ["b", cv.util.Color.curve(value.b, base.b.curve, base.b.scale)]
+              ['r', cv.util.Color.curve(value.r, base.r.curve, base.r.scale)],
+              ['g', cv.util.Color.curve(value.g, base.g.curve, base.g.scale)],
+              ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale)]
             ]);
 
-            typeCategory = "rgb";
+            typeCategory = 'rgb';
             break;
 
-          case "rgbw":
+          case 'rgbw':
             base = this.getBaseColors();
             value = new Map([
-              ["r", cv.util.Color.curve(value.r, base.r.curve, base.r.scale)],
-              ["g", cv.util.Color.curve(value.g, base.g.curve, base.g.scale)],
-              ["b", cv.util.Color.curve(value.b, base.b.curve, base.b.scale)],
-              ["w", cv.util.Color.curve(value.w, base.w.curve, base.w.scale)]
+              ['r', cv.util.Color.curve(value.r, base.r.curve, base.r.scale)],
+              ['g', cv.util.Color.curve(value.g, base.g.curve, base.g.scale)],
+              ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale)],
+              ['w', cv.util.Color.curve(value.w, base.w.curve, base.w.scale)]
             ]);
 
-            typeCategory = "rgbw";
+            typeCategory = 'rgbw';
             break;
 
-          case "xy":
+          case 'xy':
             value = new Map([
-              ["x", value.x],
-              ["y", value.y]
+              ['x', value.x],
+              ['y', value.y]
             ]);
 
-            typeCategory = "xyY";
+            typeCategory = 'xyY';
             break;
 
-          case "xyY": {
-            let Y = this.__color.getComponent("Y");
+          case 'xyY': {
+            let Y = this.__color.getComponent('Y');
             value = new Map([
-              ["x", value.x],
-              ["y", value.y],
-              ["Y", Y]
+              ['x', value.x],
+              ['y', value.y],
+              ['Y', Y]
             ]);
 
-            typeCategory = "xyY";
+            typeCategory = 'xyY';
             break;
           }
 
-          case "Y":
-            typeCategory = "xyY";
+          case 'Y':
+            typeCategory = 'xyY';
             break;
 
-          case "x":
-          case "y":
+          case 'x':
+          case 'y':
             value = value[type];
-            typeCategory = "xyY";
+            typeCategory = 'xyY';
             break;
         }
 
@@ -979,6 +1008,6 @@ qx.Class.define("cv.ui.structure.pure.ColorChooser", {
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
+    cv.ui.structure.WidgetFactory.registerClass('colorchooser', statics);
   }
 });

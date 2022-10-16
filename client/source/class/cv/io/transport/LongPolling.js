@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define("cv.io.transport.LongPolling", {
+qx.Class.define('cv.io.transport.LongPolling', {
   extend: qx.core.Object,
 
   /*
@@ -61,20 +61,20 @@ qx.Class.define("cv.io.transport.LongPolling", {
     handleSession(args, connect) {
       var json = this.client.getResponse(args);
       this.sessionId = json.s;
-      if (!Object.prototype.hasOwnProperty.call(json, "v")) {
-        this.error("CometVisu protocol error: missing protocol version");
+      if (!Object.prototype.hasOwnProperty.call(json, 'v')) {
+        this.error('CometVisu protocol error: missing protocol version');
         this.client.showError(
           cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION,
           json
         );
       } else {
-        this.version = json.v.split(".", 3);
+        this.version = json.v.split('.', 3);
 
         if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
           this.error(
-            "ERROR CometVisu Client: too new protocol version (" +
+            'ERROR CometVisu Client: too new protocol version (' +
               json.v +
-              ") used!"
+              ') used!'
           );
         }
         if (connect) {
@@ -108,12 +108,12 @@ qx.Class.define("cv.io.transport.LongPolling", {
       var options = {
         beforeSend: this.beforeSend.bind(this),
         listeners: {
-          error: this.handleError,
-        },
+          error: this.handleError
+        }
       };
 
       this.xhr = this.client.doRequest(
-        this.client.getResourcePath("read"),
+        this.client.getResourcePath('read'),
         data,
         callback,
         this,
@@ -129,6 +129,7 @@ qx.Class.define("cv.io.transport.LongPolling", {
       var json = this.client.getResponse(
         Array.prototype.slice.call(arguments, 0)
       );
+
       if (this.doRestart || (!json && this.lastIndex === -1)) {
         this.client.setDataReceived(false);
         if (this.running) {
@@ -138,11 +139,11 @@ qx.Class.define("cv.io.transport.LongPolling", {
           if (this.doRestart) {
             // planned restart, only inform user
             this.info(
-              "restarting XHR read requests in " + delay + " ms as planned"
+              'restarting XHR read requests in ' + delay + ' ms as planned'
             );
           } else {
             this.info(
-              "restarting XHR read requests in " + delay + " ms as forced to"
+              'restarting XHR read requests in ' + delay + ' ms as forced to'
             );
           }
           if (!this.watchdog.isActive()) {
@@ -163,14 +164,16 @@ qx.Class.define("cv.io.transport.LongPolling", {
 
       var data;
       if (json && !this.doRestart) {
-        if (!Object.prototype.hasOwnProperty.call(json, "i")) {
+        if (!Object.prototype.hasOwnProperty.call(json, 'i')) {
           this.error(
             'CometVisu protocol error: backend responded to a read request without an "i"-parameter'
           );
+
           this.client.showError(
             cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I,
             json
           );
+
           return;
         }
         this.lastIndex = json.i;
@@ -189,8 +192,8 @@ qx.Class.define("cv.io.transport.LongPolling", {
         data = this.client.buildRequest();
         data.i = this.lastIndex;
         var url =
-          this.xhr.getUrl().split("?").shift() +
-          "?" +
+          this.xhr.getUrl().split('?').shift() +
+          '?' +
           this.client.getQueryString(data);
         this.xhr.setUrl(url);
         this.xhr.send();
@@ -202,6 +205,7 @@ qx.Class.define("cv.io.transport.LongPolling", {
       var json = this.client.getResponse(
         Array.prototype.slice.call(arguments, 0)
       );
+
       if (!json && this.lastIndex === -1) {
         this.client.setDataReceived(false);
         if (this.running) {
@@ -233,12 +237,12 @@ qx.Class.define("cv.io.transport.LongPolling", {
         var data = this.client.buildRequest(diffAddresses);
         data.t = 0;
         var url =
-          this.xhr.getUrl().split("?").shift() +
-          "?" +
+          this.xhr.getUrl().split('?').shift() +
+          '?' +
           this.client.getQueryString(data);
         this.xhr.setUrl(url);
-        this.xhr.removeListener("success", this.handleReadStart, this);
-        this.xhr.addListener("success", this.handleRead, this);
+        this.xhr.removeListener('success', this.handleReadStart, this);
+        this.xhr.addListener('success', this.handleRead, this);
         this.xhr.send();
         this.watchdog.ping();
       }
@@ -250,7 +254,7 @@ qx.Class.define("cv.io.transport.LongPolling", {
      *
      * @param ev {Event}
      */
-    handleError: qx.core.Environment.select("cv.xhr", {
+    handleError: qx.core.Environment.select('cv.xhr', {
       qx(ev) {
         var req = ev.getTarget();
         // check for temporary server errors and retry a few times
@@ -259,11 +263,12 @@ qx.Class.define("cv.io.transport.LongPolling", {
           this.retryServerErrorCounter < this.client.backend.maxRetries
         ) {
           this.info(
-            "Temporary connection problem (status: " +
+            'Temporary connection problem (status: ' +
               req.getStatus() +
-              ") - retry count: " +
+              ') - retry count: ' +
               this.retryServerErrorCounter
           );
+
           this.retryServerErrorCounter++;
           req.serverErrorHandled = true;
           this.restart();
@@ -282,6 +287,7 @@ qx.Class.define("cv.io.transport.LongPolling", {
               '" readyState: ' +
               req.getStatusText()
           );
+
           this.client.setConnected(false);
         }
       },
@@ -293,22 +299,22 @@ qx.Class.define("cv.io.transport.LongPolling", {
           !this.doRestart &&
           xhr.status !== 0
         ) {
-          var readyState = "UNKNOWN";
+          var readyState = 'UNKNOWN';
           switch (xhr.readyState) {
             case 0:
-              readyState = "UNINITIALIZED";
+              readyState = 'UNINITIALIZED';
               break;
             case 1:
-              readyState = "LOADING";
+              readyState = 'LOADING';
               break;
             case 2:
-              readyState = "LOADED";
+              readyState = 'LOADED';
               break;
             case 3:
-              readyState = "INTERACTIVE";
+              readyState = 'INTERACTIVE';
               break;
             case 4:
-              readyState = "COMPLETED";
+              readyState = 'COMPLETED';
               break;
           }
 
@@ -320,9 +326,10 @@ qx.Class.define("cv.io.transport.LongPolling", {
               '" readyState: ' +
               readyState
           );
+
           this.client.setConnected(false);
         }
-      },
+      }
     }),
 
     /**
@@ -390,6 +397,6 @@ qx.Class.define("cv.io.transport.LongPolling", {
         }
       }
       this.watchdog.stop();
-    },
-  },
+    }
+  }
 });

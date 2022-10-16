@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.Web", {
+qx.Class.define('cv.ui.structure.pure.Web', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Refresh],
 
@@ -34,32 +34,32 @@ qx.Class.define("cv.ui.structure.pure.Web", {
   */
   properties: {
     width: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     height: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     frameborder: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     background: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     scrolling: {
-      check: ["auto", "yes", "no"],
+      check: ['auto', 'yes', 'no'],
       nullable: true
     },
 
     src: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -74,35 +74,35 @@ qx.Class.define("cv.ui.structure.pure.Web", {
     _getInnerDomString() {
       let webStyle = this.getStyle();
       if (this.getWidth()) {
-        webStyle += "width:" + this.getWidth() + ";";
+        webStyle += 'width:' + this.getWidth() + ';';
       } else {
         // default width is 100% of widget space (fix bug #3175343 part 1)
-        webStyle += "width: 100%;";
+        webStyle += 'width: 100%;';
       }
       if (this.getHeight()) {
-        webStyle += "height:" + this.getHeight() + ";";
+        webStyle += 'height:' + this.getHeight() + ';';
       }
       if (this.getFrameborder() === false) {
-        webStyle += "border: 0px ;";
+        webStyle += 'border: 0px ;';
       }
       if (this.getBackground()) {
-        webStyle += "background-color:" + this.getBackground() + ";";
+        webStyle += 'background-color:' + this.getBackground() + ';';
       }
-      if (webStyle !== "") {
-        webStyle = "style=\"" + webStyle + "\"";
+      if (webStyle !== '') {
+        webStyle = 'style="' + webStyle + '"';
       }
 
-      let scrolling = "";
+      let scrolling = '';
       if (this.getScrolling()) {
-        scrolling = "scrolling=\"" + this.getScrolling() + "\"";
+        scrolling = 'scrolling="' + this.getScrolling() + '"';
       } // add scrolling parameter to iframe
       return (
-        "<div class=\"actor\"><iframe src=\"" +
+        '<div class="actor"><iframe src="' +
         this.getSrc() +
-        "\" " +
+        '" ' +
         webStyle +
         scrolling +
-        "></iframe></div>"
+        '></iframe></div>'
       );
     },
 
@@ -118,8 +118,8 @@ qx.Class.define("cv.ui.structure.pure.Web", {
         return;
       }
       if (data === 1) {
-        const iframe = this.getDomElement().querySelector("iframe");
-        this.refreshAction(iframe, iframe.getAttribute("src"));
+        const iframe = this.getDomElement().querySelector('iframe');
+        this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
         cv.io.BackendConnections.getClient().write(
           address,

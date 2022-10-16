@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.MultiTrigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,12 +47,14 @@ qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(
         xml,
         path,
         this.makeAddressListFn
       );
+
       const buttonRegex = /^button([\d]+)(label|value)$/;
       const buttonConfig = {};
       for (var i = 0; i < xml.attributes.length; i++) {
@@ -67,14 +69,14 @@ qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
       }
 
       // parse buttons
-      const buttons = xml.querySelectorAll("buttons > button");
+      const buttons = xml.querySelectorAll('buttons > button');
       for (i = 0; i < buttons.length; i++) {
         buttonConfig[i + 1] = {
           value: buttons[i].textContent
         };
 
-        if (buttons[i].hasAttribute("label")) {
-          buttonConfig[i + 1].label = buttons[i].getAttribute("label");
+        if (buttons[i].hasAttribute('label')) {
+          buttonConfig[i + 1].label = buttons[i].getAttribute('label');
         }
       }
       data.buttonConfiguration = buttonConfig;
@@ -85,7 +87,7 @@ qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
       return {
         showstatus: {
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
 
@@ -103,6 +105,6 @@ qx.Class.define("cv.parser.pure.widgets.MultiTrigger", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("multitrigger", statics);
+    cv.parser.pure.WidgetParser.addHandler('multitrigger', statics);
   }
 });

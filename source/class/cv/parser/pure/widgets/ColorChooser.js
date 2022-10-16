@@ -20,8 +20,8 @@
 /**
  * Widget to be able to select a color.
  */
-qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(
         xml,
@@ -62,29 +63,29 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
         w: { x: 0.3127, y: 0.329, Y: 1 }
       };
 
-      let r_x = xml.getAttribute("r_x");
-      let r_y = xml.getAttribute("r_y");
-      let r_wavelength = xml.getAttribute("r_wavelength");
-      let r_strength = xml.getAttribute("r_strength");
-      let r_curve = xml.getAttribute("r_curve");
-      let r_scale = xml.getAttribute("r_scale");
-      let g_x = xml.getAttribute("g_x");
-      let g_y = xml.getAttribute("g_y");
-      let g_wavelength = xml.getAttribute("g_wavelength");
-      let g_strength = xml.getAttribute("g_strength");
-      let g_curve = xml.getAttribute("g_curve");
-      let g_scale = xml.getAttribute("g_scale");
-      let b_x = xml.getAttribute("b_x");
-      let b_y = xml.getAttribute("b_y");
-      let b_wavelength = xml.getAttribute("b_wavelength");
-      let b_strength = xml.getAttribute("b_strength");
-      let b_curve = xml.getAttribute("b_curve");
-      let b_scale = xml.getAttribute("b_scale");
-      let w_x = xml.getAttribute("w_x");
-      let w_y = xml.getAttribute("w_y");
-      let w_strength = xml.getAttribute("w_strength");
-      let w_curve = xml.getAttribute("w_curve");
-      let w_scale = xml.getAttribute("w_scale");
+      let r_x = xml.getAttribute('r_x');
+      let r_y = xml.getAttribute('r_y');
+      let r_wavelength = xml.getAttribute('r_wavelength');
+      let r_strength = xml.getAttribute('r_strength');
+      let r_curve = xml.getAttribute('r_curve');
+      let r_scale = xml.getAttribute('r_scale');
+      let g_x = xml.getAttribute('g_x');
+      let g_y = xml.getAttribute('g_y');
+      let g_wavelength = xml.getAttribute('g_wavelength');
+      let g_strength = xml.getAttribute('g_strength');
+      let g_curve = xml.getAttribute('g_curve');
+      let g_scale = xml.getAttribute('g_scale');
+      let b_x = xml.getAttribute('b_x');
+      let b_y = xml.getAttribute('b_y');
+      let b_wavelength = xml.getAttribute('b_wavelength');
+      let b_strength = xml.getAttribute('b_strength');
+      let b_curve = xml.getAttribute('b_curve');
+      let b_scale = xml.getAttribute('b_scale');
+      let w_x = xml.getAttribute('w_x');
+      let w_y = xml.getAttribute('w_y');
+      let w_strength = xml.getAttribute('w_strength');
+      let w_curve = xml.getAttribute('w_curve');
+      let w_scale = xml.getAttribute('w_scale');
 
       if (r_wavelength) {
         let xy = cv.util.Color.wavelength2xy(parseFloat(r_wavelength));
@@ -102,23 +103,21 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
       }
       data.baseColors.r.scale = r_scale ? parseFloat(r_scale) : 100;
       switch (r_curve) {
-        case "exponential":
-          data.baseColors.r.curve = "exp";
+        case 'exponential':
+          data.baseColors.r.curve = 'exp';
           break;
 
-        case "logarithmic":
-          data.baseColors.r.curve = "log";
+        case 'logarithmic':
+          data.baseColors.r.curve = 'log';
           break;
 
-        case "linear":
+        case 'linear':
         case null:
           data.baseColors.r.curve = [1];
           break;
 
         default:
-          data.baseColors.r.curve = r_curve
-            .split(";")
-            .map(x => parseFloat(x));
+          data.baseColors.r.curve = r_curve.split(';').map(x => parseFloat(x));
       }
 
       if (g_wavelength) {
@@ -137,23 +136,21 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
       }
       data.baseColors.g.scale = g_scale ? parseFloat(g_scale) : 100;
       switch (g_curve) {
-        case "exponential":
-          data.baseColors.g.curve = "exp";
+        case 'exponential':
+          data.baseColors.g.curve = 'exp';
           break;
 
-        case "logarithmic":
-          data.baseColors.g.curve = "log";
+        case 'logarithmic':
+          data.baseColors.g.curve = 'log';
           break;
 
-        case "linear":
+        case 'linear':
         case null:
           data.baseColors.g.curve = [1];
           break;
 
         default:
-          data.baseColors.g.curve = g_curve
-            .split(";")
-            .map(x => parseFloat(x));
+          data.baseColors.g.curve = g_curve.split(';').map(x => parseFloat(x));
       }
 
       if (b_wavelength) {
@@ -172,23 +169,21 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
       }
       data.baseColors.b.scale = b_scale ? parseFloat(b_scale) : 100;
       switch (b_curve) {
-        case "exponential":
-          data.baseColors.b.curve = "exp";
+        case 'exponential':
+          data.baseColors.b.curve = 'exp';
           break;
 
-        case "logarithmic":
-          data.baseColors.b.curve = "log";
+        case 'logarithmic':
+          data.baseColors.b.curve = 'log';
           break;
 
-        case "linear":
+        case 'linear':
         case null:
           data.baseColors.b.curve = [1];
           break;
 
         default:
-          data.baseColors.b.curve = b_curve
-            .split(";")
-            .map(x => parseFloat(x));
+          data.baseColors.b.curve = b_curve.split(';').map(x => parseFloat(x));
       }
 
       if (w_x) {
@@ -202,23 +197,21 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
       }
       data.baseColors.w.scale = w_scale ? parseFloat(w_scale) : 100;
       switch (w_curve) {
-        case "exponential":
-          data.baseColors.w.curve = "exp";
+        case 'exponential':
+          data.baseColors.w.curve = 'exp';
           break;
 
-        case "logarithmic":
-          data.baseColors.w.curve = "log";
+        case 'logarithmic':
+          data.baseColors.w.curve = 'log';
           break;
 
-        case "linear":
+        case 'linear':
         case null:
           data.baseColors.w.curve = [1];
           break;
 
         default:
-          data.baseColors.w.curve = w_curve
-            .split(";")
-            .map(x => parseFloat(x));
+          data.baseColors.w.curve = w_curve.split(';').map(x => parseFloat(x));
       }
 
       return data;
@@ -227,18 +220,18 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
     makeAddressListFn(src, transform, mode, variant) {
       return [
         true,
-        new Set(["r", "g", "b"]).has(variant) ? "RGB-" + variant : variant
+        new Set(['r', 'g', 'b']).has(variant) ? 'RGB-' + variant : variant
       ];
     },
 
     getAttributeToPropertyMappings() {
       return {
-        controls: { default: "triangle" },
+        controls: { default: 'triangle' },
         send_on_finish: {
-          target: "sendOnFinish",
+          target: 'sendOnFinish',
           default: false,
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -247,6 +240,6 @@ qx.Class.define("cv.parser.pure.widgets.ColorChooser", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("colorchooser", statics);
+    cv.parser.pure.WidgetParser.addHandler('colorchooser', statics);
   }
 });

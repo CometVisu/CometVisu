@@ -17,18 +17,18 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Theme.define("cv.theme.dark.Color", {
+qx.Theme.define('cv.theme.dark.Color', {
   extend: qx.theme.tangible.ColorDark,
 
   colors: {
     // theme colors
-    primary: "#444444",
-    secondary: "#646464",
-    surface: "#202020",
-    error: "#b00020",
+    primary: '#444444',
+    secondary: '#646464',
+    surface: '#202020',
+    error: '#b00020',
 
-    "valid-color": "#22822d",
-    "invalid-color": "error-focused",
-    "warning-color": "#a85500"
+    'valid-color': '#22822d',
+    'invalid-color': 'error-focused',
+    'warning-color': '#a85500'
   }
 });

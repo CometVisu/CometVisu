@@ -20,9 +20,9 @@
 /**
  *
  */
-qx.Class.define("cv.ui.structure.tile.elements.AbstractCustomElement", {
+qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   extend: qx.core.Object,
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -40,10 +40,10 @@ qx.Class.define("cv.ui.structure.tile.elements.AbstractCustomElement", {
   */
   properties: {
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyConnected",
-      event: "changeConnected"
+      apply: '_applyConnected',
+      event: 'changeConnected'
     }
   },
 
@@ -102,14 +102,14 @@ class QxConnector extends HTMLElement {
     } else {
       throw Error(
         QxClass +
-          " must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement"
+          ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement'
       );
     }
-    if (this.hasAttribute("colspan")) {
-      this.classList.add("colspan-" + this.getAttribute("colspan"));
+    if (this.hasAttribute('colspan')) {
+      this.classList.add('colspan-' + this.getAttribute('colspan'));
     }
-    if (this.hasAttribute("rowspan")) {
-      this.classList.add("rowspan-" + this.getAttribute("rowspan"));
+    if (this.hasAttribute('rowspan')) {
+      this.classList.add('rowspan-' + this.getAttribute('rowspan'));
     }
   }
 

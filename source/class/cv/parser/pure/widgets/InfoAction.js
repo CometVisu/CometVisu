@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.InfoAction", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.InfoAction', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -46,6 +46,7 @@ qx.Class.define("cv.parser.pure.widgets.InfoAction", {
         flavour,
         pageType
       );
+
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     }
@@ -53,6 +54,6 @@ qx.Class.define("cv.parser.pure.widgets.InfoAction", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("infoaction", statics);
+    cv.parser.pure.WidgetParser.addHandler('infoaction', statics);
   }
 });

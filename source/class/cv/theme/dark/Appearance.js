@@ -17,94 +17,95 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Theme.define("cv.theme.dark.Appearance", {
+qx.Theme.define('cv.theme.dark.Appearance', {
   extend: qx.theme.tangible.Appearance,
 
   appearances: {
     menubar: {
       style(states) {
         return {
-          backgroundColor: "primary",
+          backgroundColor: 'primary',
           padding: [4, 2]
         };
       }
     },
-    "cv-start": "widget",
-    "cv-start/configs-header": {
+
+    'cv-start': 'widget',
+    'cv-start/configs-header': {
       style() {
         return {
           margin: [20, 10, 0, 10],
-          decorator: "cv-start-section-title"
+          decorator: 'cv-start-section-title'
         };
       }
     },
 
-    "cv-start/configs-title": {
+    'cv-start/configs-title': {
       style() {
         return {
-          iconPosition: "right",
-          font: "title",
+          iconPosition: 'right',
+          font: 'title',
           marginLeft: 10,
           allowGrowX: true
         };
       }
     },
 
-    "cv-start/configs-toolbar": {
+    'cv-start/configs-toolbar': {
       style() {
         return {};
       }
     },
 
-    "cv-start/misc-title": {
+    'cv-start/misc-title': {
       style() {
         return {
-          iconPosition: "right",
-          font: "title",
+          iconPosition: 'right',
+          font: 'title',
           margin: [20, 10, 0, 10],
           paddingTop: 5,
-          cursor: "pointer",
+          cursor: 'pointer',
           allowGrowX: true,
-          decorator: "cv-start-section-title"
+          decorator: 'cv-start-section-title'
         };
       }
     },
 
-    "cv-start/demo-configs-title": "cv-start/misc-title",
-    "cv-start/media-title": "cv-start/configs-title",
-    "cv-start/media-toolbar": "cv-start/configs-toolbar",
-    "cv-start/media-header": "cv-start/configs-header",
+    'cv-start/demo-configs-title': 'cv-start/misc-title',
+    'cv-start/media-title': 'cv-start/configs-title',
+    'cv-start/media-toolbar': 'cv-start/configs-toolbar',
+    'cv-start/media-header': 'cv-start/configs-header',
 
-    "cv-file-item": {
-      include: "listitem",
-      alias: "listitem",
+    'cv-file-item': {
+      include: 'listitem',
+      alias: 'listitem',
 
       style(states) {
         return {
-          iconPosition: states.list ? "left" : "top",
-          show: states.list ? "label" : "both",
-          font: states.list ? "default" : "small",
+          iconPosition: states.list ? 'left' : 'top',
+          show: states.list ? 'label' : 'both',
+          font: states.list ? 'default' : 'small',
           width: states.list ? 500 : 160,
-          textColor: "text-on-surface",
+          textColor: 'text-on-surface',
           backgroundColor: states.hovered
-            ? "rgba(255, 255, 255, 0.1)"
-            : "transparent"
+            ? 'rgba(255, 255, 255, 0.1)'
+            : 'transparent'
         };
       }
     },
 
-    "cv-file-item/atom/label": {
-      include: "atom/label",
+    'cv-file-item/atom/label': {
+      include: 'atom/label',
       style() {
         return {
-          alignY: "middle",
+          alignY: 'middle',
           allowGrowY: true
         };
       }
     },
 
-    "cv-file-item/atom/icon": {
-      include: "atom/icon",
+    'cv-file-item/atom/icon': {
+      include: 'atom/icon',
       style() {
         return {
           width: 70,
@@ -114,25 +115,25 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-file-item/action-menu": "menu",
-    "cv-file-item/download-button": {
-      include: "button",
-      alias: "button",
+    'cv-file-item/action-menu': 'menu',
+    'cv-file-item/download-button': {
+      include: 'button',
+      alias: 'button',
 
       style() {
         return {
           height: 30,
-          show: "icon"
+          show: 'icon'
         };
       }
     },
 
-    "cv-file-item/action-button": "cv-file-item/download-button",
-    "cv-file-item/open-button": "cv-file-item/download-button",
-    "cv-file-item/edit-button": "cv-file-item/download-button",
-    "cv-icon": "cv-file-item",
-    "cv-icon/icon": {
-      include: "atom/icon",
+    'cv-file-item/action-button': 'cv-file-item/download-button',
+    'cv-file-item/open-button': 'cv-file-item/download-button',
+    'cv-file-item/edit-button': 'cv-file-item/download-button',
+    'cv-icon': 'cv-file-item',
+    'cv-icon/icon': {
+      include: 'atom/icon',
       style() {
         return {
           width: 70,
@@ -141,21 +142,21 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-file-item-add-file": {
-      include: "cv-file-item",
-      alias: "cv-file-item",
+    'cv-file-item-add-file': {
+      include: 'cv-file-item',
+      alias: 'cv-file-item',
 
       style(states) {
         return {
-          decorator: "cv-file-item-add-file",
+          decorator: 'cv-file-item-add-file',
           opacity: states.hovered ? 1.0 : 0.5,
-          cursor: "pointer"
+          cursor: 'pointer'
         };
       }
     },
 
-    "open-file-item": {
-      alias: "atom",
+    'open-file-item': {
+      alias: 'atom',
 
       style(states) {
         let padding = [2, 5, 2, 5];
@@ -166,20 +167,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           padding[2] -= 1;
         }
 
-        let backgroundColor = "primary";
+        let backgroundColor = 'primary';
         if (states.selected) {
-          backgroundColor += "-selected";
+          backgroundColor += '-selected';
           if (states.disabled) {
-            backgroundColor += "_disabled";
+            backgroundColor += '_disabled';
           }
         }
         return {
           backgroundColor: backgroundColor,
-          textColor: "text-on-primary",
+          textColor: 'text-on-primary',
           decorator: states.lead
-            ? "lead-item"
+            ? 'lead-item'
             : states.dragover
-            ? "dragover"
+            ? 'dragover'
             : undefined,
           opacity: states.drag ? 0.5 : undefined,
           height: 26,
@@ -189,43 +190,43 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "open-file-item/label": {
-      include: "listitem/label",
+    'open-file-item/label': {
+      include: 'listitem/label',
 
       style() {
         return {
-          alignY: "middle"
+          alignY: 'middle'
         };
       }
     },
 
-    "open-file-item/icon": {
-      alias: "listitem/icon",
+    'open-file-item/icon': {
+      alias: 'listitem/icon',
       style() {
         return {
-          alignY: "middle",
+          alignY: 'middle',
           padding: [0, 8]
         };
       }
     },
 
-    "open-file-item/close": {
+    'open-file-item/close': {
       style() {
         return {
           padding: 8,
-          cursor: "pointer",
-          alignY: "middle"
+          cursor: 'pointer',
+          alignY: 'middle'
         };
       }
     },
 
-    "open-with-button": {
-      include: "menu-button",
-      alias: "menu-button",
+    'open-with-button': {
+      include: 'menu-button',
+      alias: 'menu-button',
 
       style(states) {
         return {
-          font: states.default ? "bold" : "default"
+          font: states.default ? 'bold' : 'default'
         };
       }
     },
@@ -238,7 +239,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-editor-config": {
+    'cv-editor-config': {
       style() {
         return {
           padding: 10
@@ -246,17 +247,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-editor-config-section": {
+    'cv-editor-config-section': {
       style() {
         return {
           padding: 10,
-          decorator: "cv-editor-config-section",
+          decorator: 'cv-editor-config-section',
           marginBottom: 10
         };
       }
     },
 
-    "cv-editor-config-option": {
+    'cv-editor-config-option': {
       style() {
         return {
           marginBottom: 10
@@ -264,9 +265,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-config-textfield": {
-      include: "textfield",
-      alias: "textfield",
+    'cv-config-textfield': {
+      include: 'textfield',
+      alias: 'textfield',
 
       style() {
         return {
@@ -275,21 +276,21 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-editor-config-section/section-title": {
+    'cv-editor-config-section/section-title': {
       style() {
         return {
-          font: "title",
+          font: 'title',
           marginRight: 20
         };
       }
     },
 
-    "cv-editor-config-section/options-title":
-      "cv-editor-config-section/section-title",
-    "cv-editor-config-section/name": "cv-config-textfield",
-    "cv-editor-config-section/list": {
-      include: "list",
-      alias: "list",
+    'cv-editor-config-section/options-title':
+      'cv-editor-config-section/section-title',
+    'cv-editor-config-section/name': 'cv-config-textfield',
+    'cv-editor-config-section/list': {
+      include: 'list',
+      alias: 'list',
 
       style() {
         return {
@@ -298,19 +299,19 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-editor-config-option/value-title": {
+    'cv-editor-config-option/value-title': {
       style() {
         return {
           allowGrowX: true,
-          font: "subtitle"
+          font: 'subtitle'
         };
       }
     },
 
-    "cv-editor-config-option/key-title": "cv-editor-config-option/value-title",
+    'cv-editor-config-option/key-title': 'cv-editor-config-option/value-title',
 
     // snackbar components
-    "cv-snackbar": {
+    'cv-snackbar': {
       style() {
         return {
           zIndex: 1000
@@ -318,7 +319,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-snackbar/list": {
+    'cv-snackbar/list': {
       style() {
         return {
           height: null,
@@ -328,18 +329,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-snackbar-msg": {
+    'cv-snackbar-msg': {
       style() {
         return {
           marginTop: 10,
           padding: 10,
-          textColor: "text-on-primary",
-          decorator: "cv-snackbar-msg"
+          textColor: 'text-on-primary',
+          decorator: 'cv-snackbar-msg'
         };
       }
     },
 
-    "cv-snackbar-msg/content": {
+    'cv-snackbar-msg/content': {
       style() {
         return {
           allowGrowX: true
@@ -347,32 +348,32 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-snackbar-msg/close": {
+    'cv-snackbar-msg/close': {
       style() {
         return {
-          cursor: "pointer"
+          cursor: 'pointer'
         };
       }
     },
 
-    "cv-toolbar": "toolbar",
+    'cv-toolbar': 'toolbar',
 
-    "cv-toolbar-button": "toolbar-button",
+    'cv-toolbar-button': 'toolbar-button',
 
-    "image-viewer": {},
-    "image-viewer/scroll": "scrollarea",
-    "image-viewer/image": {
-      include: "atom",
-      alias: "atom",
+    'image-viewer': {},
+    'image-viewer/scroll': 'scrollarea',
+    'image-viewer/image': {
+      include: 'atom',
+      alias: 'atom',
 
       style() {
         return {
-          iconPosition: "top",
+          iconPosition: 'top',
           gap: 10,
           center: true
         };
       },
-      "image-viewer/image/label": {
+      'image-viewer/image/label': {
         style() {
           return {
             margin: 10
@@ -381,35 +382,35 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "fs-tree-item": {
-      include: "virtual-tree-folder",
-      alias: "virtual-tree-folder",
+    'fs-tree-item': {
+      include: 'virtual-tree-folder',
+      alias: 'virtual-tree-folder',
 
       style(states) {
         return {
-          font: states.temporary ? "italic" : "default"
+          font: states.temporary ? 'italic' : 'default'
         };
       }
     },
 
-    "fs-tree-item/icon": {
-      include: "virtual-tree-folder/icon",
-      alias: "virtual-tree-folder/icon",
+    'fs-tree-item/icon': {
+      include: 'virtual-tree-folder/icon',
+      alias: 'virtual-tree-folder/icon',
 
       style(states) {
         return {
           textColor: states.comment
-            ? "text-on-surface"
+            ? 'text-on-surface'
             : states.error
-            ? "invalid-color"
+            ? 'invalid-color'
             : null
         };
       }
     },
 
-    "element-tree-item": {
-      include: "fs-tree-item",
-      alias: "fs-tree-item",
+    'element-tree-item': {
+      include: 'fs-tree-item',
+      alias: 'fs-tree-item',
       style(states) {
         return {
           indent: states.touch ? 24 : 19
@@ -417,20 +418,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "element-tree-item/label": {
-      include: "fs-tree-item/label",
+    'element-tree-item/label': {
+      include: 'fs-tree-item/label',
 
       style(states) {
         return {
-          textColor: states.comment ? "text-on-surface" : null,
+          textColor: states.comment ? 'text-on-surface' : null,
           allowGrowX: true,
           maxWidth: 250
         };
       }
     },
 
-    "element-tree-item/open": {
-      include: "fs-tree-item/open",
+    'element-tree-item/open': {
+      include: 'fs-tree-item/open',
 
       style(states) {
         return {
@@ -442,16 +443,16 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "cv-file-contextmenu": "menu",
-    "cv-file-contextmenu/open-with-button": "menu-button",
-    "cv-file-contextmenu/compare-with-button": "menu-button",
-    "open-files-tabs": {
+    'cv-file-contextmenu': 'menu',
+    'cv-file-contextmenu/open-with-button': 'menu-button',
+    'cv-file-contextmenu/compare-with-button': 'menu-button',
+    'open-files-tabs': {
       style() {
         return {
           height: 34,
           padding: 0,
           marginBottom: 5,
-          decorator: "open-file-tabs"
+          decorator: 'open-file-tabs'
         };
       }
     },
@@ -459,24 +460,26 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     helptext: {
       style() {
         return {
-          font: "small",
-          textColor: "text-on-secondary"
+          font: 'small',
+          textColor: 'text-on-secondary'
         };
       }
     },
 
-    "checkbox/label": {
+    'checkbox/label': {
       style(states) {
         return {
-          textColor: states.undetermined ? "text-on-secondary" : "text-on-primary"
+          textColor: states.undetermined
+            ? 'text-on-secondary'
+            : 'text-on-primary'
         };
       }
     },
 
-    "toolbar-separator": {
+    'toolbar-separator': {
       style() {
         return {
-          backgroundColor: "border-separator",
+          backgroundColor: 'border-separator',
           margin: [7, 0],
           width: 1
         };
@@ -487,38 +490,38 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style() {
         return {
           backgroundColor: null,
-          decorator: "main-dark"
+          decorator: 'main-dark'
         };
       }
     },
 
-    "state-option": {
+    'state-option': {
       style(states) {
         return {
-          textColor: states.error ? "warning-color" : "text-on-secondary",
-          font: "italic",
+          textColor: states.error ? 'warning-color' : 'text-on-secondary',
+          font: 'italic',
           height: 25
         };
       }
     },
 
-    "error-option": {
+    'error-option': {
       style() {
         return {
-          textColor: "warning-color",
-          font: "italic",
+          textColor: 'warning-color',
+          font: 'italic',
           height: 25
         };
       }
     },
 
-    "selectbox/atom": {
+    'selectbox/atom': {
       style(states) {
-        let font = "default";
-        let textColor = "text-on-primary";
+        let font = 'default';
+        let textColor = 'text-on-primary';
         if (states.error || states.loading) {
-          font = "italic";
-          textColor = states.error ? "warning-color" : "text-on-secondary";
+          font = 'italic';
+          textColor = states.error ? 'warning-color' : 'text-on-secondary';
         }
         return {
           textColor: textColor,
@@ -530,39 +533,39 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     optiongroup: {
       style() {
         return {
-          textColor: "text-on-secondary",
+          textColor: 'text-on-secondary',
           height: 25
         };
       }
     },
 
-    "optiongroup/label": {
+    'optiongroup/label': {
       style() {
         return {
           allowGrowX: true,
-          textAlign: "center"
+          textAlign: 'center'
         };
       }
     },
 
-    "round-button": {
-      include: "atom",
-      alias: "atom",
+    'round-button': {
+      include: 'atom',
+      alias: 'atom',
       style(states) {
         return {
-          decorator: states.hovered ? "round-button-hovered" : "round-button",
+          decorator: states.hovered ? 'round-button-hovered' : 'round-button',
           width: 48,
           height: 48,
-          textColor: "text-on-primary",
-          show: "icon",
+          textColor: 'text-on-primary',
+          show: 'icon',
           center: true
         };
       }
     },
 
-    "round-button/icon": {
-      include: "atom/icon",
-      alias: "atom/icon",
+    'round-button/icon': {
+      include: 'atom/icon',
+      alias: 'atom/icon',
       style(states) {
         return {
           width: 32,
@@ -571,16 +574,16 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    "dragdrop-cursor": {
+    'dragdrop-cursor': {
       style(states) {
-        let icon = "nodrop";
+        let icon = 'nodrop';
 
         if (states.copy) {
-          icon = "copy";
+          icon = 'copy';
         } else if (states.move) {
-          icon = "move";
+          icon = 'move';
         } else if (states.alias) {
-          icon = "alias";
+          icon = 'alias';
         }
         let leftOffset = 8;
         if (states.touch) {
@@ -588,47 +591,47 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         }
 
         return {
-          source: qx.theme.tangible.Image.URLS["cursor-" + icon],
-          position: "left-middle",
+          source: qx.theme.tangible.Image.URLS['cursor-' + icon],
+          position: 'left-middle',
           offset: [2, leftOffset, 2, 6]
         };
       }
     },
 
-    "element-tree-item/menu-button": {
-      include: "button",
-      alias: "button",
+    'element-tree-item/menu-button': {
+      include: 'button',
+      alias: 'button',
       style() {
         return {
           padding: [2, 4],
-          icon: qx.theme.tangible.Image.URLS["arrow-down"],
-          show: "icon"
+          icon: qx.theme.tangible.Image.URLS['arrow-down'],
+          show: 'icon'
         };
       }
     },
 
-    "tree-editor": "widget",
-    "tree-editor/preview-sync-hint": {
-      include: "atom",
-      alias: "atom",
+    'tree-editor': 'widget',
+    'tree-editor/preview-sync-hint': {
+      include: 'atom',
+      alias: 'atom',
       style() {
         return {
           padding: [4, 8],
-          iconPosition: "left",
+          iconPosition: 'left',
           gap: 8,
           center: true
         };
       }
     },
 
-    "tree-editor/preview-sync-hint/icon": {
-      include: "atom/icon",
+    'tree-editor/preview-sync-hint/icon': {
+      include: 'atom/icon',
       style(states) {
-        let color = "valid-color";
+        let color = 'valid-color';
         if (states.error) {
-          color = "invalid-color";
+          color = 'invalid-color';
         } else if (states.warning) {
-          color = "warning-color";
+          color = 'warning-color';
         }
         return {
           textColor: color

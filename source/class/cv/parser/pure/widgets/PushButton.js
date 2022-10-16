@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.PushButton", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.PushButton', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,19 +47,21 @@ qx.Class.define("cv.parser.pure.widgets.PushButton", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(
         xml,
         path,
         this.makeAddressListFn
       );
+
       return data;
     },
 
     getAttributeToPropertyMappings() {
       return {
-        downValue: { target: "downValue", default: "1" },
-        upValue: { default: "0" }
+        downValue: { target: 'downValue', default: '1' },
+        upValue: { default: '0' }
       };
     },
 
@@ -70,6 +72,6 @@ qx.Class.define("cv.parser.pure.widgets.PushButton", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("pushbutton", statics);
+    cv.parser.pure.WidgetParser.addHandler('pushbutton', statics);
   }
 });

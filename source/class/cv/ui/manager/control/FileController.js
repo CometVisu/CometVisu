@@ -20,9 +20,9 @@
 /**
  * The FileController is responsible for all file operations, like config check, move, replace, delete etc.
  */
-qx.Class.define("cv.ui.manager.control.FileController", {
+qx.Class.define('cv.ui.manager.control.FileController', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ***********************************************
@@ -43,9 +43,9 @@ qx.Class.define("cv.ui.manager.control.FileController", {
     __fsClient: null,
 
     rename(file, newName) {
-      let newPath = file.getPath() || "";
-      if (newPath.length > 0 && !newPath.endsWith("/")) {
-        newPath += "/";
+      let newPath = file.getPath() || '';
+      if (newPath.length > 0 && !newPath.endsWith('/')) {
+        newPath += '/';
       }
       newPath += newName;
       if (file.isTemporary()) {
@@ -57,13 +57,13 @@ qx.Class.define("cv.ui.manager.control.FileController", {
               cv.ui.manager.snackbar.Controller.error(err);
             } else {
               cv.ui.manager.snackbar.Controller.info(
-                file.getType() === "file"
+                file.getType() === 'file'
                   ? qx.locale.Manager.tr(
-                      "File \"%1\" has been created",
+                      'File "%1" has been created',
                       file.getDisplayName()
                     )
                   : qx.locale.Manager.tr(
-                      "Folder \"%1\" has been created",
+                      'Folder "%1" has been created',
                       file.getDisplayName()
                     )
               );
@@ -84,13 +84,13 @@ qx.Class.define("cv.ui.manager.control.FileController", {
               cv.ui.manager.snackbar.Controller.error(err);
             } else {
               cv.ui.manager.snackbar.Controller.info(
-                file.getType() === "file"
+                file.getType() === 'file'
                   ? qx.locale.Manager.tr(
-                      "File \"%1\" has been renamed",
+                      'File "%1" has been renamed',
                       file.getDisplayName()
                     )
                   : qx.locale.Manager.tr(
-                      "Folder \"%1\" has been renamed",
+                      'Folder "%1" has been renamed',
                       file.getDisplayName()
                     )
               );
@@ -119,19 +119,19 @@ qx.Class.define("cv.ui.manager.control.FileController", {
             cv.ui.manager.snackbar.Controller.error(err);
           } else {
             cv.ui.manager.snackbar.Controller.info(
-              file.getType() === "file"
+              file.getType() === 'file'
                 ? qx.locale.Manager.tr(
-                    "File \"%1\" has been moved",
+                    'File "%1" has been moved',
                     file.getDisplayName()
                   )
                 : qx.locale.Manager.tr(
-                    "Folder \"%1\" has been moved",
+                    'Folder "%1" has been moved',
                     file.getDisplayName()
                   )
             );
 
-            qx.event.message.Bus.dispatchByName("cv.manager.file", {
-              action: "moved",
+            qx.event.message.Bus.dispatchByName('cv.manager.file', {
+              action: 'moved',
               path: file.getFullPath()
             });
           }
@@ -146,15 +146,16 @@ qx.Class.define("cv.ui.manager.control.FileController", {
      */
     restore(file) {
       if (file.isInTrash()) {
-        const target = file.getFullPath().replace(".trash/", "");
+        const target = file.getFullPath().replace('.trash/', '');
         this.__moveFile(file, target);
-      } else if (file.getType() === "file" && !file.isTemporary()) {
+      } else if (file.getType() === 'file' && !file.isTemporary()) {
         const match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(
           file.getFullPath()
         );
+
         if (match) {
           // find the existing target config to restore
-          const targetFileName = "visu_config" + match[1] + ".xml";
+          const targetFileName = 'visu_config' + match[1] + '.xml';
 
           // find the target file
           const parentFolder = file.getParent().getParent();
@@ -177,8 +178,9 @@ qx.Class.define("cv.ui.manager.control.FileController", {
                 this.__fsClient.updateSync(
                   {
                     path: targetFile.getFullPath(),
-                    hash: "ignore"
+                    hash: 'ignore'
                   },
+
                   res,
                   function (err) {
                     if (err) {
@@ -186,16 +188,17 @@ qx.Class.define("cv.ui.manager.control.FileController", {
                     } else {
                       cv.ui.manager.snackbar.Controller.info(
                         qx.locale.Manager.tr(
-                          "%1 has been restored",
+                          '%1 has been restored',
                           file.getName()
                         )
                       );
+
                       targetFile.resetModified();
                       targetFile.resetTemporary();
                       qx.event.message.Bus.dispatchByName(
                         targetFile.getBusTopic(),
                         {
-                          type: "fsContentChanged",
+                          type: 'fsContentChanged',
                           data: res,
                           source: this
                         }
@@ -209,8 +212,9 @@ qx.Class.define("cv.ui.manager.control.FileController", {
                 this.__fsClient.createSync(
                   {
                     path: targetFileName,
-                    hash: "ignore"
+                    hash: 'ignore'
                   },
+
                   res,
                   function (err) {
                     if (err) {
@@ -218,7 +222,7 @@ qx.Class.define("cv.ui.manager.control.FileController", {
                     } else {
                       cv.ui.manager.snackbar.Controller.info(
                         qx.locale.Manager.tr(
-                          "%1 has been restored",
+                          '%1 has been restored',
                           file.getName()
                         )
                       );
@@ -242,19 +246,19 @@ qx.Class.define("cv.ui.manager.control.FileController", {
             cv.ui.manager.snackbar.Controller.error(err);
           } else {
             cv.ui.manager.snackbar.Controller.info(
-              file.getType() === "file"
+              file.getType() === 'file'
                 ? qx.locale.Manager.tr(
-                    "File \"%1\" has been restored",
+                    'File "%1" has been restored',
                     file.getDisplayName()
                   )
                 : qx.locale.Manager.tr(
-                    "Folder \"%1\" has been restored",
+                    'Folder "%1" has been restored',
                     file.getDisplayName()
                   )
             );
 
-            qx.event.message.Bus.dispatchByName("cv.manager.file", {
-              action: "restored",
+            qx.event.message.Bus.dispatchByName('cv.manager.file', {
+              action: 'restored',
               path: file.getFullPath()
             });
           }
@@ -273,28 +277,28 @@ qx.Class.define("cv.ui.manager.control.FileController", {
         let message;
         if (file.isTrash()) {
           message = qx.locale.Manager.tr(
-            "Do you really want to clear the trash?"
+            'Do you really want to clear the trash?'
           );
         } else if (file.isInTrash()) {
           message =
-            file.getType() === "file"
+            file.getType() === 'file'
               ? qx.locale.Manager.tr(
-                  "Do you really want to delete file \"%1\" from the trash?",
+                  'Do you really want to delete file "%1" from the trash?',
                   file.getDisplayName()
                 )
               : qx.locale.Manager.tr(
-                  "Do you really want to delete folder \"%1\" from the trash?",
+                  'Do you really want to delete folder "%1" from the trash?',
                   file.getDisplayName()
                 );
         } else {
           message =
-            file.getType() === "file"
+            file.getType() === 'file'
               ? qx.locale.Manager.tr(
-                  "Do you really want to delete file \"%1\"?",
+                  'Do you really want to delete file "%1"?',
                   file.getDisplayName()
                 )
               : qx.locale.Manager.tr(
-                  "Do you really want to delete folder \"%1\"?",
+                  'Do you really want to delete folder "%1"?',
                   file.getDisplayName()
                 );
         }
@@ -308,7 +312,7 @@ qx.Class.define("cv.ui.manager.control.FileController", {
             }
           },
           this,
-          qx.locale.Manager.tr("Confirm deletion")
+          qx.locale.Manager.tr('Confirm deletion')
         );
       }
     },
@@ -326,27 +330,27 @@ qx.Class.define("cv.ui.manager.control.FileController", {
           } else {
             let message;
             if (file.isTrash()) {
-              message = qx.locale.Manager.tr("Trash has been cleared");
+              message = qx.locale.Manager.tr('Trash has been cleared');
             } else if (file.isInTrash()) {
               message =
-                this.getType() === "file"
+                this.getType() === 'file'
                   ? qx.locale.Manager.tr(
-                      "File \"%1\" has been removed from trash",
+                      'File "%1" has been removed from trash',
                       file.getDisplayName()
                     )
                   : qx.locale.Manager.tr(
-                      "Folder \"%1\" has been removed from trash",
+                      'Folder "%1" has been removed from trash',
                       file.getDisplayName()
                     );
             } else {
               message =
-                file.getType() === "file"
+                file.getType() === 'file'
                   ? qx.locale.Manager.tr(
-                      "File \"%1\" has been deleted",
+                      'File "%1" has been deleted',
                       file.getDisplayName()
                     )
                   : qx.locale.Manager.tr(
-                      "Folder \"%1\" has been deleted",
+                      'Folder "%1" has been deleted',
                       file.getDisplayName()
                     );
             }
@@ -354,8 +358,8 @@ qx.Class.define("cv.ui.manager.control.FileController", {
             if (callback) {
               callback.apply(context, true);
             }
-            qx.event.message.Bus.dispatchByName("cv.manager.file", {
-              action: "deleted",
+            qx.event.message.Bus.dispatchByName('cv.manager.file', {
+              action: 'deleted',
               path: file.getFullPath()
             });
           }
@@ -365,15 +369,16 @@ qx.Class.define("cv.ui.manager.control.FileController", {
     },
 
     download(file) {
-      if (file.getType() === "file") {
-        const element = document.createElement("a");
+      if (file.getType() === 'file') {
+        const element = document.createElement('a');
         element.setAttribute(
-          "href",
+          'href',
           cv.io.rest.Client.getBaseUrl() +
-            "/fs?download=true&path=" +
+            '/fs?download=true&path=' +
             file.getFullPath()
         );
-        element.style.display = "none";
+
+        element.style.display = 'none';
         document.body.appendChild(element);
         element.click();
         document.body.removeChild(element);
@@ -381,20 +386,21 @@ qx.Class.define("cv.ui.manager.control.FileController", {
     },
 
     validate(file) {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertInstance(file, cv.ui.manager.model.FileItem);
       }
       if (file.isConfigFile()) {
         this.__validateConfig(file);
       } else {
-        this.info("no validation available for file: " + file.getFullPath());
+        this.info('no validation available for file: ' + file.getFullPath());
       }
     },
 
     __validateConfig(file) {
       const d = qxl.dialog.Dialog.alert(
-        qx.locale.Manager.tr("Validating %1", file.getFullPath())
+        qx.locale.Manager.tr('Validating %1', file.getFullPath())
       );
+
       cv.ui.manager.editor.Worker.getInstance()
         .validateConfig(file)
         .then(function (res) {
@@ -402,13 +408,13 @@ qx.Class.define("cv.ui.manager.control.FileController", {
           if (res === true) {
             file.setValid(true);
             cv.ui.manager.snackbar.Controller.info(
-              qx.locale.Manager.tr("%1 has no errors!", file.getFullPath())
+              qx.locale.Manager.tr('%1 has no errors!', file.getFullPath())
             );
           } else {
             file.setValid(false);
-            qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
+            qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
               file: file,
-              handler: "cv.ui.manager.editor.Source",
+              handler: 'cv.ui.manager.editor.Source',
               handlerOptions: {
                 jumpToError: true
               }
@@ -416,8 +422,8 @@ qx.Class.define("cv.ui.manager.control.FileController", {
 
             cv.ui.manager.snackbar.Controller.error(
               qx.locale.Manager.trn(
-                "%1 error found in %2!",
-                "%1 errors found in %2!",
+                '%1 error found in %2!',
+                '%1 errors found in %2!',
                 res.length,
                 res.length,
                 file.getFullPath()

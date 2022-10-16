@@ -3,8 +3,8 @@
  * This parser can handle those strings
  * @ignore($)
  */
-qx.Class.define("cv.io.parser.Json", {
-  type: "static",
+qx.Class.define('cv.io.parser.Json', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -12,15 +12,15 @@ qx.Class.define("cv.io.parser.Json", {
   ******************************************************
   */
   statics: {
-    parse: qx.core.Environment.select("cv.xhr", {
+    parse: qx.core.Environment.select('cv.xhr', {
       jquery(data) {
         var result = {};
         try {
           result = JSON.parse(data);
         } catch (e) {
-          data.split("}{").forEach(function (subData, i) {
+          data.split('}{').forEach(function (subData, i) {
             try {
-              var jsonString = i === 0 ? subData + "}" : "{" + subData;
+              var jsonString = i === 0 ? subData + '}' : '{' + subData;
               result = $.extend(result, JSON.parse(jsonString));
             } catch (se) {
               qx.log.Logger.error(se, data);
@@ -35,9 +35,9 @@ qx.Class.define("cv.io.parser.Json", {
         try {
           result = JSON.parse(data);
         } catch (e) {
-          data.split("}{").forEach(function (subData, i) {
+          data.split('}{').forEach(function (subData, i) {
             try {
-              var jsonString = i === 0 ? subData + "}" : "{" + subData;
+              var jsonString = i === 0 ? subData + '}' : '{' + subData;
               result = Object.assign(result, JSON.parse(jsonString));
             } catch (se) {
               qx.log.Logger.error(se, data);
@@ -46,7 +46,7 @@ qx.Class.define("cv.io.parser.Json", {
           }, this);
         }
         return result;
-      },
-    }),
-  },
+      }
+    })
+  }
 });

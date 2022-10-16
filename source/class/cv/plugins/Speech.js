@@ -54,7 +54,7 @@
  * @since 0.10.0
  *
  */
-qx.Class.define("cv.plugins.Speech", {
+qx.Class.define('cv.plugins.Speech', {
   extend: qx.core.Object,
   include: cv.ui.common.Update,
 
@@ -80,8 +80,9 @@ qx.Class.define("cv.plugins.Speech", {
       if (!window.speechSynthesis) {
         qx.log.Logger.warn(
           this,
-          "this browser does not support the Web Speech API"
+          'this browser does not support the Web Speech API'
         );
+
         return null;
       }
 
@@ -92,15 +93,15 @@ qx.Class.define("cv.plugins.Speech", {
 
       return cv.data.Model.getInstance().setWidgetData(path, {
         path: path,
-        language: element.getAttribute("lang")
-          ? element.getAttribute("lang").toLowerCase()
+        language: element.getAttribute('lang')
+          ? element.getAttribute('lang').toLowerCase()
           : null,
         address: address,
-        mapping: element.getAttribute("mapping"),
-        repeatTimeout: element.getAttribute("repeat-timeout")
-          ? parseInt(element.getAttribute("repeat-timeout"))
+        mapping: element.getAttribute('mapping'),
+        repeatTimeout: element.getAttribute('repeat-timeout')
+          ? parseInt(element.getAttribute('repeat-timeout'))
           : -1,
-        $$type: "speech",
+        $$type: 'speech',
         // this widget needs to be initialized when the cache is used, otherwise it wont be available
         $$initOnCacheLoad: true
       });
@@ -113,14 +114,14 @@ qx.Class.define("cv.plugins.Speech", {
    ******************************************************
    */
   properties: {
-    path: { check: "String" },
-    $$type: { check: "String" },
-    $$initOnCacheLoad: { check: "Boolean" },
-    language: { check: "String" },
-    mapping: { check: "String", init: "" },
-    repeatTimeout: { check: "Number", init: -1 },
+    path: { check: 'String' },
+    $$type: { check: 'String' },
+    $$initOnCacheLoad: { check: 'Boolean' },
+    language: { check: 'String' },
+    mapping: { check: 'String', init: '' },
+    repeatTimeout: { check: 'Number', init: -1 },
     parentWidget: {
-      check: "cv.ui.structure.pure.AbstractBasicWidget",
+      check: 'cv.ui.structure.pure.AbstractBasicWidget',
       init: null
     }
   },
@@ -153,17 +154,17 @@ qx.Class.define("cv.plugins.Speech", {
           time: Date.now()
         };
 
-        this.debug("skipping initial TTS for " + text);
+        this.debug('skipping initial TTS for ' + text);
         return;
       }
 
       if (!text || text.length === 0) {
         // nothing to say
-        this.debug("no text to speech given");
+        this.debug('no text to speech given');
         return;
       }
 
-      if (typeof text === "string" && text.substring(0, 1) === "!") {
+      if (typeof text === 'string' && text.substring(0, 1) === '!') {
         // override repeatTimeout, force saying this
         text = text.substring(1);
       } else if (this.getRepeatTimeout() >= 0) {
@@ -178,15 +179,16 @@ qx.Class.define("cv.plugins.Speech", {
           // update time
           this.__lastSpeech[address].time = Date.now();
           // do not repeat
-          this.debug("skipping TTS because of repetition " + text);
+          this.debug('skipping TTS because of repetition ' + text);
           return;
         }
       }
       this.debug(
         "changing lastSpeech from '%s' to '%s'",
-        this.__lastSpeech[address] ? this.__lastSpeech[address].text : "",
+        this.__lastSpeech[address] ? this.__lastSpeech[address].text : '',
         text
       );
+
       this.__lastSpeech[address] = {
         text: text,
         time: Date.now()
@@ -201,7 +203,7 @@ qx.Class.define("cv.plugins.Speech", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("speech", cv.plugins.Speech);
-    cv.ui.structure.WidgetFactory.registerClass("speech", statics);
+    cv.parser.pure.WidgetParser.addHandler('speech', cv.plugins.Speech);
+    cv.ui.structure.WidgetFactory.registerClass('speech', statics);
   }
 });

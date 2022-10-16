@@ -17,14 +17,14 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
+qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
   /*
    ******************************************************
    CONSTRUCTOR
    ******************************************************
    */
   construct() {
-    this.addListenerOnce("domReady", this.__initListeners, this);
+    this.addListenerOnce('domReady', this.__initListeners, this);
   },
 
   /*
@@ -45,7 +45,7 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       actors.forEach(function (actor) {
         qx.event.Registration.addListener(
           actor,
-          "pointerdown",
+          'pointerdown',
           this.buttonPressed,
           this
         );
@@ -76,23 +76,25 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       this.__downTarget = actor;
       qx.event.Registration.addListener(
         document,
-        "pointerup",
+        'pointerup',
         this.buttonReleased,
         this
       );
+
       const buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, true);
       this.__olid = qx.event.Registration.addListener(
         actor,
-        "pointerout",
+        'pointerout',
         function () {
           this.__updateButtons(buttons, false);
         },
         this
       );
+
       this.__ilid = qx.event.Registration.addListener(
         actor,
-        "pointerover",
+        'pointerover',
         function () {
           this.__updateButtons(buttons, true);
         },
@@ -104,15 +106,15 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       if (pressed) {
         buttons.forEach(function (button) {
           if (button) {
-            button.classList.add("switchPressed");
-            button.classList.remove("switchUnpressed");
+            button.classList.add('switchPressed');
+            button.classList.remove('switchUnpressed');
           }
         });
       } else {
         buttons.forEach(function (button) {
           if (button) {
-            button.classList.add("switchUnpressed");
-            button.classList.remove("switchPressed");
+            button.classList.add('switchUnpressed');
+            button.classList.remove('switchPressed');
           }
         });
       }
@@ -128,10 +130,11 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
     buttonReleased(event) {
       qx.event.Registration.removeListener(
         document,
-        "pointerup",
+        'pointerup',
         this.buttonReleased,
         this
       );
+
       const actor = this.__downTarget;
       const buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, false);
@@ -155,7 +158,7 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
   destruct() {
     qx.event.Registration.addListener(
       document,
-      "pointerup",
+      'pointerup',
       this.buttonReleased,
       this
     );

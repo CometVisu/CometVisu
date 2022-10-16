@@ -65,7 +65,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
-qx.Class.define("cv.ui.structure.pure.InfoAction", {
+qx.Class.define('cv.ui.structure.pure.InfoAction', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   include: cv.ui.common.HasChildren,
@@ -95,6 +95,6 @@ qx.Class.define("cv.ui.structure.pure.InfoAction", {
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("infoaction", statics);
+    cv.ui.structure.WidgetFactory.registerClass('infoaction', statics);
   }
 });

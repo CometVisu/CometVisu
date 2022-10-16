@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.io.Net", {
-  type: "static",
+qx.Class.define('cv.io.Net', {
+  type: 'static',
 
   /*
   ***********************************************
@@ -40,7 +40,7 @@ qx.Class.define("cv.io.Net", {
     fetch(url) {
       return new Promise(resolve => {
         const xhr = new qx.io.request.Xhr(url);
-        xhr.addListenerOnce("success", e => {
+        xhr.addListenerOnce('success', e => {
           const req = e.getTarget();
           const response = new Response(req.getResponse(), {
             status: req.getStatus(),
@@ -49,7 +49,7 @@ qx.Class.define("cv.io.Net", {
 
           resolve(response);
         });
-        xhr.addListenerOnce("error", e => {
+        xhr.addListenerOnce('error', e => {
           const req = e.getTarget();
           const response = new Response(req.getResponse(), {
             status: req.getStatus(),

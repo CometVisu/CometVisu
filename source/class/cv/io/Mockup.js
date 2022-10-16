@@ -24,7 +24,7 @@
  * @since 2016
  */
 /* istanbul ignore next */
-qx.Class.define("cv.io.Mockup", {
+qx.Class.define('cv.io.Mockup', {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -43,8 +43,8 @@ qx.Class.define("cv.io.Mockup", {
     window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
     window.writeHistory = [];
 
-    const testMode = qx.core.Environment.get("cv.testMode");
-    if (typeof testMode === "string" && testMode !== "true") {
+    const testMode = qx.core.Environment.get('cv.testMode');
+    if (typeof testMode === 'string' && testMode !== 'true') {
       this.__loadTestData();
     }
     this.addresses = [];
@@ -57,19 +57,19 @@ qx.Class.define("cv.io.Mockup", {
   */
   properties: {
     dataReceived: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
 
     server: {
-      check: "String",
-      init: "Mockup"
+      check: 'String',
+      init: 'Mockup'
     },
 
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeConnected"
+      event: 'changeConnected'
     }
   },
 
@@ -79,7 +79,7 @@ qx.Class.define("cv.io.Mockup", {
   ******************************************************
   */
   members: {
-    backendName: "mockup",
+    backendName: 'mockup',
     addresses: null,
     __xhr: null,
     __sequence: null,
@@ -92,8 +92,8 @@ qx.Class.define("cv.io.Mockup", {
 
     __loadTestData() {
       // load the demo data to fill the visu with some values
-      const r = new qx.io.request.Xhr(qx.core.Environment.get("cv.testMode"));
-      r.addListener("success", e => {
+      const r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+      r.addListener('success', e => {
         cv.Config.initialDemoData = e.getTarget().getResponse();
         this.__applyTestData();
       });
@@ -106,13 +106,13 @@ qx.Class.define("cv.io.Mockup", {
       // we need to adjust the timestamps of the chart data
       const now = Date.now();
       for (let url in this.__xhr) {
-        if (url.startsWith("rrd")) {
+        if (url.startsWith('rrd')) {
           this.__xhr[url].forEach(d => {
             const data = d.body;
             const offset = now - data[data.length - 1][0];
             data.forEach(entry => (entry[0] += offset));
           });
-        } else if (url.startsWith("resource/plugin/rsslog.php")) {
+        } else if (url.startsWith('resource/plugin/rsslog.php')) {
           this.__xhr[url].forEach(d => {
             const data = d.body.responseData.feed.entries;
             let date = new Date();
@@ -138,7 +138,7 @@ qx.Class.define("cv.io.Mockup", {
       ) {
         this.method = method;
         this.url = url;
-        this.async = typeof async == "boolean" ? async : true;
+        this.async = typeof async == 'boolean' ? async : true;
         this.username = username;
         this.password = password;
         this.responseText = null;
@@ -153,7 +153,7 @@ qx.Class.define("cv.io.Mockup", {
           if (defake) {
             const xhr = that.defake(this, xhrArgs);
             xhr.open.apply(xhr, xhrArgs);
-            xhr.setRequestHeader("Accept", "text/*, image/*");
+            xhr.setRequestHeader('Accept', 'text/*, image/*');
             return;
           }
         }
@@ -164,24 +164,24 @@ qx.Class.define("cv.io.Mockup", {
       qx.dev.FakeServer.getInstance().addFilter(function (args) {
         const method = args[0];
         const url = args[1];
-        if (url.startsWith("https://sentry.io")) {
+        if (url.startsWith('https://sentry.io')) {
           return true;
         } else if (
-          method === "GET" &&
-          (url.indexOf("resource/visu_config") >= 0 ||
-            url.indexOf("resource/demo/visu_config") >= 0 ||
-            url.indexOf("resource/hidden-schema.json") >= 0 ||
-            url.indexOf("resource/manager/") >= 0)
+          method === 'GET' &&
+          (url.indexOf('resource/visu_config') >= 0 ||
+            url.indexOf('resource/demo/visu_config') >= 0 ||
+            url.indexOf('resource/hidden-schema.json') >= 0 ||
+            url.indexOf('resource/manager/') >= 0)
         ) {
           return true;
         } else if (
-          method === "GET" &&
+          method === 'GET' &&
           /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)
         ) {
           // change url to avoid API access and do a real request
-          const path = url.split("=").pop();
-          const suffix = path.startsWith("demo/") ? "" : "config/";
-          args[1] = window.location.pathname + "resource/" + suffix + path;
+          const path = url.split('=').pop();
+          const suffix = path.startsWith('demo/') ? '' : 'config/';
+          args[1] = window.location.pathname + 'resource/' + suffix + path;
           return true;
         }
         return false;
@@ -200,11 +200,11 @@ qx.Class.define("cv.io.Mockup", {
           if (!this.__xhr[url] || this.__xhr[url].length === 0) {
             qx.log.Logger.error(
               this,
-              "404: no logged responses for URI " + url + " found"
+              '404: no logged responses for URI ' + url + ' found'
             );
           } else {
-            qx.log.Logger.debug(this, "faking response for " + url);
-            let response = "";
+            qx.log.Logger.debug(this, 'faking response for ' + url);
+            let response = '';
             if (this.__xhr[url].length === 1) {
               response = this.__xhr[url][0];
             } else {
@@ -231,15 +231,15 @@ qx.Class.define("cv.io.Mockup", {
       // eslint-disable-next-line new-cap
       const xhr = new sinon.xhr.workingXHR();
       [
-        "open",
-        "setRequestHeader",
-        "send",
-        "abort",
-        "getResponseHeader",
-        "getAllResponseHeaders",
-        "addEventListener",
-        "overrideMimeType",
-        "removeEventListener"
+        'open',
+        'setRequestHeader',
+        'send',
+        'abort',
+        'getResponseHeader',
+        'getAllResponseHeaders',
+        'addEventListener',
+        'overrideMimeType',
+        'removeEventListener'
       ].forEach(function (method) {
         fakeXhr[method] = function () {
           return xhr[method].apply(xhr, arguments);
@@ -261,13 +261,13 @@ qx.Class.define("cv.io.Mockup", {
       const stateChange = function () {
         fakeXhr.readyState = xhr.readyState;
         if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
-          copyAttrs(["status", "statusText"]);
+          copyAttrs(['status', 'statusText']);
         }
         if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
-          copyAttrs(["responseText"]);
+          copyAttrs(['responseText']);
         }
         if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
-          copyAttrs(["responseXML"]);
+          copyAttrs(['responseXML']);
         }
         if (fakeXhr.onreadystatechange) {
           fakeXhr.onreadystatechange({ target: fakeXhr });
@@ -282,7 +282,7 @@ qx.Class.define("cv.io.Mockup", {
             });
           }
         }
-        xhr.addEventListener("readystatechange", stateChange);
+        xhr.addEventListener('readystatechange', stateChange);
       } else {
         xhr.onreadystatechange = stateChange;
       }
@@ -304,7 +304,7 @@ qx.Class.define("cv.io.Mockup", {
     login(loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
-        if (qx.core.Environment.get("cv.testMode")) {
+        if (qx.core.Environment.get('cv.testMode')) {
           if (cv.Config.initialDemoData) {
             this.receive({
               i: new Date().getTime(),
@@ -332,7 +332,7 @@ qx.Class.define("cv.io.Mockup", {
         if (
           Object.prototype.hasOwnProperty.call(
             simulation,
-            "additionalAddresses"
+            'additionalAddresses'
           )
         ) {
           simulation.additionalAddresses.forEach(function (addr) {
@@ -369,11 +369,11 @@ qx.Class.define("cv.io.Mockup", {
       }
       let start = false;
       let stop = false;
-      if (Object.prototype.hasOwnProperty.call(simulation, "startValues")) {
+      if (Object.prototype.hasOwnProperty.call(simulation, 'startValues')) {
         // try the more specific matches with address included
-        start = simulation.startValues.indexOf(address + "|" + value) >= 0;
-        if (Object.prototype.hasOwnProperty.call(simulation, "stopValues")) {
-          stop = simulation.stopValues.indexOf(address + "|" + value) >= 0;
+        start = simulation.startValues.indexOf(address + '|' + value) >= 0;
+        if (Object.prototype.hasOwnProperty.call(simulation, 'stopValues')) {
+          stop = simulation.stopValues.indexOf(address + '|' + value) >= 0;
         }
         if (!stop) {
           // the the more general ones
@@ -383,11 +383,12 @@ qx.Class.define("cv.io.Mockup", {
       }
       if (start) {
         // start simulation
-        if (simulation.type === "shutter") {
-          simulation.direction = value === "0" ? "up" : "down";
+        if (simulation.type === 'shutter') {
+          simulation.direction = value === '0' ? 'up' : 'down';
           let initValue = cv.data.Model.getInstance().getState(
             simulation.targetAddress
           );
+
           if (initValue === undefined) {
             initValue = 0;
           }
@@ -398,9 +399,9 @@ qx.Class.define("cv.io.Mockup", {
           } else {
             simulation.timer = new qx.event.Timer(simulation.interval || 100);
             const stepSize = simulation.stepSize || 10;
-            simulation.timer.addListener("interval", () => {
+            simulation.timer.addListener('interval', () => {
               let newValue = simulation.value;
-              if (simulation.direction === "up") {
+              if (simulation.direction === 'up') {
                 // drive up
                 newValue = simulation.value + stepSize;
                 if (newValue > 100) {
@@ -478,7 +479,7 @@ qx.Class.define("cv.io.Mockup", {
         if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
           if (/^[\da-fA-F]+$/.test(value)) {
             if (value.length <= 2) {
-              value = "" + (parseInt(value, 16) & 63);
+              value = '' + (parseInt(value, 16) & 63);
             } else {
               value = value.substring(2);
             }
@@ -486,7 +487,7 @@ qx.Class.define("cv.io.Mockup", {
           }
         }
         answer.d[address] = value;
-        this.debug("sending value: " + value + " to address: " + address);
+        this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
       }
       // store in window, to make it accessible for protractor
@@ -498,7 +499,7 @@ qx.Class.define("cv.io.Mockup", {
     stop() {},
 
     getResourcePath(name) {
-      if (name === "charts") {
+      if (name === 'charts') {
         return null;
       }
       return name;

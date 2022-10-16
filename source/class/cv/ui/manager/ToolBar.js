@@ -20,7 +20,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.ToolBar", {
+qx.Class.define('cv.ui.manager.ToolBar', {
   extend: qx.ui.toolbar.ToolBar,
 
   /*
@@ -48,7 +48,7 @@ qx.Class.define("cv.ui.manager.ToolBar", {
   ***********************************************
   */
   events: {
-    reload: "qx.event.type.Event"
+    reload: 'qx.event.type.Event'
   },
 
   /*
@@ -59,21 +59,21 @@ qx.Class.define("cv.ui.manager.ToolBar", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-toolbar"
+      init: 'cv-toolbar'
     },
 
     folder: {
-      check: "cv.ui.manager.model.FileItem",
+      check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: "_applyFolder",
-      event: "changeFolder"
+      apply: '_applyFolder',
+      event: 'changeFolder'
     },
 
     file: {
-      check: "cv.ui.manager.model.FileItem",
+      check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: "_applyFile",
-      event: "changeFile"
+      apply: '_applyFile',
+      event: 'changeFile'
     }
   },
 
@@ -107,58 +107,60 @@ qx.Class.define("cv.ui.manager.ToolBar", {
       this.add(createPart);
       let newButton;
 
-      if (this.__show("new-menu")) {
+      if (this.__show('new-menu')) {
         newButton = new qx.ui.toolbar.MenuButton(
           null,
-          cv.theme.dark.Images.getIcon("new-file", 15),
-          this._menuBar.getChildControl("new-menu")
+          cv.theme.dark.Images.getIcon('new-file', 15),
+          this._menuBar.getChildControl('new-menu')
         );
 
-        this.bind("folder.writeable", newButton, "enabled");
+        this.bind('folder.writeable', newButton, 'enabled');
         createPart.add(newButton);
       } else {
-        if (this.__show("new-config-file")) {
+        if (this.__show('new-config-file')) {
           newButton = this._createButton(
-            "new-config-file",
-            cv.theme.dark.Images.getIcon("new-file", 15)
+            'new-config-file',
+            cv.theme.dark.Images.getIcon('new-file', 15)
           );
-          this.bind("folder.writeable", newButton, "enabled");
-          this.bind("folder", newButton, "visibility", {
+
+          this.bind('folder.writeable', newButton, 'enabled');
+          this.bind('folder', newButton, 'visibility', {
             converter(folder) {
               return folder === cv.ui.manager.model.FileItem.ROOT
-                ? "visible"
-                : "excluded";
+                ? 'visible'
+                : 'excluded';
             }
           });
 
-          newButton.addListener("execute", () => {
+          newButton.addListener('execute', () => {
             qx.event.message.Bus.dispatchByName(
-              "cv.manager.action.new-config-file",
+              'cv.manager.action.new-config-file',
               this.getFolder()
             );
           });
           createPart.add(newButton);
-        } else if (this.__show("new-file")) {
-          newButton = this._createButton("new-file", null, true);
-          this.bind("folder.writeable", newButton, "enabled");
-          newButton.addListener("execute", () => {
+        } else if (this.__show('new-file')) {
+          newButton = this._createButton('new-file', null, true);
+          this.bind('folder.writeable', newButton, 'enabled');
+          newButton.addListener('execute', () => {
             qx.event.message.Bus.dispatchByName(
-              "cv.manager.action.new-file",
+              'cv.manager.action.new-file',
               this.getFolder()
             );
           });
           createPart.add(newButton);
         }
-        if (this.__show("new-folder")) {
+        if (this.__show('new-folder')) {
           newButton = this._createButton(
-            "new-folder",
-            cv.theme.dark.Images.getIcon("new-folder", 15),
+            'new-folder',
+            cv.theme.dark.Images.getIcon('new-folder', 15),
             true
           );
-          this.bind("folder.writeable", newButton, "enabled");
-          newButton.addListener("execute", () => {
+
+          this.bind('folder.writeable', newButton, 'enabled');
+          newButton.addListener('execute', () => {
             qx.event.message.Bus.dispatchByName(
-              "cv.manager.action.new-folder",
+              'cv.manager.action.new-folder',
               this.getFolder()
             );
           });
@@ -166,19 +168,19 @@ qx.Class.define("cv.ui.manager.ToolBar", {
         }
       }
 
-      if (this.__show("upload")) {
-        const upload = this._createButton("upload");
+      if (this.__show('upload')) {
+        const upload = this._createButton('upload');
         this._uploadManager.addWidget(upload);
-        this.bind("folder.writeable", upload, "enabled");
+        this.bind('folder.writeable', upload, 'enabled');
         createPart.add(upload);
       }
 
-      if (this.__show("delete")) {
-        const deleteSelection = this._createButton("delete");
-        deleteSelection.addListener("execute", () => {
+      if (this.__show('delete')) {
+        const deleteSelection = this._createButton('delete');
+        deleteSelection.addListener('execute', () => {
           fileController.delete(this.getFile());
         });
-        this.bind("file", deleteSelection, "enabled", {
+        this.bind('file', deleteSelection, 'enabled', {
           converter(file) {
             return !!file && file.isWriteable() && !file.isFake();
           }
@@ -187,40 +189,42 @@ qx.Class.define("cv.ui.manager.ToolBar", {
         this.add(deleteSelection);
       }
 
-      if (this.__show("download")) {
+      if (this.__show('download')) {
         const download = new qx.ui.toolbar.Button(
           null,
-          cv.theme.dark.Images.getIcon("download", 15)
+          cv.theme.dark.Images.getIcon('download', 15)
         );
-        download.setAppearance("cv-toolbar-button");
-        download.setToolTipText(qx.locale.Manager.tr("Download"));
-        download.addListener("execute", () => {
+
+        download.setAppearance('cv-toolbar-button');
+        download.setToolTipText(qx.locale.Manager.tr('Download'));
+        download.addListener('execute', () => {
           fileController.download(this.getFile());
         });
         // download button is only enabled when a file is selected
-        this.bind("file", download, "enabled", {
+        this.bind('file', download, 'enabled', {
           converter(file) {
-            return !!file && file.getType() === "file" && !file.isFake();
+            return !!file && file.getType() === 'file' && !file.isFake();
           }
         });
 
         createPart.add(download);
       }
 
-      if (this.__show("validate")) {
+      if (this.__show('validate')) {
         // config check
         const checkConfig = new qx.ui.toolbar.Button(
           null,
-          cv.theme.dark.Images.getIcon("validate", 15)
+          cv.theme.dark.Images.getIcon('validate', 15)
         );
-        checkConfig.setAppearance("cv-toolbar-button");
-        checkConfig.setToolTipText(qx.locale.Manager.tr("Validate"));
-        checkConfig.addListener("execute", () => {
+
+        checkConfig.setAppearance('cv-toolbar-button');
+        checkConfig.setToolTipText(qx.locale.Manager.tr('Validate'));
+        checkConfig.addListener('execute', () => {
           fileController.validate(this.getFile());
         });
 
         // validate button is only enabled when a file is selected
-        this.bind("file", checkConfig, "enabled", {
+        this.bind('file', checkConfig, 'enabled', {
           converter(file) {
             return !!file && file.isConfigFile();
           }
@@ -229,15 +233,16 @@ qx.Class.define("cv.ui.manager.ToolBar", {
         this.add(checkConfig);
       }
 
-      if (this.__show("reload")) {
+      if (this.__show('reload')) {
         const reload = new qx.ui.toolbar.Button(
           null,
-          cv.theme.dark.Images.getIcon("reload", 15)
+          cv.theme.dark.Images.getIcon('reload', 15)
         );
-        reload.setAppearance("cv-toolbar-button");
-        reload.setToolTipText(qx.locale.Manager.tr("Reload"));
-        reload.addListener("execute", () => {
-          this.fireEvent("reload");
+
+        reload.setAppearance('cv-toolbar-button');
+        reload.setToolTipText(qx.locale.Manager.tr('Reload'));
+        reload.addListener('execute', () => {
+          this.fireEvent('reload');
         });
         this.add(new qx.ui.core.Spacer(), { flex: 1 });
         this.add(reload);
@@ -248,10 +253,11 @@ qx.Class.define("cv.ui.manager.ToolBar", {
       const args = this._menuButtonConfig[name].args;
       const button = new qx.ui.toolbar.Button(
         null,
-        icon || args[1].replace(/\/[0-9]+$/, "/15"),
+        icon || args[1].replace(/\/[0-9]+$/, '/15'),
         !doNotUseCommand ? args[2] : null
       );
-      button.setAppearance("cv-toolbar-button");
+
+      button.setAppearance('cv-toolbar-button');
       button.setToolTipText(args[0]);
       return button;
     },

@@ -31,7 +31,7 @@
  * @ignore(RSSParser)
  * @asset(plugins/rss/rss-parser.min.js)
  */
-qx.Class.define("cv.plugins.Rss", {
+qx.Class.define('cv.plugins.Rss', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Refresh],
 
@@ -60,6 +60,7 @@ qx.Class.define("cv.plugins.Rss", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
       return data;
     },
@@ -67,8 +68,8 @@ qx.Class.define("cv.plugins.Rss", {
     getAttributeToPropertyMappings() {
       return {
         src: {},
-        width: { default: "" },
-        height: { default: "" },
+        width: { default: '' },
+        height: { default: '' },
         limit: { default: 10 },
         header: { default: true },
         date: { default: true },
@@ -76,7 +77,7 @@ qx.Class.define("cv.plugins.Rss", {
         snippet: { default: true },
         showerror: { default: true },
         ssl: { default: false },
-        linktarget: { default: "_new" },
+        linktarget: { default: '_new' },
         link: { default: true },
         title: { default: true }
       };
@@ -89,9 +90,9 @@ qx.Class.define("cv.plugins.Rss", {
   ******************************************************
   */
   properties: {
-    src: { check: "String", init: "" },
-    width: { init: "" },
-    height: { init: "" },
+    src: { check: 'String', init: '' },
+    width: { init: '' },
+    height: { init: '' },
     limit: { init: 10 },
     header: { init: true },
     date: { init: true },
@@ -99,7 +100,7 @@ qx.Class.define("cv.plugins.Rss", {
     snippet: { init: true },
     showerror: { init: true },
     ssl: { init: false },
-    linktarget: { init: "_new" },
+    linktarget: { init: '_new' },
     link: { init: true },
     title: { init: true }
   },
@@ -114,15 +115,15 @@ qx.Class.define("cv.plugins.Rss", {
 
     _getInnerDomString() {
       const rssstyle =
-        "" + this.getWidth()
-          ? "width:" + this.getWidth()
-          : "" + this.getHeight()
-          ? "height:" + this.getHeight()
-          : "";
+        '' + this.getWidth()
+          ? 'width:' + this.getWidth()
+          : '' + this.getHeight()
+          ? 'height:' + this.getHeight()
+          : '';
       return (
-        "<div class=\"actor\"><ul class=\"rss_inline\" style=\"" +
+        '<div class="actor"><ul class="rss_inline" style="' +
         rssstyle +
-        "\"></ul>"
+        '"></ul>'
       );
     },
 
@@ -134,7 +135,7 @@ qx.Class.define("cv.plugins.Rss", {
 
     _setupRefreshAction() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener("interval", () => {
+      this._timer.addListener('interval', () => {
         this.refreshRSS();
       });
       this._timer.start();
@@ -143,24 +144,24 @@ qx.Class.define("cv.plugins.Rss", {
     refreshRSS() {
       this._parser.parseURL(this.getSrc(), (err, feed) => {
         const actor = this.getActor();
-        let target = actor.querySelector(".rss_inline");
+        let target = actor.querySelector('.rss_inline');
         if (err) {
           this.error(err);
           if (this.getShowerror()) {
-            target.textContent = "ERROR: " + err;
+            target.textContent = 'ERROR: ' + err;
           }
           return;
         }
         if (this.getHeader()) {
-          let headline = actor.querySelector(":scope > h3");
+          let headline = actor.querySelector(':scope > h3');
           if (!headline) {
-            headline = document.createElement("h3");
+            headline = document.createElement('h3');
             actor.insertBefore(headline, actor.firstElementChild);
           }
           headline.textContent = feed.title;
         }
 
-        const elements = target.querySelectorAll(":scope > li");
+        const elements = target.querySelectorAll(':scope > li');
         for (let i = elements.length; i >= feed.items.length; i--) {
           elements[i].remove();
         }
@@ -170,43 +171,43 @@ qx.Class.define("cv.plugins.Rss", {
         const showDate = this.getDate();
 
         feed.items.some((entry, i) => {
-          let elem = target.querySelector(":scope > li[data-row=\"" + i + "\"]");
+          let elem = target.querySelector(':scope > li[data-row="' + i + '"]');
           let a;
           let content;
           let date;
           if (!elem) {
-            elem = document.createElement("li");
+            elem = document.createElement('li');
             if (useLink) {
-              a = document.createElement("a");
-              a.setAttribute("target", this.getLinktarget());
+              a = document.createElement('a');
+              a.setAttribute('target', this.getLinktarget());
               elem.appendChild(a);
             }
             if (showContent) {
-              content = document.createElement("p");
-              content.classList.add("content");
+              content = document.createElement('p');
+              content.classList.add('content');
               elem.appendChild(content);
             }
             if (showDate) {
-              date = document.createElement("p");
-              date.classList.add("date");
+              date = document.createElement('p');
+              date.classList.add('date');
               elem.appendChild(date);
             }
-            elem.setAttribute("data-row", "" + i);
+            elem.setAttribute('data-row', '' + i);
             target.appendChild(elem);
           } else {
             if (useLink) {
-              a = elem.querySelector(":scope > a");
+              a = elem.querySelector(':scope > a');
             }
             if (showContent) {
-              content = elem.querySelector(":scope > p.content");
+              content = elem.querySelector(':scope > p.content');
             }
             if (showDate) {
-              date = elem.querySelector(":scope > p.date");
+              date = elem.querySelector(':scope > p.date');
             }
           }
           if (useLink) {
             a.textContent = entry.title;
-            a.setAttribute("href", entry.link);
+            a.setAttribute('href', entry.link);
           } else {
             elem.textContent = entry.title;
           }
@@ -230,8 +231,8 @@ qx.Class.define("cv.plugins.Rss", {
 
   defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
-    loader.addScripts("plugins/rss/rss-parser.min.js");
-    cv.parser.pure.WidgetParser.addHandler("rss", cv.plugins.Rss);
-    cv.ui.structure.WidgetFactory.registerClass("rss", statics);
+    loader.addScripts('plugins/rss/rss-parser.min.js');
+    cv.parser.pure.WidgetParser.addHandler('rss', cv.plugins.Rss);
+    cv.ui.structure.WidgetFactory.registerClass('rss', statics);
   }
 });

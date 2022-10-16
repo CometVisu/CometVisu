@@ -41,8 +41,8 @@
  * @author Christian Mayer
  * @since 2010
  */
-qx.Class.define("cv.Transform", {
-  type: "static",
+qx.Class.define('cv.Transform', {
+  type: 'static',
 
   /*
    ******************************************************
@@ -52,7 +52,7 @@ qx.Class.define("cv.Transform", {
   statics: {
     registry: {
       raw: {
-        name: "Only the RAW value",
+        name: 'Only the RAW value',
         encode(i) {
           return i;
         },
@@ -62,7 +62,7 @@ qx.Class.define("cv.Transform", {
       },
 
       int: {
-        name: "Cast to Int",
+        name: 'Cast to Int',
         encode(i) {
           return i.toString();
         },
@@ -72,7 +72,7 @@ qx.Class.define("cv.Transform", {
       },
 
       float: {
-        name: "Cast to Float",
+        name: 'Cast to Float',
         encode(i) {
           return i.toString();
         },
@@ -95,13 +95,13 @@ qx.Class.define("cv.Transform", {
     addTransform(prefix, transforms) {
       for (let [transName, transform] of Object.entries(transforms)) {
         if (transform.link) {
-          this.registry[prefix + ":" + transName] = Object.assign(
+          this.registry[prefix + ':' + transName] = Object.assign(
             {},
             transforms[transform.link],
             transform
           );
         } else {
-          this.registry[prefix + ":" + transName] = transform;
+          this.registry[prefix + ':' + transName] = transform;
         }
       }
     },
@@ -146,7 +146,7 @@ qx.Class.define("cv.Transform", {
     encodeBusAndRaw(address, value) {
       const { transform } = address;
       let { selector, variantInfo } = address;
-      let basetrans = transform.split(".")[0];
+      let basetrans = transform.split('.')[0];
       const encoding =
         transform in cv.Transform.registry
           ? cv.Transform.registry[transform].encode(value, variantInfo)
@@ -154,11 +154,11 @@ qx.Class.define("cv.Transform", {
           ? cv.Transform.registry[basetrans].encode(value, variantInfo)
           : value;
 
-      if (typeof selector === "string") {
+      if (typeof selector === 'string') {
         let result = {};
-        let lastPart = "start";
+        let lastPart = 'start';
         let v = result; // use the fact that `v` is now a reference and not a copy
-        while (selector !== "") {
+        while (selector !== '') {
           const { firstPart, remainingPart } = this.__getFirstElement(selector);
           if (isFinite(firstPart)) {
             v[lastPart] = [];
@@ -174,8 +174,8 @@ qx.Class.define("cv.Transform", {
         return { bus: retval, raw: retval };
       }
       return encoding.constructor === Object &&
-        "bus" in encoding &&
-        "raw" in encoding
+        'bus' in encoding &&
+        'raw' in encoding
         ? encoding
         : { bus: encoding, raw: encoding };
     },
@@ -200,10 +200,10 @@ qx.Class.define("cv.Transform", {
     decode(address, value) {
       const { transform, ignoreError } = address;
       let { selector, variantInfo } = address;
-      const basetrans = transform.split(".")[0];
+      const basetrans = transform.split('.')[0];
 
       if (
-        typeof value === "string" &&
+        typeof value === 'string' &&
         selector !== undefined &&
         selector !== null
       ) {
@@ -212,15 +212,15 @@ qx.Class.define("cv.Transform", {
 
         try {
           let v = JSON.parse(value);
-          while (selector !== "") {
+          while (selector !== '') {
             const { firstPart, remainingPart } =
               this.__getFirstElement(selector);
-            if (typeof v === "object" && firstPart in v) {
+            if (typeof v === 'object' && firstPart in v) {
               v = v[firstPart];
             } else {
               throw new Error(
                 qx.locale.Manager.tr(
-                  "Sub-selector \"%1\" does not fit to value %2",
+                  'Sub-selector "%1" does not fit to value %2',
                   selector,
                   JSON.stringify(v)
                 )
@@ -228,7 +228,7 @@ qx.Class.define("cv.Transform", {
             }
             if (selector === remainingPart) {
               throw new Error(
-                qx.locale.Manager.tr("Sub-selector error: \"%1\"", selector)
+                qx.locale.Manager.tr('Sub-selector error: "%1"', selector)
               );
             }
             selector = remainingPart;
@@ -237,13 +237,13 @@ qx.Class.define("cv.Transform", {
         } catch (e) {
           if (!ignoreError) {
             const message = {
-              topic: "cv.transform.decode",
-              title: qx.locale.Manager.tr("Transform decode error"),
-              severity: "urgent",
+              topic: 'cv.transform.decode',
+              title: qx.locale.Manager.tr('Transform decode error'),
+              severity: 'urgent',
               unique: false,
               deletable: true,
               message: qx.locale.Manager.tr(
-                "decode: JSON.parse error: %1; selector: \"%2\"; value: %3",
+                'decode: JSON.parse error: %1; selector: "%2"; value: %3',
                 e,
                 selectorOriginal,
                 JSON.stringify(value)
@@ -255,7 +255,7 @@ qx.Class.define("cv.Transform", {
               message
             );
           }
-          return "-";
+          return '-';
         }
       }
       return transform in cv.Transform.registry
@@ -271,11 +271,11 @@ qx.Class.define("cv.Transform", {
      * @returns {{firstPart: string, remainingPart: string}}
      */
     __getFirstElement(selector) {
-      if (selector[0] === "[") {
+      if (selector[0] === '[') {
         const [, firstPart, remainingPart] =
           selector.match(/^\[([^\]]*)]\.?(.*)/);
         if (
-          (firstPart[0] === "\"" || firstPart[0] === "'") &&
+          (firstPart[0] === '"' || firstPart[0] === "'") &&
           firstPart[0] === firstPart.substr(-1)
         ) {
           return {
@@ -286,7 +286,7 @@ qx.Class.define("cv.Transform", {
           return { firstPart, remainingPart };
         }
         throw qx.locale.Manager.tr(
-          "Sub-selector \"%1\" has bad first part \"%2\"",
+          'Sub-selector "%1" has bad first part "%2"',
           selector,
           firstPart
         );
@@ -295,7 +295,7 @@ qx.Class.define("cv.Transform", {
         if (firstPart.length > 0) {
           return { firstPart, remainingPart };
         }
-        throw qx.locale.Manager.tr("Sub-selector error: \"%1\"", selector);
+        throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
       }
     }
   }

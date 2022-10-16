@@ -24,7 +24,7 @@
  *
  * @since 2013
  */
-qx.Class.define("cv.ui.structure.pure.PushButton", {
+qx.Class.define('cv.ui.structure.pure.PushButton', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -34,8 +34,8 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
   ******************************************************
   */
   properties: {
-    downValue: { check: "String", init: "1" },
-    upValue: { check: "String", init: "0" }
+    downValue: { check: 'String', init: '1' },
+    upValue: { check: 'String', init: '0' }
   },
 
   /*
@@ -46,13 +46,13 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
   members: {
     // overridden
     _getInnerDomString() {
-      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
+      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     // overridden
     initListeners() {
-      this.addElementListener("pointerdown", this._onPointerDown, this);
-      this.addElementListener("pointerup", this._onPointerUp, this);
+      this.addElementListener('pointerdown', this._onPointerDown, this);
+      this.addElementListener('pointerup', this._onPointerUp, this);
     },
 
     /**
@@ -64,12 +64,13 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
     handleUpdate(value) {
       const actor = this.getActor();
       // compare against the unmapped value
-      value = "" + this.getBasicValue();
+      value = '' + this.getBasicValue();
       const off = this.getUpValue();
       actor.classList.remove(
-        value === off ? "switchPressed" : "switchUnpressed"
+        value === off ? 'switchPressed' : 'switchUnpressed'
       );
-      actor.classList.add(value === off ? "switchUnpressed" : "switchPressed");
+
+      actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
     },
 
     /**
@@ -77,7 +78,7 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
      * @param event
      */
     getActionValue(event) {
-      if (event.type === "pointerup") {
+      if (event.type === 'pointerup') {
         return this.getUpValue();
       }
       return this.getDownValue();
@@ -86,19 +87,19 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
     _onPointerUp() {
       const sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
-        return !address.variantInfo || address.variantInfo === "up";
+        return !address.variantInfo || address.variantInfo === 'up';
       });
     },
 
     _onPointerDown() {
       const sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
-        return !address.variantInfo || address.variantInfo === "down";
+        return !address.variantInfo || address.variantInfo === 'down';
       });
     }
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pushbutton", statics);
+    cv.ui.structure.WidgetFactory.registerClass('pushbutton', statics);
   }
 });

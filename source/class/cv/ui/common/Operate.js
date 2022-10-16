@@ -21,7 +21,7 @@
  * Provides methods for widgets that can be controlled by the user.
  * Usually this operation includes sending values to the backend.
  */
-qx.Mixin.define("cv.ui.common.Operate", {
+qx.Mixin.define('cv.ui.common.Operate', {
   /*
   ******************************************************
     MEMBERS
@@ -90,6 +90,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
                   address,
                   value
                 );
+
                 if (
                   !currentBusValues ||
                   encodedValue.raw !== currentBusValues[encoding]
@@ -104,13 +105,13 @@ qx.Mixin.define("cv.ui.common.Operate", {
               } catch (e) {
                 if (!address.ignoreError) {
                   const message = {
-                    topic: "cv.transform.encode",
-                    title: qx.locale.Manager.tr("Transform encode error"),
-                    severity: "urgent",
+                    topic: 'cv.transform.encode',
+                    title: qx.locale.Manager.tr('Transform encode error'),
+                    severity: 'urgent',
                     unique: false,
                     deletable: true,
                     message: qx.locale.Manager.tr(
-                      "Encode error: %1; selector: \"%2\"; value: %3",
+                      'Encode error: %1; selector: "%2"; value: %3',
                       e,
                       address.selector,
                       JSON.stringify(value)

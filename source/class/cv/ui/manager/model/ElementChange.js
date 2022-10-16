@@ -20,7 +20,7 @@
 /**
  * An atomic change on an cv.ui.manager.model.XmlElement that can be undone / redone.
  */
-qx.Class.define("cv.ui.manager.model.ElementChange", {
+qx.Class.define('cv.ui.manager.model.ElementChange', {
   extend: qx.core.Object,
 
   /*
@@ -33,7 +33,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
     this.setTitle(title);
     this.setElement(element);
     this.setChanges(changes);
-    this.setChangeType(type || "content");
+    this.setChangeType(type || 'content');
   },
   /*
   ***********************************************
@@ -42,20 +42,20 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
   */
   properties: {
     element: {
-      check: "cv.ui.manager.model.XmlElement"
+      check: 'cv.ui.manager.model.XmlElement'
     },
 
     title: {
-      check: "String"
+      check: 'String'
     },
 
     changes: {
-      check: "Array"
+      check: 'Array'
     },
 
     changeType: {
-      check: ["content", "created", "deleted", "moved"],
-      init: ["content"]
+      check: ['content', 'created', 'deleted', 'moved'],
+      init: ['content']
     }
   },
 
@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
       let change;
       if (!element.isDisposed()) {
         switch (this.getChangeType()) {
-          case "content":
+          case 'content':
             this.getChanges().forEach(change => {
               if (change instanceof cv.ui.manager.model.ElementChange) {
                 change.undo();
@@ -87,7 +87,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
             success = true;
             break;
 
-          case "deleted":
+          case 'deleted':
             change = this.getChanges()[0];
             if (change.parent) {
               success = change.parent.insertChild(
@@ -98,7 +98,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
             }
             break;
 
-          case "created":
+          case 'created':
             change = this.getChanges()[0];
             if (change.child) {
               change.child.remove(true);
@@ -106,13 +106,14 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
             }
             break;
 
-          case "moved":
+          case 'moved':
             change = this.getChanges()[0];
             success = change.child.moveTo(
               change.oldParent,
               change.oldIndex,
               true
             );
+
             break;
         }
       }
@@ -129,7 +130,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
       let change;
       if (!element.isDisposed()) {
         switch (this.getChangeType()) {
-          case "content":
+          case 'content':
             this.getChanges().forEach(change => {
               if (change instanceof cv.ui.manager.model.ElementChange) {
                 change.redo();
@@ -141,14 +142,14 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
             success = true;
             break;
 
-          case "deleted":
+          case 'deleted':
             if (element) {
               element.remove(true);
               success = true;
             }
             break;
 
-          case "created":
+          case 'created':
             change = this.getChanges()[0];
             if (change.parent) {
               success = change.parent.insertChild(
@@ -159,7 +160,7 @@ qx.Class.define("cv.ui.manager.model.ElementChange", {
             }
             break;
 
-          case "moved":
+          case 'moved':
             change = this.getChanges()[0];
             success = change.child.moveTo(change.parent, change.index, true);
             break;

@@ -21,8 +21,8 @@
  * @author Christian Mayer
  * @since 2015
  */
-qx.Class.define("cv.util.IconTools", {
-  type: "static",
+qx.Class.define('cv.util.IconTools', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -41,15 +41,15 @@ qx.Class.define("cv.util.IconTools", {
      * @type {Object<string, string>}
      */
     colorMapping: {
-      white: "#ffffff",
-      orange: "#ff8000",
-      red: "#ff4444",
-      green: "#44ff44",
-      blue: "#4444ff",
-      purple: "#ff44ff",
-      yellow: "#ffff00",
-      grey: "#777777",
-      black: "#000000"
+      white: '#ffffff',
+      orange: '#ff8000',
+      red: '#ff4444',
+      green: '#44ff44',
+      blue: '#4444ff',
+      purple: '#ff44ff',
+      yellow: '#ffff00',
+      grey: '#777777',
+      black: '#000000'
     },
 
     /**
@@ -129,8 +129,8 @@ qx.Class.define("cv.util.IconTools", {
      * @param {string?} classes
      * @returns {string}
      */
-    createCanvas(iconId, styling = "", classes = "") {
-      return "<canvas class=\"" + iconId + " " + classes + "\" " + styling + "/>";
+    createCanvas(iconId, styling = '', classes = '') {
+      return '<canvas class="' + iconId + ' ' + classes + '" ' + styling + '/>';
     },
     /**
      * Fill the canvas with the ImageData. Also resize the
@@ -141,7 +141,7 @@ qx.Class.define("cv.util.IconTools", {
     fillCanvas(canvas, imageData) {
       canvas.width = imageData.width;
       canvas.height = imageData.height;
-      canvas.getContext("2d").putImageData(imageData, 0, 0);
+      canvas.getContext('2d').putImageData(imageData, 0, 0);
     },
     /**
      * Two versions of a recoloring function to work around an Android bug:
@@ -154,10 +154,10 @@ qx.Class.define("cv.util.IconTools", {
      * @param {number} length
      */
     innerRecolorLoop:
-      navigator.userAgent.toLowerCase().indexOf("android") > -1 &&
+      navigator.userAgent.toLowerCase().indexOf('android') > -1 &&
       parseFloat(
         navigator.userAgent.slice(
-          navigator.userAgent.toLowerCase().indexOf("android") + 8
+          navigator.userAgent.toLowerCase().indexOf('android') + 8
         )
       ) < 4.4
         ? function (r, g, b, data, length) {
@@ -212,13 +212,14 @@ qx.Class.define("cv.util.IconTools", {
         width,
         height
       );
+
       if (color !== undefined) {
         if (!cv.util.IconTools.hexColorRegEx.test(color)) {
           qx.log.Logger.error(
             this,
-            "Error! \"" +
+            'Error! "' +
               color +
-              "\" is not a valid color for icon recoloring! It must have a shape like \"#rrggbb\"."
+              '" is not a valid color for icon recoloring! It must have a shape like "#rrggbb".'
           );
         }
         const r = parseInt(color.substr(1, 2), 16);
@@ -285,15 +286,15 @@ qx.Class.define("cv.util.IconTools", {
         }
 
         if (!color) {
-          color = "#ffffff";
+          color = '#ffffff';
         }
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
         const c =
-          "icon" +
+          'icon' +
           cv.util.IconTools.iconCache[url].id +
-          "_" +
+          '_' +
           color.substr(1, 6);
         cv.util.IconTools.iconCache[url].toFill.push(color);
 
@@ -305,7 +306,7 @@ qx.Class.define("cv.util.IconTools", {
         if (asText) {
           return newCanvas;
         }
-        let template = document.createElement("template");
+        let template = document.createElement('template');
         template.innerHTML = newCanvas;
         const newElement = template.content.firstChild;
         if (cv.util.IconTools.iconCache[url].icon.complete) {
@@ -332,20 +333,22 @@ qx.Class.define("cv.util.IconTools", {
     fillRecoloredIcon(icon) {
       const parameters = Array.prototype.filter.call(
         icon.classList,
-        name => name !== "icon"
+        name => name !== 'icon'
       );
+
       if (parameters.length === 2) {
         const cacheEntry =
           cv.util.IconTools.iconCache[
             cv.util.IconTools.iconCacheMap[parameters[0]]
           ];
-        const coloredIcon = cacheEntry.colors["#" + parameters[1]];
+
+        const coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
         if (undefined === coloredIcon) {
           cv.util.IconTools.iconDelayed(
             icon,
             cacheEntry.colors,
-            "#" + parameters[1]
+            '#' + parameters[1]
           );
         } else {
           cv.util.IconTools.fillCanvas(icon, coloredIcon);
@@ -362,7 +365,7 @@ qx.Class.define("cv.util.IconTools", {
         this.preloadedKUFicons = true;
         const iconPath =
           cv.Application.getRelativeResourcePath() +
-          "icons/fonts/knx-uf-iconset.css";
+          'icons/fonts/knx-uf-iconset.css';
         cv.util.ScriptLoader.includeStylesheet(iconPath);
       }
       /**
@@ -380,25 +383,25 @@ qx.Class.define("cv.util.IconTools", {
           color = cv.util.IconTools.colorMapping[color];
         }
 
-        let style = styling || "";
+        let style = styling || '';
         if (color) {
-          style += "color:" + color + ";";
+          style += 'color:' + color + ';';
         }
         if (asText) {
           if (style) {
-            style = " style=\"" + style + "\"";
+            style = ' style="' + style + '"';
           }
           return (
-            "<i" + style + " class=\"knxuf-" + iconID + " " + classes + "\"></i>"
+            '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"></i>'
           );
         }
-        let icon = document.createElement("i");
+        let icon = document.createElement('i');
         if (classes) {
-          icon.setAttribute("class", classes);
+          icon.setAttribute('class', classes);
         }
-        icon.classList.add("knxuf-" + iconID);
+        icon.classList.add('knxuf-' + iconID);
         if (style) {
-          icon.setAttribute("style", style);
+          icon.setAttribute('style', style);
         }
         return icon;
       };
@@ -406,8 +409,8 @@ qx.Class.define("cv.util.IconTools", {
   },
 
   defer() {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     this.defer.self.tmpCanvas = canvas;
-    this.defer.self.tmpCtx = canvas.getContext("2d");
+    this.defer.self.tmpCtx = canvas.getContext('2d');
   }
 });

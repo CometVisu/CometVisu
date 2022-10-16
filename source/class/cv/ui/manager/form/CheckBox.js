@@ -20,7 +20,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.form.CheckBox", {
+qx.Class.define('cv.ui.manager.form.CheckBox', {
   extend: qx.ui.form.CheckBox,
   /*
   ***********************************************
@@ -46,9 +46,9 @@ qx.Class.define("cv.ui.manager.form.CheckBox", {
     _applyValue(value, old) {
       super._applyValue(value, old);
       if (value === null) {
-        this.setLabel(" - " + this.tr("not set") + " - ");
+        this.setLabel(' - ' + this.tr('not set') + ' - ');
       } else {
-        this.setLabel("");
+        this.setLabel('');
       }
     }
   }

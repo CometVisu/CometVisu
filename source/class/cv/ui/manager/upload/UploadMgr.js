@@ -20,7 +20,7 @@
 /**
  * Extend {com.zenesis.qx.upload.UploadMgr} to allow files to e uploaded via HTML5 drop
  */
-qx.Class.define("cv.ui.manager.upload.UploadMgr", {
+qx.Class.define('cv.ui.manager.upload.UploadMgr', {
   extend: com.zenesis.qx.upload.UploadMgr,
 
   /*
@@ -54,18 +54,18 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
     },
 
     folder: {
-      check: "cv.ui.manager.model.FileItem",
+      check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: "_updateUploadUrl"
+      apply: '_updateUploadUrl'
     },
 
     filename: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     force: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -73,66 +73,67 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
   members: {
     _updateUploadUrl() {
       const folder = this.getFolder();
-      const path = folder ? folder.getFullPath() : ".";
-      const url = cv.io.rest.Client.getBaseUrl() + "/fs?type=file&path=" + path;
+      const path = folder ? folder.getFullPath() : '.';
+      const url = cv.io.rest.Client.getBaseUrl() + '/fs?type=file&path=' + path;
       this.setUploadUrl(url);
     },
 
     _init() {
-      this.addListener("addFile", evt => {
+      this.addListener('addFile', evt => {
         const file = evt.getData();
         const filename = this.getFilename();
         if (filename) {
-          file.setParam("filename", filename);
+          file.setParam('filename', filename);
         }
         if (this.isForce()) {
-          file.setParam("force", true);
+          file.setParam('force', true);
         }
-        const progressListenerId = file.addListener("changeProgress", evt => {
+        const progressListenerId = file.addListener('changeProgress', evt => {
           const file = evt.getTarget();
           const uploadedSize = evt.getData();
 
           this.debug(
-            "Upload " +
+            'Upload ' +
               file.getFilename() +
-              ": " +
+              ': ' +
               uploadedSize +
-              " / " +
+              ' / ' +
               file.getSize() +
-              " - " +
+              ' - ' +
               Math.round((uploadedSize / file.getSize()) * 100) +
-              "%"
+              '%'
           );
         });
 
-        const stateListenerId = file.addListener("changeState", evt => {
+        const stateListenerId = file.addListener('changeState', evt => {
           const state = evt.getData();
           const file = evt.getTarget();
 
-          if (state === "uploading") {
-            this.debug(file.getFilename() + " (Uploading...)");
-          } else if (state === "uploaded") {
-            this.debug(file.getFilename() + " (Complete)");
+          if (state === 'uploading') {
+            this.debug(file.getFilename() + ' (Uploading...)');
+          } else if (state === 'uploaded') {
+            this.debug(file.getFilename() + ' (Complete)');
             if (file.getStatus() !== 200) {
               // something went wrong
               switch (file.getStatus()) {
                 case 406:
                   if (this.isForce()) {
                     cv.ui.manager.snackbar.Controller.error(
-                      qx.locale.Manager.tr("Replacing the file failed.")
+                      qx.locale.Manager.tr('Replacing the file failed.')
                     );
                   } else {
                     qxl.dialog.Dialog.confirm(
                       qx.locale.Manager.tr(
-                        "This file already exists, do you want to replace it?"
+                        'This file already exists, do you want to replace it?'
                       ),
+
                       function (confirmed) {
                         if (confirmed) {
                           this.forceUpload(file);
                         }
                       },
                       this,
-                      qx.locale.Manager.tr("File already exists")
+                      qx.locale.Manager.tr('File already exists')
                     );
                   }
                   break;
@@ -140,9 +141,10 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
                 case 403:
                   cv.ui.manager.snackbar.Controller.error(
                     qx.locale.Manager.tr(
-                      "Uploading this file is not allowed here."
+                      'Uploading this file is not allowed here.'
                     )
                   );
+
                   break;
 
                 default: {
@@ -153,27 +155,29 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
                   this.error(err);
                   cv.ui.manager.snackbar.Controller.error(
                     qx.locale.Manager.tr(
-                      "File upload stopped with an error: %1",
+                      'File upload stopped with an error: %1',
                       err
                     )
                   );
+
                   break;
                 }
               }
             } else {
               cv.ui.manager.snackbar.Controller.info(
-                qx.locale.Manager.tr("File has been uploaded")
+                qx.locale.Manager.tr('File has been uploaded')
               );
-              qx.event.message.Bus.dispatchByName("cv.manager.file", {
-                action: "uploaded",
-                path: this.getFolder().getFullPath() + "/" + file.getFilename()
+
+              qx.event.message.Bus.dispatchByName('cv.manager.file', {
+                action: 'uploaded',
+                path: this.getFolder().getFullPath() + '/' + file.getFilename()
               });
             }
-          } else if (state === "cancelled") {
-            this.debug(file.getFilename() + " (Cancelled)");
+          } else if (state === 'cancelled') {
+            this.debug(file.getFilename() + ' (Cancelled)');
           }
           // Remove the listeners
-          if (state === "uploaded" || state === "cancelled") {
+          if (state === 'uploaded' || state === 'cancelled') {
             file.removeListenerById(progressListenerId);
             file.removeListenerById(stateListenerId);
           }
@@ -201,12 +205,13 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
         file.getFilename(),
         file.getId()
       );
+
       newFile.set({
         size: file.getSize(),
         uploadWidget: file.getUploadWidget()
       });
 
-      newFile.setParam("force", true);
+      newFile.setParam('force', true);
       this.getUploadHandler()._addFile(newFile);
       if (this.getAutoUpload()) {
         this.getUploadHandler().beginUploads();
@@ -219,15 +224,15 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
      * @param bomFile {File}
      */
     uploadFile(bomFile) {
-      const id = "upload-" + this._getUniqueFileId();
+      const id = 'upload-' + this._getUniqueFileId();
       const filename =
-        typeof bomFile.name !== "undefined" ? bomFile.name : bomFile.fileName;
+        typeof bomFile.name !== 'undefined' ? bomFile.name : bomFile.fileName;
       const file = new com.zenesis.qx.upload.File(bomFile, filename, id);
       const fileSize =
-        typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
+        typeof bomFile.size !== 'undefined' ? bomFile.size : bomFile.fileSize;
       file.setSize(fileSize);
       if (this.isForce()) {
-        file.setParam("force", true);
+        file.setParam('force', true);
       }
       file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());
 
@@ -244,13 +249,13 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
      */
     replaceFile(bomFile, replacedFile) {
       this.setFolder(replacedFile.getParent());
-      const id = "upload-" + this._getUniqueFileId();
+      const id = 'upload-' + this._getUniqueFileId();
       const filename = replacedFile.getName();
       const file = new com.zenesis.qx.upload.File(bomFile, filename, id);
-      file.setParam("force", true);
-      file.setParam("filename", filename);
+      file.setParam('force', true);
+      file.setParam('filename', filename);
       const fileSize =
-        typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
+        typeof bomFile.size !== 'undefined' ? bomFile.size : bomFile.fileSize;
       file.setSize(fileSize);
       file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());
 

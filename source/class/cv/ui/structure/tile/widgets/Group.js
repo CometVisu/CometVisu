@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define("cv.ui.structure.tile.widgets.Group", {
+qx.Class.define('cv.ui.structure.tile.widgets.Group', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
@@ -38,43 +38,43 @@ qx.Class.define("cv.ui.structure.tile.widgets.Group", {
       let label = null;
       let summary = null;
       const needsSummary =
-        element.hasAttribute("name") || element.hasAttribute("icon");
+        element.hasAttribute('name') || element.hasAttribute('icon');
       if (needsSummary) {
-        summary = element.querySelector(":scope > summary");
+        summary = element.querySelector(':scope > summary');
         if (!summary) {
-          summary = document.createElement("summary");
+          summary = document.createElement('summary');
           element.insertBefore(summary, element.firstChild);
         }
-        if (element.hasAttribute("name")) {
-          label = element.querySelector(":scope > summary > label.title");
+        if (element.hasAttribute('name')) {
+          label = element.querySelector(':scope > summary > label.title');
           if (!label) {
-            label = document.createElement("label");
-            label.classList.add("title");
+            label = document.createElement('label');
+            label.classList.add('title');
             summary.insertBefore(label, summary.firstChild);
           }
-          label.classList.add("last-of-title");
-          label.textContent = element.getAttribute("name");
+          label.classList.add('last-of-title');
+          label.textContent = element.getAttribute('name');
         }
-        if (element.hasAttribute("icon")) {
-          let icon = element.querySelector(":scope > summary > cv-icon.title");
+        if (element.hasAttribute('icon')) {
+          let icon = element.querySelector(':scope > summary > cv-icon.title');
           if (!icon) {
-            icon = document.createElement("cv-icon");
-            icon.classList.add("title");
+            icon = document.createElement('cv-icon');
+            icon.classList.add('title');
             summary.insertBefore(icon, summary.firstChild);
           }
           if (!label) {
-            icon.classList.add("last-of-title");
+            icon.classList.add('last-of-title');
           }
-          icon.classList.add(element.getAttribute("icon"));
+          icon.classList.add(element.getAttribute('icon'));
         }
       }
-      const empty = !element.querySelector(":scope > *:not(summary)");
+      const empty = !element.querySelector(':scope > *:not(summary)');
       if (empty) {
-        element.classList.add("empty");
+        element.classList.add('empty');
       } else if (summary) {
         qx.event.Registration.addListener(
           summary,
-          "click",
+          'click',
           this._toggleOpen,
           this
         );
@@ -82,10 +82,10 @@ qx.Class.define("cv.ui.structure.tile.widgets.Group", {
     },
 
     _toggleOpen() {
-      if (this._element.hasAttribute("open")) {
-        this._element.removeAttribute("open");
+      if (this._element.hasAttribute('open')) {
+        this._element.removeAttribute('open');
       } else {
-        this._element.setAttribute("open", "true");
+        this._element.setAttribute('open', 'true');
       }
     },
 
@@ -96,19 +96,20 @@ qx.Class.define("cv.ui.structure.tile.widgets.Group", {
      */
     onStateUpdate(ev) {
       if (!super.onStateUpdate(ev)) {
-        if (ev.detail.target === "summary") {
+        if (ev.detail.target === 'summary') {
           let target = this._element.querySelector(
-            ":scope > summary > label.value"
+            ':scope > summary > label.value'
           );
+
           if (!target) {
-            target = document.createElement("label");
-            target.classList.add("value");
-            const summary = this._element.querySelector(":scope > summary");
+            target = document.createElement('label');
+            target.classList.add('value');
+            const summary = this._element.querySelector(':scope > summary');
             summary.appendChild(target);
           }
           target.textContent = ev.detail.state;
         } else {
-          this.debug("unhandled address target", ev.detail.target);
+          this.debug('unhandled address target', ev.detail.target);
         }
       }
     }
@@ -116,7 +117,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Group", {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "group",
+      cv.ui.structure.tile.Controller.PREFIX + 'group',
       class extends QxConnector {
         constructor() {
           super(QxClass);

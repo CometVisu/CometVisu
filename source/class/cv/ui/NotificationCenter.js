@@ -47,11 +47,11 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.ui.NotificationCenter", {
+qx.Class.define('cv.ui.NotificationCenter', {
   extend: qx.core.Object,
   implement: cv.core.notifications.IHandler,
   include: cv.ui.MHandleMessage,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   *****************************************************************************
@@ -62,22 +62,22 @@ qx.Class.define("cv.ui.NotificationCenter", {
     super();
 
     this.set({
-      rootElementId: "notification-center",
-      messageElementId: "notification_"
+      rootElementId: 'notification-center',
+      messageElementId: 'notification_'
     });
 
     // register to topics
     cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-      "cv.*": {}
+      'cv.*': {}
     });
 
-    this._openCommand = new qx.ui.command.Command("Ctrl+N");
-    this._openCommand.addListener("execute", this.toggleVisibility, this);
+    this._openCommand = new qx.ui.command.Command('Ctrl+N');
+    this._openCommand.addListener('execute', this.toggleVisibility, this);
     cv.TemplateEngine.getInstance()
       .getCommands()
-      .add("open-notificationcenter", this._openCommand);
+      .add('open-notificationcenter', this._openCommand);
 
-    qx.event.Registration.addListener(window, "resize", this._onResize, this);
+    qx.event.Registration.addListener(window, 'resize', this._onResize, this);
 
     this.debouncedHide = qx.util.Function.debounce(
       this.hide.bind(this),
@@ -87,19 +87,19 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
 
-    this.addListener("changedGlobalSeverity", this._onSeverityChange, this);
+    this.addListener('changedGlobalSeverity', this._onSeverityChange, this);
 
     this.setDelegate({
       prepareMessage(message) {
         // resolve icon if there is one
         if (message.icon) {
           const iconClasses = message.iconClasses
-            ? " " + message.iconClasses
-            : "";
+            ? ' ' + message.iconClasses
+            : '';
           message.icon = cv.util.IconTools.svgKUF(message.icon)(
             null,
             null,
-            "icon" + iconClasses,
+            'icon' + iconClasses,
             true
           );
         }
@@ -115,34 +115,34 @@ qx.Class.define("cv.ui.NotificationCenter", {
   statics: {
     SLIDE: {
       duration: 350,
-      timing: "linear",
-      origin: "bottom center",
+      timing: 'linear',
+      origin: 'bottom center',
       keyFrames: {
         0: {
-          translate: ["0px"]
+          translate: ['0px']
         },
 
         100: {
-          translate: ["-300px"]
+          translate: ['-300px']
         }
       }
     },
 
     BLINK: {
       duration: 1000,
-      timing: "ease-in-out",
-      origin: "bottom center",
+      timing: 'ease-in-out',
+      origin: 'bottom center',
       keyFrames: {
         0: {
-          backgroundColor: ["rgba(61, 61, 61, 0.9)"]
+          backgroundColor: ['rgba(61, 61, 61, 0.9)']
         },
 
         50: {
-          backgroundColor: ["rgba(255, 121, 0, 0.9)"]
+          backgroundColor: ['rgba(255, 121, 0, 0.9)']
         },
 
         100: {
-          backgroundColor: ["rgba(61, 61, 61, 0.9)"]
+          backgroundColor: ['rgba(61, 61, 61, 0.9)']
         }
       }
     },
@@ -202,32 +202,32 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     disableBadge(value) {
       if (value) {
-        this.__badge.classList.add("hidden");
+        this.__badge.classList.add('hidden');
       } else {
-        this.__badge.classList.remove("hidden");
+        this.__badge.classList.remove('hidden');
       }
     },
 
     _onResize() {
       const height = document.documentElement.clientHeight;
       if (this.__element) {
-        this.__element.style.left = document.documentElement.clientWidth + "px";
-        this.__element.style.height = height + "px";
+        this.__element.style.left = document.documentElement.clientWidth + 'px';
+        this.__element.style.height = height + 'px';
       }
 
       if (this.__messagesContainer) {
         // get header+footer heights
         const headerRect = this.__element
-          .querySelector(":scope > header")
+          .querySelector(':scope > header')
           .getBoundingClientRect();
         const footerRect = this.__element
-          .querySelector(":scope > footer")
+          .querySelector(':scope > footer')
           .getBoundingClientRect();
         const messageBoxHeight =
           height -
           Math.round(headerRect.bottom - headerRect.top) -
           Math.round(footerRect.bottom - footerRect.top);
-        this.__messagesContainer.style.height = messageBoxHeight + "px";
+        this.__messagesContainer.style.height = messageBoxHeight + 'px';
       }
     },
 
@@ -236,13 +236,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @private
      */
     _init() {
-      const body = document.querySelector("body");
+      const body = document.querySelector('body');
 
       this.__blocker = cv.ui.BodyBlocker.getInstance();
 
       this.__favico = new Favico({
-        animation: "fade",
-        bgColor: "#1C391C"
+        animation: 'fade',
+        bgColor: '#1C391C'
       });
 
       // check if the element is already there (might have been cached)
@@ -252,45 +252,45 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       if (!elem) {
         // create new element
-        elem = this.__element = qx.dom.Element.create("div", {
+        elem = this.__element = qx.dom.Element.create('div', {
           id: this.getRootElementId(),
-          style: "visibility: hidden;",
+          style: 'visibility: hidden;',
           html:
-            "<div class=\"badge\"></div><header><h3>" +
-            qx.locale.Manager.tr("Message center") +
-            "<div class=\"action hide\"><a href=\"#\" onclick=\"cv.ui.NotificationCenter.hide()\">X</a></div></h3></header><section class=\"messages\"></section><footer><div class=\"action clear\" onclick=\"cv.ui.NotificationCenter.clear()\">" +
-            qx.locale.Manager.tr("Delete all") +
-            "<div></div></footer>"
+            '<div class="badge"></div><header><h3>' +
+            qx.locale.Manager.tr('Message center') +
+            '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' +
+            qx.locale.Manager.tr('Delete all') +
+            '<div></div></footer>'
         });
 
         body.appendChild(elem);
 
         // create the template
         let templateCode =
-          "<div class=\"message {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\"" +
+          '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="' +
           this.getMessageElementId() +
-          "{{ id }}\">";
-        templateCode += "{{#icon}}{{ &icon }}{{/icon}}";
+          '{{ id }}">';
+        templateCode += '{{#icon}}{{ &icon }}{{/icon}}';
         templateCode +=
-          "{{#deletable}}<div class=\"action delete\">x</div>{{/deletable}}";
+          '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
         templateCode +=
-          "{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}";
-        templateCode += "<div class=\"content\">{{&message}}</div></div>";
+          '{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}';
+        templateCode += '<div class="content">{{&message}}</div></div>';
 
-        const template = qx.dom.Element.create("script", {
-          id: "MessageTemplate",
-          type: "text/template",
+        const template = qx.dom.Element.create('script', {
+          id: 'MessageTemplate',
+          type: 'text/template',
           html: templateCode
         });
 
         body.appendChild(template);
       }
 
-      this.__messagesContainer = elem.querySelector("section.messages");
-      this.__badge = elem.querySelector(".badge");
+      this.__messagesContainer = elem.querySelector('section.messages');
+      this.__badge = elem.querySelector('.badge');
       qx.event.Registration.addListener(
         this.__badge,
-        "tap",
+        'tap',
         this.toggleVisibility,
         this
       );
@@ -300,17 +300,18 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this._list = new qx.data.controller.website.List(
         this._messages,
         this.__messagesContainer,
-        "MessageTemplate"
+        'MessageTemplate'
       );
+
       qx.event.Registration.addListener(
         this.__messagesContainer,
-        "tap",
+        'tap',
         this._onListTap,
         this
       );
 
       // connect badge content
-      this._messages.addListener("changeLength", this.__updateBadge, this);
+      this._messages.addListener('changeLength', this.__updateBadge, this);
       this.__updateBadge();
 
       // update dimensions
@@ -318,7 +319,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     __updateBadge() {
-      let currentContent = parseInt(this.__badge.getAttribute("html"));
+      let currentContent = parseInt(this.__badge.getAttribute('html'));
       if (isNaN(currentContent)) {
         currentContent = 0;
       }
@@ -329,7 +330,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (this.getMessages().getLength() === 0) {
           this.hide();
         } else {
-          this.__element.style.visibility = "";
+          this.__element.style.visibility = '';
           this._onSeverityChange();
         }
       }.bind(this);
@@ -351,9 +352,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
         );
       }
       if (messages) {
-        this.__badge.innerHTML = "" + messages;
+        this.__badge.innerHTML = '' + messages;
       } else {
-        this.__badge.innerHTML = "";
+        this.__badge.innerHTML = '';
       }
     },
 
@@ -364,6 +365,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
           this.__badge.classList,
           this._severities
         );
+
         this.__badge.classList.add(severity);
       }
 
@@ -382,27 +384,29 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!this.__visible) {
         this.__visible = true;
         this.__blocker.block();
-        this.__element.style.visibility = "";
+        this.__element.style.visibility = '';
         qx.event.Registration.addListener(
           this.__blocker.getBlockerElement(),
-          "tap",
+          'tap',
           this.hide,
           this
         );
+
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           const anim = qx.bom.element.Animation.animate(
             this.__element,
             cv.ui.NotificationCenter.SLIDE
           );
+
           anim.on(
-            "end",
+            'end',
             function () {
-              this.__element.style.transform = "translate(-300px)";
+              this.__element.style.transform = 'translate(-300px)';
             },
             this
           );
         } else {
-          this.__element.style.transform = "translate(-300px)";
+          this.__element.style.transform = 'translate(-300px)';
         }
       }
     },
@@ -426,25 +430,27 @@ qx.Class.define("cv.ui.NotificationCenter", {
         this.__visible = false;
         qx.event.Registration.removeListener(
           this.__blocker.getBlockerElement(),
-          "tap",
+          'tap',
           this.hide,
           this
         );
+
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           const anim = qx.bom.element.Animation.animateReverse(
             this.__element,
             cv.ui.NotificationCenter.SLIDE
           );
+
           anim.on(
-            "end",
+            'end',
             function () {
-              this.__element.style.transform = "translate(-0px)";
+              this.__element.style.transform = 'translate(-0px)';
               this.__blocker.unblock();
             },
             this
           );
         } else {
-          this.__element.style.transform = "translate(-0px)";
+          this.__element.style.transform = 'translate(-0px)';
           this.__blocker.unblock();
         }
       }
@@ -459,22 +465,25 @@ qx.Class.define("cv.ui.NotificationCenter", {
   destruct() {
     qx.event.Registration.removeListener(
       window,
-      "resize",
+      'resize',
       this._onResize,
       this
     );
+
     qx.event.Registration.removeListener(
       this.__blocker.getBlockerElement(),
-      "tap",
+      'tap',
       this.hide,
       this
     );
+
     qx.event.Registration.removeListener(
       this.__messagesContainer,
-      "tap",
+      'tap',
       this._onListTap,
       this
     );
-    this._disposeObjects("__blocker", "__messagesContainer", "_openCommand");
+
+    this._disposeObjects('__blocker', '__messagesContainer', '_openCommand');
   }
 });

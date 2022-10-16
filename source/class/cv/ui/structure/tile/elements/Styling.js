@@ -22,7 +22,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define("cv.ui.structure.tile.elements.Styling", {
+qx.Class.define('cv.ui.structure.tile.elements.Styling', {
   extend: cv.ui.structure.tile.elements.Mapping,
 
   /*
@@ -35,12 +35,12 @@ qx.Class.define("cv.ui.structure.tile.elements.Styling", {
       super._applyConnected(value, oldValue, name);
       if (value) {
         cv.Application.structureController.addStyling(
-          this._element.getAttribute("name"),
+          this._element.getAttribute('name'),
           this
         );
       } else {
         cv.Application.structureController.removeStyling(
-          this._element.getAttribute("name")
+          this._element.getAttribute('name')
         );
       }
     }
@@ -48,7 +48,7 @@ qx.Class.define("cv.ui.structure.tile.elements.Styling", {
 
   defer(Clazz) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "styling",
+      cv.ui.structure.tile.Controller.PREFIX + 'styling',
       class extends QxConnector {
         constructor() {
           super(Clazz);

@@ -20,7 +20,7 @@
 /**
  * Atom with cv.ui.manager.viewer.SvgIcon instead of a qx.ui.basic.Image
  */
-qx.Class.define("cv.ui.manager.core.IconAtom", {
+qx.Class.define('cv.ui.manager.core.IconAtom', {
   extend: qx.ui.basic.Atom,
 
   /*
@@ -31,7 +31,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
   construct(label, icon) {
     super(label, icon);
     this._fontIconRegex = /^\<i.*class=".*(knxuf-|ri-)([^\s"]+).*".*\<\/i\>$/;
-    this.addListener("tap", this._onTap, this);
+    this.addListener('tap', this._onTap, this);
   },
 
   /*
@@ -42,12 +42,12 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-icon"
+      init: 'cv-icon'
     },
 
     model: {
-      check: "Array",
-      apply: "_applyModel"
+      check: 'Array',
+      apply: '_applyModel'
     }
   },
 
@@ -63,7 +63,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
     _onTap() {
       navigator.clipboard.writeText(this.getLabel());
       cv.ui.manager.snackbar.Controller.info(
-        qx.locale.Manager.tr("Icon name has been copied to clipboard")
+        qx.locale.Manager.tr('Icon name has been copied to clipboard')
       );
     },
 
@@ -87,29 +87,29 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
     _applyIcon(value, old) {
       if (value) {
         if (this._fontIconRegex.test(value)) {
-          this._iconChildControlName = "htmlIcon";
+          this._iconChildControlName = 'htmlIcon';
           const icon = this.getChildControl(this._iconChildControlName, true);
           if (icon) {
             icon.setValue(value);
           }
-          this._excludeChildControl("icon");
+          this._excludeChildControl('icon');
         } else {
-          this._iconChildControlName = "icon";
+          this._iconChildControlName = 'icon';
           const icon = this.getChildControl(this._iconChildControlName, true);
           if (icon) {
             icon.setSource(value);
           }
-          this._excludeChildControl("htmlIcon");
+          this._excludeChildControl('htmlIcon');
         }
       } else {
-        this._iconChildControlName = "icon";
-        this._excludeChildControl("htmlIcon");
+        this._iconChildControlName = 'icon';
+        this._excludeChildControl('htmlIcon');
       }
       this._handleIcon();
     },
 
     _handleIcon() {
-      if (this.getIcon() === null || this.getShow() === "label") {
+      if (this.getIcon() === null || this.getShow() === 'label') {
         this._excludeChildControl(this._iconChildControlName);
       } else {
         this._showChildControl(this._iconChildControlName);
@@ -121,7 +121,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
       let control;
 
       switch (id) {
-        case "icon":
+        case 'icon':
           control = new cv.ui.manager.basic.Image(this.getIcon());
           control.set({
             anonymous: true,
@@ -130,12 +130,12 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
           });
 
           this._addAt(control, 0);
-          if (this.getIcon() === null || this.getShow() === "label") {
+          if (this.getIcon() === null || this.getShow() === 'label') {
             control.exclude();
           }
           break;
 
-        case "htmlIcon":
+        case 'htmlIcon':
           control = new qx.ui.basic.Label(this.getIcon());
           control.set({
             anonymous: true,
@@ -145,7 +145,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
           });
 
           this._addAt(control, 0);
-          if (this.getIcon() === null || this.getShow() === "label") {
+          if (this.getIcon() === null || this.getShow() === 'label') {
             control.exclude();
           }
       }

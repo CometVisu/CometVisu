@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
-qx.Class.define("cv.ui.structure.pure.WidgetInfoAction", {
+qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
@@ -38,7 +38,7 @@ qx.Class.define("cv.ui.structure.pure.WidgetInfoAction", {
       init: true
     },
 
-    childObjects: { check: "Array", init: [] }
+    childObjects: { check: 'Array', init: [] }
   },
 
   /*
@@ -54,7 +54,7 @@ qx.Class.define("cv.ui.structure.pure.WidgetInfoAction", {
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("widgetinfo", statics);
-    cv.ui.structure.WidgetFactory.registerClass("widgetaction", statics);
+    cv.ui.structure.WidgetFactory.registerClass('widgetinfo', statics);
+    cv.ui.structure.WidgetFactory.registerClass('widgetaction', statics);
   }
 });

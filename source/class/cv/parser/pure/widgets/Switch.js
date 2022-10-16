@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Switch", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Switch', {
+  type: 'static',
 
   /*
    ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.Switch", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -54,14 +55,14 @@ qx.Class.define("cv.parser.pure.widgets.Switch", {
 
     getAttributeToPropertyMappings() {
       return {
-        on_value: { target: "onValue", default: "1" },
-        off_value: { target: "offValue", default: "0" }
+        on_value: { target: 'onValue', default: '1' },
+        off_value: { target: 'offValue', default: '0' }
       };
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("switch", statics);
+    cv.parser.pure.WidgetParser.addHandler('switch', statics);
   }
 });

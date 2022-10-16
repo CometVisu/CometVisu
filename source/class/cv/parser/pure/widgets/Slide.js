@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Slide", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Slide', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.Slide", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
 
@@ -54,10 +55,10 @@ qx.Class.define("cv.parser.pure.widgets.Slide", {
       let datatype_max;
       Array.from(xml.children)
         .filter(function (m) {
-          return m.matches("address");
+          return m.matches('address');
         })
         .forEach(function (elem) {
-          const transform = elem.getAttribute("transform");
+          const transform = elem.getAttribute('transform');
           if (
             cv.Transform.registry[transform] &&
             cv.Transform.registry[transform].range
@@ -72,8 +73,8 @@ qx.Class.define("cv.parser.pure.widgets.Slide", {
             }
           }
         });
-      const min = parseFloat(xml.getAttribute("min") || datatype_min || 0);
-      const max = parseFloat(xml.getAttribute("max") || datatype_max || 100);
+      const min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
+      const max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
 
       data.min = min;
       data.max = max;
@@ -84,10 +85,10 @@ qx.Class.define("cv.parser.pure.widgets.Slide", {
       return {
         step: { default: 0.5, transform: parseFloat },
         send_on_finish: {
-          target: "sendOnFinish",
+          target: 'sendOnFinish',
           default: false,
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -96,6 +97,6 @@ qx.Class.define("cv.parser.pure.widgets.Slide", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("slide", statics);
+    cv.parser.pure.WidgetParser.addHandler('slide', statics);
   }
 });

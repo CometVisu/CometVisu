@@ -34,7 +34,7 @@
  * * value1.blend(value2,ratio) - return a new value that is the ratio dependent blend
  * * value.copy()               - return a copy of the value
  */
-qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
+qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
   extend: qx.core.Object,
   /*
   ******************************************************
@@ -75,25 +75,25 @@ qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
   properties: {
     linearRateLimit: {
       // in ratio/second
-      check: "Number",
+      check: 'Number',
       init: 2
     },
 
     expDampTimeConstant: {
       // time constant for exponential dampening
-      check: "Number",
+      check: 'Number',
       init: 0.01
     },
 
     epsilon: {
       // a difference between current and target value smaller than the epsilon
       // will be immediately closed
-      check: "Number",
+      check: 'Number',
       init: 0.001
     },
 
     displayFn: {
-      check: "Function"
+      check: 'Function'
     }
   },
 
@@ -154,13 +154,14 @@ qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
      * @private
      */
     __animate(thistime, lasttime) {
-      let isNumber = typeof this.__currentValue === "number";
+      let isNumber = typeof this.__currentValue === 'number';
       let dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
       let maxLinearDelta = this.getLinearRateLimit() * dt;
       let alpha = Math.max(
         0,
         Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1)
       );
+
       let nextValue = isNumber
         ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
         : this.__currentValue.blend(this.__targetValue, alpha);

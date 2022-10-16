@@ -21,7 +21,7 @@
  * Detects dom elements resizing
  * @ignore(ResizeObserver)
  */
-qx.Mixin.define("cv.ui.structure.tile.MResize", {
+qx.Mixin.define('cv.ui.structure.tile.MResize', {
   /*
   ***********************************************
     CONSTRUCTOR
@@ -32,7 +32,7 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
       const element = this.getResizeTarget();
       entries.some(entry => {
         if (entry.target === element) {
-          this.fireDataEvent("resized", entry);
+          this.fireDataEvent('resized', entry);
           return true;
         }
         return false;
@@ -46,7 +46,7 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
   ***********************************************
   */
   events: {
-    resized: "qx.event.type.Data"
+    resized: 'qx.event.type.Data'
   },
 
   /*
@@ -56,9 +56,9 @@ qx.Mixin.define("cv.ui.structure.tile.MResize", {
   */
   properties: {
     resizeTarget: {
-      check: "Element",
+      check: 'Element',
       nullable: true,
-      apply: "_applyResizeTarget"
+      apply: '_applyResizeTarget'
     }
   },
 

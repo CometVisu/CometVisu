@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.ImageTrigger", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.ImageTrigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.ImageTrigger", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
@@ -55,22 +56,22 @@ qx.Class.define("cv.parser.pure.widgets.ImageTrigger", {
 
     getAttributeToPropertyMappings() {
       return {
-        height: { default: "0" },
-        width: { default: "0" },
-        type: { target: "updateType", default: "" },
+        height: { default: '0' },
+        width: { default: '0' },
+        type: { target: 'updateType', default: '' },
         src: {},
         suffix: {},
-        sendValue: { default: "" }
+        sendValue: { default: '' }
       };
     },
     getDefaultClasses(type) {
       // additional image class
-      return "widget clearfix image " + type.toLowerCase();
+      return 'widget clearfix image ' + type.toLowerCase();
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("imagetrigger", statics);
+    cv.parser.pure.WidgetParser.addHandler('imagetrigger', statics);
   }
 });

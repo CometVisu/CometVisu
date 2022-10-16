@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Image", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Image', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.Image", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseRefresh(xml, path, true);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -54,16 +55,16 @@ qx.Class.define("cv.parser.pure.widgets.Image", {
 
     getAttributeToPropertyMappings() {
       return {
-        width: { default: "100%" },
+        width: { default: '100%' },
         height: {},
-        "crop-top": { target: "cropTop", default: "" },
-        "crop-bottom": { target: "cropBottom", default: "" },
+        'crop-top': { target: 'cropTop', default: '' },
+        'crop-bottom': { target: 'cropBottom', default: '' },
         src: {},
-        placeholder: { default: "none" },
+        placeholder: { default: 'none' },
         widthfit: {
-          target: "widthFit",
+          target: 'widthFit',
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -72,6 +73,6 @@ qx.Class.define("cv.parser.pure.widgets.Image", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("image", statics);
+    cv.parser.pure.WidgetParser.addHandler('image', statics);
   }
 });

@@ -27,7 +27,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
+qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.Update,
 
@@ -37,7 +37,7 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
   ******************************************************
   */
   properties: {
-    variable: { check: "String", nullable: true, apply: "_applyVariable" }
+    variable: { check: 'String', nullable: true, apply: '_applyVariable' }
   },
 
   /*
@@ -54,15 +54,16 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
         if (!this.__request) {
           // create the request
           this.__request = new qx.io.request.Xhr(
-            "/wg-plugindb.php?name=" + value
+            '/wg-plugindb.php?name=' + value
           );
+
           this.__request.set({
-            accept: "application/json"
+            accept: 'application/json'
           });
 
-          this.__request.addListener("success", this._onSuccess, this);
+          this.__request.addListener('success', this._onSuccess, this);
         } else {
-          this.__request.setUrl("/wg-plugindb.php?name=" + value);
+          this.__request.setUrl('/wg-plugindb.php?name=' + value);
         }
         cv.TemplateEngine.getInstance().executeWhenDomFinished(
           this.__request.send,
@@ -91,7 +92,7 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
 
     // overridden
     _getInnerDomString() {
-      return "<div class=\"actor\"><div class=\"value\">-</div></div>";
+      return '<div class="actor"><div class="value">-</div></div>';
     },
 
     /**
@@ -110,10 +111,10 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
   ******************************************************
   */
   destruct() {
-    this._disposeObjects("__request");
+    this._disposeObjects('__request');
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("wgplugin_info", statics);
+    cv.ui.structure.WidgetFactory.registerClass('wgplugin_info', statics);
   }
 });

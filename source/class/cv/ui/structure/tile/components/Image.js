@@ -22,7 +22,7 @@
  *
  * HINT: Proxy mode needs an PHP environment with php-curl installed.
  */
-qx.Class.define("cv.ui.structure.tile.components.Image", {
+qx.Class.define('cv.ui.structure.tile.components.Image', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
 
@@ -39,67 +39,68 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
 
     _init() {
       const element = this._element;
-      let img = element.querySelector(":scope > img");
+      let img = element.querySelector(':scope > img');
       if (!img) {
-        img = document.createElement("img");
+        img = document.createElement('img');
         element.appendChild(img);
       }
-      element.addEventListener("click", () => this.refresh());
-      let src = element.getAttribute("src");
+      element.addEventListener('click', () => this.refresh());
+      let src = element.getAttribute('src');
       let base = window.location.origin;
-      if (src.substring(0, 1) !== "/" && src.substring(0, 4) !== "http") {
+      if (src.substring(0, 1) !== '/' && src.substring(0, 4) !== 'http') {
         // relative url
         base += window.location.pathname;
       }
       this._url = new URL(src, base);
       const useProxy =
-        element.hasAttribute("proxy") &&
-        element.getAttribute("proxy") === "true";
+        element.hasAttribute('proxy') &&
+        element.getAttribute('proxy') === 'true';
       if (useProxy) {
         this._url = new URL(
-          cv.io.rest.Client.getBaseUrl() + "/proxy",
+          cv.io.rest.Client.getBaseUrl() + '/proxy',
           window.location.origin
         );
-        this._url.searchParams.set("url", element.getAttribute("src"));
+
+        this._url.searchParams.set('url', element.getAttribute('src'));
       }
       this._headers = {};
-      if (element.hasAttribute("auth-type")) {
-        switch (element.getAttribute("auth-type").toLowerCase()) {
-          case "basic":
+      if (element.hasAttribute('auth-type')) {
+        switch (element.getAttribute('auth-type').toLowerCase()) {
+          case 'basic':
             if (useProxy) {
               this._url.searchParams.set(
-                "authorization",
-                "Basic " +
+                'authorization',
+                'Basic ' +
                   window.btoa(
-                    element.getAttribute("username") +
-                      ":" +
-                      element.getAttribute("password")
+                    element.getAttribute('username') +
+                      ':' +
+                      element.getAttribute('password')
                   )
               );
             } else {
-              this._headers["Authorization"] =
-                "Basic " +
+              this._headers['Authorization'] =
+                'Basic ' +
                 window.btoa(
-                  element.getAttribute("username") +
-                    ":" +
-                    element.getAttribute("password")
+                  element.getAttribute('username') +
+                    ':' +
+                    element.getAttribute('password')
                 );
             }
             break;
         }
       }
       this._loadImage();
-      if (element.hasAttribute("refresh")) {
-        this.setRefresh(parseInt(element.getAttribute("refresh")));
+      if (element.hasAttribute('refresh')) {
+        this.setRefresh(parseInt(element.getAttribute('refresh')));
       }
     },
 
     _loadImage() {
-      let img = this._element.querySelector(":scope > img");
+      let img = this._element.querySelector(':scope > img');
       if (Object.keys(this._headers).length > 0) {
         let request = new XMLHttpRequest();
-        request.responseType = "blob";
-        request.open("get", this._url.toString(), true);
+        request.responseType = 'blob';
+        request.open('get', this._url.toString(), true);
         Object.keys(this._headers).forEach(name => {
           request.setRequestHeader(name, this._headers[name]);
         });
@@ -121,9 +122,9 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
     },
 
     refresh() {
-      let img = this._element.querySelector(":scope > img");
+      let img = this._element.querySelector(':scope > img');
       if (img) {
-        this._url.searchParams.set("r", "" + Math.random());
+        this._url.searchParams.set('r', '' + Math.random());
         this._loadImage();
       }
     },
@@ -135,12 +136,12 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
      */
     onStateUpdate(ev) {
       if (!super.onStateUpdate(ev)) {
-        if (ev.detail.target === "refresh") {
+        if (ev.detail.target === 'refresh') {
           if (ev.detail.state) {
             this.refresh();
           }
         } else {
-          this.debug("unhandled address target", ev.detail.target);
+          this.debug('unhandled address target', ev.detail.target);
         }
       }
     }
@@ -148,7 +149,7 @@ qx.Class.define("cv.ui.structure.tile.components.Image", {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "image",
+      cv.ui.structure.tile.Controller.PREFIX + 'image',
       class extends QxConnector {
         constructor() {
           super(QxClass);

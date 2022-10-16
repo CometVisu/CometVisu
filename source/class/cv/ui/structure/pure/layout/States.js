@@ -22,7 +22,7 @@
  * Other classes can use the instance of this class {@link cv.ui.structure.pure.layout.ResizeHandler.states} to listen to changes
  * to the states.
  */
-qx.Class.define("cv.ui.structure.pure.layout.States", {
+qx.Class.define('cv.ui.structure.pure.layout.States', {
   extend: qx.core.Object,
 
   /*
@@ -32,27 +32,27 @@ qx.Class.define("cv.ui.structure.pure.layout.States", {
   */
   properties: {
     pageSizeInvalid: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changePageSizeInvalid"
+      event: 'changePageSizeInvalid'
     },
 
     backdropInvalid: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeBackdropInvalid"
+      event: 'changeBackdropInvalid'
     },
 
     navbarInvalid: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeNavbarInvalid"
+      event: 'changeNavbarInvalid'
     },
 
     rowspanInvalid: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeRowspanInvalid"
+      event: 'changeRowspanInvalid'
     }
   },
 
@@ -64,10 +64,10 @@ qx.Class.define("cv.ui.structure.pure.layout.States", {
   members: {
     resetAll() {
       [
-        "pageSizeInvalid",
-        "backdropInvalid",
-        "navbarInvalid",
-        "rowspanInvalid"
+        'pageSizeInvalid',
+        'backdropInvalid',
+        'navbarInvalid',
+        'rowspanInvalid'
       ].forEach(this.reset, this);
     }
   }

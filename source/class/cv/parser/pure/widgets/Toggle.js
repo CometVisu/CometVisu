@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Toggle", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Toggle', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -46,6 +46,7 @@ qx.Class.define("cv.parser.pure.widgets.Toggle", {
         flavour,
         pageType
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -54,6 +55,6 @@ qx.Class.define("cv.parser.pure.widgets.Toggle", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("toggle", statics);
+    cv.parser.pure.WidgetParser.addHandler('toggle', statics);
   }
 });

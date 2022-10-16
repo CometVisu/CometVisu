@@ -20,8 +20,8 @@
 /**
  * Parse &lt;break;gt; config elements
  */
-qx.Class.define("cv.parser.pure.widgets.Break", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Break', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -51,6 +51,6 @@ qx.Class.define("cv.parser.pure.widgets.Break", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("break", statics);
+    cv.parser.pure.WidgetParser.addHandler('break', statics);
   }
 });

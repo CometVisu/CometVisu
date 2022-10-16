@@ -26,10 +26,10 @@
  * @ignore(SpeechSynthesisUtterance)
  */
 
-qx.Class.define("cv.core.notifications.SpeechHandler", {
+qx.Class.define('cv.core.notifications.SpeechHandler', {
   extend: qx.core.Object,
   implement: cv.core.notifications.IHandler,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -62,11 +62,11 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
       if (cv.core.notifications.Router.evaluateCondition(message)) {
         if (!text || text.length === 0) {
           // nothing to say
-          this.debug("no text to speech given");
+          this.debug('no text to speech given');
           return;
         }
 
-        if (text.substring(0, 1) === "!") {
+        if (text.substring(0, 1) === '!') {
           // override repeatTimeout, force saying this
           text = text.substring(1);
         } else if (config.repeatTimeout >= 0) {
@@ -83,7 +83,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
             // update time
             this.__lastSpeech[message.topic].time = Date.now();
             // do not repeat
-            this.debug("skipping TTS because of repetition " + text);
+            this.debug('skipping TTS because of repetition ' + text);
             return;
           }
         }
@@ -99,7 +99,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
 
     say(text, language) {
       if (!window.speechSynthesis) {
-        this.warn(this, "this browser does not support the Web Speech API");
+        this.warn(this, 'this browser does not support the Web Speech API');
         return;
       }
       const synth = window.speechSynthesis;
@@ -131,7 +131,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
         ) {
           selectedVoice = voices[i];
         }
-        if (voices[i]["default"]) {
+        if (voices[i]['default']) {
           defaultVoice = voices[i];
         }
       }

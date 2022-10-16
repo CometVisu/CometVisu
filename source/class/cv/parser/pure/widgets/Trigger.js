@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Trigger", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Trigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,28 +47,31 @@ qx.Class.define("cv.parser.pure.widgets.Trigger", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(
         xml,
         path,
         this.makeAddressListFn
       );
+
       return data;
     },
 
     getAttributeToPropertyMappings() {
       return {
-        value: { target: "sendValue", default: "0" },
+        value: { target: 'sendValue', default: '0' },
         shorttime: {
-          target: "shortThreshold",
+          target: 'shortThreshold',
           default: -1,
           transform: parseFloat
         },
-        shortvalue: { target: "shortValue", default: "0" },
-        "send-long-on-release": {
-          target: "sendLongOnRelease",
+
+        shortvalue: { target: 'shortValue', default: '0' },
+        'send-long-on-release': {
+          target: 'sendLongOnRelease',
           transform(value) {
-            return value ? value === "true" : true;
+            return value ? value === 'true' : true;
           }
         }
       };
@@ -76,12 +79,12 @@ qx.Class.define("cv.parser.pure.widgets.Trigger", {
 
     makeAddressListFn(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [true, variant === "short" ? 1 : variant === "button" ? 2 : 1 | 2];
+      return [true, variant === 'short' ? 1 : variant === 'button' ? 2 : 1 | 2];
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("trigger", statics);
+    cv.parser.pure.WidgetParser.addHandler('trigger', statics);
   }
 });

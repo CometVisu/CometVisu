@@ -25,7 +25,7 @@
  * @since 2018
  */
 
-qx.Class.define("cv.util.ConfigLoader", {
+qx.Class.define('cv.util.ConfigLoader', {
   extend: qx.core.Object,
 
   /*
@@ -59,67 +59,69 @@ qx.Class.define("cv.util.ConfigLoader", {
       this.__doneCallbackContext = context;
       // get the data once the page was loaded
       let uri = qx.util.ResourceManager.getInstance().toUri(
-        "config/visu_config" +
-          (cv.Config.configSuffix ? "_" + cv.Config.configSuffix : "") +
-          ".xml"
+        'config/visu_config' +
+          (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') +
+          '.xml'
       );
+
       if (cv.Config.testMode) {
         // workaround for e2e-tests
         uri =
-          "resource/config/visu_config" +
-          (cv.Config.configSuffix ? "_" + cv.Config.configSuffix : "") +
-          ".xml";
-      } else if (uri.indexOf("resource/") === -1) {
+          'resource/config/visu_config' +
+          (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') +
+          '.xml';
+      } else if (uri.indexOf('resource/') === -1) {
         // unknown config, try to add the resource part manually
-        uri = uri.replace("config/", "resource/config/");
+        uri = uri.replace('config/', 'resource/config/');
       }
-      this.debug("Requesting " + uri);
+      this.debug('Requesting ' + uri);
       const ajaxRequest = new qx.io.request.Xhr(uri);
       this.__loadQueue.push(uri);
       ajaxRequest.set({
-        accept: "application/xml",
+        accept: 'application/xml',
         cache: !cv.Config.forceReload
       });
 
-      ajaxRequest.setUserData("noDemo", true);
-      ajaxRequest.addListenerOnce("success", e => {
+      ajaxRequest.setUserData('noDemo', true);
+      ajaxRequest.addListenerOnce('success', e => {
         qx.core.Init.getApplication().block(false);
         const req = e.getTarget();
-        cv.Config.configServer = req.getResponseHeader("Server");
+        cv.Config.configServer = req.getResponseHeader('Server');
         const isTileStructure = /<config/m.test(req.getResponseText());
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
-        if (xml && typeof xml === "string") {
+        if (xml && typeof xml === 'string') {
           const parser = new DOMParser();
           if (isTileStructure) {
             xml = xml.replace(
-              "<config",
-              "<config xmlns=\"http://www.w3.org/1999/xhtml\""
+              '<config',
+              '<config xmlns="http://www.w3.org/1999/xhtml"'
             );
           }
-          xml = parser.parseFromString(xml, "text/xml");
+          xml = parser.parseFromString(xml, 'text/xml');
         }
 
         if (
           !xml ||
           !xml.documentElement ||
-          xml.getElementsByTagName("parsererror").length
+          xml.getElementsByTagName('parsererror').length
         ) {
-          this.configError("parsererror");
+          this.configError('parsererror');
         } else {
           if (isTileStructure && !xml.documentElement.xmlns) {
             // wrong namespace
             const rawContent = req
               .getResponseText()
               .replace(
-                "<config",
-                "<config xmlns=\"http://www.w3.org/1999/xhtml\""
+                '<config',
+                '<config xmlns="http://www.w3.org/1999/xhtml"'
               );
+
             const parser = new DOMParser();
-            xml = parser.parseFromString(rawContent, "text/xml");
+            xml = parser.parseFromString(rawContent, 'text/xml');
           }
           this.__xml = xml;
-          xml.querySelectorAll("include").forEach(this.loadInclude, this);
+          xml.querySelectorAll('include').forEach(this.loadInclude, this);
           this.__loadQueue.remove(ajaxRequest.getUrl());
 
           const systemLibVersion = isTileStructure
@@ -127,62 +129,67 @@ qx.Class.define("cv.util.ConfigLoader", {
             : cv.Version.LIBRARY_VERSION_PURE;
           // check the library version
           let xmlLibVersion = isTileStructure
-            ? xml.documentElement.getAttribute("version")
-            : xml.documentElement.getAttribute("lib_version");
+            ? xml.documentElement.getAttribute('version')
+            : xml.documentElement.getAttribute('lib_version');
           if (xmlLibVersion === undefined || xmlLibVersion === null) {
             xmlLibVersion = -1;
-          } else if (xmlLibVersion === "0") {
+          } else if (xmlLibVersion === '0') {
             // special wildcard mode used in screenshot generation fixtures
             xmlLibVersion = systemLibVersion;
           } else {
             xmlLibVersion = parseInt(xmlLibVersion);
           }
           if (cv.Config.libraryCheck && xmlLibVersion < systemLibVersion) {
-            this.configError("libraryerror");
+            this.configError('libraryerror');
           } else {
             cv.Config.server = {};
-            let backendName = "";
-            if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
-              backendName = req.getResponseHeader("X-CometVisu-Backend-Name");
+            let backendName = '';
+            if (req.getResponseHeader('X-CometVisu-Backend-Name')) {
+              backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
             }
-            if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
+            if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
               this.error(
-                "The usage of \"X-CometVisu-Backend-LoginUrl\" is deprecated. Please update the server setup."
+                'The usage of "X-CometVisu-Backend-LoginUrl" is deprecated. Please update the server setup.'
               );
+
               let backendUrl = req.getResponseHeader(
-                "X-CometVisu-Backend-LoginUrl"
+                'X-CometVisu-Backend-LoginUrl'
               );
-              if (!backendUrl.endsWith("/")) {
-                backendUrl += "/";
+
+              if (!backendUrl.endsWith('/')) {
+                backendUrl += '/';
               }
               cv.Config.server.backendKnxdUrl = backendUrl;
               cv.Config.server.backendOpenHABUrl = backendUrl;
-              if (!backendName && backendUrl.startsWith("/rest/")) {
-                backendName = "openhab";
+              if (!backendName && backendUrl.startsWith('/rest/')) {
+                backendName = 'openhab';
               }
             }
-            if (req.getResponseHeader("X-CometVisu-Backend-KNXD-Url")) {
+            if (req.getResponseHeader('X-CometVisu-Backend-KNXD-Url')) {
               cv.Config.server.backendKnxdUrl = req.getResponseHeader(
-                "X-CometVisu-Backend-KNXD-Url"
+                'X-CometVisu-Backend-KNXD-Url'
               );
-              if (backendName === "") {
-                backendName = "knxd";
+
+              if (backendName === '') {
+                backendName = 'knxd';
               }
             }
-            if (req.getResponseHeader("X-CometVisu-Backend-MQTT-Url")) {
+            if (req.getResponseHeader('X-CometVisu-Backend-MQTT-Url')) {
               cv.Config.server.backendMQTTUrl = req.getResponseHeader(
-                "X-CometVisu-Backend-MQTT-Url"
+                'X-CometVisu-Backend-MQTT-Url'
               );
-              if (backendName === "") {
-                backendName = "mqtt";
+
+              if (backendName === '') {
+                backendName = 'mqtt';
               }
             }
-            if (req.getResponseHeader("X-CometVisu-Backend-OpenHAB-Url")) {
+            if (req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url')) {
               cv.Config.server.backendOpenHABUrl = req.getResponseHeader(
-                "X-CometVisu-Backend-OpenHAB-Url"
+                'X-CometVisu-Backend-OpenHAB-Url'
               );
-              if (backendName === "") {
-                backendName = "openhab";
+
+              if (backendName === '') {
+                backendName = 'openhab';
               }
             }
             if (backendName) {
@@ -193,22 +200,22 @@ qx.Class.define("cv.util.ConfigLoader", {
         }
       });
 
-      ajaxRequest.addListener("statusError", e => {
+      ajaxRequest.addListener('statusError', e => {
         const status = e.getTarget().getTransport().status;
         if (
           !qx.util.Request.isSuccessful(status) &&
-          ajaxRequest.getUserData("noDemo")
+          ajaxRequest.getUserData('noDemo')
         ) {
-          ajaxRequest.setUserData("noDemo", false);
-          ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
+          ajaxRequest.setUserData('noDemo', false);
+          ajaxRequest.setUserData('origUrl', ajaxRequest.getUrl());
           this.__loadQueue.remove(ajaxRequest.getUrl());
-          const demoUrl = ajaxRequest.getUrl().replace("config/", "demo/");
+          const demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
           ajaxRequest.setUrl(demoUrl);
           this.__loadQueue.push(demoUrl);
           ajaxRequest.send();
         } else if (!qx.util.Request.isSuccessful(status)) {
-          this.configError("filenotfound", [
-            ajaxRequest.getUserData("origUrl"),
+          this.configError('filenotfound', [
+            ajaxRequest.getUserData('origUrl'),
             ajaxRequest.getUrl()
           ]);
         } else {
@@ -224,33 +231,34 @@ qx.Class.define("cv.util.ConfigLoader", {
      * @param includeElem {Element}
      */
     loadInclude(includeElem) {
-      let url = includeElem.getAttribute("src");
-      if (!url.startsWith("/")) {
+      let url = includeElem.getAttribute('src');
+      if (!url.startsWith('/')) {
         url =
-          qx.util.LibraryManager.getInstance().get("cv", "resourceUri") +
-          "/" +
+          qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') +
+          '/' +
           url;
       }
       this.__loadQueue.push(url);
       const xhr = new qx.io.request.Xhr(url);
       xhr.set({
-        accept: "text/plain",
+        accept: 'text/plain',
         async: false
       });
 
-      xhr.addListenerOnce("success", e => {
+      xhr.addListenerOnce('success', e => {
         const req = e.getTarget();
         const xml = qx.xml.Document.fromString(
-          "<root>" + req.getResponseText() + "</root>"
+          '<root>' + req.getResponseText() + '</root>'
         );
+
         includeElem.replaceWith(...xml.firstChild.childNodes);
         this.__loadQueue.remove(url);
         this._checkQueue();
       });
-      xhr.addListener("statusError", e => {
+      xhr.addListener('statusError', e => {
         const status = e.getTarget().getTransport().status;
         if (!qx.util.Request.isSuccessful(status)) {
-          this.configError("filenotfound", [xhr.getUrl(), ""]);
+          this.configError('filenotfound', [xhr.getUrl(), '']);
         } else {
           this.configError(status, null);
         }
@@ -275,80 +283,80 @@ qx.Class.define("cv.util.ConfigLoader", {
      * @param additionalErrorInfo {String} error message
      */
     configError(textStatus, additionalErrorInfo) {
-      const configSuffix = cv.Config.configSuffix ? cv.Config.configSuffix : "";
-      const title = qx.locale.Manager.tr("Config-File Error!")
+      const configSuffix = cv.Config.configSuffix ? cv.Config.configSuffix : '';
+      const title = qx.locale.Manager.tr('Config-File Error!')
         .translate()
         .toString();
-      let message = "";
+      let message = '';
       let actions;
       switch (textStatus) {
-        case "parsererror":
+        case 'parsererror':
           message =
-            qx.locale.Manager.tr("Invalid config file!") +
-            "<br/><a href=\"javascript:showConfigErrors('" +
+            qx.locale.Manager.tr('Invalid config file!') +
+            '<br/><a href="javascript:showConfigErrors(\'' +
             configSuffix +
-            "')\">" +
-            qx.locale.Manager.tr("Please check!") +
-            "</a>";
+            '\')">' +
+            qx.locale.Manager.tr('Please check!') +
+            '</a>';
           break;
-        case "libraryerror": {
-          let link = window.location.href.split("#")[0];
-          if (link.indexOf("?") <= 0) {
-            link += "?";
+        case 'libraryerror': {
+          let link = window.location.href.split('#')[0];
+          if (link.indexOf('?') <= 0) {
+            link += '?';
           }
-          link += "&libraryCheck=false";
+          link += '&libraryCheck=false';
           message =
-            qx.locale.Manager.tr("Config file has wrong library version!")
+            qx.locale.Manager.tr('Config file has wrong library version!')
               .translate()
               .toString() +
-            "<br/>" +
+            '<br/>' +
             qx.locale.Manager.tr(
-              "This can cause problems with your configuration"
+              'This can cause problems with your configuration'
             )
               .translate()
               .toString() +
-            "</br>" +
-            "<p>" +
+            '</br>' +
+            '<p>' +
             qx.locale.Manager.tr(
-              "You can run the %1Configuration Upgrader%2.",
-              "<a href=\"javascript:showConfigErrors('" +
+              'You can run the %1Configuration Upgrader%2.',
+              '<a href="javascript:showConfigErrors(\'' +
                 configSuffix +
-                "', {upgradeVersion: true})\">",
-              "</a>"
+                '\', {upgradeVersion: true})">',
+              '</a>'
             )
               .translate()
               .toString() +
-            "</br>" +
+            '</br>' +
             qx.locale.Manager.tr(
-              "Or you can start without upgrading %1with possible configuration problems%2",
-              "<a href=\"" + link + "\">",
-              "</a>"
+              'Or you can start without upgrading %1with possible configuration problems%2',
+              '<a href="' + link + '">',
+              '</a>'
             )
               .translate()
               .toString() +
-            "</p>";
+            '</p>';
           break;
         }
-        case "filenotfound":
+        case 'filenotfound':
           message = qx.locale.Manager.tr(
-            "404: Config file not found. Neither as normal config (%1) nor as demo config (%2).",
+            '404: Config file not found. Neither as normal config (%1) nor as demo config (%2).',
             additionalErrorInfo[0],
             additionalErrorInfo[1]
           )
             .translate()
             .toString();
           message +=
-            "<br/>" +
+            '<br/>' +
             qx.locale.Manager.tr(
-              "You can open the manager to create or upload a config file."
+              'You can open the manager to create or upload a config file.'
             )
               .translate()
               .toString();
           actions = {
             link: [
               {
-                title: qx.locale.Manager.tr("Open manager"),
-                type: "manager",
+                title: qx.locale.Manager.tr('Open manager'),
+                type: 'manager',
                 action: () => {
                   qx.core.Init.getApplication().showManager();
                 },
@@ -360,23 +368,23 @@ qx.Class.define("cv.util.ConfigLoader", {
           break;
         default:
           message = qx.locale.Manager.tr(
-            "Unhandled error of type \"%1\"",
+            'Unhandled error of type "%1"',
             textStatus
           )
             .translate()
             .toString();
           if (additionalErrorInfo) {
-            message += ": " + additionalErrorInfo;
+            message += ': ' + additionalErrorInfo;
           } else {
-            message += ".";
+            message += '.';
           }
       }
 
       const notification = {
-        topic: "cv.config.error",
+        topic: 'cv.config.error',
         title: title,
         message: message,
-        severity: "urgent",
+        severity: 'urgent',
         unique: true
       };
 
@@ -387,6 +395,7 @@ qx.Class.define("cv.util.ConfigLoader", {
         notification.topic,
         notification
       );
+
       this.error(this, message.toString());
       qx.core.Init.getApplication().block(false);
     }

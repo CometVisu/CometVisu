@@ -32,7 +32,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
+qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
@@ -41,14 +41,14 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
   ******************************************************
   */
   construct(props) {
-    const classes = props.classes.trim().split(" ");
-    const i_right = classes.indexOf("right");
+    const classes = props.classes.trim().split(' ');
+    const i_right = classes.indexOf('right');
 
     if (i_right !== -1) {
       // do not align, but float the container instead
-      this.setContainerClass("float-right");
+      this.setContainerClass('float-right');
       classes.splice(i_right, 1);
-      props.classes = classes.join(" ");
+      props.classes = classes.join(' ');
     }
     super(props);
   },
@@ -60,13 +60,13 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
   */
   properties: {
     counter: {
-      check: "Number",
+      check: 'Number',
       init: 0,
-      apply: "_applyCounter"
+      apply: '_applyCounter'
     },
 
     hideWhenEmpty: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -84,10 +84,10 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
       const center = cv.ui.NotificationCenter.getInstance();
       center
         .getMessages()
-        .addListener("changeLength", this._onChangeCounter, this);
+        .addListener('changeLength', this._onChangeCounter, this);
       this._onChangeCounter();
       center.addListener(
-        "changedGlobalSeverity",
+        'changedGlobalSeverity',
         this._onChangeGlobalSeverity,
         this
       );
@@ -109,7 +109,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
 
     __getBadgeElement() {
       if (!this.__badgeElement) {
-        this.__badgeElement = this.getDomElement().querySelector(".badge");
+        this.__badgeElement = this.getDomElement().querySelector('.badge');
       }
       return this.__badgeElement;
     },
@@ -120,6 +120,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
         classList,
         cv.ui.NotificationCenter.getInstance().getSeverities()
       );
+
       if (ev.getData()) {
         classList.add(ev.getData());
       }
@@ -128,21 +129,21 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
     _onChangeCounter() {
       const messages =
         cv.ui.NotificationCenter.getInstance().getMessages().length;
-      this.__getBadgeElement().innerHTML = "" + messages;
+      this.__getBadgeElement().innerHTML = '' + messages;
       if (this.isHideWhenEmpty()) {
         this.__getBadgeElement().style.display =
-          messages === 0 ? "none" : "block";
+          messages === 0 ? 'none' : 'block';
       }
     },
 
     // overridden
     _getInnerDomString() {
-      let style = "";
+      let style = '';
       if (this.isHideWhenEmpty() && this.getCounter() === 0) {
-        style = " style=\"display: none;\"";
+        style = ' style="display: none;"';
       }
       return (
-        "<div class=\"actor badge\"" + style + ">" + this.getCounter() + "</div>"
+        '<div class="actor badge"' + style + '>' + this.getCounter() + '</div>'
       );
     }
   },
@@ -156,9 +157,9 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
     const center = cv.ui.NotificationCenter.getInstance();
     center
       .getMessages()
-      .removeListener("changeLength", this._onChangeCounter, this);
+      .removeListener('changeLength', this._onChangeCounter, this);
     center.removeListener(
-      "changedGlobalSeverity",
+      'changedGlobalSeverity',
       this._onChangeGlobalSeverity,
       this
     );
@@ -166,7 +167,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass(
-      "notificationcenterbadge",
+      'notificationcenterbadge',
       statics
     );
   }

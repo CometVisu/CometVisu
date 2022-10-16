@@ -17,22 +17,22 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Mixin.define("cv.ui.common.HandleLongpress", {
+qx.Mixin.define('cv.ui.common.HandleLongpress', {
   /*
    ******************************************************
    PROPERTIES
    ******************************************************
    */
   properties: {
-    shortThreshold: { check: "Number", init: -1 },
-    shortDefault: { check: "Boolean", init: false }, // is true use short value if no threshold is set, otherwise use long
+    shortThreshold: { check: 'Number', init: -1 },
+    shortDefault: { check: 'Boolean', init: false }, // is true use short value if no threshold is set, otherwise use long
 
     /**
      * true: send the long value after the mouse button is released
      * false: send the long value when the time since the button is pressed is greater than shortThreshold before the button is released
      */
     sendLongOnRelease: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     }
   }

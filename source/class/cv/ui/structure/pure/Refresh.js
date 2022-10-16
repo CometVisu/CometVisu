@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2014
  */
-qx.Class.define("cv.ui.structure.pure.Refresh", {
+qx.Class.define('cv.ui.structure.pure.Refresh', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
@@ -37,7 +37,7 @@ qx.Class.define("cv.ui.structure.pure.Refresh", {
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", nullable: true }
+    sendValue: { check: 'String', nullable: true }
   },
 
   /*
@@ -54,7 +54,7 @@ qx.Class.define("cv.ui.structure.pure.Refresh", {
 
     // overridden
     _getInnerDomString() {
-      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
+      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     _action() {

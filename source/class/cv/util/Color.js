@@ -24,7 +24,7 @@
  * @since 2021
  */
 
-qx.Class.define("cv.util.Color", {
+qx.Class.define('cv.util.Color', {
   extend: qx.core.Object,
 
   /*
@@ -100,7 +100,7 @@ qx.Class.define("cv.util.Color", {
       return [
         det(y0, y1, y2, A01, A11, A21, A02, A12, A22) * detInv, // eslint-disable-line
         det(A00, A10, A20, y0, y1, y2, A02, A12, A22) * detInv, // eslint-disable-line
-        det(A00, A10, A20, A01, A11, A21, y0, y1, y2) * detInv, // eslint-disable-line
+        det(A00, A10, A20, A01, A11, A21, y0, y1, y2) * detInv // eslint-disable-line
       ];
     },
 
@@ -216,10 +216,10 @@ qx.Class.define("cv.util.Color", {
           ? curve[curve.length - 1] * scale
           : scale;
       }
-      if (curve === "log") {
+      if (curve === 'log') {
         return scale * Math.max(0, Math.min(1 - Math.log10(component) / -3, 1));
       }
-      if (curve === "exp") {
+      if (curve === 'exp') {
         return scale * Math.max(0, Math.min(10 ** (-3 * (1 - component)), 1));
       }
       if (curve.length === 1) {
@@ -248,10 +248,10 @@ qx.Class.define("cv.util.Color", {
       if (value >= scale) {
         return 1;
       }
-      if (curve === "log") {
+      if (curve === 'log') {
         return Math.max(0, Math.min(10 ** (-3 * (1 - value / scale)), 1));
       }
-      if (curve === "exp") {
+      if (curve === 'exp') {
         return Math.max(0, Math.min(1 - Math.log10(value / scale) / -3, 1));
       }
       if (curve.length === 1) {
@@ -455,6 +455,7 @@ qx.Class.define("cv.util.Color", {
         x: x,
         y: y
       });
+
       if (iRG.factors[0] >= 0 && iRG.factors[0] <= 1) {
         // no -> move it to be on the line
         x = iRG.x;
@@ -465,6 +466,7 @@ qx.Class.define("cv.util.Color", {
         x: x,
         y: y
       });
+
       if (iGB.factors[0] >= 0 && iGB.factors[0] <= 1) {
         // no -> move it to be on the line
         x = iGB.x;
@@ -475,6 +477,7 @@ qx.Class.define("cv.util.Color", {
         x: x,
         y: y
       });
+
       if (iBR.factors[0] >= 0 && iBR.factors[0] <= 1) {
         // no -> move it to be on the line
         x = iBR.x;
@@ -545,7 +548,7 @@ qx.Class.define("cv.util.Color", {
               A2 * B1 * C3 -
               A2 * B3 * C1 -
               A3 * B1 * C2 +
-              A3 * B2 * C1), // eslint-disable-line
+              A3 * B2 * C1) // eslint-disable-line
         ];
       }
 
@@ -583,12 +586,14 @@ qx.Class.define("cv.util.Color", {
             this.__W,
             { x: this.__x, y: this.__y }
           );
+
           const inter2 = cv.util.Color.intersect(
             colorAdd(hues[i], hues[i + 1]),
             hues[i + 1],
             this.__W,
             { x: this.__x, y: this.__y }
           );
+
           // hues[i] -> (hues[i]+hues[i+1])
           const fac = solve(
             hues[i + 1].X,
@@ -641,6 +646,7 @@ qx.Class.define("cv.util.Color", {
               s: fac2[1],
               v: fac2[2]
             };
+
             this.__HSV_h_last = this.__hsv.h;
             break;
           }
@@ -719,6 +725,7 @@ qx.Class.define("cv.util.Color", {
           this.__rgbw.g / w2rgb[1],
           this.__rgbw.b / w2rgb[2]
         );
+
         this.__rgbw.r -= this.__rgbw.w * w2rgb[0];
         this.__rgbw.g -= this.__rgbw.w * w2rgb[1];
         this.__rgbw.b -= this.__rgbw.w * w2rgb[2];
@@ -730,6 +737,7 @@ qx.Class.define("cv.util.Color", {
           this.__rgbw.b,
           this.__rgbw.w
         );
+
         if (max < 1) {
           max = 1;
         }
@@ -795,8 +803,8 @@ qx.Class.define("cv.util.Color", {
      * @param {string} keep
      * @param {string} [keep2]
      */
-    __invalidateBut(keep, keep2 = "") {
-      ["__rgb", "__rgbw", "__hsv", "__Lab", "__LCh", "__T"].forEach(cache => {
+    __invalidateBut(keep, keep2 = '') {
+      ['__rgb', '__rgbw', '__hsv', '__Lab', '__LCh', '__T'].forEach(cache => {
         if (cache !== keep && cache !== keep2) {
           this[cache] = undefined;
         }
@@ -860,7 +868,7 @@ qx.Class.define("cv.util.Color", {
           (1 - this.__hsv.s) * this.__W.Z) *
         this.__hsv.v;
       this.__setXYZ(X, Y, Z);
-      this.__invalidateBut("__hsv");
+      this.__invalidateBut('__hsv');
     },
 
     __syncRGB2xy() {
@@ -880,7 +888,7 @@ qx.Class.define("cv.util.Color", {
           this.__B.Z * this.__rgb.b;
         this.__setXYZ(X, Y, Z);
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
-      this.__invalidateBut("__rgb");
+      this.__invalidateBut('__rgb');
     },
 
     __syncRGBW2xy() {
@@ -890,6 +898,7 @@ qx.Class.define("cv.util.Color", {
         this.__rgbw.b,
         this.__rgbw.w
       );
+
       if (this.__Y > 0) {
         const X =
           this.__R.X * this.__rgbw.r +
@@ -908,18 +917,18 @@ qx.Class.define("cv.util.Color", {
           this.__W.Z * this.__rgbw.w;
         this.__setXYZ(X, Y, Z);
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
-      this.__invalidateBut("__rgbw");
+      this.__invalidateBut('__rgbw');
     },
 
     __syncT2xy() {
       let xy = cv.util.Color.temperature2xy(this.__T);
       this.__x = xy.x;
       this.__y = xy.y;
-      this.__invalidateBut("__T");
+      this.__invalidateBut('__T');
     },
 
     __syncY2xy() {
-      this.__invalidateBut("__T");
+      this.__invalidateBut('__T');
     },
 
     __syncLab2xy(keepLCh = false) {
@@ -939,7 +948,7 @@ qx.Class.define("cv.util.Color", {
       const Z = Zn * fInv(L16 - Lab.b / 200);
       this.__setXYZ(X, Y, Z);
 
-      this.__invalidateBut("__Lab", keepLCh ? "__LCh" : "");
+      this.__invalidateBut('__Lab', keepLCh ? '__LCh' : '');
     },
 
     __syncLCh2xy() {
@@ -978,22 +987,22 @@ qx.Class.define("cv.util.Color", {
       }
 
       switch (component) {
-        case "h":
-        case "s":
-        case "v":
+        case 'h':
+        case 's':
+        case 'v':
           this.__validateHSV();
           this.__hsv[component] = clamp(value);
           this.__syncHSV2xy();
           break;
 
-        case "sv":
+        case 'sv':
           this.__validateHSV();
           this.__hsv.s = clamp(value[0]);
           this.__hsv.v = clamp(value[1]);
           this.__syncHSV2xy();
           break;
 
-        case "hsv":
+        case 'hsv':
           this.__hsv = {
             h: clamp(value.h),
             s: clamp(value.s),
@@ -1003,15 +1012,15 @@ qx.Class.define("cv.util.Color", {
           this.__syncHSV2xy();
           break;
 
-        case "RGB-r":
-        case "RGB-g":
-        case "RGB-b":
+        case 'RGB-r':
+        case 'RGB-g':
+        case 'RGB-b':
           this.__validateRGB();
-          this.__rgb[component.split("-")[1]] = clamp(value);
+          this.__rgb[component.split('-')[1]] = clamp(value);
           this.__syncRGB2xy();
           break;
 
-        case "rgb":
+        case 'rgb':
           this.__rgb = {
             r: clamp(value.r),
             g: clamp(value.g),
@@ -1021,16 +1030,16 @@ qx.Class.define("cv.util.Color", {
           this.__syncRGB2xy();
           break;
 
-        case "RGBW-r":
-        case "RGBW-g":
-        case "RGBW-b":
-        case "RGBW-w":
+        case 'RGBW-r':
+        case 'RGBW-g':
+        case 'RGBW-b':
+        case 'RGBW-w':
           this.__validateRGBW();
-          this.__rgbw[component.split("-")[1]] = clamp(value);
+          this.__rgbw[component.split('-')[1]] = clamp(value);
           this.__syncRGBW2xy();
           break;
 
-        case "rgbw":
+        case 'rgbw':
           this.__rgbw = {
             r: clamp(value.r),
             g: clamp(value.g),
@@ -1041,54 +1050,54 @@ qx.Class.define("cv.util.Color", {
           this.__syncRGBW2xy();
           break;
 
-        case "T":
+        case 'T':
           this.__T = Math.max(1667, Math.min(value, 25000));
           this.__syncT2xy();
           break;
 
-        case "x":
+        case 'x':
           this.__x = clamp(value);
-          this.__invalidateBut(""); // all precalculated colors are invalid now
+          this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
-        case "y":
+        case 'y':
           this.__y = clamp(value);
-          this.__invalidateBut(""); // all precalculated colors are invalid now
+          this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
-        case "xy":
+        case 'xy':
           this.__x = clamp(value.x);
           this.__y = clamp(value.y);
-          this.__invalidateBut(""); // all precalculated colors are invalid now
+          this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
-        case "Y":
+        case 'Y':
           this.__Y = clamp(value);
           this.__syncY2xy();
           break;
 
-        case "xyY":
+        case 'xyY':
           this.__x = clamp(value.x);
           this.__y = clamp(value.y);
           this.__Y = clamp(value.Y);
-          this.__invalidateBut(""); // all precalculated colors are invalid now
+          this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
-        case "LCh-L":
-        case "LCh-C":
+        case 'LCh-L':
+        case 'LCh-C':
           this.__validateLCh();
-          this.__LCh[component.split("-")[1]] = clamp(value);
+          this.__LCh[component.split('-')[1]] = clamp(value);
           this.__syncLCh2xy();
           break;
 
-        case "LCh-h":
+        case 'LCh-h':
           this.__validateLCh();
-          this.__LCh[component.split("-")[1]] = clamp(value);
+          this.__LCh[component.split('-')[1]] = clamp(value);
           this.__LCh_h_last = this.__LCh.h;
           this.__syncLCh2xy();
           break;
 
-        case "LCh-CL":
+        case 'LCh-CL':
           this.__validateLCh();
           this.__LCh.C = clamp(value[0]);
           this.__LCh.L = clamp(value[1]);
@@ -1137,24 +1146,24 @@ qx.Class.define("cv.util.Color", {
           : 0;
 
       switch (component) {
-        case "xy":
+        case 'xy':
           return { x: clamp(0, this.__x, 1), y: clamp(0, this.__y, 1) };
-        case "Y":
+        case 'Y':
           return clamp(0, this.__Y, 1);
-        case "xyY":
+        case 'xyY':
           return {
             x: clamp(0, this.__x, 1),
             y: clamp(0, this.__y, 1),
             Y: clamp(0, this.__Y, 1)
           };
 
-        case "h":
-        case "s":
-        case "v":
+        case 'h':
+        case 's':
+        case 'v':
           this.__validateHSV(force);
           return clamp(0, this.__hsv[component], 1);
 
-        case "hsv":
+        case 'hsv':
           this.__validateHSV(force);
           return {
             h: clamp(0, this.__hsv.h, 1),
@@ -1162,17 +1171,17 @@ qx.Class.define("cv.util.Color", {
             v: clamp(0, this.__hsv.v, 1)
           };
 
-        case "RGB-r":
-        case "RGB-g":
-        case "RGB-b": {
+        case 'RGB-r':
+        case 'RGB-g':
+        case 'RGB-b': {
           this.__validateRGB(force);
           const map = gamutMap
             ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1)
             : 1;
-          return map * this.__rgb[component.split("-")[1]];
+          return map * this.__rgb[component.split('-')[1]];
         }
 
-        case "rgb": {
+        case 'rgb': {
           this.__validateRGB(force);
           const map = gamutMap
             ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1)
@@ -1184,10 +1193,10 @@ qx.Class.define("cv.util.Color", {
           };
         }
 
-        case "RGBW-r":
-        case "RGBW-g":
-        case "RGBW-b":
-        case "RGBW-w": {
+        case 'RGBW-r':
+        case 'RGBW-g':
+        case 'RGBW-b':
+        case 'RGBW-w': {
           this.__validateRGBW(force);
           const map = gamutMap
             ? 1 /
@@ -1199,10 +1208,10 @@ qx.Class.define("cv.util.Color", {
                 1
               )
             : 1;
-          return map * this.__rgbw[component.split("-")[1]];
+          return map * this.__rgbw[component.split('-')[1]];
         }
 
-        case "rgbw": {
+        case 'rgbw': {
           this.__validateRGBW(force);
           const map = gamutMap
             ? 1 /
@@ -1222,21 +1231,21 @@ qx.Class.define("cv.util.Color", {
           };
         }
 
-        case "T":
+        case 'T':
           this.__validateT(force);
           return clamp(1667, this.__T, 25000);
 
-        case "Lab":
+        case 'Lab':
           this.__validateLab(force);
           return this.__Lab;
 
-        case "LCh-L":
-        case "LCh-C":
-        case "LCh-h":
+        case 'LCh-L':
+        case 'LCh-C':
+        case 'LCh-h':
           this.__validateLCh(force);
-          return clamp(0, this.__LCh[component.split("-")[1]], 1);
+          return clamp(0, this.__LCh[component.split('-')[1]], 1);
 
-        case "LCh":
+        case 'LCh':
           this.__validateLCh(force);
           return {
             L: clamp(0, this.__LCh.L, 1),

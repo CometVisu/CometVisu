@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2014
  */
-qx.Class.define("cv.ui.structure.pure.Reload", {
+qx.Class.define('cv.ui.structure.pure.Reload', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update],
 

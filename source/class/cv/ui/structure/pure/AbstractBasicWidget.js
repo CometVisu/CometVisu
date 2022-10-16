@@ -20,9 +20,9 @@
 /**
  *
  */
-qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
+qx.Class.define('cv.ui.structure.pure.AbstractBasicWidget', {
   extend: qx.core.Object,
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ******************************************************
@@ -31,7 +31,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
   */
   construct(props) {
     for (let prop in props) {
-      if (this["set" + qx.Bootstrap.firstUp(prop)] !== undefined) {
+      if (this['set' + qx.Bootstrap.firstUp(prop)] !== undefined) {
         this.set(prop, props[prop]);
       }
     }
@@ -47,22 +47,22 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
      * Internal path to the widget
      */
     path: {
-      check: "String"
+      check: 'String'
     },
 
     /**
      * The widget type
      */
     $$type: {
-      check: "String"
+      check: 'String'
     },
 
     /**
      * The parents page type
      */
     pageType: {
-      check: ["text", "2d", "3d"],
-      init: "text"
+      check: ['text', '2d', '3d'],
+      init: 'text'
     }
   },
 
@@ -91,7 +91,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
       if (
         cv.Config.lazyLoading === true &&
         this.__parentWidget === null &&
-        this.getPath() !== "id_"
+        this.getPath() !== 'id_'
       ) {
         // creating parent widget on demand
         const parentData = cv.util.Tree.getParentData(this.getPath());
@@ -100,6 +100,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
           parentData.$$type,
           parentData
         );
+
         this.setParentWidget(parent);
       }
       return this.__parentWidget;
@@ -111,7 +112,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
      */
     getDomElement() {
       if (!this._domElement) {
-        this._domElement = document.querySelector("#" + this.getPath());
+        this._domElement = document.querySelector('#' + this.getPath());
       }
       return this._domElement;
     },
@@ -131,7 +132,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
     getParentPage() {
       let parent = this.getParentWidget();
       while (parent) {
-        if (parent.get$$type() === "page") {
+        if (parent.get$$type() === 'page') {
           return parent;
         }
         parent = parent.getParentWidget();
@@ -146,7 +147,7 @@ qx.Class.define("cv.ui.structure.pure.AbstractBasicWidget", {
     getVisibilityParent() {
       let parent = this.getParentWidget();
       while (parent) {
-        if (parent.get$$type() === "page" || parent.get$$type() === "navbar") {
+        if (parent.get$$type() === 'page' || parent.get$$type() === 'navbar') {
           return parent;
         }
         parent = parent.getParentWidget();

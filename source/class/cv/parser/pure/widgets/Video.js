@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Video", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Video', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -55,9 +55,9 @@ qx.Class.define("cv.parser.pure.widgets.Video", {
         height: {},
         src: {},
         autoplay: {
-          target: "autoplay",
+          target: 'autoplay',
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -66,6 +66,6 @@ qx.Class.define("cv.parser.pure.widgets.Video", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("video", statics);
+    cv.parser.pure.WidgetParser.addHandler('video', statics);
   }
 });

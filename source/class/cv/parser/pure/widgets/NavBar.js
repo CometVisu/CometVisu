@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.NavBar", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.NavBar', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,31 +47,34 @@ qx.Class.define("cv.parser.pure.widgets.NavBar", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       // navbars are no 2d/3d pages
-      cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, "text");
+      cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, 'text');
       return data;
     },
 
     createDefaultWidget(widgetType, n, path) {
-      let classes = "navbar clearfix";
-      if (n.getAttribute("flavour")) {
-        classes += " flavour_" + n.getAttribute("flavour");
+      let classes = 'navbar clearfix';
+      if (n.getAttribute('flavour')) {
+        classes += ' flavour_' + n.getAttribute('flavour');
       } // sub design choice
 
       // store scope globally
-      const id = path.split("_");
+      const id = path.split('_');
       id.pop();
-      const pos = n.getAttribute("position") || "left";
+      const pos = n.getAttribute('position') || 'left';
       cv.data.Model.getInstance().setWidgetData(
-        id.join("_") + "_" + pos + "_navbar",
+        id.join('_') + '_' + pos + '_navbar',
         {
           dynamic: cv.parser.pure.widgets.NavBar._transformDynamic(
-            n.getAttribute("dynamic")
+            n.getAttribute('dynamic')
           ),
+
           scope: cv.parser.pure.widgets.NavBar._transformScope(
-            n.getAttribute("scope")
+            n.getAttribute('scope')
           ),
-          width: n.getAttribute("width")
+
+          width: n.getAttribute('width')
         }
       );
 
@@ -87,10 +90,10 @@ qx.Class.define("cv.parser.pure.widgets.NavBar", {
 
     _transformDynamic(value) {
       switch (value) {
-        case "true":
+        case 'true':
           return true;
 
-        case "false":
+        case 'false':
           return false;
       }
 
@@ -111,15 +114,16 @@ qx.Class.define("cv.parser.pure.widgets.NavBar", {
           default: -1,
           transform: cv.parser.pure.widgets.NavBar._transformScope
         },
+
         name: {},
         dynamic: { transform: cv.parser.pure.widgets.NavBar._transformDynamic },
-        width: { default: "300" },
-        position: { default: "left" }
+        width: { default: '300' },
+        position: { default: 'left' }
       };
     }
   },
 
   defer(statics) {
-    cv.parser.pure.WidgetParser.addHandler("navbar", statics);
+    cv.parser.pure.WidgetParser.addHandler('navbar', statics);
   }
 });

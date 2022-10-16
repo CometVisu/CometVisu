@@ -20,9 +20,9 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.editor.Worker", {
+qx.Class.define('cv.ui.manager.editor.Worker', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ***********************************************
@@ -34,7 +34,7 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
     this._files = {};
     // create WebWorker
     this._worker = cv.data.FileWorker.getInstance();
-    this._worker.addListener("message", this._onMessage, this);
+    this._worker.addListener('message', this._onMessage, this);
   },
 
   /*
@@ -44,7 +44,7 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
   */
   properties: {
     editor: {
-      check: "cv.ui.manager.editor.AbstractEditor",
+      check: 'cv.ui.manager.editor.AbstractEditor',
       nullable: true
     }
   },
@@ -60,7 +60,7 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
 
     open(file, code, schema, features) {
       this._worker.postMessage([
-        "openFile",
+        'openFile',
         {
           path: file.getFullPath(),
           code: qx.xml.Document.isXmlDocument(code)
@@ -68,14 +68,16 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
             : code,
           schema: schema
         },
+
         features
       ]);
+
       this._files[file.getFullPath()] = file;
     },
 
     close(file) {
       this._worker.postMessage([
-        "closeFile",
+        'closeFile',
         {
           path: file.getFullPath()
         }
@@ -86,7 +88,7 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
 
     contentChanged(file, content) {
       this._worker.postMessage([
-        "contentChange",
+        'contentChange',
         {
           path: file.getFullPath(),
           code: content
@@ -100,8 +102,9 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
       }
       qx.log.Logger.error(
         this,
-        file.getFullPath() + " is no configuration file"
+        file.getFullPath() + ' is no configuration file'
       );
+
       return true;
     },
 
@@ -114,19 +117,20 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
       let data = e.getData().data;
       let path = e.getData().path;
       let file = this._files[path];
-      if (!file && topic !== "validationResult") {
+      if (!file && topic !== 'validationResult') {
         qx.log.Logger.error(
           this,
-          "no file found for path " +
+          'no file found for path ' +
             path +
-            " ignoring worker message for topic " +
+            ' ignoring worker message for topic ' +
             topic
         );
+
         return;
       }
       let editor = this.getEditor();
       switch (topic) {
-        case "modified":
+        case 'modified':
           // new files are always modified, to not override that state
           if (!file.isTemporary()) {
             file.setModified(data.modified);
@@ -134,18 +138,18 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
           file.setHash(data.currentHash);
           break;
 
-        case "hash":
+        case 'hash':
           file.setHash(data);
           break;
 
-        case "errors":
+        case 'errors':
           file.setValid(!data || data.length === 0);
           if (editor) {
             editor.showErrors(path, data);
           }
           break;
 
-        case "decorations":
+        case 'decorations':
           if (editor) {
             editor.showDecorations(path, data);
           }

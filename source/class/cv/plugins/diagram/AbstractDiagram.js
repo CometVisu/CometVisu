@@ -63,10 +63,10 @@
  * @asset(plugins/diagram/dep/flot/jquery.flot.tooltip.min.js)
  * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
-qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
+qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Refresh],
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -114,47 +114,51 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         pageType,
         mappings
       );
+
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
 
-      const legend = xml.getAttribute("legend") || "both";
+      const legend = xml.getAttribute('legend') || 'both';
       return cv.data.Model.getInstance().setWidgetData(path, {
         content: this.getDiagramElements(xml),
-        legendInline: ["both", "inline"].indexOf(legend) >= 0,
-        legendPopup: ["both", "popup"].indexOf(legend) >= 0
+        legendInline: ['both', 'inline'].indexOf(legend) >= 0,
+        legendPopup: ['both', 'popup'].indexOf(legend) >= 0
       });
     },
 
     getAttributeToPropertyMappings() {
       return {
-        series: { default: "day" },
-        seriesStart: { default: "end-month" },
-        seriesEnd: { default: "now" },
+        series: { default: 'day' },
+        seriesStart: { default: 'end-month' },
+        seriesEnd: { default: 'now' },
         seriesResolution: { default: 300, transform: parseInt },
         period: { default: 1, transform: parseInt },
-        legendposition: { default: "ne" },
+        legendposition: { default: 'ne' },
         timeformat: {},
-        timeformatTooltip: { default: "%d.%m.%Y %H:%M" },
+        timeformatTooltip: { default: '%d.%m.%Y %H:%M' },
         zoomYAxis: {
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
-        title: { target: "title" },
+
+        title: { target: 'title' },
         refresh: {},
-        gridcolor: { default: "#81664B" },
+        gridcolor: { default: '#81664B' },
         previewlabels: {
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
+
         popup: {
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
+
         tooltip: {
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -170,15 +174,15 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
 
       const axesNameIndex = [];
 
-      xmlElement.querySelectorAll("axis").forEach(function (elem) {
-        const unit = elem.getAttribute("unit") || "";
+      xmlElement.querySelectorAll('axis').forEach(function (elem) {
+        const unit = elem.getAttribute('unit') || '';
         retVal.axes[retVal.axesnum] = {
-          axisLabel: elem.getAttribute("label") || null,
-          position: elem.getAttribute("position") || "left",
-          min: elem.getAttribute("min") || null,
-          max: elem.getAttribute("max") || null,
+          axisLabel: elem.getAttribute('label') || null,
+          position: elem.getAttribute('position') || 'left',
+          min: elem.getAttribute('min') || null,
+          max: elem.getAttribute('max') || null,
           unit: unit,
-          tickDecimals: elem.getAttribute("decimals") || null,
+          tickDecimals: elem.getAttribute('decimals') || null,
           tickFormatter(v, axis) {
             return v.toFixed(axis.tickDecimals) + unit;
           }
@@ -188,45 +192,45 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         axesNameIndex[elem.textContent] = retVal.axesnum;
       }, this);
 
-      xmlElement.querySelectorAll("influx,rrd").forEach(function (elem) {
+      xmlElement.querySelectorAll('influx,rrd').forEach(function (elem) {
         const src =
-          elem.tagName === "rrd"
+          elem.tagName === 'rrd'
             ? elem.textContent
-            : elem.getAttribute("measurement");
-        const steps = (elem.getAttribute("steps") || "false") === "true";
-        const fillMissing = elem.getAttribute("fillMissing");
+            : elem.getAttribute('measurement');
+        const steps = (elem.getAttribute('steps') || 'false') === 'true';
+        const fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
           tsType: elem.tagName,
           src: src,
-          color: elem.getAttribute("color"),
-          label: elem.getAttribute("label") || src,
-          axisIndex: axesNameIndex[elem.getAttribute("yaxis")] || 1,
+          color: elem.getAttribute('color'),
+          label: elem.getAttribute('label') || src,
+          axisIndex: axesNameIndex[elem.getAttribute('yaxis')] || 1,
           steps: steps,
-          fill: (elem.getAttribute("fill") || "false") === "true",
-          scaling: parseFloat(elem.getAttribute("scaling")) || 1.0,
+          fill: (elem.getAttribute('fill') || 'false') === 'true',
+          scaling: parseFloat(elem.getAttribute('scaling')) || 1.0,
           cFunc:
-            elem.getAttribute("consolidationFunction") ||
-            (elem.tagName === "rrd" ? "AVERAGE" : "MEAN"),
+            elem.getAttribute('consolidationFunction') ||
+            (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
           fillTs:
             fillMissing === null
               ? steps
-                ? "previous"
-                : "linear"
+                ? 'previous'
+                : 'linear'
               : fillMissing,
-          resol: parseInt(elem.getAttribute("resolution")),
-          offset: parseInt(elem.getAttribute("offset")),
-          style: elem.getAttribute("style") || "lines",
-          align: elem.getAttribute("align") || "center",
-          barWidth: elem.getAttribute("barWidth") || 1
+          resol: parseInt(elem.getAttribute('resolution')),
+          offset: parseInt(elem.getAttribute('offset')),
+          style: elem.getAttribute('style') || 'lines',
+          align: elem.getAttribute('align') || 'center',
+          barWidth: elem.getAttribute('barWidth') || 1
         };
 
-        if (elem.tagName === "influx") {
-          retVal.ts[retVal.tsnum].filter = this.getInfluxFilter(elem, "AND");
-          retVal.ts[retVal.tsnum].field = elem.getAttribute("field");
+        if (elem.tagName === 'influx') {
+          retVal.ts[retVal.tsnum].filter = this.getInfluxFilter(elem, 'AND');
+          retVal.ts[retVal.tsnum].field = elem.getAttribute('field');
           retVal.ts[retVal.tsnum].authentication =
-            elem.getAttribute("authentication");
+            elem.getAttribute('authentication');
         } else {
-          let dsIndex = elem.getAttribute("datasourceIndex") || 0;
+          let dsIndex = elem.getAttribute('datasourceIndex') || 0;
           if (dsIndex < 0) {
             dsIndex = 0;
           }
@@ -245,32 +249,32 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
     getInfluxFilter(elem, type) {
       const children = elem.children;
       const length = children.length;
-      let retval = "";
+      let retval = '';
       let i = 0;
 
       for (; i < length; i++) {
         const child = children[i];
 
-        if (retval !== "") {
-          retval += " " + type + " ";
+        if (retval !== '') {
+          retval += ' ' + type + ' ';
         }
 
         switch (child.tagName) {
-          case "and":
-            retval += this.getInfluxFilter(child, "AND");
+          case 'and':
+            retval += this.getInfluxFilter(child, 'AND');
             break;
 
-          case "or":
-            retval += this.getInfluxFilter(child, "OR");
+          case 'or':
+            retval += this.getInfluxFilter(child, 'OR');
             break;
 
-          case "tag":
+          case 'tag':
             retval +=
-              child.getAttribute("key") +
-              " " +
-              child.getAttribute("operator") +
+              child.getAttribute('key') +
+              ' ' +
+              child.getAttribute('operator') +
               " '" +
-              child.getAttribute("value") +
+              child.getAttribute('value') +
               "'";
             break;
 
@@ -280,7 +284,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
       }
 
       if (type) {
-        return "(" + retval + ")";
+        return '(' + retval + ')';
       }
 
       return retval;
@@ -312,47 +316,47 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
       const client = cv.io.BackendConnections.getClient();
       let key;
       let url;
-      const chartsResource = client.getResourcePath("charts", {
+      const chartsResource = client.getResourcePath('charts', {
         src: ts.src,
         start: start,
         end: end
       });
 
-      if (ts.tsType !== "influx" && chartsResource !== null) {
+      if (ts.tsType !== 'influx' && chartsResource !== null) {
         // the backend provides an charts resource that must be processed differently (e.g. openHABs persistence data
         url = chartsResource;
         key = url;
       } else {
         url =
-          (ts.tsType === "influx"
-            ? "resource/plugins/diagram/influxfetch.php?ts=" + ts.src
-            : client.getResourcePath("rrd") +
-              "?rrd=" +
+          (ts.tsType === 'influx'
+            ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
+            : client.getResourcePath('rrd') +
+              '?rrd=' +
               encodeURIComponent(ts.src) +
-              ".rrd") +
-          "&ds=" +
+              '.rrd') +
+          '&ds=' +
           encodeURIComponent(ts.cFunc) +
           // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
           //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
-          "&start=" +
-          (ts.tsType === "rrd" ? start : encodeURIComponent(start)) +
-          "&end=" +
-          (ts.tsType === "rrd" ? end : encodeURIComponent(end)) +
-          "&res=" +
+          '&start=' +
+          (ts.tsType === 'rrd' ? start : encodeURIComponent(start)) +
+          '&end=' +
+          (ts.tsType === 'rrd' ? end : encodeURIComponent(end)) +
+          '&res=' +
           encodeURIComponent(res) +
-          (ts.fillTs ? "&fill=" + encodeURIComponent(ts.fillTs) : "") +
-          (ts.filter ? "&filter=" + encodeURIComponent(ts.filter) : "") +
-          (ts.field ? "&field=" + encodeURIComponent(ts.field) : "") +
+          (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '') +
+          (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '') +
+          (ts.field ? '&field=' + encodeURIComponent(ts.field) : '') +
           (ts.authentication
-            ? "&auth=" + encodeURIComponent(ts.authentication)
-            : "");
-        key = url + (ts.tsType === "rrd" ? "|" + ts.dsIndex : "");
+            ? '&auth=' + encodeURIComponent(ts.authentication)
+            : '');
+        key = url + (ts.tsType === 'rrd' ? '|' + ts.dsIndex : '');
       }
       let urlNotInCache = !(key in this.cache);
       let doLoad =
         force ||
         urlNotInCache ||
-        !("data" in this.cache[key]) ||
+        !('data' in this.cache[key]) ||
         (refresh !== undefined &&
           Date.now() - this.cache[key].timestamp > refresh * 1000);
 
@@ -369,13 +373,13 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
           const xhr = new qx.io.request.Xhr(url);
           client.authorize(xhr);
           xhr.set({
-            accept: "application/json"
+            accept: 'application/json'
           });
 
-          xhr.addListener("success", ev => {
+          xhr.addListener('success', ev => {
             this._onSuccess(ts, key, ev, forceNowDatapoint);
           });
-          xhr.addListener("statusError", ev => {
+          xhr.addListener('statusError', ev => {
             this._onStatusError(ts, key, ev);
           });
           this.cache[key].xhr = xhr;
@@ -401,7 +405,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
           let j = 0;
           const l = tsdata.length;
           for (; j < l; j++) {
-            if (ts.tsType === "rrd") {
+            if (ts.tsType === 'rrd') {
               newRrd[j] = [
                 tsdata[j][0] + millisOffset,
                 parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling
@@ -435,17 +439,17 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
     },
 
     _onStatusError(ts, key, ev) {
-      cv.core.notifications.Router.dispatchMessage("cv.diagram.error", {
-        title: qx.locale.Manager.tr("Diagram communication error"),
-        severity: "urgent",
+      cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
+        title: qx.locale.Manager.tr('Diagram communication error'),
+        severity: 'urgent',
         message: qx.locale.Manager.tr(
-          "URL: %1<br/><br/>Response:</br>%2",
+          'URL: %1<br/><br/>Response:</br>%2',
           JSON.stringify(key),
           ev._target._transport.responseText
         )
       });
 
-      window.console.error("Diagram _onStatusError", ts, key, ev);
+      window.console.error('Diagram _onStatusError', ts, key, ev);
       const tsdata = [];
 
       this.cache[key].data = tsdata;
@@ -465,93 +469,93 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
   */
   properties: {
     content: {
-      check: "Object",
+      check: 'Object',
       init: {}
     },
 
     title: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      apply: "_applyTitle"
+      apply: '_applyTitle'
     },
 
     series: {
-      check: ["hour", "day", "week", "month", "year", "fullday", "custom"],
-      init: "day"
+      check: ['hour', 'day', 'week', 'month', 'year', 'fullday', 'custom'],
+      init: 'day'
     },
 
     seriesStart: {
-      check: "String",
-      init: "end-month"
+      check: 'String',
+      init: 'end-month'
     },
 
     seriesEnd: {
-      check: "String",
-      init: "now"
+      check: 'String',
+      init: 'now'
     },
 
     seriesResolution: {
-      check: "Number",
+      check: 'Number',
       init: 300
     },
 
     forceNowDatapoint: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
 
     period: {
-      check: "Number",
+      check: 'Number',
       init: 1
     },
 
     legendInline: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
 
     legendPopup: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
 
     legendposition: {
-      check: ["nw", "ne", "sw", "se"],
-      init: "ne"
+      check: ['nw', 'ne', 'sw', 'se'],
+      init: 'ne'
     },
 
     timeformat: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     timeformatTooltip: {
-      check: "String",
-      init: "%d.%m.%Y %H:%M"
+      check: 'String',
+      init: '%d.%m.%Y %H:%M'
     },
 
     zoomYAxis: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     gridcolor: {
-      check: "String",
-      init: "#81664B"
+      check: 'String',
+      init: '#81664B'
     },
 
     previewlabels: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     popup: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     tooltip: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -573,7 +577,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
     _applyTitle(value) {
       if (value) {
         // override label
-        this.setLabel("<div class=\"label\">" + value + "</div>");
+        this.setLabel('<div class="label">' + value + '</div>');
       }
     },
 
@@ -581,14 +585,14 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
       if (this.getRefresh()) {
         if (!this._timer) {
           this._timer = new qx.event.Timer(this.getRefresh());
-          this._timer.addListener("interval", () => {
+          this._timer.addListener('interval', () => {
             this.loadDiagramData(this.plot, false, true);
           });
         }
 
         if (!this._timerPopup) {
           this._timerPopup = new qx.event.Timer(this.getRefresh());
-          this._timerPopup.addListener("interval", () => {
+          this._timerPopup.addListener('interval', () => {
             this.loadDiagramData(this.popupplot, false, true);
           });
         }
@@ -620,20 +624,20 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
           timer.start();
         }
         if (runImmediately === true) {
-          timer.fireEvent("interval");
+          timer.fireEvent('interval');
         }
       }
     },
 
     _action() {
-      const popupDiagram = qx.dom.Element.create("div", {
-        class: "diagram",
-        id: this.getPath() + "_big",
-        style: "height: 90%"
+      const popupDiagram = qx.dom.Element.create('div', {
+        class: 'diagram',
+        id: this.getPath() + '_big',
+        style: 'height: 90%'
       });
 
       this._init = true;
-      const popup = cv.ui.PopupHandler.showPopup("diagram", {
+      const popup = cv.ui.PopupHandler.showPopup('diagram', {
         title: this.getLabel(),
         content: popupDiagram,
         page: this.getParentPage().getPath()
@@ -642,7 +646,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
       // this will be called when the popup is being closed.
       // NOTE: this will be called twice, one time for the foreground and one
       //       time for the background.
-      popup.addListener("close", () => {
+      popup.addListener('close', () => {
         this._stopRefresh(this._timerPopup);
         qx.event.Registration.removeAllListeners(popupDiagram);
         if (this.popupplot) {
@@ -652,15 +656,16 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
       });
 
       const parent = popupDiagram.parentNode;
-      Object.entries({ height: "100%", width: "95%", margin: "auto" }).forEach(
+      Object.entries({ height: '100%', width: '95%', margin: 'auto' }).forEach(
         function (key_value) {
           parent.style[key_value[0]] = key_value[1];
         }
-      ); // define parent as 100%!
-      popupDiagram.innerHTML = "";
+      );
+      // define parent as 100%!
+      popupDiagram.innerHTML = '';
       qx.event.Registration.addListener(
         popupDiagram,
-        "tap",
+        'tap',
         function (event) {
           // don't let the popup know about the click, or it will close
           event.stopPropagation();
@@ -684,7 +689,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         canvas: true,
         tooltip: this.getTooltip(),
         tooltipOpts: {
-          content: "<center>%x<br/>%y</center>",
+          content: '<center>%x<br/>%y</center>',
           xDateFormat: this.getTimeformatTooltip(),
           shifts: {
             x: 20,
@@ -696,13 +701,13 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
 
         zoom: {
           interactive: isPopup,
-          trigger: "dblclick",
+          trigger: 'dblclick',
           amount: 1.5
         },
 
         pan: {
           interactive: isPopup,
-          cursor: "move",
+          cursor: 'move',
           frameRate: 20,
           triggerOnDrag: false
         },
@@ -710,7 +715,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         yaxes: JSON.parse(JSON.stringify(this.getContent().axes)), // deep copy to prevent side effects
         xaxes: [
           {
-            mode: "time",
+            mode: 'time',
             timeformat: this.getTimeformat()
           }
         ],
@@ -719,7 +724,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
           show:
             (isPopup && this.isLegendPopup()) ||
             (!isPopup && this.isLegendInline()),
-          backgroundColor: "#101010",
+          backgroundColor: '#101010',
           position: this.getLegendposition()
         },
 
@@ -727,7 +732,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
           show: true,
           aboveData: false,
           color: this.getGridcolor(),
-          backgroundColor: "#000000",
+          backgroundColor: '#000000',
           tickColor: this.getGridcolor(),
           markingsColor: this.getGridcolor(),
           borderColor: this.getGridcolor(),
@@ -735,8 +740,8 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         },
 
         touch: {
-          pan: isPopup ? "x" : "none", // what axis pan work
-          scale: isPopup ? "x" : "none", // what axis zoom work
+          pan: isPopup ? 'x' : 'none', // what axis pan work
+          scale: isPopup ? 'x' : 'none', // what axis zoom work
           autoWidth: false,
           autoHeight: false,
           delayTouchEnded: 500, // delay in ms before touchended event is fired if no more touches
@@ -782,6 +787,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         Object.assign(options, {
           xaxes: [{ ticks: 0, mode: options.xaxes[0].mode }]
         });
+
         if (options.yaxes.length === 0) {
           options.yaxes[0] = {};
         }
@@ -792,35 +798,35 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
 
       // plot diagram initially with empty values
       const diagram = isPopup
-        ? $("#" + this.getPath() + "_big")
-        : $("#" + this.getPath() + " .actor div");
+        ? $('#' + this.getPath() + '_big')
+        : $('#' + this.getPath() + ' .actor div');
       diagram.empty();
       const plot = $.plot(diagram, [], options);
       if (isPopup) {
-        this.debug("popup plot generated");
+        this.debug('popup plot generated');
         this.popupplot = plot;
       } else {
-        this.debug("plot generated");
+        this.debug('plot generated');
         this.plot = plot;
       }
       this.plotted = true;
 
       const that = this;
       diagram
-        .bind("plotpan", function (event, plot) {
+        .bind('plotpan', function (event, plot) {
           that._debouncedLoadDiagramData(plot, isPopup, false);
         })
-        .bind("plotzoom", function () {
+        .bind('plotzoom', function () {
           that.loadDiagramData(plot, isPopup, false);
         })
-        .bind("touchended", function () {
+        .bind('touchended', function () {
           that.loadDiagramData(plot, isPopup, false);
         })
-        .bind("tap", function () {
+        .bind('tap', function () {
           const self = this;
-          const container = $(self).closest(".widget_container")[0];
+          const container = $(self).closest('.widget_container')[0];
           if (!isPopup && container !== undefined) {
-            const actor = $(self).closest(".actor")[0];
+            const actor = $(self).closest('.actor')[0];
             const path = container.id;
             if (actor !== undefined && path.length > 0) {
               that.action();
@@ -832,9 +838,9 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         // disable touch plugin in non-popup
         plot
           .getPlaceholder()
-          .unbind("touchstart")
-          .unbind("touchmove")
-          .unbind("touchend");
+          .unbind('touchstart')
+          .unbind('touchmove')
+          .unbind('touchend');
       }
 
       this.loadDiagramData(plot, isPopup, false);
@@ -842,12 +848,12 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
 
     getSeriesSettings(xAxis, isInteractive) {
       const series = {
-        hour: { res: 60, start: "hour", end: "now" },
-        day: { res: 300, start: "day", end: "now" },
-        fullday: { res: 300, start: "day", end: "midnight+24hour" },
-        week: { res: 1800, start: "week", end: "now" },
-        month: { res: 21600, start: "month", end: "now" },
-        year: { res: 432000, start: "year", end: "now" }
+        hour: { res: 60, start: 'hour', end: 'now' },
+        day: { res: 300, start: 'day', end: 'now' },
+        fullday: { res: 300, start: 'day', end: 'midnight+24hour' },
+        week: { res: 1800, start: 'week', end: 'now' },
+        month: { res: 21600, start: 'month', end: 'now' },
+        year: { res: 432000, start: 'year', end: 'now' }
       };
 
       const ret = {
@@ -856,7 +862,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         res: null
       };
 
-      if (this.getSeries() === "custom") {
+      if (this.getSeries() === 'custom') {
         // initial load, take parameters from custom configuration
         ret.start = this.getSeriesStart();
         ret.end = this.getSeriesEnd();
@@ -868,7 +874,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         }
 
         // initial load, take parameters from configuration
-        ret.start = "end-" + this.getPeriod() + selectedSeries.start;
+        ret.start = 'end-' + this.getPeriod() + selectedSeries.start;
         ret.end = selectedSeries.end;
         ret.res = this.getSeriesResolution()
           ? this.getSeriesResolution()
@@ -889,6 +895,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         plot.getAxes().xaxis,
         isInteractive
       );
+
       if (!series) {
         return;
       }
@@ -923,18 +930,20 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
                 data: tsdata,
                 yaxis: parseInt(ts.axisIndex),
                 bars: {
-                  show: ts.style === "bars",
+                  show: ts.style === 'bars',
                   fill: ts.fill,
                   barWidth: parseInt(ts.barWidth),
                   align: ts.align
                 },
+
                 lines: {
-                  show: ts.style === "lines",
+                  show: ts.style === 'lines',
                   steps: ts.steps,
                   fill: ts.fill,
                   zero: false
                 },
-                points: { show: ts.style === "points", fill: ts.fill }
+
+                points: { show: ts.style === 'points', fill: ts.fill }
               };
             }
 
@@ -980,7 +989,7 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
   */
   destruct() {
     if (this._timerPopup) {
-      this._disposeObjects("_timerPopup");
+      this._disposeObjects('_timerPopup');
     }
   },
 
@@ -988,15 +997,16 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts(
       [
-        "plugins/diagram/dep/flot/jquery.flot.min.js",
-        "plugins/diagram/dep/flot/jquery.flot.touch.min.js",
-        "plugins/diagram/dep/flot/jquery.flot.canvas.min.js",
-        "plugins/diagram/dep/flot/jquery.flot.resize.min.js",
-        "plugins/diagram/dep/flot/jquery.flot.time.min.js",
-        "plugins/diagram/dep/flot/jquery.flot.axislabels.js",
-        "plugins/diagram/dep/flot/jquery.flot.tooltip.min.js",
-        "plugins/diagram/dep/flot/jquery.flot.navigate.min.js"
+        'plugins/diagram/dep/flot/jquery.flot.min.js',
+        'plugins/diagram/dep/flot/jquery.flot.touch.min.js',
+        'plugins/diagram/dep/flot/jquery.flot.canvas.min.js',
+        'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
+        'plugins/diagram/dep/flot/jquery.flot.time.min.js',
+        'plugins/diagram/dep/flot/jquery.flot.axislabels.js',
+        'plugins/diagram/dep/flot/jquery.flot.tooltip.min.js',
+        'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
       ],
+
       [0]
     );
   }

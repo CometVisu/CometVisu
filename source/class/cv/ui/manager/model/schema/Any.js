@@ -20,7 +20,7 @@
 /**
  * any content.
  */
-qx.Class.define("cv.ui.manager.model.schema.Any", {
+qx.Class.define('cv.ui.manager.model.schema.Any', {
   extend: cv.ui.manager.model.schema.Base,
 
   /*
@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.manager.model.schema.Any", {
   properties: {
     type: {
       refine: true,
-      init: "any"
+      init: 'any'
     }
   },
 
@@ -61,19 +61,19 @@ qx.Class.define("cv.ui.manager.model.schema.Any", {
       const schema = this.getSchema();
 
       let group = this.getNode();
-      if (group.hasAttribute("ref")) {
+      if (group.hasAttribute('ref')) {
         // if this is a reference, unravel it.
-        group = schema.getReferencedNode("group", group.getAttribute("ref"));
+        group = schema.getReferencedNode('group', group.getAttribute('ref'));
       }
       // we are allowed choice and sequence, but only ONE AT ALL is allowed
-      group.querySelectorAll(":scope > choice").forEach(grouping => {
+      group.querySelectorAll(':scope > choice').forEach(grouping => {
         this._subGroupings.push(
           new cv.ui.manager.model.schema.Choice(grouping, schema)
         );
       });
 
       // sequences
-      group.querySelectorAll(":scope > sequence").forEach(grouping => {
+      group.querySelectorAll(':scope > sequence').forEach(grouping => {
         this._subGroupings.push(
           new cv.ui.manager.model.schema.Sequence(grouping, schema)
         );
@@ -107,7 +107,7 @@ qx.Class.define("cv.ui.manager.model.schema.Any", {
     },
 
     getRegex(separator, nocapture) {
-      return ".*";
+      return '.*';
     },
 
     hasMultiLevelBounds() {

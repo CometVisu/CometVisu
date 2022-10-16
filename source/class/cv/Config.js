@@ -20,8 +20,8 @@
 /**
  * Main settings that an be accessed from anywhere inside the Application
  */
-qx.Class.define("cv.Config", {
-  type: "static",
+qx.Class.define('cv.Config', {
+  type: 'static',
 
   statics: {
     /**
@@ -37,7 +37,7 @@ qx.Class.define("cv.Config", {
      * The current path tree
      * @type {String}
      */
-    treePath: "",
+    treePath: '',
 
     /**
      * Path to the current page
@@ -106,7 +106,7 @@ qx.Class.define("cv.Config", {
      * The design currently used
      * @type {String}
      */
-    clientDesign: "",
+    clientDesign: '',
     /**
      * Maturity level
      * @type {var}
@@ -182,23 +182,24 @@ qx.Class.define("cv.Config", {
      */
     designStructureMap: {
       pure: [
-        "alaska",
-        "alaska_slim",
-        "discreet",
-        "discreet_sand",
-        "discreet_slim",
-        "metal",
-        "pitchblack",
-        "planet",
-        "pure"
+        'alaska',
+        'alaska_slim',
+        'discreet',
+        'discreet_sand',
+        'discreet_slim',
+        'metal',
+        'pitchblack',
+        'planet',
+        'pure'
       ],
-      tile: ["tile"]
+
+      tile: ['tile']
     },
 
     /**
      * Currently loaded structure
      */
-    loadedStructure: "",
+    loadedStructure: '',
 
     /**
      * Wether the error reporting with sentry is enabled or not
@@ -244,12 +245,12 @@ qx.Class.define("cv.Config", {
           )
         ) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
-            return "structure-" + structure;
+            return 'structure-' + structure;
           }
         }
       }
       // fallback to pure
-      return "structure-pure";
+      return 'structure-pure';
     },
 
     /**
@@ -262,7 +263,7 @@ qx.Class.define("cv.Config", {
         this.configServer === null ||
         cv.io.BackendConnections.getClient().getServer() === null
       ) {
-        throw new Error("not ready yet");
+        throw new Error('not ready yet');
       }
       return (
         this.configServer !== cv.io.BackendConnections.getClient().getServer()
@@ -316,7 +317,7 @@ qx.Class.define("cv.Config", {
     }
 
     if (req.queryKey.libraryCheck) {
-      cv.Config.libraryCheck = req.queryKey.libraryCheck !== "false"; // true unless set to false
+      cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
     }
 
     if (req.queryKey.backend) {
@@ -339,9 +340,9 @@ qx.Class.define("cv.Config", {
         // generate unique transactionId and set as Sentry tag
         cv.Config.transactionId = Math.random().toString(36).substr(2, 9);
         Sentry.configureScope(function (scope) {
-          scope.setTag("transaction_id", cv.Config.transactionId);
-          scope.setTag("build.date", cv.Version.DATE);
-          scope.setTag("build.branch", cv.Version.BRANCH);
+          scope.setTag('transaction_id', cv.Config.transactionId);
+          scope.setTag('build.date', cv.Version.DATE);
+          scope.setTag('build.branch', cv.Version.BRANCH);
           Object.keys(cv.Version.TAGS).forEach(function (tag) {
             scope.setTag(tag, cv.Version.TAGS[tag]);
           });
@@ -352,11 +353,11 @@ qx.Class.define("cv.Config", {
     // store for later usage
     cv.Config.request = req;
 
-    if (qx.core.Environment.get("cv.testMode") !== false) {
+    if (qx.core.Environment.get('cv.testMode') !== false) {
       cv.Config.testMode = true;
     } else if (req.queryKey.testMode) {
       cv.Config.testMode =
-        req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
+        req.queryKey.testMode === 'true' || req.queryKey.testMode === '1';
     }
 
     // propagate to the client
@@ -367,40 +368,40 @@ qx.Class.define("cv.Config", {
     }
 
     if (req.queryKey.forceReload) {
-      cv.Config.forceReload = req.queryKey.forceReload !== "false"; // true unless set to false
+      cv.Config.forceReload = req.queryKey.forceReload !== 'false'; // true unless set to false
     }
 
     if (req.queryKey.reporting) {
-      cv.Config.reporting = req.queryKey.reporting === "true";
+      cv.Config.reporting = req.queryKey.reporting === 'true';
     }
 
     // caching is only possible when localStorage is available
-    if (qx.core.Environment.get("html.storage.local") === false) {
+    if (qx.core.Environment.get('html.storage.local') === false) {
       cv.Config.enableCache = false;
       qx.log.Logger.warn(
         statics,
-        "localStorage is not available in your browser. Some advanced features, like caching will not work!"
+        'localStorage is not available in your browser. Some advanced features, like caching will not work!'
       );
-    } else if (req.queryKey.enableCache === "invalid") {
+    } else if (req.queryKey.enableCache === 'invalid') {
       cv.ConfigCache.clear(cv.Config.configSuffix);
       cv.Config.enableCache = true;
     } else {
       cv.Config.enableCache = req.queryKey.enableCache
-        ? req.queryKey.enableCache === "true"
-        : !qx.core.Environment.get("qx.debug");
+        ? req.queryKey.enableCache === 'true'
+        : !qx.core.Environment.get('qx.debug');
     }
 
-    cv.Config.enableLogging = qx.core.Environment.get("html.console");
-    if (req.queryKey.log === "false") {
+    cv.Config.enableLogging = qx.core.Environment.get('html.console');
+    if (req.queryKey.log === 'false') {
       cv.Config.enableLogging = false;
-    } else if (req.queryKey.log === "true") {
+    } else if (req.queryKey.log === 'true') {
       cv.Config.enableLogging = true;
     }
 
     cv.Config.loadManager =
-      cv.Config.request.queryKey.manager || window.location.hash === "#manager";
+      cv.Config.request.queryKey.manager || window.location.hash === '#manager';
     cv.Config.managerOptions = {
-      action: cv.Config.request.queryKey.open ? "open" : "",
+      action: cv.Config.request.queryKey.open ? 'open' : '',
       data: cv.Config.request.queryKey.open
         ? cv.Config.request.queryKey.open
         : undefined
@@ -416,11 +417,11 @@ qx.Class.define("cv.Config", {
     if (req.queryKey.forceDevice) {
       // overwrite detection when set by URL
       switch (req.queryKey.forceDevice) {
-        case "mobile":
+        case 'mobile':
           cv.Config.mobileDevice = true;
           break;
 
-        case "nonmobile":
+        case 'nonmobile':
           cv.Config.mobileDevice = false;
           break;
       }
@@ -443,13 +444,13 @@ qx.Class.define("cv.Config", {
     }
 
     cv.Config.useServiceWorker =
-      "serviceWorker" in navigator &&
-      (req.protocol === "https" || req.host === "localhost");
+      'serviceWorker' in navigator &&
+      (req.protocol === 'https' || req.host === 'localhost');
 
     if (cv.Config.useServiceWorker) {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         // disable service worker in dev environment unless the user wants it
-        cv.Config.useServiceWorker = req.queryKey.worker === "true";
+        cv.Config.useServiceWorker = req.queryKey.worker === 'true';
       }
     }
   }

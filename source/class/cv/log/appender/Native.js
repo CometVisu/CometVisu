@@ -42,7 +42,7 @@
  * @require(qx.log.appender.Util)
  * @require(qx.bom.client.Html)
  */
-qx.Bootstrap.define("cv.log.appender.Native", {
+qx.Bootstrap.define('cv.log.appender.Native', {
   /*
    *****************************************************************************
    STATICS
@@ -59,7 +59,7 @@ qx.Bootstrap.define("cv.log.appender.Native", {
       if (cv.Config.enableLogging) {
         // Firefox 4's Web Console doesn't support "debug"
         // eslint-disable-next-line no-console
-        const level = console[entry.level] ? entry.level : "log";
+        const level = console[entry.level] ? entry.level : 'log';
         // eslint-disable-next-line no-console
         if (console[level]) {
           const args = qx.log.appender.Util.toText(entry);

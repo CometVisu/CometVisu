@@ -20,7 +20,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.model.Schema", {
+qx.Class.define('cv.ui.manager.model.Schema', {
   extend: qx.core.Object,
 
   /*
@@ -32,13 +32,14 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     super();
     if (!filename || !filename.match(/\.xsd$/)) {
       throw new Error(
-        "no, empty or invalid filename given, can not instantiate without one"
+        'no, empty or invalid filename given, can not instantiate without one'
       );
     }
     this.__filename = filename;
     this.setStructure(
-      filename.endsWith("visu_config_tile.xsd") ? "tile" : "pure"
+      filename.endsWith('visu_config_tile.xsd') ? 'tile' : 'pure'
     );
+
     this.__allowedRootElements = {};
     this.__referencedNodeCache = {};
     this.__typeNodeCache = {};
@@ -70,14 +71,14 @@ qx.Class.define("cv.ui.manager.model.Schema", {
   */
   properties: {
     loaded: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeLoaded"
+      event: 'changeLoaded'
     },
 
     structure: {
-      check: ["pure", "tile"],
-      apply: "_applyStructure"
+      check: ['pure', 'tile'],
+      apply: '_applyStructure'
     }
   },
 
@@ -145,13 +146,13 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     __pageElementName: null,
 
     _applyStructure(structure) {
-      if (structure === "tile") {
-        this.__rootElementName = "config";
-        this.__pageParentElementName = "main";
-        this.__pageElementName = "cv-page";
+      if (structure === 'tile') {
+        this.__rootElementName = 'config';
+        this.__pageParentElementName = 'main';
+        this.__pageElementName = 'cv-page';
       } else {
-        this.__rootElementName = "pages";
-        this.__pageElementName = "page";
+        this.__rootElementName = 'pages';
+        this.__pageElementName = 'page';
       }
     },
 
@@ -159,7 +160,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
       if (this.isLoaded()) {
         callback.call(context);
       } else {
-        this.addListenerOnce("changeLoaded", callback, context);
+        this.addListenerOnce('changeLoaded', callback, context);
       }
     },
 
@@ -169,14 +170,14 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     _cacheXSD() {
       const ajaxRequest = new qx.io.request.Xhr(this.__filename);
       ajaxRequest.set({
-        accept: "application/xml"
+        accept: 'application/xml'
       });
 
-      ajaxRequest.addListenerOnce("success", e => {
+      ajaxRequest.addListenerOnce('success', e => {
         const req = e.getTarget();
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
-        if (xml && typeof xml === "string") {
+        if (xml && typeof xml === 'string') {
           xml = qx.xml.Document.fromString(xml);
         }
         this.__xsd = xml;
@@ -192,8 +193,8 @@ qx.Class.define("cv.ui.manager.model.Schema", {
      */
     _parseXSD() {
       // make a list of root-level elements
-      this.__xsd.querySelectorAll("schema > element").forEach(element => {
-        const name = element.getAttribute("name");
+      this.__xsd.querySelectorAll('schema > element').forEach(element => {
+        const name = element.getAttribute('name');
         this.__allowedRootElements[name] =
           new cv.ui.manager.model.schema.Element(element, this);
       });
@@ -207,9 +208,9 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         return this.__allowedRootElements[name];
       }
       throw new Error(
-        "schema/xsd appears to be invalid, element " +
+        'schema/xsd appears to be invalid, element ' +
           name +
-          " not allowed on root level"
+          ' not allowed on root level'
       );
     },
 
@@ -236,7 +237,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
       ) {
         return this.__referencedNodeCache[type][refName];
       }
-      const fallbackType = type === "simpleType" ? "complexType" : "simpleType";
+      const fallbackType = type === 'simpleType' ? 'complexType' : 'simpleType';
       if (!noFallback) {
         if (
           Object.prototype.hasOwnProperty.call(
@@ -252,7 +253,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         }
       }
 
-      const selector = "schema > " + type + "[name=\"" + refName + "\"]";
+      const selector = 'schema > ' + type + '[name="' + refName + '"]';
       let ref = this.__xsd.querySelector(selector);
       if (!ref && !noFallback) {
         try {
@@ -261,17 +262,17 @@ qx.Class.define("cv.ui.manager.model.Schema", {
       }
       if (!ref) {
         throw new Error(
-          "schema/xsd appears to be invalid, reference " +
+          'schema/xsd appears to be invalid, reference ' +
             type +
-            " \"" +
+            ' "' +
             refName +
-            "\" can not be found"
+            '" can not be found'
         );
       }
 
-      if (ref.hasAttribute("ref")) {
+      if (ref.hasAttribute('ref')) {
         // do it recursively, if necessary
-        ref = this.getReferencedNode(type, ref.getAttribute("ref"));
+        ref = this.getReferencedNode(type, ref.getAttribute('ref'));
       }
 
       if (
@@ -300,20 +301,20 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         return this.__typeNodeCache[type][name];
       }
       let typeNode = this.__xsd.querySelector(
-        type + "Type[name=\"" + name + "\"]"
+        type + 'Type[name="' + name + '"]'
       );
 
       if (!typeNode) {
         throw new Error(
-          "schema/xsd appears to be invalid, " +
+          'schema/xsd appears to be invalid, ' +
             type +
-            "Type \"" +
+            'Type "' +
             name +
-            "\" can not be found"
+            '" can not be found'
         );
       }
 
-      if (typeof this.__typeNodeCache[type] == "undefined") {
+      if (typeof this.__typeNodeCache[type] == 'undefined') {
         this.__typeNodeCache[type] = {};
       }
 
@@ -331,9 +332,9 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     getTextNodeSchemaElement() {
       if (this.__textNodeSchemaElement === null) {
         // text-content is always a simple string
-        const tmpXML = this.__xsd.createElement("element");
-        tmpXML.setAttribute("name", "#text");
-        tmpXML.setAttribute("type", "xsd:string");
+        const tmpXML = this.__xsd.createElement('element');
+        tmpXML.setAttribute('name', '#text');
+        tmpXML.setAttribute('type', 'xsd:string');
         this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(
           tmpXML,
           this
@@ -351,11 +352,11 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     getCommentNodeSchemaElement() {
       if (this.__commentNodeSchemaElement === null) {
         // text-content is always a simple string
-        const tmpXML = this.__xsd.createElement("element");
-        tmpXML.setAttribute("name", "#comment");
-        tmpXML.setAttribute("type", "xsd:string");
-        tmpXML.setAttribute("minOccurs", "0");
-        tmpXML.setAttribute("maxOccurs", "unbounded");
+        const tmpXML = this.__xsd.createElement('element');
+        tmpXML.setAttribute('name', '#comment');
+        tmpXML.setAttribute('type', 'xsd:string');
+        tmpXML.setAttribute('minOccurs', '0');
+        tmpXML.setAttribute('maxOccurs', 'unbounded');
         this.__commentNodeSchemaElement =
           new cv.ui.manager.model.schema.Element(tmpXML, this);
       }
@@ -388,8 +389,9 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         const page = pageParent.getSchemaElementForElementName(
           this.__pageElementName
         );
+
         this._widgetNames = Object.keys(page.getAllowedElements()).filter(
-          name => !name.startsWith("#") && name !== "layout"
+          name => !name.startsWith('#') && name !== 'layout'
         );
       }
       return this._widgetNames;
@@ -412,10 +414,11 @@ qx.Class.define("cv.ui.manager.model.Schema", {
   destruct() {
     this.__xsd = null;
     this._disposeObjects(
-      "__commentNodeSchemaElement",
-      "__textNodeSchemaElement"
+      '__commentNodeSchemaElement',
+      '__textNodeSchemaElement'
     );
-    this._disposeMap("__allowedRootElements");
+
+    this._disposeMap('__allowedRootElements');
     this.__referencedNodeCache = null;
     this.__typeNodeCache = null;
     this._widgetNames = null;

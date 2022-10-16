@@ -34,7 +34,7 @@
  * @author Christian Mayer
  * @since 0.12.0 (2020)
  */
-qx.Class.define("cv.ui.structure.pure.Roundbar", {
+qx.Class.define('cv.ui.structure.pure.Roundbar', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.Update,
 
@@ -55,7 +55,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
   */
   statics: {
     coord(position) {
-      return position.x.toFixed(1) + " " + position.y.toFixed(1);
+      return position.x.toFixed(1) + ' ' + position.y.toFixed(1);
     },
     /**
      * Create the SVG path for the round bar.
@@ -100,14 +100,17 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         x: Math.cos(startAngle) * rI,
         y: -Math.sin(startAngle) * rI
       };
+
       const startMiddle = {
         x: Math.cos(startArrowPointAngle) * rM,
         y: -Math.sin(startArrowPointAngle) * rM
       };
+
       const startOuter = {
         x: Math.cos(startAngle) * rO,
         y: -Math.sin(startAngle) * rO
       };
+
       const centerInner = {
         x: Math.cos((startAngle + endAngle) / 2) * rI,
         y: -Math.sin((startAngle + endAngle) / 2) * rI
@@ -122,14 +125,17 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         x: Math.cos(endAngle) * rI,
         y: -Math.sin(endAngle) * rI
       };
+
       const endMiddle = {
         x: Math.cos(endArrowPointAngle) * rM,
         y: -Math.sin(endArrowPointAngle) * rM
       };
+
       const endOuter = {
         x: Math.cos(endAngle) * rO,
         y: -Math.sin(endAngle) * rO
       };
+
       const startMiddleFlag =
         Math.abs(startAngle - startArrowPointAngle) > Math.PI ? 1 : 0;
       const startEndFlag =
@@ -148,18 +154,18 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
        */
       function arc(start, end, r, flag, cw) {
         return start.x === end.x && start.y === end.y
-          ? ""
+          ? ''
           : Math.abs(start.x - end.x) + Math.abs(start.y - end.y) < 2
-          ? "L" + cv.ui.structure.pure.Roundbar.coord(end)
+          ? 'L' + cv.ui.structure.pure.Roundbar.coord(end)
           : [
-              "A",
+              'A',
               r,
               r,
               0,
               flag,
               cw,
               cv.ui.structure.pure.Roundbar.coord(end)
-            ].join(" ");
+            ].join(' ');
       }
 
       if (getBBox) {
@@ -195,6 +201,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
             endOuter.y,
             uMiddle
           ),
+
           d: Math.max(
             startInner.y,
             startMiddle.y,
@@ -204,6 +211,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
             endOuter.y,
             dMiddle
           ),
+
           l: Math.min(
             startInner.x,
             startMiddle.x,
@@ -213,6 +221,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
             endOuter.x,
             lMiddle
           ),
+
           r: Math.max(
             startInner.x,
             startMiddle.x,
@@ -228,18 +237,18 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       // a thin bar path should just be a single line
       if (width < 1.0) {
         return [
-          "M",
+          'M',
           cv.ui.structure.pure.Roundbar.coord(startOuter),
           arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
           arc(centerOuter, endOuter, rO, startEndFlag, clockwise)
-        ].join("");
+        ].join('');
       }
 
       return [
-        "M",
+        'M',
         cv.ui.structure.pure.Roundbar.coord(startInner),
         startArrowPointAngle === startAngle
-          ? "L" + cv.ui.structure.pure.Roundbar.coord(startOuter)
+          ? 'L' + cv.ui.structure.pure.Roundbar.coord(startOuter)
           : arc(
               startInner,
               startMiddle,
@@ -251,13 +260,13 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
         arc(centerOuter, endOuter, rO, startEndFlag, clockwise),
         endArrowPointAngle === endAngle
-          ? "L" + cv.ui.structure.pure.Roundbar.coord(endInner)
+          ? 'L' + cv.ui.structure.pure.Roundbar.coord(endInner)
           : arc(endOuter, endMiddle, rMO, endMiddleFlag, 1 - endMiddleDir) +
             arc(endMiddle, endInner, rIM, endMiddleFlag, endMiddleDir),
         arc(startInner, centerInner, rI, startEndFlag, 1 - clockwise),
         arc(centerInner, startInner, rI, startEndFlag, 1 - clockwise),
-        "Z"
-      ].join("");
+        'Z'
+      ].join('');
     },
     /**
      * Create the SVG path for an pointer.
@@ -274,26 +283,27 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         const tx = (-s * p.thickness) / 2;
         const ty = (c * p.thickness) / 2;
         return [
-          "M",
+          'M',
           this.coord({
             x: c * p.radius + wx - tx,
             y: -(s * p.radius + wy - ty)
           }),
-          "L",
+
+          'L',
           this.coord({ x: c * p.radius, y: -(s * p.radius) }),
-          "L",
+          'L',
           this.coord({
             x: c * p.radius + wx + tx,
             y: -(s * p.radius + wy + ty)
           })
-        ].join("");
+        ].join('');
       }
       return [
-        "M",
+        'M',
         this.coord({ x: c * p.radius, y: -(s * p.radius) }),
-        "L",
+        'L',
         this.coord({ x: c * p.radius + wx, y: -(s * p.radius + wy) })
-      ].join("");
+      ].join('');
     }
   },
 
@@ -303,40 +313,40 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
    ******************************************************
    */
   properties: {
-    type: { check: "Array" },
-    indicators: { check: "Array" },
+    type: { check: 'Array' },
+    indicators: { check: 'Array' },
 
-    min: { check: "Number" },
-    max: { check: "Number" },
-    axisradius: { check: "Number" },
-    axiswidth: { check: "Number" },
-    axiscolor: { check: "String" },
-    ranges: { check: "Array" },
-    minorradius: { check: "Number" },
-    minorwidth: { check: "Number" },
-    minorspacing: { check: "String" },
-    minorcolor: { check: "String" },
-    majorradius: { check: "Number" },
-    majorwidth: { check: "Number" },
-    majorposition: { check: "String" },
-    majorcolor: { check: "String" },
-    labels: { check: "Array" },
-    labelstyle: { check: "String" },
-    start: { check: "Number" },
-    end: { check: "Number" },
-    arrowtype: { check: "Number" },
-    spacing: { check: "Number" },
-    overflowarrow: { check: "Boolean" },
-    fontsize: { check: "Number" },
-    textx: { check: "Number" },
-    texty: { check: "Number" },
-    textlength: { check: "Number" },
-    textanchor: { check: "String" },
-    linespace: { check: "Number" },
-    bboxgrow: { check: "Object" },
-    debug: { check: "Boolean" },
-    currentRatioValue: { check: "Array", init: [] },
-    targetRatioValue: { check: "Array", init: [] }
+    min: { check: 'Number' },
+    max: { check: 'Number' },
+    axisradius: { check: 'Number' },
+    axiswidth: { check: 'Number' },
+    axiscolor: { check: 'String' },
+    ranges: { check: 'Array' },
+    minorradius: { check: 'Number' },
+    minorwidth: { check: 'Number' },
+    minorspacing: { check: 'String' },
+    minorcolor: { check: 'String' },
+    majorradius: { check: 'Number' },
+    majorwidth: { check: 'Number' },
+    majorposition: { check: 'String' },
+    majorcolor: { check: 'String' },
+    labels: { check: 'Array' },
+    labelstyle: { check: 'String' },
+    start: { check: 'Number' },
+    end: { check: 'Number' },
+    arrowtype: { check: 'Number' },
+    spacing: { check: 'Number' },
+    overflowarrow: { check: 'Boolean' },
+    fontsize: { check: 'Number' },
+    textx: { check: 'Number' },
+    texty: { check: 'Number' },
+    textlength: { check: 'Number' },
+    textanchor: { check: 'String' },
+    linespace: { check: 'Number' },
+    bboxgrow: { check: 'Object' },
+    debug: { check: 'Boolean' },
+    currentRatioValue: { check: 'Array', init: [] },
+    targetRatioValue: { check: 'Array', init: [] }
   },
 
   /*
@@ -384,12 +394,12 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       const min = this.getMin();
       const max = this.getMax();
       let cntValues = 0;
-      let svgMajor = "";
-      let svgMinor = "";
-      let svgLabels = "";
-      let svgRanges = "";
-      let svgIndicators = "";
-      let svgText = "";
+      let svgMajor = '';
+      let svgMinor = '';
+      let svgLabels = '';
+      let svgRanges = '';
+      let svgIndicators = '';
+      let svgText = '';
       const createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
 
       // Determine the bounding box, first get the biggest radius that must fit
@@ -402,6 +412,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           indicator.radius,
           indicator.radius + indicator.width
         );
+
         sMax = Math.max(sMax, indicator.startarrow);
         eMax = Math.max(eMax, indicator.endarrow);
       });
@@ -417,7 +428,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           spacing = ((max - min) * spacing) / 100;
         }
 
-        svgMinor += "<path class=\"minor\" d=\"";
+        svgMinor += '<path class="minor" d="';
         for (
           var angle = s,
             delta = ((e - s) * spacing) / (max - min),
@@ -428,42 +439,43 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           var sin = Math.sin(angle);
           var cos = Math.cos(angle);
           svgMinor += [
-            "M",
+            'M',
             cv.ui.structure.pure.Roundbar.coord({
               x: cos * rIn,
               y: -sin * rIn
             }),
-            "L",
+
+            'L',
             cv.ui.structure.pure.Roundbar.coord({
               x: cos * rOut,
               y: -sin * rOut
             })
-          ].join("");
+          ].join('');
 
           BBox = bboxAdd(BBox, cos * rIn, -sin * rIn);
           BBox = bboxAdd(BBox, cos * rOut, -sin * rOut);
         }
-        if (this.getMinorcolor() !== "") {
-          svgMinor += "\" style=\"stroke:" + this.getMinorcolor();
+        if (this.getMinorcolor() !== '') {
+          svgMinor += '" style="stroke:' + this.getMinorcolor();
         }
-        svgMinor += "\" />";
+        svgMinor += '" />';
       }
 
       if (this.getMajorwidth() > 0) {
         let rIn = this.getMajorradius();
         let rOut = this.getMajorwidth() + rIn;
 
-        svgMajor += "<path class=\"major\" d=\"";
+        svgMajor += '<path class="major" d="';
 
         this.getMajorposition()
-          .split(";")
+          .split(';')
           .forEach(function (position) {
             switch (position) {
-              case "min":
+              case 'min':
                 position = min;
                 break;
 
-              case "max":
+              case 'max':
                 position = max;
                 break;
             }
@@ -472,25 +484,26 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
             const sin = Math.sin(angle);
             const cos = Math.cos(angle);
             svgMajor += [
-              "M",
+              'M',
               cv.ui.structure.pure.Roundbar.coord({
                 x: cos * rIn,
                 y: -sin * rIn
               }),
-              "L",
+
+              'L',
               cv.ui.structure.pure.Roundbar.coord({
                 x: cos * rOut,
                 y: -sin * rOut
               })
-            ].join("");
+            ].join('');
 
             BBox = bboxAdd(BBox, cos * rIn, -sin * rIn);
             BBox = bboxAdd(BBox, cos * rOut, -sin * rOut);
           });
-        if (this.getMajorcolor() !== "") {
-          svgMajor += "\" style=\"stroke:" + this.getMajorcolor();
+        if (this.getMajorcolor() !== '') {
+          svgMajor += '" style="stroke:' + this.getMajorcolor();
         }
-        svgMajor += "\" />";
+        svgMajor += '" />';
       }
 
       const labelstyle = this.getLabelstyle();
@@ -498,34 +511,34 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         const angle = s + ((e - s) * (label.value - min)) / (max - min);
         const x = label.radius * Math.cos(angle);
         const y = label.radius * -Math.sin(angle);
-        let alignmentBaseline = "";
-        let textAnchor = "";
+        let alignmentBaseline = '';
+        let textAnchor = '';
         let textAngle = 0;
 
         if (label.orientation < 3) {
-          svgLabels += "<text class=\"axislabel\" x=\"" + x + "\" y=\"" + y + "\"";
+          svgLabels += '<text class="axislabel" x="' + x + '" y="' + y + '"';
           switch (label.orientation) {
             default:
             case 0: // horizontal
               if (x < 0) {
-                textAnchor = ["end", "middle", "start"][label.position];
+                textAnchor = ['end', 'middle', 'start'][label.position];
               } else {
-                textAnchor = ["start", "middle", "end"][label.position];
+                textAnchor = ['start', 'middle', 'end'][label.position];
               }
               if (Math.abs(x) < 1) {
-                textAnchor = "middle";
+                textAnchor = 'middle';
               }
               if (y < 0) {
-                alignmentBaseline = ["baseline", "middle", "hanging"][
+                alignmentBaseline = ['baseline', 'middle', 'hanging'][
                   label.position
                 ];
               } else {
-                alignmentBaseline = ["hanging", "middle", "baseline"][
+                alignmentBaseline = ['hanging', 'middle', 'baseline'][
                   label.position
                 ];
               }
               if (Math.abs(y) < 1) {
-                alignmentBaseline = "middle";
+                alignmentBaseline = 'middle';
               }
               break;
 
@@ -533,57 +546,58 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
               // parallel
               let textAngle = (-angle * 180) / Math.PI + 90;
               if (y < 0) {
-                alignmentBaseline = ["baseline", "middle", "hanging"][
+                alignmentBaseline = ['baseline', 'middle', 'hanging'][
                   label.position
                 ];
               } else {
-                alignmentBaseline = ["hanging", "middle", "baseline"][
+                alignmentBaseline = ['hanging', 'middle', 'baseline'][
                   label.position
                 ];
+
                 textAngle += 180;
               }
-              textAnchor = "middle";
+              textAnchor = 'middle';
               svgLabels +=
-                " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
+                ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
               break;
             }
 
             case 2: // perpendicular
               textAngle = (-angle * 180) / Math.PI;
               if (x < 0) {
-                textAnchor = ["end", "middle", "start"][label.position];
+                textAnchor = ['end', 'middle', 'start'][label.position];
                 textAngle += 180;
               } else {
-                textAnchor = ["start", "middle", "end"][label.position];
+                textAnchor = ['start', 'middle', 'end'][label.position];
               }
-              alignmentBaseline = "middle";
+              alignmentBaseline = 'middle';
               svgLabels +=
-                " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
+                ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
               break;
           }
 
-          svgLabels += " dominant-baseline=\"" + alignmentBaseline + "\"";
-          svgLabels += " text-anchor=\"" + textAnchor + "\"";
+          svgLabels += ' dominant-baseline="' + alignmentBaseline + '"';
+          svgLabels += ' text-anchor="' + textAnchor + '"';
 
-          if (labelstyle !== "") {
-            svgLabels += " style=\"" + labelstyle + "\"";
+          if (labelstyle !== '') {
+            svgLabels += ' style="' + labelstyle + '"';
           }
 
-          svgLabels += ">" + label.name + "</text>";
+          svgLabels += '>' + label.name + '</text>';
         } else {
           // label.orientation >= 3 -> round
-          const labelid = self.$$user_path + "_label" + labelnumber;
+          const labelid = self.$$user_path + '_label' + labelnumber;
           const cw = s < e ? 0 : 1;
-          let path = "";
-          let align = "";
+          let path = '';
+          let align = '';
 
           switch (label.orientation) {
             case 3: // roundstart
               path = [
-                "M",
+                'M',
                 x,
                 y,
-                "A",
+                'A',
                 label.radius,
                 label.radius,
                 0,
@@ -591,7 +605,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
                 cw,
                 -x,
                 -y,
-                "A",
+                'A',
                 label.radius,
                 label.radius,
                 0,
@@ -599,15 +613,15 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
                 cw,
                 x,
                 y
-              ].join(" ");
+              ].join(' ');
               break;
 
             case 4: // roundmiddle
               path = [
-                "M",
+                'M',
                 -x,
                 -y,
-                "A",
+                'A',
                 label.radius,
                 label.radius,
                 0,
@@ -615,7 +629,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
                 cw,
                 x,
                 y,
-                "A",
+                'A',
                 label.radius,
                 label.radius,
                 0,
@@ -623,16 +637,16 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
                 cw,
                 -x,
                 -y
-              ].join(" ");
-              align = " startOffset=\"50%\" text-anchor=\"middle\"";
+              ].join(' ');
+              align = ' startOffset="50%" text-anchor="middle"';
               break;
 
             case 5: // roundend
               path = [
-                "M",
+                'M',
                 x,
                 y,
-                "A",
+                'A',
                 label.radius,
                 label.radius,
                 0,
@@ -640,7 +654,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
                 cw,
                 -x,
                 -y,
-                "A",
+                'A',
                 label.radius,
                 label.radius,
                 0,
@@ -648,31 +662,31 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
                 cw,
                 x,
                 y
-              ].join(" ");
-              align = " startOffset=\"100%\" text-anchor=\"end\"";
+              ].join(' ');
+              align = ' startOffset="100%" text-anchor="end"';
               break;
           }
 
           svgLabels +=
-            "<path style=\"stroke:none; fill:none; stroke-width:0\" id=\"" +
+            '<path style="stroke:none; fill:none; stroke-width:0" id="' +
             labelid +
-            "\" d=\"" +
+            '" d="' +
             path +
-            "\"/>";
-          svgLabels += "<text class=\"axislabel\"";
+            '"/>';
+          svgLabels += '<text class="axislabel"';
 
-          if (labelstyle !== "") {
-            svgLabels += " style=\"" + labelstyle + "\"";
+          if (labelstyle !== '') {
+            svgLabels += ' style="' + labelstyle + '"';
           }
 
           svgLabels +=
-            "><textPath href=\"#" +
+            '><textPath href="#' +
             labelid +
-            "\"" +
+            '"' +
             align +
-            ">" +
+            '>' +
             label.name +
-            "</textPath></text>";
+            '</textPath></text>';
         }
       });
 
@@ -690,12 +704,13 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           wRange,
           true
         );
-        svgRanges += "<path class=\"range\" d=\"";
+
+        svgRanges += '<path class="range" d="';
         svgRanges += createBarPath(sRange, 0, eRange, 0, rRange, wRange);
         if (range.style) {
-          svgRanges += "\" style=\"" + range.style;
+          svgRanges += '" style="' + range.style;
         }
-        svgRanges += "\" />";
+        svgRanges += '" />';
 
         BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
         BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
@@ -710,8 +725,9 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
             number
           )
         );
+
         svgIndicators +=
-          "<path class=\"indicator\" style=\"" + indicator.style + "\" />";
+          '<path class="indicator" style="' + indicator.style + '" />';
 
         if (indicator.showValue) {
           cntValues++;
@@ -720,26 +736,26 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
 
       if (cntValues > 0) {
         svgText +=
-          "<text class=\"value\" y=\"" +
+          '<text class="value" y="' +
           this.getTexty() +
-          "\"" +
-          " text-anchor=\"" +
+          '"' +
+          ' text-anchor="' +
           this.getTextanchor() +
-          "\"" +
-          " font-size=\"" +
+          '"' +
+          ' font-size="' +
           this.getFontsize() +
-          "\">" +
-          "<tspan x=\"" +
+          '">' +
+          '<tspan x="' +
           this.getTextx() +
-          "\" dy=\"0\">-</tspan>" +
+          '" dy="0">-</tspan>' +
           (
-            "<tspan x=\"" +
+            '<tspan x="' +
             this.getTextx() +
-            "\" dy=\"" +
+            '" dy="' +
             this.getLinespace() +
-            "\">-</tspan>"
+            '">-</tspan>'
           ).repeat(cntValues - 1) +
-          "</text>";
+          '</text>';
 
         const textDistribution = {
           start: [0, 1],
@@ -752,17 +768,20 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           this.getLinespace() * (cntValues - 1) -
             (this.getLinespace() < 0 ? this.getFontsize() : 0)
         );
+
         const textD = Math.max(
           0,
           -this.getFontsize(),
           this.getLinespace() * (cntValues - 1) -
             (this.getLinespace() < 0 ? this.getFontsize() : 0)
         );
+
         BBox = bboxAdd(
           BBox,
           this.getTextx() - textDistribution[0] * this.getTextlength(),
           this.getTexty() + textU
         );
+
         BBox = bboxAdd(
           BBox,
           this.getTextx() + textDistribution[1] * this.getTextlength(),
@@ -771,36 +790,36 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       }
 
       let html =
-        "<div class=\"actor\">" +
-        "<svg width=\"100%\" height=\"100%\" viewBox=\"" +
+        '<div class="actor">' +
+        '<svg width="100%" height="100%" viewBox="' +
         [
           BBox.l - this.getBboxgrow().l,
           BBox.u - this.getBboxgrow().u,
           BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r,
           BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d
-        ].join(" ") +
-        "\">";
+        ].join(' ') +
+        '">';
       if (this.getDebug()) {
         html +=
-          "<rect width=\"" +
+          '<rect width="' +
           (BBox.r - BBox.l) +
-          "\" height=\"" +
+          '" height="' +
           (BBox.d - BBox.u) +
-          "\" x=\"" +
+          '" x="' +
           BBox.l +
-          "\" y=\"" +
+          '" y="' +
           BBox.u +
-          "\" stroke=\"blue\" fill=\"none\" />" +
-          "<rect width=\"" +
+          '" stroke="blue" fill="none" />' +
+          '<rect width="' +
           (BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r) +
-          "\" height=\"" +
+          '" height="' +
           (BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d) +
-          "\" x=\"" +
+          '" x="' +
           (BBox.l - this.getBboxgrow().l) +
-          "\" y=\"" +
+          '" y="' +
           (BBox.u - this.getBboxgrow().u) +
-          "\" stroke=\"green\" fill=\"none\" />" +
-          "<circle cx=\"0\" cy=\"0\" r=\"3\" fill=\"red\" />";
+          '" stroke="green" fill="none" />' +
+          '<circle cx="0" cy="0" r="3" fill="red" />';
       }
 
       if (this.getAxisradius() > 0) {
@@ -813,24 +832,25 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           this.getAxisradius(),
           this.getAxiswidth()
         );
+
         const stroke =
-          this.getAxiscolor() === "" ? undefined : this.getAxiscolor();
-        const fill = this.getAxiswidth() < 1 ? "none" : stroke;
+          this.getAxiscolor() === '' ? undefined : this.getAxiscolor();
+        const fill = this.getAxiswidth() < 1 ? 'none' : stroke;
         html +=
-          "<path class=\"sector\" d=\"" +
+          '<path class="sector" d="' +
           sectorPath +
-          " L0 0Z\"/>" +
-          "<path class=\"axis\" d=\"" +
+          ' L0 0Z"/>' +
+          '<path class="axis" d="' +
           axisPath +
-          "\" style=\"" +
-          (stroke ? "stroke:" + stroke : "") +
-          (fill ? ";fill:" + fill : "") +
-          "\"/>";
+          '" style="' +
+          (stroke ? 'stroke:' + stroke : '') +
+          (fill ? ';fill:' + fill : '') +
+          '"/>';
       }
 
       html +=
         svgMinor + svgMajor + svgRanges + svgLabels + svgIndicators + svgText;
-      html += "</svg></div>";
+      html += '</svg></div>';
 
       return html;
     },
@@ -849,8 +869,9 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       const value = cv.Transform.decode(this.getAddress()[address], data);
       const target = this.getTargetRatioValue();
       const tspan = Array.from(
-        this.getDomElement().getElementsByTagName("tspan")
+        this.getDomElement().getElementsByTagName('tspan')
       );
+
       const valueFormat = this.applyFormat(address, value);
 
       this.getIndicators().forEach(function (indicator, i) {
@@ -887,7 +908,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       if (this.__indicatorDOMElement.length === 0) {
         // cache
         this.__indicatorDOMElement = Array.from(
-          this.getDomElement().getElementsByClassName("indicator")
+          this.getDomElement().getElementsByClassName('indicator')
         );
       }
 
@@ -906,7 +927,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       }
       if (indicator.isBar) {
         this.__indicatorDOMElement[indicatorNumber].setAttribute(
-          "d",
+          'd',
           cv.ui.structure.pure.Roundbar.createBarPath(
             startAngle,
             overflowarrow && !(target[1] && ratio < 0.01)
@@ -922,7 +943,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         );
       } else {
         this.__indicatorDOMElement[indicatorNumber].setAttribute(
-          "d",
+          'd',
           cv.ui.structure.pure.Roundbar.createPointerPath(
             targetAngle,
             indicator

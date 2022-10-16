@@ -21,7 +21,7 @@
  * A dialog that alerts the user to something.
  *
  */
-qx.Class.define("cv.ui.manager.dialog.BigAlert", {
+qx.Class.define('cv.ui.manager.dialog.BigAlert', {
   extend: qxl.dialog.Alert,
   members: {
     _hbox: null,
@@ -37,7 +37,7 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
         this._hbox.addAt(this._image, 0);
       }
       this._image.setSource(value);
-      this._image.setVisibility(value ? "visible" : "excluded");
+      this._image.setVisibility(value ? 'visible' : 'excluded');
     },
 
     /**
@@ -49,16 +49,17 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
       let hbox = (this._hbox = new qx.ui.container.Composite(
         new qx.ui.layout.HBox(10)
       ));
+
       let scroll = new qx.ui.container.Scroll(hbox);
       scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
       qx.core.Init.getApplication()
         .getRoot()
-        .addListener("resize", () => {
+        .addListener('resize', () => {
           scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
         });
       container.add(scroll);
-      hbox.bind("width", scroll, "width");
-      hbox.bind("height", scroll, "height");
+      hbox.bind('width', scroll, 'width');
+      hbox.bind('height', scroll, 'height');
       const image = this.getImage();
       if (image) {
         this._image = new qx.ui.basic.Image(image).set({
@@ -90,6 +91,6 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
   ***********************************************
   */
   destruct() {
-    this._disposeObjects("_hbox");
+    this._disposeObjects('_hbox');
   }
 });

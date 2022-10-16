@@ -20,8 +20,8 @@
 /**
  * native fetch replacement that supports the internal recording mechanism for replay file.
  */
-qx.Class.define("cv.io.Fetch", {
-  type: "static",
+qx.Class.define('cv.io.Fetch', {
+  type: 'static',
 
   /*
   ***********************************************
@@ -40,23 +40,24 @@ qx.Class.define("cv.io.Fetch", {
     fetch(resource, options = {}, proxy = false, client = undefined) {
       if (proxy) {
         const url = new URL(
-          cv.io.rest.Client.getBaseUrl() + "/proxy",
+          cv.io.rest.Client.getBaseUrl() + '/proxy',
           window.location.origin
         );
-        url.searchParams.set("url", resource);
+
+        url.searchParams.set('url', resource);
         resource = url;
       }
       return new Promise((resolve, reject) => {
-        const xhr = new qx.io.request.Xhr("" + resource);
+        const xhr = new qx.io.request.Xhr('' + resource);
         xhr.set(options);
         if (client) {
           client.authorize(xhr);
         }
-        xhr.addListener("success", ev => {
+        xhr.addListener('success', ev => {
           const request = ev.getTarget();
           resolve(request.getResponse());
         });
-        xhr.addListener("statusError", ev => {
+        xhr.addListener('statusError', ev => {
           const request = ev.getTarget();
           reject(request.getResponse());
         });

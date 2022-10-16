@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Rgb", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Rgb', {
+  type: 'static',
 
   /*
    ******************************************************
@@ -46,12 +46,14 @@ qx.Class.define("cv.parser.pure.widgets.Rgb", {
         flavour,
         pageType
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(
         xml,
         path,
         this.makeAddressListFn
       );
+
       return data;
     },
 
@@ -62,6 +64,6 @@ qx.Class.define("cv.parser.pure.widgets.Rgb", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("rgb", statics);
+    cv.parser.pure.WidgetParser.addHandler('rgb', statics);
   }
 });

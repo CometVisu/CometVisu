@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Info", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Info', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -46,6 +46,7 @@ qx.Class.define("cv.parser.pure.widgets.Info", {
         flavour,
         pageType
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -54,6 +55,6 @@ qx.Class.define("cv.parser.pure.widgets.Info", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("info", statics);
+    cv.parser.pure.WidgetParser.addHandler('info', statics);
   }
 });

@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.Link", {
+qx.Class.define('cv.core.notifications.actions.Link', {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -44,28 +44,28 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   */
   properties: {
     title: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     url: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     type: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
 
     action: {
-      check: "Function",
+      check: 'Function',
       nullable: true,
-      transform: "_transformAction"
+      transform: '_transformAction'
     },
 
     hidden: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -77,17 +77,17 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   */
   members: {
     _transformAction(value) {
-      if (typeof value === "function") {
+      if (typeof value === 'function') {
         return value;
       }
       switch (value) {
-        case "reload":
-        case "restart":
+        case 'reload':
+        case 'restart':
           return cv.util.Location.reload;
       }
 
       if (value) {
-        this.error("Unknown action: " + value);
+        this.error('Unknown action: ' + value);
       }
       return null;
     },
@@ -106,17 +106,17 @@ qx.Class.define("cv.core.notifications.actions.Link", {
           const req = new qx.io.request.Xhr(this.getUrl());
           req.send();
         } else {
-          cv.util.Location.open(this.getUrl(), "_blank");
+          cv.util.Location.open(this.getUrl(), '_blank');
         }
       }
       if (this.isDeleteMessageAfterExecution) {
-        this.fireEvent("close");
+        this.fireEvent('close');
       }
     },
 
     getDomElement() {
-      const actionButton = qx.dom.Element.create("button", {
-        class: "action " + this.getType(),
+      const actionButton = qx.dom.Element.create('button', {
+        class: 'action ' + this.getType(),
         text: this.getTitle(),
         style: this.getStyle()
       });
@@ -125,17 +125,18 @@ qx.Class.define("cv.core.notifications.actions.Link", {
 
       qx.event.Registration.addListener(
         actionButton,
-        "tap",
+        'tap',
         this.handleAction,
         this
       );
+
       return actionButton;
     }
   },
 
   defer() {
     cv.core.notifications.ActionRegistry.registerActionHandler(
-      "link",
+      'link',
       cv.core.notifications.actions.Link
     );
   }

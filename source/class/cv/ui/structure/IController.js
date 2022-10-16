@@ -22,7 +22,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Interface.define("cv.ui.structure.IController", {
+qx.Interface.define('cv.ui.structure.IController', {
   /*
   ***********************************************
     PROPERTIES
@@ -33,14 +33,14 @@ qx.Interface.define("cv.ui.structure.IController", {
      * The target this structure should be inserted into as CSS selector string
      */
     renderTarget: {
-      check: "String"
+      check: 'String'
     },
 
     /**
      * Namespace for path ids
      */
     namespace: {
-      check: "String"
+      check: 'String'
     }
   },
 

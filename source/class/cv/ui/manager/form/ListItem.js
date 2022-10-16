@@ -20,7 +20,7 @@
 /**
  * ListItem that uses cv.ui.manager.basic.Image
  */
-qx.Class.define("cv.ui.manager.form.ListItem", {
+qx.Class.define('cv.ui.manager.form.ListItem', {
   extend: qx.ui.form.ListItem,
   /*
   ***********************************************
@@ -33,7 +33,7 @@ qx.Class.define("cv.ui.manager.form.ListItem", {
       let control;
 
       switch (id) {
-        case "icon":
+        case 'icon':
           control = new cv.ui.manager.basic.Image(this.getIcon());
           control.set({
             anonymous: true,
@@ -42,7 +42,7 @@ qx.Class.define("cv.ui.manager.form.ListItem", {
           });
 
           this._addAt(control, 0);
-          if (this.getIcon() === null || this.getShow() === "label") {
+          if (this.getIcon() === null || this.getShow() === 'label') {
             control.exclude();
           }
           break;

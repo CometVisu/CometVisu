@@ -23,8 +23,8 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.parser.pure.widgets.WgPluginInfo", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.WgPluginInfo', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -50,6 +50,7 @@ qx.Class.define("cv.parser.pure.widgets.WgPluginInfo", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -62,12 +63,12 @@ qx.Class.define("cv.parser.pure.widgets.WgPluginInfo", {
     },
     getDefaultClasses(type) {
       // additional info class
-      return "widget clearfix info " + type.toLowerCase();
+      return 'widget clearfix info ' + type.toLowerCase();
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("wgplugin_info", statics);
+    cv.parser.pure.WidgetParser.addHandler('wgplugin_info', statics);
   }
 });

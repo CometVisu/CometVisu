@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Refresh", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Refresh', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.Refresh", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -54,13 +55,13 @@ qx.Class.define("cv.parser.pure.widgets.Refresh", {
 
     getAttributeToPropertyMappings() {
       return {
-        value: { target: "sendValue" }
+        value: { target: 'sendValue' }
       };
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("refresh", statics);
+    cv.parser.pure.WidgetParser.addHandler('refresh', statics);
   }
 });

@@ -23,9 +23,9 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
+qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
   extend: qx.core.Object,
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ******************************************************
@@ -34,18 +34,18 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
   */
   properties: {
     needsConfirmation: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     deleteMessageAfterExecution: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     style: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     }
   },
 
@@ -55,6 +55,6 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
   ***********************************************
   */
   events: {
-    close: "qx.event.type.Event"
+    close: 'qx.event.type.Event'
   }
 });

@@ -20,8 +20,8 @@
 /**
  * Parse group config elements
  */
-qx.Class.define("cv.parser.pure.widgets.Group", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Group', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,12 +47,13 @@ qx.Class.define("cv.parser.pure.widgets.Group", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       if (data.target) {
-        data.classes += " clickable";
+        data.classes += ' clickable';
         data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
       }
       if (data.noWidget === true) {
-        data.classes = data.classes.replace("widget ", "");
+        data.classes = data.classes.replace('widget ', '');
       }
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
@@ -61,20 +62,20 @@ qx.Class.define("cv.parser.pure.widgets.Group", {
     getAttributeToPropertyMappings() {
       return {
         nowidget: {
-          target: "noWidget",
+          target: 'noWidget',
           default: false,
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
 
-        name: { default: "" },
-        target: { default: "" }
+        name: { default: '' },
+        target: { default: '' }
       };
     }
   },
 
   defer(statics) {
-    cv.parser.pure.WidgetParser.addHandler("group", statics);
+    cv.parser.pure.WidgetParser.addHandler('group', statics);
   }
 });

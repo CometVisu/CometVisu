@@ -20,7 +20,7 @@
 /**
  * @ignore(fetch)
  */
-qx.Mixin.define("cv.ui.common.Refresh", {
+qx.Mixin.define('cv.ui.common.Refresh', {
   /*
    ******************************************************
    CONSTRUCTOR
@@ -31,7 +31,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
       this.setupRefreshAction();
     } else {
       qx.event.message.Bus.subscribe(
-        "setup.dom.finished",
+        'setup.dom.finished',
         function () {
           this.setupRefreshAction();
         },
@@ -39,7 +39,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
       );
     }
 
-    this.addListener("changeVisible", this._maintainTimerState, this);
+    this.addListener('changeVisible', this._maintainTimerState, this);
   },
 
   /*
@@ -49,19 +49,19 @@ qx.Mixin.define("cv.ui.common.Refresh", {
    */
   properties: {
     refresh: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
 
     cachecontrol: {
-      check: "String",
-      init: "full"
+      check: 'String',
+      init: 'full'
     },
 
     restartOnVisible: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyRestartOnVisible"
+      apply: '_applyRestartOnVisible'
     }
   },
 
@@ -89,7 +89,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
      */
     _maintainTimerState() {
       if (this.__restartTimer) {
-        this.debug("aborting restart timer " + this.getPath());
+        this.debug('aborting restart timer ' + this.getPath());
         this.__restartTimer.stop();
         this.__restartTimer.dispose();
         this.__restartTimer = null;
@@ -103,20 +103,22 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           if (delta <= 0) {
             // run immediately
             this.debug(
-              "immediate refresh because refresh time has been reached " +
+              'immediate refresh because refresh time has been reached ' +
                 this.getPath()
             );
+
             this._timer.start();
-            this._timer.fireEvent("interval");
+            this._timer.fireEvent('interval');
           } else {
             this.debug(
-              "starting refresh " + this.getPath() + " in " + delta + "ms"
+              'starting refresh ' + this.getPath() + ' in ' + delta + 'ms'
             );
+
             // start when interval is finished
             this.__restartTimer = qx.event.Timer.once(
               function () {
                 this._timer.start();
-                this._timer.fireEvent("interval");
+                this._timer.fireEvent('interval');
                 this.__restartTimer = null;
               },
               this,
@@ -124,7 +126,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             );
           }
         } else if (this._timer.isEnabled()) {
-          this.debug("stop refreshing " + this.getPath());
+          this.debug('stop refreshing ' + this.getPath());
           this._timer.stop();
         }
       }
@@ -141,24 +143,24 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           this._setupRefreshAction();
           if (this._timer) {
             // listen to foreign timer to get the last execution time;
-            this._timer.addListener("interval", () => {
+            this._timer.addListener('interval', () => {
               this.__lastRun = Date.now();
             });
           }
         } else if (!this._timer || !this._timer.isEnabled()) {
           const element = this.getDomElement();
           const target =
-            element.querySelector("img") || element.querySelector("iframe");
-          let src = target.getAttribute("src");
+            element.querySelector('img') || element.querySelector('iframe');
+          let src = target.getAttribute('src');
           if (
-            src.indexOf("?") < 0 &&
-            ((target.nodeName === "IMG" && this.getCachecontrol() === "full") ||
-              target.nodeName !== "IMG")
+            src.indexOf('?') < 0 &&
+            ((target.nodeName === 'IMG' && this.getCachecontrol() === 'full') ||
+              target.nodeName !== 'IMG')
           ) {
-            src += "?";
+            src += '?';
           }
           this._timer = new qx.event.Timer(this.getRefresh());
-          this._timer.addListener("interval", () => {
+          this._timer.addListener('interval', () => {
             this.refreshAction(target, src);
           });
           this._timer.start();
@@ -182,12 +184,12 @@ qx.Mixin.define("cv.ui.common.Refresh", {
          * "flickering" so we avoid to use it on images, internal iframes and others
          */
         const parenthost =
-          window.location.protocol + "//" + window.location.host;
-        if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
-          target.setAttribute("src", "");
+          window.location.protocol + '//' + window.location.host;
+        if (target.nodeName === 'IFRAME' && src.indexOf(parenthost) !== 0) {
+          target.setAttribute('src', '');
           qx.event.Timer.once(
             function () {
-              target.setAttribute("src", src);
+              target.setAttribute('src', src);
             },
             this,
             0
@@ -196,23 +198,24 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           let cachecontrol = this.getCachecontrol();
 
           // force is only implied for images
-          if (target.nodeName !== "IMG" && cachecontrol === "force") {
-            cachecontrol = "full";
+          if (target.nodeName !== 'IMG' && cachecontrol === 'force') {
+            cachecontrol = 'full';
           }
 
           switch (cachecontrol) {
-            case "full":
+            case 'full':
               target.setAttribute(
-                "src",
-                qx.util.Uri.appendParamsToUrl(src, "" + new Date().getTime())
+                'src',
+                qx.util.Uri.appendParamsToUrl(src, '' + new Date().getTime())
               );
+
               break;
 
-            case "weak":
-              target.setAttribute("src", src + "#" + new Date().getTime());
+            case 'weak':
+              target.setAttribute('src', src + '#' + new Date().getTime());
               break;
 
-            case "force":
+            case 'force':
               cv.ui.common.Refresh.__forceImgReload(src);
 
             // not needed as those are NOP:
@@ -232,7 +235,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
   destruct() {
     if (this._timer) {
       this._timer.stop();
-      this._disposeObjects("_timer");
+      this._disposeObjects('_timer');
     }
   },
 
@@ -245,7 +248,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
     // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
     __forceImgReload(src) {
       window
-        .fetch(src, { cache: "reload", mode: "no-cors" })
+        .fetch(src, { cache: 'reload', mode: 'no-cors' })
         .then(() =>
           document.body
             .querySelectorAll(`img[src='${src}']`)

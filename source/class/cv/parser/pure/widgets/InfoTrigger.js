@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.InfoTrigger", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.InfoTrigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,58 +47,64 @@ qx.Class.define("cv.parser.pure.widgets.InfoTrigger", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(
         xml,
         path,
         this.makeAddressListFn
       );
+
       return data;
     },
 
     getAttributeToPropertyMappings() {
       return {
-        downvalue: { target: "downValue", transform: parseFloat, default: 0 },
+        downvalue: { target: 'downValue', transform: parseFloat, default: 0 },
         shortdownvalue: {
-          target: "shortDownValue",
+          target: 'shortDownValue',
           transform(value) {
             return value ? parseFloat(value) : null;
           }
         },
-        downlabel: { target: "downLabel" },
-        upvalue: { target: "upValue", transform: parseFloat, default: 0 },
+
+        downlabel: { target: 'downLabel' },
+        upvalue: { target: 'upValue', transform: parseFloat, default: 0 },
         shortupvalue: {
-          target: "shortUpValue",
+          target: 'shortUpValue',
           transform(value) {
             return value ? parseFloat(value) : null;
           }
         },
-        uplabel: { target: "upLabel" },
+
+        uplabel: { target: 'upLabel' },
         shorttime: {
-          target: "shortThreshold",
+          target: 'shortThreshold',
           transform: parseFloat,
           default: -1
         },
-        "send-long-on-release": {
-          target: "sendLongOnRelease",
+
+        'send-long-on-release': {
+          target: 'sendLongOnRelease',
           transform(value) {
-            return value ? value === "true" : true;
+            return value ? value === 'true' : true;
           }
         },
+
         change: {
-          target: "isAbsolute",
+          target: 'isAbsolute',
           transform(value) {
-            return (value || "relative") === "absolute";
+            return (value || 'relative') === 'absolute';
           }
         },
 
         min: { transform: parseFloat, default: 0 },
         max: { transform: parseFloat, default: 255 },
         infoposition: {
-          target: "infoPosition",
-          default: "left",
+          target: 'infoPosition',
+          default: 'left',
           transform(value) {
-            return ["middle", "right"].includes(value) ? value : "left";
+            return ['middle', 'right'].includes(value) ? value : 'left';
           }
         }
       };
@@ -106,12 +112,12 @@ qx.Class.define("cv.parser.pure.widgets.InfoTrigger", {
 
     makeAddressListFn(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [true, variant === "short" ? 1 : variant === "button" ? 2 : 1 | 2];
+      return [true, variant === 'short' ? 1 : variant === 'button' ? 2 : 1 | 2];
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("infotrigger", statics);
+    cv.parser.pure.WidgetParser.addHandler('infotrigger', statics);
   }
 });

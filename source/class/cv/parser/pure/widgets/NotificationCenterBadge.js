@@ -23,8 +23,8 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.parser.pure.widgets.NotificationCenterBadge", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.NotificationCenterBadge', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -54,10 +54,10 @@ qx.Class.define("cv.parser.pure.widgets.NotificationCenterBadge", {
 
     getAttributeToPropertyMappings() {
       return {
-        "hide-when-empty": {
-          target: "hideWhenEmpty",
+        'hide-when-empty': {
+          target: 'hideWhenEmpty',
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -66,6 +66,6 @@ qx.Class.define("cv.parser.pure.widgets.NotificationCenterBadge", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("notificationcenterbadge", statics);
+    cv.parser.pure.WidgetParser.addHandler('notificationcenterbadge', statics);
   }
 });

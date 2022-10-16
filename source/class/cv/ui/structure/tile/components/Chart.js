@@ -23,7 +23,7 @@
  * @asset(libs/d3.min.js)
  * @ignore(d3)
  */
-qx.Class.define("cv.ui.structure.tile.components.Chart", {
+qx.Class.define('cv.ui.structure.tile.components.Chart', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: cv.ui.structure.tile.MVisibility,
 
@@ -34,76 +34,79 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
   */
   statics: {
     JS_LOADED: new Promise(async (resolve, reject) => {
-      const check = () => typeof window.d3 === "object";
+      const check = () => typeof window.d3 === 'object';
       await cv.util.ScriptLoader.includeScript(
-        qx.util.ResourceManager.getInstance().toUri("libs/d3.min.js")
+        qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js')
       );
+
       if (!check()) {
         const timer = new qx.event.Timer(50);
         let counter = 0;
-        timer.addListener("interval", () => {
+        timer.addListener('interval', () => {
           counter++;
           if (check()) {
             resolve(true);
           } else if (counter > 5) {
-            reject(new Error("Error loaded d3 library"));
+            reject(new Error('Error loaded d3 library'));
           }
         });
       } else {
         resolve(true);
       }
     }).then(() => {
-      if (qx.locale.Manager.getInstance().getLanguage() === "de") {
+      if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
         // localize
         d3.formatDefaultLocale({
-          decimal: ",",
-          thousands: ".",
+          decimal: ',',
+          thousands: '.',
           grouping: [3],
-          currency: ["€", ""]
+          currency: ['€', '']
         });
 
         d3.timeFormatDefaultLocale({
-          dateTime: "%A, der %e. %B %Y, %X",
-          date: "%d.%m.%Y",
-          time: "%H:%M:%S",
-          periods: ["AM", "PM"],
+          dateTime: '%A, der %e. %B %Y, %X',
+          date: '%d.%m.%Y',
+          time: '%H:%M:%S',
+          periods: ['AM', 'PM'],
           days: [
-            "Sonntag",
-            "Montag",
-            "Dienstag",
-            "Mittwoch",
-            "Donnerstag",
-            "Freitag",
-            "Samstag"
+            'Sonntag',
+            'Montag',
+            'Dienstag',
+            'Mittwoch',
+            'Donnerstag',
+            'Freitag',
+            'Samstag'
           ],
-          shortDays: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+
+          shortDays: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
           months: [
-            "Januar",
-            "Februar",
-            "März",
-            "April",
-            "Mai",
-            "Juni",
-            "Juli",
-            "August",
-            "September",
-            "Oktober",
-            "November",
-            "Dezember"
+            'Januar',
+            'Februar',
+            'März',
+            'April',
+            'Mai',
+            'Juni',
+            'Juli',
+            'August',
+            'September',
+            'Oktober',
+            'November',
+            'Dezember'
           ],
+
           shortMonths: [
-            "Jan",
-            "Feb",
-            "Mär",
-            "Apr",
-            "Mai",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Okt",
-            "Nov",
-            "Dez"
+            'Jan',
+            'Feb',
+            'Mär',
+            'Apr',
+            'Mai',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Okt',
+            'Nov',
+            'Dez'
           ]
         });
       }
@@ -119,8 +122,8 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
   */
   properties: {
     type: {
-      check: ["axis-mixed", "bar", "line", "scatter", "pie", "percentage"],
-      init: "line"
+      check: ['axis-mixed', 'bar', 'line', 'scatter', 'pie', 'percentage'],
+      init: 'line'
     }
   },
 
@@ -142,8 +145,8 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
 
     async _init() {
       const element = this._element;
-      if (element.hasAttribute("type")) {
-        this.setType(element.getAttribute("type"));
+      if (element.hasAttribute('type')) {
+        this.setType(element.getAttribute('type'));
       }
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
       if (this.isVisible()) {
@@ -152,7 +155,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
     },
 
     _applyVisible(value) {
-      if (value && typeof window.d3 === "object") {
+      if (value && typeof window.d3 === 'object') {
         this._loadData();
       }
     },
@@ -164,17 +167,17 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
       }
       const client = cv.io.BackendConnections.getClient();
       let url;
-      const dataSets = this._element.querySelectorAll(":scope > dataset");
+      const dataSets = this._element.querySelectorAll(':scope > dataset');
       const promises = [];
       this._dataSetConfigs = {};
       for (let dataSet of dataSets) {
         let ts = {
           showArea: true,
-          color: "#FF9900",
-          type: dataSet.getAttribute("type") || "line",
-          start: "end-1day",
-          end: "now",
-          xFormat: this._element.getAttribute("x-format") || "%H:%M",
+          color: '#FF9900',
+          type: dataSet.getAttribute('type') || 'line',
+          start: 'end-1day',
+          end: 'now',
+          xFormat: this._element.getAttribute('x-format') || '%H:%M',
           xTicks: d3.timeHour.every(4)
         };
 
@@ -185,7 +188,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
           attr = dataSet.attributes.item(i);
           // CamelCase attribute names
           name = attr.name
-            .split("-")
+            .split('-')
             .map((part, i) => {
               if (i > 0) {
                 return `${part.substring(0, 1).toUpperCase()}${part.substring(
@@ -194,38 +197,38 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
               }
               return part;
             })
-            .join("");
+            .join('');
           value = attr.value;
-          if (name === "series") {
+          if (name === 'series') {
             switch (value) {
-              case "hour":
+              case 'hour':
                 ts.xTicks = d3.timeMinute.every(5);
-                ts.start = "end-1" + value;
+                ts.start = 'end-1' + value;
                 break;
 
-              case "day":
+              case 'day':
                 ts.xTicks = d3.timeHour.every(4);
-                ts.start = "end-1" + value;
+                ts.start = 'end-1' + value;
                 break;
 
-              case "week":
+              case 'week':
                 ts.xTicks = d3.timeDay.every(1);
-                ts.start = "end-1" + value;
+                ts.start = 'end-1' + value;
                 break;
 
-              case "month":
+              case 'month':
                 ts.xTicks = d3.timeDay.every(5);
-                ts.start = "end-1" + value;
+                ts.start = 'end-1' + value;
                 break;
 
-              case "year":
+              case 'year':
                 ts.xTicks = d3.timeDay.every(31);
-                ts.start = "end-1" + value;
+                ts.start = 'end-1' + value;
                 break;
             }
           } else {
-            if (value === "true" || value === "false") {
-              value = value === "true";
+            if (value === 'true' || value === 'false') {
+              value = value === 'true';
             } else if (/^\d+$/.test(value)) {
               value = parseInt(value);
             } else if (/^[\d.]+$/.test(value)) {
@@ -236,7 +239,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         }
         let start = new Date();
         start.setTime(start.getTime() - 60 * 60 * 24 * 1000);
-        url = client.getResourcePath("charts", {
+        url = client.getResourcePath('charts', {
           src: ts.src,
           start: ts.start,
           end: ts.end
@@ -291,9 +294,9 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         minVal -= 1;
       }
 
-      const format = this._element.hasAttribute("y-format")
-        ? this._element.getAttribute("y-format")
-        : "%s";
+      const format = this._element.hasAttribute('y-format')
+        ? this._element.getAttribute('y-format')
+        : '%s';
 
       this._chart = this._lineChart(chartData, {
         x: d => d.time,
@@ -311,52 +314,59 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         showArea: d => {
           return this._dataSetConfigs[d].showArea;
         },
-        mixBlendMode: "normal",
+        mixBlendMode: 'normal',
         xFormat: this.multiTimeFormat([
           [
-            ".%L",
+            '.%L',
             function (d) {
               return d.getMilliseconds();
             }
           ],
+
           [
-            ":%S",
+            ':%S',
             function (d) {
               return d.getSeconds();
             }
           ],
+
           [
-            "%H:%M",
+            '%H:%M',
             function (d) {
               return d.getMinutes();
             }
           ],
+
           [
-            "%H",
+            '%H',
             function (d) {
               return d.getHours();
             }
           ],
+
           [
-            "%a %d",
+            '%a %d',
             function (d) {
               return d.getDay() && d.getDate() !== 1;
             }
           ],
+
           [
-            "%b %d",
+            '%b %d',
             function (d) {
               return d.getDate() !== 1;
             }
           ],
+
           [
-            "%B",
+            '%B',
             function (d) {
               return d.getMonth();
             }
           ],
+
           [
-            "%Y",
+            '%Y',
             function () {
               return true;
             }
@@ -374,7 +384,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
       function multiFormat(date) {
         let i = 0;
         let found = false;
-        let fmt = "%c";
+        let fmt = '%c';
         while (!found && i < formatsArray.length) {
           found = formatsArray[i][1](date);
           if (found) {
@@ -388,17 +398,17 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
     },
 
     _onStatusError(ts, key, err) {
-      cv.core.notifications.Router.dispatchMessage("cv.charts.error", {
-        title: qx.locale.Manager.tr("Communication error"),
-        severity: "urgent",
+      cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
+        title: qx.locale.Manager.tr('Communication error'),
+        severity: 'urgent',
         message: qx.locale.Manager.tr(
-          "URL: %1<br/><br/>Response:</br>%2",
+          'URL: %1<br/><br/>Response:</br>%2',
           JSON.stringify(key),
           err
         )
       });
 
-      this.error("Chart _onStatusError", ts, key, err);
+      this.error('Chart _onStatusError', ts, key, err);
     },
 
     /**
@@ -435,12 +445,12 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
           yFormat: undefined, // a format specifier string for the y-axis
           yLabel: undefined, // a label for the y-axis
           zDomain: undefined, // array of z-values
-          color: "currentColor", // stroke color of line, as a constant or a function of *z*
+          color: 'currentColor', // stroke color of line, as a constant or a function of *z*
           strokeLinecap: undefined, // stroke line cap of line
           strokeLinejoin: undefined, // stroke line join of line
           strokeWidth: 1.5, // stroke width of line
           strokeOpacity: undefined, // stroke opacity of line
-          mixBlendMode: "multiply", // blend mode of lines
+          mixBlendMode: 'multiply', // blend mode of lines
           showArea: undefined, // show area below the line,
           xPadding: 0.1 // amount of x-range to reserve to separate bars
         };
@@ -450,6 +460,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         cv.ui.structure.tile.components.Chart.CONFIG,
         c
       );
+
       config.xRange = [config.marginLeft, config.width - config.marginRight]; // [left, right]
       config.yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
 
@@ -468,10 +479,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         config.xDomain = d3.extent(X);
       }
       if (config.yDomain === undefined) {
-        config.yDomain = [
-          0,
-          d3.max(Y, d => (typeof d === "string" ? +d : d))
-        ];
+        config.yDomain = [0, d3.max(Y, d => (typeof d === 'string' ? +d : d))];
       }
       if (config.zDomain === undefined) {
         config.zDomain = Z;
@@ -501,7 +509,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
           ? null
           : d3.map(data, config.title);
 
-      d3.select(this._element).select("svg").remove();
+      d3.select(this._element).select('svg').remove();
 
       let linePath;
 
@@ -509,37 +517,38 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         const [xm, ym] = d3.pointer(event);
         const i = d3.least(I, i =>
           Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)
-        ); // closest point
-        dot.attr("transform", `translate(${xScale(X[i])},${yScale(Y[i])})`);
+        );
+        // closest point
+        dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
         if (T) {
-          dot.select("text").text(T[i]);
+          dot.select('text').text(T[i]);
         }
-        svg.property("value", O[i]).dispatch("input", { bubbles: true });
+        svg.property('value', O[i]).dispatch('input', { bubbles: true });
       };
 
       const pointerEntered = () => {
-        dot.attr("display", null);
+        dot.attr('display', null);
       };
 
       const pointerLeft = () => {
-        dot.attr("display", "none");
+        dot.attr('display', 'none');
         svg.node().value = null;
-        svg.dispatch("input", { bubbles: true });
+        svg.dispatch('input', { bubbles: true });
       };
 
       const svg = d3
         .select(this._element)
-        .append("svg")
-        .attr("width", config.width)
-        .attr("height", config.height)
-        .attr("viewBox", [0, 0, config.width, config.height])
-        .attr("style", "max-width: 100%; height: auto; height: intrinsic;")
-        .style("-webkit-tap-highlight-color", "transparent")
-        .on("pointerenter", pointerEntered)
-        .on("pointermove", pointerMoved)
-        .on("pointerleave", pointerLeft)
+        .append('svg')
+        .attr('width', config.width)
+        .attr('height', config.height)
+        .attr('viewBox', [0, 0, config.width, config.height])
+        .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+        .style('-webkit-tap-highlight-color', 'transparent')
+        .on('pointerenter', pointerEntered)
+        .on('pointermove', pointerMoved)
+        .on('pointerleave', pointerLeft)
         .on(
-          "touchmove",
+          'touchmove',
           event => {
             let y = event.targetTouches[0].clientY;
             if (linePath) {
@@ -553,25 +562,25 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
         );
 
       svg
-        .append("g")
+        .append('g')
         .attr(
-          "transform",
+          'transform',
           `translate(0,${config.height - config.marginBottom})`
         )
         .call(xAxis);
 
       svg
-        .append("g")
-        .attr("transform", `translate(${config.marginLeft},0)`)
+        .append('g')
+        .attr('transform', `translate(${config.marginLeft},0)`)
         .call(yAxis)
-        .call(g => g.select(".domain").remove())
+        .call(g => g.select('.domain').remove())
         .call(g =>
           g
-            .append("text")
-            .attr("x", -config.marginLeft)
-            .attr("y", 10)
-            .attr("fill", "currentColor")
-            .attr("text-anchor", "start")
+            .append('text')
+            .attr('x', -config.marginLeft)
+            .attr('y', 10)
+            .attr('fill', 'currentColor')
+            .attr('text-anchor', 'start')
             .text(config.yLabel)
         );
 
@@ -580,21 +589,21 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
       const barGroups = new Map();
       for (let i of I) {
         const key = Z[i];
-        if (typeof config.showArea === "function" && config.showArea(key)) {
+        if (typeof config.showArea === 'function' && config.showArea(key)) {
           if (!areaGroups.has(key)) {
             areaGroups.set(key, []);
           }
           areaGroups.get(key).push(i);
         }
         switch (this._dataSetConfigs[key].type) {
-          case "line":
+          case 'line':
             if (!lineGroups.has(key)) {
               lineGroups.set(key, []);
             }
             lineGroups.get(key).push(i);
             break;
 
-          case "bar":
+          case 'bar':
             if (!barGroups.has(key)) {
               barGroups.set(key, []);
             }
@@ -613,27 +622,25 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
           .y(i => yScale(Y[i]));
 
         linePath = svg
-          .append("g")
-          .attr("fill", "none")
+          .append('g')
+          .attr('fill', 'none')
           .attr(
-            "stroke",
-            typeof config.color === "string" ? config.color : null
+            'stroke',
+            typeof config.color === 'string' ? config.color : null
           )
-          .attr("stroke-linecap", config.strokeLinecap)
-          .attr("stroke-linejoin", config.strokeLinejoin)
-          .attr("stroke-width", config.strokeWidth)
-          .attr("stroke-opacity", config.strokeOpacity)
-          .selectAll("path")
+          .attr('stroke-linecap', config.strokeLinecap)
+          .attr('stroke-linejoin', config.strokeLinejoin)
+          .attr('stroke-width', config.strokeWidth)
+          .attr('stroke-opacity', config.strokeOpacity)
+          .selectAll('path')
           .data(lineGroups)
-          .join("path")
-          .style("mix-blend-mode", config.mixBlendMode)
+          .join('path')
+          .style('mix-blend-mode', config.mixBlendMode)
           .attr(
-            "stroke",
-            typeof config.color === "function"
-              ? p => config.color(p[0])
-              : null
+            'stroke',
+            typeof config.color === 'function' ? p => config.color(p[0]) : null
           )
-          .attr("d", d => line(d[1]));
+          .attr('d', d => line(d[1]));
       }
 
       // Add the area
@@ -647,23 +654,23 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
           .y1(i => yScale(Y[i]));
 
         svg
-          .append("g")
-          .attr("stroke", "none")
+          .append('g')
+          .attr('stroke', 'none')
           .attr(
-            "fill",
-            typeof config.color === "string" ? config.color + "30" : null
+            'fill',
+            typeof config.color === 'string' ? config.color + '30' : null
           )
-          .selectAll("path")
+          .selectAll('path')
           .data(areaGroups)
-          .join("path")
-          .style("mix-blend-mode", config.mixBlendMode)
+          .join('path')
+          .style('mix-blend-mode', config.mixBlendMode)
           .attr(
-            "fill",
-            typeof config.color === "function"
-              ? p => config.color(p[0]) + "30"
+            'fill',
+            typeof config.color === 'function'
+              ? p => config.color(p[0]) + '30'
               : null
           )
-          .attr("d", d => area(d[1]));
+          .attr('d', d => area(d[1]));
       }
 
       if (barGroups.size > 0) {
@@ -673,17 +680,17 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
           .range(config.xRange)
           .padding(config.xPadding);
         svg
-          .append("g")
-          .selectAll("g")
+          .append('g')
+          .selectAll('g')
           .data(barGroups)
-          .join("g")
+          .join('g')
           .attr(
-            "fill",
-            typeof config.color === "function"
-              ? d => config.color(d[0]) + "30"
+            'fill',
+            typeof config.color === 'function'
+              ? d => config.color(d[0]) + '30'
               : null
           )
-          .selectAll("rect")
+          .selectAll('rect')
           .data(d => {
             return d[1].map(val => {
               return {
@@ -692,26 +699,26 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
               };
             });
           })
-          .join("rect")
-          .attr("x", d => xBarScale(X[d.value]))
-          .attr("y", d => yScale(Y[d.value]))
-          .attr("height", d => config.yRange[0] - yScale(Y[d.value]))
-          .attr("width", xBarScale.bandwidth());
+          .join('rect')
+          .attr('x', d => xBarScale(X[d.value]))
+          .attr('y', d => yScale(Y[d.value]))
+          .attr('height', d => config.yRange[0] - yScale(Y[d.value]))
+          .attr('width', xBarScale.bandwidth());
       }
 
       const dot = svg
-        .append("g")
-        .attr("display", "none")
-        .attr("fill", "currentColor");
+        .append('g')
+        .attr('display', 'none')
+        .attr('fill', 'currentColor');
 
-      dot.append("circle").attr("r", 2.5);
+      dot.append('circle').attr('r', 2.5);
 
       dot
-        .append("text")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", 10)
-        .attr("text-anchor", "middle")
-        .attr("y", -8);
+        .append('text')
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', 10)
+        .attr('text-anchor', 'middle')
+        .attr('y', -8);
 
       return Object.assign(svg.node(), { value: null });
     }
@@ -728,7 +735,7 @@ qx.Class.define("cv.ui.structure.tile.components.Chart", {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "chart",
+      cv.ui.structure.tile.Controller.PREFIX + 'chart',
       class extends QxConnector {
         constructor() {
           super(QxClass);

@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
+qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
@@ -40,17 +40,17 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
   */
   properties: {
     showstatus: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     elementsPerLine: {
-      check: "Number",
+      check: 'Number',
       init: 2
     },
 
     buttonConfiguration: {
-      check: "Object",
+      check: 'Object',
       nullable: false
     }
   },
@@ -64,7 +64,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
     // overridden
     _getInnerDomString() {
       // create the actor
-      let ret_val = "<div class=\"actor_container\" style=\"float:left\">";
+      let ret_val = '<div class="actor_container" style="float:left">';
       const mapping = this.getMapping();
       const elementsPerLine = this.getElementsPerLine();
 
@@ -79,8 +79,9 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
             undefined,
             buttonConfig.value
           );
+
           if (mappedValue !== buttonConfig.value || !label) {
-            const div = document.createElement("div");
+            const div = document.createElement('div');
             this.defaultValue2DOM(mappedValue, div);
             label = div.innerHTML;
           }
@@ -88,19 +89,19 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
 
         if (label) {
           ret_val +=
-            "<div class=\"actor switchUnpressed\"><div class=\"value\">" +
+            '<div class="actor switchUnpressed"><div class="value">' +
             label +
-            "</div></div>";
+            '</div></div>';
         }
         if (elementsPerLine > 0 && i % elementsPerLine === 0) {
-          ret_val += "<br/>";
+          ret_val += '<br/>';
         }
       }, this);
-      return ret_val + "</div>";
+      return ret_val + '</div>';
     },
 
     getActors() {
-      return this.getDomElement().querySelectorAll(".actor_container .actor");
+      return this.getDomElement().querySelectorAll('.actor_container .actor');
     },
 
     // overridden, only transform the value, do not apply it to DOM
@@ -118,16 +119,17 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
         const index = Array.prototype.indexOf.call(children, actor) + 1;
         if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
           const isPressed =
-            "" + this.getBasicValue() === "" + buttonConfiguration[index].value; // compare as string
+            '' + this.getBasicValue() === '' + buttonConfiguration[index].value; // compare as string
 
           // delay this a little bit to give the HasAnimatedButton stuff time to finish
           // otherwise it might override the settings here
           new qx.util.DeferredCall(function () {
             actor.classList.remove(
-              isPressed ? "switchUnpressed" : "switchPressed"
+              isPressed ? 'switchUnpressed' : 'switchPressed'
             );
+
             actor.classList.add(
-              isPressed ? "switchPressed" : "switchUnpressed"
+              isPressed ? 'switchPressed' : 'switchUnpressed'
             );
           }, this).schedule();
         }
@@ -141,7 +143,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
     getActionValue(event) {
       const index =
         Array.prototype.indexOf.call(
-          this.getDomElement().querySelectorAll(".actor_container .actor"),
+          this.getDomElement().querySelectorAll('.actor_container .actor'),
           event.getCurrentTarget()
         ) + 1;
       return this.getButtonConfiguration()[index].value;
@@ -154,10 +156,10 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
       }
 
       this.getActors().forEach(function (actor) {
-        qx.event.Registration.addListener(actor, "tap", this.action, this);
+        qx.event.Registration.addListener(actor, 'tap', this.action, this);
         qx.event.Registration.addListener(
           actor,
-          "pointerdown",
+          'pointerdown',
           this._onPointerDown,
           this
         );
@@ -166,6 +168,6 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("multitrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('multitrigger', statics);
   }
 });

@@ -31,7 +31,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.Text", {
+qx.Class.define('cv.ui.structure.pure.Text', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
@@ -42,7 +42,7 @@ qx.Class.define("cv.ui.structure.pure.Text", {
   members: {
     // overridden
     _getInnerDomString() {
-      return "";
+      return '';
     }
   }
 });

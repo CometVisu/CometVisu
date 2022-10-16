@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
+qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: cv.ui.structure.tile.MPopup,
 
@@ -46,31 +46,32 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
       super._init();
       const popup = this._element;
       const closeable =
-        !popup.hasAttribute("closeable") ||
-        popup.getAttribute("closeable") === "true";
+        !popup.hasAttribute('closeable') ||
+        popup.getAttribute('closeable') === 'true';
       if (closeable) {
-        this._closeButton = document.createElement("button");
-        this._closeButton.classList.add("close");
-        const icon = document.createElement("i");
-        icon.classList.add("ri-close-line");
+        this._closeButton = document.createElement('button');
+        this._closeButton.classList.add('close');
+        const icon = document.createElement('i');
+        icon.classList.add('ri-close-line');
         this._closeButton.appendChild(icon);
         popup.insertBefore(this._closeButton, popup.firstChild);
-        this._closeButton.addEventListener("click", () => this.close());
+        this._closeButton.addEventListener('click', () => this.close());
       }
-      if (popup.hasAttribute("auto-close-timeout")) {
+      if (popup.hasAttribute('auto-close-timeout')) {
         const timeoutSeconds = parseInt(
-          popup.getAttribute("auto-close-timeout")
+          popup.getAttribute('auto-close-timeout')
         );
+
         if (!isNaN(timeoutSeconds)) {
           this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
-          this._autoCloseTimer.addListener("interval", () => {
+          this._autoCloseTimer.addListener('interval', () => {
             this._autoCloseTimer.stop();
             this.close();
           });
         } else {
           this.error(
-            "invalid auto-close-timeout value:",
-            popup.getAttribute("auto-close-timeout")
+            'invalid auto-close-timeout value:',
+            popup.getAttribute('auto-close-timeout')
           );
         }
       }
@@ -78,11 +79,11 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
 
     open() {
       const popup = this._element;
-      if (!popup.hasAttribute("open")) {
-        popup.setAttribute("open", "");
+      if (!popup.hasAttribute('open')) {
+        popup.setAttribute('open', '');
         if (
-          popup.hasAttribute("modal") &&
-          popup.getAttribute("modal") === "true"
+          popup.hasAttribute('modal') &&
+          popup.getAttribute('modal') === 'true'
         ) {
           this.registerModalPopup();
         }
@@ -95,17 +96,17 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
     close() {
       const popup = this._element;
       if (popup) {
-        popup.removeAttribute("open");
+        popup.removeAttribute('open');
         if (
-          popup.hasAttribute("modal") &&
-          popup.getAttribute("modal") === "true"
+          popup.hasAttribute('modal') &&
+          popup.getAttribute('modal') === 'true'
         ) {
           this.unregisterModalPopup();
         }
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
-        popup.dispatchEvent(new CustomEvent("closed"));
+        popup.dispatchEvent(new CustomEvent('closed'));
       }
     },
 
@@ -121,13 +122,13 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
     onStateUpdate(ev) {
       if (!super.onStateUpdate(ev)) {
         switch (ev.detail.target) {
-          case "open":
+          case 'open':
             if (ev.detail.state) {
               this.open();
             }
             break;
 
-          case "open-close":
+          case 'open-close':
             if (ev.detail.state) {
               this.open();
             } else {
@@ -135,14 +136,14 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
             }
             break;
 
-          case "close":
+          case 'close':
             if (!ev.detail.state) {
               this.close();
             }
             break;
 
           default:
-            this.debug("unhandled address target", ev.detail.target);
+            this.debug('unhandled address target', ev.detail.target);
             break;
         }
       }
@@ -155,7 +156,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
   ***********************************************
   */
   destruct() {
-    this._disposeObjects("_autoCloseTimer");
+    this._disposeObjects('_autoCloseTimer');
     if (this._closeButton) {
       this._closeButton.remove();
       this._closeButton = null;
@@ -164,7 +165,7 @@ qx.Class.define("cv.ui.structure.tile.widgets.Popup", {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "popup",
+      cv.ui.structure.tile.Controller.PREFIX + 'popup',
       class extends QxConnector {
         constructor() {
           super(QxClass);

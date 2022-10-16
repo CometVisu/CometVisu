@@ -20,9 +20,9 @@
 /**
  * Base class for all components.
  */
-qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
+qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -31,27 +31,27 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
   */
   properties: {
     value: {
-      apply: "_applyValue",
+      apply: '_applyValue',
       init: null
     },
 
     styleClass: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      apply: "_applyStyleClass"
+      apply: '_applyStyleClass'
     },
 
     enabled: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      apply: "_applyEnabled"
+      apply: '_applyEnabled'
     },
 
     visibility: {
-      check: ["visible", "excluded", "hidden"],
-      init: "visible",
-      apply: "_applyVisibility",
-      event: "changeVisibility"
+      check: ['visible', 'excluded', 'hidden'],
+      init: 'visible',
+      apply: '_applyVisibility',
+      event: 'changeVisibility'
     }
   },
 
@@ -69,20 +69,20 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
       let hasReadAddress = false;
       const writeAddresses = [];
       Array.prototype.forEach.call(
-        element.querySelectorAll(":scope > cv-address"),
+        element.querySelectorAll(':scope > cv-address'),
         address => {
-          const mode = address.hasAttribute("mode")
-            ? address.getAttribute("mode")
-            : "readwrite";
+          const mode = address.hasAttribute('mode')
+            ? address.getAttribute('mode')
+            : 'readwrite';
           switch (mode) {
-            case "readwrite":
+            case 'readwrite':
               hasReadAddress = true;
               writeAddresses.push(address);
               break;
-            case "read":
+            case 'read':
               hasReadAddress = true;
               break;
-            case "write":
+            case 'write':
               writeAddresses.push(address);
               break;
           }
@@ -92,7 +92,7 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
       this._writeAddresses = writeAddresses;
 
       if (hasReadAddress) {
-        element.addEventListener("stateUpdate", ev => {
+        element.addEventListener('stateUpdate', ev => {
           this.onStateUpdate(ev);
           // cancel event here
           ev.stopPropagation();
@@ -103,28 +103,29 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
     // property apply
     _applyValue(value) {
       if (this.isConnected()) {
-        this._element.setAttribute("value", value || "");
+        this._element.setAttribute('value', value || '');
         let mappedValue = value;
-        if (this._element.hasAttribute("mapping")) {
+        if (this._element.hasAttribute('mapping')) {
           mappedValue = cv.Application.structureController.mapValue(
-            this._element.getAttribute("mapping"),
+            this._element.getAttribute('mapping'),
             value
           );
         }
-        if (this._element.hasAttribute("format")) {
+        if (this._element.hasAttribute('format')) {
           mappedValue = cv.util.String.sprintf(
-            this._element.getAttribute("format"),
+            this._element.getAttribute('format'),
             mappedValue instanceof Date
               ? mappedValue.toLocaleString()
               : mappedValue
           );
         }
         this._updateValue(mappedValue, value);
-        if (this._element.hasAttribute("styling")) {
+        if (this._element.hasAttribute('styling')) {
           let styleClass = cv.Application.structureController.styleValue(
-            this._element.getAttribute("styling"),
+            this._element.getAttribute('styling'),
             value
           );
+
           this.setStyleClass(styleClass);
         }
       }
@@ -149,51 +150,52 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
     },
 
     _applyEnabled(value) {
-      let blocker = this._element.querySelector(":scope > .blocker");
+      let blocker = this._element.querySelector(':scope > .blocker');
       if (!blocker) {
-        blocker = document.createElement("div");
-        blocker.classList.add("blocker");
+        blocker = document.createElement('div');
+        blocker.classList.add('blocker');
         this._element.appendChild(blocker);
-        blocker.addEventListener("click", ev => {
+        blocker.addEventListener('click', ev => {
           ev.preventDefault();
           ev.stopPropagation();
         });
-        blocker.addEventListener("pointerdown", ev => {
+        blocker.addEventListener('pointerdown', ev => {
           ev.preventDefault();
           ev.stopPropagation();
         });
-        blocker.addEventListener("pointerup", ev => {
+        blocker.addEventListener('pointerup', ev => {
           ev.preventDefault();
           ev.stopPropagation();
         });
       }
       this._element.setAttribute(
-        "disabled",
-        value === false ? "true" : "false"
+        'disabled',
+        value === false ? 'true' : 'false'
       );
-      blocker.style.display = value === true ? "none" : "block";
+
+      blocker.style.display = value === true ? 'none' : 'block';
     },
 
     _applyVisibility(value, oldValue) {
-      if (oldValue === "hidden") {
-        this._element.style.opacity = "1.0";
+      if (oldValue === 'hidden') {
+        this._element.style.opacity = '1.0';
       }
       switch (value) {
-        case "visible":
+        case 'visible':
           if (this._visibleDisplayMode) {
-            this._element.style.display = this._visibleDisplayMode || "initial";
+            this._element.style.display = this._visibleDisplayMode || 'initial';
           }
           break;
 
-        case "hidden":
-          this._element.style.opacity = "0";
+        case 'hidden':
+          this._element.style.opacity = '0';
           break;
 
-        case "excluded":
+        case 'excluded':
           this._visibleDisplayMode = getComputedStyle(
             this._element
-          ).getPropertyValue("display");
-          this._element.style.display = "none";
+          ).getPropertyValue('display');
+          this._element.style.display = 'none';
           break;
       }
     },
@@ -206,19 +208,19 @@ qx.Class.define("cv.ui.structure.tile.components.AbstractComponent", {
      */
     onStateUpdate(ev) {
       switch (ev.detail.target) {
-        case "enabled":
+        case 'enabled':
           this.setEnabled(ev.detail.state);
           ev.stopPropagation();
           return true;
-        case "show-exclude":
-          this.setVisibility(ev.detail.state ? "visible" : "excluded");
+        case 'show-exclude':
+          this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
           ev.stopPropagation();
           return true;
-        case "show-hide":
-          this.setVisibility(ev.detail.state ? "visible" : "hidden");
+        case 'show-hide':
+          this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
           ev.stopPropagation();
           return true;
-        case "":
+        case '':
           this.setValue(ev.detail.state);
           ev.stopPropagation();
           return true;

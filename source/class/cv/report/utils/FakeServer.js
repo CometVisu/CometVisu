@@ -17,8 +17,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define("cv.report.utils.FakeServer", {
-  type: "static",
+qx.Class.define('cv.report.utils.FakeServer', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -33,12 +33,12 @@ qx.Class.define("cv.report.utils.FakeServer", {
     init(log, build) {
       qx.log.Logger.info(
         this,
-        build + " log replaying in " + qx.core.Environment.get("cv.build")
+        build + ' log replaying in ' + qx.core.Environment.get('cv.build')
       );
 
       const urlMapping = {
-        "/resource/": cv.Application.getRelativeResourcePath(true),
-        "/rest/manager/index.php": cv.io.rest.Client.getBaseUrl()
+        '/resource/': cv.Application.getRelativeResourcePath(true),
+        '/rest/manager/index.php': cv.io.rest.Client.getBaseUrl()
       };
 
       // split by URI
@@ -68,25 +68,25 @@ qx.Class.define("cv.report.utils.FakeServer", {
     __respond(request) {
       const xhrData = cv.report.utils.FakeServer._xhr;
       let url = cv.report.Record.normalizeUrl(request.url);
-      if (url.indexOf("nocache=") >= 0) {
-        url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+      if (url.indexOf('nocache=') >= 0) {
+        url = url.replace(/[\?|&]nocache=[0-9]+/, '');
       }
       if (!xhrData[url]) {
         if (
-          !url.startsWith("/") &&
-          qx.core.Environment.get("cv.build") === "source"
+          !url.startsWith('/') &&
+          qx.core.Environment.get('cv.build') === 'source'
         ) {
-          url = "../source/" + url;
+          url = '../source/' + url;
         }
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
         qx.log.Logger.error(
           this,
-          "404: no logged responses for URI " + url + " found"
+          '404: no logged responses for URI ' + url + ' found'
         );
       } else {
-        qx.log.Logger.debug(this, "faking response for " + url);
-        let response = "";
+        qx.log.Logger.debug(this, 'faking response for ' + url);
+        let response = '';
         if (xhrData[url].length === 1) {
           response = xhrData[url][0];
         } else {

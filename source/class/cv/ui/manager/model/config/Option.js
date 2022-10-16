@@ -20,7 +20,7 @@
 /**
  * Simple config entry.
  */
-qx.Class.define("cv.ui.manager.model.config.Option", {
+qx.Class.define('cv.ui.manager.model.config.Option', {
   extend: qx.core.Object,
 
   /*
@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.manager.model.config.Option", {
   */
   events: {
     // sent whenever the options key or value has been changed
-    change: "qx.event.type.Event"
+    change: 'qx.event.type.Event'
   },
 
   /*
@@ -51,17 +51,17 @@ qx.Class.define("cv.ui.manager.model.config.Option", {
   */
   properties: {
     key: {
-      check: "String",
-      init: "",
-      event: "changeKey",
-      apply: "_applyChange"
+      check: 'String',
+      init: '',
+      event: 'changeKey',
+      apply: '_applyChange'
     },
 
     value: {
-      check: "String",
-      init: "",
-      event: "changeValue",
-      apply: "_applyChange"
+      check: 'String',
+      init: '',
+      event: 'changeValue',
+      apply: '_applyChange'
     }
   },
 
@@ -72,7 +72,7 @@ qx.Class.define("cv.ui.manager.model.config.Option", {
   */
   members: {
     _applyChange() {
-      this.fireEvent("change");
+      this.fireEvent('change');
     }
   }
 });

@@ -21,14 +21,14 @@
  * This mixin patches {qx.io.request.Xhr} during replaying mode of reporting to add the delays to the responses
  * and unqueue aborted responses
  */
-qx.Mixin.define("cv.report.utils.MXhrReplayHook", {
+qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
   /*
   ******************************************************
     CONSTRUCTOR
   ******************************************************
   */
   construct() {
-    this.addListener("changePhase", this._onPhaseChange, this);
+    this.addListener('changePhase', this._onPhaseChange, this);
   },
 
   /*
@@ -41,21 +41,23 @@ qx.Mixin.define("cv.report.utils.MXhrReplayHook", {
       const response = cv.report.utils.FakeServer.getResponse(
         this._getConfiguredUrl()
       );
+
       if (!response) {
         // no logged response found might be an 404
         return;
       }
-      if (ev.getData() === "opened") {
+      if (ev.getData() === 'opened') {
         this.info(
-          "delaying response for " +
+          'delaying response for ' +
             this._getConfiguredUrl() +
-            " by " +
+            ' by ' +
             response.delay
         );
+
         qx.dev.FakeServer.getInstance().getFakeServer().autoRespondAfter =
           response ? response.delay : 10;
-      } else if (ev.getData() === "abort") {
-        if (response.phase === "abort") {
+      } else if (ev.getData() === 'abort') {
+        if (response.phase === 'abort') {
           cv.report.utils.FakeServer.unqueueResponse(this._getConfiguredUrl());
         }
       }

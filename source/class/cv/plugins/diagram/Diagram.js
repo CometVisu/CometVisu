@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define("cv.plugins.diagram.Diagram", {
+qx.Class.define('cv.plugins.diagram.Diagram', {
   extend: cv.plugins.diagram.AbstractDiagram,
 
   /*
@@ -37,12 +37,12 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
    */
   properties: {
     width: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     height: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -76,12 +76,13 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
       return {
         width: {
           transform(value) {
-            return value ? parseInt(value) + "px" : "100%";
+            return value ? parseInt(value) + 'px' : '100%';
           }
         },
+
         height: {
           transform(value) {
-            return value ? parseInt(value) + "px" : null;
+            return value ? parseInt(value) + 'px' : null;
           }
         }
       };
@@ -105,7 +106,7 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
         this.setRestartOnVisible(true);
 
         broker.subscribe(
-          "path." + pageId + ".beforePageChange",
+          'path.' + pageId + '.beforePageChange',
           function () {
             if (!this._init) {
               this.loadDiagramData(this.plot, false, false);
@@ -115,7 +116,7 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
         );
 
         broker.subscribe(
-          "page." + pageId + ".appear",
+          'page.' + pageId + '.appear',
           function () {
             // create diagram when it's not already existing
             if (this._init) {
@@ -136,7 +137,7 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
             }
           }, this).schedule();
         } else {
-          this.__vlid1 = this.addListener("changeVisible", ev => {
+          this.__vlid1 = this.addListener('changeVisible', ev => {
             if (ev.getData()) {
               if (!this._init) {
                 this.loadDiagramData(this.plot, false, false);
@@ -155,26 +156,26 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
 
     _getInnerDomString() {
       const classStr = this.getPreviewlabels()
-        ? "diagram_inline"
-        : "diagram_preview";
+        ? 'diagram_inline'
+        : 'diagram_preview';
       const styleStr =
-        "min-height: 40px" +
-        (this.getWidth() ? ";width:" + this.getWidth() : "") +
-        (this.getHeight() ? ";height:" + this.getHeight() : ";height: 100%");
+        'min-height: 40px' +
+        (this.getWidth() ? ';width:' + this.getWidth() : '') +
+        (this.getHeight() ? ';height:' + this.getHeight() : ';height: 100%');
 
       return (
-        "<div class=\"actor clickable\" style=\"height: 100%; min-height: 40px;\"><div class=\"" +
+        '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' +
         classStr +
-        "\" style=\"" +
+        '" style="' +
         styleStr +
-        "\">loading...</div></div>"
+        '">loading...</div></div>'
       );
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("diagram", statics);
-    cv.ui.structure.WidgetFactory.registerClass("diagram", statics);
+    cv.parser.pure.WidgetParser.addHandler('diagram', statics);
+    cv.ui.structure.WidgetFactory.registerClass('diagram', statics);
   }
 });

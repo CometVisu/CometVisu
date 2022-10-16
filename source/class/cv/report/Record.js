@@ -23,9 +23,9 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define("cv.report.Record", {
+qx.Class.define('cv.report.Record', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -47,14 +47,14 @@ qx.Class.define("cv.report.Record", {
   ******************************************************
   */
   statics: {
-    CONFIG: "config",
-    BACKEND: "backend",
-    USER: "user",
-    CACHE: "cache",
-    XHR: "xhr",
-    SCREEN: "screen",
-    RUNTIME: "runtime",
-    STORAGE: "storage",
+    CONFIG: 'config',
+    BACKEND: 'backend',
+    USER: 'user',
+    CACHE: 'cache',
+    XHR: 'xhr',
+    SCREEN: 'screen',
+    RUNTIME: 'runtime',
+    STORAGE: 'storage',
     REPLAYING: false,
     data: null,
 
@@ -65,9 +65,9 @@ qx.Class.define("cv.report.Record", {
     prepare() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
         cv.Application.registerConsoleCommand(
-          "downloadLog",
+          'downloadLog',
           cv.report.Record.download,
-          "Download recorded log file."
+          'Download recorded log file.'
         );
 
         // apply event recorder
@@ -82,9 +82,9 @@ qx.Class.define("cv.report.Record", {
         // add resize listener
         Reg.addListener(
           window,
-          "resize",
+          'resize',
           function () {
-            this.record(this.SCREEN, "resize", {
+            this.record(this.SCREEN, 'resize', {
               w: document.documentElement.clientWidth,
               h: document.documentElement.clientHeight
             });
@@ -94,26 +94,27 @@ qx.Class.define("cv.report.Record", {
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe(
-          "setup.dom.finished",
+          'setup.dom.finished',
           function () {
             const throttled = qx.util.Function.throttle(
               record.recordScroll,
               250,
               true
             );
+
             document
-              .querySelectorAll("#pages > .page")
+              .querySelectorAll('#pages > .page')
               .forEach(function (page) {
-                Reg.addListener(page, "scroll", throttled, record);
+                Reg.addListener(page, 'scroll', throttled, record);
               }, this);
           },
           this
         );
 
-        this.record(this.RUNTIME, "config", this.getClientData());
+        this.record(this.RUNTIME, 'config', this.getClientData());
 
         // save initial size
-        this.record(this.SCREEN, "resize", {
+        this.record(this.SCREEN, 'resize', {
           w: document.documentElement.clientWidth,
           h: document.documentElement.clientHeight
         });
@@ -127,15 +128,15 @@ qx.Class.define("cv.report.Record", {
       delete req.queryKey.reporting;
       const Env = qx.core.Environment;
       const runtime = {
-        browserName: Env.get("browser.name"),
-        browserVersion: Env.get("browser.version"),
-        deviceName: Env.get("device.name"),
-        deviceType: Env.get("device.type"),
-        pixelRatio: Env.get("device.pixelRatio"),
-        touch: Env.get("device.touch"),
-        osName: Env.get("os.name"),
-        osVersion: Env.get("os.version"),
-        build: Env.get("cv.build"),
+        browserName: Env.get('browser.name'),
+        browserVersion: Env.get('browser.version'),
+        deviceName: Env.get('device.name'),
+        deviceType: Env.get('device.type'),
+        pixelRatio: Env.get('device.pixelRatio'),
+        touch: Env.get('device.touch'),
+        osName: Env.get('os.name'),
+        osVersion: Env.get('os.version'),
+        build: Env.get('cv.build'),
         locale: qx.bom.client.Locale.getLocale(),
         cv: {},
         width: document.documentElement.clientWidth,
@@ -178,7 +179,7 @@ qx.Class.define("cv.report.Record", {
     logLocalStorage() {
       cv.report.Record.record(
         cv.report.Record.STORAGE,
-        "preferences",
+        'preferences',
         window.localStorage.preferences
       );
     },
@@ -188,20 +189,21 @@ qx.Class.define("cv.report.Record", {
         const parsed = qx.util.Uri.parseUri(qx.util.Uri.getAbsolute(url));
         url = parsed.path;
         const filteredParams = Object.keys(parsed.queryKey).filter(
-          name => name !== "nocache" && name !== "ts"
+          name => name !== 'nocache' && name !== 'ts'
         );
+
         if (filteredParams.length > 0) {
-          url += "?";
+          url += '?';
           url += filteredParams
             .map(param => `${param}=${parsed.queryKey[param]}`)
-            .join("&");
+            .join('&');
         }
       } catch (e) {
-        if (url.indexOf("nocache=") >= 0) {
-          url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+        if (url.indexOf('nocache=') >= 0) {
+          url = url.replace(/[\?|&]nocache=[0-9]+/, '');
         }
-        if (url.indexOf("ts=") >= 0) {
-          url = url.replace(/[\?|&]ts=[0-9]+/, "");
+        if (url.indexOf('ts=') >= 0) {
+          url = url.replace(/[\?|&]ts=[0-9]+/, '');
         }
       }
       return url;
@@ -246,7 +248,7 @@ qx.Class.define("cv.report.Record", {
     record(category, path, data, options) {
       switch (category) {
         case cv.report.Record.XHR:
-          if (path === "response") {
+          if (path === 'response') {
             this.__scrubSensitiveContent(category, data);
           }
           data.t = Date.now();
@@ -288,7 +290,7 @@ qx.Class.define("cv.report.Record", {
     __scrubSensitiveContent(category, data) {
       if (category === cv.report.Record.XHR) {
         if (
-          data.url.includes(cv.io.rest.Client.BASE_URL + "/config/hidden") &&
+          data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') &&
           data.body
         ) {
           try {
@@ -296,17 +298,17 @@ qx.Class.define("cv.report.Record", {
             Object.keys(content).forEach(sectionName => {
               Object.keys(content[sectionName]).forEach(optionName => {
                 switch (optionName) {
-                  case "uri":
-                    content[sectionName][optionName] = "http://127.0.0.1";
+                  case 'uri':
+                    content[sectionName][optionName] = 'http://127.0.0.1';
                     break;
-                  case "username":
-                  case "user":
-                    content[sectionName][optionName] = "xxxxx";
+                  case 'username':
+                  case 'user':
+                    content[sectionName][optionName] = 'xxxxx';
                     break;
-                  case "pass":
-                  case "passwd":
-                  case "password":
-                    content[sectionName][optionName] = "xxx";
+                  case 'pass':
+                  case 'passwd':
+                  case 'password':
+                    content[sectionName][optionName] = 'xxx';
                     break;
                 }
               });
@@ -314,8 +316,8 @@ qx.Class.define("cv.report.Record", {
             data.body = JSON.stringify(content);
           } catch (e) {
             this.error(e);
-            data.body = "{}";
-            data.error = "Invalid JSON content: " + e.toString();
+            data.body = '{}';
+            data.error = 'Invalid JSON content: ' + e.toString();
           }
         }
       }
@@ -365,7 +367,7 @@ qx.Class.define("cv.report.Record", {
         }
       };
 
-      if (data.eventClass === "PointerEvent") {
+      if (data.eventClass === 'PointerEvent') {
         Object.assign(data.native, {
           pointerId: nativeEvent.pointerId,
           width: nativeEvent.width,
@@ -376,14 +378,14 @@ qx.Class.define("cv.report.Record", {
           pointerType: nativeEvent.pointerType,
           isPrimary: nativeEvent.isPrimary
         });
-      } else if (data.eventClass === "WheelEvent") {
+      } else if (data.eventClass === 'WheelEvent') {
         Object.assign(data.native, {
           deltaX: nativeEvent.deltaX,
           deltaY: nativeEvent.deltaY,
           deltaZ: nativeEvent.deltaZ,
           deltaMode: nativeEvent.deltaMode
         });
-      } else if (data.eventClass === "KeyboardEvent") {
+      } else if (data.eventClass === 'KeyboardEvent') {
         Object.assign(data.native, {
           code: nativeEvent.code,
           composed: nativeEvent.composed,
@@ -409,9 +411,9 @@ qx.Class.define("cv.report.Record", {
         return;
       }
       ev.$$RID = this.__ID;
-      if (ev.type.endsWith("down") || ev.type.endsWith("start")) {
+      if (ev.type.endsWith('down') || ev.type.endsWith('start')) {
         this.__delta = this.__minDelta;
-      } else if (ev.type.endsWith("up") || ev.type.endsWith("end")) {
+      } else if (ev.type.endsWith('up') || ev.type.endsWith('end')) {
         this.__delta = this.__maxDelta;
       }
       if (/.+(move|over|out)/.test(ev.type)) {
@@ -434,7 +436,7 @@ qx.Class.define("cv.report.Record", {
       if (!path) {
         return;
       }
-      this.debug("recording " + ev.type + " on " + path);
+      this.debug('recording ' + ev.type + ' on ' + path);
       const data = this.__extractDataFromEvent(ev);
       this.record(cv.report.Record.USER, path, data);
     },
@@ -442,8 +444,8 @@ qx.Class.define("cv.report.Record", {
     recordScroll(ev) {
       const page = ev.getTarget();
       const path =
-        undefined !== page && "getAttribute" in page
-          ? page.getAttribute("id")
+        undefined !== page && 'getAttribute' in page
+          ? page.getAttribute('id')
           : undefined;
       const data = {
         type: ev.getType(),
@@ -452,14 +454,14 @@ qx.Class.define("cv.report.Record", {
         y: page.scrollTop
       };
 
-      this.record(cv.report.Record.USER, "scroll", data);
+      this.record(cv.report.Record.USER, 'scroll', data);
     },
 
     __getDomPath(el) {
       if (el === window) {
-        return "Window";
+        return 'Window';
       } else if (el === document) {
-        return "document";
+        return 'document';
       }
       const stack = [];
       while (el.parentNode !== null) {
@@ -474,12 +476,12 @@ qx.Class.define("cv.report.Record", {
             sibCount++;
           }
         }
-        if (el.hasAttribute("id") && el.id !== "") {
-          stack.unshift(el.nodeName.toLowerCase() + "#" + el.id);
-          return stack.join(">");
+        if (el.hasAttribute('id') && el.id !== '') {
+          stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
+          return stack.join('>');
         } else if (sibCount > 1) {
           stack.unshift(
-            el.nodeName.toLowerCase() + ":nth-child(" + (sibIndex + 1) + ")"
+            el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')'
           );
         } else {
           stack.unshift(el.nodeName.toLowerCase());
@@ -487,7 +489,7 @@ qx.Class.define("cv.report.Record", {
         el = el.parentNode;
       }
 
-      return stack.slice(1).join(">"); // removes the html element
+      return stack.slice(1).join('>'); // removes the html element
     },
 
     getData(dontStop) {
@@ -508,13 +510,13 @@ qx.Class.define("cv.report.Record", {
       const d = new Date();
       const ts =
         d.getFullYear() +
-        ("" + (d.getMonth() + 1)).padStart(2, "0") +
-        ("" + d.getDate()).padStart(2, "0") +
-        "-" +
-        ("" + d.getHours()).padStart(2, "0") +
-        ("" + d.getMinutes()).padStart(2, "0") +
-        ("" + d.getSeconds()).padStart(2, "0");
-      return "CometVisu-replay-" + ts + ".json";
+        ('' + (d.getMonth() + 1)).padStart(2, '0') +
+        ('' + d.getDate()).padStart(2, '0') +
+        '-' +
+        ('' + d.getHours()).padStart(2, '0') +
+        ('' + d.getMinutes()).padStart(2, '0') +
+        ('' + d.getSeconds()).padStart(2, '0');
+      return 'CometVisu-replay-' + ts + '.json';
     },
 
     /**
@@ -526,10 +528,11 @@ qx.Class.define("cv.report.Record", {
       // eslint-disable-next-line no-console
       console.log(data);
 
-      const a = window.document.createElement("a");
+      const a = window.document.createElement('a');
       a.href = window.URL.createObjectURL(
-        new Blob([JSON.stringify(data)], { type: "application/json" })
+        new Blob([JSON.stringify(data)], { type: 'application/json' })
       );
+
       a.download = this.getFileName();
 
       // Append anchor to body.

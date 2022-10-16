@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.Page", {
+qx.Class.define('cv.ui.structure.pure.Page', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   include: [cv.ui.common.HasChildren, cv.ui.common.Update],
@@ -35,14 +35,15 @@ qx.Class.define("cv.ui.structure.pure.Page", {
   */
   construct(props) {
     this.__waitForProperties = [
-      "showNavbarTop",
-      "showNavbarBottom",
-      "showNavbarLeft",
-      "showNavbarRight"
+      'showNavbarTop',
+      'showNavbarBottom',
+      'showNavbarLeft',
+      'showNavbarRight'
     ];
+
     super(props);
 
-    this.addListener("changeVisible", this._onChangeVisible, this);
+    this.addListener('changeVisible', this._onChangeVisible, this);
 
     // break out of the constructor
     new qx.util.DeferredCall(function () {
@@ -51,25 +52,25 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         this.__waitForProperties = [];
       } else {
         this.debug(
-          "binding navbar visibility from " +
+          'binding navbar visibility from ' +
             parentPage.getPath() +
-            " to " +
+            ' to ' +
             this.getPath()
         );
       }
       [
-        ["showTopNavigation", true],
-        ["showFooter", true],
-        ["showNavbarTop", false],
-        ["showNavbarBottom", false],
-        ["showNavbarLeft", false],
-        ["showNavbarRight", false]
+        ['showTopNavigation', true],
+        ['showFooter', true],
+        ['showNavbarTop', false],
+        ['showNavbarBottom', false],
+        ['showNavbarLeft', false],
+        ['showNavbarRight', false]
       ].forEach(function (tuple) {
         const property = tuple[0];
         const defaultValue = tuple[1];
         if (
           this[
-            "get" + property.charAt(0).toUpperCase() + property.substr(1)
+            'get' + property.charAt(0).toUpperCase() + property.substr(1)
           ]() === null
         ) {
           // inherit from parent
@@ -77,7 +78,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this["set" + property.charAt(0).toUpperCase() + property.substr(1)](
+            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](
               defaultValue
             );
           }
@@ -99,7 +100,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
   ******************************************************
   */
   statics: {
-    allPages: "",
+    allPages: '',
 
     /**
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
@@ -109,7 +110,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       const target = cv.Application.structureController.getRenderTarget();
       document.querySelector(target).innerHTML = this.allPages;
       qx.event.message.Bus.unsubscribe(
-        "setup.dom.append",
+        'setup.dom.append',
         this.createFinal,
         this
       );
@@ -123,9 +124,9 @@ qx.Class.define("cv.ui.structure.pure.Page", {
    */
   properties: {
     initialized: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeInitialized"
+      event: 'changeInitialized'
     },
 
     anonymous: {
@@ -134,60 +135,60 @@ qx.Class.define("cv.ui.structure.pure.Page", {
     },
 
     name: {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     },
 
     showTopNavigation: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowTopNavigation"
+      event: 'changeShowTopNavigation'
     },
 
     showFooter: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowFooter"
+      event: 'changeShowFooter'
     },
 
     showNavbarTop: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarTop",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarTop',
+      apply: '_applyNavbarVisibility'
     },
 
     showNavbarBottom: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarBottom",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarBottom',
+      apply: '_applyNavbarVisibility'
     },
 
     showNavbarLeft: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarLeft",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarLeft',
+      apply: '_applyNavbarVisibility'
     },
 
     showNavbarRight: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarRight",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarRight',
+      apply: '_applyNavbarVisibility'
     },
 
     backdropAlign: {
-      init: "50% 50%",
+      init: '50% 50%',
       nullable: true
     },
 
-    backdropType: { check: "String", nullable: true },
-    linkVisible: { check: "Boolean", init: true, nullable: true },
-    size: { check: "String", nullable: true },
-    backdrop: { check: "String", nullable: true }
+    backdropType: { check: 'String', nullable: true },
+    linkVisible: { check: 'Boolean', init: true, nullable: true },
+    size: { check: 'String', nullable: true },
+    backdrop: { check: 'String', nullable: true }
   },
 
   /*
@@ -235,9 +236,10 @@ qx.Class.define("cv.ui.structure.pure.Page", {
      */
     applyColumnWidths() {
       cv.ui.structure.pure.layout.Manager.applyColumnWidths(
-        "#" + this.getPath(),
+        '#' + this.getPath(),
         false
       );
+
       this.__colspanClass = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
     },
 
@@ -246,31 +248,31 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       const pageType = this.getPageType();
 
       const subpageClass = this.getFlavour()
-        ? " flavour_" + this.getFlavour()
-        : "";
+        ? ' flavour_' + this.getFlavour()
+        : '';
       let subpage =
-        "<div class=\"page type_" +
+        '<div class="page type_' +
         pageType +
         subpageClass +
-        "\" id=\"" +
+        '" id="' +
         this.getPath() +
-        "\">";
-      let container = "<div class=\"clearfix\"><h1>" + this.getName() + "</h1>";
+        '">';
+      let container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
 
-      if (pageType === "2d") {
-        let size = "width:100%;height:100%;";
+      if (pageType === '2d') {
+        let size = 'width:100%;height:100%;';
         switch (this.getSize()) {
-          case "fixed":
-            size += "object-fit:none;";
+          case 'fixed':
+            size += 'object-fit:none;';
             if (this.getBackdropAlign()) {
-              size += "object-position:" + this.getBackdropAlign() + ";";
+              size += 'object-position:' + this.getBackdropAlign() + ';';
             }
             break;
 
-          case "contained":
-            size += "object-fit:contain;";
+          case 'contained':
+            size += 'object-fit:contain;';
             if (this.getBackdropAlign()) {
-              size += "object-position:" + this.getBackdropAlign() + ";";
+              size += 'object-position:' + this.getBackdropAlign() + ';';
             }
             break;
 
@@ -280,13 +282,13 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         const backdrop = this.getBackdrop();
         if (backdrop) {
           container +=
-            "<" +
+            '<' +
             this.getBackdropType() +
-            " src=\"" +
+            ' src="' +
             qx.util.ResourceManager.getInstance().toUri(backdrop) +
-            "\" style=\"position: absolute; top: 0px; left: 0px;z-index:-1;" +
+            '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' +
             size +
-            "\"/>";
+            '"/>';
         }
       } /* ---Disable 3D for 0.8---
       else if (pageType === "3d" && false) {
@@ -328,7 +330,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       } */
 
       container += this.getChildrenDomString();
-      subpage += container + "</div></div>";
+      subpage += container + '</div></div>';
       cv.ui.structure.pure.Page.allPages =
         subpage + cv.ui.structure.pure.Page.allPages;
       return undefined;
@@ -360,7 +362,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       // TODO: data comparision has to be refactored to use DPT and a value
       if (parseInt(data) === 1) {
         cv.Application.structureController.scrollToPage(this.getPath());
-        this.sendToBackend("0");
+        this.sendToBackend('0');
       }
       // }
     },
@@ -385,7 +387,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
 
   defer(statics) {
     qx.event.message.Bus.subscribe(
-      "setup.dom.append",
+      'setup.dom.append',
       statics.createFinal,
       statics
     );

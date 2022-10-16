@@ -21,7 +21,7 @@
  * The Watchdog observes the backend communication and restarts the connection, if
  * the client received to data from the backend within a defined timeout.
  */
-qx.Class.define("cv.io.Watchdog", {
+qx.Class.define('cv.io.Watchdog', {
   extend: qx.core.Object,
 
   /*
@@ -40,10 +40,10 @@ qx.Class.define("cv.io.Watchdog", {
   */
   properties: {
     client: {
-      check: "cv.io.Client",
+      check: 'cv.io.Client',
       nullable: true,
-      init: null,
-    },
+      init: null
+    }
   },
 
   /*
@@ -69,6 +69,7 @@ qx.Class.define("cv.io.Watchdog", {
         .restart(
           now - this.hardLast > this.getClient().getBackend().maxDataAge
         );
+
       this.last = now;
     },
 
@@ -98,6 +99,6 @@ qx.Class.define("cv.io.Watchdog", {
       if (fullReload) {
         this.hardLast = this.last;
       }
-    },
-  },
+    }
+  }
 });

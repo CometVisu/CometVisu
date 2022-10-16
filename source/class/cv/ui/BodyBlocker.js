@@ -18,9 +18,9 @@
  */
 
 //noinspection JSUnusedGlobalSymbols
-qx.Class.define("cv.ui.BodyBlocker", {
+qx.Class.define('cv.ui.BodyBlocker', {
   extend: qx.bom.Blocker,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -32,7 +32,7 @@ qx.Class.define("cv.ui.BodyBlocker", {
     this.__counters = {};
     this.__uniques = [];
     this.setBlockerOpacity(0.5);
-    this.setBlockerColor("#000000");
+    this.setBlockerColor('#000000');
   },
 
   /*
@@ -57,9 +57,9 @@ qx.Class.define("cv.ui.BodyBlocker", {
         this.__counters[topic]++;
       }
       document
-        .querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom")
+        .querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom')
         .forEach(function (elem) {
-          elem.classList.add("blurred");
+          elem.classList.add('blurred');
         });
     },
 
@@ -73,10 +73,10 @@ qx.Class.define("cv.ui.BodyBlocker", {
               super.unblock();
               document
                 .querySelectorAll(
-                  "#centerContainer, #navbarTop, #top, #navbarBottom"
+                  '#centerContainer, #navbarTop, #top, #navbarBottom'
                 )
                 .forEach(function (elem) {
-                  elem.classList.remove("blurred");
+                  elem.classList.remove('blurred');
                 });
             }
           }
@@ -86,16 +86,16 @@ qx.Class.define("cv.ui.BodyBlocker", {
         this.__counters = {};
         super.unblock();
         document
-          .querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom")
+          .querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom')
           .forEach(function (elem) {
-            elem.classList.remove("blurred");
+            elem.classList.remove('blurred');
           });
       }
     },
 
     __getBody() {
       if (!this.__body) {
-        this.__body = document.querySelector("body");
+        this.__body = document.querySelector('body');
       }
       return this.__body;
     }

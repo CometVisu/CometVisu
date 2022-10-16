@@ -21,7 +21,7 @@
  * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part
  * and the methods for the widget instance.
  */
-qx.Mixin.define("cv.ui.common.HasChildren", {
+qx.Mixin.define('cv.ui.common.HasChildren', {
   /*
   ******************************************************
     CONSTRUCTOR
@@ -42,6 +42,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
           data.$$type,
           data
         );
+
         if (widget) {
           children.push(widget);
           widget.setParentWidget(this);
@@ -61,7 +62,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * Array with child paths
      */
     children: {
-      check: "Array",
+      check: 'Array',
       init: []
     },
 
@@ -69,7 +70,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * Array with child widget objects
      */
     childWidgets: {
-      check: "Array",
+      check: 'Array',
       init: []
     }
   },
@@ -87,7 +88,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * @return {string} HTML code
      */
     getChildrenDomString(noWidgetContainer = false) {
-      let container = "";
+      let container = '';
 
       this.getChildWidgets().forEach(function (widget) {
         const subelement = widget.getDomString();
@@ -98,19 +99,19 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
           container += subelement;
         } else {
           container +=
-            "<div class=\"widget_container" +
-            (widget.getRowspanClass ? " " + widget.getRowspanClass() : "") +
+            '<div class="widget_container' +
+            (widget.getRowspanClass ? ' ' + widget.getRowspanClass() : '') +
             (widget.getContainerClass && widget.getContainerClass()
-              ? " " + widget.getContainerClass()
-              : "") +
-            (widget.get$$type() === "break" ? " break_container" : "") + // special case for break widget
-            "\" id=\"" +
+              ? ' ' + widget.getContainerClass()
+              : '') +
+            (widget.get$$type() === 'break' ? ' break_container' : '') + // special case for break widget
+            '" id="' +
             widget.getPath() +
-            "\" data-type=\"" +
+            '" data-type="' +
             widget.get$$type() +
-            "\">" +
+            '">' +
             subelement +
-            "</div>";
+            '</div>';
         }
       }, this);
       return container;
@@ -124,8 +125,8 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
       const fragment = document.createDocumentFragment();
       this.getChildWidgets().forEach(function (widget) {
         const subelement = widget.getDom();
-        subelement.setAttribute("id", widget.getPath());
-        subelement.setAttribute("data-type", widget.get$$type());
+        subelement.setAttribute('id', widget.getPath());
+        subelement.setAttribute('data-type', widget.get$$type());
         if (subelement) {
           fragment.appendChild(subelement);
         }

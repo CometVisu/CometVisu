@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Web", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Web', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,30 +47,32 @@ qx.Class.define("cv.parser.pure.widgets.Web", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
 
-      const ga = xml.getAttribute("ga");
+      const ga = xml.getAttribute('ga');
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
         const defaultClient = cv.io.BackendConnections.getClient();
         if (defaultClient) {
           switch (defaultClient.getType()) {
-            case "knxd":
-              data.address["_" + ga] = { transform: "DPT:1.001", mode: 0 };
+            case 'knxd':
+              data.address['_' + ga] = { transform: 'DPT:1.001', mode: 0 };
               break;
 
-            case "openhab":
-              data.address["_" + ga] = { transform: "OH:switch", mode: "OFF" };
+            case 'openhab':
+              data.address['_' + ga] = { transform: 'OH:switch', mode: 'OFF' };
               break;
 
             default:
               qx.log.Logger.error(
                 this,
-                "web-widget address does not support backends of type",
+                'web-widget address does not support backends of type',
                 defaultClient.getType()
               );
+
               break;
           }
         }
@@ -89,7 +91,7 @@ qx.Class.define("cv.parser.pure.widgets.Web", {
         height: {},
         frameborder: {
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
 
@@ -102,6 +104,6 @@ qx.Class.define("cv.parser.pure.widgets.Web", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("web", statics);
+    cv.parser.pure.WidgetParser.addHandler('web', statics);
   }
 });

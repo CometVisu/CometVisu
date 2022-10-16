@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.UrlTrigger", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.UrlTrigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,6 +47,7 @@ qx.Class.define("cv.parser.pure.widgets.UrlTrigger", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -54,19 +55,19 @@ qx.Class.define("cv.parser.pure.widgets.UrlTrigger", {
 
     getAttributeToPropertyMappings() {
       return {
-        value: { target: "sendValue", default: "0" },
-        params: { default: "" },
+        value: { target: 'sendValue', default: '0' },
+        params: { default: '' },
         url: {}
       };
     },
     getDefaultClasses(type) {
       // additional trigger class
-      return "widget clearfix trigger " + type.toLowerCase();
+      return 'widget clearfix trigger ' + type.toLowerCase();
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("urltrigger", statics);
+    cv.parser.pure.WidgetParser.addHandler('urltrigger', statics);
   }
 });

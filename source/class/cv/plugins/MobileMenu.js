@@ -22,7 +22,7 @@
  * @since 2016
  * @asset(plugins/mobilemenu/*.css)
  */
-qx.Class.define("cv.plugins.MobileMenu", {
+qx.Class.define('cv.plugins.MobileMenu', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.HasChildren],
 
@@ -50,13 +50,14 @@ qx.Class.define("cv.plugins.MobileMenu", {
         flavour,
         pageType
       );
+
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
 
     getWidgetElements(xmlElement, path) {
-      cv.data.Model.getInstance().setWidgetData(path + "_0", {
-        containerClass: "actor"
+      cv.data.Model.getInstance().setWidgetData(path + '_0', {
+        containerClass: 'actor'
       });
     }
   },
@@ -74,42 +75,43 @@ qx.Class.define("cv.plugins.MobileMenu", {
     getDomString() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
         const navLeft = (this.__navLeft =
-          document.querySelector("#navbarLeft"));
-        if (!navLeft.classList.contains("mobilemenu")) {
-          navLeft.classList.add("mobilemenu");
+          document.querySelector('#navbarLeft'));
+        if (!navLeft.classList.contains('mobilemenu')) {
+          navLeft.classList.add('mobilemenu');
         }
-        navLeft.style.display = "none";
-        qx.event.message.Bus.subscribe("path.pageChanged", function () {
-          const navbar = navLeft.querySelector(".navbar");
+        navLeft.style.display = 'none';
+        qx.event.message.Bus.subscribe('path.pageChanged', function () {
+          const navbar = navLeft.querySelector('.navbar');
           const animation = qx.bom.element.Animation.animate(
             navbar,
             qx.util.Animation.SLIDE_LEFT_OUT
           );
-          animation.addListenerOnce("end", () => {
-            navLeft.style.display = "none";
+
+          animation.addListenerOnce('end', () => {
+            navLeft.style.display = 'none';
           });
         });
 
         return (
-          "<div class=\"clearfix mobilemenuTrigger\">" +
+          '<div class="clearfix mobilemenuTrigger">' +
           this.getChildrenDomString() +
-          "</div>"
+          '</div>'
         );
       }
-      return "<div class=\"clearfix mobilemenuTrigger\" style=\"display: none\"></div>";
+      return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
     },
 
     _onDomReady() {
       if (this.isTouchDevice()) {
-        this.touchScroll("navbarLeft");
+        this.touchScroll('navbarLeft');
       }
     },
 
     _action() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
         if (this.isTouchDevice()) {
-          this.__navLeft.style.display = "block";
-          const navbar = this.__navLeft.querySelector(".navbar.navbarActive");
+          this.__navLeft.style.display = 'block';
+          const navbar = this.__navLeft.querySelector('.navbar.navbarActive');
           qx.bom.element.Animation.animate(
             navbar,
             qx.util.Animation.SLIDE_LEFT_IN
@@ -121,10 +123,10 @@ qx.Class.define("cv.plugins.MobileMenu", {
     touchScroll(id) {
       let scrollStartPos = 0;
 
-      const elem = document.querySelector("#" + id);
+      const elem = document.querySelector('#' + id);
       qx.event.Registration.addListener(
         elem,
-        "touchstart",
+        'touchstart',
         function (event) {
           scrollStartPos = this.scrollTop + event.touches[0].pageY;
           event.preventDefault();
@@ -134,7 +136,7 @@ qx.Class.define("cv.plugins.MobileMenu", {
 
       qx.event.Registration.addListener(
         elem,
-        "touchmove",
+        'touchmove',
         function (event) {
           this.scrollTop = scrollStartPos - event.touches[0].pageY;
           event.preventDefault();
@@ -146,7 +148,7 @@ qx.Class.define("cv.plugins.MobileMenu", {
     isTouchDevice() {
       if (this.__isTouchDevice === null) {
         try {
-          document.createEvent("TouchEvent");
+          document.createEvent('TouchEvent');
           this.__isTouchDevice = true;
         } catch (e) {
           this.__isTouchDevice = false;
@@ -166,8 +168,8 @@ qx.Class.define("cv.plugins.MobileMenu", {
 
   defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles("plugins/mobilemenu/mobilemenu.css");
-    cv.parser.pure.WidgetParser.addHandler("mobilemenu", statics);
-    cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
+    loader.addStyles('plugins/mobilemenu/mobilemenu.css');
+    cv.parser.pure.WidgetParser.addHandler('mobilemenu', statics);
+    cv.ui.structure.WidgetFactory.registerClass('mobilemenu', statics);
   }
 });

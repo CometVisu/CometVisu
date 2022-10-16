@@ -20,17 +20,17 @@
 /**
  *
  */
-qx.Class.define("cv.TemplateEngine", {
+qx.Class.define('cv.TemplateEngine', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   construct() {
     // this.base(arguments);
-    this.lazyPlugins = ["plugin-openhab"];
+    this.lazyPlugins = ['plugin-openhab'];
 
     this.__partQueue = new qx.data.Array();
     this._domFinishedQueue = [];
-    this.__partQueue.addListener("changeLength", ev => {
+    this.__partQueue.addListener('changeLength', ev => {
       this.setPartsLoaded(ev.getData() === 0);
     });
     this.__clients = {};
@@ -52,19 +52,19 @@ qx.Class.define("cv.TemplateEngine", {
      * Shows the loading state of the parts
      */
     partsLoaded: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyLoaded",
-      event: "changePartsLoaded"
+      apply: '_applyLoaded',
+      event: 'changePartsLoaded'
     },
 
     /**
      * Shows the loading state of the scripts
      */
     scriptsLoaded: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyLoaded"
+      apply: '_applyLoaded'
     },
 
     /**
@@ -72,45 +72,45 @@ qx.Class.define("cv.TemplateEngine", {
      * external stuff (parts, scripts, etc.) has been loaded.
      */
     ready: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeReady",
-      apply: "_applyReady"
+      event: 'changeReady',
+      apply: '_applyReady'
     },
 
     currentPage: {
-      check: "cv.ui.structure.IPage",
+      check: 'cv.ui.structure.IPage',
       nullable: true,
-      event: "changeCurrentPage"
+      event: 'changeCurrentPage'
     },
 
     domFinished: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyDomFinished",
-      event: "changeDomFinished"
+      apply: '_applyDomFinished',
+      event: 'changeDomFinished'
     },
 
     commands: {
-      check: "qx.ui.command.Group",
+      check: 'qx.ui.command.Group',
       nullable: true
     },
 
     // highlight a widget
     highlightedWidget: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      apply: "_applyHighlightedWidget"
+      apply: '_applyHighlightedWidget'
     },
 
     configSource: {
-      check: "XMLDocument",
+      check: 'XMLDocument',
       nullable: true,
-      apply: "_applyConfigSource"
+      apply: '_applyConfigSource'
     },
 
     configHash: {
-      check: "Number",
+      check: 'Number',
       nullable: true
     }
   },
@@ -170,10 +170,10 @@ qx.Class.define("cv.TemplateEngine", {
         parts,
         function (states) {
           parts.forEach(function (part, idx) {
-            if (states[idx] === "complete") {
+            if (states[idx] === 'complete') {
               this.__partQueue.remove(part);
-              this.debug("successfully loaded part " + part);
-              if (part.startsWith("structure-")) {
+              this.debug('successfully loaded part ' + part);
+              if (part.startsWith('structure-')) {
                 if (!cv.Config.loadedStructure) {
                   cv.Config.loadedStructure = part.substring(10);
                 }
@@ -182,7 +182,7 @@ qx.Class.define("cv.TemplateEngine", {
               this.__partQueue.remove(part);
               waitingFor.remove(part);
             } else {
-              this.error("error loading part " + part);
+              this.error('error loading part ' + part);
             }
           }, this);
         },
@@ -194,23 +194,24 @@ qx.Class.define("cv.TemplateEngine", {
         loadLazyParts,
         function (states) {
           loadLazyParts.forEach(function (part, idx) {
-            if (states[idx] === "complete") {
-              this.debug("successfully loaded lazy part " + part);
+            if (states[idx] === 'complete') {
+              this.debug('successfully loaded lazy part ' + part);
               waitingFor.remove(part);
             } else {
-              this.error("error loading lazy part " + part);
+              this.error('error loading lazy part ' + part);
             }
           }, this);
         },
         this
       );
+
       return new Promise((resolve, reject) => {
         const timer = setTimeout(reject, 2000);
         if (waitingFor.getLength() === 0) {
           resolve();
           clearTimeout(timer);
         } else {
-          waitingFor.addListener("changeLength", ev => {
+          waitingFor.addListener('changeLength', ev => {
             if (ev.getData() === 0) {
               resolve();
               clearTimeout(timer);
@@ -229,7 +230,7 @@ qx.Class.define("cv.TemplateEngine", {
 
     // property apply
     _applyLoaded(value, old, name) {
-      this.debug(name + " is " + value + " now");
+      this.debug(name + ' is ' + value + ' now');
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
         this.setReady(true);
       }
@@ -238,8 +239,8 @@ qx.Class.define("cv.TemplateEngine", {
     // property apply
     _applyDomFinished(value) {
       if (value) {
-        document.body.style.visibility = "";
-        qx.event.message.Bus.dispatchByName("setup.dom.finished");
+        document.body.style.visibility = '';
+        qx.event.message.Bus.dispatchByName('setup.dom.finished');
         // flush the queue
         this._domFinishedQueue.forEach(function (entry) {
           const callback = entry.shift();
@@ -279,15 +280,15 @@ qx.Class.define("cv.TemplateEngine", {
 
       const xml = this.getConfigSource();
 
-      let predefinedDesign = rootNode.getAttribute("design");
+      let predefinedDesign = rootNode.getAttribute('design');
       if (!predefinedDesign) {
         switch (rootNode.tagName.toLowerCase()) {
-          case "config":
-            predefinedDesign = "tile";
+          case 'config':
+            predefinedDesign = 'tile';
             break;
 
-          case "pages":
-            predefinedDesign = "pure";
+          case 'pages':
+            predefinedDesign = 'pure';
             break;
         }
       }
@@ -306,36 +307,38 @@ qx.Class.define("cv.TemplateEngine", {
       settings.stylesToLoad = [];
       const design = cv.Config.getDesign();
       if (design) {
-        let baseUri = "designs/" + design;
-        settings.stylesToLoad.push(baseUri + "/basic.css");
+        let baseUri = 'designs/' + design;
+        settings.stylesToLoad.push(baseUri + '/basic.css');
         settings.stylesToLoad.push({
-          uri: baseUri + "/mobile.css",
+          uri: baseUri + '/mobile.css',
           media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`
         });
-        settings.stylesToLoad.push(baseUri + "/custom.css");
-        settings.scriptsToLoad.push("designs/" + design + "/design_setup.js");
+
+        settings.stylesToLoad.push(baseUri + '/custom.css');
+        settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
         const loader = cv.util.ScriptLoader.getInstance();
-        loader.addListenerOnce("designError", ev => {
+        loader.addListenerOnce('designError', ev => {
           if (ev.getData() === design) {
             this.error(
-              "Failed to load \"" +
+              'Failed to load "' +
                 design +
-                "\" design! Falling back to simplified \"" +
+                '" design! Falling back to simplified "' +
                 cv.Config.loadedStructure +
-                "\""
+                '"'
             );
 
-            baseUri = "designs/" + cv.Config.loadedStructure;
-            const alternativeStyles = [baseUri + "/basic.css"];
+            baseUri = 'designs/' + cv.Config.loadedStructure;
+            const alternativeStyles = [baseUri + '/basic.css'];
             alternativeStyles.push({
-              uri: baseUri + "/mobile.css",
+              uri: baseUri + '/mobile.css',
               media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`
             });
-            alternativeStyles.push(baseUri + "/custom.css");
+
+            alternativeStyles.push(baseUri + '/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
             cv.util.ScriptLoader.getInstance().addScripts(
-              baseUri + "/design_setup.js"
+              baseUri + '/design_setup.js'
             );
           }
         });
@@ -354,11 +357,11 @@ qx.Class.define("cv.TemplateEngine", {
      */
     setupUI() {
       // and now setup the UI
-      this.debug("setup");
+      this.debug('setup');
       cv.Application.structureController.createUI(this.getConfigSource());
       this.resetConfigSource(); // not needed anymore - free the space
       this.startScreensaver();
-      if (qx.core.Environment.get("qx.aspects")) {
+      if (qx.core.Environment.get('qx.aspects')) {
         qx.dev.Profile.stop();
         qx.dev.Profile.showResults(50);
       }
@@ -368,19 +371,21 @@ qx.Class.define("cv.TemplateEngine", {
      * Start the screensaver if a screensave time is set
      */
     startScreensaver() {
-      if (typeof cv.Config.configSettings.screensave_time === "number") {
+      if (typeof cv.Config.configSettings.screensave_time === 'number') {
         this.screensave = new qx.event.Timer(
           cv.Config.configSettings.screensave_time * 1000
         );
+
         this.screensave.addListener(
-          "interval",
+          'interval',
           cv.Application.structureController.doScreenSave,
           cv.Application.structureController
         );
+
         this.screensave.start();
         qx.event.Registration.addListener(
           window,
-          "useraction",
+          'useraction',
           this.screensave.restart,
           this.screensave
         );
@@ -391,93 +396,93 @@ qx.Class.define("cv.TemplateEngine", {
       if (old) {
         const oldElement = document.querySelector(old);
         if (oldElement) {
-          oldElement.classList.remove("highlightedWidget");
+          oldElement.classList.remove('highlightedWidget');
         }
       }
       if (value) {
         const element = document.querySelector(value);
         if (element) {
-          element.classList.add("highlightedWidget");
+          element.classList.add('highlightedWidget');
         }
       }
     },
 
     selectDesign() {
-      const body = document.querySelector("body");
+      const body = document.querySelector('body');
 
-      document.querySelectorAll("body > *").forEach(function (elem) {
-        elem.style.display = "none";
+      document.querySelectorAll('body > *').forEach(function (elem) {
+        elem.style.display = 'none';
       }, this);
-      body.style["background-color"] = "black";
+      body.style['background-color'] = 'black';
 
-      const div = qx.dom.Element.create("div", { id: "designSelector" });
+      const div = qx.dom.Element.create('div', { id: 'designSelector' });
       Object.entries({
-        background: "#808080",
-        width: "400px",
-        color: "white",
-        margin: "auto",
-        padding: "0.5em"
+        background: '#808080',
+        width: '400px',
+        color: 'white',
+        margin: 'auto',
+        padding: '0.5em'
       }).forEach(function (key_value) {
         body.style[key_value[0]] = key_value[1];
       });
-      div.innerHTML = "Loading ...";
+      div.innerHTML = 'Loading ...';
 
       body.appendChild(div);
 
       const store = new qx.data.store.Json(
-        qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php")
+        qx.util.ResourceManager.getInstance().toUri('designs/get_designs.php')
       );
 
-      store.addListener("loaded", function () {
-        let html = "<h1>Please select design</h1>";
+      store.addListener('loaded', function () {
+        let html = '<h1>Please select design</h1>';
         html +=
-          "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
+          '<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>';
 
         div.innerHTML = html;
 
         store.getModel().forEach(function (element) {
-          const myDiv = qx.dom.Element.create("div", {
-            cursor: "pointer",
-            padding: "0.5em 1em",
-            borderBottom: "1px solid black",
-            margin: "auto",
-            width: "262px",
-            position: "relative"
+          const myDiv = qx.dom.Element.create('div', {
+            cursor: 'pointer',
+            padding: '0.5em 1em',
+            borderBottom: '1px solid black',
+            margin: 'auto',
+            width: '262px',
+            position: 'relative'
           });
 
           myDiv.innerHTML =
-            "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " +
+            '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' +
             element +
-            "</div>";
+            '</div>';
           myDiv.innerHTML +=
-            "<iframe src=\"" +
+            '<iframe src="' +
             qx.util.ResourceManager.getInstance().toUri(
-              "designs/design_preview.html"
+              'designs/design_preview.html'
             ) +
-            "?design=" +
+            '?design=' +
             element +
-            "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
+            '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
           myDiv.innerHTML +=
-            "<img width=\"60\" height=\"30\" src=\"" +
+            '<img width="60" height="30" src="' +
             qx.util.ResourceManager.getInstance().toUri(
-              "demo/media/arrow.png"
+              'demo/media/arrow.png'
             ) +
-            "\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+            '" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
 
           div.appendChild(myDiv);
 
-          const tDiv = qx.dom.Element.create("div", {
-            background: "transparent",
-            position: "absolute",
-            height: "90px",
-            width: "160px",
+          const tDiv = qx.dom.Element.create('div', {
+            background: 'transparent',
+            position: 'absolute',
+            height: '90px',
+            width: '160px',
             zIndex: 2
           });
 
-          const pos = document.querySelector("iframe").getBoundingClientRect();
+          const pos = document.querySelector('iframe').getBoundingClientRect();
           Object.entries({
-            left: pos.left + "px",
-            top: pos.top + "px"
+            left: pos.left + 'px',
+            top: pos.top + 'px'
           }).forEach(function (key_value) {
             tDiv.style[key_value[0]] = key_value[1];
           });
@@ -485,31 +490,31 @@ qx.Class.define("cv.TemplateEngine", {
 
           qx.event.Registration.addListener(
             myDiv,
-            "pointerover",
+            'pointerover',
             function () {
-              myDiv.style.background = "#bbbbbb";
+              myDiv.style.background = '#bbbbbb';
             },
             this
           );
 
           qx.event.Registration.addListener(
             myDiv,
-            "pointerout",
+            'pointerout',
             function () {
-              myDiv.style.background = "transparent";
+              myDiv.style.background = 'transparent';
             },
             this
           );
 
-          qx.event.Registration.addListener(myDiv, "tap", function () {
+          qx.event.Registration.addListener(myDiv, 'tap', function () {
             let href = document.location.href;
             if (document.location.hash) {
-              href = href.split("#")[0];
+              href = href.split('#')[0];
             }
-            if (document.location.search === "") {
-              document.location.href = href + "?design=" + element;
+            if (document.location.search === '') {
+              document.location.href = href + '?design=' + element;
             } else {
-              document.location.href = href + "&design=" + element;
+              document.location.href = href + '&design=' + element;
             }
           });
         });
@@ -523,6 +528,6 @@ qx.Class.define("cv.TemplateEngine", {
   ***********************************************
   */
   destruct() {
-    this._disposeObjects("__activeChangedTimer");
+    this._disposeObjects('__activeChangedTimer');
   }
 });

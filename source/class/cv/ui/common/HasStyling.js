@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Mixin.define("cv.ui.common.HasStyling", {
+qx.Mixin.define('cv.ui.common.HasStyling', {
   /*
   ******************************************************
     PROPERTIES
@@ -25,7 +25,7 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
   */
   properties: {
     styling: {
-      check: "String",
+      check: 'String',
       init: null,
       nullable: true
     }
@@ -42,14 +42,14 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
       if (sty) {
         let e;
         this.getDomElement()
-          .querySelectorAll(".actor")
+          .querySelectorAll('.actor')
           .forEach(function (element) {
-            if (element.querySelector(".value") && e === undefined) {
+            if (element.querySelector('.value') && e === undefined) {
               e = element;
             }
           });
         if (e) {
-          e.classList.remove.apply(e.classList, sty.classnames.split(" ")); // remove only styling classes
+          e.classList.remove.apply(e.classList, sty.classnames.split(' ')); // remove only styling classes
           if (
             !this._findValue(value, false, e, sty) &&
             sty.defaultValue !== undefined
@@ -68,8 +68,9 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
         // fixed value
         element.classList.add.apply(
           element.classList,
-          styling[value].split(" ")
+          styling[value].split(' ')
         );
+
         return true;
       }
 
@@ -77,8 +78,9 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
       if (findExact && range[value]) {
         element.classList.add.apply(
           element.classList,
-          range[value][1].split(" ")
+          range[value][1].split(' ')
         );
+
         return true;
       }
       const valueFloat = parseFloat(value);
@@ -91,8 +93,9 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
         } // check max
         element.classList.add.apply(
           element.classList,
-          range[min][1].split(" ")
+          range[min][1].split(' ')
         );
+
         return true;
       }
 

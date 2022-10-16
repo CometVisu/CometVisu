@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Roundbar", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Roundbar', {
+  type: 'static',
 
   /*
    ******************************************************
@@ -50,35 +50,38 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
         path,
         flavour,
         pageType,
-        this.getAttributeToPropertyMappings(xml.getAttribute("preset"))
+        this.getAttributeToPropertyMappings(xml.getAttribute('preset'))
       );
+
       let indicatorValueCnt = 0;
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       data.indicators = [];
       data.radius = 50; // default
       data.width = 10; // default
-      xml.querySelectorAll("address").forEach(function (elem, i) {
+      xml.querySelectorAll('address').forEach(function (elem, i) {
         data.radius = parseFloat(
-          elem.getAttribute("radius") ||
+          elem.getAttribute('radius') ||
             data.radius + (i === 0 ? 0 : data.spacing + data.width)
         );
+
         indicatorValueCnt = parseInt(
-          elem.getAttribute("valuepos") || indicatorValueCnt + 1
+          elem.getAttribute('valuepos') || indicatorValueCnt + 1
         );
+
         data.indicators.push({
           address: elem.textContent,
-          showValue: elem.getAttribute("showvalue") !== "false",
+          showValue: elem.getAttribute('showvalue') !== 'false',
           valuepos: indicatorValueCnt,
-          isBar: elem.getAttribute("type") !== "pointer",
-          min: elem.getAttribute("min") || data.min,
-          max: elem.getAttribute("max") || data.max,
+          isBar: elem.getAttribute('type') !== 'pointer',
+          min: elem.getAttribute('min') || data.min,
+          max: elem.getAttribute('max') || data.max,
           radius: data.radius,
           startarrow: self.deg2rad(data.startarrow), // * Math.PI / 180,
           endarrow: self.deg2rad(data.endarrow), // * Math.PI / 180,
-          width: parseFloat(elem.getAttribute("width") || data.width),
-          thickness: elem.getAttribute("thickness") || data.thickness,
-          style: elem.getAttribute("style") || ""
+          width: parseFloat(elem.getAttribute('width') || data.width),
+          thickness: elem.getAttribute('thickness') || data.thickness,
+          style: elem.getAttribute('style') || ''
         });
       });
       return data;
@@ -90,17 +93,17 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
         max: { default: 100.0, transform: parseFloat },
         axisradius: { default: 50.0, transform: parseFloat },
         axiswidth: { default: 0.0, transform: parseFloat },
-        axiscolor: { default: "" },
+        axiscolor: { default: '' },
         ranges: {
-          default: "",
+          default: '',
           transform(value) {
             if (!value) {
               return [];
             }
             const retval = [];
-            value.split(";").forEach(function (range) {
-              const components = range.split(",");
-              const startEnd = components.shift().split("...");
+            value.split(';').forEach(function (range) {
+              const components = range.split(',');
+              const startEnd = components.shift().split('...');
               const thisRange = {
                 start: parseFloat(startEnd[0]),
                 end: parseFloat(startEnd[1])
@@ -119,7 +122,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
                 const style = components.shift();
                 thisRange.style = /:/.test(style)
                   ? style
-                  : "fill:" + style + ";stroke:" + style;
+                  : 'fill:' + style + ';stroke:' + style;
               }
               retval.push(thisRange);
             });
@@ -129,42 +132,42 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
 
         minorradius: { default: 0.0, transform: parseFloat },
         minorwidth: { default: 0.0, transform: parseFloat },
-        minorspacing: { default: "25%" },
-        minorcolor: { default: "" },
+        minorspacing: { default: '25%' },
+        minorcolor: { default: '' },
         majorradius: { default: 0.0, transform: parseFloat },
         majorwidth: { default: 0.0, transform: parseFloat },
-        majorposition: { default: "min;max" },
-        majorcolor: { default: "" },
+        majorposition: { default: 'min;max' },
+        majorcolor: { default: '' },
         labels: {
-          default: "",
+          default: '',
           transform(value) {
             if (!value) {
               return [];
             }
             const retval = [];
             let radius = 50;
-            let position = "outside";
-            let orientation = "horizontal";
+            let position = 'outside';
+            let orientation = 'horizontal';
 
-            value.split(";").forEach(function (label) {
-              const components = label.split(":");
+            value.split(';').forEach(function (label) {
+              const components = label.split(':');
 
               if (components.length > 1) {
-                const subcompontents = components[0].split(",");
-                if (subcompontents[0] !== "") {
+                const subcompontents = components[0].split(',');
+                if (subcompontents[0] !== '') {
                   position = subcompontents[0];
                 }
-                if (subcompontents[1] !== "") {
+                if (subcompontents[1] !== '') {
                   orientation = subcompontents[1];
                 }
                 components.shift();
               }
 
-              const valueName = components[0].split(",");
-              if (valueName.length > 1 && valueName[1] !== "") {
+              const valueName = components[0].split(',');
+              if (valueName.length > 1 && valueName[1] !== '') {
                 radius = parseFloat(valueName[1]);
               }
-              if (valueName.length < 3 || valueName[2] === "") {
+              if (valueName.length < 3 || valueName[2] === '') {
                 valueName[2] = valueName[0];
               }
               retval.push({
@@ -187,7 +190,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
           }
         },
 
-        labelstyle: { default: "" },
+        labelstyle: { default: '' },
         start: { default: 270.0, transform: this.deg2rad },
         startarrow: { default: 5.0, transform: parseFloat },
         end: { default: 0.0, transform: this.deg2rad },
@@ -201,9 +204,9 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
 
         spacing: { default: 10.0, transform: parseFloat },
         overflowarrow: {
-          default: "true",
+          default: 'true',
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
 
@@ -211,12 +214,12 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
         textx: { default: 10, transform: parseFloat },
         texty: { default: 50, transform: parseFloat },
         textlength: { default: 0, transform: parseFloat },
-        textanchor: { default: "" },
+        textanchor: { default: '' },
         linespace: { default: 12, transform: parseFloat },
         bboxgrow: {
-          default: "1",
+          default: '1',
           transform(value) {
-            const parts = value.split(";");
+            const parts = value.split(';');
             switch (parts.length) {
               default:
               case 1: // one value for all sides
@@ -249,7 +252,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
         debug: {
           default: false,
           transform(v) {
-            return v === "true";
+            return v === 'true';
           }
         }
       };
@@ -260,7 +263,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
             start: 225,
             fontsize: 40,
             linespace: 25,
-            textanchor: "end",
+            textanchor: 'end',
             textx: 60,
             texty: 40
           },
@@ -270,7 +273,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
             end: 135,
             fontsize: 40,
             linespace: -25,
-            textanchor: "end",
+            textanchor: 'end',
             textx: 60,
             texty: -10
           },
@@ -278,7 +281,7 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
           bridge: {
             start: 180,
             end: 0,
-            textanchor: "middle",
+            textanchor: 'middle',
             textx: 0,
             texty: 0
           }
@@ -294,6 +297,6 @@ qx.Class.define("cv.parser.pure.widgets.Roundbar", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("roundbar", statics);
+    cv.parser.pure.WidgetParser.addHandler('roundbar', statics);
   }
 });

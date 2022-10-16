@@ -35,7 +35,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.Info", {
+qx.Class.define('cv.ui.structure.pure.Info', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.Update,
 
@@ -47,7 +47,7 @@ qx.Class.define("cv.ui.structure.pure.Info", {
   members: {
     // overridden
     _getInnerDomString() {
-      return "<div class=\"actor\"><div class=\"value\">-</div></div>";
+      return '<div class="actor"><div class="value">-</div></div>';
     }
   }
 });

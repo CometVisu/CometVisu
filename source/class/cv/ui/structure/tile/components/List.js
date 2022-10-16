@@ -52,7 +52,7 @@
        </template>
    </cv-list>
  */
-qx.Class.define("cv.ui.structure.tile.components.List", {
+qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
 
@@ -86,29 +86,30 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
       const element = this._element;
       this._model = [];
       let refreshOnUpdate = false;
-      const model = element.querySelector("model");
+      const model = element.querySelector('model');
       if (!model) {
-        this.error("cv-list needs a model");
+        this.error('cv-list needs a model');
         return;
       }
-      if (model.hasAttribute("filter")) {
+      if (model.hasAttribute('filter')) {
         this._filterModel = new Function(
-          "item",
-          "index",
-          "\"use strict\"; return " + model.getAttribute("filter")
+          'item',
+          'index',
+          '"use strict"; return ' + model.getAttribute('filter')
         );
       }
-      if (model.hasAttribute("limit")) {
-        this._limit = parseInt(model.getAttribute("limit"));
+      if (model.hasAttribute('limit')) {
+        this._limit = parseInt(model.getAttribute('limit'));
       }
       const readAddresses = model.querySelectorAll(
-        ":scope > cv-address:not([mode=\"write\"])"
+        ':scope > cv-address:not([mode="write"])'
       );
-      if (model.hasAttribute("sort-by")) {
-        const sortBy = model.getAttribute("sort-by");
+
+      if (model.hasAttribute('sort-by')) {
+        const sortBy = model.getAttribute('sort-by');
         // reverse order in 'desc' sort mode
         const sortModifier =
-          model.getAttribute("sort-mode") === "desc" ? -1 : 1;
+          model.getAttribute('sort-mode') === 'desc' ? -1 : 1;
         this._sortModel = (left, right) => {
           const leftVal = left[sortBy];
           const rightVal = right[sortBy];
@@ -116,13 +117,13 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
             return 0;
           } else if (typeof leftVal === typeof rightVal) {
             switch (typeof leftVal) {
-              case "number":
+              case 'number':
                 return (leftVal - rightVal) * sortModifier;
 
-              case "boolean":
+              case 'boolean':
                 return (leftVal ? -1 : 1) * sortModifier;
 
-              case "string":
+              case 'string':
                 return leftVal.localeCompare(rightVal) * sortModifier;
 
               default:
@@ -140,25 +141,27 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
           return 0;
         };
       }
-      if (model.hasAttribute("src")) {
+      if (model.hasAttribute('src')) {
         // fetch from url
         this._getModel = async () => {
           const res = await cv.io.Fetch.fetch(
-            model.getAttribute("src"),
+            model.getAttribute('src'),
             null,
-            model.getAttribute("proxy") === "true"
+            model.getAttribute('proxy') === 'true'
           );
+
           return res;
         };
       } else {
-        const script = model.querySelector(":scope > script");
-        const data = model.querySelectorAll(":scope > cv-data");
+        const script = model.querySelector(':scope > script');
+        const data = model.querySelectorAll(':scope > cv-data');
         if (script) {
           this._getModel = new Function(
-            "\"use strict\";let model = []; " +
+            '"use strict";let model = []; ' +
               script.innerText.trim() +
-              "; return model"
+              '; return model'
           );
+
           this._model = this._getModel();
         } else if (readAddresses.length > 0) {
           // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
@@ -179,27 +182,28 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
           });
         } else {
           this.error(
-            "cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model."
+            'cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.'
           );
+
           return;
         }
       }
       if (readAddresses.length > 0) {
-        element.addEventListener("stateUpdate", ev => this.onStateUpdate(ev));
+        element.addEventListener('stateUpdate', ev => this.onStateUpdate(ev));
       }
       if (!refreshOnUpdate) {
         if (this.isVisible()) {
           // only load when visible
           this.refresh();
         }
-        if (element.hasAttribute("refresh")) {
-          this.setRefresh(parseInt(element.getAttribute("refresh")));
+        if (element.hasAttribute('refresh')) {
+          this.setRefresh(parseInt(element.getAttribute('refresh')));
         }
       }
     },
 
     onStateUpdate(ev) {
-      if (ev.detail.target === "refresh") {
+      if (ev.detail.target === 'refresh') {
         if (this.isVisible()) {
           // only load when visible
           this.refresh();
@@ -222,40 +226,40 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
 
     async refresh() {
       const element = this._element;
-      const template = element.querySelector(":scope > template:not([when])");
+      const template = element.querySelector(':scope > template:not([when])');
       let newModel = [];
-      if (typeof this._getModel === "function") {
+      if (typeof this._getModel === 'function') {
         newModel = this._getModel();
       }
       if (newModel instanceof Promise) {
         newModel = await newModel;
       }
-      let target = element.querySelector(":scope > ul");
-      if (template.getAttribute("wrap") === "false") {
+      let target = element.querySelector(':scope > ul');
+      if (template.getAttribute('wrap') === 'false') {
         target = element;
-      } else if (template.hasAttribute("target")) {
-        switch (template.getAttribute("target")) {
-          case "parent":
+      } else if (template.hasAttribute('target')) {
+        switch (template.getAttribute('target')) {
+          case 'parent':
             target = element.parentElement;
             // we do not need the list to be visible then
-            element.style.display = "none";
+            element.style.display = 'none';
             break;
           default:
             throw new Error(
-              "invalid target: " + template.getAttribute("target")
+              'invalid target: ' + template.getAttribute('target')
             );
         }
       } else if (!target) {
-        target = document.createElement("ul");
-        target.classList.add("content");
+        target = document.createElement('ul');
+        target.classList.add('content');
         element.appendChild(target);
       }
-      this.debug("refreshing with new model length", newModel.length);
+      this.debug('refreshing with new model length', newModel.length);
       if (Array.isArray(newModel) || newModel instanceof qx.data.Array) {
-        if (typeof this._filterModel === "function") {
+        if (typeof this._filterModel === 'function') {
           newModel = newModel.filter(this._filterModel);
         }
-        if (typeof this._sortModel === "function") {
+        if (typeof this._sortModel === 'function') {
           newModel.sort(this._sortModel);
         }
         if (this._limit) {
@@ -263,28 +267,32 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
         }
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(
-            ":scope > template[when=\"empty\"]"
+            ':scope > template[when="empty"]'
           );
+
           if (
             whenEmptyTemplate &&
-            !target.querySelector(":scope > .empty-model")
+            !target.querySelector(':scope > .empty-model')
           ) {
-            while (target.firstElementChild && target.firstElementChild.hasAttribute("data-row")) {
+            while (
+              target.firstElementChild &&
+              target.firstElementChild.hasAttribute('data-row')
+            ) {
               target.removeChild(target.firstElementChild);
             }
             const emptyModel =
               whenEmptyTemplate.content.firstElementChild.cloneNode(true);
-            emptyModel.classList.add("empty-model");
+            emptyModel.classList.add('empty-model');
             target.appendChild(emptyModel);
             return;
           }
         } else {
-          const emptyElem = target.querySelector(":scope > .empty-model");
+          const emptyElem = target.querySelector(':scope > .empty-model');
           if (emptyElem) {
             emptyElem.remove();
           }
         }
-        const itemTemplate = document.createElement("template");
+        const itemTemplate = document.createElement('template');
         // remove entries we do not need anymore
         for (let i = newModel.length; i < this._model.length; i++) {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
@@ -304,36 +312,38 @@ qx.Class.define("cv.ui.structure.tile.components.List", {
                   return val[parseInt(p2)];
                 }
                 return val;
-              } else if (p1 === "index") {
-                return "" + i;
+              } else if (p1 === 'index') {
+                return '' + i;
               }
-              return "";
+              return '';
             }
           );
+
           itemTemplate.innerHTML = html;
           if (elem) {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
-            elem.setAttribute("data-row", "" + i);
+            elem.setAttribute('data-row', '' + i);
           } else {
             // append new child
             itemTemplate.content.firstElementChild.setAttribute(
-              "data-row",
-              "" + i
+              'data-row',
+              '' + i
             );
+
             target.appendChild(itemTemplate.content.cloneNode(true));
           }
         });
         this._model = newModel;
       } else {
-        this.error("model must be an array", newModel);
+        this.error('model must be an array', newModel);
       }
     }
   },
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "list",
+      cv.ui.structure.tile.Controller.PREFIX + 'list',
       class extends QxConnector {
         constructor() {
           super(QxClass);

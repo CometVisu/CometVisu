@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (2017)
  */
-qx.Class.define("cv.ui.structure.pure.PageLink", {
+qx.Class.define('cv.ui.structure.pure.PageLink', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
@@ -34,18 +34,18 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
    */
   properties: {
     name: {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     },
 
     wstyle: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
 
     address: {
-      check: "Object",
+      check: 'Object',
       init: {}
     },
 
@@ -66,38 +66,38 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
       const layout = this.getLayout();
 
       const style =
-        typeof layout === "object"
-          ? ""
-          : "style=\"" +
+        typeof layout === 'object'
+          ? ''
+          : 'style="' +
             cv.parser.pure.WidgetParser.extractLayout(
               layout,
               this.getPageType()
             ) +
-            "\"";
+            '"';
 
       let ret_val =
-        "<div class=\"widget clearfix link pagelink " +
+        '<div class="widget clearfix link pagelink ' +
         this.getClasses() +
-        "\" " +
+        '" ' +
         style +
-        ">";
+        '>';
       ret_val +=
-        "<div class=\"actor\" " +
+        '<div class="actor" ' +
         this.getWstyle() +
-        "><a href=\"javascript:void(0)\">" +
+        '><a href="javascript:void(0)">' +
         this.getName() +
-        "</a></div>";
-      ret_val += "</div>";
+        '</a></div>';
+      ret_val += '</div>';
       return ret_val;
     },
 
     // overridden
     action() {
-      cv.Application.structureController.scrollToPage(this.getPath() + "_");
+      cv.Application.structureController.scrollToPage(this.getPath() + '_');
     }
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pagelink", statics);
+    cv.ui.structure.WidgetFactory.registerClass('pagelink', statics);
   }
 });

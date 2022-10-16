@@ -20,8 +20,8 @@
 /**
  * Reflection API for possible Editor communication
  */
-qx.Class.define("cv.io.Reflection", {
-  type: "static",
+qx.Class.define('cv.io.Reflection', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,10 +40,10 @@ qx.Class.define("cv.io.Reflection", {
      */
     list() {
       const widgetTree = {};
-      document.querySelectorAll(".page").forEach(function (elem) {
-        const id = elem.getAttribute("id").split("_");
+      document.querySelectorAll('.page').forEach(function (elem) {
+        const id = elem.getAttribute('id').split('_');
         let thisEntry = widgetTree;
-        if (id.shift() === "id") {
+        if (id.shift() === 'id') {
           let thisNumber;
           // eslint-disable-next-line no-cond-assign
           while ((thisNumber = id.shift())) {
@@ -53,9 +53,9 @@ qx.Class.define("cv.io.Reflection", {
             }
             thisEntry = thisEntry[thisNumber];
           }
-          Array.from(elem.getElementsByTagName("*"))
+          Array.from(elem.getElementsByTagName('*'))
             .filter(function (m) {
-              return m.matches("div.widget_container");
+              return m.matches('div.widget_container');
             })
             .forEach(function (widget, i) {
               if (undefined === thisEntry[i]) {
@@ -78,7 +78,8 @@ qx.Class.define("cv.io.Reflection", {
       const data = Object.assign(
         {},
         cv.data.Model.getInstance().getWidgetDataByElement(widget)
-      ); // copy
+      );
+      // copy
       delete data.basicvalue;
       delete data.value;
       return data;
@@ -92,9 +93,9 @@ qx.Class.define("cv.io.Reflection", {
     select(path, state) {
       const container = this.lookupWidget(path);
       if (state) {
-        container.classList.add("selected");
+        container.classList.add('selected');
       } else {
-        container.classList.remove("selected");
+        container.classList.remove('selected');
       }
     },
 
@@ -117,73 +118,73 @@ qx.Class.define("cv.io.Reflection", {
       // prevend bad or even illegal requests
       if (
         event.origin !== window.location.origin ||
-        typeof event.data !== "object" ||
-        !("command" in event.data) ||
-        !("parameters" in event.data)
+        typeof event.data !== 'object' ||
+        !('command' in event.data) ||
+        !('parameters' in event.data)
       ) {
         return;
       }
-      let answer = "bad command";
+      let answer = 'bad command';
       const parameters = event.data.parameters;
 
       // note: as the commands are from external, we have to be a bit more
       //       carefull for corectness testing
       switch (event.data.command) {
-        case "create":
+        case 'create':
           if (
-            typeof parameters === "object" &&
+            typeof parameters === 'object' &&
             this.pathRegEx.test(parameters.path) &&
-            typeof parameters.element === "string"
+            typeof parameters.element === 'string'
           ) {
             answer = this.create(parameters.path, parameters.element);
           } else {
-            answer = "bad path or element";
+            answer = 'bad path or element';
           }
           break;
 
-        case "delete":
+        case 'delete':
           if (this.pathRegEx.test(parameters)) {
             answer = this.deleteCommand(parameters);
           } else {
-            answer = "bad path";
+            answer = 'bad path';
           }
           break;
 
-        case "focus":
+        case 'focus':
           if (this.pathRegEx.test(parameters)) {
             answer = this.focus(parameters);
           } else {
-            answer = "bad path";
+            answer = 'bad path';
           }
           break;
 
-        case "list":
+        case 'list':
           answer = this.list();
           break;
 
-        case "read":
+        case 'read':
           if (this.pathRegEx.test(parameters)) {
             answer = this.read(parameters);
           } else {
-            answer = "bad path";
+            answer = 'bad path';
           }
           break;
 
-        case "select":
+        case 'select':
           if (
-            typeof parameters === "object" &&
+            typeof parameters === 'object' &&
             this.pathRegEx.test(parameters.path) &&
-            typeof parameters.state === "boolean"
+            typeof parameters.state === 'boolean'
           ) {
             answer = this.select(parameters.path, parameters.state);
           }
           break;
 
-        case "write":
+        case 'write':
           if (
-            typeof parameters === "object" &&
+            typeof parameters === 'object' &&
             this.pathRegEx.test(parameters.path) &&
-            typeof parameters.attributes === "object"
+            typeof parameters.attributes === 'object'
           ) {
             answer = this.write(parameters.path, parameters.attributes);
           }
@@ -199,7 +200,7 @@ qx.Class.define("cv.io.Reflection", {
      * @param path
      */
     lookupWidget(path) {
-      return document.querySelector(".page#" + path);
+      return document.querySelector('.page#' + path);
     },
 
     getParentPage(page) {
@@ -207,20 +208,20 @@ qx.Class.define("cv.io.Reflection", {
         return null;
       }
 
-      return this.getParentPageById(page.getAttribute("id"), true);
+      return this.getParentPageById(page.getAttribute('id'), true);
     },
 
     getParentPageById(path, isPageId) {
       if (path.length > 0) {
-        const pathParts = path.split("_");
+        const pathParts = path.split('_');
         if (isPageId) {
           pathParts.pop();
         }
         while (pathParts.length > 1) {
           pathParts.pop();
-          path = pathParts.join("_") + "_";
-          const page = document.querySelector("#" + path);
-          if (page.classList.contains("page")) {
+          path = pathParts.join('_') + '_';
+          const page = document.querySelector('#' + path);
+          if (page.classList.contains('page')) {
             return page;
           }
         }
@@ -243,7 +244,7 @@ qx.Class.define("cv.io.Reflection", {
      * @param path
      */
     deleteCommand(path) {
-      this.debug(this.lookupWidget(path), document.querySelector("#" + path));
+      this.debug(this.lookupWidget(path), document.querySelector('#' + path));
       //this.lookupWidget( path ).remove();
       return "deleted widget '" + path + "'";
     },
@@ -253,12 +254,12 @@ qx.Class.define("cv.io.Reflection", {
      * @param path
      */
     focus(path) {
-      document.querySelector(".focused").classList.remove("focused");
-      this.lookupWidget(path).classList.add("focused");
+      document.querySelector('.focused').classList.remove('focused');
+      this.lookupWidget(path).classList.add('focused');
     }
   },
 
   defer() {
-    window.addEventListener("message", cv.io.Reflection.handleMessage, false);
+    window.addEventListener('message', cv.io.Reflection.handleMessage, false);
   }
 });

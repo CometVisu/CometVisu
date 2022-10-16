@@ -20,7 +20,7 @@
 /**
  * Represents an entry in the filesystem (file or folder).
  */
-qx.Class.define("cv.ui.manager.model.FileItem", {
+qx.Class.define('cv.ui.manager.model.FileItem', {
   extend: qx.core.Object,
   include: [
     qx.data.marshal.MEventBubbling,
@@ -40,8 +40,8 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       this.setFakeChildren(fakeChildren);
     }
     if (path) {
-      if (!path.endsWith("/")) {
-        path += "/";
+      if (!path.endsWith('/')) {
+        path += '/';
       }
       this.__path = path;
     }
@@ -51,9 +51,9 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     if (parent) {
       this.setParent(parent);
     }
-    if (qx.core.Environment.get("qx.dynlocale")) {
+    if (qx.core.Environment.get('qx.dynlocale')) {
       qx.locale.Manager.getInstance().addListener(
-        "changeLocale",
+        'changeLocale',
         this._onChangeLocale,
         this
       );
@@ -70,8 +70,8 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     _fakeIconFile: null,
     _hiddenConfigFakeFile: null,
     _acceptedFiles: {
-      ".": "*.xml",
-      media: "*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt"
+      '.': '*.xml',
+      media: '*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt'
     },
 
     isConfigFile(path) {
@@ -89,11 +89,11 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     getIconFile() {
       if (!this._fakeIconFile) {
         this._fakeIconFile = new cv.ui.manager.model.FileItem(
-          "CometVisu-Icons",
-          "",
+          'CometVisu-Icons',
+          '',
           cv.ui.manager.model.FileItem.ROOT
         ).set({
-          type: "file",
+          type: 'file',
           overrideIcon: true,
           writeable: false,
           readable: true,
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
           loaded: true,
           hasChildren: false,
           fake: true,
-          icon: cv.theme.dark.Images.getIcon("icons", 18)
+          icon: cv.theme.dark.Images.getIcon('icons', 18)
         });
       }
       return this._fakeIconFile;
@@ -110,8 +110,8 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     getHiddenConfigFile() {
       if (!this._hiddenConfigFakeFile) {
         this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem(
-          "hidden.php",
-          "",
+          'hidden.php',
+          '',
           cv.ui.manager.model.FileItem.ROOT
         ).set({
           hasChildren: false,
@@ -119,10 +119,10 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
           readable: true,
           writeable: true,
           overrideIcon: true,
-          icon: cv.theme.dark.Images.getIcon("hidden-config", 15),
-          type: "file",
+          icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
+          type: 'file',
           fake: true,
-          displayName: qx.locale.Manager.tr("Hidden configuration")
+          displayName: qx.locale.Manager.tr('Hidden configuration')
         });
       }
       return this._hiddenConfigFakeFile;
@@ -140,76 +140,76 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
   */
   properties: {
     open: {
-      check: "Boolean",
-      event: "changeOpen",
-      apply: "_onOpen",
+      check: 'Boolean',
+      event: 'changeOpen',
+      apply: '_onOpen',
       init: false
     },
 
     loaded: {
-      check: "Boolean",
-      event: "changeLoaded",
+      check: 'Boolean',
+      event: 'changeLoaded',
       init: false
     },
 
     loading: {
-      check: "Boolean",
-      event: "changeLoading",
+      check: 'Boolean',
+      event: 'changeLoading',
       init: false
     },
 
     parent: {
-      event: "changeParent",
+      event: 'changeParent',
       init: null
     },
 
     children: {
-      check: "qx.data.Array",
-      event: "changeChildren",
-      apply: "_applyEventPropagation",
+      check: 'qx.data.Array',
+      event: 'changeChildren',
+      apply: '_applyEventPropagation',
       deferredInit: true
     },
 
     fakeChildren: {
-      check: "Array",
+      check: 'Array',
       nullable: true
     },
 
     displayName: {
-      check: "String",
-      init: "",
-      event: "changeDisplayName"
+      check: 'String',
+      init: '',
+      event: 'changeDisplayName'
     },
 
     /**
      * Fake items only exist in the client not in the backend
      */
     fake: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeFake"
+      event: 'changeFake'
     },
 
     overrideIcon: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     icon: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      event: "changeIcon"
+      event: 'changeIcon'
     },
 
     hash: {
-      check: "Number",
+      check: 'Number',
       nullable: true
     },
 
     editing: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeEditing"
+      event: 'changeEditing'
     },
 
     /**
@@ -217,36 +217,36 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
      * behaviour like an "Add new File" used in writeable Folders.
      */
     special: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      event: "changeSpecial"
+      event: 'changeSpecial'
     },
 
     /**
      * Temporary file are not save in the backend yet
      */
     temporary: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeTemporary"
+      event: 'changeTemporary'
     },
 
     /**
      * Validation result for this files content (e.g. config file validation)
      */
     valid: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeValid"
+      event: 'changeValid'
     },
 
     /**
      * The validation of this files content found some warnings
      */
     hasWarnings: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeHasWarnings"
+      event: 'changeHasWarnings'
     },
 
     /**
@@ -254,72 +254,72 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
      * this content should be shown
      */
     content: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     modified: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeModified"
+      event: 'changeModified'
     },
 
     // Backend properties
 
     hasChildren: {
-      check: "Boolean",
-      event: "changeHasChildren",
-      apply: "_applyHasChildren",
+      check: 'Boolean',
+      event: 'changeHasChildren',
+      apply: '_applyHasChildren',
       init: false
     },
 
     name: {
-      check: "String",
-      event: "changeName",
-      init: "",
-      apply: "_applyName"
+      check: 'String',
+      event: 'changeName',
+      init: '',
+      apply: '_applyName'
     },
 
     type: {
-      check: ["dir", "file"],
-      transform: "_toLowerCase",
+      check: ['dir', 'file'],
+      transform: '_toLowerCase',
       nullable: true,
-      apply: "_maintainIcon"
+      apply: '_maintainIcon'
     },
 
     parentFolder: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
 
     readable: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeReadable"
+      event: 'changeReadable'
     },
 
     writeable: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeWriteable"
+      event: 'changeWriteable'
     },
 
     mounted: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeMounted"
+      event: 'changeMounted'
     },
 
     trash: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeTrash"
+      event: 'changeTrash'
     },
 
     inTrash: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeInTrash"
+      event: 'changeInTrash'
     }
   },
 
@@ -347,25 +347,25 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       }
       const data = ev.getData();
       switch (data.action) {
-        case "moved":
+        case 'moved':
           this.reload();
           break;
 
-        case "added":
+        case 'added':
           if (
-            this.getType() === "dir" &&
+            this.getType() === 'dir' &&
             data.path.startsWith(this.getFullPath())
           ) {
             this.reload();
           }
           break;
 
-        case "deleted":
+        case 'deleted':
           if (data.path === this.getFullPath()) {
             // this item has been deleted
             this.dispose();
           } else if (
-            this.getType() === "dir" &&
+            this.getType() === 'dir' &&
             data.path.startsWith(this.getFullPath())
           ) {
             // delete child
@@ -398,9 +398,9 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       if (!this.__path) {
         let parentFolder = this.getParentFolder();
         if (!parentFolder) {
-          parentFolder = "";
-        } else if (!parentFolder.endsWith("/")) {
-          parentFolder += "/";
+          parentFolder = '';
+        } else if (!parentFolder.endsWith('/')) {
+          parentFolder += '/';
         }
         this.__path = parentFolder;
       }
@@ -416,16 +416,16 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
 
     _maintainIcon() {
       if (!this.isOverrideIcon()) {
-        if (this.getType() === "file") {
-          this.setIcon(cv.theme.dark.Images.getIcon("file", 18));
+        if (this.getType() === 'file') {
+          this.setIcon(cv.theme.dark.Images.getIcon('file', 18));
         } else if (this.isTrash()) {
-          this.setIcon(cv.theme.dark.Images.getIcon("trash", 18));
+          this.setIcon(cv.theme.dark.Images.getIcon('trash', 18));
         } else if (this.isOpen()) {
-          this.setIcon(cv.theme.dark.Images.getIcon("folder-open", 18));
+          this.setIcon(cv.theme.dark.Images.getIcon('folder-open', 18));
         } else if (this.isMounted()) {
-          this.setIcon(cv.theme.dark.Images.getIcon("mounted-folder", 18));
+          this.setIcon(cv.theme.dark.Images.getIcon('mounted-folder', 18));
         } else {
-          this.setIcon(cv.theme.dark.Images.getIcon("folder", 18));
+          this.setIcon(cv.theme.dark.Images.getIcon('folder', 18));
         }
       }
     },
@@ -437,7 +437,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     _applyHasChildren(value) {
       if (value === true && this.getChildren().length === 0) {
         // add dummy child
-        this.getChildren().push(new cv.ui.manager.model.FileItem(""));
+        this.getChildren().push(new cv.ui.manager.model.FileItem(''));
       }
     },
 
@@ -463,9 +463,9 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
         oldParent.removeRelatedBindings(child);
       }
       child.setParent(this);
-      if (child.getType() !== "dir" || !child.isMounted()) {
+      if (child.getType() !== 'dir' || !child.isMounted()) {
         // inherit the mounted state from the parent folder
-        this.bind("mounted", child, "mounted");
+        this.bind('mounted', child, 'mounted');
       }
       this.getChildren().push(child);
     },
@@ -478,7 +478,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       if (data) {
         data.forEach(function (node) {
           const child = new cv.ui.manager.model.FileItem(null, null, this);
-          if (Object.prototype.hasOwnProperty.call(node, "children")) {
+          if (Object.prototype.hasOwnProperty.call(node, 'children')) {
             const nodeChildren = node.children;
             delete node.children;
             if (nodeChildren.length > 0) {
@@ -519,7 +519,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
 
     load(callback, context) {
       // If currently loading, delay ready
-      if (this.getType() === "file") {
+      if (this.getType() === 'file') {
         // nothing to load
         this.setLoaded(true);
         return;
@@ -532,7 +532,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       }
       if (this.isLoading()) {
         if (callback) {
-          this.addListenerOnce("changeLoading", callback, context);
+          this.addListenerOnce('changeLoading', callback, context);
         }
       } else if (this.isLoaded()) {
         // If not done yet, resolve the child elements of this container
@@ -570,7 +570,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     },
 
     getBusTopic() {
-      return "cv.manager.fs." + this.getFullPath().replace(/\//g, ".");
+      return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
     },
 
     /**
@@ -579,7 +579,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
      * @returns {Uri}
      */
     getUri() {
-      return "cv://" + this.getFullPath();
+      return 'cv://' + this.getFullPath();
     },
 
     /**
@@ -594,14 +594,14 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     getServerPath() {
       if (!this.isMounted()) {
         return (
-          qx.util.LibraryManager.getInstance().get("cv", "resourceUri") +
-          "/config/" +
+          qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') +
+          '/config/' +
           this.getFullPath()
         );
       }
       return (
-        qx.util.LibraryManager.getInstance().get("cv", "resourceUri") +
-        "/" +
+        qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') +
+        '/' +
         this.getFullPath()
       );
     },
@@ -611,8 +611,8 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
      */
     sortElements() {
       const sortF = function (a, b) {
-        if (a.getType() === "dir") {
-          if (b.getType() === "dir") {
+        if (a.getType() === 'dir') {
+          if (b.getType() === 'dir') {
             if (a.isTrash()) {
               return 1;
             } else if (b.isTrash()) {
@@ -621,7 +621,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
             return a.getName().localeCompare(b.getName());
           }
           return -1;
-        } else if (b.getType() === "dir") {
+        } else if (b.getType() === 'dir') {
           return 1;
         }
         return a.getName().localeCompare(b.getName());
@@ -630,7 +630,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     },
 
     openPath(path) {
-      const parts = qx.lang.Type.isArray(path) ? path : path.split("/");
+      const parts = qx.lang.Type.isArray(path) ? path : path.split('/');
       const relPath = parts.shift();
       this.getChildren().some(function (child) {
         if (child.getName() === relPath) {
@@ -646,7 +646,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       }, this);
     },
 
-    _onChangeLocale: qx.core.Environment.select("qx.dynlocale", {
+    _onChangeLocale: qx.core.Environment.select('qx.dynlocale', {
       true() {
         const content = this.getDisplayName();
         if (content && content.translate) {

@@ -22,7 +22,7 @@
  * @since 2012
  * @asset(plugins/svg/rollo.svg)
  */
-qx.Class.define("cv.plugins.Svg", {
+qx.Class.define('cv.plugins.Svg', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update],
 
@@ -50,6 +50,7 @@ qx.Class.define("cv.plugins.Svg", {
         flavour,
         pageType
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -63,20 +64,21 @@ qx.Class.define("cv.plugins.Svg", {
   */
   members: {
     _getInnerDomString() {
-      return "<div class=\"actor\"></div>";
+      return '<div class="actor"></div>';
     },
 
     _onDomReady() {
       super._onDomReady();
       const ajaxRequest = new qx.io.request.Xhr(
-        qx.util.ResourceManager.getInstance().toUri("plugins/svg/rollo.svg")
+        qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg')
       );
+
       ajaxRequest.set({
-        accept: "text/plain",
+        accept: 'text/plain',
         cache: !cv.Config.forceReload
       });
 
-      ajaxRequest.addListenerOnce("success", e => {
+      ajaxRequest.addListenerOnce('success', e => {
         const req = e.getTarget();
         const actor = this.getActor();
         actor.innerHTML = req.getResponseText();
@@ -95,27 +97,28 @@ qx.Class.define("cv.plugins.Svg", {
       let i;
       let l;
       for (i = 0, l = Math.floor(value / line_qty); i <= l; i++) {
-        line = element.querySelector("#line" + (i + 1));
+        line = element.querySelector('#line' + (i + 1));
         line.setAttribute(
-          "y1",
+          'y1',
           9 + total * i + ((value % line_qty) / line_qty) * total
         );
+
         line.setAttribute(
-          "y2",
+          'y2',
           9 + total * i + ((value % line_qty) / line_qty) * total
         );
       }
       for (i = Math.floor(value / line_qty) + 1; i <= line_qty; i++) {
-        line = element.querySelector("#line" + (i + 1));
-        line.setAttribute("y1", 9);
-        line.setAttribute("y2", 9);
+        line = element.querySelector('#line' + (i + 1));
+        line.setAttribute('y1', 9);
+        line.setAttribute('y2', 9);
       }
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("svg", cv.plugins.Svg);
-    cv.ui.structure.WidgetFactory.registerClass("svg", statics);
+    cv.parser.pure.WidgetParser.addHandler('svg', cv.plugins.Svg);
+    cv.ui.structure.WidgetFactory.registerClass('svg', statics);
   }
 });

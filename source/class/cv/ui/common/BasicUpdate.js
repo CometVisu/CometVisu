@@ -21,7 +21,7 @@
  * This role provides the basic update methods
  *
  */
-qx.Mixin.define("cv.ui.common.BasicUpdate", {
+qx.Mixin.define('cv.ui.common.BasicUpdate', {
   include: cv.ui.common.HasAddress,
 
   /*
@@ -36,7 +36,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     value: {
       nullable: true,
       init: null,
-      event: "changeValue"
+      event: 'changeValue'
     },
 
     /**
@@ -51,8 +51,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * Format to apply to incoming values
      */
     format: {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     }
   },
@@ -96,9 +96,9 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
               } // check max
               return range[min][1];
             }
-          } else if (mapping["*"]) {
+          } else if (mapping['*']) {
             // catchall mapping
-            return mapping["*"];
+            return mapping['*'];
           }
           return v; // pass through when nothing was found
         };
@@ -161,7 +161,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     getNextMappedValue(value, this_map) {
       if (this_map && cv.Config.hasMapping(this_map)) {
         const keys = Object.keys(cv.Config.getMapping(this_map));
-        return keys[(keys.indexOf("" + value) + 1) % keys.length];
+        return keys[(keys.indexOf('' + value) + 1) % keys.length];
       }
       return value;
     },
@@ -222,16 +222,16 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
         switch (
           this.getAddress()[address].transform // special case for KNX
         ) {
-          case "DPT:10.001":
+          case 'DPT:10.001':
             value = value.toLocaleTimeString();
             break;
-          case "DPT:11.001":
+          case 'DPT:11.001':
             value = value.toLocaleDateString();
             break;
-          case "OH:datetime":
+          case 'OH:datetime':
             value = value.toLocaleDateString();
             break;
-          case "OH:time":
+          case 'OH:time':
             value = value.toLocaleTimeString();
             break;
         }
@@ -288,12 +288,12 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       }
       const valueElement = this.getValueElement
         ? this.getValueElement()
-        : element.querySelector(".value");
+        : element.querySelector('.value');
       if (undefined !== value) {
         valueElement.replaceChildren(); // delete anything inside
         this.defaultValue2DOM(value, valueElement);
       } else {
-        valueElement.textContent = "-";
+        valueElement.textContent = '-';
       }
       return value;
     },
@@ -309,7 +309,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       }
       if (value instanceof Node) {
         targetElement.appendChild(value);
-      } else if (typeof value === "number" || typeof value === "string") {
+      } else if (typeof value === 'number' || typeof value === 'string') {
         targetElement.appendChild(document.createTextNode(value));
       } else {
         targetElement.innerHTML += value;

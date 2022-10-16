@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define("cv.svg.Element", {
+qx.Class.define('cv.svg.Element', {
   extend: qx.html.Element,
   /*
   ***********************************************
@@ -27,7 +27,7 @@ qx.Class.define("cv.svg.Element", {
   construct(tagName) {
     super();
     this.__svgElement = document.createElementNS(
-      "http://www.w3.org/2000/svg",
+      'http://www.w3.org/2000/svg',
       tagName
     );
   },

@@ -23,7 +23,7 @@
  * @author Stefan Borchert [stefan@borchert.cc]
  * @since 2015
  */
-qx.Class.define("cv.plugins.Link", {
+qx.Class.define('cv.plugins.Link', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
@@ -33,22 +33,22 @@ qx.Class.define("cv.plugins.Link", {
   */
   properties: {
     cssClass: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
 
     text: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
 
     href: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
 
     newWindow: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -82,13 +82,13 @@ qx.Class.define("cv.plugins.Link", {
 
     getAttributeToPropertyMappings() {
       return {
-        class: { target: "cssClass", default: "" },
-        text: { default: "" },
-        href: { default: "" },
+        class: { target: 'cssClass', default: '' },
+        text: { default: '' },
+        href: { default: '' },
         newWindow: {
           default: false,
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -102,30 +102,30 @@ qx.Class.define("cv.plugins.Link", {
   */
   members: {
     _getInnerDomString() {
-      let classes = "link";
+      let classes = 'link';
       if (this.getCssClass()) {
-        classes += " " + this.getCssClass();
+        classes += ' ' + this.getCssClass();
       }
-      const href = this.getHref() ? " href=\"" + this.getHref() + "\"" : "";
-      let attributes = "";
+      const href = this.getHref() ? ' href="' + this.getHref() + '"' : '';
+      let attributes = '';
       if (this.isNewWindow()) {
-        attributes += " target=\"_blank\"";
+        attributes += ' target="_blank"';
       }
       return (
-        "<a class=\"" +
+        '<a class="' +
         classes +
-        "\"" +
+        '"' +
         href +
         attributes +
-        ">" +
+        '>' +
         this.getText() +
-        "</a>"
+        '</a>'
       );
     }
   },
 
   defer(statics) {
-    cv.parser.pure.WidgetParser.addHandler("link", cv.plugins.Link);
-    cv.ui.structure.WidgetFactory.registerClass("link", statics);
+    cv.parser.pure.WidgetParser.addHandler('link', cv.plugins.Link);
+    cv.ui.structure.WidgetFactory.registerClass('link', statics);
   }
 });

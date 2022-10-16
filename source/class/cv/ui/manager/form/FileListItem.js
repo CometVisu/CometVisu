@@ -20,7 +20,7 @@
 /**
  * A qx.ui.form.ListItem with an additional label overlay over the icon to show the file type
  */
-qx.Class.define("cv.ui.manager.form.FileListItem", {
+qx.Class.define('cv.ui.manager.form.FileListItem', {
   extend: qx.ui.core.Widget,
   implement: [qx.ui.form.IModel],
   include: [cv.ui.manager.upload.MDragUpload],
@@ -39,16 +39,16 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     if (model) {
       this.setModel(model);
     }
-    this.addListener("pointerover", this._onPointerOver, this);
-    this.addListener("pointerout", this._onPointerOut, this);
+    this.addListener('pointerover', this._onPointerOver, this);
+    this.addListener('pointerout', this._onPointerOut, this);
 
     cv.ui.manager.model.Preferences.getInstance().addListener(
-      "changeDefaultConfigEditor",
+      'changeDefaultConfigEditor',
       this._maintainFileActions,
       this
     );
 
-    this.setUploadHint(this.tr("Drop the file here to replace the content."));
+    this.setUploadHint(this.tr('Drop the file here to replace the content.'));
   },
 
   /*
@@ -58,7 +58,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
   */
   events: {
     /** (Fired by {@link qx.ui.form.List}) */
-    action: "qx.event.type.Event"
+    action: 'qx.event.type.Event'
   },
 
   /*
@@ -69,48 +69,48 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-file-item"
+      init: 'cv-file-item'
     },
 
     model: {
       nullable: true,
-      event: "changeModel",
-      apply: "_applyModel",
+      event: 'changeModel',
+      apply: '_applyModel',
       dereference: true,
-      check: "cv.ui.manager.model.FileItem"
+      check: 'cv.ui.manager.model.FileItem'
     },
 
     /**
      * Show the action buttons.
      */
     showFileActions: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_maintainFileActions"
+      apply: '_maintainFileActions'
     },
 
     /** The label/caption/text of the qx.ui.basic.Atom instance */
     label: {
       nullable: true,
-      check: "String",
-      event: "changeLabel"
+      check: 'String',
+      event: 'changeLabel'
     },
 
     /** Any URI String supported by qx.ui.basic.Image to display an icon */
     icon: {
-      check: "String",
+      check: 'String',
       nullable: true,
       themeable: true,
-      event: "changeIcon"
+      event: 'changeIcon'
     },
 
     /**
      * The space between the icon and the label
      */
     gap: {
-      check: "Integer",
+      check: 'Integer',
       nullable: false,
-      event: "changeGap",
+      event: 'changeGap',
       themeable: true,
       init: 4
     },
@@ -120,11 +120,11 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
      * Possible values: both, label, icon
      */
     show: {
-      init: "both",
-      check: ["both", "label", "icon"],
+      init: 'both',
+      check: ['both', 'label', 'icon'],
       themeable: true,
       inheritable: true,
-      event: "changeShow"
+      event: 'changeShow'
     },
 
     /**
@@ -132,19 +132,20 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
      * Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)
      */
     iconPosition: {
-      init: "left",
+      init: 'left',
       check: [
-        "top",
-        "right",
-        "bottom",
-        "left",
-        "top-left",
-        "bottom-left",
-        "top-right",
-        "bottom-right"
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'top-left',
+        'bottom-left',
+        'top-right',
+        'bottom-right'
       ],
+
       themeable: true,
-      event: "changeIconPosition"
+      event: 'changeIconPosition'
     },
 
     /**
@@ -158,9 +159,9 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
      */
     center: {
       init: false,
-      check: "Boolean",
+      check: 'Boolean',
       themeable: true,
-      event: "changeCenter"
+      event: 'changeCenter'
     },
 
     /**
@@ -169,13 +170,13 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     acceptUpload: {
       init: null,
       nullable: true,
-      check: "String"
+      check: 'String'
     },
 
     viewMode: {
-      check: ["list", "preview"],
-      init: "preview",
-      apply: "_applyViewMode"
+      check: ['list', 'preview'],
+      init: 'preview',
+      apply: '_applyViewMode'
     }
   },
 
@@ -201,36 +202,40 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
 
     _applyViewMode() {
       switch (this.getViewMode()) {
-        case "list":
-          this.addState("list");
-          this.getChildControl("atom").setLayoutProperties({
+        case 'list':
+          this.addState('list');
+          this.getChildControl('atom').setLayoutProperties({
             left: 10,
             top: 0,
             bottom: 0,
             right: null
           });
-          this.getChildControl("bottom-bar").setLayoutProperties({
+
+          this.getChildControl('bottom-bar').setLayoutProperties({
             top: 0,
             bottom: 0,
             right: 0,
             left: null
           });
+
           break;
 
-        case "preview":
-          this.removeState("list");
-          this.getChildControl("atom").setLayoutProperties({
+        case 'preview':
+          this.removeState('list');
+          this.getChildControl('atom').setLayoutProperties({
             left: 0,
             top: 0,
             bottom: 34,
             right: 0
           });
-          this.getChildControl("bottom-bar").setLayoutProperties({
+
+          this.getChildControl('bottom-bar').setLayoutProperties({
             left: 0,
             bottom: 0,
             right: 0,
             top: null
           });
+
           break;
       }
     },
@@ -239,24 +244,25 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
      * Event handler for the pointer over event.
      */
     _onPointerOver() {
-      this.addState("hovered");
+      this.addState('hovered');
     },
 
     /**
      * Event handler for the pointer out event.
      */
     _onPointerOut() {
-      this.removeState("hovered");
+      this.removeState('hovered');
     },
 
     _isDroppable(files) {
       if (files.length === 1) {
-        if (this.getModel().getSpecial() === "add-file") {
+        if (this.getModel().getSpecial() === 'add-file') {
           return true;
         }
         const myMime = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(
-          this.getModel().getName().split(".").pop()
+          this.getModel().getName().split('.').pop()
         );
+
         return myMime === files[0].type;
       }
       return false;
@@ -264,7 +270,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
 
     _onDrop(ev) {
       ev.preventDefault();
-      if (this.getModel().getSpecial() === "add-file") {
+      if (this.getModel().getSpecial() === 'add-file') {
         cv.ui.manager.upload.MDragUpload.uploadFile(
           cv.ui.manager.upload.MDragUpload.getFiles(ev)[0]
         );
@@ -274,6 +280,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
             "Do you really want to replace the '%1' with the uploaded files content?",
             this.getModel().getName()
           ),
+
           function (confirmed) {
             if (confirmed) {
               const newFile = cv.ui.manager.upload.MDragUpload.getFiles(ev)[0];
@@ -290,35 +297,36 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     },
 
     _applyModel(value) {
-      if (value && value.getType() === "file") {
-        const control = this.getChildControl("file-type");
+      if (value && value.getType() === 'file') {
+        const control = this.getChildControl('file-type');
         if (!value.isFake()) {
           const name = value.getName();
-          this.getChildControl("atom").setToolTipText(
-            this.tr("Double click to open \"%1\"", name)
+          this.getChildControl('atom').setToolTipText(
+            this.tr('Double click to open "%1"', name)
           );
-          let type = name.split(".").pop();
+
+          let type = name.split('.').pop();
 
           // do not use file types that are longer than 4 chars (not enough space)
           if (type.length <= 4) {
             let handled = false;
             switch (type) {
-              case "xml":
-                control.setValue("</>");
+              case 'xml':
+                control.setValue('</>');
                 handled = true;
                 break;
 
-              case "js":
+              case 'js':
                 type = qx.lang.String.firstUp(type); // jshint ignore:line
               // eslint-disable-next-line no-fallthrough
-              case "css":
-              case "conf":
+              case 'css':
+              case 'conf':
                 control.setValue(type);
                 handled = true;
                 break;
             }
 
-            if (handled && this.getViewMode() === "preview") {
+            if (handled && this.getViewMode() === 'preview') {
               control.show();
             } else {
               control.exclude();
@@ -328,8 +336,8 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
           }
         }
       } else {
-        this.getChildControl("file-type").exclude();
-        this.getChildControl("atom").resetToolTipText();
+        this.getChildControl('file-type').exclude();
+        this.getChildControl('atom').resetToolTipText();
       }
       // this.getChildControl('bottom-bar').show();
       // this.setUploadHint(this.tr('Drop the file here to replace the content.'));
@@ -343,8 +351,8 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     },
 
     _onOpenWith(ev) {
-      const handlerId = ev.getTarget().getUserData("handlerId");
-      qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
+      const handlerId = ev.getTarget().getUserData('handlerId');
+      qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
         file: this.getModel(),
         handler: handlerId
       });
@@ -352,11 +360,11 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
 
     _applyIcon(value, old) {
       super._applyIcon(value, old);
-      if (value && !value.startsWith("@")) {
-        const control = this.getChildControl("atom").getChildControl("icon");
+      if (value && !value.startsWith('@')) {
+        const control = this.getChildControl('atom').getChildControl('icon');
         if (!cv.ui.manager.viewer.Image.getImageData(value)) {
           // wait for image to be loaded
-          control.addListenerOnce("loaded", this.__scaleWithAspect, this);
+          control.addListenerOnce('loaded', this.__scaleWithAspect, this);
         } else {
           this.__scaleWithAspect();
         }
@@ -366,33 +374,37 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     _maintainFileActions() {
       const file = this.getModel();
       if (this.isShowFileActions() && file) {
-        this.getChildControl("download-button").setVisibility(
-          file.getType() === "dir" || file.isFake() ? "excluded" : "visible"
+        this.getChildControl('download-button').setVisibility(
+          file.getType() === 'dir' || file.isFake() ? 'excluded' : 'visible'
         );
-        this.getChildControl("action-button").setVisibility(
-          file.isFake() ? "excluded" : "visible"
+
+        this.getChildControl('action-button').setVisibility(
+          file.isFake() ? 'excluded' : 'visible'
         );
+
         const editorConf =
           cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
             file,
-            "edit"
+            'edit'
           );
+
         const viewerConf =
           cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
             file,
-            "view"
+            'view'
           );
-        const openButton = this.getChildControl("open-button");
-        const editButton = this.getChildControl("edit-button");
+
+        const openButton = this.getChildControl('open-button');
+        const editButton = this.getChildControl('edit-button');
         if (file.isWriteable() && editorConf) {
-          editButton.setUserData("handlerId", editorConf.Clazz.classname);
+          editButton.setUserData('handlerId', editorConf.Clazz.classname);
           editButton.set({
             icon:
-              editorConf.Clazz.ICON || cv.theme.dark.Images.getIcon("edit", 18),
+              editorConf.Clazz.ICON || cv.theme.dark.Images.getIcon('edit', 18),
             enabled: true,
             toolTipText: editorConf.Clazz.TITLE
               ? editorConf.Clazz.TITLE.translate().toString()
-              : ""
+              : ''
           });
 
           editButton.show();
@@ -400,31 +412,31 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
           editButton.exclude();
         }
         if (viewerConf) {
-          openButton.setUserData("handlerId", viewerConf.Clazz.classname);
+          openButton.setUserData('handlerId', viewerConf.Clazz.classname);
           openButton.set({
             icon:
               viewerConf.Clazz.ICON ||
-              cv.theme.dark.Images.getIcon("preview", 18),
+              cv.theme.dark.Images.getIcon('preview', 18),
             enabled: true,
             toolTipText: viewerConf.Clazz.TITLE
               ? viewerConf.Clazz.TITLE.translate().toString()
-              : ""
+              : ''
           });
 
           openButton.show();
         } else {
           openButton.exclude();
         }
-        this.getChildControl("action-button");
-        this.getChildControl("bottom-bar").show();
+        this.getChildControl('action-button');
+        this.getChildControl('bottom-bar').show();
       } else {
-        this.getChildControl("bottom-bar").exclude();
+        this.getChildControl('bottom-bar').exclude();
       }
     },
 
     __scaleWithAspect() {
       const data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
-      const control = this.getChildControl("atom").getChildControl("icon");
+      const control = this.getChildControl('atom').getChildControl('icon');
       const sizeHint = control.getSizeHint();
       let width = sizeHint.width;
       let height = Math.round((1 / data.aspectRatio) * width);
@@ -442,11 +454,11 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     },
 
     _maintainFileTypePosition() {
-      const iconBounds = this.getChildControl("atom")
-        .getChildControl("icon")
+      const iconBounds = this.getChildControl('atom')
+        .getChildControl('icon')
         .getBounds();
       const top = Math.round(iconBounds.top + iconBounds.height / 2);
-      this.getChildControl("file-type").setLayoutProperties({
+      this.getChildControl('file-type').setLayoutProperties({
         left: iconBounds.left,
         top: top,
         right: iconBounds.left + iconBounds.width,
@@ -459,67 +471,71 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
       let control;
 
       switch (id) {
-        case "atom":
+        case 'atom':
           control = new qx.ui.basic.Atom();
-          ["label", "icon", "gap", "iconPosition", "show", "center"].forEach(
+          ['label', 'icon', 'gap', 'iconPosition', 'show', 'center'].forEach(
             function (prop) {
               this.bind(prop, control, prop);
             },
             this
           );
+
           control.setAnonymous(true);
           this._add(control, { top: 0, left: 0, right: 0, bottom: 34 });
           break;
 
-        case "file-type": {
+        case 'file-type': {
           control = new qx.ui.basic.Label();
           control.set({
             zIndex: 100,
             anonymous: true,
-            font: "title",
-            textAlign: "center",
-            textColor: "surface",
+            font: 'title',
+            textAlign: 'center',
+            textColor: 'surface',
             minWidth: 70
           });
 
-          const icon = this.getChildControl("atom").getChildControl("icon");
-          icon.bind("visibility", control, "visibility");
-          icon.addListener("resize", this._maintainFileTypePosition, this);
-          this._add(control, { width: "100%" });
+          const icon = this.getChildControl('atom').getChildControl('icon');
+          icon.bind('visibility', control, 'visibility');
+          icon.addListener('resize', this._maintainFileTypePosition, this);
+          this._add(control, { width: '100%' });
           break;
         }
 
-        case "bottom-bar":
+        case 'bottom-bar':
           control = new qx.ui.container.Composite(
-            new qx.ui.layout.HBox(4, "center")
+            new qx.ui.layout.HBox(4, 'center')
           );
+
           control.setAnonymous(true);
           this._add(control, { left: 0, bottom: 0, right: 0 });
           break;
 
-        case "download-button":
+        case 'download-button':
           control = new qx.ui.form.Button(
             null,
-            cv.theme.dark.Images.getIcon("download", 18)
+            cv.theme.dark.Images.getIcon('download', 18)
           );
-          control.setToolTipText(this.tr("Download file"));
-          control.addListener("execute", () => {
+
+          control.setToolTipText(this.tr('Download file'));
+          control.addListener('execute', () => {
             cv.ui.manager.control.FileController.getInstance().download(
               this.getModel()
             );
           });
-          this.getChildControl("bottom-bar").add(control);
+          this.getChildControl('bottom-bar').add(control);
           break;
 
-        case "action-button":
+        case 'action-button':
           control = new qx.ui.form.Button(
             null,
-            cv.theme.dark.Images.getIcon("menu", 18)
+            cv.theme.dark.Images.getIcon('menu', 18)
           );
-          control.setToolTipText(this.tr("Other file actions"));
-          this.getChildControl("bottom-bar").add(control);
-          control.addListener("tap", ev => {
-            this.fireEvent("action", qx.event.type.Tap, [
+
+          control.setToolTipText(this.tr('Other file actions'));
+          this.getChildControl('bottom-bar').add(control);
+          control.addListener('tap', ev => {
+            this.fireEvent('action', qx.event.type.Tap, [
               ev.getNativeEvent(),
               this,
               ev.getTarget(),
@@ -529,32 +545,34 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
           });
           break;
 
-        case "open-button":
+        case 'open-button':
           control = new qx.ui.form.Button(
             null,
-            cv.theme.dark.Images.getIcon("preview", 18)
+            cv.theme.dark.Images.getIcon('preview', 18)
           );
-          control.addListener("execute", () => {
-            qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
+
+          control.addListener('execute', () => {
+            qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
               file: this.getModel(),
-              handler: control.getUserData("handlerId")
+              handler: control.getUserData('handlerId')
             });
           });
-          this.getChildControl("bottom-bar").add(control);
+          this.getChildControl('bottom-bar').add(control);
           break;
 
-        case "edit-button":
+        case 'edit-button':
           control = new qx.ui.form.Button(
             null,
-            cv.theme.dark.Images.getIcon("preview", 18)
+            cv.theme.dark.Images.getIcon('preview', 18)
           );
-          control.addListener("execute", () => {
-            qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
+
+          control.addListener('execute', () => {
+            qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
               file: this.getModel(),
-              handler: control.getUserData("handlerId")
+              handler: control.getUserData('handlerId')
             });
           });
-          this.getChildControl("bottom-bar").add(control);
+          this.getChildControl('bottom-bar').add(control);
           break;
       }
 
@@ -568,7 +586,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     // overridden
     capture() {
       // do not fire capture method for upload-items (see: com.zenesis.qx.upload.MUploadButton)
-      if (!this.getFile() || this.getFile().getSpecial() !== "add-file") {
+      if (!this.getFile() || this.getFile().getSpecial() !== 'add-file') {
         super.capture();
       }
     },
@@ -576,7 +594,7 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
     // overridden
     releaseCapture() {
       // do not fire capture method for upload-items (see: com.zenesis.qx.upload.MUploadButton)
-      if (!this.getFile() || this.getFile().getSpecial() !== "add-file") {
+      if (!this.getFile() || this.getFile().getSpecial() !== 'add-file') {
         super.releaseCapture();
       }
     }
@@ -588,12 +606,12 @@ qx.Class.define("cv.ui.manager.form.FileListItem", {
   ***********************************************
   */
   destruct() {
-    this.removeListener("pointerover", this._onPointerOver, this);
-    this.removeListener("pointerout", this._onPointerOut, this);
+    this.removeListener('pointerover', this._onPointerOver, this);
+    this.removeListener('pointerout', this._onPointerOut, this);
 
-    this._disposeObjects("_uploadManager");
+    this._disposeObjects('_uploadManager');
     cv.ui.manager.model.Preferences.getInstance().removeListener(
-      "changeDefaultConfigEditor",
+      'changeDefaultConfigEditor',
       this._maintainFileActions,
       this
     );

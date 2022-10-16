@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Text", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Text', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -51,6 +51,6 @@ qx.Class.define("cv.parser.pure.widgets.Text", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("text", statics);
+    cv.parser.pure.WidgetParser.addHandler('text', statics);
   }
 });

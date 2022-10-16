@@ -24,8 +24,8 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.ActionRegistry", {
-  type: "static",
+qx.Class.define('cv.core.notifications.ActionRegistry', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -95,6 +95,7 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
           "no action handler registered for '%1' action type",
           type
         );
+
         return null;
       }
       const actionHandler = new this.__handlers[type](config);

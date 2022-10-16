@@ -20,8 +20,8 @@
 /**
  * Parse &lt;audio;gt; config elements
  */
-qx.Class.define("cv.parser.pure.widgets.Audio", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Audio', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,6 +48,7 @@ qx.Class.define("cv.parser.pure.widgets.Audio", {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
@@ -73,13 +74,13 @@ qx.Class.define("cv.parser.pure.widgets.Audio", {
         height: {},
         autoplay: {
           transform(value) {
-            return value === "autoplay" || value === "true";
+            return value === 'autoplay' || value === 'true';
           }
         },
 
         loop: {
           transform(value) {
-            return value === "loop" || value === "true";
+            return value === 'loop' || value === 'true';
           }
         },
 
@@ -90,6 +91,6 @@ qx.Class.define("cv.parser.pure.widgets.Audio", {
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("audio", statics);
+    cv.parser.pure.WidgetParser.addHandler('audio', statics);
   }
 });

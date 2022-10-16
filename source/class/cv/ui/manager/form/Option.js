@@ -20,7 +20,7 @@
 /**
  * Option model for a VirtualComboBox / -SelectBox
  */
-qx.Class.define("cv.ui.manager.form.Option", {
+qx.Class.define('cv.ui.manager.form.Option', {
   extend: qx.core.Object,
 
   /*
@@ -51,29 +51,29 @@ qx.Class.define("cv.ui.manager.form.Option", {
   */
   properties: {
     type: {
-      check: ["default", "group", "state", "error"],
-      init: "default",
-      event: "changeType"
+      check: ['default', 'group', 'state', 'error'],
+      init: 'default',
+      event: 'changeType'
     },
 
     label: {
-      check: "String",
-      event: "changeLabel"
+      check: 'String',
+      event: 'changeLabel'
     },
 
     icon: {
-      event: "changeIcon",
+      event: 'changeIcon',
       nullable: true
     },
 
     value: {
-      check: "String",
-      event: "changeValue",
+      check: 'String',
+      event: 'changeValue',
       nullable: true
     },
 
     hints: {
-      check: "Object",
+      check: 'Object',
       nullable: true
     }
   }

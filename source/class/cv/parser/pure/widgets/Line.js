@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.Line", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.Line', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -49,12 +49,12 @@ qx.Class.define("cv.parser.pure.widgets.Line", {
     },
 
     getDefaultClasses() {
-      return "";
+      return '';
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("line", statics);
+    cv.parser.pure.WidgetParser.addHandler('line', statics);
   }
 });

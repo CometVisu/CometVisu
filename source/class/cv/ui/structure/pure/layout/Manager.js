@@ -19,8 +19,8 @@
 
 /**
  */
-qx.Class.define("cv.ui.structure.pure.layout.Manager", {
-  type: "static",
+qx.Class.define('cv.ui.structure.pure.layout.Manager', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
     currentPageNavbarVisibility: null,
     oldWidth: -1,
 
-    LAYOUT_MODE: "DEFAULT",
+    LAYOUT_MODE: 'DEFAULT',
 
     COLSPAN_CLASS: null,
 
@@ -58,12 +58,12 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
     // return S, M or L depening on the passed width
     getColspanClass(width) {
       if (width <= cv.Config.maxScreenWidthColspanS) {
-        return "S";
+        return 'S';
       }
       if (width <= cv.Config.maxScreenWidthColspanM) {
-        return "M";
+        return 'M';
       }
-      return "L";
+      return 'L';
     },
 
     adjustColumns() {
@@ -91,13 +91,13 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
       this.currentPageUnavailableWidth = 0;
       const navbarVisibility = this.getCurrentPageNavbarVisibility();
 
-      const left = document.querySelector("#navbarLeft");
+      const left = document.querySelector('#navbarLeft');
       let widthNavbarLeft = 0;
       if (left) {
         const leftRect = left.getBoundingClientRect();
         widthNavbarLeft =
           navbarVisibility.left === true &&
-          window.getComputedStyle(left)["display"] !== "none"
+          window.getComputedStyle(left)['display'] !== 'none'
             ? Math.round(leftRect.right - leftRect.left)
             : 0;
       }
@@ -110,13 +110,13 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
         // OR: we have a mobile device where the nav bar is floating above the other content
         widthNavbarLeft = 0;
       }
-      const right = document.querySelector("#navbarRight");
+      const right = document.querySelector('#navbarRight');
       let widthNavbarRight = 0;
       if (right) {
         const rightRect = right.getBoundingClientRect();
         widthNavbarRight =
           navbarVisibility.right === true &&
-          window.getComputedStyle(right)["display"] !== "none"
+          window.getComputedStyle(right)['display'] !== 'none'
             ? Math.round(rightRect.right - rightRect.left)
             : 0;
       }
@@ -156,20 +156,20 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
       };
 
       const navbarVisibility = this.getCurrentPageNavbarVisibility();
-      const topNav = document.querySelector("#navbarTop");
-      const top = document.querySelector("#top");
-      const bottomNav = document.querySelector("#navbarBottom");
-      const bottom = document.querySelector("#bottom");
+      const topNav = document.querySelector('#navbarTop');
+      const top = document.querySelector('#top');
+      const bottomNav = document.querySelector('#navbarBottom');
+      const bottom = document.querySelector('#bottom');
       const topNavDisplay = topNav
-        ? window.getComputedStyle(topNav)["display"]
-        : "none";
-      const topDisplay = top ? window.getComputedStyle(top)["display"] : "none";
+        ? window.getComputedStyle(topNav)['display']
+        : 'none';
+      const topDisplay = top ? window.getComputedStyle(top)['display'] : 'none';
       const bottomNavDisplay = bottomNav
-        ? window.getComputedStyle(bottomNav)["display"]
-        : "none";
+        ? window.getComputedStyle(bottomNav)['display']
+        : 'none';
       const bottomDisplay = bottom
-        ? window.getComputedStyle(bottom)["display"]
-        : "none";
+        ? window.getComputedStyle(bottom)['display']
+        : 'none';
       const topRect = top ? top.getBoundingClientRect() : emptyRect;
       const topHeight = Math.round(topRect.bottom - topRect.top);
       const topNavRect = topNav ? topNav.getBoundingClientRect() : emptyRect;
@@ -180,31 +180,32 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
       const bottomNavHeight = Math.round(
         bottomNavRect.bottom - bottomNavRect.top
       );
+
       const bottomRect = bottom ? bottom.getBoundingClientRect() : emptyRect;
       const bottomHeight = Math.round(bottomRect.bottom - bottomRect.top);
       const nav_pathRect = document
-        .querySelector(".nav_path")
+        .querySelector('.nav_path')
         .getBoundingClientRect();
       const navPathHeight = Math.round(nav_pathRect.bottom - nav_pathRect.top);
 
-      if (topDisplay !== "none" && topHeight > 0) {
+      if (topDisplay !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
       }
       if (
-        topNavDisplay !== "none" &&
+        topNavDisplay !== 'none' &&
         navbarVisibility.top === true &&
         topNavHeight > 0
       ) {
         this.currentPageUnavailableHeight += topNavHeight;
       }
       if (
-        bottomNavDisplay !== "none" &&
+        bottomNavDisplay !== 'none' &&
         navbarVisibility.bottom === true &&
         bottomNavHeight > 0
       ) {
         this.currentPageUnavailableHeight += bottomNavHeight;
       }
-      if (bottomDisplay !== "none" && bottomHeight > 0) {
+      if (bottomDisplay !== 'none' && bottomHeight > 0) {
         this.currentPageUnavailableHeight += bottomHeight;
       }
       if (this.currentPageUnavailableHeight > 0) {
@@ -215,7 +216,7 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
 
     rowspanClass(rowspan) {
       cv.Config.configSettings.usedRowspans[rowspan] = true;
-      return "rowspan rowspan" + rowspan;
+      return 'rowspan rowspan' + rowspan;
     },
 
     getWidgetColspan(widget, width) {
@@ -232,11 +233,11 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
     },
 
     getLayoutSuffix(width) {
-      let suffix = "";
+      let suffix = '';
       if (width <= cv.Config.maxScreenWidthColspanS) {
-        suffix = "-s";
+        suffix = '-s';
       } else if (width <= cv.Config.maxScreenWidthColspanM) {
-        suffix = "-m";
+        suffix = '-m';
       }
       return suffix;
     },
@@ -250,25 +251,25 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
     applyColumnWidths(selector, includeNavbars) {
       const width = this.getAvailableWidth();
       let mainAreaColspan = cv.Config.defaultColumns;
-      const main = document.querySelector("#main");
+      const main = document.querySelector('#main');
       if (main) {
         const mainAreaColumns =
-          document.querySelector("#main").dataset["columns"];
+          document.querySelector('#main').dataset['columns'];
         if (mainAreaColumns) {
           mainAreaColspan = parseInt(mainAreaColumns);
         }
       }
 
-      const pageSelector = selector ? selector : "#main .activePage";
+      const pageSelector = selector ? selector : '#main .activePage';
       let selectors = [];
 
       if (includeNavbars === true) {
         selectors = [
-          "#navbarTop",
-          "#navbarLeft",
+          '#navbarTop',
+          '#navbarLeft',
           pageSelector,
-          "#navbarRight",
-          "#navbarBottom"
+          '#navbarRight',
+          '#navbarBottom'
         ];
       } else {
         selectors = [pageSelector];
@@ -276,13 +277,14 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
 
       selectors.forEach(function (area) {
         const allContainer = document.querySelectorAll(
-          area + " .widget_container"
+          area + ' .widget_container'
         );
+
         if (allContainer.length > 0) {
           let areaColspan = cv.Config.defaultColumns;
           const areaElement = document.querySelector(area);
           if (areaElement) {
-            const areaColumns = areaElement.dataset["columns"];
+            const areaColumns = areaElement.dataset['columns'];
             if (areaColumns) {
               areaColspan = parseInt(areaColumns);
             }
@@ -292,9 +294,9 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
               cv.ui.structure.WidgetFactory.getInstanceByElement(child);
             const ourColspan = this.getWidgetColspan(widget, width);
 
-            let w = "auto";
+            let w = 'auto';
             if (ourColspan > 0) {
-              w = Math.min(100, (ourColspan / areaColspan) * 100) + "%";
+              w = Math.min(100, (ourColspan / areaColspan) * 100) + '%';
             }
             this.__applyWidthClass(child, w);
           }, this);
@@ -302,23 +304,24 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
 
         // and elements inside groups
         const adjustableElements = document.querySelectorAll(
-          area + " .group .widget_container"
+          area + ' .group .widget_container'
         );
+
         adjustableElements.forEach(function (e) {
           const widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e);
           let ourColspan = this.getWidgetColspan(widget, width);
           if (ourColspan === null) {
             // workaround for nowidget groups
-            const groupChild = cv.util.Tree.getChildWidgets(widget, "group")[0];
+            const groupChild = cv.util.Tree.getChildWidgets(widget, 'group')[0];
             ourColspan = this.getWidgetColspan(groupChild, width);
           }
-          let w = "auto";
+          let w = 'auto';
           if (ourColspan > 0) {
             let groupColspan = mainAreaColspan;
             const parentGroupElement = cv.util.Tree.getParent(
               e,
-              ".widget_container",
-              ".group",
+              '.widget_container',
+              '.group',
               1
             )[0];
             if (parentGroupElement) {
@@ -326,6 +329,7 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
                 cv.ui.structure.WidgetFactory.getInstanceByElement(
                   parentGroupElement.parentNode
                 );
+
               if (parentGroupWidget) {
                 groupColspan = Math.min(
                   mainAreaColspan,
@@ -333,7 +337,7 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
                 );
               }
             }
-            w = Math.min(100, (ourColspan / groupColspan) * 100) + "%"; // in percent
+            w = Math.min(100, (ourColspan / groupColspan) * 100) + '%'; // in percent
           }
           this.__applyWidthClass(e, w);
         }, this);
@@ -341,18 +345,18 @@ qx.Class.define("cv.ui.structure.pure.layout.Manager", {
     },
 
     __applyWidthClass(elem, widthClassSuffix) {
-      if (widthClassSuffix === "auto") {
+      if (widthClassSuffix === 'auto') {
         elem.style.width = widthClassSuffix;
       } else {
         switch (this.LAYOUT_MODE) {
-          case "GRID":
+          case 'GRID':
             // remove all old width related classes
             elem.classList.forEach(function (cssClass) {
-              if (cssClass.startsWith("width-")) {
+              if (cssClass.startsWith('width-')) {
                 elem.classList.remove(cssClass);
               }
             }, this);
-            elem.classList.add("width-" + parseInt(widthClassSuffix));
+            elem.classList.add('width-' + parseInt(widthClassSuffix));
             break;
 
           default:

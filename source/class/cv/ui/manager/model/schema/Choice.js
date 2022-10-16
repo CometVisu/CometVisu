@@ -21,7 +21,7 @@
  * a single choice.
  * may be recursive
  */
-qx.Class.define("cv.ui.manager.model.schema.Choice", {
+qx.Class.define('cv.ui.manager.model.schema.Choice', {
   extend: cv.ui.manager.model.schema.Base,
 
   /*
@@ -42,7 +42,7 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
   properties: {
     type: {
       refine: true,
-      init: "choice"
+      init: 'choice'
     }
   },
 
@@ -61,26 +61,24 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
       super.parse();
       const node = this.getNode();
       const schema = this.getSchema();
-      const subElements = Array.from(node.querySelectorAll(":scope > element"));
+      const subElements = Array.from(node.querySelectorAll(':scope > element'));
       subElements.forEach(elem => {
         const subElement = new cv.ui.manager.model.schema.Element(elem, schema);
         subElement.setSortable(true);
         this._allowedElements[subElement.getName()] = subElement;
       });
-      this._allowedElements["#comment"] =
+      this._allowedElements['#comment'] =
         this.getSchema().getCommentNodeSchemaElement();
 
       // choices
-      Array.from(node.querySelectorAll(":scope > choice")).forEach(
-        grouping => {
-          this._subGroupings.push(
-            new cv.ui.manager.model.schema.Choice(grouping, schema)
-          );
-        }
-      );
+      Array.from(node.querySelectorAll(':scope > choice')).forEach(grouping => {
+        this._subGroupings.push(
+          new cv.ui.manager.model.schema.Choice(grouping, schema)
+        );
+      });
 
       // sequences
-      Array.from(node.querySelectorAll(":scope > sequence")).forEach(
+      Array.from(node.querySelectorAll(':scope > sequence')).forEach(
         grouping => {
           this._subGroupings.push(
             new cv.ui.manager.model.schema.Sequence(grouping, schema)
@@ -89,13 +87,11 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
       );
 
       // groups
-      Array.from(node.querySelectorAll(":scope > group")).forEach(
-        grouping => {
-          this._subGroupings.push(
-            new cv.ui.manager.model.schema.Group(grouping, schema)
-          );
-        }
-      );
+      Array.from(node.querySelectorAll(':scope > group')).forEach(grouping => {
+        this._subGroupings.push(
+          new cv.ui.manager.model.schema.Group(grouping, schema)
+        );
+      });
     },
 
     // overridden
@@ -118,11 +114,11 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
         return this._regexCache;
       }
 
-      let regexString = "(";
+      let regexString = '(';
 
       // create list of allowed elements
       if (nocapture) {
-        regexString += "?:";
+        regexString += '?:';
       }
 
       const elementRegexes = [];
@@ -135,19 +131,19 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
         elementRegexes.push(grouping.getRegex(separator, nocapture));
       });
 
-      regexString += elementRegexes.join("|");
+      regexString += elementRegexes.join('|');
 
-      regexString += ")";
+      regexString += ')';
 
       // append bounds to regex
-      regexString += "{";
+      regexString += '{';
       const bounds = this.getBounds();
       regexString += bounds.min === undefined ? 1 : bounds.min;
-      regexString += ",";
+      regexString += ',';
       if (bounds.max !== Number.POSITIVE_INFINITY) {
         regexString += bounds.max === undefined ? 1 : bounds.max;
       }
-      regexString += "}";
+      regexString += '}';
 
       // fill the cache
       this._regexCache = regexString;
@@ -181,12 +177,12 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
       // all elements allowed directly
       Object.keys(this._allowedElements).forEach(function (name) {
         const item = this._allowedElements[name];
-        let mySortnumber = "x"; // for a choice, sortnumber is always the same
+        let mySortnumber = 'x'; // for a choice, sortnumber is always the same
         if (sortnumber !== undefined) {
-          mySortnumber = sortnumber + "." + mySortnumber;
+          mySortnumber = sortnumber + '.' + mySortnumber;
         }
 
-        if (item.getType() === "element") {
+        if (item.getType() === 'element') {
           namesWithSorting[item.getName()] = mySortnumber;
         } else {
           // go recursive
@@ -198,12 +194,12 @@ qx.Class.define("cv.ui.manager.model.schema.Choice", {
 
       // all elements allowed by subGroupings
       this._subGroupings.forEach(function (item, i) {
-        let mySortnumber = "x"; // for a choice, sortnumber is always the same
+        let mySortnumber = 'x'; // for a choice, sortnumber is always the same
         if (sortnumber !== undefined) {
-          mySortnumber = sortnumber + "." + mySortnumber;
+          mySortnumber = sortnumber + '.' + mySortnumber;
         }
 
-        if (item.getType() === "element") {
+        if (item.getType() === 'element') {
           namesWithSorting[item.getName()] = mySortnumber;
         } else {
           // go recursive

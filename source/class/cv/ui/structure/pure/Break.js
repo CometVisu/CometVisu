@@ -28,7 +28,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.Break", {
+qx.Class.define('cv.ui.structure.pure.Break', {
   extend: cv.ui.structure.pure.AbstractBasicWidget,
 
   /*
@@ -39,11 +39,11 @@ qx.Class.define("cv.ui.structure.pure.Break", {
   members: {
     // overridden
     getDomString() {
-      return "<br/>";
+      return '<br/>';
     }
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("break", statics);
+    cv.ui.structure.WidgetFactory.registerClass('break', statics);
   }
 });

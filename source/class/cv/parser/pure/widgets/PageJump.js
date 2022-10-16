@@ -20,8 +20,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.pure.widgets.PageJump", {
-  type: "static",
+qx.Class.define('cv.parser.pure.widgets.PageJump', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,9 +48,9 @@ qx.Class.define("cv.parser.pure.widgets.PageJump", {
         this.getAttributeToPropertyMappings()
       );
 
-      const widgetInfo = xml.querySelector("widgetinfo > *");
+      const widgetInfo = xml.querySelector('widgetinfo > *');
       if (widgetInfo !== undefined) {
-        data.classes += " infoaction";
+        data.classes += ' infoaction';
       }
 
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
@@ -60,16 +60,16 @@ qx.Class.define("cv.parser.pure.widgets.PageJump", {
 
     getAttributeToPropertyMappings() {
       return {
-        target: { default: "0" },
-        active_scope: { target: "activeScope", default: "target" },
+        target: { default: '0' },
+        active_scope: { target: 'activeScope', default: 'target' },
         name: {},
-        path: { target: "targetPath" }
+        path: { target: 'targetPath' }
       };
     }
   },
 
   defer(statics) {
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler("pagejump", statics);
+    cv.parser.pure.WidgetParser.addHandler('pagejump', statics);
   }
 });

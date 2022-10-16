@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define("cv.ui.structure.tile.components.Menu", {
+qx.Class.define('cv.ui.structure.tile.components.Menu', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
@@ -33,25 +33,25 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
   */
   properties: {
     appearance: {
-      check: ["text", "icons", "dock"],
-      init: "text",
-      apply: "_applyAppearance"
+      check: ['text', 'icons', 'dock'],
+      init: 'text',
+      apply: '_applyAppearance'
     },
 
     depth: {
-      check: "!isNaN(value) && value >= -1 && value <= 100",
+      check: '!isNaN(value) && value >= -1 && value <= 100',
       init: -1,
-      apply: "_applyDepth"
+      apply: '_applyDepth'
     },
 
     domReady: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_generateMenu"
+      apply: '_generateMenu'
     },
 
     showLabels: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     }
   },
@@ -63,12 +63,12 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
   */
   members: {
     _applyAppearance(value, oldValue) {
-      const main = document.querySelector("main");
-      if (oldValue === "dock") {
-        main.classList.remove("has-dock");
+      const main = document.querySelector('main');
+      if (oldValue === 'dock') {
+        main.classList.remove('has-dock');
       }
-      if (value === "dock") {
-        main.classList.add("has-dock");
+      if (value === 'dock') {
+        main.classList.add('has-dock');
       }
     },
 
@@ -81,7 +81,7 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
     _onDomAppended() {
       this.setDomReady(true);
       qx.event.message.Bus.unsubscribe(
-        "setup.dom.append",
+        'setup.dom.append',
         this._onDomAppended,
         this
       );
@@ -89,66 +89,69 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
 
     _init() {
       const element = this._element;
-      const model = element.getAttribute("model");
+      const model = element.getAttribute('model');
       if (!model) {
-        this.error("no model defined, menu will be empty");
+        this.error('no model defined, menu will be empty');
         return;
       }
-      if (element.getAttribute("show-labels") === "false") {
+      if (element.getAttribute('show-labels') === 'false') {
         this.setShowLabels(false);
       }
-      if (model === "pages") {
+      if (model === 'pages') {
         qx.event.message.Bus.subscribe(
-          "setup.dom.append",
+          'setup.dom.append',
           this._onDomAppended,
           this
         );
-        const rootList = document.createElement("ul");
+
+        const rootList = document.createElement('ul');
         element.appendChild(rootList);
 
         // add hamburger menu
-        const ham = document.createElement("a");
-        ham.href = "#";
-        ham.classList.add("menu");
+        const ham = document.createElement('a');
+        ham.href = '#';
+        ham.classList.add('menu');
         ham.onclick = () => this._onHamburgerMenu();
-        const icon = document.createElement("i");
-        icon.classList.add("ri-menu-line");
+        const icon = document.createElement('i');
+        icon.classList.add('ri-menu-line');
         ham.appendChild(icon);
         element.appendChild(ham);
 
         qx.event.message.Bus.subscribe(
-          "cv.ui.structure.tile.currentPage",
+          'cv.ui.structure.tile.currentPage',
           this._onPageChange,
           this
         );
+
         // add some general listeners to close
         qx.event.Registration.addListener(
           document,
-          "pointerdown",
+          'pointerdown',
           this._onPointerDown,
           this
         );
+
         qx.event.Registration.addListener(
           this._element,
-          "swipe",
+          'swipe',
           this._onSwipe,
           this
         );
       } else {
-        this.error("visual-model of type", model, "is not implemented");
+        this.error('visual-model of type', model, 'is not implemented');
       }
     },
 
     _generateMenu() {
       const currentPage = window.location.hash.substring(1);
-      let parentElement = document.querySelector("main");
+      let parentElement = document.querySelector('main');
       if (parentElement) {
-        const firstPage = document.querySelector("cv-page");
+        const firstPage = document.querySelector('cv-page');
         if (firstPage) {
           parentElement = firstPage.parentElement;
         }
       }
-      const rootList = this._element.querySelector(":scope > ul");
+      const rootList = this._element.querySelector(':scope > ul');
       if (rootList) {
         rootList.replaceChildren();
         this.__generatePagesModel(rootList, parentElement, currentPage, 0);
@@ -156,9 +159,9 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
     },
 
     _onHamburgerMenu() {
-      this._element.classList.toggle("responsive");
-      for (let detail of this._element.querySelectorAll("details")) {
-        detail.setAttribute("open", "");
+      this._element.classList.toggle('responsive');
+      for (let detail of this._element.querySelectorAll('details')) {
+        detail.setAttribute('open', '');
       }
     },
 
@@ -169,14 +172,14 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
     _onPointerDown(ev) {
       const target = ev.getTarget();
       if (
-        target.classList.contains("menu") ||
+        target.classList.contains('menu') ||
         (target.parentElement &&
-          target.parentElement.classList.contains("menu"))
+          target.parentElement.classList.contains('menu'))
       ) {
         // clicked in hamburger menu, do nothing
       } else if (
-        target.tagName.toLowerCase() !== "summary" &&
-        target.tagName.toLowerCase() !== "p"
+        target.tagName.toLowerCase() !== 'summary' &&
+        target.tagName.toLowerCase() !== 'p'
       ) {
         // defer closing because it would prevent the link clicks and page selection
         qx.event.Timer.once(this._closeAll, this, 100);
@@ -187,21 +190,21 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
     },
 
     _onSwipe(ev) {
-      if (ev.getDirection() === "left") {
+      if (ev.getDirection() === 'left') {
         // goto next if there is one
-        const next = this._element.querySelector("li.active + li > a");
+        const next = this._element.querySelector('li.active + li > a');
         if (next) {
           next.click();
         }
       } else {
-        const current = this._element.querySelector("li.active");
+        const current = this._element.querySelector('li.active');
         if (
           current &&
           current.previousElementSibling &&
-          current.previousElementSibling.tagName.toLowerCase() === "li"
+          current.previousElementSibling.tagName.toLowerCase() === 'li'
         ) {
           const prev =
-            current.previousElementSibling.querySelector(":scope > a");
+            current.previousElementSibling.querySelector(':scope > a');
           if (prev) {
             prev.click();
           }
@@ -215,12 +218,12 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
      * @private
      */
     _closeAll(except) {
-      if (this._element.classList.contains("responsive")) {
-        this._element.classList.remove("responsive");
+      if (this._element.classList.contains('responsive')) {
+        this._element.classList.remove('responsive');
       } else {
-        for (let detail of this._element.querySelectorAll("details[open]")) {
+        for (let detail of this._element.querySelectorAll('details[open]')) {
           if (!except || detail !== except) {
-            detail.removeAttribute("open");
+            detail.removeAttribute('open');
           }
         }
       }
@@ -231,21 +234,22 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
         return;
       }
       let pages = parentElement.querySelectorAll(
-        ":scope > cv-page:not([menu=\"false\"])"
+        ':scope > cv-page:not([menu="false"])'
       );
+
       for (let page of pages.values()) {
-        const pageId = page.getAttribute("id");
+        const pageId = page.getAttribute('id');
         if (!pageId) {
-          this.error("page has no id, skipping");
+          this.error('page has no id, skipping');
           continue;
         }
-        const pageName = page.getAttribute("name") || "";
-        const pageIcon = page.getAttribute("icon") || "";
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.setAttribute("href", "#" + pageId);
+        const pageName = page.getAttribute('name') || '';
+        const pageIcon = page.getAttribute('icon') || '';
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.setAttribute('href', '#' + pageId);
         if (pageIcon) {
-          const i = document.createElement("i");
+          const i = document.createElement('i');
           i.classList.add(pageIcon);
           i.title = pageName;
           a.appendChild(i);
@@ -255,43 +259,43 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
           a.appendChild(text);
         }
         if (currentPage === pageId) {
-          li.classList.add("active");
+          li.classList.add('active');
         }
         parentList.appendChild(li);
         const depth = this.getDepth();
         if (
           (depth < 0 || depth > currentLevel) &&
-          page.querySelectorAll(":scope > cv-page:not([menu=\"false\"])").length >
+          page.querySelectorAll(':scope > cv-page:not([menu="false"])').length >
             0
         ) {
-          const details = document.createElement("div");
-          details.classList.add("details");
-          const summary = document.createElement("div");
-          summary.classList.add("summary");
-          summary.addEventListener("click", ev => {
-            if (details.hasAttribute("open")) {
-              details.removeAttribute("open");
+          const details = document.createElement('div');
+          details.classList.add('details');
+          const summary = document.createElement('div');
+          summary.classList.add('summary');
+          summary.addEventListener('click', ev => {
+            if (details.hasAttribute('open')) {
+              details.removeAttribute('open');
             } else {
-              details.setAttribute("open", "");
+              details.setAttribute('open', '');
             }
           });
-          a.addEventListener("click", ev => {
+          a.addEventListener('click', ev => {
             // only stop propagation if we are not close to the right border
             if (
-              ev.pointerType !== "touch" ||
+              ev.pointerType !== 'touch' ||
               ev.currentTarget.clientWidth - ev.offsetX >= 8
             ) {
               ev.stopPropagation();
             }
           });
-          const pageIcon = page.getAttribute("icon") || "";
-          if (page.querySelector(":scope > *:not(cv-page)")) {
+          const pageIcon = page.getAttribute('icon') || '';
+          if (page.querySelector(':scope > *:not(cv-page)')) {
             // only add this as link, when this page has real content
             summary.appendChild(a);
           } else {
-            const p = document.createElement("p");
+            const p = document.createElement('p');
             if (pageIcon) {
-              const i = document.createElement("i");
+              const i = document.createElement('i');
               i.classList.add(pageIcon);
               i.title = pageName;
               p.appendChild(i);
@@ -302,7 +306,7 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
             summary.appendChild(p);
           }
           details.appendChild(summary);
-          const subList = document.createElement("ul");
+          const subList = document.createElement('ul');
           details.appendChild(subList);
           this.__generatePagesModel(subList, page, currentPage, currentLevel++);
           li.appendChild(details);
@@ -316,10 +320,10 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
       const pageElement = ev.getData();
       // unset all currently active
       for (let link of this._element.querySelectorAll(
-        "li.active, li.sub-active"
+        'li.active, li.sub-active'
       )) {
-        link.classList.remove("active");
-        link.classList.remove("sub-active");
+        link.classList.remove('active');
+        link.classList.remove('sub-active');
       }
       // find link to current page
       for (let link of this._element.querySelectorAll(
@@ -327,12 +331,12 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
       )) {
         // activate all parents
         let parent = link.parentElement;
-        let activeName = "active";
-        while (parent && parent.tagName.toLowerCase() !== "cv-menu") {
-          if (parent.tagName.toLowerCase() === "li") {
+        let activeName = 'active';
+        while (parent && parent.tagName.toLowerCase() !== 'cv-menu') {
+          if (parent.tagName.toLowerCase() === 'li') {
             parent.classList.add(activeName);
             // all other parents have a sub-menu active
-            activeName = "sub-active";
+            activeName = 'sub-active';
           }
           parent = parent.parentElement;
         }
@@ -348,12 +352,13 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
   destruct() {
     qx.event.Registration.removeListener(
       document,
-      "pointerdown",
+      'pointerdown',
       this._onPointerDown,
       this
     );
+
     qx.event.message.Bus.unsubscribe(
-      "cv.ui.structure.tile.currentPage",
+      'cv.ui.structure.tile.currentPage',
       this._onPageChange,
       this
     );
@@ -361,13 +366,13 @@ qx.Class.define("cv.ui.structure.tile.components.Menu", {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "menu",
+      cv.ui.structure.tile.Controller.PREFIX + 'menu',
       class extends QxConnector {
         constructor() {
           super(QxClass);
         }
         static get observedAttributes() {
-          return ["appearance", "depth"];
+          return ['appearance', 'depth'];
         }
       }
     );

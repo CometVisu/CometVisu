@@ -22,7 +22,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-qx.Class.define("cv.ui.structure.tile.components.Color", {
+qx.Class.define('cv.ui.structure.tile.components.Color', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
@@ -32,9 +32,9 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
   */
   properties: {
     throttleInterval: {
-      check: "Number",
+      check: 'Number',
       init: 250,
-      apply: "_applyThrottleInterval"
+      apply: '_applyThrottleInterval'
     }
   },
 
@@ -49,19 +49,19 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
     _init() {
       super._init();
       const element = this._element;
-      if (element.hasAttribute("throttle-interval")) {
+      if (element.hasAttribute('throttle-interval')) {
         this.setThrottleInterval(
-          parseInt(element.getAttribute("throttle-interval"))
+          parseInt(element.getAttribute('throttle-interval'))
         );
       } else {
         this._applyThrottleInterval(this.getThrottleInterval());
       }
 
       // init components
-      let input = element.querySelector(":scope > input");
+      let input = element.querySelector(':scope > input');
       if (!input) {
-        input = document.createElement("input");
-        input.setAttribute("type", "color");
+        input = document.createElement('input');
+        input.setAttribute('type', 'color');
         element.appendChild(input);
         input.oninput = () => this.__throttled.call();
       }
@@ -90,7 +90,7 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
     },
 
     _updateValue(mappedValue, value) {
-      let target = this._element.querySelector(":scope > .value");
+      let target = this._element.querySelector(':scope > .value');
       const rgb = mappedValue.substring(0, 7);
       if (target) {
         const tagName = target.tagName.toLowerCase();
@@ -100,13 +100,13 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
             : 1.0;
 
         switch (tagName) {
-          case "cv-icon":
+          case 'cv-icon':
             target.style.color = rgb;
             target.style.opacity = Math.max(alpha, 0.05); // do not blend it out totally
             break;
         }
       }
-      const input = this._element.querySelector(":scope > input");
+      const input = this._element.querySelector(':scope > input');
       input.value = rgb; // this input can't handle the alpha value
       if (!target) {
         // only if we do not have another value handler
@@ -122,24 +122,26 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
       if (!handled) {
         const value = ev.detail.state;
         let rgb;
-        let alpha = "";
+        let alpha = '';
         switch (ev.detail.variant) {
-          case "hsv":
+          case 'hsv':
             rgb = qx.util.ColorUtil.hsbToRgb([
-              value.get("h"),
-              value.get("s"),
+              value.get('h'),
+              value.get('s'),
               100
             ]);
-            alpha = Math.round((value.get("v") / 100) * 255)
+
+            alpha = Math.round((value.get('v') / 100) * 255)
               .toString(16)
-              .padStart(2, "0");
+              .padStart(2, '0');
             this.setValue(
-              `#${rgb[0].toString(16).padStart(2, "0")}${rgb[1]
+              `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1]
                 .toString(16)
-                .padStart(2, "0")}${rgb[2]
+                .padStart(2, '0')}${rgb[2]
                 .toString(16)
-                .padStart(2, "0")}${alpha}`
+                .padStart(2, '0')}${alpha}`
             );
+
             break;
         }
       }
@@ -153,12 +155,12 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
       ]);
 
       const hsv = new Map([
-        ["h", hsvArray[0]],
-        ["s", hsvArray[1]],
-        ["v", hsvArray[2]]
+        ['h', hsvArray[0]],
+        ['s', hsvArray[1]],
+        ['v', hsvArray[2]]
       ]);
 
-      const ev = new CustomEvent("sendState", {
+      const ev = new CustomEvent('sendState', {
         detail: {
           value: hsv,
           source: this
@@ -166,14 +168,14 @@ qx.Class.define("cv.ui.structure.tile.components.Color", {
       });
 
       this._writeAddresses
-        .filter(addr => addr.getAttribute("variant") === "hsv")
+        .filter(addr => addr.getAttribute('variant') === 'hsv')
         .forEach(address => address.dispatchEvent(ev));
     }
   },
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + "color",
+      cv.ui.structure.tile.Controller.PREFIX + 'color',
       class extends QxConnector {
         constructor() {
           super(QxClass);

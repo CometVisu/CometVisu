@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.Video", {
+qx.Class.define('cv.ui.structure.pure.Video', {
   extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
@@ -32,10 +32,10 @@ qx.Class.define("cv.ui.structure.pure.Video", {
   ******************************************************
   */
   properties: {
-    width: { check: "String", nullable: true },
-    height: { check: "String", nullable: true },
-    src: { check: "String", init: "" },
-    autoplay: { check: "Boolean", init: false }
+    width: { check: 'String', nullable: true },
+    height: { check: 'String', nullable: true },
+    src: { check: 'String', init: '' },
+    autoplay: { check: 'Boolean', init: false }
   },
 
   /*
@@ -47,30 +47,30 @@ qx.Class.define("cv.ui.structure.pure.Video", {
     // overridden
     _getInnerDomString() {
       // create the actor
-      let style = "";
+      let style = '';
       if (this.getWidth()) {
-        style += "width:" + this.getWidth() + ";";
+        style += 'width:' + this.getWidth() + ';';
       }
       if (this.getHeight()) {
-        style += "height:" + this.getHeight() + ";";
+        style += 'height:' + this.getHeight() + ';';
       }
-      if (style !== "") {
-        style = "style=\"" + style + "\"";
+      if (style !== '') {
+        style = 'style="' + style + '"';
       }
-      const autoplay = this.isAutoplay() ? " autoplay=\"autoplay\"" : "";
+      const autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : '';
       return (
-        "<div class=\"actor\"><video src=\"" +
+        '<div class="actor"><video src="' +
         this.getSrc() +
-        "\" " +
+        '" ' +
         style +
         autoplay +
-        "  controls=\"controls\" /></div>"
+        '  controls="controls" /></div>'
       );
     },
 
     // overridden
     getValueElement() {
-      return this.getDomElement().querySelector("video");
+      return this.getDomElement().querySelector('video');
     },
 
     // overridden

@@ -20,7 +20,7 @@
 /**
  * Add the address property to widgets
  */
-qx.Mixin.define("cv.ui.common.HasAddress", {
+qx.Mixin.define('cv.ui.common.HasAddress', {
   /*
    ******************************************************
    PROPERTIES
@@ -31,7 +31,7 @@ qx.Mixin.define("cv.ui.common.HasAddress", {
      * Map of addresses (KNX-GA's or openHAB item names) this widget communicates with
      */
     address: {
-      check: "Object",
+      check: 'Object',
       init: {}
     }
   }

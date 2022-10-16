@@ -24,9 +24,9 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define("cv.data.Model", {
+qx.Class.define('cv.data.Model', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -65,8 +65,8 @@ qx.Class.define("cv.data.Model", {
   */
   properties: {
     defaultBackendName: {
-      check: "String",
-      init: "main"
+      check: 'String',
+      init: 'main'
     }
   },
 
@@ -115,6 +115,7 @@ qx.Class.define("cv.data.Model", {
         this.__states[backendName],
         address
       );
+
       const changed = initial || this.__states[backendName][address] !== state;
       this.__states[backendName][address] = state;
       // notify listeners
@@ -176,9 +177,9 @@ qx.Class.define("cv.data.Model", {
         }, this);
       } else {
         this.warn(
-          "no addresses registered for backend \"" +
+          'no addresses registered for backend "' +
             backendName +
-            "\", skipping update"
+            '", skipping update'
         );
       }
     },
@@ -343,10 +344,10 @@ qx.Class.define("cv.data.Model", {
      */
     getWidgetDataByElement(element) {
       const parent = element.parentNode;
-      let path = parent.getAttribute("id");
+      let path = parent.getAttribute('id');
 
       if (path === undefined) {
-        path = parent.parentNode.getAttribute("id");
+        path = parent.parentNode.getAttribute('id');
       }
       return this.getWidgetData(path);
     },

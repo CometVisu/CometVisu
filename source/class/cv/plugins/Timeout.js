@@ -23,7 +23,7 @@
  * @author Carsten Tschach (Carsten@Tschach.com)
  * @since 2012
  */
-qx.Class.define("cv.plugins.Timeout", {
+qx.Class.define('cv.plugins.Timeout', {
   extend: cv.ui.structure.pure.AbstractBasicWidget,
 
   /*
@@ -66,12 +66,12 @@ qx.Class.define("cv.plugins.Timeout", {
 
     getAttributeToPropertyMappings() {
       return {
-        target: { default: "id_" },
+        target: { default: 'id_' },
         time: { default: 600, transform: parseFloat },
         debug: {
           default: false,
           transform(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -85,17 +85,17 @@ qx.Class.define("cv.plugins.Timeout", {
    */
   properties: {
     target: {
-      check: "String",
-      init: "id_"
+      check: 'String',
+      init: 'id_'
     },
 
     time: {
-      check: "Number",
+      check: 'Number',
       init: 600
     },
 
     debug: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -114,40 +114,40 @@ qx.Class.define("cv.plugins.Timeout", {
 
     __initialize() {
       if (this.isDebug()) {
-        this.debug("Timeout Set to : " + this.getTime());
-        this.debug("Target Page: " + this.getTarget());
+        this.debug('Timeout Set to : ' + this.getTime());
+        this.debug('Target Page: ' + this.getTarget());
       }
 
       const deltaT = this.getTime() * 100;
       this.__timer = new qx.event.Timer(deltaT);
-      this.__timer.addListener("interval", this.timeoutTrigger, this);
+      this.__timer.addListener('interval', this.timeoutTrigger, this);
       this.__timer.start();
 
       // Reset Counter on every interaction
       qx.event.Registration.addListener(
         window,
-        "useraction",
+        'useraction',
         this._onUserAction,
         this
       );
 
       // Keep track of current page
       qx.event.message.Bus.subscribe(
-        "path.pageChanged",
+        'path.pageChanged',
         function (ev) {
           const path = ev.getData();
           this.__timeoutCurrentPage = path;
           this.__timeoutCurrentPageTitle = document.querySelector(
-            "#" + path + " div > h1"
+            '#' + path + ' div > h1'
           ).innerText;
           this.__timeoutIdleCount = 0;
           /* We could trun on and off the above binds if we are already on the right page
-          if (timeoutCurrentPage === timeoutTargetPage) {
-         console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
-         } else {
-         console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
-         }
-         */
+        if (timeoutCurrentPage === timeoutTargetPage) {
+        console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
+        } else {
+        console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
+        }
+        */
         },
         this
       );
@@ -159,7 +159,7 @@ qx.Class.define("cv.plugins.Timeout", {
 
     timeoutTrigger() {
       if (this.isDebug()) {
-        this.debug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
+        this.debug('TIMEOUT: Got Trigger (' + this.__timeoutIdleCount + ')');
       }
       this.__timeoutIdleCount++;
       this.__timeoutTargetPage = this.getTarget();
@@ -173,7 +173,7 @@ qx.Class.define("cv.plugins.Timeout", {
         ) {
           if (this.isDebug()) {
             this.debug(
-              "TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage
+              'TIMEOUT: Got Timeout - Now Goto Page ' + this.__timeoutTargetPage
             );
           }
           pageNavigationHandler.scrollToPage(this.__timeoutTargetPage);
@@ -181,7 +181,7 @@ qx.Class.define("cv.plugins.Timeout", {
           //templateEngine.updateTopNavigation();
         } else {
           if (this.isDebug()) {
-            this.debug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
+            this.debug('TIMEOUT: Already on page ' + this.__timeoutTargetPage);
           }
           pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
         }
@@ -195,11 +195,11 @@ qx.Class.define("cv.plugins.Timeout", {
   ******************************************************
   */
   destruct() {
-    this._disposeObjects("__timer");
+    this._disposeObjects('__timer');
   },
 
   defer(statics) {
-    cv.parser.pure.WidgetParser.addHandler("timeout", cv.plugins.Timeout);
-    cv.ui.structure.WidgetFactory.registerClass("timeout", statics);
+    cv.parser.pure.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
+    cv.ui.structure.WidgetFactory.registerClass('timeout', statics);
   }
 });

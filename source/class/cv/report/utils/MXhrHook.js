@@ -20,14 +20,14 @@
 /**
  * This mixin patches {qx.io.request.Xhr} to get noticed about every XHR request to record its response.
  */
-qx.Mixin.define("cv.report.utils.MXhrHook", {
+qx.Mixin.define('cv.report.utils.MXhrHook', {
   /*
   ******************************************************
     CONSTRUCTOR
   ******************************************************
   */
   construct() {
-    this.addListener("changePhase", this._onPhaseChange, this);
+    this.addListener('changePhase', this._onPhaseChange, this);
   },
 
   /*
@@ -63,10 +63,10 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
       let delay;
       const url = cv.report.Record.normalizeUrl(this._getConfiguredUrl());
 
-      if (ev.getData() === "opened") {
+      if (ev.getData() === 'opened') {
         this.__sendTime = Date.now();
         // calculate Hash value for request
-        cv.report.Record.record(cv.report.Record.XHR, "request", {
+        cv.report.Record.record(cv.report.Record.XHR, 'request', {
           url: url,
           method: this.getMethod(),
           headers: this._getAllRequestHeaders(),
@@ -78,19 +78,19 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
           cv.report.utils.MXhrHook.PENDING[hash] = [];
         }
         cv.report.utils.MXhrHook.PENDING[hash].push(url);
-      } else if (ev.getData() === "load") {
+      } else if (ev.getData() === 'load') {
         if (!this.__sendTime) {
           this.error(
-            "response received without sendTime set. Not possible to calculate correct delay"
+            'response received without sendTime set. Not possible to calculate correct delay'
           );
         }
         // response has been received (successful or not) -> log it
         const headers = {};
         this.getAllResponseHeaders()
           .trim()
-          .split("\r\n")
+          .split('\r\n')
           .forEach(function (entry) {
-            const parts = entry.split(": ");
+            const parts = entry.split(': ');
             headers[parts[0]] = parts[1];
           });
         delay = Date.now() - this.__sendTime;
@@ -100,7 +100,7 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
         // do not log 404 answers as the fake server sends them automatically
         // end the logged ones break the replay for some reason
         if (this.getStatus() !== 404) {
-          cv.report.Record.record(cv.report.Record.XHR, "response", {
+          cv.report.Record.record(cv.report.Record.XHR, 'response', {
             url: url,
             method: this.getMethod(),
             status: this.getStatus(),
@@ -108,7 +108,7 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
             headers: headers,
             body: this.getTransport().responseText,
             hash: hash,
-            phase: "load"
+            phase: 'load'
           });
         }
         this.__sendTime = null;
@@ -118,15 +118,15 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
         if (cv.report.utils.MXhrHook.PENDING[hash].length === 0) {
           delete cv.report.utils.MXhrHook.PENDING[hash];
         }
-      } else if (ev.getData() === "abort") {
+      } else if (ev.getData() === 'abort') {
         delay = Date.now() - this.__sendTime;
 
         // request aborted, maybe by watchdog
-        cv.report.Record.record(cv.report.Record.XHR, "response", {
+        cv.report.Record.record(cv.report.Record.XHR, 'response', {
           url: url,
           delay: delay,
           hash: hash,
-          phase: "abort"
+          phase: 'abort'
         });
 
         // delete pending request

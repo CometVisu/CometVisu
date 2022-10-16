@@ -20,7 +20,7 @@
 /**
  * Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.
  */
-qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
+qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
   /*
   ***********************************************
     PROPERTIES
@@ -28,9 +28,9 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
   */
   properties: {
     refresh: {
-      check: "Number",
+      check: 'Number',
       init: 0,
-      apply: "_applyRefresh"
+      apply: '_applyRefresh'
     }
   },
 
@@ -50,8 +50,8 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
         }
       } else if (!this._refreshTimer) {
         this._refreshTimer = new qx.event.Timer(value * 1000);
-        this._refreshTimer.addListener("interval", this.__doRefresh, this);
-        if (typeof this.isVisible === "function") {
+        this._refreshTimer.addListener('interval', this.__doRefresh, this);
+        if (typeof this.isVisible === 'function') {
           if (this.isVisible()) {
             this._refreshTimer.start();
           }
@@ -84,11 +84,11 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
     },
 
     __doRefresh() {
-      if (typeof this.refresh === "function") {
+      if (typeof this.refresh === 'function') {
         this.refresh();
         this._lastRefresh = Date.now();
       } else {
-        this.error("refresh method must be implemented!");
+        this.error('refresh method must be implemented!');
       }
     }
   },
@@ -99,6 +99,6 @@ qx.Mixin.define("cv.ui.structure.tile.MRefresh", {
   ***********************************************
   */
   destruct() {
-    this._disposeObjects("_refreshTimer");
+    this._disposeObjects('_refreshTimer');
   }
 });

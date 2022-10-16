@@ -21,7 +21,7 @@
  * Detects dom elements visibility
  * @ignore(IntersectionObserver)
  */
-qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
+qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
   /*
   ***********************************************
     CONSTRUCTOR
@@ -53,9 +53,9 @@ qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
   */
   properties: {
     visible: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyVisible"
+      apply: '_applyVisible'
     }
   },
 
@@ -69,7 +69,7 @@ qx.Mixin.define("cv.ui.structure.tile.MVisibility", {
       if (this._element) {
         cv.ui.structure.tile.MVisibility.observer.observe(this._element);
       } else {
-        this.warn("no element to observe defined");
+        this.warn('no element to observe defined');
       }
     }
   }

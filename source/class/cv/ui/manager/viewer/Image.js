@@ -21,7 +21,7 @@
 /**
  * Show images.
  */
-qx.Class.define("cv.ui.manager.viewer.Image", {
+qx.Class.define('cv.ui.manager.viewer.Image', {
   extend: cv.ui.manager.viewer.AbstractViewer,
 
   /*
@@ -32,7 +32,7 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
   properties: {
     appearance: {
       refine: true,
-      init: "image-viewer"
+      init: 'image-viewer'
     }
   },
 
@@ -42,9 +42,9 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: ["jpg", "jpeg", "png", "gif", "svg"],
-    TITLE: qx.locale.Manager.tr("Show image"),
-    ICON: cv.theme.dark.Images.getIcon("image", 18),
+    SUPPORTED_FILES: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
+    TITLE: qx.locale.Manager.tr('Show image'),
+    ICON: cv.theme.dark.Images.getIcon('image', 18),
 
     /**
      * Returns size information for images
@@ -66,6 +66,7 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
           {
             aspectRatio: data.width / data.height
           },
+
           data
         );
       }
@@ -81,39 +82,40 @@ qx.Class.define("cv.ui.manager.viewer.Image", {
   */
   members: {
     _applyFile(file) {
-      const control = this.getChildControl("image");
+      const control = this.getChildControl('image');
       if (file) {
         control.setIcon(file.getServerPath());
         control.setLabel(file.getFullPath());
         if (!cv.ui.manager.viewer.Image.getImageData(file.getServerPath())) {
           control
-            .getChildControl("icon")
-            .addListenerOnce("loaded", this._scaleImage, this);
+            .getChildControl('icon')
+            .addListenerOnce('loaded', this._scaleImage, this);
         } else {
           this._scaleImage();
         }
-        this.addListener("resize", this._scaleImage, this);
+        this.addListener('resize', this._scaleImage, this);
       } else {
         control.resetIcon();
         control.resetLabel();
-        this.removeListener("resize", this._scaleImage, this);
+        this.removeListener('resize', this._scaleImage, this);
       }
     },
 
     _scaleImage() {
       const bounds = this.getBounds();
       if (!bounds) {
-        this.addListenerOnce("appear", this._scaleImage, this);
+        this.addListenerOnce('appear', this._scaleImage, this);
         return;
       }
       const file = this.getFile();
       if (!file) {
         return;
       }
-      const icon = this.getChildControl("image").getChildControl("icon");
+      const icon = this.getChildControl('image').getChildControl('icon');
       const data = cv.ui.manager.viewer.Image.getImageData(
         file.getServerPath()
       );
+
       const paddingX = 10;
       const paddingY = 20;
       const availableHeight = bounds.height - paddingY * 2;
