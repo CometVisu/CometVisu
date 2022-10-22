@@ -285,7 +285,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      * It is injected by the project using the client.
      * @param json
      */
-    update(json) {}, // jshint ignore:line
+    update(json) {},
 
     /**
      * Can be overridden to record client communication with backend

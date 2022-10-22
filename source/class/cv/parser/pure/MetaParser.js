@@ -104,8 +104,6 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       if (formula.length > 0) {
         mapping.formulaSource = formula[0].textContent;
         mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
-
-        // jshint ignore:line
       }
       const subElements = elem.querySelectorAll('entry');
       subElements.forEach(function (subElem) {

@@ -45,7 +45,7 @@ qx.Class.define('cv.transforms.OpenHab', {
         name: 'OH_Switch',
         encode(phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'ON' : 'OFF'; // jshint ignore:line
+          return phy == 1 ? 'ON' : 'OFF';
         },
         decode(string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {
@@ -59,7 +59,7 @@ qx.Class.define('cv.transforms.OpenHab', {
         name: 'OH_PlayPause',
         encode(phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'PLAY' : 'PAUSE'; // jshint ignore:line
+          return phy == 1 ? 'PLAY' : 'PAUSE';
         },
         decode(string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {
@@ -73,7 +73,7 @@ qx.Class.define('cv.transforms.OpenHab', {
         name: 'OH_Contact',
         encode(phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'OPEN' : 'CLOSED'; // jshint ignore:line
+          return phy == 1 ? 'OPEN' : 'CLOSED';
         },
         decode(string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {

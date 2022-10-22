@@ -445,7 +445,7 @@ qx.Class.define('cv.plugins.Clock', {
           if (event.buttons > 0) {
             this.dragHelper(event);
             break;
-          } // jshint ignore:line
+          }
         // pass through to end drag when no buttons are pressed anymore
 
         // eslint-disable-next-line no-fallthrough

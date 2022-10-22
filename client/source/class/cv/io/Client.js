@@ -670,14 +670,14 @@ qx.Class.define('cv.io.Client', {
       this.getCurrentTransport().abort();
     },
 
-    update(json) {}, // jshint ignore:line
+    update(json) {},
 
     /**
      * Can be overridden to record client communication with backend
      * @param type {String} type of event to record
      * @param data {Object} data to record
      */
-    record(type, data) {}, // jshint ignore:line
+    record(type, data) {},
 
     /**
      * Can be overridden to provide an error handler for client errors
@@ -685,7 +685,7 @@ qx.Class.define('cv.io.Client', {
      * @param message {String} detailed error message
      * @param args
      */
-    showError(type, message, args) {}, // jshint ignore:line
+    showError(type, message, args) {},
 
     hasProvider(name) {
       return false;

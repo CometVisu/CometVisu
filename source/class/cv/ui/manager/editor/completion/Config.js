@@ -282,7 +282,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       // get all attributes for the element
       const attrs = element.getAllowedAttributes();
       Object.getOwnPropertyNames(attrs).forEach(function (name) {
-        // jshint ignore:line
         const attr = attrs[name];
         // accept it in a suggestion list only the attribute is not used yet
         if (usedChildTags.indexOf(attr.name) === -1) {

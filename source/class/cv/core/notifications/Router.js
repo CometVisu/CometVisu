@@ -250,7 +250,7 @@ qx.Class.define('cv.core.notifications.Router', {
         };
 
         if (Object.prototype.hasOwnProperty.call(config, 'condition')) {
-          message.condition = state == config.condition; // jshint ignore:line
+          message.condition = state == config.condition;
         }
         if (config.icon) {
           message.icon = config.icon;

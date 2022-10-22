@@ -166,14 +166,14 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * by subclasses
      * @param ev {Event} pointerdown event
      */
-    downaction(ev) {}, // jshint ignore:line
+    downaction(ev) {},
 
     /**
      * Default action for tap events, does nothing but can be overridden
      * by subclasses
      * @param ev {Event} tap event
      */
-    action(ev) {}, // jshint ignore:line
+    action(ev) {},
 
     /**
      * Triggered by the <code>setup.dom.finished</code> bus event

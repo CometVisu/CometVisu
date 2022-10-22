@@ -61,11 +61,9 @@ qx.Class.define('cv.parser.pure.widgets.Slide', {
           const transform = elem.getAttribute('transform');
           if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
             if (!(datatype_min > cv.Transform.registry[transform].range.min)) {
-              // jshint ignore:line
               datatype_min = cv.Transform.registry[transform].range.min;
             }
             if (!(datatype_max < cv.Transform.registry[transform].range.max)) {
-              // jshint ignore:line
               datatype_max = cv.Transform.registry[transform].range.max;
             }
           }

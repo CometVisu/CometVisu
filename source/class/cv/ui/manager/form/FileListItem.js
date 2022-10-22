@@ -296,7 +296,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
                 break;
 
               case 'js':
-                type = qx.lang.String.firstUp(type); // jshint ignore:line
+                type = qx.lang.String.firstUp(type);
               // eslint-disable-next-line no-fallthrough
               case 'css':
               case 'conf':

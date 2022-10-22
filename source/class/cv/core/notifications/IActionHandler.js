@@ -35,7 +35,7 @@ qx.Interface.define('cv.core.notifications.IActionHandler', {
      *
      * @param ev {Event}
      */
-    handleAction(ev) {}, // jshint ignore:line
+    handleAction(ev) {},
 
     /**
      * Get a DOM element which usually starts the action

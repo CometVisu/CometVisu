@@ -403,7 +403,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
-    update(json) {}, // jshint ignore:line
+    update(json) {},
     record(type, data) {},
     showError(type, message, args) {},
 

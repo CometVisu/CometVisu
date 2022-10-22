@@ -47,7 +47,6 @@ qx.Class.define('cv.io.Reflection', {
           let thisNumber;
           // eslint-disable-next-line no-cond-assign
           while ((thisNumber = id.shift())) {
-            // jshint ignore:line
             if (!(thisNumber in thisEntry)) {
               thisEntry[thisNumber] = {};
             }

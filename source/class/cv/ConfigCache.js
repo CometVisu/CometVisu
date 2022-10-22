@@ -122,8 +122,6 @@ qx.Class.define('cv.ConfigCache', {
             const mapping = cv.Config.configSettings.mappings[name];
             if (mapping && mapping.formulaSource) {
               mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
-
-              // jshint ignore:line
             } else {
               Object.keys(mapping).forEach(key => {
                 if (key === 'range') {

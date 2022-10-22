@@ -214,7 +214,6 @@ qx.Class.define('cv.plugins.openhab.Settings', {
       Object.getOwnPropertyNames(items).some(function (name) {
         // noinspection EqualityComparisonWithCoercionJS
         if (this.__initialValues[name] != items[name].getValue()) {
-          // jshint ignore:line
           this.debug(name + ' has changed from ' + this.__initialValues[name] + ' to ' + items[name].getValue());
 
           modified = true;
