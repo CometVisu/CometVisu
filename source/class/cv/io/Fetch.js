@@ -39,10 +39,7 @@ qx.Class.define('cv.io.Fetch', {
      */
     fetch(resource, options = {}, proxy = false, client = undefined) {
       if (proxy) {
-        const url = new URL(
-          cv.io.rest.Client.getBaseUrl() + '/proxy',
-          window.location.origin
-        );
+        const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
 
         url.searchParams.set('url', resource);
         resource = url;

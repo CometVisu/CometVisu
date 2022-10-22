@@ -196,8 +196,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
   },
 
   statics: {
-    PLACEHOLDER_IMAGE:
-      'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+    PLACEHOLDER_IMAGE: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
   },
 
   /*
@@ -284,10 +283,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
         }
 
         if (value) {
-          el.setStyle(
-            'color',
-            qx.theme.manager.Color.getInstance().resolve(value)
-          );
+          el.setStyle('color', qx.theme.manager.Color.getInstance().resolve(value));
         } else {
           el.removeStyle('color');
         }
@@ -310,10 +306,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           left: this.getPaddingLeft() || 0
         });
       } else if (element instanceof qx.html.Image) {
-        element.setPadding(
-          this.getPaddingLeft() || 0,
-          this.getPaddingTop() || 0
-        );
+        element.setPadding(this.getPaddingLeft() || 0, this.getPaddingTop() || 0);
       }
     },
 
@@ -323,14 +316,8 @@ qx.Class.define('cv.ui.manager.basic.Image', {
       const element = this.getContentElement();
       if (this.__wrapper) {
         element.getChild(0).setStyles({
-          width:
-            width -
-            (this.getPaddingLeft() || 0) -
-            (this.getPaddingRight() || 0),
-          height:
-            height -
-            (this.getPaddingTop() || 0) -
-            (this.getPaddingBottom() || 0),
+          width: width - (this.getPaddingLeft() || 0) - (this.getPaddingRight() || 0),
+          height: height - (this.getPaddingTop() || 0) - (this.getPaddingBottom() || 0),
           top: this.getPaddingTop() || 0,
           left: this.getPaddingLeft() || 0
         });
@@ -397,11 +384,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
             isPng = source.endsWith('.png');
           }
 
-          if (
-            this.getScale() &&
-            isPng &&
-            qx.core.Environment.get('css.alphaimageloaderneeded')
-          ) {
+          if (this.getScale() && isPng && qx.core.Environment.get('css.alphaimageloaderneeded')) {
             this.__mode = 'alphaScaled';
           } else if (this.getScale() || this.getForceScale()) {
             this.__mode = 'scaled';
@@ -487,8 +470,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
       const mode = this.__getMode();
 
       if (!this.__contentElements[mode]) {
-        this.__contentElements[mode] =
-          this.__createSuitableContentElement(mode);
+        this.__contentElements[mode] = this.__createSuitableContentElement(mode);
       }
 
       const element = this.__contentElements[mode];
@@ -529,10 +511,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           qx.core.Environment.get('browser.documentmode') < 9)
       ) {
         const repeat = this.getScale() ? 'scale' : 'no-repeat';
-        element.tagNameHint = qx.bom.element.Decoration.getTagName(
-          repeat,
-          source
-        );
+        element.tagNameHint = qx.bom.element.Decoration.getTagName(repeat, source);
       }
 
       const contentEl = this.__getContentElement();
@@ -547,8 +526,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
       } else if (source && source.startsWith('<svg')) {
         this.__setManagedImage(contentEl, source);
       } else if (ResourceManager.has(source)) {
-        const highResolutionSource =
-          ResourceManager.findHighResolutionSource(source);
+        const highResolutionSource = ResourceManager.findHighResolutionSource(source);
         if (highResolutionSource) {
           const imageWidth = ResourceManager.getImageWidth(source);
           const imageHeight = ResourceManager.getImageHeight(source);
@@ -557,10 +535,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
 
           // set background size on current element (div or img)
           const backgroundSize = imageWidth + 'px, ' + imageHeight + 'px';
-          this.__currentContentElement.setStyle(
-            'background-size',
-            backgroundSize
-          );
+          this.__currentContentElement.setStyle('background-size', backgroundSize);
 
           this.setSource(highResolutionSource);
           source = highResolutionSource;
@@ -616,9 +591,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
      */
     __checkForContentElementSwitch: qx.core.Environment.select('engine.name', {
       mshtml(source) {
-        const alphaImageLoader = qx.core.Environment.get(
-          'css.alphaimageloaderneeded'
-        );
+        const alphaImageLoader = qx.core.Environment.get('css.alphaimageloaderneeded');
 
         const isPng = source.endsWith('.png');
         const isFont = source.startsWith('@');
@@ -641,9 +614,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           this.__setMode('nonScaled');
         }
 
-        this.__checkForContentElementReplacement(
-          this.__getSuitableContentElement()
-        );
+        this.__checkForContentElementReplacement(this.__getSuitableContentElement());
       },
 
       default(source) {
@@ -661,9 +632,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           this.__setMode('nonScaled');
         }
 
-        this.__checkForContentElementReplacement(
-          this.__getSuitableContentElement()
-        );
+        this.__checkForContentElementReplacement(this.__getSuitableContentElement());
       }
     }),
 
@@ -701,18 +670,12 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           }
 
           const insets = this.getInsets();
-          styles.left =
-            parseInt(currentContentElement.getStyle('left') || insets.left) +
-            pixel;
-          styles.top =
-            parseInt(currentContentElement.getStyle('top') || insets.top) +
-            pixel;
+          styles.left = parseInt(currentContentElement.getStyle('left') || insets.left) + pixel;
+          styles.top = parseInt(currentContentElement.getStyle('top') || insets.top) + pixel;
 
           styles.zIndex = 10;
 
-          const newEl = this.__wrapper
-            ? elementToAdd.getChild(0)
-            : elementToAdd;
+          const newEl = this.__wrapper ? elementToAdd.getChild(0) : elementToAdd;
           newEl.setStyles(styles, true);
           newEl.setSelectable(this.getSelectable());
 
@@ -731,9 +694,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           const container = currentContentElement.getParent();
 
           if (container) {
-            const index = container
-              .getChildren()
-              .indexOf(currentContentElement);
+            const index = container.getChildren().indexOf(currentContentElement);
             container.removeAt(index);
             container.addAt(elementToAdd, index);
           }
@@ -758,12 +719,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           // copy event listeners
           const listeners = currentContentElement.getListeners() || [];
           listeners.forEach(function (listenerData) {
-            elementToAdd.addListener(
-              listenerData.type,
-              listenerData.handler,
-              listenerData.self,
-              listenerData.capture
-            );
+            elementToAdd.addListener(listenerData.type, listenerData.handler, listenerData.self, listenerData.capture);
           });
 
           if (currentDomEl && newDomEl) {
@@ -821,15 +777,10 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           width = this.getWidth() || hint.width;
           height = this.getHeight() || hint.height;
         } else {
-          const font = qx.theme.manager.Font.getInstance().resolve(
-            source.match(/@([^/]+)/)[1]
-          );
+          const font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
 
           if (qx.core.Environment.get('qx.debug')) {
-            this.assertObject(
-              font,
-              'Virtual image source contains unkown font descriptor'
-            );
+            this.assertObject(font, 'Virtual image source contains unkown font descriptor');
           }
           const size = parseInt(source.split('/')[2] || font.getSize(), 10);
           width = ResourceManager.getImageWidth(source) || size;
@@ -849,18 +800,14 @@ qx.Class.define('cv.ui.manager.basic.Image', {
         this.__setSource(el, source);
 
         // Compare with old sizes and relayout if necessary
-        this.__updateContentHint(
-          ResourceManager.getImageWidth(source),
-          ResourceManager.getImageHeight(source)
-        );
+        this.__updateContentHint(ResourceManager.getImageWidth(source), ResourceManager.getImageHeight(source));
       }
     },
 
     _applyDimension() {
       super._applyDimension();
 
-      const isFont =
-        this.getSource() && qx.lang.String.startsWith(this.getSource(), '@');
+      const isFont = this.getSource() && qx.lang.String.startsWith(this.getSource(), '@');
       if (isFont) {
         const el = this.getContentElement();
         if (el) {
@@ -870,9 +817,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
             const height = this.getHeight() || hint.height || 40;
             el.setStyle('fontSize', (width > height ? height : width) + 'px');
           } else {
-            const font = qx.theme.manager.Font.getInstance().resolve(
-              this.getSource().match(/@([^/]+)/)[1]
-            );
+            const font = qx.theme.manager.Font.getInstance().resolve(this.getSource().match(/@([^/]+)/)[1]);
 
             el.setStyle('fontSize', font.getSize() + 'px');
           }
@@ -913,10 +858,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
         // loading external images via HTTP/HTTPS is a common usecase, as is
         // using data URLs.
         const sourceLC = source.toLowerCase();
-        if (
-          !sourceLC.startsWith('http') &&
-          !sourceLC.startsWith('data:image/')
-        ) {
+        if (!sourceLC.startsWith('http') && !sourceLC.startsWith('data:image/')) {
           const self = this.self(arguments);
 
           if (!self.__warned) {
@@ -979,9 +921,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
         }
 
         const ResourceManager = qx.util.ResourceManager.getInstance();
-        const font = qx.theme.manager.Font.getInstance().resolve(
-          source.match(/@([^/]+)/)[1]
-        );
+        const font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
 
         const fontStyles = qx.lang.Object.clone(font.getStyles());
         delete fontStyles.color;
@@ -992,10 +932,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
         el.setStyle('textAlign', 'center');
 
         if (this.getScale()) {
-          el.setStyle(
-            'fontSize',
-            (this.__width > this.__height ? this.__height : this.__width) + 'px'
-          );
+          el.setStyle('fontSize', (this.__width > this.__height ? this.__height : this.__width) + 'px');
         } else {
           const size = parseInt(
             sparts[2] ||
@@ -1012,18 +949,13 @@ qx.Class.define('cv.ui.manager.basic.Image', {
           el.setValue(String.fromCharCode(resource[2]));
         } else {
           const charCode = parseInt(
-            qx.theme.manager.Font.getInstance().resolve(
-              source.match(/@([^/]+)\/(.*)$/)[2]
-            ),
+            qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)\/(.*)$/)[2]),
 
             16
           );
 
           if (qx.core.Environment.get('qx.debug')) {
-            this.assertNumber(
-              charCode,
-              'Font source needs either a glyph name or the unicode number in hex'
-            );
+            this.assertNumber(charCode, 'Font source needs either a glyph name or the unicode number in hex');
           }
           el.setValue(String.fromCharCode(charCode));
         }
@@ -1032,22 +964,16 @@ qx.Class.define('cv.ui.manager.basic.Image', {
       } else if (el.getNodeName() === 'div') {
         // checks if a decorator already set.
         // In this case we have to merge background styles
-        const decorator = qx.theme.manager.Decoration.getInstance().resolve(
-          this.getDecorator()
-        );
+        const decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());
 
         if (decorator) {
-          const hasGradient =
-            decorator.getStartColor() && decorator.getEndColor();
+          const hasGradient = decorator.getStartColor() && decorator.getEndColor();
           const hasBackground = decorator.getBackgroundImage();
           if (hasGradient || hasBackground) {
             const repeat = this.getScale() ? 'scale' : 'no-repeat';
 
             // get the style attributes for the given source
-            const attr = qx.bom.element.Decoration.getAttributes(
-              source,
-              repeat
-            );
+            const attr = qx.bom.element.Decoration.getAttributes(source, repeat);
 
             // get the background image(s) defined by the decorator
             const decoratorStyle = decorator.getStyles(true);
@@ -1059,10 +985,8 @@ qx.Class.define('cv.ui.manager.basic.Image', {
             };
 
             if (hasBackground) {
-              combinedStyles['backgroundPosition'] +=
-                ',' + decoratorStyle['background-position'] || '0 0';
-              combinedStyles['backgroundRepeat'] +=
-                ', ' + decorator.getBackgroundRepeat();
+              combinedStyles['backgroundPosition'] += ',' + decoratorStyle['background-position'] || '0 0';
+              combinedStyles['backgroundRepeat'] += ', ' + decorator.getBackgroundRepeat();
             }
 
             if (hasGradient) {
@@ -1071,9 +995,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
             }
 
             combinedStyles['backgroundImage'] +=
-              ',' +
-              (decoratorStyle['background-image'] ||
-                decoratorStyle['background']);
+              ',' + (decoratorStyle['background-image'] || decoratorStyle['background']);
 
             // apply combined background images
             el.setStyles(combinedStyles);
@@ -1103,9 +1025,7 @@ qx.Class.define('cv.ui.manager.basic.Image', {
       }
 
       // Ignore when the source has already been modified
-      if (
-        source !== qx.util.AliasManager.getInstance().resolve(this.getSource())
-      ) {
+      if (source !== qx.util.AliasManager.getInstance().resolve(this.getSource())) {
         this.fireEvent('aborted');
         return;
       }

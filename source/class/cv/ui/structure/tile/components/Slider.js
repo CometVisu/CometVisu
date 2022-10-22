@@ -72,9 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
       super._init();
       const element = this._element;
       if (element.hasAttribute('throttle-interval')) {
-        this.setThrottleInterval(
-          parseInt(element.getAttribute('throttle-interval'))
-        );
+        this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
       } else {
         this._applyThrottleInterval(this.getThrottleInterval());
       }
@@ -98,10 +96,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
       if (element.hasAttribute('max')) {
         this.setMax(parseInt(element.getAttribute('max')));
       }
-      if (
-        element.hasAttribute('hide-value') &&
-        element.getAttribute('hide-value') === 'true'
-      ) {
+      if (element.hasAttribute('hide-value') && element.getAttribute('hide-value') === 'true') {
         this.setShowValue(false);
       } else {
         this._applyShowValue(true);
@@ -119,12 +114,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
 
     _applyThrottleInterval(value) {
       if (value > 0) {
-        this.__throttled = cv.util.Function.throttle(
-          this.onInput,
-          value,
-          { trailing: true },
-          this
-        );
+        this.__throttled = cv.util.Function.throttle(this.onInput, value, { trailing: true }, this);
       } else {
         // no throttling, direct call
         this.__throttled = {
@@ -192,9 +182,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
       });
 
       this._writeAddresses
-        .filter(
-          addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on
-        )
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on)
         .forEach(address => address.dispatchEvent(ev));
     }
   },

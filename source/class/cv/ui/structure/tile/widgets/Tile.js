@@ -149,11 +149,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
                 // this is not closing by address, so we set a close timeout to 3 minutes
                 if (!this._autoCloseTimer) {
                   this._autoCloseTimer = new qx.event.Timer(180 * 1000);
-                  this._autoCloseTimer.addListener(
-                    'interval',
-                    this.close,
-                    this
-                  );
+                  this._autoCloseTimer.addListener('interval', this.close, this);
                 }
                 this._autoCloseTimer.restart();
               }

@@ -35,10 +35,7 @@ qx.Class.define('cv.util.Prettifier', {
      * @returns {string}
      */
     xml(xml) {
-      return (
-        '<?xml version="1.0" encoding="UTF-8"?>\n' +
-        this._prettifyNode(xml.documentElement, 0)
-      );
+      return '<?xml version="1.0" encoding="UTF-8"?>\n' + this._prettifyNode(xml.documentElement, 0);
     },
 
     _prettifyNode(node, level, noFormat) {
@@ -46,24 +43,14 @@ qx.Class.define('cv.util.Prettifier', {
       let newLine = '\n';
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.textContent.trim()) {
-          return (
-            (noFormat ? '' : tabs) +
-            qx.xml.String.escape(node.textContent) +
-            (noFormat ? '' : newLine)
-          );
+          return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
         }
         return '';
       }
       if (node.nodeType === Node.COMMENT_NODE) {
-        return (
-          (noFormat ? '' : tabs) +
-          `<!--${node.textContent}--> ${noFormat ? '' : newLine}`
-        );
+        return (noFormat ? '' : tabs) + `<!--${node.textContent}--> ${noFormat ? '' : newLine}`;
       } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-        return (
-          (noFormat ? '' : tabs) +
-          `<![CDATA[${node.textContent}]]> ${noFormat ? '' : newLine}`
-        );
+        return (noFormat ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${noFormat ? '' : newLine}`;
       }
       if (!node.tagName) {
         return this._prettifyNode(node.firstChild, level);
@@ -106,18 +93,9 @@ qx.Class.define('cv.util.Prettifier', {
         output += newLine;
       }
       for (let i = 0; i < node.childNodes.length; i++) {
-        output += this._prettifyNode(
-          node.childNodes[i],
-          level + 1,
-          hasTextChild
-        );
+        output += this._prettifyNode(node.childNodes[i], level + 1, hasTextChild);
       }
-      return (
-        output +
-        (hasTextChild || noFormat ? '' : tabs) +
-        `</${node.tagName}>` +
-        (!noFormat ? newLine : '')
-      );
+      return output + (hasTextChild || noFormat ? '' : tabs) + `</${node.tagName}>` + (!noFormat ? newLine : '');
     }
   }
 });

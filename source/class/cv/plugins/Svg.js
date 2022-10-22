@@ -43,13 +43,7 @@ qx.Class.define('cv.plugins.Svg', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse(xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType
-      );
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
 
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
@@ -69,9 +63,7 @@ qx.Class.define('cv.plugins.Svg', {
 
     _onDomReady() {
       super._onDomReady();
-      const ajaxRequest = new qx.io.request.Xhr(
-        qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg')
-      );
+      const ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
 
       ajaxRequest.set({
         accept: 'text/plain',
@@ -98,15 +90,9 @@ qx.Class.define('cv.plugins.Svg', {
       let l;
       for (i = 0, l = Math.floor(value / line_qty); i <= l; i++) {
         line = element.querySelector('#line' + (i + 1));
-        line.setAttribute(
-          'y1',
-          9 + total * i + ((value % line_qty) / line_qty) * total
-        );
+        line.setAttribute('y1', 9 + total * i + ((value % line_qty) / line_qty) * total);
 
-        line.setAttribute(
-          'y2',
-          9 + total * i + ((value % line_qty) / line_qty) * total
-        );
+        line.setAttribute('y2', 9 + total * i + ((value % line_qty) / line_qty) * total);
       }
       for (i = Math.floor(value / line_qty) + 1; i <= line_qty; i++) {
         line = element.querySelector('#line' + (i + 1));

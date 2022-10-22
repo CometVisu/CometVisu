@@ -70,15 +70,11 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
       // we are allowed choice and sequence, but only ONE AT ALL is allowed
       let grouping = group.querySelector(':scope > choice');
       if (grouping) {
-        this._subGroupings.push(
-          new cv.ui.manager.model.schema.Choice(grouping, schema)
-        );
+        this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
       } else {
         grouping = group.querySelector(':scope > sequence');
         if (grouping) {
-          this._subGroupings.push(
-            new cv.ui.manager.model.schema.Sequence(grouping, schema)
-          );
+          this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
         }
       }
     },
@@ -117,8 +113,7 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
           namesWithSorting[item.getName()] = mySortNumber;
         } else {
           // go recursive
-          const subSortedElements =
-            item.getAllowedElementsSorting(mySortNumber);
+          const subSortedElements = item.getAllowedElementsSorting(mySortNumber);
           Object.assign(namesWithSorting, subSortedElements);
         }
       }, this);

@@ -47,26 +47,18 @@ qx.Class.define('cv.ConfigCache', {
             const request = indexedDB.open('cvCache', 1);
             request.onerror = function () {
               cv.ConfigCache.failed = true;
-              qx.log.Logger.error(
-                cv.ConfigCache,
-                'error opening cache database'
-              );
+              qx.log.Logger.error(cv.ConfigCache, 'error opening cache database');
 
               cv.ConfigCache.DB = null;
               resolve(cv.ConfigCache.DB);
             };
             request.onsuccess = function (ev) {
-              qx.log.Logger.debug(
-                cv.ConfigCache,
-                'Success creating/accessing IndexedDB database'
-              );
+              qx.log.Logger.debug(cv.ConfigCache, 'Success creating/accessing IndexedDB database');
 
               cv.ConfigCache.DB = request.result;
 
               cv.ConfigCache.DB.onerror = function (event) {
-                reject(
-                  new Error('Error creating/accessing IndexedDB database')
-                );
+                reject(new Error('Error creating/accessing IndexedDB database'));
               };
               resolve(cv.ConfigCache.DB);
             };
@@ -99,8 +91,7 @@ qx.Class.define('cv.ConfigCache', {
         data: JSON.stringify(model.getWidgetDataModel()),
         addresses: model.getAddressList(),
         configSettings: JSON.stringify(cv.Config.configSettings),
-        config:
-          cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix,
+        config: cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix,
         body: document.querySelector('body').innerHTML
       });
     },
@@ -127,15 +118,11 @@ qx.Class.define('cv.ConfigCache', {
 
         // restore mappings
         if (cv.Config.configSettings.mappings) {
-          Object.keys(cv.Config.configSettings.mappings).forEach(function (
-            name
-          ) {
+          Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
             const mapping = cv.Config.configSettings.mappings[name];
             if (mapping && mapping.formulaSource) {
-              mapping.formula = new Function(
-                'x',
-                'var y;' + mapping.formulaSource + '; return y;'
-              );
+              mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
+
               // jshint ignore:line
             } else {
               Object.keys(mapping).forEach(key => {
@@ -194,24 +181,18 @@ qx.Class.define('cv.ConfigCache', {
                 }
               });
             }
-          },
-          this);
+          }, this);
         }
         model.setWidgetDataModel(cache.data);
         model.setAddressList(cache.addresses);
-        const widgetsToInitialize = Object.keys(cache.data).filter(function (
-          widgetId
-        ) {
+        const widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {
           return cache.data[widgetId].$$initOnCacheLoad === true;
         });
         if (widgetsToInitialize.length > 0) {
           cv.TemplateEngine.getInstance().addListenerOnce('changeReady', () => {
             widgetsToInitialize.forEach(function (widgetId) {
               const widgetData = cache.data[widgetId];
-              cv.ui.structure.WidgetFactory.createInstance(
-                widgetData.$$type,
-                widgetData
-              );
+              cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
             });
           });
         }
@@ -224,10 +205,7 @@ qx.Class.define('cv.ConfigCache', {
 
     save(data) {
       if (cv.ConfigCache.DB) {
-        const objectStore = cv.ConfigCache.DB.transaction(
-          ['data'],
-          'readwrite'
-        ).objectStore('data');
+        const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
         objectStore.put(data);
       }
     },
@@ -239,13 +217,8 @@ qx.Class.define('cv.ConfigCache', {
           return;
         }
         if (!this._parseCacheData) {
-          const objectStore = cv.ConfigCache.DB.transaction(
-            ['data'],
-            'readonly'
-          ).objectStore('data');
-          const dataRequest = objectStore.get(
-            cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix
-          );
+          const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readonly').objectStore('data');
+          const dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
 
           dataRequest.onsuccess = function (event) {
             if (!dataRequest.result) {
@@ -254,9 +227,7 @@ qx.Class.define('cv.ConfigCache', {
               this._parseCacheData = dataRequest.result;
               // parse stringified data
               this._parseCacheData.data = JSON.parse(this._parseCacheData.data);
-              this._parseCacheData.configSettings = JSON.parse(
-                this._parseCacheData.configSettings
-              );
+              this._parseCacheData.configSettings = JSON.parse(this._parseCacheData.configSettings);
 
               if (key) {
                 resolve(this._parseCacheData[key]);
@@ -286,12 +257,7 @@ qx.Class.define('cv.ConfigCache', {
       const cacheVersion = data.VERSION + '|' + data.REV;
       qx.log.Logger.debug(
         this,
-        'Cached version: ' +
-          cacheVersion +
-          ', CV-Version: ' +
-          cv.Version.VERSION +
-          '|' +
-          cv.Version.REV
+        'Cached version: ' + cacheVersion + ', CV-Version: ' + cv.Version.VERSION + '|' + cv.Version.REV
       );
 
       return cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV;
@@ -307,10 +273,7 @@ qx.Class.define('cv.ConfigCache', {
           if (!hash && xml) {
             hash = this.toHash(xml);
           }
-          qx.log.Logger.debug(
-            this,
-            "Current hash: '" + hash + "', cached hash: '" + cachedHash + "'"
-          );
+          qx.log.Logger.debug(this, "Current hash: '" + hash + "', cached hash: '" + cachedHash + "'");
 
           this._valid = hash === cachedHash;
         }
@@ -324,13 +287,8 @@ qx.Class.define('cv.ConfigCache', {
 
     clear(configSuffix) {
       if (cv.ConfigCache.DB) {
-        configSuffix =
-          configSuffix ||
-          (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
-        const objectStore = cv.ConfigCache.DB.transaction(
-          ['data'],
-          'readwrite'
-        ).objectStore('data');
+        configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
+        const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
         const dataRequest = objectStore.delete(configSuffix);
         dataRequest.onsuccess = function () {
           qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');

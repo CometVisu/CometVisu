@@ -233,11 +233,7 @@ qx.Class.define('cv.io.Client', {
 
     setBackend(newBackend) {
       // override default settings
-      var backend = Object.assign(
-        {},
-        cv.io.Client.backends['default'],
-        newBackend
-      );
+      var backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
 
       this.backend = backend;
       if (backend.transport === 'sse' && backend.transportFallback) {
@@ -368,20 +364,14 @@ qx.Class.define('cv.io.Client', {
           request.d = this.device;
         }
         this.doRequest(
-          this.backendLoginUrl
-            ? this.backendLoginUrl
-            : this.getResourcePath('login'),
+          this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'),
           request,
           this.handleLogin,
           this
         );
-      } else if (
-        typeof this.loginSettings.callbackAfterLoggedIn === 'function'
-      ) {
+      } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         // call callback immediately
-        this.loginSettings.callbackAfterLoggedIn.call(
-          this.loginSettings.context
-        );
+        this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
 
         this.loginSettings.callbackAfterLoggedIn = null;
         this.loginSettings.context = null;
@@ -498,16 +488,9 @@ qx.Class.define('cv.io.Client', {
             delete options.beforeSend;
           }
           if (options.listeners) {
-            Object.getOwnPropertyNames(options.listeners).forEach(function (
-              eventName
-            ) {
-              var qxEventName =
-                eventName !== 'error' ? eventName : 'statusError';
-              ajaxRequest.addListener(
-                qxEventName,
-                options.listeners[eventName],
-                context
-              );
+            Object.getOwnPropertyNames(options.listeners).forEach(function (eventName) {
+              var qxEventName = eventName !== 'error' ? eventName : 'statusError';
+              ajaxRequest.addListener(qxEventName, options.listeners[eventName], context);
             });
             delete options.listeners;
           }
@@ -593,9 +576,7 @@ qx.Class.define('cv.io.Client', {
       }
       this.loginSettings.loggedIn = true;
       if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
-        this.loginSettings.callbackAfterLoggedIn.call(
-          this.loginSettings.context
-        );
+        this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
 
         this.loginSettings.callbackAfterLoggedIn = null;
         this.loginSettings.context = null;

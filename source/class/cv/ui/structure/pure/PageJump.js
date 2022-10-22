@@ -91,11 +91,9 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       document.querySelectorAll('.pagejump.active').forEach(function (elem) {
         elem.classList.remove('active');
       }, this);
-      document
-        .querySelectorAll('.pagejump.active_ancestor')
-        .forEach(function (elem) {
-          elem.classList.remove('active_ancestor');
-        }, this);
+      document.querySelectorAll('.pagejump.active_ancestor').forEach(function (elem) {
+        elem.classList.remove('active_ancestor');
+      }, this);
 
       // and set the new active ones
       document.querySelectorAll('.pagejump').forEach(function (elem) {
@@ -115,10 +113,8 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
         if (
           parentName === data.target ||
           (data.activeScope === 'path' &&
-            ((typeof data.path === 'string' &&
-              data.path.match(parentName + '$')) ||
-              (typeof data.targetPath === 'string' &&
-                data.targetPath.match(parentName + '$'))))
+            ((typeof data.path === 'string' && data.path.match(parentName + '$')) ||
+              (typeof data.targetPath === 'string' && data.targetPath.match(parentName + '$'))))
         ) {
           elem.classList.add('active_ancestor');
         }
@@ -158,10 +154,7 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
     action() {
       let target = this.getTarget();
       if (this.getTargetPath() !== null) {
-        target = cv.Application.structureController.getPageIdByPath(
-          target,
-          this.getTargetPath()
-        );
+        target = cv.Application.structureController.getPageIdByPath(target, this.getTargetPath());
       }
       cv.Application.structureController.scrollToPage(target);
     }
@@ -169,10 +162,6 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('pagejump', statics);
-    qx.event.message.Bus.subscribe(
-      'path.pageChanged',
-      statics._onScrollToPage,
-      statics
-    );
+    qx.event.message.Bus.subscribe('path.pageChanged', statics._onScrollToPage, statics);
   }
 });

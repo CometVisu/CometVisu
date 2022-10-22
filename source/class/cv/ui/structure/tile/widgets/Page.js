@@ -73,9 +73,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Page', {
           if (this._supportsContentVisibility) {
             this._element.style.contentVisibility = 'hidden';
           } else {
-            this._visibleDisplayMode = getComputedStyle(
-              this._element
-            ).getPropertyValue('display');
+            this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
             this._element.style.display = 'none';
           }
           break;

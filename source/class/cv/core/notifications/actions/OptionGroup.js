@@ -78,12 +78,7 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
       });
 
       this.getOptions().forEach(function (option) {
-        container.appendChild(
-          cv.core.notifications.ActionRegistry.createActionElement(
-            'option',
-            option
-          )
-        );
+        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
       });
       return container;
     }

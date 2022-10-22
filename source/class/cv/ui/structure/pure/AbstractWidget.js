@@ -40,11 +40,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     if (cv.TemplateEngine.getInstance().isDomFinished()) {
       this._onDomFinished();
     } else {
-      qx.event.message.Bus.subscribe(
-        'setup.dom.finished',
-        this._onDomFinished,
-        this
-      );
+      qx.event.message.Bus.subscribe('setup.dom.finished', this._onDomFinished, this);
     }
 
     // this.debug(props.$$type+" INIT ["+props.path+"]");
@@ -55,18 +51,13 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
         const parentData = cv.util.Tree.getParentData(props.path);
         if (parentData) {
           // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
-          const parent = cv.ui.structure.WidgetFactory.createInstance(
-            parentData.$$type,
-            parentData
-          );
+          const parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
 
           this.setParentWidget(parent);
         }
       }
       const parentPage =
-        this.get$$type() === 'page' || this.get$$type() === 'navbar'
-          ? null
-          : this.getVisibilityParent();
+        this.get$$type() === 'page' || this.get$$type() === 'navbar' ? null : this.getVisibilityParent();
       if (parentPage) {
         parentPage.bind('visible', this, 'visible');
       }
@@ -250,9 +241,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * @return {Element}
      */
     getInteractionElement() {
-      return this.isBindClickToWidget()
-        ? this.getDomElement()
-        : this.getActor();
+      return this.isBindClickToWidget() ? this.getDomElement() : this.getActor();
     },
 
     /**
@@ -281,12 +270,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
         this.__longPressTimer.stop();
         this.__longPressTimer = null;
       }
-      qx.event.Registration.addListener(
-        document,
-        'pointerup',
-        this._onPointerUp,
-        this
-      );
+      qx.event.Registration.addListener(document, 'pointerup', this._onPointerUp, this);
 
       if (
         this._onLongTap &&
@@ -311,29 +295,14 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
         };
 
         // also listen to move events to detect if the pointer is moved away from the widget (or scrolled)
-        qx.event.Registration.addListener(
-          document,
-          'pointermove',
-          this._onPointerMove,
-          this
-        );
+        qx.event.Registration.addListener(document, 'pointermove', this._onPointerMove, this);
       }
     },
 
     __abort() {
-      qx.event.Registration.removeListener(
-        document,
-        'pointerup',
-        this._onPointerUp,
-        this
-      );
+      qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
 
-      qx.event.Registration.removeListener(
-        document,
-        'pointermove',
-        this._onPointerMove,
-        this
-      );
+      qx.event.Registration.removeListener(document, 'pointermove', this._onPointerMove, this);
 
       this.__pointerDownTime = null;
       this.__pointerDownPoint = null;
@@ -411,12 +380,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
       const widget = this.getInteractionElement();
       if (widget) {
         widget.dataset['longtapable'] = type !== 'longtap';
-        return qx.event.Registration.addListener(
-          widget,
-          type,
-          callback,
-          context
-        );
+        return qx.event.Registration.addListener(widget, type, callback, context);
       }
       return null;
     },
@@ -434,12 +398,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
       }
       const widget = this.getInteractionElement();
       if (widget) {
-        return qx.event.Registration.removeListener(
-          widget,
-          type,
-          callback,
-          context
-        );
+        return qx.event.Registration.removeListener(widget, type, callback, context);
       }
       return false;
     },
@@ -477,11 +436,6 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
   ******************************************************
   */
   destruct() {
-    qx.event.Registration.removeListener(
-      document,
-      'pointerup',
-      this._onPointerUp,
-      this
-    );
+    qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
   }
 });

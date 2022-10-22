@@ -31,15 +31,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   construct() {
     super();
     this._setLayout(new qx.ui.layout.Grow());
-    this._handledActions = [
-      'save',
-      'cut',
-      'copy',
-      'paste',
-      'undo',
-      'redo',
-      'help'
-    ];
+    this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo', 'help'];
 
     this._initWorker();
 
@@ -51,9 +43,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (ev.getData() === 0) {
         this.setPreviewState('synced');
       } else {
-        const structureChanges = this.__modifiedPreviewElements.some(element =>
-          element.hasChildrenModified()
-        );
+        const structureChanges = this.__modifiedPreviewElements.some(element => element.hasChildrenModified());
 
         this.setPreviewState(structureChanges ? 'structureChanged' : 'changed');
       }
@@ -61,9 +51,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this.initUnDos(new qx.data.Array());
     this.initReDos(new qx.data.Array());
     this.__buttonListeners = {};
-    qx.core.Init.getApplication()
-      .getRoot()
-      .addListener('keyup', this._onElementKeyUp, this);
+    qx.core.Init.getApplication().getRoot().addListener('keyup', this._onElementKeyUp, this);
     this.addListener('resize', this._maintainPreviewVisibility, this);
     this._draw();
   },
@@ -206,16 +194,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _maintainPreviewVisibility() {
       const handlerOptions = this.getHandlerOptions();
-      this.setShowPreview(
-        qx.bom.Viewport.getWidth() > 800 &&
-          (!handlerOptions || !handlerOptions.noPreview)
-      );
+      this.setShowPreview(qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview));
     },
 
     _applyShowPreview(value) {
-      this.getChildControl('right').setVisibility(
-        value ? 'visible' : 'excluded'
-      );
+      this.getChildControl('right').setVisibility(value ? 'visible' : 'excluded');
 
       if (value) {
         this.getChildControl('left').clearLayoutProperties();
@@ -284,51 +267,45 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     configureButton(actionId, button) {
       switch (actionId) {
         case 'undo':
-          this.__buttonListeners[actionId] = this.getUnDos().addListener(
-            'changeLength',
-            () => {
-              const length = this.getUnDos().length;
-              if (length > 0) {
-                button.setEnabled(true);
-                button.setToolTipText(
-                  this.tr(
-                    'Undo: %1',
-                    this.getUnDos()
-                      .getItem(length - 1)
-                      .getTitle()
-                  )
-                );
-              } else {
-                button.setEnabled(false);
-                button.resetToolTipText();
-              }
+          this.__buttonListeners[actionId] = this.getUnDos().addListener('changeLength', () => {
+            const length = this.getUnDos().length;
+            if (length > 0) {
+              button.setEnabled(true);
+              button.setToolTipText(
+                this.tr(
+                  'Undo: %1',
+                  this.getUnDos()
+                    .getItem(length - 1)
+                    .getTitle()
+                )
+              );
+            } else {
+              button.setEnabled(false);
+              button.resetToolTipText();
             }
-          );
+          });
 
           button.setEnabled(this.getUnDos().length > 0);
           break;
 
         case 'redo':
-          this.__buttonListeners[actionId] = this.getReDos().addListener(
-            'changeLength',
-            () => {
-              const length = this.getReDos().length;
-              if (length > 0) {
-                button.setEnabled(true);
-                button.setToolTipText(
-                  this.tr(
-                    'Undo: %1',
-                    this.getReDos()
-                      .getItem(length - 1)
-                      .getTitle()
-                  )
-                );
-              } else {
-                button.setEnabled(false);
-                button.resetToolTipText();
-              }
+          this.__buttonListeners[actionId] = this.getReDos().addListener('changeLength', () => {
+            const length = this.getReDos().length;
+            if (length > 0) {
+              button.setEnabled(true);
+              button.setToolTipText(
+                this.tr(
+                  'Undo: %1',
+                  this.getReDos()
+                    .getItem(length - 1)
+                    .getTitle()
+                )
+              );
+            } else {
+              button.setEnabled(false);
+              button.resetToolTipText();
             }
-          );
+          });
 
           button.setEnabled(this.getReDos().length > 0);
           break;
@@ -365,9 +342,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       switch (actionId) {
         case 'undo':
           if (this.__buttonListeners[actionId]) {
-            this.getUnDos().removeListenerById(
-              this.__buttonListeners[actionId]
-            );
+            this.getUnDos().removeListenerById(this.__buttonListeners[actionId]);
 
             delete this.__buttonListeners[actionId];
           }
@@ -376,9 +351,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
         case 'redo':
           if (this.__buttonListeners[actionId]) {
-            this.getReDos().removeListenerById(
-              this.__buttonListeners[actionId]
-            );
+            this.getReDos().removeListenerById(this.__buttonListeners[actionId]);
 
             delete this.__buttonListeners[actionId];
           }
@@ -447,9 +420,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
       } catch (e) {
         // clipboard api is only available in secure environment, otherwise we have to do it ourself
-        cv.ui.manager.editor.AbstractEditor.CLIPBOARD = value
-          ? value.getNode().outerHTML
-          : '';
+        cv.ui.manager.editor.AbstractEditor.CLIPBOARD = value ? value.getNode().outerHTML : '';
       }
     },
 
@@ -509,22 +480,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           break;
 
         case 'preview-sync-hint': {
-          const ok = this.tr(
-            'Preview shows the current state of the edited configuration.'
-          );
+          const ok = this.tr('Preview shows the current state of the edited configuration.');
 
-          const noSync = this.tr(
-            'Preview is out of sync. Click here to refresh.'
-          );
+          const noSync = this.tr('Preview is out of sync. Click here to refresh.');
 
           const notOk = this.tr(
             'Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.'
           );
 
-          control = new qx.ui.basic.Atom(
-            ok,
-            cv.theme.dark.Images.getIcon('valid', 16)
-          );
+          control = new qx.ui.basic.Atom(ok, cv.theme.dark.Images.getIcon('valid', 16));
 
           control.setRich(true);
           control.getChildControl('label').setWrap(true);
@@ -571,18 +535,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
 
         case 'edit-button':
-          control = new qx.ui.toolbar.Button(
-            null,
-            cv.theme.dark.Images.getIcon('edit', 24)
-          );
+          control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 24));
 
           control.setEnabled(false);
           control.addListener('execute', this._onEdit, this);
           this.bind('file.writeable', control, 'icon', {
             converter(value) {
-              return value
-                ? cv.theme.dark.Images.getIcon('edit', 16)
-                : cv.theme.dark.Images.getIcon('view', 16);
+              return value ? cv.theme.dark.Images.getIcon('edit', 16) : cv.theme.dark.Images.getIcon('view', 16);
             }
           });
 
@@ -590,10 +549,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           break;
 
         case 'delete-button':
-          control = new qx.ui.toolbar.Button(
-            null,
-            cv.theme.dark.Images.getIcon('delete', 16)
-          );
+          control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('delete', 16));
 
           control.setEnabled(false);
           control.addListener('execute', this._onDelete, this);
@@ -601,10 +557,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           break;
 
         case 'toggle-expert':
-          control = new qx.ui.toolbar.CheckBox(
-            this.tr('Expertview'),
-            cv.theme.dark.Images.getIcon('expert', 16)
-          );
+          control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'), cv.theme.dark.Images.getIcon('expert', 16));
 
           control.addListener('execute', () => {
             this.toggleExpert();
@@ -613,10 +566,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           break;
 
         case 'refresh-preview':
-          control = new qx.ui.toolbar.Button(
-            null,
-            cv.theme.dark.Images.getIcon('reload', 16)
-          );
+          control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 16));
 
           control.setToolTipText(this.tr('Reload preview'));
           control.addListener('execute', this._updatePreview, this);
@@ -663,11 +613,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             margin: 8
           });
 
-          control.addListener(
-            'changeValue',
-            qx.util.Function.debounce(this._onSearch, 250),
-            this
-          );
+          control.addListener('changeValue', qx.util.Function.debounce(this._onSearch, 250), this);
 
           control.addListener('keyup', ev => {
             switch (ev.getKeyIdentifier()) {
@@ -712,56 +658,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             // Bind properties from the item to the tree-widget and vice versa
             bindItem(controller, item, index) {
               controller.bindProperty('', 'model', null, item, index);
-              controller.bindProperty(
-                'displayName',
-                'label',
-                null,
-                item,
-                index
-              );
+              controller.bindProperty('displayName', 'label', null, item, index);
 
               controller.bindProperty('name', 'name', null, item, index);
               controller.bindPropertyReverse('open', 'open', null, item, index);
               controller.bindProperty('open', 'open', null, item, index);
-              controller.bindProperty(
-                'showEditButton',
-                'editable',
-                null,
-                item,
-                index
-              );
+              controller.bindProperty('showEditButton', 'editable', null, item, index);
 
-              controller.bindProperty(
-                'sortable',
-                'sortable',
-                null,
-                item,
-                index
-              );
+              controller.bindProperty('sortable', 'sortable', null, item, index);
 
               controller.bindProperty('icon', 'icon', null, item, index);
               controller.bindProperty('status', 'status', null, item, index);
-              controller.bindProperty(
-                'invalidMessage',
-                'toolTipText',
-                null,
-                item,
-                index
-              );
+              controller.bindProperty('invalidMessage', 'toolTipText', null, item, index);
 
-              controller.bindProperty(
-                'dragging',
-                'dragging',
-                null,
-                item,
-                index
-              );
+              controller.bindProperty('dragging', 'dragging', null, item, index);
             }
           });
 
-          control
-            .getSelection()
-            .addListener('change', this._onChangeTreeSelection, this);
+          control.getSelection().addListener('change', this._onChangeTreeSelection, this);
           this.getChildControl('left').add(control, {
             top: 72,
             left: 0,
@@ -772,10 +686,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           break;
 
         case 'add-button':
-          control = new qx.ui.basic.Atom(
-            null,
-            cv.theme.dark.Images.getIcon('add', 32)
-          );
+          control = new qx.ui.basic.Atom(null, cv.theme.dark.Images.getIcon('add', 32));
 
           control.setDraggable(true);
           control.setMarginLeft(-16);
@@ -788,9 +699,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           });
           control.setAppearance('round-button');
           control.addListener('pointerover', () => control.addState('hovered'));
-          control.addListener('pointerout', () =>
-            control.removeState('hovered')
-          );
+          control.addListener('pointerout', () => control.removeState('hovered'));
 
           control.addListener('tap', () => {
             if (this.getSelected()) {
@@ -918,24 +827,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (value.length > 2) {
         const tree = this.getChildControl('tree');
         const rootNode = tree.getModel().getNode();
-        this.__searchResults = Array.from(
-          rootNode.querySelectorAll('*')
-        ).filter(function (el) {
-          return (
-            el.tagName.startsWith(value) ||
-            (el.hasAttribute('name') &&
-              el.getAttribute('name').startsWith(value))
-          );
+        this.__searchResults = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
+          return el.tagName.startsWith(value) || (el.hasAttribute('name') && el.getAttribute('name').startsWith(value));
         });
         this.__showSearchResult();
       }
     },
 
     _showNextResult() {
-      if (
-        this.__searchResults &&
-        this.__searchResults.length > this.__searchResultIndex + 1
-      ) {
+      if (this.__searchResults && this.__searchResults.length > this.__searchResultIndex + 1) {
         this.__searchResultIndex++;
         this.__showSearchResult();
       }
@@ -1028,21 +928,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (ev.supportsType('cv/tree-element')) {
           element = ev.getData('cv/tree-element');
         }
-        const addNew =
-          action === 'copy' &&
-          !element &&
-          ev.supportsType('cv/new-tree-element');
+        const addNew = action === 'copy' && !element && ev.supportsType('cv/new-tree-element');
         let target = ev.getTarget();
         if (target === indicator) {
           // no change when we are dragging over the indicator
           this.debug('dragging over indicator');
           return;
         }
-        if (
-          action !== 'copy' &&
-          target &&
-          target instanceof cv.ui.manager.tree.VirtualElementItem
-        ) {
+        if (action !== 'copy' && target && target instanceof cv.ui.manager.tree.VirtualElementItem) {
           if (target.getModel() === element) {
             // cannot drop on myself
             this.debug('dropping on same element forbidden');
@@ -1058,10 +951,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         }
         if (target === control) {
-          const layerContent = control
-            .getPane()
-            .getLayers()[0]
-            .getContentLocation();
+          const layerContent = control.getPane().getLayers()[0].getContentLocation();
           if (layerContent && ev.getDocumentTop() - layerContent.bottom <= 20) {
             // when we are not more than 10px away from the last tree element we use that one, otherwise dropping is forbidden
             const lastElem = document.elementFromPoint(
@@ -1111,14 +1001,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   accepted.mode = Allowed.BEFORE | Allowed.AFTER;
                 } else {
                   let acc = Allowed.NONE;
-                  const allowedSorting =
-                    parentSchemaElement.getAllowedElementsSorting();
+                  const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
                   addable.some(elementName => {
-                    acc |= this.__getAllowedPositions(
-                      allowedSorting,
-                      elementName,
-                      model.getName()
-                    );
+                    acc |= this.__getAllowedPositions(allowedSorting, elementName, model.getName());
 
                     if (acc & Allowed.BEFORE && acc & Allowed.AFTER) {
                       // we cannot find more
@@ -1135,9 +1020,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               accepted.mode = Allowed.NONE;
               this.debug('no children allowed here');
             }
-          } else if (
-            !parentSchemaElement.isChildElementAllowed(element.getName())
-          ) {
+          } else if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
             // not allowed on this level
             accepted.mode = Allowed.NONE;
             this.debug('not allowed as child element of', parent.getName());
@@ -1158,13 +1041,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         let lookInside;
         if (addNew) {
-          lookInside =
-            Object.keys(model.getSchemaElement().getAllowedElements(true))
-              .length > 0;
+          lookInside = Object.keys(model.getSchemaElement().getAllowedElements(true)).length > 0;
         } else {
-          lookInside = model
-            .getSchemaElement()
-            .isChildElementAllowed(element.getName());
+          lookInside = model.getSchemaElement().isChildElementAllowed(element.getName());
         }
         if (lookInside) {
           // allowed inside
@@ -1172,17 +1051,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (model.getSchemaElement().areChildrenSortable()) {
             accepted.mode |= Allowed.FIRST_CHILD;
           } else {
-            const allowedSorting = model
-              .getSchemaElement()
-              .getFirstLevelElementSorting();
+            const allowedSorting = model.getSchemaElement().getFirstLevelElementSorting();
             if (allowedSorting) {
               if (element) {
                 let targetPosition = allowedSorting[element.getName()];
                 if (targetPosition !== undefined) {
-                  if (
-                    targetPosition === 0 ||
-                    model.getChildren().length === 0
-                  ) {
+                  if (targetPosition === 0 || model.getChildren().length === 0) {
                     accepted.mode |= Allowed.FIRST_CHILD;
                   } else {
                     // check if we can add it before the current first child
@@ -1196,10 +1070,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               } else if (model.getChildren().length > 0) {
                 const firstChild = model.getChildren().getItem(0);
                 let firstChildPosition = allowedSorting[firstChild.getName()];
-                if (
-                  firstChildPosition !== undefined &&
-                  firstChildPosition > 0
-                ) {
+                if (firstChildPosition !== undefined && firstChildPosition > 0) {
                   // first child is not on position 0
                   accepted.mode |= Allowed.FIRST_CHILD;
                 }
@@ -1245,10 +1116,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
 
         if (accepted.mode !== Allowed.NONE) {
-          const origElem = document.elementFromPoint(
-            ev.getDocumentLeft(),
-            ev.getDocumentTop()
-          );
+          const origElem = document.elementFromPoint(ev.getDocumentLeft(), ev.getDocumentTop());
 
           let orig = qx.ui.core.Widget.getWidgetByElement(origElem);
           let skipDetection = false;
@@ -1374,11 +1242,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           console.assert(left < 0);
           // eslint-disable-next-line no-console
           console.assert(top < 0);
-        } else if (
-          position &&
-          !cursor.getAction() &&
-          cursor.getAction() !== indicator.getUserData('action')
-        ) {
+        } else if (position && !cursor.getAction() && cursor.getAction() !== indicator.getUserData('action')) {
           cursor.setAction(indicator.getUserData('action'));
           indicator.setUserData('action', null);
         }
@@ -1388,9 +1252,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
       const onDrop = function (ev) {
         let action = ev.getCurrentAction();
-        let element = ev.supportsType('cv/tree-element')
-          ? ev.getData('cv/tree-element')
-          : null;
+        let element = ev.supportsType('cv/tree-element') ? ev.getData('cv/tree-element') : null;
         if (action === 'copy') {
           if (element) {
             element = element.clone();
@@ -1412,11 +1274,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 case 'move':
                   if (element.moveAfter(target)) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been moved after "%2"',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been moved after "%2"', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1424,11 +1282,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 case 'copy':
                   if (element.insertAfter(target)) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been copied after "%2"',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been copied after "%2"', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1438,33 +1292,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug(
-                'NOT ALLOWED',
-                action,
-                elementName,
-                'after',
-                target.getDisplayName()
-              );
+              this.debug('NOT ALLOWED', action, elementName, 'after', target.getDisplayName());
             }
             break;
           case 'before':
             if (accepted.mode & Allowed.BEFORE) {
-              this.debug(
-                action,
-                elementName,
-                'before',
-                target.getDisplayName()
-              );
+              this.debug(action, elementName, 'before', target.getDisplayName());
 
               switch (action) {
                 case 'move':
                   if (element.moveBefore(target)) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been moved before "%2"',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been moved before "%2"', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1472,11 +1311,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 case 'copy':
                   if (element.insertBefore(target)) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been copied before "%2"',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been copied before "%2"', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1486,35 +1321,19 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug(
-                'NOT ALLOWED',
-                action,
-                elementName,
-                'after',
-                target.getDisplayName()
-              );
+              this.debug('NOT ALLOWED', action, elementName, 'after', target.getDisplayName());
             }
             break;
 
           case 'first-child':
             if (accepted.mode & Allowed.FIRST_CHILD) {
-              this.debug(
-                action,
-                elementName,
-                'into',
-                target.getDisplayName(),
-                'as first child'
-              );
+              this.debug(action, elementName, 'into', target.getDisplayName(), 'as first child');
 
               switch (action) {
                 case 'move':
                   if (element.moveBefore(target.getChildren().getItem(0))) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been moved into "%2" as first child',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been moved into "%2" as first child', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1522,11 +1341,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 case 'copy':
                   if (element.insertBefore(target.getChildren().getItem(0))) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been copied into "%2" as first child',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been copied into "%2" as first child', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1536,34 +1351,19 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug(
-                'NOT ALLOWED',
-                elementName,
-                'into',
-                target.getDisplayName() + ' as first child'
-              );
+              this.debug('NOT ALLOWED', elementName, 'into', target.getDisplayName() + ' as first child');
             }
             break;
 
           case 'inside':
             if (accepted.mode & Allowed.INSIDE) {
-              this.debug(
-                action,
-                elementName,
-                'into',
-                target.getDisplayName(),
-                'as child'
-              );
+              this.debug(action, elementName, 'into', target.getDisplayName(), 'as child');
 
               switch (action) {
                 case 'move':
                   if (element.moveInside(target)) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been moved into "%2"',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been moved into "%2"', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1571,11 +1371,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 case 'copy':
                   if (target.insertChild(element, -1, false, 'added')) {
                     cv.ui.manager.snackbar.Controller.info(
-                      this.tr(
-                        '"%1" has been copied into "%2"',
-                        elementName,
-                        target.getDisplayName()
-                      )
+                      this.tr('"%1" has been copied into "%2"', elementName, target.getDisplayName())
                     );
                   }
                   break;
@@ -1585,13 +1381,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug(
-                'NOT ALLOWED',
-                elementName,
-                'into',
-                target.getDisplayName(),
-                'as child'
-              );
+              this.debug('NOT ALLOWED', elementName, 'into', target.getDisplayName(), 'as child');
             }
             break;
         }
@@ -1636,21 +1426,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
      * @private
      */
     _onCreate(target, position, elementName) {
-      const parent =
-        position === 'inside' || position === 'first-child'
-          ? target
-          : target.getParent();
+      const parent = position === 'inside' || position === 'first-child' ? target : target.getParent();
       const parentSchemaElement = parent.getSchemaElement();
       let addable = parent.getAddableChildren(false);
       if (addable.length > 0) {
         // check if a child could be added at this position
         const children = parent.getChildren();
         // only check if we already have children, because otherwise we can add any child even in ordered sequences
-        if (
-          !parentSchemaElement.areChildrenSortable() &&
-          position !== 'inside' &&
-          children.length > 0
-        ) {
+        if (!parentSchemaElement.areChildrenSortable() && position !== 'inside' && children.length > 0) {
           // we only care about the first level here
           const sorting = parentSchemaElement.getFirstLevelElementSorting();
           let minPosition = 0;
@@ -1663,10 +1446,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               // find the first real element before that is not from the same type
               for (let i = targetIndex - 1; i >= 0; i--) {
                 const sibling = children.getItem(i);
-                if (
-                  !sibling.getName().startsWith('#') &&
-                  sibling.getName() !== target.getName()
-                ) {
+                if (!sibling.getName().startsWith('#') && sibling.getName() !== target.getName()) {
                   minPosition = sorting[sibling.getName()];
                   found = true;
                   break;
@@ -1685,10 +1465,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               let found = false;
               for (let i = targetIndex; i < children.length; i++) {
                 const sibling = children.getItem(i);
-                if (
-                  !sibling.getName().startsWith('#') &&
-                  sibling.getName() !== target.getName()
-                ) {
+                if (!sibling.getName().startsWith('#') && sibling.getName() !== target.getName()) {
                   maxPosition = sorting[sibling.getName()];
                   found = true;
                   break;
@@ -1731,9 +1508,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               type: {
                 type: 'SelectBox',
                 label: this.tr('Choose element'),
-                help: this.tr(
-                  'Please choose the element you want to add here.'
-                ),
+                help: this.tr('Please choose the element you want to add here.'),
 
                 options: addable
                   .sort((a, b) => {
@@ -1782,31 +1557,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 break;
             }
 
-            const schemaElement =
-              parentSchemaElement.getSchemaElementForElementName(type);
+            const schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
 
             const initChildren = function (element, schemaElement) {
               const requiredChildren = schemaElement.getRequiredElements();
               if (requiredChildren.length > 1) {
                 if (!schemaElement.areChildrenSortable()) {
                   // a special order 1s required
-                  const allowedSorting =
-                    schemaElement.getAllowedElementsSorting();
-                  requiredChildren.sort(
-                    cv.ui.manager.model.schema.Element.sortChildNodes(
-                      allowedSorting
-                    )
-                  );
+                  const allowedSorting = schemaElement.getAllowedElementsSorting();
+                  requiredChildren.sort(cv.ui.manager.model.schema.Element.sortChildNodes(allowedSorting));
                 }
               }
               requiredChildren.forEach(childName => {
                 const child = document.createElement(childName);
                 element.appendChild(child);
                 // do this recursively
-                initChildren(
-                  child,
-                  schemaElement.getSchemaElementForElementName(childName)
-                );
+                initChildren(child, schemaElement.getSchemaElementForElementName(childName));
               });
               if (schemaElement.isTextContentRequired()) {
                 const child = document.createTextNode('-');
@@ -1817,12 +1583,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               initChildren(element, schemaElement);
             }
 
-            const xmlElement = new cv.ui.manager.model.XmlElement(
-              element,
-              schemaElement,
-              target.getEditor(),
-              parent
-            );
+            const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
 
             // load the "empty" element to init the modification comparison
             xmlElement.load();
@@ -1867,33 +1628,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (allowedSorting) {
         let currentPosition = allowedSorting[elementName];
         if (typeof currentPosition === 'string') {
-          currentPosition = currentPosition
-            .split('.')
-            .map(i => (/^\d+$/.test(i) ? parseInt(i) : i));
+          currentPosition = currentPosition.split('.').map(i => (/^\d+$/.test(i) ? parseInt(i) : i));
         } else {
           currentPosition = [currentPosition];
         }
         let targetPosition = allowedSorting[targetName];
         if (typeof targetPosition === 'string') {
-          targetPosition = targetPosition
-            .split('.')
-            .map(i => (/^\d+$/.test(i) ? parseInt(i) : i));
+          targetPosition = targetPosition.split('.').map(i => (/^\d+$/.test(i) ? parseInt(i) : i));
         } else {
           targetPosition = [targetPosition];
         }
-        const depth = Math.min(
-          depth || 1,
-          currentPosition.length,
-          targetPosition.length
-        );
+        const depth = Math.min(depth || 1, currentPosition.length, targetPosition.length);
 
         for (let i = 0; i < depth; i++) {
           if (currentPosition[i] === targetPosition[i]) {
             // no special position
-            return (
-              cv.ui.manager.editor.Tree.Allowed.BEFORE |
-              cv.ui.manager.editor.Tree.Allowed.AFTER
-            );
+            return cv.ui.manager.editor.Tree.Allowed.BEFORE | cv.ui.manager.editor.Tree.Allowed.AFTER;
           } else if (currentPosition[i] - 1 === targetPosition[i]) {
             return cv.ui.manager.editor.Tree.Allowed.AFTER;
           } else if (currentPosition[i] + 1 === targetPosition[i]) {
@@ -1914,9 +1664,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         } else {
           this.error('misconfigured provider found for ' + id);
         }
-        formData.type = provider.userInputAllowed
-          ? 'VirtualComboBox'
-          : 'VirtualSelectBox';
+        formData.type = provider.userInputAllowed ? 'VirtualComboBox' : 'VirtualSelectBox';
       } else if (['mapping', 'styling'].includes(id.split('@').pop())) {
         const type = id.split('@').pop();
         // these are directly filled from data inside the currently used config
@@ -1924,10 +1672,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const rootNode = tree.getModel().getNode();
         formData.type = 'SelectBox';
         formData.options = [];
-        const selector =
-          this._structure === 'tile'
-            ? 'cv-meta > cv-' + type
-            : 'meta > ' + type + 's > ' + type;
+        const selector = this._structure === 'tile' ? 'cv-meta > cv-' + type : 'meta > ' + type + 's > ' + type;
         rootNode.querySelectorAll(selector).forEach(element => {
           const name = element.getAttribute('name');
           formData.options.push({ label: name, value: name });
@@ -1966,9 +1711,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         placeholder: ' - ' + this.tr('not set') + ' - ',
         help: docs.join('<br/>'),
         enabled: element.isEditable(),
-        value:
-          element.getAttribute(attribute.getName()) ||
-          attribute.getDefaultValue(),
+        value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
         validation: {
           required: !attribute.isOptional(),
           validator(value) {
@@ -1976,9 +1719,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               value = value.getModel().getValue();
             }
             if (!attribute.isValueValid(value)) {
-              throw new qx.core.ValidationError(
-                qx.locale.Manager.tr('This is not a valid value.')
-              );
+              throw new qx.core.ValidationError(qx.locale.Manager.tr('This is not a valid value.'));
             }
           }
         }
@@ -1987,10 +1728,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       switch (attribute.getTypeString()) {
         case 'boolean':
           def.type = 'CheckBox';
-          def.value =
-            def.value === '' || def.value === null || def.value === undefined
-              ? null
-              : def.value === 'true';
+          def.value = def.value === '' || def.value === null || def.value === undefined ? null : def.value === 'true';
           delete def.placeholder;
           break;
 
@@ -2012,11 +1750,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           } else {
             // check if we have a dataprovider for this
-            this.__checkProvider(
-              element.getName() + '@' + attribute.getName(),
-              def,
-              element.getNode()
-            );
+            this.__checkProvider(element.getName() + '@' + attribute.getName(), def, element.getNode());
           }
           break;
         }
@@ -2052,9 +1786,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         );
       } else {
         title = this.tr('Edit element attributes');
-        caption = element.isEditable()
-          ? this.tr('Edit %1', element.getName())
-          : this.tr('Show %1', element.getName());
+        caption = element.isEditable() ? this.tr('Edit %1', element.getName()) : this.tr('Show %1', element.getName());
       }
       if (element.getNode().nodeType === Node.ELEMENT_NODE) {
         const allowed = typeElement.getAllowedAttributes();
@@ -2067,17 +1799,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               return;
             }
           }
-          formData[name] = this.__getAttributeFormDefinition(
-            element,
-            attribute
-          );
+          formData[name] = this.__getAttributeFormDefinition(element, attribute);
         });
         if (typeElement.isChildElementAllowed('*')) {
           const parser = new DOMParser();
-          const attrName =
-            element.getNode().nodeName === 'custom'
-              ? '#innerHTML'
-              : '#outerHTML';
+          const attrName = element.getNode().nodeName === 'custom' ? '#innerHTML' : '#outerHTML';
           if (isNew) {
             title = this.tr('Create new %1 element', element.getName());
             caption = this.tr(
@@ -2085,10 +1811,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               element.getName()
             );
           } else {
-            title =
-              attrName === '#outerHTML'
-                ? this.tr('Edit element and content')
-                : this.tr('Edit element content');
+            title = attrName === '#outerHTML' ? this.tr('Edit element and content') : this.tr('Edit element content');
           }
           formData[attrName] = {
             type: 'TextArea',
@@ -2097,18 +1820,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             autoSize: true,
             width: Math.min(qx.bom.Viewport.getWidth(), 500),
             enabled: element.isEditable(),
-            value:
-              attrName === '#outerHTML'
-                ? element.getNode().outerHTML
-                : element.getNode().innerHTML,
+            value: attrName === '#outerHTML' ? element.getNode().outerHTML : element.getNode().innerHTML,
             validation: {
               validator(value) {
                 if (value) {
                   const dom = parser.parseFromString(value, 'text/xml');
                   if (dom.getElementsByTagName('parsererror').length > 0) {
-                    throw new qx.core.ValidationError(
-                      qx.locale.Manager.tr('This is not a valid value.')
-                    );
+                    throw new qx.core.ValidationError(qx.locale.Manager.tr('This is not a valid value.'));
                   }
                 }
               }
@@ -2141,23 +1859,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 value = value.getModel().getValue();
               }
               if (!typeElement.isValueValid(value)) {
-                throw new qx.core.ValidationError(
-                  qx.locale.Manager.tr('This is not a valid value.')
-                );
+                throw new qx.core.ValidationError(qx.locale.Manager.tr('This is not a valid value.'));
               }
             }
           }
         };
 
-        if (
-          element.isTextNode() &&
-          element.getParent().getName() === 'status'
-        ) {
+        if (element.isTextNode() && element.getParent().getName() === 'status') {
           const type = element.getParent().getAttribute('type');
-          if (
-            (type === 'html' || type === 'xml') &&
-            element.getNode().nodeType === Node.TEXT_NODE
-          ) {
+          if ((type === 'html' || type === 'xml') && element.getNode().nodeType === Node.TEXT_NODE) {
             element.convertTextNodeType(Node.CDATA_SECTION_NODE);
             const newNodeName = element.getNode().nodeName;
             formData[newNodeName] = formData[nodeName];
@@ -2323,16 +2033,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         old.removeRelatedBindings(this.getChildControl('delete-button'));
       }
       if (value) {
-        this.getChildControl('edit-button').setEnabled(
-          value.getShowEditButton()
-        );
+        this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
 
         if (this.getFile().isWriteable()) {
-          value.bind(
-            'deletable',
-            this.getChildControl('delete-button'),
-            'enabled'
-          );
+          value.bind('deletable', this.getChildControl('delete-button'), 'enabled');
         }
       } else {
         this.getChildControl('edit-button').setEnabled(false);
@@ -2402,11 +2106,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               this.info(file.getPath() + ' is a valid config file');
               this.__loadContent(value);
             } else {
-              const dialog = new cv.ui.manager.dialog.ValidationError(
-                file,
-                value,
-                res
-              );
+              const dialog = new cv.ui.manager.dialog.ValidationError(file, value, res);
 
               dialog.addListener('action', ev => {
                 switch (ev.getData()) {
@@ -2459,11 +2159,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         return false;
       });
       if (!file) {
-        file = new cv.ui.manager.model.FileItem(
-          'visu_config_previewtemp.xml',
-          '/',
-          this.getFile().getParent()
-        );
+        file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
 
         file.setTemporary(true);
       }
@@ -2477,27 +2173,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const doc = qx.xml.Document.fromString(value);
         const rootElement = doc.documentElement;
         const schema = await this.getSchema(
-          rootElement.getAttributeNS(
-            'http://www.w3.org/2001/XMLSchema-instance',
-            'noNamespaceSchemaLocation'
-          )
+          rootElement.getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation')
         );
 
         const schemaElement = schema.getElementNode(rootElement.nodeName);
-        const rootNode = new cv.ui.manager.model.XmlElement(
-          rootElement,
-          schemaElement,
-          this
-        );
+        const rootNode = new cv.ui.manager.model.XmlElement(rootElement, schemaElement, this);
 
         this._structure = schema.getStructure();
         rootNode.setEditable(file.getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
         if (this.hasChildControl('add-button')) {
-          this.getChildControl('add-button').setVisibility(
-            file.getWriteable() ? 'visible' : 'excluded'
-          );
+          this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded');
 
           // extra space für add-button
           tree.setContentPaddingBottom(file.getWriteable() ? 80 : 0);
@@ -2534,12 +2221,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                       // this can always lead to a loading error, because the element is invalid
                       current.load();
                     } catch (e) {
-                      this.error(
-                        'Error loading ' +
-                          current.getName() +
-                          ': ' +
-                          e.toString()
-                      );
+                      this.error('Error loading ' + current.getName() + ': ' + e.toString());
 
                       current = null;
                       break;
@@ -2658,8 +2340,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _showHelp() {
-      const focusedWidget =
-        qx.ui.core.FocusHandler.getInstance().getFocusedWidget();
+      const focusedWidget = qx.ui.core.FocusHandler.getInstance().getFocusedWidget();
       const dialogConf = {
         caption: this.tr('Help'),
         modal: true,
@@ -2717,8 +2398,6 @@ refresh after you have changed something. You can refresh is manually by clickin
     this._schemas = null;
     this._workerWrapper = null;
     this._disposeArray('__modifiedElements', '__modifiedPreviewElements');
-    qx.core.Init.getApplication()
-      .getRoot()
-      .removeListener('keyup', this._onElementKeyUp, this);
+    qx.core.Init.getApplication().getRoot().removeListener('keyup', this._onElementKeyUp, this);
   }
 });

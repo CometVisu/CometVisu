@@ -116,10 +116,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       // get the highest severity
       let severityRank = -1;
       this._messages.forEach(function (message) {
-        if (
-          message.severity &&
-          this._severities.indexOf(message.severity) > severityRank
-        ) {
+        if (message.severity && this._severities.indexOf(message.severity) > severityRank) {
           severityRank = this._severities.indexOf(message.severity);
         }
       }, this);
@@ -203,12 +200,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
           }
           if (this.getMaxEntries() > 0) {
             if (this._messages.getLength() >= this.getMaxEntries()) {
-              this._messages
-                .splice(
-                  0,
-                  this._messages.getLength() - this.getMaxEntries() + 1
-                )
-                .forEach(this._disposeMap);
+              this._messages.splice(0, this._messages.getLength() - this.getMaxEntries() + 1).forEach(this._disposeMap);
             }
           }
           postHookPayload.action = 'added';
@@ -344,16 +336,10 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
         return;
       }
       Object.getOwnPropertyNames(message.actions).forEach(function (type) {
-        const typeActions = Array.isArray(message.actions[type])
-          ? message.actions[type]
-          : [message.actions[type]];
+        const typeActions = Array.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
         typeActions.forEach(function (action) {
           if (!action.needsConfirmation) {
-            const handler =
-              cv.core.notifications.ActionRegistry.getActionHandler(
-                type,
-                action
-              );
+            const handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
 
             if (handler) {
               handler.handleAction(ev);

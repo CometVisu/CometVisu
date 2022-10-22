@@ -30,10 +30,7 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
    */
   statics: {
     parse(page, path, flavour, pageType) {
-      const storagePath = cv.parser.pure.WidgetParser.getStoragePath(
-        page,
-        path
-      );
+      const storagePath = cv.parser.pure.WidgetParser.getStoragePath(page, path);
 
       const addresses = {};
       if (page.getAttribute('ga')) {
@@ -48,9 +45,7 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
       const showtopnavigation = page.getAttribute('showtopnavigation')
         ? page.getAttribute('showtopnavigation') === 'true'
         : null;
-      const showfooter = page.getAttribute('showfooter')
-        ? page.getAttribute('showfooter') === 'true'
-        : true;
+      const showfooter = page.getAttribute('showfooter') ? page.getAttribute('showfooter') === 'true' : true;
       // make sure the type has the correct value as we need to use it ass CSS class
       switch (pageType) {
         case '2d':
@@ -90,8 +85,7 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
       }, this);
       let bindClickToWidget = cv.Config.configSettings.bindClickToWidget;
       if (page.getAttribute('bind_click_to_widget')) {
-        bindClickToWidget =
-          page.getAttribute('bind_click_to_widget') === 'true';
+        bindClickToWidget = page.getAttribute('bind_click_to_widget') === 'true';
       }
       if (page.getAttribute('flavour')) {
         flavour = page.getAttribute('flavour'); // sub design choice
@@ -112,8 +106,7 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
 
       let backdropType = null;
       if (backdrop) {
-        backdropType =
-          backdrop.substring(backdrop.length - 4) === '.svg' ? 'embed' : 'img';
+        backdropType = backdrop.substring(backdrop.length - 4) === '.svg' ? 'embed' : 'img';
       }
 
       const data = cv.data.Model.getInstance().setWidgetData(storagePath, {
@@ -126,15 +119,10 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
         showNavbarBottom: shownavbar.bottom,
         showNavbarLeft: shownavbar.left,
         showNavbarRight: shownavbar.right,
-        backdropAlign:
-          pageType === '2d'
-            ? page.getAttribute('backdropalign') || '50% 50%'
-            : null,
+        backdropAlign: pageType === '2d' ? page.getAttribute('backdropalign') || '50% 50%' : null,
         size: page.getAttribute('size') || null,
         address: addresses,
-        linkVisible: page.getAttribute('visible')
-          ? page.getAttribute('visible') === 'true'
-          : true,
+        linkVisible: page.getAttribute('visible') ? page.getAttribute('visible') === 'true' : true,
         flavour: flavour || null,
         $$type: 'page',
         backdrop: backdrop || null,
@@ -150,8 +138,7 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
           $$type: 'pagelink',
           path: path,
           name: name,
-          classes:
-            cv.parser.pure.WidgetParser.setWidgetLayout(page, path) || '',
+          classes: cv.parser.pure.WidgetParser.setWidgetLayout(page, path) || '',
           layout: layout || null,
           address: addresses,
           pageType: pageType,

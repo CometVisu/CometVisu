@@ -59,10 +59,7 @@ qx.Class.define('cv.parser.pure.widgets.Slide', {
         })
         .forEach(function (elem) {
           const transform = elem.getAttribute('transform');
-          if (
-            cv.Transform.registry[transform] &&
-            cv.Transform.registry[transform].range
-          ) {
+          if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
             if (!(datatype_min > cv.Transform.registry[transform].range.min)) {
               // jshint ignore:line
               datatype_min = cv.Transform.registry[transform].range.min;

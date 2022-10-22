@@ -47,13 +47,9 @@ qx.Class.define('cv.io.BackendConnections', {
         'default'
       ).split(',')[0];
       const backendKnxdUrl =
-        cv.Config.URL.backendKnxdUrl ||
-        cv.Config.configSettings.backendKnxdUrl ||
-        cv.Config.server.backendKnxdUrl;
+        cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl =
-        cv.Config.URL.backendMQTTUrl ||
-        cv.Config.configSettings.backendMQTTUrl ||
-        cv.Config.server.backendMQTTUrl;
+        cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
       const backendOpenHABUrl =
         cv.Config.URL.backendOpenHABUrl ||
         cv.Config.configSettings.backendOpenHABUrl ||
@@ -63,31 +59,16 @@ qx.Class.define('cv.io.BackendConnections', {
         case 'knxd':
         case 'default':
         default:
-          return this.addBackendClient(
-            'main',
-            'knxd',
-            backendKnxdUrl,
-            'server'
-          );
+          return this.addBackendClient('main', 'knxd', backendKnxdUrl, 'server');
 
         case 'mqtt':
-          return this.addBackendClient(
-            'main',
-            'mqtt',
-            backendMQTTUrl,
-            'server'
-          );
+          return this.addBackendClient('main', 'mqtt', backendMQTTUrl, 'server');
 
         case 'openhab':
         case 'openhab2':
         case 'oh':
         case 'oh2':
-          return this.addBackendClient(
-            'main',
-            'openhab',
-            backendOpenHABUrl,
-            'server'
-          );
+          return this.addBackendClient('main', 'openhab', backendOpenHABUrl, 'server');
       }
     },
 
@@ -132,23 +113,18 @@ qx.Class.define('cv.io.BackendConnections', {
             scope.setTag('server.web.main', cv.Config.configServer);
           }
         });
-        client.addListener('changedServer', () =>
-          this._updateClientScope(name)
-        );
+        client.addListener('changedServer', () => this._updateClientScope(name));
       }
       if (!this.__activeChangeListenerId) {
-        this.__activeChangeListenerId =
-          qx.core.Init.getApplication().addListener(
-            'changeActive',
-            this._onActiveChanged,
-            this
-          );
+        this.__activeChangeListenerId = qx.core.Init.getApplication().addListener(
+          'changeActive',
+          this._onActiveChanged,
+          this
+        );
       }
 
       // show connection state in NotificationCenter
-      client.addListener('changeConnected', () =>
-        this._checkBackendConnection(name)
-      );
+      client.addListener('changeConnected', () => this._checkBackendConnection(name));
 
       return client;
     },
@@ -204,12 +180,9 @@ qx.Class.define('cv.io.BackendConnections', {
         const client = this.getClient(name);
         if (cv.Config.enableAddressQueue) {
           // identify addresses on startpage
-          client.setInitialAddresses(
-            cv.Application.structureController.getInitialAddresses(name)
-          );
+          client.setInitialAddresses(cv.Application.structureController.getInitialAddresses(name));
         }
-        const addressesToSubscribe =
-          cv.data.Model.getInstance().getAddresses(name);
+        const addressesToSubscribe = cv.data.Model.getInstance().getAddresses(name);
         if (addressesToSubscribe.length !== 0) {
           client.subscribe(addressesToSubscribe);
         }
@@ -223,10 +196,7 @@ qx.Class.define('cv.io.BackendConnections', {
           const client = this.__clients[backendName];
           if (!client.isConnected() && this.__hasBeenConnected) {
             // reconnect
-            qx.log.Logger.debug(
-              this,
-              `restarting ${backendName} backend connection`
-            );
+            qx.log.Logger.debug(this, `restarting ${backendName} backend connection`);
 
             client.restart(true);
           }
@@ -237,20 +207,14 @@ qx.Class.define('cv.io.BackendConnections', {
           this.__activeChangedTimer = new qx.event.Timer(3000);
           this.__activeChangedTimer.addListener('interval', () => {
             if (app.isActive()) {
-              Object.getOwnPropertyNames(this.__clients).forEach(
-                this._checkBackendConnection,
-                this
-              );
+              Object.getOwnPropertyNames(this.__clients).forEach(this._checkBackendConnection, this);
             }
             this.__activeChangedTimer.stop();
           });
         }
         this.__activeChangedTimer.restart();
       } else {
-        Object.getOwnPropertyNames(this.__clients).forEach(
-          this._checkBackendConnection,
-          this
-        );
+        Object.getOwnPropertyNames(this.__clients).forEach(this._checkBackendConnection, this);
       }
     },
 
@@ -263,10 +227,7 @@ qx.Class.define('cv.io.BackendConnections', {
         severity: 'urgent',
         unique: true,
         deletable: false,
-        condition:
-          !connected &&
-          this.__hasBeenConnected &&
-          qx.core.Init.getApplication().isActive()
+        condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
       };
 
       const lastError = client.getLastError();
@@ -279,10 +240,7 @@ qx.Class.define('cv.io.BackendConnections', {
             lastError.text
           );
         } else {
-          message.message = qx.locale.Manager.tr(
-            'Connection to backend "%1" is lost.',
-            name
-          );
+          message.message = qx.locale.Manager.tr('Connection to backend "%1" is lost.', name);
         }
         message.actions = {
           link: [
@@ -330,9 +288,7 @@ qx.Class.define('cv.io.BackendConnections', {
                 '</a>'
               ) +
               '<br/>' +
-              qx.locale.Manager.tr(
-                'Please try to fix the problem in the backend.'
-              ) +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
               '<br/><br/><strong>' +
               qx.locale.Manager.tr('Backend-Response:') +
               '</strong><pre>' +
@@ -356,9 +312,7 @@ qx.Class.define('cv.io.BackendConnections', {
                 '</a>'
               ) +
               '<br/>' +
-              qx.locale.Manager.tr(
-                'Please try to fix the problem in the backend.'
-              ) +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
               '<br/><br/><strong>' +
               qx.locale.Manager.tr('Backend-Response:') +
               '</strong><pre>' +
@@ -373,10 +327,7 @@ qx.Class.define('cv.io.BackendConnections', {
       }
 
       if (notification) {
-        cv.core.notifications.Router.dispatchMessage(
-          notification.topic,
-          notification
-        );
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       }
     }
   }

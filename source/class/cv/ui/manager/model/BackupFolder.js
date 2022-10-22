@@ -32,11 +32,7 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
   construct() {
     super('backup');
     this.load();
-    qx.event.message.Bus.subscribe(
-      'cv.manager.fs.*',
-      this._onFilesSystemMessage,
-      this
-    );
+    qx.event.message.Bus.subscribe('cv.manager.fs.*', this._onFilesSystemMessage, this);
   },
 
   /*
@@ -69,14 +65,10 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
         const parts = file.getName().split('.');
         const suffix = parts.pop();
         const filename = parts.join('.');
-        const fileRegex = new RegExp(
-          path + filename + '-([\\d]{14})\\.' + suffix
-        );
+        const fileRegex = new RegExp(path + filename + '-([\\d]{14})\\.' + suffix);
 
         this.getChildren().forEach(function (backupFile) {
-          const match = fileRegex.exec(
-            backupFile.getFullPath().replace('backup/', '')
-          );
+          const match = fileRegex.exec(backupFile.getFullPath().replace('backup/', ''));
 
           if (match) {
             files.push({
@@ -104,10 +96,6 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
   ***********************************************
   */
   destruct() {
-    qx.event.message.Bus.unsubscribe(
-      'cv.manager.fs.*',
-      this._onFilesSystemMessage,
-      this
-    );
+    qx.event.message.Bus.unsubscribe('cv.manager.fs.*', this._onFilesSystemMessage, this);
   }
 });

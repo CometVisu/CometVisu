@@ -31,17 +31,11 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
   construct(file, noCompare) {
     super();
     this._noCompare = noCompare === true;
-    this._commandGroup = qx.core.Init.getApplication()
-      .getCommandManager()
-      .getActive();
+    this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._init();
-    this._dateFormat = new qx.util.format.DateFormat(
-      qx.locale.Date.getDateFormat('medium')
-    );
+    this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
 
-    this._timeFormat = new qx.util.format.DateFormat(
-      qx.locale.Date.getTimeFormat('medium')
-    );
+    this._timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('medium'));
 
     if (file) {
       this.configure(file);
@@ -93,10 +87,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         const isFolder = file.getType() === 'dir';
         const folder = isFolder ? file : file.getParent();
         let isBackup = false;
-        if (
-          (folder && folder.getFullPath().startsWith('backup')) ||
-          file.getFullPath().startsWith('backup')
-        ) {
+        if ((folder && folder.getFullPath().startsWith('backup')) || file.getFullPath().startsWith('backup')) {
           isBackup = true;
         }
         if (!isFolder) {
@@ -118,14 +109,10 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         );
 
         this.getChildControl('convert-file-button').setVisibility(
-          file.isConfigFile() && !file.isMounted() && !isBackup
-            ? 'visible'
-            : 'excluded'
+          file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded'
         );
 
-        this.getChildControl('delete-button').setLabel(
-          file.isTrash() ? this.tr('Clear') : this.tr('Delete')
-        );
+        this.getChildControl('delete-button').setLabel(file.isTrash() ? this.tr('Clear') : this.tr('Delete'));
 
         // create compare menu
         if (!this._noCompare) {
@@ -133,14 +120,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           compareMenu.removeAll();
           if (!isBackup) {
             this.getChildControl('compare-with-button').show();
-            const backups =
-              cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(
-                file
-              );
+            const backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
 
-            this.getChildControl('compare-with-button').setEnabled(
-              backups.length > 0
-            );
+            this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
 
             backups.sort(function (a, b) {
               return b.date.getTime() - a.date.getTime();
@@ -158,10 +140,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
                 group = date;
               }
               const button = new qx.ui.menu.Button(
-                this.tr(
-                  'Backup from %1',
-                  this._timeFormat.format(backupEntry.date)
-                )
+                this.tr('Backup from %1', this._timeFormat.format(backupEntry.date))
               );
 
               button.setUserData('file', backupEntry.file);
@@ -173,30 +152,20 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           }
         }
 
-        const defaultHandler =
-          cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
-            file
-          );
+        const defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
 
         // open with menu
         const openWithMenu = this.getChildControl('open-with-menu');
         openWithMenu.removeAll();
         if (!isBackup) {
           this.getChildControl('open-with-button').show();
-          const availableHandlers =
-            cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(
-              file
-            );
+          const availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
 
           // this menu only makes sense when there is more than one option to select from
-          this.getChildControl('open-with-button').setEnabled(
-            availableHandlers.length > 1
-          );
+          this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
 
           availableHandlers.sort(function (a, b) {
-            return a.Clazz.constructor.TITLE.toString().localeCompare(
-              b.Clazz.constructor.TITLE.toString()
-            );
+            return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
           });
           availableHandlers.forEach(function (handlerConf) {
             const button = new qx.ui.menu.Button(
@@ -205,9 +174,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
             );
 
             button.setAppearance('open-with-button');
-            if (
-              defaultHandler.Clazz.classname === handlerConf.Clazz.classname
-            ) {
+            if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
               button.addState('default');
             }
             button.setUserData('handlerId', handlerConf.Clazz.classname);
@@ -220,9 +187,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
         // validate button
         this.getChildControl('validate-config-button').setVisibility(
-          file.isConfigFile() && !file.isMounted() && !isBackup
-            ? 'visible'
-            : 'excluded'
+          file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded'
         );
 
         // replacement button
@@ -234,23 +199,14 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           this.getChildControl('replace-button').exclude();
         }
         // buttons that need write access
-        ['delete-button', 'replace-button', 'rename-button'].forEach(function (
-          controlName
-        ) {
+        ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
           this.getChildControl(controlName).setEnabled(
-            !file.isFake() &&
-              file.isWriteable() &&
-              (!isBackup || controlName === 'delete-button')
+            !file.isFake() && file.isWriteable() && (!isBackup || controlName === 'delete-button')
           );
-        },
-        this);
-        this.getChildControl('download-button').setEnabled(
-          !file.isFake() && file.getType() === 'file'
-        );
+        }, this);
+        this.getChildControl('download-button').setEnabled(!file.isFake() && file.getType() === 'file');
 
-        this.getChildControl('restore-button').setVisibility(
-          file.isInTrash() || isBackup ? 'visible' : 'excluded'
-        );
+        this.getChildControl('restore-button').setVisibility(file.isInTrash() || isBackup ? 'visible' : 'excluded');
       } else {
         this.getChildControl('delete-button').set({
           label: this.tr('Delete'),
@@ -323,10 +279,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
             message: this.tr('New name'),
             callback(name) {
               if (name && name !== this._selectedNode.getName()) {
-                cv.ui.manager.control.FileController.getInstance().rename(
-                  this._selectedNode,
-                  name
-                );
+                cv.ui.manager.control.FileController.getInstance().rename(this._selectedNode, name);
               }
             },
             context: this,
@@ -341,25 +294,19 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
     _onDownload() {
       if (this._selectedNode && this.isActive()) {
-        cv.ui.manager.control.FileController.getInstance().download(
-          this._selectedNode
-        );
+        cv.ui.manager.control.FileController.getInstance().download(this._selectedNode);
       }
     },
 
     _onRestore() {
       if (this._selectedNode && this.isActive()) {
-        cv.ui.manager.control.FileController.getInstance().restore(
-          this._selectedNode
-        );
+        cv.ui.manager.control.FileController.getInstance().restore(this._selectedNode);
       }
     },
 
     _onValidate() {
       if (this._selectedNode && this.isActive()) {
-        cv.ui.manager.control.FileController.getInstance().validate(
-          this._selectedNode
-        );
+        cv.ui.manager.control.FileController.getInstance().validate(this._selectedNode);
       }
     },
 
@@ -385,115 +332,75 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
       switch (id) {
         case 'new-file-button':
-          control = new qx.ui.menu.Button(
-            this.tr('New file'),
-            cv.theme.dark.Images.getIcon('new-file', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18));
 
           control.addListener('execute', () => {
             if (this._selectedNode.isConfigFile()) {
-              qx.event.message.Bus.dispatchByName(
-                'cv.manager.action.new-config-file',
-                this._selectedNode.getParent()
-              );
+              qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', this._selectedNode.getParent());
             } else {
               qx.event.message.Bus.dispatchByName(
                 'cv.manager.action.new-file',
-                this._selectedNode.getType() === 'dir'
-                  ? this._selectedNode
-                  : this._selectedNode.getParent()
+                this._selectedNode.getType() === 'dir' ? this._selectedNode : this._selectedNode.getParent()
               );
             }
           });
           break;
 
         case 'clone-file-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Clone file'),
-            cv.theme.dark.Images.getIcon('clone-file', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Clone file'), cv.theme.dark.Images.getIcon('clone-file', 18));
 
           control.exclude();
           control.addListener('execute', this._onClone, this);
           break;
 
         case 'new-folder-button':
-          control = new qx.ui.menu.Button(
-            this.tr('New folder'),
-            cv.theme.dark.Images.getIcon('new-folder', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18));
 
           control.addListener('execute', () => {
             qx.event.message.Bus.dispatchByName(
               'cv.manager.action.new-folder',
-              this._selectedNode.getType() === 'dir'
-                ? this._selectedNode
-                : this._selectedNode.getParent()
+              this._selectedNode.getType() === 'dir' ? this._selectedNode : this._selectedNode.getParent()
             );
           });
           break;
 
         case 'rename-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Rename'),
-            cv.theme.dark.Images.getIcon('rename', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Rename'), cv.theme.dark.Images.getIcon('rename', 18));
 
           control.addListener('execute', this._onRename, this);
           break;
 
         case 'delete-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Delete'),
-            cv.theme.dark.Images.getIcon('delete', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
 
           control.addListener('execute', () => {
-            qx.event.message.Bus.dispatchByName(
-              'cv.manager.action.delete',
-              this._selectedNode
-            );
+            qx.event.message.Bus.dispatchByName('cv.manager.action.delete', this._selectedNode);
           });
           break;
 
         case 'download-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Download'),
-            cv.theme.dark.Images.getIcon('download', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Download'), cv.theme.dark.Images.getIcon('download', 18));
 
           control.addListener('execute', this._onDownload, this);
           break;
 
         case 'open-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Open'),
-            cv.theme.dark.Images.getIcon('open', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Open'), cv.theme.dark.Images.getIcon('open', 18));
 
           control.addListener('execute', () => {
-            qx.event.message.Bus.dispatchByName(
-              'cv.manager.open',
-              this._selectedNode
-            );
+            qx.event.message.Bus.dispatchByName('cv.manager.open', this._selectedNode);
           });
           break;
 
         case 'restore-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Restore'),
-            cv.theme.dark.Images.getIcon('trash', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Restore'), cv.theme.dark.Images.getIcon('trash', 18));
 
           control.exclude();
           control.addListener('execute', this._onRestore, this);
           break;
 
         case 'validate-config-button':
-          control = new qx.ui.menu.Button(
-            this.tr('Validate'),
-            cv.theme.dark.Images.getIcon('validate', 18)
-          );
+          control = new qx.ui.menu.Button(this.tr('Validate'), cv.theme.dark.Images.getIcon('validate', 18));
 
           control.exclude();
           control.addListener('execute', this._onValidate, this);

@@ -65,9 +65,7 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
     _applyName(value) {
       if (value) {
         if (!this.__spriteUrl) {
-          this.__spriteUrl = qx.util.ResourceManager.getInstance().toUri(
-            'icons/knx-uf-iconset.svg'
-          );
+          this.__spriteUrl = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
         }
         if (!this.__useElement.getDomElement()) {
           this.__useElement.addListenerOnce('appear', () => {
@@ -78,11 +76,7 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
         // qx.xml.Element.setAttributeNS(document, this.__useElement.getDomElement(), 'http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
         this.__useElement
           .getDomElement()
-          .setAttributeNS(
-            'http://www.w3.org/1999/xlink',
-            'xlink:href',
-            this.__spriteUrl + '#kuf-' + value
-          );
+          .setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
       } else {
         this.__useElement.removeAttribute('xlink:href');
       }

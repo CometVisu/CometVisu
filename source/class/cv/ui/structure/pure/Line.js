@@ -40,11 +40,7 @@ qx.Class.define('cv.ui.structure.pure.Line', {
   members: {
     // overridden
     getDomString() {
-      return (
-        '<hr ' +
-        (this.getClasses() ? 'class="' + this.getClasses() + '"' : '') +
-        '/>'
-      );
+      return '<hr ' + (this.getClasses() ? 'class="' + this.getClasses() + '"' : '') + '/>';
     }
   }
 });

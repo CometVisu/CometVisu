@@ -123,21 +123,13 @@ qx.Class.define('cv.core.notifications.actions.Link', {
 
       actionButton.$$handler = this;
 
-      qx.event.Registration.addListener(
-        actionButton,
-        'tap',
-        this.handleAction,
-        this
-      );
+      qx.event.Registration.addListener(actionButton, 'tap', this.handleAction, this);
 
       return actionButton;
     }
   },
 
   defer() {
-    cv.core.notifications.ActionRegistry.registerActionHandler(
-      'link',
-      cv.core.notifications.actions.Link
-    );
+    cv.core.notifications.ActionRegistry.registerActionHandler('link', cv.core.notifications.actions.Link);
   }
 });

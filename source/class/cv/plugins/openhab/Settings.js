@@ -117,18 +117,14 @@ qx.Class.define('cv.plugins.openhab.Settings', {
       // load data
       service.get();
       this._store.addListenerOnce('changeModel', () => {
-        this.__initialValues = JSON.parse(
-          qx.util.Serializer.toJson(this._store.getModel())
-        );
+        this.__initialValues = JSON.parse(qx.util.Serializer.toJson(this._store.getModel()));
       });
     },
 
     _saveConfig() {
       let data = qx.util.Serializer.toJson(this._store.getModel());
       data = data.replace(/icons_mapping_/g, 'icons.mapping>');
-      data = JSON.parse(
-        data.replace('icons_enableMapping', 'icons>enableMapping')
-      );
+      data = JSON.parse(data.replace('icons_enableMapping', 'icons>enableMapping'));
 
       this.__service.put(null, data);
       this.__service.addListenerOnce('putSuccess', this.close, this);
@@ -139,8 +135,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
         get: { method: 'GET', url: '/rest/config-descriptions/' + this.__uri }
       };
 
-      const config = (this.__configDescriptionResource =
-        new qx.io.rest.Resource(description));
+      const config = (this.__configDescriptionResource = new qx.io.rest.Resource(description));
       const client = cv.io.BackendConnections.getClient();
 
       config.addListener('getSuccess', ev => {
@@ -158,11 +153,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
     },
 
     _createForm(config) {
-      if (
-        config &&
-        Object.prototype.hasOwnProperty.call(config, 'parameters') &&
-        Array.isArray(config.parameters)
-      ) {
+      if (config && Object.prototype.hasOwnProperty.call(config, 'parameters') && Array.isArray(config.parameters)) {
         this._createChildControl('title');
         const form = this.getChildControl('form');
         config.parameters.forEach(function (param) {
@@ -224,13 +215,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
         // noinspection EqualityComparisonWithCoercionJS
         if (this.__initialValues[name] != items[name].getValue()) {
           // jshint ignore:line
-          this.debug(
-            name +
-              ' has changed from ' +
-              this.__initialValues[name] +
-              ' to ' +
-              items[name].getValue()
-          );
+          this.debug(name + ' has changed from ' + this.__initialValues[name] + ' to ' + items[name].getValue());
 
           modified = true;
           return true;
@@ -286,12 +271,6 @@ qx.Class.define('cv.plugins.openhab.Settings', {
   ******************************************************
   */
   destruct() {
-    this._disposeObjects(
-      '__configDescriptionResource',
-      '__service',
-      '__root',
-      '_store',
-      '_window'
-    );
+    this._disposeObjects('__configDescriptionResource', '__service', '__root', '_store', '_window');
   }
 });

@@ -69,12 +69,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.HasAnimatedButton,
-    cv.ui.common.Refresh,
-    cv.ui.common.Update
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.Refresh, cv.ui.common.Update],
 
   /*
   ******************************************************
@@ -100,10 +95,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     _getInnerDomString() {
       let style = '';
       if (Object.keys(this.getLayout()).length === 0) {
-        style += cv.parser.pure.WidgetParser.extractLayout(
-          this.getLayout(),
-          this.getPageType()
-        );
+        style += cv.parser.pure.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
         style += 'height:' + this.getHeight() + ';';
@@ -114,12 +106,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
 
       let actor = '<div class="actor">';
       if (this.getUpdateType() === 'show') {
-        actor +=
-          '<img src="' +
-          this.__getUrl(this.getSrc() + '.' + this.getSuffix()) +
-          '"' +
-          style.trim() +
-          ' />';
+        actor += '<img src="' + this.__getUrl(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
       } else {
         actor += '<img src=""' + style + ' />';
       }
@@ -134,10 +121,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
         if (value === 0) {
           imageChild.style.display = 'none';
         } else {
-          imageChild.setAttribute(
-            'src',
-            this.__getUrl(this.getSrc() + '.' + this.getSuffix())
-          );
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
 
           imageChild.style.display = 'block';
         }
@@ -145,10 +129,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
         if (value === 0) {
           imageChild.style.display = 'none';
         } else {
-          imageChild.setAttribute(
-            'src',
-            this.__getUrl(this.getSrc() + value + '.' + this.getSuffix())
-          );
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
 
           imageChild.style.display = 'block';
         }

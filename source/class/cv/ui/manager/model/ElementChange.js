@@ -90,11 +90,7 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
           case 'deleted':
             change = this.getChanges()[0];
             if (change.parent) {
-              success = change.parent.insertChild(
-                change.child,
-                change.index,
-                true
-              );
+              success = change.parent.insertChild(change.child, change.index, true);
             }
             break;
 
@@ -108,11 +104,7 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
 
           case 'moved':
             change = this.getChanges()[0];
-            success = change.child.moveTo(
-              change.oldParent,
-              change.oldIndex,
-              true
-            );
+            success = change.child.moveTo(change.oldParent, change.oldIndex, true);
 
             break;
         }
@@ -152,11 +144,7 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
           case 'created':
             change = this.getChanges()[0];
             if (change.parent) {
-              success = change.parent.insertChild(
-                change.child,
-                change.index,
-                true
-              );
+              success = change.parent.insertChild(change.child, change.index, true);
             }
             break;
 

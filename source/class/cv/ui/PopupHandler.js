@@ -57,11 +57,7 @@ qx.Class.define('cv.ui.PopupHandler', {
         }
       });
 
-      qx.event.message.Bus.subscribe(
-        'path.pageLeft',
-        this._onPageChanged,
-        this
-      );
+      qx.event.message.Bus.subscribe('path.pageLeft', this._onPageChanged, this);
     },
 
     /**
@@ -224,12 +220,7 @@ qx.Class.define('cv.ui.PopupHandler', {
         }
 
         // test if that solution is valid
-        if (
-          xy.x >= 0 &&
-          xy.y >= 0 &&
-          xy.x + popup.w <= page.w &&
-          xy.y + popup.h <= page.h
-        ) {
+        if (xy.x >= 0 && xy.y >= 0 && xy.x + popup.w <= page.w && xy.y + popup.h <= page.h) {
           return xy;
         }
       }

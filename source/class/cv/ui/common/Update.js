@@ -89,13 +89,7 @@ qx.Mixin.define('cv.ui.common.Update', {
         }
         return value;
       }
-      return this.defaultUpdate(
-        address,
-        data,
-        this.getDomElement(),
-        true,
-        this.getPath()
-      );
+      return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
     },
 
     /**
@@ -112,9 +106,7 @@ qx.Mixin.define('cv.ui.common.Update', {
 
       let floorFilter = true;
       if (l.floorFilter) {
-        floorFilter =
-          data.getState('showFloor') ===
-          data.buildingProperties.floorNames[l.floorFilter];
+        floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter];
       }
       ev.data.element.css('display', floorFilter ? '' : 'none');
     }

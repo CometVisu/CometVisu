@@ -43,10 +43,7 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
       });
     }
     const layout = this._getLayout();
-    if (
-      !(layout instanceof qx.ui.layout.Grow) &&
-      !(layout instanceof qx.ui.layout.Canvas)
-    ) {
+    if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
       this.addListener('resize', this.__syncBounds, this);
     }
   },
@@ -137,10 +134,7 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
         for (i = 0, l = ev.dataTransfer.items.length; i < l; i++) {
           // If dropped items aren't files, reject them
           const item = ev.dataTransfer.items[i];
-          if (
-            item.kind === 'file' &&
-            cv.ui.manager.tree.FileSystem.isAccepted(item.type)
-          ) {
+          if (item.kind === 'file' && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
             file = item.getAsFile();
             files.push(file);
           }
@@ -168,19 +162,9 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
 
     __syncBounds() {
       const bounds = this.getBounds();
-      this.getChildControl('upload-overlay').setUserBounds(
-        bounds.left,
-        bounds.top,
-        bounds.width,
-        bounds.height
-      );
+      this.getChildControl('upload-overlay').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
 
-      this.getChildControl('upload-dropbox').setUserBounds(
-        bounds.left,
-        bounds.top,
-        bounds.width,
-        bounds.height
-      );
+      this.getChildControl('upload-dropbox').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
     },
 
     // overridden
@@ -196,23 +180,11 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
           control.exclude();
           if (layout instanceof qx.ui.layout.Canvas) {
             this._add(control, { edge: 0 });
-          } else if (
-            !(this._getLayout() instanceof qx.ui.layout.Grow) &&
-            bounds
-          ) {
-            control.setUserBounds(
-              bounds.left,
-              bounds.top,
-              bounds.width,
-              bounds.height
-            );
+          } else if (!(this._getLayout() instanceof qx.ui.layout.Grow) && bounds) {
+            control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
           }
           this._add(control);
-          this.getChildControl('upload-dropbox').bind(
-            'visibility',
-            control,
-            'visibility'
-          );
+          this.getChildControl('upload-dropbox').bind('visibility', control, 'visibility');
 
           break;
 
@@ -220,10 +192,7 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
           control.setBackgroundColor('rgba(32, 32, 32, 0.9)');
           control.setZIndex(1000);
-          const dropBox = new qx.ui.basic.Atom(
-            this.getUploadHint(),
-            cv.theme.dark.Images.getIcon('upload', 32)
-          );
+          const dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon('upload', 32));
 
           dropBox.set({
             iconPosition: 'top',
@@ -238,16 +207,8 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
           control.exclude();
           if (layout instanceof qx.ui.layout.Canvas) {
             this._add(control, { edge: 0 });
-          } else if (
-            !(this._getLayout() instanceof qx.ui.layout.Grow) &&
-            bounds
-          ) {
-            control.setUserBounds(
-              bounds.left,
-              bounds.top,
-              bounds.width,
-              bounds.height
-            );
+          } else if (!(this._getLayout() instanceof qx.ui.layout.Grow) && bounds) {
+            control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
           }
           this._add(control);
           break;
@@ -300,19 +261,14 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
      * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop
      */
     _applyDragListeners() {
-      const element = this.getChildControl('upload-overlay')
-        .getContentElement()
-        .getDomElement();
+      const element = this.getChildControl('upload-overlay').getContentElement().getDomElement();
       if (!element) {
-        const lid = this.getChildControl('upload-overlay').addListener(
-          'visibility',
-          ev => {
-            if (ev.getData() === 'visible') {
-              this._applyDragListeners();
-              this.getChildControl('upload-overlay').removeListenerById(lid);
-            }
+        const lid = this.getChildControl('upload-overlay').addListener('visibility', ev => {
+          if (ev.getData() === 'visible') {
+            this._applyDragListeners();
+            this.getChildControl('upload-overlay').removeListenerById(lid);
           }
-        );
+        });
 
         return;
       }
@@ -370,10 +326,7 @@ qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
     __applyUploadMode(value) {
       if (value === true) {
         this.getChildControl('upload-dropbox').show();
-        if (
-          this.hasChildControl('empty-info') &&
-          this.getChildControl('empty-info').isVisible()
-        ) {
+        if (this.hasChildControl('empty-info') && this.getChildControl('empty-info').isVisible()) {
           this.getChildControl('empty-info').exclude();
           this.__hasEmptyInfo = true;
         } else {

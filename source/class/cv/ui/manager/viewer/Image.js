@@ -87,9 +87,7 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
         control.setIcon(file.getServerPath());
         control.setLabel(file.getFullPath());
         if (!cv.ui.manager.viewer.Image.getImageData(file.getServerPath())) {
-          control
-            .getChildControl('icon')
-            .addListenerOnce('loaded', this._scaleImage, this);
+          control.getChildControl('icon').addListenerOnce('loaded', this._scaleImage, this);
         } else {
           this._scaleImage();
         }
@@ -112,9 +110,7 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
         return;
       }
       const icon = this.getChildControl('image').getChildControl('icon');
-      const data = cv.ui.manager.viewer.Image.getImageData(
-        file.getServerPath()
-      );
+      const data = cv.ui.manager.viewer.Image.getImageData(file.getServerPath());
 
       const paddingX = 10;
       const paddingY = 20;

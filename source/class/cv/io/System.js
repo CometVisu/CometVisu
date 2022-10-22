@@ -38,11 +38,7 @@ qx.Class.define('cv.io.System', {
   construct() {
     super();
     this.addresses = [];
-    qx.event.message.Bus.subscribe(
-      'cv.ui.structure.tile.currentPage',
-      this._onPageChange,
-      this
-    );
+    qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
   /*
   ***********************************************
@@ -104,8 +100,7 @@ qx.Class.define('cv.io.System', {
         const target = parts.shift();
         if (target === 'backend') {
           const name = parts.shift();
-          const backend =
-            name === 'system' ? this : cv.io.BackendConnections.getClient(name);
+          const backend = name === 'system' ? this : cv.io.BackendConnections.getClient(name);
           if (backend) {
             switch (value) {
               case 'restart':
@@ -147,10 +142,7 @@ qx.Class.define('cv.io.System', {
         } else if (target === 'http' || target === 'https') {
           // send HTTP request, ignore the answer
           if (parts.length >= 2 && parts[0] === 'proxy') {
-            const url = new URL(
-              cv.io.rest.Client.getBaseUrl() + '/proxy',
-              window.location.origin
-            );
+            const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
 
             url.searchParams.set('url', target + ':' + parts[1]);
             address = url.toString();

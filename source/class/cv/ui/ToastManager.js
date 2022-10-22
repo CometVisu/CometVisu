@@ -119,18 +119,9 @@ qx.Class.define('cv.ui.ToastManager', {
 
         document.body.appendChild(template);
       }
-      this._list = new qx.data.controller.website.List(
-        this._messages,
-        this.__domElement,
-        'ToastTemplate'
-      );
+      this._list = new qx.data.controller.website.List(this._messages, this.__domElement, 'ToastTemplate');
 
-      qx.event.Registration.addListener(
-        this.__domElement,
-        'tap',
-        this._onListTap,
-        this
-      );
+      qx.event.Registration.addListener(this.__domElement, 'tap', this._onListTap, this);
     },
 
     _performAction(message) {

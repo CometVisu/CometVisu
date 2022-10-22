@@ -203,11 +203,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         classes += ' ' + this.getCssClass();
       }
       return (
-        '<div class="' +
-        classes +
-        '"><div id="owm_' +
-        this.getPath() +
-        '" class="openweathermap_value"></div></div>'
+        '<div class="' + classes + '"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>'
       );
     },
 
@@ -231,10 +227,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     loader.addStyles('plugins/openweathermap/owm_weathericon.css');
     loader.addScripts('plugins/openweathermap/owm_core.js');
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler(
-      'openweathermap',
-      cv.plugins.OpenweatherMap
-    );
+    cv.parser.pure.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
 
     cv.ui.structure.WidgetFactory.registerClass('openweathermap', statics);
   }

@@ -102,17 +102,12 @@ qx.Mixin.define('cv.ui.common.Refresh', {
           const delta = this.getRefresh() - (Date.now() - this.__lastRun);
           if (delta <= 0) {
             // run immediately
-            this.debug(
-              'immediate refresh because refresh time has been reached ' +
-                this.getPath()
-            );
+            this.debug('immediate refresh because refresh time has been reached ' + this.getPath());
 
             this._timer.start();
             this._timer.fireEvent('interval');
           } else {
-            this.debug(
-              'starting refresh ' + this.getPath() + ' in ' + delta + 'ms'
-            );
+            this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms');
 
             // start when interval is finished
             this.__restartTimer = qx.event.Timer.once(
@@ -149,13 +144,11 @@ qx.Mixin.define('cv.ui.common.Refresh', {
           }
         } else if (!this._timer || !this._timer.isEnabled()) {
           const element = this.getDomElement();
-          const target =
-            element.querySelector('img') || element.querySelector('iframe');
+          const target = element.querySelector('img') || element.querySelector('iframe');
           let src = target.getAttribute('src');
           if (
             src.indexOf('?') < 0 &&
-            ((target.nodeName === 'IMG' && this.getCachecontrol() === 'full') ||
-              target.nodeName !== 'IMG')
+            ((target.nodeName === 'IMG' && this.getCachecontrol() === 'full') || target.nodeName !== 'IMG')
           ) {
             src += '?';
           }
@@ -183,8 +176,7 @@ qx.Mixin.define('cv.ui.common.Refresh', {
          * src = src doesnt work anyway on external This creates though some
          * "flickering" so we avoid to use it on images, internal iframes and others
          */
-        const parenthost =
-          window.location.protocol + '//' + window.location.host;
+        const parenthost = window.location.protocol + '//' + window.location.host;
         if (target.nodeName === 'IFRAME' && src.indexOf(parenthost) !== 0) {
           target.setAttribute('src', '');
           qx.event.Timer.once(
@@ -204,10 +196,7 @@ qx.Mixin.define('cv.ui.common.Refresh', {
 
           switch (cachecontrol) {
             case 'full':
-              target.setAttribute(
-                'src',
-                qx.util.Uri.appendParamsToUrl(src, '' + new Date().getTime())
-              );
+              target.setAttribute('src', qx.util.Uri.appendParamsToUrl(src, '' + new Date().getTime()));
 
               break;
 
@@ -249,11 +238,7 @@ qx.Mixin.define('cv.ui.common.Refresh', {
     __forceImgReload(src) {
       window
         .fetch(src, { cache: 'reload', mode: 'no-cors' })
-        .then(() =>
-          document.body
-            .querySelectorAll(`img[src='${src}']`)
-            .forEach(img => (img.src = src))
-        );
+        .then(() => document.body.querySelectorAll(`img[src='${src}']`).forEach(img => (img.src = src)));
     }
   }
 });

@@ -45,9 +45,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     _init() {
       super._init();
       const popup = this._element;
-      const closeable =
-        !popup.hasAttribute('closeable') ||
-        popup.getAttribute('closeable') === 'true';
+      const closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
       if (closeable) {
         this._closeButton = document.createElement('button');
         this._closeButton.classList.add('close');
@@ -58,9 +56,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
         this._closeButton.addEventListener('click', () => this.close());
       }
       if (popup.hasAttribute('auto-close-timeout')) {
-        const timeoutSeconds = parseInt(
-          popup.getAttribute('auto-close-timeout')
-        );
+        const timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));
 
         if (!isNaN(timeoutSeconds)) {
           this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
@@ -69,10 +65,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
             this.close();
           });
         } else {
-          this.error(
-            'invalid auto-close-timeout value:',
-            popup.getAttribute('auto-close-timeout')
-          );
+          this.error('invalid auto-close-timeout value:', popup.getAttribute('auto-close-timeout'));
         }
       }
     },
@@ -81,10 +74,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       const popup = this._element;
       if (!popup.hasAttribute('open')) {
         popup.setAttribute('open', '');
-        if (
-          popup.hasAttribute('modal') &&
-          popup.getAttribute('modal') === 'true'
-        ) {
+        if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
           this.registerModalPopup();
         }
         if (this._autoCloseTimer) {
@@ -97,10 +87,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       const popup = this._element;
       if (popup) {
         popup.removeAttribute('open');
-        if (
-          popup.hasAttribute('modal') &&
-          popup.getAttribute('modal') === 'true'
-        ) {
+        if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
           this.unregisterModalPopup();
         }
         if (this._autoCloseTimer) {

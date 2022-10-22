@@ -87,9 +87,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
           font: states.list ? 'default' : 'small',
           width: states.list ? 500 : 160,
           textColor: 'text-on-surface',
-          backgroundColor: states.hovered
-            ? 'rgba(255, 255, 255, 0.1)'
-            : 'transparent'
+          backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
         };
       }
     },
@@ -177,11 +175,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         return {
           backgroundColor: backgroundColor,
           textColor: 'text-on-primary',
-          decorator: states.lead
-            ? 'lead-item'
-            : states.dragover
-            ? 'dragover'
-            : undefined,
+          decorator: states.lead ? 'lead-item' : states.dragover ? 'dragover' : undefined,
           opacity: states.drag ? 0.5 : undefined,
           height: 26,
           padding: padding,
@@ -285,8 +279,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       }
     },
 
-    'cv-editor-config-section/options-title':
-      'cv-editor-config-section/section-title',
+    'cv-editor-config-section/options-title': 'cv-editor-config-section/section-title',
     'cv-editor-config-section/name': 'cv-config-textfield',
     'cv-editor-config-section/list': {
       include: 'list',
@@ -399,11 +392,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
 
       style(states) {
         return {
-          textColor: states.comment
-            ? 'text-on-surface'
-            : states.error
-            ? 'invalid-color'
-            : null
+          textColor: states.comment ? 'text-on-surface' : states.error ? 'invalid-color' : null
         };
       }
     },
@@ -469,9 +458,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     'checkbox/label': {
       style(states) {
         return {
-          textColor: states.undetermined
-            ? 'text-on-secondary'
-            : 'text-on-primary'
+          textColor: states.undetermined ? 'text-on-secondary' : 'text-on-primary'
         };
       }
     },

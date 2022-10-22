@@ -46,9 +46,7 @@ qx.Class.define('cv.ui.manager.dialog.BigAlert', {
     _createWidgetContent() {
       let container = this._createDialogContainer();
       this.add(container);
-      let hbox = (this._hbox = new qx.ui.container.Composite(
-        new qx.ui.layout.HBox(10)
-      ));
+      let hbox = (this._hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10)));
 
       let scroll = new qx.ui.container.Scroll(hbox);
       scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);

@@ -97,11 +97,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     _nativePasteSupported: false,
 
     canHandleAction(actionName) {
-      if (
-        actionName === 'save' &&
-        this.getFile() &&
-        !this.getFile().isWriteable()
-      ) {
+      if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
         return false;
       }
       return this._handledActions && this._handledActions.includes(actionName);
@@ -128,11 +124,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     _loadFile(file, old) {
       if (old) {
-        qx.event.message.Bus.unsubscribe(
-          old.getBusTopic(),
-          this._onChange,
-          this
-        );
+        qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
       if (file && file.getType() === 'file') {
         if (file.getContent() !== null) {
@@ -140,11 +132,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
         } else {
           this._loadFromFs();
         }
-        qx.event.message.Bus.subscribe(
-          file.getBusTopic(),
-          this._onChange,
-          this
-        );
+        qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
       } else {
         this.resetContent();
       }
@@ -184,10 +172,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
-        const message =
-          type === 'created'
-            ? this.tr('File has been created')
-            : this.tr('File has been saved');
+        const message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
         cv.ui.manager.snackbar.Controller.info(message);
         this._onSaved();
         const file = this.getFile();
@@ -216,8 +201,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
             },
 
             this.getCurrentContent(),
-            callback ||
-              qx.lang.Function.curry(this._handleSaveResponse, 'created'),
+            callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'),
             this
           );
         } else {
@@ -228,11 +212,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
             },
 
             this.getCurrentContent(),
-            callback ||
-              qx.lang.Function.curry(
-                this._handleSaveResponse,
-                'contentChanged'
-              ),
+            callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'),
 
             this
           );

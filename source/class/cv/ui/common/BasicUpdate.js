@@ -180,10 +180,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
           this.formatValueCache = [this.getFormat()];
         }
 
-        const argListPos =
-          this.getAddress() && this.getAddress()[address]
-            ? this.getAddress()[address].formatPos
-            : 1;
+        const argListPos = this.getAddress() && this.getAddress()[address] ? this.getAddress()[address].formatPos : 1;
 
         this.formatValueCache[argListPos] = value;
 
@@ -286,9 +283,7 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
       if (this.getAlign()) {
         element.classList.add(this.getAlign());
       }
-      const valueElement = this.getValueElement
-        ? this.getValueElement()
-        : element.querySelector('.value');
+      const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
       if (undefined !== value) {
         valueElement.replaceChildren(); // delete anything inside
         this.defaultValue2DOM(value, valueElement);

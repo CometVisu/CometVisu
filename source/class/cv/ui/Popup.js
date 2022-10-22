@@ -30,13 +30,7 @@ qx.Class.define('cv.ui.Popup', {
     if (type) {
       this.setType(type);
     }
-    this.__deactivateSelectors = [
-      '#top',
-      '#navbarTop',
-      '#centerContainer',
-      '#navbarBottom',
-      '#bottom'
-    ];
+    this.__deactivateSelectors = ['#top', '#navbarTop', '#centerContainer', '#navbarBottom', '#bottom'];
 
     this.__elementMap = {};
   },
@@ -84,14 +78,9 @@ qx.Class.define('cv.ui.Popup', {
      * @return {Element} Popup as DOM Element
      */
     create(attributes) {
-      cv.ui.BodyBlocker.getInstance().block(
-        attributes.unique,
-        attributes.topic
-      );
+      cv.ui.BodyBlocker.getInstance().block(attributes.unique, attributes.topic);
 
-      const closable =
-        !Object.prototype.hasOwnProperty.call(attributes, 'closable') ||
-        attributes.closable;
+      const closable = !Object.prototype.hasOwnProperty.call(attributes, 'closable') || attributes.closable;
       const body = document.querySelector('body');
       let ret_val;
       const classes = ['popup', 'popup_background', this.getType()];
@@ -163,10 +152,7 @@ qx.Class.define('cv.ui.Popup', {
               class: 'message'
             });
 
-            qx.dom.Element.insertBegin(
-              this.__elementMap.messageContent,
-              this.__elementMap.content
-            );
+            qx.dom.Element.insertBegin(this.__elementMap.messageContent, this.__elementMap.content);
           }
           if (qx.lang.Type.isString(attributes.content)) {
             this.__elementMap.messageContent.innerHTML = attributes.content;
@@ -184,32 +170,18 @@ qx.Class.define('cv.ui.Popup', {
 
         if (attributes.icon) {
           if (!this.__elementMap.icon) {
-            const iconClasses = attributes.iconClasses
-              ? ' ' + attributes.iconClasses
-              : '';
+            const iconClasses = attributes.iconClasses ? ' ' + attributes.iconClasses : '';
             this.__elementMap.icon = qx.dom.Element.create('div', {
-              html: cv.util.IconTools.svgKUF(attributes.icon)(
-                null,
-                null,
-                'icon' + iconClasses,
-                true,
-                true
-              )
+              html: cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses, true, true)
             });
 
-            qx.dom.Element.insertBegin(
-              this.__elementMap.icon,
-              this.__elementMap.content
-            );
+            qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
           } else {
             const use = this.__elementMap.icon.querySelector('use');
             const currentIconPath = use.getAttribute('xlink:href');
             if (!currentIconPath.endsWith('#kuf-' + attributes.icon)) {
               const parts = currentIconPath.split('#');
-              use.setAttribute(
-                'xlink:href',
-                parts[0] + '#kuf-' + attributes.icon
-              );
+              use.setAttribute('xlink:href', parts[0] + '#kuf-' + attributes.icon);
             }
           }
         } else {
@@ -228,10 +200,7 @@ qx.Class.define('cv.ui.Popup', {
         }
       }
 
-      if (
-        attributes.actions &&
-        Object.getOwnPropertyNames(attributes.actions).length > 0
-      ) {
+      if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
         if (!this.__elementMap.actions) {
           this.__elementMap.actions = qx.dom.Element.create('div', {
             class: 'actions'
@@ -242,13 +211,8 @@ qx.Class.define('cv.ui.Popup', {
           // clear content
           this.__elementMap.actions.innerHTML = '';
         }
-        const actionTypes = Object.getOwnPropertyNames(
-          attributes.actions
-        ).length;
-        Object.getOwnPropertyNames(attributes.actions).forEach(function (
-          type,
-          index
-        ) {
+        const actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
+        Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {
           const typeActions = Array.isArray(attributes.actions[type])
             ? attributes.actions[type]
             : [attributes.actions[type]];
@@ -256,31 +220,17 @@ qx.Class.define('cv.ui.Popup', {
           let target = this.__elementMap.actions;
           let wrapper = null;
           if (
-            cv.core.notifications.actions[
-              type.charAt(0).toUpperCase() + type.substr(1)
-            ] &&
-            cv.core.notifications.actions[
-              type.charAt(0).toUpperCase() + type.substr(1)
-            ].getWrapper
+            cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)] &&
+            cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper
           ) {
-            wrapper =
-              cv.core.notifications.actions[
-                type.charAt(0).toUpperCase() + type.substr(1)
-              ].getWrapper();
+            wrapper = cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper();
           } else {
-            wrapper = qx.dom.Element.create(
-              'div',
-              actionTypes > index + 1 ? { style: 'margin-bottom: 20px' } : {}
-            );
+            wrapper = qx.dom.Element.create('div', actionTypes > index + 1 ? { style: 'margin-bottom: 20px' } : {});
           }
           target.appendChild(wrapper);
           target = wrapper;
           typeActions.forEach(function (action) {
-            const actionButton =
-              cv.core.notifications.ActionRegistry.createActionElement(
-                type,
-                action
-              );
+            const actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
 
             if (actionButton) {
               actionButton.$$handler &&
@@ -290,8 +240,7 @@ qx.Class.define('cv.ui.Popup', {
               target.appendChild(actionButton);
             }
           }, this);
-        },
-        this);
+        }, this);
       } else {
         this.destroyElement('actions');
       }

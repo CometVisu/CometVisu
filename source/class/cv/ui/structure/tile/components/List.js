@@ -92,24 +92,17 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         return;
       }
       if (model.hasAttribute('filter')) {
-        this._filterModel = new Function(
-          'item',
-          'index',
-          '"use strict"; return ' + model.getAttribute('filter')
-        );
+        this._filterModel = new Function('item', 'index', '"use strict"; return ' + model.getAttribute('filter'));
       }
       if (model.hasAttribute('limit')) {
         this._limit = parseInt(model.getAttribute('limit'));
       }
-      const readAddresses = model.querySelectorAll(
-        ':scope > cv-address:not([mode="write"])'
-      );
+      const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
 
       if (model.hasAttribute('sort-by')) {
         const sortBy = model.getAttribute('sort-by');
         // reverse order in 'desc' sort mode
-        const sortModifier =
-          model.getAttribute('sort-mode') === 'desc' ? -1 : 1;
+        const sortModifier = model.getAttribute('sort-mode') === 'desc' ? -1 : 1;
         this._sortModel = (left, right) => {
           const leftVal = left[sortBy];
           const rightVal = right[sortBy];
@@ -127,11 +120,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
                 return leftVal.localeCompare(rightVal) * sortModifier;
 
               default:
-                return (
-                  JSON.stringify(leftVal).localeCompare(
-                    JSON.stringify(rightVal)
-                  ) * sortModifier
-                );
+                return JSON.stringify(leftVal).localeCompare(JSON.stringify(rightVal)) * sortModifier;
             }
           } else if (leftVal === undefined || leftVal === null) {
             return 1 * sortModifier;
@@ -144,11 +133,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       if (model.hasAttribute('src')) {
         // fetch from url
         this._getModel = async () => {
-          const res = await cv.io.Fetch.fetch(
-            model.getAttribute('src'),
-            null,
-            model.getAttribute('proxy') === 'true'
-          );
+          const res = await cv.io.Fetch.fetch(model.getAttribute('src'), null, model.getAttribute('proxy') === 'true');
 
           return res;
         };
@@ -156,11 +141,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         const script = model.querySelector(':scope > script');
         const data = model.querySelectorAll(':scope > cv-data');
         if (script) {
-          this._getModel = new Function(
-            '"use strict";let model = []; ' +
-              script.innerText.trim() +
-              '; return model'
-          );
+          this._getModel = new Function('"use strict";let model = []; ' + script.innerText.trim() + '; return model');
 
           this._model = this._getModel();
         } else if (readAddresses.length > 0) {
@@ -245,9 +226,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             element.style.display = 'none';
             break;
           default:
-            throw new Error(
-              'invalid target: ' + template.getAttribute('target')
-            );
+            throw new Error('invalid target: ' + template.getAttribute('target'));
         }
       } else if (!target) {
         target = document.createElement('ul');
@@ -266,22 +245,13 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           newModel = newModel.slice(0, this._limit);
         }
         if (newModel.length === 0) {
-          const whenEmptyTemplate = element.querySelector(
-            ':scope > template[when="empty"]'
-          );
+          const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
 
-          if (
-            whenEmptyTemplate &&
-            !target.querySelector(':scope > .empty-model')
-          ) {
-            while (
-              target.firstElementChild &&
-              target.firstElementChild.hasAttribute('data-row')
-            ) {
+          if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
+            while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
               target.removeChild(target.firstElementChild);
             }
-            const emptyModel =
-              whenEmptyTemplate.content.firstElementChild.cloneNode(true);
+            const emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
             emptyModel.classList.add('empty-model');
             target.appendChild(emptyModel);
             return;
@@ -303,21 +273,18 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
         newModel.forEach((entry, i) => {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
-          const html = template.innerHTML.replaceAll(
-            /\${([^}\[]+)\[?(\d+)?\]?}/g,
-            (match, p1, p2) => {
-              if (Object.prototype.hasOwnProperty.call(entry, p1)) {
-                let val = entry[p1];
-                if (p2 && Array.isArray(val)) {
-                  return val[parseInt(p2)];
-                }
-                return val;
-              } else if (p1 === 'index') {
-                return '' + i;
+          const html = template.innerHTML.replaceAll(/\${([^}\[]+)\[?(\d+)?\]?}/g, (match, p1, p2) => {
+            if (Object.prototype.hasOwnProperty.call(entry, p1)) {
+              let val = entry[p1];
+              if (p2 && Array.isArray(val)) {
+                return val[parseInt(p2)];
               }
-              return '';
+              return val;
+            } else if (p1 === 'index') {
+              return '' + i;
             }
-          );
+            return '';
+          });
 
           itemTemplate.innerHTML = html;
           if (elem) {
@@ -326,10 +293,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             elem.setAttribute('data-row', '' + i);
           } else {
             // append new child
-            itemTemplate.content.firstElementChild.setAttribute(
-              'data-row',
-              '' + i
-            );
+            itemTemplate.content.firstElementChild.setAttribute('data-row', '' + i);
 
             target.appendChild(itemTemplate.content.cloneNode(true));
           }

@@ -95,11 +95,7 @@ qx.Class.define('cv.Transform', {
     addTransform(prefix, transforms) {
       for (let [transName, transform] of Object.entries(transforms)) {
         if (transform.link) {
-          this.registry[prefix + ':' + transName] = Object.assign(
-            {},
-            transforms[transform.link],
-            transform
-          );
+          this.registry[prefix + ':' + transName] = Object.assign({}, transforms[transform.link], transform);
         } else {
           this.registry[prefix + ':' + transName] = transform;
         }
@@ -131,9 +127,7 @@ qx.Class.define('cv.Transform', {
      */
     clipInt(min, value, max, scaling = 1) {
       const _value = +value; // enforce number
-      return Math.round(
-        (_value > min ? (_value > max ? max : _value) : min) * scaling
-      );
+      return Math.round((_value > min ? (_value > max ? max : _value) : min) * scaling);
     },
 
     /**
@@ -173,9 +167,7 @@ qx.Class.define('cv.Transform', {
         const retval = JSON.stringify(result.start);
         return { bus: retval, raw: retval };
       }
-      return encoding.constructor === Object &&
-        'bus' in encoding &&
-        'raw' in encoding
+      return encoding.constructor === Object && 'bus' in encoding && 'raw' in encoding
         ? encoding
         : { bus: encoding, raw: encoding };
     },
@@ -202,34 +194,23 @@ qx.Class.define('cv.Transform', {
       let { selector, variantInfo } = address;
       const basetrans = transform.split('.')[0];
 
-      if (
-        typeof value === 'string' &&
-        selector !== undefined &&
-        selector !== null
-      ) {
+      if (typeof value === 'string' && selector !== undefined && selector !== null) {
         // decode JSON
         const selectorOriginal = selector;
 
         try {
           let v = JSON.parse(value);
           while (selector !== '') {
-            const { firstPart, remainingPart } =
-              this.__getFirstElement(selector);
+            const { firstPart, remainingPart } = this.__getFirstElement(selector);
             if (typeof v === 'object' && firstPart in v) {
               v = v[firstPart];
             } else {
               throw new Error(
-                qx.locale.Manager.tr(
-                  'Sub-selector "%1" does not fit to value %2',
-                  selector,
-                  JSON.stringify(v)
-                )
+                qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v))
               );
             }
             if (selector === remainingPart) {
-              throw new Error(
-                qx.locale.Manager.tr('Sub-selector error: "%1"', selector)
-              );
+              throw new Error(qx.locale.Manager.tr('Sub-selector error: "%1"', selector));
             }
             selector = remainingPart;
           }
@@ -250,10 +231,7 @@ qx.Class.define('cv.Transform', {
               )
             };
 
-            cv.core.notifications.Router.dispatchMessage(
-              message.topic,
-              message
-            );
+            cv.core.notifications.Router.dispatchMessage(message.topic, message);
           }
           return '-';
         }
@@ -272,12 +250,8 @@ qx.Class.define('cv.Transform', {
      */
     __getFirstElement(selector) {
       if (selector[0] === '[') {
-        const [, firstPart, remainingPart] =
-          selector.match(/^\[([^\]]*)]\.?(.*)/);
-        if (
-          (firstPart[0] === '"' || firstPart[0] === "'") &&
-          firstPart[0] === firstPart.substr(-1)
-        ) {
+        const [, firstPart, remainingPart] = selector.match(/^\[([^\]]*)]\.?(.*)/);
+        if ((firstPart[0] === '"' || firstPart[0] === "'") && firstPart[0] === firstPart.substr(-1)) {
           return {
             firstPart: firstPart.substr(1, firstPart.length - 2),
             remainingPart
@@ -285,11 +259,7 @@ qx.Class.define('cv.Transform', {
         } else if (isFinite(firstPart)) {
           return { firstPart, remainingPart };
         }
-        throw qx.locale.Manager.tr(
-          'Sub-selector "%1" has bad first part "%2"',
-          selector,
-          firstPart
-        );
+        throw qx.locale.Manager.tr('Sub-selector "%1" has bad first part "%2"', selector, firstPart);
       } else {
         const [, firstPart, remainingPart] = selector.match(/^([^.[]*)\.?(.*)/);
         if (firstPart.length > 0) {

@@ -59,12 +59,7 @@ qx.Class.define('cv.ui.structure.pure.Video', {
       }
       const autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : '';
       return (
-        '<div class="actor"><video src="' +
-        this.getSrc() +
-        '" ' +
-        style +
-        autoplay +
-        '  controls="controls" /></div>'
+        '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>'
       );
     },
 

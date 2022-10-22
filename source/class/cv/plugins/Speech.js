@@ -78,29 +78,19 @@ qx.Class.define('cv.plugins.Speech', {
   statics: {
     parse(element, path) {
       if (!window.speechSynthesis) {
-        qx.log.Logger.warn(
-          this,
-          'this browser does not support the Web Speech API'
-        );
+        qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
 
         return null;
       }
 
-      const address = cv.parser.pure.WidgetParser.makeAddressList(
-        element,
-        path
-      );
+      const address = cv.parser.pure.WidgetParser.makeAddressList(element, path);
 
       return cv.data.Model.getInstance().setWidgetData(path, {
         path: path,
-        language: element.getAttribute('lang')
-          ? element.getAttribute('lang').toLowerCase()
-          : null,
+        language: element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : null,
         address: address,
         mapping: element.getAttribute('mapping'),
-        repeatTimeout: element.getAttribute('repeat-timeout')
-          ? parseInt(element.getAttribute('repeat-timeout'))
-          : -1,
+        repeatTimeout: element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
         $$type: 'speech',
         // this widget needs to be initialized when the cache is used, otherwise it wont be available
         $$initOnCacheLoad: true
@@ -173,8 +163,7 @@ qx.Class.define('cv.plugins.Speech', {
           this.__lastSpeech[address] &&
           this.__lastSpeech[address].text === text &&
           (this.getRepeatTimeout() === 0 ||
-            this.getRepeatTimeout() >=
-              Math.round((Date.now() - this.__lastSpeech[address].time) / 1000))
+            this.getRepeatTimeout() >= Math.round((Date.now() - this.__lastSpeech[address].time) / 1000))
         ) {
           // update time
           this.__lastSpeech[address].time = Date.now();
@@ -194,10 +183,7 @@ qx.Class.define('cv.plugins.Speech', {
         time: Date.now()
       };
 
-      cv.core.notifications.SpeechHandler.getInstance().say(
-        text,
-        this.getLanguage()
-      );
+      cv.core.notifications.SpeechHandler.getInstance().say(text, this.getLanguage());
     }
   },
 

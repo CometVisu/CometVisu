@@ -50,9 +50,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       super._init();
       const element = this._element;
       if (element.hasAttribute('throttle-interval')) {
-        this.setThrottleInterval(
-          parseInt(element.getAttribute('throttle-interval'))
-        );
+        this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
       } else {
         this._applyThrottleInterval(this.getThrottleInterval());
       }
@@ -70,12 +68,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
 
     _applyThrottleInterval(value) {
       if (value > 0) {
-        this.__throttled = cv.util.Function.throttle(
-          this.onInput,
-          value,
-          { trailing: true },
-          this
-        );
+        this.__throttled = cv.util.Function.throttle(this.onInput, value, { trailing: true }, this);
       } else {
         // no throttling, direct call
         this.__throttled = {
@@ -94,10 +87,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       const rgb = mappedValue.substring(0, 7);
       if (target) {
         const tagName = target.tagName.toLowerCase();
-        const alpha =
-          mappedValue.length === 9
-            ? parseInt(mappedValue.substring(7, 9), 16) / 255
-            : 1.0;
+        const alpha = mappedValue.length === 9 ? parseInt(mappedValue.substring(7, 9), 16) / 255 : 1.0;
 
         switch (tagName) {
           case 'cv-icon':
@@ -125,19 +115,13 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
         let alpha = '';
         switch (ev.detail.variant) {
           case 'hsv':
-            rgb = qx.util.ColorUtil.hsbToRgb([
-              value.get('h'),
-              value.get('s'),
-              100
-            ]);
+            rgb = qx.util.ColorUtil.hsbToRgb([value.get('h'), value.get('s'), 100]);
 
             alpha = Math.round((value.get('v') / 100) * 255)
               .toString(16)
               .padStart(2, '0');
             this.setValue(
-              `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1]
-                .toString(16)
-                .padStart(2, '0')}${rgb[2]
+              `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1].toString(16).padStart(2, '0')}${rgb[2]
                 .toString(16)
                 .padStart(2, '0')}${alpha}`
             );

@@ -53,9 +53,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     super();
     this.__HTML_STRUCT = '';
     qx.bom.Stylesheet.includeFile(
-      qx.util.ResourceManager.getInstance()
-        .toUri('designs/tile-globals.scss')
-        .replace('.scss', '.css') +
+      qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') +
         (cv.Config.forceReload === true ? '?' + Date.now() : '')
     );
   },
@@ -83,10 +81,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         }
         this.__I[name].push(new QxClass(element));
       } else {
-        qx.log.Logger.error(
-          this,
-          'no QxClass registered for custom element ' + name
-        );
+        qx.log.Logger.error(this, 'no QxClass registered for custom element ' + name);
       }
     }
   },
@@ -165,10 +160,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           page.classList.add('active');
           // mark parent pages that there is a active subpage
           let parentElement = page.parentElement;
-          while (
-            parentElement &&
-            parentElement.nodeName.toLowerCase() !== 'main'
-          ) {
+          while (parentElement && parentElement.nodeName.toLowerCase() !== 'main') {
             if (parentElement.nodeName.toLowerCase() === 'cv-page') {
               parentElement.classList.add('sub-active');
             }
@@ -183,10 +175,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
             }
             qx.bom.History.getInstance().addToHistory(pageId, pageTitle);
           }
-          qx.event.message.Bus.dispatchByName(
-            'cv.ui.structure.tile.currentPage',
-            page
-          );
+          qx.event.message.Bus.dispatchByName('cv.ui.structure.tile.currentPage', page);
         }
       } else {
         this.warn('no page with id', pageId, 'found');
@@ -214,14 +203,11 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       document.body.classList.add('loading-structure');
       const settings = cv.Config.configSettings;
       const configElement = config.documentElement;
-      settings.bindClickToWidget =
-        configElement.getAttribute('bind_click_to_widget') === 'true';
+      settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
       this.translate(config);
 
       if (!cv.Config.cacheUsed) {
-        const templates = qx.util.ResourceManager.getInstance().toUri(
-          'structures/tile/templates.xml'
-        );
+        const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
 
         const ajaxRequest = new qx.io.request.Xhr(templates);
         ajaxRequest.set({
@@ -239,10 +225,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           // we need the documents to be in HTML namespace
           if (!content.documentElement.xmlns) {
             let text = e.getTarget().getResponseText();
-            text = text.replace(
-              '<templates',
-              '<templates xmlns="http://www.w3.org/1999/xhtml"'
-            );
+            text = text.replace('<templates', '<templates xmlns="http://www.w3.org/1999/xhtml"');
 
             const parser = new DOMParser();
             content = parser.parseFromString(text, 'text/xml');
@@ -280,19 +263,16 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     registerTemplates(xml) {
-      xml
-        .querySelectorAll("templates[structure='tile'] > template")
-        .forEach(template => {
-          customElements.define(
-            cv.ui.structure.tile.Controller.PREFIX +
-              template.getAttribute('id'),
-            class extends TemplatedElement {
-              constructor() {
-                super(template.getAttribute('id'));
-              }
+      xml.querySelectorAll("templates[structure='tile'] > template").forEach(template => {
+        customElements.define(
+          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
+          class extends TemplatedElement {
+            constructor() {
+              super(template.getAttribute('id'));
             }
-          );
-        });
+          }
+        );
+      });
     },
 
     /**
@@ -305,23 +285,16 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         const data = {};
         if (theme === 'system') {
           if (window.matchMedia) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', theme);
             data['theme'] = theme;
             cv.data.Model.getInstance().updateFrom('system', data);
-            window
-              .matchMedia('(prefers-color-scheme: dark)')
-              .addEventListener('change', e => {
-                document.documentElement.setAttribute(
-                  'data-theme',
-                  e.matches ? 'dark' : 'light'
-                );
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+              document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
 
-                data['theme'] = e.matches ? 'dark' : 'light';
-                cv.data.Model.getInstance().updateFrom('system', data);
-              });
+              data['theme'] = e.matches ? 'dark' : 'light';
+              cv.data.Model.getInstance().updateFrom('system', data);
+            });
           } else {
             this.error('system theme detection not possible in this browser');
           }
@@ -343,15 +316,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     translate(doc) {
       for (const attr of ['name', 'label']) {
         for (const trNameElement of doc.querySelectorAll(`*[${attr}^="tr("]`)) {
-          const match = /^tr\('([^']+)'\)$/.exec(
-            trNameElement.getAttribute(attr)
-          );
+          const match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
 
           if (!match) {
-            this.warn(
-              'attribute content no valid translation string',
-              trNameElement.getAttribute(attr)
-            );
+            this.warn('attribute content no valid translation string', trNameElement.getAttribute(attr));
 
             continue;
           }
@@ -364,9 +332,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
             trNameElement.setAttribute(attr, translation.textContent.trim());
           } else {
             trNameElement.setAttribute(attr, key);
-            this.warn(
-              `[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`
-            );
+            this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
           }
         }
       }
@@ -379,9 +345,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         if (translation) {
           trTextElement.textContent = translation.textContent.trim();
         } else {
-          this.warn(
-            `[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`
-          );
+          this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
         }
       }
     },
@@ -431,10 +395,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     mapValue(mappingName, value, store) {
-      if (
-        this.__mappings &&
-        Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)
-      ) {
+      if (this.__mappings && Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
         return this.__mappings[mappingName].mapValue(value, store);
       }
       return value;
@@ -458,10 +419,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     styleValue(stylingName, value, store) {
-      if (
-        this.__stylings &&
-        Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)
-      ) {
+      if (this.__stylings && Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
@@ -487,12 +445,8 @@ class TemplatedElement extends HTMLElement {
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
-        const replacementSelector = slot.hasAttribute('replaces')
-          ? slot.getAttribute('replaces')
-          : '';
-        const slotParentScope = slot.hasAttribute('parent-scope')
-          ? parseInt(slot.getAttribute('parent-scope'))
-          : 0;
+        const replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
+        const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
@@ -509,12 +463,7 @@ class TemplatedElement extends HTMLElement {
                   // append it
                   newNode.classList.add(attrs[attrName]);
                 } else {
-                  qx.log.Logger.debug(
-                    controller,
-                    '[' + templateId + '] attribute',
-                    attrName,
-                    'already set, skipping'
-                  );
+                  qx.log.Logger.debug(controller, '[' + templateId + '] attribute', attrName, 'already set, skipping');
                 }
               } else {
                 newNode.setAttribute(attrName, attrs[attrName]);
@@ -530,12 +479,7 @@ class TemplatedElement extends HTMLElement {
             });
           }
         } else {
-          qx.log.Logger.debug(
-            controller,
-            '[' + templateId + '] no content for slot',
-            slotName,
-            ' removing'
-          );
+          qx.log.Logger.debug(controller, '[' + templateId + '] no content for slot', slotName, ' removing');
 
           let parentNode = slot.parentNode;
           if (slotParentScope > 0) {
@@ -573,17 +517,11 @@ class TemplatedElement extends HTMLElement {
         }
         targets.forEach(target => {
           if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            target.setAttribute(
-              name,
-              value || target.getAttribute('slot-' + name)
-            );
+            target.setAttribute(name, value || target.getAttribute('slot-' + name));
 
             target.removeAttribute('slot-' + name);
           } else {
-            target.setAttribute(
-              targetName,
-              value || target.getAttribute('slot-' + targetName)
-            );
+            target.setAttribute(targetName, value || target.getAttribute('slot-' + targetName));
 
             target.removeAttribute('slot-' + targetName);
           }
@@ -597,20 +535,11 @@ class TemplatedElement extends HTMLElement {
           if (attr.name.startsWith('slot-')) {
             let targetName = attr.name.substring(5);
             // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
-            if (
-              attr.name.endsWith('-mapping') &&
-              elem.hasAttribute('slot-mapping')
-            ) {
+            if (attr.name.endsWith('-mapping') && elem.hasAttribute('slot-mapping')) {
               targetName = 'mapping';
-            } else if (
-              attr.name.endsWith('-styling') &&
-              elem.hasAttribute('slot-styling')
-            ) {
+            } else if (attr.name.endsWith('-styling') && elem.hasAttribute('slot-styling')) {
               targetName = 'styling';
-            } else if (
-              attr.name.endsWith('-format') &&
-              elem.hasAttribute('slot-format')
-            ) {
+            } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
               targetName = 'format';
             }
             if (attr.value) {
@@ -625,11 +554,7 @@ class TemplatedElement extends HTMLElement {
       this.innerHTML = '';
       this.appendChild(content);
     } else {
-      qx.log.Logger.error(
-        controller,
-        '[' + templateId + '] no template found for id',
-        templateId
-      );
+      qx.log.Logger.error(controller, '[' + templateId + '] no template found for id', templateId);
     }
   }
 }

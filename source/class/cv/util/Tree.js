@@ -136,10 +136,7 @@ qx.Class.define('cv.util.Tree', {
       const model = cv.data.Model.getInstance();
       while (parentPath.length >= 2) {
         data = model.getWidgetData(parentPath);
-        if (
-          parentPath === 'id_' ||
-          (data.children && data.children.indexOf(path) >= 0)
-        ) {
+        if (parentPath === 'id_' || (data.children && data.children.indexOf(path) >= 0)) {
           return data;
         }
         parentPath = traverseUp(parentPath);

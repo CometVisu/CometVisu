@@ -41,12 +41,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
   */
   construct() {
     super();
-    if (
-      !Object.prototype.hasOwnProperty.call(
-        cv.Config.request.queryKey,
-        'preview'
-      )
-    ) {
+    if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, 'preview')) {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications
@@ -55,10 +50,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
       if (sse) {
         sse.subscribe('notifications', this._onNotification, this);
       }
-      cv.TemplateEngine.getInstance().executeWhenDomFinished(
-        this._createSettings,
-        this
-      );
+      cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
     }
   },
 
@@ -81,21 +73,12 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
 
       qx.dom.Element.insertAfter(
         settingsRoot,
-        document.querySelector(
-          '#' +
-            cv.ui.NotificationCenter.getInstance().getRootElementId() +
-            ' section.messages'
-        )
+        document.querySelector('#' + cv.ui.NotificationCenter.getInstance().getRootElementId() + ' section.messages')
       );
 
       // add a settings button to trigger opening the settings
       const button = qx.dom.Element.create('div', {
-        html: cv.util.IconTools.svgKUF('edit_settings')(
-          null,
-          'width: 22px; height: 22px;',
-          '',
-          true
-        ),
+        html: cv.util.IconTools.svgKUF('edit_settings')(null, 'width: 22px; height: 22px;', '', true),
 
         style: 'float: left;'
       });
@@ -105,13 +88,8 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
         cv.ui.NotificationCenter.getInstance().show();
         this.__settings.show();
       });
-      cv.TemplateEngine.getInstance()
-        .getCommands()
-        .add('open-settings', this._openSettings);
-      qx.dom.Element.insertBegin(
-        button,
-        document.querySelector('#notification-center footer')
-      );
+      cv.TemplateEngine.getInstance().getCommands().add('open-settings', this._openSettings);
+      qx.dom.Element.insertBegin(button, document.querySelector('#notification-center footer'));
 
       qx.event.Registration.addListener(
         button,
@@ -129,11 +107,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
       // and that breaks the inline container sizes)
       // qx.ui.tooltip.Manager.getInstance();
 
-      this._inline = new qx.ui.root.Inline(
-        document.querySelector('#qxsettings > div'),
-        true,
-        false
-      );
+      this._inline = new qx.ui.root.Inline(document.querySelector('#qxsettings > div'), true, false);
 
       this._inline.setLayout(new qx.ui.layout.VBox());
       this.__settings = new cv.plugins.openhab.Settings();
@@ -151,10 +125,7 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
         this.error('invalid content received from SSE: ', e);
       }
       const json = typeof e.data === 'object' ? e.data : JSON.parse(e.data);
-      this.__notificationRouter.dispatchMessage(
-        json.topic || 'cv.backend',
-        json
-      );
+      this.__notificationRouter.dispatchMessage(json.topic || 'cv.backend', json);
     }
   },
 

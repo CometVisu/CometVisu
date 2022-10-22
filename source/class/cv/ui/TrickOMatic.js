@@ -64,9 +64,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
       pipes.forEach(function (pipe_group) {
         let length = 0.0;
         pipe_group.querySelectorAll('path').forEach(function (path) {
-          if (
-            path.className.animVal.split(' ').indexOf('pipe-o-matic_clone') > 0
-          ) {
+          if (path.className.animVal.split(' ').indexOf('pipe-o-matic_clone') > 0) {
             return;
           }
           const stroke = path.style.stroke;
@@ -110,12 +108,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
             if (high > offset) {
               n.style.strokeDasharray = [high - offset, low, offset, 0];
             } else {
-              n.style.strokeDasharray = [
-                0,
-                low - (offset - high),
-                high,
-                offset - high
-              ];
+              n.style.strokeDasharray = [0, low - (offset - high), high, offset - high];
             }
             n.style.strokeDashoffset = length % (0.5 * segmentLength);
             pipe_group.insertBefore(n, path.nextElementSibling);
@@ -130,10 +123,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
                 cv.ui.TrickOMatic.updateActive(pipe_group, data);
               });
               // init
-              cv.ui.TrickOMatic.updateActive(
-                pipe_group,
-                cv.data.Model.getInstance().getState(address)
-              );
+              cv.ui.TrickOMatic.updateActive(pipe_group, cv.data.Model.getInstance().getState(address));
             });
           }
         });
@@ -167,10 +157,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
 
       let keyframes = createKeyframe(
         'move',
-        'from {  stroke-dashoffset: ' +
-          segmentLength +
-          ';  }\n' +
-          'to   {  stroke-dashoffset: 0;  }\n'
+        'from {  stroke-dashoffset: ' + segmentLength + ';  }\n' + 'to   {  stroke-dashoffset: 0;  }\n'
       );
 
       /**

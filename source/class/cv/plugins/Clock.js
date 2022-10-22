@@ -219,10 +219,7 @@ qx.Class.define('cv.plugins.Clock', {
       };
 
       let tspan;
-      while (
-        elements.digits !== null &&
-        (tspan = elements.digits.querySelector('tspan')) !== null
-      ) {
+      while (elements.digits !== null && (tspan = elements.digits.querySelector('tspan')) !== null) {
         elements.digits = tspan;
       }
       let hour24Group = svg.querySelector('#Hour24Group');
@@ -273,12 +270,7 @@ qx.Class.define('cv.plugins.Clock', {
     _onDomReady() {
       super._onDomReady();
 
-      this.__throttled = cv.util.Function.throttle(
-        this.dragAction,
-        250,
-        { trailing: true },
-        this
-      );
+      this.__throttled = cv.util.Function.throttle(this.dragAction, 250, { trailing: true }, this);
 
       let uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
       let uriPopup = this.getSrcPopup();
@@ -297,9 +289,7 @@ qx.Class.define('cv.plugins.Clock', {
           }
           if (uriPopup !== '') {
             if (!responses[1].ok) {
-              throw new Error(
-                'Not 2xx response for popup URI "' + uriPopup + '"'
-              );
+              throw new Error('Not 2xx response for popup URI "' + uriPopup + '"');
             } else {
               result.push(responses[1].text());
             }
@@ -333,10 +323,7 @@ qx.Class.define('cv.plugins.Clock', {
           if (texts.length > 1) {
             let popup = document.createElement('div');
             let title = this.getTitlePopup();
-            popup.setAttribute(
-              'style',
-              'width:100%;height:100%;position:absolute;'
-            );
+            popup.setAttribute('style', 'width:100%;height:100%;position:absolute;');
 
             popup.innerHTML = texts[1];
 
@@ -387,10 +374,7 @@ qx.Class.define('cv.plugins.Clock', {
           this._updateHands();
         })
         .catch(error => {
-          this.error(
-            'There has been a problem with the reading of the clock SVG:',
-            error
-          );
+          this.error('There has been a problem with the reading of the clock SVG:', error);
         });
     },
 
@@ -399,41 +383,20 @@ qx.Class.define('cv.plugins.Clock', {
 
     // overridden
     _update(address, data, isDataAlreadyHandled) {
-      let value = isDataAlreadyHandled
-        ? data
-        : this.applyTransform(address, data);
+      let value = isDataAlreadyHandled ? data : this.applyTransform(address, data);
       if (value instanceof Date) {
         this.__valueIsString = false;
-        this.__timeToShow = [
-          value.getHours(),
-          value.getMinutes(),
-          value.getSeconds()
-        ];
+        this.__timeToShow = [value.getHours(), value.getMinutes(), value.getSeconds()];
 
         this.setValue(value);
       } else {
         this.__valueIsString = true;
-        this.__timeToShow =
-          typeof value === 'string' ? value.split(':') : [0, 0, 0];
-        this.__timeToShow[0] =
-          this.__timeToShow[0] >= 0 && this.__timeToShow[0] <= 23
-            ? this.__timeToShow[0]
-            : 0;
-        this.__timeToShow[1] =
-          this.__timeToShow[1] >= 0 && this.__timeToShow[1] <= 59
-            ? this.__timeToShow[1]
-            : 0;
-        this.__timeToShow[2] =
-          this.__timeToShow[2] >= 0 && this.__timeToShow[2] <= 59
-            ? this.__timeToShow[2]
-            : 0;
+        this.__timeToShow = typeof value === 'string' ? value.split(':') : [0, 0, 0];
+        this.__timeToShow[0] = this.__timeToShow[0] >= 0 && this.__timeToShow[0] <= 23 ? this.__timeToShow[0] : 0;
+        this.__timeToShow[1] = this.__timeToShow[1] >= 0 && this.__timeToShow[1] <= 59 ? this.__timeToShow[1] : 0;
+        this.__timeToShow[2] = this.__timeToShow[2] >= 0 && this.__timeToShow[2] <= 59 ? this.__timeToShow[2] : 0;
         let date = new Date(); // assume today
-        date.setHours(
-          this.__timeToShow[0],
-          this.__timeToShow[1],
-          this.__timeToShow[2],
-          0
-        );
+        date.setHours(this.__timeToShow[0], this.__timeToShow[1], this.__timeToShow[2], 0);
 
         this.setValue(date);
       }
@@ -578,24 +541,14 @@ qx.Class.define('cv.plugins.Clock', {
       if (this.getHideSeconds()) {
         time.setSeconds(0);
       }
-      this.__timeToShow = [
-        time.getHours(),
-        time.getMinutes(),
-        time.getSeconds()
-      ];
+      this.__timeToShow = [time.getHours(), time.getMinutes(), time.getSeconds()];
 
       this._updateHands();
     },
 
     dragAction() {
-      const value = this.__valueIsString
-        ? this.getValue().toTimeString().split(' ')[0]
-        : this.getValue();
-      this.__lastBusValue = this.sendToBackend(
-        value,
-        false,
-        this.__lastBusValue
-      );
+      const value = this.__valueIsString ? this.getValue().toTimeString().split(' ')[0] : this.getValue();
+      this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
     },
 
     _updateHands() {
@@ -607,47 +560,24 @@ qx.Class.define('cv.plugins.Clock', {
             if (showSeconds) {
               e.hour.setAttribute(
                 'transform',
-                'rotate(' +
-                  (((hour % 12) * 360) / 12 +
-                    (minute * 30) / 60 +
-                    (second * 30) / 60 / 60) +
-                  ',0,0)'
+                'rotate(' + (((hour % 12) * 360) / 12 + (minute * 30) / 60 + (second * 30) / 60 / 60) + ',0,0)'
               );
             } else {
-              e.hour.setAttribute(
-                'transform',
-                'rotate(' +
-                  (((hour % 12) * 360) / 12 + (minute * 30) / 60) +
-                  ',0,0)'
-              );
+              e.hour.setAttribute('transform', 'rotate(' + (((hour % 12) * 360) / 12 + (minute * 30) / 60) + ',0,0)');
             }
           }
           if (e.minute !== null) {
             if (showSeconds) {
-              e.minute.setAttribute(
-                'transform',
-                'rotate(' + (minute * 6 + (second * 6) / 60) + ',0,0)'
-              );
+              e.minute.setAttribute('transform', 'rotate(' + (minute * 6 + (second * 6) / 60) + ',0,0)');
             } else {
-              e.minute.setAttribute(
-                'transform',
-                'rotate(' + minute * 6 + ',0,0)'
-              );
+              e.minute.setAttribute('transform', 'rotate(' + minute * 6 + ',0,0)');
             }
           }
           if (e.second !== null) {
-            e.second.setAttribute(
-              'transform',
-              'rotate(' + second * 6 + ',0,0)'
-            );
+            e.second.setAttribute('transform', 'rotate(' + second * 6 + ',0,0)');
           }
           if (e.hour24 !== null) {
-            e.hour24.setAttribute(
-              'transform',
-              'rotate(' +
-                (((hour % 24) * 360) / 24 + (minute * 15) / 60) +
-                ',0,0)'
-            );
+            e.hour24.setAttribute('transform', 'rotate(' + (((hour % 24) * 360) / 24 + (minute * 15) / 60) + ',0,0)');
           }
           if (e.am !== null) {
             e.am.setAttribute('display', hour < 12 ? '' : 'none');
@@ -659,12 +589,7 @@ qx.Class.define('cv.plugins.Clock', {
             if (this.getHideSeconds()) {
               e.digits.textContent = sprintf('%02d:%02d', hour, minute);
             } else {
-              e.digits.textContent = sprintf(
-                '%02d:%02d:%02d',
-                hour,
-                minute,
-                second
-              );
+              e.digits.textContent = sprintf('%02d:%02d:%02d', hour, minute, second);
             }
           }
         });

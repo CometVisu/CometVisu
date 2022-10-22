@@ -142,15 +142,7 @@ qx.Class.define('cv.ui.structure.pure.Group', {
       container += this.getChildrenDomString();
       container += '</div>';
 
-      return (
-        '<div class="' +
-        this.getClasses() +
-        '" ' +
-        this.getStyle() +
-        '>' +
-        container +
-        '</div>'
-      );
+      return '<div class="' + this.getClasses() + '" ' + this.getStyle() + '>' + container + '</div>';
     }
   },
 

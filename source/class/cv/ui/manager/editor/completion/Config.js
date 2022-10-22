@@ -75,16 +75,12 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     setStructure(name) {
-      const loaded = Object.prototype.hasOwnProperty.call(
-        this.__currentSchemas,
-        name
-      );
+      const loaded = Object.prototype.hasOwnProperty.call(this.__currentSchemas, name);
 
       switch (name) {
         case 'pure':
           if (!loaded) {
-            this.__currentSchemas.pure =
-              cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
+            this.__currentSchemas.pure = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
           }
           this.__currentSchema = this.__currentSchemas.pure;
           this.__rootTagName = 'pages';
@@ -94,9 +90,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
 
         case 'tile':
           if (!loaded) {
-            this.__currentSchemas.tile = cv.ui.manager.model.Schema.getInstance(
-              'visu_config_tile.xsd'
-            );
+            this.__currentSchemas.tile = cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
           }
           this.__currentSchema = this.__currentSchemas.tile;
           this.__rootTagName = 'config';
@@ -125,10 +119,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           // if the tag wasn't closed
           if (closingBracketIdx === -1) {
             // if there are no closing tags or the current tag wasn't closed
-            if (
-              !closingTags.length ||
-              closingTags[closingTags.length - 1] !== tag
-            ) {
+            if (!closingTags.length || closingTags[closingTags.length - 1] !== tag) {
               // we found our tag, but let's get the information if we are looking for
               // a child element or an attribute
               text = text.substring(tagPosition);
@@ -146,8 +137,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 tagName: tag,
                 currentAttribute: currentAttribute,
                 filteredElementSearch: filteredElementSearch,
-                isAttributeSearch:
-                  !filteredElementSearch && openedTag && !contentSearch,
+                isAttributeSearch: !filteredElementSearch && openedTag && !contentSearch,
                 isContentSearch: contentSearch,
                 text: text
               };
@@ -163,8 +153,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-      const cache =
-        inMeta === true ? this.__metaElementCache : this.__elementCache;
+      const cache = inMeta === true ? this.__metaElementCache : this.__elementCache;
       if (elementName in cache) {
         return cache[elementName];
       }
@@ -189,12 +178,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           continue;
         }
         if (maxDepth > currentDepth) {
-          const result = this.findElements(
-            allowedElements[element],
-            elementName,
-            maxDepth,
-            currentDepth + 1
-          );
+          const result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
 
           if (result) {
             cache[elementName] = result;
@@ -232,20 +216,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       Object.getOwnPropertyNames(allowedAttributes).forEach(function (attr) {
         const attribute = allowedAttributes[attr];
         if (!attribute.isOptional) {
-          insertText +=
-            attr +
-            '="' +
-            (attribute.getDefaultValue() ? attribute.getDefaultValue() : '') +
-            '" ';
+          insertText += attr + '="' + (attribute.getDefaultValue() ? attribute.getDefaultValue() : '') + '" ';
         }
       });
       // add mandatory children
       const requiredElements = element.getRequiredElements();
       const allowedContent = element.getAllowedContent();
-      const isContentAllowed =
-        allowedContent._text ||
-        requiredElements.length > 0 ||
-        !!allowedContent._grouping;
+      const isContentAllowed = allowedContent._text || requiredElements.length > 0 || !!allowedContent._grouping;
       if (!isContentAllowed) {
         // close tag
         insertText = insertText.trim() + '/';
@@ -258,10 +235,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         requiredElements.forEach(function (elemName) {
           const elem = this.findElements(element, elemName, 1, 0);
           if (elem) {
-            insertText +=
-              '\n    ' +
-              this.getElementString(elem, indent + '    ', '<') +
-              '>';
+            insertText += '\n    ' + this.getElementString(elem, indent + '    ', '<') + '>';
             children++;
           }
         }, this);
@@ -288,13 +262,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           // get all element attributes
           const childElem = children[name];
           // the element is a suggestion if it's available
-          if (
-            this.isItemAvailable(
-              childElem.getName(),
-              childElem.getBounds().max,
-              usedItems
-            )
-          ) {
+          if (this.isItemAvailable(childElem.getName(), childElem.getBounds().max, usedItems)) {
             // mark it as a 'field', and get the documentation
             availableItems.push({
               label: childElem.getName(),
@@ -334,9 +302,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     detectSchema(completeText) {
-      const match = /:noNamespaceSchemaLocation="([^"]+)"/.exec(
-        completeText.substring(0, 200)
-      );
+      const match = /:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
 
       if (match && match[1].endsWith('visu_config_tile.xsd')) {
         this.setStructure('tile');
@@ -374,8 +340,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       // parse mappings
       const completeText = model.getValue();
       const metaEndPos = completeText.indexOf('</meta>');
-      const textMeta =
-        metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+      const textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
       const mappingNames = [];
       const stylingNames = [];
       const templates = {};
@@ -415,11 +380,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       const openedAttributes = [];
       // get the elements/attributes that are already mentioned in the element we're in
       const usedItems = [];
-      const isAttributeSearch =
-        lastOpenedTag && lastOpenedTag.isAttributeSearch;
+      const isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
       const isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
-      const filteredElementSearch =
-        lastOpenedTag && lastOpenedTag.filteredElementSearch;
+      const filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
       // no need to calculate the position in the XSD schema if we are in the root element
       let parts;
       if (lastOpenedTag) {
@@ -428,11 +391,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         parts.shift();
         let cleanedText = textUntilPosition;
         if (parts.length) {
-          cleanedText =
-            cleanedText.substring(
-              0,
-              cleanedText.length - parts.join(' ').length
-            ) + '>';
+          cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
         }
         // parse the content (not cleared text) into an xml document
         const xmlDoc = qx.xml.Document.fromString(cleanedText);
@@ -447,10 +406,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             lastFound = true;
             // if we are looking for attributes, then used items should
             // be the attributes we already used
-            if (
-              lastOpenedTag.isAttributeSearch &&
-              lastChild.outerHTML === lastOpenedTag.text
-            ) {
+            if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
               const attrs = lastChild.attributes;
               for (i = 0; i < attrs.length; i++) {
                 usedItems.push(attrs[i].nodeName);
@@ -489,75 +445,49 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       let searchedElement = openedTags[openedTags.length - 1];
       if (isContentSearch) {
         // handle data providers if the is one relevant
-        if (
-          lastOpenedTag.tagName === 'pages' &&
-          lastOpenedTag.currentAttribute === 'design'
-        ) {
+        if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
           return this._dataProvider.getDesigns().then(function (sugg) {
             return { suggestions: sugg };
           });
-        } else if (
-          lastOpenedTag.tagName === 'address' &&
-          lastOpenedTag.currentAttribute === 'transform'
-        ) {
+        } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
           return { suggestions: this._dataProvider.getTransforms() };
-        } else if (
-          lastOpenedTag.tagName === 'plugin' &&
-          lastOpenedTag.currentAttribute === 'name'
-        ) {
+        } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
           return { suggestions: this._dataProvider.getPlugins() };
-        } else if (
-          lastOpenedTag.tagName === 'icon' &&
-          lastOpenedTag.currentAttribute === 'name'
-        ) {
+        } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
           return {
-            suggestions: this._dataProvider.getIcons(
-              'monaco',
-              { cache: false },
-              completeText
-            )
+            suggestions: this._dataProvider.getIcons('monaco', { cache: false }, completeText)
           };
         } else if (lastOpenedTag.tagName === 'influx') {
           if (lastOpenedTag.currentAttribute === 'measurement') {
-            return this._dataProvider
-              .getInfluxDBs()
-              .then(function (suggestions) {
-                return { suggestions: suggestions };
-              });
+            return this._dataProvider.getInfluxDBs().then(function (suggestions) {
+              return { suggestions: suggestions };
+            });
           } else if (lastOpenedTag.currentAttribute === 'field') {
             match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
             if (match) {
-              return this._dataProvider
-                .getInfluxDBFields(match[1])
-                .then(function (suggestions) {
-                  return { suggestions: suggestions };
-                });
+              return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
+                return { suggestions: suggestions };
+              });
             }
           }
         } else if (
           lastOpenedTag.tagName === 'tag' &&
-          (lastOpenedTag.currentAttribute === 'key' ||
-            lastOpenedTag.currentAttribute === 'value') &&
+          (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') &&
           openedTags.includes('influx')
         ) {
-          const influxAttributes =
-            openedAttributes[openedTags.indexOf('influx')];
+          const influxAttributes = openedAttributes[openedTags.indexOf('influx')];
           const attr = influxAttributes.getNamedItem('measurement');
           if (attr) {
             if (lastOpenedTag.currentAttribute === 'key') {
-              return this._dataProvider
-                .getInfluxDBTags(attr.value)
-                .then(function (suggestions) {
-                  return { suggestions: suggestions };
-                });
+              return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
+                return { suggestions: suggestions };
+              });
             } else if (lastOpenedTag.currentAttribute === 'value') {
               match = /key="([^"]+)"/.exec(lastOpenedTag.text);
               if (match) {
-                return this._dataProvider
-                  .getInfluxDBValues(attr.value, match[1])
-                  .then(function (suggestions) {
-                    return { suggestions: suggestions };
-                  });
+                return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
+                  return { suggestions: suggestions };
+                });
               }
             }
           }
@@ -621,31 +551,17 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         searchedElement = lastOpenedTag.tagName;
       } else if (!isAttributeSearch && filteredElementSearch) {
         searchedElement = openedTags[openedTags.length - 2];
-      } else if (
-        lastOpenedTag.tagName === 'address' &&
-        lastOpenedTag.currentAttribute === null
-      ) {
-        return this._dataProvider
-          .getAddresses('monaco')
-          .then(res => ({ suggestions: res }));
+      } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
+        return this._dataProvider.getAddresses('monaco').then(res => ({ suggestions: res }));
       }
       if (searchedElement === 'rrd') {
-        return this._dataProvider
-          .getRrds('monaco')
-          .then(res => ({ suggestions: res }));
-      } else if (
-        searchedElement === 'file' &&
-        !isAttributeSearch &&
-        !isContentSearch &&
-        openedTags.includes('files')
-      ) {
+        return this._dataProvider.getRrds('monaco').then(res => ({ suggestions: res }));
+      } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
         match = /type="([^"]+)"/.exec(lastOpenedTag.text);
         const typeFilter = match ? match[1] : null;
-        return this._dataProvider
-          .getMediaFiles(typeFilter)
-          .then(function (suggestions) {
-            return { suggestions: suggestions };
-          });
+        return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+          return { suggestions: suggestions };
+        });
       }
       const currentItem = this.findElements(
         this.__currentSchema.getElementNode('pages'),
@@ -659,12 +575,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (isContentSearch) {
         const currentAttribute = usedItems[usedItems.length - 1];
 
-        if (
-          currentItem &&
-          currentAttribute in currentItem.getAllowedAttributes()
-        ) {
-          const attribute =
-            currentItem.getAllowedAttributes()[currentAttribute];
+        if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+          const attribute = currentItem.getAllowedAttributes()[currentAttribute];
           const type = attribute.getTypeString();
           attribute.getEnumeration().forEach(function (entry) {
             res.push({
@@ -678,9 +590,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         }
       } else if (isAttributeSearch) {
         // get attributes completions
-        res = currentItem
-          ? this.getAvailableAttributes(currentItem, usedItems)
-          : [];
+        res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
       } else {
         // get elements completions
         // eslint-disable-next-line no-lonely-if
@@ -691,9 +601,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             kind: window.monaco.languages.CompletionItemKind.Field
           });
         } else {
-          res = currentItem
-            ? this.getAvailableElements(currentItem, usedItems)
-            : [];
+          res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
         }
       }
       return { suggestions: res };
@@ -711,8 +619,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       // parse mappings
       const completeText = model.getValue();
       const metaEndPos = completeText.indexOf('</cv-meta>');
-      const textMeta =
-        metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+      const textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
       const mappingNames = [];
       const stylingNames = [];
       let map;
@@ -734,11 +641,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       const openedAttributes = [];
       // get the elements/attributes that are already mentioned in the element we're in
       const usedItems = [];
-      const isAttributeSearch =
-        lastOpenedTag && lastOpenedTag.isAttributeSearch;
+      const isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
       const isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
-      const filteredElementSearch =
-        lastOpenedTag && lastOpenedTag.filteredElementSearch;
+      const filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
       // no need to calculate the position in the XSD schema if we are in the root element
       let parts;
       if (lastOpenedTag) {
@@ -747,11 +652,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         parts.shift();
         let cleanedText = textUntilPosition;
         if (parts.length) {
-          cleanedText =
-            cleanedText.substring(
-              0,
-              cleanedText.length - parts.join(' ').length
-            ) + '>';
+          cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
         }
         // parse the content (not cleared text) into an xml document
         const xmlDoc = qx.xml.Document.fromString(cleanedText);
@@ -766,10 +667,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             lastFound = true;
             // if we are looking for attributes, then used items should
             // be the attributes we already used
-            if (
-              lastOpenedTag.isAttributeSearch &&
-              lastChild.outerHTML === lastOpenedTag.text
-            ) {
+            if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
               const attrs = lastChild.attributes;
               for (i = 0; i < attrs.length; i++) {
                 usedItems.push(attrs[i].nodeName);
@@ -808,21 +706,12 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       let searchedElement = openedTags[openedTags.length - 1];
       if (isContentSearch) {
         // handle data providers if the is one relevant
-        if (
-          lastOpenedTag.tagName === 'config' &&
-          lastOpenedTag.currentAttribute === 'design'
-        ) {
+        if (lastOpenedTag.tagName === 'config' && lastOpenedTag.currentAttribute === 'design') {
           const suggestions = this._dataProvider.getDesigns(null, null, 'tile');
           return { suggestions: suggestions };
-        } else if (
-          lastOpenedTag.tagName === 'cv-address' &&
-          lastOpenedTag.currentAttribute === 'transform'
-        ) {
+        } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === 'transform') {
           return { suggestions: this._dataProvider.getTransforms() };
-        } else if (
-          lastOpenedTag.tagName === 'cv-icon' &&
-          lastOpenedTag.currentAttribute === 'name'
-        ) {
+        } else if (lastOpenedTag.tagName === 'cv-icon' && lastOpenedTag.currentAttribute === 'name') {
           return { suggestions: this._dataProvider.getIcons() };
         } else if (lastOpenedTag.currentAttribute === 'mapping') {
           res = mappingNames.map(function (mappingName) {
@@ -846,31 +735,16 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         searchedElement = lastOpenedTag.tagName;
       } else if (!isAttributeSearch && filteredElementSearch) {
         searchedElement = openedTags[openedTags.length - 2];
-      } else if (
-        lastOpenedTag.tagName === 'cv-address' &&
-        lastOpenedTag.currentAttribute === null
-      ) {
-        return this._dataProvider
-          .getAddresses('monaco')
-          .then(res => ({ suggestions: res }));
-      } else if (
-        lastOpenedTag.tagName === 'cv-chart' &&
-        lastOpenedTag.currentAttribute === 'src'
-      ) {
-        return this._dataProvider
-          .getRrds('monaco')
-          .then(res => ({ suggestions: res }));
-      } else if (
-        lastOpenedTag.tagName === 'cv-loader' &&
-        lastOpenedTag.currentAttribute === 'src'
-      ) {
+      } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === null) {
+        return this._dataProvider.getAddresses('monaco').then(res => ({ suggestions: res }));
+      } else if (lastOpenedTag.tagName === 'cv-chart' && lastOpenedTag.currentAttribute === 'src') {
+        return this._dataProvider.getRrds('monaco').then(res => ({ suggestions: res }));
+      } else if (lastOpenedTag.tagName === 'cv-loader' && lastOpenedTag.currentAttribute === 'src') {
         match = /type="([^"]+)"/.exec(lastOpenedTag.text);
         const typeFilter = match ? match[1] : null;
-        return this._dataProvider
-          .getMediaFiles(typeFilter)
-          .then(function (suggestions) {
-            return { suggestions: suggestions };
-          });
+        return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+          return { suggestions: suggestions };
+        });
       }
       const currentItem = this.findElements(
         this.__currentSchema.getElementNode('config'),
@@ -884,12 +758,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (isContentSearch) {
         const currentAttribute = lastOpenedTag.currentAttribute;
 
-        if (
-          currentItem &&
-          currentAttribute in currentItem.getAllowedAttributes()
-        ) {
-          const attribute =
-            currentItem.getAllowedAttributes()[currentAttribute];
+        if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+          const attribute = currentItem.getAllowedAttributes()[currentAttribute];
           const type = attribute.getTypeString();
           attribute.getEnumeration().forEach(function (entry) {
             res.push({
@@ -903,9 +773,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         }
       } else if (isAttributeSearch) {
         // get attributes completions
-        res = currentItem
-          ? this.getAvailableAttributes(currentItem, usedItems)
-          : [];
+        res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
       } else {
         // get elements completions
         // eslint-disable-next-line no-lonely-if
@@ -916,9 +784,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             kind: window.monaco.languages.CompletionItemKind.Field
           });
         } else {
-          res = currentItem
-            ? this.getAvailableElements(currentItem, usedItems)
-            : [];
+          res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
         }
       }
       return { suggestions: res };

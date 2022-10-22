@@ -29,17 +29,10 @@ qx.Mixin.define('cv.ui.manager.control.MFileEventHandler', {
   */
   construct() {
     if (qx.core.Environment.get('qx.debug')) {
-      qx.core.Assert.assertInterface(
-        this,
-        cv.ui.manager.control.IFileEventHandler
-      );
+      qx.core.Assert.assertInterface(this, cv.ui.manager.control.IFileEventHandler);
     }
     if (!this._disableFileEvents) {
-      qx.event.message.Bus.subscribe(
-        'cv.manager.file',
-        this._handleFileEvent,
-        this
-      );
+      qx.event.message.Bus.subscribe('cv.manager.file', this._handleFileEvent, this);
     }
   },
 
@@ -58,10 +51,6 @@ qx.Mixin.define('cv.ui.manager.control.MFileEventHandler', {
   ***********************************************
   */
   destruct() {
-    qx.event.message.Bus.unsubscribe(
-      'cv.manager.file',
-      this._handleFileEvent,
-      this
-    );
+    qx.event.message.Bus.unsubscribe('cv.manager.file', this._handleFileEvent, this);
   }
 });

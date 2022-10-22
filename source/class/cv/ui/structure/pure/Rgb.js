@@ -71,8 +71,7 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
           break;
       }
 
-      valElem.style['background-color'] =
-        'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
+      valElem.style['background-color'] = 'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
     }
   },
 

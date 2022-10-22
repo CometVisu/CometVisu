@@ -33,9 +33,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
     if (editor) {
       this.setEditor(editor);
     }
-    this._commandGroup = qx.core.Init.getApplication()
-      .getCommandManager()
-      .getActive();
+    this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._init();
   },
 
@@ -80,18 +78,10 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
 
     _applyEditor(value, old) {
       if (old) {
-        old.removeListener(
-          'changeClipboard',
-          this._maintainClipboardButtons,
-          this
-        );
+        old.removeListener('changeClipboard', this._maintainClipboardButtons, this);
       }
       if (value) {
-        value.addListener(
-          'changeClipboard',
-          this._maintainClipboardButtons,
-          this
-        );
+        value.addListener('changeClipboard', this._maintainClipboardButtons, this);
       }
     },
 
@@ -104,23 +94,13 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
         const editable = value.isEditable();
         this.getChildControl('copy-button').setEnabled(true);
         if (editable) {
-          value.bind(
-            'deletable',
-            this.getChildControl('delete-button'),
-            'enabled'
-          );
+          value.bind('deletable', this.getChildControl('delete-button'), 'enabled');
 
-          value.bind(
-            'deletable',
-            this.getChildControl('cut-button'),
-            'enabled'
-          );
+          value.bind('deletable', this.getChildControl('cut-button'), 'enabled');
 
           this.getChildControl('view-button').exclude();
           this.getChildControl('edit-button').show();
-          this.getChildControl('edit-button').setEnabled(
-            value.getShowEditButton()
-          );
+          this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
 
           let addable = value.getAddableChildren(true);
           this.getChildControl('create-button').setEnabled(addable.length > 0);
@@ -130,9 +110,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
           this.getChildControl('create-button').setEnabled(false);
           this.getChildControl('view-button').show();
           // enable view button when there are attributes to show
-          this.getChildControl('view-button').setEnabled(
-            value.getShowEditButton()
-          );
+          this.getChildControl('view-button').setEnabled(value.getShowEditButton());
 
           this.getChildControl('edit-button').exclude();
         }
@@ -145,14 +123,10 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
     },
 
     _init() {
-      ['view', 'edit', 'delete'].forEach(name =>
-        this.add(this.getChildControl(name + '-button'))
-      );
+      ['view', 'edit', 'delete'].forEach(name => this.add(this.getChildControl(name + '-button')));
 
       this.addSeparator();
-      ['cut', 'copy', 'paste'].forEach(name =>
-        this.add(this.getChildControl(name + '-button'))
-      );
+      ['cut', 'copy', 'paste'].forEach(name => this.add(this.getChildControl(name + '-button')));
 
       this.addSeparator();
       this.add(this.getChildControl('create-button'));
@@ -161,15 +135,12 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
     _maintainClipboardButtons() {
       const content = this.getEditor().getClipboard();
       const element = this.getElement();
-      let enabled =
-        (element ? element.isEditable() : false) &&
-        content instanceof cv.ui.manager.model.XmlElement;
+      let enabled = (element ? element.isEditable() : false) && content instanceof cv.ui.manager.model.XmlElement;
       if (enabled) {
         // check if content is allowed as child here
         let addable = element.getAddableChildren(true);
         enabled =
-          addable.includes(content.getName()) &&
-          element.isChildAllowedAtPosition(content, Number.POSITIVE_INFINITY);
+          addable.includes(content.getName()) && element.isChildAllowedAtPosition(content, Number.POSITIVE_INFINITY);
       }
       this.getChildControl('paste-button').setEnabled(enabled);
     },
@@ -180,57 +151,33 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
 
       switch (id) {
         case 'view-button':
-          control = this.__createButton(
-            'view',
-            this.tr('View'),
-            cv.theme.dark.Images.getIcon('view', 18)
-          );
+          control = this.__createButton('view', this.tr('View'), cv.theme.dark.Images.getIcon('view', 18));
 
           control.exclude();
           break;
 
         case 'edit-button':
-          control = this.__createButton(
-            'edit',
-            this.tr('Edit'),
-            cv.theme.dark.Images.getIcon('edit', 18)
-          );
+          control = this.__createButton('edit', this.tr('Edit'), cv.theme.dark.Images.getIcon('edit', 18));
 
           break;
 
         case 'delete-button':
-          control = this.__createButton(
-            'delete',
-            this.tr('Delete'),
-            cv.theme.dark.Images.getIcon('delete', 18)
-          );
+          control = this.__createButton('delete', this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
 
           break;
 
         case 'cut-button':
-          control = this.__createButton(
-            'cut',
-            this.tr('Cut'),
-            cv.theme.dark.Images.getIcon('cut', 18)
-          );
+          control = this.__createButton('cut', this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18));
 
           break;
 
         case 'copy-button':
-          control = this.__createButton(
-            'copy',
-            this.tr('Copy'),
-            cv.theme.dark.Images.getIcon('copy', 18)
-          );
+          control = this.__createButton('copy', this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18));
 
           break;
 
         case 'paste-button':
-          control = this.__createButton(
-            'paste',
-            this.tr('Paste'),
-            cv.theme.dark.Images.getIcon('paste', 18)
-          );
+          control = this.__createButton('paste', this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18));
 
           break;
 
@@ -239,11 +186,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
           break;
 
         case 'create-button':
-          control = this.__createButton(
-            'create',
-            this.tr('Add child'),
-            cv.theme.dark.Images.getIcon('add', 18)
-          );
+          control = this.__createButton('create', this.tr('Add child'), cv.theme.dark.Images.getIcon('add', 18));
 
           break;
       }

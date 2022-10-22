@@ -68,26 +68,21 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       const element = this._element;
       let hasReadAddress = false;
       const writeAddresses = [];
-      Array.prototype.forEach.call(
-        element.querySelectorAll(':scope > cv-address'),
-        address => {
-          const mode = address.hasAttribute('mode')
-            ? address.getAttribute('mode')
-            : 'readwrite';
-          switch (mode) {
-            case 'readwrite':
-              hasReadAddress = true;
-              writeAddresses.push(address);
-              break;
-            case 'read':
-              hasReadAddress = true;
-              break;
-            case 'write':
-              writeAddresses.push(address);
-              break;
-          }
+      Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
+        const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
+        switch (mode) {
+          case 'readwrite':
+            hasReadAddress = true;
+            writeAddresses.push(address);
+            break;
+          case 'read':
+            hasReadAddress = true;
+            break;
+          case 'write':
+            writeAddresses.push(address);
+            break;
         }
-      );
+      });
 
       this._writeAddresses = writeAddresses;
 
@@ -106,25 +101,17 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         this._element.setAttribute('value', value || '');
         let mappedValue = value;
         if (this._element.hasAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(
-            this._element.getAttribute('mapping'),
-            value
-          );
+          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
         }
         if (this._element.hasAttribute('format')) {
           mappedValue = cv.util.String.sprintf(
             this._element.getAttribute('format'),
-            mappedValue instanceof Date
-              ? mappedValue.toLocaleString()
-              : mappedValue
+            mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
           );
         }
         this._updateValue(mappedValue, value);
         if (this._element.hasAttribute('styling')) {
-          let styleClass = cv.Application.structureController.styleValue(
-            this._element.getAttribute('styling'),
-            value
-          );
+          let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
 
           this.setStyleClass(styleClass);
         }
@@ -168,10 +155,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
         });
       }
-      this._element.setAttribute(
-        'disabled',
-        value === false ? 'true' : 'false'
-      );
+      this._element.setAttribute('disabled', value === false ? 'true' : 'false');
 
       blocker.style.display = value === true ? 'none' : 'block';
     },
@@ -192,9 +176,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           break;
 
         case 'excluded':
-          this._visibleDisplayMode = getComputedStyle(
-            this._element
-          ).getPropertyValue('display');
+          this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
           this._element.style.display = 'none';
           break;
       }

@@ -58,9 +58,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         const ref = schema.getReferencedNode('element', refName);
 
         if (ref.length !== 1) {
-          throw new Error(
-            'schema/xsd appears to be invalid, can not find element ' + refName
-          );
+          throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
         }
 
         return ref.getAttribute('name');
@@ -205,17 +203,12 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       const schema = this.getSchema();
 
       this._type = cv.ui.manager.model.schema.Element.getTypeNode(node, schema);
-      this.setName(
-        cv.ui.manager.model.schema.Element.getElementName(node, schema)
-      );
+      this.setName(cv.ui.manager.model.schema.Element.getElementName(node, schema));
 
       if (node.hasAttribute('default')) {
         this.setDefaultValue(node.getAttribute('default'));
       }
-      this.setMixed(
-        this._type.hasAttribute('mixed') &&
-          this._type.getAttribute('mixed') === 'true'
-      );
+      this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute('mixed') === 'true');
     },
 
     /**
@@ -247,9 +240,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
           schema
         );
       } else if (
-        this._type.querySelectorAll(
-          'complexType > choice, complexType> sequence, complexType > group'
-        ).length > 0
+        this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0
       ) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
@@ -262,55 +253,35 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         switch (tmpDOMGrouping.nodeName) {
           case 'xsd:choice':
           case 'choice':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Choice(
-              tmpDOMGrouping,
-              schema
-            );
+            allowedContent._grouping = new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
 
             break;
           case 'xsd:sequence':
           case 'sequence':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Sequence(
-              tmpDOMGrouping,
-              schema
-            );
+            allowedContent._grouping = new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
 
             break;
           case 'xsd:group':
           case 'group':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Group(
-              tmpDOMGrouping,
-              schema
-            );
+            allowedContent._grouping = new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
 
             break;
           case 'xsd:any':
           case 'any':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Any(
-              tmpDOMGrouping,
-              schema
-            );
+            allowedContent._grouping = new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
 
             break;
         }
-      } else if (
-        this._type.hasAttribute('type') &&
-        this._type.getAttribute('type').match(/^xsd:/)
-      ) {
+      } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
         // this is a really simple node that defines its own baseType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(
-          this._type,
-          schema
-        );
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
       } else {
         // no type, no children, no choice - this is an element with NO allowed content/children
         this.__allowedContent = allowedContent;
         return allowedContent;
       }
 
-      const children = Array.from(
-        this._type.querySelectorAll(':scope > element')
-      );
+      const children = Array.from(this._type.querySelectorAll(':scope > element'));
 
       children.forEach(sub => {
         const subElement = new cv.ui.manager.model.schema.Element(sub, schema);
@@ -333,16 +304,12 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
         // allowed attributes
         const attributes = Array.from(
-          this._type.querySelectorAll(
-            ':scope > attribute, :scope > simpleContent > extension > attribute'
-          )
+          this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute')
         );
 
         // now add any attribute that comes from an attribute-group
         const attributeGroups = Array.from(
-          this._type.querySelectorAll(
-            ':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup'
-          )
+          this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup')
         );
 
         attributeGroups.forEach(aGroup => {
@@ -352,27 +319,19 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
           let attributeGroup = {};
           if (aGroup.hasAttribute('ref')) {
             // we do have a reffed group
-            attributeGroup = this.getSchema().getReferencedNode(
-              'attributeGroup',
-              aGroup.getAttribute('ref')
-            );
+            attributeGroup = this.getSchema().getReferencedNode('attributeGroup', aGroup.getAttribute('ref'));
           } else {
             attributeGroup = aGroup;
           }
 
-          Array.from(
-            attributeGroup.querySelectorAll(':scope > attribute')
-          ).forEach(child => {
+          Array.from(attributeGroup.querySelectorAll(':scope > attribute')).forEach(child => {
             attributes.push(child);
           });
         });
 
         // convert all allowed attributes to a more object-oriented approach
         attributes.forEach(attr => {
-          const attribute = new cv.ui.manager.model.schema.Attribute(
-            attr,
-            this.getSchema()
-          );
+          const attribute = new cv.ui.manager.model.schema.Attribute(attr, this.getSchema());
 
           allowedAttributes[attribute.getName()] = attribute;
         });
@@ -426,20 +385,14 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
       const allowedElements = {};
       if (allowedContent._grouping !== undefined) {
-        Object.assign(
-          allowedElements,
-          allowedContent._grouping.getAllowedElements()
-        );
+        Object.assign(allowedElements, allowedContent._grouping.getAllowedElements());
       }
 
       let textOnly = false;
       if (this.isMixed()) {
         // mixed elements are allowed to have #text-nodes
         allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
-      } else if (
-        allowedContent._text &&
-        allowedContent._grouping === undefined
-      ) {
+      } else if (allowedContent._text && allowedContent._grouping === undefined) {
         // text only
         allowedElements['#text'] = allowedContent._text;
         textOnly = true;
@@ -447,8 +400,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
       if (!textOnly && !excludeComment) {
         // although its basically allowed to add comments in a text-only content, we do not allow it
-        allowedElements['#comment'] =
-          this.getSchema().getCommentNodeSchemaElement();
+        allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
       }
 
       return allowedElements;
@@ -532,10 +484,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // first, get a list of allowed content (don't worry, it's cached)
       const allowedContent = this.getAllowedContent();
 
-      if (
-        allowedContent._text !== undefined &&
-        allowedContent._text !== false
-      ) {
+      if (allowedContent._text !== undefined && allowedContent._text !== false) {
         // if _text is defined and there, we assume that text-content is allowed
         return true;
       }
@@ -546,9 +495,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
     isTextContentRequired() {
       if (this.isTextContentAllowed()) {
-        return (
-          !this.isMixed() && !this.getAllowedContent()._text.isValueValid('')
-        );
+        return !this.isMixed() && !this.getAllowedContent()._text.isValueValid('');
       }
       return false;
     },
@@ -598,22 +545,15 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         }
 
         if (!this.__textNodeSchemaElement) {
-          const tmpXML = this.getSchema()
-            .getSchemaDOM()
-            .createElement('element');
+          const tmpXML = this.getSchema().getSchemaDOM().createElement('element');
           tmpXML.setAttribute('name', '#text');
           tmpXML.setAttribute('type', 'xsd:string');
-          this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(
-            tmpXML,
-            this.getSchema()
-          );
+          this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
 
           if (allowedContent._text) {
-            this.__textNodeSchemaElement.getAllowedContent()._text =
-              allowedContent._text;
+            this.__textNodeSchemaElement.getAllowedContent()._text = allowedContent._text;
           } else if (this.isMixed()) {
-            this.__textNodeSchemaElement.getAllowedContent._text =
-              this.getSchema().getTextNodeSchemaElement();
+            this.__textNodeSchemaElement.getAllowedContent._text = this.getSchema().getTextNodeSchemaElement();
           }
         }
         return this.__textNodeSchemaElement;
@@ -630,9 +570,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // go over our choice, if the element is allowed with it
       if (allowedContent._grouping.isElementAllowed(elementName)) {
         // only look in this tree, if the element is allowed there.
-        return allowedContent._grouping.getSchemaElementForElementName(
-          elementName
-        );
+        return allowedContent._grouping.getSchemaElementForElementName(elementName);
       }
 
       return undefined;

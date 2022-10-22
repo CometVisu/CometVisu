@@ -47,12 +47,7 @@ qx.Class.define('cv.plugins.diagram.Info', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse(xml, path, flavour, pageType) {
-      const data = cv.plugins.diagram.AbstractDiagram.parse(
-        xml,
-        path,
-        flavour,
-        pageType
-      );
+      const data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
 
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
@@ -71,13 +66,7 @@ qx.Class.define('cv.plugins.diagram.Info', {
     },
     _update(address, data) {
       if (address !== undefined && data !== undefined) {
-        return this.defaultUpdate(
-          address,
-          data,
-          this.getDomElement(),
-          true,
-          this.getPath()
-        );
+        return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       }
       return null;
     }

@@ -199,11 +199,8 @@ qx.Class.define('cv.plugins.tr064.CallList', {
 
     _displayCalllist() {
       const self = this;
-      const clLi =
-        this.getDomElement().getElementsByClassName('TR064_calllist')[0];
-      const sid = this.__calllistUri
-        ? this.__calllistUri.replace(/.*sid=/, '')
-        : '';
+      const clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0];
+      const sid = this.__calllistUri ? this.__calllistUri.replace(/.*sid=/, '') : '';
       let html = '';
       const types = {
         0: { name: this.getTypeUnknown(), color: this.getTypeUnknownColor() },
@@ -242,15 +239,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
             '">' +
             '</audio>' +
             '<div class="tam clickable">' +
-            cv.IconHandler.getInstance().getIconElement(
-              self.getTAM(),
-              '*',
-              '*',
-              self.getTAMColor(),
-              '',
-              '',
-              true
-            ) +
+            cv.IconHandler.getInstance().getIconElement(self.getTAM(), '*', '*', self.getTAMColor(), '', '', true) +
             '</div>';
         }
 
@@ -263,15 +252,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
               case 'type':
                 html +=
                   '<td>' +
-                  cv.IconHandler.getInstance().getIconElement(
-                    type.name,
-                    '*',
-                    '*',
-                    type.color,
-                    '',
-                    '',
-                    true
-                  ) +
+                  cv.IconHandler.getInstance().getIconElement(type.name, '*', '*', type.color, '', '', true) +
                   '</td>';
                 break;
 
@@ -350,16 +331,10 @@ qx.Class.define('cv.plugins.tr064.CallList', {
             self.refreshCalllist('getCallListURI');
           } else {
             cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
-              title: qx.locale.Manager.tr(
-                'TR-064 communication response error'
-              ),
+              title: qx.locale.Manager.tr('TR-064 communication response error'),
 
               severity: 'urgent',
-              message: qx.locale.Manager.tr(
-                'Reading URL "%1" failed with content: "%2"',
-                url,
-                JSON.stringify(data)
-              )
+              message: qx.locale.Manager.tr('Reading URL "%1" failed with content: "%2"', url, JSON.stringify(data))
             });
 
             self.__calllistUri = '<fail>';
@@ -430,10 +405,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
             title: qx.locale.Manager.tr('TR-064 communication error'),
             severity: 'urgent',
-            message: qx.locale.Manager.tr(
-              'refreshCalllist() error: "%1"',
-              JSON.stringify(error)
-            )
+            message: qx.locale.Manager.tr('refreshCalllist() error: "%1"', JSON.stringify(error))
           });
 
           self.error('TR-064 refreshCalllist() error:', error);
@@ -518,10 +490,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
   defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/tr064/tr064.css');
-    cv.parser.pure.WidgetParser.addHandler(
-      'calllist',
-      cv.plugins.tr064.CallList
-    );
+    cv.parser.pure.WidgetParser.addHandler('calllist', cv.plugins.tr064.CallList);
 
     cv.ui.structure.WidgetFactory.registerClass('calllist', statics);
   }

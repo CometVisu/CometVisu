@@ -58,9 +58,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
         const ref = schema.getReferencedNode('attribute', refName);
 
         if (!ref) {
-          throw new Error(
-            'schema/xsd appears to be invalid, can not find element ' + refName
-          );
+          throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
         }
 
         return ref.getAttribute('name');
@@ -113,9 +111,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
        * @var object  SchemaSimpleType of the attribute, for validating purposes
        */
       this._type = new cv.ui.manager.model.schema.SimpleType(node, schema);
-      this.setName(
-        cv.ui.manager.model.schema.Attribute.getAttributeName(node, schema)
-      );
+      this.setName(cv.ui.manager.model.schema.Attribute.getAttributeName(node, schema));
 
       if (node.hasAttribute('default')) {
         this.setDefaultValue(node.getAttribute('default'));

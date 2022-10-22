@@ -69,11 +69,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
       }
       const currentPath = this.getCurrentPath();
       if (currentPath !== '') {
-        qx.event.message.Bus.dispatchByName(
-          'path.' + currentPath + '.exitingPageChange',
-          currentPath,
-          target
-        );
+        qx.event.message.Bus.dispatchByName('path.' + currentPath + '.exitingPageChange', currentPath, target);
       }
 
       const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
@@ -82,10 +78,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
         // check if page does exist
         return;
       }
-      qx.event.message.Bus.dispatchByName(
-        'path.' + target + '.beforePageChange',
-        target
-      );
+      qx.event.message.Bus.dispatchByName('path.' + target + '.beforePageChange', target);
 
       const controller = cv.Application.structureController;
 
@@ -100,9 +93,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
       let animationConfig = {};
 
       // update reference, because the appearance might have changed
-      const oldPageWidget = currentPath
-        ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath)
-        : null;
+      const oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
 
       let direction = null;
       let animationEnabled = speed > 0 && this.getAnimationType() !== 'none';
@@ -149,9 +140,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
             this.__onLeavePage(oldPageWidget);
           });
         }
-        const oldPos = window.getComputedStyle(
-          pageWidget.getDomElement()
-        ).position;
+        const oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
         pageWidget.getDomElement().style.position = 'absolute';
         qx.bom.AnimationFrame.request(function () {
           const animation = qx.bom.element.Animation.animate(
@@ -178,19 +167,11 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
       // try to find existing animation configuration
       const type = this.getAnimationType().toUpperCase();
       if (direction === 'up') {
-        inAnim =
-          qx.util.Animation[type + '_RIGHT_IN'] ||
-          qx.util.Animation[type + '_IN'];
-        outAnim =
-          qx.util.Animation[type + '_RIGHT_OUT'] ||
-          qx.util.Animation[type + '_OUT'];
+        inAnim = qx.util.Animation[type + '_RIGHT_IN'] || qx.util.Animation[type + '_IN'];
+        outAnim = qx.util.Animation[type + '_RIGHT_OUT'] || qx.util.Animation[type + '_OUT'];
       } else if (direction === 'down') {
-        inAnim =
-          qx.util.Animation[type + '_LEFT_IN'] ||
-          qx.util.Animation[type + '_IN'];
-        outAnim =
-          qx.util.Animation[type + '_LEFT_OUT'] ||
-          qx.util.Animation[type + '_OUT'];
+        inAnim = qx.util.Animation[type + '_LEFT_IN'] || qx.util.Animation[type + '_IN'];
+        outAnim = qx.util.Animation[type + '_LEFT_OUT'] || qx.util.Animation[type + '_OUT'];
       }
       if (!inAnim || !outAnim) {
         // fallback
@@ -223,19 +204,14 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
      * @param oldPageWidget {cv.ui.structure.pure.Page}
      */
     __onLeavePage(oldPageWidget) {
-      oldPageWidget
-        .getDomElement()
-        .classList.remove('pageActive', 'activePage');
+      oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
       oldPageWidget.getDomElement().style.overflow = null;
       qx.event.message.Bus.dispatchByName(
         'path.' + oldPageWidget.getPath() + '.afterPageChange',
         oldPageWidget.getPath()
       );
 
-      qx.event.message.Bus.dispatchByName(
-        'path.pageLeft',
-        oldPageWidget.getPath()
-      );
+      qx.event.message.Bus.dispatchByName('path.pageLeft', oldPageWidget.getPath());
 
       oldPageWidget.setVisible(false);
     },
@@ -256,9 +232,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
       }
       // final stuff
       this.setCurrentPath(target);
-      cv.Application.structureController.pagePartsHandler.updateTopNavigation(
-        target
-      );
+      cv.Application.structureController.pagePartsHandler.updateTopNavigation(target);
 
       qx.event.message.Bus.dispatchByName('page.' + target + '.appear', target);
       qx.event.message.Bus.dispatchByName('path.pageChanged', target);

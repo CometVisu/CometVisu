@@ -56,11 +56,9 @@ qx.Class.define('cv.ui.BodyBlocker', {
       } else if (!unique) {
         this.__counters[topic]++;
       }
-      document
-        .querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom')
-        .forEach(function (elem) {
-          elem.classList.add('blurred');
-        });
+      document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+        elem.classList.add('blurred');
+      });
     },
 
     unblock(topic) {
@@ -71,13 +69,9 @@ qx.Class.define('cv.ui.BodyBlocker', {
             delete this.__counters[topic];
             if (Object.keys(this.__counters).length === 0) {
               super.unblock();
-              document
-                .querySelectorAll(
-                  '#centerContainer, #navbarTop, #top, #navbarBottom'
-                )
-                .forEach(function (elem) {
-                  elem.classList.remove('blurred');
-                });
+              document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+                elem.classList.remove('blurred');
+              });
             }
           }
         }
@@ -85,11 +79,9 @@ qx.Class.define('cv.ui.BodyBlocker', {
         // not topic given unblock all
         this.__counters = {};
         super.unblock();
-        document
-          .querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom')
-          .forEach(function (elem) {
-            elem.classList.remove('blurred');
-          });
+        document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+          elem.classList.remove('blurred');
+        });
       }
     },
 

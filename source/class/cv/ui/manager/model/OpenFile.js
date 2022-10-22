@@ -139,24 +139,15 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
       const handlerId = this.getHandlerId();
       let fileHandler;
       if (handlerId) {
-        fileHandler =
-          cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(
-            handlerId
-          );
+        fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
       } else {
-        fileHandler =
-          cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
-            file
-          );
+        fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
       }
       if (file.isModified()) {
         if (
           fileHandler &&
           fileHandler.instance &&
-          qx.Interface.objectImplements(
-            fileHandler.instance,
-            cv.ui.manager.editor.IEditor
-          )
+          qx.Interface.objectImplements(fileHandler.instance, cv.ui.manager.editor.IEditor)
         ) {
           fileHandler.instance.save(callback, overrideHash);
         }

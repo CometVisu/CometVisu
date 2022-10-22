@@ -34,18 +34,14 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   */
   construct(props) {
     super(props);
-    this.__animator = new cv.util.LimitedRateUpdateAnimator(
-      this.__updateHandlePosition,
-      this
-    );
+    this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
 
-    this.__pageSizeListener =
-      cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
-        'changePageSizeInvalid',
-        () => {
-          this.__invalidateScreensize();
-        }
-      );
+    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
+      'changePageSizeInvalid',
+      () => {
+        this.__invalidateScreensize();
+      }
+    );
 
     this.__lastBusValue = {};
   },
@@ -55,9 +51,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   ***********************************************
   */
   destruct() {
-    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(
-      this.__pageSizeListener
-    );
+    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
 
     this.__pageSizeListener = null;
     this.__button = null;
@@ -130,12 +124,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     _onDomReady() {
       super._onDomReady();
 
-      this.__throttled = cv.util.Function.throttle(
-        this.__onChangeValue,
-        250,
-        { trailing: true },
-        this
-      );
+      this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, { trailing: true }, this);
 
       this.getActor().addEventListener('pointerdown', this);
     },
@@ -181,23 +170,18 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         let stepValue = Math.round((realValue - min) / step) * step + min;
         // use max when the value is greater than the middle point between the
         // biggest allowed step and the maximum
-        let maxSwitchValue =
-          (Math.floor((max - min) / step) * step + min + max) / 2;
+        let maxSwitchValue = (Math.floor((max - min) / step) * step + min + max) / 2;
         realValue = realValue < maxSwitchValue ? stepValue : max;
       }
 
       let ratio = max === min ? 0 : (realValue - min) / (max - min);
 
       if (relaxDisplay) {
-        let valueRatio =
-          max === min
-            ? 0
-            : (Math.min(Math.max(value, min), max) - min) / (max - min);
+        let valueRatio = max === min ? 0 : (Math.min(Math.max(value, min), max) - min) / (max - min);
         let delta = ratio - valueRatio;
         let stepCount = (max - min) / step;
         let factor = (2 * stepCount) ** 3;
-        ratio -=
-          Math.min(factor * delta ** 4, Math.abs(delta)) * Math.sign(delta);
+        ratio -= Math.min(factor * delta ** 4, Math.abs(delta)) * Math.sign(delta);
       }
 
       // store it to be able to suppress sending of unchanged data
@@ -237,18 +221,13 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         let actor = this.getDomElement().querySelector('.actor');
         let actorStyles = window.getComputedStyle(actor);
         this.__actorWidth = parseFloat(actorStyles.getPropertyValue('width'));
-        this.__buttonWidth = parseFloat(
-          window.getComputedStyle(this.__button).getPropertyValue('width')
-        );
+        this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
 
-        this.__range.style.marginLeft =
-          '-' + actorStyles.getPropertyValue('padding-left');
-        this.__range.style.borderRadius =
-          actorStyles.getPropertyValue('border-radius');
+        this.__range.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+        this.__range.style.borderRadius = actorStyles.getPropertyValue('border-radius');
       }
       let length = ratio * this.__actorWidth;
-      this.__button.style.transform =
-        'translate3d(' + (length - this.__buttonWidth / 2) + 'px, 0px, 0px)';
+      this.__button.style.transform = 'translate3d(' + (length - this.__buttonWidth / 2) + 'px, 0px, 0px)';
       this.__range.style.width = length + 'px';
     },
 
@@ -256,10 +235,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       let min = this.getMin();
       let max = this.getMax();
       this.__actorWidth = undefined; // invalidate cached values
-      this.__animator.setTo(
-        max === min ? 0 : (this.getBasicValue() - min) / (max - min),
-        true
-      );
+      this.__animator.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
     },
 
     handleEvent(event) {
@@ -272,8 +248,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
           document.addEventListener('pointerup', this);
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
-          this.__coordMin =
-            boundingRect.left + parseFloat(computedStyle.paddingLeft);
+          this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
           newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
           break;
         }
@@ -302,11 +277,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     __onChangeValue(value) {
-      this.__lastBusValue = this.sendToBackend(
-        value,
-        false,
-        this.__lastBusValue
-      );
+      this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
     }
   },
 

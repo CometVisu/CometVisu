@@ -59,16 +59,11 @@ qx.Class.define('cv.report.Record', {
     data: null,
 
     // Events that should be recorded
-    USER_EVENTS:
-      /(.+(down|up|cancel|move)|.*click|contextmenu|touch.*|.*wheel)/i,
+    USER_EVENTS: /(.+(down|up|cancel|move)|.*click|contextmenu|touch.*|.*wheel)/i,
 
     prepare() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.Application.registerConsoleCommand(
-          'downloadLog',
-          cv.report.Record.download,
-          'Download recorded log file.'
-        );
+        cv.Application.registerConsoleCommand('downloadLog', cv.report.Record.download, 'Download recorded log file.');
 
         // apply event recorder
         const record = cv.report.Record.getInstance();
@@ -96,17 +91,11 @@ qx.Class.define('cv.report.Record', {
         qx.event.message.Bus.subscribe(
           'setup.dom.finished',
           function () {
-            const throttled = qx.util.Function.throttle(
-              record.recordScroll,
-              250,
-              true
-            );
+            const throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
 
-            document
-              .querySelectorAll('#pages > .page')
-              .forEach(function (page) {
-                Reg.addListener(page, 'scroll', throttled, record);
-              }, this);
+            document.querySelectorAll('#pages > .page').forEach(function (page) {
+              Reg.addListener(page, 'scroll', throttled, record);
+            }, this);
           },
           this
         );
@@ -167,36 +156,24 @@ qx.Class.define('cv.report.Record', {
     logCache() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
         cv.ConfigCache.getData().then(data => {
-          cv.report.Record.record(
-            cv.report.Record.CACHE,
-            cv.Config.configSuffix,
-            data
-          );
+          cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, data);
         });
       }
     },
 
     logLocalStorage() {
-      cv.report.Record.record(
-        cv.report.Record.STORAGE,
-        'preferences',
-        window.localStorage.preferences
-      );
+      cv.report.Record.record(cv.report.Record.STORAGE, 'preferences', window.localStorage.preferences);
     },
 
     normalizeUrl(url) {
       try {
         const parsed = qx.util.Uri.parseUri(qx.util.Uri.getAbsolute(url));
         url = parsed.path;
-        const filteredParams = Object.keys(parsed.queryKey).filter(
-          name => name !== 'nocache' && name !== 'ts'
-        );
+        const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== 'nocache' && name !== 'ts');
 
         if (filteredParams.length > 0) {
           url += '?';
-          url += filteredParams
-            .map(param => `${param}=${parsed.queryKey[param]}`)
-            .join('&');
+          url += filteredParams.map(param => `${param}=${parsed.queryKey[param]}`).join('&');
         }
       } catch (e) {
         if (url.indexOf('nocache=') >= 0) {
@@ -289,10 +266,7 @@ qx.Class.define('cv.report.Record', {
      */
     __scrubSensitiveContent(category, data) {
       if (category === cv.report.Record.XHR) {
-        if (
-          data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') &&
-          data.body
-        ) {
+        if (data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') && data.body) {
           try {
             const content = JSON.parse(data.body);
             Object.keys(content).forEach(sectionName => {
@@ -335,12 +309,8 @@ qx.Class.define('cv.report.Record', {
           button: nativeEvent.button,
           clientX: Math.round(nativeEvent.clientX),
           clientY: Math.round(nativeEvent.clientY),
-          currentTarget: nativeEvent.currentTarget
-            ? this.__getDomPath(nativeEvent.currentTarget)
-            : undefined,
-          relatedTarget: nativeEvent.relatedTarget
-            ? this.__getDomPath(nativeEvent.relatedTarget)
-            : undefined,
+          currentTarget: nativeEvent.currentTarget ? this.__getDomPath(nativeEvent.currentTarget) : undefined,
+          relatedTarget: nativeEvent.relatedTarget ? this.__getDomPath(nativeEvent.relatedTarget) : undefined,
           pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
           pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
           returnValue: nativeEvent.returnValue,
@@ -357,9 +327,7 @@ qx.Class.define('cv.report.Record', {
           axis: nativeEvent.axis,
           wheelX: nativeEvent.wheelX,
           wheelY: nativeEvent.wheelY,
-          view: nativeEvent.view
-            ? nativeEvent.view.constructor.name
-            : undefined,
+          view: nativeEvent.view ? nativeEvent.view.constructor.name : undefined,
           HORIZONTAL_AXIS: nativeEvent.HORIZONTAL_AXIS,
           type: nativeEvent.type,
           x: nativeEvent.x,
@@ -443,10 +411,7 @@ qx.Class.define('cv.report.Record', {
 
     recordScroll(ev) {
       const page = ev.getTarget();
-      const path =
-        undefined !== page && 'getAttribute' in page
-          ? page.getAttribute('id')
-          : undefined;
+      const path = undefined !== page && 'getAttribute' in page ? page.getAttribute('id') : undefined;
       const data = {
         type: ev.getType(),
         page: path,
@@ -480,9 +445,7 @@ qx.Class.define('cv.report.Record', {
           stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
           return stack.join('>');
         } else if (sibCount > 1) {
-          stack.unshift(
-            el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')'
-          );
+          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')');
         } else {
           stack.unshift(el.nodeName.toLowerCase());
         }
@@ -529,9 +492,7 @@ qx.Class.define('cv.report.Record', {
       console.log(data);
 
       const a = window.document.createElement('a');
-      a.href = window.URL.createObjectURL(
-        new Blob([JSON.stringify(data)], { type: 'application/json' })
-      );
+      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' }));
 
       a.download = this.getFileName();
 

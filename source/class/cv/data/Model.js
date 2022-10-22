@@ -89,12 +89,7 @@ qx.Class.define('cv.data.Model', {
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
-      return Object.prototype.hasOwnProperty.call(
-        this.__stateListeners,
-        backendName
-      )
-        ? this.__stateListeners
-        : {};
+      return Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName) ? this.__stateListeners : {};
     },
 
     /**
@@ -111,27 +106,18 @@ qx.Class.define('cv.data.Model', {
       if (!Object.prototype.hasOwnProperty.call(this.__states, backendName)) {
         this.__states[backendName] = {};
       }
-      const initial = !Object.prototype.hasOwnProperty.call(
-        this.__states[backendName],
-        address
-      );
+      const initial = !Object.prototype.hasOwnProperty.call(this.__states[backendName], address);
 
       const changed = initial || this.__states[backendName][address] !== state;
       this.__states[backendName][address] = state;
       // notify listeners
       if (
-        Object.prototype.hasOwnProperty.call(
-          this.__stateListeners,
-          backendName
-        ) &&
+        Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName) &&
         this.__stateListeners[backendName][address]
       ) {
-        this.__stateListeners[backendName][address].forEach(function (
-          listener
-        ) {
+        this.__stateListeners[backendName][address].forEach(function (listener) {
           listener[0].call(listener[1], address, state, initial, changed);
-        },
-        this);
+        }, this);
       }
     },
 
@@ -176,11 +162,7 @@ qx.Class.define('cv.data.Model', {
           }
         }, this);
       } else {
-        this.warn(
-          'no addresses registered for backend "' +
-            backendName +
-            '", skipping update'
-        );
+        this.warn('no addresses registered for backend "' + backendName + '", skipping update');
       }
     },
 
@@ -212,12 +194,7 @@ qx.Class.define('cv.data.Model', {
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
-      if (
-        !Object.prototype.hasOwnProperty.call(
-          this.__stateListeners,
-          backendName
-        )
-      ) {
+      if (!Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)) {
         this.__stateListeners[backendName] = {};
       }
 
@@ -239,9 +216,7 @@ qx.Class.define('cv.data.Model', {
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
-      if (
-        Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)
-      ) {
+      if (Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)) {
         if (this.__stateListeners[backendName][address]) {
           let removeIndex = -1;
           this.__stateListeners[backendName][address].some(function (entry, i) {
@@ -271,9 +246,7 @@ qx.Class.define('cv.data.Model', {
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
-      if (
-        !Object.prototype.hasOwnProperty.call(this.__addressList, backendName)
-      ) {
+      if (!Object.prototype.hasOwnProperty.call(this.__addressList, backendName)) {
         this.__addressList[backendName] = {};
       }
       const list = this.__addressList[backendName];
@@ -293,10 +266,7 @@ qx.Class.define('cv.data.Model', {
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
-      return Object.prototype.hasOwnProperty.call(
-        this.__addressList,
-        backendName
-      )
+      return Object.prototype.hasOwnProperty.call(this.__addressList, backendName)
         ? Object.keys(this.__addressList[backendName])
         : [];
     },

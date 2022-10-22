@@ -222,9 +222,7 @@ qx.Class.define('cv.transforms.Knx', {
 
         unit: '-',
         encode(phy) {
-          const val = cv.Transform.clipInt(0, phy, 255)
-            .toString(16)
-            .padStart(2, '0');
+          const val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -373,9 +371,7 @@ qx.Class.define('cv.transforms.Knx', {
 
         unit: '-',
         encode(phy) {
-          const val = cv.Transform.clipInt(0, phy, 0xffff)
-            .toString(16)
-            .padStart(4, '0');
+          const val = cv.Transform.clipInt(0, phy, 0xffff).toString(16).padStart(4, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -454,9 +450,7 @@ qx.Class.define('cv.transforms.Knx', {
             mant >>= 1;
             exp++;
           }
-          const val = (sign | (exp << 11) | (mant & 0x07ff))
-            .toString(16)
-            .padStart(4, '0');
+          const val = (sign | (exp << 11) | (mant & 0x07ff)).toString(16).padStart(4, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -553,9 +547,7 @@ qx.Class.define('cv.transforms.Knx', {
 
         unit: '-',
         encode(phy) {
-          let val = ((phy.getDay() << 5) + phy.getHours())
-            .toString(16)
-            .padStart(2, '0');
+          let val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, '0');
           val += phy.getMinutes().toString(16).padStart(2, '0');
           val += phy.getSeconds().toString(16).padStart(2, '0');
           return {
@@ -614,9 +606,7 @@ qx.Class.define('cv.transforms.Knx', {
 
         unit: '-',
         encode(phy) {
-          const val = cv.Transform.clipInt(0, phy, 0xffffffff)
-            .toString(16)
-            .padStart(8, '0');
+          const val = cv.Transform.clipInt(0, phy, 0xffffffff).toString(16).padStart(8, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -932,9 +922,7 @@ qx.Class.define('cv.transforms.Knx', {
 
         unit: '-',
         encode(phy) {
-          const val = cv.Transform.clipInt(0, phy, 0xffffff)
-            .toString(16)
-            .padStart(6, '0');
+          const val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -957,9 +945,7 @@ qx.Class.define('cv.transforms.Knx', {
           const period = phy.get('period') || 0;
           const percent = phy.get('percent') || 0;
           const val = [
-            cv.Transform.clipInt(0, period, 0xffff)
-              .toString(16)
-              .padStart(4, '0'),
+            cv.Transform.clipInt(0, period, 0xffff).toString(16).padStart(4, '0'),
             cv.Transform.clipInt(0, percent, 100, 255 / 100)
               .toString(16)
               .padStart(2, '0')
@@ -1122,14 +1108,8 @@ qx.Class.define('cv.transforms.Knx', {
           const cValid =
             phy.has('x') &&
             phy.has('y') &&
-            (phy.has('cValid')
-              ? phy.get('cValid')
-              : Number.isFinite(phy.get('x')) && Number.isFinite(phy.get('y')));
-          const YValid =
-            phy.has('Y') &&
-            (phy.has('YValid')
-              ? phy.get('YValid')
-              : Number.isFinite(phy.get('Y')));
+            (phy.has('cValid') ? phy.get('cValid') : Number.isFinite(phy.get('x')) && Number.isFinite(phy.get('y')));
+          const YValid = phy.has('Y') && (phy.has('YValid') ? phy.get('YValid') : Number.isFinite(phy.get('Y')));
           const x = phy.get('x') || 0;
           const y = phy.get('y') || 0;
           const Y = phy.get('Y') || 0;
@@ -1178,21 +1158,13 @@ qx.Class.define('cv.transforms.Knx', {
           }
 
           const rValid =
-            phy.has('r') &&
-            Number.isFinite(phy.get('r')) &&
-            (phy.has('rValid') ? phy.get('rValid') : true);
+            phy.has('r') && Number.isFinite(phy.get('r')) && (phy.has('rValid') ? phy.get('rValid') : true);
           const gValid =
-            phy.has('g') &&
-            Number.isFinite(phy.get('g')) &&
-            (phy.has('gValid') ? phy.get('gValid') : true);
+            phy.has('g') && Number.isFinite(phy.get('g')) && (phy.has('gValid') ? phy.get('gValid') : true);
           const bValid =
-            phy.has('b') &&
-            Number.isFinite(phy.get('b')) &&
-            (phy.has('bValid') ? phy.get('bValid') : true);
+            phy.has('b') && Number.isFinite(phy.get('b')) && (phy.has('bValid') ? phy.get('bValid') : true);
           const wValid =
-            phy.has('w') &&
-            Number.isFinite(phy.get('w')) &&
-            (phy.has('wValid') ? phy.get('wValid') : true);
+            phy.has('w') && Number.isFinite(phy.get('w')) && (phy.has('wValid') ? phy.get('wValid') : true);
           const r = phy.get('r') || 0;
           const g = phy.get('g') || 0;
           const b = phy.get('b') || 0;
@@ -1211,9 +1183,7 @@ qx.Class.define('cv.transforms.Knx', {
               .toString(16)
               .padStart(2, '0'),
             '00',
-            (rValid * 8 + gValid * 4 + bValid * 2 + wValid * 1)
-              .toString(16)
-              .padStart(2, '0')
+            (rValid * 8 + gValid * 4 + bValid * 2 + wValid * 1).toString(16).padStart(2, '0')
           ].join('');
 
           return {

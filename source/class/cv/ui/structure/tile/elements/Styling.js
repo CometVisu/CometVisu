@@ -34,14 +34,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Styling', {
     _applyConnected(value, oldValue, name) {
       super._applyConnected(value, oldValue, name);
       if (value) {
-        cv.Application.structureController.addStyling(
-          this._element.getAttribute('name'),
-          this
-        );
+        cv.Application.structureController.addStyling(this._element.getAttribute('name'), this);
       } else {
-        cv.Application.structureController.removeStyling(
-          this._element.getAttribute('name')
-        );
+        cv.Application.structureController.removeStyling(this._element.getAttribute('name'));
       }
     }
   },

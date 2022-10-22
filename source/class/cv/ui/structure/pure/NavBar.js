@@ -119,10 +119,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
           if (
             pPH.navbars.left.dynamic === false ||
-            (!qx.core.Init.getApplication().getMobile() &&
-              pPH.navbars.left.dynamic !== true) ||
-            (pPH.navbars.left.fadeVisible &&
-              !evt.composedPath().some(i => i.id === 'navbarLeft')) || // left navbar is visible, but the touch is somewhere else
+            (!qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true) ||
+            (pPH.navbars.left.fadeVisible && !evt.composedPath().some(i => i.id === 'navbarLeft')) || // left navbar is visible, but the touch is somewhere else
             (!pPH.navbars.left.fadeVisible && touches.clientX > 20)
           ) {
             // left navbar is not visible but the finger isn't on the left end -> not relevant
@@ -199,12 +197,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
     // overridden
     getDomString() {
-      let container =
-        '<div class="' +
-        this.getClasses() +
-        '" id="' +
-        this.getGlobalPath() +
-        '">';
+      let container = '<div class="' + this.getClasses() + '" id="' + this.getGlobalPath() + '">';
       if (this.getName()) {
         container += '<h2>' + this.getName() + '</h2>';
       }
@@ -237,10 +230,6 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
   defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('navbar', statics);
-    qx.event.message.Bus.subscribe(
-      'setup.dom.finished.before',
-      statics.initializeNavbars,
-      statics
-    );
+    qx.event.message.Bus.subscribe('setup.dom.finished.before', statics.initializeNavbars, statics);
   }
 });

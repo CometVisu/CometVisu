@@ -91,9 +91,6 @@ qx.Class.define('cv.core.notifications.actions.Option', {
   },
 
   defer() {
-    cv.core.notifications.ActionRegistry.registerActionHandler(
-      'option',
-      cv.core.notifications.actions.Option
-    );
+    cv.core.notifications.ActionRegistry.registerActionHandler('option', cv.core.notifications.actions.Option);
   }
 });

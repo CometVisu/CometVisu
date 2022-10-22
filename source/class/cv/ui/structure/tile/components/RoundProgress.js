@@ -83,12 +83,9 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       const style = document.querySelector(':root').style;
       const hasFixedRadius = element.hasAttribute('radius');
       const radius = (this.__radius =
-        element.getAttribute('radius') ||
-        parseInt(style.getPropertyValue('--tileCellWidth')) ||
-        56);
+        element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56);
       const strokeWidth = element.getAttribute('stroke') || 8;
-      const normalizedRadius = (this.__normalizedRadius =
-        radius - strokeWidth / 2);
+      const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
       this.__circumference = normalizedRadius * 2 * Math.PI;
 
       if (element.hasAttribute('min')) {
@@ -110,9 +107,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       }
       const type = this.getType();
       let height = type === 'semiCircle' ? radius : radius * 2;
-      let code = `<svg height="${height}" width="${
-        radius * 2
-      }" type="${type}">`;
+      let code = `<svg height="${height}" width="${radius * 2}" type="${type}">`;
       if (type === 'circle') {
         if (!element.hasAttribute('no-background')) {
           code += `<circle class="bg" 
@@ -131,9 +126,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
               stroke-dashoffset="${this.__circumference}"/>`;
       } else if (type === 'semiCircle') {
         if (!element.hasAttribute('no-background')) {
-          code += `<path class="bg" d="M ${
-            strokeWidth / 2
-          } ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 1 ${
+          code += `<path class="bg" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 1 ${
             radius * 2 - strokeWidth / 2
           } ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
         }
@@ -142,9 +135,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
           y: radius
         };
 
-        code += `<path class="bar" d="M ${
-          strokeWidth / 2
-        } ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 0 ${
+        code += `<path class="bar" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 0 ${
           strokeWidth / 2
         } ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
       }
@@ -154,52 +145,37 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       this.__availableLabelWidth = radius * 2 - strokeWidth * 2 - 24;
 
       if (!hasFixedRadius) {
-        qx.event.message.Bus.subscribe(
-          'cv.design.tile.cellWidthChanged',
-          ev => {
-            this.__radius = ev.getData();
-            this.__normalizedRadius = this.__radius - strokeWidth / 2;
-            this.__circumference = this.__normalizedRadius * 2 * Math.PI;
-            height = type === 'semiCircle' ? this.__radius : this.__radius * 2;
-            const svg = element.querySelector(':scope > svg');
-            svg.setAttribute('height', '' + height);
-            svg.setAttribute('width', '' + this.__radius * 2);
-            if (type === 'circle') {
-              this._element
-                .querySelectorAll(':scope > svg > circle')
-                .forEach(circle => {
-                  circle.setAttribute('r', '' + this.__normalizedRadius);
-                  if (circle.classList.contains('bar')) {
-                    circle.setAttribute(
-                      'stroke-dasharray',
-                      this.__circumference + ' ' + this.__circumference
-                    );
+        qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', ev => {
+          this.__radius = ev.getData();
+          this.__normalizedRadius = this.__radius - strokeWidth / 2;
+          this.__circumference = this.__normalizedRadius * 2 * Math.PI;
+          height = type === 'semiCircle' ? this.__radius : this.__radius * 2;
+          const svg = element.querySelector(':scope > svg');
+          svg.setAttribute('height', '' + height);
+          svg.setAttribute('width', '' + this.__radius * 2);
+          if (type === 'circle') {
+            this._element.querySelectorAll(':scope > svg > circle').forEach(circle => {
+              circle.setAttribute('r', '' + this.__normalizedRadius);
+              if (circle.classList.contains('bar')) {
+                circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
 
-                    circle.setAttribute(
-                      'stroke-dashoffset',
-                      '' + this.__circumference
-                    );
-                  }
-                });
-            } else if (type === 'semiCircle') {
-              this.__start.y = this.__radius;
-              const bg = this._element.querySelector(':scope > svg > path.bg');
-              if (bg) {
-                bg.setAttribute(
-                  'd',
-                  `M ${strokeWidth / 2} ${this.__radius} A ${
-                    this.__normalizedRadius
-                  } ${this.__normalizedRadius} 0 0 1 ${
-                    this.__radius * 2 - strokeWidth / 2
-                  } ${this.__radius}`
-                );
+                circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
               }
+            });
+          } else if (type === 'semiCircle') {
+            this.__start.y = this.__radius;
+            const bg = this._element.querySelector(':scope > svg > path.bg');
+            if (bg) {
+              bg.setAttribute(
+                'd',
+                `M ${strokeWidth / 2} ${this.__radius} A ${this.__normalizedRadius} ${this.__normalizedRadius} 0 0 1 ${
+                  this.__radius * 2 - strokeWidth / 2
+                } ${this.__radius}`
+              );
             }
-            this._applyProgress(
-              this.isPropertyInitialized('progress') ? this.getProgress() : 0
-            );
           }
-        );
+          this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
+        });
       }
     },
 
@@ -216,16 +192,11 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
         let valueElement;
         let end;
         let valueInRange = value - this.getMin();
-        let percent = Math.max(
-          0,
-          Math.min(100, (100 / (this.getMax() - this.getMin())) * valueInRange)
-        );
+        let percent = Math.max(0, Math.min(100, (100 / (this.getMax() - this.getMin())) * valueInRange));
 
         switch (this.getType()) {
           case 'circle':
-            valueElement = this._element.querySelector(
-              ':scope > svg > circle.bar'
-            );
+            valueElement = this._element.querySelector(':scope > svg > circle.bar');
 
             valueElement.setAttribute(
               'stroke-dashoffset',
@@ -235,9 +206,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
             break;
 
           case 'semiCircle':
-            valueElement = this._element.querySelector(
-              ':scope > svg > path.bar'
-            );
+            valueElement = this._element.querySelector(':scope > svg > path.bar');
 
             end = this.__convert((180 / 100) * percent);
             valueElement.setAttribute(
@@ -270,15 +239,13 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
             this.__context = this.__canvas.getContext('2d');
             const compStyle = window.getComputedStyle(this.__label);
             this.__context.font = compStyle.getPropertyValue('font');
-            this.__defaultLabelFontSize =
-              compStyle.getPropertyValue('font-size');
+            this.__defaultLabelFontSize = compStyle.getPropertyValue('font-size');
           }
           const metrics = this.__context.measureText(this.__label.textContent);
           if (metrics.width > this.__availableLabelWidth) {
             // adjust font-size
             const factor = this.__availableLabelWidth / metrics.width;
-            this.__label.style.fontSize =
-              Math.floor(parseInt(this.__defaultLabelFontSize) * factor) + 'px';
+            this.__label.style.fontSize = Math.floor(parseInt(this.__defaultLabelFontSize) * factor) + 'px';
           } else {
             this.__label.style.fontSize = this.__defaultLabelFontSize;
           }

@@ -75,10 +75,7 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
             this.__lastSpeech[message.topic] &&
             this.__lastSpeech[message.topic].text === text &&
             (config.repeatTimeout === 0 ||
-              config.repeatTimeout >=
-                Math.round(
-                  (Date.now() - this.__lastSpeech[message.topic].time) / 1000
-                ))
+              config.repeatTimeout >= Math.round((Date.now() - this.__lastSpeech[message.topic].time) / 1000))
           ) {
             // update time
             this.__lastSpeech[message.topic].time = Date.now();
@@ -125,10 +122,7 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
       let i = 0;
       const l = voices.length;
       for (; i < l; i++) {
-        if (
-          language &&
-          voices[i].lang.substr(0, 2).toLowerCase() === language
-        ) {
+        if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
           selectedVoice = voices[i];
         }
         if (voices[i]['default']) {

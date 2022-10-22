@@ -84,18 +84,12 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
     },
 
     onDecrease() {
-      const value =
-        this.getMode() === 'absolute'
-          ? this.getValue() - this.getStepWidth()
-          : this.getStepWidth() * -1;
+      const value = this.getMode() === 'absolute' ? this.getValue() - this.getStepWidth() : this.getStepWidth() * -1;
       this.__sendValue(value, 'decrease');
     },
 
     onIncrease() {
-      const value =
-        this.getMode() === 'absolute'
-          ? this.getValue() + this.getStepWidth()
-          : this.getStepWidth();
+      const value = this.getMode() === 'absolute' ? this.getValue() + this.getStepWidth() : this.getStepWidth();
       this.__sendValue(value, 'increase');
     },
 
@@ -115,9 +109,7 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
       });
 
       this._writeAddresses
-        .filter(
-          addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on
-        )
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on)
         .forEach(address => address.dispatchEvent(ev));
     }
   },

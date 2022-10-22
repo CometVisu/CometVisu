@@ -82,8 +82,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
           bottom = 'margin-bottom:' + top;
         }
         if (this.getCropBottom() !== '') {
-          bottom =
-            'margin-bottom:calc(' + top + ' - ' + this.getCropBottom() + ');';
+          bottom = 'margin-bottom:calc(' + top + ' - ' + this.getCropBottom() + ');';
         }
         imgStyle += 'object-position:0% ' + top + ';' + bottom;
       }
@@ -92,9 +91,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (!src) {
         switch (this.getPlaceholder()) {
           case 'hide':
-            src = qx.util.ResourceManager.getInstance().toUri(
-              'qx/static/blank.gif'
-            );
+            src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
 
             break;
 
@@ -107,13 +104,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
             break;
         }
       }
-      return (
-        '<div class="actor"><img src="' +
-        src +
-        '" style="' +
-        imgStyle +
-        '" /></div>'
-      );
+      return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     },
 
     /**
@@ -142,9 +133,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
             break;
 
           case 'hide':
-            text = qx.util.ResourceManager.getInstance().toUri(
-              'qx/static/blank.gif'
-            );
+            text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
 
             valueElem.style.display = 'inline';
             break;

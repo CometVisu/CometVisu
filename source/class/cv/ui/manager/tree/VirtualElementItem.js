@@ -207,10 +207,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
         case 'move-button':
           control = new qx.ui.basic.Atom(
             '',
-            cv.theme.dark.Images.getIcon(
-              'drag-handle',
-              qx.core.Environment.get('device.touch') ? 36 : 18
-            )
+            cv.theme.dark.Images.getIcon('drag-handle', qx.core.Environment.get('device.touch') ? 36 : 18)
           );
 
           control.setToolTipText(this.tr('Drag to move'));
@@ -222,10 +219,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
         case 'menu-button':
           control = new qx.ui.form.MenuButton(
             '',
-            cv.theme.dark.Images.getIcon(
-              'menu',
-              qx.core.Environment.get('device.touch') ? 24 : 14
-            ),
+            cv.theme.dark.Images.getIcon('menu', qx.core.Environment.get('device.touch') ? 24 : 14),
 
             new cv.ui.manager.contextmenu.ConfigElement()
           );

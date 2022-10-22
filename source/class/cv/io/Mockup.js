@@ -129,13 +129,7 @@ qx.Class.define('cv.io.Mockup', {
 
       // override sinons filter handling to be able to manipulate the target URL from the filter
       // eslint-disable-next-line consistent-return
-      sinon.FakeXMLHttpRequest.prototype.open = function open(
-        method,
-        url,
-        async,
-        username,
-        password
-      ) {
+      sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
         this.method = method;
         this.url = url;
         this.async = typeof async == 'boolean' ? async : true;
@@ -174,10 +168,7 @@ qx.Class.define('cv.io.Mockup', {
             url.indexOf('resource/manager/') >= 0)
         ) {
           return true;
-        } else if (
-          method === 'GET' &&
-          /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)
-        ) {
+        } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
           // change url to avoid API access and do a real request
           const path = url.split('=').pop();
           const suffix = path.startsWith('demo/') ? '' : 'config/';
@@ -198,10 +189,7 @@ qx.Class.define('cv.io.Mockup', {
             }
           }
           if (!this.__xhr[url] || this.__xhr[url].length === 0) {
-            qx.log.Logger.error(
-              this,
-              '404: no logged responses for URI ' + url + ' found'
-            );
+            qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
           } else {
             qx.log.Logger.debug(this, 'faking response for ' + url);
             let response = '';
@@ -217,11 +205,7 @@ qx.Class.define('cv.io.Mockup', {
               // the respond would fail if we do not override it here
               request.readyState = 1;
             }
-            request.respond(
-              response.status,
-              response.headers,
-              JSON.stringify(response.body)
-            );
+            request.respond(response.status, response.headers, JSON.stringify(response.body));
           }
         }.bind(this)
       );
@@ -329,12 +313,7 @@ qx.Class.define('cv.io.Mockup', {
       Object.keys(simulations).forEach(function (mainAddress) {
         const simulation = simulations[mainAddress];
         this.__simulations[mainAddress] = simulation;
-        if (
-          Object.prototype.hasOwnProperty.call(
-            simulation,
-            'additionalAddresses'
-          )
-        ) {
+        if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
           simulation.additionalAddresses.forEach(function (addr) {
             this.__simulations[addr] = simulation;
           }, this);
@@ -385,9 +364,7 @@ qx.Class.define('cv.io.Mockup', {
         // start simulation
         if (simulation.type === 'shutter') {
           simulation.direction = value === '0' ? 'up' : 'down';
-          let initValue = cv.data.Model.getInstance().getState(
-            simulation.targetAddress
-          );
+          let initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
 
           if (initValue === undefined) {
             initValue = 0;
@@ -464,10 +441,7 @@ qx.Class.define('cv.io.Mockup', {
         ts: ts
       };
 
-      if (
-        this.__simulations &&
-        Object.prototype.hasOwnProperty.call(this.__simulations, address)
-      ) {
+      if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
         this._processSimulation(address, value);
       } else {
         // send update

@@ -26,12 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton,
-    cv.ui.common.HandleLongpress
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton, cv.ui.common.HandleLongpress],
 
   /*
   ******************************************************
@@ -106,8 +101,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
         actordown += 'style="text-align: ' + this.getAlign() + '" ';
       }
       actordown += '>';
-      actordown +=
-        '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
+      actordown += '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
       actordown += '</div>';
 
       let actorup = '<div class="actor switchUnpressed uplabel" ';
@@ -146,20 +140,13 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     getActors() {
-      return this.getDomElement().querySelectorAll(
-        '.actor.uplabel, .actor.downlabel'
-      );
+      return this.getDomElement().querySelectorAll('.actor.uplabel, .actor.downlabel');
     },
 
     // overridden
     initListeners() {
       this.getActors().forEach(function (actor) {
-        qx.event.Registration.addListener(
-          actor,
-          'pointerdown',
-          this._onPointerDown,
-          this
-        );
+        qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
       }, this);
     },
 
@@ -175,30 +162,16 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     _onLongTap(event) {
-      this.__action(
-        false,
-        this.__findActor(event.getCurrentTarget()).classList.contains(
-          'downlabel'
-        )
-      );
+      this.__action(false, this.__findActor(event.getCurrentTarget()).classList.contains('downlabel'));
     },
 
     _action(event) {
-      this.__action(
-        true,
-        this.__findActor(event.getCurrentTarget()).classList.contains(
-          'downlabel'
-        )
-      );
+      this.__action(true, this.__findActor(event.getCurrentTarget()).classList.contains('downlabel'));
     },
 
     __action(isShort, isDown) {
       let value;
-      if (
-        isShort &&
-        this.getShortDownValue() !== null &&
-        this.getShortUpValue() !== null
-      ) {
+      if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();
       } else {
         value = isDown ? this.getDownValue() : this.getUpValue();

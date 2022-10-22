@@ -90,10 +90,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
       });
 
       this._writeAddresses
-        .filter(
-          addr =>
-            !addr.hasAttribute('on') || addr.getAttribute('on') === 'click'
-        )
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
         .forEach(address => address.dispatchEvent(ev));
       if (predictive === true) {
         this.setValue(key);

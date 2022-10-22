@@ -153,11 +153,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (config) {
         const conf = {};
         if (config.live) {
-          conf.getLive = qx.lang.Function.curry(
-            instance[config.method],
-            format,
-            config
-          ).bind(instance);
+          conf.getLive = qx.lang.Function.curry(instance[config.method], format, config).bind(instance);
         } else {
           args.unshift(config);
           args.unshift(format);
@@ -233,20 +229,10 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * @returns {Promise<any>}
      * @private
      */
-    __getData(
-      cacheId,
-      rpc,
-      rpcContext,
-      args,
-      converter,
-      converterContext,
-      cache
-    ) {
+    __getData(cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
       const cached = cache ? this._getFromCache(cacheId) : null;
       if (cached) {
-        return Promise.resolve(
-          converter.call(converterContext || this, cached)
-        );
+        return Promise.resolve(converter.call(converterContext || this, cached));
       }
       return new Promise(
         function (resolve, reject) {
@@ -332,9 +318,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         'addressesSync',
         null,
         [],
-        format === 'dp'
-          ? this._parseDpResponseForEditor
-          : this._parseDpResponseForMonaco,
+        format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco,
         this,
         config.cache
       );
@@ -358,9 +342,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         'rrdsSync',
         null,
         [],
-        format === 'dp'
-          ? this._parseDpResponseForEditor
-          : this._parseDpResponseForMonaco,
+        format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco,
         this,
         config.cache
       );
@@ -373,9 +355,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         'influxdbsSync',
         null,
         args,
-        format === 'dp'
-          ? this._parseDpResponseForEditor
-          : this._parseDpResponseForMonaco,
+        format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco,
         this,
         config.cache
       );
@@ -409,9 +389,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           'influxdbfieldsSync',
           null,
           args,
-          format === 'dp'
-            ? this._parseDpResponseForEditor
-            : this._parseDpResponseForMonaco,
+          format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco,
           this,
           config.cache
         );
@@ -561,13 +539,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
 
           if (
             entry.lname &&
-            Object.prototype.hasOwnProperty.call(
-              entry.lname,
-              qx.locale.Manager.getInstance().getLanguage()
-            )
+            Object.prototype.hasOwnProperty.call(entry.lname, qx.locale.Manager.getInstance().getLanguage())
           ) {
-            suggestion.detail =
-              entry.lname[qx.locale.Manager.getInstance().getLanguage()];
+            suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
           }
         }
         transforms.push(suggestion);
@@ -641,9 +615,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (format === 'monaco') {
         // do not use icons from config when we can query them ourselves
         icons = Object.keys(cv.IconConfig.DB)
-          .filter(
-            name => !element || cv.IconConfig.DB[name].source !== 'config'
-          )
+          .filter(name => !element || cv.IconConfig.DB[name].source !== 'config')
           .map(function (iconName) {
             return {
               label: iconName,
@@ -655,9 +627,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         // dataprovider format
         // do not use icons from config when we can query them ourselves
         icons = Object.keys(cv.IconConfig.DB)
-          .filter(
-            name => !element || cv.IconConfig.DB[name].source !== 'config'
-          )
+          .filter(name => !element || cv.IconConfig.DB[name].source !== 'config')
           .map(function (iconName) {
             return {
               label: iconName,
@@ -668,24 +638,22 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       }
       if (element) {
         if (element instanceof Element) {
-          element.ownerDocument
-            .querySelectorAll('pages > meta > icons > icon-definition')
-            .forEach(icon => {
-              const iconName = icon.getAttribute('name');
-              if (format === 'monaco') {
-                icons.push({
-                  label: iconName,
-                  insertText: iconName,
-                  kind: window.monaco.languages.CompletionItemKind.EnumMember
-                });
-              } else if (format === 'dp') {
-                icons.push({
-                  label: iconName,
-                  value: iconName,
-                  icon: icon.getAttribute('uri')
-                });
-              }
-            });
+          element.ownerDocument.querySelectorAll('pages > meta > icons > icon-definition').forEach(icon => {
+            const iconName = icon.getAttribute('name');
+            if (format === 'monaco') {
+              icons.push({
+                label: iconName,
+                insertText: iconName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              });
+            } else if (format === 'dp') {
+              icons.push({
+                label: iconName,
+                value: iconName,
+                icon: icon.getAttribute('uri')
+              });
+            }
+          });
         } else if (typeof element === 'string') {
           const matches = element.match(/<icon-definition.+>/gm);
           const template = document.createElement('template');

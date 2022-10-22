@@ -38,13 +38,9 @@ qx.Class.define('cv.core.notifications.Router', {
     this.__routes = {};
     this.debug('new router');
 
-    this.__dateFormat = new qx.util.format.DateFormat(
-      qx.locale.Date.getDateFormat('short')
-    );
+    this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('short'));
 
-    this.__timeFormat = new qx.util.format.DateFormat(
-      qx.locale.Date.getTimeFormat('short')
-    );
+    this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
   },
 
   /*
@@ -67,10 +63,7 @@ qx.Class.define('cv.core.notifications.Router', {
       } else if (typeof message.condition === 'function') {
         return message.condition();
       }
-      qx.log.Logger.error(
-        this,
-        'unhandled message condition type: ' + message.condition
-      );
+      qx.log.Logger.error(this, 'unhandled message condition type: ' + message.condition);
 
       return false;
     },
@@ -100,10 +93,7 @@ qx.Class.define('cv.core.notifications.Router', {
         case 'speech':
           if (!window.speechSynthesis) {
             // not supported
-            qx.log.Logger.warn(
-              this,
-              'this browser does not support the Web Speech API'
-            );
+            qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
 
             return null;
           }
@@ -157,16 +147,9 @@ qx.Class.define('cv.core.notifications.Router', {
      */
     registerStateUpdateHandler(config) {
       this.__stateMessageConfig = config;
-      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function (
-        address
-      ) {
-        cv.data.Model.getInstance().addUpdateListener(
-          address,
-          this._onIncomingData,
-          this
-        );
-      },
-      this);
+      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function (address) {
+        cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
+      }, this);
     },
 
     /**
@@ -175,11 +158,7 @@ qx.Class.define('cv.core.notifications.Router', {
      */
     unregisterStateUpdatehandler(addresses) {
       addresses.forEach(function (address) {
-        cv.data.Model.getInstance().removeUpdateListener(
-          address,
-          this._onIncomingData,
-          this
-        );
+        cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
 
         if (this.__stateMessageConfig[address]) {
           delete this.__stateMessageConfig[address];
@@ -233,10 +212,7 @@ qx.Class.define('cv.core.notifications.Router', {
       const formattedTime = this.__timeFormat.format(now);
 
       this.__stateMessageConfig[address].forEach(function (config) {
-        if (
-          (initial === true && config.skipInitial === true) ||
-          changed === false
-        ) {
+        if ((initial === true && config.skipInitial === true) || changed === false) {
           // do not handle the first update
           return;
         }
@@ -252,45 +228,24 @@ qx.Class.define('cv.core.notifications.Router', {
         };
 
         // transform the raw value to a JavaScript type
-        templateData.value = cv.Transform.decode(
-          config.addressConfig,
-          templateData.value
-        );
+        templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
 
         if (config.valueMapping) {
           // apply mapping
-          templateData.value = cv.ui.common.BasicUpdate.applyMapping(
-            templateData.value,
-            config.valueMapping
-          );
+          templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
         }
         if (config.addressMapping) {
-          templateData.address = cv.ui.common.BasicUpdate.applyMapping(
-            templateData.address,
-            config.addressMapping
-          );
+          templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
         }
 
         const message = {
-          topic: Object.prototype.hasOwnProperty.call(config, 'topic')
-            ? config.topic
-            : 'cv.state.update.' + address,
-          title: qx.bom.Template.render(
-            '' + config.titleTemplate,
-            templateData
-          ),
+          topic: Object.prototype.hasOwnProperty.call(config, 'topic') ? config.topic : 'cv.state.update.' + address,
+          title: qx.bom.Template.render('' + config.titleTemplate, templateData),
 
-          message: qx.bom.Template.render(
-            '' + config.messageTemplate,
-            templateData
-          ),
+          message: qx.bom.Template.render('' + config.messageTemplate, templateData),
 
-          deletable: Object.prototype.hasOwnProperty.call(config, 'deletable')
-            ? config.deletable
-            : true,
-          unique: Object.prototype.hasOwnProperty.call(config, 'unique')
-            ? config.unique
-            : false,
+          deletable: Object.prototype.hasOwnProperty.call(config, 'deletable') ? config.deletable : true,
+          unique: Object.prototype.hasOwnProperty.call(config, 'unique') ? config.unique : false,
           severity: config.severity
         };
 
@@ -358,9 +313,7 @@ qx.Class.define('cv.core.notifications.Router', {
         target.handleMessage(message, {});
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
-          this.debug(
-            "dispatching '" + topic + "' message to handler: " + entry.handler
-          );
+          this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);
 
           entry.handler.handleMessage(message, entry.config);
         }, this);

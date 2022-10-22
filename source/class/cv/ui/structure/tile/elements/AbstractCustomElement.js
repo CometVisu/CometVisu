@@ -92,18 +92,10 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();
-    if (
-      qx.Class.isSubClassOf(
-        QxClass,
-        cv.ui.structure.tile.elements.AbstractCustomElement
-      )
-    ) {
+    if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
       this._instance = new QxClass(this);
     } else {
-      throw Error(
-        QxClass +
-          ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement'
-      );
+      throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');
     }
     if (this.hasAttribute('colspan')) {
       this.classList.add('colspan-' + this.getAttribute('colspan'));
@@ -130,10 +122,7 @@ class QxConnector extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (
-      this._instance &&
-      qx.Class.hasProperty(this._instance.constructor, name)
-    ) {
+    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
       this._instance.set(name, newValue);
     }
   }

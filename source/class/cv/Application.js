@@ -80,20 +80,16 @@ qx.Class.define('cv.Application', {
 
     getRelativeResourcePath(fullPath) {
       if (!this._relResourcePath) {
-        const baseUrl =
-          window.location.origin +
-          window.location.pathname.split('/').slice(0, -1).join('/');
+        const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
         this._relResourcePath =
-          qx.util.Uri.getAbsolute(
-            qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')
-          ).substring(baseUrl.length + 1) + '/';
+          qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(
+            baseUrl.length + 1
+          ) + '/';
       }
       if (fullPath === true) {
         if (!this._fullResourcePath) {
           this._fullResourcePath =
-            window.location.pathname.split('/').slice(0, -1).join('/') +
-            '/' +
-            this._relResourcePath;
+            window.location.pathname.split('/').slice(0, -1).join('/') + '/' + this._relResourcePath;
         }
         return this._fullResourcePath;
       }
@@ -107,18 +103,11 @@ qx.Class.define('cv.Application', {
      */
     createClient(...args) {
       let Client = cv.io.Client;
-      if (
-        cv.Config.testMode === true ||
-        window.cvTestMode === true ||
-        args[0] === 'simulated'
-      ) {
+      if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
-        if (
-          cv.Config.getStructure() === 'structure-pure' &&
-          !cv.Config.pluginsToLoad.includes('plugin-openhab')
-        ) {
+        if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
           cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
         }
         if (args[1] && args[1].endsWith('/cv/l/')) {
@@ -250,10 +239,7 @@ qx.Class.define('cv.Application', {
 
     _applyManagerChecked(value) {
       if (value && cv.Config.loadManager) {
-        this.showManager(
-          cv.Config.managerOptions.action,
-          cv.Config.managerOptions.data
-        );
+        this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
       }
     },
 
@@ -292,11 +278,7 @@ qx.Class.define('cv.Application', {
         '\n';
 
       if (cv.Application.consoleCommands.length) {
-        info +=
-          '\n Available commands:\n' +
-          '    ' +
-          cv.Application.consoleCommands.join('\n    ') +
-          '\n';
+        info += '\n Available commands:\n' + '    ' + cv.Application.consoleCommands.join('\n    ') + '\n';
       }
 
       info += '-----------------------------------------------------------\n\n';
@@ -306,9 +288,7 @@ qx.Class.define('cv.Application', {
 
       // add command to load and open the manager
       const manCommand = new qx.ui.command.Command('Ctrl+M');
-      cv.TemplateEngine.getInstance()
-        .getCommands()
-        .add('open-manager', manCommand);
+      cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
       manCommand.addListener('execute', () => this.showManager());
       this.registerServiceWorker();
 
@@ -341,9 +321,8 @@ qx.Class.define('cv.Application', {
        */
       // in debug mode load the uncompressed unobfuscated scripts
       qx.bom.Stylesheet.includeFile(
-        qx.util.ResourceManager.getInstance().toUri(
-          'designs/designglobals.css'
-        ) + (cv.Config.forceReload === true ? '?' + Date.now() : '')
+        qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') +
+          (cv.Config.forceReload === true ? '?' + Date.now() : '')
       );
 
       this.__init();
@@ -379,10 +358,7 @@ qx.Class.define('cv.Application', {
           deletable: true
         };
 
-        cv.core.notifications.Router.dispatchMessage(
-          notification.topic,
-          notification
-        );
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       } else {
         qx.io.PartLoader.require(
           ['manager'],
@@ -402,10 +378,7 @@ qx.Class.define('cv.Application', {
               // delay this a little bit, give the manager some time to settle
               qx.event.Timer.once(
                 () => {
-                  qx.event.message.Bus.dispatchByName(
-                    'cv.manager.' + action,
-                    data
-                  );
+                  qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
                 },
                 this,
                 1000
@@ -419,10 +392,7 @@ qx.Class.define('cv.Application', {
 
     _applyInManager(value) {
       if (value) {
-        qx.bom.History.getInstance().addToHistory(
-          'manager',
-          qx.locale.Manager.tr('Manager') + ' - CometVisu'
-        );
+        qx.bom.History.getInstance().addToHistory('manager', qx.locale.Manager.tr('Manager') + ' - CometVisu');
 
         this.block(false);
         if (document.body.classList.contains('loading')) {
@@ -434,13 +404,8 @@ qx.Class.define('cv.Application', {
     },
 
     showConfigErrors(configName, options) {
-      configName = configName
-        ? 'visu_config_' + configName + '.xml'
-        : 'visu_config.xml';
-      const handlerId =
-        options && options.upgradeVersion
-          ? 'cv.ui.manager.editor.Diff'
-          : 'cv.ui.manager.editor.Source';
+      configName = configName ? 'visu_config_' + configName + '.xml' : 'visu_config.xml';
+      const handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
       const data = {
         file: configName,
         handler: handlerId,
@@ -492,10 +457,7 @@ qx.Class.define('cv.Application', {
       const res = qx.util.ResourceManager.getInstance();
       let configPath = `config/visu_config${configName}.xml`;
       let url = '';
-      if (
-        !res.has(configPath) &&
-        res.has(`demo/visu_config${configName}.xml`)
-      ) {
+      if (!res.has(configPath) && res.has(`demo/visu_config${configName}.xml`)) {
         url = res.toUri(`demo/visu_config${configName}.xml`);
       }
       if (!url) {
@@ -519,10 +481,7 @@ qx.Class.define('cv.Application', {
               notification.topic,
               Object.assign({}, notification, {
                 target: 'popup',
-                message: qx.locale.Manager.tr(
-                  'The %1 configuration has no errors!',
-                  displayConfigName
-                ),
+                message: qx.locale.Manager.tr('The %1 configuration has no errors!', displayConfigName),
 
                 icon: 'message_ok'
               })
@@ -534,20 +493,14 @@ qx.Class.define('cv.Application', {
               notification.topic,
               Object.assign({}, notification, {
                 target: 'popup',
-                message: qx.locale.Manager.tr(
-                  'The %1 configuration has %2 errors!',
-                  displayConfigName,
-                  res.length
-                ),
+                message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
 
                 actions: {
                   link: [
                     {
                       title: qx.locale.Manager.tr('Show errors'),
                       action() {
-                        qx.core.Init.getApplication().showConfigErrors(
-                          configName
-                        );
+                        qx.core.Init.getApplication().showConfigErrors(configName);
                       }
                     }
                   ]
@@ -571,8 +524,7 @@ qx.Class.define('cv.Application', {
       if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       } else if (ex instanceof qx.core.WindowError) {
-        exString =
-          ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
+        exString = ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
       }
       if (!exString) {
         exString = ex.name + ': ' + ex.message;
@@ -589,9 +541,7 @@ qx.Class.define('cv.Application', {
           let lastLine = '';
           let repeated = 0;
           let nStack = '';
-          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (
-            entry
-          ) {
+          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
             if (lastLine === entry) {
               if (repeated === 0) {
                 // count first occurance too
@@ -607,16 +557,12 @@ qx.Class.define('cv.Application', {
               nStack += '\n\t' + entry;
               lastLine = entry;
             }
-          },
-          this);
+          }, this);
           if (repeated > 0) {
             nStack += ' [repeated ' + repeated + ' times]';
           }
           if (nStack) {
-            exString +=
-              '\nNormalized Stack: ' +
-              nStack.substring(0, maxTraceLength) +
-              '\n';
+            exString += '\nNormalized Stack: ' + nStack.substring(0, maxTraceLength) + '\n';
             if (nStack.length > maxTraceLength) {
               exString += 'Stacktrace has been cut off\n';
             }
@@ -626,8 +572,7 @@ qx.Class.define('cv.Application', {
           }
         } catch (exc) {
           if (ex.stack) {
-            exString +=
-              '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
+            exString += '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
             if (ex.stack.length > maxTraceLength) {
               exString += 'Stacktrace has been cut off\n';
             }
@@ -655,10 +600,7 @@ qx.Class.define('cv.Application', {
               action(ev) {
                 let parent = ev.getTarget().parentNode;
                 while (parent) {
-                  if (
-                    parent.id === 'notification-center' ||
-                    parent.classList.contains('popup')
-                  ) {
+                  if (parent.id === 'notification-center' || parent.classList.contains('popup')) {
                     break;
                   }
                   parent = parent.parentNode;
@@ -714,17 +656,13 @@ qx.Class.define('cv.Application', {
               ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
           notification.actions.optionGroup.options.push({
-            title:
-              qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
+            title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
             name: 'reportErrors',
             style: 'margin-left: 18px'
           });
         }
       }
-      cv.core.notifications.Router.dispatchMessage(
-        notification.topic,
-        notification
-      );
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
 
     throwError: qx.core.Environment.select('qx.globalErrorHandling', {
@@ -810,10 +748,7 @@ qx.Class.define('cv.Application', {
 
       if (this._isCached) {
         // check if cache is still valid
-        const cacheValid = await cv.ConfigCache.isValid(
-          null,
-          engine.getConfigHash()
-        );
+        const cacheValid = await cv.ConfigCache.isValid(null, engine.getConfigHash());
 
         if (!cacheValid) {
           this.debug('cache is invalid re-parse xml');
@@ -838,24 +773,17 @@ qx.Class.define('cv.Application', {
           });
           engine.addListenerOnce('changeReady', async () => {
             // create the objects
-            cv.Config.treePath =
-              await cv.Application.structureController.getInitialPageId();
+            cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
             const data = cv.data.Model.getInstance().getWidgetData('id_');
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           });
           // check if the current design settings overrides the cache one
-          if (
-            cv.Config.clientDesign &&
-            cv.Config.clientDesign !== cv.Config.configSettings.clientDesign
-          ) {
+          if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
             const styles = [];
             cv.Config.configSettings.stylesToLoad.forEach(function (style) {
               styles.push(
-                style.replace(
-                  'designs/' + cv.Config.configSettings.clientDesign,
-                  'designs/' + cv.Config.clientDesign
-                )
+                style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign)
               );
             }, this);
             this.loadStyles(styles);
@@ -863,10 +791,7 @@ qx.Class.define('cv.Application', {
             const scripts = [];
             cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
               scripts.push(
-                style.replace(
-                  'designs/' + cv.Config.configSettings.clientDesign,
-                  'designs/' + cv.Config.clientDesign
-                )
+                style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign)
               );
             }, this);
             this.loadScripts(scripts);
@@ -885,10 +810,7 @@ qx.Class.define('cv.Application', {
         this.loadScripts();
         this.debug('done');
 
-        if (
-          cv.Config.enableCache &&
-          cv.Application.structureController.supports('cache')
-        ) {
+        if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
           // cache dom + data when everything is ready
           qx.event.message.Bus.subscribe(
             'setup.dom.finished',
@@ -977,9 +899,7 @@ qx.Class.define('cv.Application', {
             // a real path
             standalonePlugins.push(plugin);
           } else {
-            standalonePlugins.push(
-              path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js'
-            );
+            standalonePlugins.push(path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js');
           }
         });
         // load part plugins
@@ -995,9 +915,7 @@ qx.Class.define('cv.Application', {
               if (ev.getData() === true) {
                 allPluginsQueued = true;
                 this.debug('loading standalone plugins');
-                cv.util.ScriptLoader.getInstance().addScripts(
-                  standalonePlugins
-                );
+                cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
 
                 if (partsLoaded) {
                   cv.util.ScriptLoader.getInstance().setAllQueued(true);
@@ -1031,8 +949,7 @@ qx.Class.define('cv.Application', {
         const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
         const hasPatchVersion = match[4] !== undefined;
         const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-        const constraintId =
-          10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+        const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
         const maxId =
           10000 * majorConstraint +
           (hasMinorVersion ? 100 * minorConstraint : 999) +
@@ -1060,10 +977,7 @@ qx.Class.define('cv.Application', {
             }
             break;
           case '^':
-            if (
-              serverVersionId < constraintId ||
-              serverVersionId > 10000 * (majorConstraint + 1)
-            ) {
+            if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
               return true;
             }
             break;
@@ -1071,8 +985,7 @@ qx.Class.define('cv.Application', {
             if (
               serverVersionId < constraintId || hasPatchVersion
                 ? serverVersionId > 10000 * (majorConstraint + 1)
-                : serverVersionId >
-                  10000 * majorConstraint + 100 * (patchConstraint + 1)
+                : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)
             ) {
               return true;
             }
@@ -1086,9 +999,7 @@ qx.Class.define('cv.Application', {
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
       } else {
-        const url =
-          cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') +
-          '/environment.php';
+        const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
           method: 'GET',
@@ -1099,17 +1010,11 @@ qx.Class.define('cv.Application', {
           const req = e.getTarget();
           const env = req.getResponse();
           const serverVersionId = env.PHP_VERSION_ID;
-          const orParts = env.required_php_version
-            .split('||')
-            .map(e => e.trim());
+          const orParts = env.required_php_version.split('||').map(e => e.trim());
           const passed = orParts.map(orConstraint => {
-            const andParts = orConstraint
-              .split(/(\s+|&{2})/)
-              .map(e => e.trim());
+            const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
             // pass when no failed andPart has been found
-            return !andParts.some(constraint =>
-              this.__constraintFails(serverVersionId, constraint)
-            );
+            return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
           });
           // one of the OR constraints need to pass
           const enable = passed.some(res => res === true);
@@ -1173,9 +1078,7 @@ qx.Class.define('cv.Application', {
           .register(workerFile)
           .then(
             function (reg) {
-              this.debug(
-                'ServiceWorker successfully registered for scope ' + reg.scope
-              );
+              this.debug('ServiceWorker successfully registered for scope ' + reg.scope);
 
               // configure service worker
               var configMessage = {

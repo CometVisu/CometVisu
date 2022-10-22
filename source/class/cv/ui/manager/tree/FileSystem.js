@@ -34,11 +34,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     this._setLayout(new qx.ui.layout.Grow());
     this.setRootFolder(rootFolder);
 
-    qx.event.message.Bus.subscribe(
-      'cv.manager.tree.enable',
-      this._onEnableTree,
-      this
-    );
+    qx.event.message.Bus.subscribe('cv.manager.tree.enable', this._onEnableTree, this);
   },
 
   /*
@@ -151,8 +147,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
     _applySelectedNode(value) {
       const tree = this.getChildControl('tree');
-      const contextMenu =
-        cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
+      const contextMenu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       contextMenu.configure(value);
       if (value) {
         tree.setContextMenu(contextMenu);
@@ -258,16 +253,11 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
             showTopLevelOpenCloseIcons: true
           });
 
-          cv.ui.manager.model.Preferences.getInstance().bind(
-            'quickPreview',
-            control,
-            'openMode',
-            {
-              converter(value) {
-                return value ? 'tap' : 'dbltap';
-              }
+          cv.ui.manager.model.Preferences.getInstance().bind('quickPreview', control, 'openMode', {
+            converter(value) {
+              return value ? 'tap' : 'dbltap';
             }
-          );
+          });
 
           control.setDelegate({
             createItem: function () {
@@ -288,9 +278,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
             }
           });
 
-          control
-            .getSelection()
-            .addListener('change', this._onChangeTreeSelection, this);
+          control.getSelection().addListener('change', this._onChangeTreeSelection, this);
           this._add(control);
           break;
       }
@@ -309,11 +297,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
   ***********************************************
   */
   destruct() {
-    qx.event.message.Bus.unsubscribe(
-      'cv.manager.tree.enable',
-      this._onEnableTree,
-      this
-    );
+    qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
 
     this._disposeObjects('_dateFormat', '_timeFormat', '_replacementManager');
   }

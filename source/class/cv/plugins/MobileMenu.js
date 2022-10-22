@@ -43,13 +43,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse(xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType
-      );
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
 
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
@@ -74,29 +68,21 @@ qx.Class.define('cv.plugins.MobileMenu', {
     // overridden
     getDomString() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-        const navLeft = (this.__navLeft =
-          document.querySelector('#navbarLeft'));
+        const navLeft = (this.__navLeft = document.querySelector('#navbarLeft'));
         if (!navLeft.classList.contains('mobilemenu')) {
           navLeft.classList.add('mobilemenu');
         }
         navLeft.style.display = 'none';
         qx.event.message.Bus.subscribe('path.pageChanged', function () {
           const navbar = navLeft.querySelector('.navbar');
-          const animation = qx.bom.element.Animation.animate(
-            navbar,
-            qx.util.Animation.SLIDE_LEFT_OUT
-          );
+          const animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
 
           animation.addListenerOnce('end', () => {
             navLeft.style.display = 'none';
           });
         });
 
-        return (
-          '<div class="clearfix mobilemenuTrigger">' +
-          this.getChildrenDomString() +
-          '</div>'
-        );
+        return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
       }
       return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
     },
@@ -112,10 +98,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
         if (this.isTouchDevice()) {
           this.__navLeft.style.display = 'block';
           const navbar = this.__navLeft.querySelector('.navbar.navbarActive');
-          qx.bom.element.Animation.animate(
-            navbar,
-            qx.util.Animation.SLIDE_LEFT_IN
-          );
+          qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
         }
       }
     },

@@ -103,13 +103,8 @@ qx.Class.define('cv.util.IconTools', {
           while (cv.util.IconTools.iconDelay.length) {
             // it should be enough to test only the first element - the other
             // elements will be covered anyway...
-            if (
-              cv.util.IconTools.iconDelay[0][2] in
-              cv.util.IconTools.iconDelay[0][1]
-            ) {
-              cv.util.IconTools.fillRecoloredIcon(
-                cv.util.IconTools.iconDelay.shift()[0]
-              );
+            if (cv.util.IconTools.iconDelay[0][2] in cv.util.IconTools.iconDelay[0][1]) {
+              cv.util.IconTools.fillRecoloredIcon(cv.util.IconTools.iconDelay.shift()[0]);
             } else {
               break;
             }
@@ -155,11 +150,7 @@ qx.Class.define('cv.util.IconTools', {
      */
     innerRecolorLoop:
       navigator.userAgent.toLowerCase().indexOf('android') > -1 &&
-      parseFloat(
-        navigator.userAgent.slice(
-          navigator.userAgent.toLowerCase().indexOf('android') + 8
-        )
-      ) < 4.4
+      parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android') + 8)) < 4.4
         ? function (r, g, b, data, length) {
             // for Android version < 4.4
             for (let i = 0; i < length; i += 4) {
@@ -206,32 +197,19 @@ qx.Class.define('cv.util.IconTools', {
       }
       cv.util.IconTools.tmpCtx.drawImage(thisIcon, 0, 0);
 
-      const imageData = cv.util.IconTools.tmpCtx.getImageData(
-        0,
-        0,
-        width,
-        height
-      );
+      const imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
 
       if (color !== undefined) {
         if (!cv.util.IconTools.hexColorRegEx.test(color)) {
           qx.log.Logger.error(
             this,
-            'Error! "' +
-              color +
-              '" is not a valid color for icon recoloring! It must have a shape like "#rrggbb".'
+            'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#rrggbb".'
           );
         }
         const r = parseInt(color.substr(1, 2), 16);
         const g = parseInt(color.substr(3, 2), 16);
         const b = parseInt(color.substr(5, 2), 16);
-        cv.util.IconTools.innerRecolorLoop(
-          r,
-          g,
-          b,
-          imageData.data,
-          width * height * 4
-        );
+        cv.util.IconTools.innerRecolorLoop(r, g, b, imageData.data, width * height * 4);
       }
       thisIconColors[color] = imageData;
     },
@@ -252,11 +230,7 @@ qx.Class.define('cv.util.IconTools', {
         let thisFillColor;
         while ((thisFillColor = toFill.pop())) {
           // eslint-disable-line no-cond-assign
-          cv.util.IconTools.doRecolorNonTransparent(
-            thisFillColor,
-            thisIcon,
-            thisIconColors
-          );
+          cv.util.IconTools.doRecolorNonTransparent(thisFillColor, thisIcon, thisIconColors);
         }
       };
 
@@ -291,11 +265,7 @@ qx.Class.define('cv.util.IconTools', {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        const c =
-          'icon' +
-          cv.util.IconTools.iconCache[url].id +
-          '_' +
-          color.substr(1, 6);
+        const c = 'icon' + cv.util.IconTools.iconCache[url].id + '_' + color.substr(1, 6);
         cv.util.IconTools.iconCache[url].toFill.push(color);
 
         // when already available - fill it now. Otherwise the onLoad will do it.
@@ -310,16 +280,9 @@ qx.Class.define('cv.util.IconTools', {
         template.innerHTML = newCanvas;
         const newElement = template.content.firstChild;
         if (cv.util.IconTools.iconCache[url].icon.complete) {
-          cv.util.IconTools.fillCanvas(
-            newElement,
-            cv.util.IconTools.iconCache[url].colors[color]
-          );
+          cv.util.IconTools.fillCanvas(newElement, cv.util.IconTools.iconCache[url].colors[color]);
         } else {
-          cv.util.IconTools.iconDelayed(
-            newElement,
-            cv.util.IconTools.iconCache[url].colors,
-            color
-          );
+          cv.util.IconTools.iconDelayed(newElement, cv.util.IconTools.iconCache[url].colors, color);
         }
         return newElement;
       };
@@ -331,25 +294,15 @@ qx.Class.define('cv.util.IconTools', {
      * @param {(HTMLCanvasElement|SVGElement)} icon
      */
     fillRecoloredIcon(icon) {
-      const parameters = Array.prototype.filter.call(
-        icon.classList,
-        name => name !== 'icon'
-      );
+      const parameters = Array.prototype.filter.call(icon.classList, name => name !== 'icon');
 
       if (parameters.length === 2) {
-        const cacheEntry =
-          cv.util.IconTools.iconCache[
-            cv.util.IconTools.iconCacheMap[parameters[0]]
-          ];
+        const cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
 
         const coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
         if (undefined === coloredIcon) {
-          cv.util.IconTools.iconDelayed(
-            icon,
-            cacheEntry.colors,
-            '#' + parameters[1]
-          );
+          cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
         } else {
           cv.util.IconTools.fillCanvas(icon, coloredIcon);
         }
@@ -363,9 +316,7 @@ qx.Class.define('cv.util.IconTools', {
     svgKUF(iconID) {
       if (!this.preloadedKUFicons) {
         this.preloadedKUFicons = true;
-        const iconPath =
-          cv.Application.getRelativeResourcePath() +
-          'icons/fonts/knx-uf-iconset.css';
+        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/fonts/knx-uf-iconset.css';
         cv.util.ScriptLoader.includeStylesheet(iconPath);
       }
       /**
@@ -391,9 +342,7 @@ qx.Class.define('cv.util.IconTools', {
           if (style) {
             style = ' style="' + style + '"';
           }
-          return (
-            '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"></i>'
-          );
+          return '<i' + style + ' class="knxuf-' + iconID + ' ' + classes + '"></i>';
         }
         let icon = document.createElement('i');
         if (classes) {

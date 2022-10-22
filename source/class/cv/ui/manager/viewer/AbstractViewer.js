@@ -96,9 +96,7 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
         case 'image':
           control = new qx.ui.basic.Atom();
           this.getChildControl('scroll').add(control);
-          control
-            .getChildControl('icon')
-            .addListener('resize', this._scaleImage, this);
+          control.getChildControl('icon').addListener('resize', this._scaleImage, this);
           break;
       }
 

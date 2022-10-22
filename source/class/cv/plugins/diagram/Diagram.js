@@ -155,9 +155,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
     },
 
     _getInnerDomString() {
-      const classStr = this.getPreviewlabels()
-        ? 'diagram_inline'
-        : 'diagram_preview';
+      const classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview';
       const styleStr =
         'min-height: 40px' +
         (this.getWidth() ? ';width:' + this.getWidth() : '') +

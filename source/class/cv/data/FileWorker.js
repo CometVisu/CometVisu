@@ -32,9 +32,7 @@ qx.Class.define('cv.data.FileWorker', {
   construct() {
     super();
     this._files = [];
-    this._worker = new Worker(
-      qx.util.ResourceManager.getInstance().toUri('manager/worker.js')
-    );
+    this._worker = new Worker(qx.util.ResourceManager.getInstance().toUri('manager/worker.js'));
 
     this._worker.onmessage = this._onMessage.bind(this);
     this._validationCallbacks = {};
@@ -67,12 +65,7 @@ qx.Class.define('cv.data.FileWorker', {
       return new Promise(
         function (resolve, reject) {
           // check if there is already one validation request ongoing
-          if (
-            !Object.prototype.hasOwnProperty.call(
-              this._validationCallbacks,
-              url
-            )
-          ) {
+          if (!Object.prototype.hasOwnProperty.call(this._validationCallbacks, url)) {
             this._validationCallbacks[url] = [resolve];
             this._worker.postMessage([
               'validateConfig',
@@ -103,12 +96,7 @@ qx.Class.define('cv.data.FileWorker', {
       let path = e.data.shift();
       switch (topic) {
         case 'validationResult':
-          if (
-            Object.prototype.hasOwnProperty.call(
-              this._validationCallbacks,
-              path
-            )
-          ) {
+          if (Object.prototype.hasOwnProperty.call(this._validationCallbacks, path)) {
             const callbacks = this._validationCallbacks[path];
             delete this._validationCallbacks[path];
             callbacks.forEach(function (cb) {

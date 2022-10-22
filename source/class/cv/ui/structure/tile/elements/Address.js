@@ -42,9 +42,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         const model = cv.data.Model.getInstance();
         const backendName = element.getAttribute('backend');
         model.addAddress(address, element.getAttribute('id'), backendName);
-        const mode = element.hasAttribute('mode')
-          ? element.getAttribute('mode')
-          : 'readwrite';
+        const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'readwrite';
         if (mode !== 'write') {
           // subscribe
           // this is a read address register for updates
@@ -53,12 +51,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             this.fireStateUpdate(address, state);
           }
           //add listener
-          model.addUpdateListener(
-            address,
-            this.fireStateUpdate,
-            this,
-            backendName
-          );
+          model.addUpdateListener(address, this.fireStateUpdate, this, backendName);
         }
         if (mode !== 'read') {
           // listen for sendState events
@@ -73,24 +66,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             }
             const allowDuplicates =
               ev.detail.source &&
-              ev.detail.source instanceof
-                cv.ui.structure.tile.components.Button &&
-              (ev.detail.source.getType() === 'trigger' ||
-                ev.detail.source.getType() === 'push');
+              ev.detail.source instanceof cv.ui.structure.tile.components.Button &&
+              (ev.detail.source.getType() === 'trigger' || ev.detail.source.getType() === 'push');
             if (value !== null) {
               const encoding = element.getAttribute('transform') || 'raw';
-              const encodedValue = cv.Transform.encodeBusAndRaw(
-                { transform: encoding },
-                value
-              );
+              const encodedValue = cv.Transform.encodeBusAndRaw({ transform: encoding }, value);
 
               // noinspection EqualityComparisonWithCoercionJS
               if (
                 allowDuplicates ||
-                !Object.prototype.hasOwnProperty.call(
-                  element,
-                  'lastSentValue'
-                ) ||
+                !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') ||
                 encodedValue.raw !== element.lastSentValue
               ) {
                 if (element.hasAttribute('delay')) {
@@ -112,11 +97,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                     delay
                   );
                 } else {
-                  cv.io.BackendConnections.getClient(backendName).write(
-                    element.textContent,
-                    encodedValue.bus,
-                    element
-                  );
+                  cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
 
                   if (!allowDuplicates) {
                     element.lastSentValue = encodedValue.raw;
@@ -135,30 +116,19 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
      * @param state {variant} state to send
      */
     fireStateUpdate(address, state) {
-      if (
-        this.__lastValue !== state ||
-        this._element.getAttribute('send-mode') === 'always'
-      ) {
+      if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
-        let transformedState = cv.Transform.decode(
-          { transform: transform },
-          state
-        );
+        let transformedState = cv.Transform.decode({ transform: transform }, state);
 
         let mapping = '';
         if (this._element.hasAttribute('mapping')) {
           mapping = this._element.getAttribute('mapping');
-          transformedState = cv.Application.structureController.mapValue(
-            mapping,
-            transformedState
-          );
+          transformedState = cv.Application.structureController.mapValue(mapping, transformedState);
         }
         if (this._element.hasAttribute('format')) {
           transformedState = cv.util.String.sprintf(
             this._element.getAttribute('format'),
-            transformedState instanceof Date
-              ? transformedState.toLocaleString()
-              : transformedState
+            transformedState instanceof Date ? transformedState.toLocaleString() : transformedState
           );
         }
         const ev = new CustomEvent('stateUpdate', {
@@ -170,13 +140,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             target: this._element.getAttribute('target') || '',
             raw: state,
             mapping: mapping,
-            addressValue: this._element.hasAttribute('value')
-              ? this._element.getAttribute('value')
-              : null,
+            addressValue: this._element.hasAttribute('value') ? this._element.getAttribute('value') : null,
             source: this,
-            variant: this._element.hasAttribute('variant')
-              ? this._element.getAttribute('variant')
-              : null
+            variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
           }
         });
 

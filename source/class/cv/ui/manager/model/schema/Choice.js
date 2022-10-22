@@ -67,30 +67,21 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
         subElement.setSortable(true);
         this._allowedElements[subElement.getName()] = subElement;
       });
-      this._allowedElements['#comment'] =
-        this.getSchema().getCommentNodeSchemaElement();
+      this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
 
       // choices
       Array.from(node.querySelectorAll(':scope > choice')).forEach(grouping => {
-        this._subGroupings.push(
-          new cv.ui.manager.model.schema.Choice(grouping, schema)
-        );
+        this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
       });
 
       // sequences
-      Array.from(node.querySelectorAll(':scope > sequence')).forEach(
-        grouping => {
-          this._subGroupings.push(
-            new cv.ui.manager.model.schema.Sequence(grouping, schema)
-          );
-        }
-      );
+      Array.from(node.querySelectorAll(':scope > sequence')).forEach(grouping => {
+        this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
+      });
 
       // groups
       Array.from(node.querySelectorAll(':scope > group')).forEach(grouping => {
-        this._subGroupings.push(
-          new cv.ui.manager.model.schema.Group(grouping, schema)
-        );
+        this._subGroupings.push(new cv.ui.manager.model.schema.Group(grouping, schema));
       });
     },
 
@@ -186,8 +177,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
           namesWithSorting[item.getName()] = mySortnumber;
         } else {
           // go recursive
-          const subSortedElements =
-            item.getAllowedElementsSorting(mySortnumber);
+          const subSortedElements = item.getAllowedElementsSorting(mySortnumber);
           Object.assign(namesWithSorting, subSortedElements);
         }
       }, this);
@@ -203,8 +193,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
           namesWithSorting[item.getName()] = mySortnumber;
         } else {
           // go recursive
-          const subSortedElements =
-            item.getAllowedElementsSorting(mySortnumber);
+          const subSortedElements = item.getAllowedElementsSorting(mySortnumber);
           Object.assign(namesWithSorting, subSortedElements);
         }
       }, this);

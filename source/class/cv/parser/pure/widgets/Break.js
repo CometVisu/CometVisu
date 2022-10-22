@@ -39,13 +39,7 @@ qx.Class.define('cv.parser.pure.widgets.Break', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse(xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType
-      );
+      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
     }
   },
 

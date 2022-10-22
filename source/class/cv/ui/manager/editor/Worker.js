@@ -63,9 +63,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
         'openFile',
         {
           path: file.getFullPath(),
-          code: qx.xml.Document.isXmlDocument(code)
-            ? code.documentElement.outerHTML
-            : code,
+          code: qx.xml.Document.isXmlDocument(code) ? code.documentElement.outerHTML : code,
           schema: schema
         },
 
@@ -100,10 +98,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
       if (file.isConfigFile()) {
         return this._worker.validateConfig(file.getServerPath());
       }
-      qx.log.Logger.error(
-        this,
-        file.getFullPath() + ' is no configuration file'
-      );
+      qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
 
       return true;
     },
@@ -118,13 +113,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
       let path = e.getData().path;
       let file = this._files[path];
       if (!file && topic !== 'validationResult') {
-        qx.log.Logger.error(
-          this,
-          'no file found for path ' +
-            path +
-            ' ignoring worker message for topic ' +
-            topic
-        );
+        qx.log.Logger.error(this, 'no file found for path ' + path + ' ignoring worker message for topic ' + topic);
 
         return;
       }

@@ -1464,9 +1464,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_2og_int_all'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_2og_int_all')
           }
         }
       },
@@ -1481,9 +1479,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_2og_int_dg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_2og_int_dg')
           }
         }
       },
@@ -1498,9 +1494,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_2og_int_eg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_2og_int_eg')
           }
         }
       },
@@ -1515,9 +1509,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_2og_int_kg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_2og_int_kg')
           }
         }
       },
@@ -1532,9 +1524,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_2og_int_og1'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_2og_int_og1')
           }
         }
       },
@@ -1549,9 +1539,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_2og_int_og2'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_2og_int_og2')
           }
         }
       },
@@ -1806,9 +1794,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_okg_int_all'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_okg_int_all')
           }
         }
       },
@@ -1823,9 +1809,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_okg_int_dg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_okg_int_dg')
           }
         }
       },
@@ -1840,9 +1824,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_okg_int_eg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_okg_int_eg')
           }
         }
       },
@@ -1857,9 +1839,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern_s_okg_int_og'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern_s_okg_int_og')
           }
         }
       },
@@ -1934,9 +1914,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern02_okg_int_all'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_all')
           }
         }
       },
@@ -1951,9 +1929,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern02_okg_int_dg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_dg')
           }
         }
       },
@@ -1968,9 +1944,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern02_okg_int_eg'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_eg')
           }
         }
       },
@@ -1985,9 +1959,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_building_modern02_okg_int_og'
-            )
+            '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_og')
           }
         }
       },
@@ -2447,9 +2419,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_fault_current_circuit_breaker_off'
-            )
+            '*': cv.util.IconTools.svgKUF('control_fault_current_circuit_breaker_off')
           }
         }
       },
@@ -2464,9 +2434,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'control_fault_current_circuit_breaker_on'
-            )
+            '*': cv.util.IconTools.svgKUF('control_fault_current_circuit_breaker_on')
           }
         }
       },
@@ -8164,9 +8132,7 @@ qx.Class.define('cv.IconConfig', {
           potassium: '*/purple',
           sodium: '*/orange',
           '*': {
-            '*': cv.util.IconTools.svgKUF(
-              'sani_central_vacuum_cleaner_dust_cont'
-            )
+            '*': cv.util.IconTools.svgKUF('sani_central_vacuum_cleaner_dust_cont')
           }
         }
       },

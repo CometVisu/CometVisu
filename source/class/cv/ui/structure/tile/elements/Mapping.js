@@ -48,14 +48,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       // avoid adding styling elements here as they inherit this method but call the super method too
       if (this._element.tagName.toLowerCase().endsWith('mapping')) {
         if (value) {
-          cv.Application.structureController.addMapping(
-            this._element.getAttribute('name'),
-            this
-          );
+          cv.Application.structureController.addMapping(this._element.getAttribute('name'), this);
         } else {
-          cv.Application.structureController.removeMapping(
-            this._element.getAttribute('name')
-          );
+          cv.Application.structureController.removeMapping(this._element.getAttribute('name'));
         }
       }
     },
@@ -71,13 +66,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
         return this.__cache[val];
       }
       let mappedValue = '' + val;
-      const exactMatch = this._element.querySelector(
-        ':scope > entry[value="' + val + '"]'
-      );
+      const exactMatch = this._element.querySelector(':scope > entry[value="' + val + '"]');
 
-      let type = this._element.hasAttribute('type')
-        ? this._element.getAttribute('type')
-        : 'string';
+      let type = this._element.hasAttribute('type') ? this._element.getAttribute('type') : 'string';
       if (exactMatch) {
         mappedValue = this._convert(exactMatch.innerHTML.trim(), type);
         this.__cache[val] = mappedValue;
@@ -87,11 +78,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       if (formula) {
         if (!formula._formula) {
           let content = formula.textContent;
-          formula._formula = new Function(
-            'x',
-            'store',
-            'let y;' + content + '; return y;'
-          );
+          formula._formula = new Function('x', 'store', 'let y;' + content + '; return y;');
         }
         mappedValue = this._convert(formula._formula(val, store), type);
         return mappedValue;
@@ -101,9 +88,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
 
       const mapped = Array.from(entries).some(entry => {
         let matches = false;
-        let isDefaultValue =
-          entry.hasAttribute('default') &&
-          entry.getAttribute('default') === 'true';
+        let isDefaultValue = entry.hasAttribute('default') && entry.getAttribute('default') === 'true';
         if (entry.hasAttribute('value')) {
           const value = entry.getAttribute('value');
           if (value === (val ? val : 'NULL') || value === '*') {

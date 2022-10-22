@@ -93,23 +93,17 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
     const base = this.getBaseColors();
     this.__color = new cv.util.Color(base.r, base.g, base.b, base.w);
-    this.__animator = new cv.util.LimitedRateUpdateAnimator(
-      this.__updateHandlePosition,
-      this
-    );
+    this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
 
     this.__animator.setAnimationSpeed(100, 0.5);
-    this.__pageSizeListener =
-      cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
-        'changePageSizeInvalid',
-        () => {
-          this.__invalidateScreensize();
-        }
-      );
-
-    this.__components = new Set(
-      Object.entries(this.getAddress()).map(v => v[1].variantInfo)
+    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
+      'changePageSizeInvalid',
+      () => {
+        this.__invalidateScreensize();
+      }
     );
+
+    this.__components = new Set(Object.entries(this.getAddress()).map(v => v[1].variantInfo));
 
     this.__lastBusValue = {};
   },
@@ -120,9 +114,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   ***********************************************
   */
   destruct() {
-    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(
-      this.__pageSizeListener
-    );
+    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
 
     this.__pageSizeListener = null;
     this.__button = null;
@@ -175,8 +167,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       const placeholder = this.getFormat() === '' ? '' : '-';
       const self = this;
       let retval = '';
-      const historicWidth =
-        this.getLayout().colspan === undefined ? ' style="width:195px"' : '';
+      const historicWidth = this.getLayout().colspan === undefined ? ' style="width:195px"' : '';
       let controls = this.getControls().split(';');
       if (controls[0] === '') {
         controls[0] = 'box';
@@ -230,32 +221,16 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let parts = control.split(':');
             if (parts[0] === 'T') {
               const temperatures = (parts[1] || '-').split('-');
-              self.__Tmin = Math.max(
-                1667,
-                Math.min(temperatures[0] || 2500, 25000)
-              );
+              self.__Tmin = Math.max(1667, Math.min(temperatures[0] || 2500, 25000));
 
-              self.__Tmax = Math.max(
-                1667,
-                Math.min(temperatures[1] || 9000, 25000)
-              );
+              self.__Tmax = Math.max(1667, Math.min(temperatures[1] || 9000, 25000));
 
-              const rgbTmin = cv.util.Color.xy2sRGB(
-                cv.util.Color.temperature2xy(self.__Tmin)
-              );
+              const rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__Tmin));
 
-              const rgbTmax = cv.util.Color.xy2sRGB(
-                cv.util.Color.temperature2xy(self.__Tmax)
-              );
+              const rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__Tmax));
 
-              const disp = c =>
-                [
-                  Math.round(255 * c.r),
-                  Math.round(255 * c.g),
-                  Math.round(255 * c.b)
-                ].join(',');
-              const colors =
-                'rgb(' + disp(rgbTmin) + '), rgb(' + disp(rgbTmax) + ')';
+              const disp = c => [Math.round(255 * c.r), Math.round(255 * c.g), Math.round(255 * c.b)].join(',');
+              const colors = 'rgb(' + disp(rgbTmin) + '), rgb(' + disp(rgbTmax) + ')';
 
               retval +=
                 `<div class="actor cc_T ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
@@ -277,12 +252,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     _onDomReady() {
       super._onDomReady();
 
-      this.__throttled = cv.util.Function.throttle(
-        this.__onChangeValue,
-        250,
-        { trailing: true },
-        this
-      );
+      this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, { trailing: true }, this);
 
       this.getDomElement()
         .querySelectorAll('.actor')
@@ -370,23 +340,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             return;
           }
           value = {
-            r: cv.util.Color.invCurve(
-              value.get('r'),
-              base.r.curve,
-              base.r.scale
-            ),
+            r: cv.util.Color.invCurve(value.get('r'), base.r.curve, base.r.scale),
 
-            g: cv.util.Color.invCurve(
-              value.get('g'),
-              base.g.curve,
-              base.g.scale
-            ),
+            g: cv.util.Color.invCurve(value.get('g'), base.g.curve, base.g.scale),
 
-            b: cv.util.Color.invCurve(
-              value.get('b'),
-              base.b.curve,
-              base.b.scale
-            )
+            b: cv.util.Color.invCurve(value.get('b'), base.b.curve, base.b.scale)
           };
 
           variantType = 'rgb';
@@ -412,29 +370,13 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             return;
           }
           value = {
-            r: cv.util.Color.invCurve(
-              value.get('r'),
-              base.r.curve,
-              base.r.scale
-            ),
+            r: cv.util.Color.invCurve(value.get('r'), base.r.curve, base.r.scale),
 
-            g: cv.util.Color.invCurve(
-              value.get('g'),
-              base.g.curve,
-              base.g.scale
-            ),
+            g: cv.util.Color.invCurve(value.get('g'), base.g.curve, base.g.scale),
 
-            b: cv.util.Color.invCurve(
-              value.get('b'),
-              base.b.curve,
-              base.b.scale
-            ),
+            b: cv.util.Color.invCurve(value.get('b'), base.b.curve, base.b.scale),
 
-            w: cv.util.Color.invCurve(
-              value.get('w'),
-              base.w.curve,
-              base.w.scale
-            )
+            w: cv.util.Color.invCurve(value.get('w'), base.w.curve, base.w.scale)
           };
 
           variantType = 'rgbw';
@@ -458,9 +400,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'xy':
           if (value instanceof Map && value.get('cValid') !== false) {
             value = { x: value.get('x'), y: value.get('y') };
-          } else if (
-            !(typeof value === 'object' && 'x' in value && 'y' in value)
-          ) {
+          } else if (!(typeof value === 'object' && 'x' in value && 'y' in value)) {
             showInvalidDataErrorMessage();
             return; // nothing that can be done with this data
           }
@@ -469,9 +409,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
         case 'xyY':
           if (value instanceof Map) {
-            variant =
-              (value.get('cValid') !== false ? 'xy' : '') +
-              (value.get('YValid') !== false ? 'Y' : '');
+            variant = (value.get('cValid') !== false ? 'xy' : '') + (value.get('YValid') !== false ? 'Y' : '');
             value = {
               x: value.get('x'),
               y: value.get('y'),
@@ -520,10 +458,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
      * @private
      */
     __setSliderTo(value, variant, instant) {
-      this.__colorOld =
-        this.__colorCurrent === undefined
-          ? this.__color.copy()
-          : this.__colorCurrent.copy();
+      this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
       this.__color.changeComponent(variant, value);
       instant = instant || this.__color.delta(this.__colorOld) < 0.5;
       if (!instant) {
@@ -545,10 +480,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               case 'box':
               case 'wheel': {
                 actorStyle = window.getComputedStyle(actor);
-                let sv_element =
-                  type === 'box'
-                    ? actor.querySelector('.sv_box')
-                    : actor.querySelector('.sv_triangle');
+                let sv_element = type === 'box' ? actor.querySelector('.sv_box') : actor.querySelector('.sv_triangle');
                 let inner = sv_element.querySelector('.inner');
                 let handle = actor.querySelector('.handle');
                 let handle_hue = actor.querySelector('.handle_hue');
@@ -559,30 +491,16 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
                   inner: inner,
                   handle: handle,
                   handle_hue: handle_hue,
-                  handle_hueTop: parseFloat(
-                    window.getComputedStyle(handle_hue).getPropertyValue('top')
-                  ),
+                  handle_hueTop: parseFloat(window.getComputedStyle(handle_hue).getPropertyValue('top')),
 
-                  handle_hueWidth: parseFloat(
-                    window
-                      .getComputedStyle(handle_hue)
-                      .getPropertyValue('width')
-                  ),
+                  handle_hueWidth: parseFloat(window.getComputedStyle(handle_hue).getPropertyValue('width')),
 
                   width: parseFloat(actorStyle.getPropertyValue('width')),
-                  height: parseFloat(
-                    actorStyle.getPropertyValue('padding-top')
-                  ),
+                  height: parseFloat(actorStyle.getPropertyValue('padding-top')),
 
-                  innerRadius: parseFloat(
-                    window
-                      .getComputedStyle(sv_element)
-                      .getPropertyValue('width')
-                  ),
+                  innerRadius: parseFloat(window.getComputedStyle(sv_element).getPropertyValue('width')),
 
-                  outerRadius: parseFloat(
-                    window.getComputedStyle(hue).getPropertyValue('width')
-                  )
+                  outerRadius: parseFloat(window.getComputedStyle(hue).getPropertyValue('width'))
                 };
 
                 break;
@@ -596,15 +514,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
                   button: button,
                   range: range,
                   width: parseFloat(actorStyle.getPropertyValue('width')),
-                  buttonWidth: parseFloat(
-                    window.getComputedStyle(button).getPropertyValue('width')
-                  )
+                  buttonWidth: parseFloat(window.getComputedStyle(button).getPropertyValue('width'))
                 };
 
-                range.style.marginLeft =
-                  '-' + actorStyle.getPropertyValue('padding-left');
-                range.style.borderRadius =
-                  actorStyle.getPropertyValue('border-radius');
+                range.style.marginLeft = '-' + actorStyle.getPropertyValue('padding-left');
+                range.style.borderRadius = actorStyle.getPropertyValue('border-radius');
               }
             }
           });
@@ -676,21 +590,15 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           }
           actor.handle_hue.style.transform = 'rotate(' + angle + ')';
           actor.handle_hue.style.transformOrigin =
-            actor.handle_hueWidth / 2 +
-            'px ' +
-            (actor.width / 2 - actor.handle_hueTop) +
-            'px'; //calc(195px / 2 - 3px)';
+            actor.handle_hueWidth / 2 + 'px ' + (actor.width / 2 - actor.handle_hueTop) + 'px'; //calc(195px / 2 - 3px)';
         } else {
           let ratioComponent = this.__colorCurrent.getComponent(type);
           if (type === 'T') {
-            ratioComponent =
-              (ratioComponent - this.__Tmin) / (this.__Tmax - this.__Tmin);
+            ratioComponent = (ratioComponent - this.__Tmin) / (this.__Tmax - this.__Tmin);
           }
           let length = Math.max(0, Math.min(ratioComponent, 1)) * actor.width;
-          actor.button.style.transform =
-            'translate3d(' + (length - actor.buttonWidth / 2) + 'px, 0px, 0px)';
-          actor.range.style.clipPath =
-            'inset(0 ' + (1 - ratioComponent) * 100 + '% 0 0)';
+          actor.button.style.transform = 'translate3d(' + (length - actor.buttonWidth / 2) + 'px, 0px, 0px)';
+          actor.range.style.clipPath = 'inset(0 ' + (1 - ratioComponent) * 100 + '% 0 0)';
         }
       }
     },
@@ -707,24 +615,17 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
       switch (event.type) {
         case 'pointerdown': {
-          let actorType = event.currentTarget.className.replace(
-            /.*cc_([^ ]*).*/,
-            '$1'
-          );
+          let actorType = event.currentTarget.className.replace(/.*cc_([^ ]*).*/, '$1');
 
           actor = this.__actors[actorType];
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
-          this.__coordMinX =
-            boundingRect.left + parseFloat(computedStyle.paddingLeft);
+          this.__coordMinX = boundingRect.left + parseFloat(computedStyle.paddingLeft);
           this.__coordMinY = boundingRect.top;
           relCoordX = (event.clientX - this.__coordMinX) / actor.width;
           relCoordY = (event.clientY - this.__coordMinY) / actor.height;
           if (actorType === 'wheel') {
-            let radius =
-              actor !== undefined
-                ? (0.5 * actor.innerRadius) / actor.outerRadius
-                : 1;
+            let radius = actor !== undefined ? (0.5 * actor.innerRadius) / actor.outerRadius : 1;
             let sv = cv.ui.structure.pure.ColorChooser.coord2sv(
               relCoordX,
               relCoordY,
@@ -738,18 +639,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               const clearlyOnWheel = (radius * 1.1) ** 2 < distSqrd; // with 10% safety margin to the interior triangle
               const closeToInerior = radius ** 2 < distSqrd && !clearlyOnWheel;
               const closeToTriangleCorners =
-                sv[1] < 0.01 ||
-                (sv[0] < 0.01 && sv[1] > 0.99) ||
-                (sv[0] > 0.99 && sv[1] > 0.99);
-              if (
-                clearlyOnWheel ||
-                (closeToInerior && !closeToTriangleCorners)
-              ) {
+                sv[1] < 0.01 || (sv[0] < 0.01 && sv[1] > 0.99) || (sv[0] > 0.99 && sv[1] > 0.99);
+              if (clearlyOnWheel || (closeToInerior && !closeToTriangleCorners)) {
                 this.__mode = 'wheel_h';
                 this.__color.changeComponent(
                   actor.isLCh ? 'LCh-h' : 'h',
-                  0.5 +
-                    Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI
+                  0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI
                 );
 
                 this.__inDrag = true;
@@ -760,10 +655,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               }
             }
           } else if (actorType === 'box') {
-            let boxSize =
-              actor !== undefined
-                ? (0.5 * actor.innerRadius) / actor.outerRadius
-                : 1;
+            let boxSize = actor !== undefined ? (0.5 * actor.innerRadius) / actor.outerRadius : 1;
             let x = relCoordX - 0.5;
             let y = relCoordY - 0.5;
             let sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
@@ -773,10 +665,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               this.__inDrag = true;
             } else {
               this.__mode = 'box_h';
-              this.__color.changeComponent(
-                actor.isLCh ? 'LCh-h' : 'h',
-                0.5 + Math.atan2(-x, y) / 2 / Math.PI
-              );
+              this.__color.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
 
               this.__inDrag = true;
             }
@@ -832,10 +721,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         let actor = this.__actors[type];
         switch (this.__mode) {
           case 'wheel_sv': {
-            const radius =
-              actor !== undefined
-                ? (0.5 * actor.innerRadius) / actor.outerRadius
-                : 1;
+            const radius = actor !== undefined ? (0.5 * actor.innerRadius) / actor.outerRadius : 1;
             const sv = cv.ui.structure.pure.ColorChooser.coord2sv(
               relCoordX,
               relCoordY,
@@ -851,10 +737,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             break;
           }
           case 'box_sv': {
-            const boxSize =
-              actor !== undefined
-                ? (0.5 * actor.innerRadius) / actor.outerRadius
-                : 1;
+            const boxSize = actor !== undefined ? (0.5 * actor.innerRadius) / actor.outerRadius : 1;
             const x = relCoordX - 0.5;
             const y = relCoordY - 0.5;
             const sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
@@ -876,9 +759,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           case 'T':
             this.__color.changeComponent(
               'T',
-              this.__Tmin +
-                Math.max(0, Math.min(relCoordX, 1)) *
-                  (this.__Tmax - this.__Tmin)
+              this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin)
             );
 
             break;
@@ -894,9 +775,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
     __onChangeValue() {
       this.__components.forEach(type => {
-        let value = this.__color.getComponent(
-          ['xyY', 'x', 'y'].includes(type) ? 'xy' : type
-        );
+        let value = this.__color.getComponent(['xyY', 'x', 'y'].includes(type) ? 'xy' : type);
 
         let typeCategory;
         let base;

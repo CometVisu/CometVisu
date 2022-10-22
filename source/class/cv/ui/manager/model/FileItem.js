@@ -22,10 +22,7 @@
  */
 qx.Class.define('cv.ui.manager.model.FileItem', {
   extend: qx.core.Object,
-  include: [
-    qx.data.marshal.MEventBubbling,
-    cv.ui.manager.control.MFileEventHandler
-  ],
+  include: [qx.data.marshal.MEventBubbling, cv.ui.manager.control.MFileEventHandler],
 
   implement: [cv.ui.manager.control.IFileEventHandler],
   /*
@@ -52,11 +49,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.setParent(parent);
     }
     if (qx.core.Environment.get('qx.dynlocale')) {
-      qx.locale.Manager.getInstance().addListener(
-        'changeLocale',
-        this._onChangeLocale,
-        this
-      );
+      qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
     }
   },
 
@@ -352,10 +345,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           break;
 
         case 'added':
-          if (
-            this.getType() === 'dir' &&
-            data.path.startsWith(this.getFullPath())
-          ) {
+          if (this.getType() === 'dir' && data.path.startsWith(this.getFullPath())) {
             this.reload();
           }
           break;
@@ -364,10 +354,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           if (data.path === this.getFullPath()) {
             // this item has been deleted
             this.dispose();
-          } else if (
-            this.getType() === 'dir' &&
-            data.path.startsWith(this.getFullPath())
-          ) {
+          } else if (this.getType() === 'dir' && data.path.startsWith(this.getFullPath())) {
             // delete child
             const children = this.getChildren();
             children.some(function (child) {
@@ -385,10 +372,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     _applyName(value, old) {
       this.__fullPath = null;
-      if (
-        value &&
-        (this.getDisplayName() === null || this.getDisplayName() === old)
-      ) {
+      if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
         // use name as default display name
         this.setDisplayName(value);
       }
@@ -593,17 +577,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      */
     getServerPath() {
       if (!this.isMounted()) {
-        return (
-          qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') +
-          '/config/' +
-          this.getFullPath()
-        );
+        return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
       }
-      return (
-        qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') +
-        '/' +
-        this.getFullPath()
-      );
+      return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + this.getFullPath();
     },
 
     /**

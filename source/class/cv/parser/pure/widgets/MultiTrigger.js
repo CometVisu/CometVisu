@@ -49,11 +49,7 @@ qx.Class.define('cv.parser.pure.widgets.MultiTrigger', {
       );
 
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(
-        xml,
-        path,
-        this.makeAddressListFn
-      );
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       const buttonRegex = /^button([\d]+)(label|value)$/;
       const buttonConfig = {};

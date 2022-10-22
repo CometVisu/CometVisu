@@ -98,12 +98,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         decode(str) {
           const date = new Date(); // assume today
           str += '00000000'; // make sure string is long enough
-          date.setHours(
-            parseInt(str.substr(0, 2)),
-            parseInt(str.substr(3, 2)),
-            parseInt(str.substr(6, 2)),
-            0
-          );
+          date.setHours(parseInt(str.substr(0, 2)), parseInt(str.substr(3, 2)), parseInt(str.substr(6, 2)), 0);
 
           return date;
         }
@@ -354,9 +349,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           if (!(phy instanceof Map)) {
             return '';
           }
-          return [phy.get('r'), phy.get('g'), phy.get('b'), phy.get('w')].join(
-            ','
-          );
+          return [phy.get('r'), phy.get('g'), phy.get('b'), phy.get('w')].join(',');
         },
         decode(str) {
           const value = str.split(',');

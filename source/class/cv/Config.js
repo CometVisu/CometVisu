@@ -238,12 +238,7 @@ qx.Class.define('cv.Config', {
         design = this.getDesign();
       }
       for (let structure in this.designStructureMap) {
-        if (
-          Object.prototype.hasOwnProperty.call(
-            this.designStructureMap,
-            structure
-          )
-        ) {
+        if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
             return 'structure-' + structure;
           }
@@ -259,15 +254,10 @@ qx.Class.define('cv.Config', {
      * loging response). As this is just an assumption, you should not treat this result as reliable.
      */
     guessIfProxied() {
-      if (
-        this.configServer === null ||
-        cv.io.BackendConnections.getClient().getServer() === null
-      ) {
+      if (this.configServer === null || cv.io.BackendConnections.getClient().getServer() === null) {
         throw new Error('not ready yet');
       }
-      return (
-        this.configServer !== cv.io.BackendConnections.getClient().getServer()
-      );
+      return this.configServer !== cv.io.BackendConnections.getClient().getServer();
     },
 
     addMapping(name, mapping) {
@@ -279,10 +269,7 @@ qx.Class.define('cv.Config', {
     },
 
     hasMapping(name) {
-      return Object.prototype.hasOwnProperty.call(
-        this.configSettings.mappings,
-        name
-      );
+      return Object.prototype.hasOwnProperty.call(this.configSettings.mappings, name);
     },
 
     clearMappings() {
@@ -298,10 +285,7 @@ qx.Class.define('cv.Config', {
     },
 
     hasStyling(name) {
-      return Object.prototype.hasOwnProperty.call(
-        this.configSettings.stylings,
-        name
-      );
+      return Object.prototype.hasOwnProperty.call(this.configSettings.stylings, name);
     },
 
     getDesign() {
@@ -356,8 +340,7 @@ qx.Class.define('cv.Config', {
     if (qx.core.Environment.get('cv.testMode') !== false) {
       cv.Config.testMode = true;
     } else if (req.queryKey.testMode) {
-      cv.Config.testMode =
-        req.queryKey.testMode === 'true' || req.queryKey.testMode === '1';
+      cv.Config.testMode = req.queryKey.testMode === 'true' || req.queryKey.testMode === '1';
     }
 
     // propagate to the client
@@ -398,13 +381,10 @@ qx.Class.define('cv.Config', {
       cv.Config.enableLogging = true;
     }
 
-    cv.Config.loadManager =
-      cv.Config.request.queryKey.manager || window.location.hash === '#manager';
+    cv.Config.loadManager = cv.Config.request.queryKey.manager || window.location.hash === '#manager';
     cv.Config.managerOptions = {
       action: cv.Config.request.queryKey.open ? 'open' : '',
-      data: cv.Config.request.queryKey.open
-        ? cv.Config.request.queryKey.open
-        : undefined
+      data: cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined
     };
 
     // "Bug"-Fix for ID: 3204682 "Caching on web server"
@@ -443,9 +423,7 @@ qx.Class.define('cv.Config', {
       cv.Config.use_maturity = statics.Maturity.release; // default to release
     }
 
-    cv.Config.useServiceWorker =
-      'serviceWorker' in navigator &&
-      (req.protocol === 'https' || req.host === 'localhost');
+    cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === 'https' || req.host === 'localhost');
 
     if (cv.Config.useServiceWorker) {
       if (qx.core.Environment.get('qx.debug')) {

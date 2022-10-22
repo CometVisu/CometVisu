@@ -79,16 +79,7 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} dynamic
      * @param {string?} source
      */
-    insert(
-      name,
-      uri,
-      type = '*',
-      flavour = '*',
-      color = '*',
-      styling = undefined,
-      dynamic = '',
-      source = undefined
-    ) {
+    insert(name, uri, type = '*', flavour = '*', color = '*', styling = undefined, dynamic = '', source = undefined) {
       if (!this.__db[name]) {
         this.__db[name] = {};
       }
@@ -125,8 +116,7 @@ qx.Class.define('cv.IconHandler', {
      */
     get(name, type = '*', flavour = '*', color = '*') {
       if (!this.__db[name]) {
-        return (a, b, c, asText) =>
-          asText ? '[unknown]' : document.createTextNode('[unknown]');
+        return (a, b, c, asText) => (asText ? '[unknown]' : document.createTextNode('[unknown]'));
       }
       if (!this.__db[name][type]) {
         type = '*'; // undefined -> use default
@@ -158,10 +148,7 @@ qx.Class.define('cv.IconHandler', {
       if (!this.__db[name][type][flavour][color]) {
         if (/\.svg(#.+)?$/.test(this.__db[name][type][flavour]['*'].uri)) {
           // SVGs can be dynamically recolored, so create new entry for this color
-          this.__db[name][type][flavour][color] = Object.assign(
-            {},
-            this.__db[name][type][flavour]['*']
-          );
+          this.__db[name][type][flavour][color] = Object.assign({}, this.__db[name][type][flavour]['*']);
         } else {
           color = '*'; // undefined -> use default
         }
@@ -199,15 +186,7 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} iconclass
      * @param {boolean?} asText
      */
-    getIconElement(
-      name,
-      type,
-      flavour,
-      color,
-      styling = '',
-      iconclass = '',
-      asText = false
-    ) {
+    getIconElement(name, type, flavour, color, styling = '', iconclass = '', asText = false) {
       const i = this.get(name, type, flavour, color);
       if (i) {
         if (i.icon && !styling && typeof i !== 'function' && !asText) {

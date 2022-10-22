@@ -61,13 +61,10 @@ qx.Class.define('cv.parser.pure.widgets.Roundbar', {
       data.width = 10; // default
       xml.querySelectorAll('address').forEach(function (elem, i) {
         data.radius = parseFloat(
-          elem.getAttribute('radius') ||
-            data.radius + (i === 0 ? 0 : data.spacing + data.width)
+          elem.getAttribute('radius') || data.radius + (i === 0 ? 0 : data.spacing + data.width)
         );
 
-        indicatorValueCnt = parseInt(
-          elem.getAttribute('valuepos') || indicatorValueCnt + 1
-        );
+        indicatorValueCnt = parseInt(elem.getAttribute('valuepos') || indicatorValueCnt + 1);
 
         data.indicators.push({
           address: elem.textContent,
@@ -120,9 +117,7 @@ qx.Class.define('cv.parser.pure.widgets.Roundbar', {
               }
               if (components.length > 0) {
                 const style = components.shift();
-                thisRange.style = /:/.test(style)
-                  ? style
-                  : 'fill:' + style + ';stroke:' + style;
+                thisRange.style = /:/.test(style) ? style : 'fill:' + style + ';stroke:' + style;
               }
               retval.push(thisRange);
             });

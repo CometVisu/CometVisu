@@ -88,23 +88,14 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     _applyFile(file, old) {
       if (old && old.isConfigFile()) {
-        qx.event.message.Bus.unsubscribe(
-          old.getBusTopic(),
-          this._onChange,
-          this
-        );
+        qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
       if (file) {
         if (file.isConfigFile()) {
-          const configName = cv.ui.manager.model.FileItem.getConfigName(
-            file.getFullPath()
-          );
+          const configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
 
           let url =
-            qx.util.Uri.getAbsolute(
-              qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') +
-                '/..'
-            ) +
+            qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..') +
             '?config=' +
             (configName || '');
           if (this.getTarget() === 'iframe') {
@@ -136,15 +127,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
               return;
             }
           }
-          qx.event.message.Bus.subscribe(
-            file.getBusTopic(),
-            this._onChange,
-            this
-          );
+          qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
         } else {
-          cv.ui.manager.snackbar.Controller.error(
-            this.tr('%1 is no configuration file', file.getFullPath())
-          );
+          cv.ui.manager.snackbar.Controller.error(this.tr('%1 is no configuration file', file.getFullPath()));
 
           this._source = null;
         }
@@ -169,9 +154,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           const iframe = this.getChildControl('iframe');
           const href = iframe.getDocument().location.href;
           // use href to get the anchor to keep the currently opened page on reload
-          const url = href.startsWith(this._source)
-            ? iframe.getDocument().location.href
-            : this._source;
+          const url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
           if (url && url !== 'about:blank') {
             this._reloading = true;
             this.getChildControl('loading').show();
@@ -189,10 +172,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     _onClose() {
       if (this._windowRef) {
-        qx.event.message.Bus.dispatchByName(
-          'cv.manager.action.close',
-          this.getFile()
-        );
+        qx.event.message.Bus.dispatchByName('cv.manager.action.close', this.getFile());
 
         this._windowRef = null;
       }
@@ -201,15 +181,10 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     openPage(page, path) {
       if (this.hasChildControl('iframe')) {
-        const element = this.getChildControl('iframe')
-          .getContentElement()
-          .getDomElement();
+        const element = this.getChildControl('iframe').getContentElement().getDomElement();
         if (element && element.contentWindow.cv) {
-          const otherController =
-            element.contentWindow.cv.Application.structureController;
-          const pageId = path
-            ? otherController.getPageIdByPath(page, path)
-            : page;
+          const otherController = element.contentWindow.cv.Application.structureController;
+          const pageId = path ? otherController.getPageIdByPath(page, path) : page;
           otherController.scrollToPage(pageId, 0);
         }
       }
@@ -217,12 +192,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     setHighlightWidget(widgetId) {
       if (this.hasChildControl('iframe')) {
-        const element = this.getChildControl('iframe')
-          .getContentElement()
-          .getDomElement();
+        const element = this.getChildControl('iframe').getContentElement().getDomElement();
         if (element && element.contentWindow.cv) {
-          const otherEngine =
-            element.contentWindow.cv.TemplateEngine.getInstance();
+          const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
           otherEngine.setHighlightedWidget(widgetId);
         }
       }
@@ -265,10 +237,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           break;
 
         case 'loading':
-          control = new qx.ui.basic.Atom(
-            this.tr('Loading...'),
-            cv.theme.dark.Images.getIcon('reload', 64)
-          );
+          control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon('reload', 64));
 
           control.set({
             center: true,

@@ -58,14 +58,8 @@ qx.Class.define('cv.ui.manager.control.FileController', {
             } else {
               cv.ui.manager.snackbar.Controller.info(
                 file.getType() === 'file'
-                  ? qx.locale.Manager.tr(
-                      'File "%1" has been created',
-                      file.getDisplayName()
-                    )
-                  : qx.locale.Manager.tr(
-                      'Folder "%1" has been created',
-                      file.getDisplayName()
-                    )
+                  ? qx.locale.Manager.tr('File "%1" has been created', file.getDisplayName())
+                  : qx.locale.Manager.tr('Folder "%1" has been created', file.getDisplayName())
               );
 
               file.resetTemporary();
@@ -85,14 +79,8 @@ qx.Class.define('cv.ui.manager.control.FileController', {
             } else {
               cv.ui.manager.snackbar.Controller.info(
                 file.getType() === 'file'
-                  ? qx.locale.Manager.tr(
-                      'File "%1" has been renamed',
-                      file.getDisplayName()
-                    )
-                  : qx.locale.Manager.tr(
-                      'Folder "%1" has been renamed',
-                      file.getDisplayName()
-                    )
+                  ? qx.locale.Manager.tr('File "%1" has been renamed', file.getDisplayName())
+                  : qx.locale.Manager.tr('Folder "%1" has been renamed', file.getDisplayName())
               );
 
               file.setName(newName);
@@ -120,14 +108,8 @@ qx.Class.define('cv.ui.manager.control.FileController', {
           } else {
             cv.ui.manager.snackbar.Controller.info(
               file.getType() === 'file'
-                ? qx.locale.Manager.tr(
-                    'File "%1" has been moved',
-                    file.getDisplayName()
-                  )
-                : qx.locale.Manager.tr(
-                    'Folder "%1" has been moved',
-                    file.getDisplayName()
-                  )
+                ? qx.locale.Manager.tr('File "%1" has been moved', file.getDisplayName())
+                : qx.locale.Manager.tr('Folder "%1" has been moved', file.getDisplayName())
             );
 
             qx.event.message.Bus.dispatchByName('cv.manager.file', {
@@ -149,9 +131,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
         const target = file.getFullPath().replace('.trash/', '');
         this.__moveFile(file, target);
       } else if (file.getType() === 'file' && !file.isTemporary()) {
-        const match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(
-          file.getFullPath()
-        );
+        const match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath());
 
         if (match) {
           // find the existing target config to restore
@@ -187,22 +167,16 @@ qx.Class.define('cv.ui.manager.control.FileController', {
                       cv.ui.manager.snackbar.Controller.error(err);
                     } else {
                       cv.ui.manager.snackbar.Controller.info(
-                        qx.locale.Manager.tr(
-                          '%1 has been restored',
-                          file.getName()
-                        )
+                        qx.locale.Manager.tr('%1 has been restored', file.getName())
                       );
 
                       targetFile.resetModified();
                       targetFile.resetTemporary();
-                      qx.event.message.Bus.dispatchByName(
-                        targetFile.getBusTopic(),
-                        {
-                          type: 'fsContentChanged',
-                          data: res,
-                          source: this
-                        }
-                      );
+                      qx.event.message.Bus.dispatchByName(targetFile.getBusTopic(), {
+                        type: 'fsContentChanged',
+                        data: res,
+                        source: this
+                      });
                     }
                   },
                   this
@@ -221,10 +195,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
                       cv.ui.manager.snackbar.Controller.error(err);
                     } else {
                       cv.ui.manager.snackbar.Controller.info(
-                        qx.locale.Manager.tr(
-                          '%1 has been restored',
-                          file.getName()
-                        )
+                        qx.locale.Manager.tr('%1 has been restored', file.getName())
                       );
                     }
                   },
@@ -247,14 +218,8 @@ qx.Class.define('cv.ui.manager.control.FileController', {
           } else {
             cv.ui.manager.snackbar.Controller.info(
               file.getType() === 'file'
-                ? qx.locale.Manager.tr(
-                    'File "%1" has been restored',
-                    file.getDisplayName()
-                  )
-                : qx.locale.Manager.tr(
-                    'Folder "%1" has been restored',
-                    file.getDisplayName()
-                  )
+                ? qx.locale.Manager.tr('File "%1" has been restored', file.getDisplayName())
+                : qx.locale.Manager.tr('Folder "%1" has been restored', file.getDisplayName())
             );
 
             qx.event.message.Bus.dispatchByName('cv.manager.file', {
@@ -276,31 +241,17 @@ qx.Class.define('cv.ui.manager.control.FileController', {
       } else if (file) {
         let message;
         if (file.isTrash()) {
-          message = qx.locale.Manager.tr(
-            'Do you really want to clear the trash?'
-          );
+          message = qx.locale.Manager.tr('Do you really want to clear the trash?');
         } else if (file.isInTrash()) {
           message =
             file.getType() === 'file'
-              ? qx.locale.Manager.tr(
-                  'Do you really want to delete file "%1" from the trash?',
-                  file.getDisplayName()
-                )
-              : qx.locale.Manager.tr(
-                  'Do you really want to delete folder "%1" from the trash?',
-                  file.getDisplayName()
-                );
+              ? qx.locale.Manager.tr('Do you really want to delete file "%1" from the trash?', file.getDisplayName())
+              : qx.locale.Manager.tr('Do you really want to delete folder "%1" from the trash?', file.getDisplayName());
         } else {
           message =
             file.getType() === 'file'
-              ? qx.locale.Manager.tr(
-                  'Do you really want to delete file "%1"?',
-                  file.getDisplayName()
-                )
-              : qx.locale.Manager.tr(
-                  'Do you really want to delete folder "%1"?',
-                  file.getDisplayName()
-                );
+              ? qx.locale.Manager.tr('Do you really want to delete file "%1"?', file.getDisplayName())
+              : qx.locale.Manager.tr('Do you really want to delete folder "%1"?', file.getDisplayName());
         }
         qxl.dialog.Dialog.confirm(
           message,
@@ -334,25 +285,13 @@ qx.Class.define('cv.ui.manager.control.FileController', {
             } else if (file.isInTrash()) {
               message =
                 this.getType() === 'file'
-                  ? qx.locale.Manager.tr(
-                      'File "%1" has been removed from trash',
-                      file.getDisplayName()
-                    )
-                  : qx.locale.Manager.tr(
-                      'Folder "%1" has been removed from trash',
-                      file.getDisplayName()
-                    );
+                  ? qx.locale.Manager.tr('File "%1" has been removed from trash', file.getDisplayName())
+                  : qx.locale.Manager.tr('Folder "%1" has been removed from trash', file.getDisplayName());
             } else {
               message =
                 file.getType() === 'file'
-                  ? qx.locale.Manager.tr(
-                      'File "%1" has been deleted',
-                      file.getDisplayName()
-                    )
-                  : qx.locale.Manager.tr(
-                      'Folder "%1" has been deleted',
-                      file.getDisplayName()
-                    );
+                  ? qx.locale.Manager.tr('File "%1" has been deleted', file.getDisplayName())
+                  : qx.locale.Manager.tr('Folder "%1" has been deleted', file.getDisplayName());
             }
             cv.ui.manager.snackbar.Controller.info(message);
             if (callback) {
@@ -371,12 +310,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
     download(file) {
       if (file.getType() === 'file') {
         const element = document.createElement('a');
-        element.setAttribute(
-          'href',
-          cv.io.rest.Client.getBaseUrl() +
-            '/fs?download=true&path=' +
-            file.getFullPath()
-        );
+        element.setAttribute('href', cv.io.rest.Client.getBaseUrl() + '/fs?download=true&path=' + file.getFullPath());
 
         element.style.display = 'none';
         document.body.appendChild(element);
@@ -397,9 +331,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
     },
 
     __validateConfig(file) {
-      const d = qxl.dialog.Dialog.alert(
-        qx.locale.Manager.tr('Validating %1', file.getFullPath())
-      );
+      const d = qxl.dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
 
       cv.ui.manager.editor.Worker.getInstance()
         .validateConfig(file)
@@ -407,9 +339,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
           d.close();
           if (res === true) {
             file.setValid(true);
-            cv.ui.manager.snackbar.Controller.info(
-              qx.locale.Manager.tr('%1 has no errors!', file.getFullPath())
-            );
+            cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('%1 has no errors!', file.getFullPath()));
           } else {
             file.setValid(false);
             qx.event.message.Bus.dispatchByName('cv.manager.openWith', {

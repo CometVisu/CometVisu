@@ -35,9 +35,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   statics: {
     JS_LOADED: new Promise(async (resolve, reject) => {
       const check = () => typeof window.d3 === 'object';
-      await cv.util.ScriptLoader.includeScript(
-        qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js')
-      );
+      await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
 
       if (!check()) {
         const timer = new qx.event.Timer(50);
@@ -68,15 +66,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           date: '%d.%m.%Y',
           time: '%H:%M:%S',
           periods: ['AM', 'PM'],
-          days: [
-            'Sonntag',
-            'Montag',
-            'Dienstag',
-            'Mittwoch',
-            'Donnerstag',
-            'Freitag',
-            'Samstag'
-          ],
+          days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
 
           shortDays: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
           months: [
@@ -94,20 +84,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             'Dezember'
           ],
 
-          shortMonths: [
-            'Jan',
-            'Feb',
-            'Mär',
-            'Apr',
-            'Mai',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Okt',
-            'Nov',
-            'Dez'
-          ]
+          shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
         });
       }
     }),
@@ -191,9 +168,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             .split('-')
             .map((part, i) => {
               if (i > 0) {
-                return `${part.substring(0, 1).toUpperCase()}${part.substring(
-                  1
-                )}`;
+                return `${part.substring(0, 1).toUpperCase()}${part.substring(1)}`;
               }
               return part;
             })
@@ -294,9 +269,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         minVal -= 1;
       }
 
-      const format = this._element.hasAttribute('y-format')
-        ? this._element.getAttribute('y-format')
-        : '%s';
+      const format = this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s';
 
       this._chart = this._lineChart(chartData, {
         x: d => d.time,
@@ -401,11 +374,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
         title: qx.locale.Manager.tr('Communication error'),
         severity: 'urgent',
-        message: qx.locale.Manager.tr(
-          'URL: %1<br/><br/>Response:</br>%2',
-          JSON.stringify(key),
-          err
-        )
+        message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), err)
       });
 
       this.error('Chart _onStatusError', ts, key, err);
@@ -455,11 +424,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           xPadding: 0.1 // amount of x-range to reserve to separate bars
         };
       }
-      const config = Object.assign(
-        {},
-        cv.ui.structure.tile.components.Chart.CONFIG,
-        c
-      );
+      const config = Object.assign({}, cv.ui.structure.tile.components.Chart.CONFIG, c);
 
       config.xRange = [config.marginLeft, config.width - config.marginRight]; // [left, right]
       config.yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
@@ -497,17 +462,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .ticks(config.width / 80)
         .tickSizeOuter(0)
         .tickFormat(config.xFormat);
-      const yAxis = d3
-        .axisLeft(yScale)
-        .ticks(config.height / 60, config.yFormat);
+      const yAxis = d3.axisLeft(yScale).ticks(config.height / 60, config.yFormat);
 
       // Compute titles.
-      const T =
-        config.title === undefined
-          ? Z
-          : config.title === null
-          ? null
-          : d3.map(data, config.title);
+      const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
 
       d3.select(this._element).select('svg').remove();
 
@@ -515,9 +473,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       const pointerMoved = event => {
         const [xm, ym] = d3.pointer(event);
-        const i = d3.least(I, i =>
-          Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)
-        );
+        const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym));
+
         // closest point
         dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
         if (T) {
@@ -563,10 +520,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       svg
         .append('g')
-        .attr(
-          'transform',
-          `translate(0,${config.height - config.marginBottom})`
-        )
+        .attr('transform', `translate(0,${config.height - config.marginBottom})`)
         .call(xAxis);
 
       svg
@@ -624,10 +578,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         linePath = svg
           .append('g')
           .attr('fill', 'none')
-          .attr(
-            'stroke',
-            typeof config.color === 'string' ? config.color : null
-          )
+          .attr('stroke', typeof config.color === 'string' ? config.color : null)
           .attr('stroke-linecap', config.strokeLinecap)
           .attr('stroke-linejoin', config.strokeLinejoin)
           .attr('stroke-width', config.strokeWidth)
@@ -636,10 +587,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .data(lineGroups)
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
-          .attr(
-            'stroke',
-            typeof config.color === 'function' ? p => config.color(p[0]) : null
-          )
+          .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
           .attr('d', d => line(d[1]));
       }
 
@@ -656,40 +604,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         svg
           .append('g')
           .attr('stroke', 'none')
-          .attr(
-            'fill',
-            typeof config.color === 'string' ? config.color + '30' : null
-          )
+          .attr('fill', typeof config.color === 'string' ? config.color + '30' : null)
           .selectAll('path')
           .data(areaGroups)
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
-          .attr(
-            'fill',
-            typeof config.color === 'function'
-              ? p => config.color(p[0]) + '30'
-              : null
-          )
+          .attr('fill', typeof config.color === 'function' ? p => config.color(p[0]) + '30' : null)
           .attr('d', d => area(d[1]));
       }
 
       if (barGroups.size > 0) {
-        const xBarScale = d3
-          .scaleBand()
-          .domain(X)
-          .range(config.xRange)
-          .padding(config.xPadding);
+        const xBarScale = d3.scaleBand().domain(X).range(config.xRange).padding(config.xPadding);
         svg
           .append('g')
           .selectAll('g')
           .data(barGroups)
           .join('g')
-          .attr(
-            'fill',
-            typeof config.color === 'function'
-              ? d => config.color(d[0]) + '30'
-              : null
-          )
+          .attr('fill', typeof config.color === 'function' ? d => config.color(d[0]) + '30' : null)
           .selectAll('rect')
           .data(d => {
             return d[1].map(val => {
@@ -706,10 +637,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('width', xBarScale.bandwidth());
       }
 
-      const dot = svg
-        .append('g')
-        .attr('display', 'none')
-        .attr('fill', 'currentColor');
+      const dot = svg.append('g').attr('display', 'none').attr('fill', 'currentColor');
 
       dot.append('circle').attr('r', 2.5);
 

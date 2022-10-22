@@ -214,9 +214,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     subscribe(addresses, filters) {
       // send first request to get all states once
-      const req = this.createAuthorizedRequest(
-        'items?fields=name,state,members,type,label&recursive=true'
-      );
+      const req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
 
       req.addListener('success', e => {
         const req = e.getTarget();
@@ -241,12 +239,7 @@ qx.Class.define('cv.io.openhab.Rest', {
                 active++;
                 map[obj.name].active = true;
               }
-              if (
-                !Object.prototype.hasOwnProperty.call(
-                  this.__memberLookup,
-                  obj.name
-                )
-              ) {
+              if (!Object.prototype.hasOwnProperty.call(this.__memberLookup, obj.name)) {
                 this.__memberLookup[obj.name] = [entry.name];
               } else {
                 this.__memberLookup[obj.name].push(entry.name);
@@ -291,22 +284,12 @@ qx.Class.define('cv.io.openhab.Rest', {
           thingsReq.send();
         }
         if (!this.eventSource) {
-          this.eventSource = new EventSource(
-            this._backendUrl + 'events?topics=' + topic
-          );
+          this.eventSource = new EventSource(this._backendUrl + 'events?topics=' + topic);
 
           // add default listeners
-          this.eventSource.addEventListener(
-            'message',
-            this.handleMessage.bind(this),
-            false
-          );
+          this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
 
-          this.eventSource.addEventListener(
-            'error',
-            this.handleError.bind(this),
-            false
-          );
+          this.eventSource.addEventListener('error', this.handleError.bind(this), false);
 
           // add additional listeners
           //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
@@ -334,10 +317,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       if (payload.type === 'message') {
         this.record('read', { type: payload.type, data: payload.data });
         const data = JSON.parse(payload.data);
-        if (
-          data.type === 'ItemStateChangedEvent' ||
-          data.type === 'GroupItemStateChangedEvent'
-        ) {
+        if (data.type === 'ItemStateChangedEvent' || data.type === 'GroupItemStateChangedEvent') {
           //extract item name from topic
           const update = {};
           const item = data.topic.split('/')[2];
@@ -394,9 +374,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     login(loginOnly, credentials, callback, context) {
       if (credentials && credentials.username) {
         // just saving the credentials for later use as we are using basic authentication
-        this.__token =
-          'Basic ' +
-          btoa(credentials.username + ':' + (credentials.password || ''));
+        this.__token = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
       }
       // no login needed we just do a request to the if the backend is reachable
       const req = this.createAuthorizedRequest();

@@ -142,8 +142,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     __markedAsLoaded: null,
 
     addStyles(styleArr) {
-      const queue =
-        typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
+      const queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
       const suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
       let promises = [];
       queue.forEach(function (style) {
@@ -162,15 +161,12 @@ qx.Class.define('cv.util.ScriptLoader', {
           if (resPath === src) {
             // this file is unknown to the resource manager, might be a scss source
             const scssStyle = src.replace(/\.css$/, '.scss');
-            const scssPath =
-              qx.util.ResourceManager.getInstance().toUri(scssStyle);
+            const scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
             if (scssStyle !== scssPath) {
               resPath = scssPath.replace(/\.scss$/, '.css');
             }
           }
-          promises.push(
-            cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media)
-          );
+          promises.push(cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media));
         }
       }, this);
       Promise.all(promises)
@@ -205,9 +201,7 @@ qx.Class.define('cv.util.ScriptLoader', {
       const l = queue.length;
       for (; i < l; i++) {
         if (!this.__markedAsLoaded.includes(queue[i])) {
-          realQueue.push(
-            qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix
-          );
+          realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
         }
       }
       if (realQueue.length === 0) {
@@ -273,10 +267,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         if (match) {
           cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
             title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
-            message: qx.locale.Manager.tr(
-              'File %1 could not be loaded.',
-              data.script
-            ),
+            message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
 
             severity: 'high',
             deletable: true
@@ -285,10 +276,7 @@ qx.Class.define('cv.util.ScriptLoader', {
       } else {
         cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
           title: qx.locale.Manager.tr('File loading error'),
-          message: qx.locale.Manager.tr(
-            'File %1 could not be loaded.',
-            data.script
-          ),
+          message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
 
           severity: 'high',
           deletable: true

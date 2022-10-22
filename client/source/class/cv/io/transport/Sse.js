@@ -61,11 +61,7 @@ qx.Class.define('cv.io.transport.Sse', {
       this.version = json.v.split('.', 3);
 
       if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
-        this.error(
-          'ERROR CometVisu Client: too new protocol version (' +
-            json.v +
-            ') used!'
-        );
+        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
       }
       if (connect) {
         this.connect();
@@ -80,30 +76,16 @@ qx.Class.define('cv.io.transport.Sse', {
       this.running = true;
       this.client.setDataReceived(false);
       this.eventSource = new EventSource(
-        qx.util.Uri.appendParamsToUrl(
-          this.client.getResourcePath('read'),
-          this.client.buildRequest(null, true)
-        )
+        qx.util.Uri.appendParamsToUrl(this.client.getResourcePath('read'), this.client.buildRequest(null, true))
       );
 
       // add default listeners
-      this.eventSource.addEventListener(
-        'message',
-        this.handleMessage.bind(this),
-        false
-      );
+      this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
 
-      this.eventSource.addEventListener(
-        'error',
-        this.handleError.bind(this),
-        false
-      );
+      this.eventSource.addEventListener('error', this.handleError.bind(this), false);
 
       // add additional listeners
-      Object.getOwnPropertyNames(this.__additionalTopics).forEach(
-        this.__addRecordedEventListener,
-        this
-      );
+      Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
 
       this.eventSource.onerror = function () {
         this.error('connection lost');
@@ -182,9 +164,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * @return {Boolean}
      */
     isConnectionRunning() {
-      return (
-        this.eventSource && this.eventSource.readyState === EventSource.OPEN
-      );
+      return this.eventSource && this.eventSource.readyState === EventSource.OPEN;
     },
 
     /**

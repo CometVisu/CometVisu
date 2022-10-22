@@ -126,28 +126,16 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
 
       if (page.getPageType() === '2d') {
         const cssPosRegEx = /(\d*)(.*)/;
-        const backdrop = page
-          .getDomElement()
-          .querySelector('div > ' + page.getBackdropType());
+        const backdrop = page.getDomElement().querySelector('div > ' + page.getBackdropType());
         try {
-          const backdropSVG =
-            page.getBackdropType() === 'embed'
-              ? backdrop.getSVGDocument()
-              : null;
-          const backdropBBox = backdropSVG
-            ? backdropSVG.children[0].getBBox()
-            : {};
-          const backdropNWidth =
-            backdrop.naturalWidth || backdropBBox.width || this.width;
-          const backdropNHeight =
-            backdrop.naturalHeight || backdropBBox.height || this.height;
+          const backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null;
+          const backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {};
+          const backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width;
+          const backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height;
           const backdropFixed = page.getSize() === 'fixed';
           const backdropScale = backdropFixed
             ? 1
-            : Math.min(
-                this.width / backdropNWidth,
-                this.height / backdropNHeight
-              );
+            : Math.min(this.width / backdropNWidth, this.height / backdropNHeight);
 
           const backdropWidth = backdropNWidth * backdropScale;
           const backdropHeight = backdropNHeight * backdropScale;
@@ -182,8 +170,7 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
             page.getSize() === 'scaled' &&
             page.getBackdropType() === 'embed' &&
             backdropSVG &&
-            backdropSVG.children[0].getAttribute('preserveAspectRatio') !==
-              'none'
+            backdropSVG.children[0].getAttribute('preserveAspectRatio') !== 'none'
           ) {
             backdropSVG.children[0].setAttribute('preserveAspectRatio', 'none');
           }
@@ -195,8 +182,7 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
           // Note 2: The embed element always needs it
           if (
             (page.getBackdropType() === 'embed' ||
-              (uagent.indexOf('safari') !== -1 &&
-                uagent.indexOf('chrome') === -1)) &&
+              (uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1)) &&
             page.getSize() !== 'scaled'
           ) {
             backdrop.style.width = backdropWidth + 'px';
@@ -217,9 +203,7 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
             .getDomElement()
             .querySelectorAll('.widget_container')
             .forEach(function (widgetContainer) {
-              const widget = cv.ui.structure.WidgetFactory.getInstanceById(
-                widgetContainer.id
-              );
+              const widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
 
               let value;
               const layout = widget.getResponsiveLayout();
@@ -302,16 +286,10 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
         return;
       }
       qx.log.Logger.debug(this, 'makePagesizeValid');
-      const page = cv.ui.structure.WidgetFactory.getInstanceById(
-        cv.Config.currentPageId
-      );
+      const page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
 
       if (page && !page.isInitialized()) {
-        page.addListenerOnce(
-          'changeInitialized',
-          this.__makePagesizeValid,
-          this
-        );
+        page.addListenerOnce('changeInitialized', this.__makePagesizeValid, this);
 
         return;
       }
@@ -320,12 +298,7 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
       const pageSizeElement = this.getPageSize();
 
       if (pageSizeElement) {
-        pageSizeElement.innerHTML =
-          '#main,.page{width:' +
-          this.width +
-          'px;height:' +
-          this.height +
-          'px;}';
+        pageSizeElement.innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
       }
 
       this.states.setPageSizeInvalid(false);
@@ -365,12 +338,7 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
       let styles = '';
 
       for (let rowspan in cv.Config.configSettings.usedRowspans) {
-        styles +=
-          '.rowspan.rowspan' +
-          rowspan +
-          ' { height: ' +
-          Math.round(rowspan * height) +
-          'px;}\n';
+        styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + 'px;}\n';
       }
       const calcrowspan = document.querySelector('#calcrowspan');
       if (calcrowspan) {
@@ -414,11 +382,6 @@ qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
   },
 
   defer(statics) {
-    qx.event.Registration.addListener(
-      window,
-      'resize',
-      statics.invalidateScreensize,
-      statics
-    );
+    qx.event.Registration.addListener(window, 'resize', statics.invalidateScreensize, statics);
   }
 });

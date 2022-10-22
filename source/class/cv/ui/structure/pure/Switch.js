@@ -98,9 +98,8 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
       value = this.getBasicValue();
       const off = this.getOffValue();
       // using == comparisons to make sure that e.g. 1 equals "1"
-      actor.classList.remove(
-        value == off ? 'switchPressed' : 'switchUnpressed'
-      );
+      actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed');
+
       // jshint ignore:line
       actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
     },
@@ -111,9 +110,7 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
      */
     getActionValue() {
       // using == comparisons to make sure that e.g. 1 equals "1"
-      return this.getBasicValue() == this.getOffValue()
-        ? this.getOnValue()
-        : this.getOffValue(); // jshint ignore:line
+      return this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue(); // jshint ignore:line
     }
   }
 });

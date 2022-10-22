@@ -77,10 +77,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
         // we need the documents to be in HTML namespace
         if (!htmlContent.documentElement.xmlns) {
           let text = e.getTarget().getResponseText();
-          text = text.replace(
-            '<templates',
-            '<templates xmlns="http://www.w3.org/1999/xhtml"'
-          );
+          text = text.replace('<templates', '<templates xmlns="http://www.w3.org/1999/xhtml"');
 
           const parser = new DOMParser();
           htmlContent = parser.parseFromString(text, 'text/xml');
@@ -113,20 +110,10 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
           message = qx.locale.Manager.tr('Invalid XML file!');
           break;
         case 'filenotfound':
-          message = qx.locale.Manager.tr(
-            '404: File not found, %1.',
-            additionalErrorInfo
-          )
-            .translate()
-            .toString();
+          message = qx.locale.Manager.tr('404: File not found, %1.', additionalErrorInfo).translate().toString();
           break;
         default:
-          message = qx.locale.Manager.tr(
-            'Unhandled error of type "%1"',
-            textStatus
-          )
-            .translate()
-            .toString();
+          message = qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus).translate().toString();
           if (additionalErrorInfo) {
             message += ': ' + additionalErrorInfo;
           } else {
@@ -143,10 +130,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
       if (actions) {
         notification.actions = actions;
       }
-      cv.core.notifications.Router.dispatchMessage(
-        notification.topic,
-        notification
-      );
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
 
       this.error(this, message.toString());
     }

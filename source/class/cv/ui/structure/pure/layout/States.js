@@ -63,12 +63,7 @@ qx.Class.define('cv.ui.structure.pure.layout.States', {
   */
   members: {
     resetAll() {
-      [
-        'pageSizeInvalid',
-        'backdropInvalid',
-        'navbarInvalid',
-        'rowspanInvalid'
-      ].forEach(this.reset, this);
+      ['pageSizeInvalid', 'backdropInvalid', 'navbarInvalid', 'rowspanInvalid'].forEach(this.reset, this);
     }
   }
 });

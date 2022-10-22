@@ -321,11 +321,7 @@ qx.Class.define('cv.TemplateEngine', {
         loader.addListenerOnce('designError', ev => {
           if (ev.getData() === design) {
             this.error(
-              'Failed to load "' +
-                design +
-                '" design! Falling back to simplified "' +
-                cv.Config.loadedStructure +
-                '"'
+              'Failed to load "' + design + '" design! Falling back to simplified "' + cv.Config.loadedStructure + '"'
             );
 
             baseUri = 'designs/' + cv.Config.loadedStructure;
@@ -337,9 +333,7 @@ qx.Class.define('cv.TemplateEngine', {
 
             alternativeStyles.push(baseUri + '/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
-            cv.util.ScriptLoader.getInstance().addScripts(
-              baseUri + '/design_setup.js'
-            );
+            cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
           }
         });
       }
@@ -372,9 +366,7 @@ qx.Class.define('cv.TemplateEngine', {
      */
     startScreensaver() {
       if (typeof cv.Config.configSettings.screensave_time === 'number') {
-        this.screensave = new qx.event.Timer(
-          cv.Config.configSettings.screensave_time * 1000
-        );
+        this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
 
         this.screensave.addListener(
           'interval',
@@ -383,12 +375,7 @@ qx.Class.define('cv.TemplateEngine', {
         );
 
         this.screensave.start();
-        qx.event.Registration.addListener(
-          window,
-          'useraction',
-          this.screensave.restart,
-          this.screensave
-        );
+        qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
       }
     },
 
@@ -429,9 +416,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       body.appendChild(div);
 
-      const store = new qx.data.store.Json(
-        qx.util.ResourceManager.getInstance().toUri('designs/get_designs.php')
-      );
+      const store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri('designs/get_designs.php'));
 
       store.addListener('loaded', function () {
         let html = '<h1>Please select design</h1>';
@@ -450,23 +435,16 @@ qx.Class.define('cv.TemplateEngine', {
             position: 'relative'
           });
 
-          myDiv.innerHTML =
-            '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' +
-            element +
-            '</div>';
+          myDiv.innerHTML = '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' + element + '</div>';
           myDiv.innerHTML +=
             '<iframe src="' +
-            qx.util.ResourceManager.getInstance().toUri(
-              'designs/design_preview.html'
-            ) +
+            qx.util.ResourceManager.getInstance().toUri('designs/design_preview.html') +
             '?design=' +
             element +
             '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
           myDiv.innerHTML +=
             '<img width="60" height="30" src="' +
-            qx.util.ResourceManager.getInstance().toUri(
-              'demo/media/arrow.png'
-            ) +
+            qx.util.ResourceManager.getInstance().toUri('demo/media/arrow.png') +
             '" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
 
           div.appendChild(myDiv);

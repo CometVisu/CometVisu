@@ -75,10 +75,8 @@ qx.Class.define('cv.io.Reflection', {
      */
     read(path) {
       const widget = this.lookupWidget(path);
-      const data = Object.assign(
-        {},
-        cv.data.Model.getInstance().getWidgetDataByElement(widget)
-      );
+      const data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget));
+
       // copy
       delete data.basicvalue;
       delete data.value;

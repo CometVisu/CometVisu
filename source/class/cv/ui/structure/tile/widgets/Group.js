@@ -37,8 +37,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
       const element = this._element;
       let label = null;
       let summary = null;
-      const needsSummary =
-        element.hasAttribute('name') || element.hasAttribute('icon');
+      const needsSummary = element.hasAttribute('name') || element.hasAttribute('icon');
       if (needsSummary) {
         summary = element.querySelector(':scope > summary');
         if (!summary) {
@@ -72,12 +71,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
       if (empty) {
         element.classList.add('empty');
       } else if (summary) {
-        qx.event.Registration.addListener(
-          summary,
-          'click',
-          this._toggleOpen,
-          this
-        );
+        qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
       }
     },
 
@@ -97,9 +91,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
     onStateUpdate(ev) {
       if (!super.onStateUpdate(ev)) {
         if (ev.detail.target === 'summary') {
-          let target = this._element.querySelector(
-            ':scope > summary > label.value'
-          );
+          let target = this._element.querySelector(':scope > summary > label.value');
 
           if (!target) {
             target = document.createElement('label');

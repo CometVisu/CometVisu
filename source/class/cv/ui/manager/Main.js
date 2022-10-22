@@ -29,10 +29,7 @@ qx.Class.define('cv.ui.manager.Main', {
   type: 'singleton',
   include: [cv.ui.manager.control.MFileEventHandler],
 
-  implement: [
-    cv.ui.manager.IActionHandler,
-    cv.ui.manager.control.IFileEventHandler
-  ],
+  implement: [cv.ui.manager.IActionHandler, cv.ui.manager.control.IFileEventHandler],
 
   /*
   ***********************************************
@@ -44,8 +41,7 @@ qx.Class.define('cv.ui.manager.Main', {
     cv.ui.manager.model.BackupFolder.getInstance();
     this._checkEnvironment();
     this.initOpenFiles(new qx.data.Array());
-    this.__actionDispatcher =
-      cv.ui.manager.control.ActionDispatcher.getInstance();
+    this.__actionDispatcher = cv.ui.manager.control.ActionDispatcher.getInstance();
     this.__actionDispatcher.setMain(this);
 
     this.__initCommands();
@@ -165,21 +161,15 @@ qx.Class.define('cv.ui.manager.Main', {
               case '.':
                 // config folder must be writeable
                 if ((env.state & 1) === 0) {
-                  cv.ui.manager.snackbar.Controller.error(
-                    qx.locale.Manager.tr('config folder does not exists')
-                  );
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder does not exists'));
                 } else if ((env.state & 2) === 0) {
                   cv.ui.manager.model.FileItem.ROOT.setReadable(false);
                   refreshActions = true;
-                  cv.ui.manager.snackbar.Controller.error(
-                    qx.locale.Manager.tr('config folder is not readable')
-                  );
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not readable'));
                 } else if ((env.state & 4) === 0) {
                   cv.ui.manager.model.FileItem.ROOT.setWriteable(false);
                   refreshActions = true;
-                  cv.ui.manager.snackbar.Controller.error(
-                    qx.locale.Manager.tr('config folder is not writeable')
-                  );
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
                 }
                 if (refreshActions) {
                   const widget = this.__actionDispatcher.getFocusedWidget();
@@ -190,26 +180,20 @@ qx.Class.define('cv.ui.manager.Main', {
 
               case 'backup':
                 if ((env.state & 4) === 0 && (env.state & 1) === 1) {
-                  cv.ui.manager.snackbar.Controller.error(
-                    qx.locale.Manager.tr('backup folder is not writeable')
-                  );
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('backup folder is not writeable'));
                 }
                 break;
 
               case 'media':
                 if ((env.state & 4) === 0 && (env.state & 1) === 1) {
-                  cv.ui.manager.snackbar.Controller.error(
-                    qx.locale.Manager.tr('media folder is not writeable')
-                  );
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
                 }
                 break;
 
               case 'hidden.php':
                 if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(
-                    qx.locale.Manager.tr(
-                      'Hidden configuration file (hidden.php) not writeable'
-                    )
+                    qx.locale.Manager.tr('Hidden configuration file (hidden.php) not writeable')
                   );
                 }
                 break;
@@ -220,11 +204,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     canHandleAction(actionName) {
-      if (
-        actionName === 'delete' &&
-        this.getCurrentSelection() &&
-        !this.getCurrentSelection().isWriteable()
-      ) {
+      if (actionName === 'delete' && this.getCurrentSelection() && !this.getCurrentSelection().isWriteable()) {
         // needs a writeable file
         return false;
       }
@@ -266,15 +246,11 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'quit':
-          unsavedFiles = this.getOpenFiles().filter(openFile =>
-            openFile.getFile().isModified()
-          );
+          unsavedFiles = this.getOpenFiles().filter(openFile => openFile.getFile().isModified());
 
           if (unsavedFiles.length > 0) {
             const dialog = new qxl.dialog.Confirm({
-              message: qx.locale.Manager.tr(
-                'You have files opened with unsaved changes, you should save them now.'
-              ),
+              message: qx.locale.Manager.tr('You have files opened with unsaved changes, you should save them now.'),
 
               callback(confirmed) {
                 if (confirmed) {
@@ -307,15 +283,9 @@ qx.Class.define('cv.ui.manager.Main', {
             { path: 'demo/templates/visu_config.xml' },
             function (err, res) {
               if (err) {
-                cv.ui.manager.snackbar.Controller.error(
-                  qx.locale.Manager.tr('Cannot load config template')
-                );
+                cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
               } else {
-                this._onCreate(
-                  'config',
-                  res,
-                  cv.ui.manager.model.FileItem.ROOT
-                );
+                this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
               }
             },
             this
@@ -328,16 +298,10 @@ qx.Class.define('cv.ui.manager.Main', {
             { path: data.file.getFullPath() },
             function (err, res) {
               if (err) {
-                cv.ui.manager.snackbar.Controller.error(
-                  qx.locale.Manager.tr('Cannot load file content')
-                );
+                cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
               } else if (data.file.isConfigFile()) {
                 // config files need to be cloned in the root folder
-                this._onCreate(
-                  'config',
-                  res,
-                  cv.ui.manager.model.FileItem.ROOT
-                );
+                this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
               } else {
                 this._onCreate('file', res);
               }
@@ -352,20 +316,15 @@ qx.Class.define('cv.ui.manager.Main', {
             { path: data.file.getFullPath() },
             function (err, res) {
               if (err) {
-                cv.ui.manager.snackbar.Controller.error(
-                  qx.locale.Manager.tr('Cannot load file content')
-                );
+                cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
               } else if (data.file.isConfigFile()) {
                 const converter = new cv.util.ConfigUpgrader();
-                const [err, convertedContent] =
-                  converter.convertPureToTile(res);
+                const [err, convertedContent] = converter.convertPureToTile(res);
                 if (err) {
                   cv.ui.manager.snackbar.Controller.error(err);
                 } else {
                   let suggestedName = 'tile';
-                  const match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(
-                    data.file.getName()
-                  );
+                  const match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(data.file.getName());
 
                   if (match) {
                     suggestedName = 'tile-' + match[1];
@@ -409,9 +368,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onBeforeUnload(ev) {
-      const unsavedFiles = this.getOpenFiles().filter(openFile =>
-        openFile.getFile().isModified()
-      );
+      const unsavedFiles = this.getOpenFiles().filter(openFile => openFile.getFile().isModified());
 
       if (unsavedFiles.length > 0) {
         ev.preventDefault();
@@ -435,10 +392,7 @@ qx.Class.define('cv.ui.manager.Main', {
           }
           return false;
         }, this);
-        if (
-          this.getCurrentFolder() &&
-          this.getCurrentFolder().getFullPath() === data.path
-        ) {
+        if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
           this.resetCurrentFolder();
         }
       } else {
@@ -487,13 +441,7 @@ qx.Class.define('cv.ui.manager.Main', {
             // this can only by a file in the root dir (a config)
             data.file = this.__findConfigFile(data.file);
           }
-          this.openFile(
-            data.file || this.getCurrentSelection(),
-            false,
-            data.handler,
-            null,
-            data.handlerOptions
-          );
+          this.openFile(data.file || this.getCurrentSelection(), false, data.handler, null, data.handlerOptions);
 
           break;
 
@@ -515,8 +463,7 @@ qx.Class.define('cv.ui.manager.Main', {
     _onChangeTreeSelection(ev) {
       const data = ev.getData();
       if (
-        (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() &&
-          data.mode === 'tap') ||
+        (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() && data.mode === 'tap') ||
         data.mode === 'dbltap'
       ) {
         this.__openSelectedFile(data.node, data.mode);
@@ -581,15 +528,9 @@ qx.Class.define('cv.ui.manager.Main', {
         let editorConfig;
         const handlerId = openFile.getHandlerId();
         if (handlerId) {
-          editorConfig =
-            cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(
-              handlerId
-            );
+          editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
         } else {
-          editorConfig =
-            cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
-              file
-            );
+          editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
         }
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
@@ -598,9 +539,7 @@ qx.Class.define('cv.ui.manager.Main', {
         if (this._stack.indexOf(editorConfig.instance) < 0) {
           this._stack.add(editorConfig.instance);
         }
-        if (
-          editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor
-        ) {
+        if (editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor) {
           editorConfig.instance.setHandlerOptions(openFile.getHandlerOptions());
         }
         this._stack.setSelection([editorConfig.instance]);
@@ -624,27 +563,18 @@ qx.Class.define('cv.ui.manager.Main', {
       let openFile;
       let handlerConf;
       if (!handlerId) {
-        handlerConf =
-          cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
-            file,
-            handlerType
-          );
+        handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
 
         if (!handlerConf) {
           // no handler
-          cv.ui.manager.snackbar.Controller.info(
-            qx.locale.Manager.tr('Cannot open file: "%1"', file.getName())
-          );
+          cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Cannot open file: "%1"', file.getName()));
 
           return;
         }
         handlerId = handlerConf.Clazz.classname;
       } else {
         // check if this handler opens the file in a external frame that is not connected to the manager
-        handlerConf =
-          cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(
-            handlerId
-          );
+        handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
 
         if (!handlerConf.instance) {
           handlerConf.instance = new handlerConf.Clazz();
@@ -685,11 +615,7 @@ qx.Class.define('cv.ui.manager.Main', {
           openFile.setPermanent(false);
         }
       } else {
-        if (
-          !isOpen &&
-          (this.__previewFileIndex === null ||
-            openFiles.indexOf(openFile) !== this.__previewFileIndex)
-        ) {
+        if (!isOpen && (this.__previewFileIndex === null || openFiles.indexOf(openFile) !== this.__previewFileIndex)) {
           openFiles.push(openFile);
         }
         openFile.setPermanent(true);
@@ -793,20 +719,14 @@ qx.Class.define('cv.ui.manager.Main', {
       const currentSelection = this._openFilesController.getSelection();
       let selectionIndex = -1;
       const openFiles = this.getOpenFiles();
-      if (
-        currentSelection.length > 0 &&
-        currentSelection.getItem(0) === openFile
-      ) {
+      if (currentSelection.length > 0 && currentSelection.getItem(0) === openFile) {
         // we need to select another file after this one got closed
         selectionIndex = openFiles.indexOf(openFile);
       }
       openFiles.remove(openFile);
       const currentHandler = this._stack.getSelection()[0];
       if (
-        qx.Class.hasInterface(
-          currentHandler.constructor,
-          cv.ui.manager.editor.IEditor
-        ) &&
+        qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor) &&
         !(currentHandler instanceof cv.ui.manager.Start)
       ) {
         // reset the handlers file
@@ -818,34 +738,24 @@ qx.Class.define('cv.ui.manager.Main', {
         this.__previewFileIndex = null;
       }
       if (selectionIndex > 0) {
-        this._openFilesController
-          .getSelection()
-          .replace(openFiles.getItem(selectionIndex - 1));
+        this._openFilesController.getSelection().replace(openFiles.getItem(selectionIndex - 1));
       } else if (selectionIndex === 0 && openFiles.length > 0) {
         this._openFilesController.getSelection().replace(openFiles.getItem(0));
       }
 
       if (file instanceof cv.ui.manager.model.CompareFiles) {
-        const fileHandlerConf =
-          cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(
-            file
-          );
+        const fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
 
         fileHandlerConf.instance.clear();
         if (
           openFiles.filter(function (openFile) {
-            return (
-              openFile.getFile() instanceof cv.ui.manager.model.CompareFiles
-            );
+            return openFile.getFile() instanceof cv.ui.manager.model.CompareFiles;
           }).length === 0
         ) {
           fileHandlerConf.instance.destroy();
           fileHandlerConf.instance = null;
         }
-      } else if (
-        window.monaco &&
-        openFile.getHandlerId() === 'cv.ui.manager.editor.Source'
-      ) {
+      } else if (window.monaco && openFile.getHandlerId() === 'cv.ui.manager.editor.Source') {
         // close textmodel in monaco editor if exists
         const oldModel = window.monaco.editor.getModel(file.getUri());
         if (oldModel) {
@@ -928,10 +838,7 @@ qx.Class.define('cv.ui.manager.Main', {
         const openFile = this.getOpenFiles()
           .toArray()
           .find(function (openFile) {
-            return (
-              openFile.getFile() === page.getFile() &&
-              openFile.getHandlerId() === page.classname
-            );
+            return openFile.getFile() === page.getFile() && openFile.getHandlerId() === page.classname;
           });
         if (openFile) {
           openFiles.push(openFile);
@@ -967,19 +874,13 @@ qx.Class.define('cv.ui.manager.Main', {
           'Please enter the name of the new configuration (without "visu_config_" at the beginning and ".xml" at the end)'
         );
 
-        existsMessage = qx.locale.Manager.tr(
-          'A configuration with this name already exists.'
-        );
+        existsMessage = qx.locale.Manager.tr('A configuration with this name already exists.');
       } else if (type === 'file') {
         message = qx.locale.Manager.tr('Please enter the file name.');
-        existsMessage = qx.locale.Manager.tr(
-          'A file with this name already exists.'
-        );
+        existsMessage = qx.locale.Manager.tr('A file with this name already exists.');
       } else {
         message = qx.locale.Manager.tr('Please enter the folder name.');
-        existsMessage = qx.locale.Manager.tr(
-          'A folder with this name already exists.'
-        );
+        existsMessage = qx.locale.Manager.tr('A folder with this name already exists.');
       }
       const handlePrompt = function (name) {
         if (!name) {
@@ -1004,11 +905,7 @@ qx.Class.define('cv.ui.manager.Main', {
           cv.ui.manager.snackbar.Controller.error(existsMessage);
           this.__getFileNamePrompt(message, handlePrompt, this, name);
         } else {
-          const item = new cv.ui.manager.model.FileItem(
-            filename,
-            currentFolder.getFullPath(),
-            currentFolder
-          );
+          const item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
 
           item.set({
             type: type === 'config' ? 'file' : type,
@@ -1034,9 +931,7 @@ qx.Class.define('cv.ui.manager.Main', {
                 if (err) {
                   cv.ui.manager.snackbar.Controller.error(err);
                 } else {
-                  cv.ui.manager.snackbar.Controller.info(
-                    qx.locale.Manager.tr('Folder has been created')
-                  );
+                  cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Folder has been created'));
 
                   item.set({
                     modified: false,
@@ -1163,8 +1058,7 @@ qx.Class.define('cv.ui.manager.Main', {
       this._pane = new qx.ui.splitpane.Pane();
       main.add(this._pane, { edge: 'center' });
 
-      const rootFolder = (cv.ui.manager.model.FileItem.ROOT =
-        new cv.ui.manager.model.FileItem('.'));
+      const rootFolder = (cv.ui.manager.model.FileItem.ROOT = new cv.ui.manager.model.FileItem('.'));
       const fakeIconFile = cv.ui.manager.model.FileItem.getIconFile();
       // TODO: needs to be verified by the backend
       rootFolder.set({
@@ -1178,16 +1072,10 @@ qx.Class.define('cv.ui.manager.Main', {
 
       this.setCurrentFolder(rootFolder);
       this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
-      this._tree.addListener(
-        'changeSelection',
-        this._onChangeTreeSelection,
-        this
-      );
+      this._tree.addListener('changeSelection', this._onChangeTreeSelection, this);
 
       // left container
-      const leftContainer = new qx.ui.container.Composite(
-        new qx.ui.layout.VBox()
-      );
+      const leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       // left toolbar
       const leftBar = new cv.ui.manager.ToolBar(uploadManager);
@@ -1198,40 +1086,25 @@ qx.Class.define('cv.ui.manager.Main', {
       // globally bind writeable folder to command for new files
       const buttonConfig = menuBar.getButtonConfiguration();
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
-      this.bind(
-        'writeableFolder',
-        buttonConfig['new-folder'].args[2],
-        'enabled'
-      );
+      this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
 
       // this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
 
       leftContainer.add(leftBar);
       leftContainer.add(this._tree, { flex: 1 });
       this._pane.add(leftContainer, 0);
-      cv.ui.manager.model.Preferences.getInstance().bind(
-        'expertMode',
-        leftContainer,
-        'visibility',
-        {
-          converter(value) {
-            return value ? 'visible' : 'excluded';
-          }
+      cv.ui.manager.model.Preferences.getInstance().bind('expertMode', leftContainer, 'visibility', {
+        converter(value) {
+          return value ? 'visible' : 'excluded';
         }
-      );
+      });
 
-      this._mainContent = new qx.ui.container.Composite(
-        new qx.ui.layout.VBox()
-      );
+      this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       // tab list
       const list = new qx.ui.form.List(true);
       list.setAppearance('open-files-tabs');
-      this._openFilesController = new qx.data.controller.List(
-        this.getOpenFiles(),
-        list,
-        'file.name'
-      );
+      this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, 'file.name');
 
       this._openFilesController.setDelegate({
         createItem: function () {
@@ -1242,21 +1115,9 @@ qx.Class.define('cv.ui.manager.Main', {
 
         bindItem(controller, item, index) {
           controller.bindDefaultProperties(item, index);
-          controller.bindProperty(
-            'file.permanent',
-            'permanent',
-            null,
-            item,
-            index
-          );
+          controller.bindProperty('file.permanent', 'permanent', null, item, index);
 
-          controller.bindProperty(
-            'file.modified',
-            'modified',
-            null,
-            item,
-            index
-          );
+          controller.bindProperty('file.modified', 'modified', null, item, index);
 
           controller.bindProperty('icon', 'icon', null, item, index);
           controller.bindProperty('closeable', 'closeable', null, item, index);
@@ -1267,19 +1128,12 @@ qx.Class.define('cv.ui.manager.Main', {
       this._mainContent.add(list);
 
       this._stack = new qx.ui.container.Stack();
-      this._stack.addListener(
-        'changeSelection',
-        this._onChangeStackSelection,
-        this
-      );
+      this._stack.addListener('changeSelection', this._onChangeStackSelection, this);
 
       this._mainContent.add(this._stack, { flex: 1 });
       this._pane.add(this._mainContent, 1);
 
-      const startOpenFile = new cv.ui.manager.model.OpenFile(
-        rootFolder,
-        'cv.ui.manager.Start'
-      );
+      const startOpenFile = new cv.ui.manager.model.OpenFile(rootFolder, 'cv.ui.manager.Start');
 
       startOpenFile.setCloseable(false);
       this.getOpenFiles().push(startOpenFile);
@@ -1297,15 +1151,11 @@ qx.Class.define('cv.ui.manager.Main', {
  <img src="resource/icons/comet_icon_128x128_ff8000.png" width="128" height="128"/>
  <h2>CometVisu ${cv.Version.VERSION}</h2>
  <div class="info">
-   <label for="date">${qx.locale.Manager.tr(
-     'Build date'
-   )}: </label><span id="date">${cv.Version.DATE}</span><br/>
-   <label for="build">${qx.locale.Manager.tr(
-     'Build revision'
-   )}: </label><span id="build">${cv.Version.REV}</span><br/>
-   <label for="lib-version">${qx.locale.Manager.tr(
-     'Library version'
-   )}: </label><span id="lib-version">${cv.Version.LIBRARY_VERSION}</span>
+   <label for="date">${qx.locale.Manager.tr('Build date')}: </label><span id="date">${cv.Version.DATE}</span><br/>
+   <label for="build">${qx.locale.Manager.tr('Build revision')}: </label><span id="build">${cv.Version.REV}</span><br/>
+   <label for="lib-version">${qx.locale.Manager.tr('Library version')}: </label><span id="lib-version">${
+          cv.Version.LIBRARY_VERSION
+        }</span>
  </div>
 </div>`
       };
@@ -1320,13 +1170,7 @@ qx.Class.define('cv.ui.manager.Main', {
   ***********************************************
   */
   destruct() {
-    this._disposeObjects(
-      '_pane',
-      '_tree',
-      '_stack',
-      '_mainContent',
-      '_openFilesController'
-    );
+    this._disposeObjects('_pane', '_tree', '_stack', '_mainContent', '_openFilesController');
 
     // restore former command group
     const application = qx.core.Init.getApplication();
@@ -1343,11 +1187,7 @@ qx.Class.define('cv.ui.manager.Main', {
     this.__root = null;
     this.__actionDispatcher = null;
 
-    qx.event.message.Bus.unsubscribe(
-      'cv.manager.*',
-      this._onManagerEvent,
-      this
-    );
+    qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this);
 
     // destroy the singleton instance
     delete cv.ui.manager.Main.$$instance;

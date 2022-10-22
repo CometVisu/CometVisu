@@ -52,14 +52,9 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         base += window.location.pathname;
       }
       this._url = new URL(src, base);
-      const useProxy =
-        element.hasAttribute('proxy') &&
-        element.getAttribute('proxy') === 'true';
+      const useProxy = element.hasAttribute('proxy') && element.getAttribute('proxy') === 'true';
       if (useProxy) {
-        this._url = new URL(
-          cv.io.rest.Client.getBaseUrl() + '/proxy',
-          window.location.origin
-        );
+        this._url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
 
         this._url.searchParams.set('url', element.getAttribute('src'));
       }
@@ -70,21 +65,11 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
             if (useProxy) {
               this._url.searchParams.set(
                 'authorization',
-                'Basic ' +
-                  window.btoa(
-                    element.getAttribute('username') +
-                      ':' +
-                      element.getAttribute('password')
-                  )
+                'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'))
               );
             } else {
               this._headers['Authorization'] =
-                'Basic ' +
-                window.btoa(
-                  element.getAttribute('username') +
-                    ':' +
-                    element.getAttribute('password')
-                );
+                'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'));
             }
             break;
         }
@@ -105,10 +90,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
           request.setRequestHeader(name, this._headers[name]);
         });
         request.onreadystatechange = e => {
-          if (
-            request.readyState === XMLHttpRequest.DONE &&
-            request.status === 200
-          ) {
+          if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
             img.src = URL.createObjectURL(request.response);
             img.onload = () => {
               URL.revokeObjectURL(img.src);

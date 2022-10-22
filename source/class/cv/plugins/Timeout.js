@@ -124,12 +124,7 @@ qx.Class.define('cv.plugins.Timeout', {
       this.__timer.start();
 
       // Reset Counter on every interaction
-      qx.event.Registration.addListener(
-        window,
-        'useraction',
-        this._onUserAction,
-        this
-      );
+      qx.event.Registration.addListener(window, 'useraction', this._onUserAction, this);
 
       // Keep track of current page
       qx.event.message.Bus.subscribe(
@@ -137,9 +132,7 @@ qx.Class.define('cv.plugins.Timeout', {
         function (ev) {
           const path = ev.getData();
           this.__timeoutCurrentPage = path;
-          this.__timeoutCurrentPageTitle = document.querySelector(
-            '#' + path + ' div > h1'
-          ).innerText;
+          this.__timeoutCurrentPageTitle = document.querySelector('#' + path + ' div > h1').innerText;
           this.__timeoutIdleCount = 0;
           /* We could trun on and off the above binds if we are already on the right page
         if (timeoutCurrentPage === timeoutTargetPage) {
@@ -172,9 +165,7 @@ qx.Class.define('cv.plugins.Timeout', {
           this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage
         ) {
           if (this.isDebug()) {
-            this.debug(
-              'TIMEOUT: Got Timeout - Now Goto Page ' + this.__timeoutTargetPage
-            );
+            this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__timeoutTargetPage);
           }
           pageNavigationHandler.scrollToPage(this.__timeoutTargetPage);
           pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;

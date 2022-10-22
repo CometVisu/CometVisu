@@ -38,24 +38,16 @@ qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
   */
   members: {
     _onPhaseChange(ev) {
-      const response = cv.report.utils.FakeServer.getResponse(
-        this._getConfiguredUrl()
-      );
+      const response = cv.report.utils.FakeServer.getResponse(this._getConfiguredUrl());
 
       if (!response) {
         // no logged response found might be an 404
         return;
       }
       if (ev.getData() === 'opened') {
-        this.info(
-          'delaying response for ' +
-            this._getConfiguredUrl() +
-            ' by ' +
-            response.delay
-        );
+        this.info('delaying response for ' + this._getConfiguredUrl() + ' by ' + response.delay);
 
-        qx.dev.FakeServer.getInstance().getFakeServer().autoRespondAfter =
-          response ? response.delay : 10;
+        qx.dev.FakeServer.getInstance().getFakeServer().autoRespondAfter = response ? response.delay : 10;
       } else if (ev.getData() === 'abort') {
         if (response.phase === 'abort') {
           cv.report.utils.FakeServer.unqueueResponse(this._getConfiguredUrl());

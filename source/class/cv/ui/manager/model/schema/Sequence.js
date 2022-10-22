@@ -88,10 +88,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
             break;
           case 'xsd:sequence':
           case 'sequence':
-            subObject = new cv.ui.manager.model.schema.Sequence(
-              subNode,
-              schema
-            );
+            subObject = new cv.ui.manager.model.schema.Sequence(subNode, schema);
 
             this._subGroupings.push(subObject);
             break;
@@ -109,8 +106,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
 
         this._sortedContent.push(subObject);
       });
-      this._allowedElements['#comment'] =
-        this.getSchema().getCommentNodeSchemaElement();
+      this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
     },
 
     /**
@@ -179,27 +175,18 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
           resultBounds.min = elementBounds.min;
         }
 
-        if (
-          Object.prototype.hasOwnProperty.call(sequenceBounds, 'min') &&
-          !isNaN(sequenceBounds.min)
-        ) {
+        if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'min') && !isNaN(sequenceBounds.min)) {
           resultBounds.min *= sequenceBounds.min;
         }
 
-        if (
-          elementBounds.max === Number.POSITIVE_INFINITY ||
-          sequenceBounds.max === Number.POSITIVE_INFINITY
-        ) {
+        if (elementBounds.max === Number.POSITIVE_INFINITY || sequenceBounds.max === Number.POSITIVE_INFINITY) {
           resultBounds.max = Number.POSITIVE_INFINITY;
         } else {
           if (Object.prototype.hasOwnProperty.call(elementBounds, 'max')) {
             resultBounds.max = elementBounds.max;
           }
 
-          if (
-            Object.prototype.hasOwnProperty.call(sequenceBounds, 'max') &&
-            !isNaN(sequenceBounds.max)
-          ) {
+          if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'max') && !isNaN(sequenceBounds.max)) {
             resultBounds.max *= sequenceBounds.max;
           }
         }
@@ -244,8 +231,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
           namesWithSorting[item.getName()] = mySortNumber;
         } else {
           // go recursive
-          const subSortedElements =
-            item.getAllowedElementsSorting(mySortNumber);
+          const subSortedElements = item.getAllowedElementsSorting(mySortNumber);
           Object.assign(namesWithSorting, subSortedElements);
         }
       });

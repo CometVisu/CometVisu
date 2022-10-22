@@ -134,10 +134,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
         return;
       }
       // check if the still have the same the same amount of options
-      if (
-        Object.keys(this._originalOptions).length !==
-        this.getModel().getOptions().length
-      ) {
+      if (Object.keys(this._originalOptions).length !== this.getModel().getOptions().length) {
         this.setModified(true);
         return;
       }
@@ -146,10 +143,8 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
         .getOptions()
         .some(function (option) {
           return (
-            !Object.prototype.hasOwnProperty.call(
-              this._originalOptions,
-              option.getKey()
-            ) || this._originalOptions[option.getKey()] !== option.getValue()
+            !Object.prototype.hasOwnProperty.call(this._originalOptions, option.getKey()) ||
+            this._originalOptions[option.getKey()] !== option.getValue()
           );
         }, this);
       this.setModified(modified);
@@ -200,10 +195,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
           break;
 
         case 'delete':
-          control = new qx.ui.form.Button(
-            null,
-            cv.theme.dark.Images.getIcon('delete', 22)
-          );
+          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 22));
 
           control.setToolTipText(this.tr('Delete section'));
           control.addListener('execute', () => {

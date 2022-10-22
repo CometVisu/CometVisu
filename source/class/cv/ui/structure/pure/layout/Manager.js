@@ -47,10 +47,9 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
         this.currentPageNavbarVisibility.top === null ||
         this.currentPageNavbarVisibility.bottom === null
       ) {
-        this.currentPageNavbarVisibility =
-          cv.Application.structureController.pagePartsHandler.getNavbarsVisibility(
-            cv.Application.structureController.getCurrentPage()
-          );
+        this.currentPageNavbarVisibility = cv.Application.structureController.pagePartsHandler.getNavbarsVisibility(
+          cv.Application.structureController.getCurrentPage()
+        );
       }
       return this.currentPageNavbarVisibility;
     },
@@ -96,15 +95,11 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       if (left) {
         const leftRect = left.getBoundingClientRect();
         widthNavbarLeft =
-          navbarVisibility.left === true &&
-          window.getComputedStyle(left)['display'] !== 'none'
+          navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none'
             ? Math.round(leftRect.right - leftRect.left)
             : 0;
       }
-      if (
-        widthNavbarLeft >= bodyWidth ||
-        qx.core.Init.getApplication().getMobile()
-      ) {
+      if (widthNavbarLeft >= bodyWidth || qx.core.Init.getApplication().getMobile()) {
         // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
         // maybe there is a better solution to solve this problem
         // OR: we have a mobile device where the nav bar is floating above the other content
@@ -115,15 +110,11 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       if (right) {
         const rightRect = right.getBoundingClientRect();
         widthNavbarRight =
-          navbarVisibility.right === true &&
-          window.getComputedStyle(right)['display'] !== 'none'
+          navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none'
             ? Math.round(rightRect.right - rightRect.left)
             : 0;
       }
-      if (
-        widthNavbarRight >= bodyWidth ||
-        qx.core.Init.getApplication().getMobile()
-      ) {
+      if (widthNavbarRight >= bodyWidth || qx.core.Init.getApplication().getMobile()) {
         // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
         // maybe there is a better solution to solve this problem
         // OR: we have a mobile device where the nav bar is floating above the other content
@@ -160,49 +151,29 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       const top = document.querySelector('#top');
       const bottomNav = document.querySelector('#navbarBottom');
       const bottom = document.querySelector('#bottom');
-      const topNavDisplay = topNav
-        ? window.getComputedStyle(topNav)['display']
-        : 'none';
+      const topNavDisplay = topNav ? window.getComputedStyle(topNav)['display'] : 'none';
       const topDisplay = top ? window.getComputedStyle(top)['display'] : 'none';
-      const bottomNavDisplay = bottomNav
-        ? window.getComputedStyle(bottomNav)['display']
-        : 'none';
-      const bottomDisplay = bottom
-        ? window.getComputedStyle(bottom)['display']
-        : 'none';
+      const bottomNavDisplay = bottomNav ? window.getComputedStyle(bottomNav)['display'] : 'none';
+      const bottomDisplay = bottom ? window.getComputedStyle(bottom)['display'] : 'none';
       const topRect = top ? top.getBoundingClientRect() : emptyRect;
       const topHeight = Math.round(topRect.bottom - topRect.top);
       const topNavRect = topNav ? topNav.getBoundingClientRect() : emptyRect;
       const topNavHeight = Math.round(topNavRect.bottom - topNavRect.top);
-      const bottomNavRect = bottomNav
-        ? bottomNav.getBoundingClientRect()
-        : emptyRect;
-      const bottomNavHeight = Math.round(
-        bottomNavRect.bottom - bottomNavRect.top
-      );
+      const bottomNavRect = bottomNav ? bottomNav.getBoundingClientRect() : emptyRect;
+      const bottomNavHeight = Math.round(bottomNavRect.bottom - bottomNavRect.top);
 
       const bottomRect = bottom ? bottom.getBoundingClientRect() : emptyRect;
       const bottomHeight = Math.round(bottomRect.bottom - bottomRect.top);
-      const nav_pathRect = document
-        .querySelector('.nav_path')
-        .getBoundingClientRect();
+      const nav_pathRect = document.querySelector('.nav_path').getBoundingClientRect();
       const navPathHeight = Math.round(nav_pathRect.bottom - nav_pathRect.top);
 
       if (topDisplay !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
       }
-      if (
-        topNavDisplay !== 'none' &&
-        navbarVisibility.top === true &&
-        topNavHeight > 0
-      ) {
+      if (topNavDisplay !== 'none' && navbarVisibility.top === true && topNavHeight > 0) {
         this.currentPageUnavailableHeight += topNavHeight;
       }
-      if (
-        bottomNavDisplay !== 'none' &&
-        navbarVisibility.bottom === true &&
-        bottomNavHeight > 0
-      ) {
+      if (bottomNavDisplay !== 'none' && navbarVisibility.bottom === true && bottomNavHeight > 0) {
         this.currentPageUnavailableHeight += bottomNavHeight;
       }
       if (bottomDisplay !== 'none' && bottomHeight > 0) {
@@ -253,8 +224,7 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       let mainAreaColspan = cv.Config.defaultColumns;
       const main = document.querySelector('#main');
       if (main) {
-        const mainAreaColumns =
-          document.querySelector('#main').dataset['columns'];
+        const mainAreaColumns = document.querySelector('#main').dataset['columns'];
         if (mainAreaColumns) {
           mainAreaColspan = parseInt(mainAreaColumns);
         }
@@ -264,21 +234,13 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       let selectors = [];
 
       if (includeNavbars === true) {
-        selectors = [
-          '#navbarTop',
-          '#navbarLeft',
-          pageSelector,
-          '#navbarRight',
-          '#navbarBottom'
-        ];
+        selectors = ['#navbarTop', '#navbarLeft', pageSelector, '#navbarRight', '#navbarBottom'];
       } else {
         selectors = [pageSelector];
       }
 
       selectors.forEach(function (area) {
-        const allContainer = document.querySelectorAll(
-          area + ' .widget_container'
-        );
+        const allContainer = document.querySelectorAll(area + ' .widget_container');
 
         if (allContainer.length > 0) {
           let areaColspan = cv.Config.defaultColumns;
@@ -290,8 +252,7 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
             }
           }
           allContainer.forEach(function (child) {
-            const widget =
-              cv.ui.structure.WidgetFactory.getInstanceByElement(child);
+            const widget = cv.ui.structure.WidgetFactory.getInstanceByElement(child);
             const ourColspan = this.getWidgetColspan(widget, width);
 
             let w = 'auto';
@@ -303,9 +264,7 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
         }
 
         // and elements inside groups
-        const adjustableElements = document.querySelectorAll(
-          area + ' .group .widget_container'
-        );
+        const adjustableElements = document.querySelectorAll(area + ' .group .widget_container');
 
         adjustableElements.forEach(function (e) {
           const widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e);
@@ -318,23 +277,14 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
           let w = 'auto';
           if (ourColspan > 0) {
             let groupColspan = mainAreaColspan;
-            const parentGroupElement = cv.util.Tree.getParent(
-              e,
-              '.widget_container',
-              '.group',
-              1
-            )[0];
+            const parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
             if (parentGroupElement) {
-              const parentGroupWidget =
-                cv.ui.structure.WidgetFactory.getInstanceByElement(
-                  parentGroupElement.parentNode
-                );
+              const parentGroupWidget = cv.ui.structure.WidgetFactory.getInstanceByElement(
+                parentGroupElement.parentNode
+              );
 
               if (parentGroupWidget) {
-                groupColspan = Math.min(
-                  mainAreaColspan,
-                  this.getWidgetColspan(parentGroupWidget, width)
-                );
+                groupColspan = Math.min(mainAreaColspan, this.getWidgetColspan(parentGroupWidget, width));
               }
             }
             w = Math.min(100, (ourColspan / groupColspan) * 100) + '%'; // in percent

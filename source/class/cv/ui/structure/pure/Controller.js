@@ -103,9 +103,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         settings.backendMQTTUrl = pagesElement.getAttribute('backend-mqtt-url');
       }
       if (pagesElement.getAttribute('backend-openhab-url') !== null) {
-        settings.backendOpenHABUrl = pagesElement.getAttribute(
-          'backend-openhab-url'
-        );
+        settings.backendOpenHABUrl = pagesElement.getAttribute('backend-openhab-url');
       }
       if (pagesElement.getAttribute('token') !== null) {
         settings.credentials.token = pagesElement.getAttribute('token');
@@ -137,9 +135,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       settings.screensave_page = pagesElement.getAttribute('screensave_page');
 
       if (pagesElement.getAttribute('max_mobile_screen_width') !== null) {
-        settings.maxMobileScreenWidth = pagesElement.getAttribute(
-          'max_mobile_screen_width'
-        );
+        settings.maxMobileScreenWidth = pagesElement.getAttribute('max_mobile_screen_width');
 
         // override config setting
         cv.Config.maxMobileScreenWidth = settings.maxMobileScreenWidth;
@@ -152,12 +148,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (pagesElement.getAttribute('scroll_speed') === null) {
         settings.scrollSpeed = 400;
       } else {
-        settings.scrollSpeed = parseInt(
-          pagesElement.getAttribute('scroll_speed')
-        );
+        settings.scrollSpeed = parseInt(pagesElement.getAttribute('scroll_speed'));
       }
-      settings.bindClickToWidget =
-        pagesElement.getAttribute('bind_click_to_widget') === 'true';
+      settings.bindClickToWidget = pagesElement.getAttribute('bind_click_to_widget') === 'true';
       if (pagesElement.getAttribute('default_columns') !== null) {
         settings.defaultColumns = pagesElement.getAttribute('default_columns');
       }
@@ -171,9 +164,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       const metaParser = new cv.parser.pure.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = settings.pluginsToLoad.concat(
-        metaParser.parsePlugins(xml)
-      );
+      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(xml));
 
       // and then the rest
       await metaParser.parse(xml);
@@ -212,12 +203,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      */
     _createPages(page, path, flavour, type) {
       cv.parser.pure.WidgetParser.renderTemplates(page);
-      let parsedData = cv.parser.pure.WidgetParser.parse(
-        page,
-        path,
-        flavour,
-        type
-      );
+      let parsedData = cv.parser.pure.WidgetParser.parse(page, path, flavour, type);
 
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];
@@ -226,10 +212,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       const l = parsedData.length;
       for (; i < l; i++) {
         const data = parsedData[i];
-        const widget = cv.ui.structure.WidgetFactory.createInstance(
-          data.$$type,
-          data
-        );
+        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
 
         // trigger DOM generation
         if (widget) {
@@ -257,10 +240,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         '>';
 
       Array.prototype.forEach.call(label.childNodes, function (elem) {
-        if (
-          elem.nodeType === Node.ELEMENT_NODE &&
-          elem.nodeName.toLowerCase() === 'icon'
-        ) {
+        if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
           ret_val += cv.IconHandler.getInstance().getIconElement(
             elem.getAttribute('name'),
             elem.getAttribute('type'),
@@ -277,16 +257,12 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return ret_val + '</div>';
     },
     supports(feature, subfeature) {
-      if (
-        Object.prototype.hasOwnProperty.call(this.__supportedFeatures, feature)
-      ) {
+      if (Object.prototype.hasOwnProperty.call(this.__supportedFeatures, feature)) {
         if (this.__supportedFeatures[feature] === true) {
           if (subfeature) {
             return (
-              Object.prototype.hasOwnProperty.call(
-                this.__supportedFeatures[feature],
-                subfeature
-              ) && this.__supportedFeatures[feature][subfeature] === true
+              Object.prototype.hasOwnProperty.call(this.__supportedFeatures[feature], subfeature) &&
+              this.__supportedFeatures[feature][subfeature] === true
             );
           }
           return true;
@@ -297,9 +273,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
     getInitialAddresses() {
       const startPageAddresses = {};
-      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(
-        cv.Config.initialPage
-      );
+      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
 
       pageWidget.getChildWidgets().forEach(function (child) {
         const address = child.getAddress ? child.getAddress() : {};
@@ -314,8 +288,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
     initPagePartsHandler() {
       if (!this.pagePartsHandler) {
-        this.pagePartsHandler =
-          new cv.ui.structure.pure.navigation.PagePartsHandler();
+        this.pagePartsHandler = new cv.ui.structure.pure.navigation.PagePartsHandler();
       }
     },
 
@@ -324,25 +297,18 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (!cv.Config.initialPage) {
         this.__detectInitialPage();
       }
-      let currentPage = cv.ui.structure.WidgetFactory.getInstanceById(
-        cv.Config.initialPage
-      );
+      let currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
 
       if (currentPage) {
         this.setCurrentPage(currentPage);
       } else {
         // this page does not exist, fallback to start page
         cv.Config.initialPage = 'id_';
-        currentPage = cv.ui.structure.WidgetFactory.getInstanceById(
-          cv.Config.initialPage
-        );
+        currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
       }
 
       cv.ui.structure.pure.layout.Manager.adjustColumns();
-      cv.ui.structure.pure.layout.Manager.applyColumnWidths(
-        '#' + cv.Config.initialPage,
-        true
-      );
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#' + cv.Config.initialPage, true);
 
       this.main_scroll = new cv.ui.structure.pure.navigation.PageHandler();
       if (this.scrollSpeed !== undefined) {
@@ -365,18 +331,12 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         }
       });
 
-      document
-        .querySelectorAll('.icon')
-        .forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
+      document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
       document.querySelectorAll('.loading').forEach(function (elem) {
         elem.classList.remove('loading');
       }, this);
 
-      qx.core.Init.getApplication().addListener(
-        'changeMobile',
-        this._onMobileChanged,
-        this
-      );
+      qx.core.Init.getApplication().addListener('changeMobile', this._onMobileChanged, this);
     },
 
     doScreenSave() {
@@ -407,10 +367,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (
-        cv.Config.rememberLastPage &&
-        qx.core.Environment.get('html.storage.local')
-      ) {
+      if (cv.Config.rememberLastPage && qx.core.Environment.get('html.storage.local')) {
         localStorage.lastpage = page_id;
       }
 
@@ -479,10 +436,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
           if (startpage === 'remember') {
             startpage = localStorage.getItem('lastpage');
             cv.Config.rememberLastPage = true;
-            if (
-              typeof startpage !== 'string' ||
-              startpage.substr(0, 3) !== 'id_'
-            ) {
+            if (typeof startpage !== 'string' || startpage.substr(0, 3) !== 'id_') {
               startpage = 'id_'; // fix obvious wrong data
             }
           } else if (startpage === 'noremember') {
@@ -528,9 +482,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         const scope = this.traversePath(path);
         if (scope === null) {
           // path is wrong
-          this.error(
-            "path '" + path + "' could not be traversed, no page found"
-          );
+          this.error("path '" + path + "' could not be traversed, no page found");
 
           return null;
         }
@@ -579,10 +531,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       page_name = decodeURI(page_name.replace('\\/', '/'));
 
       //      console.log("Page: "+page_name+", Scope: "+scope);
-      const selector =
-        scope !== undefined && scope !== null
-          ? '.page[id^="' + scope + '"] h1'
-          : '.page h1';
+      const selector = scope !== undefined && scope !== null ? '.page[id^="' + scope + '"] h1' : '.page h1';
       let pages = document.querySelectorAll(selector);
       pages = Array.from(pages).filter(function (h) {
         return h.textContent === page_name;
@@ -618,9 +567,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
           // take the first page that fits (old behaviour)
           pages.some(function (page) {
             if (page.innerText === page_name) {
-              page_id = cv.util.Tree.getClosest(page, '.page').getAttribute(
-                'id'
-              );
+              page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id');
 
               // break loop
               return true;
@@ -653,11 +600,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
   ***********************************************
   */
   destruct() {
-    qx.core.Init.getApplication().removeListener(
-      'changeMobile',
-      this._onMobileChanged,
-      this
-    );
+    qx.core.Init.getApplication().removeListener('changeMobile', this._onMobileChanged, this);
   },
 
   defer(statics) {

@@ -43,12 +43,7 @@ qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
         actors = [this.getInteractionElement()];
       }
       actors.forEach(function (actor) {
-        qx.event.Registration.addListener(
-          actor,
-          'pointerdown',
-          this.buttonPressed,
-          this
-        );
+        qx.event.Registration.addListener(actor, 'pointerdown', this.buttonPressed, this);
       }, this);
     },
 
@@ -74,12 +69,7 @@ qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
     buttonPressed(event) {
       const actor = event.getCurrentTarget();
       this.__downTarget = actor;
-      qx.event.Registration.addListener(
-        document,
-        'pointerup',
-        this.buttonReleased,
-        this
-      );
+      qx.event.Registration.addListener(document, 'pointerup', this.buttonReleased, this);
 
       const buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, true);
@@ -128,12 +118,7 @@ qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
      * @param event {Event} pointerup event
      */
     buttonReleased(event) {
-      qx.event.Registration.removeListener(
-        document,
-        'pointerup',
-        this.buttonReleased,
-        this
-      );
+      qx.event.Registration.removeListener(document, 'pointerup', this.buttonReleased, this);
 
       const actor = this.__downTarget;
       const buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
@@ -156,11 +141,6 @@ qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
   ******************************************************
   */
   destruct() {
-    qx.event.Registration.addListener(
-      document,
-      'pointerup',
-      this.buttonReleased,
-      this
-    );
+    qx.event.Registration.addListener(document, 'pointerup', this.buttonReleased, this);
   }
 });

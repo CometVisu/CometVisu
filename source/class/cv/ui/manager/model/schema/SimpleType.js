@@ -96,9 +96,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         node = schema.getReferencedNode('attribute', refName);
 
         if (!node) {
-          throw new Error(
-            'schema/xsd appears to be invalid, can not find element ' + refName
-          );
+          throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
         }
       }
 
@@ -135,17 +133,13 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         } else {
           this.setBaseType(baseType);
         }
-        Array.from(subNode.querySelectorAll(':scope > pattern')).forEach(
-          patternNode => {
-            this.__pattern.push(patternNode.getAttribute('value'));
-          }
-        );
+        Array.from(subNode.querySelectorAll(':scope > pattern')).forEach(patternNode => {
+          this.__pattern.push(patternNode.getAttribute('value'));
+        });
 
-        Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach(
-          enumerationNode => {
-            this.__enumerations.push(enumerationNode.getAttribute('value'));
-          }
-        );
+        Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach(enumerationNode => {
+          this.__enumerations.push(enumerationNode.getAttribute('value'));
+        });
       });
 
       if (!this.getBaseType()) {
@@ -175,10 +169,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
       if (baseType.search(/^xsd:/) === -1) {
         // created our own type, will need to find and use it.
         const typeNode = schema.getTypeNode('simple', baseType);
-        const subType = new cv.ui.manager.model.schema.SimpleType(
-          typeNode,
-          schema
-        );
+        const subType = new cv.ui.manager.model.schema.SimpleType(typeNode, schema);
 
         return subType.isValueValid(value);
       }
@@ -270,10 +261,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
               branchIndices.push([start, item.length - start]);
             }
             const branches = branchIndices.map(
-              entry =>
-                `^${item
-                  .substr(entry[0], entry[1])
-                  .replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`
+              entry => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`
             );
 
             this.__regexCache[item] = this.regexFromString(branches.join('|'));

@@ -28,8 +28,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
   */
   construct() {
     this.__linkRegex = new RegExp(":ref:[`'](.+?)[`']", 'g');
-    this.__language =
-      qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
+    this.__language = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
   },
 
   /*
@@ -56,21 +55,13 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       const texts = [];
       const doc = node.ownerDocument;
       const nsResolver = doc.createNSResolver(doc.documentElement);
-      let iterator = doc.evaluate(
-        xpath,
-        node,
-        nsResolver,
-        XPathResult.UNORDERED_NODE_ITERATOR_TYPE,
-        null
-      );
+      let iterator = doc.evaluate(xpath, node, nsResolver, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
 
       try {
         let thisNode = iterator.iterateNext();
 
         while (thisNode) {
-          texts.push(
-            thisNode.textContent.replaceAll(/``([^`]+)``/g, '<code>$1</code>')
-          );
+          texts.push(thisNode.textContent.replaceAll(/``([^`]+)``/g, '<code>$1</code>'));
 
           thisNode = iterator.iterateNext();
         }
@@ -90,21 +81,13 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
         return this.__appInfoCache;
       }
       const node = this.getNode();
-      const appInfo = this.__getTextNodesByXPath(
-        node,
-        'xsd:annotation/xsd:appinfo'
-      );
+      const appInfo = this.__getTextNodesByXPath(node, 'xsd:annotation/xsd:appinfo');
 
       const type = this.getType();
       if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
         if (node.querySelectorAll(':scope > complexType').length === 0) {
-          appInfo.push(
-            ...this.__getTextNodesByXPath(
-              this._type,
-              'xsd:annotation/xsd:appinfo'
-            )
-          );
+          appInfo.push(...this.__getTextNodesByXPath(this._type, 'xsd:annotation/xsd:appinfo'));
         }
       } else if (type === 'attribute') {
         if (node.hasAttribute('ref')) {
@@ -113,9 +96,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
           const refName = node.getAttribute('ref');
           const ref = this.getSchema().getReferencedNode('attribute', refName);
 
-          appInfo.push(
-            ...this.__getTextNodesByXPath(ref, 'xsd:annotation/xsd:appinfo')
-          );
+          appInfo.push(...this.__getTextNodesByXPath(ref, 'xsd:annotation/xsd:appinfo'));
         }
       }
 
@@ -137,8 +118,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       const node = this.getNode();
 
       const lang = qx.locale.Manager.getInstance().getLanguage();
-      const selector =
-        "xsd:annotation/xsd:documentation[@xml:lang='" + lang + "']";
+      const selector = "xsd:annotation/xsd:documentation[@xml:lang='" + lang + "']";
 
       // any appinfo this element itself might carry
       let documentation = this.__getTextNodesByXPath(node, selector);
@@ -147,9 +127,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
         if (node.querySelectorAll(':scope > complexType').length === 0) {
-          documentation.push(
-            ...this.__getTextNodesByXPath(this._type, selector)
-          );
+          documentation.push(...this.__getTextNodesByXPath(this._type, selector));
         }
       } else if (type === 'attribute') {
         if (node.hasAttribute('ref')) {
@@ -160,9 +138,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
 
           documentation.push(...this.__getTextNodesByXPath(ref, selector));
 
-          documentation = documentation.map(entry =>
-            this.createDocumentationWebLinks(entry)
-          );
+          documentation = documentation.map(entry => this.createDocumentationWebLinks(entry));
         }
       }
       this.__documentationCache = documentation;

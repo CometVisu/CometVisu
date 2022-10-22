@@ -67,10 +67,7 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
       if (isVisible) {
         if (this._refreshTimer) {
           this._refreshTimer.start();
-          if (
-            !this._lastRefresh ||
-            Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()
-          ) {
+          if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
             // last execution time too old, refresh now
             this.__doRefresh();
           }

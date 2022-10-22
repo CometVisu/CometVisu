@@ -67,8 +67,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     COUNTER: 0,
     MONACO_EXTENSION_REGEX: null,
     SUPPORTED_FILES(file) {
-      let filename =
-        typeof file === 'string' ? file : file.getFullPath().toLowerCase();
+      let filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
       if (window.monaco && window.monaco.languages) {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           // monaco has already been loaded, we can use its languages configuration to check if this file is supported
@@ -83,26 +82,18 @@ qx.Class.define('cv.ui.manager.editor.Source', {
               });
             }
           });
-          cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp(
-            '(' + extensions.join('|') + ')$'
-          );
+          cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
         }
-        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(
-          filename
-        );
+        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
       }
-      return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(
-        filename
-      );
+      return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
     },
     DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load(callback, context) {
       const version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
-      const sourcePath = qx.util.Uri.getAbsolute(
-        qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..'
-      );
+      const sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..');
 
       const loader = new qx.util.DynamicScriptLoader([
         sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
@@ -135,24 +126,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
           function (qxLib) {
             callback.apply(context);
-            window.monaco.languages.typescript.javascriptDefaults.addExtraLib(
-              qxLib,
-              'qooxdoo.d.ts'
-            );
+            window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
 
-            const completionProvider =
-              new cv.ui.manager.editor.completion.Config();
-            const cvCompletionProvider =
-              new cv.ui.manager.editor.completion.CometVisu();
-            window.monaco.languages.registerCompletionItemProvider(
-              'javascript',
-              cvCompletionProvider.getProvider()
-            );
+            const completionProvider = new cv.ui.manager.editor.completion.Config();
+            const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
+            window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
 
-            window.monaco.languages.registerCompletionItemProvider(
-              'xml',
-              completionProvider.getProvider()
-            );
+            window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
           }
         );
       });
@@ -213,9 +193,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           });
 
           const baseVersion = cv.Version.VERSION.split('-')[0];
-          const xhr = new qx.io.request.Xhr(
-            qx.util.ResourceManager.getInstance().toUri('hidden-schema.json')
-          );
+          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('hidden-schema.json'));
 
           xhr.set({
             method: 'GET',
@@ -230,10 +208,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
               allowComments: true,
               schemas: [
                 {
-                  uri:
-                    'https://www.cometvisu.org/CometVisu/schemas/' +
-                    baseVersion +
-                    '/hidden-schema.json',
+                  uri: 'https://www.cometvisu.org/CometVisu/schemas/' + baseVersion + '/hidden-schema.json',
                   fileMatch: ['hidden.php'],
                   schema: schema
                 }
@@ -245,9 +220,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           if (this.getFile()) {
             this._loadFile(this.getFile());
           }
-          this._editor.onDidChangeModelContent(
-            this._onContentChanged.bind(this)
-          );
+          this._editor.onDidChangeModelContent(this._onContentChanged.bind(this));
         }
       }
     },
@@ -256,10 +229,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (this.canHandleAction(actionName)) {
         switch (actionName) {
           case 'cut':
-            this._editor.trigger(
-              'external',
-              'editor.action.clipboardCutAction'
-            );
+            this._editor.trigger('external', 'editor.action.clipboardCutAction');
 
             if (!this._nativePasteSupported) {
               // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
@@ -270,10 +240,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             }
             break;
           case 'copy':
-            this._editor.trigger(
-              'external',
-              'editor.action.clipboardCopyAction'
-            );
+            this._editor.trigger('external', 'editor.action.clipboardCopyAction');
 
             if (!this._nativePasteSupported) {
               // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
@@ -285,10 +252,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             break;
           case 'paste':
             if (this._nativePasteSupported) {
-              this._editor.trigger(
-                'external',
-                'editor.action.clipboardPasteAction'
-              );
+              this._editor.trigger('external', 'editor.action.clipboardPasteAction');
             } else {
               this._paste();
             }
@@ -356,9 +320,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     save(callback, overrideHash) {
       if (this.getFile().getName() === 'hidden.php') {
         if (!this.getFile().isValid()) {
-          cv.ui.manager.snackbar.Controller.error(
-            this.tr('Hidden config is invalid, please correct the errors')
-          );
+          cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
         } else if (this.getFile().getHasWarnings()) {
           // ask user if he really want to save a file with warnings
           qxl.dialog.Dialog.confirm(
@@ -389,16 +351,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(
-              this.tr(
-                'Saving hidden config failed with error %1 (%2)',
-                err.status,
-                err.statusText
-              )
+              this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText)
             );
           } else {
-            cv.ui.manager.snackbar.Controller.info(
-              this.tr('Hidden config has been saved')
-            );
+            cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
 
             this._onSaved();
           }
@@ -425,11 +381,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         } else if (typeof value === 'object') {
           value = JSON.stringify(value, null, 2);
         }
-        newModel = window.monaco.editor.createModel(
-          value,
-          this._getLanguage(file),
-          id
-        );
+        newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
 
         newModel.onDidChangeDecorations(function (ev) {
           let errors = false;
@@ -465,10 +417,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _processHandlerOptions(content) {
       const handlerOptions = this.getHandlerOptions() || {};
       if (
-        Object.prototype.hasOwnProperty.call(
-          handlerOptions,
-          'upgradeVersion'
-        ) &&
+        Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') &&
         handlerOptions.upgradeVersion === true &&
         content
       ) {
@@ -482,10 +431,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _convertToString(xml) {
-      return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
-        xml.documentElement.outerHTML
-      );
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + xml.documentElement.outerHTML;
     },
 
     _upgradeConfig(content) {
@@ -495,10 +441,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           return upgrader.upgrade(content);
         }
         cv.ui.manager.snackbar.Controller.error(
-          this.tr(
-            '"%1" is not writable. Upgrading not possible.',
-            this.getFile().getFullPath()
-          )
+          this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath())
         );
       }
       return [null, '', []];
@@ -510,10 +453,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     _onContentChanged() {
       if (this._workerWrapper) {
-        this._workerWrapper.contentChanged(
-          this.getFile(),
-          this._editor.getValue()
-        );
+        this._workerWrapper.contentChanged(this.getFile(), this._editor.getValue());
       }
     },
 
@@ -522,10 +462,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       const fileType = parts.length > 1 ? parts.pop() : 'txt';
       const typeExt = '.' + fileType;
       return monaco.languages.getLanguages().some(function (lang) {
-        return (
-          lang.id === fileType ||
-          (lang.extensions && lang.extensions.indexOf(typeExt) >= 0)
-        );
+        return lang.id === fileType || (lang.extensions && lang.extensions.indexOf(typeExt) >= 0);
       });
     },
 
@@ -558,11 +495,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         });
       }
       if (this.getFile().getFullPath() === path) {
-        window.monaco.editor.setModelMarkers(
-          model,
-          model.getLanguageId(),
-          markers
-        );
+        window.monaco.editor.setModelMarkers(model, model.getLanguageId(), markers);
 
         const options = this.getHandlerOptions();
         if (options && options.jumpToError) {
@@ -578,10 +511,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     showDecorations(path, decorators) {
       if (this.getFile().getFullPath() === path) {
-        this._editor.deltaDecorations(
-          this._currentDecorations[path],
-          decorators
-        );
+        this._editor.deltaDecorations(this._currentDecorations[path], decorators);
       }
       this._currentDecorations[path] = decorators;
     },
@@ -606,10 +536,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           // check if monaco knows this ending, otherwise fallback to plaintext
           const typeExt = '.' + type;
           const found = monaco.languages.getLanguages().some(function (lang) {
-            return (
-              lang.id === type ||
-              (lang.extensions && lang.extensions.indexOf(typeExt) >= 0)
-            );
+            return lang.id === type || (lang.extensions && lang.extensions.indexOf(typeExt) >= 0);
           });
           if (!found) {
             type = 'txt';

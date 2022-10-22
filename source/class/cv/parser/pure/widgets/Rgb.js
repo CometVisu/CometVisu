@@ -39,20 +39,10 @@ qx.Class.define('cv.parser.pure.widgets.Rgb', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse(xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType
-      );
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
 
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(
-        xml,
-        path,
-        this.makeAddressListFn
-      );
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       return data;
     },

@@ -118,8 +118,7 @@ qx.Class.define('cv.plugins.UpnpController', {
     _getInnerDomString() {
       const id = 'upnpcontroller_' + this.self(arguments).uniqid();
       this.upnpcontroller_uid = id;
-      const ret_val =
-        '<div class="actor"><div class="upnpcontroller" id="' + id + '">';
+      const ret_val = '<div class="actor"><div class="upnpcontroller" id="' + id + '">';
       let controller = '<div>';
       controller +=
         "<div id='" +
@@ -138,9 +137,7 @@ qx.Class.define('cv.plugins.UpnpController', {
         id +
         "_time' class='upnplabelgroup'><div class='upnplabel'></div><div class='value'>-</div></div>";
       controller +=
-        "<div style='float: left;'><progress id='" +
-        id +
-        "_progress'  max='100' value='0'></progress></div>";
+        "<div style='float: left;'><progress id='" + id + "_progress'  max='100' value='0'></progress></div>";
       controller +=
         "<div style='float: left;'><div id='" +
         id +
@@ -170,9 +167,7 @@ qx.Class.define('cv.plugins.UpnpController', {
         id +
         "_getplaylists' class='actor switchUnpressed center'><div class='value'>play lists</div></div></div>";
       controller +=
-        "<div style='float: left;'><div id='" +
-        id +
-        "_playlistsresult'><div class='value'></div></div></div>";
+        "<div style='float: left;'><div id='" + id + "_playlistsresult'><div class='value'></div></div></div>";
 
       controller += '</div>';
       return ret_val + controller;
@@ -202,19 +197,9 @@ qx.Class.define('cv.plugins.UpnpController', {
         this
       );
 
-      Reg.addListener(
-        document.querySelector('#' + this.upnpcontroller_uid + '_next'),
-        'tap',
-        this.callNext,
-        this
-      );
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + '_next'), 'tap', this.callNext, this);
 
-      Reg.addListener(
-        document.querySelector('#' + this.upnpcontroller_uid + '_prev'),
-        'tap',
-        this.callPrev,
-        this
-      );
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + '_prev'), 'tap', this.callPrev, this);
 
       Reg.addListener(
         document.querySelector('#' + this.upnpcontroller_uid + '_volumedown'),
@@ -283,61 +268,34 @@ qx.Class.define('cv.plugins.UpnpController', {
       });
     },
 
-    __updateController(
-      volume,
-      mute,
-      playMode,
-      title,
-      reltime,
-      duration,
-      artist,
-      album
-    ) {
+    __updateController(volume, mute, playMode, title, reltime, duration, artist, album) {
       const id = this.upnpcontroller_uid;
 
       if (mute === 0) {
-        document
-          .querySelector('#' + id + '_muteButton')
-          .classList.replace('switchPressed', 'switchUnpressed');
+        document.querySelector('#' + id + '_muteButton').classList.replace('switchPressed', 'switchUnpressed');
       } else {
-        document
-          .querySelector('#' + id + '_muteButton')
-          .classList.replace('switchUnpressed', 'switchPressed');
+        document.querySelector('#' + id + '_muteButton').classList.replace('switchUnpressed', 'switchPressed');
       }
 
       if (playMode === 'Play') {
-        document
-          .querySelector('#' + id + '_playButton')
-          .classList.replace('switchPressed', 'switchUnpressed');
+        document.querySelector('#' + id + '_playButton').classList.replace('switchPressed', 'switchUnpressed');
       } else {
-        document
-          .querySelector('#' + id + '_playButton')
-          .classList.replace('switchUnpressed', 'switchPressed');
+        document.querySelector('#' + id + '_playButton').classList.replace('switchUnpressed', 'switchPressed');
       }
 
-      document.querySelector('#' + id + '_muteButton div.value').innerText =
-        mute;
-      document.querySelector('#' + id + '_playButton div.value').innerText =
-        playMode;
+      document.querySelector('#' + id + '_muteButton div.value').innerText = mute;
+      document.querySelector('#' + id + '_playButton div.value').innerText = playMode;
       document.querySelector('#' + id + '_volume div.value').innerText = volume;
       document.querySelector('#' + id + '_title div.value').innerText = title;
       document.querySelector('#' + id + '_artist div.value').innerText = artist;
       document.querySelector('#' + id + '_album div.value').innerText = album;
-      document.querySelector('#' + id + '_time div.value').innerText =
-        reltime + ' of ' + duration;
+      document.querySelector('#' + id + '_time div.value').innerText = reltime + ' of ' + duration;
 
-      this.upnpcontroller_song_process_rel = this.calculateSongProcessed(
-        reltime,
-        duration
-      );
+      this.upnpcontroller_song_process_rel = this.calculateSongProcessed(reltime, duration);
 
-      this.traceLog(
-        'song_process_rel: ' + this.upnpcontroller_song_process_rel
-      );
+      this.traceLog('song_process_rel: ' + this.upnpcontroller_song_process_rel);
 
-      document
-        .querySelector('#' + id + '_progress')
-        .setAttribute('value', this.upnpcontroller_song_process_rel);
+      document.querySelector('#' + id + '_progress').setAttribute('value', this.upnpcontroller_song_process_rel);
     },
 
     /**
@@ -348,9 +306,7 @@ qx.Class.define('cv.plugins.UpnpController', {
      */
     __callRemote(type, data, callback) {
       const req = new qx.io.request.Xhr(
-        qx.util.ResourceManager.getInstance().toUri(
-          'plugins/upnpcontroller/' + type + '.php'
-        )
+        qx.util.ResourceManager.getInstance().toUri('plugins/upnpcontroller/' + type + '.php')
       );
 
       if (!data) {
@@ -379,14 +335,10 @@ qx.Class.define('cv.plugins.UpnpController', {
 
       const durationParts = duration.split(':');
       const secondsTotal =
-        Number(durationParts[2]) +
-        Number(durationParts[1]) * 60 +
-        Number(durationParts[0]) * 60 * 60;
+        Number(durationParts[2]) + Number(durationParts[1]) * 60 + Number(durationParts[0]) * 60 * 60;
       const reltimeParts = reltime.split(':');
       const secondsProcessed =
-        Number(reltimeParts[2]) +
-        Number(reltimeParts[1]) * 60 +
-        Number(reltimeParts[0]) * 60 * 60;
+        Number(reltimeParts[2]) + Number(reltimeParts[1]) * 60 + Number(reltimeParts[0]) * 60 * 60;
       this.traceLog('secondsTotal    : ' + secondsTotal);
       this.traceLog('secondsProcessed: ' + secondsProcessed);
 
@@ -395,9 +347,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callgetplaylists() {
       this.traceLog('click callgetplaylists');
-      const playlist = document.querySelector(
-        '#' + this.upnpcontroller_uid + '_getplaylists'
-      );
+      const playlist = document.querySelector('#' + this.upnpcontroller_uid + '_getplaylists');
 
       const currentValue = playlist.getAttribute('value');
       const playerIp = this.getPlayerIp();
@@ -440,15 +390,11 @@ qx.Class.define('cv.plugins.UpnpController', {
         }
 
         if (currentValue !== 'pressed') {
-          document.querySelector(
-            '#' + this.upnpcontroller_uid + '_playlistsresult div.value'
-          ).innerHTML = playlists;
+          document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerHTML = playlists;
           playlists.setAttribute('value', 'pressed');
           playlists.classList.replace('switchUnpressed', 'switchPressed');
         } else {
-          document.querySelector(
-            '#' + this.upnpcontroller_uid + '_playlistsresult div.value'
-          ).innerText = '';
+          document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerText = '';
           playlists.setAttribute('value', 'unpressed');
           playlists.classList.replace('switchUnpressed', 'switchPressed');
         }
@@ -457,9 +403,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callvolumedown() {
       this.traceLog('click callvolumedown');
-      const currentVolume = document.querySelector(
-        '#' + this.upnpcontroller_uid + '_volume div.value'
-      ).innerText;
+      const currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
 
       this.traceLog('currentVolume: ' + currentVolume);
       const volume = Number(currentVolume) - 5;
@@ -470,9 +414,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callvolumeup() {
       this.traceLog('click callvolumeup');
-      const currentVolume = document.querySelector(
-        '#' + this.upnpcontroller_uid + '_volume div.value'
-      ).innerText;
+      const currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
       this.traceLog('currentVolume: ' + currentVolume);
       const volume = Number(currentVolume) + 5;
 
@@ -497,9 +439,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     toggleMute() {
       this.traceLog('click mute');
-      const muteButton = document.querySelector(
-        '#' + this.upnpcontroller_uid + '_muteButton'
-      );
+      const muteButton = document.querySelector('#' + this.upnpcontroller_uid + '_muteButton');
 
       let muteValue = muteButton.querySelector('div.value').innerText;
 
@@ -522,16 +462,12 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     togglePlay() {
       this.traceLog('click play');
-      const playValue = document.querySelector(
-        '#' + this.upnpcontroller_uid + '_playButton div.value'
-      ).innerText;
+      const playValue = document.querySelector('#' + this.upnpcontroller_uid + '_playButton div.value').innerText;
       let cmd;
 
       this.traceLog('current playValue: ' + playValue);
 
-      const playButton = document.querySelector(
-        '#' + this.upnpcontroller_uid + '_playButton'
-      );
+      const playButton = document.querySelector('#' + this.upnpcontroller_uid + '_playButton');
 
       if (playValue === 'Play') {
         cmd = 'pause';
@@ -558,10 +494,7 @@ qx.Class.define('cv.plugins.UpnpController', {
   defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/upnpcontroller/upnpcontroller.css');
-    cv.parser.pure.WidgetParser.addHandler(
-      'upnpcontroller',
-      cv.plugins.UpnpController
-    );
+    cv.parser.pure.WidgetParser.addHandler('upnpcontroller', cv.plugins.UpnpController);
 
     cv.ui.structure.WidgetFactory.registerClass('upnpcontroller', statics);
   }

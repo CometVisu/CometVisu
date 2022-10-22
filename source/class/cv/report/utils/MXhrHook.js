@@ -80,9 +80,7 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
         cv.report.utils.MXhrHook.PENDING[hash].push(url);
       } else if (ev.getData() === 'load') {
         if (!this.__sendTime) {
-          this.error(
-            'response received without sendTime set. Not possible to calculate correct delay'
-          );
+          this.error('response received without sendTime set. Not possible to calculate correct delay');
         }
         // response has been received (successful or not) -> log it
         const headers = {};

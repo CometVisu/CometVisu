@@ -88,18 +88,11 @@ qx.Class.define('cv.ui.structure.pure.AbstractBasicWidget', {
     },
 
     getParentWidget() {
-      if (
-        cv.Config.lazyLoading === true &&
-        this.__parentWidget === null &&
-        this.getPath() !== 'id_'
-      ) {
+      if (cv.Config.lazyLoading === true && this.__parentWidget === null && this.getPath() !== 'id_') {
         // creating parent widget on demand
         const parentData = cv.util.Tree.getParentData(this.getPath());
         // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
-        const parent = cv.ui.structure.WidgetFactory.createInstance(
-          parentData.$$type,
-          parentData
-        );
+        const parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
 
         this.setParentWidget(parent);
       }

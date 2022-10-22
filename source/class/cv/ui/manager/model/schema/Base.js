@@ -174,9 +174,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       for (let i = 0; i < this._subGroupings.length; ++i) {
         if (this._subGroupings[i].isElementAllowed(elementName) === true) {
           // this element is allowed
-          return this._subGroupings[i].getSchemaElementForElementName(
-            elementName
-          );
+          return this._subGroupings[i].getSchemaElementForElementName(elementName);
         }
       }
 

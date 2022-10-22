@@ -43,15 +43,9 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     _childPopup: null,
 
     _initPopupChild() {
-      const popup = (this._childPopup =
-        this._element.querySelector(':scope > cv-popup'));
+      const popup = (this._childPopup = this._element.querySelector(':scope > cv-popup'));
       if (popup) {
-        qx.event.Registration.addListener(
-          this._element,
-          'tap',
-          this._openPopupChild,
-          this
-        );
+        qx.event.Registration.addListener(this._element, 'tap', this._openPopupChild, this);
 
         // we need to tell the parent widget that is inside a group that wen have a popup here
         let parent = popup.parentElement;
@@ -69,9 +63,7 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     },
 
     _openPopupChild() {
-      const popup = this._element.querySelector(
-        ':scope > cv-popup:not([open])'
-      );
+      const popup = this._element.querySelector(':scope > cv-popup:not([open])');
 
       if (popup) {
         popup.getInstance().open();
@@ -86,12 +78,7 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     },
 
     registerModalPopup() {
-      qx.event.Registration.addListener(
-        document,
-        'pointerdown',
-        this._onPointerDown,
-        this
-      );
+      qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
 
       let blocker = document.body.querySelector('.modal-popup-blocker');
       if (!blocker) {
@@ -104,12 +91,7 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     },
 
     unregisterModalPopup() {
-      qx.event.Registration.removeListener(
-        document,
-        'pointerdown',
-        this._onPointerDown,
-        this
-      );
+      qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
 
       const index = cv.ui.structure.tile.MPopup.openedPopups.indexOf(this);
       cv.ui.structure.tile.MPopup.openedPopups.splice(index, 1);
@@ -134,12 +116,7 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
   ***********************************************
   */
   destruct() {
-    qx.event.Registration.removeListener(
-      this._element,
-      'tap',
-      this._openPopupChild,
-      this
-    );
+    qx.event.Registration.removeListener(this._element, 'tap', this._openPopupChild, this);
 
     this._childPopup = null;
   }

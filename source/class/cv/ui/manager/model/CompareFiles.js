@@ -81,10 +81,7 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
   */
   members: {
     isRelated(path) {
-      return (
-        this.getOriginalFile().getFullPath() === path ||
-        this.getModifiedFile().getFullPath() === path
-      );
+      return this.getOriginalFile().getFullPath() === path || this.getModifiedFile().getFullPath() === path;
     },
 
     isConfigFile() {
@@ -96,9 +93,7 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
     },
 
     _applyModifiedFile() {
-      this.setName(
-        qx.locale.Manager.tr('Diff: %1', this.getModifiedFile().getName())
-      );
+      this.setName(qx.locale.Manager.tr('Diff: %1', this.getModifiedFile().getName()));
     },
 
     getParent() {
@@ -122,16 +117,11 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
     },
 
     isTemporary() {
-      return (
-        this.getModifiedFile().isTemporary() ||
-        this.getOriginalFile().isTemporary()
-      );
+      return this.getModifiedFile().isTemporary() || this.getOriginalFile().isTemporary();
     },
 
     isMounted() {
-      return (
-        this.getModifiedFile().isMounted() || this.getOriginalFile().isMounted()
-      );
+      return this.getModifiedFile().isMounted() || this.getOriginalFile().isMounted();
     },
 
     /**
@@ -140,12 +130,7 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
      * @returns {Uri}
      */
     getUri() {
-      return (
-        'cv://' +
-        this.getOriginalFile().getFullPath() +
-        '+' +
-        this.getModifiedFile().getFullPath()
-      );
+      return 'cv://' + this.getOriginalFile().getFullPath() + '+' + this.getModifiedFile().getFullPath();
     }
   }
 });

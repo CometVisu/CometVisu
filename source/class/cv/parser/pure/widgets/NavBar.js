@@ -63,29 +63,19 @@ qx.Class.define('cv.parser.pure.widgets.NavBar', {
       const id = path.split('_');
       id.pop();
       const pos = n.getAttribute('position') || 'left';
-      cv.data.Model.getInstance().setWidgetData(
-        id.join('_') + '_' + pos + '_navbar',
-        {
-          dynamic: cv.parser.pure.widgets.NavBar._transformDynamic(
-            n.getAttribute('dynamic')
-          ),
+      cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
+        dynamic: cv.parser.pure.widgets.NavBar._transformDynamic(n.getAttribute('dynamic')),
 
-          scope: cv.parser.pure.widgets.NavBar._transformScope(
-            n.getAttribute('scope')
-          ),
+        scope: cv.parser.pure.widgets.NavBar._transformScope(n.getAttribute('scope')),
 
-          width: n.getAttribute('width')
-        }
-      );
+        width: n.getAttribute('width')
+      });
 
-      return cv.data.Model.getInstance().setWidgetData(
-        cv.parser.pure.WidgetParser.getStoragePath(n, path),
-        {
-          path: path,
-          classes: classes,
-          $$type: widgetType
-        }
-      );
+      return cv.data.Model.getInstance().setWidgetData(cv.parser.pure.WidgetParser.getStoragePath(n, path), {
+        path: path,
+        classes: classes,
+        $$type: widgetType
+      });
     },
 
     _transformDynamic(value) {

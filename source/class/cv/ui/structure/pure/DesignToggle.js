@@ -41,9 +41,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
    */
   construct(props) {
     super(props);
-    const store = new qx.data.store.Json(
-      cv.io.rest.Client.getBaseUrl() + '/data/designs'
-    );
+    const store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
 
     store.addListener('loaded', ev => {
       this.setAvailableDesigns(ev.getData());
@@ -67,11 +65,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
   members: {
     // overridden
     _getInnerDomString() {
-      return (
-        '<div class="actor switchUnpressed"><div class="value">' +
-        cv.Config.getDesign() +
-        '</div></div>'
-      );
+      return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.getDesign() + '</div></div>';
     },
     /**
      * Action performed when the widget got clicked
@@ -88,11 +82,8 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
 
       const designs = this.getAvailableDesigns();
 
-      const oldDesign =
-        this.getDomElement().querySelector('.value').textContent;
-      const newDesign = designs.getItem(
-        (designs.indexOf(oldDesign) + 1) % designs.length
-      );
+      const oldDesign = this.getDomElement().querySelector('.value').textContent;
+      const newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
 
       const URL = cv.util.Location.getHref();
       const regexp = new RegExp('design=' + oldDesign);

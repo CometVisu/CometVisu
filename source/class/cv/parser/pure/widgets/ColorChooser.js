@@ -49,11 +49,7 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
       );
 
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(
-        xml,
-        path,
-        this.makeAddressListFn
-      );
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       data.baseColors = {
         // default to sRGB color space with D65 white point
@@ -218,10 +214,7 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
     },
 
     makeAddressListFn(src, transform, mode, variant) {
-      return [
-        true,
-        new Set(['r', 'g', 'b']).has(variant) ? 'RGB-' + variant : variant
-      ];
+      return [true, new Set(['r', 'g', 'b']).has(variant) ? 'RGB-' + variant : variant];
     },
 
     getAttributeToPropertyMappings() {

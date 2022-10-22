@@ -26,10 +26,7 @@ qx.Class.define('cv.svg.Element', {
   */
   construct(tagName) {
     super();
-    this.__svgElement = document.createElementNS(
-      'http://www.w3.org/2000/svg',
-      tagName
-    );
+    this.__svgElement = document.createElementNS('http://www.w3.org/2000/svg', tagName);
   },
 
   /*

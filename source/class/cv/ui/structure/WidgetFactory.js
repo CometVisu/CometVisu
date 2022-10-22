@@ -39,26 +39,19 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
 
     createInstance(type, data) {
       if (!this.registry[data.path]) {
-        if (
-          !cv.ui.structure[cv.Config.loadedStructure][
-            type.charAt(0).toUpperCase() + type.substr(1)
-          ]
-        ) {
+        if (!cv.ui.structure[cv.Config.loadedStructure][type.charAt(0).toUpperCase() + type.substr(1)]) {
           const Clazz = this.__typeMapping[type];
           if (Clazz) {
             this.registry[data.path] = new Clazz(data);
           } else {
-            qx.log.Logger.error(
-              this,
-              "No handler found for type '" + type + "'"
-            );
+            qx.log.Logger.error(this, "No handler found for type '" + type + "'");
 
             return null;
           }
         } else {
-          this.registry[data.path] = new cv.ui.structure[
-            cv.Config.loadedStructure
-          ][type.charAt(0).toUpperCase() + type.substr(1)](data);
+          this.registry[data.path] = new cv.ui.structure[cv.Config.loadedStructure][
+            type.charAt(0).toUpperCase() + type.substr(1)
+          ](data);
         }
         this.c++;
       }
@@ -78,12 +71,7 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
 
     getInstanceByElement(element) {
       const instance = this.getInstanceById(element.getAttribute('id'));
-      if (
-        instance &&
-        cv.Config.lazyLoading === true &&
-        instance._onDomReady &&
-        !instance.$$domReady
-      ) {
+      if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();
         // make sure that this is not triggered twice

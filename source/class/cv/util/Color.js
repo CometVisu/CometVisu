@@ -88,12 +88,7 @@ qx.Class.define('cv.util.Color', {
       function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
         // eslint-disable-line
         return (
-          A00 * A11 * A22 +
-          A01 * A12 * A20 +
-          A02 * A10 * A21 -
-          A20 * A11 * A02 -
-          A21 * A12 * A00 -
-          A22 * A10 * A01
+          A00 * A11 * A22 + A01 * A12 * A20 + A02 * A10 * A21 - A20 * A11 * A02 - A21 * A12 * A00 - A22 * A10 * A01
         );
       }
       const detInv = 1 / det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
@@ -144,14 +139,10 @@ qx.Class.define('cv.util.Color', {
         0.065 * Math.exp(-0.5 * x_t3 * x_t3);
       const y_t1 = (wave - 568.8) * (wave < 568.8 ? 0.0213 : 0.0247);
       const y_t2 = (wave - 530.9) * (wave < 530.9 ? 0.0613 : 0.0322);
-      const Y =
-        0.821 * Math.exp(-0.5 * y_t1 * y_t1) +
-        0.286 * Math.exp(-0.5 * y_t2 * y_t2);
+      const Y = 0.821 * Math.exp(-0.5 * y_t1 * y_t1) + 0.286 * Math.exp(-0.5 * y_t2 * y_t2);
       const z_t1 = (wave - 437.0) * (wave < 437.0 ? 0.0845 : 0.0278);
       const z_t2 = (wave - 459.0) * (wave < 459.0 ? 0.0385 : 0.0725);
-      const Z =
-        1.217 * Math.exp(-0.5 * z_t1 * z_t1) +
-        0.681 * Math.exp(-0.5 * z_t2 * z_t2);
+      const Z = 1.217 * Math.exp(-0.5 * z_t1 * z_t1) + 0.681 * Math.exp(-0.5 * z_t2 * z_t2);
       return { x: X / (X + Y + Z), y: Y / (X + Y + Z) };
     },
 
@@ -191,8 +182,7 @@ qx.Class.define('cv.util.Color', {
       const G = -0.969266 * X + 1.8760108 * Y + 0.041556 * Z;
       const B = 0.0556434 * X - 0.2040259 * Y + 1.0572252 * Z;
       const scale = 1 / Math.max(1, R, G, B); // very simple gamut mapping
-      const gamma = u =>
-        u <= 0.0031308 ? 12.92 * u : 1.055 * u ** (1 / 2.4) - 0.055;
+      const gamma = u => (u <= 0.0031308 ? 12.92 * u : 1.055 * u ** (1 / 2.4) - 0.055);
       return {
         r: gamma(Math.max(R * scale, 0)),
         g: gamma(Math.max(G * scale, 0)),
@@ -212,9 +202,7 @@ qx.Class.define('cv.util.Color', {
         return Array.isArray(curve) && curve.length > 1 ? curve[0] * scale : 0;
       }
       if (component >= 1) {
-        return Array.isArray(curve) && curve.length > 1
-          ? curve[curve.length - 1] * scale
-          : scale;
+        return Array.isArray(curve) && curve.length > 1 ? curve[curve.length - 1] * scale : scale;
       }
       if (curve === 'log') {
         return scale * Math.max(0, Math.min(1 - Math.log10(component) / -3, 1));
@@ -288,12 +276,7 @@ qx.Class.define('cv.util.Color', {
    * @param {{x: number, y: number, Y: number}} [Bxy]
    * @param {{x: number, y: number, Y: number}} [Wxy]
    */
-  construct(
-    Rxy = undefined,
-    Gxy = undefined,
-    Bxy = undefined,
-    Wxy = undefined
-  ) {
+  construct(Rxy = undefined, Gxy = undefined, Bxy = undefined, Wxy = undefined) {
     this.__R = Rxy === undefined ? { x: 0.64, y: 0.33, Y: 0.2126 } : Rxy; // default: sRGB
     this.__G = Gxy === undefined ? { x: 0.3, y: 0.6, Y: 0.7152 } : Gxy;
     this.__B = Bxy === undefined ? { x: 0.15, y: 0.06, Y: 0.0722 } : Bxy;
@@ -513,42 +496,12 @@ qx.Class.define('cv.util.Color', {
        */
       function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
         return [
-          (B1 * C2 * D3 -
-            B1 * C3 * D2 -
-            B2 * C1 * D3 +
-            B2 * C3 * D1 +
-            B3 * C1 * D2 -
-            B3 * C2 * D1) /
-            (-A1 * C2 * D3 +
-              A1 * C3 * D2 +
-              A2 * C1 * D3 -
-              A2 * C3 * D1 -
-              A3 * C1 * D2 +
-              A3 * C2 * D1), // eslint-disable-line
-          (A1 * C2 * D3 -
-            A1 * C3 * D2 -
-            A2 * C1 * D3 +
-            A2 * C3 * D1 +
-            A3 * C1 * D2 -
-            A3 * C2 * D1) /
-            (-A1 * B2 * D3 +
-              A1 * B3 * D2 +
-              A2 * B1 * D3 -
-              A2 * B3 * D1 -
-              A3 * B1 * D2 +
-              A3 * B2 * D1), // eslint-disable-line
-          (-A1 * B2 * D3 +
-            A1 * B3 * D2 +
-            A2 * B1 * D3 -
-            A2 * B3 * D1 -
-            A3 * B1 * D2 +
-            A3 * B2 * D1) /
-            (-A1 * B2 * C3 +
-              A1 * B3 * C2 +
-              A2 * B1 * C3 -
-              A2 * B3 * C1 -
-              A3 * B1 * C2 +
-              A3 * B2 * C1) // eslint-disable-line
+          (B1 * C2 * D3 - B1 * C3 * D2 - B2 * C1 * D3 + B2 * C3 * D1 + B3 * C1 * D2 - B3 * C2 * D1) /
+            (-A1 * C2 * D3 + A1 * C3 * D2 + A2 * C1 * D3 - A2 * C3 * D1 - A3 * C1 * D2 + A3 * C2 * D1), // eslint-disable-line
+          (A1 * C2 * D3 - A1 * C3 * D2 - A2 * C1 * D3 + A2 * C3 * D1 + A3 * C1 * D2 - A3 * C2 * D1) /
+            (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1), // eslint-disable-line
+          (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1) /
+            (-A1 * B2 * C3 + A1 * B3 * C2 + A2 * B1 * C3 - A2 * B3 * C1 - A3 * B1 * C2 + A3 * B2 * C1) // eslint-disable-line
         ];
       }
 
@@ -571,28 +524,21 @@ qx.Class.define('cv.util.Color', {
           Z: ((1 - this.__x - this.__y) * this.__Y) / this.__y
         };
 
-        if (
-          (this.__x - this.__W.x) ** 2 + (this.__y - this.__W.y) ** 2 <
-          1e-6
-        ) {
+        if ((this.__x - this.__W.x) ** 2 + (this.__y - this.__W.y) ** 2 < 1e-6) {
           // color is white
           this.__hsv = { h: this.__HSV_h_last, s: 0, v: this.__Y };
           return;
         }
         for (let i = 0; i < 3; i++) {
-          const inter1 = cv.util.Color.intersect(
-            hues[i],
-            colorAdd(hues[i], hues[i + 1]),
-            this.__W,
-            { x: this.__x, y: this.__y }
-          );
+          const inter1 = cv.util.Color.intersect(hues[i], colorAdd(hues[i], hues[i + 1]), this.__W, {
+            x: this.__x,
+            y: this.__y
+          });
 
-          const inter2 = cv.util.Color.intersect(
-            colorAdd(hues[i], hues[i + 1]),
-            hues[i + 1],
-            this.__W,
-            { x: this.__x, y: this.__y }
-          );
+          const inter2 = cv.util.Color.intersect(colorAdd(hues[i], hues[i + 1]), hues[i + 1], this.__W, {
+            x: this.__x,
+            y: this.__y
+          });
 
           // hues[i] -> (hues[i]+hues[i+1])
           const fac = solve(
@@ -610,11 +556,7 @@ qx.Class.define('cv.util.Color', {
             thisXYZ.Z
           );
 
-          if (
-            inter1.factors[0] >= 0 &&
-            inter1.factors[1] >= 0 &&
-            inter1.factors[1] <= 1
-          ) {
+          if (inter1.factors[0] >= 0 && inter1.factors[1] >= 0 && inter1.factors[1] <= 1) {
             this.__hsv = { h: (2 * i) / 6 + fac[0] / 6, s: fac[1], v: fac[2] };
             this.__HSV_h_last = this.__hsv.h;
             break;
@@ -636,11 +578,7 @@ qx.Class.define('cv.util.Color', {
             thisXYZ.Z
           );
 
-          if (
-            inter2.factors[0] >= 0 &&
-            inter2.factors[1] >= 0 &&
-            inter2.factors[1] <= 1
-          ) {
+          if (inter2.factors[0] >= 0 && inter2.factors[1] >= 0 && inter2.factors[1] <= 1) {
             this.__hsv = {
               h: (2 * i + 1) / 6 + fac2[0] / 6,
               s: fac2[1],
@@ -720,23 +658,14 @@ qx.Class.define('cv.util.Color', {
           Z
         );
 
-        this.__rgbw.w = Math.min(
-          this.__rgbw.r / w2rgb[0],
-          this.__rgbw.g / w2rgb[1],
-          this.__rgbw.b / w2rgb[2]
-        );
+        this.__rgbw.w = Math.min(this.__rgbw.r / w2rgb[0], this.__rgbw.g / w2rgb[1], this.__rgbw.b / w2rgb[2]);
 
         this.__rgbw.r -= this.__rgbw.w * w2rgb[0];
         this.__rgbw.g -= this.__rgbw.w * w2rgb[1];
         this.__rgbw.b -= this.__rgbw.w * w2rgb[2];
 
         // scale and clamp:
-        let max = Math.max(
-          this.__rgbw.r,
-          this.__rgbw.g,
-          this.__rgbw.b,
-          this.__rgbw.w
-        );
+        let max = Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w);
 
         if (max < 1) {
           max = 1;
@@ -856,16 +785,13 @@ qx.Class.define('cv.util.Color', {
 
       // second step: blend with white to take saturation into account and scale with brightness
       const X =
-        ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s +
-          (1 - this.__hsv.s) * this.__W.X) *
+        ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1 - this.__hsv.s) * this.__W.X) *
         this.__hsv.v;
       const Y =
-        ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s +
-          (1 - this.__hsv.s) * this.__W.Y) *
+        ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1 - this.__hsv.s) * this.__W.Y) *
         this.__hsv.v;
       const Z =
-        ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s +
-          (1 - this.__hsv.s) * this.__W.Z) *
+        ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1 - this.__hsv.s) * this.__W.Z) *
         this.__hsv.v;
       this.__setXYZ(X, Y, Z);
       this.__invalidateBut('__hsv');
@@ -874,30 +800,16 @@ qx.Class.define('cv.util.Color', {
     __syncRGB2xy() {
       this.__Y = Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b);
       if (this.__Y > 0) {
-        const X =
-          this.__R.X * this.__rgb.r +
-          this.__G.X * this.__rgb.g +
-          this.__B.X * this.__rgb.b;
-        const Y =
-          this.__R.Y * this.__rgb.r +
-          this.__G.Y * this.__rgb.g +
-          this.__B.Y * this.__rgb.b;
-        const Z =
-          this.__R.Z * this.__rgb.r +
-          this.__G.Z * this.__rgb.g +
-          this.__B.Z * this.__rgb.b;
+        const X = this.__R.X * this.__rgb.r + this.__G.X * this.__rgb.g + this.__B.X * this.__rgb.b;
+        const Y = this.__R.Y * this.__rgb.r + this.__G.Y * this.__rgb.g + this.__B.Y * this.__rgb.b;
+        const Z = this.__R.Z * this.__rgb.r + this.__G.Z * this.__rgb.g + this.__B.Z * this.__rgb.b;
         this.__setXYZ(X, Y, Z);
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__invalidateBut('__rgb');
     },
 
     __syncRGBW2xy() {
-      this.__Y = Math.max(
-        this.__rgbw.r,
-        this.__rgbw.g,
-        this.__rgbw.b,
-        this.__rgbw.w
-      );
+      this.__Y = Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w);
 
       if (this.__Y > 0) {
         const X =
@@ -1138,12 +1050,7 @@ qx.Class.define('cv.util.Color', {
      * @returns {(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})}
      */
     getComponent(component, gamutMap = true, force = false) {
-      const clamp = (min, x, max) =>
-        Number.isFinite(x)
-          ? gamutMap
-            ? Math.max(min, Math.min(x, max))
-            : x
-          : 0;
+      const clamp = (min, x, max) => (Number.isFinite(x) ? (gamutMap ? Math.max(min, Math.min(x, max)) : x) : 0);
 
       switch (component) {
         case 'xy':
@@ -1175,17 +1082,13 @@ qx.Class.define('cv.util.Color', {
         case 'RGB-g':
         case 'RGB-b': {
           this.__validateRGB(force);
-          const map = gamutMap
-            ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1)
-            : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
           return map * this.__rgb[component.split('-')[1]];
         }
 
         case 'rgb': {
           this.__validateRGB(force);
-          const map = gamutMap
-            ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1)
-            : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
           return {
             r: map * this.__rgb.r,
             g: map * this.__rgb.g,
@@ -1198,31 +1101,13 @@ qx.Class.define('cv.util.Color', {
         case 'RGBW-b':
         case 'RGBW-w': {
           this.__validateRGBW(force);
-          const map = gamutMap
-            ? 1 /
-              Math.max(
-                this.__rgbw.r,
-                this.__rgbw.g,
-                this.__rgbw.b,
-                this.__rgbw.w,
-                1
-              )
-            : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
           return map * this.__rgbw[component.split('-')[1]];
         }
 
         case 'rgbw': {
           this.__validateRGBW(force);
-          const map = gamutMap
-            ? 1 /
-              Math.max(
-                this.__rgbw.r,
-                this.__rgbw.g,
-                this.__rgbw.b,
-                this.__rgbw.w,
-                1
-              )
-            : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
           return {
             r: map * this.__rgbw.r,
             g: map * this.__rgbw.g,

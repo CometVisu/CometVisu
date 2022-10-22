@@ -66,9 +66,7 @@ qx.Class.define('cv.io.Watchdog', {
       }
       this.getClient()
         .getCurrentTransport()
-        .restart(
-          now - this.hardLast > this.getClient().getBackend().maxDataAge
-        );
+        .restart(now - this.hardLast > this.getClient().getBackend().maxDataAge);
 
       this.last = now;
     },
@@ -77,10 +75,7 @@ qx.Class.define('cv.io.Watchdog', {
       if (this.__id) {
         this.stop();
       }
-      this.__id = setInterval(
-        this.aliveCheckFunction.bind(this),
-        watchdogTimer * 1000
-      );
+      this.__id = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
     },
 
     stop() {

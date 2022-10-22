@@ -150,9 +150,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
           break;
 
         case 'close':
-          control = new qx.ui.basic.Image(
-            cv.theme.dark.Images.getIcon('close', 15)
-          );
+          control = new qx.ui.basic.Image(cv.theme.dark.Images.getIcon('close', 15));
 
           control.addListener('tap', this.close, this);
           this._addAt(control, 2);

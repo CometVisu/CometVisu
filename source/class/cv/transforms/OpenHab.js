@@ -31,11 +31,7 @@ qx.Class.define('cv.transforms.OpenHab', {
   */
   statics: {
     isUndefined(value) {
-      return (
-        ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(
-          value
-        ) >= 0
-      );
+      return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;
     }
   },
 

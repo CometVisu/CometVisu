@@ -35,16 +35,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
     _init() {
       const element = this._element;
       const type = element.getAttribute('type');
-      const uriString = element.hasAttribute('uri')
-        ? element.getAttribute('uri')
-        : '';
+      const uriString = element.hasAttribute('uri') ? element.getAttribute('uri') : '';
       let uri;
       if (uriString) {
         try {
-          uri = new URL(
-            uriString,
-            window.location.origin + window.location.pathname
-          );
+          uri = new URL(uriString, window.location.origin + window.location.pathname);
         } catch (e) {
           this.error('Error parsing uri: ' + uriString);
         }
@@ -92,9 +87,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         } else if (!cv.io.BackendConnections.hasClient('main')) {
           // we need one main backend
           name = 'main';
-        } else if (
-          cv.io.BackendConnections.getClient('main').configuredIn === 'config'
-        ) {
+        } else if (cv.io.BackendConnections.getClient('main').configuredIn === 'config') {
           qx.log.Logger.warn(
             this,
             `there is already a backend registered with name "main" and type ${type} skipping this one`
@@ -107,29 +100,18 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           const notification = {
             topic: 'cv.config.error',
             title: qx.locale.Manager.tr('Config error'),
-            message: qx.locale.Manager.tr(
-              'There already exists a backend named: "%1"',
-              name
-            ),
+            message: qx.locale.Manager.tr('There already exists a backend named: "%1"', name),
 
             severity: 'urgent',
             unique: true,
             deletable: true
           };
 
-          cv.core.notifications.Router.dispatchMessage(
-            notification.topic,
-            notification
-          );
+          cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
 
           return;
         }
-        const client = cv.io.BackendConnections.addBackendClient(
-          name,
-          type,
-          backendUrl,
-          'config'
-        );
+        const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
 
         this._client = client;
         this._name = name;
@@ -137,10 +119,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         client.update = data => model.updateFrom(name, data); // override clients update function
         client.login(true, credentials, () => {
           this.debug(name, 'connected');
-          if (
-            element.hasAttribute('default') &&
-            element.getAttribute('default') === 'true'
-          ) {
+          if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
             model.setDefaultBackendName(name);
           }
           const doSubscribe = () => {
@@ -149,12 +128,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
               model.onUpdate(address, value, name);
             }
             const addressesToSubscribe = model.getAddresses(name);
-            this.debug(
-              name,
-              'subscribing to',
-              addressesToSubscribe.length,
-              'addresses'
-            );
+            this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
 
             if (addressesToSubscribe.length !== 0) {
               client.subscribe(addressesToSubscribe);
@@ -178,10 +152,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             let value = data.textContent.trim();
             if (data.hasAttribute('transform')) {
               const encoding = data.getAttribute('transform');
-              const encodedValue = cv.Transform.encodeBusAndRaw(
-                { transform: encoding },
-                value
-              );
+              const encodedValue = cv.Transform.encodeBusAndRaw({ transform: encoding }, value);
 
               value = encodedValue.bus;
             }
@@ -196,10 +167,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
     _disconnected() {
       if (this._client) {
         const model = cv.data.Model.getInstance();
-        if (
-          this._element.hasAttribute('default') &&
-          this._element.getAttribute('default') === 'true'
-        ) {
+        if (this._element.hasAttribute('default') && this._element.getAttribute('default') === 'true') {
           model.resetDefaultBackendName();
         }
         this._client.terminate();

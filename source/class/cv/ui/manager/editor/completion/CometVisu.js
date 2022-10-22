@@ -53,10 +53,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
               cv.Version.VERSION.replace('-dev', '') +
               ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.$0", {\n  extend: qx.core.Object,\n\n  \n});\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -69,10 +67,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
               cv.Version.VERSION.replace('-dev', '') +
               ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.ui.structure.pure.$0", {\n  extend: cv.ui.structure.pure.AbstractWidget,\n\n  \n});\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -85,10 +81,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
               cv.Version.VERSION.replace('-dev', '') +
               ' ($CURRENT_YEAR)\n */\nqx.Interface.define("cv.$0", {\n  \n});\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -101,10 +95,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
               cv.Version.VERSION.replace('-dev', '') +
               ' ($CURRENT_YEAR)\n */\nqx.Mixin.define("cv.$0", {\n  \n});\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -115,10 +107,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
             insertText:
               '  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    $0\n  },\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -129,10 +119,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
             insertText:
               '  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    $0\n  },\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -143,10 +131,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
             insertText:
               '  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    $0\n  },\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -157,10 +143,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
             insertText:
               '  /*\n  ***********************************************\n    EVENTS\n  ***********************************************\n  */\n  events: {\n    $0\n  },\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -171,10 +155,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
             insertText:
               '  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct: function () {\n    this.base(arguments);\n    $0\n  },\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           },
 
           {
@@ -185,10 +167,8 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
             insertText:
               '  /*\n  ***********************************************\n    DESTRUCTOR\n  ***********************************************\n  */\n  destruct: function () {\n    this.base(arguments);\n    $0\n  }\n',
             insertTextRules:
-              window.monaco.languages.CompletionItemInsertTextRule
-                .InsertAsSnippet |
-              window.monaco.languages.CompletionItemInsertTextRule
-                .KeepWhitespace
+              window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+              window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
           }
         ];
 
@@ -206,17 +186,11 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
                     label: 'CometVisu-Plugin',
                     kind: window.monaco.languages.CompletionItemKind.Class,
                     detail: 'A CometVisu class for a plugin.',
-                    insertText: res.replace(
-                      '###SINCE###',
-                      cv.Version.VERSION.replace('-dev', '') +
-                        ' ($CURRENT_YEAR)'
-                    ),
+                    insertText: res.replace('###SINCE###', cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)'),
 
                     insertTextRules:
-                      window.monaco.languages.CompletionItemInsertTextRule
-                        .InsertAsSnippet |
-                      window.monaco.languages.CompletionItemInsertTextRule
-                        .KeepWhitespace
+                      window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+                      window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
                   });
 
                   resolve(this.TEMPLATES);

@@ -38,16 +38,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   */
   construct(noToolbar) {
     super();
-    cv.ui.manager.model.Preferences.getInstance().bind(
-      'startViewMode',
-      this,
-      'viewMode'
-    );
+    cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
 
-    this._isImageRegex = new RegExp(
-      '\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$',
-      'i'
-    );
+    this._isImageRegex = new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
 
     this.initModel(new qx.data.Array());
     this._setLayout(new qx.ui.layout.VBox(8));
@@ -61,11 +54,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       special: 'add-file'
     });
 
-    this._debouncedOnFilter = qx.util.Function.debounce(
-      this._onFilter,
-      500,
-      false
-    );
+    this._debouncedOnFilter = qx.util.Function.debounce(this._onFilter, 500, false);
 
     if (!noToolbar) {
       this._createChildControl('toolbar');
@@ -182,9 +171,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     _getDelegate() {
       const labelConverter = this.getLabelConverter();
       const converter = {
-        converter: labelConverter
-          ? labelConverter
-          : this._defaultLabelConverter.bind(this)
+        converter: labelConverter ? labelConverter : this._defaultLabelConverter.bind(this)
       };
 
       return {
@@ -202,23 +189,14 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
-          controller.bindProperty(
-            'displayName',
-            'label',
-            converter,
-            item,
-            index
-          );
+          controller.bindProperty('displayName', 'label', converter, item, index);
 
           controller.bindProperty(
             'icon',
             'icon',
             {
               converter: function (source, file) {
-                if (
-                  file.getType() === 'file' &&
-                  this._isImageRegex.test(file.getName())
-                ) {
+                if (file.getType() === 'file' && this._isImageRegex.test(file.getName())) {
                   // use the image as icon
                   return file.getServerPath();
                 }
@@ -286,10 +264,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         const model = this.getModel();
         this._newItem.setParent(file);
         model.addListener('change', () => {
-          if (
-            this.getChildControl('filter').getValue() ||
-            this.getPermanentFilter()
-          ) {
+          if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
             this._onFilter();
           } else {
             this._controller.setModel(model);
@@ -355,9 +330,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     },
 
     _applyShowTextFilter(value) {
-      this.getChildControl('filter').setVisibility(
-        value ? 'visible' : 'excluded'
-      );
+      this.getChildControl('filter').setVisibility(value ? 'visible' : 'excluded');
     },
 
     _onFilter() {
@@ -365,10 +338,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         const filterString = this.getChildControl('filter').getValue();
         const filterFunction = this.getPermanentFilter();
         const filtered = this.getModel().filter(function (file) {
-          return (
-            (!filterFunction || filterFunction(file)) &&
-            (!filterString || file.getName().includes(filterString))
-          );
+          return (!filterFunction || filterFunction(file)) && (!filterString || file.getName().includes(filterString));
         });
         this._controller.setModel(filtered);
       }
@@ -422,12 +392,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
       switch (id) {
         case 'toolbar':
-          control = new cv.ui.manager.ToolBar(null, [
-            'new-file',
-            'new-folder',
-            'upload',
-            'reload'
-          ]);
+          control = new cv.ui.manager.ToolBar(null, ['new-file', 'new-folder', 'upload', 'reload']);
 
           this.bind('file', control, 'folder');
           control.addListener('reload', () => {

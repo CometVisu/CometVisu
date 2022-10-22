@@ -153,10 +153,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
           break;
 
         case 'delete':
-          control = new qx.ui.form.Button(
-            null,
-            cv.theme.dark.Images.getIcon('delete', 22)
-          );
+          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 22));
 
           control.setToolTipText(this.tr('Delete option'));
           control.addListener('execute', () => {
@@ -172,10 +169,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
           break;
 
         case 'add':
-          control = new qx.ui.form.Button(
-            null,
-            cv.theme.dark.Images.getIcon('add', 18)
-          );
+          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('add', 18));
 
           control.setToolTipText(this.tr('Add option'));
           control.addListener('execute', () => {

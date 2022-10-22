@@ -30,13 +30,7 @@ qx.Class.define('cv.parser.pure.widgets.DesignToggle', {
    */
   statics: {
     parse(xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType
-      );
+      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
     },
 
     getDefaultClasses() {

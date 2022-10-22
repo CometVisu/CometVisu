@@ -31,9 +31,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
   */
   construct() {
     super();
-    this._commandGroup = qx.core.Init.getApplication()
-      .getCommandManager()
-      .getActive();
+    this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this.__buttons = {};
 
     this._draw();
@@ -65,11 +63,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
       this.__defaultButtonConfiguration = {
         'new-file': {
           menu: 'new-menu',
-          args: [
-            this.tr('New file'),
-            cv.theme.dark.Images.getIcon('new-file', 18),
-            this._commandGroup.get('new-file')
-          ],
+          args: [this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')],
 
           enabled: true
         },
@@ -95,10 +89,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         upload: {
           menu: 'file-menu',
           clazz: com.zenesis.qx.upload.UploadMenuButton,
-          args: [
-            this.tr('Upload file'),
-            cv.theme.dark.Images.getIcon('upload', 18)
-          ],
+          args: [this.tr('Upload file'), cv.theme.dark.Images.getIcon('upload', 18)],
 
           enabled: true,
           separator: 'before'
@@ -106,11 +97,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
         save: {
           menu: 'file-menu',
-          args: [
-            this.tr('Save'),
-            cv.theme.dark.Images.getIcon('save', 18),
-            this._commandGroup.get('save')
-          ],
+          args: [this.tr('Save'), cv.theme.dark.Images.getIcon('save', 18), this._commandGroup.get('save')],
 
           enabled: false,
           separator: 'before'
@@ -118,21 +105,13 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
         'save-as': {
           menu: 'file-menu',
-          args: [
-            this.tr('Save as...'),
-            null,
-            this._commandGroup.get('save-as')
-          ],
+          args: [this.tr('Save as...'), null, this._commandGroup.get('save-as')],
 
           enabled: false
         },
 
         delete: {
-          args: [
-            this.tr('Delete'),
-            cv.theme.dark.Images.getIcon('delete', 18),
-            this._commandGroup.get('delete')
-          ],
+          args: [this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18), this._commandGroup.get('delete')],
 
           enabled: false,
           hidden: true
@@ -140,11 +119,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
         quit: {
           menu: 'file-menu',
-          args: [
-            this.tr('Quit'),
-            cv.theme.dark.Images.getIcon('quit', 18),
-            this._commandGroup.get('quit')
-          ],
+          args: [this.tr('Quit'), cv.theme.dark.Images.getIcon('quit', 18), this._commandGroup.get('quit')],
 
           enabled: true,
           separator: 'before'
@@ -153,33 +128,21 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         // edit menu basics
         undo: {
           menu: 'edit-menu',
-          args: [
-            this.tr('Undo'),
-            cv.theme.dark.Images.getIcon('undo', 18),
-            this._commandGroup.get('undo')
-          ],
+          args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this._commandGroup.get('undo')],
 
           enabled: true
         },
 
         redo: {
           menu: 'edit-menu',
-          args: [
-            this.tr('Redo'),
-            cv.theme.dark.Images.getIcon('redo', 18),
-            this._commandGroup.get('redo')
-          ],
+          args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this._commandGroup.get('redo')],
 
           enabled: true
         },
 
         cut: {
           menu: 'edit-menu',
-          args: [
-            this.tr('Cut'),
-            cv.theme.dark.Images.getIcon('cut', 18),
-            this._commandGroup.get('cut')
-          ],
+          args: [this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18), this._commandGroup.get('cut')],
 
           enabled: false,
           separator: 'before'
@@ -187,22 +150,14 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
         copy: {
           menu: 'edit-menu',
-          args: [
-            this.tr('Copy'),
-            cv.theme.dark.Images.getIcon('copy', 18),
-            this._commandGroup.get('copy')
-          ],
+          args: [this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18), this._commandGroup.get('copy')],
 
           enabled: false
         },
 
         paste: {
           menu: 'edit-menu',
-          args: [
-            this.tr('Paste'),
-            cv.theme.dark.Images.getIcon('paste', 18),
-            this._commandGroup.get('paste')
-          ],
+          args: [this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18), this._commandGroup.get('paste')],
 
           enabled: false
         },
@@ -251,11 +206,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
         help: {
           menu: 'help-menu',
-          args: [
-            this.tr('Help'),
-            cv.theme.dark.Images.getIcon('help', 18),
-            this._commandGroup.get('help')
-          ],
+          args: [this.tr('Help'), cv.theme.dark.Images.getIcon('help', 18), this._commandGroup.get('help')],
 
           enabled: false
         },
@@ -278,9 +229,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
       });
 
       editorGroup.getModelSelection().addListener('change', () => {
-        prefs.setDefaultConfigEditor(
-          editorGroup.getModelSelection().getItem(0)
-        );
+        prefs.setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
       });
 
       this.__bindToPreference('quick-preview', 'quickPreview');
@@ -341,9 +290,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           }
           this.__buttons[id] = button;
 
-          if (
-            Object.prototype.hasOwnProperty.call(buttonConf, 'onAfterCreate')
-          ) {
+          if (Object.prototype.hasOwnProperty.call(buttonConf, 'onAfterCreate')) {
             buttonConf.onAfterCreate(button);
           }
         } else {
@@ -375,61 +322,36 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           break;
 
         case 'file':
-          control = new qx.ui.menubar.Button(
-            this.tr('File'),
-            null,
-            this.getChildControl('file-menu')
-          );
+          control = new qx.ui.menubar.Button(this.tr('File'), null, this.getChildControl('file-menu'));
 
           this.add(control);
           break;
 
         case 'edit':
-          control = new qx.ui.menubar.Button(
-            this.tr('Edit'),
-            null,
-            this.getChildControl('edit-menu')
-          );
+          control = new qx.ui.menubar.Button(this.tr('Edit'), null, this.getChildControl('edit-menu'));
 
           this.add(control);
           break;
 
         case 'help':
-          control = new qx.ui.menubar.Button(
-            this.tr('Help'),
-            null,
-            this.getChildControl('help-menu')
-          );
+          control = new qx.ui.menubar.Button(this.tr('Help'), null, this.getChildControl('help-menu'));
 
           this.add(control);
           break;
 
         case 'about':
-          control = new qx.ui.menubar.Button(
-            this.tr('About'),
-            null,
-            this.getChildControl('help-menu')
-          );
+          control = new qx.ui.menubar.Button(this.tr('About'), null, this.getChildControl('help-menu'));
 
           this.add(control);
           break;
 
         case 'new':
-          control = new qx.ui.menu.Button(
-            this.tr('New'),
-            null,
-            null,
-            this.getChildControl('new-menu')
-          );
+          control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
 
           break;
 
         case 'preferences':
-          control = new qx.ui.menubar.Button(
-            this.tr('Preferences'),
-            null,
-            this.getChildControl('preferences-menu')
-          );
+          control = new qx.ui.menubar.Button(this.tr('Preferences'), null, this.getChildControl('preferences-menu'));
 
           this.add(control);
           break;

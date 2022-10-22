@@ -67,16 +67,12 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
       }
       // we are allowed choice and sequence, but only ONE AT ALL is allowed
       group.querySelectorAll(':scope > choice').forEach(grouping => {
-        this._subGroupings.push(
-          new cv.ui.manager.model.schema.Choice(grouping, schema)
-        );
+        this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
       });
 
       // sequences
       group.querySelectorAll(':scope > sequence').forEach(grouping => {
-        this._subGroupings.push(
-          new cv.ui.manager.model.schema.Sequence(grouping, schema)
-        );
+        this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
       });
 
       // there may be only one, so we simply us the first we found

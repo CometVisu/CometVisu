@@ -73,17 +73,11 @@ qx.Class.define('cv.ui.NotificationCenter', {
 
     this._openCommand = new qx.ui.command.Command('Ctrl+N');
     this._openCommand.addListener('execute', this.toggleVisibility, this);
-    cv.TemplateEngine.getInstance()
-      .getCommands()
-      .add('open-notificationcenter', this._openCommand);
+    cv.TemplateEngine.getInstance().getCommands().add('open-notificationcenter', this._openCommand);
 
     qx.event.Registration.addListener(window, 'resize', this._onResize, this);
 
-    this.debouncedHide = qx.util.Function.debounce(
-      this.hide.bind(this),
-      5000,
-      false
-    );
+    this.debouncedHide = qx.util.Function.debounce(this.hide.bind(this), 5000, false);
 
     cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
 
@@ -93,15 +87,8 @@ qx.Class.define('cv.ui.NotificationCenter', {
       prepareMessage(message) {
         // resolve icon if there is one
         if (message.icon) {
-          const iconClasses = message.iconClasses
-            ? ' ' + message.iconClasses
-            : '';
-          message.icon = cv.util.IconTools.svgKUF(message.icon)(
-            null,
-            null,
-            'icon' + iconClasses,
-            true
-          );
+          const iconClasses = message.iconClasses ? ' ' + message.iconClasses : '';
+          message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, 'icon' + iconClasses, true);
         }
       }
     });
@@ -217,16 +204,10 @@ qx.Class.define('cv.ui.NotificationCenter', {
 
       if (this.__messagesContainer) {
         // get header+footer heights
-        const headerRect = this.__element
-          .querySelector(':scope > header')
-          .getBoundingClientRect();
-        const footerRect = this.__element
-          .querySelector(':scope > footer')
-          .getBoundingClientRect();
+        const headerRect = this.__element.querySelector(':scope > header').getBoundingClientRect();
+        const footerRect = this.__element.querySelector(':scope > footer').getBoundingClientRect();
         const messageBoxHeight =
-          height -
-          Math.round(headerRect.bottom - headerRect.top) -
-          Math.round(footerRect.bottom - footerRect.top);
+          height - Math.round(headerRect.bottom - headerRect.top) - Math.round(footerRect.bottom - footerRect.top);
         this.__messagesContainer.style.height = messageBoxHeight + 'px';
       }
     },
@@ -246,9 +227,7 @@ qx.Class.define('cv.ui.NotificationCenter', {
       });
 
       // check if the element is already there (might have been cached)
-      let elem = (this.__element = document.querySelector(
-        this.getRootElementId()
-      ));
+      let elem = (this.__element = document.querySelector(this.getRootElementId()));
 
       if (!elem) {
         // create new element
@@ -271,10 +250,8 @@ qx.Class.define('cv.ui.NotificationCenter', {
           this.getMessageElementId() +
           '{{ id }}">';
         templateCode += '{{#icon}}{{ &icon }}{{/icon}}';
-        templateCode +=
-          '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
-        templateCode +=
-          '{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}';
+        templateCode += '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
+        templateCode += '{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}';
         templateCode += '<div class="content">{{&message}}</div></div>';
 
         const template = qx.dom.Element.create('script', {
@@ -288,27 +265,13 @@ qx.Class.define('cv.ui.NotificationCenter', {
 
       this.__messagesContainer = elem.querySelector('section.messages');
       this.__badge = elem.querySelector('.badge');
-      qx.event.Registration.addListener(
-        this.__badge,
-        'tap',
-        this.toggleVisibility,
-        this
-      );
+      qx.event.Registration.addListener(this.__badge, 'tap', this.toggleVisibility, this);
 
       // add HTML template for messages to header
 
-      this._list = new qx.data.controller.website.List(
-        this._messages,
-        this.__messagesContainer,
-        'MessageTemplate'
-      );
+      this._list = new qx.data.controller.website.List(this._messages, this.__messagesContainer, 'MessageTemplate');
 
-      qx.event.Registration.addListener(
-        this.__messagesContainer,
-        'tap',
-        this._onListTap,
-        this
-      );
+      qx.event.Registration.addListener(this.__messagesContainer, 'tap', this._onListTap, this);
 
       // connect badge content
       this._messages.addListener('changeLength', this.__updateBadge, this);
@@ -336,20 +299,13 @@ qx.Class.define('cv.ui.NotificationCenter', {
       }.bind(this);
       // close center if empty
       if (cv.ui.NotificationCenter.BLINK.duration > 0) {
-        qx.event.Timer.once(
-          update,
-          this,
-          cv.ui.NotificationCenter.BLINK.duration
-        );
+        qx.event.Timer.once(update, this, cv.ui.NotificationCenter.BLINK.duration);
       } else {
         update();
       }
       if (currentContent < messages) {
         // blink to get the users attention for the new message
-        qx.bom.element.Animation.animate(
-          this.__badge,
-          cv.ui.NotificationCenter.BLINK
-        );
+        qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
       }
       if (messages) {
         this.__badge.innerHTML = '' + messages;
@@ -361,10 +317,7 @@ qx.Class.define('cv.ui.NotificationCenter', {
     _onSeverityChange() {
       const severity = this.getGlobalSeverity();
       if (this.__badge) {
-        this.__badge.classList.remove.apply(
-          this.__badge.classList,
-          this._severities
-        );
+        this.__badge.classList.remove.apply(this.__badge.classList, this._severities);
 
         this.__badge.classList.add(severity);
       }
@@ -385,18 +338,10 @@ qx.Class.define('cv.ui.NotificationCenter', {
         this.__visible = true;
         this.__blocker.block();
         this.__element.style.visibility = '';
-        qx.event.Registration.addListener(
-          this.__blocker.getBlockerElement(),
-          'tap',
-          this.hide,
-          this
-        );
+        qx.event.Registration.addListener(this.__blocker.getBlockerElement(), 'tap', this.hide, this);
 
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
-          const anim = qx.bom.element.Animation.animate(
-            this.__element,
-            cv.ui.NotificationCenter.SLIDE
-          );
+          const anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
 
           anim.on(
             'end',
@@ -428,18 +373,10 @@ qx.Class.define('cv.ui.NotificationCenter', {
     hide() {
       if (this.__visible) {
         this.__visible = false;
-        qx.event.Registration.removeListener(
-          this.__blocker.getBlockerElement(),
-          'tap',
-          this.hide,
-          this
-        );
+        qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), 'tap', this.hide, this);
 
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
-          const anim = qx.bom.element.Animation.animateReverse(
-            this.__element,
-            cv.ui.NotificationCenter.SLIDE
-          );
+          const anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
 
           anim.on(
             'end',
@@ -463,26 +400,11 @@ qx.Class.define('cv.ui.NotificationCenter', {
   *****************************************************************************
   */
   destruct() {
-    qx.event.Registration.removeListener(
-      window,
-      'resize',
-      this._onResize,
-      this
-    );
+    qx.event.Registration.removeListener(window, 'resize', this._onResize, this);
 
-    qx.event.Registration.removeListener(
-      this.__blocker.getBlockerElement(),
-      'tap',
-      this.hide,
-      this
-    );
+    qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), 'tap', this.hide, this);
 
-    qx.event.Registration.removeListener(
-      this.__messagesContainer,
-      'tap',
-      this._onListTap,
-      this
-    );
+    qx.event.Registration.removeListener(this.__messagesContainer, 'tap', this._onListTap, this);
 
     this._disposeObjects('__blocker', '__messagesContainer', '_openCommand');
   }

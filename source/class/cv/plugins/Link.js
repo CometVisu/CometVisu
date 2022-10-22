@@ -111,16 +111,7 @@ qx.Class.define('cv.plugins.Link', {
       if (this.isNewWindow()) {
         attributes += ' target="_blank"';
       }
-      return (
-        '<a class="' +
-        classes +
-        '"' +
-        href +
-        attributes +
-        '>' +
-        this.getText() +
-        '</a>'
-      );
+      return '<a class="' + classes + '"' + href + attributes + '>' + this.getText() + '</a>';
     }
   },
 

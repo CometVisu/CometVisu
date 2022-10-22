@@ -130,26 +130,21 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
       let hasReadAddress = false;
       let writeAddresses = [];
-      Array.prototype.forEach.call(
-        element.querySelectorAll(':scope > cv-address'),
-        address => {
-          const mode = address.hasAttribute('mode')
-            ? address.getAttribute('mode')
-            : 'readwrite';
-          switch (mode) {
-            case 'readwrite':
-              hasReadAddress = true;
-              writeAddresses.push(address);
-              break;
-            case 'read':
-              hasReadAddress = true;
-              break;
-            case 'write':
-              writeAddresses.push(address);
-              break;
-          }
+      Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
+        const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
+        switch (mode) {
+          case 'readwrite':
+            hasReadAddress = true;
+            writeAddresses.push(address);
+            break;
+          case 'read':
+            hasReadAddress = true;
+            break;
+          case 'write':
+            writeAddresses.push(address);
+            break;
         }
-      );
+      });
 
       this._writeAddresses = writeAddresses;
 
@@ -170,9 +165,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           }
         }
         writeAddresses.forEach(addr => {
-          let event = addr.hasAttribute('on')
-            ? addr.getAttribute('on')
-            : 'click';
+          let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
           switch (event) {
             case 'click':
               events.click = this.onClicked.bind(this);
@@ -197,14 +190,9 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           // cancel event here
           ev.stopPropagation();
         });
-      } else if (
-        element.hasAttribute('mapping') ||
-        element.hasAttribute('styling')
-      ) {
+      } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
         // apply the trigger state
-        const triggerAddresses = writeAddresses.filter(
-          addr => addr.hasAttribute('value') && !addr.hasAttribute('on')
-        );
+        const triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
 
         if (triggerAddresses.length === 1) {
           const value = triggerAddresses[0].getAttribute('value');
@@ -223,9 +211,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       // detect button type
       if (
         !hasReadAddress &&
-        writeAddresses.filter(
-          addr => addr.hasAttribute('value') && !addr.hasAttribute('on')
-        ).length === 1
+        writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on')).length === 1
       ) {
         // only one write address with a fixed value and no special event => simple trigger
         this.setType('trigger');
@@ -256,20 +242,14 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('viewBox', '0 0 100 100');
       svg.setAttribute('type', 'circle');
-      const circle = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'circle'
-      );
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
       circle.classList.add('bar');
       circle.setAttribute('r', '49');
       circle.setAttribute('cx', '50');
       circle.setAttribute('cy', '50');
       circle.setAttribute('stroke-width', '2');
-      circle.setAttribute(
-        'stroke-dasharray',
-        this.__circumference + ' ' + this.__circumference
-      );
+      circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
 
       circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
       svg.appendChild(circle);
@@ -322,9 +302,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     _applyProgress(value) {
-      let valueElement = this._element.querySelector(
-        ':scope > svg > circle.bar'
-      );
+      let valueElement = this._element.querySelector(':scope > svg > circle.bar');
 
       if (!valueElement) {
         this._initProgress();
@@ -406,9 +384,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (!this._writeAddresses) {
         this._writeAddresses = Array.prototype.filter.call(
           this._element.querySelectorAll('addresses > cv-address'),
-          address =>
-            !address.hasAttribute('mode') ||
-            address.getAttribute('mode') !== 'read'
+          address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read'
         );
       }
       const ev = new CustomEvent('sendState', {
@@ -430,20 +406,14 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         );
       }
       this._writeAddresses
-        .filter(
-          addr =>
-            !addr.hasAttribute('on') || addr.getAttribute('on') === 'click'
-        )
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
         .forEach(address => address.dispatchEvent(ev));
       event.stopPropagation();
     },
 
     onPointerDown() {
       this._writeAddresses
-        .filter(
-          addr =>
-            addr.getAttribute('on') === 'down' && addr.hasAttribute('value')
-        )
+        .filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value'))
         .forEach(address => {
           address.dispatchEvent(
             new CustomEvent('sendState', {
@@ -458,9 +428,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     onPointerUp() {
       this._writeAddresses
-        .filter(
-          addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value')
-        )
+        .filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value'))
         .forEach(address => {
           address.dispatchEvent(
             new CustomEvent('sendState', {

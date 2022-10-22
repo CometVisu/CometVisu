@@ -112,24 +112,12 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       const modified = this.getModifiedContent();
       if (original && modified) {
         const file = this.getFile();
-        const originalFile =
-          file instanceof cv.ui.manager.model.CompareFiles
-            ? file.getOriginalFile()
-            : file;
-        const modifiedFile =
-          file instanceof cv.ui.manager.model.CompareFiles
-            ? file.getModifiedFile()
-            : file;
-        const originalModel = window.monaco.editor.createModel(
-          original,
-          this._getLanguage(originalFile)
-        );
+        const originalFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getOriginalFile() : file;
+        const modifiedFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getModifiedFile() : file;
+        const originalModel = window.monaco.editor.createModel(original, this._getLanguage(originalFile));
 
         originalModel.updateOptions(this._getDefaultModelOptions());
-        const modifiedModel = window.monaco.editor.createModel(
-          modified,
-          this._getLanguage(modifiedFile)
-        );
+        const modifiedModel = window.monaco.editor.createModel(modified, this._getLanguage(modifiedFile));
 
         modifiedModel.updateOptions(this._getDefaultModelOptions());
         this._editor.setModel({
@@ -152,10 +140,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       const handlerOptions = this.getHandlerOptions();
       if (
         this.getFile() instanceof cv.ui.manager.model.FileItem &&
-        Object.prototype.hasOwnProperty.call(
-          handlerOptions,
-          'upgradeVersion'
-        ) &&
+        Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') &&
         handlerOptions.upgradeVersion === true
       ) {
         super.save(callback, 'ignore');
@@ -164,39 +149,25 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
 
     _loadFile(file, old) {
       if (old && old instanceof cv.ui.manager.model.FileItem) {
-        qx.event.message.Bus.unsubscribe(
-          old.getBusTopic(),
-          this._onChange,
-          this
-        );
+        qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
       if (this._editor) {
         const handlerOptions = this.getHandlerOptions();
         if (
           file &&
           file instanceof cv.ui.manager.model.FileItem &&
-          Object.prototype.hasOwnProperty.call(
-            handlerOptions,
-            'upgradeVersion'
-          ) &&
+          Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') &&
           handlerOptions.upgradeVersion === true
         ) {
           if (!file.isWriteable()) {
             cv.ui.manager.snackbar.Controller.error(
-              this.tr(
-                '"%1" is not writable. Upgrading not possible.',
-                this.getFile().getFullPath()
-              )
+              this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath())
             );
 
             cv.ui.manager.Main.getInstance().closeFile(file);
             return;
           }
-          qx.event.message.Bus.subscribe(
-            file.getBusTopic(),
-            this._onChange,
-            this
-          );
+          qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
 
           this.setEditable(file.isWriteable());
           this._client.readSync(
@@ -206,24 +177,17 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
                 cv.ui.manager.snackbar.Controller.error(err);
               } else {
                 this.setOriginalContent(res);
-                const [err, upgradedContent, changes] =
-                  this._upgradeConfig(res);
+                const [err, upgradedContent, changes] = this._upgradeConfig(res);
                 if (err) {
                   qxl.dialog.Dialog.error(err);
-                  qx.event.message.Bus.dispatchByName(
-                    'cv.manager.action.close'
-                  );
+                  qx.event.message.Bus.dispatchByName('cv.manager.action.close');
                 } else {
-                  this.setModifiedContent(
-                    this._convertToString(upgradedContent)
-                  );
+                  this.setModifiedContent(this._convertToString(upgradedContent));
 
                   let changesText =
                     changes.length > 0
                       ? '<div>' +
-                        qx.locale.Manager.tr(
-                          'The following changes have been made'
-                        ) +
+                        qx.locale.Manager.tr('The following changes have been made') +
                         '</div>' +
                         '<ul><li>' +
                         changes.join('</li><li>') +
@@ -233,23 +197,17 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
                           'You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.'
                         ) +
                         '</div>'
-                      : '<div><strong>' +
-                        qx.locale.Manager.tr('No changes have been made') +
-                        '</strong></div>';
+                      : '<div><strong>' + qx.locale.Manager.tr('No changes have been made') + '</strong></div>';
 
                   let msg =
                     '<h3>' +
-                    qx.locale.Manager.tr(
-                      'Config file has been upgraded to the current library version.'
-                    )
+                    qx.locale.Manager.tr('Config file has been upgraded to the current library version.')
                       .translate()
                       .toString() +
                     '</h3>' +
                     changesText +
                     '<div>' +
-                    qx.locale.Manager.tr(
-                      'Click "Apply" if you want to save the changes and reload the browser.'
-                    ) +
+                    qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') +
                     '</div>' +
                     '<div>' +
                     qx.locale.Manager.tr(

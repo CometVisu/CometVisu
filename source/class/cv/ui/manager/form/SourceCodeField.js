@@ -173,11 +173,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
             const uri = monaco.Uri.parse('cv://SourceCode.' + this.getType());
             let newModel = window.monaco.editor.getModel(uri);
             if (!newModel) {
-              newModel = window.monaco.editor.createModel(
-                this.__delayedValue,
-                this.getType(),
-                uri
-              );
+              newModel = window.monaco.editor.createModel(this.__delayedValue, this.getType(), uri);
             } else {
               newModel.setValue(this.__delayedValue);
             }
@@ -194,9 +190,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
           if (this.__delayedValue) {
             this.__delayedValue = null;
           }
-          this._editor.onDidChangeModelContent(
-            this._onContentChange.bind(this)
-          );
+          this._editor.onDidChangeModelContent(this._onContentChange.bind(this));
         }
       }
     },

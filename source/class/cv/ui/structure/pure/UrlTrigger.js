@@ -25,11 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.HasAnimatedButton,
-    cv.ui.common.BasicUpdate
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
 
   /*
   ******************************************************
@@ -58,9 +54,7 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
     _applyUrl(value) {
       if (value) {
         if (!this.__xhr) {
-          const xhr = new qx.io.request.Xhr(
-            qx.util.ResourceManager.getInstance().toUri(value)
-          );
+          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
 
           xhr.set({
             method: 'GET',

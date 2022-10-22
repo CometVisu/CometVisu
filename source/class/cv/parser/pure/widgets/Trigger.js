@@ -49,11 +49,7 @@ qx.Class.define('cv.parser.pure.widgets.Trigger', {
       );
 
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(
-        xml,
-        path,
-        this.makeAddressListFn
-      );
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       return data;
     },

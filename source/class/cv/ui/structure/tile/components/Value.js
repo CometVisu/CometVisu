@@ -36,10 +36,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
 
     _init() {
       super._init();
-      this._debouncedDetectOverflow = qx.util.Function.debounce(
-        this._detectOverflow,
-        20
-      );
+      this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
 
       const target = this._element.querySelector('.value');
       if (target && target.tagName.toLowerCase() === 'label') {

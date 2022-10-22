@@ -80,26 +80,13 @@ qx.Mixin.define('cv.ui.common.Operate', {
         for (let id in list) {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
-            if (
-              cv.data.Model.isWriteAddress(address) &&
-              (!filter || filter(address))
-            ) {
+            if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               try {
                 const encoding = address.transform;
-                const encodedValue = cv.Transform.encodeBusAndRaw(
-                  address,
-                  value
-                );
+                const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
 
-                if (
-                  !currentBusValues ||
-                  encodedValue.raw !== currentBusValues[encoding]
-                ) {
-                  cv.io.BackendConnections.getClient().write(
-                    id,
-                    encodedValue.bus,
-                    address
-                  );
+                if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
+                  cv.io.BackendConnections.getClient().write(id, encodedValue.bus, address);
                 }
                 encodedValues[encoding] = encodedValue.raw;
               } catch (e) {
@@ -118,10 +105,7 @@ qx.Mixin.define('cv.ui.common.Operate', {
                     )
                   };
 
-                  cv.core.notifications.Router.dispatchMessage(
-                    message.topic,
-                    message
-                  );
+                  cv.core.notifications.Router.dispatchMessage(message.topic, message);
                 }
               }
             }

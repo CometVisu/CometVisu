@@ -53,9 +53,7 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
       if (value) {
         if (!this.__request) {
           // create the request
-          this.__request = new qx.io.request.Xhr(
-            '/wg-plugindb.php?name=' + value
-          );
+          this.__request = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
 
           this.__request.set({
             accept: 'application/json'
@@ -65,10 +63,7 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
         } else {
           this.__request.setUrl('/wg-plugindb.php?name=' + value);
         }
-        cv.TemplateEngine.getInstance().executeWhenDomFinished(
-          this.__request.send,
-          this.__request
-        );
+        cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__request.send, this.__request);
       }
     },
 
@@ -83,11 +78,7 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
     _onSuccess(ev) {
       const req = ev.getTarget();
       const data = req.getResponse();
-      this.defaultUpdate(
-        undefined,
-        data[this.getVariable()],
-        this.getValueElement()
-      );
+      this.defaultUpdate(undefined, data[this.getVariable()], this.getValueElement());
     },
 
     // overridden

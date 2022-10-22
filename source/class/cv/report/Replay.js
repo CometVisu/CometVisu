@@ -103,9 +103,7 @@ qx.Class.define('cv.report.Replay', {
         cv.ConfigCache._parseCacheData = log.data.cache;
         // parse stringified data
         cv.ConfigCache._parseCacheData.data =
-          typeof log.data.cache.data === 'string'
-            ? JSON.parse(log.data.cache.data)
-            : log.data.cache.data;
+          typeof log.data.cache.data === 'string' ? JSON.parse(log.data.cache.data) : log.data.cache.data;
         cv.ConfigCache._parseCacheData.configSettings =
           typeof log.data.cache.configSettings === 'string'
             ? JSON.parse(log.data.cache.configSettings)
@@ -125,12 +123,7 @@ qx.Class.define('cv.report.Replay', {
      */
     start() {
       const runtime = Math.round((this.__end - this.__start) / 1000);
-      this.info(
-        'Replay time: ' +
-          Math.floor(runtime / 60) +
-          ':' +
-          ('' + (runtime % 60)).padStart(2, '0')
-      );
+      this.info('Replay time: ' + Math.floor(runtime / 60) + ':' + ('' + (runtime % 60)).padStart(2, '0'));
 
       this.__startTime = Date.now();
 
@@ -172,21 +165,14 @@ qx.Class.define('cv.report.Replay', {
       const record = this.__log[index];
       this.__dispatchRecord(record);
       if (this.__log.length === index + 1) {
-        this.info(
-          'All log events have been played, waiting till end of recording time'
-        );
+        this.info('All log events have been played, waiting till end of recording time');
 
         qx.event.Timer.once(
           function () {
             qx.bom.Notification.getInstance().show('Replay', 'Replay finished');
             cv.io.Client.stopAll();
             const runtime = Math.round((Date.now() - this.__startTime) / 1000);
-            this.info(
-              'Log replayed in: ' +
-                Math.floor(runtime / 60) +
-                ':' +
-                ('' + (runtime % 60)).padStart(2, '0')
-            );
+            this.info('Log replayed in: ' + Math.floor(runtime / 60) + ':' + ('' + (runtime % 60)).padStart(2, '0'));
           },
           this,
           this.__end - this.__log[index].t
@@ -214,10 +200,7 @@ qx.Class.define('cv.report.Replay', {
           const store = qx.bom.Storage.getLocal();
           store.setItem(record.i, record.d);
           if (record.i === 'preferences' && cv.ui.manager) {
-            cv.ui.manager.model.Preferences.getInstance().setPreferences(
-              record.d,
-              true
-            );
+            cv.ui.manager.model.Preferences.getInstance().setPreferences(record.d, true);
           }
           break;
         }
@@ -246,15 +229,9 @@ qx.Class.define('cv.report.Replay', {
             ['currentTarget', 'relatedTarget'].forEach(function (key) {
               evt[key] = evt[key] ? this.__findElement(evt[key]) : null;
             }, this);
-            const event = new window[record.d.eventClass](
-              record.d.native.type,
-              evt
-            );
+            const event = new window[record.d.eventClass](record.d.native.type, evt);
 
-            if (
-              record.d.native.type === 'pointerup' &&
-              target.nodeName === 'A'
-            ) {
+            if (record.d.native.type === 'pointerup' && target.nodeName === 'A') {
               // workaround for mouse clicks on <a> elemente e.g. in the breadcrumb navigation
               // check for last pointerdown event, if id was on same element we have a click
               for (let i = this.__currentIndex - 1; i > 0; i--) {
@@ -287,8 +264,7 @@ qx.Class.define('cv.report.Replay', {
       // simulate cursor
       if (!this.__cursor) {
         this.__cursor = qx.dom.Element.create('span', {
-          style:
-            'position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000'
+          style: 'position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000'
         });
 
         this.__cursor.innerHTML = '&uarr;';
@@ -302,8 +278,7 @@ qx.Class.define('cv.report.Replay', {
       }, this);
 
       if (/.+(down|start)/.test(record.d.native.type)) {
-        this.__cursor.style.color =
-          record.d.native.button === 2 ? 'blue' : 'red';
+        this.__cursor.style.color = record.d.native.button === 2 ? 'blue' : 'red';
       } else if (/.+(up|end)/.test(record.d.native.type)) {
         this.__cursor.style.color = 'white';
       }
@@ -315,14 +290,10 @@ qx.Class.define('cv.report.Replay', {
         case 'read':
           if (client instanceof cv.io.openhab.Rest) {
             client.handleMessage(record.d);
-          } else if (
-            client.getCurrentTransport() instanceof cv.io.transport.Sse
-          ) {
+          } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
             client.getCurrentTransport().handleMessage({ data: record.d });
           } else {
-            this.error(
-              "long-polling transport should not record 'backend' log events. Skip replaying"
-            );
+            this.error("long-polling transport should not record 'backend' log events. Skip replaying");
           }
           break;
         default:
@@ -330,12 +301,8 @@ qx.Class.define('cv.report.Replay', {
             client[record.i].apply(client, record.d);
           } else if (client instanceof cv.io.openhab.Rest) {
             this.error('unhandled rest backend record of type ' + record.i);
-          } else if (
-            client.getCurrentTransport() instanceof cv.io.transport.Sse
-          ) {
-            client
-              .getCurrentTransport()
-              .dispatchTopicMessage(record.i, record.d);
+          } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
+            client.getCurrentTransport().dispatchTopicMessage(record.i, record.d);
           } else {
             this.error('unhandled backend record of type ' + record.i);
           }

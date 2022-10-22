@@ -31,17 +31,11 @@ qx.Mixin.define('cv.ui.common.HasChildren', {
     const children = [];
     // create children
     const model = cv.data.Model.getInstance();
-    if (
-      cv.Config.lazyLoading === false ||
-      cv.Config.treePath.indexOf(props.path) >= 0
-    ) {
+    if (cv.Config.lazyLoading === false || cv.Config.treePath.indexOf(props.path) >= 0) {
       // this.debug(props.$$type+" INIT ["+props.path+"] with "+props.children.length+" children");
       props.children.forEach(function (path) {
         const data = model.getWidgetData(path);
-        const widget = cv.ui.structure.WidgetFactory.createInstance(
-          data.$$type,
-          data
-        );
+        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
 
         if (widget) {
           children.push(widget);
@@ -101,9 +95,7 @@ qx.Mixin.define('cv.ui.common.HasChildren', {
           container +=
             '<div class="widget_container' +
             (widget.getRowspanClass ? ' ' + widget.getRowspanClass() : '') +
-            (widget.getContainerClass && widget.getContainerClass()
-              ? ' ' + widget.getContainerClass()
-              : '') +
+            (widget.getContainerClass && widget.getContainerClass() ? ' ' + widget.getContainerClass() : '') +
             (widget.get$$type() === 'break' ? ' break_container' : '') + // special case for break widget
             '" id="' +
             widget.getPath() +

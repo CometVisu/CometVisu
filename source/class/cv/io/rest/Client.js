@@ -40,15 +40,11 @@ qx.Class.define('cv.io.rest.Client', {
         let path = '';
         const engine = cv.TemplateEngine.getInstance();
         const clientBackend =
-          engine.visu && typeof engine.visu.getBackend === 'function'
-            ? engine.visu.getBackend()
-            : {};
+          engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
         if (clientBackend.resources && clientBackend.resources.rest) {
           path = clientBackend.resources.rest;
         } else {
-          path =
-            qx.util.Uri.parseUri(window.location.href).directory +
-            'rest/manager/index.php';
+          path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
         }
         this.BASE_URL = path;
       }
@@ -151,8 +147,7 @@ qx.Class.define('cv.io.rest.Client', {
             const parts = params.path.split('.');
             if (parts.length > 1) {
               const type = parts.pop();
-              const mimetype =
-                cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
+              const mimetype = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
               req.setRequestHeader('Content-Type', mimetype || 'text/plain');
             } else {
               req.setRequestHeader('Content-Type', 'text/plain');
@@ -164,17 +159,9 @@ qx.Class.define('cv.io.rest.Client', {
         this._enableSync(this.__dirClient, config);
 
         // general listeners
-        this.__dirClient.addListener(
-          'updateSuccess',
-          this._onSaveSuccess,
-          this
-        );
+        this.__dirClient.addListener('updateSuccess', this._onSaveSuccess, this);
 
-        this.__dirClient.addListener(
-          'createSuccess',
-          this._onSaveSuccess,
-          this
-        );
+        this.__dirClient.addListener('createSuccess', this._onSaveSuccess, this);
 
         this.__dirClient.addListener('updateError', this._onSaveError, this);
         this.__dirClient.addListener('createError', this._onSaveError, this);
@@ -242,8 +229,7 @@ qx.Class.define('cv.io.rest.Client', {
           } else {
             callback = args.pop();
           }
-          this.__callbacks[client[callName].apply(client, args)] =
-            callback.bind(context);
+          this.__callbacks[client[callName].apply(client, args)] = callback.bind(context);
         }.bind(this);
       }, this);
 
@@ -277,9 +263,7 @@ qx.Class.define('cv.io.rest.Client', {
         }
         if (req.getPhase() === 'load') {
           // error during load phase => backend not reachable
-          qxl.dialog.Dialog.error(
-            qx.locale.Manager.tr('Backend does not respond!')
-          );
+          qxl.dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
         }
       });
     },
@@ -289,9 +273,7 @@ qx.Class.define('cv.io.rest.Client', {
       const id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
       if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
-        cv.ui.manager.snackbar.Controller.info(
-          qx.locale.Manager.tr('File has been saved')
-        );
+        cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been saved'));
       }
     },
 
@@ -300,9 +282,7 @@ qx.Class.define('cv.io.rest.Client', {
       const id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
       if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
-        cv.ui.manager.snackbar.Controller.error(
-          qx.locale.Manager.tr('Error saving file')
-        );
+        cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Error saving file'));
       }
     }
   }

@@ -115,16 +115,8 @@ qx.Class.define('cv.plugins.Rss', {
 
     _getInnerDomString() {
       const rssstyle =
-        '' + this.getWidth()
-          ? 'width:' + this.getWidth()
-          : '' + this.getHeight()
-          ? 'height:' + this.getHeight()
-          : '';
-      return (
-        '<div class="actor"><ul class="rss_inline" style="' +
-        rssstyle +
-        '"></ul>'
-      );
+        '' + this.getWidth() ? 'width:' + this.getWidth() : '' + this.getHeight() ? 'height:' + this.getHeight() : '';
+      return '<div class="actor"><ul class="rss_inline" style="' + rssstyle + '"></ul>';
     },
 
     _onDomReady() {
@@ -212,9 +204,7 @@ qx.Class.define('cv.plugins.Rss', {
             elem.textContent = entry.title;
           }
           if (showContent) {
-            content.innerHTML = this.getSnippet()
-              ? entry.contentSnippet
-              : entry.content;
+            content.innerHTML = this.getSnippet() ? entry.contentSnippet : entry.content;
           }
           if (showDate) {
             date.innerText = new Date(entry.isoDate).toLocaleString();

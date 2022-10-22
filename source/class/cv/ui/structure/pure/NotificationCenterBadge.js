@@ -82,15 +82,9 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     _onDomReady() {
       super._onDomReady();
       const center = cv.ui.NotificationCenter.getInstance();
-      center
-        .getMessages()
-        .addListener('changeLength', this._onChangeCounter, this);
+      center.getMessages().addListener('changeLength', this._onChangeCounter, this);
       this._onChangeCounter();
-      center.addListener(
-        'changedGlobalSeverity',
-        this._onChangeGlobalSeverity,
-        this
-      );
+      center.addListener('changedGlobalSeverity', this._onChangeGlobalSeverity, this);
     },
 
     // property apply
@@ -116,10 +110,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
 
     _onChangeGlobalSeverity(ev) {
       const classList = this.__getBadgeElement().classList;
-      classList.remove.apply(
-        classList,
-        cv.ui.NotificationCenter.getInstance().getSeverities()
-      );
+      classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
 
       if (ev.getData()) {
         classList.add(ev.getData());
@@ -127,12 +118,10 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     },
 
     _onChangeCounter() {
-      const messages =
-        cv.ui.NotificationCenter.getInstance().getMessages().length;
+      const messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
       this.__getBadgeElement().innerHTML = '' + messages;
       if (this.isHideWhenEmpty()) {
-        this.__getBadgeElement().style.display =
-          messages === 0 ? 'none' : 'block';
+        this.__getBadgeElement().style.display = messages === 0 ? 'none' : 'block';
       }
     },
 
@@ -142,9 +131,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       if (this.isHideWhenEmpty() && this.getCounter() === 0) {
         style = ' style="display: none;"';
       }
-      return (
-        '<div class="actor badge"' + style + '>' + this.getCounter() + '</div>'
-      );
+      return '<div class="actor badge"' + style + '>' + this.getCounter() + '</div>';
     }
   },
 
@@ -155,20 +142,11 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   */
   destruct() {
     const center = cv.ui.NotificationCenter.getInstance();
-    center
-      .getMessages()
-      .removeListener('changeLength', this._onChangeCounter, this);
-    center.removeListener(
-      'changedGlobalSeverity',
-      this._onChangeGlobalSeverity,
-      this
-    );
+    center.getMessages().removeListener('changeLength', this._onChangeCounter, this);
+    center.removeListener('changedGlobalSeverity', this._onChangeGlobalSeverity, this);
   },
 
   defer(statics) {
-    cv.ui.structure.WidgetFactory.registerClass(
-      'notificationcenterbadge',
-      statics
-    );
+    cv.ui.structure.WidgetFactory.registerClass('notificationcenterbadge', statics);
   }
 });

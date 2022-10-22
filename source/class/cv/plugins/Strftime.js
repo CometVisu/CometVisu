@@ -111,8 +111,7 @@ qx.Class.define('cv.plugins.Strftime', {
     // overridden
     getValueElement() {
       if (!this.__valueElement) {
-        this.__valueElement =
-          this.getDomElement().querySelector('.strftime_value');
+        this.__valueElement = this.getDomElement().querySelector('.strftime_value');
       }
       return this.__valueElement;
     },
@@ -137,11 +136,7 @@ qx.Class.define('cv.plugins.Strftime', {
   ******************************************************
   */
   destruct() {
-    this.self(arguments).__timer.removeListener(
-      'interval',
-      this.__update,
-      this
-    );
+    this.self(arguments).__timer.removeListener('interval', this.__update, this);
   },
 
   defer(statics) {
@@ -153,30 +148,9 @@ qx.Class.define('cv.plugins.Strftime', {
     // extend locales by German and French
     Date.ext.locales.de = {
       a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-      A: [
-        'Sonntag',
-        'Montag',
-        'Dienstag',
-        'Mittwoch',
-        'Donnerstag',
-        'Freitag',
-        'Samstag'
-      ],
+      A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
 
-      b: [
-        'Jan',
-        'Feb',
-        'Mär',
-        'Apr',
-        'Mai',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Okt',
-        'Nov',
-        'Dez'
-      ],
+      b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
 
       B: [
         'Januar',
@@ -202,30 +176,9 @@ qx.Class.define('cv.plugins.Strftime', {
 
     Date.ext.locales.fr = {
       a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-      A: [
-        'dimanche',
-        'lundi',
-        'mardi',
-        'mercredi',
-        'jeudi',
-        'vendredi',
-        'samedi'
-      ],
+      A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
 
-      b: [
-        'jan',
-        'fév',
-        'mar',
-        'avr',
-        'mai',
-        'jun',
-        'jui',
-        'aoû',
-        'sep',
-        'oct',
-        'nov',
-        'déc'
-      ],
+      b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
 
       B: [
         'janvier',

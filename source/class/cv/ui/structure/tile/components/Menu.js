@@ -80,11 +80,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
 
     _onDomAppended() {
       this.setDomReady(true);
-      qx.event.message.Bus.unsubscribe(
-        'setup.dom.append',
-        this._onDomAppended,
-        this
-      );
+      qx.event.message.Bus.unsubscribe('setup.dom.append', this._onDomAppended, this);
     },
 
     _init() {
@@ -98,11 +94,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         this.setShowLabels(false);
       }
       if (model === 'pages') {
-        qx.event.message.Bus.subscribe(
-          'setup.dom.append',
-          this._onDomAppended,
-          this
-        );
+        qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
 
         const rootList = document.createElement('ul');
         element.appendChild(rootList);
@@ -117,26 +109,12 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         ham.appendChild(icon);
         element.appendChild(ham);
 
-        qx.event.message.Bus.subscribe(
-          'cv.ui.structure.tile.currentPage',
-          this._onPageChange,
-          this
-        );
+        qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
 
         // add some general listeners to close
-        qx.event.Registration.addListener(
-          document,
-          'pointerdown',
-          this._onPointerDown,
-          this
-        );
+        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
 
-        qx.event.Registration.addListener(
-          this._element,
-          'swipe',
-          this._onSwipe,
-          this
-        );
+        qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
       } else {
         this.error('visual-model of type', model, 'is not implemented');
       }
@@ -173,14 +151,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       const target = ev.getTarget();
       if (
         target.classList.contains('menu') ||
-        (target.parentElement &&
-          target.parentElement.classList.contains('menu'))
+        (target.parentElement && target.parentElement.classList.contains('menu'))
       ) {
         // clicked in hamburger menu, do nothing
-      } else if (
-        target.tagName.toLowerCase() !== 'summary' &&
-        target.tagName.toLowerCase() !== 'p'
-      ) {
+      } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection
         qx.event.Timer.once(this._closeAll, this, 100);
       } else {
@@ -203,8 +177,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           current.previousElementSibling &&
           current.previousElementSibling.tagName.toLowerCase() === 'li'
         ) {
-          const prev =
-            current.previousElementSibling.querySelector(':scope > a');
+          const prev = current.previousElementSibling.querySelector(':scope > a');
           if (prev) {
             prev.click();
           }
@@ -233,9 +206,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       if (!parentElement) {
         return;
       }
-      let pages = parentElement.querySelectorAll(
-        ':scope > cv-page:not([menu="false"])'
-      );
+      let pages = parentElement.querySelectorAll(':scope > cv-page:not([menu="false"])');
 
       for (let page of pages.values()) {
         const pageId = page.getAttribute('id');
@@ -265,8 +236,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         const depth = this.getDepth();
         if (
           (depth < 0 || depth > currentLevel) &&
-          page.querySelectorAll(':scope > cv-page:not([menu="false"])').length >
-            0
+          page.querySelectorAll(':scope > cv-page:not([menu="false"])').length > 0
         ) {
           const details = document.createElement('div');
           details.classList.add('details');
@@ -281,10 +251,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           });
           a.addEventListener('click', ev => {
             // only stop propagation if we are not close to the right border
-            if (
-              ev.pointerType !== 'touch' ||
-              ev.currentTarget.clientWidth - ev.offsetX >= 8
-            ) {
+            if (ev.pointerType !== 'touch' || ev.currentTarget.clientWidth - ev.offsetX >= 8) {
               ev.stopPropagation();
             }
           });
@@ -319,16 +286,12 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     _onPageChange(ev) {
       const pageElement = ev.getData();
       // unset all currently active
-      for (let link of this._element.querySelectorAll(
-        'li.active, li.sub-active'
-      )) {
+      for (let link of this._element.querySelectorAll('li.active, li.sub-active')) {
         link.classList.remove('active');
         link.classList.remove('sub-active');
       }
       // find link to current page
-      for (let link of this._element.querySelectorAll(
-        `a[href="#${pageElement.id}"]`
-      )) {
+      for (let link of this._element.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
         // activate all parents
         let parent = link.parentElement;
         let activeName = 'active';
@@ -350,18 +313,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
   ***********************************************
   */
   destruct() {
-    qx.event.Registration.removeListener(
-      document,
-      'pointerdown',
-      this._onPointerDown,
-      this
-    );
+    qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
 
-    qx.event.message.Bus.unsubscribe(
-      'cv.ui.structure.tile.currentPage',
-      this._onPageChange,
-      this
-    );
+    qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
 
   defer(QxClass) {

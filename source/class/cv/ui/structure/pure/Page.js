@@ -34,12 +34,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   ******************************************************
   */
   construct(props) {
-    this.__waitForProperties = [
-      'showNavbarTop',
-      'showNavbarBottom',
-      'showNavbarLeft',
-      'showNavbarRight'
-    ];
+    this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
 
     super(props);
 
@@ -51,12 +46,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       if (!parentPage) {
         this.__waitForProperties = [];
       } else {
-        this.debug(
-          'binding navbar visibility from ' +
-            parentPage.getPath() +
-            ' to ' +
-            this.getPath()
-        );
+        this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
       }
       [
         ['showTopNavigation', true],
@@ -68,19 +58,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       ].forEach(function (tuple) {
         const property = tuple[0];
         const defaultValue = tuple[1];
-        if (
-          this[
-            'get' + property.charAt(0).toUpperCase() + property.substr(1)
-          ]() === null
-        ) {
+        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](
-              defaultValue
-            );
+            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
           }
         }
         if (!parentPage) {
@@ -109,11 +93,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       // special function - only for pages!
       const target = cv.Application.structureController.getRenderTarget();
       document.querySelector(target).innerHTML = this.allPages;
-      qx.event.message.Bus.unsubscribe(
-        'setup.dom.append',
-        this.createFinal,
-        this
-      );
+      qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
     }
   },
 
@@ -219,10 +199,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      */
     _onChangeVisible(ev) {
       if (ev.getData()) {
-        if (
-          this.__colspanClass !==
-          cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS
-        ) {
+        if (this.__colspanClass !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
           this.applyColumnWidths();
         }
         if (this.getBackdrop()) {
@@ -235,10 +212,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Set children column widths
      */
     applyColumnWidths() {
-      cv.ui.structure.pure.layout.Manager.applyColumnWidths(
-        '#' + this.getPath(),
-        false
-      );
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#' + this.getPath(), false);
 
       this.__colspanClass = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
     },
@@ -247,16 +221,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     getDomString() {
       const pageType = this.getPageType();
 
-      const subpageClass = this.getFlavour()
-        ? ' flavour_' + this.getFlavour()
-        : '';
-      let subpage =
-        '<div class="page type_' +
-        pageType +
-        subpageClass +
-        '" id="' +
-        this.getPath() +
-        '">';
+      const subpageClass = this.getFlavour() ? ' flavour_' + this.getFlavour() : '';
+      let subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
       let container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
 
       if (pageType === '2d') {
@@ -331,8 +297,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
       container += this.getChildrenDomString();
       subpage += container + '</div></div>';
-      cv.ui.structure.pure.Page.allPages =
-        subpage + cv.ui.structure.pure.Page.allPages;
+      cv.ui.structure.pure.Page.allPages = subpage + cv.ui.structure.pure.Page.allPages;
       return undefined;
     },
 
@@ -374,10 +339,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
             if (cv.data.Model.isWriteAddress(address)) {
-              cv.io.BackendConnections.getClient().write(
-                id,
-                cv.Transform.encode(address, value)
-              );
+              cv.io.BackendConnections.getClient().write(id, cv.Transform.encode(address, value));
             }
           }
         }
@@ -386,10 +348,6 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   },
 
   defer(statics) {
-    qx.event.message.Bus.subscribe(
-      'setup.dom.append',
-      statics.createFinal,
-      statics
-    );
+    qx.event.message.Bus.subscribe('setup.dom.append', statics.createFinal, statics);
   }
 });

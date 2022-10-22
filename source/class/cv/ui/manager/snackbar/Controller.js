@@ -33,16 +33,9 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
     super();
     this._setLayout(new qx.ui.layout.VBox(8));
     this.initMessages(new qx.data.Array());
-    qx.event.message.Bus.subscribe(
-      'cv.manager.msg.snackbar',
-      this._onMessage,
-      this
-    );
+    qx.event.message.Bus.subscribe('cv.manager.msg.snackbar', this._onMessage, this);
 
-    this._listController = new qx.data.controller.List(
-      this.getMessages(),
-      this.getChildControl('list')
-    );
+    this._listController = new qx.data.controller.List(this.getMessages(), this.getChildControl('list'));
 
     this._initDelegate();
   },
@@ -64,10 +57,7 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
 
     error(message) {
       const msg = new cv.ui.manager.model.Message();
-      if (
-        typeof message === 'object' &&
-        Object.prototype.hasOwnProperty.call(message, 'statusText')
-      ) {
+      if (typeof message === 'object' && Object.prototype.hasOwnProperty.call(message, 'statusText')) {
         message = message.statusText;
       }
       msg.set({
@@ -157,11 +147,7 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
   ***********************************************
   */
   destruct() {
-    qx.event.message.Bus.unsubscribe(
-      'cv.manager.msg.snackbar',
-      this._onMessage,
-      this
-    );
+    qx.event.message.Bus.unsubscribe('cv.manager.msg.snackbar', this._onMessage, this);
 
     this._disposeObjects('_listController');
   }

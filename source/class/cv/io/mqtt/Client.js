@@ -33,10 +33,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     super();
     this.initialAddresses = [];
     this._type = type;
-    this._backendUrl = new URL(
-      backendUrl ||
-        document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/')
-    );
+    this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
 
     this.__groups = {};
     this.__memberLookup = {};
@@ -201,10 +198,7 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        self.warn(
-          'Connection Lost: ' + responseObject.errorMessage,
-          responseObject
-        );
+        self.warn('Connection Lost: ' + responseObject.errorMessage, responseObject);
 
         self.setConnected(false);
       };

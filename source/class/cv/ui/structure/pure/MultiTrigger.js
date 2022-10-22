@@ -27,11 +27,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
   /*
   ******************************************************
@@ -75,10 +71,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         const buttonConfig = config[i];
         let label = buttonConfig.label;
         if (mapping) {
-          const mappedValue = this.defaultValueHandling(
-            undefined,
-            buttonConfig.value
-          );
+          const mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
 
           if (mappedValue !== buttonConfig.value || !label) {
             const div = document.createElement('div');
@@ -88,10 +81,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         }
 
         if (label) {
-          ret_val +=
-            '<div class="actor switchUnpressed"><div class="value">' +
-            label +
-            '</div></div>';
+          ret_val += '<div class="actor switchUnpressed"><div class="value">' + label + '</div></div>';
         }
         if (elementsPerLine > 0 && i % elementsPerLine === 0) {
           ret_val += '<br/>';
@@ -118,19 +108,14 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       children.forEach(function (actor) {
         const index = Array.prototype.indexOf.call(children, actor) + 1;
         if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
-          const isPressed =
-            '' + this.getBasicValue() === '' + buttonConfiguration[index].value; // compare as string
+          const isPressed = '' + this.getBasicValue() === '' + buttonConfiguration[index].value; // compare as string
 
           // delay this a little bit to give the HasAnimatedButton stuff time to finish
           // otherwise it might override the settings here
           new qx.util.DeferredCall(function () {
-            actor.classList.remove(
-              isPressed ? 'switchUnpressed' : 'switchPressed'
-            );
+            actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
 
-            actor.classList.add(
-              isPressed ? 'switchPressed' : 'switchUnpressed'
-            );
+            actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
           }, this).schedule();
         }
       }, this);
@@ -157,12 +142,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
 
       this.getActors().forEach(function (actor) {
         qx.event.Registration.addListener(actor, 'tap', this.action, this);
-        qx.event.Registration.addListener(
-          actor,
-          'pointerdown',
-          this._onPointerDown,
-          this
-        );
+        qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
       }, this);
     }
   },

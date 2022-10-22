@@ -27,11 +27,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.Toggle', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
   /*
   ******************************************************

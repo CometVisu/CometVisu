@@ -66,9 +66,7 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
       // compare against the unmapped value
       value = '' + this.getBasicValue();
       const off = this.getUpValue();
-      actor.classList.remove(
-        value === off ? 'switchPressed' : 'switchUnpressed'
-      );
+      actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
 
       actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
     },

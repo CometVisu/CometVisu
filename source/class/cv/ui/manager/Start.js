@@ -148,9 +148,7 @@ qx.Class.define('cv.ui.manager.Start', {
     _applySelectedItem() {},
 
     _onToggleExpand(ev) {
-      const control = this.getChildControl(
-        ev.getTarget().getUserData('control')
-      );
+      const control = this.getChildControl(ev.getTarget().getUserData('control'));
 
       if (control.getVisibility() === 'visible') {
         control.exclude();
@@ -162,9 +160,7 @@ qx.Class.define('cv.ui.manager.Start', {
     },
 
     _onChangeViewMode() {
-      switch (
-        cv.ui.manager.model.Preferences.getInstance().getStartViewMode()
-      ) {
+      switch (cv.ui.manager.model.Preferences.getInstance().getStartViewMode()) {
         case 'list':
           this._radioGroup.setSelection([this._listButton]);
           break;
@@ -204,11 +200,10 @@ qx.Class.define('cv.ui.manager.Start', {
             toolTipText: this.tr('List mode')
           });
 
-          const previewButton = (this._previewButton =
-            new qx.ui.toolbar.RadioButton(
-              '',
-              cv.theme.dark.Images.getIcon('previewMode', 22)
-            ));
+          const previewButton = (this._previewButton = new qx.ui.toolbar.RadioButton(
+            '',
+            cv.theme.dark.Images.getIcon('previewMode', 22)
+          ));
 
           previewButton.setUserData('mode', 'preview');
           previewButton.set({
@@ -219,17 +214,12 @@ qx.Class.define('cv.ui.manager.Start', {
           part.add(listButton);
           part.add(previewButton);
           control.add(part);
-          this._radioGroup = new qx.ui.form.RadioGroup(
-            listButton,
-            previewButton
-          );
+          this._radioGroup = new qx.ui.form.RadioGroup(listButton, previewButton);
 
           this._onChangeViewMode();
           this._radioGroup.addListener('changeSelection', ev => {
             const selection = ev.getData()[0];
-            cv.ui.manager.model.Preferences.getInstance().setStartViewMode(
-              selection.getUserData('mode')
-            );
+            cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData('mode'));
           });
           cv.ui.manager.model.Preferences.getInstance().addListener(
             'changeStartViewMode',
@@ -242,10 +232,7 @@ qx.Class.define('cv.ui.manager.Start', {
         }
 
         case 'configs-title':
-          control = new qx.ui.basic.Atom(
-            this.tr('Configurations'),
-            cv.theme.dark.Images.getIcon('drop-up', 18)
-          );
+          control = new qx.ui.basic.Atom(this.tr('Configurations'), cv.theme.dark.Images.getIcon('drop-up', 18));
 
           control.setUserData('control', 'configs');
           control.addListener('tap', this._onToggleExpand, this);
@@ -259,11 +246,7 @@ qx.Class.define('cv.ui.manager.Start', {
           break;
 
         case 'configs-toolbar':
-          control = new cv.ui.manager.ToolBar(null, [
-            'new-config-file',
-            'upload',
-            'reload'
-          ]);
+          control = new cv.ui.manager.ToolBar(null, ['new-config-file', 'upload', 'reload']);
 
           control.setFolder(cv.ui.manager.model.FileItem.ROOT);
           control.addListener('reload', () => {
@@ -284,8 +267,7 @@ qx.Class.define('cv.ui.manager.Start', {
               if (file.isFake()) {
                 return name;
               }
-              const configName =
-                cv.ui.manager.model.FileItem.getConfigName(name);
+              const configName = cv.ui.manager.model.FileItem.getConfigName(name);
               return configName ? configName : '<Default>';
             },
             file: cv.ui.manager.model.FileItem.ROOT,
@@ -297,10 +279,7 @@ qx.Class.define('cv.ui.manager.Start', {
           break;
 
         case 'demo-configs-title':
-          control = new qx.ui.basic.Atom(
-            this.tr('Demo configurations'),
-            cv.theme.dark.Images.getIcon('drop-down', 18)
-          );
+          control = new qx.ui.basic.Atom(this.tr('Demo configurations'), cv.theme.dark.Images.getIcon('drop-down', 18));
 
           control.setUserData('control', 'demo-configs');
           control.getContentElement().setAttribute('data-section', 'demo');
@@ -316,8 +295,7 @@ qx.Class.define('cv.ui.manager.Start', {
               return this._configRegex.test(file.getName());
             }.bind(this),
             labelConverter(name) {
-              const configName =
-                cv.ui.manager.model.FileItem.getConfigName(name);
+              const configName = cv.ui.manager.model.FileItem.getConfigName(name);
               return configName ? configName : '<Default>';
             },
             disableScrolling: true
@@ -329,10 +307,7 @@ qx.Class.define('cv.ui.manager.Start', {
           break;
 
         case 'media-title':
-          control = new qx.ui.basic.Atom(
-            this.tr('Media files'),
-            cv.theme.dark.Images.getIcon('drop-up', 18)
-          );
+          control = new qx.ui.basic.Atom(this.tr('Media files'), cv.theme.dark.Images.getIcon('drop-up', 18));
 
           control.setUserData('control', 'media');
           control.addListener('tap', this._onToggleExpand, this);
@@ -346,11 +321,7 @@ qx.Class.define('cv.ui.manager.Start', {
           break;
 
         case 'media-toolbar':
-          control = new cv.ui.manager.ToolBar(null, [
-            'new-file',
-            'upload',
-            'reload'
-          ]);
+          control = new cv.ui.manager.ToolBar(null, ['new-file', 'upload', 'reload']);
 
           control.addListener('reload', () => {
             control.getFolder().reload();
@@ -370,10 +341,7 @@ qx.Class.define('cv.ui.manager.Start', {
           break;
 
         case 'misc-title':
-          control = new qx.ui.basic.Atom(
-            this.tr('Miscellaneous'),
-            cv.theme.dark.Images.getIcon('drop-up', 18)
-          );
+          control = new qx.ui.basic.Atom(this.tr('Miscellaneous'), cv.theme.dark.Images.getIcon('drop-up', 18));
 
           control.setUserData('control', 'misc');
           control.getContentElement().setAttribute('data-section', 'misc');
@@ -398,12 +366,9 @@ qx.Class.define('cv.ui.manager.Start', {
 
     __initMiscFolder(folderWidget) {
       if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
-        cv.ui.manager.model.FileItem.ROOT.addListenerOnce(
-          'changeLoaded',
-          () => {
-            this.__initMiscFolder(folderWidget);
-          }
-        );
+        cv.ui.manager.model.FileItem.ROOT.addListenerOnce('changeLoaded', () => {
+          this.__initMiscFolder(folderWidget);
+        });
 
         return;
       }
@@ -436,11 +401,7 @@ qx.Class.define('cv.ui.manager.Start', {
       });
 
       folderWidget.setFile(fakeFolder);
-      folderWidget.addListener(
-        'changeSelection',
-        this._onChangeSelection,
-        this
-      );
+      folderWidget.addListener('changeSelection', this._onChangeSelection, this);
     }
   },
 
@@ -451,11 +412,7 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   destruct() {
     this._configRegex = null;
-    cv.ui.manager.model.Preferences.getInstance().removeListener(
-      'changeStartViewMode',
-      this._onChangeViewMode,
-      this
-    );
+    cv.ui.manager.model.Preferences.getInstance().removeListener('changeStartViewMode', this._onChangeViewMode, this);
 
     this._disposeObjects('_previewButton', '_listButton', '_radioGroup');
   }

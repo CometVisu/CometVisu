@@ -157,29 +157,20 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       let isNumber = typeof this.__currentValue === 'number';
       let dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
       let maxLinearDelta = this.getLinearRateLimit() * dt;
-      let alpha = Math.max(
-        0,
-        Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1)
-      );
+      let alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
 
       let nextValue = isNumber
         ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
         : this.__currentValue.blend(this.__targetValue, alpha);
-      let delta = isNumber
-        ? nextValue - this.__currentValue
-        : this.__currentValue.delta(nextValue);
+      let delta = isNumber ? nextValue - this.__currentValue : this.__currentValue.delta(nextValue);
       let notFinished = true;
       if (Math.abs(delta) > maxLinearDelta) {
         nextValue = isNumber
           ? this.__currentValue + Math.sign(delta) * maxLinearDelta
-          : this.__currentValue.blend(
-              this.__targetValue,
-              (alpha * maxLinearDelta) / delta
-            );
+          : this.__currentValue.blend(this.__targetValue, (alpha * maxLinearDelta) / delta);
       }
       if (
-        (isNumber &&
-          Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
+        (isNumber && Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
         (!isNumber && nextValue.delta(this.__targetValue) < this.getEpsilon())
       ) {
         nextValue = this.__targetValue;
@@ -187,11 +178,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       }
       this.__currentValue = isNumber ? nextValue : nextValue.copy();
 
-      this.getDisplayFn().call(
-        this.__displayFnContext,
-        this.__currentValue,
-        this.__displayFnParameters
-      );
+      this.getDisplayFn().call(this.__displayFnContext, this.__currentValue, this.__displayFnParameters);
 
       if (notFinished) {
         this.__animationFrame = window.requestAnimationFrame(time => {

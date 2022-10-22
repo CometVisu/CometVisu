@@ -101,11 +101,7 @@ qx.Class.define('cv.plugins.Gauge', {
       );
 
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
-      cv.parser.pure.WidgetParser.parseAddress(
-        xml,
-        path,
-        this.makeAddressListFn
-      );
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       return data;
     },
@@ -198,18 +194,10 @@ qx.Class.define('cv.plugins.Gauge', {
     // overridden
     _onDomReady() {
       const additional = {
-        gaugeType: this.getSubtype()
-          ? steelseries.GaugeType[this.getSubtype()]
-          : undefined,
-        frameDesign: this.getFrameDesign()
-          ? steelseries.FrameDesign[this.getFrameDesign()]
-          : undefined,
-        backgroundColor: this.getBackgroundColor()
-          ? steelseries.BackgroundColor[this.getBackgroundColor()]
-          : undefined,
-        valueColor: this.getValueColor()
-          ? steelseries.ColorDef[this.getValueColor()]
-          : steelseries.ColorDef.RED,
+        gaugeType: this.getSubtype() ? steelseries.GaugeType[this.getSubtype()] : undefined,
+        frameDesign: this.getFrameDesign() ? steelseries.FrameDesign[this.getFrameDesign()] : undefined,
+        backgroundColor: this.getBackgroundColor() ? steelseries.BackgroundColor[this.getBackgroundColor()] : undefined,
+        valueColor: this.getValueColor() ? steelseries.ColorDef[this.getValueColor()] : steelseries.ColorDef.RED,
         foregroundType: steelseries.ForegroundType.TYPE1,
         pointerType: steelseries.PointerType.TYPE1,
         pointerColor: steelseries.ColorDef.RED,
@@ -217,16 +205,9 @@ qx.Class.define('cv.plugins.Gauge', {
         ledColor: steelseries.LedColor.RED_LED
       };
 
-      const params = Object.assign(
-        {},
-        cv.data.Model.getInstance().getWidgetData(this.getPath()),
-        additional
-      );
+      const params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
 
-      this.__gaugeElement = new steelseries[this.getGType()](
-        'gauge_' + this.getPath(),
-        params
-      );
+      this.__gaugeElement = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
 
       super._onDomReady();
     },
@@ -246,13 +227,7 @@ qx.Class.define('cv.plugins.Gauge', {
     // overridden
     _processIncomingValue(address, data) {
       if (address && data) {
-        return this.defaultUpdate(
-          address,
-          data,
-          this.getDomElement(),
-          true,
-          this.getPath()
-        );
+        return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       }
       return null;
     },
@@ -323,9 +298,7 @@ qx.Class.define('cv.plugins.Gauge', {
     // overridden
     _action() {
       if (this.getPagejumpTarget()) {
-        cv.Application.structureController.scrollToPage(
-          this.getPagejumpTarget()
-        );
+        cv.Application.structureController.scrollToPage(this.getPagejumpTarget());
       }
     }
   },
@@ -333,10 +306,7 @@ qx.Class.define('cv.plugins.Gauge', {
   defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/gauge/gauge.css');
-    loader.addScripts([
-      'plugins/gauge/dep/tween.js',
-      'plugins/gauge/dep/steelseries.js'
-    ]);
+    loader.addScripts(['plugins/gauge/dep/tween.js', 'plugins/gauge/dep/steelseries.js']);
 
     cv.parser.pure.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
     cv.ui.structure.WidgetFactory.registerClass('gauge', statics);

@@ -31,19 +31,13 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       this.parseFiles(xml);
 
       // parse the icons
-      xml
-        .querySelectorAll('meta > icons icon-definition')
-        .forEach(this.parseIcons, this);
+      xml.querySelectorAll('meta > icons icon-definition').forEach(this.parseIcons, this);
 
       // then the mappings
-      xml
-        .querySelectorAll('meta > mappings mapping')
-        .forEach(this.parseMappings, this);
+      xml.querySelectorAll('meta > mappings mapping').forEach(this.parseMappings, this);
 
       // then the stylings
-      xml
-        .querySelectorAll('meta > stylings styling')
-        .forEach(this.parseStylings, this);
+      xml.querySelectorAll('meta > stylings styling').forEach(this.parseStylings, this);
 
       // then the status bar
       this.parseStatusBar(xml);
@@ -81,12 +75,10 @@ qx.Class.define('cv.parser.pure.MetaParser', {
         }
       }, this);
       if (files.css.length > 0) {
-        cv.Config.configSettings.stylesToLoad =
-          cv.Config.configSettings.stylesToLoad.concat(files.css);
+        cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.concat(files.css);
       }
       if (files.js.length > 0) {
-        cv.Config.configSettings.scriptsToLoad =
-          cv.Config.configSettings.scriptsToLoad.concat(files.js);
+        cv.Config.configSettings.scriptsToLoad = cv.Config.configSettings.scriptsToLoad.concat(files.js);
       }
     },
 
@@ -111,10 +103,8 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       const formula = elem.querySelectorAll('formula');
       if (formula.length > 0) {
         mapping.formulaSource = formula[0].textContent;
-        mapping.formula = new Function(
-          'x',
-          'var y;' + mapping.formulaSource + '; return y;'
-        );
+        mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
+
         // jshint ignore:line
       }
       const subElements = elem.querySelectorAll('entry');
@@ -149,8 +139,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
         }
         // now set the mapped values
         if (subElem.getAttribute('value')) {
-          mapping[subElem.getAttribute('value')] =
-            value.length === 1 ? value[0] : value;
+          mapping[subElem.getAttribute('value')] = value.length === 1 ? value[0] : value;
           if (isDefaultValue) {
             mapping.defaultValue = subElem.getAttribute('value');
           }
@@ -164,9 +153,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
           ];
 
           if (isDefaultValue) {
-            mapping.defaultValue = parseFloat(
-              subElem.getAttribute('range_min')
-            );
+            mapping.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
         } else if (subElements.length === 1) {
           // use as catchall mapping
@@ -206,9 +193,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
           ];
 
           if (isDefaultValue) {
-            styling.defaultValue = parseFloat(
-              subElem.getAttribute('range_min')
-            );
+            styling.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
         }
       }, this);
@@ -267,10 +252,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
         matches.forEach(match => {
           switch (match[1]) {
             case 'manager.php':
-              text = text.replace(
-                match[0],
-                'href="?manager=1" onclick="showManager(); return false;"'
-              );
+              text = text.replace(match[0], 'href="?manager=1" onclick="showManager(); return false;"');
 
               handled = true;
               break;
@@ -278,9 +260,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
             case 'check_config.php':
               text = text.replace(
                 match[0],
-                'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' +
-                  search +
-                  '\')"'
+                'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"'
               );
 
               handled = true;
@@ -341,16 +321,11 @@ qx.Class.define('cv.parser.pure.MetaParser', {
               let replacement = 'href="#" ';
               switch (match[1]) {
                 case 'validate':
-                  replacement +=
-                    'onclick="qx.core.Init.getApplication().validateConfig(\'' +
-                    search +
-                    '\')"';
+                  replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
                   break;
 
                 case 'edit': {
-                  const configFile = search
-                    ? 'visu_config_' + search + '.xml'
-                    : 'visu_config.xml';
+                  const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
                   replacement =
                     'href="' +
                     window.location.pathname +
@@ -406,74 +381,67 @@ qx.Class.define('cv.parser.pure.MetaParser', {
 
     parseStateNotifications(xml) {
       const stateConfig = {};
-      xml
-        .querySelectorAll('meta > notifications state-notification')
-        .forEach(function (elem) {
-          const target =
-            cv.core.notifications.Router.getTarget(
-              elem.getAttribute('target')
-            ) || cv.ui.NotificationCenter.getInstance();
+      xml.querySelectorAll('meta > notifications state-notification').forEach(function (elem) {
+        const target =
+          cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
 
-          const addressContainer = elem.querySelector('addresses');
+        const addressContainer = elem.querySelector('addresses');
 
-          const config = {
-            target: target,
-            severity: elem.getAttribute('severity'),
-            skipInitial: elem.getAttribute('skip-initial') !== 'false',
-            deletable: elem.getAttribute('deletable') !== 'false',
-            unique: elem.getAttribute('unique') === 'true',
-            valueMapping: addressContainer.getAttribute('value-mapping'),
-            addressMapping: addressContainer.getAttribute('address-mapping')
-          };
+        const config = {
+          target: target,
+          severity: elem.getAttribute('severity'),
+          skipInitial: elem.getAttribute('skip-initial') !== 'false',
+          deletable: elem.getAttribute('deletable') !== 'false',
+          unique: elem.getAttribute('unique') === 'true',
+          valueMapping: addressContainer.getAttribute('value-mapping'),
+          addressMapping: addressContainer.getAttribute('address-mapping')
+        };
 
-          const name = elem.getAttribute('name');
-          if (name) {
-            config.topic = 'cv.state.' + name;
+        const name = elem.getAttribute('name');
+        if (name) {
+          config.topic = 'cv.state.' + name;
+        }
+        const icon = elem.getAttribute('icon');
+        if (icon) {
+          config.icon = icon;
+          const iconClasses = elem.getAttribute('icon-classes');
+          if (iconClasses) {
+            config.iconClasses = iconClasses;
           }
-          const icon = elem.getAttribute('icon');
-          if (icon) {
-            config.icon = icon;
-            const iconClasses = elem.getAttribute('icon-classes');
-            if (iconClasses) {
-              config.iconClasses = iconClasses;
-            }
-          }
+        }
 
-          // templates
-          const titleElem = elem.querySelector('title-template');
-          if (titleElem) {
-            config.titleTemplate = titleElem.innerHTML;
-          }
-          const messageElem = elem.querySelector('message-template');
-          if (messageElem) {
-            config.messageTemplate = messageElem.innerHTML;
-          }
+        // templates
+        const titleElem = elem.querySelector('title-template');
+        if (titleElem) {
+          config.titleTemplate = titleElem.innerHTML;
+        }
+        const messageElem = elem.querySelector('message-template');
+        if (messageElem) {
+          config.messageTemplate = messageElem.innerHTML;
+        }
 
-          // condition
-          const conditionElem = elem.querySelector('condition');
-          let condition = conditionElem.textContent;
-          if (condition === 'true') {
-            condition = true;
-          } else if (condition === 'false') {
-            condition = false;
-          }
-          config.condition = condition;
+        // condition
+        const conditionElem = elem.querySelector('condition');
+        let condition = conditionElem.textContent;
+        if (condition === 'true') {
+          condition = true;
+        } else if (condition === 'false') {
+          condition = false;
+        }
+        config.condition = condition;
 
-          const addresses =
-            cv.parser.pure.WidgetParser.makeAddressList(addressContainer);
-          // addresses
-          Object.getOwnPropertyNames(addresses).forEach(function (address) {
-            if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
-              stateConfig[address] = [];
-            }
-            const addressConfig = Object.assign({}, config);
-            addressConfig.addressConfig = addresses[address];
-            stateConfig[address].push(addressConfig);
-          });
+        const addresses = cv.parser.pure.WidgetParser.makeAddressList(addressContainer);
+        // addresses
+        Object.getOwnPropertyNames(addresses).forEach(function (address) {
+          if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
+            stateConfig[address] = [];
+          }
+          const addressConfig = Object.assign({}, config);
+          addressConfig.addressConfig = addresses[address];
+          stateConfig[address].push(addressConfig);
         });
-      cv.core.notifications.Router.getInstance().registerStateUpdateHandler(
-        stateConfig
-      );
+      });
+      cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
     },
 
     /**
@@ -516,11 +484,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                 );
 
                 __loadQueue.remove(areq.getUrl());
-                qx.log.Logger.debug(
-                  this,
-                  'DONE loading template from file:',
-                  ref
-                );
+                qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
 
                 check();
               });
@@ -530,17 +494,10 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                   title: qx.locale.Manager.tr('Template loading error'),
                   severity: 'urgent',
                   deletable: true,
-                  message: qx.locale.Manager.tr(
-                    "Template '%1' could not be loaded from '%2'.",
-                    templateName,
-                    ref
-                  )
+                  message: qx.locale.Manager.tr("Template '%1' could not be loaded from '%2'.", templateName, ref)
                 };
 
-                cv.core.notifications.Router.dispatchMessage(
-                  message.topic,
-                  message
-                );
+                cv.core.notifications.Router.dispatchMessage(message.topic, message);
 
                 reject();
               });

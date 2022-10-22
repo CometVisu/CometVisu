@@ -136,9 +136,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       this._rootListenerId = qx.core.Init.getApplication()
         .getRoot()
         .addListener('resize', function () {
-          errorScroll.setHeight(
-            Math.min(300, qx.bom.Document.getHeight() - 340)
-          );
+          errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
         });
       vbox.add(errorScroll, { flex: 1 });
       const errorLabels = new Map();
@@ -161,10 +159,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
           if (minIndent === Number.POSITIVE_INFINITY) {
             minIndent = 0;
           }
-          codeSnippet = codeSnippet.map(
-            line =>
-              line[0] + ': ' + qx.xml.String.escape(line[1].substr(minIndent))
-          );
+          codeSnippet = codeSnippet.map(line => line[0] + ': ' + qx.xml.String.escape(line[1].substr(minIndent)));
 
           const headline = this.tr('Line %1', error.line);
           label = new qx.ui.basic.Label(
@@ -193,22 +188,14 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
 
       // close button
       let closeButton = new qx.ui.form.Button(this.tr('Cancel'));
-      closeButton.addListener('execute', () =>
-        this.fireDataEvent('action', 'cancel')
-      );
+      closeButton.addListener('execute', () => this.fireDataEvent('action', 'cancel'));
 
       let proceedButton = new qx.ui.form.Button(this.tr('Proceed'));
-      proceedButton.addListener('execute', () =>
-        this.fireDataEvent('action', 'proceed')
-      );
+      proceedButton.addListener('execute', () => this.fireDataEvent('action', 'proceed'));
 
-      let openSourceButton = new qx.ui.form.Button(
-        this.tr('Open in text editor')
-      );
+      let openSourceButton = new qx.ui.form.Button(this.tr('Open in text editor'));
 
-      openSourceButton.addListener('execute', () =>
-        this.fireDataEvent('action', 'open-source')
-      );
+      openSourceButton.addListener('execute', () => this.fireDataEvent('action', 'open-source'));
 
       buttonPane.add(closeButton);
       buttonPane.add(proceedButton);
@@ -229,9 +216,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
     this._errors = null;
     this._file = null;
     if (this._rootListenerId) {
-      qx.core.Init.getApplication()
-        .getRoot()
-        .removeListenerById(this._rootListenerId);
+      qx.core.Init.getApplication().getRoot().removeListenerById(this._rootListenerId);
       this._rootListenerId = null;
     }
   }

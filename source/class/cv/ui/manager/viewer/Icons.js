@@ -83,10 +83,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
         Object.keys(cv.IconConfig.DB).forEach(name => {
           model.push([name, handler.getIconSource(name, 'icon-preview')]);
         });
-        if (
-          this.getChildControl('filter').getValue() ||
-          this.getPermanentFilter()
-        ) {
+        if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {
           this._controller.setModel(model);

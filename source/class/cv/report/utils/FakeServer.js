@@ -31,10 +31,7 @@ qx.Class.define('cv.report.utils.FakeServer', {
     _index: 0,
 
     init(log, build) {
-      qx.log.Logger.info(
-        this,
-        build + ' log replaying in ' + qx.core.Environment.get('cv.build')
-      );
+      qx.log.Logger.info(this, build + ' log replaying in ' + qx.core.Environment.get('cv.build'));
 
       const urlMapping = {
         '/resource/': cv.Application.getRelativeResourcePath(true),
@@ -72,18 +69,12 @@ qx.Class.define('cv.report.utils.FakeServer', {
         url = url.replace(/[\?|&]nocache=[0-9]+/, '');
       }
       if (!xhrData[url]) {
-        if (
-          !url.startsWith('/') &&
-          qx.core.Environment.get('cv.build') === 'source'
-        ) {
+        if (!url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
           url = '../source/' + url;
         }
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
-        qx.log.Logger.error(
-          this,
-          '404: no logged responses for URI ' + url + ' found'
-        );
+        qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
       } else {
         qx.log.Logger.debug(this, 'faking response for ' + url);
         let response = '';

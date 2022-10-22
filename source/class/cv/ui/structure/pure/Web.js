@@ -96,14 +96,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
       if (this.getScrolling()) {
         scrolling = 'scrolling="' + this.getScrolling() + '"';
       } // add scrolling parameter to iframe
-      return (
-        '<div class="actor"><iframe src="' +
-        this.getSrc() +
-        '" ' +
-        webStyle +
-        scrolling +
-        '></iframe></div>'
-      );
+      return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
     },
 
     /**
@@ -121,10 +114,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         const iframe = this.getDomElement().querySelector('iframe');
         this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
-        cv.io.BackendConnections.getClient().write(
-          address,
-          cv.Transform.encode(addr, 0)
-        );
+        cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
       }
     }
   }
