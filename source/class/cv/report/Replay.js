@@ -293,7 +293,7 @@ qx.Class.define('cv.report.Replay', {
           } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
             client.getCurrentTransport().handleMessage({ data: record.d });
           } else {
-            this.error("long-polling transport should not record 'backend' log events. Skip replaying");
+            this.error('long-polling transport should not record \'backend\' log events. Skip replaying');
           }
           break;
         default:

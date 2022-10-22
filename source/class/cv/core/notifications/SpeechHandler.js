@@ -133,7 +133,7 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
         selectedVoice = defaultVoice;
       }
       utterThis.voice = selectedVoice;
-      this.debug("saying '" + text + "' in voice " + selectedVoice.name);
+      this.debug('saying \'' + text + '\' in voice ' + selectedVoice.name);
       synth.speak(utterThis);
     }
   }

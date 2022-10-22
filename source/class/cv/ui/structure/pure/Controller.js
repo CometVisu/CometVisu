@@ -482,7 +482,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         const scope = this.traversePath(path);
         if (scope === null) {
           // path is wrong
-          this.error("path '" + path + "' could not be traversed, no page found");
+          this.error('path \'' + path + '\' could not be traversed, no page found');
 
           return null;
         }

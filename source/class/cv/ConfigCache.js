@@ -271,7 +271,7 @@ qx.Class.define('cv.ConfigCache', {
           if (!hash && xml) {
             hash = this.toHash(xml);
           }
-          qx.log.Logger.debug(this, "Current hash: '" + hash + "', cached hash: '" + cachedHash + "'");
+          qx.log.Logger.debug(this, 'Current hash: \'' + hash + '\', cached hash: \'' + cachedHash + '\'');
 
           this._valid = hash === cachedHash;
         }

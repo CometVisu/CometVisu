@@ -275,7 +275,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                   search +
                   '&manager=1&open=visu_config' +
                   suffix +
-                  ".xml\" onclick=\"showManager('open', 'visu_config" +
+                  '.xml" onclick="showManager(\'open\', \'visu_config' +
                   suffix +
                   '.xml\')"'
               );
@@ -331,7 +331,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                     search +
                     '&manager=1&open=' +
                     configFile +
-                    "\" onclick=\"showManager('open', '" +
+                    '" onclick="showManager(\'open\', \'' +
                     configFile +
                     '\'); return false;"';
                   break;
@@ -492,7 +492,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                   title: qx.locale.Manager.tr('Template loading error'),
                   severity: 'urgent',
                   deletable: true,
-                  message: qx.locale.Manager.tr("Template '%1' could not be loaded from '%2'.", templateName, ref)
+                  message: qx.locale.Manager.tr('Template \'%1\' could not be loaded from \'%2\'.', templateName, ref)
                 };
 
                 cv.core.notifications.Router.dispatchMessage(message.topic, message);

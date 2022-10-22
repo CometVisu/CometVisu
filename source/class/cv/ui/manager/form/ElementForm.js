@@ -687,7 +687,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               }
               formElement.addListener(type, func, formElement);
             } catch (e) {
-              this.warn("Invalid '" + type + "' event handler for form element '" + key + "'.");
+              this.warn('Invalid \'' + type + '\' event handler for form element \'' + key + '\'.');
             }
           }
         }

@@ -251,7 +251,7 @@ qx.Class.define('cv.Transform', {
     __getFirstElement(selector) {
       if (selector[0] === '[') {
         const [, firstPart, remainingPart] = selector.match(/^\[([^\]]*)]\.?(.*)/);
-        if ((firstPart[0] === '"' || firstPart[0] === "'") && firstPart[0] === firstPart.substr(-1)) {
+        if ((firstPart[0] === '"' || firstPart[0] === '\'') && firstPart[0] === firstPart.substr(-1)) {
           return {
             firstPart: firstPart.substr(1, firstPart.length - 2),
             remainingPart

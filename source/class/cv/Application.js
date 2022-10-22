@@ -266,7 +266,7 @@ qx.Class.define('cv.Application', {
         '  _____                     ___      ___\n' +
         ' / ____|                   | \\ \\    / (_)\n' +
         '| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n' +
-        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n" +
+        '| |    / _ \\| \'_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n' +
         '| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n' +
         ' \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n' +
         '-----------------------------------------------------------\n' +
@@ -278,7 +278,7 @@ qx.Class.define('cv.Application', {
         '\n';
 
       if (cv.Application.consoleCommands.length) {
-        info += '\n Available commands:\n' + '    ' + cv.Application.consoleCommands.join('\n    ') + '\n';
+        info += '\n Available commands:\n    ' + cv.Application.consoleCommands.join('\n    ') + '\n';
       }
 
       info += '-----------------------------------------------------------\n\n';

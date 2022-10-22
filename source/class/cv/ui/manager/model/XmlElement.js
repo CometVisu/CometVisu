@@ -69,7 +69,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     entityMap: {
       '&': '&amp;',
       '"': '&quot;',
-      "'": '&#39;',
+      '\'': '&#39;',
       '`': '&#x60;'
     }
   },
@@ -790,7 +790,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (!this.__initializing) {
         if (this._node) {
           if (!this.getSchemaElement().isValueValid(value)) {
-            throw new qx.core.ValidationError(qx.locale.Manager.tr("Invalid text content: '%1'", value));
+            throw new qx.core.ValidationError(qx.locale.Manager.tr('Invalid text content: \'%1\'', value));
           }
         } else {
           throw new qx.core.ValidationError(qx.locale.Manager.tr('Text content not allowed here'));
@@ -823,7 +823,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           } else {
             errors.push({
               attribute: attr.name,
-              error: qx.locale.Manager.tr("Attribute '%1' not allowed", attr.name)
+              error: qx.locale.Manager.tr('Attribute \'%1\' not allowed', attr.name)
             });
           }
         }
@@ -834,7 +834,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             if (!this._node.hasAttribute(name)) {
               errors.push({
                 attribute: name,
-                error: qx.locale.Manager.tr("Attribute '%1' is required but missing", name)
+                error: qx.locale.Manager.tr('Attribute \'%1\' is required but missing', name)
               });
             }
           });
@@ -902,10 +902,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             changed = true;
           }
         } else {
-          this.error("'" + text + "' is no valid text content for a '" + this.getName() + "' element");
+          this.error('\'' + text + '\' is no valid text content for a \'' + this.getName() + '\' element');
         }
       } else {
-        this.error("text content is not allowed for a '" + this.getName() + "' element");
+        this.error('text content is not allowed for a \'' + this.getName() + '\' element');
       }
       return {
         changed: changed,
@@ -952,10 +952,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               changed = true;
             }
           } else {
-            this.error("'" + value + "' is not allowed for attribute '" + name + "'");
+            this.error('\'' + value + '\' is not allowed for attribute \'' + name + '\'');
           }
         } else {
-          this.error("'" + name + "' is no allowed attribute for a '" + this.getName() + "' element");
+          this.error('\'' + name + '\' is no allowed attribute for a \'' + this.getName() + '\' element');
         }
         return {
           changed: changed,
@@ -1217,7 +1217,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                   let msg = this.getInvalidMessage();
                   msg =
                     (msg ? msg + '<br/>' : '') +
-                    qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
+                    qx.locale.Manager.tr('Child element \'%1\' not allowed.', childNode.nodeName);
 
                   this.setInvalidMessage(msg);
                   this.setValid(false);

@@ -157,7 +157,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
 
       let keyframes = createKeyframe(
         'move',
-        'from {  stroke-dashoffset: ' + segmentLength + ';  }\n' + 'to   {  stroke-dashoffset: 0;  }\n'
+        'from {  stroke-dashoffset: ' + segmentLength + ';  }\nto   {  stroke-dashoffset: 0;  }\n'
       );
 
       /**

@@ -44,7 +44,7 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
           if (Clazz) {
             this.registry[data.path] = new Clazz(data);
           } else {
-            qx.log.Logger.error(this, "No handler found for type '" + type + "'");
+            qx.log.Logger.error(this, 'No handler found for type \'' + type + '\'');
 
             return null;
           }

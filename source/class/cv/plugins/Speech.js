@@ -173,7 +173,7 @@ qx.Class.define('cv.plugins.Speech', {
         }
       }
       this.debug(
-        "changing lastSpeech from '%s' to '%s'",
+        'changing lastSpeech from \'%s\' to \'%s\'',
         this.__lastSpeech[address] ? this.__lastSpeech[address].text : '',
         text
       );

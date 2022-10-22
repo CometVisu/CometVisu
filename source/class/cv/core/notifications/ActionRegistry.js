@@ -48,7 +48,7 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
       if (this.__handlers[type]) {
         qx.log.Logger.warn(
           this,
-          "there is already an action handler registered for '" + type + "' action. replacing now"
+          'there is already an action handler registered for \'' + type + '\' action. replacing now'
         );
       }
       this.__handlers[type] = handler;
@@ -88,7 +88,7 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
      */
     createActionElement(type, config) {
       if (!this.__handlers[type]) {
-        qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);
+        qx.log.Logger.error(this, 'no action handler registered for \'%1\' action type', type);
 
         return null;
       }

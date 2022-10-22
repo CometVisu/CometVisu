@@ -232,7 +232,7 @@ qx.Class.define('cv.io.Reflection', {
      * @param element
      */
     create(path, element) {
-      return "created widget '" + path + "': '" + element + "'";
+      return 'created widget \'' + path + '\': \'' + element + '\'';
     },
 
     /**
@@ -243,7 +243,7 @@ qx.Class.define('cv.io.Reflection', {
     deleteCommand(path) {
       this.debug(this.lookupWidget(path), document.querySelector('#' + path));
       //this.lookupWidget( path ).remove();
-      return "deleted widget '" + path + "'";
+      return 'deleted widget \'' + path + '\'';
     },
 
     /**

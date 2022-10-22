@@ -27,7 +27,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
   ***********************************************
   */
   construct() {
-    this.__linkRegex = new RegExp(":ref:[`'](.+?)[`']", 'g');
+    this.__linkRegex = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
     this.__language = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
   },
 
@@ -118,7 +118,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       const node = this.getNode();
 
       const lang = qx.locale.Manager.getInstance().getLanguage();
-      const selector = "xsd:annotation/xsd:documentation[@xml:lang='" + lang + "']";
+      const selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']';
 
       // any appinfo this element itself might carry
       let documentation = this.__getTextNodesByXPath(node, selector);

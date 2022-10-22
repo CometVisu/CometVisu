@@ -263,7 +263,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     registerTemplates(xml) {
-      xml.querySelectorAll("templates[structure='tile'] > template").forEach(template => {
+      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
         customElements.define(
           cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
           class extends TemplatedElement {

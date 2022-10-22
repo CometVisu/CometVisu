@@ -51,11 +51,8 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
       const valElem = this.getValueElement();
 
       const value = cv.Transform.decode(this.getAddress()[address], data);
-
-      let bg = window
-        .getComputedStyle(valElem)
-        ['background-color'].replace(/[a-zA-Z()\s]/g, '')
-        .split(/,/);
+      const styleBg = window.getComputedStyle(valElem)['background-color'];
+      let bg = styleBg.replace(/[a-zA-Z()\s]/g, '').split(/,/);
       if (bg.length !== 3) {
         bg = [0, 0, 0];
       }

@@ -121,53 +121,53 @@ qx.Class.define('cv.plugins.UpnpController', {
       const ret_val = '<div class="actor"><div class="upnpcontroller" id="' + id + '">';
       let controller = '<div>';
       controller +=
-        "<div id='" +
+        '<div id=\'' +
         id +
-        "_title' class='upnplabelgroup'><div class='upnplabel'>Title</div><div class='value'>-</div></div>";
+        '_title\' class=\'upnplabelgroup\'><div class=\'upnplabel\'>Title</div><div class=\'value\'>-</div></div>';
       controller +=
-        "<div id='" +
+        '<div id=\'' +
         id +
-        "_artist' class='upnplabelgroup'><div class='upnplabel'>Artist</div><div class='value'>-</div></div>";
+        '_artist\' class=\'upnplabelgroup\'><div class=\'upnplabel\'>Artist</div><div class=\'value\'>-</div></div>';
       controller +=
-        "<div id='" +
+        '<div id=\'' +
         id +
-        "_album' class='upnplabelgroup'><div class='upnplabel'>Album</div><div class='value'>-</div></div>";
+        '_album\' class=\'upnplabelgroup\'><div class=\'upnplabel\'>Album</div><div class=\'value\'>-</div></div>';
       controller +=
-        "<div id='" +
+        '<div id=\'' +
         id +
-        "_time' class='upnplabelgroup'><div class='upnplabel'></div><div class='value'>-</div></div>";
+        '_time\' class=\'upnplabelgroup\'><div class=\'upnplabel\'></div><div class=\'value\'>-</div></div>';
       controller +=
-        "<div style='float: left;'><progress id='" + id + "_progress'  max='100' value='0'></progress></div>";
+        '<div style=\'float: left;\'><progress id=\'' + id + '_progress\'  max=\'100\' value=\'0\'></progress></div>';
       controller +=
-        "<div style='float: left;'><div id='" +
+        '<div style=\'float: left;\'><div id=\'' +
         id +
-        "_volumedown' class='actor center switchUnpressed'><div class='value'>-</div></div>" +
-        "<div id='" +
+        '_volumedown\' class=\'actor center switchUnpressed\'><div class=\'value\'>-</div></div>' +
+        '<div id=\'' +
         id +
-        "_volume' class='actor center switchInvisible' style='text-align: center;'><div class='value'>20</div></div>" +
-        "<div id='" +
+        '_volume\' class=\'actor center switchInvisible\' style=\'text-align: center;\'><div class=\'value\'>20</div></div>' +
+        '<div id=\'' +
         id +
-        "_volumeup' class='actor center switchUnpressed'><div class='value'>+</div></div></div>";
+        '_volumeup\' class=\'actor center switchUnpressed\'><div class=\'value\'>+</div></div></div>';
       controller +=
-        "<div style='float: left;'><div id='" +
+        '<div style=\'float: left;\'><div id=\'' +
         id +
-        "_playButton' class='actor switchUnpressed center'><div class='value'>-</div></div>" +
-        "<div id='" +
+        '_playButton\' class=\'actor switchUnpressed center\'><div class=\'value\'>-</div></div>' +
+        '<div id=\'' +
         id +
-        "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div></div>";
+        '_muteButton\' class=\'actor switchUnpressed center\'><div class=\'value\'>-</div></div></div>';
       controller +=
-        "<div style='float: left;'><div id='" +
+        '<div style=\'float: left;\'><div id=\'' +
         id +
-        "_prev' class='actor switchUnpressed center'><div class='value'>prev</div></div>" +
-        "<div id='" +
+        '_prev\' class=\'actor switchUnpressed center\'><div class=\'value\'>prev</div></div>' +
+        '<div id=\'' +
         id +
-        "_next' class='actor switchUnpressed center'><div class='value'>next</div></div></div>";
+        '_next\' class=\'actor switchUnpressed center\'><div class=\'value\'>next</div></div></div>';
       controller +=
-        "<div style='float: left;'><div id='" +
+        '<div style=\'float: left;\'><div id=\'' +
         id +
-        "_getplaylists' class='actor switchUnpressed center'><div class='value'>play lists</div></div></div>";
+        '_getplaylists\' class=\'actor switchUnpressed center\'><div class=\'value\'>play lists</div></div></div>';
       controller +=
-        "<div style='float: left;'><div id='" + id + "_playlistsresult'><div class='value'></div></div></div>";
+        '<div style=\'float: left;\'><div id=\'' + id + '_playlistsresult\'><div class=\'value\'></div></div></div>';
 
       controller += '</div>';
       return ret_val + controller;
@@ -372,14 +372,14 @@ qx.Class.define('cv.plugins.UpnpController', {
 
         for (let i = 0; i < data.playLists.length; i++) {
           playlists +=
-            "<a href='" +
+            '<a href=\'' +
             'plugins/upnpcontroller/selectplaylist.php?player_ip_addr=' +
             playerIp +
             '&listurl=' +
             data.playLists[i].urlenc +
             '&port=' +
             playerPort +
-            "'>" +
+            '\'>' +
             data.playLists[i].name +
             '</a></br>';
 

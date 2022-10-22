@@ -249,9 +249,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
               child.getAttribute('key') +
               ' ' +
               child.getAttribute('operator') +
-              " '" +
+              ' \'' +
               child.getAttribute('value') +
-              "'";
+              '\'';
             break;
 
           default:

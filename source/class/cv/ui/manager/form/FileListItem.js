@@ -263,7 +263,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
         cv.ui.manager.upload.MDragUpload.uploadFile(cv.ui.manager.upload.MDragUpload.getFiles(ev)[0]);
       } else {
         qxl.dialog.Dialog.confirm(
-          this.tr("Do you really want to replace the '%1' with the uploaded files content?", this.getModel().getName()),
+          this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()),
 
           function (confirmed) {
             if (confirmed) {

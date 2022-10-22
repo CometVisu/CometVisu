@@ -309,11 +309,11 @@ qx.Class.define('cv.core.notifications.Router', {
         target = cv.core.notifications.Router.getTarget(message.target);
       }
       if (target && target.handleMessage) {
-        this.debug("dispatching '" + topic + "' message to handler: " + target);
+        this.debug('dispatching \'' + topic + '\' message to handler: ' + target);
         target.handleMessage(message, {});
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
-          this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);
+          this.debug('dispatching \'' + topic + '\' message to handler: ' + entry.handler);
 
           entry.handler.handleMessage(message, entry.config);
         }, this);

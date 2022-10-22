@@ -70,7 +70,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
 
     from7to8Pure(source) {
       let c = 0;
-      source.querySelectorAll("plugins > plugin[name='gweather']").forEach(node => {
+      source.querySelectorAll('plugins > plugin[name=\'gweather\']').forEach(node => {
         const parent = node.parentNode;
         const indentNode = node.previousSibling;
         parent.removeChild(node);
@@ -81,7 +81,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       });
       this.__setVersion(source, 8);
       if (c > 0) {
-        this.__log.push('removed ' + c + " 'plugin'-nodes with obsolete plugin (gweather)");
+        this.__log.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
       }
       return 8;
     },
@@ -130,7 +130,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       });
       this.__setVersion(source, 9);
       if (c > 0) {
-        this.__log.push('converted ' + c + " 'multitrigger'-nodes to new button configuration");
+        this.__log.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
       }
       return 9;
     },

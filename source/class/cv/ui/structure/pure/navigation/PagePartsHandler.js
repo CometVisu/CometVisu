@@ -70,7 +70,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
       let pageTitle = this.getPageTitle(id);
       let nav = document.createElement('a');
       // eslint-disable-next-line no-script-url
-      nav.setAttribute('href', "javascript:cv.Application.structureController.scrollToPage('" + id + "')");
+      nav.setAttribute('href', 'javascript:cv.Application.structureController.scrollToPage(\'' + id + '\')');
 
       nav.setAttribute('id', 'breadcrump_pagejump_' + id);
       nav.appendChild(document.createTextNode(pageTitle));
@@ -87,7 +87,7 @@ qx.Class.define('cv.ui.structure.pure.navigation.PagePartsHandler', {
           pathNode.appendChild(span);
           nav = document.createElement('a');
           // eslint-disable-next-line no-script-url
-          nav.setAttribute('href', "javascript:cv.Application.structureController.scrollToPage('" + id + "')");
+          nav.setAttribute('href', 'javascript:cv.Application.structureController.scrollToPage(\'' + id + '\')');
 
           nav.setAttribute('id', 'breadcrump_pagejump_' + id);
           nav.appendChild(document.createTextNode(pageTitle));

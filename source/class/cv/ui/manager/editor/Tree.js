@@ -1501,7 +1501,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             allowCancel: true,
             context: this,
             message: this.tr(
-              "<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>"
+              '<p style=\'font-weight:bold\'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>'
             ),
 
             formData: {
@@ -2352,37 +2352,37 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
       if (focusedWidget === this.getChildControl('searchbar')) {
         dialogConf.message = this.tr(
-          "<h3>Search for elements</h3>\
+          '<h3>Search for elements</h3>\
 <p>You can search for element names (tag names or content of name attribute) by typing a search value here. \
 All elements whose tag name or name-attribute start with the search term will be found</p>\
 <p>Search will start automatically when the search term is at least 2 characters long.</p>\
 <p>The first found element will be opened and selected in the element tree. You can jump to the next \
-found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element \
-with the 'Up' key.</p>"
+found element with \'Enter\' or the \'Down\' key. Accordingly you can jump the the previous found element \
+with the \'Up\' key.</p>'
         );
       } else {
         // show general help
         dialogConf.message = this.tr(
-          "<h3>CometVisu XML-Editor - a brief introduction</h3>\
+          '<h3>CometVisu XML-Editor - a brief introduction</h3>\
 <p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. \
 You can traverse through the tree by opening/closing elements with a click on the expand icon.</p>\
 <p>The Xml-Editor will make sure that you do not create an invalid configuration file. \
 If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p>\
 <h4>Editing attributes</h4>\
-<p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar \
-above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p>\
+<p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the \'edit\'-button in the toolbar \
+above the tree of by right-clicking on the element and the \'edit\'-button in the context menu</p>\
 <h4>Editing elements</h4>\
 <p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. \
 You can add new elements by starting a drag in the round + button on the bottom of the tree, or \
-by right clicking on an element and choosing the 'add child'-button.</p>\
+by right clicking on an element and choosing the \'add child\'-button.</p>\
 <p>You can delete elements by the delete buttons in the toolbar</p>\
 <h4>Expert view</h4>\
 <p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually \
-are not needed that often. You can access these attributes by toggling to the 'Expertview'-button \
+are not needed that often. You can access these attributes by toggling to the \'Expertview\'-button \
 in the toolbar directly above the tree.</p>\
 <h4>Config preview</h4>\
 <p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically \
-refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>'
         );
       }
       new cv.ui.manager.dialog.BigAlert(dialogConf).show();
