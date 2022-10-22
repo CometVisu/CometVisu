@@ -1,0 +1,341 @@
+html {
+  height: 100%;
+  overflow: hidden;
+
+  body {
+    user-select: none;
+    min-height: 100%;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+  }
+}
+
+
+#notification-center {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  background-color: rgba(61, 61, 61, 0.9);
+  border-left: 3px solid #111;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  z-index: 1000000;
+  color: #FFF;
+
+  > .badge {
+    position: absolute;
+    top: 5px;
+    left: -53px; /*width + border*/
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    display: none;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(61, 61, 61, 0.9);
+    font-weight: bold;
+    font-size: 1.4em;
+    border-left: 3px solid #111;
+    border-top: 3px solid #111;
+    border-bottom: 3px solid #111;
+    cursor: pointer;
+  }
+
+  > .badge:hover {
+    border-color: #CCC;
+  }
+
+  section.messages {
+    overflow-y: auto;
+  }
+
+  /*severities*/
+  > .badge.urgent, #toast-list .toast.urgent {
+    background-color: rgba(255, 0, 0, 0.9);
+  }
+
+  > .badge.high, #toast-list .toast.high {
+    background-color: rgba(255, 121, 0, 0.9);
+  }
+
+  > .badge.normal, #toast-list .toast.normal {
+    background-color: rgba(255, 244, 230, 0.9);
+    color: #000000;
+  }
+
+  > .badge.low, #toast-list .toast.low {
+    background-color: rgba(61, 61, 61, 0.9);
+  }
+
+  .message.urgent {
+    border-left: 8px solid rgba(255, 0, 0, 0.9);
+  }
+
+  .message.high {
+    border-left: 8px solid rgba(255, 121, 0, 0.9);
+  }
+
+  .message.normal {
+    border-left: 8px solid rgba(255, 244, 230, 0.9);
+  }
+
+  .message.low {
+    border-left: 8px solid rgba(61, 61, 61, 0.9);
+  }
+
+  > .badge.hidden {
+    display: none;
+  }
+
+  > .badge:not(:empty):not(.hidden) {
+    display: block;
+  }
+
+  > header {
+    padding: 10px 18px;
+    border-bottom: 2px solid #CCC;
+
+    > h3 {
+      overflow: auto;
+    }
+
+    .hide {
+      float: right;
+    }
+
+
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 18px;
+    border-top: 2px solid #CCC;
+    font-size: 1.1em;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+
+    .clear:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .clear::before {
+      content: "X ";
+    }
+  }
+
+
+  .message {
+    border-bottom: 1px solid #CECECE;
+    padding: 10px 18px;
+    overflow: auto;
+    vertical-align: middle;
+    min-height: 25px;
+
+    header h4 {
+      font-size: 1.2em;
+      margin: 0 0 3px 0;
+    }
+
+    .icon {
+      float: left;
+      height: 3em;
+      width: 3em;
+      margin-right: 0.5em;
+    }
+  }
+
+
+  .message.selectable, .message .delete {
+    cursor: pointer;
+  }
+
+  .message:last-child {
+    border-bottom: none;
+  }
+
+  .message .delete {
+    float: right;
+    font-weight: bold;
+    height: 100%;
+    margin-left: 1em;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: #fff;
+  }
+}
+
+.popup.notification,
+.popup_background.notification {
+  position: absolute;
+  padding: 30px;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 60px);
+}
+
+.popup {
+  z-index: 100001;
+  background: transparent;
+  font-family: Arial, sans-serif;
+}
+
+.popup_close {
+  position: absolute;
+  z-index: 100002;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.popup_background {
+  z-index: 100000;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+}
+
+.popup div {
+  margin: 4px;
+  max-height: 80vh;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup .main {
+  overflow-y: auto;
+}
+
+.popup .main > div > .icon:not(.spinner) {
+  float: left;
+  margin: 0 1em 0 0;
+  vertical-align: top;
+  width: 64px;
+  height: 64px;
+}
+
+.popup .main .icon.spinner {
+  vertical-align: middle;
+  align: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+.popup.notification .main .message {
+  margin: 1em 0;
+  user-select: text;
+}
+
+.popup .main pre {
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 0.8em;
+}
+
+.popup .reload,
+.popup .actions { text-align: center; white-space: nowrap; clear: both; }
+.popup .actions button {
+  padding: 0.3em 1em;
+  font-size: 0.9em;
+  margin: 0 0.5em;
+}
+
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+  color: #FFF;
+}
+
+.popup_background.error a { color: #FFF; }
+
+pre.inline { display: inline-block; }
+
+/* progressbar */
+.popup div.progressbar {
+  height: 10px;
+  background-color: white;
+  padding: 1px;
+  margin: 10px 5px;
+  position: relative;
+}
+
+.popup div.progressbar div.completed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: grey;
+  margin: 1px;
+}
+#qxsettings {
+  position: absolute;
+  top: revert;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#toast-list {
+  position: absolute;
+  right: 100px;
+  bottom: 10px;
+
+  .toast {
+    background-color: rgba(61, 61, 61, 0.9);
+    padding: 8px 18px;
+    margin: 10px 0;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 200px;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+#manager {
+  div.touch-tree-open-icon {
+    line-height: 32px !important;
+    text-align: right !important;
+  }
+
+  a {
+    color: #CCC;
+  }
+}
+.about-cv {
+  text-align: center;
+
+  h2 {
+    margin-left: 0;
+  }
+  info {
+    text-align: left;
+  }
+  label {
+    font-weight: bold;
+    width: 120px;
+    display: inline-block;
+  }
+}

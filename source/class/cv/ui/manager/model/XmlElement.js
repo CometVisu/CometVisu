@@ -38,8 +38,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     const children = new qx.data.Array();
     if (node) {
       this._node.$$widget = this;
-      this.initName(node.nodeName);
       this.setSchemaElement(schemaElement);
+      this.initName(node.nodeName);
+      this._updateShowEditButton();
       if (this.hasChildren()) {
         // we have to add a fake node to the children to show the tree that this node has children
         // it will be removed when the real children are loaded
@@ -96,7 +97,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'String',
       deferredInit: true,
       event: 'changeName',
-      apply: '_updateDisplayName'
+      apply: 'updateDisplayName'
     },
     displayName: {
       check: 'String',
@@ -225,6 +226,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _initialTextContent: null,
     __initializing: false,
     __addableChildren: null,
+    _structure: null,
 
     _maintainStatus: function () {
       if (this._node.nodeType === Node.COMMENT_NODE) {
@@ -806,7 +808,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (this._node) {
           if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
             this._node.nodeValue = value;
-            this._updateDisplayName();
+            this.updateDisplayName();
           } else if (this._node.nodeType === Node.ELEMENT_NODE) {
             this._node.textContent = value;
           }
@@ -872,7 +874,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                 this._node.setAttribute(name, value);
               }
               if (name === 'name') {
-                this._updateDisplayName();
+                this.updateDisplayName();
                 if (this.getName() === 'icon') {
                   this._maintainIcon();
                 }
@@ -987,12 +989,16 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _applySchemaElement: function (schemaElement) {
+      if (schemaElement) {
+        this._structure = schemaElement.getSchema().getStructure();
+      } else {
+        this._structure = null;
+      }
       schemaElement.bind('sortable', this, 'sortable', {
         converter: function (value) {
           return this.isEditable() && value;
         }.bind(this)
       });
-      this._updateShowEditButton();
     },
 
     _onOpen: function (value) {
@@ -1003,17 +1009,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _applyModified: function () {
-      this._updateDisplayName();
+      this.updateDisplayName();
     },
 
-    _updateDisplayName: function () {
+    updateDisplayName: function () {
       let displayName = this.getName();
       if (this._node) {
         if (this._node.nodeType === Node.ELEMENT_NODE) {
           if (this._node.hasAttribute('name')) {
             const nameAttr = this._node.getAttribute('name');
             displayName += ' "' + nameAttr + '"';
-          } else if (this.getName() === 'pages' && this._node.hasAttribute('design')) {
+          } else if (this.getSchemaElement().getSchema().isRoot(this.getName()) && this._node.hasAttribute('design')) {
             const designAttr = this._node.getAttribute('design');
             displayName += ' "' + designAttr + '"';
           }
@@ -1205,10 +1211,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _currentChildNames: function () {
       const names = [];
+      let name;
+      let widget;
       for (let i = 0; i < this._node.childNodes.length; i++) {
         const childNode = this._node.childNodes.item(i);
         if (childNode.nodeType === Node.ELEMENT_NODE) {
-          names.push(childNode.nodeName);
+          widget = this._node.$$widget;
+          name = widget ? widget.getDisplayName() : childNode.nodeName;
+          names.push(name);
         } else if ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim()) {
           names.push(childNode.nodeName);
         }
@@ -1237,7 +1247,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (this.getName() === '#comment') {
         return '';
       }
-      const widgets = this.getSchemaElement().getSchema().getWidgetNames();
+      const schema = this.getSchemaElement().getSchema();
+      const widgets = schema.getWidgetNames();
       let current = this;
       while (current && !widgets.includes(current.getName())) {
         current = current.getParent();
@@ -1245,27 +1256,49 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (!current) {
         return '';
       }
-      if (current.getName() === 'navbar') {
-        return 'navbar' + qx.lang.String.firstUp(current.getAttribute('position'));
-      }
-
-      const ids = [];
-      let c = current;
-      while (c) {
-        const parent = c.getParent();
-        if (parent.getName() === 'pages') {
-          ids.unshift('id');
-          break;
+      if (this._structure === 'pure') {
+        if (current.getName() === 'navbar') {
+          return 'navbar' + qx.lang.String.firstUp(current.getAttribute('position'));
         }
-        let id = parent.getChildren().filter(child => child.getNode().nodeType === Node.ELEMENT_NODE && child.getName() !== 'layout').indexOf(c);
-        ids.unshift(id);
-        c = parent;
+
+        const ids = [];
+        let c = current;
+        while (c) {
+          const parent = c.getParent();
+          if (parent.getName() === 'pages') {
+            ids.unshift('id');
+            break;
+          }
+          let id = parent.getChildren().filter(child => child.getNode().nodeType === Node.ELEMENT_NODE && child.getName() !== 'layout').indexOf(c);
+          ids.unshift(id);
+          c = parent;
+        }
+        if (current.getName() === 'page') {
+          // make sure that the join ends with '_'
+          ids.push('');
+        }
+        return '#' + ids.join('_');
+      } else if (this._structure === 'tile') {
+        let c = current.getNode();
+        let index = 0;
+        let selector = '';
+        while (c) {
+          const parent = c.parentElement;
+          if (c.hasAttribute('id')) {
+            selector = selector ? `#${c.getAttribute('id')} > ${selector}` : `#${c.getAttribute('id')}`;
+            break;
+          } else if (c.nodeName.toLowerCase() === 'config') {
+            selector = selector ? `config > ${selector}` : 'config';
+            break;
+          } else {
+            index = Array.prototype.indexOf.call(parent.children, c) + 1;
+            selector = selector ? `*:nth-child(${index}) > ${selector}` : `*:nth-child(${index})`;
+          }
+          c = parent;
+        }
+        return selector;
       }
-      if (current.getName() === 'page') {
-        // make sure that the join ends with '_'
-        ids.push('');
-      }
-      return ids.join('_');
+      return '';
     },
 
     // overridden

@@ -34,7 +34,8 @@ const EC = protractor.ExpectedConditions;
  * @since 2016
  */
 class BasePage {
-  constructor() {
+  constructor(structure) {
+    this.structure = structure || 'pure';
     /**
      * wrap this.timeout. (ms) in t-shirt sizes
      */
@@ -114,20 +115,30 @@ class BasePage {
 
   // eslint-disable-next-line class-methods-use-this
   getPageTitle() {
+    if (this.structure === 'tile') {
+      const page = document.querySelector('cv-page.active');
+      return page ? page.getAttribute('name') : '';
+    }
     // Note: as some designs (like "metal") are hiding the h1 the page name
     // must be extracted by this little detour
     return browser.executeAsyncScript(function (callback) {
- callback(document.querySelectorAll('.activePage h1')[0].textContent); 
-});
+      callback(document.querySelectorAll('.activePage h1')[0].textContent);
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this
   getPages() {
+    if (this.structure === 'tile') {
+      return element.all(by.css('cv-page'));
+    }
     return element.all(by.css('.page'));
   }
 
   // eslint-disable-next-line class-methods-use-this
   getPage(name) {
+    if (this.structure === 'tile') {
+      return element.one(by.css('cv-page[name="'+name+'"]'));
+    }
     return element.all(by.css('.page')).then(function(pages) {
       return pages.find(function(page) {
         if (page.element(by.tagName('h1')).getText() === name) {
@@ -151,9 +162,9 @@ class BasePage {
    * @param force
    */
   async goToPage(name, force) { // eslint-disable-line class-methods-use-this
-    if (force) {
+    if (force || this.structure === 'tile') {
       await browser.driver.executeAsyncScript(function (name, callback) {
-        cv.TemplateEngine.getInstance().scrollToPage(name, 0);
+        cv.Application.structureController.scrollToPage(name, 0);
         callback();
       }, name);
     }
@@ -182,7 +193,7 @@ class BasePage {
   }
 
   /**
-   * Get the last message that has been send to the backend (aka write message)
+   * Get the last message that has been sent to the backend (aka write message)
    * @return {Map}
    */
   // eslint-disable-next-line class-methods-use-this
@@ -193,7 +204,7 @@ class BasePage {
   }
 
   /**
-   * Get the complete list of write messages, which have been send to the backend
+   * Get the complete list of write messages, which have been sent to the backend
    * @return {Promise<Array>}
    */
   // eslint-disable-next-line class-methods-use-this
@@ -211,7 +222,7 @@ class BasePage {
   // eslint-disable-next-line class-methods-use-this
   sendUpdate(address, value) {
     let data = {
-      i: new Date().getTime(),
+      i: Date.now(),
       d: {}
     };
     data.d[address] = value;
@@ -227,6 +238,25 @@ class BasePage {
       qx.locale.Manager.getInstance().setLocale(locale);
       callback();
     }, locale);
+  }
+
+  decode(address, value) {
+    return browser.executeAsyncScript(function (address, value, callback) {
+      const transformedValue = cv.Transform.decode(address, value);
+      callback(transformedValue);
+    }, address, value);
+  }
+
+  encode(address, value) {
+    const isDate = value instanceof Date;
+    // executeAsyncScript convers Date into string representation, so we need to undo that inside the browser
+    return browser.executeAsyncScript(function (address, value, isDate, callback) {
+      if (isDate) {
+        value = new Date(value);
+      }
+      const transformedValue = cv.Transform.encodeBusAndRaw(address, value);
+      callback(transformedValue.raw);
+    }, address, value, isDate);
   }
 
   /**

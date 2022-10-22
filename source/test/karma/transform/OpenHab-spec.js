@@ -49,11 +49,11 @@ describe('checking openhab transforms', function() {
     expect(cv.Transform.encode({transform:'OH:rollershutter'}, 0)).toEqual('UP');
     expect(cv.Transform.encode({transform:'OH:rollershutter'}, 1)).toEqual('DOWN');
     expect(cv.Transform.encode({transform:'OH:rollershutter'}, 'UP')).toEqual('UP');
-    expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'DOWN')).toEqual(1);
+    expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'DOWN')).toEqual(100);
     expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'UP')).toEqual(0);
     expect(cv.Transform.decode({transform:'OH:rollershutter'}, 0)).toEqual(0);
-    expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'Uninitialized')).toEqual(0);
-    expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'NaN')).toEqual(0);
+    expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'Uninitialized')).toEqual(undefined);
+    expect(cv.Transform.decode({transform:'OH:rollershutter'}, 'NaN')).toEqual(undefined);
   });
 
   it('should transform dimmer values', function() {
@@ -115,15 +115,9 @@ describe('checking openhab transforms', function() {
     expect(cv.Transform.encode({transform:'OH:color'}, new Map([['r', 110], ['g', 87], ['b', 101]]))).toEqual('323, 21, 43');
     expect(cv.Transform.encode({transform:'OH:color'}, new Map([['r', 0], ['g', 0], ['b', 0]]))).toEqual('0, 0, 0');
     // decode HSV -> RGB
-    expect(cv.Transform.decode({transform:'OH:color'}, '228, 7.8, 25.1')).toEqual(new Map([['r', 59], ['g', 60], ['b', 64]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '87.7, 24.1, 21.2')).toEqual(new Map([['r', 47], ['g', 54], ['b', 40]]));
-    // Note: there are differences due to rounding
-    expect(cv.Transform.decode({transform:'OH:color'}, '36.5, 20.9, 43.1')).toEqual(new Map([['r', 109], ['g', 100], ['b', 86]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '36.5, 20.9, 0')).toEqual(new Map([['r', 0], ['g', 0], ['b', 0]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '120, 60, 10')).toEqual(new Map([['r', 10], ['g', 25], ['b', 10]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '200, 60, 10')).toEqual(new Map([['r', 10], ['g', 20], ['b', 25]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '260, 60, 10')).toEqual(new Map([['r', 14], ['g', 10], ['b', 25]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '320, 60, 10')).toEqual(new Map([['r', 25], ['g', 10], ['b', 20]]));
-    expect(cv.Transform.decode({transform:'OH:color'}, '0,0,0')).toEqual(new Map([['r', 0], ['g', 0], ['b', 0]]));
+    expect(cv.Transform.decode({transform:'OH:color'}, '228, 7.8, 25.1')).toEqual(new Map([['h', 228], ['s', 7.8], ['v', 25.1]]));
+    expect(cv.Transform.decode({transform:'OH:color'}, '87.7, 24.1, 21.2')).toEqual(new Map([['h', 87.7], ['s', 24.1], ['v', 21.2]]));
+    expect(cv.Transform.decode({transform:'OH:color'}, '120, 60, 10')).toEqual(new Map([['h', 120], ['s', 60], ['v', 10]]));
+    expect(cv.Transform.decode({transform:'OH:color'}, '0,0,0')).toEqual(new Map([['h', 0], ['s', 0], ['v', 0]]));
   });
 });

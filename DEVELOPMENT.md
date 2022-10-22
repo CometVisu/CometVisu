@@ -66,3 +66,14 @@ Other useful resources you may find useful during development are:
 
 * The Qooxdoo-Documentation (only the core part): http://www.qooxdoo.org/current/
 * The API: http://cometvisu.org/CometVisu/en/latest/api/
+
+Running tests
+-------------
+
+Run all tests locally:
+
+`grunt karma:debug`
+
+Filter tests to run (by the content of the describe/it phrase of the tests):
+
+`grunt karma:debug --grep=contains-this`

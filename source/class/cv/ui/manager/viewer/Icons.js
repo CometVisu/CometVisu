@@ -58,15 +58,15 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
         },
 
         bindItem: function (controller, item, index) {
-          controller.bindProperty('', 'label', null, item, index);
+          controller.bindProperty('', 'model', null, item, index);
         }
       };
     },
 
     _onFilter: function () {
       const filterString = this.getChildControl('filter').getValue();
-      const filtered = this.getModel().filter(function (name) {
-        return name.includes(filterString);
+      const filtered = this.getModel().filter(function (entry) {
+        return entry[0].includes(filterString);
       });
       this._controller.setModel(filtered);
     },
@@ -79,13 +79,11 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
           this._controller.setDelegate(this._getDelegate());
         }
         const model = this.getModel();
+        const handler = cv.IconHandler.getInstance();
         // as the file is just a fake file, we do not really care about it
-        Object.keys(cv.IconConfig.DB).filter(function (name) {
-          const entry = cv.IconConfig.DB[name];
-          return entry['*'] && entry['*']['*'] && qx.lang.Type.isFunction(entry['*']['*']['*']);
-        }).forEach(function (name) {
-          model.push(name);
-        }, this);
+        Object.keys(cv.IconConfig.DB).forEach(name => {
+          model.push([name, handler.getIconSource(name, 'icon-preview')]);
+        });
         if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {

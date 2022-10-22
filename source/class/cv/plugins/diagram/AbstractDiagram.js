@@ -65,7 +65,7 @@
  * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Refresh],
   type: 'abstract',
 
@@ -102,8 +102,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       } else {
         mappings = this.getAttributeToPropertyMappings();
       }
-      cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
-      cv.parser.WidgetParser.parseRefresh(xml, path);
+      cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
+      cv.parser.pure.WidgetParser.parseRefresh(xml, path);
 
       const legend = xml.getAttribute('legend') || 'both';
       return cv.data.Model.getInstance().setWidgetData(path, {
@@ -261,7 +261,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param callbackParameter
      */
     lookupTsCache: function(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
-      const client = cv.TemplateEngine.getInstance().visu;
+      const client = cv.io.BackendConnections.getClient();
       let key;
       let url;
       const chartsResource = client.getResourcePath('charts', {
@@ -325,7 +325,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     _onSuccess: function(ts, key, ev, forceNowDatapoint) {
       let tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
-        const client = cv.TemplateEngine.getInstance().visu;
+        const client = cv.io.BackendConnections.getClient();
         if (client.hasCustomChartsDataProcessor(tsdata)) {
           tsdata = client.processChartsData(tsdata);
         } else {

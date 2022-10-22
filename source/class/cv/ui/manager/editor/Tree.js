@@ -36,11 +36,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this._initWorker();
 
     // init schema
-    this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
-    this._schema.onLoaded(function () {
-      this.setReady(true);
-      this._draw();
-    }, this);
+    this._schemas = {};
     this.__modifiedElements = [];
     this.__modifiedPreviewElements = new qx.data.Array();
     this.__modifiedPreviewElements.addListener('changeLength', ev => {
@@ -56,6 +52,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this.__buttonListeners = {};
     qx.core.Init.getApplication().getRoot().addListener('keyup', this._onElementKeyUp, this);
     this.addListener('resize', this._maintainPreviewVisibility, this);
+    this._draw();
   },
 
   /*
@@ -159,7 +156,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   ***********************************************
   */
   members: {
-    _schema: null,
+    _schemas: null,
     __modifiedElements: null,
     __modifiedPreviewElements: null,
     _workerWrapper: null,
@@ -167,6 +164,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     __buttonListeners: null,
     __searchResults: null,
     __searchResultIndex: 0,
+    _structure: null,
+
+    async getSchema(file) {
+      if (file.startsWith('../')) {
+        file = file.substring(3);
+      }
+      if (!Object.prototype.hasOwnProperty.call(this, file)) {
+        this._schemas[file] = cv.ui.manager.model.Schema.getInstance(file);
+      }
+      return new Promise((resolve, reject) => {
+        this._schemas[file].onLoaded(function () {
+          this.setReady(true);
+          resolve(this._schemas[file]);
+        }, this);
+      });
+    },
 
     isPreviewSynced: function () {
       return this.getPreviewState() === 'synced';
@@ -504,9 +517,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            break;
 
          case 'toggle-expert':
-           control = new qx.ui.form.CheckBox(this.tr('Expertview'));
-           control.addListener('changeValue', function (ev) {
-             this.setExpert(ev.getData());
+           control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'),
+             cv.theme.dark.Images.getIcon('expert', 16));
+           control.addListener('execute', function () {
+             this.toggleExpert();
            }, this);
            this.getChildControl('toolbar').add(control);
            break;
@@ -1542,7 +1556,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const rootNode = tree.getModel().getNode();
         formData.type = 'SelectBox';
         formData.options = [];
-        rootNode.querySelectorAll('meta > ' + type + 's > ' + type).forEach(element => {
+        const selector = this._structure === 'tile' ? 'cv-meta > cv-' + type : 'meta > ' + type + 's > ' + type;
+        rootNode.querySelectorAll(selector).forEach(element => {
           const name = element.getAttribute('name');
           formData.options.push({label: name, value: name});
         });
@@ -1847,6 +1862,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       toolbar.addSeparator();
       this._createChildControl('edit-button');
       this._createChildControl('delete-button');
+      toolbar.addSeparator();
       this._createChildControl('toggle-expert');
       toolbar.addSpacer();
       this._createChildControl('refresh-preview');
@@ -1889,14 +1905,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // get page path for this node
           let path = [];
           let node = selected.getNode();
-          while (node && node.nodeName !== 'pages') {
-            if (node.nodeName === 'page') {
-              path.unshift(node.getAttribute('name'));
+          if (this._structure === 'tile') {
+            while (node && node.nodeName !== 'config') {
+              if (node.nodeName === 'cv-page') {
+                preview.openPage(node.getAttribute('id'));
+                break;
+              }
+              node = node.parentNode;
             }
-            node = node.parentNode;
-          }
-          if (path.length > 0) {
-            preview.openPage(path.pop(), path.join('/'));
+          } else {
+            while (node && node.nodeName !== 'pages') {
+              if (node.nodeName === 'page') {
+                path.unshift(node.getAttribute('name'));
+              }
+              node = node.parentNode;
+            }
+            if (path.length > 0) {
+              preview.openPage(path.pop(), path.join('/'));
+            }
           }
           preview.setHighlightWidget(selected.getWidgetPath());
         } else {
@@ -1987,13 +2013,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       return file;
     },
 
-    __loadContent: function (value, errors) {
+    __loadContent: async function (value, errors) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
       if (file) {
-        const document = qx.xml.Document.fromString(value);
-        const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
-        const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
+        const doc = qx.xml.Document.fromString(value);
+        const rootElement = doc.documentElement;
+        const schema = await this.getSchema(rootElement.getAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation'));
+        const schemaElement = schema.getElementNode(rootElement.nodeName);
+        const rootNode = new cv.ui.manager.model.XmlElement(rootElement, schemaElement, this);
+        this._structure = schema.getStructure();
         rootNode.setEditable(file.getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
@@ -2055,6 +2084,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           });
         }
+      } else {
+        this._structure = null;
       }
     },
 
@@ -2118,46 +2149,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (fast) {
           return new XMLSerializer().serializeToString(rootNode.ownerDocument);
         } 
-          // prettify content
-          return '<?xml version="1.0" encoding="UTF-8"?>\n' + this._prettify(rootNode, 0);
+        // prettify content
+        return cv.util.Prettifier.xml(rootNode.ownerDocument);
       } 
         return null;
-    },
-
-    _prettify: function (node, level, noFormat) {
-      let tabs = Array(level).fill('  ').join('');
-      let newLine = '\n';
-      if (node.nodeType === Node.TEXT_NODE) {
-        if (node.textContent.trim()) {
-          return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
-        } 
-          return '';
-      }
-      if (node.nodeType === Node.COMMENT_NODE) {
-        return (noFormat ? '' : tabs) + `<!--${node.textContent}--> ${(noFormat ? '' : newLine)}`;
-      } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-        return (noFormat ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${(noFormat ? '' : newLine)}`;
-      }
-      if (!node.tagName) {
-        return this._prettify(node.firstChild, level);
-      }
-      let output = (noFormat ? '' : tabs) + `<${node.tagName}`; // >\n
-      for (let i = 0; i < node.attributes.length; i++) {
-        output += ` ${node.attributes[i].name}="${node.attributes[i].value}"`;
-      }
-      if (node.childNodes.length === 0) {
-        return output + ' />' + (!noFormat ? newLine : '');
-      } 
-      output += '>';
-      
-      let hasTextChild = Array.prototype.some.call(node.childNodes, child => child.nodeType === Node.TEXT_NODE && child.textContent.trim());
-      if (!noFormat && !hasTextChild) {
-        output += newLine;
-      }
-      for (let i = 0; i < node.childNodes.length; i++) {
-        output += this._prettify(node.childNodes[i], level + 1, hasTextChild);
-      }
-      return output + (hasTextChild || noFormat ? '' : tabs) + `</${node.tagName}>` + (!noFormat ? newLine : '');
     },
 
     _onSaved: function () {
@@ -2222,7 +2217,7 @@ refresh after you have changed something. You can refresh is manually by clickin
   ***********************************************
   */
   destruct: function () {
-    this._schema = null;
+    this._schemas = null;
     this._workerWrapper = null;
     this._disposeArray('__modifiedElements', '__modifiedPreviewElements');
     qx.core.Init.getApplication().getRoot().removeListener('keyup', this._onElementKeyUp, this);

@@ -24,12 +24,12 @@
 *
 ***************************************
 qx.Class.define('cv.ui.structure.pure.Headline', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   statics: {
     // parse element from visu_config*.xml
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       data.content = xml.textContent;
       return data;
     }
@@ -52,7 +52,7 @@ qx.Class.define('cv.ui.structure.pure.Headline', {
   // this function is executed when this file is loaded
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("headline", cv.ui.structure.pure.Headline);
+    cv.parser.pure.WidgetParser.addHandler("headline", cv.ui.structure.pure.Headline);
     // register the widget
     cv.ui.structure.WidgetFactory.registerClass("headline", statics);
   }

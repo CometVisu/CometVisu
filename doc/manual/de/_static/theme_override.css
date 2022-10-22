@@ -30,6 +30,14 @@ table.schema-table td dl dd blockquote ul {
     margin-left: -24px; /* override surrounding blockquote padding */
     line-height: normal;
 }
+
+table.image-float tr, table.image-float td {
+    background-color: transparent !important;
+}
+
+table.image-float, table.image-float td {
+   border: none !important;
+}
 /* patch :kbd:, manually backported from a future version */
 kbd, .kbd {
   color: inherit;

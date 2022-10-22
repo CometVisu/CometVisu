@@ -36,7 +36,7 @@
  * @since 0.12.0 (2020)
  */
 qx.Class.define('cv.ui.structure.pure.Roundbar', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.Update,
 
   /*

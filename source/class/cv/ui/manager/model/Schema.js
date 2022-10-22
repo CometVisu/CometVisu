@@ -35,6 +35,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
       throw new Error('no, empty or invalid filename given, can not instantiate without one');
     }
     this.__filename = filename;
+    this.setStructure(filename.endsWith('visu_config_tile.xsd') ? 'tile' : 'pure');
     this.__allowedRootElements = {};
     this.__referencedNodeCache = {};
     this.__typeNodeCache = {};
@@ -67,6 +68,11 @@ qx.Class.define('cv.ui.manager.model.Schema', {
       check: 'Boolean',
       init: false,
       event: 'changeLoaded'
+    },
+
+    structure: {
+      check: ['pure', 'tile'],
+      apply: '_applyStructure'
     }
   },
 
@@ -117,6 +123,32 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * @var {Array<String>}
      */
     _widgetNames: null,
+
+    /**
+     * @var {String}
+     */
+    __rootElementName: null,
+
+    /**
+     * @var {String}
+     */
+    __pageParentElementName: null,
+
+    /**
+     * @var {String}
+     */
+    __pageElementName: null,
+
+    _applyStructure(structure) {
+      if (structure === 'tile') {
+        this.__rootElementName = 'config';
+        this.__pageParentElementName = 'main';
+        this.__pageElementName = 'cv-page';
+      } else {
+        this.__rootElementName = 'pages';
+        this.__pageElementName = 'page';
+      }
+    },
 
     onLoaded: function (callback, context) {
       if (this.isLoaded()) {
@@ -173,19 +205,31 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * Do so recursively.
      * referenced nodes can be top-level-nodes only!
      *
-     * @param   type    string  Type of the node (e.g. element, attributeGroup, ...)
-     * @param   refName string  Name as per the ref-attribute
+     * @param   type       string  Type of the node (e.g. element, attributeGroup, ...)
+     * @param   refName    string  Name as per the ref-attribute
+     * @param   noFallback boolean Don't look up other types as fallback, if the requested type is not found
      * @return  object          jQuery-object of the ref'ed element
      */
-    getReferencedNode: function (type, refName) {
+    getReferencedNode: function (type, refName, noFallback) {
       if (Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, type) && Object.prototype.hasOwnProperty.call(this.__referencedNodeCache[type], refName)) {
         return this.__referencedNodeCache[type][refName];
+      }
+      const fallbackType = type === 'simpleType' ? 'complexType' : 'simpleType';
+      if (!noFallback) {
+        if (Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, fallbackType) && Object.prototype.hasOwnProperty.call(this.__referencedNodeCache[fallbackType], refName)) {
+          return this.__referencedNodeCache[fallbackType][refName];
+        }
       }
 
       const selector = 'schema > ' + type + '[name="' + refName + '"]';
       let ref = this.__xsd.querySelector(selector);
+      if (!ref && !noFallback) {
+        try {
+          ref = this.getReferencedNode(fallbackType, refName, true);
+        } catch (e) {}
+      }
       if (!ref) {
-        throw new Error('schema/xsd appears to be invalid, reference ' + type + '"' + refName + '" can not be found');
+        throw new Error('schema/xsd appears to be invalid, reference ' + type + ' "' + refName + '" can not be found');
       }
 
       if (ref.hasAttribute('ref')) {
@@ -281,11 +325,23 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     getWidgetNames: function () {
       if (!this._widgetNames) {
-        const pages = this.getElementNode('pages');
-        const page = pages.getSchemaElementForElementName('page');
+        const root = this.getElementNode(this.__rootElementName);
+        let pageParent = root;
+        if (this.__pageParentElementName) {
+          pageParent = root.getSchemaElementForElementName(this.__pageParentElementName);
+        }
+        const page = pageParent.getSchemaElementForElementName(this.__pageElementName);
         this._widgetNames = Object.keys(page.getAllowedElements()).filter(name => !name.startsWith('#') && name !== 'layout');
       }
       return this._widgetNames;
+    },
+
+    isRoot(name) {
+      return name === this.__rootElementName;
+    },
+
+    isPage(name) {
+      return name = this.__pageElementName;
     }
   },
 

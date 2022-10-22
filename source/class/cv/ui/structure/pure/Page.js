@@ -25,8 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.Page', {
-  extend: cv.ui.structure.AbstractWidget,
-  implement: cv.ui.structure.IPage,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   include: [
     cv.ui.common.HasChildren,
@@ -94,7 +93,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
     createFinal: function() { // special function - only for pages!
-      document.querySelector('#pages').innerHTML = this.allPages;
+      const target = cv.Application.structureController.getRenderTarget();
+      document.querySelector(target).innerHTML = this.allPages;
       qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
     }
 
@@ -193,11 +193,11 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      */
     _onChangeVisible: function(ev) {
       if (ev.getData()) {
-        if (this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
+        if (this.__colspanClass !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
           this.applyColumnWidths();
         }
         if (this.getBackdrop()) {
-          cv.ui.layout.ResizeHandler.invalidateBackdrop();
+          cv.ui.structure.pure.layout.ResizeHandler.invalidateBackdrop();
         }
       }
     },
@@ -206,8 +206,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Set children column widths
      */
     applyColumnWidths: function() {
-      cv.ui.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
-      this.__colspanClass = cv.ui.layout.Manager.COLSPAN_CLASS;
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
+      this.__colspanClass = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
     },
 
     // overridden
@@ -312,7 +312,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       //   default:
       // TODO: data comparision has to be refactored to use DPT and a value
       if (parseInt(data) === 1) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getPath());
+        cv.Application.structureController.scrollToPage(this.getPath());
         this.sendToBackend('0');
       }
       // }
@@ -325,7 +325,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
             if (cv.data.Model.isWriteAddress(address)) {
-              cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address, value));
+              cv.io.BackendConnections.getClient().write(id, cv.Transform.encode(address, value));
             }
           }
         }

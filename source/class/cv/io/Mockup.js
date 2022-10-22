@@ -37,7 +37,7 @@ qx.Class.define('cv.io.Mockup', {
   construct: function() {
     this.base(arguments);
     cv.io.Client.CLIENTS.push(this);
-    // make some functions accessible for the protactor runner
+    // make some functions accessible for the protractor runner
     window._receive = this.receive.bind(this);
     const model = cv.data.Model.getInstance();
     window._widgetDataGet = model.getWidgetData.bind(model);
@@ -84,6 +84,10 @@ qx.Class.define('cv.io.Mockup', {
     __sequence: null,
     __sequenceIndex: 0,
     __simulations: null,
+
+    getType() {
+      return this.backendName;
+    },
 
     __loadTestData: function () {
       // load the demo data to fill the visu with some values
@@ -411,11 +415,11 @@ qx.Class.define('cv.io.Mockup', {
       }
       const ts = new Date().getTime();
       // store in window, to make it accessible for protractor
-      window.writeHistory.push({
+      const lastWrite = {
         address: address,
         value: value,
         ts: ts
-      });
+      };
 
       if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
         this._processSimulation(address, value);
@@ -425,10 +429,22 @@ qx.Class.define('cv.io.Mockup', {
           i: ts,
           d: {}
         };
+        if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
+          if (/^[\da-fA-F]+$/.test(value)) {
+            if (value.length <= 2) {
+              value = '' + (parseInt(value, 16) & 63);
+            } else {
+              value = value.substring(2);
+            }
+            lastWrite.transformedValue = value;
+          }
+        }
         answer.d[address] = value;
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
       }
+      // store in window, to make it accessible for protractor
+      window.writeHistory.push(lastWrite);
     },
 
     restart: function() {},

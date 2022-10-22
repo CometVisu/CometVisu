@@ -540,6 +540,17 @@ class SlimRouter
             ],
             "authMethods" => [],
         ],
+        [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/proxy',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractRequestproxyApi',
+            'userClassname' => 'RequestproxyApi',
+            'operationId' => 'getProxied',
+            'authMethods' => [
+            ],
+        ],
     ];
 
     /**

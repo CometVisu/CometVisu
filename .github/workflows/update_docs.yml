@@ -32,7 +32,12 @@ jobs:
     if: github.repository == 'CometVisu/CometVisu'
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:

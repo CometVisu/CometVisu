@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.plugins.Timeout', {
-  extend: cv.ui.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.pure.AbstractBasicWidget,
 
   /*
   ******************************************************
@@ -56,7 +56,7 @@ qx.Class.define('cv.plugins.Timeout', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
     },
 
     getAttributeToPropertyMappings: function() {
@@ -149,20 +149,20 @@ qx.Class.define('cv.plugins.Timeout', {
       this.__timeoutTargetPage = this.getTarget();
       if (this.__timeoutIdleCount >= 10) {
         this.__timeoutIdleCount = 0;
-        const templateEngine = cv.TemplateEngine.getInstance();
+        const pageNavigationHandler = cv.Application.structureController;
 
         if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
           if (this.isDebug()) {
             this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__timeoutTargetPage);
           }
-          templateEngine.scrollToPage(this.__timeoutTargetPage);
-          templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
+          pageNavigationHandler.scrollToPage(this.__timeoutTargetPage);
+          pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
           //templateEngine.updateTopNavigation();
         } else {
           if (this.isDebug()) {
             this.debug('TIMEOUT: Already on page ' + this.__timeoutTargetPage);
           }
-          templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
+          pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
         }
       }
     }
@@ -179,7 +179,7 @@ qx.Class.define('cv.plugins.Timeout', {
 
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
+    cv.parser.pure.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
     cv.ui.structure.WidgetFactory.registerClass('timeout', statics);
   }
 

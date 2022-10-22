@@ -18,6 +18,9 @@
  */
 
 
+/**
+ * @ignore(fetch)
+ */
 qx.Mixin.define('cv.ui.common.Refresh', {
 
   /*

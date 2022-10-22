@@ -102,6 +102,23 @@ qx.Mixin.define('cv.ui.common.HasChildren', {
         }
       }, this);
       return container;
+    },
+
+    /**
+     * Create a collection of html elements of the children
+     * @returns {DocumentFragment}
+     */
+    getChildrenDom: function() {
+      const fragment = document.createDocumentFragment();
+      this.getChildWidgets().forEach(function (widget) {
+        const subelement = widget.getDom();
+        subelement.setAttribute('id', widget.getPath());
+        subelement.setAttribute('data-type', widget.get$$type());
+        if (subelement) {
+          fragment.appendChild(subelement);
+        }
+      }, this);
+      return fragment;
     }
   }
 });

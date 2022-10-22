@@ -132,6 +132,11 @@ qx.Class.define('cv.Config', {
     managerOptions: {},
 
     /**
+     * Optional settings for backend defined by server
+     */
+    server: {},
+
+    /**
      * All configuration and settings from the current configuration
      * (Note: all settings that need to be cached must be put in here)
      */
@@ -156,7 +161,8 @@ qx.Class.define('cv.Config', {
       credentials: {
         username: null,
         password: null
-      }
+      },
+      bindClickToWidget: false
     },
 
     /**
@@ -175,8 +181,14 @@ qx.Class.define('cv.Config', {
      * Defines which structure is supported by which designs
      */
     designStructureMap: {
-      'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure']
+      'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure'],
+      'tile': ['tile']
     },
+
+    /**
+     * Currently loaded structure
+     */
+    loadedStructure: '',
 
     /**
      * Wether the error reporting with sentry is enabled or not
@@ -231,10 +243,10 @@ qx.Class.define('cv.Config', {
      * loging response). As this is just an assumption, you should not treat this result as reliable.
      */
     guessIfProxied: function() {
-      if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
+      if (this.configServer === null || cv.io.BackendConnections.getClient().getServer() === null) {
         throw new Error('not ready yet');
       }
-      return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
+      return this.configServer !== cv.io.BackendConnections.getClient().getServer();
     },
 
     addMapping: function (name, mapping) {

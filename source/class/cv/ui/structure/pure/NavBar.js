@@ -26,7 +26,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.NavBar', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
   /*
@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       const content = document.body.querySelector('#centerContainer');
       content.addEventListener('touchstart', function (evt) {
         const touches = evt.touches[0];
-        const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+        const pPH = cv.Application.structureController.pagePartsHandler;
 
         if (pPH.navbars.left.dynamic === false ||
           (!qx.core.Init.getApplication().getMobile() && pPH.navbars.left.dynamic !== true) ||
@@ -138,7 +138,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         const toRight = x > 0;
         if (horizontal && enoughDistance) {
           evt.preventDefault();
-          const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          const pPH = cv.Application.structureController.pagePartsHandler;
           if (toRight) {
             self._touchX = touches.clientX - necessaryDistance;
             self._touchY = touches.clientY;

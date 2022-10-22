@@ -34,31 +34,31 @@ msgstr ""
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Connection error"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Error requesting %1: %2 - %3."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#. NO LONGER USED
 msgid "Connection to backend is lost."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "CometVisu protocol error"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "The backend did send an invalid response to the %1Login%2 request: missing protocol version."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Please try to fix the problem in the backend."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Backend-Response:"
 msgstr ""
 
@@ -74,11 +74,11 @@ msgstr ""
 msgid "Error saving file"
 msgstr ""
 
-#: cv/parser/MetaParser.js
+#: cv/parser/pure/MetaParser.js
 msgid "Template loading error"
 msgstr ""
 
-#: cv/parser/MetaParser.js
+#: cv/parser/pure/MetaParser.js
 msgid "Template '%1' could not be loaded from '%2'."
 msgstr ""
 
@@ -468,11 +468,11 @@ msgstr ""
 msgid "Option key duplicate: \"%1\" in section \"%2\"."
 msgstr ""
 
-#: cv/ui/manager/editor/Config.js
+#: cv/ui/manager/editor/Source.js
 msgid "Saving hidden config failed with error %1 (%2)"
 msgstr ""
 
-#: cv/ui/manager/editor/Config.js
+#: cv/ui/manager/editor/Source.js
 msgid "Hidden config has been saved"
 msgstr ""
 
@@ -716,7 +716,7 @@ msgstr ""
 msgid "Do you really want to replace the '%1' with the uploaded files content?"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
 msgstr ""
 
@@ -1052,7 +1052,7 @@ msgstr ""
 msgid "Diagram communication error"
 msgstr ""
 
-#: cv/plugins/diagram/AbstractDiagram.js
+#: cv/ui/structure/tile/components/Chart.js
 msgid "URL: %1<br/><br/>Response:</br>%2"
 msgstr ""
 
@@ -1178,4 +1178,64 @@ msgstr ""
 
 #: cv/util/ConfigLoader.js
 msgid "Open manager"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Convert to tile"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Chart communication error"
+msgstr ""
+
+#. NO LONGER USED
+msgid "CometVisu config error"
+msgstr ""
+
+#. NO LONGER USED
+msgid "The already has a backend named: \"%1\""
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "File Error!"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "Invalid XML file!"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "404: File not found, %1."
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Restart connection"
+msgstr ""
+
+#: cv/util/ConfigUpgrader.js
+msgid "This is no pure-structure config, root element pages not found"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Backend.js
+msgid "Config error"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Communication error"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Backend.js
+msgid "There already exists a backend named: \"%1\""
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Convert to tile structure"
+msgstr ""
+
+#: cv/ui/manager/core/IconAtom.js
+msgid "Icon name has been copied to clipboard"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Connection to backend \"%1\" is lost."
 msgstr ""

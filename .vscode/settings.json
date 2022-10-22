@@ -1,6 +1,6 @@
 {
-    "restructuredtext.confPath" : "${workspaceRoot}/doc/manual/de",
-    "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/out/preview/de",
-    "restructuredtext.updateOnTextChanged" : "false"
+    "restructuredtext.updateOnTextChanged": "false",
+    "esbonio.sphinx.buildDir": "${workspaceRoot}/out/preview/de",
+    "esbonio.sphinx.confDir": "${workspaceFolder}/doc/manual/de"
     // "restructuredtext.sphinxBuildPath": "${workspaceRoot}/sphinx-build"
 }

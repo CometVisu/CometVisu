@@ -15,6 +15,7 @@ jobs:
       - run: npm install
       - name: Lint code
         run: npm run lint
+        continue-on-error: true # allow this for now, re-activate after upgrade to qx7
 
   build:
     runs-on: ubuntu-latest
@@ -69,7 +70,9 @@ jobs:
           CHROME_BIN: ./chrome/google-chrome
       - name: Run coveralls
         if: env.CV_VERSION == 'stable' && env.CV_BROWSER == 'Chrome_ci'
-        run: grunt coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
 
   e2e-test:
     name: "E2E-TEST"

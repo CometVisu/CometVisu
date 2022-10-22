@@ -60,6 +60,18 @@ qx.Class.define('cv.data.Model', {
   },
 
   /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    defaultBackendName: {
+      check: 'String',
+      init: 'main'
+    }
+  },
+
+  /*
   ******************************************************
     MEMBERS
   ******************************************************
@@ -70,26 +82,56 @@ qx.Class.define('cv.data.Model', {
     __addressList : null,
     __widgetData: null,
 
-    getStateListener: function () {
-      return this.__stateListeners;
+    /**
+     * @param backendName {String?} name of the backend
+     * @return {Map}
+     */
+    getStateListener: function (backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      return Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName) ? this.__stateListeners : {};
     },
 
     /**
      * Updates the state of a single address
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @param state {var} new state
+     * @param state {variant} new state
+     * @param backendName {String} name of the backend
      */
-    onUpdate: function(address, state) {
-      const initial = !Object.prototype.hasOwnProperty.call(this.__states, address);
-      const changed = initial || this.__states[address] !== state;
-      this.__states[address] = state;
+    onUpdate: function(address, state, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__states, backendName)) {
+        this.__states[backendName] = {};
+      }
+      const initial = !Object.prototype.hasOwnProperty.call(this.__states[backendName], address);
+      const changed = initial || this.__states[backendName][address] !== state;
+      this.__states[backendName][address] = state;
       // notify listeners
-      if (this.__stateListeners[address]) {
-        this.__stateListeners[address].forEach(function(listener) {
+      if (Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName) && this.__stateListeners[backendName][address]) {
+        this.__stateListeners[backendName][address].forEach(function(listener) {
           listener[0].call(listener[1], address, state, initial, changed);
         }, this);
       }
+    },
+
+    /**
+     * Changes a state without notifying the listeners about that change.
+     * @param address {String} KNX-GA or openHAB item name
+     * @param state {variant} new state
+     * @param backendName {String} name of the backend
+     */
+    setState(address, state, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__states, backendName)) {
+        this.__states[backendName] = {};
+      }
+      this.__states[backendName][address] = state;
     },
 
     /**
@@ -97,25 +139,42 @@ qx.Class.define('cv.data.Model', {
      * @param data {Map} Key/value map of address/state
      */
     update: function(data) {
+      this.updateFrom(this.getDefaultBackendName(), data);
+    },
+
+    /**
+     * handles incoming data from a specific backend.
+     * @param backendName {String} name of the backend
+     * @param data {Map} Key/value map of address/state
+     */
+    updateFrom (backendName, data) {
       if (!data) {
- return; 
-}
-      const addressList = this.__addressList;
-      Object.getOwnPropertyNames(data).forEach(function(address) {
-        if (Object.prototype.hasOwnProperty.call(addressList, address)) {
-          this.onUpdate(address, data[address]);
-        }
-      }, this);
+        return;
+      }
+      const addressList = this.__addressList[backendName];
+      if (addressList) {
+        Object.getOwnPropertyNames(data).forEach(function (address) {
+          if (Object.prototype.hasOwnProperty.call(addressList, address)) {
+            this.onUpdate(address, data[address], backendName);
+          }
+        }, this);
+      } else {
+        this.warn('no addresses registered for backend "'+backendName+'", skipping update');
+      }
     },
 
     /**
      * Get the current state of an address.
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @return {var}
+     * @param backendName {String} name of the backend
+     * @return {variant}
      */
-    getState: function(address) {
-      return this.__states[address];
+    getState: function(address, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      return Object.prototype.hasOwnProperty.call(this.__states, backendName) ? this.__states[backendName][address] : undefined;
     },
 
     /**
@@ -124,12 +183,20 @@ qx.Class.define('cv.data.Model', {
      * @param address {String} KNX-GA or openHAB item name
      * @param callback {Function} called on updates
      * @param context {Object} context of the callback
+     * @param backendName {String} name of the backend
      */
-    addUpdateListener: function(address, callback, context) {
-      if (!this.__stateListeners[address]) {
-        this.__stateListeners[address] = [];
+    addUpdateListener: function(address, callback, context, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
       }
-      this.__stateListeners[address].push([callback, context]);
+      if (!Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)) {
+        this.__stateListeners[backendName] = {};
+      }
+
+      if (!this.__stateListeners[backendName][address]) {
+        this.__stateListeners[backendName][address] = [];
+      }
+      this.__stateListeners[backendName][address].push([callback, context]);
     },
 
     /**
@@ -138,21 +205,27 @@ qx.Class.define('cv.data.Model', {
      * @param address {String} KNX-GA or openHAB item name
      * @param callback {Function} called on updates
      * @param context {Object} context of the callback
+     * @param backendName {String} name of the backend
      */
-    removeUpdateListener: function(address, callback, context) {
-      if (this.__stateListeners[address]) {
-        let removeIndex = -1;
-        this.__stateListeners[address].some(function(entry, i) {
-          if (entry[0] === callback && entry[1] === context) {
-            removeIndex = i;
-            return true;
-          }
-          return false;
-        });
-        if (removeIndex >= 0) {
-          this.__stateListeners[address].splice(removeIndex, 1);
-          if (this.__stateListeners[address].length === 0) {
-            delete this.__stateListeners[address];
+    removeUpdateListener: function(address, callback, context, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)) {
+        if (this.__stateListeners[backendName][address]) {
+          let removeIndex = -1;
+          this.__stateListeners[backendName][address].some(function (entry, i) {
+            if (entry[0] === callback && entry[1] === context) {
+              removeIndex = i;
+              return true;
+            }
+            return false;
+          });
+          if (removeIndex >= 0) {
+            this.__stateListeners[backendName][address].splice(removeIndex, 1);
+            if (this.__stateListeners[backendName][address].length === 0) {
+              delete this.__stateListeners[backendName][address];
+            }
           }
         }
       }
@@ -162,9 +235,16 @@ qx.Class.define('cv.data.Model', {
      * Add an Address -> Path mapping to the addressList
      * @param address {String} KNX-GA or openHAB item name
      * @param id {String} path to the widget
+     * @param backendName {String?} optional backend name for this address
      */
-    addAddress: function (address, id) {
-      const list = this.__addressList;
+    addAddress: function (address, id, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__addressList, backendName)) {
+        this.__addressList[backendName] = {};
+      }
+      const list = this.__addressList[backendName];
       if (address in list) {
         list[address].push(id);
       } else {
@@ -174,34 +254,41 @@ qx.Class.define('cv.data.Model', {
 
     /**
      * Get the addresses as Array.
-     * @return {Map} Address -> path mapping
+     * @param backendName {String?} optional backend name for this address
+     * @return {Array<String>} list of addresses
      */
-    getAddresses: function () {
-      return Object.keys(this.__addressList);
+    getAddresses: function (backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      return Object.prototype.hasOwnProperty.call(this.__addressList, backendName) ? Object.keys(this.__addressList[backendName]) : [];
     },
 
     /**
      * Setter for address list.
      * @param value {Map} Address -> path mapping
+     * @param backendName {String?} optional backend name for this address
      */
-    setAddressList: function(value) {
-      this.__addressList = value;
+    setAddressList: function(value, backendName) {
+      this.__addressList[backendName || this.getDefaultBackendName()] = value;
     },
 
     /**
      * Getter for the address list.
+     * @param backendName {String?} optional backend name for this address
      * @return {Map} Address -> path mapping
      */
-    getAddressList: function() {
-      return this.__addressList;
+    getAddressList: function(backendName) {
+      return this.__addressList[backendName || this.getDefaultBackendName()];
     },
 
     /**
      * Clears the current address list.
+     * @param backendName {String?} optional backend name for this address
      * @internal
      */
-    resetAddressList: function() {
-      this.__addressList = {};
+    resetAddressList: function(backendName) {
+      this.__addressList[backendName || this.getDefaultBackendName()] = {};
     },
 
     /**

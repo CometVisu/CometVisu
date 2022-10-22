@@ -31,7 +31,8 @@ if sys.version_info[0] < 3:
 
 gettext.install('messages', **kwargs)
 
-schema = Schema(os.path.join(root_dir, config.get("DEFAULT", "schema-file")))
+pure_schema = Schema(os.path.join(root_dir, config.get("DEFAULT", "schema-file")))
+tile_schema = Schema(os.path.join(root_dir, config.get("tile", "schema-file")))
 
 
 class BaseDirective(Directive):
@@ -82,8 +83,10 @@ class BaseXsdDirective(BaseDirective):
         self.state.nested_parse(sl, self.content_offset, cnode)
         return nodes.label(name, '', *cnode)
 
-    def generate_table(self, element_name, include_name=False, mandatory=False):
+    def generate_table(self, element_name, structure_name="pure", include_name=False, mandatory=False):
         table_body = []
+        schema = tile_schema if structure_name == "tile" else pure_schema
+
         attributes = schema.get_widget_attributes(element_name)
         if include_name:
             rowspan = len(attributes)-1
@@ -96,7 +99,7 @@ class BaseXsdDirective(BaseDirective):
                 if description is not None:
                     description = re.sub("\n\s+", " ", description.text).strip()
                 elif enums is not None:
-                    description = self.get_description(enums)
+                    description = self.get_description(enums, schema)
                 else:
                     description = ''
             elif 'ref' in attr.attrib:
@@ -111,7 +114,7 @@ class BaseXsdDirective(BaseDirective):
                 if description is not None:
                     description = re.sub("\n\s+", " ", description.text).strip()
                 elif enums is not None:
-                    description = self.get_description(enums)
+                    description = self.get_description(enums, schema)
                 else:
                     description = ''
 
@@ -154,7 +157,7 @@ class BaseXsdDirective(BaseDirective):
 
         return table_node
 
-    def get_description(self, enums):
+    def get_description(self, enums, schema):
         tmp_doc = ""
         enum_doc_found = False
         for enum_node in enums:
@@ -167,14 +170,16 @@ class BaseXsdDirective(BaseDirective):
         else:
             return ""
 
-    def generate_complex_table(self, element_name, include_name=False, mandatory=False, element_type=None,
-                               table_body=None, sub_run=False, parent=None):
+    def generate_complex_table(self, element_name, structure_name="pure", include_name=False, mandatory=False, element_type=None,
+                               table_body=None, sub_run=False, parent=None, node=None, depth=-1, level=0):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
 
+        schema = tile_schema if structure_name == "tile" else pure_schema
+
         if not element_name == "#text":
-            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name)
+            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name, type_node=node)
             elements = schema.get_widget_elements(element_type if element_type is not None else element_name, locale=self.locale)
             if include_name:
                 rowspan = len(attributes)-1
@@ -188,7 +193,7 @@ class BaseXsdDirective(BaseDirective):
                     if description is not None:
                         description = description.text
                     elif enums is not None:
-                        description = self.get_description(enums)
+                        description = self.get_description(enums, schema)
                     else:
                         description = ''
                 elif 'ref' in attr.attrib:
@@ -199,7 +204,7 @@ class BaseXsdDirective(BaseDirective):
                     if description is not None:
                         description = description.text
                     elif enums is not None:
-                        description = self.get_description(enums)
+                        description = self.get_description(enums, schema)
                     else:
                         description = ''
 
@@ -240,10 +245,10 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         sub_parent = element_name
                     #no recursions
-                    if sub_type != element_type:
+                    if sub_type != element_type and (depth < 0 or depth < level):
                         self.generate_complex_table(name, include_name=include_name,
                                                     mandatory=mandatory, table_body=table_body, element_type=sub_type,
-                                                    sub_run=True, parent=sub_parent)
+                                                    sub_run=True, parent=sub_parent, depth=depth, level=level+1)
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1

@@ -147,7 +147,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler('diagram', statics);
+    cv.parser.pure.WidgetParser.addHandler('diagram', statics);
     cv.ui.structure.WidgetFactory.registerClass('diagram', statics);
   }
 });

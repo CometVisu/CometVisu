@@ -22,6 +22,7 @@
       "include": [
         "cv.Application",
         "cv.ui.structure.pure.*",
+        "cv.ui.structure.tile.*",
         "cv.ui.manager.*",
         "cv.transforms.*",
         "cv.plugins.*",
@@ -45,6 +46,11 @@
         "structure-pure": {
           "include": [
             "cv.ui.structure.pure.*"
+          ]
+        },
+        "structure-tile": {
+          "include": [
+            "cv.ui.structure.tile.*"
           ]
         },
         "manager": {
@@ -207,6 +213,9 @@
   "serve": {
     "listenPort": 8082
   },
+  "sass": {
+    "compiler": "latest"
+  },
   "ignores": [
     "$",
     "EVENT_RECORDER",
@@ -226,6 +235,10 @@
     "indexedDB",
     "URL",
     "sinon",
-    "XMLDocument"
+    "XMLDocument",
+    "HTMLElement",
+    "customElements",
+    "QxConnector",
+    "RSSParser"
   ]
 }

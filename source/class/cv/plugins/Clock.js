@@ -22,7 +22,7 @@
  * @asset(plugins/clock/*)
  */
 qx.Class.define('cv.plugins.Clock', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate],
   /*
   ***********************************************
@@ -107,9 +107,9 @@ qx.Class.define('cv.plugins.Clock', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseFormat(xml, path);
+      cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
     },
 
@@ -541,7 +541,7 @@ qx.Class.define('cv.plugins.Clock', {
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler('clock', cv.plugins.Clock);
+    cv.parser.pure.WidgetParser.addHandler('clock', cv.plugins.Clock);
     cv.ui.structure.WidgetFactory.registerClass('clock', statics);
   }
 });

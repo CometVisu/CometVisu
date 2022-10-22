@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<templates structure="tile">
+    <cv-meta>
+        <cv-mapping name="tile-light">
+            <entry value="0">ri-lightbulb-line</entry>
+            <entry value="1">ri-lightbulb-fill</entry>
+        </cv-mapping>
+        <cv-mapping name="tile-play-stop">
+            <entry value="0">ri-play-fill</entry>
+            <entry value="1">ri-stop-fill</entry>
+        </cv-mapping>
+        <cv-mapping name="tile-play-progress">
+            <formula>
+                d = store.get('duration');
+                y = d > 0 ? Math.round(100/d*x) : 0;
+            </formula>
+        </cv-mapping>
+        <cv-styling name="tile-button">
+            <entry value="0">inactive</entry>
+            <entry range-min="1">active</entry>
+        </cv-styling>
+    </cv-meta>
+    <template id="switch">
+        <cv-tile>
+            <cv-row colspan="3" row="middle">
+                <cv-button class="round-button" slot-whole-tile="true" slot-mapping="tile-light" slot-styling="tile-button" slot-size="large" slot-progress-mapping="" slot-on-value="1" slot-off-value="0">
+                    <slot name="address">NEEDS ADDRESS</slot>
+                    <slot name="icon" replaces="cv-icon.value"/>
+                    <cv-icon class="value ri-question-mark"/>
+                </cv-button>
+            </cv-row>
+            <cv-row colspan="3" row="last">
+                <label class="primary"><slot name="primaryLabel"/></label>
+                <label class="secondary"><slot name="secondaryLabel"/></label>
+            </cv-row>
+        </cv-tile>
+    </template>
+    <template id="shutter">
+        <cv-tile>
+            <cv-row colspan="3" row="first">
+                <cv-value slot-format="%d%%">
+                    <slot name="positionAddress">NEEDS ADDRESS</slot>
+                    <label class="value"/>
+                </cv-value>
+            </cv-row>
+            <cv-button class="round-button" row="2" column="1" slot-styling="" size="small">
+                <slot name="downAddress" parent-scope="1">NEEDS DOWNADDRESS</slot>
+                <cv-icon class="ri-arrow-down-s-line"/>
+            </cv-button>
+            <cv-button class="round-button" row="2" column="2" slot-styling="">
+                <slot name="stopAddress" parent-scope="1">NEEDS STOPADDRESS</slot>
+                <cv-icon class="ri-stop-fill"/>
+            </cv-button>
+            <cv-button class="round-button" row="2" column="3" slot-styling="" size="small">
+                <slot name="upAddress" parent-scope="1">NEEDS UPADDRESS</slot>
+                <cv-icon class="ri-arrow-up-s-line"/>
+            </cv-button>
+            <cv-row colspan="3" row="last">
+                <label class="primary"><slot name="primaryLabel">NEEDS LABEL</slot></label>
+                <label class="secondary"><slot name="secondaryLabel">OPTIONAL SUB LABEL</slot></label>
+            </cv-row>
+        </cv-tile>
+    </template>
+    <template id="info">
+        <cv-tile>
+            <cv-row colspan="3" row="2">
+                <cv-value slot-mapping="" slot-format="" slot-styling="">
+                    <slot name="address">NEEDS ADDRESS</slot>
+                    <slot name="value-component" replaces="label.value" class="value"/>
+                    <label class="value" slot-value-size="large"/>
+                    <label class="unit"><slot name="unit">UNIT</slot></label>
+                </cv-value>
+            </cv-row>
+            <cv-row colspan="3" row="last">
+                <label class="secondary"><slot name="label">LABEL</slot></label>
+            </cv-row>
+        </cv-tile>
+    </template>
+    <template id="status">
+        <cv-tile size="1x0.5">
+            <cv-row rowspan="3"><slot name="icon">NEEDS ICON</slot></cv-row>
+            <cv-row colspan="2" column="2" rowspan="3">
+                <cv-value slot-format="" slot-mapping="" slot-styling="">
+                    <slot name="address">NEEDS ADDRESS</slot>
+                    <label class="value"/>
+                </cv-value>
+                <label class="secondary"><slot name="label">LABEL</slot></label>
+            </cv-row>
+            <slot name="popup"/>
+        </cv-tile>
+    </template>
+    <template id="rtc">
+        <cv-tile>
+            <cv-spinner slot-format="%.1f °C" slot-min="15" slot-max="25" slot-step-width="0.5" colspan="3">
+                <slot name="temperatureAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <label class="value primary"/>
+            </cv-spinner>
+            <cv-value row="2" colspan="3" slot-mapping="" slot-format="%.1f °C" slot-styling="">
+                <slot name="measuredTemperatureAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <p class="center">
+                    <label class="value" value-size="large"/>
+                    <label class="unit"><slot name="unit">UNIT</slot></label>
+                </p>
+            </cv-value>
+            <cv-select row="2" colspan="3">
+                <slot name="hvacAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto</cv-option>
+                <cv-option key="standby"><cv-icon>ri-shut-down-line</cv-icon>Aus</cv-option>
+                <cv-option key="economy"><cv-icon>ri-leaf-line</cv-icon>Eco</cv-option>
+                <cv-option key="comfort"><cv-icon>ri-temp-cold-line</cv-icon>Komfort</cv-option>
+                <cv-option key="building protection"><cv-icon>ri-shield-line</cv-icon>Frostschutz</cv-option>
+            </cv-select>
+            <cv-row colspan="3" row="3">
+                <label class="primary"><slot name="label">RTC</slot></label>
+            </cv-row>
+        </cv-tile>
+    </template>
+    <template id="media-player">
+        <cv-tile>
+            <cv-row colspan="3" row="first">
+                <label class="secondary"><slot name="title"/></label>
+                <cv-value>
+                    <slot name="subtitleAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                    <label class="value secondary" value-size="medium"/>
+                </cv-value>
+                <cv-value>
+                    <slot name="titleAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                    <label class="value primary" value-size="medium"/>
+                </cv-value>
+            </cv-row>
+            <cv-button class="round-button" row="2" column="1" size="small">
+                <slot name="previousAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <cv-icon>ri-skip-back-mini-fill</cv-icon>
+            </cv-button>
+            <cv-button class="round-button" row="2" column="2" slot-mapping="tile-play-stop" slot-progress-mapping="tile-play-progress">
+                <slot name="playPauseAddress">NEEDS ADDRESS</slot>
+                <slot name="playTimeAddress">NEEDS ADDRESS</slot>
+                <slot name="durationAddress">NEEDS ADDRESS</slot>
+                <cv-icon class="value">ri-stop-fill</cv-icon>
+            </cv-button>
+            <cv-button class="round-button" row="2" column="3" size="small">
+                <slot name="nextAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <cv-icon>ri-skip-forward-mini-fill</cv-icon>
+            </cv-button>
+            <cv-slider row="3" min="0" max="100" format="%d %%" throttle-interval="100">
+                <slot name="volumeAddress" parent-scope="1">NEEDS ADDRESS</slot>
+                <cv-icon class="decrease">ri-volume-down-line</cv-icon>
+                <cv-icon class="increase">ri-volume-up-line</cv-icon>
+            </cv-slider>
+            <slot name="tileAddress">NEEDS ADDRESS</slot>
+        </cv-tile>
+    </template>
+    <template id="dimmer">
+        <cv-tile>
+            <cv-row colspan="2" rowspan="2">
+                <cv-button class="round-button" size="large" slot-mapping="tile-light" slot-styling="tile-button">
+                    <slot name="switchAddress">NEEDS ADDRESS</slot>
+                    <cv-icon class="value ri-question-mark" />
+                </cv-button>
+            </cv-row>
+            <cv-row colspan="2" row="last">
+                <label class="primary"><slot name="primaryLabel"/></label>
+                <label class="secondary"><slot name="secondaryLabel"/></label>
+            </cv-row>
+            <cv-row rowspan="3" column="3">
+                <cv-slider min="0" max="100" format="%d %%" throttle-interval="100" class="vertical">
+                    <slot name="brightnessAddress">NEEDS ADDRESS</slot>
+                </cv-slider>
+            </cv-row>
+        </cv-tile>
+    </template>
+</templates>

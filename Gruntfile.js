@@ -4,6 +4,28 @@ var fs = require('fs');
 
 
 var mocks = [];
+
+function setMimeType() {
+  return function(req, res, next) {
+    const url = req.url.split('?')[0];
+    if (url.endsWith('.xml')) {
+      res.setHeader('Content-Type', 'application/xml;charset=UTF-8');
+    } else if (url.endsWith('.json')) {
+      res.setHeader('Content-Type', 'application/json');
+    } else if (url.endsWith('.svg')) {
+      res.setHeader('Content-Type', 'image/svg+xml');
+    } else if (url.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    } else if (url.endsWith('.js')) {
+      res.setHeader('Content-Type', 'text/javascript');
+    } else if (url.endsWith('.png')) {
+      res.setHeader('Content-Type', 'image/png');
+    } else if (url.endsWith('.html')) {
+      res.setHeader('Content-Type', 'text/html');
+    }
+    next();
+  }
+}
 function captureMock(verbose) {
   return function (req, res, next) {
     // match on POST requests starting with /mock
@@ -24,6 +46,7 @@ function captureMock(verbose) {
           body += data;
         });
         req.on('end', function () {
+
           mocks[path] = Object.assign({content: body}, queryString);
           if (verbose) {
             console.log('\u001b[33;1mRegister ' + Object.keys(mocks).length + '. mock for "' + path + '" with parameters:\u001b[0m',  queryString);
@@ -232,46 +255,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // minify svg icons
-    svgmin: {
-      options: {
-        plugins: [
-          {
-            convertTransform: false
-          }, {
-            removeViewBox: false
-          }, {
-            removeDimensions: true
-          }
-        ]
-      },
-      dist: {
-        files: [
-          {
-            expand: true,
-            cwd: 'external/knx-uf-iconset/raw_svg/',
-            src: '*.svg',
-            dest: 'cache/icons/'
-          }
-        ]
-      }
-    },
-
-    // build icons
-    svgstore: {
-      options: {
-        prefix : 'kuf-', // This will prefix each <g> ID
-        includeTitleElement: false
-      },
-      default : {
-        files: {
-          'source/resource/icons/knx-uf-iconset.svg': [
-            'cache/icons/*.svg'
-          ]
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       qxClient: {
@@ -390,6 +373,7 @@ module.exports = function(grunt) {
           base: 'compiled',
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
+            middlewares.unshift(setMimeType());
             middlewares.unshift(mock(grunt.option('verbose')));
             middlewares.unshift(captureMock(grunt.option('verbose')));
             return middlewares;
@@ -464,16 +448,6 @@ module.exports = function(grunt) {
       }
     },
 
-    coveralls: {
-      options: {
-        debug: true,
-        coverageDir: 'coverage',
-        dryRun: false,
-        force: true,
-        recursive: true
-      }
-    },
-
     shell: {
       updateicons: {
         command: [
@@ -485,6 +459,13 @@ module.exports = function(grunt) {
           'cd ../../'
           // 'git add external/knx-uf-iconset',
           //'git commit -m "icons updated"'
+        ].join('&&')
+      },
+      buildicons: {
+        command: [
+          './bin/svg-to-ttf --target css --css-namespace knxuf --font-name knx-uf-iconset --glyph-size 1024 external/knx-uf-iconset/raw_svg/',
+          'cp knx-uf-iconset.* source/resource/icons/fonts/',
+          'rm knx-uf-iconset.*'
         ].join('&&')
       },
       buildClient: {
@@ -549,39 +530,7 @@ module.exports = function(grunt) {
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
-  // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
-  // - replace #FFFFFF with the currentColor
-  // - fix viewBox to follow the png icon version
-  grunt.registerTask('handle-kuf-svg', function() {
-    var filename   = 'source/resource/icons/knx-uf-iconset.svg';
-    var iconconfig = 'source/class/cv/IconConfig.js';
-    var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, svg
-      .replace( /#FFFFFF|#fff/g, 'currentColor' )
-      .replace( /viewBox="0 0 361 361"/g, 'viewBox="30 30 301 301"' ) // emulate a shave 40 on a 480px image
-    );
-
-    var symbolRegEx = /<symbol.*?id="kuf-(.*?)".*?>/g;
-    var kufIcons = '';
-    var icon;
-    while( (icon = symbolRegEx.exec( svg )) !== null )
-    {
-      // icon id = icon[1]
-
-      if( kufIcons !== '' ) {
-        kufIcons += ",\n";
-      }
-      kufIcons += "      '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('" + icon[1] + "') } } }";
-    }
-    var start = '// Do not remove this line: Dynamic Icons Start';
-    var end   = '// Do not remove this line: Dynamic Icons End';
-    var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
-    grunt.file.write(iconconfig, iconconfigFile
-      .replace( new RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
-    );
-  });
-
-  // Load the plugin tasks
+    // Load the plugin tasks
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-prompt');
@@ -592,18 +541,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-karma-coveralls');
-  grunt.loadNpmTasks('grunt-svgstore');
-  grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
   grunt.loadNpmTasks('grunt-composer');
 
   // Default task runs all code checks, updates the banner and builds the release
-  grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
+    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'composer:rest:install', 'shell:build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);

@@ -17,6 +17,7 @@
     "pretest": "qx compile",
     "test": "grunt karma:debug",
     "lint": "qx lint source/class/cv/ client/source/class/cv/",
+    "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
     "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate"
@@ -33,21 +34,28 @@
     }
   ],
   "org_cometvisu": {
-    "libraryVersion": 9
+    "libraryVersionPure": 9,
+    "libraryVersionTile": 1
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
     "@babel/polyfill": "^7.8.7",
     "@openapitools/openapi-generator-cli": "^2.4.25",
     "@prettier/plugin-php": "^0.17.6",
-    "@qooxdoo/compiler": "^1.0.4",
+    "@qooxdoo/compiler": "^1.0.5",
+    "@qooxdoo/eslint-config-qx": "^2.0.1",
+    "@qooxdoo/eslint-plugin-qx": "^1.2.22",
     "chmodr": "^1.2.0",
     "coffeescript": "^2.6.1",
     "csso": "^4.2.0",
     "easyimage": "^3.1.1",
+    "eslint": "^8.13.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-custom-elements": "^0.0.6",
     "eslint-plugin-jasmine": "^4.1.3",
     "eslint-plugin-protractor": "^2.1.1",
-    "fast-glob": "^3.2.7",
-    "fs-extra": "^10.0.0",
+    "fast-glob": "^3.2.11",
+    "fs-extra": "^10.0.1",
     "glob": "^7.2.0",
     "grunt": "^1.5.3",
     "grunt-banner": "^0.6.0",
@@ -60,13 +68,10 @@
     "grunt-file-creator": "^0.1.3",
     "grunt-http-server": "^2.1.0",
     "grunt-karma": "^4.0.2",
-    "grunt-karma-coveralls": "^2.5.4",
     "grunt-prompt": "^1.3.3",
     "grunt-protractor-runner": "^5.0.0",
     "grunt-scaffold": "^0.7.0",
     "grunt-shell": "^3.0.1",
-    "grunt-svgmin": "^6.0.0",
-    "grunt-svgstore": "latest",
     "ini": "^2.0.0",
     "jasmine-core": "^4.1.1",
     "jshint-stylish": "^2.1.0",
@@ -81,28 +86,32 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.34",
     "mustache": "^4.0.1",
+    "prettier": "^2.5.1",
     "protractor": "^7.0.0",
     "request": "^2.88.2",
-    "svgmin": "^0.1.0",
     "uglify-es": "^3.3.9",
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@sentry/browser": "^6.17.9",
-    "@sentry/tracing": "^6.17.9",
-    "crc-32": "^1.2.0",
+    "@sentry/browser": "^6.19.6",
+    "@sentry/tracing": "^6.19.6",
+    "crc-32": "^1.2.2",
     "monaco-editor": "^0.32.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
   },
   "eslintConfig": {
     "extends": [
-      "@qooxdoo/qx/browser",
+      "@qooxdoo/eslint-config-qx/browser",
       "plugin:jasmine/recommended",
-      "plugin:protractor/recommended"
+      "plugin:protractor/recommended",
+      "plugin:custom-elements/minimal"
     ],
+    "env": {
+      "es2021": true
+    },
     "parserOptions": {
-      "ecmaVersion": 2017
+      "ecmaVersion": 2021
     },
     "rules": {
       "no-warning-comments": "off",
@@ -122,11 +131,14 @@
       ],
       "no-multi-spaces": "off",
       "protractor/no-shadowing": "off",
-      "protractor/no-promise-in-if": "off"
+      "protractor/no-promise-in-if": "off",
+      "custom-elements/valid-tag-name": "off",
+      "custom-elements/extends-correct-class": "off"
     },
     "plugins": [
       "jasmine",
-      "protractor"
+      "protractor",
+      "custom-elements"
     ],
     "overrides": [
       {
@@ -157,7 +169,8 @@
       {
         "files": [
           "source/test/protractor/**/*.js",
-          "source/test/protractor/*.js"
+          "source/test/protractor/*.js",
+          "utils/screenshots-spec.js"
         ],
         "env": {
           "jasmine": true,
@@ -195,6 +208,22 @@
           "protractor/no-by-xpath": "off",
           "jasmine/no-disabled-tests": "off"
         }
+      },
+      {
+        "files": [
+          "source/resource/manager/*.js"
+        ],
+        "env": {
+          "worker": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off"
+        },
+        "globals": {
+          "xmllint": "readonly",
+          "crc32": "readonly"
+        }
       }
     ],
     "globals": {
@@ -222,7 +251,13 @@
       "indexedDB": "readonly",
       "URL": "readonly",
       "sinon": "readonly",
-      "RSSParser": "readonly"
+      "customElements": "readonly",
+      "HTMLElement": "readonly",
+      "QxConnector": "readonly",
+      "d3": "readonly",
+      "InstallTrigger": "readonly",
+      "RSSParser": "readonly",
+      "fetch": "readonly"
     }
   }
 }

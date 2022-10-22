@@ -24,7 +24,7 @@
  * @asset(plugins/svg/rollo.svg)
  */
 qx.Class.define('cv.plugins.Svg', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update],
 
   /*
@@ -44,9 +44,9 @@ qx.Class.define('cv.plugins.Svg', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
-      cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      cv.parser.pure.WidgetParser.parseFormat(xml, path);
+      cv.parser.pure.WidgetParser.parseAddress(xml, path);
       return data;
     }
   },
@@ -101,7 +101,7 @@ qx.Class.define('cv.plugins.Svg', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler('svg', cv.plugins.Svg);
+    cv.parser.pure.WidgetParser.addHandler('svg', cv.plugins.Svg);
     cv.ui.structure.WidgetFactory.registerClass('svg', statics);
   }
 });

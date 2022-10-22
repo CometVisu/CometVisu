@@ -32,7 +32,7 @@
  * @asset(plugins/openweathermap/font/weathericons-regular-webfont.ttf)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.Refresh,
 
   /*
@@ -76,8 +76,8 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseRefresh(xml, path);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
@@ -201,7 +201,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     loader.addStyles('plugins/openweathermap/owm_weathericon.css');
     loader.addScripts('plugins/openweathermap/owm_core.js');
     // register the parser
-    cv.parser.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
+    cv.parser.pure.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass('openweathermap', statics);
   }
 });

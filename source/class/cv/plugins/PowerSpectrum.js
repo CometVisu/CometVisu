@@ -30,7 +30,7 @@
  * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
 qx.Class.define('cv.plugins.PowerSpectrum', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update],
 
   /*
@@ -96,9 +96,9 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseFormat(xml, path);
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
     },
 
@@ -295,8 +295,8 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       }.bind(this);
 
       // check if sizes are set yet, otherwise wait some time
-      if (cv.ui.layout.ResizeHandler.states.isPageSizeInvalid()) {
-        cv.ui.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
+      if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
+        cv.ui.structure.pure.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
       } else {
         init();
       }
@@ -431,7 +431,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ]);
-    cv.parser.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
+    cv.parser.pure.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
     cv.ui.structure.WidgetFactory.registerClass('powerspectrum', statics);
     
     // init

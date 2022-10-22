@@ -25,7 +25,7 @@
  * @since 2015
  */
 qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
   ******************************************************
@@ -68,7 +68,7 @@ qx.Class.define('cv.plugins.Link', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
     },
 
     getAttributeToPropertyMappings: function () {
@@ -104,7 +104,7 @@ qx.Class.define('cv.plugins.Link', {
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler('link', cv.plugins.Link);
+    cv.parser.pure.WidgetParser.addHandler('link', cv.plugins.Link);
     cv.ui.structure.WidgetFactory.registerClass('link', statics);
   }
 });

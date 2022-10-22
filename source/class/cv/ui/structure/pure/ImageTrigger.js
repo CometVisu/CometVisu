@@ -69,7 +69,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,
@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     _getInnerDomString: function () {
       let style = '';
       if (Object.keys(this.getLayout()).length === 0) {
-        style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
+        style += cv.parser.pure.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
         style += 'height:' + this.getHeight() + ';';

@@ -18,7 +18,6 @@
  */
 
 
-
 describe('test the SpeechHandler', function () {
   var handler = null;
   var spiedSay = null;
