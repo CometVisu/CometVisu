@@ -80,10 +80,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
   ***********************************************
   */
   properties: {
-    // appearance: {
-    //   refine: true,
-    //   init: 'cv-filesystem'
-    // },
+    appearance: {
+       refine: true,
+       init: 'cv-filesystem'
+    },
 
     rootFolder: {
       check: 'cv.ui.manager.model.FileItem',

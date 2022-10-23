@@ -29,8 +29,13 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
-
+    'widget/scroll': 'scrollarea',
+    'cv-filesystem': 'widget',
+    'cv-filesystem/tree': 'virtual-tree',
+    'cv-filesystem/tree/scrollbar-x': 'scrollbar',
+    'cv-filesystem/tree/scrollbar-y': 'scrollbar',
     'cv-start': 'widget',
+    'cv-start/scroll-container': 'scrollarea',
     'cv-start/configs-header': {
       style() {
         return {
@@ -226,6 +231,9 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     list: {
+      include: 'scrollarea',
+      alias: 'scrollarea',
+
       style() {
         return {
           decorator: null
@@ -240,6 +248,8 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
+    'cv-editor-config/list': 'list',
 
     'cv-editor-config-section': {
       style() {
@@ -436,6 +446,8 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     'cv-file-contextmenu/open-with-button': 'menu-button',
     'cv-file-contextmenu/compare-with-button': 'menu-button',
     'open-files-tabs': {
+      include: 'list',
+      alias: 'list',
       style() {
         return {
           height: 34,
