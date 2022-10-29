@@ -29,6 +29,17 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+    button: {
+      /* qx.ui.form.Button */
+      alias: "material-button",
+      include: "material-button",
+      style(states) {
+        return { 
+          center: true,
+          padding: [6, 8]
+        };
+      }
+    },
     'widget/scroll': 'scrollarea',
     'cv-filesystem': 'widget',
     'cv-filesystem/tree': 'virtual-tree',
@@ -87,10 +98,11 @@ qx.Theme.define('cv.theme.dark.Appearance', {
 
       style(states) {
         return {
+          padding: 3,
           iconPosition: states.list ? 'left' : 'top',
           show: states.list ? 'label' : 'both',
           font: states.list ? 'default' : 'small',
-          width: states.list ? 500 : 160,
+          width: states.list ? 500 : 162,
           textColor: 'text-on-surface',
           backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
         };
