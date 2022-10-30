@@ -1,7 +1,7 @@
-/* System.js 
- * 
+/* System.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -35,18 +35,17 @@ qx.Class.define('cv.io.System', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this.addresses = [];
     qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
   /*
- ***********************************************
+  ***********************************************
    PROPERTIES
- ***********************************************
- */
+  ***********************************************
+  */
   properties: {
-
     connected: {
       check: 'Boolean',
       init: true,
@@ -62,6 +61,7 @@ qx.Class.define('cv.io.System', {
       event: 'changedServer'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -82,20 +82,19 @@ qx.Class.define('cv.io.System', {
       return this.backendName;
     },
 
-    receive: function (json) {
-    },
+    receive(json) {},
 
-    login: function (loginOnly, credentials, callback, context) {
+    login(loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
       }
     },
 
-    subscribe: function (addresses, filters) {
+    subscribe(addresses, filters) {
       this.addresses = addresses ? addresses : [];
     },
 
-    write: function (address, value, options) {
+    write(address, value, options) {
       if (address) {
         const parts = address.split(':');
         const target = parts.shift();
@@ -144,6 +143,7 @@ qx.Class.define('cv.io.System', {
           // send HTTP request, ignore the answer
           if (parts.length >= 2 && parts[0] === 'proxy') {
             const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
+
             url.searchParams.set('url', target + ':' + parts[1]);
             address = url.toString();
           }
@@ -156,57 +156,49 @@ qx.Class.define('cv.io.System', {
       }
     },
 
-    restart: function () {
-    },
+    restart() {},
 
-    stop: function () {
-    },
+    stop() {},
 
-    getResourcePath: function (name, params) {
+    getResourcePath(name, params) {
       if (name === 'charts') {
         return null;
       }
       return name;
     },
 
-    getLastError: function () {
+    getLastError() {
       return null;
     },
 
-    getBackend: function () {
+    getBackend() {
       return new Map();
     },
 
-    authorize: function (req) {
-    },
+    authorize(req) {},
 
-    terminate: function () {
-    },
+    terminate() {},
 
-    update: function (json) {
-    },
-    record: function (type, data) {
-    },
-    showError: function (type, message, args) {
-    },
+    update(json) {},
+    record(type, data) {},
+    showError(type, message, args) {},
 
     // not used / needed in this client
-    setInitialAddresses: function (addresses) {
-    },
+    setInitialAddresses(addresses) {},
 
-    hasCustomChartsDataProcessor: function () {
+    hasCustomChartsDataProcessor() {
       return false;
     },
-    processChartsData: function (data) {
+    processChartsData(data) {
       return data;
     },
-    hasProvider: function (name) {
+    hasProvider(name) {
       return false;
     },
-    getProviderUrl: function (name) {
+    getProviderUrl(name) {
       return null;
     },
-    getProviderConvertFunction: function (name, format) {
+    getProviderConvertFunction(name, format) {
       return null;
     }
   }

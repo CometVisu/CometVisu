@@ -1,7 +1,7 @@
-/* IconHandler.js 
- * 
+/* IconHandler.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * @author Christian Mayer
@@ -36,7 +35,7 @@ qx.Class.define('cv.IconHandler', {
    CONSTRUCTOR
    ******************************************************
    */
-  construct: function () {
+  construct() {
     this.__db = cv.IconConfig.DB;
   },
 
@@ -80,7 +79,7 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} dynamic
      * @param {string?} source
      */
-    insert: function (name, uri, type= '*', flavour='*', color='*', styling=undefined, dynamic='', source = undefined) {
+    insert(name, uri, type = '*', flavour = '*', color = '*', styling = undefined, dynamic = '', source = undefined) {
       if (!this.__db[name]) {
         this.__db[name] = {};
       }
@@ -97,7 +96,7 @@ qx.Class.define('cv.IconHandler', {
       if (dynamic && window[dynamic]) {
         this.__db[name][type][flavour][color] = window[dynamic](uri);
       } else if (dynamic && cv.util.IconTools[dynamic]) {
-          this.__db[name][type][flavour][color] = cv.util.IconTools[dynamic](uri);
+        this.__db[name][type][flavour][color] = cv.util.IconTools[dynamic](uri);
       } else {
         this.__db[name][type][flavour][color] = {
           uri: uri,
@@ -115,9 +114,9 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} color (only relevant for monochrome icons)
      * @return {(string|recolorCallback|undefined)} The URI for the icon - or "undefined" if not known
      */
-    get: function (name, type = '*', flavour = '*', color = '*') {
+    get(name, type = '*', flavour = '*', color = '*') {
       if (!this.__db[name]) {
-        return (a, b, c, asText) => asText?'[unknown]':document.createTextNode('[unknown]');
+        return (a, b, c, asText) => (asText ? '[unknown]' : document.createTextNode('[unknown]'));
       }
       if (!this.__db[name][type]) {
         type = '*'; // undefined -> use default
@@ -164,7 +163,7 @@ qx.Class.define('cv.IconHandler', {
       return this.__db[name][type][flavour][color];
     },
 
-    getURI: function () {
+    getURI() {
       const i = this.get.apply(this, arguments);
       if (i) {
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
@@ -187,7 +186,7 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} iconclass
      * @param {boolean?} asText
      */
-    getIconElement: function (name, type, flavour, color, styling = '', iconclass = '', asText = false) {
+    getIconElement(name, type, flavour, color, styling = '', iconclass = '', asText = false) {
       const i = this.get(name, type, flavour, color);
       if (i) {
         if (i.icon && !styling && typeof i !== 'function' && !asText) {
@@ -214,8 +213,20 @@ qx.Class.define('cv.IconHandler', {
             styling += ';color:' + color;
           }
           let icon = /\.svg#.*?$/.test(i.uri) // SVG with fragment identifier?
-            ? '<svg class="' + classes + '" style="' + (styling ? styling : '') + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'"></use></svg>'
-            : '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+            ? '<svg class="' +
+              classes +
+              '" style="' +
+              (styling ? styling : '') +
+              '"><use href="' +
+              qx.util.ResourceManager.getInstance().toUri(i.uri) +
+              '"></use></svg>'
+            : '<img class="' +
+              classes +
+              '" src="' +
+              qx.util.ResourceManager.getInstance().toUri(i.uri) +
+              '" style="' +
+              (styling ? styling : '') +
+              '"/>';
           if (asText) {
             return icon;
           }
@@ -234,7 +245,7 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} classes - optional css classes used in the svg icon code (default is 'icon')
      * @returns {string}
      */
-    getIconSource: function (name, classes) {
+    getIconSource(name, classes) {
       const i = this.get(name);
       if (i) {
         if (!classes) {
@@ -249,7 +260,13 @@ qx.Class.define('cv.IconHandler', {
           return res;
         }
         if (/\.svg#.*?$/.test(i.uri)) {
-          return '<svg class="' + classes + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'"></use></svg>';
+          return (
+            '<svg class="' +
+            classes +
+            '"><use href="' +
+            qx.util.ResourceManager.getInstance().toUri(i.uri) +
+            '"></use></svg>'
+          );
         }
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
@@ -260,7 +277,7 @@ qx.Class.define('cv.IconHandler', {
      * Fill the icons in the array.
      * @param array
      */
-    fillIcons: function (array) {
+    fillIcons(array) {
       array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
     },
 
@@ -270,7 +287,7 @@ qx.Class.define('cv.IconHandler', {
      *
      * @return {string[]} List of all known icon names
      */
-    list: function () {
+    list() {
       return Object.keys(this.__db);
     },
 
@@ -282,7 +299,7 @@ qx.Class.define('cv.IconHandler', {
      *
      * @return {Object} The icon database
      */
-    debug: function () {
+    debug() {
       return this.__db;
     }
   }

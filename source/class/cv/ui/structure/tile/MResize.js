@@ -1,7 +1,7 @@
-/* MResize.js 
- * 
+/* MResize.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -22,13 +22,12 @@
  * @ignore(ResizeObserver)
  */
 qx.Mixin.define('cv.ui.structure.tile.MResize', {
-
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
+  construct() {
     this._observer = new ResizeObserver((entries, observer) => {
       const element = this.getResizeTarget();
       entries.some(entry => {
@@ -89,7 +88,7 @@ qx.Mixin.define('cv.ui.structure.tile.MResize', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._observer.disconnect();
     this._observer = null;
   }

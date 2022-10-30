@@ -1,7 +1,7 @@
-/* Icons.js 
- * 
+/* Icons.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Shows the available icons.
  */
@@ -29,9 +28,9 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
+  construct() {
     this._disableFileEvents = true;
-    this.base(arguments, true);
+    super(true);
   },
 
   /*
@@ -51,19 +50,19 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   ***********************************************
   */
   members: {
-    _getDelegate: function () {
+    _getDelegate() {
       return {
-        createItem: function () {
+        createItem() {
           return new cv.ui.manager.core.IconAtom();
         },
 
-        bindItem: function (controller, item, index) {
+        bindItem(controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
         }
       };
     },
 
-    _onFilter: function () {
+    _onFilter() {
       const filterString = this.getChildControl('filter').getValue();
       const filtered = this.getModel().filter(function (entry) {
         return entry[0].includes(filterString);
@@ -71,7 +70,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
       this._controller.setModel(filtered);
     },
 
-    _applyFile: function(file, old) {
+    _applyFile(file, old) {
       if (file) {
         const container = this.getChildControl('list');
         if (!this._controller) {
@@ -90,8 +89,8 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
           this._controller.setModel(model);
         }
       } else if (this._controller) {
-          this._controller.resetModel();
-        }
+        this._controller.resetModel();
+      }
     }
   }
 });

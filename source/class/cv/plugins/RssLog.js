@@ -1,7 +1,7 @@
-/* RssLog.js 
- * 
+/* RssLog.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * @author Michael Markstaller
@@ -39,50 +38,62 @@ qx.Class.define('cv.plugins.RssLog', {
       transform: 'normalizeUrl',
       apply: '_applySrc'
     },
+
     database: {
       check: 'String',
       nullable: true
     },
+
     delay: {
       check: 'Number',
       init: 0
     },
+
     filter: {
       check: 'String',
       nullable: true
     },
+
     datetime: {
       check: 'Boolean',
       init: true
     },
+
     mode: {
       check: 'String',
       init: 'last'
     },
+
     limit: {
       check: 'Number',
       init: 0
     },
+
     timeformat: {
       check: 'String',
-      nullable:true
+      nullable: true
     },
+
     itemoffset: {
       check: 'Number',
       init: 0
     },
+
     itemack: {
       check: ['modify', 'display', 'disable'],
       init: 'modify'
     },
-    future:     {
+
+    future: {
       check: 'String',
       nullable: true
     },
+
     width: {
       check: 'String',
       nullable: true
     },
+
     height: {
       check: 'String',
       nullable: true
@@ -105,37 +116,46 @@ qx.Class.define('cv.plugins.RssLog', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} extracted data from config element as key/value map
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
-    getAttributeToPropertyMappings: function() {
+    getAttributeToPropertyMappings() {
       return {
-        src:    {},
+        src: {},
         database: {},
-        delay: { 'default': 0, transform: parseInt },
-        width:  {},
+        delay: { default: 0, transform: parseInt },
+        width: {},
         height: {},
         filter: {},
-        datetime:   {
-          'default': true,
-          transform: function(value) {
+        datetime: {
+          default: true,
+          transform(value) {
             if (typeof value === 'boolean') {
               return value;
             }
             return value === 'true';
           }
         },
-        mode:       { 'default': 'last' },
-        limit:      { 'default': 0, transform: parseFloat },
+
+        mode: { default: 'last' },
+        limit: { default: 0, transform: parseFloat },
         timeformat: {},
-        itemack:    { 'default': 'modify'}, // allowed: modify, display, disable
-        future:     {},
-        query:      {}
+        itemack: { default: 'modify' }, // allowed: modify, display, disable
+        future: {},
+        query: {}
       };
     }
   },
@@ -150,7 +170,7 @@ qx.Class.define('cv.plugins.RssLog', {
     __html: null,
     __wrapper: null,
     __fixedRequestData: null,
-    __external : false,
+    __external: false,
 
     __separatordate: null,
     __separatoradd: null,
@@ -162,7 +182,7 @@ qx.Class.define('cv.plugins.RssLog', {
      * @param value {String} URL
      * @return {String} normalized URL
      */
-    normalizeUrl: function(value) {
+    normalizeUrl(value) {
       this.__fixedRequestData = {};
       if (value && value.indexOf('?') > 0) {
         const parts = qx.util.Uri.parseUri(value);
@@ -176,14 +196,15 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     // property apply
-    _applySrc: function(value) {
+    _applySrc(value) {
       if (value.match(/rsslog_mysql\.php/)) {
         this.error('Use of rsslog_mysql.php is depreciated. Please consult the documentation.');
       }
-      this.__external = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
+      this.__external =
+        !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
     },
 
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       let style = '';
       if (this.getWidth()) {
         style += 'width:' + this.getWidth() + ';';
@@ -192,21 +213,32 @@ qx.Class.define('cv.plugins.RssLog', {
         style += 'height:' + this.getHeight();
       }
 
-      return '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' + this.getPath() + '" style="' + style + '"></div></div>';
+      return (
+        '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' +
+        this.getPath() +
+        '" style="' +
+        style +
+        '"></div></div>'
+      );
     },
 
-    _setupRefreshAction: function() {
+    _setupRefreshAction() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener('interval', function () {
+      this._timer.addListener('interval', () => {
         this.refreshRSSlog();
-      }, this);
+      });
       this._timer.start();
     },
 
-    _onDomReady: function () {
+    _onDomReady() {
       if (!this.$$domReady) {
-        this.base(arguments);
-        qx.event.message.Bus.subscribe('path.' + this.getParentPage().getPath() + '.beforePageChange', this.refreshRSSlog, this);
+        super._onDomReady();
+        qx.event.message.Bus.subscribe(
+          'path.' + this.getParentPage().getPath() + '.beforePageChange',
+          this.refreshRSSlog,
+          this
+        );
+
         this.__html = '<span class="mappedValue"></span><span>{text}</span>';
         if (this.getDatetime()) {
           this.__html = '{date}: ' + this.__html;
@@ -219,49 +251,79 @@ qx.Class.define('cv.plugins.RssLog', {
       }
     },
 
-    _update: function () {
+    _update() {
       setTimeout(() => this.refreshRSSlog(), this.getDelay());
     },
 
-    _action: function () {
-      const brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
+    _action() {
+      const brss = cv.util.String.htmlStringToDomElement(
+        '<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>'
+      );
+
       const label = document.querySelector('#' + this.getPath() + ' .label');
-      const title = label ? (label.innerText || '') : '';
-      const popup = cv.ui.PopupHandler.showPopup('rsslog', {title: title, content: brss});
+      const title = label ? label.innerText || '' : '';
+      const popup = cv.ui.PopupHandler.showPopup('rsslog', {
+        title: title,
+        content: brss
+      });
+
       const parent = cv.util.Tree.getParent(brss, 'div', null, 1)[0];
-      Object.entries({height: '90%', width: '90%', margin: 'auto'}).forEach(function(key_value) {
-        parent.style[key_value[0]]=key_value[1];
-      }); // define parent as 100%!
+      Object.entries({ height: '90%', width: '90%', margin: 'auto' }).forEach(function (key_value) {
+        parent.style[key_value[0]] = key_value[1];
+      });
+
+      // define parent as 100%!
       if (this._timer) {
         this._timer.stop();
       }
-      qx.event.Registration.addListener(brss, 'tap', function(event) {
-        // don't let the popup know about the click, or it will close on touch-displays
-        event.stopPropagation();
-      }, this);
-      qx.event.Registration.addListener(popup, 'close', function () {
-        // reload main data - but only once (popup and popup_background are caught
-        // here).
-        // But delay it so that any change done to the data has a chance to
-        // arrive here.
+      qx.event.Registration.addListener(
+        brss,
+        'tap',
+        function (event) {
+          // don't let the popup know about the click, or it will close on touch-displays
+          event.stopPropagation();
+        },
+        this
+      );
 
-        if (popup.getCurrentDomElement() && popup.getCurrentDomElement().classList.contains('popup') && this.getItemack() === 'modify') {
-          qx.event.Timer.once(function () {
-            this.refreshRSSlog();
-          }, this, 100);
-          for (let addr in this.getAddress()) {
-            if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
-              continue;
-            }// skip when write flag not set
-            cv.io.BackendConnections.getClient().write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+      qx.event.Registration.addListener(
+        popup,
+        'close',
+        function () {
+          // reload main data - but only once (popup and popup_background are caught
+          // here).
+          // But delay it so that any change done to the data has a chance to
+          // arrive here.
+
+          if (
+            popup.getCurrentDomElement() &&
+            popup.getCurrentDomElement().classList.contains('popup') &&
+            this.getItemack() === 'modify'
+          ) {
+            qx.event.Timer.once(
+              function () {
+                this.refreshRSSlog();
+              },
+              this,
+              100
+            );
+
+            for (let addr in this.getAddress()) {
+              if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
+                continue;
+              } // skip when write flag not set
+              cv.io.BackendConnections.getClient().write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+            }
           }
-        }
-      }, this);
+        },
+        this
+      );
+
       popup.getCurrentDomElement().querySelector('.main').style.overflow = 'auto';
       this.refreshRSSlog(true);
     },
 
-    refreshRSSlog: function (isBig) {
+    refreshRSSlog(isBig) {
       const src = this.getSrc();
       if (!src) {
         this.error('no src given, aborting RSS-Log refresh');
@@ -280,7 +342,7 @@ qx.Class.define('cv.plugins.RssLog', {
       }
 
       const refresh = this.getRefresh();
-      if (typeof (refresh) !== 'undefined' && refresh) {
+      if (typeof refresh !== 'undefined' && refresh) {
         // reload regularly
         if (this._timer && this._timer.isEnabled()) {
           this._timer.start();
@@ -291,7 +353,7 @@ qx.Class.define('cv.plugins.RssLog', {
     /**
      * Fetch data from builtin PHP script
      */
-    __refreshRss: function() {
+    __refreshRss() {
       const src = this.getSrc();
       const requestData = Object.assign({}, this.__fixedRequestData);
       if (this.getFilter()) {
@@ -305,18 +367,20 @@ qx.Class.define('cv.plugins.RssLog', {
       }
       requestData.j = 1;
       this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
+
       this.__request.set({
         accept: 'application/json',
         requestData: requestData,
         method: 'GET'
       });
+
       this.__request.addListener('success', this.__updateRssContent, this);
-      this.__request.addListener('error', function(ev) {
+      this.__request.addListener('error', ev => {
         this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
-      }, this);
+      });
     },
 
-    __prepareContentElement: function(ul, c) {
+    __prepareContentElement(ul, c) {
       c.replaceChildren(); // delete anything inside
 
       c.appendChild(ul);
@@ -344,34 +408,39 @@ qx.Class.define('cv.plugins.RssLog', {
       return displayrows;
     },
 
-    __updateRssContent: function(ev) {
+    __updateRssContent(ev) {
       const result = ev.getTarget().getResponse();
       if (typeof result === 'string') {
         // no json -> error
         this.error('Expected JSON, but got response MIME:', ev.getTarget().getResponseContentType());
+
         this.error(result);
         return;
       }
       this.__updateContent(result.responseData.feed.entries);
     },
 
-    __updateContent: function(items) {
+    __updateContent(items) {
       const isBig = this.__request.getUserData('big');
       const selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
       const c = document.querySelector(selector);
-      const itemack = isBig === true ? this.getItemack() : (this.getItemack() === 'modify' ? 'display' : this.getItemack());
+      const itemack =
+        isBig === true ? this.getItemack() : this.getItemack() === 'modify' ? 'display' : this.getItemack();
 
-      this.debug('ID: '+c.getAttribute('id')+', Feed: '+this.getSrc());
+      this.debug('ID: ' + c.getAttribute('id') + ', Feed: ' + this.getSrc());
 
       const ul = document.createElement('ul');
       const displayrows = this.__prepareContentElement(ul, c);
 
       const itemnum = items.length;
-      this.debug('C: #'+this.getPath()+', '+itemnum+' element(s) found, '+displayrows+' displayrow(s) available');
+      this.debug(
+        'C: #' + this.getPath() + ', ' + itemnum + ' element(s) found, ' + displayrows + ' displayrow(s) available'
+      );
 
       let itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
 
-      if (itemnum > displayrows) { // no need to check mode if items are less than rows
+      if (itemnum > displayrows) {
+        // no need to check mode if items are less than rows
         if (this.getMode() === 'first') {
           itemoffset = itemnum - displayrows;
         }
@@ -386,7 +455,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
       let row = 'rsslogodd';
       let last = itemoffset + displayrows;
-      last = (last > itemnum) ? itemnum : last;
+      last = last > itemnum ? itemnum : last;
 
       this.__separatordate = new Date().strftime('%d');
       this.__separatoradd = false;
@@ -394,18 +463,23 @@ qx.Class.define('cv.plugins.RssLog', {
       this.__isFuture = false;
 
       for (let i = itemoffset; i < last; i++) {
-        this.debug('C: #'+this.getPath()+', processing item: '+i+' of '+itemnum);
+        this.debug('C: #' + this.getPath() + ', processing item: ' + i + ' of ' + itemnum);
+
         let idx = i;
-        idx = (i >= itemnum) ? (idx -= itemnum) : idx;
+        idx = i >= itemnum ? (idx -= itemnum) : idx;
 
         const item = items[idx];
         const itemHtml = this.__getItemHtml(item, isBig);
 
-        const rowElem = qx.dom.Element.create('li', {'class': 'rsslogRow ' + row});
+        const rowElem = qx.dom.Element.create('li', {
+          class: 'rsslogRow ' + row
+        });
+
         rowElem.innerHTML = itemHtml;
 
         if (item.mapping && item.mapping !== '') {
           const mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
+
           const span = rowElem.querySelector('.mappedValue');
           this.defaultValue2DOM(mappedValue, span);
         }
@@ -421,7 +495,7 @@ qx.Class.define('cv.plugins.RssLog', {
         }
 
         if (this.__isFuture) {
-          rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
+          rowElem.classList.add(row === 'rsslogodd' ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
         rowElem.dataset.id = item.id;
@@ -447,11 +521,11 @@ qx.Class.define('cv.plugins.RssLog', {
         ul.appendChild(rowElem);
 
         // Alternate row classes
-        row = (row === 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
+        row = row === 'rsslogodd' ? 'rsslogeven' : 'rsslogodd';
       }
     },
 
-    __getItemHtml: function(item, isBig) {
+    __getItemHtml(item, isBig) {
       let itemHtml = '';
       if (!this.__external) {
         itemHtml = this.__html;
@@ -459,27 +533,31 @@ qx.Class.define('cv.plugins.RssLog', {
         itemHtml = itemHtml.replace(/\{text\}/, item.content);
         const entryDate = new Date(item.publishedDate);
         if (entryDate) {
-          itemHtml = (this.getTimeformat())
-            ? (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;'))
-            : (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
+          itemHtml = this.getTimeformat()
+            ? itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;')
+            : itemHtml.replace(
+                /\{date\}/,
+                entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'
+              );
+
           const thisday = entryDate.strftime('%d');
-          this.__separatoradd = ((this.__separatordate > 0) && (this.__separatordate !== thisday));
+          this.__separatoradd = this.__separatordate > 0 && this.__separatordate !== thisday;
           this.__separatordate = thisday;
-          this.__isFuture = (entryDate > new Date());
+          this.__isFuture = entryDate > new Date();
         } else {
           itemHtml = itemHtml.replace(/\{date\}/, '');
         }
       } else {
         if (isBig) {
           return '<b><a href="' + item.getLink() + '">' + item.getTitle() + '</a></b><br/>' + item.getDescription();
-        } 
-          return '<b>' + item.getTitle() + '</b><br/>' + item.getDescription();
+        }
+        return '<b>' + item.getTitle() + '</b><br/>' + item.getDescription();
       }
 
       return itemHtml;
     },
 
-    _onTap: function(ev) {
+    _onTap(ev) {
       const item = ev.getCurrentTarget();
 
       const id = item.dataset.id;
@@ -496,16 +574,18 @@ qx.Class.define('cv.plugins.RssLog', {
       req.set({
         method: 'GET',
         requestData: Object.assign({}, this.__fixedRequestData, {
-          'u': id,
-          'state': state
+          u: id,
+          state: state
         }),
+
         accept: 'application/json'
       });
+
       req.send();
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/rsslog/rsslog.css');
     cv.parser.pure.WidgetParser.addHandler('rsslog', cv.plugins.RssLog);

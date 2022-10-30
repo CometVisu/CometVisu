@@ -1,7 +1,7 @@
-/* Menu.js 
- * 
+/* Menu.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,16 +37,19 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       init: 'text',
       apply: '_applyAppearance'
     },
+
     depth: {
       check: '!isNaN(value) && value >= -1 && value <= 100',
       init: -1,
       apply: '_applyDepth'
     },
+
     domReady: {
       check: 'Boolean',
       init: false,
       apply: '_generateMenu'
     },
+
     showLabels: {
       check: 'Boolean',
       init: true
@@ -59,7 +62,6 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
   ***********************************************
   */
   members: {
-
     _applyAppearance(value, oldValue) {
       const main = document.querySelector('main');
       if (oldValue === 'dock') {
@@ -93,6 +95,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
       if (model === 'pages') {
         qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
+
         const rootList = document.createElement('ul');
         element.appendChild(rootList);
 
@@ -107,8 +110,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         element.appendChild(ham);
 
         qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+
         // add some general listeners to close
         qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+
         qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
       } else {
         this.error('visual-model of type', model, 'is not implemented');
@@ -144,7 +149,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
      */
     _onPointerDown(ev) {
       const target = ev.getTarget();
-      if (target.classList.contains('menu') || (target.parentElement && target.parentElement.classList.contains('menu'))) {
+      if (
+        target.classList.contains('menu') ||
+        (target.parentElement && target.parentElement.classList.contains('menu'))
+      ) {
         // clicked in hamburger menu, do nothing
       } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection
@@ -164,7 +172,11 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         }
       } else {
         const current = this._element.querySelector('li.active');
-        if (current && current.previousElementSibling && current.previousElementSibling.tagName.toLowerCase() === 'li') {
+        if (
+          current &&
+          current.previousElementSibling &&
+          current.previousElementSibling.tagName.toLowerCase() === 'li'
+        ) {
           const prev = current.previousElementSibling.querySelector(':scope > a');
           if (prev) {
             prev.click();
@@ -190,12 +202,12 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
     },
 
-
     __generatePagesModel(parentList, parentElement, currentPage, currentLevel) {
       if (!parentElement) {
         return;
       }
       let pages = parentElement.querySelectorAll(':scope > cv-page:not([menu="false"])');
+
       for (let page of pages.values()) {
         const pageId = page.getAttribute('id');
         if (!pageId) {
@@ -222,7 +234,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         }
         parentList.appendChild(li);
         const depth = this.getDepth();
-        if ((depth < 0 || depth > currentLevel) && page.querySelectorAll(':scope > cv-page:not([menu="false"])').length > 0) {
+        if (
+          (depth < 0 || depth > currentLevel) &&
+          page.querySelectorAll(':scope > cv-page:not([menu="false"])').length > 0
+        ) {
           const details = document.createElement('div');
           details.classList.add('details');
           const summary = document.createElement('div');
@@ -236,7 +251,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           });
           a.addEventListener('click', ev => {
             // only stop propagation if we are not close to the right border
-            if (ev.pointerType !== 'touch' || (ev.currentTarget.clientWidth - ev.offsetX) >= 8) {
+            if (ev.pointerType !== 'touch' || ev.currentTarget.clientWidth - ev.offsetX >= 8) {
               ev.stopPropagation();
             }
           });
@@ -297,19 +312,23 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+
     qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'menu', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'menu',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
+        static get observedAttributes() {
+          return ['appearance', 'depth'];
+        }
       }
-      static get observedAttributes() {
-        return ['appearance', 'depth'];
-      }
-    });
+    );
   }
 });

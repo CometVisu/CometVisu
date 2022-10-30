@@ -1,7 +1,7 @@
-/* PushButton.js 
- * 
+/* PushButton.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  *
@@ -39,26 +38,35 @@ qx.Class.define('cv.parser.pure.widgets.PushButton', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+
       return data;
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'downValue': {target: 'downValue', 'default': '1'},
-        'upValue': {'default': '0'}
+        downValue: { target: 'downValue', default: '1' },
+        upValue: { default: '0' }
       };
     },
 
-    makeAddressListFn: function (src, transform, mode, variant) {
+    makeAddressListFn(src, transform, mode, variant) {
       return [true, variant];
     }
   },
 
-  defer: function (statics) {
+  defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler('pushbutton', statics);
   }

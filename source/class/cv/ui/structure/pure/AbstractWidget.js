@@ -1,7 +1,7 @@
-/* AbstractWidget.js 
- * 
+/* AbstractWidget.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 //noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols,JSHint
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
@@ -32,8 +31,8 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-    this.base(arguments, props);
+  construct(props) {
+    super(props);
     const parts = this.getPath().split('_');
     parts.shift();
     // var prio = parseInt(parts.join(""))*-1;
@@ -46,23 +45,24 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
 
     // this.debug(props.$$type+" INIT ["+props.path+"]");
     // bind visibility to parent page
-    new qx.util.DeferredCall(function() {
+    new qx.util.DeferredCall(function () {
       if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
         // initialize the ancestors
         const parentData = cv.util.Tree.getParentData(props.path);
         if (parentData) {
           // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
           const parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
+
           this.setParentWidget(parent);
         }
       }
-      const parentPage = this.get$$type() === 'page' || this.get$$type() === 'navbar' ? null : this.getVisibilityParent();
+      const parentPage =
+        this.get$$type() === 'page' || this.get$$type() === 'navbar' ? null : this.getVisibilityParent();
       if (parentPage) {
         parentPage.bind('visible', this, 'visible');
       }
     }, this).schedule();
   },
-
 
   /*
   ******************************************************
@@ -73,30 +73,32 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     /**
      * If true this widget does not automatically apply any listeners
      */
-    anonymous : {
+    anonymous: {
       check: 'Boolean',
       init: false
     },
-    flavour           : { check: 'String', init: '', nullable: true },
-    layout            : { check: 'Object', nullable: true},
-    label             : { check: 'String', init: '', nullable: true },
-    bindClickToWidget : { check: 'Boolean', init: false },
-    mapping           : { check: 'String', nullable: true },
-    align             : { check: 'String', nullable: true },
-    classes           : { check: 'String', init: '', nullable: true },
-    style             : { check: 'String', init: ''},
-    colspan           : { check: 'Number', init: 6, transform: 'string2number' },
-    colspanM          : { check: 'Number', init: 6, transform: 'string2number' },
-    colspanS          : { check: 'Number', init: 6, transform: 'string2number' },
-    rowspanClass      : { check: 'String', init: '' },
-    containerClass    : { check: 'String', nullable: true },
-    visible           : {
+
+    flavour: { check: 'String', init: '', nullable: true },
+    layout: { check: 'Object', nullable: true },
+    label: { check: 'String', init: '', nullable: true },
+    bindClickToWidget: { check: 'Boolean', init: false },
+    mapping: { check: 'String', nullable: true },
+    align: { check: 'String', nullable: true },
+    classes: { check: 'String', init: '', nullable: true },
+    style: { check: 'String', init: '' },
+    colspan: { check: 'Number', init: 6, transform: 'string2number' },
+    colspanM: { check: 'Number', init: 6, transform: 'string2number' },
+    colspanS: { check: 'Number', init: 6, transform: 'string2number' },
+    rowspanClass: { check: 'String', init: '' },
+    containerClass: { check: 'String', nullable: true },
+    visible: {
       check: 'Boolean',
       init: false,
       event: 'changeVisible',
       apply: '_applyVisible'
     },
-    responsive        : { check: 'Boolean', init: false }
+
+    responsive: { check: 'Boolean', init: false }
   },
 
   /*
@@ -105,7 +107,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
   ******************************************************
   */
   events: {
-    'domReady': 'qx.event.type.Event'
+    domReady: 'qx.event.type.Event'
   },
 
   /*
@@ -122,10 +124,9 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     __pointerDownPoint: null,
 
     // property apply
-    _applyVisible: function(value, old) {
-    },
+    _applyVisible(value, old) {},
 
-    getResponsiveLayout: function (width) {
+    getResponsiveLayout(width) {
       if (!this.isResponsive()) {
         return this.getLayout();
       }
@@ -156,7 +157,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * @param value {String}
      * @return {Number}
      */
-    string2number: function(value) {
+    string2number(value) {
       return parseFloat(value);
     },
 
@@ -165,19 +166,19 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * by subclasses
      * @param ev {Event} pointerdown event
      */
-    downaction: function(ev) {}, // jshint ignore:line
+    downaction(ev) {},
 
     /**
      * Default action for tap events, does nothing but can be overridden
      * by subclasses
      * @param ev {Event} tap event
      */
-    action: function(ev) {}, // jshint ignore:line
+    action(ev) {},
 
     /**
      * Triggered by the <code>setup.dom.finished</code> bus event
      */
-    _onDomFinished: function() {
+    _onDomFinished() {
       if (!this.isVisible()) {
         this.addListenerOnce('changeVisible', this._onDomFinished, this);
         return;
@@ -188,7 +189,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     /**
      * Called when all widgets are available in the DOM tree
      */
-    _onDomReady: function() {
+    _onDomReady() {
       if (!this.$$domReady) {
         this.initListeners();
         this.fireEvent('domReady');
@@ -200,7 +201,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * Return the widgets actor element
      * @return {Element}
      */
-    getActor: function() {
+    getActor() {
       const elem = this.getDomElement();
       if (elem) {
         return elem.querySelector('.actor');
@@ -213,7 +214,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * Return the widgets value element
      * @return {Element}
      */
-    getValueElement: function() {
+    getValueElement() {
       const elem = this.getDomElement();
       if (elem) {
         return elem.querySelector('.value');
@@ -225,7 +226,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * Return the widgets widget element
      * @return {Element}
      */
-    getWidgetElement: function() {
+    getWidgetElement() {
       const elem = this.getDomElement();
       if (elem) {
         return elem.querySelector('.widget');
@@ -239,14 +240,14 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * it would be the DomElement (aka widget-container)
      * @return {Element}
      */
-    getInteractionElement: function() {
+    getInteractionElement() {
       return this.isBindClickToWidget() ? this.getDomElement() : this.getActor();
     },
 
     /**
      * Initialize the widgets listeners
      */
-    initListeners: function() {
+    initListeners() {
       this.addElementListener('tap', this.action, this);
 
       // we need to listen to pointerdown to detect taps with
@@ -256,12 +257,12 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
       }
     },
 
-    _cancelEvent: function (ev) {
+    _cancelEvent(ev) {
       ev.preventDefault();
       ev.stopPropagation();
     },
 
-    _onPointerDown: function(ev) {
+    _onPointerDown(ev) {
       // listen to pointerup globally
       this.__pointerDownElement = ev.getCurrentTarget();
       this.__pointerDownTime = Date.now();
@@ -270,29 +271,39 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
         this.__longPressTimer = null;
       }
       qx.event.Registration.addListener(document, 'pointerup', this._onPointerUp, this);
-      if (this._onLongTap &&
+
+      if (
+        this._onLongTap &&
         qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
         !this.isSendLongOnRelease() &&
-        this.getShortThreshold() > 0) {
+        this.getShortThreshold() > 0
+      ) {
         const clonedEv = ev.clone();
-        this.__longPressTimer = qx.event.Timer.once(function () {
-          this._onLongTap(clonedEv);
-          this._skipNextEvent = 'tap';
-          this.__abort();
-        }, this, this.getShortThreshold());
+        this.__longPressTimer = qx.event.Timer.once(
+          function () {
+            this._onLongTap(clonedEv);
+            this._skipNextEvent = 'tap';
+            this.__abort();
+          },
+          this,
+          this.getShortThreshold()
+        );
 
         this.__pointerDownPoint = {
           x: ev.getDocumentLeft(),
           y: ev.getDocumentTop()
         };
+
         // also listen to move events to detect if the pointer is moved away from the widget (or scrolled)
         qx.event.Registration.addListener(document, 'pointermove', this._onPointerMove, this);
       }
     },
 
-    __abort: function () {
+    __abort() {
       qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
+
       qx.event.Registration.removeListener(document, 'pointermove', this._onPointerMove, this);
+
       this.__pointerDownTime = null;
       this.__pointerDownPoint = null;
       if (this.__longPressTimer) {
@@ -301,9 +312,13 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
       }
     },
 
-    _onPointerMove: function(ev) {
+    _onPointerMove(ev) {
       let upElement = ev.getTarget();
-      const distance = Math.max(Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()), Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop()));
+      const distance = Math.max(
+        Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()),
+        Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop())
+      );
+
       let abort = distance > 5;
 
       if (!abort) {
@@ -320,7 +335,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
       }
     },
 
-    _onPointerUp: function(ev) {
+    _onPointerUp(ev) {
       if (this.__pointerDownTime === null) {
         // ignore pointer ups when the pointerdown has not set a start time
         return;
@@ -336,10 +351,12 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
         this._skipNextEvent = 'tap';
         // both events happened on the same element
         ev.setCurrentTarget(upElement);
-        if (this._onLongTap &&
+        if (
+          this._onLongTap &&
           qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
           this.getShortThreshold() > 0 &&
-          (Date.now() - this.__pointerDownTime) >= this.getShortThreshold()) {
+          Date.now() - this.__pointerDownTime >= this.getShortThreshold()
+        ) {
           // this is a longpress
           this._onLongTap(ev);
         } else {
@@ -356,7 +373,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * @param context {Object} this context for the callback
      * @return {var} the listener id
      */
-    addElementListener: function(type, callback, context) {
+    addElementListener(type, callback, context) {
       if (this.isAnonymous()) {
         return null;
       }
@@ -375,7 +392,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      * @param context {Object} this context
      * @return {Boolean} Whether the event was removed..
      */
-    removeElementListener: function(type, callback, context) {
+    removeElementListener(type, callback, context) {
       if (this.isAnonymous()) {
         return false;
       }
@@ -391,16 +408,24 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
      *
      * @return {String} The widgets DOM representation as string
      */
-    getDomString : function() {
-      return '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() +
-        this._getInnerDomString() +'</div>';
+    getDomString() {
+      return (
+        '<div class="' +
+        this.getClasses() +
+        '" ' +
+        this.getStyle() +
+        '>' +
+        this.getLabel() +
+        this._getInnerDomString() +
+        '</div>'
+      );
     },
 
     /**
      * Return the inner DOM string for this widget
      * @return {String} HTML code as string
      */
-    _getInnerDomString: function() {
+    _getInnerDomString() {
       return '';
     }
   },
@@ -410,7 +435,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
+  destruct() {
     qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
   }
 });

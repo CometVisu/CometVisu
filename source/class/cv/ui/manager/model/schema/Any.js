@@ -1,7 +1,7 @@
-/* Any.js 
- * 
+/* Any.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * any content.
  */
@@ -29,8 +28,8 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (node, schema) {
-    this.base(arguments, node, schema);
+  construct(node, schema) {
+    super(node, schema);
     this.parse();
   },
 
@@ -52,14 +51,13 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
   ***********************************************
   */
   members: {
-
     /**
      * parse a list of elements in this group.
      * Group is allowed (all|choice|sequence)? as per the definition.
      * We do all of those (except for 'all')
      */
-    parse: function () {
-      this.base(arguments);
+    parse() {
+      super.parse();
       const schema = this.getSchema();
 
       let group = this.getNode();
@@ -84,35 +82,35 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
     },
 
     // overridden
-    isElementAllowed: function (element) {
+    isElementAllowed(element) {
       return true;
     },
 
     // overridden
-    getSchemaElementForElementName: function (elementName) {
+    getSchemaElementForElementName(elementName) {
       // can not find any reason why elementName is allowed with us...
       return undefined;
     },
 
     // overridden
-    getRequiredElements: function () {
+    getRequiredElements() {
       return [];
     },
 
     // overridden
-    getAllowedElements: function() {
+    getAllowedElements() {
       return {};
     },
 
-    getRegex: function (separator, nocapture) {
+    getRegex(separator, nocapture) {
       return '.*';
     },
 
-    hasMultiLevelBounds: function () {
+    hasMultiLevelBounds() {
       return true;
     },
 
-    getBoundsForElementName: function (childName) {
+    getBoundsForElementName(childName) {
       return this._bounds;
     }
   }

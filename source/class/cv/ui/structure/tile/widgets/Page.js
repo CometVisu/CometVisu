@@ -1,7 +1,7 @@
-/* Page.js 
- * 
+/* Page.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -81,22 +81,29 @@ qx.Class.define('cv.ui.structure.tile.widgets.Page', {
     }
   },
 
-  defer: function(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'page', class extends QxConnector {
-      constructor() {
-        super(QxClass);
-      }
-    });
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'row', class extends HTMLElement {
-      constructor() {
-        super();
-        if (this.hasAttribute('colspan')) {
-          this.classList.add('colspan-' + this.getAttribute('colspan'));
-        }
-        if (this.hasAttribute('rowspan')) {
-          this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+  defer(QxClass) {
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'page',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
         }
       }
-    });
+    );
+
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'row',
+      class extends HTMLElement {
+        constructor() {
+          super();
+          if (this.hasAttribute('colspan')) {
+            this.classList.add('colspan-' + this.getAttribute('colspan'));
+          }
+          if (this.hasAttribute('rowspan')) {
+            this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+          }
+        }
+      }
+    );
   }
 });

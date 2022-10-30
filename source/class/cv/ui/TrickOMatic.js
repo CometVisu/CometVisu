@@ -1,7 +1,7 @@
-/* TrickOMatic.js 
- * 
+/* TrickOMatic.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * @author Christian Mayer
@@ -33,7 +32,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
   statics: {
     id: 0,
 
-    run: function () {
+    run() {
       const svg = this.getSVGDocument();
       if (!svg) {
         return;
@@ -42,7 +41,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
       // Pipe-O-Matic:
       let pipes = svg.querySelectorAll('.pipe_group');
       pipes.forEach(function (pipe_group) {
-        pipe_group.querySelectorAll('path').forEach(function(path) {
+        pipe_group.querySelectorAll('path').forEach(function (path) {
           const halfsize = Math.floor(parseFloat(path.style.strokeWidth) / 2);
           let opacity = 0.15;
           for (let width = halfsize - 1; width > 0; width--) {
@@ -64,7 +63,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
       pipes = svg.querySelectorAll('.show_flow');
       pipes.forEach(function (pipe_group) {
         let length = 0.0;
-        pipe_group.querySelectorAll('path').forEach(function(path) {
+        pipe_group.querySelectorAll('path').forEach(function (path) {
           if (path.className.animVal.split(' ').indexOf('pipe-o-matic_clone') > 0) {
             return;
           }
@@ -91,7 +90,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
            */
           function toHex(v) {
             const ret = parseInt(v).toString(16);
-            return (ret.length < 2) ? '0' + ret : ret;
+            return ret.length < 2 ? '0' + ret : ret;
           }
 
           for (let i = segmentLength / 2; i > 0; i -= 2) {
@@ -101,7 +100,11 @@ qx.Class.define('cv.ui.TrickOMatic', {
             const high = segmentLength - low;
             const n = path.cloneNode();
             n.className.baseVal += ' flow-o-matic_clone';
-            n.style.stroke = '#' + toHex(r * factor + rTarget * (1 - factor)) + toHex(g * factor + gTarget * (1 - factor)) + toHex(b * factor + bTarget * (1 - factor));
+            n.style.stroke =
+              '#' +
+              toHex(r * factor + rTarget * (1 - factor)) +
+              toHex(g * factor + gTarget * (1 - factor)) +
+              toHex(b * factor + bTarget * (1 - factor));
             if (high > offset) {
               n.style.strokeDasharray = [high - offset, low, offset, 0];
             } else {
@@ -133,14 +136,29 @@ qx.Class.define('cv.ui.TrickOMatic', {
        * @param content
        */
       function createKeyframe(name, content) {
-        return '@keyframes ' + name + ' {\n' + content + '}\n' +
-          '@-moz-keyframes ' + name + ' {\n' + content + '}\n' +
-          '@-webkit-keyframes ' + name + ' {\n' + content + '}\n';
+        return (
+          '@keyframes ' +
+          name +
+          ' {\n' +
+          content +
+          '}\n' +
+          '@-moz-keyframes ' +
+          name +
+          ' {\n' +
+          content +
+          '}\n' +
+          '@-webkit-keyframes ' +
+          name +
+          ' {\n' +
+          content +
+          '}\n'
+        );
       }
 
-      let keyframes = createKeyframe('move',
-        'from {  stroke-dashoffset: ' + segmentLength + ';  }\n' +
-        'to   {  stroke-dashoffset: 0;  }\n');
+      let keyframes = createKeyframe(
+        'move',
+        'from {  stroke-dashoffset: ' + segmentLength + ';  }\nto   {  stroke-dashoffset: 0;  }\n'
+      );
 
       /**
        * @param style
@@ -151,23 +169,23 @@ qx.Class.define('cv.ui.TrickOMatic', {
           -moz-${style}: ${value};
           -webkit-${style}: ${value};
         `;
-    }
+      }
 
-      keyframes += '.flow_active path {\n' +
+      keyframes +=
+        '.flow_active path {\n' +
         createCSSRules('animation-duration', '3s') +
-        createCSSRules('animation-name', 'move')+
+        createCSSRules('animation-name', 'move') +
         createCSSRules('animation-timing-function', 'linear') +
         createCSSRules('animation-iteration-count', 'infinite') +
         '}\n';
-      const s = svg.createElementNS('http://www.w3.org/2000/svg',
-        'style');
+      const s = svg.createElementNS('http://www.w3.org/2000/svg', 'style');
       s.setAttribute('type', 'text/css');
       s.textContent = keyframes;
       const svgElement = svg.querySelector('svg');
       svgElement.insertBefore(s, svgElement.firstChild);
     },
 
-    updateActive: function (pipe_group, data) {
+    updateActive(pipe_group, data) {
       if (parseInt(data) === 1 || data === 'ON' || data === true) {
         pipe_group.classList.toggle('flow_active', true);
       } else {

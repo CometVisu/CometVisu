@@ -1,7 +1,7 @@
-/* RoundProgress.js 
- * 
+/* RoundProgress.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -38,23 +38,28 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       check: 'Number',
       apply: '_applyProgress'
     },
+
     text: {
       check: 'String',
       apply: '_applyText'
     },
+
     type: {
       check: ['circle', 'semiCircle'],
       init: 'circle'
     },
+
     min: {
       check: 'Number',
       init: 0
     },
+
     max: {
       check: 'Number',
       init: 100
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -73,13 +78,14 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
     _queuedFitText: null,
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       const style = document.querySelector(':root').style;
       const hasFixedRadius = element.hasAttribute('radius');
-      const radius = this.__radius = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
+      const radius = (this.__radius =
+        element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56);
       const strokeWidth = element.getAttribute('stroke') || 8;
-      const normalizedRadius = this.__normalizedRadius = radius - strokeWidth / 2;
+      const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
       this.__circumference = normalizedRadius * 2 * Math.PI;
 
       if (element.hasAttribute('min')) {
@@ -120,13 +126,18 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
               stroke-dashoffset="${this.__circumference}"/>`;
       } else if (type === 'semiCircle') {
         if (!element.hasAttribute('no-background')) {
-          code += `<path class="bg" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 1 ${radius * 2 - strokeWidth / 2} ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
+          code += `<path class="bg" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 1 ${
+            radius * 2 - strokeWidth / 2
+          } ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
         }
         this.__start = {
           x: strokeWidth / 2,
           y: radius
         };
-        code += `<path class="bar" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 0 ${strokeWidth / 2} ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
+
+        code += `<path class="bar" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 0 ${
+          strokeWidth / 2
+        } ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
       }
       code += '</svg><label></label>';
       element.innerHTML = code;
@@ -147,6 +158,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
               circle.setAttribute('r', '' + this.__normalizedRadius);
               if (circle.classList.contains('bar')) {
                 circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
+
                 circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
               }
             });
@@ -154,7 +166,12 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
             this.__start.y = this.__radius;
             const bg = this._element.querySelector(':scope > svg > path.bg');
             if (bg) {
-              bg.setAttribute('d', `M ${strokeWidth / 2} ${this.__radius} A ${this.__normalizedRadius} ${this.__normalizedRadius} 0 0 1 ${this.__radius * 2 - strokeWidth / 2} ${this.__radius}`);
+              bg.setAttribute(
+                'd',
+                `M ${strokeWidth / 2} ${this.__radius} A ${this.__normalizedRadius} ${this.__normalizedRadius} 0 0 1 ${
+                  this.__radius * 2 - strokeWidth / 2
+                } ${this.__radius}`
+              );
             }
           }
           this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
@@ -165,8 +182,8 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
     __convert(angle) {
       const angleRad = angle * (Math.PI / 180.0);
       return {
-        x: this.__radius - (this.__normalizedRadius * Math.cos(angleRad)),
-        y: this.__radius - (this.__normalizedRadius * Math.sin(angleRad))
+        x: this.__radius - this.__normalizedRadius * Math.cos(angleRad),
+        y: this.__radius - this.__normalizedRadius * Math.sin(angleRad)
       };
     },
 
@@ -176,19 +193,39 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
         let end;
         let valueInRange = value - this.getMin();
         let percent = Math.max(0, Math.min(100, (100 / (this.getMax() - this.getMin())) * valueInRange));
+
         switch (this.getType()) {
           case 'circle':
             valueElement = this._element.querySelector(':scope > svg > circle.bar');
-            valueElement.setAttribute('stroke-dashoffset', '' + this.__circumference - percent / 100 * this.__circumference);
+
+            valueElement.setAttribute(
+              'stroke-dashoffset',
+              '' + this.__circumference - (percent / 100) * this.__circumference
+            );
+
             break;
 
           case 'semiCircle':
             valueElement = this._element.querySelector(':scope > svg > path.bar');
-            end = this.__convert(180/100 * percent);
-            valueElement.setAttribute('d', [
-              'M', this.__start.x, this.__start.y,
-              'A', this.__normalizedRadius, this.__normalizedRadius, 0, 0, 1, end.x, end.y
-            ].join(' '));
+
+            end = this.__convert((180 / 100) * percent);
+            valueElement.setAttribute(
+              'd',
+              [
+                'M',
+                this.__start.x,
+                this.__start.y,
+                'A',
+                this.__normalizedRadius,
+                this.__normalizedRadius,
+                0,
+                0,
+                1,
+                end.x,
+                end.y
+              ].join(' ')
+            );
+
             break;
         }
       }
@@ -225,7 +262,6 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       }
     },
 
-
     _applyText(value) {
       if (this.isConnected()) {
         if (!this.__label) {
@@ -249,15 +285,18 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this.__label = null;
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'round-progress', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'round-progress',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

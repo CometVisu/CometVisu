@@ -1,7 +1,7 @@
-/* Group.js 
- * 
+/* Group.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -33,7 +33,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
    */
   members: {
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       let label = null;
       let summary = null;
@@ -89,9 +89,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
      * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      */
     onStateUpdate(ev) {
-      if (!this.base(arguments, ev)) {
+      if (!super.onStateUpdate(ev)) {
         if (ev.detail.target === 'summary') {
           let target = this._element.querySelector(':scope > summary > label.value');
+
           if (!target) {
             target = document.createElement('label');
             target.classList.add('value');
@@ -106,11 +107,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
     }
   },
 
-  defer: function(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'group', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+  defer(QxClass) {
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'group',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

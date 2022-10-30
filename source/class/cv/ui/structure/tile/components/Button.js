@@ -1,7 +1,7 @@
-/* Button.js 
- * 
+/* Button.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -30,8 +30,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (element) {
-    this.base(arguments, element);
+  construct(element) {
+    super(element);
     this.__store = new Map();
   },
 
@@ -45,37 +45,45 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       check: ['button', 'trigger', 'push'],
       init: 'button'
     },
+
     on: {
       check: 'Boolean',
       init: false,
       apply: '_applyOn'
     },
+
     onClass: {
       check: 'String',
       init: 'active'
     },
+
     offClass: {
       check: 'String',
       init: 'inactive'
     },
+
     onValue: {
       check: 'String',
       init: '1'
     },
+
     offValue: {
       check: 'String',
       init: '0'
     },
+
     styleClass: {
       check: 'String',
       nullable: true,
       apply: '_applyStyleClass'
     },
+
     name: {
       check: 'String',
       init: '',
       apply: '_applyName'
     },
+
     progress: {
       check: 'Number',
       init: -1,
@@ -83,6 +91,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       transform: '_parseInt'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -136,6 +145,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
             break;
         }
       });
+
       this._writeAddresses = writeAddresses;
 
       if (writeAddresses.length > 0) {
@@ -168,9 +178,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
               break;
           }
         });
-        Object.getOwnPropertyNames(events).forEach(eventName => eventSource.addEventListener(eventName, ev => {
-          events[eventName](ev);
-        }));
+        Object.getOwnPropertyNames(events).forEach(eventName =>
+          eventSource.addEventListener(eventName, ev => {
+            events[eventName](ev);
+          })
+        );
       }
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
@@ -181,18 +193,26 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
         // apply the trigger state
         const triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
+
         if (triggerAddresses.length === 1) {
           const value = triggerAddresses[0].getAttribute('value');
-          qx.event.Timer.once(() => {
-            // using == comparisons to make sure that e.g. 1 equals "1"
-            // noinspection EqualityComparisonWithCoercionJS
-            this.setOn(value == this.getOnValue());
-          }, this, 1000);
+          qx.event.Timer.once(
+            () => {
+              // using == comparisons to make sure that e.g. 1 equals "1"
+              // noinspection EqualityComparisonWithCoercionJS
+              this.setOn(value == this.getOnValue());
+            },
+            this,
+            1000
+          );
         }
       }
 
       // detect button type
-      if (!hasReadAddress && writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on')).length === 1) {
+      if (
+        !hasReadAddress &&
+        writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on')).length === 1
+      ) {
         // only one write address with a fixed value and no special event => simple trigger
         this.setType('trigger');
       } else {
@@ -223,12 +243,14 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       svg.setAttribute('viewBox', '0 0 100 100');
       svg.setAttribute('type', 'circle');
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
       circle.classList.add('bar');
       circle.setAttribute('r', '49');
       circle.setAttribute('cx', '50');
       circle.setAttribute('cy', '50');
       circle.setAttribute('stroke-width', '2');
       circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
+
       circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
       svg.appendChild(circle);
       element.appendChild(svg);
@@ -237,7 +259,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     _applyConnected(value) {
-      this.base(arguments, value);
+      super._applyConnected(value);
       if (value) {
         if (this.getType() !== 'trigger') {
           // delay this because we need the mappings to be ready
@@ -251,7 +273,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         this._element.setAttribute('value', value || '');
         let mappedValue = value;
         if (this._element.hasAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this.__store);
+          mappedValue = cv.Application.structureController.mapValue(
+            this._element.getAttribute('mapping'),
+            value,
+            this.__store
+          );
         }
         const target = this._element.querySelector('.value');
         if (target && target.tagName.toLowerCase() === 'cv-icon') {
@@ -265,7 +291,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
         let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
         if (this._element.hasAttribute('styling')) {
-          styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__store);
+          styleClass = cv.Application.structureController.styleValue(
+            this._element.getAttribute('styling'),
+            value,
+            this.__store
+          );
         }
         this.setStyleClass(styleClass);
       }
@@ -273,15 +303,23 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     _applyProgress(value) {
       let valueElement = this._element.querySelector(':scope > svg > circle.bar');
+
       if (!valueElement) {
         this._initProgress();
         valueElement = this._element.querySelector(':scope > svg > circle.bar');
       }
       if (valueElement) {
         if (this._element.hasAttribute('progress-mapping')) {
-          value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this.__store);
+          value = cv.Application.structureController.mapValue(
+            this._element.getAttribute('progress-mapping'),
+            value,
+            this.__store
+          );
         }
-        valueElement.setAttribute('stroke-dashoffset', '' + (this.__circumference - value / 100 * this.__circumference));
+        valueElement.setAttribute(
+          'stroke-dashoffset',
+          '' + (this.__circumference - (value / 100) * this.__circumference)
+        );
       }
     },
 
@@ -344,8 +382,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     onClicked(event) {
       this.createRipple(event);
       if (!this._writeAddresses) {
-        this._writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'),
-          address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read');
+        this._writeAddresses = Array.prototype.filter.call(
+          this._element.querySelectorAll('addresses > cv-address'),
+          address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read'
+        );
       }
       const ev = new CustomEvent('sendState', {
         detail: {
@@ -353,37 +393,52 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           source: this
         }
       });
+
       if (this.getType() === 'trigger') {
         // simulate feedback
         this.setOn(true);
-        qx.event.Timer.once(() => {
-          this.setOn(false);
-        }, null, 250);
+        qx.event.Timer.once(
+          () => {
+            this.setOn(false);
+          },
+          null,
+          250
+        );
       }
-      this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
+      this._writeAddresses
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
+        .forEach(address => address.dispatchEvent(ev));
       event.stopPropagation();
     },
 
     onPointerDown() {
-      this._writeAddresses.filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value')).forEach(address => {
-        address.dispatchEvent(new CustomEvent('sendState', {
-          detail: {
-            value: address.getAttribute('value'),
-            source: this
-          }
-        }));
-      });
+      this._writeAddresses
+        .filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value'))
+        .forEach(address => {
+          address.dispatchEvent(
+            new CustomEvent('sendState', {
+              detail: {
+                value: address.getAttribute('value'),
+                source: this
+              }
+            })
+          );
+        });
     },
 
     onPointerUp() {
-      this._writeAddresses.filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value')).forEach(address => {
-        address.dispatchEvent(new CustomEvent('sendState', {
-          detail: {
-            value: address.getAttribute('value'),
-            source: this
-          }
-        }));
-      });
+      this._writeAddresses
+        .filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value'))
+        .forEach(address => {
+          address.dispatchEvent(
+            new CustomEvent('sendState', {
+              detail: {
+                value: address.getAttribute('value'),
+                source: this
+              }
+            })
+          );
+        });
     },
 
     createRipple(event) {
@@ -414,10 +469,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'button', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'button',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

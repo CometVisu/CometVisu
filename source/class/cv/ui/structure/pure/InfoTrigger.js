@@ -1,7 +1,7 @@
-/* InfoTrigger.js 
- * 
+/* InfoTrigger.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Adds an element to the visu that contains two buttons and a value indication for feedback
  * from the BUS. (E.g. for multimedia control
@@ -27,12 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton,
-    cv.ui.common.HandleLongpress
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton, cv.ui.common.HandleLongpress],
 
   /*
   ******************************************************
@@ -40,43 +34,52 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
   ******************************************************
   */
   properties: {
-    'downValue': {
+    downValue: {
       check: 'Number',
       init: 0
     },
-    'shortDownValue': {
+
+    shortDownValue: {
       check: 'Number',
       nullable: true
     },
-    'downLabel': {
+
+    downLabel: {
       check: 'String',
       nullable: true
     },
-    'upValue': {
+
+    upValue: {
       check: 'Number',
       init: 0
     },
-    'shortUpValue': {
+
+    shortUpValue: {
       check: 'Number',
       nullable: true
     },
-    'upLabel': {
+
+    upLabel: {
       check: 'String',
       nullable: true
     },
-    'isAbsolute': {
+
+    isAbsolute: {
       check: 'Boolean',
       init: false
     },
-    'min': {
+
+    min: {
       check: 'Number',
       init: 0
     },
-    'max': {
+
+    max: {
       check: 'Number',
       init: 255
     },
-    'infoPosition': {
+
+    infoPosition: {
       check: ['left', 'middle', 'right'],
       init: 'middle'
     }
@@ -89,7 +92,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
   */
   members: {
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       // create buttons + info
       let ret_val = '<div style="float:left;">';
 
@@ -136,18 +139,18 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
       return ret_val + '</div>';
     },
 
-    getActors: function() {
+    getActors() {
       return this.getDomElement().querySelectorAll('.actor.uplabel, .actor.downlabel');
     },
 
     // overridden
-    initListeners: function() {
-      this.getActors().forEach(function(actor) {
+    initListeners() {
+      this.getActors().forEach(function (actor) {
         qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
       }, this);
     },
 
-    __findActor: function (element) {
+    __findActor(element) {
       while (!element.classList.contains('actor')) {
         element = element.parentNode;
         if (element.classList.contains('widget')) {
@@ -158,15 +161,15 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
       return element;
     },
 
-    _onLongTap: function(event) {
+    _onLongTap(event) {
       this.__action(false, this.__findActor(event.getCurrentTarget()).classList.contains('downlabel'));
     },
 
-    _action: function(event) {
+    _action(event) {
       this.__action(true, this.__findActor(event.getCurrentTarget()).classList.contains('downlabel'));
     },
 
-    __action: function (isShort, isDown) {
+    __action(isShort, isDown) {
       let value;
       if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();
@@ -174,7 +177,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
         value = isDown ? this.getDownValue() : this.getUpValue();
       }
 
-      const bitMask = (isShort ? 1 : 2);
+      const bitMask = isShort ? 1 : 2;
 
       if (this.getIsAbsolute()) {
         let bvalue = parseFloat(this.getBasicValue());
@@ -185,25 +188,25 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
         value = Math.max(value, this.getMin());
         value = Math.min(value, this.getMax());
       }
-      this.sendToBackend(value, function(address) {
+      this.sendToBackend(value, function (address) {
         return !!(address.variantInfo & bitMask);
       });
     },
 
-    getDownActor: function() {
+    getDownActor() {
       return this.getDomElement().querySelector('.actor.downlabel');
     },
 
-    getUpActor: function() {
+    getUpActor() {
       return this.getDomElement().querySelector('.actor.uplabel');
     },
 
-    getInfoActor: function() {
+    getInfoActor() {
       return this.getDomElement().querySelector('.actor.switchInvisible');
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('infotrigger', statics);
   }
 });

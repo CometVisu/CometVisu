@@ -1,7 +1,7 @@
-/* FakeServer.js 
- * 
+/* FakeServer.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Class.define('cv.report.utils.FakeServer', {
   type: 'static',
 
@@ -29,10 +28,10 @@ qx.Class.define('cv.report.utils.FakeServer', {
   statics: {
     _xhr: {},
     _responseDelays: [],
-    _index : 0,
+    _index: 0,
 
-    init: function (log, build) {
-      qx.log.Logger.info(this, build+' log replaying in '+qx.core.Environment.get('cv.build'));
+    init(log, build) {
+      qx.log.Logger.info(this, build + ' log replaying in ' + qx.core.Environment.get('cv.build'));
 
       const urlMapping = {
         '/resource/': cv.Application.getRelativeResourcePath(true),
@@ -63,7 +62,7 @@ qx.Class.define('cv.report.utils.FakeServer', {
       this._responseDelays.unshift(10);
     },
 
-    __respond: function(request) {
+    __respond(request) {
       const xhrData = cv.report.utils.FakeServer._xhr;
       let url = cv.report.Record.normalizeUrl(request.url);
       if (url.indexOf('nocache=') >= 0) {
@@ -75,9 +74,9 @@ qx.Class.define('cv.report.utils.FakeServer', {
         }
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
-        qx.log.Logger.error(this, '404: no logged responses for URI '+url+' found');
+        qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
       } else {
-        qx.log.Logger.debug(this, 'faking response for '+url);
+        qx.log.Logger.debug(this, 'faking response for ' + url);
         let response = '';
         if (xhrData[url].length === 1) {
           response = xhrData[url][0];
@@ -96,7 +95,7 @@ qx.Class.define('cv.report.utils.FakeServer', {
       }
     },
 
-    getResponse: function(url) {
+    getResponse(url) {
       url = cv.report.Record.normalizeUrl(url);
 
       if (cv.report.utils.FakeServer._xhr[url]) {
@@ -105,7 +104,7 @@ qx.Class.define('cv.report.utils.FakeServer', {
       return null;
     },
 
-    unqueueResponse: function(url) {
+    unqueueResponse(url) {
       url = cv.report.Record.normalizeUrl(url);
       if (cv.report.utils.FakeServer._xhr[url]) {
         return cv.report.utils.FakeServer._xhr[url].shift();

@@ -1,7 +1,7 @@
-/* Font.js 
- * 
+/* Font.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,18 +17,52 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Font definitions
  */
 qx.Theme.define('cv.theme.dark.Font', {
-  extend : osparc.theme.common.Font,
+  extend: qx.theme.tangible.Font,
 
-  fonts : {
-    'italic': {
+  fonts: {
+    default: {
       size: 13,
       family: ['sans-serif'],
-      color: 'text',
+      color: 'text-primary-on-surface',
+      sources: [
+        {
+          family: 'Roboto',
+          source: [
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-regular.eot',
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2',
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff',
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf'
+          ]
+        }
+      ]
+    },
+
+    bold: {
+      size: 13,
+      family: ['sans-serif'],
+      bold: true,
+      color: 'text-primary-on-surface',
+      sources: [
+        {
+          family: 'Roboto',
+          source: [
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-700.eot',
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff2',
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff',
+            'qx/font/Roboto/roboto-v18-latin_latin-ext-700.ttf'
+          ]
+        }
+      ]
+    },
+
+    italic: {
+      size: 13,
+      family: ['sans-serif'],
+      color: 'text-primary-on-surface',
       italic: true,
       sources: [
         {
@@ -42,10 +76,11 @@ qx.Theme.define('cv.theme.dark.Font', {
         }
       ]
     },
-    'title': {
+
+    title: {
       size: 18,
       family: ['sans-serif'],
-      color: 'text',
+      color: 'text-primary-on-surface',
       sources: [
         {
           family: 'Roboto',
@@ -58,10 +93,11 @@ qx.Theme.define('cv.theme.dark.Font', {
         }
       ]
     },
-    'small': {
+
+    small: {
       size: 12,
       family: ['sans-serif'],
-      color: 'text',
+      color: 'text-primary-on-surface',
       sources: [
         {
           family: 'Roboto',
@@ -74,10 +110,11 @@ qx.Theme.define('cv.theme.dark.Font', {
         }
       ]
     },
-    'subtitle': {
+
+    subtitle: {
       size: 16,
       family: ['sans-serif'],
-      color: 'text',
+      color: 'text-primary-on-surface',
       sources: [
         {
           family: 'Roboto',
@@ -89,24 +126,6 @@ qx.Theme.define('cv.theme.dark.Font', {
           ]
         }
       ]
-    }//,
-    // "MaterialIcons": {
-    //   size: 32,
-    //   lineHeight: 1,
-    //   comparisonString : "\uf1e3\uf1f7\uf11b\uf19d",
-    //   family: ["MaterialIcons"],
-    //   sources: [
-    //     {
-    //       family: "MaterialIcons",
-    //       mapping: "iconfont/material/MaterialIcons-Regular.json",
-    //       source: [
-    //         "iconfont/material/MaterialIcons-Regular.eot",
-    //         "iconfont/material/MaterialIcons-Regular.woff2",
-    //         "iconfont/material/MaterialIcons-Regular.woff",
-    //         "iconfont/material/MaterialIcons-Regular.ttf"
-    //       ]
-    //     }
-    //   ]
-    // }
+    }
   }
 });

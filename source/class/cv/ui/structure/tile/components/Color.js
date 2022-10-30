@@ -1,7 +1,7 @@
-/* Color.js 
- * 
+/* Color.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,6 +37,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       apply: '_applyThrottleInterval'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -46,7 +47,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
     __input: null,
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       if (element.hasAttribute('throttle-interval')) {
         this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
@@ -86,7 +87,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       const rgb = mappedValue.substring(0, 7);
       if (target) {
         const tagName = target.tagName.toLowerCase();
-        const alpha = mappedValue.length === 9 ? parseInt(mappedValue.substring(7, 9), 16)/255 : 1.0;
+        const alpha = mappedValue.length === 9 ? parseInt(mappedValue.substring(7, 9), 16) / 255 : 1.0;
 
         switch (tagName) {
           case 'cv-icon':
@@ -106,7 +107,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
     onStateUpdate(ev) {
       let handled = false;
       if (ev.detail.target) {
-        handled = this.base(arguments, ev);
+        handled = super.onStateUpdate(ev);
       }
       if (!handled) {
         const value = ev.detail.state;
@@ -115,8 +116,16 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
         switch (ev.detail.variant) {
           case 'hsv':
             rgb = qx.util.ColorUtil.hsbToRgb([value.get('h'), value.get('s'), 100]);
-            alpha = Math.round(value.get('v')/100 * 255).toString(16).padStart(2, '0');
-            this.setValue(`#${rgb[0].toString(16).padStart(2, '0')}${rgb[1].toString(16).padStart(2, '0')}${rgb[2].toString(16).padStart(2, '0')}${alpha}`);
+
+            alpha = Math.round((value.get('v') / 100) * 255)
+              .toString(16)
+              .padStart(2, '0');
+            this.setValue(
+              `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1].toString(16).padStart(2, '0')}${rgb[2]
+                .toString(16)
+                .padStart(2, '0')}${alpha}`
+            );
+
             break;
         }
       }
@@ -128,26 +137,34 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
         parseInt(value.substring(3, 5), 16),
         parseInt(value.substring(5, 7), 16)
       ]);
+
       const hsv = new Map([
         ['h', hsvArray[0]],
         ['s', hsvArray[1]],
         ['v', hsvArray[2]]
       ]);
+
       const ev = new CustomEvent('sendState', {
         detail: {
           value: hsv,
           source: this
         }
       });
-      this._writeAddresses.filter(addr => addr.getAttribute('variant') === 'hsv').forEach(address => address.dispatchEvent(ev));
+
+      this._writeAddresses
+        .filter(addr => addr.getAttribute('variant') === 'hsv')
+        .forEach(address => address.dispatchEvent(ev));
     }
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'color', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'color',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

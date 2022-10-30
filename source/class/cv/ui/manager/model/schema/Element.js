@@ -1,7 +1,7 @@
-/* Element.js 
- * 
+/* Element.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * a single element from the schema
  */
@@ -30,8 +29,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (node, schema) {
-    this.base(arguments, node, schema);
+  construct(node, schema) {
+    super(node, schema);
     this.parse();
   },
 
@@ -48,7 +47,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @return  string          name of the element
      * @throws  if the name can not be found
      */
-    getElementName: function(e, schema) {
+    getElementName(e, schema) {
       if (e.hasAttribute('name')) {
         return e.getAttribute('name');
       }
@@ -74,7 +73,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param schema
      * @return  object  object of the type-Node
      */
-    getTypeNode: function (node, schema) {
+    getTypeNode(node, schema) {
       let type;
 
       if (node.hasAttribute('type')) {
@@ -98,7 +97,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       return type;
     },
 
-    sortChildNodes: function (sorting) {
+    sortChildNodes(sorting) {
       /**
        * the comparison-function that helps the sorting
        *
@@ -198,13 +197,14 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      */
     _type: null,
 
-    parse: function () {
-      this.base(arguments);
+    parse() {
+      super.parse();
       const node = this.getNode();
       const schema = this.getSchema();
 
       this._type = cv.ui.manager.model.schema.Element.getTypeNode(node, schema);
       this.setName(cv.ui.manager.model.schema.Element.getElementName(node, schema));
+
       if (node.hasAttribute('default')) {
         this.setDefaultValue(node.getAttribute('default'));
       }
@@ -216,7 +216,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  object  object of SchemaElement-elements, key is the name
      */
-    getAllowedContent: function () {
+    getAllowedContent() {
       if (this.__allowedContent !== null) {
         // if we have parsed this already, we can simply return the 'cache'
         return this.__allowedContent;
@@ -235,30 +235,41 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (this._type.querySelectorAll(':scope > simpleContent').length > 0) {
         // it's simpleContent? Then it's either extension or restriction
         // anyways, we will handle it, as if it were a simpleType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector(':scope > simpleContent'), schema);
-      } else if (this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0) {
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(
+          this._type.querySelector(':scope > simpleContent'),
+          schema
+        );
+      } else if (
+        this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0
+      ) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
 
-        let tmpDOMGrouping = this._type.querySelector('complexType > choice, complexType > sequence, complexType > group');
+        let tmpDOMGrouping = this._type.querySelector(
+          'complexType > choice, complexType > sequence, complexType > group'
+        );
 
         // create the appropriate Schema*-object and append it to this very element
         switch (tmpDOMGrouping.nodeName) {
           case 'xsd:choice':
           case 'choice':
             allowedContent._grouping = new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
+
             break;
           case 'xsd:sequence':
           case 'sequence':
             allowedContent._grouping = new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
+
             break;
           case 'xsd:group':
           case 'group':
             allowedContent._grouping = new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
+
             break;
           case 'xsd:any':
           case 'any':
             allowedContent._grouping = new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
+
             break;
         }
       } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
@@ -270,8 +281,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         return allowedContent;
       }
 
-
       const children = Array.from(this._type.querySelectorAll(':scope > element'));
+
       children.forEach(sub => {
         const subElement = new cv.ui.manager.model.schema.Element(sub, schema);
         allowedContent[subElement.getName()] = subElement;
@@ -287,15 +298,19 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * get and set the list of allowed attributes
      * @var array   List of SchemaAttribute-objects
      */
-    getAllowedAttributes: function () {
+    getAllowedAttributes() {
       if (this.__allowedAttributes === null) {
         const allowedAttributes = {};
 
         // allowed attributes
-        const attributes = Array.from(this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute'));
+        const attributes = Array.from(
+          this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute')
+        );
 
         // now add any attribute that comes from an attribute-group
-        const attributeGroups = Array.from(this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup'));
+        const attributeGroups = Array.from(
+          this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup')
+        );
 
         attributeGroups.forEach(aGroup => {
           // get get group itself, by reference if necessary
@@ -317,6 +332,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // convert all allowed attributes to a more object-oriented approach
         attributes.forEach(attr => {
           const attribute = new cv.ui.manager.model.schema.Attribute(attr, this.getSchema());
+
           allowedAttributes[attribute.getName()] = attribute;
         });
 
@@ -330,7 +346,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  boolean     are children sortable?
      */
-    areChildrenSortable: function () {
+    areChildrenSortable() {
       const allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping === undefined) {
@@ -347,7 +363,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  array   list of required elements
      */
-    getRequiredElements: function () {
+    getRequiredElements() {
       const allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping !== undefined) {
@@ -364,7 +380,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param excludeComment
      * @return  object  list of SchemaElement-elements, key is the name
      */
-    getAllowedElements: function (excludeComment) {
+    getAllowedElements(excludeComment) {
       const allowedContent = this.getAllowedContent();
 
       const allowedElements = {};
@@ -395,7 +411,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  object              list of allowed elements, with their sort-number as value
      */
-    getAllowedElementsSorting: function () {
+    getAllowedElementsSorting() {
       const allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping !== undefined) {
@@ -405,7 +421,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       return undefined;
     },
 
-    getFirstLevelElementSorting: function () {
+    getFirstLevelElementSorting() {
       const allowedSorting = this.getAllowedElementsSorting();
       if (allowedSorting) {
         // we only care about the first level here
@@ -425,7 +441,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  object  bounds ({min: x, max: y})
      */
-    getChildBounds: function () {
+    getChildBounds() {
       const allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping === undefined) {
@@ -448,7 +464,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param   childName   string  name of the child-to-be
      * @return  object              {min: x, max: y}
      */
-    getBoundsForElementName: function (childName) {
+    getBoundsForElementName(childName) {
       const allowedContent = this.getAllowedContent();
 
       return allowedContent._grouping.getBoundsForElementName(childName);
@@ -459,7 +475,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  boolean
      */
-    isTextContentAllowed: function () {
+    isTextContentAllowed() {
       if (this.isMixed()) {
         // mixed means that we allow for text-content
         return true;
@@ -477,7 +493,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       return false;
     },
 
-    isTextContentRequired: function () {
+    isTextContentRequired() {
       if (this.isTextContentAllowed()) {
         return !this.isMixed() && !this.getAllowedContent()._text.isValueValid('');
       }
@@ -491,7 +507,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param   child   string  name of the element we want to check
      * @return  boolean         is this element allowed?
      */
-    isChildElementAllowed: function (child) {
+    isChildElementAllowed(child) {
       if (child === '#text' || child === '#cdata-section') {
         // text-nodes are somewhat special :)
         return this.isTextContentAllowed();
@@ -505,11 +521,10 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (allowedContent._grouping === undefined) {
         // when there is no choice, then there is no allowed element
         return false;
-      } 
-        // see, if this child is allowed with our choice
-        return allowedContent._grouping.isElementAllowed(child);
+      }
+      // see, if this child is allowed with our choice
+      return allowedContent._grouping.isElementAllowed(child);
     },
-
 
     /**
      * get the SchemaElement-object for a certain element-name.
@@ -518,7 +533,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param   elementName string  name of the element to find the SchemaElement for
      * @return  object              SchemaElement-object, or undefined if none is found
      */
-    getSchemaElementForElementName: function (elementName) {
+    getSchemaElementForElementName(elementName) {
       // first, get a list of allowed content (don't worry, it's cached)
       const allowedContent = this.getAllowedContent();
 
@@ -534,6 +549,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
           tmpXML.setAttribute('name', '#text');
           tmpXML.setAttribute('type', 'xsd:string');
           this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
+
           if (allowedContent._text) {
             this.__textNodeSchemaElement.getAllowedContent()._text = allowedContent._text;
           } else if (this.isMixed()) {
@@ -565,7 +581,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  object  DOM of $xsd
      */
-    getSchemaDOM: function () {
+    getSchemaDOM() {
       return this.getSchema().getSchemaDOM();
     },
 
@@ -575,7 +591,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param   value   string  value to check
      * @return  boolean         is it valid?
      */
-    isValueValid: function (value) {
+    isValueValid(value) {
       if (this.isTextContentAllowed() === false) {
         // if no text-content is allowed, then it can not be valid
         return false;
@@ -598,7 +614,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string
      */
-    getRegex: function (separator, nocapture) {
+    getRegex(separator, nocapture) {
       if (typeof separator === 'undefined' || separator === undefined) {
         // default to an empty string
         separator = '';
@@ -641,7 +657,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @param nocapture
      * @return  string              the regular expression
      */
-    getChildrenRegex: function(separator, nocapture) {
+    getChildrenRegex(separator, nocapture) {
       if (typeof separator == 'undefined' || separator === undefined) {
         // default to an empty string
         separator = '';
@@ -663,7 +679,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._disposeMap('__allowedAttributes');
     this._disposeMap('__allowedContent');
     this._disposeObjects('__textNodeSchemaElement');

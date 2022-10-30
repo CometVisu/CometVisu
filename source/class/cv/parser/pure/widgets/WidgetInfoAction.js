@@ -1,7 +1,7 @@
-/* WidgetInfoAction.js 
- * 
+/* WidgetInfoAction.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  *
@@ -39,15 +38,16 @@ qx.Class.define('cv.parser.pure.widgets.WidgetInfoAction', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
+    parse(xml, path, flavour, pageType) {
       const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+
       data.containerClass = data.$$type;
       cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     }
   },
 
-  defer: function (statics) {
+  defer(statics) {
     cv.parser.pure.WidgetParser.addHandler('widgetinfo', statics);
     cv.parser.pure.WidgetParser.addHandler('widgetaction', statics);
   }

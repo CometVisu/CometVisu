@@ -1,7 +1,7 @@
-/* Slider.js 
- * 
+/* Slider.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -33,27 +33,32 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
       check: 'Number',
       init: 5
     },
+
     min: {
       check: 'Number',
       init: 1,
       apply: '_applyMin'
     },
+
     max: {
       check: 'Number',
       init: 100,
       apply: '_applyMax'
     },
+
     showValue: {
       check: 'Boolean',
       init: true,
       apply: '_applyShowValue'
     },
+
     throttleInterval: {
       check: 'Number',
       init: 250,
       apply: '_applyThrottleInterval'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -64,7 +69,7 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
     __input: null,
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       if (element.hasAttribute('throttle-interval')) {
         this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
@@ -175,15 +180,21 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
           source: this
         }
       });
-      this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on).forEach(address => address.dispatchEvent(ev));
+
+      this._writeAddresses
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on)
+        .forEach(address => address.dispatchEvent(ev));
     }
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'slider', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'slider',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

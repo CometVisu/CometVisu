@@ -1,7 +1,7 @@
-/* AbstractEditor.js 
- * 
+/* AbstractEditor.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,16 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Abstract base class for all editors.
  */
 qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   extend: qx.ui.core.Widget,
-  implement: [
-    cv.ui.manager.editor.IEditor,
-    cv.ui.manager.IActionHandler
-  ],
+  implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
+
   type: 'abstract',
 
   /*
@@ -34,17 +31,17 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this._initClient();
     this._nativePasteSupported = document.queryCommandSupported('paste');
   },
 
   /*
- ***********************************************
+  ***********************************************
    PROPERTIES
- ***********************************************
- */
+  ***********************************************
+  */
   properties: {
     file: {
       check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
@@ -99,14 +96,14 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     _handledActions: null,
     _nativePasteSupported: false,
 
-    canHandleAction: function (actionName) {
+    canHandleAction(actionName) {
       if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
         return false;
       }
       return this._handledActions && this._handledActions.includes(actionName);
     },
 
-    handleAction: function (actionName) {
+    handleAction(actionName) {
       if (this.canHandleAction(actionName)) {
         switch (actionName) {
           case 'save':
@@ -116,16 +113,16 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    configureButton: function (button) {},
-    unConfigureButton: function (button) {},
+    configureButton(button) {},
+    unConfigureButton(button) {},
 
-    _initClient: function () {
+    _initClient() {
       this._client = cv.io.rest.Client.getFsClient();
     },
 
-    _applyHandlerOptions: function () {},
+    _applyHandlerOptions() {},
 
-    _loadFile: function (file, old) {
+    _loadFile(file, old) {
       if (old) {
         qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
@@ -141,20 +138,24 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    _loadFromFs: function () {
-      this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
-        if (err) {
-          cv.ui.manager.snackbar.Controller.error(err);
-        } else {
-          if (res instanceof XMLDocument) {
-            res = new XMLSerializer().serializeToString(res);
+    _loadFromFs() {
+      this._client.readSync(
+        { path: this.getFile().getFullPath() },
+        function (err, res) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(err);
+          } else {
+            if (res instanceof XMLDocument) {
+              res = new XMLSerializer().serializeToString(res);
+            }
+            this.setContent(res);
           }
-          this.setContent(res);
-        }
-      }, this);
+        },
+        this
+      );
     },
 
-    _onChange: function (ev) {
+    _onChange(ev) {
       const data = ev.getData();
       if (data.type === 'fsContentChanged' && data.source !== this) {
         this.setContent(data.data);
@@ -162,12 +163,12 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     // must be overridden by inheriting classes
-    _applyContent: function() {},
+    _applyContent() {},
 
     // must be overridden by inheriting classes
-    getCurrentContent: function () {},
+    getCurrentContent() {},
 
-    _handleSaveResponse: function (type, err) {
+    _handleSaveResponse(type, err) {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
@@ -188,25 +189,38 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    save: function (callback, overrideHash) {
+    save(callback, overrideHash) {
       const file = this.getFile();
       if (file.isModified()) {
         if (file.isTemporary()) {
-          this._client.createSync({
-            path: file.getFullPath(),
-            hash: overrideHash || file.getHash(),
-            type: 'file'
-          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'), this);
+          this._client.createSync(
+            {
+              path: file.getFullPath(),
+              hash: overrideHash || file.getHash(),
+              type: 'file'
+            },
+
+            this.getCurrentContent(),
+            callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'),
+            this
+          );
         } else {
-          this._client.updateSync({
-            path: file.getFullPath(),
-            hash: overrideHash || file.getHash()
-          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'), this);
+          this._client.updateSync(
+            {
+              path: file.getFullPath(),
+              hash: overrideHash || file.getHash()
+            },
+
+            this.getCurrentContent(),
+            callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'),
+
+            this
+          );
         }
       }
     },
 
-    _onSaved: function () {
+    _onSaved() {
       const file = this.getFile();
       if (file) {
         file.resetModified();
@@ -214,8 +228,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    showErrors: function (path, errorList) {},
-    showDecorations: function (path, decorators) {}
+    showErrors(path, errorList) {},
+    showDecorations(path, decorators) {}
   },
 
   /*
@@ -223,7 +237,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     if (this._client) {
       this._client = null;
     }

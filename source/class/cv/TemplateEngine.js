@@ -1,7 +1,7 @@
-/* TemplateEngine.js 
- * 
+/* TemplateEngine.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  *
  */
@@ -25,18 +24,18 @@ qx.Class.define('cv.TemplateEngine', {
   extend: qx.core.Object,
   type: 'singleton',
 
-  construct: function() {
+  construct() {
     // this.base(arguments);
     this.lazyPlugins = ['plugin-openhab'];
 
     this.__partQueue = new qx.data.Array();
     this._domFinishedQueue = [];
-    this.__partQueue.addListener('changeLength', function(ev) {
+    this.__partQueue.addListener('changeLength', ev => {
       this.setPartsLoaded(ev.getData() === 0);
-    }, this);
+    });
     this.__clients = {};
 
-    this.defaults = {widget: {}, plugin: {}};
+    this.defaults = { widget: {}, plugin: {} };
     const group = new qx.ui.command.Group();
     this.setCommands(group);
     const app = qx.core.Init.getApplication();
@@ -49,7 +48,6 @@ qx.Class.define('cv.TemplateEngine', {
   },
 
   properties: {
-
     /**
      * Shows the loading state of the parts
      */
@@ -131,9 +129,9 @@ qx.Class.define('cv.TemplateEngine', {
      *
      * Usage: this.defaults.plugin.foo = {bar: 'baz'};
      */
-    defaults : null,
+    defaults: null,
 
-    pluginsToLoadCount : 0,
+    pluginsToLoadCount: 0,
 
     __partQueue: null,
     _domFinishedQueue: null,
@@ -154,7 +152,7 @@ qx.Class.define('cv.TemplateEngine', {
      *
      * @param parts {String[]|String} parts to load
      */
-    loadParts: function(parts) {
+    loadParts(parts) {
       if (!Array.isArray(parts)) {
         parts = [parts];
       }
@@ -162,42 +160,51 @@ qx.Class.define('cv.TemplateEngine', {
         return parts.indexOf(part) >= 0;
       });
       if (loadLazyParts.length) {
-        parts = parts.filter(function(p) {
+        parts = parts.filter(function (p) {
           return !loadLazyParts.includes(p);
         });
       }
       this.__partQueue.append(parts);
       const waitingFor = new qx.data.Array(parts);
-      qx.io.PartLoader.require(parts, function(states) {
-        parts.forEach(function(part, idx) {
-          if (states[idx] === 'complete') {
-            this.__partQueue.remove(part);
-            this.debug('successfully loaded part '+part);
-            if (part.startsWith('structure-')) {
-              if (!cv.Config.loadedStructure) {
-                cv.Config.loadedStructure = part.substring(10);
+      qx.io.PartLoader.require(
+        parts,
+        function (states) {
+          parts.forEach(function (part, idx) {
+            if (states[idx] === 'complete') {
+              this.__partQueue.remove(part);
+              this.debug('successfully loaded part ' + part);
+              if (part.startsWith('structure-')) {
+                if (!cv.Config.loadedStructure) {
+                  cv.Config.loadedStructure = part.substring(10);
+                }
+                qx.core.Init.getApplication().setStructureLoaded(true);
               }
-              qx.core.Init.getApplication().setStructureLoaded(true);
+              this.__partQueue.remove(part);
+              waitingFor.remove(part);
+            } else {
+              this.error('error loading part ' + part);
             }
-            this.__partQueue.remove(part);
-            waitingFor.remove(part);
-          } else {
-            this.error('error loading part '+part);
-          }
-        }, this);
-      }, this);
+          }, this);
+        },
+        this
+      );
 
       // load the lazy plugins no one needs to wait for
-      qx.io.PartLoader.require(loadLazyParts, function(states) {
-        loadLazyParts.forEach(function(part, idx) {
-          if (states[idx] === 'complete') {
-            this.debug('successfully loaded lazy part '+part);
-            waitingFor.remove(part);
-          } else {
-            this.error('error loading lazy part '+part);
-          }
-        }, this);
-      }, this);
+      qx.io.PartLoader.require(
+        loadLazyParts,
+        function (states) {
+          loadLazyParts.forEach(function (part, idx) {
+            if (states[idx] === 'complete') {
+              this.debug('successfully loaded lazy part ' + part);
+              waitingFor.remove(part);
+            } else {
+              this.error('error loading lazy part ' + part);
+            }
+          }, this);
+        },
+        this
+      );
+
       return new Promise((resolve, reject) => {
         const timer = setTimeout(reject, 2000);
         if (waitingFor.getLength() === 0) {
@@ -215,27 +222,27 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     // property apply
-    _applyReady: function(value) {
+    _applyReady(value) {
       if (value === true) {
         this.setupUI();
       }
     },
 
     // property apply
-    _applyLoaded: function(value, old, name) {
-      this.debug(name+' is '+value+' now');
+    _applyLoaded(value, old, name) {
+      this.debug(name + ' is ' + value + ' now');
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
         this.setReady(true);
       }
     },
 
     // property apply
-    _applyDomFinished: function(value) {
+    _applyDomFinished(value) {
       if (value) {
         document.body.style.visibility = '';
         qx.event.message.Bus.dispatchByName('setup.dom.finished');
         // flush the queue
-        this._domFinishedQueue.forEach(function(entry) {
+        this._domFinishedQueue.forEach(function (entry) {
           const callback = entry.shift();
           const context = entry.shift();
           callback.apply(context, entry);
@@ -249,7 +256,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @param callback {Function}
      * @param context {Object}
      */
-    executeWhenDomFinished: function(callback, context) {
+    executeWhenDomFinished(callback, context) {
       if (!this.isDomFinished()) {
         // queue callback
         this._domFinishedQueue.push(Array.prototype.slice.call(arguments));
@@ -302,23 +309,33 @@ qx.Class.define('cv.TemplateEngine', {
       if (design) {
         let baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
-        settings.stylesToLoad.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`});
+        settings.stylesToLoad.push({
+          uri: baseUri + '/mobile.css',
+          media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`
+        });
+
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
         const loader = cv.util.ScriptLoader.getInstance();
-        loader.addListenerOnce('designError', function (ev) {
+        loader.addListenerOnce('designError', ev => {
           if (ev.getData() === design) {
-            this.error('Failed to load "' + design + '" design! Falling back to simplified "' + cv.Config.loadedStructure + '"');
+            this.error(
+              'Failed to load "' + design + '" design! Falling back to simplified "' + cv.Config.loadedStructure + '"'
+            );
 
             baseUri = 'designs/' + cv.Config.loadedStructure;
             const alternativeStyles = [baseUri + '/basic.css'];
-            alternativeStyles.push({uri: baseUri + '/mobile.css', media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`});
-            alternativeStyles.push(baseUri+'/custom.css');
+            alternativeStyles.push({
+              uri: baseUri + '/mobile.css',
+              media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`
+            });
+
+            alternativeStyles.push(baseUri + '/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
             cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
           }
-        }, this);
+        });
       }
       // load structure-part
       await this.loadParts([cv.Config.getStructure()]);
@@ -332,7 +349,7 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Main setup to get everything running and show the initial UI page.
      */
-    setupUI: function () {
+    setupUI() {
       // and now setup the UI
       this.debug('setup');
       cv.Application.structureController.createUI(this.getConfigSource());
@@ -347,16 +364,22 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Start the screensaver if a screensave time is set
      */
-    startScreensaver: function() {
+    startScreensaver() {
       if (typeof cv.Config.configSettings.screensave_time === 'number') {
         this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
-        this.screensave.addListener('interval', cv.Application.structureController.doScreenSave, cv.Application.structureController);
+
+        this.screensave.addListener(
+          'interval',
+          cv.Application.structureController.doScreenSave,
+          cv.Application.structureController
+        );
+
         this.screensave.start();
         qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
       }
     },
 
-    _applyHighlightedWidget: function (value, old) {
+    _applyHighlightedWidget(value, old) {
       if (old) {
         const oldElement = document.querySelector(old);
         if (oldElement) {
@@ -371,24 +394,23 @@ qx.Class.define('cv.TemplateEngine', {
       }
     },
 
-    selectDesign: function () {
+    selectDesign() {
       const body = document.querySelector('body');
 
-      document.querySelectorAll('body > *').forEach(function(elem) {
+      document.querySelectorAll('body > *').forEach(function (elem) {
         elem.style.display = 'none';
       }, this);
       body.style['background-color'] = 'black';
 
-
-      const div = qx.dom.Element.create('div', {id: 'designSelector'});
+      const div = qx.dom.Element.create('div', { id: 'designSelector' });
       Object.entries({
         background: '#808080',
         width: '400px',
         color: 'white',
         margin: 'auto',
         padding: '0.5em'
-      }).forEach(function(key_value) {
-        body.style[key_value[0]]=key_value[1];
+      }).forEach(function (key_value) {
+        body.style[key_value[0]] = key_value[1];
       });
       div.innerHTML = 'Loading ...';
 
@@ -398,11 +420,12 @@ qx.Class.define('cv.TemplateEngine', {
 
       store.addListener('loaded', function () {
         let html = '<h1>Please select design</h1>';
-        html += '<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>';
+        html +=
+          '<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>';
 
         div.innerHTML = html;
 
-        store.getModel().forEach(function(element) {
+        store.getModel().forEach(function (element) {
           const myDiv = qx.dom.Element.create('div', {
             cursor: 'pointer',
             padding: '0.5em 1em',
@@ -413,11 +436,18 @@ qx.Class.define('cv.TemplateEngine', {
           });
 
           myDiv.innerHTML = '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' + element + '</div>';
-          myDiv.innerHTML += '<iframe src="'+qx.util.ResourceManager.getInstance().toUri('designs/design_preview.html')+'?design=' + element + '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
-          myDiv.innerHTML += '<img width="60" height="30" src="'+qx.util.ResourceManager.getInstance().toUri('demo/media/arrow.png')+'" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
+          myDiv.innerHTML +=
+            '<iframe src="' +
+            qx.util.ResourceManager.getInstance().toUri('designs/design_preview.html') +
+            '?design=' +
+            element +
+            '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
+          myDiv.innerHTML +=
+            '<img width="60" height="30" src="' +
+            qx.util.ResourceManager.getInstance().toUri('demo/media/arrow.png') +
+            '" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
 
           div.appendChild(myDiv);
-
 
           const tDiv = qx.dom.Element.create('div', {
             background: 'transparent',
@@ -426,24 +456,35 @@ qx.Class.define('cv.TemplateEngine', {
             width: '160px',
             zIndex: 2
           });
+
           const pos = document.querySelector('iframe').getBoundingClientRect();
           Object.entries({
             left: pos.left + 'px',
             top: pos.top + 'px'
-          }).forEach(function(key_value) {
-            tDiv.style[key_value[0]]=key_value[1];
+          }).forEach(function (key_value) {
+            tDiv.style[key_value[0]] = key_value[1];
           });
           myDiv.appendChild(tDiv);
 
-          qx.event.Registration.addListener(myDiv, 'pointerover', function() {
-            myDiv.style.background = '#bbbbbb';
-          }, this);
+          qx.event.Registration.addListener(
+            myDiv,
+            'pointerover',
+            function () {
+              myDiv.style.background = '#bbbbbb';
+            },
+            this
+          );
 
-          qx.event.Registration.addListener(myDiv, 'pointerout', function() {
-            myDiv.style.background = 'transparent';
-          }, this);
+          qx.event.Registration.addListener(
+            myDiv,
+            'pointerout',
+            function () {
+              myDiv.style.background = 'transparent';
+            },
+            this
+          );
 
-          qx.event.Registration.addListener(myDiv, 'tap', function() {
+          qx.event.Registration.addListener(myDiv, 'tap', function () {
             let href = document.location.href;
             if (document.location.hash) {
               href = href.split('#')[0];
@@ -464,7 +505,7 @@ qx.Class.define('cv.TemplateEngine', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._disposeObjects('__activeChangedTimer');
   }
 });

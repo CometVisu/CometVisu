@@ -1,7 +1,7 @@
-/* Value.js 
- * 
+/* Value.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -35,8 +35,9 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
     _debouncedDetectOverflow: null,
 
     _init() {
-      this.base(arguments);
+      super._init();
       this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
+
       const target = this._element.querySelector('.value');
       if (target && target.tagName.toLowerCase() === 'label') {
         // check for overflowing text, when labels parent gets resized
@@ -81,7 +82,11 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
           case 'cv-icon':
             target._instance.setId(mappedValue);
             if (this._element.hasAttribute('styling')) {
-              styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__store);
+              styleClass = cv.Application.structureController.styleValue(
+                this._element.getAttribute('styling'),
+                value,
+                this.__store
+              );
             }
             target._instance.setStyleClass(styleClass);
             break;
@@ -106,10 +111,13 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'value', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'value',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

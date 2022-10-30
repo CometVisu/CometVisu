@@ -1,7 +1,7 @@
-/* Prettifier.js 
- * 
+/* Prettifier.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -29,7 +29,6 @@ qx.Class.define('cv.util.Prettifier', {
   ***********************************************
   */
   statics: {
-
     /**
      * Dumps an XML file with formatted content
      * @param xml {XMLDocument}
@@ -39,7 +38,7 @@ qx.Class.define('cv.util.Prettifier', {
       return '<?xml version="1.0" encoding="UTF-8"?>\n' + this._prettifyNode(xml.documentElement, 0);
     },
 
-    _prettifyNode: function (node, level, noFormat) {
+    _prettifyNode(node, level, noFormat) {
       let tabs = Array(level).fill('  ').join('');
       let newLine = '\n';
       if (node.nodeType === Node.TEXT_NODE) {
@@ -49,9 +48,9 @@ qx.Class.define('cv.util.Prettifier', {
         return '';
       }
       if (node.nodeType === Node.COMMENT_NODE) {
-        return (noFormat ? '' : tabs) + `<!--${node.textContent}--> ${(noFormat ? '' : newLine)}`;
+        return (noFormat ? '' : tabs) + `<!--${node.textContent}--> ${noFormat ? '' : newLine}`;
       } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
-        return (noFormat ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${(noFormat ? '' : newLine)}`;
+        return (noFormat ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${noFormat ? '' : newLine}`;
       }
       if (!node.tagName) {
         return this._prettifyNode(node.firstChild, level);
@@ -77,7 +76,7 @@ qx.Class.define('cv.util.Prettifier', {
         attributesOutput += ` ${prefix}${attr.name}="${attr.value}"`;
       }
       namespaces.forEach((ns, index) => {
-        output += ` xmlns:ns${index+1}="${ns}"`;
+        output += ` xmlns:ns${index + 1}="${ns}"`;
       });
       output += attributesOutput;
       if (node.childNodes.length === 0) {
@@ -85,7 +84,11 @@ qx.Class.define('cv.util.Prettifier', {
       }
       output += '>';
 
-      let hasTextChild = Array.prototype.some.call(node.childNodes, child => child.nodeType === Node.TEXT_NODE && child.textContent.trim());
+      let hasTextChild = Array.prototype.some.call(
+        node.childNodes,
+        child => child.nodeType === Node.TEXT_NODE && child.textContent.trim()
+      );
+
       if (!noFormat && !hasTextChild) {
         output += newLine;
       }

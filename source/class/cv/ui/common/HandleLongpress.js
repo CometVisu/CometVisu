@@ -1,7 +1,7 @@
-/* HandleLongpress.js 
- * 
+/* HandleLongpress.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,17 +17,15 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Mixin.define('cv.ui.common.HandleLongpress', {
-
   /*
    ******************************************************
    PROPERTIES
    ******************************************************
    */
   properties: {
-    shortThreshold: {check: 'Number', init: -1},
-    shortDefault: {check: 'Boolean', init: false}, // is true use short value if no threshold is set, otherwise use long
+    shortThreshold: { check: 'Number', init: -1 },
+    shortDefault: { check: 'Boolean', init: false }, // is true use short value if no threshold is set, otherwise use long
 
     /**
      * true: send the long value after the mouse button is released
@@ -38,5 +36,4 @@ qx.Mixin.define('cv.ui.common.HandleLongpress', {
       init: true
     }
   }
-
 });

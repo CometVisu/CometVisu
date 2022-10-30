@@ -1,7 +1,7 @@
-/* ElementFormRenderer.js 
- * 
+/* ElementFormRenderer.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Special form renderer for editing XML-Config elements (allows special help texts for items)
  */
@@ -29,15 +28,14 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
   ***********************************************
   */
   members: {
-    addItems: function(items, names, title) {
+    addItems(items, names, title) {
       if (title !== null) {
-        this._add(
-          this._createHeader(title), {
-            row: this._row,
-            column: 0,
-            colSpan: 2
-          }
-        );
+        this._add(this._createHeader(title), {
+          row: this._row,
+          column: 0,
+          colSpan: 2
+        });
+
         this._row++;
       }
       for (let i = 0; i < items.length; i++) {
@@ -74,6 +72,7 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
             row: this._row,
             column: 0
           });
+
           this._add(widget, {
             row: this._row,
             column: 1
@@ -88,6 +87,7 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
             row: this._row,
             column: 1
           });
+
           this._row++;
         }
         this._add(new qx.ui.menu.Separator(), {
@@ -95,6 +95,7 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
           column: 0,
           colSpan: 2
         });
+
         this._row++;
         if (i === 0) {
           widget.focus();

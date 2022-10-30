@@ -1,7 +1,7 @@
-/* Folder.js 
- * 
+/* Folder.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,16 +17,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Displays folder content in an explorer like view.
  */
 qx.Class.define('cv.ui.manager.viewer.Folder', {
   extend: cv.ui.manager.viewer.AbstractViewer,
-  implement: [
-    qx.ui.core.ISingleSelection,
-    qx.ui.form.IModelSelection
-  ],
+  implement: [qx.ui.core.ISingleSelection, qx.ui.form.IModelSelection],
+
   include: [
     qx.ui.core.MSingleSelectionHandling,
     qx.ui.core.MRemoteChildrenHandling,
@@ -35,14 +32,16 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   ],
 
   /*
- ***********************************************
+  ***********************************************
    CONSTRUCTOR
- ***********************************************
- */
-  construct: function (noToolbar) {
-    this.base(arguments);
+  ***********************************************
+  */
+  construct(noToolbar) {
+    super();
     cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
+
     this._isImageRegex = new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
+
     this.initModel(new qx.data.Array());
     this._setLayout(new qx.ui.layout.VBox(8));
 
@@ -56,6 +55,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     });
 
     this._debouncedOnFilter = qx.util.Function.debounce(this._onFilter, 500, false);
+
     if (!noToolbar) {
       this._createChildControl('toolbar');
     }
@@ -68,7 +68,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: function isDir(item) {
+    SUPPORTED_FILES(item) {
       // noinspection JSConstructorReturnsPrimitive
       return item.getType() === 'dir';
     },
@@ -87,14 +87,14 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
      * {@link qx.event.type.Data#getData} method of the event returns the
      * added item.
      */
-    addItem : 'qx.event.type.Data',
+    addItem: 'qx.event.type.Data',
 
     /**
      * This event is fired after a list item has been removed from the list.
      * The {@link qx.event.type.Data#getData} method of the event returns the
      * removed item.
      */
-    removeItem : 'qx.event.type.Data'
+    removeItem: 'qx.event.type.Data'
   },
 
   /*
@@ -139,24 +139,24 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   },
 
   /*
- ***********************************************
+  ***********************************************
    MEMBERS
- ***********************************************
- */
+  ***********************************************
+  */
   members: {
     _controller: null,
     _isImageRegex: null,
     _newItem: null,
 
-    _getItems: function() {
+    _getItems() {
       return this.getChildControl('list').getChildren();
     },
 
-    _isAllowEmptySelection: function () {
+    _isAllowEmptySelection() {
       return true;
     },
 
-    _defaultLabelConverter: function (name) {
+    _defaultLabelConverter(name) {
       if (this.getViewMode() === 'list') {
         // do not remove file type in list mode
         return name;
@@ -168,13 +168,14 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       return parts.join('.');
     },
 
-    _getDelegate: function () {
+    _getDelegate() {
       const labelConverter = this.getLabelConverter();
       const converter = {
         converter: labelConverter ? labelConverter : this._defaultLabelConverter.bind(this)
       };
+
       return {
-        createItem: function () {
+        createItem() {
           return new cv.ui.manager.form.FileListItem();
         },
 
@@ -189,28 +190,36 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
           controller.bindProperty('displayName', 'label', converter, item, index);
-          controller.bindProperty('icon', 'icon', {
-            converter: function (source, file) {
-              if (file.getType() === 'file' && this._isImageRegex.test(file.getName())) {
-                // use the image as icon
-                return file.getServerPath();
-              } 
+
+          controller.bindProperty(
+            'icon',
+            'icon',
+            {
+              converter: function (source, file) {
+                if (file.getType() === 'file' && this._isImageRegex.test(file.getName())) {
+                  // use the image as icon
+                  return file.getServerPath();
+                }
                 if (!source) {
                   return null;
                 }
                 // remove size from icon source
-              const parts = source.split('/');
-              if (parts.length === 3) {
+                const parts = source.split('/');
+                if (parts.length === 3) {
                   parts.pop();
                 }
                 return parts.join('/');
-            }.bind(this)
-          }, item, index);
+              }.bind(this)
+            },
+
+            item,
+            index
+          );
         }.bind(this)
       };
     },
 
-    _onFsItemRightClick: function (ev) {
+    _onFsItemRightClick(ev) {
       const file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === 'add-file') {
         ev.preventDefault();
@@ -231,17 +240,16 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
-    _onDblTap: function (ev) {
+    _onDblTap(ev) {
       const file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === 'add-file') {
         // Select file for upload
-
       } else {
         qx.event.message.Bus.dispatchByName('cv.manager.open', file);
       }
     },
 
-    _applyFile: function (file, old) {
+    _applyFile(file, old) {
       if (old) {
         old.removeRelatedBindings(this);
         this.resetModel();
@@ -255,13 +263,13 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         file.bind('children', this, 'model');
         const model = this.getModel();
         this._newItem.setParent(file);
-        model.addListener('change', function () {
+        model.addListener('change', () => {
           if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
             this._onFilter();
           } else {
             this._controller.setModel(model);
           }
-        }, this);
+        });
         this._controller.setModel(model);
         file.load();
       } else {
@@ -272,7 +280,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
-    _handleFileEvent: function (ev) {
+    _handleFileEvent(ev) {
       const folder = this.getFile();
       const data = ev.getData();
       switch (data.action) {
@@ -321,11 +329,11 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
-    _applyShowTextFilter: function (value) {
+    _applyShowTextFilter(value) {
       this.getChildControl('filter').setVisibility(value ? 'visible' : 'excluded');
     },
 
-    _onFilter: function () {
+    _onFilter() {
       if (this._controller) {
         const filterString = this.getChildControl('filter').getValue();
         const filterFunction = this.getPermanentFilter();
@@ -336,7 +344,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
-    getChildrenContainer: function () {
+    getChildrenContainer() {
       return this.getChildControl('list');
     },
 
@@ -345,7 +353,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
      *
      * @param e {qx.event.type.Data} the event instance
      */
-    _onAddChild : function(e) {
+    _onAddChild(e) {
       this.fireDataEvent('addItem', e.getData());
     },
 
@@ -354,11 +362,11 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
      *
      * @param e {qx.event.type.Data} the event instance
      */
-    _onRemoveChild : function(e) {
+    _onRemoveChild(e) {
       this.fireDataEvent('removeItem', e.getData());
     },
 
-    _onFileEvent: function (ev) {
+    _onFileEvent(ev) {
       const data = ev.getData();
       switch (data.action) {
         case 'deleted':
@@ -366,29 +374,30 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
-    _applyDisableScrolling: function (value) {
+    _applyDisableScrolling(value) {
       if (value) {
         this.getChildControl('scroll').exclude();
-        this._addAt(this.getChildControl('list'), 1, {flex: 1});
+        this._addAt(this.getChildControl('list'), 1, { flex: 1 });
       } else {
         const scrollContainer = this.getChildControl('scroll');
         scrollContainer.show();
         scrollContainer.add(this.getChildControl('list'));
-        this._addAt(scrollContainer, 1, {flex: 1});
+        this._addAt(scrollContainer, 1, { flex: 1 });
       }
     },
 
     // overridden
-    _createChildControlImpl : function(id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
         case 'toolbar':
           control = new cv.ui.manager.ToolBar(null, ['new-file', 'new-folder', 'upload', 'reload']);
+
           this.bind('file', control, 'folder');
-          control.addListener('reload', function () {
+          control.addListener('reload', () => {
             this.getFile().reload();
-          }, this);
+          });
           this._addAt(control, 0);
           break;
 
@@ -399,6 +408,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
             liveUpdate: true,
             margin: 8
           });
+
           if (!this.isShowTextFilter()) {
             control.exclude();
           }
@@ -408,7 +418,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
         case 'scroll':
           control = new qx.ui.container.Scroll();
-          this._addAt(control, 2, {flex: 1});
+          this._addAt(control, 2, { flex: 1 });
           break;
 
         case 'list':
@@ -418,14 +428,14 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
           control.addListener('addChildWidget', this._onAddChild, this);
           control.addListener('removeChildWidget', this._onRemoveChild, this);
           if (this.isDisableScrolling()) {
-            this._addAt(control, 1, {flex: 1});
+            this._addAt(control, 1, { flex: 1 });
           } else {
             this.getChildControl('scroll').add(control);
           }
           break;
       }
 
-      return control || this.base(arguments, id);
+      return control || super._createChildControlImpl(id);
     }
   },
 
@@ -434,7 +444,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._disposeObjects('_controller');
     this._isImageRegex = null;
     cv.ui.manager.model.Preferences.getInstance().removeRelatedBindings(this);

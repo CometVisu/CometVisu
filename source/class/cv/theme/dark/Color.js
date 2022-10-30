@@ -1,7 +1,7 @@
-/* Color.js 
- * 
+/* Color.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,13 +17,18 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Theme.define('cv.theme.dark.Color', {
-  extend : osparc.theme.osparcdark.Color,
+  extend: qx.theme.tangible.ColorDark,
 
-  colors : {
+  colors: {
+    // theme colors
+    primary: '#444444',
+    secondary: '#646464',
+    surface: '#202020',
+    error: '#b00020',
+
     'valid-color': '#22822d',
-    'invalid-color': 'material-textfield-invalid',
+    'invalid-color': 'error-focused',
     'warning-color': '#a85500'
   }
 });

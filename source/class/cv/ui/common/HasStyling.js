@@ -1,7 +1,7 @@
-/* HasStyling.js 
- * 
+/* HasStyling.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,9 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Mixin.define('cv.ui.common.HasStyling', {
-
   /*
   ******************************************************
     PROPERTIES
@@ -39,16 +37,17 @@ qx.Mixin.define('cv.ui.common.HasStyling', {
   ******************************************************
   */
   members: {
-
-    applyStyling: function (value) {
+    applyStyling(value) {
       const sty = cv.Config.getStyling(this.getStyling());
       if (sty) {
         let e;
-        this.getDomElement().querySelectorAll('.actor').forEach(function(element) {
-          if (element.querySelector('.value') && e === undefined) {
-            e = element;
-          }
-        });
+        this.getDomElement()
+          .querySelectorAll('.actor')
+          .forEach(function (element) {
+            if (element.querySelector('.value') && e === undefined) {
+              e = element;
+            }
+          });
         if (e) {
           e.classList.remove.apply(e.classList, sty.classnames.split(' ')); // remove only styling classes
           if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
@@ -58,32 +57,36 @@ qx.Mixin.define('cv.ui.common.HasStyling', {
       }
     },
 
-    _findValue: function (value, findExact, element, styling) {
+    _findValue(value, findExact, element, styling) {
       if (undefined === value) {
         return false;
       }
-      if (styling[value]) { // fixed value
+      if (styling[value]) {
+        // fixed value
         element.classList.add.apply(element.classList, styling[value].split(' '));
+
         return true;
       }
 
       const range = styling.range;
       if (findExact && range[value]) {
-          element.classList.add.apply(element.classList, range[value][1].split(' '));
-          return true;
-        }
+        element.classList.add.apply(element.classList, range[value][1].split(' '));
+
+        return true;
+      }
       const valueFloat = parseFloat(value);
       for (let min in range) {
-          if (min > valueFloat) {
- continue; 
-}
-          if (range[min][0] < valueFloat) {
- continue; 
-}// check max
-          element.classList.add.apply(element.classList, range[min][1].split(' '));
-          return true;
+        if (min > valueFloat) {
+          continue;
         }
-      
+        if (range[min][0] < valueFloat) {
+          continue;
+        } // check max
+        element.classList.add.apply(element.classList, range[min][1].split(' '));
+
+        return true;
+      }
+
       return false;
     }
   }

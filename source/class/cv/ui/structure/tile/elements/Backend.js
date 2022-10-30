@@ -1,7 +1,7 @@
-/* Backend.js 
- * 
+/* Backend.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -72,12 +72,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             backendUrlConfigKey = 'backendMQTTUrl';
             break;
         }
+
         if (backendUrlConfigKey) {
           // override by URL settings
           if (cv.Config.URL[backendUrlConfigKey]) {
-            backendUrl = cv.Config.URL[backendUrlConfigKey]
+            backendUrl = cv.Config.URL[backendUrlConfigKey];
           } else if (!backendUrl && cv.Config.server[backendUrlConfigKey]) {
-            backendUrl = cv.Config.server[backendUrlConfigKey]
+            backendUrl = cv.Config.server[backendUrlConfigKey];
           }
         }
         let name = type;
@@ -87,7 +88,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           // we need one main backend
           name = 'main';
         } else if (cv.io.BackendConnections.getClient('main').configuredIn === 'config') {
-          qx.log.Logger.warn(this, `there is already a backend registered with name "main" and type ${type} skipping this one`);
+          qx.log.Logger.warn(
+            this,
+            `there is already a backend registered with name "main" and type ${type} skipping this one`
+          );
+
           return;
         }
         qx.log.Logger.debug(this, 'init backend', name);
@@ -95,15 +100,19 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           const notification = {
             topic: 'cv.config.error',
             title: qx.locale.Manager.tr('Config error'),
-            message:  qx.locale.Manager.tr('There already exists a backend named: "%1"', name),
+            message: qx.locale.Manager.tr('There already exists a backend named: "%1"', name),
+
             severity: 'urgent',
             unique: true,
             deletable: true
           };
+
           cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+
           return;
         }
         const client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
+
         this._client = client;
         this._name = name;
         this.__applyValues = [];
@@ -120,6 +129,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             }
             const addressesToSubscribe = model.getAddresses(name);
             this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
+
             if (addressesToSubscribe.length !== 0) {
               client.subscribe(addressesToSubscribe);
             }
@@ -127,19 +137,23 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           if (cv.TemplateEngine.getInstance().isDomFinished()) {
             doSubscribe();
           } else {
-            qx.event.message.Bus.subscribe('setup.dom.finished', function () {
-              doSubscribe();
-            }, this);
+            qx.event.message.Bus.subscribe(
+              'setup.dom.finished',
+              function () {
+                doSubscribe();
+              },
+              this
+            );
           }
         });
-
 
         for (const data of element.querySelectorAll(':scope > cv-data')) {
           if (data.hasAttribute('address')) {
             let value = data.textContent.trim();
             if (data.hasAttribute('transform')) {
               const encoding = data.getAttribute('transform');
-              const encodedValue = cv.Transform.encodeBusAndRaw({transform: encoding}, value);
+              const encodedValue = cv.Transform.encodeBusAndRaw({ transform: encoding }, value);
+
               value = encodedValue.bus;
             }
             this.__applyValues.push([data.getAttribute('address'), value]);
@@ -165,10 +179,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
   },
 
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'backend', class extends QxConnector {
-      constructor() {
-        super(Clazz);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'backend',
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
       }
-    });
+    );
   }
 });

@@ -1,7 +1,7 @@
-/* Base.js 
- * 
+/* Base.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  *
@@ -34,14 +33,15 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
    * @param   node    {Node} the group-node
    * @param   schema  {cv.ui.manager.model.Schema}  the corresponding schema
    */
-  construct: function (node, schema) {
-    this.base(arguments);
+  construct(node, schema) {
+    super();
     this.setNode(node);
     this.setSchema(schema);
     this._bounds = {
       min: undefined,
       max: undefined
     };
+
     this._allowedElements = {};
     this._sortedContent = [];
     this._subGroupings = [];
@@ -61,18 +61,22 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       check: 'String',
       init: 'unknown'
     },
+
     elementsHaveOrder: {
       check: 'Boolean',
       init: false
     },
+
     schema: {
       check: 'cv.ui.manager.model.Schema',
       nullable: false
     },
+
     node: {
       check: 'Node',
       nullable: false
     },
+
     /**
      * array of sub-choices, -sequences, -groups that are defined
      * @var array
@@ -81,6 +85,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       check: 'Array'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -118,7 +123,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
     _subGroupings: null,
 
     /// needs to be implemented by the inheriting classes
-    parse: function () {
+    parse() {
       const n = this.getNode();
       let min = n.hasAttribute('minOccurs') ? n.getAttribute('minOccurs') : 1; // default is 1
       let max = n.hasAttribute('maxOccurs') ? n.getAttribute('maxOccurs') : 1; // default is 1
@@ -136,7 +141,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   element string  the element we check for
      * @return  boolean         is it allowed?
      */
-    isElementAllowed: function (element) {
+    isElementAllowed(element) {
       if (typeof this._allowedElements[element] !== 'undefined') {
         // this element is immediately allowed
         return true;
@@ -159,7 +164,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   elementName string  name of the element to find the SchemaElement for
      * @return  object              SchemaElement-object, or undefined if none is found
      */
-    getSchemaElementForElementName: function (elementName) {
+    getSchemaElementForElementName(elementName) {
       if (typeof this._allowedElements[elementName] != 'undefined') {
         // this element is immediately allowed
         return this._allowedElements[elementName];
@@ -177,7 +182,6 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
       return undefined;
     },
 
-
     /**
      * get a list of required elements.
      * if an element is required multiple times, it is listed multiple times
@@ -185,7 +189,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      *
      * @return  array   list of required elements
      */
-    getRequiredElements: function () {
+    getRequiredElements() {
       // we do know what we require. might not be too easy to find out, but ok
 
       // if we have no lower bounds, then nothing is required
@@ -223,7 +227,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      *
      * @return  object      list of allowed elements, key is the name
      */
-    getAllowedElements: function () {
+    getAllowedElements() {
       const myAllowedElements = {};
 
       for (const [name, item] of Object.entries(this._allowedElements)) {
@@ -243,7 +247,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   sortNumber  integer the sort number of a parent (only used when recursive)
      * @return  object              list of allowed elements, with their sort-number as value
      */
-    getAllowedElementsSorting: function (sortNumber) {
+    getAllowedElementsSorting(sortNumber) {
       return {};
     },
 
@@ -254,10 +258,9 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    getRegex: function (separator, nocapture) {
+    getRegex(separator, nocapture) {
       return '';
     },
-
 
     /**
      * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
@@ -265,20 +268,18 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      *
      * @return  boolean does it?
      */
-    hasMultiLevelBounds: function () {
+    hasMultiLevelBounds() {
       return this._subGroupings.length > 0;
     },
-
 
     /**
      * get the bounds of this very grouping
      *
      * @return  object  like {min: x, max: y}
      */
-    getBounds: function () {
+    getBounds() {
       return this._bounds;
     },
-
 
     /**
      * get bounds for a specific element.
@@ -287,7 +288,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   childName   string  name of the child-to-be
      * @return  object              {max: x, min: y}, or undefined if none found
      */
-    getBoundsForElementName: function (childName) {
+    getBoundsForElementName(childName) {
       return this._bounds;
     },
 
@@ -300,7 +301,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @param   modifiers   string  modifiers, if any
      * @return  object              RegExp-object
      */
-    regexFromString: function (input, modifiers) {
+    regexFromString(input, modifiers) {
       if (modifiers === undefined) {
         modifiers = '';
       }

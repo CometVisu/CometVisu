@@ -1,7 +1,7 @@
-/* ConfigUpgrader.js 
- * 
+/* ConfigUpgrader.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Upgrade config file to the current library version
@@ -39,7 +38,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
      * Upgrade config source
      * @param source {String|Document} content of a config file
      */
-    upgrade (source) {
+    upgrade(source) {
       this.__log = [];
       if (typeof source === 'string') {
         source = qx.xml.Document.fromString(source);
@@ -48,7 +47,9 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       const pagesNode = source.documentElement;
       const isTileStructure = pagesNode.tagName.toLowerCase() === 'config';
       const systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE;
-      let version = isTileStructure ? parseInt(pagesNode.getAttribute('version')) : parseInt(pagesNode.getAttribute('lib_version'));
+      let version = isTileStructure
+        ? parseInt(pagesNode.getAttribute('version'))
+        : parseInt(pagesNode.getAttribute('lib_version'));
       if (version === cv.Version.LIBRARY_VERSION_PURE) {
         // nothing to do
         return [null, source, this.__log];
@@ -67,7 +68,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       return [null, source, this.__log];
     },
 
-    from7to8Pure (source) {
+    from7to8Pure(source) {
       let c = 0;
       source.querySelectorAll('plugins > plugin[name=\'gweather\']').forEach(node => {
         const parent = node.parentNode;
@@ -85,7 +86,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       return 8;
     },
 
-    from8to9Pure (source) {
+    from8to9Pure(source) {
       let c = 0;
       const singleIndent = ''.padEnd(this.__indentation, ' ');
       source.querySelectorAll('multitrigger').forEach(node => {
@@ -123,6 +124,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
           node.appendChild(source.createTextNode(singleIndent));
           node.appendChild(buttons);
           node.appendChild(source.createTextNode('\n' + ''.padEnd(this.__indentation * (level - 1), ' ')));
+
           c++;
         }
       });
@@ -133,7 +135,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       return 9;
     },
 
-    __getLevel (node) {
+    __getLevel(node) {
       let level = 1;
       let parent = node.parentNode;
       while (parent && parent.nodeName !== 'pages') {
@@ -143,7 +145,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       return level;
     },
 
-    __setVersion (xml, version, isTile) {
+    __setVersion(xml, version, isTile) {
       if (isTile === true) {
         xml.documentElement.setAttribute('version', version);
       } else {
@@ -179,6 +181,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         const targetRoot = target.documentElement;
         targetRoot.setAttribute('version', '1');
         const attr = target.createAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation');
+
         attr.value = '../visu_config_tile.xsd';
         targetRoot.setAttributeNodeNS(attr);
 
@@ -193,7 +196,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         const main = target.createElement('main');
         targetRoot.appendChild(main);
 
-        this._convertElement(targetRoot, rootNode, {pageIds: []});
+        this._convertElement(targetRoot, rootNode, { pageIds: [] });
         //console.log(new XMLSerializer().serializeToString(target));
         return ['', cv.util.Prettifier.xml(target)];
       }
@@ -217,7 +220,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
 
       switch (tagName) {
         case 'pages':
-          for (let i = element.attributes.length-1; i >= 0; i--) {
+          for (let i = element.attributes.length - 1; i >= 0; i--) {
             attr = element.attributes[i];
             if (attr.name.startsWith('backend')) {
               if (!options.backends) {
@@ -236,6 +239,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
 
                 default:
                   this.debug(`ignoring attribute ${attr.name} from element ${tagName}`);
+
                   break;
               }
             }
@@ -271,6 +275,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
             switch (child.tagName.toLowerCase()) {
               case 'meta':
                 clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
+
                 // copy mappings
                 child.querySelectorAll('mappings > mapping').forEach(node => {
                   const mapping = target.ownerDocument.createElement('cv-mapping');
@@ -296,7 +301,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                   // there is no real check if this is an KNXUF icon, so we only check for '_' in string
                   let name = icon.getAttribute('name');
                   if (name.indexOf('_') >= 0) {
-                    name = 'knxuf-' +name;
+                    name = 'knxuf-' + name;
                   }
                   icon.parentElement.textContent = name;
                   icon.remove();
@@ -305,10 +310,12 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 clonedChild.querySelectorAll('entry').forEach(entry => {
                   if (entry.hasAttribute('range_min')) {
                     entry.setAttribute('range-min', entry.getAttribute('range_min'));
+
                     entry.removeAttribute('range_min');
                   }
                   if (entry.hasAttribute('range_max')) {
                     entry.setAttribute('range-max', entry.getAttribute('range_max'));
+
                     entry.removeAttribute('range_max');
                   }
                 });
@@ -333,9 +340,10 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                         type = options.backends.backend;
                         break;
                     }
+
                     backend.setAttribute('type', type);
-                    if (options.backends['backend-'+type+'-url']) {
-                      backend.setAttribute('uri', options.backends['backend-'+type+'-url']);
+                    if (options.backends['backend-' + type + '-url']) {
+                      backend.setAttribute('uri', options.backends['backend-' + type + '-url']);
                     }
                     if (options.backends.username) {
                       backend.setAttribute('username', options.backends.username);
@@ -345,14 +353,21 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                     }
                   }
                 }
-                target.ownerDocument.documentElement.insertBefore(clonedChild, target.ownerDocument.documentElement.firstChild);
+                target.ownerDocument.documentElement.insertBefore(
+                  clonedChild,
+                  target.ownerDocument.documentElement.firstChild
+                );
+
                 break;
 
               case 'page':
                 clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
+
                 // flatten first two page levels
-                if (child.parentElement.tagName.toLowerCase() === 'pages' ||
-                    child.parentElement.parentElement.tagName.toLowerCase() === 'pages') {
+                if (
+                  child.parentElement.tagName.toLowerCase() === 'pages' ||
+                  child.parentElement.parentElement.tagName.toLowerCase() === 'pages'
+                ) {
                   const main = target.ownerDocument.querySelector('main');
                   main.appendChild(clonedChild);
                 } else {
@@ -366,6 +381,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                   this.warn('skipping nowidget-groups');
                 } else {
                   clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
+
                   clonedChild.setAttribute('open', 'true');
                   if (child.hasAttribute('name')) {
                     clonedChild.setAttribute('name', child.getAttribute('name'));
@@ -377,18 +393,22 @@ qx.Class.define('cv.util.ConfigUpgrader', {
 
               case 'switch':
                 clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
+
                 // do not copy mappings and styling as they might not work for switched in most of the cases
                 // and we want to used the default ones in the first place
                 this._copyAttributes(child, clonedChild, {
                   on_value: 'on-value',
                   off_value: 'off-value'
                 });
+
                 if (child.getAttribute('bind_click_to_widget') === 'false') {
                   // only copy when this ix explicitly set
                   clonedChild.setAttribute('whole-tile', 'false');
                 }
                 this._copyAddresses(child.querySelectorAll(':scope > address'), clonedChild, 'address');
+
                 this._copyLabel(child.querySelector(':scope > label'), clonedChild, 'primaryLabel');
+
                 target.appendChild(clonedChild);
                 break;
 
@@ -397,12 +417,21 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 this._copyAttributes(child, clonedChild, {
                   format: true
                 });
+
                 value = child.getAttribute('value');
-                this._copyAddresses(child.querySelectorAll(':scope > address'), clonedChild, 'address', null, address => {
-                  address.setAttribute('mode', 'write');
-                  address.setAttribute('value', value);
-                });
+                this._copyAddresses(
+                  child.querySelectorAll(':scope > address'),
+                  clonedChild,
+                  'address',
+                  null,
+                  address => {
+                    address.setAttribute('mode', 'write');
+                    address.setAttribute('value', value);
+                  }
+                );
+
                 this._copyLabel(child.querySelector(':scope > label'), clonedChild, 'primaryLabel');
+
                 target.appendChild(clonedChild);
                 break;
 
@@ -411,32 +440,48 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 this._copyAttributes(child, clonedChild, {
                   format: true
                 });
+
                 value = {
                   down: child.getAttribute('downValue'),
                   up: child.getAttribute('upValue')
                 };
-                this._copyAddresses(child.querySelectorAll(':scope > address'), clonedChild, 'address', null, address => {
-                  if (!address.hasAttribute('variant')) {
-                    address.setAttribute('value', value.down);
-                    address.setAttribute('on', 'down');
-                    const upAddress = address.cloneNode(true);
-                    upAddress.setAttribute('value', value.up);
-                    upAddress.setAttribute('on', 'up');
-                    clonedChild.appendChild(upAddress);
-                  } else {
-                    address.setAttribute('value', address.getAttribute('variant') === 'up' ? value.up : value.down);
-                    address.setAttribute('on', address.getAttribute('variant'));
-                    address.removeAttribute('variant');
+
+                this._copyAddresses(
+                  child.querySelectorAll(':scope > address'),
+                  clonedChild,
+                  'address',
+                  null,
+                  address => {
+                    if (!address.hasAttribute('variant')) {
+                      address.setAttribute('value', value.down);
+                      address.setAttribute('on', 'down');
+                      const upAddress = address.cloneNode(true);
+                      upAddress.setAttribute('value', value.up);
+                      upAddress.setAttribute('on', 'up');
+                      clonedChild.appendChild(upAddress);
+                    } else {
+                      address.setAttribute('value', address.getAttribute('variant') === 'up' ? value.up : value.down);
+
+                      address.setAttribute('on', address.getAttribute('variant'));
+
+                      address.removeAttribute('variant');
+                    }
                   }
-                });
+                );
+
                 this._copyLabel(child.querySelector(':scope > label'), clonedChild, 'primaryLabel');
+
                 target.appendChild(clonedChild);
                 break;
 
               case 'info':
                 // use cv-value > cv-icon when the mapping uses icons
-                if (child.hasAttribute('mapping') &&
-                  child.ownerDocument.querySelector('mapping[name="'+child.getAttribute('mapping')+'"] > entry > icon')) {
+                if (
+                  child.hasAttribute('mapping') &&
+                  child.ownerDocument.querySelector(
+                    'mapping[name="' + child.getAttribute('mapping') + '"] > entry > icon'
+                  )
+                ) {
                   clonedChild = target.ownerDocument.createElement('cv-tile');
 
                   const sourceLabel = child.querySelector(':scope > label');
@@ -460,17 +505,22 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                     styling: true,
                     format: true
                   });
+
                   const icon = target.ownerDocument.createElement('cv-icon');
                   icon.setAttribute('class', 'value');
                   icon.setAttribute('size', 'xxx-large');
                   value.appendChild(icon);
 
                   this._copyAddresses(child.querySelectorAll(':scope > address'), value);
+
                   clonedChild.appendChild(value);
                 } else {
                   clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
+
                   this._copyAddresses(child.querySelectorAll(':scope > address'), clonedChild, 'address');
+
                   this._copyLabel(child.querySelector(':scope > label'), clonedChild, 'label');
+
                   this._copyAttributes(child, clonedChild, {
                     mapping: true,
                     styling: true,
@@ -485,6 +535,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 target.appendChild(clonedChild);
                 if (child.querySelector('widgetinfo')) {
                   this._convertElement(clonedChild, child.querySelector('widgetinfo'), options);
+
                   if (child.querySelector(':scope > label')) {
                     elem = clonedChild.querySelector(':scope > cv-info');
                     if (elem) {
@@ -509,10 +560,13 @@ qx.Class.define('cv.util.ConfigUpgrader', {
 ###########################################################
 ### Automatic conversion to tile-structure not possible ###
 ###########################################################
-${child.previousSibling.nodeType === Node.TEXT_NODE ? child.previousSibling.textContent : ''}${child.outerHTML.replaceAll('<!--', '').replaceAll('-->', '')}`);
+${child.previousSibling.nodeType === Node.TEXT_NODE ? child.previousSibling.textContent : ''}${child.outerHTML
+                  .replaceAll('<!--', '')
+                  .replaceAll('-->', '')}`);
                 target.appendChild(clonedChild);
                 break;
             }
+
             break;
         }
       }
@@ -561,7 +615,7 @@ ${child.previousSibling.nodeType === Node.TEXT_NODE ? child.previousSibling.text
         let label = target.ownerDocument.createElement('span');
         label.setAttribute('slot', slotName);
         let child;
-        for (let i=0; i < sourceLabel.childNodes.length; i++) {
+        for (let i = 0; i < sourceLabel.childNodes.length; i++) {
           child = sourceLabel.childNodes[i];
           if (child.nodeType === Node.TEXT_NODE) {
             label.appendChild(child.cloneNode());

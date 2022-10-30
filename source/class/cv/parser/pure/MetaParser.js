@@ -1,7 +1,7 @@
-/* MetaParser.js 
- * 
+/* MetaParser.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Class.define('cv.parser.pure.MetaParser', {
   extend: qx.core.Object,
 
@@ -27,8 +26,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
   ******************************************************
   */
   members: {
-
-    async parse (xml) {
+    async parse(xml) {
       // parse external files
       this.parseFiles(xml);
 
@@ -49,11 +47,12 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       await this.parseTemplates(xml);
     },
 
-    parseFiles: function (xml) {
+    parseFiles(xml) {
       const files = {
         css: [],
         js: []
       };
+
       xml.querySelectorAll('meta > files file').forEach(function (elem) {
         const type = elem.getAttribute('type');
         const content = elem.getAttribute('content');
@@ -83,19 +82,28 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       }
     },
 
-    parseIcons: function(elem) {
+    parseIcons(elem) {
       let icon = this.__parseIconDefinition(elem);
       cv.Config.configSettings.iconsFromConfig.push(icon);
-      cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+      cv.IconHandler.getInstance().insert(
+        icon.name,
+        icon.uri,
+        icon.type,
+        icon.flavour,
+        icon.color,
+        icon.styling,
+        icon.dynamic,
+        icon.source
+      );
     },
 
-    parseMappings: function(elem) {
+    parseMappings(elem) {
       const name = elem.getAttribute('name');
       const mapping = {};
       const formula = elem.querySelectorAll('formula');
       if (formula.length > 0) {
         mapping.formulaSource = formula[0].textContent;
-        mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+        mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
       }
       const subElements = elem.querySelectorAll('entry');
       subElements.forEach(function (subElem) {
@@ -105,7 +113,15 @@ qx.Class.define('cv.parser.pure.MetaParser', {
           const v = origin[i];
           if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
             const iconDefinition = this.__parseIconDefinition(v);
-            let icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+            let icon = cv.IconHandler.getInstance().getIconElement(
+              iconDefinition.name,
+              iconDefinition.type,
+              iconDefinition.flavour,
+              iconDefinition.color,
+              iconDefinition.styling,
+              iconDefinition['class']
+            );
+
             icon.definition = iconDefinition;
             value.push(icon);
           } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
@@ -129,7 +145,11 @@ qx.Class.define('cv.parser.pure.MetaParser', {
           if (!mapping.range) {
             mapping.range = {};
           }
-          mapping.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), value];
+          mapping.range[parseFloat(subElem.getAttribute('range_min'))] = [
+            parseFloat(subElem.getAttribute('range_max')),
+            value
+          ];
+
           if (isDefaultValue) {
             mapping.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
@@ -141,7 +161,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       cv.Config.addMapping(name, mapping);
     },
 
-    parseStylings: function(elem) {
+    parseStylings(elem) {
       const name = elem.getAttribute('name');
       let classnames = '';
       const styling = {};
@@ -160,11 +180,16 @@ qx.Class.define('cv.parser.pure.MetaParser', {
           if (isDefaultValue) {
             styling.defaultValue = subElem.getAttribute('value');
           }
-        } else { // a range
+        } else {
+          // a range
           if (!styling.range) {
             styling.range = {};
           }
-          styling.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), subElem.textContent];
+          styling.range[parseFloat(subElem.getAttribute('range_min'))] = [
+            parseFloat(subElem.getAttribute('range_max')),
+            subElem.textContent
+          ];
+
           if (isDefaultValue) {
             styling.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
@@ -174,7 +199,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
       cv.Config.addStyling(name, styling);
     },
 
-    parseStatusBar: function(xml) {
+    parseStatusBar(xml) {
       let code = '';
       xml.querySelectorAll('meta > statusbar status').forEach(function (elem) {
         const condition = elem.getAttribute('condition');
@@ -211,7 +236,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
         const linkRegex = /href="([^"]+)"/gm;
         const matches = [];
         // eslint-disable-next-line no-cond-assign
-        while (linkMatch = linkRegex.exec(text)) {
+        while ((linkMatch = linkRegex.exec(text))) {
           matches.push(linkMatch);
         }
         let handled = false;
@@ -226,18 +251,35 @@ qx.Class.define('cv.parser.pure.MetaParser', {
           switch (match[1]) {
             case 'manager.php':
               text = text.replace(match[0], 'href="?manager=1" onclick="showManager(); return false;"');
+
               handled = true;
               break;
 
             case 'check_config.php':
-              text = text.replace(match[0], 'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"');
+              text = text.replace(
+                match[0],
+                'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"'
+              );
+
               handled = true;
               break;
 
             case 'editor/':
             case 'editor': {
               const suffix = search ? '_' + search : '';
-              text = text.replace(match[0], 'href="'+window.location.pathname+'?config='+search+'&manager=1&open=visu_config' + suffix + '.xml" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+              text = text.replace(
+                match[0],
+                'href="' +
+                  window.location.pathname +
+                  '?config=' +
+                  search +
+                  '&manager=1&open=visu_config' +
+                  suffix +
+                  '.xml" onclick="showManager(\'open\', \'visu_config' +
+                  suffix +
+                  '.xml\')"'
+              );
+
               handled = true;
               break;
             }
@@ -253,7 +295,8 @@ qx.Class.define('cv.parser.pure.MetaParser', {
             search = window.location.search.replace(/\$/g, '$$$$');
             text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
             break;
-          case 'config': { // append config file info
+          case 'config': {
+            // append config file info
             search = window.location.search.replace(/\$/g, '$$$$');
             search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
 
@@ -281,52 +324,64 @@ qx.Class.define('cv.parser.pure.MetaParser', {
 
                 case 'edit': {
                   const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
-                  replacement = 'href="'+window.location.pathname+'?config='+search+'&manager=1&open='+configFile+'" onclick="showManager(\'open\', \'' + configFile + '\'); return false;"';
+                  replacement =
+                    'href="' +
+                    window.location.pathname +
+                    '?config=' +
+                    search +
+                    '&manager=1&open=' +
+                    configFile +
+                    '" onclick="showManager(\'open\', \'' +
+                    configFile +
+                    '\'); return false;"';
                   break;
                 }
               }
+
               text = text.replace(match[0], replacement);
             }
             break;
           }
         }
+
         code += text;
       }, this);
       const footerElement = document.querySelector('.footer');
       footerElement.innerHTML += code;
     },
 
-    parsePlugins: function(xml) {
+    parsePlugins(xml) {
       const pluginsToLoad = [];
       xml.querySelectorAll('meta > plugins plugin').forEach(function (elem) {
         const name = elem.getAttribute('name');
         if (name) {
-          pluginsToLoad.push('plugin-'+name);
+          pluginsToLoad.push('plugin-' + name);
         }
       });
       return pluginsToLoad;
     },
 
-    __parseIconDefinition: function(elem) {
-      const nullIsUndefined = x => x === null ? undefined : x;
+    __parseIconDefinition(elem) {
+      const nullIsUndefined = x => (x === null ? undefined : x);
 
       return {
-        name : nullIsUndefined(elem.getAttribute('name')),
-        uri : nullIsUndefined(elem.getAttribute('uri')),
-        type : nullIsUndefined(elem.getAttribute('type')),
-        flavour : nullIsUndefined(elem.getAttribute('flavour')),
-        color : nullIsUndefined(elem.getAttribute('color')),
-        styling : nullIsUndefined(elem.getAttribute('styling')),
-        dynamic : nullIsUndefined(elem.getAttribute('dynamic')),
-        'class' : nullIsUndefined(elem.getAttribute('class')),
+        name: nullIsUndefined(elem.getAttribute('name')),
+        uri: nullIsUndefined(elem.getAttribute('uri')),
+        type: nullIsUndefined(elem.getAttribute('type')),
+        flavour: nullIsUndefined(elem.getAttribute('flavour')),
+        color: nullIsUndefined(elem.getAttribute('color')),
+        styling: nullIsUndefined(elem.getAttribute('styling')),
+        dynamic: nullIsUndefined(elem.getAttribute('dynamic')),
+        class: nullIsUndefined(elem.getAttribute('class')),
         source: 'config'
       };
     },
 
-    parseStateNotifications: function(xml) {
+    parseStateNotifications(xml) {
       const stateConfig = {};
       xml.querySelectorAll('meta > notifications state-notification').forEach(function (elem) {
-        const target = cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
+        const target =
+          cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
 
         const addressContainer = elem.querySelector('addresses');
 
@@ -342,7 +397,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
 
         const name = elem.getAttribute('name');
         if (name) {
-          config.topic = 'cv.state.'+name;
+          config.topic = 'cv.state.' + name;
         }
         const icon = elem.getAttribute('icon');
         if (icon) {
@@ -375,7 +430,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
 
         const addresses = cv.parser.pure.WidgetParser.makeAddressList(addressContainer);
         // addresses
-        Object.getOwnPropertyNames(addresses).forEach(function(address) {
+        Object.getOwnPropertyNames(addresses).forEach(function (address) {
           if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
             stateConfig[address] = [];
           }
@@ -391,11 +446,11 @@ qx.Class.define('cv.parser.pure.MetaParser', {
      * Parses meta template definitions and add them to the WidgetParser
      * @param xml {HTMLElement}
      */
-    async parseTemplates (xml) {
+    async parseTemplates(xml) {
       const __loadQueue = new qx.data.Array();
 
       return new Promise((done, reject) => {
-         const check = function () {
+        const check = function () {
           if (__loadQueue.length === 0 && done) {
             done();
           }
@@ -418,18 +473,20 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                 cache: !cv.Config.forceReload
               });
 
-              areq.addListenerOnce('success', function (e) {
+              areq.addListenerOnce('success', e => {
                 const req = e.getTarget();
                 cv.parser.pure.WidgetParser.addTemplate(
                   templateName,
                   // templates can only have one single root element, so we wrap it here
                   '<root>' + req.getResponseText() + '</root>'
                 );
+
                 __loadQueue.remove(areq.getUrl());
                 qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
+
                 check();
-              }, this);
-              areq.addListener('statusError', function () {
+              });
+              areq.addListener('statusError', () => {
                 const message = {
                   topic: 'cv.config.error',
                   title: qx.locale.Manager.tr('Template loading error'),
@@ -437,9 +494,11 @@ qx.Class.define('cv.parser.pure.MetaParser', {
                   deletable: true,
                   message: qx.locale.Manager.tr('Template \'%1\' could not be loaded from \'%2\'.', templateName, ref)
                 };
+
                 cv.core.notifications.Router.dispatchMessage(message.topic, message);
+
                 reject();
-              }, this);
+              });
               areq.send();
             } else {
               const cleaned = elem.innerHTML.replace(/\n\s*/g, '').trim();

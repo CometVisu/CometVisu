@@ -1,7 +1,7 @@
-/* OpenFile.js 
- * 
+/* OpenFile.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,28 +17,26 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Data model for currently opened files, a combination of cv.ui.manager.model.FileItem and a certain FileHandler.
  */
 qx.Class.define('cv.ui.manager.model.OpenFile', {
   extend: qx.core.Object,
 
-
-    /*
-    ***********************************************
-      CONSTRUCTOR
-    ***********************************************
-    */
-    construct: function (file, handlerId) {
-      this.base(arguments);
-      if (file) {
-        this.setFile(file);
-      }
-      if (handlerId) {
-        this.setHandlerId(handlerId);
-      }
-    },
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(file, handlerId) {
+    super();
+    if (file) {
+      this.setFile(file);
+    }
+    if (handlerId) {
+      this.setHandlerId(handlerId);
+    }
+  },
   /*
   ***********************************************
     PROPERTIES
@@ -98,7 +96,7 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
   members: {
     __ibid: null,
 
-    _applyFile: function (value, old) {
+    _applyFile(value, old) {
       if (old) {
         old.removeListener('changeModified', this._maintainPermanent, this);
         old.removeRelatedBindings(this);
@@ -110,7 +108,7 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
       this._maintainIcon();
     },
 
-    _maintainIcon: function () {
+    _maintainIcon() {
       // use the handlers icon is there is one, otherwise the file items icon
       const file = this.getFile();
       if (this.getHandlerId() && file) {
@@ -129,14 +127,14 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
       }
     },
 
-    _maintainPermanent: function () {
+    _maintainPermanent() {
       if (this.getFile().isModified() && !this.isPermanent()) {
         // change to permanent once we have a modification
         this.setPermanent(true);
       }
     },
 
-    save: function (callback, overrideHash) {
+    save(callback, overrideHash) {
       const file = this.getFile();
       const handlerId = this.getHandlerId();
       let fileHandler;
@@ -146,7 +144,11 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
         fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
       }
       if (file.isModified()) {
-        if (fileHandler && fileHandler.instance && qx.Interface.objectImplements(fileHandler.instance, cv.ui.manager.editor.IEditor)) {
+        if (
+          fileHandler &&
+          fileHandler.instance &&
+          qx.Interface.objectImplements(fileHandler.instance, cv.ui.manager.editor.IEditor)
+        ) {
           fileHandler.instance.save(callback, overrideHash);
         }
       }

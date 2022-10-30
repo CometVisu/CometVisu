@@ -1,7 +1,7 @@
-/* Icon.js 
- * 
+/* Icon.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -28,8 +28,8 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (element) {
-    this.base(arguments, element);
+  construct(element) {
+    super(element);
     this._idRegex = /^[^\s]+$/;
   },
 
@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
     },
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       if (element.textContent.trim()) {
         this.__initialized = true;
@@ -117,14 +117,17 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
   },
 
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'icon', class extends QxConnector {
-      constructor() {
-        super(Clazz);
-      }
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'icon',
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
 
-      static get observedAttributes() {
-        return ['color'];
+        static get observedAttributes() {
+          return ['color'];
+        }
       }
-    });
+    );
   }
 });

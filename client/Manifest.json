@@ -24,9 +24,8 @@
     "resource": "source/resource",
     "translation": "source/translation"
   },
-  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/Manifest-1-0-0.json",
+  "$schema": "https://qooxdoo.org/schema/Manifest-2-0-0.json",
   "requires": {
-    "@qooxdoo/compiler": "^1.0.0-beta.20190917-1105",
-    "@qooxdoo/framework": "^6.0.0-beta"
+    "@qooxdoo/framework": "^7.2.1"
   }
 }

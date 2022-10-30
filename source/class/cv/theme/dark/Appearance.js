@@ -1,7 +1,7 @@
-/* Appearance.js 
- * 
+/* Appearance.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,22 +17,47 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Theme.define('cv.theme.dark.Appearance', {
-  extend : osparc.theme.common.Appearance,
+  extend: qx.theme.tangible.Appearance,
 
-  appearances : {
+  appearances: {
+    menubar: {
+      style(states) {
+        return {
+          backgroundColor: 'primary',
+          padding: [4, 2]
+        };
+      }
+    },
+    button: {
+      /* qx.ui.form.Button */
+      alias: "material-button",
+      include: "material-button",
+      style(states) {
+        return { 
+          center: true,
+          padding: [6, 8]
+        };
+      }
+    },
+    'widget/scroll': 'scrollarea',
+    'cv-filesystem': 'widget',
+    'cv-filesystem/tree': 'virtual-tree',
+    'cv-filesystem/tree/scrollbar-x': 'scrollbar',
+    'cv-filesystem/tree/scrollbar-y': 'scrollbar',
     'cv-start': 'widget',
+    'cv-start/scroll-container': 'scrollarea',
     'cv-start/configs-header': {
-      style: function () {
+      style() {
         return {
           margin: [20, 10, 0, 10],
           decorator: 'cv-start-section-title'
         };
       }
     },
+
     'cv-start/configs-title': {
-      style: function () {
+      style() {
         return {
           iconPosition: 'right',
           font: 'title',
@@ -41,15 +66,15 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
-    'cv-start/configs-toolbar': {
-      style: function () {
-        return {
 
-        };
+    'cv-start/configs-toolbar': {
+      style() {
+        return {};
       }
     },
+
     'cv-start/misc-title': {
-      style: function () {
+      style() {
         return {
           iconPosition: 'right',
           font: 'title',
@@ -61,6 +86,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'cv-start/demo-configs-title': 'cv-start/misc-title',
     'cv-start/media-title': 'cv-start/configs-title',
     'cv-start/media-toolbar': 'cv-start/configs-toolbar',
@@ -70,28 +96,32 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'listitem',
       alias: 'listitem',
 
-      style: function (states) {
+      style(states) {
         return {
+          padding: 3,
           iconPosition: states.list ? 'left' : 'top',
           show: states.list ? 'label' : 'both',
           font: states.list ? 'default' : 'small',
-          width: states.list ? 500 : 160,
+          width: states.list ? 500 : 162,
+          textColor: 'text-on-surface',
           backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
         };
       }
     },
+
     'cv-file-item/atom/label': {
       include: 'atom/label',
-      style: function () {
+      style() {
         return {
           alignY: 'middle',
           allowGrowY: true
         };
       }
     },
+
     'cv-file-item/atom/icon': {
       include: 'atom/icon',
-      style: function () {
+      style() {
         return {
           width: 70,
           height: 70,
@@ -99,36 +129,39 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'cv-file-item/action-menu': 'menu',
     'cv-file-item/download-button': {
       include: 'button',
       alias: 'button',
 
-      style: function () {
+      style() {
         return {
           height: 30,
           show: 'icon'
         };
       }
     },
+
     'cv-file-item/action-button': 'cv-file-item/download-button',
     'cv-file-item/open-button': 'cv-file-item/download-button',
     'cv-file-item/edit-button': 'cv-file-item/download-button',
     'cv-icon': 'cv-file-item',
     'cv-icon/icon': {
       include: 'atom/icon',
-      style: function () {
+      style() {
         return {
           width: 70,
           height: 70
         };
       }
     },
+
     'cv-file-item-add-file': {
       include: 'cv-file-item',
       alias: 'cv-file-item',
 
-      style: function (states) {
+      style(states) {
         return {
           decorator: 'cv-file-item-add-file',
           opacity: states.hovered ? 1.0 : 0.5,
@@ -136,10 +169,11 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'open-file-item': {
       alias: 'atom',
 
-      style: function (states) {
+      style(states) {
         let padding = [2, 5, 2, 5];
         if (states.lead) {
           padding = [1, 4, 1, 4];
@@ -148,16 +182,16 @@ qx.Theme.define('cv.theme.dark.Appearance', {
           padding[2] -= 1;
         }
 
-        let backgroundColor;
+        let backgroundColor = 'primary';
         if (states.selected) {
-          backgroundColor = 'background-selected';
+          backgroundColor += '-selected';
           if (states.disabled) {
-            backgroundColor += '-disabled';
+            backgroundColor += '_disabled';
           }
         }
         return {
           backgroundColor: backgroundColor,
-          textColor: states.selected ? 'text-selected' : undefined,
+          textColor: 'text-on-primary',
           decorator: states.lead ? 'lead-item' : states.dragover ? 'dragover' : undefined,
           opacity: states.drag ? 0.5 : undefined,
           height: 26,
@@ -166,27 +200,29 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'open-file-item/label': {
       include: 'listitem/label',
 
-      style: function () {
+      style() {
         return {
           alignY: 'middle'
         };
       }
     },
+
     'open-file-item/icon': {
       alias: 'listitem/icon',
-      style: function () {
+      style() {
         return {
           alignY: 'middle',
           padding: [0, 8]
         };
       }
     },
-    'open-file-item/close': {
 
-      style: function () {
+    'open-file-item/close': {
+      style() {
         return {
           padding: 8,
           cursor: 'pointer',
@@ -199,15 +235,18 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'menu-button',
       alias: 'menu-button',
 
-      style: function (states) {
+      style(states) {
         return {
           font: states.default ? 'bold' : 'default'
         };
       }
     },
 
-    'list': {
-      style: function () {
+    list: {
+      include: 'scrollarea',
+      alias: 'scrollarea',
+
+      style() {
         return {
           decorator: null
         };
@@ -215,15 +254,17 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     'cv-editor-config': {
-      style: function () {
+      style() {
         return {
           padding: 10
         };
       }
     },
 
+    'cv-editor-config/list': 'list',
+
     'cv-editor-config-section': {
-      style: function () {
+      style() {
         return {
           padding: 10,
           decorator: 'cv-editor-config-section',
@@ -233,7 +274,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     'cv-editor-config-option': {
-      style: function () {
+      style() {
         return {
           marginBottom: 10
         };
@@ -244,7 +285,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'textfield',
       alias: 'textfield',
 
-      style: function () {
+      style() {
         return {
           minWidth: 300
         };
@@ -252,7 +293,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     'cv-editor-config-section/section-title': {
-      style: function () {
+      style() {
         return {
           font: 'title',
           marginRight: 20
@@ -266,25 +307,27 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'list',
       alias: 'list',
 
-      style: function() {
+      style() {
         return {
           height: null
         };
       }
     },
+
     'cv-editor-config-option/value-title': {
-      style: function () {
+      style() {
         return {
           allowGrowX: true,
           font: 'subtitle'
         };
       }
     },
+
     'cv-editor-config-option/key-title': 'cv-editor-config-option/value-title',
 
     // snackbar components
     'cv-snackbar': {
-      style: function () {
+      style() {
         return {
           zIndex: 1000
         };
@@ -292,7 +335,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     'cv-snackbar/list': {
-      style: function () {
+      style() {
         return {
           height: null,
           width: 400,
@@ -302,18 +345,18 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     'cv-snackbar-msg': {
-      style: function () {
+      style() {
         return {
           marginTop: 10,
           padding: 10,
-          textColor: 'text',
+          textColor: 'text-on-primary',
           decorator: 'cv-snackbar-msg'
         };
       }
     },
 
     'cv-snackbar-msg/content': {
-      style: function () {
+      style() {
         return {
           allowGrowX: true
         };
@@ -321,32 +364,16 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
 
     'cv-snackbar-msg/close': {
-      style: function () {
+      style() {
         return {
           cursor: 'pointer'
         };
       }
     },
-    'cv-toolbar': {
-      include: 'toolbar',
-      alias: 'toolbar',
 
-      style: function () {
-        return {
-          // decorator: 'cv-toolbar'
-        };
-      }
-    },
-    'cv-toolbar-button': {
-      include: 'toolbar-button',
-      alias: 'toolbar-button',
+    'cv-toolbar': 'toolbar',
 
-      style: function () {
-        return {
-          // margin: 1
-        };
-      }
-    },
+    'cv-toolbar-button': 'toolbar-button',
 
     'image-viewer': {},
     'image-viewer/scroll': 'scrollarea',
@@ -354,7 +381,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'atom',
       alias: 'atom',
 
-      style: function () {
+      style() {
         return {
           iconPosition: 'top',
           gap: 10,
@@ -362,7 +389,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       },
       'image-viewer/image/label': {
-        style: function () {
+        style() {
           return {
             margin: 10
           };
@@ -374,7 +401,7 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'virtual-tree-folder',
       alias: 'virtual-tree-folder',
 
-      style: function (states) {
+      style(states) {
         return {
           font: states.temporary ? 'italic' : 'default'
         };
@@ -385,36 +412,39 @@ qx.Theme.define('cv.theme.dark.Appearance', {
       include: 'virtual-tree-folder/icon',
       alias: 'virtual-tree-folder/icon',
 
-      style: function(states) {
+      style(states) {
         return {
-          textColor: states.comment ? 'text-disabled' : (states.error ? 'invalid-color' : null)
+          textColor: states.comment ? 'text-on-surface' : states.error ? 'invalid-color' : null
         };
       }
     },
+
     'element-tree-item': {
       include: 'fs-tree-item',
       alias: 'fs-tree-item',
-      style: function (states) {
+      style(states) {
         return {
           indent: states.touch ? 24 : 19
         };
       }
     },
+
     'element-tree-item/label': {
       include: 'fs-tree-item/label',
 
-      style: function (states) {
+      style(states) {
         return {
-          textColor: states.comment ? 'text-disabled' : null,
+          textColor: states.comment ? 'text-on-surface' : null,
           allowGrowX: true,
           maxWidth: 250
         };
       }
     },
+
     'element-tree-item/open': {
       include: 'fs-tree-item/open',
 
-      style: function (states) {
+      style(states) {
         return {
           // width must not be greater the the indentation
           width: states.touch ? 24 : 16,
@@ -423,11 +453,14 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'cv-file-contextmenu': 'menu',
     'cv-file-contextmenu/open-with-button': 'menu-button',
     'cv-file-contextmenu/compare-with-button': 'menu-button',
     'open-files-tabs': {
-      style: function () {
+      include: 'list',
+      alias: 'list',
+      style() {
         return {
           height: 34,
           padding: 0,
@@ -436,24 +469,26 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
-    'helptext': {
-      style: function () {
+
+    helptext: {
+      style() {
         return {
           font: 'small',
-          textColor: 'text-disabled'
+          textColor: 'text-on-secondary'
         };
       }
     },
+
     'checkbox/label': {
-      style: function(states) {
+      style(states) {
         return {
-          textColor: states.undetermined ? 'text-disabled' : 'text'
+          textColor: states.undetermined ? 'text-on-secondary' : 'text-on-primary'
         };
       }
     },
 
     'toolbar-separator': {
-      style: function() {
+      style() {
         return {
           backgroundColor: 'border-separator',
           margin: [7, 0],
@@ -461,25 +496,28 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
-    'iframe': {
-      style: function () {
+
+    iframe: {
+      style() {
         return {
           backgroundColor: null,
           decorator: 'main-dark'
         };
       }
     },
+
     'state-option': {
-      style: function (states) {
+      style(states) {
         return {
-          textColor: states.error ? 'warning-color' : 'text-disabled',
+          textColor: states.error ? 'warning-color' : 'text-on-secondary',
           font: 'italic',
           height: 25
         };
       }
     },
+
     'error-option': {
-      style: function () {
+      style() {
         return {
           textColor: 'warning-color',
           font: 'italic',
@@ -487,13 +525,14 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'selectbox/atom': {
-      style: function (states) {
+      style(states) {
         let font = 'default';
-        let textColor = 'text';
+        let textColor = 'text-on-primary';
         if (states.error || states.loading) {
           font = 'italic';
-          textColor = states.error ? 'warning-color' : 'text-disabled';
+          textColor = states.error ? 'warning-color' : 'text-on-secondary';
         }
         return {
           textColor: textColor,
@@ -501,48 +540,53 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
-    'optiongroup': {
-      style: function () {
+
+    optiongroup: {
+      style() {
         return {
-          textColor: 'text-disabled',
+          textColor: 'text-on-secondary',
           height: 25
         };
       }
     },
+
     'optiongroup/label': {
-      style: function () {
+      style() {
         return {
           allowGrowX: true,
           textAlign: 'center'
         };
       }
     },
+
     'round-button': {
       include: 'atom',
       alias: 'atom',
-      style: function (states) {
+      style(states) {
         return {
           decorator: states.hovered ? 'round-button-hovered' : 'round-button',
           width: 48,
           height: 48,
-          textColor: 'text',
+          textColor: 'text-on-primary',
           show: 'icon',
           center: true
         };
       }
     },
+
     'round-button/icon': {
       include: 'atom/icon',
       alias: 'atom/icon',
-      style: function (states) {
+      style(states) {
         return {
           width: 32,
           height: 32
         };
       }
     },
+
     'dragdrop-cursor': {
-      style: function (states) {
+      style(states) {
         let icon = 'nodrop';
 
         if (states.copy) {
@@ -558,28 +602,30 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         }
 
         return {
-          source: osparc.theme.common.Image.URLS['cursor-' + icon],
+          source: qx.theme.tangible.Image.URLS['cursor-' + icon],
           position: 'left-middle',
           offset: [2, leftOffset, 2, 6]
         };
       }
     },
+
     'element-tree-item/menu-button': {
       include: 'button',
       alias: 'button',
-      style: function () {
+      style() {
         return {
           padding: [2, 4],
-          icon: osparc.theme.common.Image.URLS['arrow-down'],
+          icon: qx.theme.tangible.Image.URLS['arrow-down'],
           show: 'icon'
         };
       }
     },
+
     'tree-editor': 'widget',
     'tree-editor/preview-sync-hint': {
       include: 'atom',
       alias: 'atom',
-      style: function () {
+      style() {
         return {
           padding: [4, 8],
           iconPosition: 'left',
@@ -588,9 +634,10 @@ qx.Theme.define('cv.theme.dark.Appearance', {
         };
       }
     },
+
     'tree-editor/preview-sync-hint/icon': {
       include: 'atom/icon',
-      style: function (states) {
+      style(states) {
         let color = 'valid-color';
         if (states.error) {
           color = 'invalid-color';

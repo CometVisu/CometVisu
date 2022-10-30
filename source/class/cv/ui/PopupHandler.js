@@ -1,7 +1,7 @@
-/* PopupHandler.js 
- * 
+/* PopupHandler.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Handles all popups
@@ -33,7 +32,7 @@ qx.Class.define('cv.ui.PopupHandler', {
     popups: {},
     configs: {},
 
-    init: function() {
+    init() {
       this.addPopup(new cv.ui.Popup('unknown'));
       this.addPopup(new cv.ui.Popup('info'));
       this.addPopup(new cv.ui.Popup('warning'));
@@ -45,16 +44,19 @@ qx.Class.define('cv.ui.PopupHandler', {
           type: 'error',
           icon: 'message_attention'
         },
+
         'cv.error': {
           type: 'error',
           icon: 'message_attention'
         },
+
         'cv.client.connection': {
           type: 'error',
           icon: 'message_attention',
           deletable: true
         }
       });
+
       qx.event.message.Bus.subscribe('path.pageLeft', this._onPageChanged, this);
     },
 
@@ -62,7 +64,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * close all popups (except errors) for the page that has been left just now.
      * @param ev {Event}
      */
-    _onPageChanged: function (ev) {
+    _onPageChanged(ev) {
       Object.keys(this.popups).forEach(function (type) {
         if (type !== 'error') {
           const popup = this.popups[type];
@@ -74,7 +76,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       }, this);
     },
 
-    handleMessage: function(message, config) {
+    handleMessage(message, config) {
       const popupConfig = {
         title: message.title,
         content: message.message,
@@ -85,6 +87,7 @@ qx.Class.define('cv.ui.PopupHandler', {
         progress: message.progress,
         type: 'notification'
       };
+
       // popups are always unique
       if (cv.core.notifications.Router.evaluateCondition(message)) {
         this.showPopup(config.type, popupConfig);
@@ -103,7 +106,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @param attributes {Map} popup configuration (content, title, stylings etc)
      * @return {cv.ui.Popup} The popup
      */
-    showPopup: function (type, attributes) {
+    showPopup(type, attributes) {
       const popup = this.getPopup(type);
       // if (!popup.isClosed()) {
       //   popup.close();
@@ -116,7 +119,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * Remove the popup.
      * @param popup {cv.ui.Popup} popup returned by showPopup()
      */
-    removePopup: function (popup) {
+    removePopup(popup) {
       if (popup instanceof cv.ui.Popup) {
         popup.close();
       } else {
@@ -128,7 +131,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * Add a popup to the internal list
      * @param object {cv.ui.Popup} the popup
      */
-    addPopup: function (object) {
+    addPopup(object) {
       qx.core.Assert.assertInstance(object, cv.ui.Popup);
       this.popups[object.getType()] = object;
     },
@@ -138,7 +141,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @param name {String} name of the popup
      * @return {Object}
      */
-    getPopup: function(name) {
+    getPopup(name) {
       const p = this.popups[name];
       if (p === undefined) {
         return this.popups.unknown;
@@ -158,17 +161,17 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @param preference {Number}
      * @return {Map}
      */
-    placementStrategy: function(anchor, popup, page, preference) {
+    placementStrategy(anchor, popup, page, preference) {
       const position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
       if (preference !== undefined) {
- position_order.unshift(preference); 
-}
+        position_order.unshift(preference);
+      }
 
       for (let pos in position_order) {
         const xy = {};
         switch (position_order[pos]) {
           case 0: // page center - will always work
-            return {x: (page.w - popup.w) / 2, y: (page.h - popup.h) / 2};
+            return { x: (page.w - popup.w) / 2, y: (page.h - popup.h) / 2 };
 
           case 1:
             xy.x = anchor.x - popup.w;
@@ -222,11 +225,11 @@ qx.Class.define('cv.ui.PopupHandler', {
         }
       }
 
-      return {x: 0, y: 0}; // sanity return
+      return { x: 0, y: 0 }; // sanity return
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
     statics.init();
   }

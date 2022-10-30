@@ -1,7 +1,7 @@
-/* Update.js 
- * 
+/* Update.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This role provides the update method for incoming data
  *
@@ -30,7 +29,7 @@ qx.Mixin.define('cv.ui.common.Update', {
    CONSTRUCTOR
    ******************************************************
    */
-  construct: function () {
+  construct() {
     if (this.getAddress) {
       if (this._initOnCreate === true) {
         this.__initUpdater();
@@ -48,9 +47,9 @@ qx.Mixin.define('cv.ui.common.Update', {
   members: {
     _initOnCreate: false,
 
-    __initUpdater : function() {
+    __initUpdater() {
       const model = cv.data.Model.getInstance();
-      Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
+      Object.getOwnPropertyNames(this.getAddress()).forEach(function (address) {
         if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
           // no read address
           return;
@@ -70,7 +69,7 @@ qx.Mixin.define('cv.ui.common.Update', {
      * @param address {String} Address of the incoming value
      * @param data {String} the incoming value
      */
-    update: function (address, data) {
+    update(address, data) {
       if (this._update) {
         this._update(address, data);
       } else {
@@ -81,7 +80,7 @@ qx.Mixin.define('cv.ui.common.Update', {
       }
     },
 
-    processIncomingValue: function (address, data) {
+    processIncomingValue(address, data) {
       if (this._processIncomingValue) {
         const value = this._processIncomingValue(address, data);
         // store it to be able to suppress sending of unchanged data
@@ -99,7 +98,7 @@ qx.Mixin.define('cv.ui.common.Update', {
      * @param ev {var}
      * @param data {var}
      */
-    update3d: function (ev, data) {
+    update3d(ev, data) {
       const l = ev.data.layout;
       const pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
       ev.data.element.css('left', pos.x + 'px');

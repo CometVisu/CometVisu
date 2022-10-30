@@ -1,7 +1,7 @@
-/* Choice.js 
- * 
+/* Choice.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * a single choice.
  * may be recursive
@@ -30,8 +29,8 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (node, schema) {
-    this.base(arguments, node, schema);
+  construct(node, schema) {
+    super(node, schema);
     this.parse();
   },
 
@@ -53,14 +52,13 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
   ***********************************************
   */
   members: {
-
     /**
      * parse a list of elements in this group.
      * Group is allowed (all|choice|sequence)? as per the definition.
      * We do all of those (except for 'all')
      */
-    parse: function () {
-      this.base(arguments);
+    parse() {
+      super.parse();
       const node = this.getNode();
       const schema = this.getSchema();
       const subElements = Array.from(node.querySelectorAll(':scope > element'));
@@ -88,7 +86,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
     },
 
     // overridden
-    getRequiredElements: function () {
+    getRequiredElements() {
       // a choice has no defined required elements
       // if you want required elements, use sequence or all
       return [];
@@ -101,7 +99,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
      * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    getRegex: function (separator, nocapture) {
+    getRegex(separator, nocapture) {
       if (this._regexCache !== null) {
         // use the cache if primed
         return this._regexCache;
@@ -128,7 +126,6 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
 
       regexString += ')';
 
-
       // append bounds to regex
       regexString += '{';
       const bounds = this.getBounds();
@@ -146,7 +143,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
       return regexString;
     },
 
-    getBoundsForElementName: function (childName) {
+    getBoundsForElementName(childName) {
       // as we are a choice, we can define the number of occurences for children of ANY level
       if (this.isElementAllowed(childName) === true) {
         return this.getBounds();
@@ -165,7 +162,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
      * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
      * @return  object              list of allowed elements, with their sort-number as value
      */
-    getAllowedElementsSorting: function (sortnumber) {
+    getAllowedElementsSorting(sortnumber) {
       const namesWithSorting = {};
 
       // all elements allowed directly

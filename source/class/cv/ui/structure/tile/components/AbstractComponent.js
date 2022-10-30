@@ -1,7 +1,7 @@
-/* AbstractComponent.js 
- * 
+/* AbstractComponent.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -34,16 +34,19 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       apply: '_applyValue',
       init: null
     },
+
     styleClass: {
       check: 'String',
       nullable: true,
       apply: '_applyStyleClass'
     },
+
     enabled: {
       check: 'Boolean',
       init: true,
       apply: '_applyEnabled'
     },
+
     visibility: {
       check: ['visible', 'excluded', 'hidden'],
       init: 'visible',
@@ -51,6 +54,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       event: 'changeVisibility'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -100,19 +104,22 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
         }
         if (this._element.hasAttribute('format')) {
-          mappedValue = cv.util.String.sprintf(this._element.getAttribute('format'), mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
+          mappedValue = cv.util.String.sprintf(
+            this._element.getAttribute('format'),
+            mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
+          );
         }
         this._updateValue(mappedValue, value);
         if (this._element.hasAttribute('styling')) {
           let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
+
           this.setStyleClass(styleClass);
         }
       }
     },
 
     // needs to be implemented by inheriting classes
-    _updateValue(mappedValue, value) {
-    },
+    _updateValue(mappedValue, value) {},
 
     // property apply
     _applyStyleClass(value, oldValue) {
@@ -149,6 +156,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         });
       }
       this._element.setAttribute('disabled', value === false ? 'true' : 'false');
+
       blocker.style.display = value === true ? 'none' : 'block';
     },
 
@@ -199,6 +207,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
           return true;
       }
+
       return false;
     }
   }

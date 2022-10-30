@@ -1,7 +1,7 @@
-/* List.js 
- * 
+/* List.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -98,6 +98,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         this._limit = parseInt(model.getAttribute('limit'));
       }
       const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
+
       if (model.hasAttribute('sort-by')) {
         const sortBy = model.getAttribute('sort-by');
         // reverse order in 'desc' sort mode
@@ -133,6 +134,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         // fetch from url
         this._getModel = async () => {
           const res = await cv.io.Fetch.fetch(model.getAttribute('src'), null, model.getAttribute('proxy') === 'true');
+
           return res;
         };
       } else {
@@ -140,6 +142,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         const data = model.querySelectorAll(':scope > cv-data');
         if (script) {
           this._getModel = new Function('"use strict";let model = []; ' + script.innerText.trim() + '; return model');
+
           this._model = this._getModel();
         } else if (readAddresses.length > 0) {
           // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
@@ -152,13 +155,17 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             const d = {
               index: i
             };
+
             for (const a of elem.attributes) {
               d[a.name] = a.value;
             }
             this._model.push(d);
           });
         } else {
-          this.error('cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.');
+          this.error(
+            'cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.'
+          );
+
           return;
         }
       }
@@ -186,7 +193,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           this._lastRefresh = null;
         }
       } else {
-        this.base(arguments, ev);
+        super.onStateUpdate(ev);
       }
       // cancel event here
       ev.stopPropagation();
@@ -239,6 +246,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         }
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
+
           if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
             while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
               target.removeChild(target.firstElementChild);
@@ -277,14 +285,16 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             }
             return '';
           });
+
           itemTemplate.innerHTML = html;
           if (elem) {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
-            elem.setAttribute('data-row', ''+i);
+            elem.setAttribute('data-row', '' + i);
           } else {
             // append new child
-            itemTemplate.content.firstElementChild.setAttribute('data-row', ''+i);
+            itemTemplate.content.firstElementChild.setAttribute('data-row', '' + i);
+
             target.appendChild(itemTemplate.content.cloneNode(true));
           }
         });
@@ -296,10 +306,13 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'list', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'list',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });
