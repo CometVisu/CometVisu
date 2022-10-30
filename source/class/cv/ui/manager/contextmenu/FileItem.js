@@ -277,7 +277,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         if (!this._renameDialog) {
           this._renameDialog = new cv.ui.manager.dialog.Prompt({
             message: this.tr('New name'),
-            callback(name) {
+            callback: (name) => {
               if (name && name !== this._selectedNode.getName()) {
                 cv.ui.manager.control.FileController.getInstance().rename(this._selectedNode, name);
               }
@@ -286,6 +286,13 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
             value: this._selectedNode.getName(),
             caption: this.tr('Rename file'),
             filter: /[\w\d_\-\.\s]/
+          });
+        } else {
+          this._renameDialog.setValue(this._selectedNode.getName());
+          this._renameDialog.setCallback((name) => {
+            if (name && name !== this._selectedNode.getName()) {
+              cv.ui.manager.control.FileController.getInstance().rename(this._selectedNode, name);
+            }
           });
         }
         this._renameDialog.show();

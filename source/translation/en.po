@@ -370,11 +370,11 @@ msgstr ""
 msgid "Folder \"%1\" has been created"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js
+#. NO LONGER USED
 msgid "File \"%1\" has been renamed"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js
+#. NO LONGER USED
 msgid "Folder \"%1\" has been renamed"
 msgstr ""
 
@@ -1238,4 +1238,12 @@ msgstr ""
 
 #: cv/io/BackendConnections.js
 msgid "Connection to backend \"%1\" is lost."
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been renamed to \"%2\""
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr ""

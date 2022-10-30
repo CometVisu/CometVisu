@@ -79,8 +79,8 @@ qx.Class.define('cv.ui.manager.control.FileController', {
             } else {
               cv.ui.manager.snackbar.Controller.info(
                 file.getType() === 'file'
-                  ? qx.locale.Manager.tr('File "%1" has been renamed', file.getDisplayName())
-                  : qx.locale.Manager.tr('Folder "%1" has been renamed', file.getDisplayName())
+                  ? qx.locale.Manager.tr('File "%1" has been renamed to "%2"', file.getDisplayName(), newName)
+                  : qx.locale.Manager.tr('Folder "%1" has been renamed to "%2"', file.getDisplayName(), newName)
               );
 
               file.setName(newName);

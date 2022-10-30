@@ -32,7 +32,7 @@ qx.Theme.define('cv.theme.dark.Decoration', {
 
     'cv-snackbar-msg': {
       style: {
-        backgroundColor: 'button'
+        backgroundColor: 'primary'
       }
     },
 
@@ -85,8 +85,8 @@ qx.Theme.define('cv.theme.dark.Decoration', {
       style: {
         width: 2,
         radius: 32,
-        color: 'button-border',
-        backgroundColor: 'button',
+        color: 'text-hint-on-surface',
+        backgroundColor: 'primary',
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
