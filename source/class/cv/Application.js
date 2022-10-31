@@ -37,8 +37,8 @@ qx.Class.define('cv.Application', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     this.__appReady = false;
     this.initCommandManager(new qx.ui.command.GroupManager());
     const lang = qx.locale.Manager.getInstance().getLanguage();
@@ -103,11 +103,18 @@ qx.Class.define('cv.Application', {
      */
     createClient(...args) {
       let Client = cv.io.Client;
-      if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
+      if (
+        cv.Config.testMode === true ||
+        window.cvTestMode === true ||
+        args[0] === 'simulated'
+      ) {
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
-        if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+        if (
+          cv.Config.getStructure() === 'structure-pure' &&
+          !cv.Config.pluginsToLoad.includes('plugin-openhab')
+        ) {
           cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
         }
         if (args[1] && args[1].endsWith('/cv/l/')) {
@@ -200,7 +207,6 @@ qx.Class.define('cv.Application', {
     }
   },
 
-
   /*
   *****************************************************************************
      MEMBERS
@@ -240,7 +246,10 @@ qx.Class.define('cv.Application', {
 
     _applyManagerChecked(value) {
       if (value && cv.Config.loadManager) {
-        this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
+        this.showManager(
+          cv.Config.managerOptions.action,
+          cv.Config.managerOptions.data
+        );
       }
     },
 
@@ -267,7 +276,7 @@ qx.Class.define('cv.Application', {
         '  _____                     ___      ___\n' +
         ' / ____|                   | \\ \\    / (_)\n' +
         '| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n' +
-        '| |    / _ \\| \'_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n' +
+        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n" +
         '| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n' +
         ' \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n' +
         '-----------------------------------------------------------\n' +
@@ -458,7 +467,10 @@ qx.Class.define('cv.Application', {
       const res = qx.util.ResourceManager.getInstance();
       let configPath = `config/visu_config${configName}.xml`;
       let url = '';
-      if (!res.has(configPath) && res.has(`demo/visu_config${configName}.xml`)) {
+      if (
+        !res.has(configPath) &&
+        res.has(`demo/visu_config${configName}.xml`)
+      ) {
         url = res.toUri(`demo/visu_config${configName}.xml`);
       }
       if (!url) {
@@ -525,7 +537,8 @@ qx.Class.define('cv.Application', {
       if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       } else if (ex instanceof qx.core.WindowError) {
-        exString = ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
+        exString =
+          ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
       }
       if (!exString) {
         exString = ex.name + ': ' + ex.message;
@@ -542,7 +555,9 @@ qx.Class.define('cv.Application', {
           let lastLine = '';
           let repeated = 0;
           let nStack = '';
-          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
+          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (
+            entry
+          ) {
             if (lastLine === entry) {
               if (repeated === 0) {
                 // count first occurance too
@@ -558,12 +573,16 @@ qx.Class.define('cv.Application', {
               nStack += '\n\t' + entry;
               lastLine = entry;
             }
-          }, this);
+          },
+          this);
           if (repeated > 0) {
             nStack += ' [repeated ' + repeated + ' times]';
           }
           if (nStack) {
-            exString += '\nNormalized Stack: ' + nStack.substring(0, maxTraceLength) + '\n';
+            exString +=
+              '\nNormalized Stack: ' +
+              nStack.substring(0, maxTraceLength) +
+              '\n';
             if (nStack.length > maxTraceLength) {
               exString += 'Stacktrace has been cut off\n';
             }
@@ -573,7 +592,8 @@ qx.Class.define('cv.Application', {
           }
         } catch (exc) {
           if (ex.stack) {
-            exString += '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
+            exString +=
+              '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
             if (ex.stack.length > maxTraceLength) {
               exString += 'Stacktrace has been cut off\n';
             }
@@ -601,7 +621,10 @@ qx.Class.define('cv.Application', {
               action(ev) {
                 let parent = ev.getTarget().parentNode;
                 while (parent) {
-                  if (parent.id === 'notification-center' || parent.classList.contains('popup')) {
+                  if (
+                    parent.id === 'notification-center' ||
+                    parent.classList.contains('popup')
+                  ) {
                     break;
                   }
                   parent = parent.parentNode;
@@ -657,13 +680,17 @@ qx.Class.define('cv.Application', {
               ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
           notification.actions.optionGroup.options.push({
-            title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
+            title:
+              qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
             name: 'reportErrors',
             style: 'margin-left: 18px'
           });
         }
       }
-      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      cv.core.notifications.Router.dispatchMessage(
+        notification.topic,
+        notification
+      );
     },
 
     throwError: qx.core.Environment.select('qx.globalErrorHandling', {
@@ -774,12 +801,16 @@ qx.Class.define('cv.Application', {
           });
           engine.addListenerOnce('changeReady', async () => {
             // create the objects
-            cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
+            cv.Config.treePath =
+              await cv.Application.structureController.getInitialPageId();
             const data = cv.data.Model.getInstance().getWidgetData('id_');
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           });
           // check if the current design settings overrides the cache one
-          if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
+          if (
+            cv.Config.clientDesign &&
+            cv.Config.clientDesign !== cv.Config.configSettings.clientDesign
+          ) {
             // we have to replace the cached design scripts styles to load
             const styles = [];
             cv.Config.configSettings.stylesToLoad.forEach(function (style) {
@@ -811,7 +842,10 @@ qx.Class.define('cv.Application', {
         this.loadScripts();
         this.debug('done');
 
-        if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
+        if (
+          cv.Config.enableCache &&
+          cv.Application.structureController.supports('cache')
+        ) {
           // cache dom + data when everything is ready
           qx.event.message.Bus.subscribe(
             'setup.dom.finished',
@@ -900,7 +934,9 @@ qx.Class.define('cv.Application', {
             // a real path
             standalonePlugins.push(plugin);
           } else {
-            standalonePlugins.push(path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js');
+            standalonePlugins.push(
+              path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js'
+            );
           }
         });
         // load part plugins
@@ -1013,11 +1049,17 @@ qx.Class.define('cv.Application', {
           const req = e.getTarget();
           const env = req.getResponse();
           const serverVersionId = env.PHP_VERSION_ID;
-          const orParts = env.required_php_version.split('||').map(e => e.trim());
+          const orParts = env.required_php_version
+            .split('||')
+            .map(e => e.trim());
           const passed = orParts.map(orConstraint => {
-            const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
+            const andParts = orConstraint
+              .split(/(\s+|&{2})/)
+              .map(e => e.trim());
             // pass when no failed andPart has been found
-            return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
+            return !andParts.some(constraint =>
+              this.__constraintFails(serverVersionId, constraint)
+            );
           });
           // one of the OR constraints need to pass
           const enable = passed.some(res => res === true);
