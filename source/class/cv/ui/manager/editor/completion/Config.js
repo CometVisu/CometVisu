@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     getLastOpenedTag(text) {
-      // get all tags inside of the content
+      // get all tags inside the content
       const tags = text.match(/<\/*(?=\S*)([a-zA-Z-]+)/g);
       if (!tags) {
         return null;
@@ -133,9 +133,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 currentAttribute = attrMatch ? attrMatch[1] : null;
               }
               const filteredElementSearch = /<[\w-_\d]+$/.test(text);
+              const attributesMatch = [...text.matchAll(/\s([^=]+)="([^"]+)"/g)];
+              const attributes = {};
+              for (const match of attributesMatch) {
+                attributes[match[1]] = match[2];
+              }
               return {
                 tagName: tag,
                 currentAttribute: currentAttribute,
+                attributes: attributes,
                 filteredElementSearch: filteredElementSearch,
                 isAttributeSearch: !filteredElementSearch && openedTag && !contentSearch,
                 isContentSearch: contentSearch,
@@ -445,7 +451,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (isContentSearch) {
         // handle data providers if the is one relevant
         if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
-          return this._dataProvider.getDesigns().then(function (sugg) {
+          return this._dataProvider.getDesigns(null, null, 'pure').then(function (sugg) {
             return { suggestions: sugg };
           });
         } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
@@ -551,7 +557,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       } else if (!isAttributeSearch && filteredElementSearch) {
         searchedElement = openedTags[openedTags.length - 2];
       } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
-        return this._dataProvider.getAddresses('monaco').then(res => ({ suggestions: res }));
+        const backendName = lastOpenedTag.attributes['backend'] || 'main';
+        return this._dataProvider.getAddresses('monaco', null, backendName).then(res => ({ suggestions: res }));
       }
       if (searchedElement === 'rrd') {
         return this._dataProvider.getRrds('monaco').then(res => ({ suggestions: res }));
@@ -631,12 +638,12 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         stylingNames.push(map[1]);
       }
 
-      // if we want suggestions, inside of which tag are we?
+      // if we want suggestions, inside which tag are we?
       const lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
       // console.log(lastOpenedTag);
       // get opened tags to see what tag we should look for in the XSD schema
       const openedTags = [];
-      // attrobutes of the ancestors
+      // attributes of the ancestors
       const openedAttributes = [];
       // get the elements/attributes that are already mentioned in the element we're in
       const usedItems = [];
@@ -653,7 +660,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         if (parts.length) {
           cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
         }
-        // parse the content (not cleared text) into an xml document
+        // parse the content (not cleared text) into a xml document
         const xmlDoc = qx.xml.Document.fromString(cleanedText);
         let lastChild = xmlDoc.lastElementChild;
         let i;
@@ -693,7 +700,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             parts = lastOpenedTag.text.split(' ');
             // skip tag name
             parts.shift();
-            parts.forEach(function (entry) {
+            parts.forEach(entry => {
               usedItems.push(entry.split('=').shift());
             });
           }
@@ -735,7 +742,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       } else if (!isAttributeSearch && filteredElementSearch) {
         searchedElement = openedTags[openedTags.length - 2];
       } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === null) {
-        return this._dataProvider.getAddresses('monaco').then(res => ({ suggestions: res }));
+        const backendName = lastOpenedTag.attributes['backend'] || 'main';
+        return this._dataProvider.getAddresses('monaco', null, backendName).then(res => ({ suggestions: res }));
       } else if (lastOpenedTag.tagName === 'cv-chart' && lastOpenedTag.currentAttribute === 'src') {
         return this._dataProvider.getRrds('monaco').then(res => ({ suggestions: res }));
       } else if (lastOpenedTag.tagName === 'cv-loader' && lastOpenedTag.currentAttribute === 'src') {

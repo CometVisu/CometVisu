@@ -38,13 +38,12 @@ qx.Class.define('cv.io.rest.Client', {
     getBaseUrl() {
       if (!this.BASE_URL) {
         let path = '';
-        const engine = cv.TemplateEngine.getInstance();
-        const clientBackend =
-          engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
-        if (clientBackend.resources && clientBackend.resources.rest) {
-          path = clientBackend.resources.rest;
+        if (qx.core.Init.getApplication().isServedByOpenhab()) {
+          path = '/rest/cv';
         } else {
-          path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
+          path =
+            qx.util.Uri.parseUri(window.location.href).directory +
+            'rest/manager/index.php';
         }
         this.BASE_URL = path;
       }

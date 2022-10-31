@@ -1,7 +1,7 @@
-/* Application.js
- *
+/* Application.js 
+ * 
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -199,6 +199,7 @@ qx.Class.define('cv.Application', {
       apply: '_applyMobile'
     }
   },
+
 
   /*
   *****************************************************************************
@@ -999,7 +1000,9 @@ qx.Class.define('cv.Application', {
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
       } else {
-        const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+        const isOpenHab = this.isServedByOpenhab();
+        const url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment'
+          : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
           method: 'GET',
