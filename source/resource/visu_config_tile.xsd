@@ -636,35 +636,7 @@
     <xsd:attribute ref="style" />
     <xsd:attribute name="src" type="xsd:string"/>
     <xsd:attribute ref="refresh" />
-    <xsd:attribute name="proxy" type="xsd:boolean">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Use a proxy in the backend to load this picture to avoid loading errors.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Proxy im Backend benutzen, über den dieses Bild geladen wird. Dadurch können Fehler beim Laden vermieden werden.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="auth-type">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Type of authentication, if needed.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Art der Authentifizierung, falls erforderlich.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="basic" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute name="username" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Username for authentication.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Benutzername für die Authentifizierung.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="password" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Password for authentication.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Passwort für die Authentifizierung.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attributeGroup ref="proxy-attributes"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-chart">
@@ -745,12 +717,7 @@
                 <xsd:documentation xml:lang="de">URL von der das Modell geladen werden soll (muss JSON zurückliefern).</xsd:documentation>
               </xsd:annotation>
             </xsd:attribute>
-            <xsd:attribute name="proxy" type="xsd:boolean">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Use a proxy to load the model from src (avoid CORS errors)</xsd:documentation>
-                <xsd:documentation xml:lang="de">Proxy benutzen, um Modell von src zu laden (Vermeidet CORS Fehler).</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
+            <xsd:attributeGroup ref="proxy-attributes"/>
             <xsd:attribute name="limit" type="xsd:positiveInteger">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">Limits the model entries</xsd:documentation>
@@ -1509,6 +1476,51 @@
     <xsd:attribute ref="column"/>
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
+  </xsd:attributeGroup>
+
+  <xsd:attributeGroup name="proxy-attributes">
+    <xsd:attribute name="proxy" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Use a proxy to avoid loading errors or credentials from the hidden config.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Proxy im Backend benutzen, um Ladefehler zu vermeiden oder Zugangsdaten aus den versteckten Konfiguration zu nutzen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="auth-type">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Type of authentication, if needed.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Art der Authentifizierung, falls erforderlich.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="basic" />
+          <xsd:enumeration value="bearer" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="config-section" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Use uri and credentials from this section of the hidden config.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Uri und Zugangsdaten aus dieser Sektion der versteckten Konfiguration verwenden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="username" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Username for authentication (or token for auth-type=bearer).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzername für die Authentifizierung (oder token für auth-type=bearer).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="password" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Password for authentication.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Passwort für die Authentifizierung.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="self-signed" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Disable certificate validation to allow loading pages with self-signed certificates.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zertifikatsprüfung deaktivieren, um Seiten mit selbst-signierten Zertifikaten laden zu können..</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:attributeGroup>
 
   <xsd:attribute name="mapping" type="xsd:string">

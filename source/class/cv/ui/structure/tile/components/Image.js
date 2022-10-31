@@ -60,18 +60,22 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
       }
       this._headers = {};
       if (element.hasAttribute('auth-type')) {
-        switch (element.getAttribute('auth-type').toLowerCase()) {
-          case 'basic':
-            if (useProxy) {
-              this._url.searchParams.set(
-                'authorization',
-                'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'))
-              );
-            } else {
-              this._headers['Authorization'] =
-                'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'));
-            }
-            break;
+        if (useProxy) {
+          this._url.searchParams.set('auth-type', element.getAttribute('auth-type').toLowerCase());
+        } else {
+          switch (element.getAttribute('auth-type').toLowerCase()) {
+            case 'basic':
+              this._headers['Authorization'] = 'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'));
+              break;
+
+            case 'bearer':
+              this._headers['Authorization'] = 'Bearer ' + element.getAttribute('username');
+              break;
+
+            default:
+              this.error('unknown authorization type' +  element.getAttribute('auth-type'));
+              break;
+          }
         }
       }
       this._loadImage();
