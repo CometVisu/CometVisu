@@ -10,8 +10,8 @@ qx.Class.define('cv.io.listmodel.RssLog', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this.initModel(new qx.data.Array());
     this._initRequest();
   },
@@ -26,21 +26,25 @@ qx.Class.define('cv.io.listmodel.RssLog', {
       check: 'qx.data.Array',
       deferredInit: true
     },
+
     database: {
       check: 'String',
       nullable: true,
       apply: '_applyRequestData'
     },
+
     filter: {
       check: 'String',
       nullable: true,
       apply: '_applyRequestData'
     },
-    future:     {
+
+    future: {
       check: 'String',
       nullable: true,
       apply: '_applyRequestData'
     },
+
     limit: {
       check: 'Number',
       init: 0,
@@ -105,11 +109,17 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         requestData: requestData,
         method: 'GET'
       });
+
       this.__request.addListener('success', this.__updateModel, this);
-      this.__request.addListener('error', function(ev) {
-        this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), this.__request.getUrl());
+      this.__request.addListener('error', ev => {
+        this.error(
+          'C: #rss_%s, Error: %s, Feed: %s',
+          this.getPath(),
+          ev.getTarget().getResponse(),
+          this.__request.getUrl()
+        );
         this.fireDataEvent('finished', false);
-      }, this);
+      });
     },
 
     __updateModel(ev) {

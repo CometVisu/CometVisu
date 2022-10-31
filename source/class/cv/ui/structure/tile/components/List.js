@@ -262,7 +262,6 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (typeof this._sortModel === 'function') {
           newModel.sort(this._sortModel);
         }
-        console.log(JSON.stringify(newModel));
         if (this._limit) {
           newModel = newModel.slice(0, this._limit);
         }
@@ -297,9 +296,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           let index = -1;
           if (name.endsWith(']')) {
             // array access
-            index = parseInt(name.substring(name.indexOf('[') + 1, name.length-1));
+            index = parseInt(name.substring(name.indexOf('[') + 1, name.length - 1));
             if (isNaN(index)) {
-              this.error('error parsing array index from ' + name, name.substring(name.indexOf('[')+1, name.length-1));
+              this.error(
+                'error parsing array index from ' + name,
+                name.substring(name.indexOf('[') + 1, name.length - 1)
+              );
               return '';
             }
             name = name.substring(0, name.indexOf('['));
@@ -336,7 +338,10 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           itemTemplate.innerHTML = html;
           // check for elements with when attributes
           itemTemplate.content.firstElementChild.querySelectorAll('[when]').forEach(elem => {
-            const [leftVal, rightVal] = elem.getAttribute('when').split('=').map(n => n.trim());
+            const [leftVal, rightVal] = elem
+              .getAttribute('when')
+              .split('=')
+              .map(n => n.trim());
             // noinspection EqualityComparisonWithCoercionJS
             if (leftVal != rightVal) {
               elem.parentElement.removeChild(elem);
@@ -367,7 +372,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._disposeObjects('_modelInstance', '_timer');
     this._model = null;
     this._filterModel = null;

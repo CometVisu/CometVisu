@@ -10,8 +10,8 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this.initModel(new qx.data.Array());
   },
 
@@ -25,11 +25,13 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
       check: 'qx.data.Array',
       deferredInit: true
     },
+
     device: {
       check: 'String',
       init: '',
       apply: '_applyDevice'
     },
+
     max: {
       check: 'Number',
       init: 0,
@@ -58,7 +60,10 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
     },
 
     async _init() {
-      const url = 'resource/plugins/tr064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
+      const url =
+        'resource/plugins/tr064/soap.php?device=' +
+        this.getDevice() +
+        '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
       const response = await window.fetch(url);
       let data;
       if (response.ok) {
@@ -71,6 +76,7 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
             severity: 'urgent',
             message: qx.locale.Manager.tr('Reading URL "%1" failed with content: "%2"', url, JSON.stringify(data))
           });
+
           this.__calllistUri = '<fail>';
         }
       } else {
@@ -78,8 +84,14 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
         cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
           title: qx.locale.Manager.tr('TR-064 communication error'),
           severity: 'urgent',
-          message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
+          message: qx.locale.Manager.tr(
+            'Reading URL "%1" failed with status "%2": "%2"',
+            response.url,
+            response.status,
+            response.statusText
+          )
         });
+
         this.__calllistUri = '<fail>';
       }
     },
@@ -94,11 +106,17 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
         return; // this problem won't fix anymore during this instance
       }
 
-      const url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
+      const url =
+        'resource/plugins/tr064/proxy.php?device=' +
+        this.getDevice() +
+        '&uri=' +
+        this.__calllistUri +
+        '%26max=' +
+        this.getMax();
       const response = await window.fetch(url);
       if (response.ok) {
         const str = await response.text();
-        const data = (new window.DOMParser()).parseFromString(str, 'text/xml');
+        const data = new window.DOMParser().parseFromString(str, 'text/xml');
         const itemList = data.getElementsByTagName('Call');
 
         for (let item of itemList) {
@@ -117,8 +135,14 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
         cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
           title: qx.locale.Manager.tr('TR-064 communication error'),
           severity: 'urgent',
-          message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
+          message: qx.locale.Manager.tr(
+            'Reading URL "%1" failed with status "%2": "%2"',
+            response.url,
+            response.status,
+            response.statusText
+          )
         });
+
         model.removeAll();
       }
     }
