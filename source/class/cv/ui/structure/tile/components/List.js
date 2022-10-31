@@ -130,11 +130,16 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           return 0;
         };
       }
-      if (model.hasAttribute('src')) {
+      if (model.hasAttribute('src') || model.hasAttribute('config-section')) {
         // fetch from url
         this._getModel = async () => {
-          const res = await cv.io.Fetch.fetch(model.getAttribute('src'), null, model.getAttribute('proxy') === 'true');
-
+          const options = {};
+          for (const proxyParam of ['self-signed', 'config-section', 'auth-type']) {
+            if (model.hasAttribute(proxyParam)) {
+              options[proxyParam] = model.getAttribute(proxyParam);
+            }
+          }
+          const res = await cv.io.Fetch.fetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
           return res;
         };
       } else {
