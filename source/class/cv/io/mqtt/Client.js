@@ -108,6 +108,10 @@ qx.Class.define('cv.io.mqtt.Client', {
       return null;
     },
 
+    getProviderData: function (name, format) {
+      return null;
+    },
+
     /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
      * This can be used to increase the init state loading speed by sending an initial request with a smaller

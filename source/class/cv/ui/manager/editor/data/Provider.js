@@ -140,7 +140,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       }
     },
 
-    get(id, ...args) {
+    get: function (id, ...args) {
       const instance = cv.ui.manager.editor.data.Provider.getInstance();
       const format = 'dp';
       const [element, attribute] = id.split('@');
@@ -300,19 +300,18 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       );
     },
 
-    getAddresses(format, config) {
-      const client = cv.io.BackendConnections.getClient();
+    getAddresses(format, config, backend) {
+      const client = cv.io.BackendConnections.getClient(backend);
       if (!config) {
         config = { cache: true };
       }
       if (client && client.hasProvider('addresses')) {
-        return this.__getFromUrl(
-          client.getProviderUrl('addresses'),
-          client.getProviderConvertFunction('addresses', format),
-          client,
-          config.cache
-        );
-      }
+        const url = client.getProviderUrl('addresses');
+        if (url) {
+          return this.__getFromUrl(url, client.getProviderConvertFunction('addresses', format), client, config.cache);
+        }
+        return client.getProviderData('addresses', format);
+      } 
       return this.__getData(
         'addresses',
         'addressesSync',

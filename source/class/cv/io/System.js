@@ -40,6 +40,7 @@ qx.Class.define('cv.io.System', {
     this.addresses = [];
     qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
+
   /*
   ***********************************************
    PROPERTIES
@@ -70,6 +71,7 @@ qx.Class.define('cv.io.System', {
   members: {
     backendName: 'system',
     addresses: null,
+    implementedAddresses: null,
 
     _onPageChange(ev) {
       const page = ev.getData();
@@ -198,6 +200,27 @@ qx.Class.define('cv.io.System', {
     getProviderUrl(name) {
       return null;
     },
+
+    getProviderData(name, format) {
+      if (name === 'addresses') {
+        let data = null;
+        if (format === 'monaco') {
+          data = this.implementedAddresses.map(name => ({
+            label: name,
+            insertText: name,
+            kind: window.monaco.languages.CompletionItemKind.Value
+          }));
+        } else {
+          data = this.implementedAddresses.map(name => ({
+            label: name,
+            value: name
+          }));
+        }
+        return Promise.resolve(data);
+      }
+      return null;
+    },
+
     getProviderConvertFunction(name, format) {
       return null;
     }
