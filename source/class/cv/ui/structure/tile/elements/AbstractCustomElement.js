@@ -1,7 +1,7 @@
-/* AbstractCustomElement.js 
- * 
+/* AbstractCustomElement.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -29,7 +29,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (element) {
+  construct(element) {
     this._element = element;
   },
 
@@ -83,12 +83,12 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._element = null;
   }
 });
 
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable-next-line no-redeclare */
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();

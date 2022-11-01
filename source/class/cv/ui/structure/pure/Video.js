@@ -1,7 +1,7 @@
-/* Video.js 
- * 
+/* Video.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Adds a video or live stream to the visu. Currently, most sources do not support this yet.
@@ -33,9 +32,9 @@ qx.Class.define('cv.ui.structure.pure.Video', {
   ******************************************************
   */
   properties: {
-    width   : { check: 'String', nullable: true },
-    height  : { check: 'String', nullable: true },
-    src     : { check: 'String', init: '' },
+    width: { check: 'String', nullable: true },
+    height: { check: 'String', nullable: true },
+    src: { check: 'String', init: '' },
     autoplay: { check: 'Boolean', init: false }
   },
 
@@ -46,7 +45,7 @@ qx.Class.define('cv.ui.structure.pure.Video', {
   */
   members: {
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       // create the actor
       let style = '';
       if (this.getWidth()) {
@@ -56,19 +55,21 @@ qx.Class.define('cv.ui.structure.pure.Video', {
         style += 'height:' + this.getHeight() + ';';
       }
       if (style !== '') {
- style = 'style="' + style + '"'; 
-}
+        style = 'style="' + style + '"';
+      }
       const autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : '';
-      return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
+      return (
+        '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>'
+      );
     },
 
     // overridden
-    getValueElement: function() {
+    getValueElement() {
       return this.getDomElement().querySelector('video');
     },
 
     // overridden
-    _applyVisible: function(value) {
+    _applyVisible(value) {
       const video = this.getValueElement();
       if (video) {
         if (value === true && this.isAutoplay()) {

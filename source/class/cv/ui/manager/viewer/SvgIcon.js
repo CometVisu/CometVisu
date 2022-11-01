@@ -1,7 +1,7 @@
-/* SvgIcon.js 
- * 
+/* SvgIcon.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * QX version of the svg use icon way of displaying the KNF-UF icons.
  */
@@ -29,8 +28,8 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (name) {
-    this.base(arguments);
+  construct(name) {
+    super();
     if (name) {
       this.setName(name);
     }
@@ -63,26 +62,28 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
     __spriteUrl: null,
     __useElement: null,
 
-    _applyName: function (value) {
+    _applyName(value) {
       if (value) {
         if (!this.__spriteUrl) {
           this.__spriteUrl = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
         }
         if (!this.__useElement.getDomElement()) {
-          this.__useElement.addListenerOnce('appear', function () {
+          this.__useElement.addListenerOnce('appear', () => {
             this._applyName(value);
-          }, this);
+          });
           return;
         }
         // qx.xml.Element.setAttributeNS(document, this.__useElement.getDomElement(), 'http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
-        this.__useElement.getDomElement().setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
+        this.__useElement
+          .getDomElement()
+          .setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
       } else {
         this.__useElement.removeAttribute('xlink:href');
       }
     },
 
     // overridden
-    _createContentElement : function() {
+    _createContentElement() {
       const svgElem = new cv.svg.Element('svg');
       this.__useElement = new cv.svg.Element('use');
       svgElem.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
@@ -96,7 +97,7 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this.__useElement = null;
   }
 });

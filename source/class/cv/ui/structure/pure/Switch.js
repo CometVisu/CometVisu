@@ -1,7 +1,7 @@
-/* Switch.js 
- * 
+/* Switch.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * The switch widget shows two states (e.g. ON and OFF) and can toggle between them.
@@ -70,6 +69,7 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
       check: 'String',
       init: '1'
     },
+
     offValue: {
       check: 'String',
       init: '0'
@@ -82,9 +82,8 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
    ******************************************************
    */
   members: {
-
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
@@ -93,23 +92,24 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
      *
      * @param value {any} incoming data (already transformed + mapped)
      */
-    handleUpdate: function(value) {
+    handleUpdate(value) {
       const actor = this.getActor();
       // compare against the unmapped value
       value = this.getBasicValue();
       const off = this.getOffValue();
       // using == comparisons to make sure that e.g. 1 equals "1"
-      actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
-      actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
+      actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed');
+
+      actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed');
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
      * @return {var}
      */
-    getActionValue: function () {
+    getActionValue() {
       // using == comparisons to make sure that e.g. 1 equals "1"
-      return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue()); // jshint ignore:line
+      return this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue();
     }
   }
 });

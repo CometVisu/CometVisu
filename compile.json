@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/compile-1-0-0.json",
+  "$schema": "https://qooxdoo.org/schema/compile-1-0-0.json",
   "environment": {
     "cv.version": "dev",
     "cv.xhr": "qx",
@@ -27,7 +27,8 @@
         "cv.transforms.*",
         "cv.plugins.*",
         "cv.parser.*",
-        "cv.core.*"
+        "cv.core.*",
+        "cv.io.listmodel.*"
       ],
       "exclude": [
         "cv.test.*",
@@ -239,6 +240,7 @@
     "HTMLElement",
     "customElements",
     "QxConnector",
-    "RSSParser"
+    "RSSParser",
+    "Response"
   ]
 }

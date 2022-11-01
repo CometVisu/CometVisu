@@ -1,7 +1,7 @@
-/* Web.js 
- * 
+/* Web.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  *
@@ -39,8 +38,16 @@ qx.Class.define('cv.parser.pure.widgets.Web', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
@@ -52,15 +59,20 @@ qx.Class.define('cv.parser.pure.widgets.Web', {
         if (defaultClient) {
           switch (defaultClient.getType()) {
             case 'knxd':
-              data.address['_' + ga] = {transform: 'DPT:1.001', mode: 0};
+              data.address['_' + ga] = { transform: 'DPT:1.001', mode: 0 };
               break;
 
             case 'openhab':
-              data.address['_' + ga] = {transform: 'OH:switch', mode: 'OFF'};
+              data.address['_' + ga] = { transform: 'OH:switch', mode: 'OFF' };
               break;
 
             default:
-              qx.log.Logger.error(this, 'web-widget address does not support backends of type', defaultClient.getType());
+              qx.log.Logger.error(
+                this,
+                'web-widget address does not support backends of type',
+                defaultClient.getType()
+              );
+
               break;
           }
         }
@@ -72,16 +84,17 @@ qx.Class.define('cv.parser.pure.widgets.Web', {
      * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.
      * @return {Map}
      */
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
         address: {},
         width: {},
         height: {},
         frameborder: {
-          transform: function (value) {
+          transform(value) {
             return value === 'true';
           }
         },
+
         background: {},
         src: {},
         scrolling: {}
@@ -89,9 +102,8 @@ qx.Class.define('cv.parser.pure.widgets.Web', {
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler('web', statics);
   }
 });
-

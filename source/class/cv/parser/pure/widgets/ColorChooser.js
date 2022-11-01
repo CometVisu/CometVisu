@@ -1,7 +1,7 @@
-/* ColorChooser.js 
- * 
+/* ColorChooser.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Widget to be able to select a color.
@@ -39,40 +38,50 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      let data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      let data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
+
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
-      data.baseColors = { // default to sRGB color space with D65 white point
-        r: {x: 0.64, y: 0.33, Y: 0.2126},
-        g: {x: 0.30, y: 0.60, Y: 0.7152},
-        b: {x: 0.15, y: 0.06, Y: 0.0722},
-        w: {x: 0.3127, y: 0.3290, Y: 1}
+      data.baseColors = {
+        // default to sRGB color space with D65 white point
+        r: { x: 0.64, y: 0.33, Y: 0.2126 },
+        g: { x: 0.3, y: 0.6, Y: 0.7152 },
+        b: { x: 0.15, y: 0.06, Y: 0.0722 },
+        w: { x: 0.3127, y: 0.329, Y: 1 }
       };
-      let r_x          = xml.getAttribute('r_x');
-      let r_y          = xml.getAttribute('r_y');
+
+      let r_x = xml.getAttribute('r_x');
+      let r_y = xml.getAttribute('r_y');
       let r_wavelength = xml.getAttribute('r_wavelength');
-      let r_strength   = xml.getAttribute('r_strength');
-      let r_curve      = xml.getAttribute('r_curve');
-      let r_scale      = xml.getAttribute('r_scale');
-      let g_x          = xml.getAttribute('g_x');
-      let g_y          = xml.getAttribute('g_y');
+      let r_strength = xml.getAttribute('r_strength');
+      let r_curve = xml.getAttribute('r_curve');
+      let r_scale = xml.getAttribute('r_scale');
+      let g_x = xml.getAttribute('g_x');
+      let g_y = xml.getAttribute('g_y');
       let g_wavelength = xml.getAttribute('g_wavelength');
-      let g_strength   = xml.getAttribute('g_strength');
-      let g_curve      = xml.getAttribute('g_curve');
-      let g_scale      = xml.getAttribute('g_scale');
-      let b_x          = xml.getAttribute('b_x');
-      let b_y          = xml.getAttribute('b_y');
+      let g_strength = xml.getAttribute('g_strength');
+      let g_curve = xml.getAttribute('g_curve');
+      let g_scale = xml.getAttribute('g_scale');
+      let b_x = xml.getAttribute('b_x');
+      let b_y = xml.getAttribute('b_y');
       let b_wavelength = xml.getAttribute('b_wavelength');
-      let b_strength   = xml.getAttribute('b_strength');
-      let b_curve      = xml.getAttribute('b_curve');
-      let b_scale      = xml.getAttribute('b_scale');
-      let w_x          = xml.getAttribute('w_x');
-      let w_y          = xml.getAttribute('w_y');
-      let w_strength   = xml.getAttribute('w_strength');
-      let w_curve      = xml.getAttribute('w_curve');
-      let w_scale      = xml.getAttribute('w_scale');
+      let b_strength = xml.getAttribute('b_strength');
+      let b_curve = xml.getAttribute('b_curve');
+      let b_scale = xml.getAttribute('b_scale');
+      let w_x = xml.getAttribute('w_x');
+      let w_y = xml.getAttribute('w_y');
+      let w_strength = xml.getAttribute('w_strength');
+      let w_curve = xml.getAttribute('w_curve');
+      let w_scale = xml.getAttribute('w_scale');
 
       if (r_wavelength) {
         let xy = cv.util.Color.wavelength2xy(parseFloat(r_wavelength));
@@ -172,6 +181,7 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
         default:
           data.baseColors.b.curve = b_curve.split(';').map(x => parseFloat(x));
       }
+
       if (w_x) {
         data.baseColors.w.x = parseFloat(w_x);
       }
@@ -202,18 +212,18 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
 
       return data;
     },
-    
-    makeAddressListFn: function(src, transform, mode, variant) {
-      return [true, (new Set(['r', 'g', 'b'])).has(variant) ? 'RGB-'+variant : variant];
+
+    makeAddressListFn(src, transform, mode, variant) {
+      return [true, new Set(['r', 'g', 'b']).has(variant) ? 'RGB-' + variant : variant];
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'controls': {'default': 'triangle'},
-        'send_on_finish': {
+        controls: { default: 'triangle' },
+        send_on_finish: {
           target: 'sendOnFinish',
-          'default': false,
-          transform: function(value) {
+          default: false,
+          transform(value) {
             return value === 'true';
           }
         }
@@ -221,7 +231,7 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
     }
   },
 
-  defer: function (statics) {
+  defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler('colorchooser', statics);
   }

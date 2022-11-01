@@ -1,7 +1,7 @@
-/* VirtualElementItem.js 
- * 
+/* VirtualElementItem.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Widget for node items in XML-File
  */
@@ -29,8 +28,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (label) {
-    this.base(arguments, label);
+  construct(label) {
+    super(label);
     if (qx.core.Environment.get('device.touch')) {
       this.addState('touch');
     }
@@ -104,23 +103,25 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     MEMBERS
   ***********************************************
   */
-  members: { // eslint-disable-line @qooxdoo/qx/no-refs-in-members
+  /* eslint-disable @qooxdoo/qx/no-refs-in-members */
+  members: {
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
      */
-    _forwardStates : {
-      selected : true,
+    _forwardStates: {
+      selected: true,
       touch: true
     },
+
     __labelAdded: false,
 
-    _applyName: function(value) {
+    _applyName(value) {
       this.getContentElement().setAttribute('data-nodename', value);
     },
 
     // this has to be set by model binding, because the qx way by adding a state does not survive a widget re-binding
-    _applyDragging: function (value) {
+    _applyDragging(value) {
       if (value) {
         this.addState('drag');
       } else {
@@ -128,7 +129,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    _applyModel: function (value) {
+    _applyModel(value) {
       if (qx.core.Environment.get('device.touch')) {
         if (value) {
           const menuButton = this.getChildControl('menu-button');
@@ -144,7 +145,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    _applyTemporary: function (value) {
+    _applyTemporary(value) {
       if (value) {
         this.addState('temporary');
       } else {
@@ -152,7 +153,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    _applySortable: function (value) {
+    _applySortable(value) {
       if (value) {
         this.getChildControl('move-button').show();
       } else {
@@ -160,7 +161,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    _applyStatus: function (value, old) {
+    _applyStatus(value, old) {
       const icon = this.getChildControl('icon');
       const label = this.getChildControl('label');
       if (old) {
@@ -173,8 +174,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    _addWidgets: function() {
-      this.base(arguments);
+    _addWidgets() {
+      super._addWidgets();
       const open = this.getChildControl('open', true);
       if (open && qx.core.Environment.get('device.touch')) {
         open.getContentElement().addClass('touch-tree-open-icon');
@@ -182,48 +183,59 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     },
 
     // overridden
-    _createChildControlImpl : function(id, hash) {
+    _createChildControlImpl(id, hash) {
       let control;
 
       switch (id) {
-         case 'icon':
-           control = new cv.ui.manager.basic.Image().set({
-             forceScale: true,
-             alignY: 'middle',
-             anonymous: true,
-             source: this.getIcon(),
-             maxWidth: 22,
-             maxHeight: 22
-           });
-           break;
+        case 'icon':
+          control = new cv.ui.manager.basic.Image().set({
+            forceScale: true,
+            alignY: 'middle',
+            anonymous: true,
+            source: this.getIcon(),
+            maxWidth: 22,
+            maxHeight: 22
+          });
 
-         case 'buttons':
-           control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
-           control.setAnonymous(true);
-           break;
+          break;
 
-         case 'move-button':
-           control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', qx.core.Environment.get('device.touch') ? 36 : 18));
-           control.setToolTipText(this.tr('Drag to move'));
-           control.setAnonymous(true);
-           control.setShow('icon');
-           this.getChildControl('buttons').addAt(control, 0);
-           break;
+        case 'buttons':
+          control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
+          control.setAnonymous(true);
+          break;
 
-         case 'menu-button':
-           control = new qx.ui.form.MenuButton('', cv.theme.dark.Images.getIcon('menu', qx.core.Environment.get('device.touch') ? 24 : 14), new cv.ui.manager.contextmenu.ConfigElement());
-           control.getMenu().addListener('action', ev => {
-             this.fireDataEvent('action', ev.getData());
-           });
-           this.getChildControl('buttons').addAt(control, 1);
-           break;
-       }
+        case 'move-button':
+          control = new qx.ui.basic.Atom(
+            '',
+            cv.theme.dark.Images.getIcon('drag-handle', qx.core.Environment.get('device.touch') ? 36 : 18)
+          );
 
-       return control || this.base(arguments, id);
+          control.setToolTipText(this.tr('Drag to move'));
+          control.setAnonymous(true);
+          control.setShow('icon');
+          this.getChildControl('buttons').addAt(control, 0);
+          break;
+
+        case 'menu-button':
+          control = new qx.ui.form.MenuButton(
+            '',
+            cv.theme.dark.Images.getIcon('menu', qx.core.Environment.get('device.touch') ? 24 : 14),
+
+            new cv.ui.manager.contextmenu.ConfigElement()
+          );
+
+          control.getMenu().addListener('action', ev => {
+            this.fireDataEvent('action', ev.getData());
+          });
+          this.getChildControl('buttons').addAt(control, 1);
+          break;
+      }
+
+      return control || super._createChildControlImpl(id);
     },
 
     // overridden
-    addLabel : function(text) {
+    addLabel(text) {
       const label = this.getChildControl('label');
 
       if (this.__labelAdded) {
@@ -237,7 +249,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
 
       this._add(label);
-      this._add(new qx.ui.core.Spacer(), {flex: 1});
+      this._add(new qx.ui.core.Spacer(), { flex: 1 });
       const buttons = this.getChildControl('buttons');
       this._add(buttons);
       this.__labelAdded = true;

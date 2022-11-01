@@ -1,7 +1,7 @@
-/* BackendConnections.js 
- * 
+/* BackendConnections.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,14 +36,24 @@ qx.Class.define('cv.io.BackendConnections', {
     /**
      * Initialize the {@link cv.io.Client} for backend communication
      */
-    initBackendClient: function () {
+    initBackendClient() {
       if (cv.Config.testMode === true || window.cvTestMode === true) {
         return this.addBackendClient('main', 'simulated');
       }
-      let backendName = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',')[0];
-      const backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
-      const backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
-      const backendOpenHABUrl = cv.Config.URL.backendOpenHABUrl || cv.Config.configSettings.backendOpenHABUrl || cv.Config.server.backendOpenHABUrl;
+      let backendName = (
+        cv.Config.URL.backend ||
+        cv.Config.configSettings.backend ||
+        cv.Config.server.backend ||
+        'default'
+      ).split(',')[0];
+      const backendKnxdUrl =
+        cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
+      const backendMQTTUrl =
+        cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
+      const backendOpenHABUrl =
+        cv.Config.URL.backendOpenHABUrl ||
+        cv.Config.configSettings.backendOpenHABUrl ||
+        cv.Config.server.backendOpenHABUrl;
 
       switch (backendName) {
         case 'knxd':
@@ -86,7 +96,7 @@ qx.Class.define('cv.io.BackendConnections', {
       client.update = data => model.updateFrom(name, data); // override clients update function
       if (cv.Config.reporting) {
         const recordInstance = cv.report.Record.getInstance();
-        client.record = function(p, d) {
+        client.record = function (p, d) {
           recordInstance.record(cv.report.Record.BACKEND, p, d);
         };
       }
@@ -103,14 +113,18 @@ qx.Class.define('cv.io.BackendConnections', {
             scope.setTag('server.web.main', cv.Config.configServer);
           }
         });
-        client.addListener('changedServer', () => this._updateClientScope(name), this);
+        client.addListener('changedServer', () => this._updateClientScope(name));
       }
       if (!this.__activeChangeListenerId) {
-        this.__activeChangeListenerId = qx.core.Init.getApplication().addListener('changeActive', this._onActiveChanged, this);
+        this.__activeChangeListenerId = qx.core.Init.getApplication().addListener(
+          'changeActive',
+          this._onActiveChanged,
+          this
+        );
       }
 
       // show connection state in NotificationCenter
-      client.addListener('changeConnected', () => this._checkBackendConnection(name), this);
+      client.addListener('changeConnected', () => this._checkBackendConnection(name));
 
       return client;
     },
@@ -156,9 +170,9 @@ qx.Class.define('cv.io.BackendConnections', {
     },
 
     /**
-    * Start retrieving data from backend
-    */
-    startInitialRequest: function() {
+     * Start retrieving data from backend
+     */
+    startInitialRequest() {
       if (qx.core.Environment.get('qx.debug')) {
         cv.report.Replay.start();
       }
@@ -175,7 +189,7 @@ qx.Class.define('cv.io.BackendConnections', {
       });
     },
 
-    _onActiveChanged: function () {
+    _onActiveChanged() {
       const app = qx.core.Init.getApplication();
       if (app.isActive()) {
         Object.getOwnPropertyNames(this.__clients).forEach(backendName => {
@@ -183,6 +197,7 @@ qx.Class.define('cv.io.BackendConnections', {
           if (!client.isConnected() && this.__hasBeenConnected) {
             // reconnect
             qx.log.Logger.debug(this, `restarting ${backendName} backend connection`);
+
             client.restart(true);
           }
         });
@@ -190,12 +205,12 @@ qx.Class.define('cv.io.BackendConnections', {
         // wait for 3 seconds before checking the backend connection
         if (!this.__activeChangedTimer) {
           this.__activeChangedTimer = new qx.event.Timer(3000);
-          this.__activeChangedTimer.addListener('interval', function () {
+          this.__activeChangedTimer.addListener('interval', () => {
             if (app.isActive()) {
               Object.getOwnPropertyNames(this.__clients).forEach(this._checkBackendConnection, this);
             }
             this.__activeChangedTimer.stop();
-          }, this);
+          });
         }
         this.__activeChangedTimer.restart();
       } else {
@@ -203,7 +218,7 @@ qx.Class.define('cv.io.BackendConnections', {
       }
     },
 
-    _checkBackendConnection (name) {
+    _checkBackendConnection(name) {
       const client = this.getClient(name);
       const connected = client.isConnected();
       const message = {
@@ -214,10 +229,16 @@ qx.Class.define('cv.io.BackendConnections', {
         deletable: false,
         condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
       };
+
       const lastError = client.getLastError();
       if (!connected) {
-        if (lastError && (Date.now() - lastError.time) < 100) {
-          message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
+        if (lastError && Date.now() - lastError.time < 100) {
+          message.message = qx.locale.Manager.tr(
+            'Error requesting %1: %2 - %3.',
+            lastError.url,
+            lastError.code,
+            lastError.text
+          );
         } else {
           message.message = qx.locale.Manager.tr('Connection to backend "%1" is lost.', name);
         }
@@ -225,7 +246,7 @@ qx.Class.define('cv.io.BackendConnections', {
           link: [
             {
               title: qx.locale.Manager.tr('Restart connection'),
-              action: function () {
+              action() {
                 client.restart();
               }
             }
@@ -247,7 +268,7 @@ qx.Class.define('cv.io.BackendConnections', {
       });
     },
 
-    _handleClientError: function (errorCode, varargs) {
+    _handleClientError(errorCode, varargs) {
       varargs = Array.prototype.slice.call(arguments, 1);
       varargs = JSON.stringify(varargs[0], null, 2);
       // escape HTML:
@@ -260,32 +281,51 @@ qx.Class.define('cv.io.BackendConnections', {
           notification = {
             topic: 'cv.error',
             title: qx.locale.Manager.tr('CometVisu protocol error'),
-            message:  qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
+            message:
+              qx.locale.Manager.tr(
+                'The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
                 '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
-                '</a>') + '<br/>' +
+                '</a>'
+              ) +
+              '<br/>' +
               qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
+              '<br/><br/><strong>' +
+              qx.locale.Manager.tr('Backend-Response:') +
+              '</strong><pre>' +
+              varargs +
+              '</pre></div>',
             severity: 'urgent',
             unique: true,
             deletable: false
           };
+
           break;
 
         case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
           notification = {
             topic: 'cv.error',
             title: qx.locale.Manager.tr('CometVisu protocol error'),
-            message:  qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
+            message:
+              qx.locale.Manager.tr(
+                'The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
                 '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
-                '</a>') + '<br/>' +
+                '</a>'
+              ) +
+              '<br/>' +
               qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs +'</pre></div>',
+              '<br/><br/><strong>' +
+              qx.locale.Manager.tr('Backend-Response:') +
+              '</strong><pre>' +
+              varargs +
+              '</pre></div>',
             severity: 'urgent',
             unique: true,
             deletable: false
           };
+
           break;
       }
+
       if (notification) {
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       }

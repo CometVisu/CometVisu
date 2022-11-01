@@ -1,7 +1,7 @@
-/* Rss.js 
- * 
+/* Rss.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * This plugins displays RSS-Feeds in the CometVisu.
@@ -52,27 +51,35 @@ qx.Class.define('cv.plugins.Rss', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} extracted data from config element as key/value map
      */
-    parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      const data = cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
+
       cv.parser.pure.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
-    getAttributeToPropertyMappings: function() {
+    getAttributeToPropertyMappings() {
       return {
-        'src': {},
-        'width': { 'default': '' },
-        'height': { 'default': '' },
-        'limit': { 'default': 10 },
-        'header': { 'default': true },
-        'date': { 'default': true },
-        'content': { 'default': true },
-        'snippet': { 'default': true },
-        'showerror': { 'default': true },
-        'ssl': { 'default': false },
-        'linktarget': { 'default': '_new' },
-        'link': { 'default': true },
-        'title': { 'default': true }
+        src: {},
+        width: { default: '' },
+        height: { default: '' },
+        limit: { default: 10 },
+        header: { default: true },
+        date: { default: true },
+        content: { default: true },
+        snippet: { default: true },
+        showerror: { default: true },
+        ssl: { default: false },
+        linktarget: { default: '_new' },
+        link: { default: true },
+        title: { default: true }
       };
     }
   },
@@ -84,18 +91,18 @@ qx.Class.define('cv.plugins.Rss', {
   */
   properties: {
     src: { check: 'String', init: '' },
-    'width': { init: '' },
-    'height': { init: '' },
-    'limit': { init: 10 },
-    'header': { init: true },
-    'date': { init: true },
-    'content': { init: true },
-    'snippet': { init: true },
-    'showerror': { init: true },
-    'ssl': { init: false },
-    'linktarget': { init: '_new' },
-    'link': { init: true },
-    'title': { init: true }
+    width: { init: '' },
+    height: { init: '' },
+    limit: { init: 10 },
+    header: { init: true },
+    date: { init: true },
+    content: { init: true },
+    snippet: { init: true },
+    showerror: { init: true },
+    ssl: { init: false },
+    linktarget: { init: '_new' },
+    link: { init: true },
+    title: { init: true }
   },
 
   /*
@@ -106,35 +113,34 @@ qx.Class.define('cv.plugins.Rss', {
   members: {
     _parser: null,
 
-    _getInnerDomString: function () {
-      const rssstyle = '' +
-      this.getWidth() ? 'width:' + this.getWidth() : '' +
-      this.getHeight() ? 'height:' + this.getHeight() : '';
+    _getInnerDomString() {
+      const rssstyle =
+        '' + this.getWidth() ? 'width:' + this.getWidth() : '' + this.getHeight() ? 'height:' + this.getHeight() : '';
       return '<div class="actor"><ul class="rss_inline" style="' + rssstyle + '"></ul>';
     },
 
-    _onDomReady: function () {
-      this.base(arguments);
+    _onDomReady() {
+      super._onDomReady();
       this._parser = new RSSParser();
       this.refreshRSS();
     },
 
-    _setupRefreshAction: function() {
+    _setupRefreshAction() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener('interval', function () {
+      this._timer.addListener('interval', () => {
         this.refreshRSS();
-      }, this);
+      });
       this._timer.start();
     },
 
-    refreshRSS: function () {
+    refreshRSS() {
       this._parser.parseURL(this.getSrc(), (err, feed) => {
         const actor = this.getActor();
         let target = actor.querySelector('.rss_inline');
         if (err) {
           this.error(err);
           if (this.getShowerror()) {
-            target.textContent = 'ERROR: ' +err;
+            target.textContent = 'ERROR: ' + err;
           }
           return;
         }
@@ -157,7 +163,7 @@ qx.Class.define('cv.plugins.Rss', {
         const showDate = this.getDate();
 
         feed.items.some((entry, i) => {
-          let elem = target.querySelector(':scope > li[data-row="'+i+'"]');
+          let elem = target.querySelector(':scope > li[data-row="' + i + '"]');
           let a;
           let content;
           let date;
@@ -178,7 +184,7 @@ qx.Class.define('cv.plugins.Rss', {
               date.classList.add('date');
               elem.appendChild(date);
             }
-            elem.setAttribute('data-row', ''+i);
+            elem.setAttribute('data-row', '' + i);
             target.appendChild(elem);
           } else {
             if (useLink) {
@@ -209,11 +215,11 @@ qx.Class.define('cv.plugins.Rss', {
     }
   },
 
-  destruct: function() {
+  destruct() {
     this._parser = null;
   },
 
-  defer: function(statics) {
+  defer(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts('plugins/rss/rss-parser.min.js');
     cv.parser.pure.WidgetParser.addHandler('rss', cv.plugins.Rss);

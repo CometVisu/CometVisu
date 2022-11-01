@@ -1,7 +1,7 @@
-/* Rest.js 
- * 
+/* Rest.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * openHAB Rest client, that uses the native openHAB REST-API directly and does not
  * need the openHAB-cometvisu binding to be installed
@@ -31,8 +30,8 @@ qx.Class.define('cv.io.openhab.Rest', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (type, backendUrl) {
-    this.base(arguments);
+  construct(type, backendUrl) {
+    super();
     this.initialAddresses = [];
     this._type = type;
     this._backendUrl = backendUrl || '/rest/';
@@ -46,7 +45,6 @@ qx.Class.define('cv.io.openhab.Rest', {
   ***********************************************
   */
   properties: {
-
     connected: {
       check: 'Boolean',
       init: false,
@@ -59,6 +57,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       event: 'changedServer'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -73,7 +72,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     __memberLookup: null,
     __subscribedAddresses: null,
 
-    getBackend: function () {
+    getBackend() {
       return {};
     },
 
@@ -82,10 +81,9 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     // not used / needed in this client
-    setInitialAddresses: function(addresses) {
-    },
+    setInitialAddresses(addresses) {},
 
-    getResourcePath : function (name, map) {
+    getResourcePath(name, map) {
       if (name === 'charts' && map && map.src) {
         let url = this._backendUrl + 'persistence/items/' + map.src;
         const params = [];
@@ -119,7 +117,8 @@ qx.Class.define('cv.io.openhab.Rest', {
                 interval = 365 * 24 * 60 * 60000;
                 break;
             }
-            startTime.setTime(endTime.getTime() - (amount * interval));
+
+            startTime.setTime(endTime.getTime() - amount * interval);
           } else if (/^[\d]+$/.test(map.start)) {
             startTime.setTime(parseInt(map.start) * 1000);
           }
@@ -134,7 +133,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       return null;
     },
 
-    __convertTimes: function (time) {
+    __convertTimes(time) {
       if (time === 'now') {
         return new Date();
       } else if (/^[\d]+$/.test(time)) {
@@ -145,11 +144,11 @@ qx.Class.define('cv.io.openhab.Rest', {
       return null;
     },
 
-    hasCustomChartsDataProcessor : function () {
+    hasCustomChartsDataProcessor() {
       return true;
     },
 
-    processChartsData : function (response) {
+    processChartsData(response) {
       const data = response.data;
       const newRrd = [];
       let lastValue;
@@ -169,7 +168,7 @@ qx.Class.define('cv.io.openhab.Rest', {
      * @param req {qx.io.request.Xhr}
      * @private
      */
-    authorize: function (req) {
+    authorize(req) {
       if (this.__token) {
         req.setRequestHeader('Authorization', this.__token);
       }
@@ -181,13 +180,13 @@ qx.Class.define('cv.io.openhab.Rest', {
      * @param method {String?} HTTP method type (GET is the default)
      * @return A XHR request {qx.io.request.Xhr}
      */
-    createAuthorizedRequest: function (url, method) {
+    createAuthorizedRequest(url, method) {
       const req = new qx.io.request.Xhr(this._backendUrl + (url || ''), method);
       this.authorize(req);
       return req;
     },
 
-    __isActive: function (type, state) {
+    __isActive(type, state) {
       switch (type.toLowerCase()) {
         case 'decimal':
         case 'percent':
@@ -213,21 +212,29 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
-    subscribe : function (addresses, filters) {
+    subscribe(addresses, filters) {
       // send first request to get all states once
       const req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
-      req.addListener('success', function(e) {
+
+      req.addListener('success', e => {
         const req = e.getTarget();
 
         const res = req.getResponse();
         const update = {};
-        res.forEach(function(entry) {
+        res.forEach(function (entry) {
           if (entry.members && Array.isArray(entry.members)) {
             // this is a group
             let active = 0;
             const map = {};
             entry.members.forEach(obj => {
-              map[obj.name] = {type: obj.type.toLowerCase(), state: obj.state, label: obj.label, name: obj.name, active: false};
+              map[obj.name] = {
+                type: obj.type.toLowerCase(),
+                state: obj.state,
+                label: obj.label,
+                name: obj.name,
+                active: false
+              };
+
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
                 map[obj.name].active = true;
@@ -243,6 +250,7 @@ qx.Class.define('cv.io.openhab.Rest', {
               members: map,
               active: active
             };
+
             update['number:' + entry.name] = active;
             update['members:' + entry.name] = Object.values(map);
           }
@@ -250,7 +258,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         }, this);
         this.update(update);
         this.__subscribedAddresses = addresses;
-      }, this);
+      });
       // Send request
       req.send();
 
@@ -280,7 +288,9 @@ qx.Class.define('cv.io.openhab.Rest', {
 
           // add default listeners
           this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+
           this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+
           // add additional listeners
           //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
           this.eventSource.onerror = function () {
@@ -295,7 +305,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
-    terminate: function () {
+    terminate() {
       this.debug('terminating connection');
       if (this.eventSource) {
         this.eventSource.close();
@@ -303,9 +313,9 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
-    handleMessage: function(payload) {
+    handleMessage(payload) {
       if (payload.type === 'message') {
-        this.record('read', {type: payload.type, data: payload.data});
+        this.record('read', { type: payload.type, data: payload.data });
         const data = JSON.parse(payload.data);
         if (data.type === 'ItemStateChangedEvent' || data.type === 'GroupItemStateChangedEvent') {
           //extract item name from topic
@@ -350,39 +360,39 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
-    write: function (address, value) {
+    write(address, value) {
       const req = this.createAuthorizedRequest('items/' + address, 'POST');
       req.setRequestHeader('Content-Type', 'text/plain');
       req.setRequestData('' + value);
       req.send();
     },
 
-    handleError: function (error) {
+    handleError(error) {
       this.error(error);
     },
 
-    login : function (loginOnly, credentials, callback, context) {
+    login(loginOnly, credentials, callback, context) {
       if (credentials && credentials.username) {
         // just saving the credentials for later use as we are using basic authentication
         this.__token = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
       }
       // no login needed we just do a request to the if the backend is reachable
       const req = this.createAuthorizedRequest();
-      req.addListener('success', function(e) {
+      req.addListener('success', e => {
         const req = e.getTarget();
         this.setServer(req.getResponseHeader('Server'));
         if (callback) {
           callback.call(context);
         }
-      }, this);
+      });
       // Send request
       req.send();
     },
 
-    getLastError: function() {
+    getLastError() {
       return this.__lastError;
     },
-    restart: function(fullRestart) {
+    restart(fullRestart) {
       if (fullRestart) {
         // re-read all states
         if (this.__subscribedAddresses) {
@@ -393,14 +403,14 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
-    update: function(json) {}, // jshint ignore:line
-    record: function(type, data) {},
-    showError: function(type, message, args) {},
+    update(json) {},
+    record(type, data) {},
+    showError(type, message, args) {},
 
-    hasProvider: function (name) {
+    hasProvider(name) {
       return ['addresses', 'rrd'].includes(name);
     },
-    getProviderUrl: function (name) {
+    getProviderUrl(name) {
       switch (name) {
         case 'addresses':
           return this._backendUrl + 'items?fields=name,type,label';
@@ -410,7 +420,7 @@ qx.Class.define('cv.io.openhab.Rest', {
           return null;
       }
     },
-    getProviderConvertFunction : function (name, format) {
+    getProviderConvertFunction(name, format) {
       switch (name) {
         case 'addresses':
           return function (result) {
@@ -433,6 +443,7 @@ qx.Class.define('cv.io.openhab.Rest', {
                 value: element.name,
                 label: element.label || ''
               };
+
               if (type) {
                 entry.hints = {
                   transform: 'OH:' + type.toLowerCase()
@@ -445,9 +456,16 @@ qx.Class.define('cv.io.openhab.Rest', {
         case 'rrd':
           return function (result) {
             if (format === 'monaco') {
-              return result.map(element => ({insertText: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember}));
-            } 
-              return result.map(element => ({value: element, label: element}));
+              return result.map(element => ({
+                insertText: element,
+                label: element,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              }));
+            }
+            return result.map(element => ({
+              value: element,
+              label: element
+            }));
           };
         default:
           return null;

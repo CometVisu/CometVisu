@@ -1,8 +1,3 @@
-
-
-
-
-
 /**
  * <h3> CometVisu Plugin system </h3>
  *

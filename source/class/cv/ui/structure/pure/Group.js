@@ -1,7 +1,7 @@
-/* Group.js 
- * 
+/* Group.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * A group can be used to group a couple of widgets and optionally surround them with a border or name the group.
@@ -82,10 +81,12 @@ qx.Class.define('cv.ui.structure.pure.Group', {
       check: 'Boolean',
       init: false
     },
+
     name: {
       check: 'String',
       init: ''
     },
+
     target: {
       check: 'String',
       nullable: true
@@ -98,7 +99,6 @@ qx.Class.define('cv.ui.structure.pure.Group', {
   ******************************************************
   */
   members: {
-
     /**
      * Action performed when the group got clicked. If a target is specified in the group attributes
      * the action will switch to the page defined by the target.
@@ -106,7 +106,7 @@ qx.Class.define('cv.ui.structure.pure.Group', {
      *
      * @param  event {Event}
      */
-    action: function (event) {
+    action(event) {
       if (this.getTarget()) {
         cv.Application.structureController.scrollToPage(this.getTarget());
         if (event.getBubbles()) {
@@ -116,18 +116,18 @@ qx.Class.define('cv.ui.structure.pure.Group', {
     },
 
     // overridden, group has no actor
-    getActor: function() {
+    getActor() {
       return this.getDomElement();
     },
 
     // overridden
-    _onDomReady: function() {
-      this.base(arguments);
+    _onDomReady() {
+      super._onDomReady();
       this.getDomElement().style['z-index'] = 1;
     },
 
     // overridden
-    getDomString: function () {
+    getDomString() {
       // heading style
       let hstyle = '';
       if (this.getAlign()) {
@@ -146,7 +146,7 @@ qx.Class.define('cv.ui.structure.pure.Group', {
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('group', statics);
   }
 });

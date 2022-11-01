@@ -1,7 +1,7 @@
-/* Loader.js 
- * 
+/* Loader.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -32,7 +32,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
   ***********************************************
   */
   members: {
-
     _init() {
       const element = this._element;
       const type = element.getAttribute('type');
@@ -70,6 +69,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
         accept: 'application/xml',
         cache: !cv.Config.forceReload
       });
+
       ajaxRequest.addListenerOnce('success', function (e) {
         let content = e.getTarget().getResponse();
         let htmlContent = content;
@@ -78,6 +78,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
         if (!htmlContent.documentElement.xmlns) {
           let text = e.getTarget().getResponseText();
           text = text.replace('<templates', '<templates xmlns="http://www.w3.org/1999/xhtml"');
+
           const parser = new DOMParser();
           htmlContent = parser.parseFromString(text, 'text/xml');
         }
@@ -88,14 +89,14 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
         // register custom elements for templates in this document
         cv.Application.structureController.registerTemplates(content);
       });
-      ajaxRequest.addListener('statusError', function (e) {
+      ajaxRequest.addListener('statusError', e => {
         const status = e.getTarget().getTransport().status;
         if (!qx.util.Request.isSuccessful(status)) {
           this.handleError('filenotfound', ajaxRequest.getUrl());
         } else {
           this.handleError(status, null);
         }
-      }, this);
+      });
 
       ajaxRequest.send();
     },
@@ -119,24 +120,30 @@ qx.Class.define('cv.ui.structure.tile.elements.Loader', {
             message += '.';
           }
       }
+
       const notification = {
         topic: 'cv.error',
         title: title,
         message: message
       };
+
       if (actions) {
         notification.actions = actions;
       }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+
       this.error(this, message.toString());
     }
   },
 
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'loader', class extends QxConnector {
-      constructor() {
-        super(Clazz);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'loader',
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
       }
-    });
+    );
   }
 });

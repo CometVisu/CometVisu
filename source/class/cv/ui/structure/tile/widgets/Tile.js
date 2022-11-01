@@ -1,7 +1,7 @@
-/* Tile.js 
- * 
+/* Tile.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -52,9 +52,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
   ***********************************************
   */
   members: {
-
     _init() {
-      this.base(arguments);
+      super._init();
       this._initPopupChild();
       if (this._element.hasAttribute('background-image')) {
         this.setBackgroundImage(this._element.getAttribute('background-image'));
@@ -135,7 +134,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
      * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      */
     onStateUpdate(ev) {
-      if (!this.base(arguments, ev)) {
+      if (!super.onStateUpdate(ev)) {
         switch (ev.detail.target) {
           case 'background-image':
             this.setBackgroundImage(ev.detail.state);
@@ -169,10 +168,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'tile', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'tile',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

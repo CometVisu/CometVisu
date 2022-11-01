@@ -1,7 +1,7 @@
-/* LimitedRateUpdateAnimator.js 
- * 
+/* LimitedRateUpdateAnimator.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * LimitedRateUpdateAnimator
@@ -51,8 +50,8 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
    * @param context The context `this` of the callback function
    * @param displayFnParameters Optional additional parameter that will be passed to the callback function
    */
-  construct: function (displayFn, context = window, displayFnParameters = undefined) {
-    this.base(arguments);
+  construct(displayFn, context = window, displayFnParameters = undefined) {
+    super();
     this.setDisplayFn(displayFn);
     this.__displayFnContext = context;
     this.__displayFnParameters = displayFnParameters;
@@ -62,7 +61,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
+  destruct() {
     if (this.__animationFrame !== undefined) {
       window.cancelAnimationFrame(this.__animationFrame);
       this.__animationFrame = undefined;
@@ -79,21 +78,25 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       check: 'Number',
       init: 2
     },
+
     expDampTimeConstant: {
       // time constant for exponential dampening
       check: 'Number',
       init: 0.01
     },
+
     epsilon: {
       // a difference between current and target value smaller than the epsilon
       // will be immediately closed
       check: 'Number',
       init: 0.001
     },
+
     displayFn: {
       check: 'Function'
     }
   },
+
   /*
   ******************************************************
     MEMBERS
@@ -114,14 +117,14 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      * @param {Number} range (typical) maximal range for the animation
      * @param {Number} [epsilon] end the animation when the remaining delta is smaller
      */
-    setAnimationSpeed: function (range, epsilon) {
+    setAnimationSpeed(range, epsilon) {
       if (epsilon !== undefined) {
         this.setEpsilon(epsilon);
       } else {
         this.setEpsilon(range / 1000);
       }
 
-      this.setLinearRateLimit(2*range);
+      this.setLinearRateLimit(2 * range);
       // Note: as the exponential dampening is working on a ratio it doesn't
       // need to be changed here and the default of 0.01 is fine:
       this.setExpDampTimeConstant(0.01);
@@ -132,7 +135,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      * @param {Boolean} instant skip animation when true
      * @param {Boolean} show skip display update when false
      */
-    setTo: function (targetValue, instant = false, show = true) {
+    setTo(targetValue, instant = false, show = true) {
       let now = performance.now();
 
       this.__targetValue = targetValue;
@@ -150,25 +153,26 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      * @param {DOMHighResTimeStamp} lasttime
      * @private
      */
-    __animate: function (thistime, lasttime) {
+    __animate(thistime, lasttime) {
       let isNumber = typeof this.__currentValue === 'number';
       let dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
       let maxLinearDelta = this.getLinearRateLimit() * dt;
       let alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
+
       let nextValue = isNumber
-          ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
-          : this.__currentValue.blend(this.__targetValue, alpha);
-      let delta = isNumber
-          ? nextValue - this.__currentValue
-          : this.__currentValue.delta(nextValue);
+        ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
+        : this.__currentValue.blend(this.__targetValue, alpha);
+      let delta = isNumber ? nextValue - this.__currentValue : this.__currentValue.delta(nextValue);
       let notFinished = true;
       if (Math.abs(delta) > maxLinearDelta) {
         nextValue = isNumber
           ? this.__currentValue + Math.sign(delta) * maxLinearDelta
-          : this.__currentValue.blend(this.__targetValue, alpha * maxLinearDelta / delta);
+          : this.__currentValue.blend(this.__targetValue, (alpha * maxLinearDelta) / delta);
       }
-      if ((isNumber && Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
-          (!isNumber && nextValue.delta(this.__targetValue) < this.getEpsilon())) {
+      if (
+        (isNumber && Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
+        (!isNumber && nextValue.delta(this.__targetValue) < this.getEpsilon())
+      ) {
         nextValue = this.__targetValue;
         notFinished = false;
       }

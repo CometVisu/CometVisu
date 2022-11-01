@@ -1,7 +1,7 @@
-/* Info.js 
- * 
+/* Info.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Class.define('cv.plugins.diagram.Info', {
   extend: cv.plugins.diagram.AbstractDiagram,
   include: [cv.ui.common.Update],
@@ -27,9 +26,9 @@ qx.Class.define('cv.plugins.diagram.Info', {
    CONSTRUCTOR
    ******************************************************
    */
-  construct: function(props) {
+  construct(props) {
     this._init = false;
-    this.base(arguments, props);
+    super(props);
   },
 
   /*
@@ -47,14 +46,14 @@ qx.Class.define('cv.plugins.diagram.Info', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
+    parse(xml, path, flavour, pageType) {
       const data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
+
       cv.parser.pure.WidgetParser.parseAddress(xml, path);
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       return data;
     }
   },
-
 
   /*
    ******************************************************
@@ -62,10 +61,10 @@ qx.Class.define('cv.plugins.diagram.Info', {
    ******************************************************
    */
   members: {
-    _getInnerDomString: function() {
+    _getInnerDomString() {
       return '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
     },
-    _update: function(address, data) {
+    _update(address, data) {
       if (address !== undefined && data !== undefined) {
         return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       }
@@ -73,7 +72,7 @@ qx.Class.define('cv.plugins.diagram.Info', {
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler('diagram_info', statics);
     cv.ui.structure.WidgetFactory.registerClass('diagram_info', statics);

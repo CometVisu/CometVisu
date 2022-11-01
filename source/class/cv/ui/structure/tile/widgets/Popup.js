@@ -1,7 +1,7 @@
-/* Popup.js 
- * 
+/* Popup.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -42,9 +42,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
    ******************************************************
    */
   members: {
-
     _init() {
-      this.base(arguments);
+      super._init();
       const popup = this._element;
       const closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
       if (closeable) {
@@ -58,6 +57,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       }
       if (popup.hasAttribute('auto-close-timeout')) {
         const timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));
+
         if (!isNaN(timeoutSeconds)) {
           this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
           this._autoCloseTimer.addListener('interval', () => {
@@ -97,7 +97,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       }
     },
 
-
     /**
      * Handles the incoming data from the backend for this widget.
      * The popup handles the special address-targets:
@@ -108,7 +107,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
      * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
      */
     onStateUpdate(ev) {
-      if (!this.base(arguments, ev)) {
+      if (!super.onStateUpdate(ev)) {
         switch (ev.detail.target) {
           case 'open':
             if (ev.detail.state) {
@@ -143,7 +142,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._disposeObjects('_autoCloseTimer');
     if (this._closeButton) {
       this._closeButton.remove();
@@ -151,11 +150,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     }
   },
 
-  defer: function(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'popup', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+  defer(QxClass) {
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'popup',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

@@ -1,7 +1,7 @@
-/* Fetch.js 
- * 
+/* Fetch.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -40,6 +40,7 @@ qx.Class.define('cv.io.Fetch', {
     fetch(resource, options = {}, proxy = false, client = undefined) {
       if (proxy) {
         const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
+
         url.searchParams.set('url', resource);
         resource = url;
       }
@@ -49,14 +50,14 @@ qx.Class.define('cv.io.Fetch', {
         if (client) {
           client.authorize(xhr);
         }
-        xhr.addListener('success', function(ev) {
+        xhr.addListener('success', ev => {
           const request = ev.getTarget();
           resolve(request.getResponse());
-        }, this);
-        xhr.addListener('statusError', function(ev) {
+        });
+        xhr.addListener('statusError', ev => {
           const request = ev.getTarget();
           reject(request.getResponse());
-        }, this);
+        });
         xhr.send();
       });
     },

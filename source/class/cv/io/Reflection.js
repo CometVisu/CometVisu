@@ -1,7 +1,7 @@
-/* Reflection.js 
- * 
+/* Reflection.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Reflection API for possible Editor communication
@@ -34,12 +33,12 @@ qx.Class.define('cv.io.Reflection', {
      * Function to test if the path is in a valid form.
      * Note: it doesn't check if it exists!
      */
-    pathRegEx : /^id(_[0-9]+)+$/,
+    pathRegEx: /^id(_[0-9]+)+$/,
 
     /**
      * Return a list of all widgets.
      */
-    list: function () {
+    list() {
       const widgetTree = {};
       document.querySelectorAll('.page').forEach(function (elem) {
         const id = elem.getAttribute('id').split('_');
@@ -47,21 +46,23 @@ qx.Class.define('cv.io.Reflection', {
         if (id.shift() === 'id') {
           let thisNumber;
           // eslint-disable-next-line no-cond-assign
-          while (thisNumber = id.shift()) { // jshint ignore:line
+          while ((thisNumber = id.shift())) {
             if (!(thisNumber in thisEntry)) {
               thisEntry[thisNumber] = {};
             }
             thisEntry = thisEntry[thisNumber];
           }
-          Array.from(elem.getElementsByTagName('*')).filter(function(m) {
-            return m.matches('div.widget_container');
-          }).forEach(function(widget, i) {
-            if (undefined === thisEntry[i]) {
-              thisEntry[i] = {};
-            }
-            thisEntry[i].name = widget.classname;
-            thisEntry[i].type = widget.get$$type();
-          });
+          Array.from(elem.getElementsByTagName('*'))
+            .filter(function (m) {
+              return m.matches('div.widget_container');
+            })
+            .forEach(function (widget, i) {
+              if (undefined === thisEntry[i]) {
+                thisEntry[i] = {};
+              }
+              thisEntry[i].name = widget.classname;
+              thisEntry[i].type = widget.get$$type();
+            });
         }
       });
       return widgetTree;
@@ -71,9 +72,11 @@ qx.Class.define('cv.io.Reflection', {
      * Return all attributes of a widget.
      * @param path
      */
-    read: function (path) {
+    read(path) {
       const widget = this.lookupWidget(path);
-      const data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
+      const data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget));
+
+      // copy
       delete data.basicvalue;
       delete data.value;
       return data;
@@ -84,7 +87,7 @@ qx.Class.define('cv.io.Reflection', {
      * @param path
      * @param state
      */
-    select: function (path, state) {
+    select(path, state) {
       const container = this.lookupWidget(path);
       if (state) {
         container.classList.add('selected');
@@ -98,7 +101,7 @@ qx.Class.define('cv.io.Reflection', {
      * @param path
      * @param attributes
      */
-    write: function (path, attributes) {
+    write(path, attributes) {
       // TODO: Implement - it was the non existing function
       //  qx .bom.element.Dataset.setData(qx.dom.Hierarchy.getChildElements(this.lookupWidget(path))[0], attributes);
     },
@@ -108,10 +111,14 @@ qx.Class.define('cv.io.Reflection', {
      * Handle messages that might be sent by the editor
      * @param event
      */
-    handleMessage: function (event) {
+    handleMessage(event) {
       // prevend bad or even illegal requests
-      if (event.origin !== window.location.origin ||
-        typeof event.data !== 'object' || !('command' in event.data) || !('parameters' in event.data)) {
+      if (
+        event.origin !== window.location.origin ||
+        typeof event.data !== 'object' ||
+        !('command' in event.data) ||
+        !('parameters' in event.data)
+      ) {
         return;
       }
       let answer = 'bad command';
@@ -121,8 +128,11 @@ qx.Class.define('cv.io.Reflection', {
       //       carefull for corectness testing
       switch (event.data.command) {
         case 'create':
-          if (typeof parameters === 'object' && this.pathRegEx.test(parameters.path) &&
-            typeof parameters.element === 'string') {
+          if (
+            typeof parameters === 'object' &&
+            this.pathRegEx.test(parameters.path) &&
+            typeof parameters.element === 'string'
+          ) {
             answer = this.create(parameters.path, parameters.element);
           } else {
             answer = 'bad path or element';
@@ -158,14 +168,21 @@ qx.Class.define('cv.io.Reflection', {
           break;
 
         case 'select':
-          if (typeof parameters === 'object' && this.pathRegEx.test(parameters.path) && typeof parameters.state === 'boolean') {
+          if (
+            typeof parameters === 'object' &&
+            this.pathRegEx.test(parameters.path) &&
+            typeof parameters.state === 'boolean'
+          ) {
             answer = this.select(parameters.path, parameters.state);
           }
           break;
 
         case 'write':
-          if (typeof parameters === 'object' && this.pathRegEx.test(parameters.path) &&
-            typeof parameters.attributes === 'object') {
+          if (
+            typeof parameters === 'object' &&
+            this.pathRegEx.test(parameters.path) &&
+            typeof parameters.attributes === 'object'
+          ) {
             answer = this.write(parameters.path, parameters.attributes);
           }
           break;
@@ -179,11 +196,11 @@ qx.Class.define('cv.io.Reflection', {
      * Return a widget (to be precise: the widget_container) for the given path
      * @param path
      */
-    lookupWidget: function (path) {
+    lookupWidget(path) {
       return document.querySelector('.page#' + path);
     },
 
-    getParentPage: function (page) {
+    getParentPage(page) {
       if (page.length === 0) {
         return null;
       }
@@ -191,7 +208,7 @@ qx.Class.define('cv.io.Reflection', {
       return this.getParentPageById(page.getAttribute('id'), true);
     },
 
-    getParentPageById: function (path, isPageId) {
+    getParentPageById(path, isPageId) {
       if (path.length > 0) {
         const pathParts = path.split('_');
         if (isPageId) {
@@ -214,7 +231,7 @@ qx.Class.define('cv.io.Reflection', {
      * @param path
      * @param element
      */
-    create: function (path, element) {
+    create(path, element) {
       return 'created widget \'' + path + '\': \'' + element + '\'';
     },
 
@@ -223,7 +240,7 @@ qx.Class.define('cv.io.Reflection', {
      * child elements.
      * @param path
      */
-    deleteCommand: function (path) {
+    deleteCommand(path) {
       this.debug(this.lookupWidget(path), document.querySelector('#' + path));
       //this.lookupWidget( path ).remove();
       return 'deleted widget \'' + path + '\'';
@@ -233,13 +250,13 @@ qx.Class.define('cv.io.Reflection', {
      * Focus a widget.
      * @param path
      */
-    focus: function (path) {
+    focus(path) {
       document.querySelector('.focused').classList.remove('focused');
       this.lookupWidget(path).classList.add('focused');
     }
   },
 
-  defer: function() {
+  defer() {
     window.addEventListener('message', cv.io.Reflection.handleMessage, false);
   }
 });

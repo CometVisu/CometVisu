@@ -1,7 +1,7 @@
-/* Diagram.js 
- * 
+/* Diagram.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Class.define('cv.plugins.diagram.Diagram', {
   extend: cv.plugins.diagram.AbstractDiagram,
 
@@ -26,9 +25,9 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
    CONSTRUCTOR
    ******************************************************
    */
-  construct: function(props) {
+  construct(props) {
     this._init = true;
-    this.base(arguments, props);
+    super(props);
   },
 
   /*
@@ -41,6 +40,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
       check: 'String',
       nullable: true
     },
+
     height: {
       check: 'String',
       nullable: true
@@ -62,18 +62,29 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse: function (xml, path, flavour, pageType) {
-      return cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      return cv.plugins.diagram.AbstractDiagram.parse(
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
     },
 
-    getAttributeToPropertyMappings: function() {
+    getAttributeToPropertyMappings() {
       return {
-        width: { transform: function(value) {
-          return value ? parseInt(value)+'px' : '100%';
-        }},
-        height: { transform: function(value) {
-          return value ? parseInt(value)+'px' : null;
-        }}
+        width: {
+          transform(value) {
+            return value ? parseInt(value) + 'px' : '100%';
+          }
+        },
+
+        height: {
+          transform(value) {
+            return value ? parseInt(value) + 'px' : null;
+          }
+        }
       };
     }
   },
@@ -86,7 +97,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
   members: {
     __vlid1: null,
 
-    _onDomReady: function() {
+    _onDomReady() {
       if (!this.$$domReady) {
         const pageId = this.getParentPage().getPath();
         const broker = qx.event.message.Bus;
@@ -94,18 +105,26 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
         // let the refresh only be active when this widget is visible
         this.setRestartOnVisible(true);
 
-        broker.subscribe('path.' + pageId + '.beforePageChange', function () {
-          if (!this._init) {
-            this.loadDiagramData(this.plot, false, false);
-          }
-        }, this);
+        broker.subscribe(
+          'path.' + pageId + '.beforePageChange',
+          function () {
+            if (!this._init) {
+              this.loadDiagramData(this.plot, false, false);
+            }
+          },
+          this
+        );
 
-        broker.subscribe('page.' + pageId + '.appear', function () {
-          // create diagram when it's not already existing
-          if (this._init) {
-            this.initDiagram(false);
-          }
-        }, this);
+        broker.subscribe(
+          'page.' + pageId + '.appear',
+          function () {
+            // create diagram when it's not already existing
+            if (this._init) {
+              this.initDiagram(false);
+            }
+          },
+          this
+        );
 
         // initialize the diagram but don't make the initialization process wait for it
         // by using a deferred call
@@ -118,7 +137,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
             }
           }, this).schedule();
         } else {
-          this.__vlid1 = this.addListener('changeVisible', function(ev) {
+          this.__vlid1 = this.addListener('changeVisible', ev => {
             if (ev.getData()) {
               if (!this._init) {
                 this.loadDiagramData(this.plot, false, false);
@@ -128,24 +147,31 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
               this.removeListenerById(this.__vlid1);
               this.__vlid1 = null;
             }
-          }, this);
+          });
         }
         this.$$domReady = true;
         this.initListeners();
       }
     },
 
-    _getInnerDomString: function() {
+    _getInnerDomString() {
       const classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview';
-      const styleStr = 'min-height: 40px' +
-        (this.getWidth() ? (';width:' + this.getWidth()) : '') +
-        (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
+      const styleStr =
+        'min-height: 40px' +
+        (this.getWidth() ? ';width:' + this.getWidth() : '') +
+        (this.getHeight() ? ';height:' + this.getHeight() : ';height: 100%');
 
-      return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + ' diagram" style="' + styleStr + '">loading...</div></div>';
+      return (
+        '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' +
+        classStr +
+        '" style="' +
+        styleStr +
+        '">loading...</div></div>'
+      );
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     // register the parser
     cv.parser.pure.WidgetParser.addHandler('diagram', statics);
     cv.ui.structure.WidgetFactory.registerClass('diagram', statics);

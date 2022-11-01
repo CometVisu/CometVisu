@@ -1,7 +1,7 @@
-/* Image.js 
- * 
+/* Image.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -55,6 +55,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
       const useProxy = element.hasAttribute('proxy') && element.getAttribute('proxy') === 'true';
       if (useProxy) {
         this._url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
+
         this._url.searchParams.set('url', element.getAttribute('src'));
       }
       this._headers = {};
@@ -62,9 +63,13 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         switch (element.getAttribute('auth-type').toLowerCase()) {
           case 'basic':
             if (useProxy) {
-              this._url.searchParams.set('authorization', 'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password')));
+              this._url.searchParams.set(
+                'authorization',
+                'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'))
+              );
             } else {
-              this._headers['Authorization'] = 'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'));
+              this._headers['Authorization'] =
+                'Basic ' + window.btoa(element.getAttribute('username') + ':' + element.getAttribute('password'));
             }
             break;
         }
@@ -112,7 +117,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
      * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      */
     onStateUpdate(ev) {
-      if (!this.base(arguments, ev)) {
+      if (!super.onStateUpdate(ev)) {
         if (ev.detail.target === 'refresh') {
           if (ev.detail.state) {
             this.refresh();
@@ -125,10 +130,13 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'image', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'image',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

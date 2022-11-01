@@ -1,7 +1,7 @@
-/* NotificationCenterBadge.js 
- * 
+/* NotificationCenterBadge.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Shows the current number of messages in {@link cv.ui.NotificationCenter} and opens it on click.
@@ -41,7 +40,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
+  construct(props) {
     const classes = props.classes.trim().split(' ');
     const i_right = classes.indexOf('right');
 
@@ -51,7 +50,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       classes.splice(i_right, 1);
       props.classes = classes.join(' ');
     }
-    this.base(arguments, props);
+    super(props);
   },
 
   /*
@@ -65,6 +64,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       init: 0,
       apply: '_applyCounter'
     },
+
     hideWhenEmpty: {
       check: 'Boolean',
       init: false
@@ -79,8 +79,8 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   members: {
     __badgeElement: null,
 
-    _onDomReady: function() {
-      this.base(arguments);
+    _onDomReady() {
+      super._onDomReady();
       const center = cv.ui.NotificationCenter.getInstance();
       center.getMessages().addListener('changeLength', this._onChangeCounter, this);
       this._onChangeCounter();
@@ -88,12 +88,12 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     },
 
     // property apply
-    _applyVisible: function(value) {
+    _applyVisible(value) {
       // hide NotificationCenters own badge while we are visible
       cv.ui.NotificationCenter.getInstance().disableBadge(value);
     },
 
-    action: function(ev) {
+    action(ev) {
       if (this._skipNextEvent === ev.getType()) {
         this._skipNextEvent = null;
         return;
@@ -101,36 +101,37 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       cv.ui.NotificationCenter.getInstance().toggleVisibility();
     },
 
-    __getBadgeElement: function() {
+    __getBadgeElement() {
       if (!this.__badgeElement) {
         this.__badgeElement = this.getDomElement().querySelector('.badge');
       }
       return this.__badgeElement;
     },
 
-    _onChangeGlobalSeverity: function(ev) {
+    _onChangeGlobalSeverity(ev) {
       const classList = this.__getBadgeElement().classList;
       classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
+
       if (ev.getData()) {
         classList.add(ev.getData());
       }
     },
 
-    _onChangeCounter: function() {
+    _onChangeCounter() {
       const messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
-      this.__getBadgeElement().innerHTML = ''+messages;
+      this.__getBadgeElement().innerHTML = '' + messages;
       if (this.isHideWhenEmpty()) {
         this.__getBadgeElement().style.display = messages === 0 ? 'none' : 'block';
       }
     },
 
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       let style = '';
       if (this.isHideWhenEmpty() && this.getCounter() === 0) {
         style = ' style="display: none;"';
       }
-      return '<div class="actor badge"'+style+'>'+this.getCounter()+'</div>';
+      return '<div class="actor badge"' + style + '>' + this.getCounter() + '</div>';
     }
   },
 
@@ -139,13 +140,13 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
+  destruct() {
     const center = cv.ui.NotificationCenter.getInstance();
     center.getMessages().removeListener('changeLength', this._onChangeCounter, this);
     center.removeListener('changedGlobalSeverity', this._onChangeGlobalSeverity, this);
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('notificationcenterbadge', statics);
   }
 });

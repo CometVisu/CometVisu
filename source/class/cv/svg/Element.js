@@ -1,7 +1,7 @@
-/* Element.js 
- * 
+/* Element.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Class.define('cv.svg.Element', {
   extend: qx.html.Element,
   /*
@@ -25,8 +24,8 @@ qx.Class.define('cv.svg.Element', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (tagName) {
-    this.base(arguments);
+  construct(tagName) {
+    super();
     this.__svgElement = document.createElementNS('http://www.w3.org/2000/svg', tagName);
   },
 
@@ -36,15 +35,15 @@ qx.Class.define('cv.svg.Element', {
   ***********************************************
   */
   members: {
-    _createDomElement : function() {
+    _createDomElement() {
       return this.__svgElement;
     },
-    getDomElement : function() {
+    getDomElement() {
       return this.__svgElement;
     }
   },
 
-  destruct : function() {
+  destruct() {
     this.__svgElement.$$widget = null;
     this.__svgElement = null;
   }

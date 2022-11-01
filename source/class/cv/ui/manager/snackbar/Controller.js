@@ -1,7 +1,7 @@
-/* Controller.js 
- * 
+/* Controller.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Main view component responsible for showing a list of snackbar messages.
  */
@@ -30,12 +29,14 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this._setLayout(new qx.ui.layout.VBox(8));
     this.initMessages(new qx.data.Array());
     qx.event.message.Bus.subscribe('cv.manager.msg.snackbar', this._onMessage, this);
+
     this._listController = new qx.data.controller.List(this.getMessages(), this.getChildControl('list'));
+
     this._initDelegate();
   },
 
@@ -45,15 +46,16 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
   ***********************************************
   */
   statics: {
-    info: function (message) {
+    info(message) {
       const msg = new cv.ui.manager.model.Message();
       msg.set({
         title: message
       });
+
       qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
     },
 
-    error: function (message) {
+    error(message) {
       const msg = new cv.ui.manager.model.Message();
       if (typeof message === 'object' && Object.prototype.hasOwnProperty.call(message, 'statusText')) {
         message = message.statusText;
@@ -63,6 +65,7 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
         type: 'error',
         sticky: true
       });
+
       qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
     }
   },
@@ -93,7 +96,7 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
   members: {
     _listController: null,
 
-    _onMessage: function (ev) {
+    _onMessage(ev) {
       const msg = ev.getData();
       if (msg instanceof cv.ui.manager.model.Message) {
         this.getMessages().push(msg);
@@ -101,7 +104,7 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
       }
     },
 
-    _onCloseMessage: function (ev) {
+    _onCloseMessage(ev) {
       const msg = ev.getData();
       this.getMessages().remove(msg);
       if (this.getMessages().length === 0) {
@@ -109,7 +112,7 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
       }
     },
 
-    _initDelegate: function () {
+    _initDelegate() {
       this._listController.setDelegate({
         createItem: function () {
           const item = new cv.ui.manager.snackbar.Message();
@@ -117,24 +120,24 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
           return item;
         }.bind(this),
 
-        bindItem: function (controller, item, index) {
+        bindItem(controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
         }
       });
     },
 
     // overridden
-    _createChildControlImpl : function(id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
-         case 'list':
-           control = new qx.ui.form.List();
-           this._add(control, {flex: 1});
-           break;
-       }
+        case 'list':
+          control = new qx.ui.form.List();
+          this._add(control, { flex: 1 });
+          break;
+      }
 
-       return control || this.base(arguments, id);
+      return control || super._createChildControlImpl(id);
     }
   },
 
@@ -143,8 +146,9 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     qx.event.message.Bus.unsubscribe('cv.manager.msg.snackbar', this._onMessage, this);
+
     this._disposeObjects('_listController');
   }
 });

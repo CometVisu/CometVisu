@@ -1,0 +1,18 @@
+{
+  "responseData" : {
+    "feed" : {
+      "feedUrl": "http://localhost/compiled/source/resource/plugins/rsslog/rsslog.php",
+      "title": "RSS supplied logs",
+      "link": "http://localhost/compiled/source/resource/plugins/rsslog/rsslog.php",
+      "author": "",
+      "description": "RSS supplied logs",
+      "type": "rss20",
+      "entries": [
+        {"id": "3","title": "Hinweis","content": "Lüftungsfilter voll","tags": [""],"mapping": "","state": "0","publishedDate": "2022-10-10T18:04:20+02:00"},
+        {"id": "2","title": "Briefkasten","content": "Post ist da","tags": [""],"mapping": "","state": "0","publishedDate": "2022-10-10T18:03:52+02:00"},
+        {"id": "1","title": "Klingel","content": "Es hat jemand geklingelt","tags": [""],"mapping": "","state": "0","publishedDate": "2022-10-10T17:59:47+02:00"}      ]
+    }
+  },
+  "responseDetails" : null,
+  "responseStatus" : 200
+}

@@ -1,7 +1,7 @@
-/* Select.js 
- * 
+/* Select.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -34,11 +34,11 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     __popup: null,
 
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       this.__options = new Map();
 
-      const popup = this.__popup = document.createElement('div');
+      const popup = (this.__popup = document.createElement('div'));
       popup.classList.add('popup');
       element.querySelectorAll(':scope > cv-option').forEach((option, i) => {
         popup.appendChild(option);
@@ -47,7 +47,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
         }
         this.__options.set(option.getAttribute('key'), option);
       });
-      const value = this.__value = document.createElement('span');
+      const value = (this.__value = document.createElement('span'));
       value.classList.add('value');
       element.appendChild(value);
       element.appendChild(popup);
@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
       if (style.getPropertyValue('display') === 'none') {
         this.__popup.style.display = 'block';
       } else {
-        this.__popup.style.display ='none';
+        this.__popup.style.display = 'none';
       }
     },
 
@@ -88,7 +88,10 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
           source: this
         }
       });
-      this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
+
+      this._writeAddresses
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
+        .forEach(address => address.dispatchEvent(ev));
       if (predictive === true) {
         this.setValue(key);
       }
@@ -111,10 +114,13 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'select', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'select',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

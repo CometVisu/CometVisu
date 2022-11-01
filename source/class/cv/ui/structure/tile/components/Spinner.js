@@ -1,7 +1,7 @@
-/* Spinner.js 
- * 
+/* Spinner.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -33,20 +33,21 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
       check: 'Number',
       init: 1.0
     },
+
     mode: {
       check: ['relative', 'absolute'],
       init: 'absolute'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
-
     _init() {
-      this.base(arguments);
+      super._init();
       const element = this._element;
       if (element.hasAttribute('step-width')) {
         this.setStepWidth(parseFloat(element.getAttribute('step-width')));
@@ -106,15 +107,21 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
           source: this
         }
       });
-      this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on).forEach(address => address.dispatchEvent(ev));
+
+      this._writeAddresses
+        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === on)
+        .forEach(address => address.dispatchEvent(ev));
     }
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'spinner', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'spinner',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });

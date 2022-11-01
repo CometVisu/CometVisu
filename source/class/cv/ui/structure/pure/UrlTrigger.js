@@ -1,7 +1,7 @@
-/* UrlTrigger.js 
- * 
+/* UrlTrigger.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * The UrlTrigger widget adds a button to the visualization that queries data from a URL in the background.
  *
@@ -26,11 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  include: [
-    cv.ui.common.Operate,
-    cv.ui.common.HasAnimatedButton,
-    cv.ui.common.BasicUpdate
-  ],
+  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
 
   /*
   ******************************************************
@@ -51,20 +46,22 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   members: {
     __xhr: null,
 
-    getXhr: function () {
+    getXhr() {
       return this.__xhr;
     },
 
     // property apply
-    _applyUrl: function(value) {
+    _applyUrl(value) {
       if (value) {
         if (!this.__xhr) {
           const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
+
           xhr.set({
             method: 'GET',
             accept: 'application/html',
             requestData: this.getParams()
           });
+
           this.__xhr = xhr;
         } else {
           this.__xhr.setUrl(qx.util.ResourceManager.getInstance().toUri(value));
@@ -73,13 +70,13 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
     },
 
     // overridden
-    _onDomReady: function() {
-      this.base(arguments);
+    _onDomReady() {
+      super._onDomReady();
       this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
     },
 
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       let actor = '<div class="actor switchUnpressed ';
       if (this.getAlign()) {
         actor += this.getAlign();
@@ -89,7 +86,7 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
     },
 
     // overridden
-    _action: function() {
+    _action() {
       if (this.__xhr) {
         this.__xhr.send();
       }
@@ -101,11 +98,11 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
+  destruct() {
     this._disposeObjects('__xhr');
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('urltrigger', statics);
   }
 });

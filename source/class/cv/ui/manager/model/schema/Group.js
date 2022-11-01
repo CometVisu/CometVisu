@@ -1,7 +1,7 @@
-/* Group.js 
- * 
+/* Group.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * a single group.
  * may be recursive
@@ -30,8 +29,8 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (node, schema) {
-    this.base(arguments, node, schema);
+  construct(node, schema) {
+    super(node, schema);
     this.parse();
   },
 
@@ -58,8 +57,8 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
      * Group is allowed (all|choice|sequence)? as per the definition.
      * We do all of those (except for 'all')
      */
-    parse: function () {
-      this.base(arguments);
+    parse() {
+      super.parse();
       const schema = this.getSchema();
 
       let group = this.getNode();
@@ -85,7 +84,7 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
      *
      * @return  object      list of allowed elements, key is the name
      */
-    getAllowedElements: function () {
+    getAllowedElements() {
       // we have non of ourselves, so we return what the child says
       return this._subGroupings[0].getAllowedElements();
     },
@@ -100,7 +99,7 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
      * @param   sortNumber  integer the sort number of a parent (only used when recursive)
      * @return  object              list of allowed elements, with their sort-number as value
      */
-    getAllowedElementsSorting: function (sortNumber) {
+    getAllowedElementsSorting(sortNumber) {
       const namesWithSorting = {};
       const allowedElements = this.getAllowedElements();
       Object.keys(allowedElements).forEach(name => {
@@ -128,7 +127,7 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
      * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    getRegex: function (separator, nocapture) {
+    getRegex(separator, nocapture) {
       if (this._regexCache !== null) {
         // use the cache if primed
         return this._regexCache;
@@ -141,8 +140,8 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
       this._subGroupings.forEach(grouping => {
         regexString = '(';
         if (nocapture) {
- regexString += '?:'; 
-}
+          regexString += '?:';
+        }
         regexString += grouping.getRegex(separator, nocapture) + ')';
       });
 
@@ -163,7 +162,7 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
       return regexString;
     },
 
-    getBoundsForElementName: function (childName) {
+    getBoundsForElementName(childName) {
       // we are a group. we have no saying of ourselves
       // (@FIXME: by definition we do, but we do not take that into account)
       return this._subGroupings[0].getBoundsForElementName(childName);

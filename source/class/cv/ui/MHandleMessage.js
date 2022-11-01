@@ -1,7 +1,7 @@
-/* MHandleMessage.js 
- * 
+/* MHandleMessage.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * MHandleMessage mixin provides a handleMessage method for most common use cases in message handling.
  * Holds a list of messages
@@ -32,9 +31,8 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
+  construct() {
     this._messages = new qx.data.Array();
-
 
     // severities in order of importance -> more important
     this._severities = ['low', 'normal', 'high', 'urgent'];
@@ -106,18 +104,18 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
     _severities: null,
     _idCounter: 0,
 
-    getIdCounter: function () {
+    getIdCounter() {
       return this._idCounter;
     },
 
-    getSeverities: function() {
+    getSeverities() {
       return this._severities;
     },
 
-    _updateHighestSeverity: function() {
+    _updateHighestSeverity() {
       // get the highest severity
       let severityRank = -1;
-      this._messages.forEach(function(message) {
+      this._messages.forEach(function (message) {
         if (message.severity && this._severities.indexOf(message.severity) > severityRank) {
           severityRank = this._severities.indexOf(message.severity);
         }
@@ -129,7 +127,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       }
     },
 
-    getSeverityColor: function(severity) {
+    getSeverityColor(severity) {
       switch (severity) {
         case 'urgent':
           return '#FF0000';
@@ -141,7 +139,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
     },
 
     // property apply
-    _applyMaxEntries: function(value) {
+    _applyMaxEntries(value) {
       if (this._messages.getLength() > value) {
         this._messages.splice(this._messages.getLength() - value);
       }
@@ -153,7 +151,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
      * @param message {Map}
      * @param config {Map?} optional configuration of this message for the handler
      */
-    handleMessage: function(message, config) {
+    handleMessage(message, config) {
       const delegate = this.getDelegate() || {};
       if (delegate.prepareMessage) {
         delegate.prepareMessage(message, config);
@@ -162,7 +160,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       const postHookPayload = {};
       if (message.unique) {
         // check if message is already shown
-        this._messages.some(function(msg, index) {
+        this._messages.some(function (msg, index) {
           if (message.topic === msg.topic) {
             // replace message
             found = msg;
@@ -226,7 +224,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
      * @param ev {Event}
      * @return {Array} [messageId, action]
      */
-    getMessageIdFromEvent: function(ev) {
+    getMessageIdFromEvent(ev) {
       // lets find the real target
       let target = ev.getTarget();
       let deleteTarget = null;
@@ -252,7 +250,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       return [messageId, deleteTarget ? 'delete' : 'action'];
     },
 
-    _onListTap: function(ev) {
+    _onListTap(ev) {
       const result = this.getMessageIdFromEvent(ev);
       if (result[0] >= 0) {
         if (result[1] === 'delete') {
@@ -263,10 +261,10 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       }
     },
 
-    _getTooltip: function(message) {
+    _getTooltip(message) {
       let tooltip = message.severity;
       if (message.actions) {
-        Object.getOwnPropertyNames(message.actions).forEach(function(type) {
+        Object.getOwnPropertyNames(message.actions).forEach(function (type) {
           if (message.actions[type].title) {
             tooltip = message.actions[type].title;
           }
@@ -280,7 +278,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
      *
      * @param force {Boolean} if false: only delete "deletable" messages, if true: delete all messages
      */
-    clear: function(force) {
+    clear(force) {
       if (force) {
         this._messages.removeAll();
         this._idCounter = 0;
@@ -294,11 +292,11 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       this._updateHighestSeverity();
     },
 
-    getMessage: function(index) {
+    getMessage(index) {
       return this._messages.getItem(index);
     },
 
-    getMessages: function() {
+    getMessages() {
       return this._messages;
     },
 
@@ -307,7 +305,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
      * @param index {Number}
      * @param ev {Event}
      */
-    deleteMessage: function(index, ev) {
+    deleteMessage(index, ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
@@ -325,7 +323,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       return false;
     },
 
-    performAction: function(messageId, ev) {
+    performAction(messageId, ev) {
       const message = this.getMessage(messageId);
       if (this._performAction && message) {
         const res = this._performAction(message);
@@ -337,11 +335,12 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       if (!message || !message.actions) {
         return;
       }
-      Object.getOwnPropertyNames(message.actions).forEach(function(type) {
+      Object.getOwnPropertyNames(message.actions).forEach(function (type) {
         const typeActions = Array.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
-        typeActions.forEach(function(action) {
+        typeActions.forEach(function (action) {
           if (!action.needsConfirmation) {
             const handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
+
             if (handler) {
               handler.handleAction(ev);
               if (action.deleteMessageAfterExecution) {
@@ -359,7 +358,7 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct: function() {
+  destruct() {
     this._disposeObjects('_messages');
   }
 });

@@ -1,7 +1,7 @@
-/* Address.js 
- * 
+/* Address.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -64,27 +64,41 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               // address has a fixed value that must be sent
               value = element.getAttribute('value');
             }
-            const allowDuplicates = ev.detail.source &&
+            const allowDuplicates =
+              ev.detail.source &&
               ev.detail.source instanceof cv.ui.structure.tile.components.Button &&
               (ev.detail.source.getType() === 'trigger' || ev.detail.source.getType() === 'push');
             if (value !== null) {
               const encoding = element.getAttribute('transform') || 'raw';
-              const encodedValue = cv.Transform.encodeBusAndRaw({transform: encoding}, value);
+              const encodedValue = cv.Transform.encodeBusAndRaw({ transform: encoding }, value);
+
               // noinspection EqualityComparisonWithCoercionJS
-              if (allowDuplicates ||
+              if (
+                allowDuplicates ||
                 !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') ||
-                encodedValue.raw !== element.lastSentValue) {
+                encodedValue.raw !== element.lastSentValue
+              ) {
                 if (element.hasAttribute('delay')) {
                   const delay = parseInt(element.getAttribute('delay'));
                   this.debug(`send with delay of ${delay}ms`);
-                  qx.event.Timer.once(() => {
-                    cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
-                    if (!allowDuplicates) {
-                      element.lastSentValue = encodedValue.raw;
-                    }
-                  }, this, delay);
+                  qx.event.Timer.once(
+                    () => {
+                      cv.io.BackendConnections.getClient(backendName).write(
+                        element.textContent,
+                        encodedValue.bus,
+                        element
+                      );
+
+                      if (!allowDuplicates) {
+                        element.lastSentValue = encodedValue.raw;
+                      }
+                    },
+                    this,
+                    delay
+                  );
                 } else {
                   cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
+
                   if (!allowDuplicates) {
                     element.lastSentValue = encodedValue.raw;
                   }
@@ -104,14 +118,18 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     fireStateUpdate(address, state) {
       if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
-        let transformedState = cv.Transform.decode({transform: transform}, state);
+        let transformedState = cv.Transform.decode({ transform: transform }, state);
+
         let mapping = '';
         if (this._element.hasAttribute('mapping')) {
           mapping = this._element.getAttribute('mapping');
           transformedState = cv.Application.structureController.mapValue(mapping, transformedState);
         }
         if (this._element.hasAttribute('format')) {
-          transformedState = cv.util.String.sprintf(this._element.getAttribute('format'), transformedState instanceof Date ? transformedState.toLocaleString() : transformedState);
+          transformedState = cv.util.String.sprintf(
+            this._element.getAttribute('format'),
+            transformedState instanceof Date ? transformedState.toLocaleString() : transformedState
+          );
         }
         const ev = new CustomEvent('stateUpdate', {
           bubbles: true,
@@ -127,6 +145,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
           }
         });
+
         this.__transformedValue = transformedState;
         //console.log(ev.detail);
         this._element.dispatchEvent(ev);
@@ -144,10 +163,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   },
 
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'address', class extends QxConnector {
-      constructor() {
-        super(Clazz);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'address',
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
       }
-    });
+    );
   }
 });

@@ -13,12 +13,12 @@ qx.Class.define('cv.io.parser.Json', {
   */
   statics: {
     parse: qx.core.Environment.select('cv.xhr', {
-      'jquery': function(data) {
+      jquery(data) {
         var result = {};
         try {
           result = JSON.parse(data);
         } catch (e) {
-          data.split('}{').forEach(function(subData, i) {
+          data.split('}{').forEach(function (subData, i) {
             try {
               var jsonString = i === 0 ? subData + '}' : '{' + subData;
               result = $.extend(result, JSON.parse(jsonString));
@@ -30,12 +30,12 @@ qx.Class.define('cv.io.parser.Json', {
         }
         return result;
       },
-      'qx': function(data) {
+      qx(data) {
         var result = {};
         try {
           result = JSON.parse(data);
         } catch (e) {
-          data.split('}{').forEach(function(subData, i) {
+          data.split('}{').forEach(function (subData, i) {
             try {
               var jsonString = i === 0 ? subData + '}' : '{' + subData;
               result = Object.assign(result, JSON.parse(jsonString));

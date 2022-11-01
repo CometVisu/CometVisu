@@ -1,7 +1,7 @@
-/* VirtualSelectBox.js 
- * 
+/* VirtualSelectBox.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * qx.ui.form.VirtualSelectBox that uses cv.ui.manager.form.ListItem as 'atom' childcontrol.
  */
@@ -31,7 +30,7 @@ qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
   */
   members: {
     // overridden
-    _createChildControlImpl : function(id, hash) {
+    _createChildControlImpl(id, hash) {
       let control;
 
       switch (id) {
@@ -40,11 +39,11 @@ qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
           control.setCenter(false);
           control.setAnonymous(true);
 
-          this._add(control, {flex:1});
+          this._add(control, { flex: 1 });
           break;
       }
 
-      return control || this.base(arguments, id, hash);
+      return control || super._createChildControlImpl(id, hash);
     }
   }
 });

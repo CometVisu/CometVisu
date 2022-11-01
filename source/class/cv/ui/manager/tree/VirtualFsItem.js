@@ -1,7 +1,7 @@
-/* VirtualFsItem.js 
- * 
+/* VirtualFsItem.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Widget for filesystem items in a virtual tree.
@@ -66,8 +65,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
   ***********************************************
   */
   members: {
-
-    _applyEditing: function (value, old) {
+    _applyEditing(value, old) {
       if (value !== old) {
         const field = this.getChildControl('edit');
         if (value) {
@@ -84,7 +82,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
         }
       }
     },
-    _applyTemporary: function (value) {
+    _applyTemporary(value) {
       if (value) {
         this.addState('temporary');
       } else {
@@ -93,8 +91,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
     },
 
     // overridden
-    _applyModel : function(value, old) {
-      this.base(arguments, value, old);
+    _applyModel(value, old) {
+      super._applyModel(value, old);
       if (old) {
         old.removeRelatedBindings(this);
       }
@@ -104,7 +102,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
         } else {
           value.bind('name', this, 'label');
           value.bind('valid', this, 'status', {
-            converter: function (value) {
+            converter(value) {
               return value === true ? 'valid' : 'error';
             }
           });
@@ -120,7 +118,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
       }
     },
 
-    _applyStatus: function (value) {
+    _applyStatus(value) {
       const control = this.getChildControl('icon');
       if (value) {
         switch (value) {
@@ -140,16 +138,16 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
      * @param ev {Event}
      * @private
      */
-    _onDrop: function (ev) {
+    _onDrop(ev) {
       this.info(ev.getRelatedTarget());
     },
 
-    __cancelEditing: function () {
+    __cancelEditing() {
       this.getChildControl('edit').setValue(this.getName());
       this.setEditing(false);
     },
 
-    _onKeypress: function (ev) {
+    _onKeypress(ev) {
       if (ev.getKeyIdentifier() === 'Enter') {
         this.setEditing(false);
       } else if (ev.getKeyIdentifier() === 'Esc') {
@@ -158,29 +156,29 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
     },
 
     // overridden
-    _createChildControlImpl : function(id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
-         case 'edit':
-           control = new qx.ui.form.TextField();
-           control.addListener('keypress', this._onKeypress, this);
-           control.exclude();
-           control.addListener('changeVisibility', function (ev) {
-              if (ev.getData() === 'visible') {
-                this.getChildControl('label').exclude();
-              } else {
-                this.getChildControl('label').show();
-              }
-           }, this);
-           control.addListener('blur', function () {
-             this.setEditing(false);
-           }, this);
-           this._add(control);
-           break;
-       }
+        case 'edit':
+          control = new qx.ui.form.TextField();
+          control.addListener('keypress', this._onKeypress, this);
+          control.exclude();
+          control.addListener('changeVisibility', ev => {
+            if (ev.getData() === 'visible') {
+              this.getChildControl('label').exclude();
+            } else {
+              this.getChildControl('label').show();
+            }
+          });
+          control.addListener('blur', () => {
+            this.setEditing(false);
+          });
+          this._add(control);
+          break;
+      }
 
-       return control || this.base(arguments, id);
+      return control || super._createChildControlImpl(id);
     }
   }
 });

@@ -1,7 +1,7 @@
-/* Replay.js 
- * 
+/* Replay.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * Replay tool for user interactions on existing configs. Used for bug reproduction
@@ -37,7 +36,7 @@ qx.Class.define('cv.report.Replay', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
+  construct() {
     this.__log = [];
     this.__start = Date.now();
   },
@@ -55,7 +54,7 @@ qx.Class.define('cv.report.Replay', {
     REPLAYING: false,
     data: null,
 
-    prepare: function(data) {
+    prepare(data) {
       cv.report.Record.REPLAYING = true;
       cv.report.Replay.getInstance().prepare(data);
       // override startpage setting
@@ -66,7 +65,7 @@ qx.Class.define('cv.report.Replay', {
       }
     },
 
-    start: function() {
+    start() {
       if (cv.report.Record.REPLAYING === true) {
         cv.report.Replay.getInstance().start();
       }
@@ -90,7 +89,7 @@ qx.Class.define('cv.report.Replay', {
     __skipMoveEvents: false,
     __startTime: null,
 
-    prepare: function(log) {
+    prepare(log) {
       // patch XHR
       qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrReplayHook);
 
@@ -103,8 +102,12 @@ qx.Class.define('cv.report.Replay', {
       if (log.data.cache) {
         cv.ConfigCache._parseCacheData = log.data.cache;
         // parse stringified data
-        cv.ConfigCache._parseCacheData.data = typeof log.data.cache.data === 'string' ? JSON.parse(log.data.cache.data) : log.data.cache.data;
-        cv.ConfigCache._parseCacheData.configSettings = typeof log.data.cache.configSettings === 'string' ? JSON.parse(log.data.cache.configSettings) : log.data.cache.configSettings;
+        cv.ConfigCache._parseCacheData.data =
+          typeof log.data.cache.data === 'string' ? JSON.parse(log.data.cache.data) : log.data.cache.data;
+        cv.ConfigCache._parseCacheData.configSettings =
+          typeof log.data.cache.configSettings === 'string'
+            ? JSON.parse(log.data.cache.configSettings)
+            : log.data.cache.configSettings;
       }
       if (log.data.storage) {
         const store = qx.bom.Storage.getLocal();
@@ -118,15 +121,20 @@ qx.Class.define('cv.report.Replay', {
     /**
      * Start replaying the given data
      */
-    start: function() {
+    start() {
       const runtime = Math.round((this.__end - this.__start) / 1000);
-      this.info('Replay time: '+Math.floor(runtime/60)+':'+ (''+(runtime % 60)).padStart(2, '0'));
+      this.info('Replay time: ' + Math.floor(runtime / 60) + ':' + ('' + (runtime % 60)).padStart(2, '0'));
+
       this.__startTime = Date.now();
 
       const delay = this.__log[0].t - this.__start;
-      qx.event.Timer.once(function() {
-        this.__replay(0);
-      }, this, delay);
+      qx.event.Timer.once(
+        function () {
+          this.__replay(0);
+        },
+        this,
+        delay
+      );
     },
 
     /**
@@ -134,7 +142,7 @@ qx.Class.define('cv.report.Replay', {
      * @param path {String} CSS selector or "Window"
      * @return {Element|null}
      */
-    __findElement: function(path) {
+    __findElement(path) {
       if (path === 'Window') {
         return window;
       } else if (path === 'document') {
@@ -144,35 +152,45 @@ qx.Class.define('cv.report.Replay', {
         let match = re.exec(path);
         while (match) {
           const index = parseInt(match[1]) + 1;
-          path = path.replace(match[0], ':nth-child('+index+')');
+          path = path.replace(match[0], ':nth-child(' + index + ')');
           match = re.exec(path);
         }
         return document.querySelector(path);
-      } 
-        return document.querySelector(path);
+      }
+      return document.querySelector(path);
     },
 
-    __replay: function(index) {
+    __replay(index) {
       this.__currentIndex = index;
       const record = this.__log[index];
       this.__dispatchRecord(record);
       if (this.__log.length === index + 1) {
         this.info('All log events have been played, waiting till end of recording time');
-        qx.event.Timer.once(function() {
-          qx.bom.Notification.getInstance().show('Replay', 'Replay finished');
-          cv.io.Client.stopAll();
-          const runtime = Math.round((Date.now() - this.__startTime) / 1000);
-          this.info('Log replayed in: '+Math.floor(runtime/60)+':'+ (''+(runtime % 60)).padStart(2, '0'));
-        }, this, this.__end - this.__log[index].t);
+
+        qx.event.Timer.once(
+          function () {
+            qx.bom.Notification.getInstance().show('Replay', 'Replay finished');
+            cv.io.Client.stopAll();
+            const runtime = Math.round((Date.now() - this.__startTime) / 1000);
+            this.info('Log replayed in: ' + Math.floor(runtime / 60) + ':' + ('' + (runtime % 60)).padStart(2, '0'));
+          },
+          this,
+          this.__end - this.__log[index].t
+        );
+
         return;
       }
       const delay = this.__log[index + 1].t - this.__log[index].t;
-      qx.event.Timer.once(function() {
-        this.__replay(index+1);
-      }, this, delay);
+      qx.event.Timer.once(
+        function () {
+          this.__replay(index + 1);
+        },
+        this,
+        delay
+      );
     },
 
-    __dispatchRecord: function(record) {
+    __dispatchRecord(record) {
       switch (record.c) {
         case cv.report.Record.BACKEND:
           this.__dispatchBackendRecord(record);
@@ -189,7 +207,7 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.SCREEN:
           // most browsers do not allow resizing the window
-          this.info('resize event received '+JSON.stringify(record.d));
+          this.info('resize event received ' + JSON.stringify(record.d));
           window.resizeTo(record.d.w, record.d.h);
           break;
 
@@ -212,10 +230,11 @@ qx.Class.define('cv.report.Replay', {
               evt[key] = evt[key] ? this.__findElement(evt[key]) : null;
             }, this);
             const event = new window[record.d.eventClass](record.d.native.type, evt);
+
             if (record.d.native.type === 'pointerup' && target.nodeName === 'A') {
               // workaround for mouse clicks on <a> elemente e.g. in the breadcrumb navigation
               // check for last pointerdown event, if id was on same element we have a click
-              for (let i=this.__currentIndex-1; i>0; i--) {
+              for (let i = this.__currentIndex - 1; i > 0; i--) {
                 if (this.__log[i].d.native.type === 'pointerdown') {
                   if (this.__log[i].i === record.i) {
                     // same element
@@ -230,29 +249,33 @@ qx.Class.define('cv.report.Replay', {
           break;
 
         default:
-          this.error('replaying of category '+record.c+' no implemented');
+          this.error('replaying of category ' + record.c + ' no implemented');
           break;
       }
     },
 
-    __playScrollEvent: function(record) {
+    __playScrollEvent(record) {
       const elem = document.querySelector('#' + record.d.page);
       elem.scrollTop = record.d.native ? record.d.native.pageY : record.d.y;
       elem.scrollLeft = record.d.native ? record.d.native.pageX : record.d.x;
     },
 
-    _simulateCursor: function(record) {
+    _simulateCursor(record) {
       // simulate cursor
       if (!this.__cursor) {
         this.__cursor = qx.dom.Element.create('span', {
           style: 'position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000'
         });
+
         this.__cursor.innerHTML = '&uarr;';
         document.querySelector('body').appendChild(this.__cursor);
       }
-      Object.entries({top: (record.d.native.clientY-10)+'px', left: (record.d.native.clientX-10)+'px'}).forEach(function(key_value) {
- this.__cursor.style[key_value[0]]=key_value[1]; 
-}, this);
+      Object.entries({
+        top: record.d.native.clientY - 10 + 'px',
+        left: record.d.native.clientX - 10 + 'px'
+      }).forEach(function (key_value) {
+        this.__cursor.style[key_value[0]] = key_value[1];
+      }, this);
 
       if (/.+(down|start)/.test(record.d.native.type)) {
         this.__cursor.style.color = record.d.native.button === 2 ? 'blue' : 'red';
@@ -261,14 +284,14 @@ qx.Class.define('cv.report.Replay', {
       }
     },
 
-    __dispatchBackendRecord: function(record) {
+    __dispatchBackendRecord(record) {
       const client = this.__getClient();
       switch (record.i) {
         case 'read':
           if (client instanceof cv.io.openhab.Rest) {
             client.handleMessage(record.d);
           } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
-            client.getCurrentTransport().handleMessage({data: record.d});
+            client.getCurrentTransport().handleMessage({ data: record.d });
           } else {
             this.error('long-polling transport should not record \'backend\' log events. Skip replaying');
           }
@@ -277,17 +300,17 @@ qx.Class.define('cv.report.Replay', {
           if (client[record.i]) {
             client[record.i].apply(client, record.d);
           } else if (client instanceof cv.io.openhab.Rest) {
-            this.error('unhandled rest backend record of type '+record.i);
+            this.error('unhandled rest backend record of type ' + record.i);
           } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
             client.getCurrentTransport().dispatchTopicMessage(record.i, record.d);
           } else {
-            this.error('unhandled backend record of type '+record.i);
+            this.error('unhandled backend record of type ' + record.i);
           }
           break;
       }
     },
 
-    __getClient: function() {
+    __getClient() {
       if (!this.__client) {
         this.__client = cv.io.BackendConnections.getClient();
       }

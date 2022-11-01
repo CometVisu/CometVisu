@@ -1,7 +1,7 @@
-/* PageLink.js 
- * 
+/* PageLink.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,7 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
-
 
 /**
  * PageLink Widget for visible pages. Do not use this directly because the pagelink widget
@@ -34,19 +33,22 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
    ******************************************************
    */
   properties: {
-    name : {
+    name: {
       check: 'String',
       init: '',
       nullable: true
     },
-    wstyle : {
+
+    wstyle: {
       check: 'String',
       init: ''
     },
-    address : {
+
+    address: {
       check: 'Object',
       init: {}
     },
+
     bindClickToWidget: {
       refine: true,
       init: true
@@ -60,24 +62,28 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
   */
   members: {
     // overridden
-    getDomString: function() {
+    getDomString() {
       const layout = this.getLayout();
 
-      const style = typeof layout === 'object' ? '' : 'style="' + cv.parser.pure.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
+      const style =
+        typeof layout === 'object'
+          ? ''
+          : 'style="' + cv.parser.pure.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
 
       let ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
-      ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';
+      ret_val +=
+        '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';
       ret_val += '</div>';
       return ret_val;
     },
 
     // overridden
-    action: function() {
+    action() {
       cv.Application.structureController.scrollToPage(this.getPath() + '_');
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('pagelink', statics);
   }
 });

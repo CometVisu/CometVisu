@@ -1,7 +1,7 @@
-/* Mapping.js 
- * 
+/* Mapping.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -30,8 +30,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (element) {
-    this.base(arguments, element);
+  construct(element) {
+    super(element);
     this.__cache = {};
   },
 
@@ -44,7 +44,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
     __cache: null,
 
     _applyConnected(value, oldValue, name) {
-      this.base(arguments, value, oldValue, name);
+      super._applyConnected(value, oldValue, name);
       // avoid adding styling elements here as they inherit this method but call the super method too
       if (this._element.tagName.toLowerCase().endsWith('mapping')) {
         if (value) {
@@ -66,7 +66,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
         return this.__cache[val];
       }
       let mappedValue = '' + val;
-      const exactMatch = this._element.querySelector(':scope > entry[value="'+val+'"]');
+      const exactMatch = this._element.querySelector(':scope > entry[value="' + val + '"]');
+
       let type = this._element.hasAttribute('type') ? this._element.getAttribute('type') : 'string';
       if (exactMatch) {
         mappedValue = this._convert(exactMatch.innerHTML.trim(), type);
@@ -99,7 +100,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
           }
         } else if (entry.hasAttribute('range-min')) {
           const rangeMin = parseFloat(entry.getAttribute('range-min'));
-          const rangeMax = entry.hasAttribute('range-max') ? parseFloat(entry.getAttribute('range-max')) : Number.POSITIVE_INFINITY;
+          const rangeMax = entry.hasAttribute('range-max')
+            ? parseFloat(entry.getAttribute('range-max'))
+            : Number.POSITIVE_INFINITY;
           const floatValue = parseFloat(val);
           if (rangeMin <= floatValue && floatValue <= rangeMax) {
             mappedValue = this._convert(entry.innerHTML.trim(), type);
@@ -131,20 +134,24 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       }
     }
   },
+
   /*
   ***********************************************
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this.__cache = null;
   },
 
   defer(Clazz) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'mapping', class extends QxConnector {
-      constructor() {
-        super(Clazz);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'mapping',
+      class extends QxConnector {
+        constructor() {
+          super(Clazz);
+        }
       }
-    });
+    );
   }
 });

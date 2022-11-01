@@ -1,7 +1,7 @@
-/* ScriptLoader.js 
- * 
+/* ScriptLoader.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 qx.Class.define('cv.util.ScriptLoader', {
   extend: qx.core.Object,
   type: 'singleton',
@@ -27,8 +26,8 @@ qx.Class.define('cv.util.ScriptLoader', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
-    this.base(arguments);
+  construct() {
+    super();
     this.__scriptQueue = new qx.data.Array();
     this.__loaders = new qx.data.Array();
     this.__delayedScriptQueue = new qx.data.Array();
@@ -41,11 +40,11 @@ qx.Class.define('cv.util.ScriptLoader', {
   ***********************************************
   */
   statics: {
-    markAsLoaded: function (path) {
+    markAsLoaded(path) {
       return this.getInstance().markAsLoaded(path);
     },
 
-    isMarkedAsLoaded: function (path) {
+    isMarkedAsLoaded(path) {
       return this.getInstance().isMarkedAsLoaded(path);
     },
 
@@ -112,6 +111,7 @@ qx.Class.define('cv.util.ScriptLoader', {
       apply: '_checkQueue',
       event: 'changeAllQueued'
     },
+
     finished: {
       check: 'Boolean',
       init: false,
@@ -125,9 +125,9 @@ qx.Class.define('cv.util.ScriptLoader', {
   ******************************************************
   */
   events: {
-    'finished': 'qx.event.type.Event',
-    'stylesLoaded': 'qx.event.type.Event',
-    'designError': 'qx.event.type.Data'
+    finished: 'qx.event.type.Event',
+    stylesLoaded: 'qx.event.type.Event',
+    designError: 'qx.event.type.Data'
   },
 
   /*
@@ -138,14 +138,14 @@ qx.Class.define('cv.util.ScriptLoader', {
   members: {
     __scriptQueue: null,
     __loaders: null,
-    __listener : null,
+    __listener: null,
     __markedAsLoaded: null,
 
-    addStyles: function(styleArr) {
-      const queue = (typeof styleArr === 'string' ? [styleArr] : styleArr.concat());
-      const suffix = (cv.Config.forceReload === true) ? '?' + Date.now() : '';
+    addStyles(styleArr) {
+      const queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
+      const suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
       let promises = [];
-      queue.forEach(function(style) {
+      queue.forEach(function (style) {
         let media;
         let src;
         if (typeof style === 'string') {
@@ -173,32 +173,33 @@ qx.Class.define('cv.util.ScriptLoader', {
         .then(() => {
           this.debug('styles have been loaded');
           this.fireEvent('stylesLoaded');
-        }).catch(reason => {
-            this.error('error loading styles', reason);
-            // fire this event anyways, because a non loaded CSS file is no blocker
-            this.fireEvent('stylesLoaded');
+        })
+        .catch(reason => {
+          this.error('error loading styles', reason);
+          // fire this event anyways, because a non loaded CSS file is no blocker
+          this.fireEvent('stylesLoaded');
         });
     },
 
-    markAsLoaded: function (path) {
+    markAsLoaded(path) {
       if (!this.__markedAsLoaded.includes(path)) {
         this.debug('marking ' + path + ' as loaded');
         this.__markedAsLoaded.push(path);
       }
     },
 
-    isMarkedAsLoaded: function (path) {
+    isMarkedAsLoaded(path) {
       return this.__markedAsLoaded.includes(path);
     },
 
-    addScripts: function(scriptArr, order) {
-      const queue = (typeof scriptArr === 'string' ? [scriptArr] : scriptArr);
+    addScripts(scriptArr, order) {
+      const queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr;
       // make sure that no cached scripts are loaded
-      const suffix = (cv.Config.forceReload === true) ? '?' + Date.now() : '';
+      const suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
       const realQueue = [];
       let i = 0;
       const l = queue.length;
-      for (; i<l; i++) {
+      for (; i < l; i++) {
         if (!this.__markedAsLoaded.includes(queue[i])) {
           realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
         }
@@ -206,7 +207,7 @@ qx.Class.define('cv.util.ScriptLoader', {
       if (realQueue.length === 0) {
         return;
       }
-      this.debug('queueing '+realQueue.length+' scripts');
+      this.debug('queueing ' + realQueue.length + ' scripts');
       this.resetFinished();
       this.__scriptQueue.append(realQueue);
       if (order) {
@@ -234,28 +235,28 @@ qx.Class.define('cv.util.ScriptLoader', {
      *
      * @param script {String} path to script
      */
-    __loadSingleScript: function(script) {
+    __loadSingleScript(script) {
       const loader = new qx.util.DynamicScriptLoader(script);
       this.__loaders.push(loader);
       loader.addListener('loaded', this._onLoaded, this);
       loader.addListener('failed', this._onFailed, this);
-      loader.addListenerOnce('ready', function() {
+      loader.addListenerOnce('ready', () => {
         this.__loaders.remove(loader);
         loader.removeListener('loaded', this._onLoaded, this);
         loader.removeListener('failed', this._onFailed, this);
-      }, this);
+      });
       loader.start();
       return loader;
     },
 
-    _onLoaded: function(ev) {
+    _onLoaded(ev) {
       const data = ev.getData();
       this.__scriptQueue.remove(data.script);
-      this.debug(data.script+' loaded');
+      this.debug(data.script + ' loaded');
       this._checkQueue();
     },
 
-    _onFailed: function(ev) {
+    _onFailed(ev) {
       const data = ev.getData();
       this.__scriptQueue.remove(data.script);
       if (data.script.startsWith('design')) {
@@ -267,6 +268,7 @@ qx.Class.define('cv.util.ScriptLoader', {
           cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
             title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
             message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+
             severity: 'high',
             deletable: true
           });
@@ -274,7 +276,8 @@ qx.Class.define('cv.util.ScriptLoader', {
       } else {
         cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
           title: qx.locale.Manager.tr('File loading error'),
-          message:  qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+          message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+
           severity: 'high',
           deletable: true
         });
@@ -283,7 +286,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     },
 
     // property apply
-    _checkQueue: function() {
+    _checkQueue() {
       if (this.__scriptQueue.length === 0) {
         if (this.isAllQueued()) {
           this.debug('script loader finished');
@@ -292,7 +295,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         } else if (!this.__listener) {
           this.debug('script loader waiting for all scripts beeing queued');
 
-          this.__listener = this.addListener('changeAllQueued', function(ev) {
+          this.__listener = this.addListener('changeAllQueued', ev => {
             if (ev.getData() === true) {
               if (this.__scriptQueue.length === 0) {
                 this.debug('script loader finished');
@@ -302,10 +305,10 @@ qx.Class.define('cv.util.ScriptLoader', {
               this.removeListenerById(this.__listener);
               this.__listener = null;
             }
-          }, this);
+          });
         }
       } else {
-        this.debug(this.__scriptQueue.length+' scripts remaining');
+        this.debug(this.__scriptQueue.length + ' scripts remaining');
       }
     }
   }

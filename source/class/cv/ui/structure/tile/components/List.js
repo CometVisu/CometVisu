@@ -1,7 +1,7 @@
-/* List.js 
- * 
+/* List.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -81,6 +81,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _filterModel: null,
     _sortModel: null,
     _limit: null,
+    _modelInstance: null,
 
     _init() {
       const element = this._element;
@@ -98,6 +99,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         this._limit = parseInt(model.getAttribute('limit'));
       }
       const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
+
       if (model.hasAttribute('sort-by')) {
         const sortBy = model.getAttribute('sort-by');
         // reverse order in 'desc' sort mode
@@ -133,13 +135,35 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         // fetch from url
         this._getModel = async () => {
           const res = await cv.io.Fetch.fetch(model.getAttribute('src'), null, model.getAttribute('proxy') === 'true');
+
           return res;
         };
+      } else if (model.hasAttribute('class')) {
+        // initialize internal class instance that implements cv.io.listmodel.IListModel
+        const Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
+        if (Clazz) {
+          const modelInstance = new Clazz();
+          if (model.hasAttribute('parameters')) {
+            const props = {};
+            for (let entry of model.getAttribute('parameters').split(',')) {
+              const [name, value] = entry.split('=').map(n => n.trim());
+              props[name] = value.startsWith('\'') ? value.substring(1, value.length-1) : value;
+            }
+            modelInstance.set(props);
+          }
+          this._getModel = async () => {
+            await modelInstance.refresh();
+            return modelInstance.getModel();
+          };
+        } else {
+          this.error(`clazz "cv.io.listmodel.${model.getAttribute('class')}" not found`);
+        }
       } else {
         const script = model.querySelector(':scope > script');
         const data = model.querySelectorAll(':scope > cv-data');
         if (script) {
           this._getModel = new Function('"use strict";let model = []; ' + script.innerText.trim() + '; return model');
+
           this._model = this._getModel();
         } else if (readAddresses.length > 0) {
           // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
@@ -152,13 +176,17 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             const d = {
               index: i
             };
+
             for (const a of elem.attributes) {
               d[a.name] = a.value;
             }
             this._model.push(d);
           });
         } else {
-          this.error('cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.');
+          this.error(
+            'cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.'
+          );
+
           return;
         }
       }
@@ -186,7 +214,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           this._lastRefresh = null;
         }
       } else {
-        this.base(arguments, ev);
+        super.onStateUpdate(ev);
       }
       // cancel event here
       ev.stopPropagation();
@@ -239,6 +267,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         }
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
+
           if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
             while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
               target.removeChild(target.firstElementChild);
@@ -263,28 +292,71 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           }
         }
 
+        const getValue = (name, entry) => {
+          let index = -1;
+          if (name.endsWith(']')) {
+            // array access
+            index = parseInt(name.substring(name.indexOf('[') + 1, name.length - 1));
+            if (isNaN(index)) {
+              this.error(
+                'error parsing array index from ' + name,
+                name.substring(name.indexOf('[') + 1, name.length - 1)
+              );
+              return '';
+            }
+            name = name.substring(0, name.indexOf('['));
+          }
+          if (Object.prototype.hasOwnProperty.call(entry, name)) {
+            let val = entry[name];
+            if (index >= 0 && Array.isArray(val)) {
+              return val[index];
+            }
+            return val;
+          }
+          return '';
+        };
+
         newModel.forEach((entry, i) => {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
-          const html = template.innerHTML.replaceAll(/\${([^}\[]+)\[?(\d+)?\]?}/g, (match, p1, p2) => {
-            if (Object.prototype.hasOwnProperty.call(entry, p1)) {
-              let val = entry[p1];
-              if (p2 && Array.isArray(val)) {
-                return val[parseInt(p2)];
-              }
-              return val;
-            } else if (p1 === 'index') {
+          const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, content) => {
+            if (content === 'index') {
               return '' + i;
             }
-            return '';
+            if (content.includes('||')) {
+              // elements are or'ed use the first one with value
+              let val = '';
+              for (let name of content.split('||').map(n => n.trim())) {
+                val = getValue(name, entry);
+                if (val) {
+                  return val;
+                }
+              }
+            }
+            return getValue(content, entry);
           });
+
           itemTemplate.innerHTML = html;
+          // check for elements with when attributes
+          itemTemplate.content.firstElementChild.querySelectorAll('[when]').forEach(elem => {
+            const [leftVal, rightVal] = elem
+              .getAttribute('when')
+              .split('=')
+              .map(n => n.trim());
+            // noinspection EqualityComparisonWithCoercionJS
+            if (leftVal != rightVal) {
+              elem.parentElement.removeChild(elem);
+            } else {
+              elem.removeAttribute('when');
+            }
+          });
           if (elem) {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
-            elem.setAttribute('data-row', ''+i);
+            elem.setAttribute('data-row', '' + i);
           } else {
             // append new child
-            itemTemplate.content.firstElementChild.setAttribute('data-row', ''+i);
+            itemTemplate.content.firstElementChild.setAttribute('data-row', '' + i);
+
             target.appendChild(itemTemplate.content.cloneNode(true));
           }
         });
@@ -295,11 +367,27 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     }
   },
 
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct() {
+    this._disposeObjects('_modelInstance', '_timer');
+    this._model = null;
+    this._filterModel = null;
+    this._sortModel = null;
+    this._target = null;
+  },
+
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'list', class extends QxConnector {
-      constructor() {
-        super(QxClass);
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'list',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
       }
-    });
+    );
   }
 });
