@@ -263,10 +263,13 @@ Das Modell für die Mitglieder eines GroupItems, hat folgende Struktur:
 
 **Mitgelieferte Modelle**
 
-Die CometVisu liefert einige vordefinierte Modell mit, mit denen einige Datenquellen von Plugins eingebunden werden
-können. Bisher sind das die Anrufliste einer Fritz!Box über das :doc:`tr064 <../../widgets/plugins/tr064/index>`-Plugin und die Daten aus der
-:doc:`RSSlog <../../widgets/plugins/rsslog/index>` -Datenbank. Hierfür ist es nicht nötig die Plugins in der Config einzubinden, denn
+Die CometVisu liefert einige vordefinierte Modelle mit, mit denen einige Datenquellen von Plugins eingebunden werden
+können. Bisher ist es möglich die Anrufliste einer Fritz!Box über das :doc:`tr064 <../../widgets/plugins/tr064/index>`-Plugin und die Daten aus der
+:doc:`RSSlog <../../widgets/plugins/rsslog/index>` -Datenbank abzufragen. Hierfür ist es nicht nötig die Plugins in der Config einzubinden, denn
 es werden nur die Daten abgefragt und ansonsten nichts von den Plugins selbst benutzt.
+Erforderliche Konfigurationen, wie z.B. das Hinterlegen von Zugangsdaten in der versteckten 
+Konfiguration, wie z.B. für das :doc:`tr064 <../../widgets/plugins/tr064/index>`-Plugin müssen natürlich auch hier vorgenommen werden, damit die
+Datenabfrage für Listen-Modelle funktioniert.
 
 Beispiel zur Anzeige der Anruferliste aus dem tr064-Plugin:
 
