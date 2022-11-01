@@ -15,7 +15,6 @@ jobs:
       - run: npm install
       - name: Lint code
         run: npm run lint
-        continue-on-error: true # allow this for now, re-activate after upgrade to qx7
 
   build:
     runs-on: ubuntu-latest

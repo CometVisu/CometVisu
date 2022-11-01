@@ -261,6 +261,69 @@ Das Modell für die Mitglieder eines GroupItems, hat folgende Struktur:
         "active": true
     }]
 
+**Mitgelieferte Modelle**
+
+Die CometVisu liefert einige vordefinierte Modelle mit, mit denen einige Datenquellen von Plugins eingebunden werden
+können. Bisher ist es möglich die Anrufliste einer Fritz!Box über das :doc:`tr064 <../../widgets/plugins/tr064/index>`-Plugin und die Daten aus der
+:doc:`RSSlog <../../widgets/plugins/rsslog/index>` -Datenbank abzufragen. Hierfür ist es nicht nötig die Plugins in der Config einzubinden, denn
+es werden nur die Daten abgefragt und ansonsten nichts von den Plugins selbst benutzt.
+Erforderliche Konfigurationen, wie z.B. das Hinterlegen von Zugangsdaten in der versteckten 
+Konfiguration, wie z.B. für das :doc:`tr064 <../../widgets/plugins/tr064/index>`-Plugin müssen natürlich auch hier vorgenommen werden, damit die
+Datenabfrage für Listen-Modelle funktioniert.
+
+Beispiel zur Anzeige der Anruferliste aus dem tr064-Plugin:
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-tile">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/tr064_proxy.xml" target-path="resource/plugins/tr064/proxy.php"/>
+            <fixture source-file="source/test/fixtures/tr064_soap.json" target-path="resource/plugins/tr064/soap.php"/>
+        </fixtures>
+        <screenshot name="cv-tr064plugin-list"></screenshot>
+    </settings>
+    <cv-tile>
+        <cv-list rowspan="3" colspan="3" refresh="120">
+            <model class="FritzCallList" parameters="device=tr064device,max=10"/>
+            <template>
+              <li>
+                <div style="float: left; font-size: 1.5em; padding-right: 8px">
+                  <i class="knxuf-phone_call_in" style="color: #268DDA; vertical-align: middle;" when="${Type}=1"/>
+                  <i class="knxuf-phone_missed_in" style="color: #E45F3B; vertical-align: middle;" when="${Type}=2"/>
+                  <i class="knxuf-phone_call_out" style="color: #8BBF68; vertical-align: middle;" when="${Type}=3"/>
+                </div>
+                <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  ${Name || Caller}
+                  <div style="font-size: 0.9em; color: #777;">${Date}</div>
+                </div>
+              </li>
+            </template>
+        </cv-list>
+    </cv-tile>
+
+Beispiel zur Anzeige der Eintrage aus dem RssLog-Plugin:
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-tile">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/rsslog.json" target-path="resource/plugins/rsslog/rsslog.php" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-rsslogplugin-list"></screenshot>
+    </settings>
+    <cv-tile>
+        <cv-list rowspan="3" colspan="3" refresh="120">
+            <model class="RssLog" parameters="limit=10"/>
+            <template>
+              <li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <div style="font-weight: bold">${title}</div>
+                <div style="color: #999">${content}</div>
+              </li>
+            </template>
+        </cv-list>
+    </cv-tile>
+
+
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^
 

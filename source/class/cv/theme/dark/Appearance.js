@@ -31,8 +31,8 @@ qx.Theme.define('cv.theme.dark.Appearance', {
     },
     button: {
       /* qx.ui.form.Button */
-      alias: "material-button",
-      include: "material-button",
+      alias: 'material-button',
+      include: 'material-button',
       style(states) {
         return { 
           center: true,
