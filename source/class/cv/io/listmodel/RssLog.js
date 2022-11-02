@@ -68,7 +68,7 @@ qx.Class.define('cv.io.listmodel.RssLog', {
   ***********************************************
   */
   events: {
-    finished: 'qy.event.type.Data'
+    finished: 'qx.event.type.Data'
   },
 
   /*
