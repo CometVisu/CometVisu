@@ -204,6 +204,23 @@ qx.Class.define('cv.Application', {
       init: false,
       event: 'changeMobile',
       apply: '_applyMobile'
+    },
+
+    serverChecked: {
+      check: 'Boolean',
+      init: false,
+      event: 'serverCheckedChanged'
+    },
+
+    servedByOpenhab: {
+      check: 'Boolean',
+      init: false
+    },
+
+    serverHasPhpSupport: {
+      check: 'Boolean',
+      init: false,
+      event: 'serverHasPhpSupportChanged'
     }
   },
 
@@ -1048,54 +1065,68 @@ qx.Class.define('cv.Application', {
         xhr.addListenerOnce('success', e => {
           const req = e.getTarget();
           const env = req.getResponse();
-          const serverVersionId = env.PHP_VERSION_ID;
-          const orParts = env.required_php_version
-            .split('||')
-            .map(e => e.trim());
-          const passed = orParts.map(orConstraint => {
-            const andParts = orConstraint
-              .split(/(\s+|&{2})/)
-              .map(e => e.trim());
-            // pass when no failed andPart has been found
-            return !andParts.some(constraint =>
-              this.__constraintFails(serverVersionId, constraint)
-            );
-          });
-          // one of the OR constraints need to pass
-          const enable = passed.some(res => res === true);
-          if (enable) {
-            this.info('Manager available for PHP version', env.phpversion);
-          } else {
-            this.error(
-              'Disabling manager due to PHP version mismatch. Installed:',
-              env.phpversion,
-              'required:',
-              env.required_php_version
-            );
+          if (env.startsWith('<?php')) {
+            // no php support
+            this.setServerHasPhpSupport(false);
+            this.error('Disabling manager due to missing PHP support.');
 
             this.setManagerDisabled(true);
-            this.setManagerDisabledReason(
-              qx.locale.Manager.tr(
-                'Your system does not provide the required PHP version for the manager. Installed: %1, required: %2',
-                env.phpversion,
-                env.required_php_version
-              )
-            );
-          }
-          this.setManagerChecked(true);
+            this.setManagerDisabledReason(qx.locale.Manager.tr('Your server does not support PHP'));
+            this.setManagerChecked(true);
+          } else {
+            // is this is served by native openHAB server, we do not have native PHP support, only the basic
+            // rest api is available, but nothing else that needs PHP (like some plugin backend code)
+            this.setServerHasPhpSupport(!isOpenHab);
 
-          if (window.Sentry) {
-            Sentry.configureScope(function (scope) {
-              if ('server_release' in env) {
-                scope.setTag('server.release', env.server_release);
-              }
-              if ('server_branch' in env) {
-                scope.setTag('server.branch', env.server_branch);
-              }
-              if ('server_id' in env) {
-                scope.setTag('server.id', env.server_id);
-              }
+            const serverVersionId = env.PHP_VERSION_ID;
+            const orParts = env.required_php_version
+              .split('||')
+              .map(e => e.trim());
+            const passed = orParts.map(orConstraint => {
+              const andParts = orConstraint
+                .split(/(\s+|&{2})/)
+                .map(e => e.trim());
+              // pass when no failed andPart has been found
+              return !andParts.some(constraint =>
+                this.__constraintFails(serverVersionId, constraint)
+              );
             });
+            // one of the OR constraints need to pass
+            const enable = passed.some(res => res === true);
+            if (enable) {
+              this.info('Manager available for PHP version', env.phpversion);
+            } else {
+              this.error(
+                'Disabling manager due to PHP version mismatch. Installed:',
+                env.phpversion,
+                'required:',
+                env.required_php_version
+              );
+
+              this.setManagerDisabled(true);
+              this.setManagerDisabledReason(
+                qx.locale.Manager.tr(
+                  'Your system does not provide the required PHP version for the manager. Installed: %1, required: %2',
+                  env.phpversion,
+                  env.required_php_version
+                )
+              );
+            }
+            this.setManagerChecked(true);
+
+            if (window.Sentry) {
+              Sentry.configureScope(function (scope) {
+                if ('server_release' in env) {
+                  scope.setTag('server.release', env.server_release);
+                }
+                if ('server_branch' in env) {
+                  scope.setTag('server.branch', env.server_branch);
+                }
+                if ('server_id' in env) {
+                  scope.setTag('server.id', env.server_id);
+                }
+              });
+            }
           }
         });
         xhr.addListener('statusError', e => {
