@@ -1065,7 +1065,7 @@ qx.Class.define('cv.Application', {
         xhr.addListenerOnce('success', e => {
           const req = e.getTarget();
           const env = req.getResponse();
-          if (env.startsWith('<?php')) {
+          if (typeof env === 'string' && env.startsWith('<?php')) {
             // no php support
             this.setServerHasPhpSupport(false);
             this.error('Disabling manager due to missing PHP support.');
