@@ -41,6 +41,9 @@ class RequestproxyApi extends AbstractRequestproxyApi {
             $allowed = true;
             break;
           }
+        } else if ($value == $url) {
+          $allowed = true;
+          break;
         }
       }
     }

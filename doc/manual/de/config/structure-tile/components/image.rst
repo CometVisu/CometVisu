@@ -39,7 +39,26 @@ So kann z.B. das Bild einer Kamera an der Eingangstür aktualisiert werden, wenn
 Sollte eine Authentifizierung erforderlich sein um das Bild laden zu können, so kann diese über die Attribute
 ``auth-type``, ``username`` und ``password`` definiert werden. Bisher wird nur die `"Basic"-Authentifizierung <https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication>`_./
 unterstützt. Sofern es dabei Probleme gibt kann das Laden den Bildes über einen Proxy im Backend benutzt werden indem
-man das ``proxy``-Attribut auf ``true`` setzt.
+man das ``proxy``-Attribut auf ``true`` setzt. Hierfür muss jedoch die URL in die "proxy.whitelist" Sektion der
+:ref:`Versteckten-Konfiguration <hidden-config>` hinzugefügt werden.
+Dafür muss ein neuer Eintrag in der Sektion angelegt werden, die Schlüssel kann beliebig gewählt werden
+und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck eingetragen der für diese URL gültig ist.
+
+Beispiel mit exakter URL:
+
+.. code-block:: json
+
+    "proxy.whitelist": {
+        "server": "http://webcam/snapshot.jpeg"
+    }
+
+Beispiel mit regulärem Ausdruck (beginnt und endet mit "/"), welcher alle URLs erlaubt, die "webcam" enthalten:
+
+.. code-block:: json
+
+    "proxy.whitelist": {
+        "server": "/^.+webcam\/.*$/"
+    }
 
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^

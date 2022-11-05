@@ -46,6 +46,8 @@ In der Datei selbst werden diese Informationen als PHP Array abgelegt:
         "pass": "secret",
         "selfsigned": "true"
       }
+      "proxy.whitelist": {
+      }
     }';
     $hidden = json_decode($data, true);
 
@@ -63,9 +65,10 @@ Auch wenn die Wahl für den ``Name`` grundsätzlich frei ist, so gibt es dafür 
 anbietet diesem Schema zu folgen. So können manche Widgets bzw. Plugins ohne eine explizite Konfiguration in dem
 für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurations-Aufwand reduzieren lässt.
 
-========  ==============  =======
-Name      Verwendung      Default
-========  ==============  =======
-fritzbox  :ref:`tr064`
-influx    :ref:`diagram`  X
-========  ==============  =======
+=================  ====================================================================  =======
+Name               Verwendung                                                            Default
+=================  ====================================================================  =======
+fritzbox           :ref:`tr064`
+influx             :ref:`diagram`                                                        X
+proxy.whitelist    :ref:`Image-Komponente der Tile-Struktur <tile-component-image>`
+=================  ====================================================================  =======
