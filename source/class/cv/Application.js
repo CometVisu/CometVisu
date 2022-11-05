@@ -1,7 +1,7 @@
-/* Application.js 
- * 
+/* Application.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,8 +37,8 @@ qx.Class.define('cv.Application', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this.__appReady = false;
     this.initCommandManager(new qx.ui.command.GroupManager());
     const lang = qx.locale.Manager.getInstance().getLanguage();
@@ -281,10 +281,7 @@ qx.Class.define('cv.Application', {
 
     _applyManagerChecked(value) {
       if (value && cv.Config.loadManager) {
-        this.showManager(
-          cv.Config.managerOptions.action,
-          cv.Config.managerOptions.data
-        );
+        this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
       }
     },
 
@@ -315,7 +312,7 @@ qx.Class.define('cv.Application', {
         '  _____                     ___      ___\n' +
         ' / ____|                   | \\ \\    / (_)\n' +
         '| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n' +
-        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n" +
+        '| |    / _ \\| \'_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n' +
         '| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n' +
         ' \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n' +
         '-----------------------------------------------------------\n' +
@@ -506,10 +503,7 @@ qx.Class.define('cv.Application', {
       const res = qx.util.ResourceManager.getInstance();
       let configPath = `config/visu_config${configName}.xml`;
       let url = '';
-      if (
-        !res.has(configPath) &&
-        res.has(`demo/visu_config${configName}.xml`)
-      ) {
+      if (!res.has(configPath) && res.has(`demo/visu_config${configName}.xml`)) {
         url = res.toUri(`demo/visu_config${configName}.xml`);
       }
       if (!url) {
@@ -576,8 +570,7 @@ qx.Class.define('cv.Application', {
       if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       } else if (ex instanceof qx.core.WindowError) {
-        exString =
-          ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
+        exString = ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
       }
       if (!exString) {
         exString = ex.name + ': ' + ex.message;
@@ -594,9 +587,7 @@ qx.Class.define('cv.Application', {
           let lastLine = '';
           let repeated = 0;
           let nStack = '';
-          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (
-            entry
-          ) {
+          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
             if (lastLine === entry) {
               if (repeated === 0) {
                 // count first occurance too
@@ -612,16 +603,12 @@ qx.Class.define('cv.Application', {
               nStack += '\n\t' + entry;
               lastLine = entry;
             }
-          },
-          this);
+          }, this);
           if (repeated > 0) {
             nStack += ' [repeated ' + repeated + ' times]';
           }
           if (nStack) {
-            exString +=
-              '\nNormalized Stack: ' +
-              nStack.substring(0, maxTraceLength) +
-              '\n';
+            exString += '\nNormalized Stack: ' + nStack.substring(0, maxTraceLength) + '\n';
             if (nStack.length > maxTraceLength) {
               exString += 'Stacktrace has been cut off\n';
             }
@@ -631,8 +618,7 @@ qx.Class.define('cv.Application', {
           }
         } catch (exc) {
           if (ex.stack) {
-            exString +=
-              '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
+            exString += '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
             if (ex.stack.length > maxTraceLength) {
               exString += 'Stacktrace has been cut off\n';
             }
@@ -660,10 +646,7 @@ qx.Class.define('cv.Application', {
               action(ev) {
                 let parent = ev.getTarget().parentNode;
                 while (parent) {
-                  if (
-                    parent.id === 'notification-center' ||
-                    parent.classList.contains('popup')
-                  ) {
+                  if (parent.id === 'notification-center' || parent.classList.contains('popup')) {
                     break;
                   }
                   parent = parent.parentNode;
@@ -719,17 +702,13 @@ qx.Class.define('cv.Application', {
               ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
           notification.actions.optionGroup.options.push({
-            title:
-              qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
+            title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
             name: 'reportErrors',
             style: 'margin-left: 18px'
           });
         }
       }
-      cv.core.notifications.Router.dispatchMessage(
-        notification.topic,
-        notification
-      );
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
 
     throwError: qx.core.Environment.select('qx.globalErrorHandling', {
@@ -840,16 +819,12 @@ qx.Class.define('cv.Application', {
           });
           engine.addListenerOnce('changeReady', async () => {
             // create the objects
-            cv.Config.treePath =
-              await cv.Application.structureController.getInitialPageId();
+            cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
             const data = cv.data.Model.getInstance().getWidgetData('id_');
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           });
           // check if the current design settings overrides the cache one
-          if (
-            cv.Config.clientDesign &&
-            cv.Config.clientDesign !== cv.Config.configSettings.clientDesign
-          ) {
+          if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
             const styles = [];
             cv.Config.configSettings.stylesToLoad.forEach(function (style) {
@@ -881,10 +856,7 @@ qx.Class.define('cv.Application', {
         this.loadScripts();
         this.debug('done');
 
-        if (
-          cv.Config.enableCache &&
-          cv.Application.structureController.supports('cache')
-        ) {
+        if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
           // cache dom + data when everything is ready
           qx.event.message.Bus.subscribe(
             'setup.dom.finished',
