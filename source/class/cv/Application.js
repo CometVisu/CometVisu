@@ -68,7 +68,8 @@ qx.Class.define('cv.Application', {
 
     const check = e => {
       const req = e.getTarget();
-      const isOpenHAB = req.getResponseHeader('Server').startsWith('Jetty');
+      const header = req.getResponseHeader('Server');
+      const isOpenHAB = header ? header.startsWith('Jetty') : false;
       this.setServedByOpenhab(isOpenHAB);
       this.setServerChecked(true);
     };
