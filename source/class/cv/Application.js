@@ -61,6 +61,24 @@ qx.Class.define('cv.Application', {
     } else {
       window.showConfigErrors = this.showConfigErrors.bind(this);
     }
+
+    // check HTTP server by requesting a small file
+    const xhr = new qx.io.request.Xhr('version');
+    xhr.set({ method: 'GET'});
+
+    const check = e => {
+      const req = e.getTarget();
+      const isOpenHAB = req.getResponseHeader('Server').startsWith('Jetty');
+      this.setServedByOpenhab(isOpenHAB);
+      this.setServerChecked(true);
+    };
+    xhr.addListenerOnce('success', check, this);
+    xhr.addListenerOnce('statusError', check, this);
+    xhr.addListenerOnce('error', e => {
+      const req = e.getTarget();
+      this.error('error checking server environment needed to setup the REST url', req.getStatus());
+    });
+    xhr.send();
   },
 
   /*
@@ -276,7 +294,11 @@ qx.Class.define('cv.Application', {
      */
     main() {
       cv.ConfigCache.init();
-      this._checkBackend();
+      if (this.isServerChecked()) {
+        this._checkBackend();
+      } else {
+        this.addListenerOnce('serverCheckedChanged', this._checkBackend, this);
+      }
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get('qx.debug')) {
         if (typeof replayLog !== 'undefined' && replayLog) {
