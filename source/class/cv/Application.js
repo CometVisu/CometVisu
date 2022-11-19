@@ -63,6 +63,25 @@ qx.Class.define('cv.Application',
     } else {
       window.showConfigErrors = this.showConfigErrors.bind(this);
     }
+
+    // check HTTP server by requesting a small file
+    const xhr = new qx.io.request.Xhr('version');
+    xhr.set({ method: 'GET'});
+
+    const check = e => {
+      const req = e.getTarget();
+      const server = req.getResponseHeader('Server');
+      const isOpenHAB = server ? server.startsWith('Jetty') : false;
+      this.setServedByOpenhab(isOpenHAB);
+      this.setServerChecked(true);
+    };
+    xhr.addListenerOnce('success', check, this);
+    xhr.addListenerOnce('statusError', check, this);
+    xhr.addListenerOnce('error', e => {
+      const req = e.getTarget();
+      this.error('error checking server environment needed to setup the REST url', req.getStatus());
+    });
+    xhr.send();
   },
 
   /*
@@ -190,9 +209,25 @@ qx.Class.define('cv.Application',
       init: false,
       event: 'changeMobile',
       apply: '_applyMobile'
+    },
+
+    serverChecked: {
+      check: 'Boolean',
+      init: false,
+      event: 'serverCheckedChanged'
+    },
+
+    servedByOpenhab: {
+      check: 'Boolean',
+      init: false
+    },
+
+    serverHasPhpSupport: {
+      check: 'Boolean',
+      init: false,
+      event: 'serverHasPhpSupportChanged'
     }
   },
-
 
   /*
   *****************************************************************************
@@ -246,7 +281,11 @@ qx.Class.define('cv.Application',
      */
     main : function() {
       cv.ConfigCache.init();
-      this._checkBackend();
+      if (this.isServerChecked()) {
+        this._checkBackend();
+      } else {
+        this.addListenerOnce('serverCheckedChanged', this._checkBackend, this);
+      }
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get('qx.debug')) {
         if (typeof replayLog !== 'undefined' && replayLog) {
@@ -911,7 +950,9 @@ qx.Class.define('cv.Application',
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
       } else {
-        const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+        const isOpenHab = this.isServedByOpenhab();
+        const url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment'
+          : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
           method: 'GET',
@@ -920,64 +961,77 @@ qx.Class.define('cv.Application',
         xhr.addListenerOnce('success', function (e) {
           const req = e.getTarget();
           const env = req.getResponse();
-          const serverVersionId = env.PHP_VERSION_ID;
-          //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
-          let disable = false;
-          if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
-            const parts = env.required_php_version.split(' ');
-            disable = parts.some(constraint => {
-              const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
-              if (match) {
-                const operator = match[1];
-                const majorConstraint = parseInt(match[2]);
-                const hasMinorVersion = match[3] !== undefined;
-                const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-                const hasPatchVersion = match[4] !== undefined;
-                const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-                const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-                const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
-                // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
-                switch (operator) {
-                  case '>=':
-                    if (serverVersionId < constraintId) {
-                      return true;
-                    }
-                    break;
-                  case '>':
-                    if (serverVersionId <= constraintId) {
-                      return true;
-                    }
-                    break;
-                  case '<=':
-                    if (serverVersionId > maxId) {
-                      return true;
-                    }
-                    break;
-                  case '<':
-                    if (serverVersionId >= maxId) {
-                      return true;
-                    }
-                    break;
-                  case '^':
-                    if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                      return true;
-                    }
-                    break;
-                  case '~':
-                    if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > (10000 * (majorConstraint) + 100 * (patchConstraint + 1))) {
-                      return true;
-                    }
-                    break;
+          if (typeof env === 'string' && env.startsWith('<?php')) {
+            // no php support
+            this.setServerHasPhpSupport(false);
+            this.error('Disabling manager due to missing PHP support.');
+
+            this.setManagerDisabled(true);
+            this.setManagerDisabledReason(qx.locale.Manager.tr('Your server does not support PHP'));
+            this.setManagerChecked(true);
+          } else {
+            // is this is served by native openHAB server, we do not have native PHP support, only the basic
+            // rest api is available, but nothing else that needs PHP (like some plugin backend code)
+            this.setServerHasPhpSupport(!isOpenHab);
+            const serverVersionId = env.PHP_VERSION_ID;
+            //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
+            let disable = false;
+            if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
+              const parts = env.required_php_version.split(' ');
+              disable = parts.some(constraint => {
+                const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+                if (match) {
+                  const operator = match[1];
+                  const majorConstraint = parseInt(match[2]);
+                  const hasMinorVersion = match[3] !== undefined;
+                  const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+                  const hasPatchVersion = match[4] !== undefined;
+                  const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+                  const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+                  const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
+                  // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+                  switch (operator) {
+                    case '>=':
+                      if (serverVersionId < constraintId) {
+                        return true;
+                      }
+                      break;
+                    case '>':
+                      if (serverVersionId <= constraintId) {
+                        return true;
+                      }
+                      break;
+                    case '<=':
+                      if (serverVersionId > maxId) {
+                        return true;
+                      }
+                      break;
+                    case '<':
+                      if (serverVersionId >= maxId) {
+                        return true;
+                      }
+                      break;
+                    case '^':
+                      if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                        return true;
+                      }
+                      break;
+                    case '~':
+                      if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > (10000 * (majorConstraint) + 100 * (patchConstraint + 1))) {
+                        return true;
+                      }
+                      break;
+                  }
                 }
+                return false;
+              });
+              if (disable) {
+                this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+                this.setManagerDisabled(true);
+                this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+              } else {
+                this.info('Manager available for PHP version', env.phpversion);
               }
-              return false;
-            });
-            if (disable) {
-              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-              this.setManagerDisabled(true);
-              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-            } else {
-              this.info('Manager available for PHP version', env.phpversion);
             }
           }
           this.setManagerChecked(true);
