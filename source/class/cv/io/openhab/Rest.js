@@ -45,6 +45,7 @@ qx.Class.define('cv.io.openhab.Rest', {
   ***********************************************
   */
   properties: {
+
     connected: {
       check: 'Boolean',
       init: false,
@@ -221,7 +222,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
         const res = req.getResponse();
         const update = {};
-        res.forEach(function (entry) {
+        res.forEach(entry => {
           if (entry.members && Array.isArray(entry.members)) {
             // this is a group
             let active = 0;
@@ -406,6 +407,10 @@ qx.Class.define('cv.io.openhab.Rest', {
     update(json) {},
     record(type, data) {},
     showError(type, message, args) {},
+
+    getProviderData: function (name, format) {
+      return null;
+    },
 
     hasProvider(name) {
       return ['addresses', 'rrd'].includes(name);

@@ -11,6 +11,8 @@ $data = '{
     "user": "docker",
     "pass": "secret", 
     "selfsigned": "true"
+  },
+  "proxy.whitelist": {
   }
 }';
 $hidden = json_decode($data, true);

@@ -30,7 +30,19 @@ qx.Class.define('cv.io.listmodel.Registry', {
     get(name) {
       name = name.toLowerCase();
       if (Object.prototype.hasOwnProperty.call(this._REG, name)) {
-        return this._REG[name];
+        const clazz = this._REG[name];
+        if (clazz.REQUIRES) {
+          for (const check of clazz.REQUIRES) {
+            switch (check) {
+              case 'php':
+                if (!qx.core.Init.getApplication().getServerHasPhpSupport()) {
+                  return null;
+                }
+                break;
+            }
+          }
+        }
+        return clazz;
       }
       return null;
     }

@@ -40,9 +40,24 @@ qx.Class.define('cv.io.Fetch', {
     fetch(resource, options = {}, proxy = false, client = undefined) {
       if (proxy) {
         const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-
-        url.searchParams.set('url', resource);
+        if (resource) {
+          url.searchParams.set('url', resource);
+        }
+        if (options) {
+          for (const proxyParam of ['self-signed', 'config-section', 'auth-type']) {
+            if (Object.prototype.hasOwnProperty.call(options, proxyParam)) {
+              url.searchParams.set(proxyParam, options[proxyParam]);
+              delete options[proxyParam];
+            }
+          }
+        }
         resource = url;
+      } else if (options) {
+        for (const proxyParam of ['self-signed', 'config-section', 'auth-type']) {
+          if (Object.prototype.hasOwnProperty.call(options, proxyParam)) {
+            delete options[proxyParam];
+          }
+        }
       }
       return new Promise((resolve, reject) => {
         const xhr = new qx.io.request.Xhr('' + resource);

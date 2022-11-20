@@ -695,6 +695,9 @@ qx.Class.define('cv.io.Client', {
     },
     getProviderConvertFunction(name, format) {
       return null;
+    },
+    getProviderData: function (name, format) {
+      return null;
     }
   },
 

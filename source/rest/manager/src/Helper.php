@@ -14,8 +14,8 @@ class Helper
             ->withStatus($status);
     }
 
-    static function getQueryParam(ServerRequestInterface $request, $id) {
+    static function getQueryParam(ServerRequestInterface $request, $id, $default = null) {
       $params = $request->getQueryParams();
-      return array_key_exists($id, $params) ? $params[$id] : null;
+      return array_key_exists($id, $params) ? $params[$id] : $default;
     }
 }

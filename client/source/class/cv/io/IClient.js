@@ -43,7 +43,7 @@ qx.Interface.define('cv.io.IClient', {
     getType() {},
 
     /**
-     * Returns true, when the backend provides a special data provider for this kins of data
+     * Returns true, when the backend provides a special data provider for this kind of data
      * @param name {String}
      * @return {Boolean}
      */
@@ -55,6 +55,14 @@ qx.Interface.define('cv.io.IClient', {
      * @return {String}
      */
     getProviderUrl(name) {},
+
+    /**
+     * Return the provided data directly from client, return null when not implemented
+     * @param name {String}
+     * @param format {String} 'monaco' for texteditor and 'dp' for Tree editor
+     * @return {Promise<variant>|null}
+     */
+    getProviderData: function (name, format) {},
 
     /**
      * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.

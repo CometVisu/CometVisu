@@ -271,6 +271,13 @@ Erforderliche Konfigurationen, wie z.B. das Hinterlegen von Zugangsdaten in der 
 Konfiguration, wie z.B. für das :doc:`tr064 <../../widgets/plugins/tr064/index>`-Plugin müssen natürlich auch hier vorgenommen werden, damit die
 Datenabfrage für Listen-Modelle funktioniert.
 
+.. HINT::
+
+    Für die beiden hier vorgestellten Modelle ist es zwingend erforderlich, dass die CometVisu von einem Webserver
+    mit PHP-Support ausgeliefert wird. Im Offiziellen Docker-Container der CometVisu ist diese Voraussetzung gegeben.
+    Wird die CometVisu von dem openHAB-Webserver ausgeliefert, ist dies nicht der Fall und die Listen-Modelle können
+    nicht benutzt werden.
+
 Beispiel zur Anzeige der Anruferliste aus dem tr064-Plugin:
 
 .. widget-example::

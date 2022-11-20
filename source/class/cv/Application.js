@@ -61,6 +61,25 @@ qx.Class.define('cv.Application', {
     } else {
       window.showConfigErrors = this.showConfigErrors.bind(this);
     }
+
+    // check HTTP server by requesting a small file
+    const xhr = new qx.io.request.Xhr('version');
+    xhr.set({ method: 'GET'});
+
+    const check = e => {
+      const req = e.getTarget();
+      const header = req.getResponseHeader('Server');
+      const isOpenHAB = header ? header.startsWith('Jetty') : false;
+      this.setServedByOpenhab(isOpenHAB);
+      this.setServerChecked(true);
+    };
+    xhr.addListenerOnce('success', check, this);
+    xhr.addListenerOnce('statusError', check, this);
+    xhr.addListenerOnce('error', e => {
+      const req = e.getTarget();
+      this.error('error checking server environment needed to setup the REST url', req.getStatus());
+    });
+    xhr.send();
   },
 
   /*
@@ -103,11 +122,18 @@ qx.Class.define('cv.Application', {
      */
     createClient(...args) {
       let Client = cv.io.Client;
-      if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
+      if (
+        cv.Config.testMode === true ||
+        window.cvTestMode === true ||
+        args[0] === 'simulated'
+      ) {
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
-        if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+        if (
+          cv.Config.getStructure() === 'structure-pure' &&
+          !cv.Config.pluginsToLoad.includes('plugin-openhab')
+        ) {
           cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
         }
         if (args[1] && args[1].endsWith('/cv/l/')) {
@@ -197,6 +223,23 @@ qx.Class.define('cv.Application', {
       init: false,
       event: 'changeMobile',
       apply: '_applyMobile'
+    },
+
+    serverChecked: {
+      check: 'Boolean',
+      init: false,
+      event: 'serverCheckedChanged'
+    },
+
+    servedByOpenhab: {
+      check: 'Boolean',
+      init: false
+    },
+
+    serverHasPhpSupport: {
+      check: 'Boolean',
+      init: false,
+      event: 'serverHasPhpSupportChanged'
     }
   },
 
@@ -249,7 +292,11 @@ qx.Class.define('cv.Application', {
      */
     main() {
       cv.ConfigCache.init();
-      this._checkBackend();
+      if (this.isServerChecked()) {
+        this._checkBackend();
+      } else {
+        this.addListenerOnce('serverCheckedChanged', this._checkBackend, this);
+      }
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get('qx.debug')) {
         if (typeof replayLog !== 'undefined' && replayLog) {
@@ -899,7 +946,9 @@ qx.Class.define('cv.Application', {
             // a real path
             standalonePlugins.push(plugin);
           } else {
-            standalonePlugins.push(path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js');
+            standalonePlugins.push(
+              path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js'
+            );
           }
         });
         // load part plugins
@@ -999,7 +1048,9 @@ qx.Class.define('cv.Application', {
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
       } else {
-        const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+        const isOpenHab = this.isServedByOpenhab();
+        const url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment'
+          : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
           method: 'GET',
@@ -1009,48 +1060,68 @@ qx.Class.define('cv.Application', {
         xhr.addListenerOnce('success', e => {
           const req = e.getTarget();
           const env = req.getResponse();
-          const serverVersionId = env.PHP_VERSION_ID;
-          const orParts = env.required_php_version.split('||').map(e => e.trim());
-          const passed = orParts.map(orConstraint => {
-            const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
-            // pass when no failed andPart has been found
-            return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
-          });
-          // one of the OR constraints need to pass
-          const enable = passed.some(res => res === true);
-          if (enable) {
-            this.info('Manager available for PHP version', env.phpversion);
-          } else {
-            this.error(
-              'Disabling manager due to PHP version mismatch. Installed:',
-              env.phpversion,
-              'required:',
-              env.required_php_version
-            );
+          if (typeof env === 'string' && env.startsWith('<?php')) {
+            // no php support
+            this.setServerHasPhpSupport(false);
+            this.error('Disabling manager due to missing PHP support.');
 
             this.setManagerDisabled(true);
-            this.setManagerDisabledReason(
-              qx.locale.Manager.tr(
-                'Your system does not provide the required PHP version for the manager. Installed: %1, required: %2',
-                env.phpversion,
-                env.required_php_version
-              )
-            );
-          }
-          this.setManagerChecked(true);
+            this.setManagerDisabledReason(qx.locale.Manager.tr('Your server does not support PHP'));
+            this.setManagerChecked(true);
+          } else {
+            // is this is served by native openHAB server, we do not have native PHP support, only the basic
+            // rest api is available, but nothing else that needs PHP (like some plugin backend code)
+            this.setServerHasPhpSupport(!isOpenHab);
 
-          if (window.Sentry) {
-            Sentry.configureScope(function (scope) {
-              if ('server_release' in env) {
-                scope.setTag('server.release', env.server_release);
-              }
-              if ('server_branch' in env) {
-                scope.setTag('server.branch', env.server_branch);
-              }
-              if ('server_id' in env) {
-                scope.setTag('server.id', env.server_id);
-              }
+            const serverVersionId = env.PHP_VERSION_ID;
+            const orParts = env.required_php_version
+              .split('||')
+              .map(e => e.trim());
+            const passed = orParts.map(orConstraint => {
+              const andParts = orConstraint
+                .split(/(\s+|&{2})/)
+                .map(e => e.trim());
+              // pass when no failed andPart has been found
+              return !andParts.some(constraint =>
+                this.__constraintFails(serverVersionId, constraint)
+              );
             });
+            // one of the OR constraints need to pass
+            const enable = passed.some(res => res === true);
+            if (enable) {
+              this.info('Manager available for PHP version', env.phpversion);
+            } else {
+              this.error(
+                'Disabling manager due to PHP version mismatch. Installed:',
+                env.phpversion,
+                'required:',
+                env.required_php_version
+              );
+
+              this.setManagerDisabled(true);
+              this.setManagerDisabledReason(
+                qx.locale.Manager.tr(
+                  'Your system does not provide the required PHP version for the manager. Installed: %1, required: %2',
+                  env.phpversion,
+                  env.required_php_version
+                )
+              );
+            }
+            this.setManagerChecked(true);
+
+            if (window.Sentry) {
+              Sentry.configureScope(function (scope) {
+                if ('server_release' in env) {
+                  scope.setTag('server.release', env.server_release);
+                }
+                if ('server_branch' in env) {
+                  scope.setTag('server.branch', env.server_branch);
+                }
+                if ('server_id' in env) {
+                  scope.setTag('server.id', env.server_id);
+                }
+              });
+            }
           }
         });
         xhr.addListener('statusError', e => {
