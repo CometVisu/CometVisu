@@ -13,7 +13,7 @@ class AbstractCompileHandler {
   }
 
   async onLoad() {
-    this.beforeBuild(this._config.targetType);
+    this.beforeBuild(this._compilerApi.getCommand().getTargetType());
   }
 
   /**
@@ -96,10 +96,10 @@ qx.Class.define('cv.Version', {
 
   _getTargetDir(type) {
     let targetDir = null;
-    if (!type) {
-      type = this._config.targetType;
-    }
     const command = this._compilerApi.getCommand();
+    if (!type) {
+      type = command.getTargetType();
+    }
     const isDeploy = command instanceof qx.tool.cli.commands.Deploy;
     if (isDeploy) {
       type = 'build';

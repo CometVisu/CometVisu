@@ -29,8 +29,9 @@ qx.Class.define('cv.compile.LibraryApi', {
         }
         const makeApi = customSettings.apiviewer === 'true';
         const outputPath = process.env.CV_OUTPUT_PATH || customSettings.outputPath;
+        const targetType = command.getTargetType();
         config.targets.forEach(target => {
-          if (target.type === config.targetType) {
+          if (target.type === targetType) {
             if (outputPath) {
               target.outputPath = outputPath;
             }

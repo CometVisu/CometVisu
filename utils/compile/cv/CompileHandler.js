@@ -54,7 +54,8 @@ class CvCompileHandler extends AbstractCompileHandler {
     this._onBeforeLoad();
     super.onLoad();
     const command = this._compilerApi.getCommand();
-    if (this._config.targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
+    const targetType = command.getTargetType();
+    if (targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = CvBuildTarget;
@@ -71,19 +72,20 @@ class CvCompileHandler extends AbstractCompileHandler {
 
     const currentDir = process.cwd();
     const targetDir = this._getTargetDir();
-    this._excludes = excludeFromCopy.hasOwnProperty(this._config.targetType) ? excludeFromCopy[this._config.targetType].map(d => path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d))) : [];
+    this._excludes = excludeFromCopy.hasOwnProperty(targetType) ? excludeFromCopy[targetType].map(d => path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d))) : [];
   }
 
   /**
    * Called after all libraries have been loaded and added to the compilation data
    */
   async _onMade() {
-    if (!(this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy)) {
+    const command = this._compilerApi.getCommand();
+    if (!(command instanceof qx.tool.cli.commands.Deploy)) {
       await this.copyFiles();
       this.updateTestData();
       await this.updateCacheVersion();
     }
-    if (this._config.targetType === 'build') {
+    if (command.getTargetType() === 'build') {
       return this.afterBuild();
     }
     return Promise.resolve(true);
@@ -182,7 +184,7 @@ class CvCompileHandler extends AbstractCompileHandler {
     fse.ensureDirSync(classTargetDir);
     fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'));
 
-    if (this._config.targetType === 'source' || this._customSettings.fakeLogin === 'true') {
+    if (command.getTargetType() === 'source' || this._customSettings.fakeLogin === 'true') {
       // copy a fake /cgi-bin/l response to the target folder
       fse.copySync(path.join(process.cwd(), 'source', 'resource', 'test'), path.join(targetDir, 'cgi-bin'));
     }
