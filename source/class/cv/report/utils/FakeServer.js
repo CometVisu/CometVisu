@@ -57,6 +57,8 @@ qx.Class.define('cv.report.utils.FakeServer', {
       }, this);
 
       // configure server
+      const sinon = qx.dev.unit.Sinon.getSinon();
+      sinon.sandbox = sinon;
       const server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(this.__respond.bind(this));
       this._responseDelays.unshift(10);
