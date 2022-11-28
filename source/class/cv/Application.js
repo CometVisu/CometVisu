@@ -240,6 +240,16 @@ qx.Class.define('cv.Application', {
       check: 'Boolean',
       init: false,
       event: 'serverHasPhpSupportChanged'
+    },
+
+    serverPhpVersion: {
+      check: 'String',
+      nullable: true
+    },
+
+    server: {
+      check: 'String',
+      nullable: true
     }
   },
 
@@ -1072,6 +1082,9 @@ qx.Class.define('cv.Application', {
             // is this is served by native openHAB server, we do not have native PHP support, only the basic
             // rest api is available, but nothing else that needs PHP (like some plugin backend code)
             this.setServerHasPhpSupport(!isOpenHab);
+
+            this.setServerPhpVersion(env.phpversion);
+            this.setServer(env.SERVER_SOFTWARE);
 
             const serverVersionId = env.PHP_VERSION_ID;
             const orParts = env.required_php_version

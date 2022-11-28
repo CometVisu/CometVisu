@@ -1141,6 +1141,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _showAbout() {
+      const app = qx.core.Init.getApplication();
       const dialogConf = {
         caption: qx.locale.Manager.tr('About'),
         modal: true,
@@ -1151,11 +1152,16 @@ qx.Class.define('cv.ui.manager.Main', {
  <img src="resource/icons/comet_icon_128x128_ff8000.png" width="128" height="128"/>
  <h2>CometVisu ${cv.Version.VERSION}</h2>
  <div class="info">
-   <label for="date">${qx.locale.Manager.tr('Build date')}: </label><span id="date">${cv.Version.DATE}</span><br/>
-   <label for="build">${qx.locale.Manager.tr('Build revision')}: </label><span id="build">${cv.Version.REV}</span><br/>
-   <label for="lib-version">${qx.locale.Manager.tr('Library version')}: </label><span id="lib-version">${
-          cv.Version.LIBRARY_VERSION
-        }</span>
+   <label for="date">${qx.locale.Manager.tr('Build date')}: </label>
+   <span id="date">${cv.Version.DATE}</span><br/>
+   <label for="build">${qx.locale.Manager.tr('Build revision')}: </label>
+   <span id="build">${cv.Version.REV}</span><br/>
+   <label for="lib-version">${qx.locale.Manager.tr('Library version')}: </label>
+   <span id="lib-version">Pure: ${cv.Version.LIBRARY_VERSION_PURE}, Tile: ${cv.Version.LIBRARY_VERSION_TILE}</span><br/>
+   <label for="server">${qx.locale.Manager.tr('Server')}: </label>
+   <span id="server">${app.getServer() || "?"}</span><br/>
+   <label for="php-version">${qx.locale.Manager.tr('PHP version') || "?"}: </label>
+   <span id="php-version">${app.getServerPhpVersion()}</span>
  </div>
 </div>`
       };
