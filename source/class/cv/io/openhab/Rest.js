@@ -311,6 +311,7 @@ qx.Class.define('cv.io.openhab.Rest', {
       if (this.eventSource) {
         this.eventSource.close();
         this.eventSource = null;
+        this.setConnected(false);
       }
     },
 

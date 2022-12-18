@@ -30,6 +30,7 @@ qx.Class.define('cv.io.BackendConnections', {
   statics: {
     __clients: {},
     __activeChangedTimer: null,
+    __disconnectTimer: null,
     __hasBeenConnected: false,
     __activeChangeListenerId: null,
 
@@ -192,6 +193,10 @@ qx.Class.define('cv.io.BackendConnections', {
     _onActiveChanged() {
       const app = qx.core.Init.getApplication();
       if (app.isActive()) {
+        if (this.__disconnectTimer) {
+          this.__disconnectTimer.dispose();
+          this.__disconnectTimer = null;
+        }
         Object.getOwnPropertyNames(this.__clients).forEach(backendName => {
           const client = this.__clients[backendName];
           if (!client.isConnected() && this.__hasBeenConnected) {
@@ -209,12 +214,31 @@ qx.Class.define('cv.io.BackendConnections', {
             if (app.isActive()) {
               Object.getOwnPropertyNames(this.__clients).forEach(this._checkBackendConnection, this);
             }
-            this.__activeChangedTimer.stop();
+            this.__activeChangedTimer.dispose();
+            this.__activeChangedTimer = null;
           });
         }
         this.__activeChangedTimer.restart();
       } else {
-        Object.getOwnPropertyNames(this.__clients).forEach(this._checkBackendConnection, this);
+        if (this.__activeChangedTimer) {
+          this.__activeChangedTimer.dispose();
+          this.__activeChangedTimer = null;
+        }
+        if (!this.__disconnectTimer) {
+          // disconnect after 60 secs
+          this.__disconnectTimer = new qx.event.Timer(60000);
+          this.__disconnectTimer.addListener('interval', () => {
+            Object.getOwnPropertyNames(this.__clients).forEach(name => {
+              const client = this.getClient(name);
+              if (client.isConnected()) {
+                client.terminate();
+              }
+            });
+            this.__disconnectTimer.dispose();
+            this.__disconnectTimer = null;
+          });
+        }
+        this.__disconnectTimer.restart();
       }
     },
 
