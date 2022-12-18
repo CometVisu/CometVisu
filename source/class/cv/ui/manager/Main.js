@@ -1159,8 +1159,8 @@ qx.Class.define('cv.ui.manager.Main', {
    <label for="lib-version">${qx.locale.Manager.tr('Library version')}: </label>
    <span id="lib-version">Pure: ${cv.Version.LIBRARY_VERSION_PURE}, Tile: ${cv.Version.LIBRARY_VERSION_TILE}</span><br/>
    <label for="server">${qx.locale.Manager.tr('Server')}: </label>
-   <span id="server">${app.getServer() || "?"}</span><br/>
-   <label for="php-version">${qx.locale.Manager.tr('PHP version') || "?"}: </label>
+   <span id="server">${app.getServer() || '?'}</span><br/>
+   <label for="php-version">${qx.locale.Manager.tr('PHP version') || '?'}: </label>
    <span id="php-version">${app.getServerPhpVersion()}</span>
  </div>
 </div>`
