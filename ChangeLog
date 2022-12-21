@@ -1,8 +1,12 @@
 ## Change Log
 
-0.12.0
+0.12.1
 ======
 
+- [#1290](https://github.com/CometVisu/CometVisu/pull/1290) check for openhab environent and php support. (@peuter)
+
+0.12.0
+======
 
 ### v0.12.0-RC12 (2022/05/11)
 
