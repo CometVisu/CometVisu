@@ -741,6 +741,15 @@ body {
             margin: 0;
             height: 100%;
         }
+        > cv-button.fullscreen {
+            justify-self: right;
+            z-index: 10;
+            background: none;
+            border: none;
+            box-shadow: none;
+            align-self: start;
+            grid-row: 1
+        }
 
         &.popup {
             position: absolute;
@@ -755,6 +764,15 @@ body {
             overflow: hidden;
             display: block !important;
 
+            &.fullscreen {
+                width: 90vw;
+                height: 90vh;
+
+                > cv-button.fullscreen {
+                    display: none;
+                }
+            }
+
             > button.close {
                 position: absolute;
                 padding: var(--spacing);
@@ -767,6 +785,14 @@ body {
                 background: none;
                 border: none;
                 color: var(--primaryText);
+            }
+
+            > cv-chart {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
             }
         }
     }

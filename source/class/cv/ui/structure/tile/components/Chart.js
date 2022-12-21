@@ -496,8 +496,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const svg = d3
         .select(this._element)
         .append('svg')
-        .attr('width', config.width)
-        .attr('height', config.height)
         .attr('viewBox', [0, 0, config.width, config.height])
         .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
         .style('-webkit-tap-highlight-color', 'transparent')

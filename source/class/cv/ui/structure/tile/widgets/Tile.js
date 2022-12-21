@@ -52,6 +52,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
   ***********************************************
   */
   members: {
+    _fullScreenMode: null,
+
     _init() {
       super._init();
       this._initPopupChild();
@@ -97,6 +99,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         }
         closeButton.style.display = 'block';
         this._element.classList.add('popup');
+        if (this._fullScreenMode) {
+          this._element.classList.add('fullscreen');
+        }
         this.registerModalPopup();
       }
     },
@@ -109,6 +114,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         this._closePopupChild();
       } else {
         this._element.classList.remove('popup');
+        if (this._fullScreenMode) {
+          this._element.classList.remove('fullscreen');
+        }
         let closeButton = this._element.querySelector(':scope > button.close');
         if (closeButton) {
           closeButton.style.display = 'none';
@@ -141,6 +149,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
             break;
 
           case 'popup':
+          case 'fullscreen-popup':
+            this._fullScreenMode = ev.detail.target === 'fullscreen-popup';
             if (ev.detail.addressValue) {
               // only open when the sent value equals the fixed value
               // noinspection EqualityComparisonWithCoercionJS
