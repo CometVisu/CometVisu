@@ -1,0 +1,23 @@
+{
+  "responseData" : {
+    "feed" : {
+      "feedUrl": "http://127.0.0.1/resource/plugins/rsslog/rsslog.php",
+      "title": "RSS supplied logs",
+      "link": "http://127.0.0.1/resource/plugins/rsslog/rsslog.php",
+      "author": "",
+      "description": "RSS supplied logs",
+      "type": "rss20",
+      "entries": [
+{"id": "17","title": "","content": "Door bell","tags": [],"state": "0","publishedDate": "2022-08-06T16:24:24+00:00"},
+{"id": "16","title": "","content": "Mailbox","tags": [],"state": "0","publishedDate": "2022-08-06T08:31:17+00:00"},
+{"id": "15","title": "","content": "Door bell","tags": [],"state": "0","publishedDate": "2022-08-05T13:39:53+00:00"},
+{"id": "14","title": "","content": "Mailbox","tags": [],"state": "0","publishedDate": "2022-08-05T08:12:34+00:00"},
+{"id": "13","title": "","content": "Ventilation filter blocked","tags": [],"state": "0","publishedDate": "2022-08-05T06:33:42+00:00"},
+{"id": "12","title": "","content": "Door bell","tags": [],"state": "0","publishedDate": "2022-08-04T15:24:47+00:00"},
+{"id": "11","title": "","content": "Smoke alarm","tags": [],"state": "0","publishedDate": "2022-08-04T10:21:32+00:00"}
+        ]
+    }
+  },
+  "responseDetails" : null,
+  "responseStatus" : 200
+}

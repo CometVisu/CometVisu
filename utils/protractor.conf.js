@@ -44,6 +44,9 @@ exports.config = {
         if (config.params.hasOwnProperty("forced")) {
           browser.forced = true;
         }
+        if (config.params.hasOwnProperty("verbose")) {
+          browser.verbose = true;
+        }
         if (config.params.screenshots) {
           browser.screenshots = config.params.screenshots;
         }
