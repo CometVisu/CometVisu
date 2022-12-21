@@ -230,6 +230,7 @@
       }
     ],
     "globals": {
+      "cv": "readonly",
       "steelseries": "readonly",
       "$": "readonly",
       "EVENT_RECORDER": "writable",
