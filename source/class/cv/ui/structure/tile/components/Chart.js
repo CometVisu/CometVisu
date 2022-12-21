@@ -154,7 +154,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           type: dataSet.getAttribute('type') || 'line',
           start: 'end-1day',
           end: 'now',
-          xFormat: this._element.getAttribute('x-format') || '%H:%M',
           xTicks: d3.timeHour.every(4)
         };
 
@@ -270,25 +269,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       const format = this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s';
-
-      this._chart = this._lineChart(chartData, {
-        x: d => d.time,
-        y: d => d.value,
-        z: d => d.src,
-        color: d => {
-          return d && this._dataSetConfigs[d].color;
-        },
-        title: d => {
-          return cv.util.String.sprintf(format, d.value);
-        },
-        //yLabel: ts.unit,
-        xDomain: d3.extent(chartData, d => d.time),
-        yDomain: [minVal, maxVal],
-        showArea: d => {
-          return this._dataSetConfigs[d].showArea;
-        },
-        mixBlendMode: 'normal',
-        xFormat: this.multiTimeFormat([
+      let timeFormat = null;
+      if (this._element.hasAttribute('x-format')) {
+        const formatString = this._element.getAttribute('x-format');
+        timeFormat = date => d3.timeFormat(formatString)(date);
+      } else {
+        // format auto-detection
+        timeFormat = this.multiTimeFormat([
           [
             '.%L',
             function (d) {
@@ -344,7 +331,28 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               return true;
             }
           ]
-        ])
+        ]);
+      }
+
+
+      this._chart = this._lineChart(chartData, {
+        x: d => d.time,
+        y: d => d.value,
+        z: d => d.src,
+        color: d => {
+          return d && this._dataSetConfigs[d].color;
+        },
+        title: d => {
+          return cv.util.String.sprintf(format, d.value);
+        },
+        //yLabel: ts.unit,
+        xDomain: d3.extent(chartData, d => d.time),
+        yDomain: [minVal, maxVal],
+        showArea: d => {
+          return this._dataSetConfigs[d].showArea;
+        },
+        mixBlendMode: 'normal',
+        xFormat: timeFormat
       });
 
       this._loaded = Date.now();
@@ -469,6 +477,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       d3.select(this._element).select('svg').remove();
 
+      const tooltip = d3.select(this._element)
+        .append('div')
+        .style('opacity', 0)
+        .attr('class', 'tooltip');
+
       let linePath;
 
       const pointerMoved = event => {
@@ -478,19 +491,30 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         // closest point
         dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
         if (T) {
-          dot.select('text').text(T[i]);
+          const ttNode = tooltip.node();
+          const timeString = config.xFormat(new Date(X[i]));
+          const top = ym - ttNode.offsetHeight - 40;
+          let left = (xm + ttNode.offsetWidth) > this._element.offsetWidth ? xm - ttNode.offsetWidth : xm;
+          tooltip
+            .html(`${timeString}<br/>${T[i]}`)
+            .style('left', left + 'px')
+            .style('top', top + 'px');
         }
         svg.property('value', O[i]).dispatch('input', { bubbles: true });
       };
 
       const pointerEntered = () => {
         dot.attr('display', null);
+        tooltip.style('opacity', 1);
       };
 
-      const pointerLeft = () => {
-        dot.attr('display', 'none');
-        svg.node().value = null;
-        svg.dispatch('input', { bubbles: true });
+      const pointerLeft = ev => {
+        if (ev.relatedTarget !== tooltip.node()) {
+          dot.attr('display', 'none');
+          svg.node().value = null;
+          svg.dispatch('input', {bubbles: true});
+          tooltip.style('opacity', 0);
+        }
       };
 
       const svg = d3
