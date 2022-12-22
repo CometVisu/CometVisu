@@ -197,17 +197,46 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const client = cv.io.BackendConnections.getClient();
       let url;
       const dataSets = this._element.querySelectorAll(':scope > dataset');
+      const series = this._element.getAttribute('series') || 'day';
+      const seriesConfig = {};
+      switch (series) {
+        case 'hour':
+          seriesConfig.xTicks = d3.timeMinute.every(5);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'day':
+          seriesConfig.xTicks = d3.timeHour.every(4);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'week':
+          seriesConfig.xTicks = d3.timeDay.every(1);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'month':
+          seriesConfig.xTicks = d3.timeDay.every(5);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'year':
+          seriesConfig.xTicks = d3.timeDay.every(31);
+          seriesConfig.start = 'end-1' + series;
+          break;
+      }
       const promises = [];
       this._dataSetConfigs = {};
       for (let dataSet of dataSets) {
-        let ts = {
+        let ts = Object.assign({
           showArea: true,
           color: '#FF9900',
-          type: dataSet.getAttribute('type') || 'line',
+          type: 'line',
+          title: '',
           start: 'end-1day',
           end: 'now',
           xTicks: d3.timeHour.every(4)
-        };
+        }, seriesConfig);
 
         let attr;
         let name;
@@ -225,43 +254,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             })
             .join('');
           value = attr.value;
-          if (name === 'series') {
-            switch (value) {
-              case 'hour':
-                ts.xTicks = d3.timeMinute.every(5);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'day':
-                ts.xTicks = d3.timeHour.every(4);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'week':
-                ts.xTicks = d3.timeDay.every(1);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'month':
-                ts.xTicks = d3.timeDay.every(5);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'year':
-                ts.xTicks = d3.timeDay.every(31);
-                ts.start = 'end-1' + value;
-                break;
-            }
-          } else {
-            if (value === 'true' || value === 'false') {
-              value = value === 'true';
-            } else if (/^\d+$/.test(value)) {
-              value = parseInt(value);
-            } else if (/^[\d.]+$/.test(value)) {
-              value = parseFloat(value);
-            }
-            ts[name] = value;
+          if (value === 'true' || value === 'false') {
+            value = value === 'true';
+          } else if (/^\d+$/.test(value)) {
+            value = parseInt(value);
+          } else if (/^[\d.]+$/.test(value)) {
+            value = parseFloat(value);
           }
+          ts[name] = value;
         }
         let start = new Date();
         start.setTime(start.getTime() - 60 * 60 * 24 * 1000);
@@ -549,8 +549,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           const timeString = config.xFormat(new Date(X[i]));
           const top = ym - ttNode.offsetHeight - 40;
           let left = (xm + ttNode.offsetWidth) > this._element.offsetWidth ? xm - ttNode.offsetWidth : xm;
+
+          const key = Z[i];
+          const lineTitle = this._dataSetConfigs[key] && this._dataSetConfigs[key].title ? this._dataSetConfigs[key].title + ': ' : '';
           tooltip
-            .html(`${timeString}<br/>${T[i]}`)
+            .html(`${timeString}<br/>${lineTitle}${T[i]}`)
             .style('left', left + 'px')
             .style('top', top + 'px');
         }
