@@ -705,6 +705,18 @@
         <xsd:documentation xml:lang="de">Erlaubt die Vergrösserung des Charts auf volle Bildschirmgröße.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="show-x-axis" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show x-axis scale (default = true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">X-Achsen Skala anzeigen (default = true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-y-axis" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show y-axis scale (default = true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Y-Achsen Skala anzeigen (default = true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="refresh"/>
   </xsd:complexType>
 

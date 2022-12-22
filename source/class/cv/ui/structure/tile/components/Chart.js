@@ -541,14 +541,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const pointerMoved = event => {
         const [xm, ym] = d3.pointer(event);
         const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym));
-
+        const scaleFactorX = this._element.offsetWidth / config.width;
+        const scaleFactorY = this._element.offsetHeight / config.height;
         // closest point
         dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
         if (T) {
           const ttNode = tooltip.node();
           const timeString = config.xFormat(new Date(X[i]));
-          const top = ym - ttNode.offsetHeight - 40;
-          let left = (xm + ttNode.offsetWidth) > this._element.offsetWidth ? xm - ttNode.offsetWidth : xm;
+          const top = ym*scaleFactorY - ttNode.offsetHeight - 40;
+          let left = (xm*scaleFactorX + ttNode.offsetWidth) > this._element.offsetWidth ? xm*scaleFactorX - ttNode.offsetWidth : xm*scaleFactorX;
 
           const key = Z[i];
           const lineTitle = this._dataSetConfigs[key] && this._dataSetConfigs[key].title ? this._dataSetConfigs[key].title + ': ' : '';
@@ -597,25 +598,30 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           { passive: false }
         );
 
-      svg
-        .append('g')
-        .attr('transform', `translate(0,${config.height - config.marginBottom})`)
-        .call(xAxis);
-
-      svg
-        .append('g')
-        .attr('transform', `translate(${config.marginLeft},0)`)
-        .call(yAxis)
-        .call(g => g.select('.domain').remove())
-        .call(g =>
-          g
-            .append('text')
-            .attr('x', -config.marginLeft)
-            .attr('y', 10)
-            .attr('fill', 'currentColor')
-            .attr('text-anchor', 'start')
-            .text(config.yLabel)
-        );
+      const showXAxis = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
+      const showYAxis = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
+      if (showXAxis) {
+        svg
+          .append('g')
+          .attr('transform', `translate(0,${config.height - config.marginBottom})`)
+          .call(xAxis);
+      }
+      if (showYAxis) {
+        svg
+          .append('g')
+          .attr('transform', `translate(${config.marginLeft},0)`)
+          .call(yAxis)
+          .call(g => g.select('.domain').remove())
+          .call(g =>
+            g
+              .append('text')
+              .attr('x', -config.marginLeft)
+              .attr('y', 10)
+              .attr('fill', 'currentColor')
+              .attr('text-anchor', 'start')
+              .text(config.yLabel)
+          );
+      }
 
       if (config.chartTitle) {
         svg.append('text')
