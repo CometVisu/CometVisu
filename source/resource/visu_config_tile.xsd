@@ -644,8 +644,12 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="dataset" maxOccurs="unbounded">
           <xsd:complexType>
-            <xsd:attribute name="src" type="xsd:string"/>
-            <xsd:attribute name="src-type" type="xsd:string"/>
+            <xsd:attribute name="src" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
+                <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
             <xsd:attribute name="title" type="xsd:string">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
@@ -653,6 +657,10 @@
               </xsd:annotation>
             </xsd:attribute>
             <xsd:attribute name="type">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
               <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="line" />
@@ -660,9 +668,24 @@
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
-            <xsd:attribute name="color" type="color"/>
-            <xsd:attribute name="show-area" type="xsd:boolean"/>
-            <xsd:attribute name="x-format" type="xsd:string"/>
+            <xsd:attribute name="color" type="color">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Farbe of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="show-area" type="xsd:boolean">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="x-format" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Format of the x-axis values.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Format der Werte der x-Achse.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
@@ -689,6 +712,10 @@
     </xsd:attribute>
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute name="series">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
+      </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="hour"/>
