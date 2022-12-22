@@ -126,6 +126,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       if (this._autoCloseTimer) {
         this._autoCloseTimer.stop();
       }
+      this.fireEvent('closed');
     },
 
     _applyPopup(value) {

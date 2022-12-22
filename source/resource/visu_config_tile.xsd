@@ -672,12 +672,34 @@
         </xsd:element>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the chart.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Title des Charts.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
-    <xsd:attribute name="y-format" type="xsd:string" />
-    <xsd:attribute name="x-format" type="xsd:string" />
+    <xsd:attribute name="y-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute name="series" type="xsd:string"/>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the chart in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrösserung des Charts auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="refresh"/>
   </xsd:complexType>
 

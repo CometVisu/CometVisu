@@ -33,6 +33,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   statics: {
+    ChartCounter: 0,
+
     JS_LOADED: new Promise(async (resolve, reject) => {
       const check = () => typeof window.d3 === 'object';
       await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
@@ -129,6 +131,56 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this.isVisible()) {
         this._loadData();
       }
+      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+        const chartId = 'chart-' + cv.ui.structure.tile.components.Chart.ChartCounter;
+        // add fullscreen button + address
+        const button = document.createElement('cv-button');
+        button.classList.add('fullscreen');
+        const buttonAddress = document.createElement('cv-address');
+        buttonAddress.setAttribute('backend', 'system');
+        buttonAddress.textContent = `state:${chartId}-popup`;
+        button.appendChild(buttonAddress);
+        const icon = document.createElement('cv-icon');
+        icon.textContent = 'ri-fullscreen-line';
+        button.appendChild(icon);
+        element.parentElement.insertBefore(button, element);
+
+        // address
+        const tileAddress = document.createElement('cv-address');
+        tileAddress.setAttribute('mode', 'read');
+        tileAddress.setAttribute('target', 'fullscreen-popup');
+        tileAddress.setAttribute('backend', 'system');
+        tileAddress.setAttribute('send-mode', 'always');
+        tileAddress.textContent = buttonAddress.textContent;
+        element.parentElement.appendChild(tileAddress);
+
+        // listen to parent tile of popup is opened or not
+        let parent = element;
+        while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
+          parent = parent.parentElement;
+        }
+        if (parent) {
+          const tileWidget = parent.getInstance();
+          tileWidget.addListener('closed', () => {
+            const ev = new CustomEvent('sendState', {
+              detail: {
+                value: 0,
+                source: this
+              }
+            });
+            buttonAddress.dispatchEvent(ev);
+          });
+
+          // because we added a read address to the tile after is has been initialized we need to init the listener here manually
+          parent.addEventListener('stateUpdate', ev => {
+            tileWidget.onStateUpdate(ev);
+            // cancel event here
+            ev.stopPropagation();
+          });
+        }
+      }
+
+      cv.ui.structure.tile.components.Chart.ChartCounter++;
     },
 
     _applyVisible(value) {
@@ -345,6 +397,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         title: d => {
           return cv.util.String.sprintf(format, d.value);
         },
+        chartTitle: this._element.hasAttribute('title') ? this._element.getAttribute('title') : null,
         //yLabel: ts.unit,
         xDomain: d3.extent(chartData, d => d.time),
         yDomain: [minVal, maxVal],
@@ -403,6 +456,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           x: d => d[0], // given d in data, returns the (temporal) x-value
           y: d => d[1], // given d in data, returns the (quantitative) y-value
           z: () => 1, // given d in data, returns the (categorical) z-value
+          chartTitle: undefined, // title for the chart
           title: undefined, // given d in data, returns the title text
           defined: undefined, // for gaps in data
           curve: d3.curveLinear, // method of interpolation between points
@@ -559,6 +613,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             .attr('text-anchor', 'start')
             .text(config.yLabel)
         );
+
+      if (config.chartTitle) {
+        svg.append('text')
+          .attr('x', (config.width / 2))
+          .attr('y', config.marginTop)
+          .attr('class', 'chart-title')
+          .text(config.chartTitle);
+      }
 
       const lineGroups = new Map();
       const areaGroups = new Map();

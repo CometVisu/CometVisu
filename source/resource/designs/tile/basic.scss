@@ -741,14 +741,15 @@ body {
             margin: 0;
             height: 100%;
         }
+
         > cv-button.fullscreen {
-            justify-self: right;
             z-index: 10;
             background: none;
             border: none;
             box-shadow: none;
-            align-self: start;
-            grid-row: 1
+            position: absolute;
+            right: 0;
+            top: 0
         }
 
         &.popup {
@@ -1265,6 +1266,12 @@ body {
             word-wrap: break-word;
             opacity: 0;
             padding: var(--spacing);
+        }
+
+        .chart-title {
+            text-anchor: middle;
+            font-size: 16px;
+            fill: var(--primaryText);
         }
     }
 
