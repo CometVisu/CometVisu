@@ -539,7 +539,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       let linePath;
 
       const pointerMoved = event => {
-        console.log('pointerMoved');
         const [xm, ym] = d3.pointer(event);
         const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym));
         const scaleFactorX = this._element.offsetWidth / config.width;
@@ -563,13 +562,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       };
 
       const pointerEntered = () => {
-        console.log('pointerEntered');
         dot.attr('display', null);
         tooltip.style('opacity', 1);
       };
 
       const pointerLeft = ev => {
-        console.log('pointerLeft');
         if (ev.relatedTarget !== tooltip.node()) {
           dot.attr('display', 'none');
           svg.node().value = null;
