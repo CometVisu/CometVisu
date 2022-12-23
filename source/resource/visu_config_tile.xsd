@@ -680,12 +680,6 @@
                 <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
               </xsd:annotation>
             </xsd:attribute>
-            <xsd:attribute name="x-format" type="xsd:string">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Format of the x-axis values.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Format der Werte der x-Achse.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
@@ -701,7 +695,7 @@
     <xsd:attribute name="y-format" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="x-format" type="xsd:string">
