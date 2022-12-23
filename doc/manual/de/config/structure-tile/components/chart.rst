@@ -41,10 +41,15 @@ Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farbli
             <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
             <fixture source-file="source/test/fixtures/pv-chart.json" target-path="charts/PV_Energy_Today" mime-type="application/json"/>
         </fixtures>
-        <screenshot name="cv-chart-pv" waitfor="cv-chart > svg > g > path[stroke-width='1.5']" />
+        <screenshot name="cv-chart-pv">
+            <caption>Zwei Linien in einem Chart.</caption>
+        </screenshot>
+        <screenshot name="cv-chart-pv-tooltip" hover-on="cv-chart > svg" waitfor="cv-chart > div.tooltip">
+            <caption>Tooltip mit Einzelwert</caption>
+        </screenshot>
     </settings>
     <cv-tile size="2x1">
-        <cv-chart title="Strom" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+        <cv-chart title="Strom" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
             <dataset src="Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
             <dataset src="PV_Energy_Today" color="#FF9900" title="Produktion" />
           </cv-chart>
