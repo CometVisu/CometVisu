@@ -644,9 +644,23 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="dataset" maxOccurs="unbounded">
           <xsd:complexType>
-            <xsd:attribute name="src" type="xsd:string"/>
-            <xsd:attribute name="src-type" type="xsd:string"/>
+            <xsd:attribute name="src" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
+                <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="title" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
             <xsd:attribute name="type">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
               <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="line" />
@@ -654,30 +668,76 @@
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
-            <xsd:attribute name="color" type="color"/>
-            <xsd:attribute name="show-area" type="xsd:boolean"/>
-            <xsd:attribute name="series">
-              <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <xsd:enumeration value="hour" />
-                  <xsd:enumeration value="day" />
-                  <xsd:enumeration value="week" />
-                  <xsd:enumeration value="month" />
-                  <xsd:enumeration value="year" />
-                </xsd:restriction>
-              </xsd:simpleType>
+            <xsd:attribute name="color" type="color">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Farbe of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
             </xsd:attribute>
-            <xsd:attribute name="x-format" type="xsd:string"/>
+            <xsd:attribute name="show-area" type="xsd:boolean">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the chart.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel des Charts.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
-    <xsd:attribute name="y-format" type="xsd:string" />
-    <xsd:attribute name="x-format" type="xsd:string" />
+    <xsd:attribute name="y-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute name="series" type="xsd:string"/>
+    <xsd:attribute name="series">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="hour"/>
+          <xsd:enumeration value="day"/>
+          <xsd:enumeration value="week"/>
+          <xsd:enumeration value="month"/>
+          <xsd:enumeration value="year"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the chart in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrösserung des Charts auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-x-axis" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show x-axis scale (default = true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">X-Achsen Skala anzeigen (default = true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-y-axis" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show y-axis scale (default = true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Y-Achsen Skala anzeigen (default = true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="refresh"/>
   </xsd:complexType>
 

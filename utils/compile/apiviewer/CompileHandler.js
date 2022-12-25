@@ -37,9 +37,10 @@ class ApiCompileHandler extends AbstractCompileHandler {
 
 
   onLoad () {
-    this.exampleDir = path.join(process.cwd(), 'cache', 'widget_examples', this._config.targetType);
+    const targetType = this._compilerApi.getCommand().getTargetType();
+    this.exampleDir = path.join(process.cwd(), 'cache', 'widget_examples', targetType);
     fs.ensureDir(this.exampleDir);
-    if (this._config.targetType === 'build') {
+    if (targetType === 'build') {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = qx.tool.compiler.targets.BuildTarget;

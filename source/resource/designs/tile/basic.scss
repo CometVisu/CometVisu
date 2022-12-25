@@ -742,6 +742,16 @@ body {
             height: 100%;
         }
 
+        > cv-button.fullscreen {
+            z-index: 10;
+            background: none;
+            border: none;
+            box-shadow: none;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
         &.popup {
             position: absolute;
             background-color: var(--buttonBackground);
@@ -755,6 +765,15 @@ body {
             overflow: hidden;
             display: block !important;
 
+            &.fullscreen {
+                width: 90vw;
+                height: 90vh;
+
+                > cv-button.fullscreen {
+                    display: none;
+                }
+            }
+
             > button.close {
                 position: absolute;
                 padding: var(--spacing);
@@ -767,6 +786,14 @@ body {
                 background: none;
                 border: none;
                 color: var(--primaryText);
+            }
+
+            > cv-chart {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
             }
         }
     }
@@ -1226,6 +1253,26 @@ body {
     cv-chart {
         width: 100%;
         height: 100%;
+
+        .tooltip {
+            position: absolute;
+            background-color: var(--buttonBackground);
+            border: solid 1px;
+            border-radius: 4px;
+            z-index: 1070;
+            display: block;
+            margin: 0;
+            font-weight: 400;
+            word-wrap: break-word;
+            opacity: 0;
+            padding: var(--spacing);
+        }
+
+        .chart-title {
+            text-anchor: middle;
+            font-size: 16px;
+            fill: var(--primaryText);
+        }
     }
 
     cv-list {

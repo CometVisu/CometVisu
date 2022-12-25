@@ -2,6 +2,7 @@
 
 VERSION_TAG=`cat build/version`
 TESTING=0
+IS_RELEASE=0
 
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
@@ -13,6 +14,9 @@ else
   IS_TAG=0
   BRANCH=`echo $GITHUB_REF | awk '{split($0,a,"/"); print tolower(a[3])}'`
   TAG=""
+
+  echo "only tagged git versions are pushed to docker"
+  exit 1
 fi
 IMAGE_NAME=`echo $GITHUB_REPOSITORY | awk '{print tolower($0)}'`
 
@@ -21,20 +25,36 @@ if [[ $IS_TAG == 1 ]]; then
     IN_DEVELOP=$(git branch -r --contains "$TAG" | grep -c develop)
     IN_MASTER=$(git branch -r --contains "$TAG" | grep -c master)
     IN_RELEASE=$(git branch -r --contains "$TAG" | grep -c release-)
+
+    if [[ $IN_DEVELOP == 0 && $IN_MASTER == 0 && $IN_RELEASE == 0 ]]; then
+      echo "tag '$TAG' needs to be in branch 'master', 'develop' or one of the 'release-*' branches"
+      git branch -r --contains "$TAG"
+      exit 1
+    fi
+
+    # check if we have a "real" release tag like "v0.12.0" with no appendix
+    [[ $TAG =~ ^v\d{1,2}\.\d{1,3}\.\d{1,3}$ ]] && IS_RELEASE=1
+
+    if [[ $IS_RELEASE == 1 && $IN_DEVELOP == 1 ]]; then
+      echo "building real release versions in the develop-branch are not supported. They must be created either in the master or one of the release-branches!"
+      exit 1
+    fi
+
     if [[ $IN_DEVELOP == 1 ]]; then
       MASTER_TAG=testing
       TESTING=1
     elif [[ $IN_MASTER == 1 ]]; then
       MASTER_TAG=latest
     elif [[ $IN_RELEASE == 1 ]]; then
-      # use TAG as MASTER_TAG
+      # dont use tag at all
       TAG=""
-      # only use github ref tag as version
-      VERSION_TAG=$MASTER_TAG
-    else
-      echo "tag '$TAG' needs to be in branch 'master', 'develop' or one of the 'release-*' branches"
-      git branch -r --contains "$TAG"
-      exit 1
+      if [[ $IS_RELEASE == 1 ]]; then
+        # disable using MASTER_TAG be setting is to the same value as the VERSION_TAG
+        MASTER_TAG=$VERSION_TAG
+      else
+        # only use github ref tag as version (MASTER_TAG contains the git tag here)
+        VERSION_TAG=$MASTER_TAG
+      fi
     fi
 elif [[ "$BRANCH" = "master" ]]; then
     MASTER_TAG=latest

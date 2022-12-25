@@ -437,7 +437,16 @@ describe('generation screenshots from jsdoc examples', function () {
                 }, 1000);
               }
             }
-
+            if (setting.hoverOn) {
+              const ele = element.all(by.css(setting.hoverOn)).first();
+              browser.actions().mouseMove(ele).mouseMove(ele).perform();
+            }
+            if (setting.waitFor) {
+              const waitForWidget = element(by.css(setting.waitFor));
+              browser.wait(function () {
+                return waitForWidget.isDisplayed();
+              }, 1000);
+            }
             if (setting.selector) {
               shotWidget = element.all(by.css(selectorPrefix + setting.selector)).first();
               await browser.wait(function () {

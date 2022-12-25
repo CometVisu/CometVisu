@@ -239,7 +239,11 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         newModel = this._getModel();
       }
       if (newModel instanceof Promise) {
-        newModel = await newModel;
+        try {
+          newModel = await newModel;
+        } catch (e) {
+          this.error('error refreshing async model:', e);
+        }
       }
       let target = element.querySelector(':scope > ul');
       if (template.getAttribute('wrap') === 'false') {
@@ -320,7 +324,6 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           }
           return '';
         };
-
         newModel.forEach((entry, i) => {
           const elem = target.querySelector(`:scope > [data-row="${i}"]`);
           const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, content) => {

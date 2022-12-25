@@ -94,7 +94,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.3.3",
+    "@qooxdoo/framework": "^7.4.2",
     "@sentry/browser": "^6.17.9",
     "@sentry/tracing": "^6.17.9",
     "crc-32": "^1.2.0",
@@ -230,6 +230,7 @@
       }
     ],
     "globals": {
+      "cv": "readonly",
       "steelseries": "readonly",
       "$": "readonly",
       "EVENT_RECORDER": "writable",

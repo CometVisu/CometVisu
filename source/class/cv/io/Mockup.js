@@ -355,7 +355,7 @@ qx.Class.define('cv.io.Mockup', {
           stop = simulation.stopValues.indexOf(address + '|' + value) >= 0;
         }
         if (!stop) {
-          // the the more general ones
+          // the more general ones
           start = simulation.startValues.indexOf(value) >= 0;
           stop = simulation.startValues.indexOf(value) >= 0;
         }
@@ -472,9 +472,9 @@ qx.Class.define('cv.io.Mockup', {
 
     stop() {},
 
-    getResourcePath(name) {
-      if (name === 'charts') {
-        return null;
+    getResourcePath(name, map) {
+      if (name === 'charts' && map && map.src) {
+        return name + '/' + map.src;
       }
       return name;
     },

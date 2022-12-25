@@ -33,6 +33,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   statics: {
+    ChartCounter: 0,
+
     JS_LOADED: new Promise(async (resolve, reject) => {
       const check = () => typeof window.d3 === 'object';
       await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
@@ -129,6 +131,56 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this.isVisible()) {
         this._loadData();
       }
+      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+        const chartId = 'chart-' + cv.ui.structure.tile.components.Chart.ChartCounter;
+        // add fullscreen button + address
+        const button = document.createElement('cv-button');
+        button.classList.add('fullscreen');
+        const buttonAddress = document.createElement('cv-address');
+        buttonAddress.setAttribute('backend', 'system');
+        buttonAddress.textContent = `state:${chartId}-popup`;
+        button.appendChild(buttonAddress);
+        const icon = document.createElement('cv-icon');
+        icon.textContent = 'ri-fullscreen-line';
+        button.appendChild(icon);
+        element.parentElement.insertBefore(button, element);
+
+        // address
+        const tileAddress = document.createElement('cv-address');
+        tileAddress.setAttribute('mode', 'read');
+        tileAddress.setAttribute('target', 'fullscreen-popup');
+        tileAddress.setAttribute('backend', 'system');
+        tileAddress.setAttribute('send-mode', 'always');
+        tileAddress.textContent = buttonAddress.textContent;
+        element.parentElement.appendChild(tileAddress);
+
+        // listen to parent tile of popup is opened or not
+        let parent = element;
+        while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
+          parent = parent.parentElement;
+        }
+        if (parent) {
+          const tileWidget = parent.getInstance();
+          tileWidget.addListener('closed', () => {
+            const ev = new CustomEvent('sendState', {
+              detail: {
+                value: 0,
+                source: this
+              }
+            });
+            buttonAddress.dispatchEvent(ev);
+          });
+
+          // because we added a read address to the tile after is has been initialized we need to init the listener here manually
+          parent.addEventListener('stateUpdate', ev => {
+            tileWidget.onStateUpdate(ev);
+            // cancel event here
+            ev.stopPropagation();
+          });
+        }
+      }
+
+      cv.ui.structure.tile.components.Chart.ChartCounter++;
     },
 
     _applyVisible(value) {
@@ -145,18 +197,46 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const client = cv.io.BackendConnections.getClient();
       let url;
       const dataSets = this._element.querySelectorAll(':scope > dataset');
+      const series = this._element.getAttribute('series') || 'day';
+      const seriesConfig = {};
+      switch (series) {
+        case 'hour':
+          seriesConfig.xTicks = d3.timeMinute.every(5);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'day':
+          seriesConfig.xTicks = d3.timeHour.every(4);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'week':
+          seriesConfig.xTicks = d3.timeDay.every(1);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'month':
+          seriesConfig.xTicks = d3.timeDay.every(5);
+          seriesConfig.start = 'end-1' + series;
+          break;
+
+        case 'year':
+          seriesConfig.xTicks = d3.timeDay.every(31);
+          seriesConfig.start = 'end-1' + series;
+          break;
+      }
       const promises = [];
       this._dataSetConfigs = {};
       for (let dataSet of dataSets) {
-        let ts = {
+        let ts = Object.assign({
           showArea: true,
           color: '#FF9900',
-          type: dataSet.getAttribute('type') || 'line',
+          type: 'line',
+          title: '',
           start: 'end-1day',
           end: 'now',
-          xFormat: this._element.getAttribute('x-format') || '%H:%M',
           xTicks: d3.timeHour.every(4)
-        };
+        }, seriesConfig);
 
         let attr;
         let name;
@@ -174,43 +254,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             })
             .join('');
           value = attr.value;
-          if (name === 'series') {
-            switch (value) {
-              case 'hour':
-                ts.xTicks = d3.timeMinute.every(5);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'day':
-                ts.xTicks = d3.timeHour.every(4);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'week':
-                ts.xTicks = d3.timeDay.every(1);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'month':
-                ts.xTicks = d3.timeDay.every(5);
-                ts.start = 'end-1' + value;
-                break;
-
-              case 'year':
-                ts.xTicks = d3.timeDay.every(31);
-                ts.start = 'end-1' + value;
-                break;
-            }
-          } else {
-            if (value === 'true' || value === 'false') {
-              value = value === 'true';
-            } else if (/^\d+$/.test(value)) {
-              value = parseInt(value);
-            } else if (/^[\d.]+$/.test(value)) {
-              value = parseFloat(value);
-            }
-            ts[name] = value;
+          if (value === 'true' || value === 'false') {
+            value = value === 'true';
+          } else if (/^\d+$/.test(value)) {
+            value = parseInt(value);
+          } else if (/^[\d.]+$/.test(value)) {
+            value = parseFloat(value);
           }
+          ts[name] = value;
         }
         let start = new Date();
         start.setTime(start.getTime() - 60 * 60 * 24 * 1000);
@@ -270,25 +321,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       const format = this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s';
-
-      this._chart = this._lineChart(chartData, {
-        x: d => d.time,
-        y: d => d.value,
-        z: d => d.src,
-        color: d => {
-          return d && this._dataSetConfigs[d].color;
-        },
-        title: d => {
-          return cv.util.String.sprintf(format, d.value);
-        },
-        //yLabel: ts.unit,
-        xDomain: d3.extent(chartData, d => d.time),
-        yDomain: [minVal, maxVal],
-        showArea: d => {
-          return this._dataSetConfigs[d].showArea;
-        },
-        mixBlendMode: 'normal',
-        xFormat: this.multiTimeFormat([
+      let timeFormat = null;
+      if (this._element.hasAttribute('x-format')) {
+        const formatString = this._element.getAttribute('x-format');
+        timeFormat = date => d3.timeFormat(formatString)(date);
+      } else {
+        // format auto-detection
+        timeFormat = this.multiTimeFormat([
           [
             '.%L',
             function (d) {
@@ -344,7 +383,29 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               return true;
             }
           ]
-        ])
+        ]);
+      }
+
+
+      this._chart = this._lineChart(chartData, {
+        x: d => d.time,
+        y: d => d.value,
+        z: d => d.src,
+        color: d => {
+          return d && this._dataSetConfigs[d].color;
+        },
+        title: d => {
+          return cv.util.String.sprintf(format, d.value);
+        },
+        chartTitle: this._element.hasAttribute('title') ? this._element.getAttribute('title') : null,
+        //yLabel: ts.unit,
+        xDomain: d3.extent(chartData, d => d.time),
+        yDomain: [minVal, maxVal],
+        showArea: d => {
+          return this._dataSetConfigs[d].showArea;
+        },
+        mixBlendMode: 'normal',
+        xFormat: timeFormat
       });
 
       this._loaded = Date.now();
@@ -395,6 +456,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           x: d => d[0], // given d in data, returns the (temporal) x-value
           y: d => d[1], // given d in data, returns the (quantitative) y-value
           z: () => 1, // given d in data, returns the (categorical) z-value
+          chartTitle: undefined, // title for the chart
           title: undefined, // given d in data, returns the title text
           defined: undefined, // for gaps in data
           curve: d3.curveLinear, // method of interpolation between points
@@ -469,35 +531,53 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       d3.select(this._element).select('svg').remove();
 
+      const tooltip = d3.select(this._element)
+        .append('div')
+        .style('opacity', 0)
+        .attr('class', 'tooltip');
+
       let linePath;
 
       const pointerMoved = event => {
         const [xm, ym] = d3.pointer(event);
         const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym));
-
+        const scaleFactorX = this._element.offsetWidth / config.width;
+        const scaleFactorY = this._element.offsetHeight / config.height;
         // closest point
         dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
         if (T) {
-          dot.select('text').text(T[i]);
+          const ttNode = tooltip.node();
+          const timeString = config.xFormat(new Date(X[i]));
+          const top = ym*scaleFactorY - ttNode.offsetHeight - 40;
+          let left = (xm*scaleFactorX + ttNode.offsetWidth) > this._element.offsetWidth ? xm*scaleFactorX - ttNode.offsetWidth : xm*scaleFactorX;
+
+          const key = Z[i];
+          const lineTitle = this._dataSetConfigs[key] && this._dataSetConfigs[key].title ? this._dataSetConfigs[key].title + ': ' : '';
+          tooltip
+            .html(`${timeString}<br/>${lineTitle}${T[i]}`)
+            .style('left', left + 'px')
+            .style('top', top + 'px');
         }
         svg.property('value', O[i]).dispatch('input', { bubbles: true });
       };
 
       const pointerEntered = () => {
         dot.attr('display', null);
+        tooltip.style('opacity', 1);
       };
 
-      const pointerLeft = () => {
-        dot.attr('display', 'none');
-        svg.node().value = null;
-        svg.dispatch('input', { bubbles: true });
+      const pointerLeft = ev => {
+        if (ev.relatedTarget !== tooltip.node()) {
+          dot.attr('display', 'none');
+          svg.node().value = null;
+          svg.dispatch('input', {bubbles: true});
+          tooltip.style('opacity', 0);
+        }
       };
 
       const svg = d3
         .select(this._element)
         .append('svg')
-        .attr('width', config.width)
-        .attr('height', config.height)
         .attr('viewBox', [0, 0, config.width, config.height])
         .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
         .style('-webkit-tap-highlight-color', 'transparent')
@@ -518,25 +598,38 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           { passive: false }
         );
 
-      svg
-        .append('g')
-        .attr('transform', `translate(0,${config.height - config.marginBottom})`)
-        .call(xAxis);
+      const showXAxis = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
+      const showYAxis = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
+      if (showXAxis) {
+        svg
+          .append('g')
+          .attr('transform', `translate(0,${config.height - config.marginBottom})`)
+          .call(xAxis);
+      }
+      if (showYAxis) {
+        svg
+          .append('g')
+          .attr('transform', `translate(${config.marginLeft},0)`)
+          .call(yAxis)
+          .call(g => g.select('.domain').remove())
+          .call(g =>
+            g
+              .append('text')
+              .attr('x', -config.marginLeft)
+              .attr('y', 10)
+              .attr('fill', 'currentColor')
+              .attr('text-anchor', 'start')
+              .text(config.yLabel)
+          );
+      }
 
-      svg
-        .append('g')
-        .attr('transform', `translate(${config.marginLeft},0)`)
-        .call(yAxis)
-        .call(g => g.select('.domain').remove())
-        .call(g =>
-          g
-            .append('text')
-            .attr('x', -config.marginLeft)
-            .attr('y', 10)
-            .attr('fill', 'currentColor')
-            .attr('text-anchor', 'start')
-            .text(config.yLabel)
-        );
+      if (config.chartTitle) {
+        svg.append('text')
+          .attr('x', (config.width / 2))
+          .attr('y', config.marginTop)
+          .attr('class', 'chart-title')
+          .text(config.chartTitle);
+      }
 
       const lineGroups = new Map();
       const areaGroups = new Map();
