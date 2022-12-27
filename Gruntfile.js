@@ -138,14 +138,16 @@ function mock(verbose) {
       }));
       res.end();
     } else if (url.indexOf('/rest/manager/index.php/') >= 0) {
-      const relPath = req.url.substr(req.url.indexOf('/rest/manager/index.php/'));
+      const relPath = url.substr(url.indexOf('/rest/manager/index.php/') + '/rest/manager/index.php/'.length);
       if (req.method === 'GET') {
-        if (fs.existsSync(path.join("source", "test", "fixtures", relPath))) {
-          const data = fs.readFileSync(path.join("source", "test", "fixtures", relPath), 'utf8');
-          res.writeHead(200, {'Content-Type': 'application/json'});
-          res.write(data);
+        const index = JSON.parse(fs.readFileSync(path.join("source", "test", "fixtures", "rest", "manager", "index.php", "index.json")));
+        if (index[relPath]) {
+          const data = index[relPath].data;
+          res.writeHead(200, {'Content-Type': index[relPath].mimeType || 'application/json'});
+          res.write(JSON.stringify(data));
           res.end();
         } else {
+          console.log(relPath, 'not found');
           next();
         }
       } else if (req.method === 'PUT') {
