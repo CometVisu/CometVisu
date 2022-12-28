@@ -8,7 +8,7 @@ const { exec } = require('child_process');
 const { AbstractCompileHandler } = require('../AbstractCompileHandler');
 const { CvBuildTarget } = require('./BuildTarget');
 
-// because the qx compiler does not handle files in the root resoure folder well
+// because the qx compiler does not handle files in the root resource folder well
 // we add them here
 const additionalResources = [
   'visu_config*.xsd',
@@ -21,12 +21,7 @@ const additionalResources = [
 // files that must be copied in the compiled folder
 const filesToCopy = [
   '../package.json',
-  'editor',
-  'upgrade',
-  'check_config.php',
-  'manager.php',
   'version',
-  'library_version.inc.php',
   '../node_modules/monaco-editor',
   'rest/manager',
   'rest/openapi.yaml',
@@ -50,9 +45,9 @@ const deleteBefore = [
 ];
 
 class CvCompileHandler extends AbstractCompileHandler {
-  onLoad() {
+  async onLoad() {
     this._onBeforeLoad();
-    super.onLoad();
+    await super.onLoad();
     const command = this._compilerApi.getCommand();
     const targetType = command.getTargetType();
     if (targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
