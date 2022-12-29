@@ -24,6 +24,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Color', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.ui.structure.tile.MResize,
 
   /*
   ***********************************************
@@ -40,11 +41,21 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    CC_COUNTER: 0,
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
     __input: null,
+    __colorChooser: null,
 
     _init() {
       super._init();
@@ -56,14 +67,83 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       }
 
       // init components
-      let input = element.querySelector(':scope > input');
-      if (!input) {
-        input = document.createElement('input');
-        input.setAttribute('type', 'color');
-        element.appendChild(input);
-        input.oninput = () => this.__throttled.call();
+      const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'html';
+      if (mode === 'html') {
+        let input = element.querySelector(':scope > input');
+        if (!input) {
+          input = document.createElement('input');
+          input.setAttribute('type', 'color');
+          element.appendChild(input);
+          input.oninput = () => this.__throttled.call();
+        }
+        this.__input = input;
+      } else {
+        let popup = element.querySelector(':scope > cv-popup');
+        if (!popup) {
+          popup = document.createElement('cv-popup');
+          popup.setAttribute('modal', 'true');
+          const addresses = {};
+          for (const elem of element.querySelectorAll(':scope > cv-address')) {
+            let src = elem.textContent;
+            let transform = elem.getAttribute('transform');
+            let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+            switch (elem.getAttribute('mode')) {
+              case 'disable':
+                mode = 0;
+                break;
+              case 'read':
+                mode = 1;
+                break;
+              case 'write':
+                mode = 2;
+                break;
+              case 'readwrite':
+                mode = 1 | 2;
+                break;
+            }
+            let variantInfo = cv.parser.pure.widgets.ColorChooser.makeAddressListFn(src, transform, mode, elem.getAttribute('variant'));
+            addresses[src.trim()] = {
+              transform: transform,
+              mode: mode,
+              variantInfo: variantInfo[1]
+            };
+          }
+          cv.ui.structure.tile.components.Color.CC_COUNTER++;
+          const path = 'id_'+cv.ui.structure.tile.components.Color.CC_COUNTER;
+          this.__colorChooser = new cv.ui.structure.pure.ColorChooser({
+            path: path,
+            $$type: 'colorchooser',
+            classes: 'widget colorchooser',
+            layout: {
+              colspan: 1
+            },
+            controls: 'triangle',
+            baseColors: {
+              // default to sRGB color space with D65 white point
+              r: { x: 0.64, y: 0.33, Y: 0.2126 },
+              g: { x: 0.3, y: 0.6, Y: 0.7152 },
+              b: { x: 0.15, y: 0.06, Y: 0.0722 },
+              w: { x: 0.3127, y: 0.329, Y: 1 }
+            },
+            address: addresses
+          });
+          popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; height: 320px" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
+          element.appendChild(popup);
+          element.addEventListener('click', ev => {
+            if (ev.path.indexOf(popup) < 0) {
+              popup.getInstance().open();
+            }
+          });
+          qx.event.Timer.once(() => {
+            this.__colorChooser._onDomReady();
+          }, this, 0);
+
+          this.setResizeTarget(popup);
+          this.addListener('resized', () => {
+            this.__colorChooser.invalidateScreensize();
+          });
+        }
       }
-      this.__input = input;
     },
 
     _applyThrottleInterval(value) {
@@ -97,10 +177,12 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
         }
       }
       const input = this._element.querySelector(':scope > input');
-      input.value = rgb; // this input can't handle the alpha value
-      if (!target) {
-        // only if we do not have another value handler
-        this._element.style.backgroundColor = mappedValue;
+      if (input) {
+        input.value = rgb; // this input can't handle the alpha value
+        if (!target) {
+          // only if we do not have another value handler
+          this._element.style.backgroundColor = mappedValue;
+        }
       }
     },
 
@@ -155,6 +237,15 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
         .filter(addr => addr.getAttribute('variant') === 'hsv')
         .forEach(address => address.dispatchEvent(ev));
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._disposeObjects('__colorChooser');
   },
 
   defer(QxClass) {

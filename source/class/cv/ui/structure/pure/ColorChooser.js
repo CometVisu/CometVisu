@@ -96,12 +96,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
 
     this.__animator.setAnimationSpeed(100, 0.5);
-    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
-      'changePageSizeInvalid',
-      () => {
-        this.__invalidateScreensize();
-      }
-    );
+    if (cv.ui.structure.pure.layout) {
+      this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
+        'changePageSizeInvalid',
+        () => {
+          this.invalidateScreensize();
+        }
+      );
+    }
 
     this.__components = new Set(Object.entries(this.getAddress()).map(v => v[1].variantInfo));
 
@@ -451,7 +453,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     },
 
     /**
-     * The the internal slider state and its handle and displayed value
+     * The internal slider state and its handle and displayed value
      * @param {number} value The new value
      * @param {string} variant The color component to change
      * @param {boolean} instant Animate or instant change
@@ -603,7 +605,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       }
     },
 
-    __invalidateScreensize() {
+    invalidateScreensize() {
       this.__actors = undefined; // invalidate cached values
       this.__animator.setTo(this.__color, true /* tmp */);
     },

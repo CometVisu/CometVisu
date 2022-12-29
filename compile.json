@@ -41,12 +41,20 @@
             "cv.Application",
             "cv.transforms.*",
             "cv.parser.widgets.*",
-            "cv.core.notifications.actions.*"
+            "cv.core.notifications.actions.*",
+            "cv.ui.structure.pure.AbstractBasicWidget",
+            "cv.ui.structure.pure.AbstractWidget",
+            "cv.ui.structure.pure.ColorChooser"
           ]
         },
         "structure-pure": {
           "include": [
             "cv.ui.structure.pure.*"
+          ],
+          "exclude": [
+            "cv.ui.structure.pure.AbstractBasicWidget",
+            "cv.ui.structure.pure.AbstractWidget",
+            "cv.ui.structure.pure.ColorChooser"
           ]
         },
         "structure-tile": {
