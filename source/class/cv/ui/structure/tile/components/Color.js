@@ -57,7 +57,6 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
     __colorChooser: null,
 
     _init() {
-      super._init();
       const element = this._element;
       if (element.hasAttribute('throttle-interval')) {
         this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
@@ -114,6 +113,8 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
           };
           cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
           this.__colorChooser = new cv.ui.structure.pure.ColorChooser(props);
+          this.__colorChooser.addListener('colorChanged', this._onColorChanged, this);
+          this._onColorChanged();
           popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
           element.appendChild(popup);
           element.addEventListener('click', ev => {
@@ -133,6 +134,21 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       }
     },
 
+    _onColorChanged() {
+      const color = this.__colorChooser.getColor();
+      const rgb = color.getComponent('rgb');
+      const v = color.getComponent('v');
+      this.setValue(
+        `#${this.__convertToHex(rgb.r)}${this.__convertToHex(rgb.g)}${this.__convertToHex(rgb.b)}${this.__convertToHex(v)}`
+      );
+    },
+
+    __convertToHex(v) {
+      return Math.round(v * 255)
+        .toString(16)
+        .padStart(2, '0');
+    },
+
     _updateValue(mappedValue, value) {
       let target = this._element.querySelector(':scope > .value');
       const rgb = mappedValue.substring(0, 7);
@@ -143,65 +159,13 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
         switch (tagName) {
           case 'cv-icon':
             target.style.color = rgb;
-            target.style.opacity = Math.max(alpha, 0.05); // do not blend it out totally
+            target.style.opacity = Math.max(alpha, 0.2); // do not blend it out totally
             break;
         }
       } else {
         // only if we do not have another value handler
         this._element.style.backgroundColor = mappedValue;
       }
-    },
-
-    onStateUpdate(ev) {
-      let handled = false;
-      if (ev.detail.target) {
-        handled = super.onStateUpdate(ev);
-      }
-      if (!handled) {
-        const value = ev.detail.state;
-        let rgb;
-        let alpha = '';
-        switch (ev.detail.variant) {
-          case 'hsv':
-            rgb = qx.util.ColorUtil.hsbToRgb([value.get('h'), value.get('s'), 100]);
-
-            alpha = Math.round((value.get('v') / 100) * 255)
-              .toString(16)
-              .padStart(2, '0');
-            this.setValue(
-              `#${rgb[0].toString(16).padStart(2, '0')}${rgb[1].toString(16).padStart(2, '0')}${rgb[2]
-                .toString(16)
-                .padStart(2, '0')}${alpha}`
-            );
-
-            break;
-        }
-      }
-    },
-
-    __sendValue(value) {
-      const hsvArray = qx.util.ColorUtil.rgbToHsb([
-        parseInt(value.substring(1, 3), 16),
-        parseInt(value.substring(3, 5), 16),
-        parseInt(value.substring(5, 7), 16)
-      ]);
-
-      const hsv = new Map([
-        ['h', hsvArray[0]],
-        ['s', hsvArray[1]],
-        ['v', hsvArray[2]]
-      ]);
-
-      const ev = new CustomEvent('sendState', {
-        detail: {
-          value: hsv,
-          source: this
-        }
-      });
-
-      this._writeAddresses
-        .filter(addr => addr.getAttribute('variant') === 'hsv')
-        .forEach(address => address.dispatchEvent(ev));
     }
   },
 

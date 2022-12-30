@@ -148,6 +148,15 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   },
 
   /*
+  ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    colorChanged: 'qx.event.type.Event'
+  },
+
+  /*
   ******************************************************
     MEMBERS
   ******************************************************
@@ -168,6 +177,10 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     __coordMin: undefined, // minimal screen coordinate of slider
     __Tmin: 2000, // minimal color temperature to show in slider
     __Tmax: 12500, // maximal color temperature to show in slider
+
+    getColor() {
+      return this.__color;
+    },
 
     // overridden
     _getInnerDomString() {
@@ -466,7 +479,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
      */
     __setSliderTo(value, variant, instant) {
       this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
-      this.__color.changeComponent(variant, value);
+      this.__changeColor(variant, value);
       instant = instant || this.__color.delta(this.__colorOld) < 0.5;
       if (!instant) {
         this.__animator.setTo(this.__colorOld, true, false);
@@ -649,7 +662,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
                 sv[1] < 0.01 || (sv[0] < 0.01 && sv[1] > 0.99) || (sv[0] > 0.99 && sv[1] > 0.99);
               if (clearlyOnWheel || (closeToInerior && !closeToTriangleCorners)) {
                 this.__mode = 'wheel_h';
-                this.__color.changeComponent(
+                this.__changeColor(
                   actor.isLCh ? 'LCh-h' : 'h',
                   0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI
                 );
@@ -657,7 +670,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
                 this.__inDrag = true;
               } else {
                 this.__mode = 'wheel_sv';
-                this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
+                this.__changeColor(actor.isLCh ? 'LCh-CL' : 'sv', sv);
                 this.__inDrag = true;
               }
             }
@@ -668,11 +681,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
             if (Math.abs(x) < boxSize && Math.abs(y) < boxSize) {
               this.__mode = 'box_sv';
-              this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
+              this.__changeColor(actor.isLCh ? 'LCh-CL' : 'sv', sv);
               this.__inDrag = true;
             } else {
               this.__mode = 'box_h';
-              this.__color.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
+              this.__changeColor(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
 
               this.__inDrag = true;
             }
@@ -682,7 +695,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               ratio = this.__Tmin + ratio * (this.__Tmax - this.__Tmin);
             }
             this.__mode = actorType;
-            this.__color.changeComponent(actorType, ratio);
+            this.__changeColor(actorType, ratio);
             this.__inDrag = true;
           }
           if (this.__inDrag) {
@@ -736,7 +749,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               radius
             );
 
-            this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', [
+            this.__changeColor(actor.isLCh ? 'LCh-CL' : 'sv', [
               Math.min(Math.max(sv[0], 0), 1),
               Math.min(Math.max(sv[1], 0), 1)
             ]);
@@ -748,7 +761,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             const x = relCoordX - 0.5;
             const y = relCoordY - 0.5;
             const sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
-            this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', [
+            this.__changeColor(actor.isLCh ? 'LCh-CL' : 'sv', [
               Math.min(Math.max(sv[0], 0), 1),
               Math.min(Math.max(sv[1], 0), 1)
             ]);
@@ -757,27 +770,32 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           }
           case 'wheel_h':
           case 'box_h':
-            this.__color.changeComponent(
+            this.__changeColor(
               actor.isLCh ? 'LCh-h' : 'h',
               0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI
             );
 
             break;
           case 'T':
-            this.__color.changeComponent(
+            this.__changeColor(
               'T',
               this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin)
             );
 
             break;
           default:
-            this.__color.changeComponent(this.__mode, relCoordX);
+            this.__changeColor(this.__mode, relCoordX);
         }
       }
       this.__animator.setTo(this.__color, true);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
       }
+    },
+
+    __changeColor(component, value) {
+      this.__color.changeComponent(component, value);
+      this.fireEvent('colorChanged');
     },
 
     __onChangeValue() {

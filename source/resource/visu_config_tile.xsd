@@ -858,7 +858,24 @@
                   </xsd:annotation>
                   <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="rgb" />
+                      <xsd:enumeration value="RGB-r" />
+                      <xsd:enumeration value="RGB-g" />
+                      <xsd:enumeration value="RGB-b" />
+                      <xsd:enumeration value="rgbw" />
+                      <xsd:enumeration value="RGBW-r" />
+                      <xsd:enumeration value="RGBW-g" />
+                      <xsd:enumeration value="RGBW-b" />
+                      <xsd:enumeration value="RGBW-w" />
                       <xsd:enumeration value="hsv" />
+                      <xsd:enumeration value="h" />
+                      <xsd:enumeration value="s" />
+                      <xsd:enumeration value="v" />
+                      <xsd:enumeration value="xy" />
+                      <xsd:enumeration value="xyY" />
+                      <xsd:enumeration value="x" />
+                      <xsd:enumeration value="y" />
+                      <xsd:enumeration value="Y" />
                     </xsd:restriction>
                   </xsd:simpleType>
                 </xsd:attribute>
