@@ -45,7 +45,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
   ***********************************************
   */
   statics: {
-    CC_COUNTER: 0,
+    CC_COUNTER: 0
   },
 
   /*
@@ -54,7 +54,6 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
   ***********************************************
   */
   members: {
-    __input: null,
     __colorChooser: null,
 
     _init() {
@@ -62,26 +61,18 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       const element = this._element;
       if (element.hasAttribute('throttle-interval')) {
         this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
-      } else {
-        this._applyThrottleInterval(this.getThrottleInterval());
       }
 
       // init components
-      const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'html';
-      if (mode === 'html') {
-        let input = element.querySelector(':scope > input');
-        if (!input) {
-          input = document.createElement('input');
-          input.setAttribute('type', 'color');
-          element.appendChild(input);
-          input.oninput = () => this.__throttled.call();
-        }
-        this.__input = input;
-      } else {
+      const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'popup';
+      if (mode === 'popup') {
         let popup = element.querySelector(':scope > cv-popup');
         if (!popup) {
           popup = document.createElement('cv-popup');
           popup.setAttribute('modal', 'true');
+          if (element.hasAttribute('title')) {
+            popup.setAttribute('title', element.getAttribute('title'));
+          }
           const addresses = {};
           for (const elem of element.querySelectorAll(':scope > cv-address')) {
             let src = elem.textContent;
@@ -110,24 +101,20 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
           }
           cv.ui.structure.tile.components.Color.CC_COUNTER++;
           const path = 'id_'+cv.ui.structure.tile.components.Color.CC_COUNTER;
-          this.__colorChooser = new cv.ui.structure.pure.ColorChooser({
+          const props = {
             path: path,
             $$type: 'colorchooser',
             classes: 'widget colorchooser',
             layout: {
               colspan: 1
             },
-            controls: 'triangle',
-            baseColors: {
-              // default to sRGB color space with D65 white point
-              r: { x: 0.64, y: 0.33, Y: 0.2126 },
-              g: { x: 0.3, y: 0.6, Y: 0.7152 },
-              b: { x: 0.15, y: 0.06, Y: 0.0722 },
-              w: { x: 0.3127, y: 0.329, Y: 1 }
-            },
-            address: addresses
-          });
-          popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; height: 320px" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
+            controls: element.hasAttribute('controls') ? element.getAttribute('controls') : 'triangle',
+            address: addresses,
+            throttleInterval: this.getThrottleInterval()
+          };
+          cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
+          this.__colorChooser = new cv.ui.structure.pure.ColorChooser(props);
+          popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
           element.appendChild(popup);
           element.addEventListener('click', ev => {
             if (ev.path.indexOf(popup) < 0) {
@@ -146,22 +133,6 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
       }
     },
 
-    _applyThrottleInterval(value) {
-      if (value > 0) {
-        this.__throttled = cv.util.Function.throttle(this.onInput, value, { trailing: true }, this);
-      } else {
-        // no throttling, direct call
-        this.__throttled = {
-          call: () => this.onInput(),
-          abort: () => {}
-        };
-      }
-    },
-
-    onInput() {
-      this.__sendValue(this.__input.value);
-    },
-
     _updateValue(mappedValue, value) {
       let target = this._element.querySelector(':scope > .value');
       const rgb = mappedValue.substring(0, 7);
@@ -175,14 +146,9 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
             target.style.opacity = Math.max(alpha, 0.05); // do not blend it out totally
             break;
         }
-      }
-      const input = this._element.querySelector(':scope > input');
-      if (input) {
-        input.value = rgb; // this input can't handle the alpha value
-        if (!target) {
-          // only if we do not have another value handler
-          this._element.style.backgroundColor = mappedValue;
-        }
+      } else {
+        // only if we do not have another value handler
+        this._element.style.backgroundColor = mappedValue;
       }
     },
 

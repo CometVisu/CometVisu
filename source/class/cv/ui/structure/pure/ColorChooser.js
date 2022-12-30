@@ -139,6 +139,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     sendOnFinish: {
       check: 'Boolean',
       init: false
+    },
+
+    throttleInterval: {
+      check: 'Number',
+      init: 250
     }
   },
 
@@ -254,7 +259,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     _onDomReady() {
       super._onDomReady();
 
-      this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, { trailing: true }, this);
+      this.__throttled = cv.util.Function.throttle(this.__onChangeValue, this.getThrottleInterval(), { trailing: true }, this);
 
       this.getDomElement()
         .querySelectorAll('.actor')
