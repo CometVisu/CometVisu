@@ -49,6 +49,7 @@
       <xsd:element name="cv-backend" type="cv-backend" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-loader" type="cv-loader" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-translations" type="cv-translations" minOccurs="0" />
+      <xsd:element name="style" type="html-style" minOccurs="0" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -527,6 +528,7 @@
       <xsd:element name="cv-color" type="cv-color" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
+      <xsd:element name="cv-plugin" type="cv-plugin"/>
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
@@ -1045,12 +1047,22 @@
         <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des weißen Kanals</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional">
+    <xsd:attribute name="send_on_finish" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Send only when the slider is released.</xsd:documentation>
         <xsd:documentation xml:lang="de">Sende nur beim Loslassen des Sliders.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-plugin">
+    <xsd:choice>
+      <xsd:element name="openweathermap" type="plugin-openweathermap"/>
+    </xsd:choice>
+    <xsd:attribute name="name"  type="xsd:string"/>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
   <!-- template based type (of templates that the structure has build in) -->
@@ -2005,9 +2017,160 @@
     </xsd:sequence>
   </xsd:complexType>
 
+  <xsd:complexType name="html-style">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The style element contains style information for a document, or part of a document.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Das style-Element enthält Stylesheet-Angaben, die für das gesamte Dokument gelten.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="media" default="all" type="xsd:string"/>
+  </xsd:complexType>
+
   <!--
   #####################################################################################################################
   # END: allowed HTML elements
+  #####################################################################################################################
+  # -->
+
+  <!--
+  #####################################################################################################################
+  # START: Plugins
+  #####################################################################################################################
+  # -->
+
+  <xsd:complexType name="plugin-openweathermap">
+    <xsd:attribute name="lang">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Language / format of the date
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Sprache / Datum-Formatierung
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="en" />
+          <xsd:enumeration value="de" />
+          <xsd:enumeration value="fr" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="appid" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Personal access key as obtained from https://openweathermap.org/
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Persönlicher Zugriffsschlüssel von https://openweathermap.org/
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="description" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Describing text, displays the place name when left empty. "false" disables the display
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Beschreibungstext, zeigt den Ortsnamen an, wenn leer gelassen. "false" deaktiviert Anzeige
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="detailItems" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Displays details when set to 1 (default) and hides them when set to 0
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Anzeige von Details, wenn Wert 1 ist (Voreinstellung). 0 deaktiviert Anzeige
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="forecast24hItems" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Number of items to show (0...8)
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Anzahl der Einträge (0...8)
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="forecastDailyItems" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Number of items to show (0...4)
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Anzahl der Einträge (0...4)
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="showSunrise" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Show the sun rise and set information
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Sonnenauf- und untergang anzeigen
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="owID" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          OpenWeatherMap city ID as defined in https://bulk.openweathermap.org/sample/city.list.json.gz
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          OpenWeatherMap City ID aus https://bulk.openweathermap.org/sample/city.list.json.gz
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="q" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          When owID is not used: City name and country code divided by comma, use ISO 3166 country codes
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Wenn owID nicht verwendet wird: Ortsname und ISO 3166 Ländercode, durch Komma getrennt
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="lat" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          When owID or q is not used: latitude of place
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Wenn owID oder q nicht verwendet wird: Geografische Breite des Ortes
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="lon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          When owID or q is not used: longitue of place
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Wenn owID oder q nicht verwendet wird: Geografische Länge des Ortes
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="refresh" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Refresh interval of the data in minutes
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Aktualisierungsintervall in Minuten
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
+  
+  <!--
+  #####################################################################################################################
+  # END: Plugins
   #####################################################################################################################
   # -->
 </xsd:schema>

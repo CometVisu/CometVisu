@@ -99,7 +99,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
             };
           }
           cv.ui.structure.tile.components.Color.CC_COUNTER++;
-          const path = 'id_'+cv.ui.structure.tile.components.Color.CC_COUNTER;
+          const path = 'id_0_'+cv.ui.structure.tile.components.Color.CC_COUNTER;
           const props = {
             path: path,
             $$type: 'colorchooser',

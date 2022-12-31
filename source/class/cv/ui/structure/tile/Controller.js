@@ -423,6 +423,11 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
+    },
+
+    // for compatibility with pure controller
+    parseLabel() {
+      return '';
     }
   },
 
