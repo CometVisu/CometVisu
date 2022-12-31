@@ -13,7 +13,7 @@ class AbstractCompileHandler {
   }
 
   async onLoad() {
-    this.beforeBuild(this._compilerApi.getCommand().getTargetType());
+    await this.beforeBuild(this._compilerApi.getCommand().getTargetType());
   }
 
   /**
