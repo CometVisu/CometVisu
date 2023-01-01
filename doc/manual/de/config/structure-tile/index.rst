@@ -325,6 +325,7 @@ mehrere Komponenten in einer Kachel.
     Slider <components/slider>
     List <components/list>
     Chart <components/chart>
+    Color <components/color>
 
 
 .. toctree::

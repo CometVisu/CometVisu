@@ -19,7 +19,7 @@ Für jedes ``<dataset>`` wird in dem Chart z.B. eine Linie eingezeichnet.
         <fixtures>
             <fixture source-file="source/test/fixtures/temp-chart.json" target-path="charts/Temperature_FF_Living" mime-type="application/json"/>
         </fixtures>
-        <screenshot name="cv-chart-temp" waitfor="cv-chart > svg > g > path[stroke-width='1.5']" />
+        <screenshot name="cv-chart-temp"/>
     </settings>
     <cv-tile size="2x1">
         <cv-chart title="Wohnzimmer" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3">

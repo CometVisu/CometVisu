@@ -42,6 +42,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
    ******************************************************
    */
   members: {
+    _closeButton: null,
+
     _init() {
       super._init();
       const popup = this._element;
@@ -54,6 +56,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
         this._closeButton.appendChild(icon);
         popup.insertBefore(this._closeButton, popup.firstChild);
         this._closeButton.addEventListener('click', () => this.close());
+      }
+      if (popup.hasAttribute('title')) {
+        const header = document.createElement('header');
+        popup.insertBefore(header, popup.firstChild);
+        const title = document.createElement('h2');
+        title.textContent = popup.getAttribute('title');
+        header.appendChild(title);
       }
       if (popup.hasAttribute('auto-close-timeout')) {
         const timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));

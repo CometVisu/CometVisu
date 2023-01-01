@@ -51,6 +51,12 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
       cv.parser.pure.WidgetParser.parseFormat(xml, path);
       cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
+      this.parseAttributes(xml, data);
+
+      return data;
+    },
+
+    parseAttributes(xml, data) {
       data.baseColors = {
         // default to sRGB color space with D65 white point
         r: { x: 0.64, y: 0.33, Y: 0.2126 },
@@ -209,8 +215,6 @@ qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
         default:
           data.baseColors.w.curve = w_curve.split(';').map(x => parseFloat(x));
       }
-
-      return data;
     },
 
     makeAddressListFn(src, transform, mode, variant) {
