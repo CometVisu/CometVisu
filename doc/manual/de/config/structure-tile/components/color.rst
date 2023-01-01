@@ -12,7 +12,7 @@ Beschreibung
 Das Color-Element ermöglicht die Visualisierung und Manipulation einer RGB-Beleuchtung.
 Für die Farbauswahl wird der :ref:`ColorChooser <colorchooser>` aus der Pure-Struktur in einem Popup benutzt.
 Daher stehen auch alle Möglichkeiten die dieser bietet zur Verfügung.
-In der Kachel wird der aktuelle Farbwert über die Icon-Farbe dargestellt. Klickt man auf deb Button öffnet sich
+In der Kachel wird der aktuelle Farbwert über die Icon-Farbe dargestellt. Klickt man auf den Button öffnet sich
 das Popup mit dem ColorChooser.
 
 .. widget-example::
