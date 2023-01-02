@@ -14,6 +14,7 @@
       "class": "cv.Application",
       "name": "cv",
       "theme": "cv.theme.Dark",
+      "type": "browser",
       "environment": {
         "qx.promise": false,
         "qx.command.bindEnabled": true
@@ -159,8 +160,8 @@
         "qxl.apiviewer.applicationName": "cv",
         "qxl.apiviewer.exclude": [
           "qxl.*",
-          "iconfont.*",
-          "osparc.*"
+          "q",
+          "qxWeb"
         ],
         "qxl.versionlabel.name": "CometVisu",
         "qxl.versionlabel.version": "dev"
@@ -169,11 +170,24 @@
         "qx.*"
       ],
       "exclude": [
+        "qx.tool.*",
         "qx.test.*",
         "qx.module.Blocker",
         "qx.module.Placement"
       ],
-      "bootPath": "../../source/apiboot"
+      "bootPath": "../../source/apiboot",
+      "parts": {
+        "boot" : {
+          "include": [
+            "qx.*"
+          ]
+        },
+        "tool" : {
+          "include": [
+            "qx.tool.*"
+          ]
+        }
+      }
     }
   ],
   "libraries": [
@@ -184,6 +198,9 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
+      "application-types": [
+        "browser"
+      ],
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,
@@ -192,6 +209,9 @@
     },
     {
       "type": "build",
+      "application-types": [
+        "browser"
+      ],
       "outputPath": "compiled/build",
       "environment": {
         "cv.build": "build",
@@ -209,6 +229,10 @@
     "compiler": "latest"
   },
   "ignores": [
+    "require",
+    "process",
+    "loadSass",
+    "__dirname",
     "$",
     "EVENT_RECORDER",
     "EventSource",
